@@ -1,24 +1,89 @@
-import { Suspense } from "react";
+"use client";
+
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
+import { Film, Clapperboard, MonitorPlay } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
+    const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const navItems = [
+        { name: "Home", href: "/" },
+        { name: "Watchlist", href: "/watchlist" },
+    ];
+
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 items-center gap-4 m-auto">
-                <Link href="/" className="mr-6 flex items-center space-x-2">
-                    <span className="hidden font-bold sm:inline-block">MediaTracker</span>
+        <header className={cn("sticky top-0 z-50 w-full transition-all duration-500 ease-in-out px-4 py-4", scrolled ? "py-2" : "py-4")}>
+            <div
+                className={cn(
+                    "container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
+                    "border border-white/5 shadow-2xl shadow-black/20",
+                    scrolled ? "bg-[#1c1c1e]/80 backdrop-blur-xl border-white/10 h-14" : "bg-transparent border-transparent"
+                )}
+            >
+                {/* Branding */}
+                <Link href="/" className="flex items-center gap-2 group">
+                    <div className="p-2 rounded-xl bg-primary/10 transition-colors">
+                        <MonitorPlay className="h-5 w-5 text-primary transition-colors" />
+                    </div>
+                    <span className="font-black text-xl tracking-tighter bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent transition-all">
+                        MEDIA<span className="text-primary">TRACKER</span>
+                    </span>
                 </Link>
-                <nav className="flex items-center gap-2">
-                    <Link href="/watchlist" className="text-base font-medium hover:text-primary transition-colors">
-                        Watchlist
-                    </Link>
+
+                {/* Navigation */}
+                <nav className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-xl">
+                    {navItems.map((item) => {
+                        const isActive = pathname === item.href;
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={cn(
+                                    "relative px-4 py-1.5 text-sm font-semibold transition-colors rounded-lg",
+                                    isActive ? "text-white" : "text-muted-foreground hover:text-white"
+                                )}
+                            >
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="nav-active"
+                                        className="absolute inset-0 bg-primary/20 border border-primary/30 rounded-lg -z-10"
+                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    />
+                                )}
+                                {item.name}
+                            </Link>
+                        );
+                    })}
                 </nav>
-                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <div className="w-full flex-1 md:flex-none">
-                        <Suspense fallback={<div className="w-full max-w-sm h-10 bg-muted/20 rounded-md" />}>
+
+                {/* Search & Actions */}
+                <div className="flex items-center gap-4 flex-1 md:flex-none justify-end">
+                    <div className="w-full max-w-xs group relative">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+                        <Suspense fallback={<div className="h-10 w-full bg-muted/20 rounded-xl animate-pulse" />}>
                             <SearchInput />
                         </Suspense>
+                    </div>
+
+                    {/* User Mini Profile Placeholder (Optional Premium Touch) */}
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 cursor-pointer hover:border-primary/50 transition-all">
+                        <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center text-xs font-bold text-primary">
+                            ND
+                        </div>
                     </div>
                 </div>
             </div>
