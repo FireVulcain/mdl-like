@@ -187,12 +187,24 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
                     <tbody className="divide-y divide-border">
                         {(() => {
-                            // Group items
+                            // First, identify which shows have any season in "Watching" status
+                            const showsWithWatchingSeason = new Set<string>();
+                            filteredAndSortedItems.forEach((item) => {
+                                if (item.status === "Watching") {
+                                    showsWithWatchingSeason.add(`${item.source}-${item.externalId}`);
+                                }
+                            });
+
                             const groupedItems: { [key: string]: WatchlistItem[] } = {};
-                            const groupOrder: string[] = []; // Maintain order based on sorted items
+                            const groupOrder: string[] = [];
 
                             filteredAndSortedItems.forEach((item) => {
-                                const key = `${item.source}-${item.externalId}`;
+                                const baseKey = `${item.source}-${item.externalId}`;
+                                const hasWatching = showsWithWatchingSeason.has(baseKey);
+
+                                // If the show has a "Watching" season, use a unique key for each item to prevent grouping
+                                const key = hasWatching ? `${baseKey}-${item.season}` : baseKey;
+
                                 if (!groupedItems[key]) {
                                     groupedItems[key] = [];
                                     groupOrder.push(key);
