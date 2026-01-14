@@ -296,7 +296,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                 <tr
                                                     key={item.id}
                                                     className={`transition-colors border-l-4 border-l-[#ffffff20] bg-primary/[0.03] hover:bg-primary/[0.08] animate-slide-down-row opacity-0 ${
-                                                        isLast ? "border-b-2 border-b-[#ffffff20]" : "border-b border-muted/30"
+                                                        isLast ? "border-b-4 border-b-[#ffffff20]" : "border-b border-muted/30"
                                                     }`}
                                                     style={{ animationDelay: `${index * 50}ms` }}
                                                 >
