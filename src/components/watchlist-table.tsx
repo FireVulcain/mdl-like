@@ -234,18 +234,24 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 const isExpanded = expandedGroups.has(groupKey);
 
                                 if (isMultiSeason) {
+                                    const isCompletedGroup = groupKey.endsWith("-completed");
+
                                     // Render Parent Row
                                     resultNodes.push(
                                         <tr
                                             key={`group-${groupKey}`}
-                                            className="group odd:bg-muted/5 even:bg-transparent hover:bg-muted/10 transition-colors cursor-pointer"
+                                            className={`group transition-all cursor-pointer border-l-4 ${
+                                                isExpanded
+                                                    ? "bg-primary/5 border-l-[#ffffff20]"
+                                                    : "odd:bg-muted/5 even:bg-transparent hover:bg-muted/10 border-l-transparent"
+                                            }`}
                                             onClick={() => toggleGroup(groupKey)}
                                         >
                                             <td className="p-3 text-center text-muted-foreground align-middle ">
                                                 <Button
                                                     variant="ghost"
                                                     size="icon"
-                                                    className="h-6 w-6"
+                                                    className={`h-6 w-6 transition-transform ${isExpanded ? "text-primary bg-primary/10" : ""}`}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         toggleGroup(groupKey);
@@ -263,14 +269,20 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     </div>
                                                     <div>
                                                         <div className="font-semibold">{first.title}</div>
-                                                        <div className="text-xs text-muted-foreground">{group.length} Seasons</div>
+                                                        <div
+                                                            className={`text-xs ${
+                                                                isCompletedGroup ? "text-primary font-medium" : "text-muted-foreground"
+                                                            }`}
+                                                        >
+                                                            {isCompletedGroup ? "Completed Seasons" : "Show All Seasons"} ({group.length})
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-3" colSpan={6}>
                                                 <div className="text-base text-muted-foreground italic flex items-center gap-2">
                                                     <ChevronRight className={`h-3 w-3 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
-                                                    Click to view {group.length} seasons
+                                                    {isExpanded ? "Click to collapse" : `Click to view ${group.length} seasons`}
                                                 </div>
                                             </td>
                                         </tr>
@@ -278,14 +290,23 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
                                     // Render Children if Expanded
                                     if (isExpanded) {
-                                        group.forEach((item) => {
+                                        group.forEach((item, index) => {
+                                            const isLast = index === group.length - 1;
                                             resultNodes.push(
                                                 <tr
                                                     key={item.id}
-                                                    className="bg-muted/10 hover:bg-muted/20 border-b border-muted/50 transition-colors"
+                                                    className={`transition-colors border-l-4 border-l-[#ffffff20] bg-primary/[0.03] hover:bg-primary/[0.08] animate-slide-down-row opacity-0 ${
+                                                        isLast ? "border-b-2 border-b-[#ffffff20]" : "border-b border-muted/30"
+                                                    }`}
+                                                    style={{ animationDelay: `${index * 50}ms` }}
                                                 >
-                                                    <td className="p-3 text-center text-muted-foreground w-12 "></td>
-                                                    <td className="p-3 pl-16 ">
+                                                    <td className="p-3 text-center text-muted-foreground w-12 relative">
+                                                        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary/20 -translate-x-1/2"></div>
+                                                        {!isLast && (
+                                                            <div className="absolute left-[calc(50%+1px)] bottom-0 w-2 h-[2px] bg-primary/20"></div>
+                                                        )}
+                                                    </td>
+                                                    <td className="p-3 pl-8 ">
                                                         <div className="flex items-center gap-2">
                                                             <span className="text-xs font-semibold bg-primary/10 text-primary px-2 py-1 rounded">
                                                                 Season {item.season}
