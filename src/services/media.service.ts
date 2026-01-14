@@ -1,0 +1,223 @@
+import { tmdb, TMDBMedia, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
+
+export type UnifiedMedia = {
+    id: string; // Unified: "tmdb-123" or "mdl-456"
+    externalId: string;
+    source: "TMDB" | "MDL";
+    type: "MOVIE" | "TV";
+    title: string;
+    poster: string | null;
+    backdrop: string | null;
+    year: string;
+    originCountry: string; // 'US', 'KR', 'JP', etc.
+    synopsis: string;
+    rating: number;
+    popularity?: number;
+    status?: string; // For TV shows: "Returning Series", "Ended", etc.
+    totalEp?: number;
+    seasons?: {
+        seasonNumber: number;
+        episodeCount: number;
+        name: string;
+        poster: string | null;
+    }[];
+    cast?: {
+        id: number;
+        name: string;
+        character: string;
+        profile: string | null;
+    }[];
+    images?: {
+        backdrops: string[];
+        posters: string[];
+    };
+    recommendations?: UnifiedMedia[];
+    // Extra Details
+    duration?: string;
+    aired?: string;
+    network?: string;
+    genres?: string[];
+    contentRating?: string;
+};
+
+export const mediaService = {
+    async search(query: string): Promise<UnifiedMedia[]> {
+        // Primary Source: TMDB
+        const tmdbResults = await tmdb.searchMulti(query);
+
+        // Transform TMDB results
+        const unifiedResults: UnifiedMedia[] = tmdbResults.results
+            .filter((item) => item.media_type === "movie" || item.media_type === "tv")
+            .map((item) => ({
+                id: `tmdb-${item.id}`,
+                externalId: item.id.toString(),
+                source: "TMDB" as "TMDB" | "MDL",
+                type: (item.media_type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
+                title: item.title || item.name || "Unknown",
+                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                year: (item.release_date || item.first_air_date || "").split("-")[0],
+                originCountry: item.origin_country?.[0] || "US", // Fallback to US if missing (common for movies)
+                synopsis: item.overview,
+                rating: item.vote_average,
+                popularity: item.popularity,
+            }))
+            .sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+
+        // TODO: Implement MDL search and deduplication logic here
+
+        return unifiedResults as UnifiedMedia[];
+    },
+
+    async getDetails(id: string): Promise<UnifiedMedia | null> {
+        const [source, externalId] = id.split("-");
+
+        if (source === "tmdb") {
+            try {
+                let details: TMDBMedia;
+                let type: "tv" | "movie" = "tv";
+
+                try {
+                    // append_to_response for credits, recommendations, images, content_ratings, release_dates
+                    details = await fetchTMDB<TMDBMedia>(`/tv/${externalId}`, {
+                        append_to_response: "credits,recommendations,images,content_ratings",
+                        include_image_language: "en,null",
+                    });
+                } catch (e) {
+                    details = await fetchTMDB<TMDBMedia>(`/movie/${externalId}`, {
+                        append_to_response: "credits,recommendations,images,release_dates",
+                        include_image_language: "en,null",
+                    });
+                    type = "movie";
+                }
+
+                // Helper for content rating
+                const getRating = () => {
+                    if (type === "movie") {
+                        const us = details.release_dates?.results.find((r) => r.iso_3166_1 === "US");
+                        return us?.release_dates[0]?.certification || "";
+                    } else {
+                        const rating = details.content_ratings?.results.find((r) => r.iso_3166_1 === "US" || r.iso_3166_1 === "KR");
+                        return rating?.rating || "";
+                    }
+                };
+
+                // Helper for duration
+                const getDuration = () => {
+                    const runtime = type === "movie" ? details.runtime : details.episode_run_time?.[0];
+                    if (!runtime) return undefined;
+                    const h = Math.floor(runtime / 60);
+                    const m = runtime % 60;
+                    return h > 0 ? `${h} hr. ${m} min.` : `${m} min.`;
+                };
+
+                return {
+                    id: `tmdb-${details.id}`,
+                    externalId: details.id.toString(),
+                    source: "TMDB" as "TMDB" | "MDL",
+                    type: (type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
+                    title: details.title || details.name || "Unknown",
+                    poster: details.poster_path ? TMDB_CONFIG.w500Image(details.poster_path) : null,
+                    backdrop: details.backdrop_path ? TMDB_CONFIG.originalImage(details.backdrop_path) : null,
+                    year: (details.release_date || details.first_air_date || "").split("-")[0],
+                    originCountry: details.origin_country?.[0] || "US",
+                    synopsis: details.overview,
+                    rating: details.vote_average,
+                    totalEp: type === "movie" ? 1 : details.number_of_episodes,
+                    status: details.status,
+
+                    // New Fields
+                    duration: getDuration(),
+                    aired:
+                        type === "movie"
+                            ? details.release_date
+                            : `${details.first_air_date || "?"} - ${details.status === "Ended" ? details.last_air_date || "?" : "Present"}`,
+                    network: details.networks?.[0]?.name,
+                    genres: details.genres?.map((g) => g.name) || [],
+                    contentRating: getRating(),
+
+                    seasons: details.seasons
+                        ?.map((s) => ({
+                            seasonNumber: s.season_number,
+                            episodeCount: s.episode_count,
+                            name: s.name,
+                            poster: s.poster_path ? TMDB_CONFIG.w500Image(s.poster_path) : null,
+                        }))
+                        .filter((s) => s.seasonNumber > 0), // Filter out "Specials" (Season 0) usually
+
+                    cast: details.credits?.cast?.map((actor) => ({
+                        id: actor.id,
+                        name: actor.name,
+                        character: actor.character,
+                        profile: actor.profile_path ? TMDB_CONFIG.w500Image(actor.profile_path) : null,
+                    })),
+
+                    // Map Images
+                    images: {
+                        backdrops: details.images?.backdrops?.map((b) => TMDB_CONFIG.originalImage(b.file_path)) || [],
+                        posters: details.images?.posters?.map((p) => TMDB_CONFIG.w500Image(p.file_path)) || [],
+                    },
+
+                    // Map Recommendations
+                    recommendations: details.recommendations?.results?.slice(0, 6).map((item) => ({
+                        id: `tmdb-${item.id}`,
+                        externalId: item.id.toString(),
+                        source: "TMDB" as "TMDB" | "MDL",
+                        type: (item.media_type === "movie" || (!item.media_type && type === "movie") ? "MOVIE" : "TV") as "MOVIE" | "TV",
+                        title: item.title || item.name || "Unknown",
+                        poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                        backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                        year: (item.release_date || item.first_air_date || "").split("-")[0],
+                        originCountry: item.origin_country?.[0] || "US",
+                        synopsis: item.overview,
+                        rating: item.vote_average,
+                    })) as UnifiedMedia[],
+                };
+            } catch (error) {
+                console.error("Error fetching details", error);
+                return null;
+            }
+        }
+
+        return null;
+    },
+
+    async getTrending(): Promise<UnifiedMedia[]> {
+        try {
+            const tmdbResults = await tmdb.getTrending("all", "week");
+
+            return tmdbResults.results
+                .filter((item) => item.media_type === "movie" || item.media_type === "tv")
+                .map((item) => ({
+                    id: `tmdb-${item.id}`,
+                    externalId: item.id.toString(),
+                    source: "TMDB" as "TMDB" | "MDL",
+                    type: (item.media_type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
+                    title: item.title || item.name || "Unknown",
+                    poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                    backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                    year: (item.release_date || item.first_air_date || "").split("-")[0],
+                    originCountry: item.origin_country?.[0] || "US",
+                    synopsis: item.overview,
+                    rating: item.vote_average,
+                })) as UnifiedMedia[];
+        } catch (error) {
+            console.warn("Failed to fetch trending media (likely no API key), using mock data");
+            return [
+                {
+                    id: "mock-1",
+                    externalId: "1",
+                    source: "TMDB" as const,
+                    type: "TV" as const,
+                    title: "Mock Drama (No API Key)",
+                    poster: null,
+                    backdrop: null,
+                    year: "2024",
+                    originCountry: "KR",
+                    synopsis: "This is a mock item displayed because the TMDB_API_KEY is missing.",
+                    rating: 8.5,
+                },
+            ] as UnifiedMedia[];
+        }
+    },
+};
