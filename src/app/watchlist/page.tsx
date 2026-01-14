@@ -10,7 +10,7 @@ export const revalidate = 0;
 
 export default async function WatchlistPage() {
     // Handle build time gracefully
-    let watchlist = [];
+    let watchlist: Awaited<ReturnType<typeof getWatchlist>> = [];
 
     try {
         // Skip database during build phase
