@@ -63,7 +63,7 @@ model UserMedia {
   season      Int      @default(1) // Season Number
   progress    Int      // Current Episode
   totalEp     Int?     // Total Episodes (cached from API)
-  score       Int?
+  score       Float?
   notes       String?  @db.Text
   
   // Cached metadata for display (avoids N+1 API calls)
