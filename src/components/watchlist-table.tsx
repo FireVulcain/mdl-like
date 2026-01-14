@@ -330,7 +330,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     <td className="p-3 text-muted-foreground text-base ">{item.originCountry || "-"}</td>
                                                     <td className="p-3 text-muted-foreground text-base ">{item.year || "-"}</td>
                                                     <td className="p-3 ">
-                                                        <div className="flex items-center gap-2 scale-90 origin-left">
+                                                        <div className="flex items-center origin-left">
                                                             <button
                                                                 onClick={(e) => {
                                                                     e.stopPropagation();
@@ -354,7 +354,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                             </button>
                                                         </div>
                                                         {item.totalEp && (
-                                                            <Progress value={(item.progress / item.totalEp) * 100} className="h-1 mt-1 w-24" />
+                                                            <Progress value={(item.progress / item.totalEp) * 100} className="h-1 mt-1 w-full" />
                                                         )}
                                                     </td>
                                                     <td className="p-3 text-right font-medium text-yellow-500 text-base ">
