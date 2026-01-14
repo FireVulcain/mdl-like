@@ -202,8 +202,21 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 const baseKey = `${item.source}-${item.externalId}`;
                                 const hasWatching = showsWithWatchingSeason.has(baseKey);
 
-                                // If the show has a "Watching" season, use a unique key for each item to prevent grouping
-                                const key = hasWatching ? `${baseKey}-${item.season}` : baseKey;
+                                // Logic refinement:
+                                // 1. If no season is "Watching", group everything under baseKey.
+                                // 2. If at least one is "Watching":
+                                //    - Group all "Completed" seasons together under baseKey-completed.
+                                //    - Keep every other season individual under baseKey-season.
+                                let key: string;
+                                if (hasWatching) {
+                                    if (item.status === "Completed") {
+                                        key = `${baseKey}-completed`;
+                                    } else {
+                                        key = `${baseKey}-${item.season}`;
+                                    }
+                                } else {
+                                    key = baseKey;
+                                }
 
                                 if (!groupedItems[key]) {
                                     groupedItems[key] = [];
