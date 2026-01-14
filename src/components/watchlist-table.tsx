@@ -129,7 +129,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             </div>
 
             <div className="rounded-md border bg-card overflow-hidden">
-                <table className="w-full text-sm text-left border-collapse">
+                <table className="w-full text-base text-left border-collapse">
                     <thead className="bg-[#2490da] text-white font-medium">
                         <tr>
                             <th className="p-3 w-12 text-center  border-[#ffffff20]">#</th>
@@ -243,7 +243,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                 </div>
                                             </td>
                                             <td className="p-3" colSpan={6}>
-                                                <div className="text-sm text-muted-foreground italic flex items-center gap-2">
+                                                <div className="text-base text-muted-foreground italic flex items-center gap-2">
                                                     <ChevronRight className={`h-3 w-3 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
                                                     Click to view {group.length} seasons
                                                 </div>
@@ -267,7 +267,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                             </span>
                                                             <Link
                                                                 href={`/media/${item.source.toLowerCase()}-${item.externalId}?season=${item.season}`}
-                                                                className="text-sm hover:underline text-muted-foreground hover:text-foreground"
+                                                                className="text-base hover:underline text-muted-foreground hover:text-foreground"
                                                             >
                                                                 View Details
                                                             </Link>
@@ -281,8 +281,8 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                             {item.status}
                                                         </Badge>
                                                     </td>
-                                                    <td className="p-3 text-muted-foreground text-sm ">{item.originCountry || "-"}</td>
-                                                    <td className="p-3 text-muted-foreground text-sm ">{item.year || "-"}</td>
+                                                    <td className="p-3 text-muted-foreground text-base ">{item.originCountry || "-"}</td>
+                                                    <td className="p-3 text-muted-foreground text-base ">{item.year || "-"}</td>
                                                     <td className="p-3 ">
                                                         <div className="flex items-center gap-2 scale-90 origin-left">
                                                             <button
@@ -294,7 +294,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                             >
                                                                 <Minus className="h-3 w-3" />
                                                             </button>
-                                                            <span className="font-medium w-full text-center text-foreground text-sm">
+                                                            <span className="font-medium w-full text-center text-foreground text-base">
                                                                 {item.progress} <span className="text-muted-foreground">/ {item.totalEp || "?"}</span>
                                                             </span>
                                                             <button
@@ -311,7 +311,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                             <Progress value={(item.progress / item.totalEp) * 100} className="h-1 mt-1 w-24" />
                                                         )}
                                                     </td>
-                                                    <td className="p-3 text-right font-medium text-yellow-500 text-sm ">
+                                                    <td className="p-3 text-right font-medium text-yellow-500 text-base ">
                                                         {item.score ? item.score.toFixed(1) : "-"}
                                                     </td>
                                                     <td className="p-3 text-right">
