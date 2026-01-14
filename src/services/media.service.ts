@@ -220,4 +220,48 @@ export const mediaService = {
             ] as UnifiedMedia[];
         }
     },
+
+    async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[] }> {
+        try {
+            // Trending K-Dramas (using popularity as proxy for trending within category)
+            const popularRes = await tmdb.discoverTV({
+                with_origin_country: "KR",
+                with_genres: "18", // Drama
+                sort_by: "popularity.desc",
+            });
+
+            // Currently Airing K-Dramas
+            const today = new Date().toISOString().split("T")[0];
+            const airingRes = await tmdb.discoverTV({
+                with_origin_country: "KR",
+                with_genres: "18",
+                "air_date.gte": today,
+                "first_air_date.lte": today, // Ensure it has actually started
+                sort_by: "popularity.desc",
+            });
+
+            const transform = (item: TMDBMedia): UnifiedMedia => ({
+                id: `tmdb-${item.id}`,
+                externalId: item.id.toString(),
+                source: "TMDB",
+                type: "TV",
+                title: item.name || "Unknown",
+                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                year: (item.first_air_date || "").split("-")[0],
+                originCountry: "KR",
+                synopsis: item.overview,
+                rating: item.vote_average,
+                popularity: item.popularity,
+            });
+
+            return {
+                trending: popularRes.results.map(transform),
+                airing: airingRes.results.map(transform),
+            };
+        } catch (error) {
+            console.error("Error fetching K-Dramas", error);
+            return { trending: [], airing: [] };
+        }
+    },
 };

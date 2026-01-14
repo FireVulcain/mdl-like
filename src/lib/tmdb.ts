@@ -97,4 +97,8 @@ export const tmdb = {
 
     getTrending: (type: "all" | "movie" | "tv" = "all", timeWindow: "day" | "week" = "week") =>
         fetchTMDB<TMDBSearchResult>(`/trending/${type}/${timeWindow}`),
+
+    discoverTV: (params: Record<string, string>) => fetchTMDB<TMDBSearchResult>("/discover/tv", params),
+
+    getOnTheAir: (page = 1) => fetchTMDB<TMDBSearchResult>("/tv/on_the_air", { page: page.toString() }),
 };
