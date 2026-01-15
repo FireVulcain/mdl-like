@@ -6,9 +6,8 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
 import { updateProgress } from "@/actions/media";
-import { Plus, Minus, Pencil, ChevronRight, ChevronDown, ArrowUpDown, ChevronUp } from "lucide-react";
+import { Plus, Minus, Pencil, ChevronRight, ChevronDown, Eye, CheckCircle, Clock, XCircle } from "lucide-react";
 
 type WatchlistItem = {
     id: string;
@@ -23,7 +22,7 @@ type WatchlistItem = {
     totalEp: number | null;
     score: number | null;
     notes: string | null;
-    season: number; // Default 1
+    season: number;
     mediaType: string;
 };
 
@@ -33,21 +32,22 @@ interface WatchlistTableProps {
 
 import { EditMediaDialog } from "./edit-media-dialog";
 
-type SortConfig = {
-    key: keyof WatchlistItem | null;
-    direction: "asc" | "desc";
+const statusConfig = {
+    Watching: { icon: Eye, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+    Completed: { icon: CheckCircle, color: "text-green-400", bg: "bg-green-500/10", border: "border-green-500/20" },
+    "Plan to Watch": { icon: Clock, color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+    Dropped: { icon: XCircle, color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
 };
 
 export function WatchlistTable({ items }: WatchlistTableProps) {
     const [filterStatus, setFilterStatus] = useState<string>("All");
     const [filterCountry, setFilterCountry] = useState<string>("All");
+    const [filterYear, setFilterYear] = useState<string>("All");
     const [search, setSearch] = useState("");
-    const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: "asc" });
-
     const [editingItem, setEditingItem] = useState<WatchlistItem | null>(null);
     const [editOpen, setEditOpen] = useState(false);
-
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+    const [sortBy, setSortBy] = useState<string>("default");
 
     const toggleGroup = (key: string) => {
         const newSet = new Set(expandedGroups);
@@ -59,45 +59,55 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setExpandedGroups(newSet);
     };
 
-    const handleSort = (key: keyof WatchlistItem) => {
-        let direction: "asc" | "desc" = "asc";
-        if (sortConfig.key === key && sortConfig.direction === "asc") {
-            direction = "desc";
-        } else if (sortConfig.key === key && sortConfig.direction === "desc") {
-            setSortConfig({ key: null, direction: "asc" });
-            return;
-        }
-        setSortConfig({ key, direction });
-    };
-
-    const filteredAndSortedItems = useMemo(() => {
+    const filteredItems = useMemo(() => {
         let result = items.filter((item) => {
             if (filterStatus !== "All" && item.status !== filterStatus) return false;
             if (filterCountry !== "All" && item.originCountry !== filterCountry) return false;
             if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
+            
+            // Year filter
+            if (filterYear !== "All" && item.year) {
+                if (filterYear === "2010s" && (item.year < 2010 || item.year >= 2020)) return false;
+                if (filterYear === "2000s" && (item.year < 2000 || item.year >= 2010)) return false;
+                if (filterYear === "Older" && item.year >= 2000) return false;
+                if (!["2010s", "2000s", "Older"].includes(filterYear) && item.year.toString() !== filterYear) return false;
+            }
+            
             return true;
         });
 
-        if (sortConfig.key) {
+        // Apply sorting
+        if (sortBy !== "default") {
             result.sort((a, b) => {
-                const aValue = a[sortConfig.key!];
-                const bValue = b[sortConfig.key!];
-
-                if (aValue === null) return 1;
-                if (bValue === null) return -1;
-
-                if (aValue < bValue) {
-                    return sortConfig.direction === "asc" ? -1 : 1;
+                switch (sortBy) {
+                    case "rating-high":
+                        return (b.score || 0) - (a.score || 0);
+                    case "rating-low":
+                        return (a.score || 0) - (b.score || 0);
+                    case "progress-high":
+                        const aPercent = a.totalEp ? (a.progress / a.totalEp) * 100 : 0;
+                        const bPercent = b.totalEp ? (b.progress / b.totalEp) * 100 : 0;
+                        return bPercent - aPercent;
+                    case "progress-low":
+                        const aPercent2 = a.totalEp ? (a.progress / a.totalEp) * 100 : 0;
+                        const bPercent2 = b.totalEp ? (b.progress / b.totalEp) * 100 : 0;
+                        return aPercent2 - bPercent2;
+                    case "title-az":
+                        return (a.title || "").localeCompare(b.title || "");
+                    case "title-za":
+                        return (b.title || "").localeCompare(a.title || "");
+                    case "year-new":
+                        return (b.year || 0) - (a.year || 0);
+                    case "year-old":
+                        return (a.year || 0) - (b.year || 0);
+                    default:
+                        return 0;
                 }
-                if (aValue > bValue) {
-                    return sortConfig.direction === "asc" ? 1 : -1;
-                }
-                return 0;
             });
         }
-
+        
         return result;
-    }, [items, filterStatus, search, sortConfig]);
+    }, [items, filterStatus, filterCountry, search, filterYear, sortBy]);
 
     const handleProgress = async (id: string, newProgress: number) => {
         await updateProgress(id, newProgress);
@@ -108,366 +118,319 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setEditOpen(true);
     };
 
-    const SortIcon = ({ column }: { column: keyof WatchlistItem }) => {
-        if (sortConfig.key !== column) return <ArrowUpDown className="ml-2 h-3 w-3" />;
-        return sortConfig.direction === "asc" ? <ChevronUp className="ml-2 h-3 w-3" /> : <ChevronDown className="ml-2 h-3 w-3" />;
-    };
-
     return (
-        <div className="space-y-4">
-            <div className="flex flex-wrap gap-4 p-4 bg-card border rounded-lg">
-                <div className="flex gap-2">
+        <div className="space-y-6">
+            <div className="flex flex-wrap items-center gap-4">
+                <div className="flex gap-2 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5">
                     {["All", "Watching", "Completed", "Plan to Watch", "Dropped"].map((s) => (
-                        <Button key={s} variant={filterStatus === s ? "default" : "outline"} size="sm" onClick={() => setFilterStatus(s)}>
+                        <Button
+                            key={s}
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setFilterStatus(s)}
+                            className={`rounded-md px-4 transition-all ${
+                                filterStatus === s
+                                    ? "bg-blue-500 text-white hover:bg-blue-600"
+                                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                            }`}
+                        >
                             {s}
                         </Button>
                     ))}
                 </div>
-                <div className="flex-1">
-                    <Input placeholder="Filter by title..." value={search} onChange={(e) => setSearch(e.target.value)} className="max-w-xs" />
+
+                <div className="flex gap-3 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5">
+
+                    <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                    >
+                        <option value="default" className="bg-gray-900">Sort by: Default</option>
+                        <option value="rating-high" className="bg-gray-900">Rating: High to Low</option>
+                        <option value="rating-low" className="bg-gray-900">Rating: Low to High</option>
+                        <option value="progress-high" className="bg-gray-900">Progress: High to Low</option>
+                        <option value="progress-low" className="bg-gray-900">Progress: Low to High</option>
+                        <option value="title-az" className="bg-gray-900">Title: A-Z</option>
+                        <option value="title-za" className="bg-gray-900">Title: Z-A</option>
+                        <option value="year-new" className="bg-gray-900">Year: Newest</option>
+                        <option value="year-old" className="bg-gray-900">Year: Oldest</option>
+                    </select>
+
+                    <select
+                        value={filterCountry}
+                        onChange={(e) => setFilterCountry(e.target.value)}
+                        className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                    >
+                        <option value="All" className="bg-gray-900">All Countries</option>
+                        {Array.from(new Set(items.map(item => item.originCountry).filter(Boolean))).sort().map(country => (
+                            <option key={country} value={country!} className="bg-gray-900">{country}</option>
+                        ))}
+                    </select>
+
+                    <select
+                        value={filterYear}
+                        onChange={(e) => setFilterYear(e.target.value)}
+                        className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                    >
+                        <option value="All" className="bg-gray-900">All Years</option>
+                        <option value="2025" className="bg-gray-900">2025</option>
+                        <option value="2024" className="bg-gray-900">2024</option>
+                        <option value="2023" className="bg-gray-900">2023</option>
+                        <option value="2022" className="bg-gray-900">2022</option>
+                        <option value="2021" className="bg-gray-900">2021</option>
+                        <option value="2020" className="bg-gray-900">2020</option>
+                        <option value="2010s" className="bg-gray-900">2010-2019</option>
+                        <option value="2000s" className="bg-gray-900">2000-2009</option>
+                        <option value="Older" className="bg-gray-900">Before 2000</option>
+                    </select>
                 </div>
             </div>
 
-            <div className="rounded-md border bg-card overflow-hidden">
-                <table className="w-full text-base text-left border-collapse">
-                    <thead className="bg-[#2490da] text-white font-medium">
-                        <tr>
-                            <th className="p-3 w-12 text-center  border-[#ffffff20]">#</th>
-                            <th
-                                className="p-3 cursor-pointer hover:bg-[#1e78b8] transition-colors  border-[#ffffff20]"
-                                onClick={() => handleSort("title")}
-                            >
-                                <div className="flex items-center">
-                                    Title <SortIcon column="title" />
-                                </div>
-                            </th>
-                            <th
-                                className="p-3 w-32 cursor-pointer hover:bg-[#1e78b8] transition-colors  border-[#ffffff20]"
-                                onClick={() => handleSort("status")}
-                            >
-                                <div className="flex items-center">
-                                    Status <SortIcon column="status" />
-                                </div>
-                            </th>
-                            <th
-                                className="p-3 w-32 cursor-pointer hover:bg-[#1e78b8] transition-colors  border-[#ffffff20]"
-                                onClick={() => handleSort("originCountry")}
-                            >
-                                <div className="flex items-center">
-                                    Country <SortIcon column="originCountry" />
-                                </div>
-                            </th>
-                            <th
-                                className="p-3 w-24 cursor-pointer hover:bg-[#1e78b8] transition-colors  border-[#ffffff20]"
-                                onClick={() => handleSort("year")}
-                            >
-                                <div className="flex items-center">
-                                    Year <SortIcon column="year" />
-                                </div>
-                            </th>
-                            <th
-                                className="p-3 w-40 cursor-pointer hover:bg-[#1e78b8] transition-colors  border-[#ffffff20]"
-                                onClick={() => handleSort("progress")}
-                            >
-                                <div className="flex items-center">
-                                    Progress <SortIcon column="progress" />
-                                </div>
-                            </th>
-                            <th
-                                className="p-3 w-24 cursor-pointer hover:bg-[#1e78b8] transition-colors text-right  border-[#ffffff20]"
-                                onClick={() => handleSort("score")}
-                            >
-                                <div className="flex items-center justify-end">
-                                    Score <SortIcon column="score" />
-                                </div>
-                            </th>
-                            <th className="p-3 w-12"></th>
-                        </tr>
-                    </thead>
 
-                    <tbody className="divide-y divide-border">
-                        {(() => {
-                            // First, identify which shows have any season in "Watching" status
-                            const showsWithWatchingSeason = new Set<string>();
-                            filteredAndSortedItems.forEach((item) => {
-                                if (item.status === "Watching") {
-                                    showsWithWatchingSeason.add(`${item.source}-${item.externalId}`);
-                                }
-                            });
+            <div className="space-y-2">
+                {(() => {
+                    const showsWithWatchingSeason = new Set<string>();
+                    filteredItems.forEach((item) => {
+                        if (item.status === "Watching") {
+                            showsWithWatchingSeason.add(`${item.source}-${item.externalId}`);
+                        }
+                    });
 
-                            const groupedItems: { [key: string]: WatchlistItem[] } = {};
-                            const groupOrder: string[] = [];
+                    const groupedItems: { [key: string]: WatchlistItem[] } = {};
+                    const groupOrder: string[] = [];
 
-                            filteredAndSortedItems.forEach((item) => {
-                                const baseKey = `${item.source}-${item.externalId}`;
-                                const hasWatching = showsWithWatchingSeason.has(baseKey);
+                    filteredItems.forEach((item) => {
+                        const baseKey = `${item.source}-${item.externalId}`;
+                        const hasWatching = showsWithWatchingSeason.has(baseKey);
 
-                                // Logic refinement:
-                                // 1. If no season is "Watching", group everything under baseKey.
-                                // 2. If at least one is "Watching":
-                                //    - Group all "Completed" seasons together under baseKey-completed.
-                                //    - Keep every other season individual under baseKey-season.
-                                let key: string;
-                                if (hasWatching) {
-                                    if (item.status === "Completed") {
-                                        key = `${baseKey}-completed`;
-                                    } else {
-                                        key = `${baseKey}-${item.season}`;
-                                    }
-                                } else {
-                                    key = baseKey;
-                                }
+                        let key: string;
+                        if (hasWatching) {
+                            if (item.status === "Completed") {
+                                key = `${baseKey}-completed`;
+                            } else {
+                                key = `${baseKey}-${item.season}`;
+                            }
+                        } else {
+                            key = baseKey;
+                        }
 
-                                if (!groupedItems[key]) {
-                                    groupedItems[key] = [];
-                                    groupOrder.push(key);
-                                }
-                                groupedItems[key].push(item);
-                            });
+                        if (!groupedItems[key]) {
+                            groupedItems[key] = [];
+                            groupOrder.push(key);
+                        }
+                        groupedItems[key].push(item);
+                    });
 
-                            const resultNodes: React.ReactNode[] = [];
-                            groupOrder.forEach((groupKey, groupIndex) => {
-                                const group = groupedItems[groupKey];
-                                group.sort((a, b) => a.season - b.season);
-                                const first = group[0];
-                                const isMultiSeason = group.length > 1;
-                                const isExpanded = expandedGroups.has(groupKey);
+                    const resultNodes: React.ReactNode[] = [];
+                    groupOrder.forEach((groupKey) => {
+                        const group = groupedItems[groupKey];
+                        group.sort((a, b) => a.season - b.season);
+                        const first = group[0];
+                        const isMultiSeason = group.length > 1;
+                        const isExpanded = expandedGroups.has(groupKey);
 
-                                if (isMultiSeason) {
-                                    const isCompletedGroup = groupKey.endsWith("-completed");
-
-                                    // Render Parent Row
-                                    resultNodes.push(
-                                        <tr
-                                            key={`group-${groupKey}`}
-                                            className={`group transition-all cursor-pointer border-l-4 ${
-                                                isExpanded
-                                                    ? "bg-primary/5 border-l-[#ffffff20]"
-                                                    : "odd:bg-muted/5 even:bg-transparent hover:bg-muted/10 border-l-transparent"
+                        if (isMultiSeason) {
+                            // Parent Card
+                            resultNodes.push(
+                                <div
+                                    key={`group-${groupKey}`}
+                                    className="group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20"
+                                    onClick={() => toggleGroup(groupKey)}
+                                    style={{
+                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
+                                    }}
+                                >
+                                    <div className="flex items-center gap-5 p-5">
+                                        <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 shadow-lg">
+    {first.poster && (
+        <Image src={first.poster} alt={first.title || ""} fill className="object-cover" />
+    )}
+</div>
+                                        <div className="flex-1">
+                                            <div className="font-semibold text-xl text-white">{first.title}</div>
+                                            <div className="text-sm text-gray-400 mt-1">
+                                                {group.length} seasons
+                                            </div>
+                                        </div>
+                                        <ChevronRight
+                                            className={`h-5 w-5 text-gray-400 transition-transform ${
+                                                isExpanded ? "rotate-90" : ""
                                             }`}
-                                            onClick={() => toggleGroup(groupKey)}
-                                        >
-                                            <td className="p-3 text-center text-muted-foreground align-middle ">
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon"
-                                                    className={`h-6 w-6 transition-transform ${isExpanded ? "text-primary bg-primary/10" : ""}`}
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        toggleGroup(groupKey);
-                                                    }}
-                                                >
-                                                    {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                                                </Button>
-                                            </td>
-                                            <td className="p-3 ">
-                                                <div className="flex gap-3 items-center">
-                                                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-secondary">
-                                                        {first.poster ? (
-                                                            <Image src={first.poster} alt={first.title || ""} fill className="object-cover" />
-                                                        ) : null}
-                                                    </div>
-                                                    <div>
-                                                        <div className="font-semibold">{first.title}</div>
-                                                        <div
-                                                            className={`text-xs ${
-                                                                isCompletedGroup ? "text-primary font-medium" : "text-muted-foreground"
-                                                            }`}
-                                                        >
-                                                            {isCompletedGroup ? "Completed Seasons" : "Show All Seasons"} ({group.length})
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="p-3" colSpan={6}>
-                                                <div className="text-base text-muted-foreground italic flex items-center gap-2">
-                                                    <ChevronRight className={`h-3 w-3 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
-                                                    {isExpanded ? "Click to collapse" : `Click to view ${group.length} seasons`}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    );
+                                        />
+                                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                                    </div>
+                                </div>
+                            );
 
-                                    // Render Children if Expanded
-                                    if (isExpanded) {
-                                        group.forEach((item, index) => {
-                                            const isLast = index === group.length - 1;
-                                            resultNodes.push(
-                                                <tr
-                                                    key={item.id}
-                                                    className={`transition-colors border-l-4 border-l-[#ffffff20] bg-primary/[0.03] hover:bg-primary/[0.08] animate-slide-down-row opacity-0 ${
-                                                        isLast ? "border-b-4 border-b-[#ffffff20]" : "border-b border-muted/30"
-                                                    }`}
-                                                    style={{ animationDelay: `${index * 50}ms` }}
-                                                >
-                                                    <td className="p-3 text-center text-muted-foreground w-12 relative">
-                                                        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary/20 -translate-x-1/2"></div>
-                                                        {!isLast && (
-                                                            <div className="absolute left-[calc(50%+1px)] bottom-0 w-2 h-[2px] bg-primary/20"></div>
-                                                        )}
-                                                    </td>
-                                                    <td className="p-3 pl-8 ">
-                                                        <div className="flex items-center gap-2">
-                                                            <span className="text-xs font-semibold bg-primary/10 text-primary px-2 py-1 rounded">
-                                                                Season {item.season}
-                                                            </span>
-                                                            <Link
-                                                                href={`/media/${item.source.toLowerCase()}-${item.externalId}?season=${item.season}`}
-                                                                className="text-base hover:underline text-muted-foreground hover:text-foreground"
-                                                            >
-                                                                View Details
-                                                            </Link>
-                                                        </div>
-                                                    </td>
-                                                    <td className="p-3 ">
-                                                        <Badge
-                                                            variant={item.status === "Watching" ? "default" : "secondary"}
-                                                            className="rounded-full font-normal scale-90 origin-left"
-                                                        >
-                                                            {item.status}
-                                                        </Badge>
-                                                    </td>
-                                                    <td className="p-3 text-muted-foreground text-base ">{item.originCountry || "-"}</td>
-                                                    <td className="p-3 text-muted-foreground text-base ">{item.year || "-"}</td>
-                                                    <td className="p-3 ">
-                                                        <div className="flex items-center origin-left">
-                                                            <button
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    handleProgress(item.id, Math.max(0, item.progress - 1));
-                                                                }}
-                                                                className="h-6 w-6 flex items-center justify-center rounded hover:bg-muted text-muted-foreground"
-                                                            >
-                                                                <Minus className="h-3 w-3" />
-                                                            </button>
-                                                            <span className="font-medium w-full text-center text-foreground text-base">
-                                                                {item.progress} <span className="text-muted-foreground">/ {item.totalEp || "?"}</span>
-                                                            </span>
-                                                            <button
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    handleProgress(item.id, item.progress + 1);
-                                                                }}
-                                                                className="h-6 w-6 flex items-center justify-center rounded hover:bg-muted text-muted-foreground"
-                                                            >
-                                                                <Plus className="h-3 w-3" />
-                                                            </button>
-                                                        </div>
-                                                        {item.totalEp && (
-                                                            <Progress value={(item.progress / item.totalEp) * 100} className="h-1 mt-1 w-full" />
-                                                        )}
-                                                    </td>
-                                                    <td className="p-3 text-right font-medium text-yellow-500 text-base ">
-                                                        {item.score ? item.score.toFixed(1) : "-"}
-                                                    </td>
-                                                    <td className="p-3 text-right">
-                                                        <Button
-                                                            variant="ghost"
-                                                            size="icon"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                openEdit(item);
-                                                            }}
-                                                            className="h-7 w-7 text-muted-foreground hover:text-primary"
-                                                        >
-                                                            <Pencil className="h-3.5 w-3.5" />
-                                                        </Button>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        });
-                                    }
-                                } else {
-                                    // Single Item Render
-                                    const item = first;
+                            // Child Cards
+                            if (isExpanded) {
+                                group.forEach((item) => {
                                     resultNodes.push(
-                                        <tr key={item.id} className="group odd:bg-muted/5 even:bg-transparent hover:bg-muted/10 transition-colors">
-                                            <td className="p-3 text-center text-muted-foreground ">{groupIndex + 1}</td>
-                                            <td className="p-3 ">
-                                                <div className="flex gap-3 items-center">
-                                                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-secondary">
-                                                        {item.poster ? (
-                                                            <Link
-                                                                href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                                                                className="hover:underline"
-                                                            >
-                                                                <Image src={item.poster} alt={item.title || ""} fill className="object-cover" />
-                                                            </Link>
-                                                        ) : null}
-                                                    </div>
-                                                    <div>
-                                                        <div className="font-semibold line-clamp-1">
-                                                            <Link
-                                                                href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                                                                className="hover:underline"
-                                                            >
-                                                                {item.title}
-                                                            </Link>
-                                                            {item.mediaType === "TV" && item.season > 0 && (
-                                                                <span className="ml-2 text-xs font-normal text-muted-foreground bg-accent px-1.5 py-0.5 rounded">
-                                                                    S{item.season}
-                                                                </span>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="p-3 ">
-                                                <Badge
-                                                    variant={item.status === "Watching" ? "default" : "secondary"}
-                                                    className="rounded-full font-normal"
-                                                >
-                                                    {item.status}
-                                                </Badge>
-                                            </td>
-                                            <td className="p-3 text-muted-foreground ">{item.originCountry || "-"}</td>
-                                            <td className="p-3 text-muted-foreground ">{item.year || "-"}</td>
-                                            <td className="p-3 ">
-                                                <div className="flex items-center gap-2">
-                                                    <button
-                                                        onClick={() => handleProgress(item.id, Math.max(0, item.progress - 1))}
-                                                        className="h-6 w-6 flex items-center justify-center rounded hover:bg-muted text-muted-foreground"
-                                                    >
-                                                        <Minus className="h-3 w-3" />
-                                                    </button>
-                                                    <span className="font-medium w-full text-center text-foreground">
-                                                        {item.progress} <span className="text-muted-foreground">/ {item.totalEp || "?"}</span>
-                                                    </span>
-                                                    <button
-                                                        onClick={() => handleProgress(item.id, item.progress + 1)}
-                                                        className="h-6 w-6 flex items-center justify-center rounded hover:bg-muted text-muted-foreground"
-                                                    >
-                                                        <Plus className="h-3 w-3" />
-                                                    </button>
-                                                </div>
-                                                {item.totalEp && <Progress value={(item.progress / item.totalEp) * 100} className="h-1 mt-1" />}
-                                            </td>
-                                            <td className="p-3 text-right font-medium text-yellow-500 ">
-                                                {item.score ? item.score.toFixed(1) : "-"}
-                                            </td>
-                                            <td className="p-3 text-right">
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon"
-                                                    onClick={() => openEdit(item)}
-                                                    className="h-8 w-8 text-muted-foreground hover:text-primary"
-                                                >
-                                                    <Pencil className="h-4 w-4" />
-                                                </Button>
-                                            </td>
-                                        </tr>
+                                        <ItemCard
+                                            key={item.id}
+                                            item={item}
+                                            handleProgress={handleProgress}
+                                            openEdit={openEdit}
+                                            isChild={true}
+                                        />
                                     );
-                                }
-                            });
+                                });
+                            }
+                        } else {
+                            // Single Card
+                            resultNodes.push(
+                                <ItemCard
+                                    key={first.id}
+                                    item={first}
+                                    handleProgress={handleProgress}
+                                    openEdit={openEdit}
+                                />
+                            );
+                        }
+                    });
 
-                            return resultNodes;
-                        })()}
-                    </tbody>
-                </table>
-                {filteredAndSortedItems.length === 0 && <div className="p-8 text-center text-muted-foreground">No items found.</div>}
+                    return resultNodes;
+                })()}
+
+                {filteredItems.length === 0 && (
+                    <div className="p-12 text-center">
+                        <div className="text-gray-400 text-lg">No items found</div>
+                        <div className="text-gray-500 text-sm mt-2">Try adjusting your filters</div>
+                    </div>
+                )}
             </div>
 
             {editingItem && <EditMediaDialog key={editingItem.id} item={editingItem} open={editOpen} onOpenChange={setEditOpen} />}
+        </div>
+    );
+}
+
+function ItemCard({
+    item,
+    handleProgress,
+    openEdit,
+    isChild = false,
+}: {
+    item: WatchlistItem;
+    handleProgress: (id: string, progress: number) => void;
+    openEdit: (item: WatchlistItem) => void;
+    isChild?: boolean;
+}) {
+    const statusInfo = statusConfig[item.status as keyof typeof statusConfig] || statusConfig["Plan to Watch"];
+    const StatusIcon = statusInfo.icon;
+    const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
+
+    return (
+        <div className={`group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
+                isChild ? "ml-8" : ""
+            }`}
+            style={{
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
+            }}
+        >
+            <div className="flex items-center gap-5 px-5 py-3">
+                <Link
+                    href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
+                    className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 hover:ring-2 hover:ring-white/20 transition-all shadow-lg"
+                >
+                    {item.poster && <Image src={item.poster} alt={item.title || ""} fill className="object-cover" />}
+                </Link>
+
+                <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1.5">
+                        <Link
+                            href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
+                            className="font-semibold text-xl text-white hover:text-blue-400 transition-colors line-clamp-1"
+                        >
+                            {item.title}
+                        </Link>
+                        {item.mediaType === "TV" && item.season > 0 && (
+                            <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">
+                                S{item.season}
+                            </span>
+                        )}
+                    </div>
+                    <div className="text-sm text-gray-400">
+                        {item.originCountry || "Unknown"} · {item.year || "N/A"}
+                    </div>
+                </div>
+
+                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border}`}>
+                    <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
+                    <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
+                </div>
+
+                <div className="w-42 space-y-2">
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleProgress(item.id, Math.max(0, item.progress - 1));
+                            }}
+                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                        >
+                            <Minus className="h-4 w-4" />
+                        </button>
+                        <div className="flex-1 text-center">
+                            <span className="font-semibold text-white text-lg">{item.progress}</span>
+                            <span className="text-gray-500"> / </span>
+                            <span className="text-gray-400">{item.totalEp || "?"}</span>
+                        </div>
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleProgress(item.id, item.progress + 1);
+                            }}
+                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                        >
+                            <Plus className="h-4 w-4" />
+                        </button>
+                    </div>
+                    <div className="relative h-2 bg-black/30 rounded-full overflow-hidden">
+                        <div
+                            className="absolute inset-y-0 left-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full transition-all duration-300"
+                            style={{ width: `${progressPercent}%` }}
+                        />
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-1.5">
+                    {item.score ? (
+                        <>
+                            <svg
+                                className="h-5 w-5 text-yellow-500 fill-yellow-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                />
+                            </svg>
+                            <span className="text-white font-semibold">{item.score.toFixed(1)}</span>
+                        </>
+                    ) : (
+                        <span className="text-gray-500 text-sm">No rating</span>
+                    )}
+                </div>
+
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        openEdit(item);
+                    }}
+                    className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10"
+                >
+                    <Pencil className="h-4 w-4" />
+                </Button>
+            </div>
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
     );
 }

@@ -7,6 +7,7 @@ export const TMDB_CONFIG = {
     w500Image: (path: string) => `${TMDB_IMAGE_BASE_URL}/w500${path}`,
 };
 
+
 export type TMDBMedia = {
     id: number;
     title?: string;
