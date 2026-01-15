@@ -21,6 +21,7 @@ export function AddToListButton({ media, userMedia, season, totalEp }: AddToList
     id: userMedia.id,
     title: userMedia.title,
     poster: userMedia.poster,
+    backdrop: userMedia.backdrop || null, // Add this line
     year: userMedia.year,
     originCountry: userMedia.originCountry,
     status: userMedia.status,
@@ -30,7 +31,7 @@ export function AddToListButton({ media, userMedia, season, totalEp }: AddToList
     notes: userMedia.notes,
     season: userMedia.season,
     mediaType: userMedia.mediaType,
-  } : null;
+} : null;
 
   return (
     <>
