@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -51,6 +51,20 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
+    const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
+    const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+
+
+    useEffect(() => {
+        const activeButton = buttonRefs.current[filterStatus];
+        if (activeButton) {
+            setSliderStyle({
+                left: activeButton.offsetLeft,
+                width: activeButton.offsetWidth,
+            });
+        }
+    }, [filterStatus]);
+
 
     const toggleGroup = (key: string) => {
         const newSet = new Set(expandedGroups);
@@ -141,16 +155,26 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     return (
         <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-4">
-                <div className="flex gap-2 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5">
+                <div className="flex gap-2 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5 relative">
+                    <div
+                        className="absolute bg-blue-500 rounded-md transition-all duration-300 ease-out"
+                        style={{
+                            left: `${sliderStyle.left}px`,
+                            width: `${sliderStyle.width}px`,
+                            height: 'calc(100% - 8px)',
+                            top: '4px',
+                        }}
+                    />
                     {["All", "Watching", "Completed", "Plan to Watch", "Dropped"].map((s) => (
                         <Button
                             key={s}
+                            ref={(el) => { buttonRefs.current[s] = el; }}
                             variant="ghost"
                             size="sm"
                             onClick={() => setFilterStatus(s)}
-                            className={`rounded-md px-4 transition-all ${
+                            className={`rounded-md px-4 transition-all relative z-10 ${
                                 filterStatus === s
-                                    ? "bg-blue-500 text-white hover:bg-blue-600"
+                                    ? "text-white hover:bg-transparent"
                                     : "text-gray-400 hover:text-white hover:bg-white/5"
                             }`}
                         >
@@ -194,12 +218,9 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
                     >
                         <option value="All" className="bg-gray-900">All Years</option>
-                        <option value="2025" className="bg-gray-900">2025</option>
-                        <option value="2024" className="bg-gray-900">2024</option>
-                        <option value="2023" className="bg-gray-900">2023</option>
-                        <option value="2022" className="bg-gray-900">2022</option>
-                        <option value="2021" className="bg-gray-900">2021</option>
-                        <option value="2020" className="bg-gray-900">2020</option>
+                        {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map(year => (
+                            <option key={year} value={year} className="bg-gray-900">{year}</option>
+                        ))}
                         <option value="2010s" className="bg-gray-900">2010-2019</option>
                         <option value="2000s" className="bg-gray-900">2000-2009</option>
                         <option value="Older" className="bg-gray-900">Before 2000</option>
@@ -285,10 +306,10 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 >
                                     <div className="flex items-center gap-5 p-5">
                                         <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 shadow-lg">
-    {(first.backdrop || first.poster) && (
-        <Image src={first.backdrop || first.poster!} alt={first.title || ""} fill className="object-cover" />
-    )}
-</div>
+                                            {(first.backdrop || first.poster) && (
+                                                <Image src={first.backdrop || first.poster!} alt={first.title || ""} fill className="object-cover" />
+                                            )}
+                                        </div>
                                         <div className="flex-1">
                                             <div className="font-semibold text-xl text-white">{first.title}</div>
                                             <div className="text-sm text-gray-400 mt-1">
@@ -311,7 +332,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     resultNodes.push(
                                         <div
                                             key={item.id}
-                                            className="animate-slide-down-row opacity-0"
+                                            className="ml-8 animate-slide-down-row opacity-0"
                                             style={{ animationDelay: `${index * 80}ms` }}
                                         >
                                             <ItemCard
@@ -369,7 +390,11 @@ function ItemCard({
     const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
 
     return (
-        <div className={`group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 `}
+        <div className={`group relative backdrop-blur-sm rounded-lg border transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
+                isChild 
+                    ? "bg-gradient-to-br from-blue-500/[0.08] to-blue-500/[0.03] border-blue-500/20 hover:border-blue-500/40" 
+                    : "bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-white/10 hover:border-white/20"
+            }`}
             style={{
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
             }}
@@ -401,7 +426,7 @@ function ItemCard({
                     </div>
                 </div>
 
-                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border}`}>
+                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-[140px] justify-center`}>
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
                 </div>
@@ -434,13 +459,17 @@ function ItemCard({
                     </div>
                     <div className="relative h-2 bg-black/30 rounded-full overflow-hidden">
                         <div
-                            className="absolute inset-y-0 left-0 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full transition-all duration-300"
+                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
+                                item.status === "Completed" 
+                                    ? "bg-gradient-to-r from-green-500 to-emerald-500"
+                                    : "bg-gradient-to-r from-blue-500 to-cyan-500"
+                            }`}
                             style={{ width: `${progressPercent}%` }}
                         />
                     </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 w-20 justify-center">
                     {item.score ? (
                         <>
                             <svg
