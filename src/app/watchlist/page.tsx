@@ -1,5 +1,6 @@
 import { getWatchlist } from "@/actions/media";
 import { getDashboardStats } from "@/actions/stats";
+import { EMPTY_STATS } from "@/types/stats";
 import { WatchlistTable } from "@/components/watchlist-table";
 import { WatchlistStats } from "@/components/watchlist-stats";
 
@@ -10,7 +11,7 @@ export const revalidate = 0;
 
 export default async function WatchlistPage() {
     let watchlist: Awaited<ReturnType<typeof getWatchlist>> = [];
-    let stats = null;
+    let stats = EMPTY_STATS;
 
     try {
         if (process.env.NEXT_PHASE !== "phase-production-build") {
@@ -27,19 +28,43 @@ export default async function WatchlistPage() {
     const completedCount = watchlist.filter(i => i.totalEp && i.progress >= i.totalEp).length;
 
     return (
-        <div className="container py-8 space-y-6 m-auto max-w-[80%]">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>
-                    <p className="text-muted-foreground mt-1">
-                        {watchlist.length} titles · {watchingCount} watching · {completedCount} completed
-                    </p>
+        <div className="relative min-h-screen overflow-hidden">
+            {/* Animated Background */}
+            <div className="fixed inset-0 -z-10">
+                {/* Base gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+                
+                {/* Animated smoke/glow effects */}
+                <div className="absolute top-0 -left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute top-40 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] animate-pulse [animation-delay:1s]" />
+                <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-violet-500/20 rounded-full blur-[120px] animate-pulse [animation-delay:2s]" />
+                
+                {/* Noise texture overlay */}
+                <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay">
+                    <svg width="100%" height="100%">
+                        <filter id="noise">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" />
+                        </filter>
+                        <rect width="100%" height="100%" filter="url(#noise)" />
+                    </svg>
                 </div>
-
-                {stats && <WatchlistStats stats={stats} />}
             </div>
 
-            <WatchlistTable items={watchlist} />
+            {/* Content */}
+            <div className="container py-8 space-y-6 m-auto max-w-[80%] relative z-10">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>
+                        <p className="text-muted-foreground mt-1">
+                            {watchlist.length} titles · {watchingCount} watching · {completedCount} completed
+                        </p>
+                    </div>
+
+                    <WatchlistStats stats={stats} />
+                </div>
+
+                <WatchlistTable items={watchlist} />
+            </div>
         </div>
     );
 }

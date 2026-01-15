@@ -307,15 +307,20 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
                             // Child Cards
                             if (isExpanded) {
-                                group.forEach((item) => {
+                                group.forEach((item, index) => {
                                     resultNodes.push(
-                                        <ItemCard
+                                        <div
                                             key={item.id}
-                                            item={item}
-                                            handleProgress={handleProgress}
-                                            openEdit={openEdit}
-                                            isChild={true}
-                                        />
+                                            className="animate-slide-down-row opacity-0"
+                                            style={{ animationDelay: `${index * 80}ms` }}
+                                        >
+                                            <ItemCard
+                                                item={item}
+                                                handleProgress={handleProgress}
+                                                openEdit={openEdit}
+                                                isChild={true}
+                                            />
+                                        </div>
                                     );
                                 });
                             }
@@ -364,9 +369,7 @@ function ItemCard({
     const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
 
     return (
-        <div className={`group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
-                isChild ? "ml-8" : ""
-            }`}
+        <div className={`group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 `}
             style={{
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
             }}

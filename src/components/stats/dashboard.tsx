@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { DashboardStats } from "@/actions/stats";
+import { type DashboardStats } from "@/types/stats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Counter } from "./counter";
 import { Play, Tv, Clock, Zap, CheckCircle2, BarChart3, Calendar, PieChart as PieChartIcon } from "lucide-react";

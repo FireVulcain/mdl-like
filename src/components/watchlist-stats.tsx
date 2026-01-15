@@ -1,4 +1,4 @@
-import { DashboardStats } from "@/actions/stats";
+import { type DashboardStats } from "@/types/stats";
 
 interface WatchlistStatsProps {
     stats: DashboardStats;
