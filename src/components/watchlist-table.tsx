@@ -185,6 +185,16 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         <option value="Older" className="bg-gray-900">Before 2000</option>
                     </select>
                 </div>
+                <div className="flex-1 min-w-[200px] relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+                    <Input
+                        placeholder="Search titles..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="relative w-full h-10 bg-white/5 border-white/5 rounded-xl text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
+                    />
+                </div>
+
             </div>
 
 
