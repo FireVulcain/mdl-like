@@ -69,6 +69,7 @@ model UserMedia {
   // Cached metadata for display (avoids N+1 API calls)
   title       String? // Made optional to support existing rows if any, but should be populated
   poster      String?
+  backdrop    String?
   year        Int?
   originCountry String?
   tmdbRating  Float?

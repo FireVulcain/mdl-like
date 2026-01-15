@@ -36,7 +36,7 @@ export default async function WatchlistPage() {
                     </p>
                 </div>
 
-                {stats && <WatchlistStats stats={stats} items={watchlist} />}
+                {stats && <WatchlistStats stats={stats} />}
             </div>
 
             <WatchlistTable items={watchlist} />

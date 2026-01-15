@@ -7,7 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress } from "@/actions/media";
-import { Plus, Minus, Pencil, ChevronRight, ChevronDown, Eye, CheckCircle, Clock, XCircle } from "lucide-react";
+import { backfillBackdrops } from "@/actions/backfill";
+import { Plus, Minus, Pencil, ChevronRight, ChevronDown, Eye, CheckCircle, Clock, XCircle, RefreshCw } from "lucide-react";
 
 type WatchlistItem = {
     id: string;
@@ -15,6 +16,7 @@ type WatchlistItem = {
     externalId: string;
     title: string | null;
     poster: string | null;
+    backdrop: string | null;
     year: number | null;
     originCountry: string | null;
     status: string;
@@ -48,6 +50,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [editOpen, setEditOpen] = useState(false);
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<string>("default");
+    const [isBackfilling, setIsBackfilling] = useState(false);
 
     const toggleGroup = (key: string) => {
         const newSet = new Set(expandedGroups);
@@ -118,6 +121,23 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setEditOpen(true);
     };
 
+    const handleBackfill = async () => {
+        if (!confirm("This will fetch backdrops for all items missing them. Continue?")) return;
+        
+        setIsBackfilling(true);
+        try {
+            const result = await backfillBackdrops("mock-user-1");
+            if (result.success) {
+                alert(`Successfully updated ${result.count} items!`);
+            }
+        } catch (error) {
+            console.error("Backfill failed:", error);
+            alert("Failed to backfill. check console.");
+        } finally {
+            setIsBackfilling(false);
+        }
+    };
+
     return (
         <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-4">
@@ -185,15 +205,27 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         <option value="Older" className="bg-gray-900">Before 2000</option>
                     </select>
                 </div>
-                <div className="flex-1 min-w-[200px] relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
-                    <Input
-                        placeholder="Search titles..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="relative w-full h-10 bg-white/5 border-white/5 rounded-xl text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
-                    />
+                <div className="flex-1 min-w-[200px] relative group flex gap-3">
+                    <div className="relative flex-1 group">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+                        <Input
+                            placeholder="Search titles..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="relative w-full h-10 bg-white/5 border-white/5 rounded-xl text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
+                        />
+                    </div>
                 </div>
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleBackfill}
+                    disabled={isBackfilling}
+                    className="cursor-pointer h-10 px-4 bg-white/5 border border-white/5 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all gap-2"
+                >
+                    <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
+                    {isBackfilling ? "Processing..." : "Refresh Backdrops"}
+                </Button>
 
             </div>
 
@@ -253,8 +285,8 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 >
                                     <div className="flex items-center gap-5 p-5">
                                         <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 shadow-lg">
-    {first.poster && (
-        <Image src={first.poster} alt={first.title || ""} fill className="object-cover" />
+    {(first.backdrop || first.poster) && (
+        <Image src={first.backdrop || first.poster!} alt={first.title || ""} fill className="object-cover" />
     )}
 </div>
                                         <div className="flex-1">
@@ -344,7 +376,7 @@ function ItemCard({
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
                     className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 hover:ring-2 hover:ring-white/20 transition-all shadow-lg"
                 >
-                    {item.poster && <Image src={item.poster} alt={item.title || ""} fill className="object-cover" />}
+                    {(item.backdrop || item.poster) && <Image src={item.backdrop || item.poster!} alt={item.title || ""} fill className="object-cover" />}
                 </Link>
 
                 <div className="flex-1 min-w-0">

@@ -58,6 +58,7 @@ export async function addToWatchlist(
                     totalEp: epCount,
                     title: media.title,
                     poster: displayPoster,
+                    backdrop: media.backdrop || media.poster || null,
                     year: media.year ? parseInt(media.year) : null,
                     originCountry: media.originCountry,
                     genres: media.genres?.join(","),
@@ -79,6 +80,7 @@ export async function addToWatchlist(
                 // Cache metadata
                 title: media.title,
                 poster: displayPoster,
+                backdrop: media.backdrop || media.poster || null,
                 year: media.year ? parseInt(media.year) : null,
                 originCountry: media.originCountry,
                 totalEp: epCount,

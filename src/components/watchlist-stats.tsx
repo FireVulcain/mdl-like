@@ -1,23 +1,11 @@
 import { DashboardStats } from "@/actions/stats";
 
 interface WatchlistStatsProps {
-    stats: DashboardStats | null;
-    items: any[];
+    stats: DashboardStats;
 }
 
-export function WatchlistStats({ stats, items }: WatchlistStatsProps) {
-    if (!stats) return null;
-
+export function WatchlistStats({ stats }: WatchlistStatsProps) {
     const watchTimeHours = Math.floor(stats.watchTimeMinutes / 60);
-    
-    // Calculate completion based on progress (items where progress >= totalEp)
-    const completedItems = items.filter(item => 
-        item.totalEp && item.progress >= item.totalEp
-    ).length;
-    const completionPercent = items.length > 0 
-        ? Math.round((completedItems / items.length) * 100) 
-        : 0;
-    
     const avgScore = stats.ratingDistribution.length > 0
         ? (stats.ratingDistribution.reduce((sum, r) => sum + (r.rating * r.count), 0) / 
            stats.ratingDistribution.reduce((sum, r) => sum + r.count, 0)).toFixed(1)
@@ -31,7 +19,7 @@ export function WatchlistStats({ stats, items }: WatchlistStatsProps) {
             </div>
             
             <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 px-6 py-4 shadow-md shadow-black/20">
-                <div className="text-3xl font-bold text-white">{completionPercent}%</div>
+                <div className="text-3xl font-bold text-white">{Math.round(stats.completionRate)}%</div>
                 <div className="text-sm text-gray-400 mt-1">Completion</div>
             </div>
             
