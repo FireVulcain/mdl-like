@@ -1,9 +1,8 @@
 import { mediaService } from "@/services/media.service";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react";
+import { CastGallery } from "@/components/media/cast-gallery";
 
 export default async function CastPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -35,29 +34,7 @@ export default async function CastPage({ params }: { params: Promise<{ id: strin
             <hr className="border-border" />
 
             {/* Cast Grid */}
-            {media.cast && media.cast.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-                    {media.cast.map((actor) => (
-                        <div key={actor.id} className="space-y-3 group">
-                            <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg bg-muted shadow-sm transition-transform hover:scale-105">
-                                {actor.profile ? (
-                                    <Image src={actor.profile} alt={actor.name} fill className="object-cover" />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-base text-muted-foreground bg-secondary">
-                                        No Image
-                                    </div>
-                                )}
-                            </div>
-                            <div>
-                                <div className="font-semibold leading-tight">{actor.name}</div>
-                                <div className="text-base text-muted-foreground leading-tight mt-1">{actor.character}</div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center py-12 text-muted-foreground">No cast information available.</div>
-            )}
+            <CastGallery cast={media.cast ?? []} />
         </div>
     );
 }

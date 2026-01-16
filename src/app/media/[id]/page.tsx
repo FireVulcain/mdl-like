@@ -8,8 +8,8 @@ import { updateProgress } from "@/actions/media";
 import { AddToListButton } from "@/components/add-to-list-button";
 import { MediaCard } from "@/components/media-card";
 import { SeasonSelector } from "@/components/season-selector";
-import Link from "next/link";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { PhotosScroll } from "@/components/media/photos-scroll";
+import { CastScroll } from "@/components/media/cast-scroll";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -167,65 +167,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     </div>
 
                     {/* Cast & Credits */}
-                    {media.cast && media.cast.length > 0 && (
-                        <div>
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-lg font-semibold">Cast & Credits</h3>
-                                <Link href={`/media/${media.id}/cast`} className="text-base text-primary hover:underline font-medium">
-                                    View all
-                                </Link>
-                            </div>
-
-                            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                                {media.cast.slice(0, 6).map((actor) => (
-                                    <div key={actor.id} className="flex-none w-[100px] space-y-2">
-                                        <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md bg-muted">
-                                            {actor.profile ? (
-                                                <Image src={actor.profile} alt={actor.name} fill className="object-cover" />
-                                            ) : (
-                                                <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground p-1 text-center">
-                                                    No Image
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div>
-                                            <div className="text-base font-medium truncate" title={actor.name}>
-                                                {actor.name}
-                                            </div>
-                                            <div className="text-xs text-muted-foreground truncate" title={actor.character}>
-                                                {actor.character}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                    <CastScroll cast={media.cast || []} mediaId={media.id} />
 
                     {/* Photos */}
-                    {media.images?.backdrops && media.images.backdrops.length > 0 && (
-                        <div>
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-lg font-semibold">Photos</h3>
-                                <Link href={`/media/${media.id}/photos`} className="text-base text-primary hover:underline font-medium">
-                                    View all
-                                </Link>
-                            </div>
-
-                            <ScrollArea className="w-full whitespace-nowrap rounded-md">
-                                <div className="flex w-max space-x-4 pb-4">
-                                    {media.images.backdrops.slice(0, 6).map((src, index) => (
-                                        <div key={index} className="w-[200px] sm:w-[280px]">
-                                            <div className="relative aspect-video w-full overflow-hidden rounded-md bg-muted">
-                                                <Image src={src} alt={`Photo ${index + 1}`} fill className="object-cover" />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                <ScrollBar orientation="horizontal" />
-                            </ScrollArea>
-                        </div>
-                    )}
+                    <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
 
                     {/* Recommendations */}
                     {media.recommendations && media.recommendations.length > 0 && (

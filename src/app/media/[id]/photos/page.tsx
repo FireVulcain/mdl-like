@@ -1,8 +1,8 @@
 import { mediaService } from "@/services/media.service";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { PhotoGallery } from "@/components/media/photo-gallery";
 
 export default async function PhotosPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -36,46 +36,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
 
             <hr className="border-border" />
 
-            {/* Backdrops Section */}
-            {hasBackdrops && (
-                <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Backdrops</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                        {media.images?.backdrops.map((src, index) => (
-                            <div
-                                key={`backdrop-${index}`}
-                                className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted shadow-sm group"
-                            >
-                                <Image
-                                    src={src}
-                                    alt={`Backdrop ${index + 1}`}
-                                    fill
-                                    className="object-cover transition-transform group-hover:scale-105"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Posters Section */}
-            {hasPosters && (
-                <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Posters</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                        {media.images?.posters.map((src, index) => (
-                            <div key={`poster-${index}`} className="relative aspect-[2/3] w-full overflow-hidden rounded-lg bg-muted shadow-sm group">
-                                <Image
-                                    src={src}
-                                    alt={`Poster ${index + 1}`}
-                                    fill
-                                    className="object-cover transition-transform group-hover:scale-105"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
+            <PhotoGallery backdrops={media.images?.backdrops || []} posters={media.images?.posters || []} />
 
             {!hasBackdrops && !hasPosters && <div className="text-center py-12 text-muted-foreground">No photos available.</div>}
         </div>
