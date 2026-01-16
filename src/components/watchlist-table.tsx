@@ -54,7 +54,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
     const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
-
     useEffect(() => {
         const activeButton = buttonRefs.current[filterStatus];
         if (activeButton) {
@@ -64,7 +63,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             });
         }
     }, [filterStatus]);
-
 
     const toggleGroup = (key: string) => {
         const newSet = new Set(expandedGroups);
@@ -81,7 +79,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             if (filterStatus !== "All" && item.status !== filterStatus) return false;
             if (filterCountry !== "All" && item.originCountry !== filterCountry) return false;
             if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
-            
+
             // Year filter
             if (filterYear !== "All" && item.year) {
                 if (filterYear === "2010s" && (item.year < 2010 || item.year >= 2020)) return false;
@@ -89,7 +87,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 if (filterYear === "Older" && item.year >= 2000) return false;
                 if (!["2010s", "2000s", "Older"].includes(filterYear) && item.year.toString() !== filterYear) return false;
             }
-            
+
             return true;
         });
 
@@ -122,7 +120,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 }
             });
         }
-        
+
         return result;
     }, [items, filterStatus, filterCountry, search, filterYear, sortBy]);
 
@@ -137,7 +135,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     const handleBackfill = async () => {
         if (!confirm("This will fetch backdrops for all items missing them. Continue?")) return;
-        
+
         setIsBackfilling(true);
         try {
             const result = await backfillBackdrops("mock-user-1");
@@ -161,21 +159,21 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         style={{
                             left: `${sliderStyle.left}px`,
                             width: `${sliderStyle.width}px`,
-                            height: 'calc(100% - 8px)',
-                            top: '4px',
+                            height: "calc(100% - 8px)",
+                            top: "4px",
                         }}
                     />
                     {["All", "Watching", "Completed", "Plan to Watch", "Dropped"].map((s) => (
                         <Button
                             key={s}
-                            ref={(el) => { buttonRefs.current[s] = el; }}
+                            ref={(el) => {
+                                buttonRefs.current[s] = el;
+                            }}
                             variant="ghost"
                             size="sm"
                             onClick={() => setFilterStatus(s)}
                             className={`rounded-md px-4 transition-all relative z-10 ${
-                                filterStatus === s
-                                    ? "text-white hover:bg-transparent"
-                                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                                filterStatus === s ? "text-white hover:bg-transparent" : "text-gray-400 hover:text-white hover:bg-white/5"
                             }`}
                         >
                             {s}
@@ -184,21 +182,38 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
 
                 <div className="flex gap-3 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5">
-
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
                         className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
                     >
-                        <option value="default" className="bg-gray-900">Sort by: Default</option>
-                        <option value="rating-high" className="bg-gray-900">Rating: High to Low</option>
-                        <option value="rating-low" className="bg-gray-900">Rating: Low to High</option>
-                        <option value="progress-high" className="bg-gray-900">Progress: High to Low</option>
-                        <option value="progress-low" className="bg-gray-900">Progress: Low to High</option>
-                        <option value="title-az" className="bg-gray-900">Title: A-Z</option>
-                        <option value="title-za" className="bg-gray-900">Title: Z-A</option>
-                        <option value="year-new" className="bg-gray-900">Year: Newest</option>
-                        <option value="year-old" className="bg-gray-900">Year: Oldest</option>
+                        <option value="default" className="bg-gray-900">
+                            Sort by: Default
+                        </option>
+                        <option value="rating-high" className="bg-gray-900">
+                            Rating: High to Low
+                        </option>
+                        <option value="rating-low" className="bg-gray-900">
+                            Rating: Low to High
+                        </option>
+                        <option value="progress-high" className="bg-gray-900">
+                            Progress: High to Low
+                        </option>
+                        <option value="progress-low" className="bg-gray-900">
+                            Progress: Low to High
+                        </option>
+                        <option value="title-az" className="bg-gray-900">
+                            Title: A-Z
+                        </option>
+                        <option value="title-za" className="bg-gray-900">
+                            Title: Z-A
+                        </option>
+                        <option value="year-new" className="bg-gray-900">
+                            Year: Newest
+                        </option>
+                        <option value="year-old" className="bg-gray-900">
+                            Year: Oldest
+                        </option>
                     </select>
 
                     <select
@@ -206,10 +221,16 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         onChange={(e) => setFilterCountry(e.target.value)}
                         className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
                     >
-                        <option value="All" className="bg-gray-900">All Countries</option>
-                        {Array.from(new Set(items.map(item => item.originCountry).filter(Boolean))).sort().map(country => (
-                            <option key={country} value={country!} className="bg-gray-900">{country}</option>
-                        ))}
+                        <option value="All" className="bg-gray-900">
+                            All Countries
+                        </option>
+                        {Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean)))
+                            .sort()
+                            .map((country) => (
+                                <option key={country} value={country!} className="bg-gray-900">
+                                    {country}
+                                </option>
+                            ))}
                     </select>
 
                     <select
@@ -217,13 +238,23 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         onChange={(e) => setFilterYear(e.target.value)}
                         className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
                     >
-                        <option value="All" className="bg-gray-900">All Years</option>
-                        {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map(year => (
-                            <option key={year} value={year} className="bg-gray-900">{year}</option>
+                        <option value="All" className="bg-gray-900">
+                            All Years
+                        </option>
+                        {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                            <option key={year} value={year} className="bg-gray-900">
+                                {year}
+                            </option>
                         ))}
-                        <option value="2010s" className="bg-gray-900">2010-2019</option>
-                        <option value="2000s" className="bg-gray-900">2000-2009</option>
-                        <option value="Older" className="bg-gray-900">Before 2000</option>
+                        <option value="2010s" className="bg-gray-900">
+                            2010-2019
+                        </option>
+                        <option value="2000s" className="bg-gray-900">
+                            2000-2009
+                        </option>
+                        <option value="Older" className="bg-gray-900">
+                            Before 2000
+                        </option>
                     </select>
                 </div>
                 <div className="flex-1 min-w-[200px] relative group flex gap-3">
@@ -247,9 +278,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
                     {isBackfilling ? "Processing..." : "Refresh Backdrops"}
                 </Button>
-
             </div>
-
 
             <div className="space-y-2">
                 {(() => {
@@ -301,26 +330,28 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     className="group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20"
                                     onClick={() => toggleGroup(groupKey)}
                                     style={{
-                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
+                                        boxShadow:
+                                            "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
                                     }}
                                 >
                                     <div className="flex items-center gap-5 p-5">
-                                        <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 shadow-lg">
+                                        <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer shadow-lg">
                                             {(first.backdrop || first.poster) && (
-                                                <Image src={first.backdrop || first.poster!} alt={first.title || ""} fill className="object-cover" />
+                                                <Image
+                                                    src={first.backdrop || first.poster!}
+                                                    alt={first.title || ""}
+                                                    fill
+                                                    className="object-cover opacity-0 transition-all duration-500"
+                                                    loading="lazy"
+                                                    onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                                                />
                                             )}
                                         </div>
                                         <div className="flex-1">
                                             <div className="font-semibold text-xl text-white">{first.title}</div>
-                                            <div className="text-sm text-gray-400 mt-1">
-                                                {group.length} seasons
-                                            </div>
+                                            <div className="text-sm text-gray-400 mt-1">{group.length} seasons</div>
                                         </div>
-                                        <ChevronRight
-                                            className={`h-5 w-5 text-gray-400 transition-transform ${
-                                                isExpanded ? "rotate-90" : ""
-                                            }`}
-                                        />
+                                        <ChevronRight className={`h-5 w-5 text-gray-400 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
                                         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                                     </div>
                                 </div>
@@ -335,26 +366,14 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                             className="ml-8 animate-slide-down-row opacity-0"
                                             style={{ animationDelay: `${index * 80}ms` }}
                                         >
-                                            <ItemCard
-                                                item={item}
-                                                handleProgress={handleProgress}
-                                                openEdit={openEdit}
-                                                isChild={true}
-                                            />
+                                            <ItemCard item={item} handleProgress={handleProgress} openEdit={openEdit} isChild={true} />
                                         </div>
                                     );
                                 });
                             }
                         } else {
                             // Single Card
-                            resultNodes.push(
-                                <ItemCard
-                                    key={first.id}
-                                    item={first}
-                                    handleProgress={handleProgress}
-                                    openEdit={openEdit}
-                                />
-                            );
+                            resultNodes.push(<ItemCard key={first.id} item={first} handleProgress={handleProgress} openEdit={openEdit} />);
                         }
                     });
 
@@ -390,21 +409,31 @@ function ItemCard({
     const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
 
     return (
-        <div className={`group relative backdrop-blur-sm rounded-lg border transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
-                isChild 
-                    ? "bg-gradient-to-br from-blue-500/[0.08] to-blue-500/[0.03] border-blue-500/20 hover:border-blue-500/40" 
+        <div
+            className={`group relative backdrop-blur-sm rounded-lg border transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
+                isChild
+                    ? "bg-gradient-to-br from-blue-500/[0.08] to-blue-500/[0.03] border-blue-500/20 hover:border-blue-500/40"
                     : "bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-white/10 hover:border-white/20"
             }`}
             style={{
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
             }}
         >
             <div className="flex items-center gap-5 px-5 py-3">
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                    className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-black/20 hover:ring-2 hover:ring-white/20 transition-all shadow-lg"
+                    className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer hover:ring-2 hover:ring-white/20 transition-all shadow-lg"
                 >
-                    {(item.backdrop || item.poster) && <Image src={item.backdrop || item.poster!} alt={item.title || ""} fill className="object-cover" />}
+                    {(item.backdrop || item.poster) && (
+                        <Image
+                            src={item.backdrop || item.poster!}
+                            alt={item.title || ""}
+                            fill
+                            className="object-cover opacity-0 transition-all duration-500"
+                            loading="lazy"
+                            onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                        />
+                    )}
                 </Link>
 
                 <div className="flex-1 min-w-0">
@@ -416,9 +445,7 @@ function ItemCard({
                             {item.title}
                         </Link>
                         {item.mediaType === "TV" && item.season > 0 && (
-                            <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">
-                                S{item.season}
-                            </span>
+                            <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
                         )}
                     </div>
                     <div className="text-sm text-gray-400">
@@ -426,7 +453,9 @@ function ItemCard({
                     </div>
                 </div>
 
-                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-[140px] justify-center`}>
+                <div
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-[140px] justify-center`}
+                >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
                 </div>
@@ -460,7 +489,7 @@ function ItemCard({
                     <div className="relative h-2 bg-black/30 rounded-full overflow-hidden">
                         <div
                             className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
-                                item.status === "Completed" 
+                                item.status === "Completed"
                                     ? "bg-gradient-to-r from-green-500 to-emerald-500"
                                     : "bg-gradient-to-r from-blue-500 to-cyan-500"
                             }`}
@@ -472,12 +501,7 @@ function ItemCard({
                 <div className="flex items-center gap-1.5 w-20 justify-center">
                     {item.score ? (
                         <>
-                            <svg
-                                className="h-5 w-5 text-yellow-500 fill-yellow-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
+                            <svg className="h-5 w-5 text-yellow-500 fill-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
