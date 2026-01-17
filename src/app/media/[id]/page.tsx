@@ -37,12 +37,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const updateAction = userMedia ? updateProgress.bind(null, userMedia.id) : undefined;
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black -mt-24">
             {/* Backdrop */}
             <div className="relative h-[50vh] w-full overflow-hidden">
                 {media.backdrop ? (
                     <>
                         <Image src={media.backdrop} alt={media.title} fill className="object-cover" priority />
+                        {/* Top gradient for header readability on bright images */}
+                        <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/60 via-black/30 to-transparent" />
                         {/* Overlay gradient for better text readability */}
                         <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/60 to-transparent" />
                         <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-gray-900" />

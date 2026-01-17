@@ -12,6 +12,10 @@ export function SiteHeader() {
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
 
+    // Check if we're on the main media detail page (has backdrop)
+    // Match /media/[id] but not /media/[id]/photos or /media/[id]/cast
+    const isMediaDetailPage = /^\/media\/[^/]+$/.test(pathname);
+
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -26,12 +30,18 @@ export function SiteHeader() {
     ];
 
     return (
-        <header className={cn("sticky top-0 z-50 w-full transition-all duration-500 ease-in-out px-4 py-4", scrolled ? "py-2" : "py-4")}>
+        <header className={cn(
+            "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-in-out px-4",
+            scrolled ? "py-2" : "py-4"
+        )}>
             <div
                 className={cn(
                     "container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
-                    "border border-white/5 shadow-2xl shadow-black/20",
-                    scrolled ? "bg-gray-900/80 backdrop-blur-xl border-white/10 h-14" : "bg-gray-900/50 backdrop-blur-md border-white/5",
+                    scrolled
+                        ? "bg-gray-900/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20 h-14"
+                        : isMediaDetailPage
+                            ? "bg-gray-900/30 backdrop-blur-sm border border-white/5"
+                            : "bg-gray-900/50 backdrop-blur-md border border-white/5 shadow-2xl shadow-black/20",
                 )}
             >
                 {/* Branding */}
