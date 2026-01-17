@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops } from "@/actions/backfill";
-import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter } from "lucide-react";
+import { importMDLNotes } from "@/actions/mdl-import";
+import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen } from "lucide-react";
 
 type WatchlistItem = {
     id: string;
@@ -23,6 +24,7 @@ type WatchlistItem = {
     progress: number;
     totalEp: number | null;
     score: number | null;
+    mdlRating: number | null;
     notes: string | null;
     season: number;
     mediaType: string;
@@ -69,6 +71,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
+    const [isImportingMDL, setIsImportingMDL] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
@@ -241,6 +244,32 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         }
     };
 
+    const handleMDLImport = async () => {
+        if (!confirm("This will import notes from your MyDramaList account. Continue?")) return;
+
+        setIsImportingMDL(true);
+        try {
+            const result = await importMDLNotes("mock-user-1");
+            if (result.success) {
+                alert(
+                    `${result.message}\n\nStats:\n` +
+                        `- Scraped: ${result.stats?.scraped}\n` +
+                        `- Matched: ${result.stats?.matched}\n` +
+                        `- Updated: ${result.stats?.updated}`,
+                );
+                // Refresh the page to show updated notes
+                window.location.reload();
+            } else {
+                alert(`Failed: ${result.message}`);
+            }
+        } catch (error) {
+            console.error("MDL import failed:", error);
+            alert("Failed to import from MDL. Check console.");
+        } finally {
+            setIsImportingMDL(false);
+        }
+    };
+
     return (
         <div className="space-y-6">
             {/* Filter Pills Row */}
@@ -362,64 +391,67 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
 
                 {/* Sort Dropdown */}
-                <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="h-9 px-4 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
-                >
-                    <option value="default" className="bg-gray-800">
-                        Sort: Default
-                    </option>
-                    <option value="rating-high" className="bg-gray-900">
-                        Rating: High to Low
-                    </option>
-                    <option value="rating-low" className="bg-gray-900">
-                        Rating: Low to High
-                    </option>
-                    <option value="progress-high" className="bg-gray-900">
-                        Progress: High to Low
-                    </option>
-                    <option value="progress-low" className="bg-gray-900">
-                        Progress: Low to High
-                    </option>
-                    <option value="title-az" className="bg-gray-900">
-                        Title: A-Z
-                    </option>
-                    <option value="title-za" className="bg-gray-900">
-                        Title: Z-A
-                    </option>
-                    <option value="year-new" className="bg-gray-900">
-                        Year: Newest
-                    </option>
-                    <option value="year-old" className="bg-gray-900">
-                        Year: Oldest
-                    </option>
-                </select>
+                <div className="relative">
+                    <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="h-9 pl-4 pr-10 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer appearance-none w-full"
+                    >
+                        <option value="default" className="bg-gray-800">
+                            Sort: Default
+                        </option>
+                        <option value="rating-high" className="bg-gray-900">
+                            Rating: High to Low
+                        </option>
+                        <option value="rating-low" className="bg-gray-900">
+                            Rating: Low to High
+                        </option>
+                        <option value="progress-high" className="bg-gray-900">
+                            Progress: High to Low
+                        </option>
+                        <option value="progress-low" className="bg-gray-900">
+                            Progress: Low to High
+                        </option>
+                        <option value="title-az" className="bg-gray-900">
+                            Title: A-Z
+                        </option>
+                        <option value="title-za" className="bg-gray-900">
+                            Title: Z-A
+                        </option>
+                        <option value="year-new" className="bg-gray-900">
+                            Year: Newest
+                        </option>
+                        <option value="year-old" className="bg-gray-900">
+                            Year: Oldest
+                        </option>
+                    </select>
+                    <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none rotate-90" />
+                </div>
 
                 {/* Year Dropdown */}
-                <select
-                    value={filterYear}
-                    onChange={(e) => setFilterYear(e.target.value)}
-                    className="h-9 px-4 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
-                >
-                    <option value="All" className="bg-gray-900">
-                        All Years
-                    </option>
-                    {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map((year) => (
-                        <option key={year} value={year} className="bg-gray-900">
-                            {year}
+                <div className="relative">
+                    <select
+                        value={filterYear}
+                        onChange={(e) => setFilterYear(e.target.value)}
+                        className="h-9 pl-4 pr-10 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer appearance-none w-full"
+                    >
+                        <option value="All" className="bg-gray-900">
+                            All Years
                         </option>
-                    ))}
-                    <option value="2010s" className="bg-gray-900">
-                        2010-2019
-                    </option>
-                    <option value="2000s" className="bg-gray-900">
-                        2000-2009
-                    </option>
-                    <option value="Older" className="bg-gray-900">
-                        Before 2000
-                    </option>
-                </select>
+                        {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                            <option key={year} value={year} className="bg-gray-900">
+                                {year}
+                            </option>
+                        ))}
+                        <option value="2010s" className="bg-gray-900">
+                            2010-2019
+                        </option>
+                        <option value="2000s" className="bg-gray-900">
+                            2000-2009
+                        </option>
+                    </select>
+                    <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none rotate-90" />
+                </div>
 
                 {/* Search */}
                 <div className="flex-1 min-w-50 relative group">
@@ -431,6 +463,18 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         className="relative w-full h-9 bg-white/8 border-white/10 rounded-full text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/12 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
                     />
                 </div>
+
+                {/* Import MDL Notes Button */}
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleMDLImport}
+                    disabled={isImportingMDL}
+                    className="h-9 px-4 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all gap-2"
+                >
+                    <BookOpen className={`h-4 w-4 ${isImportingMDL ? "animate-pulse" : ""}`} />
+                    {isImportingMDL ? "Importing..." : "Import MDL Notes"}
+                </Button>
 
                 {/* Backfill Button */}
                 <Button
@@ -552,7 +596,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         <div
                                             className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md shadow-lg ${
                                                 first.backdrop || first.poster
-                                                    ? "bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 bg-size-[200%_100%] animate-shimmer"
+                                                    ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-[length:200%_100%] animate-shimmer"
                                                     : "bg-gray-800"
                                             }`}
                                         >
@@ -561,11 +605,20 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     src={first.backdrop || first.poster!}
                                                     alt={first.title || ""}
                                                     fill
-                                                    className="object-cover opacity-0 transition-all duration-500"
+                                                    className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                                     loading="lazy"
                                                     onLoad={(e) => {
-                                                        e.currentTarget.classList.replace("opacity-0", "opacity-100");
-                                                        e.currentTarget.parentElement?.classList.remove("animate-shimmer");
+                                                        const img = e.currentTarget;
+                                                        const container = img.parentElement;
+                                                        // Add a small delay to ensure the shimmer is visible
+                                                        setTimeout(() => {
+                                                            img.classList.replace("opacity-0", "opacity-100");
+                                                            container?.classList.remove(
+                                                                "animate-shimmer",
+                                                                "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
+                                                                "bg-[length:200%_100%]",
+                                                            );
+                                                        }, 100);
                                                     }}
                                                 />
                                             )}
@@ -687,7 +740,7 @@ const ItemCard = memo(function ItemCard({
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
                     className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg ${
                         item.backdrop || item.poster
-                            ? "bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 bg-size[200%_100%] animate-shimmer"
+                            ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
                             : "bg-gray-800"
                     }`}
                 >
@@ -697,11 +750,20 @@ const ItemCard = memo(function ItemCard({
                                 src={item.backdrop || item.poster!}
                                 alt={item.title || ""}
                                 fill
-                                className="object-cover opacity-0 transition-all duration-500"
+                                className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                 loading="lazy"
                                 onLoad={(e) => {
-                                    e.currentTarget.classList.replace("opacity-0", "opacity-100");
-                                    e.currentTarget.parentElement?.classList.remove("animate-shimmer");
+                                    const img = e.currentTarget;
+                                    const container = img.parentElement;
+                                    // Add a small delay to ensure the shimmer is visible
+                                    setTimeout(() => {
+                                        img.classList.replace("opacity-0", "opacity-100");
+                                        container?.classList.remove(
+                                            "animate-shimmer",
+                                            "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
+                                            "bg-size-[200%_100%]",
+                                        );
+                                    }, 100);
                                 }}
                             />
                             {/* Season color overlay - only show if this is a child (season) card */}
@@ -816,10 +878,11 @@ const ItemCard = memo(function ItemCard({
                     </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 w-20 justify-center">
+                <div className="flex flex-col items-center gap-1 w-24 justify-center">
+                    {/* Personal Score */}
                     {item.score ? (
-                        <>
-                            <svg className="h-5 w-5 text-yellow-500 fill-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="flex items-center gap-1.5">
+                            <svg className="h-4 w-4 text-yellow-500 fill-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -827,11 +890,19 @@ const ItemCard = memo(function ItemCard({
                                     d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                                 />
                             </svg>
-                            <span className="text-white font-semibold">{item.score.toFixed(1)}</span>
-                        </>
+                            <span className="text-white font-semibold text-sm">{item.score.toFixed(1)}</span>
+                        </div>
                     ) : (
-                        <span className="text-gray-500 text-sm">No rating</span>
+                        <span className="text-gray-500 text-xs">-</span>
                     )}
+
+                    {/* MDL Community Score */}
+                    {item.mdlRating ? (
+                        <div className="flex items-center gap-1.5">
+                            <span className="text-xs text-gray-400">MDL</span>
+                            <span className="text-blue-400 font-semibold text-sm">{item.mdlRating.toFixed(1)}</span>
+                        </div>
+                    ) : null}
                 </div>
 
                 <Button

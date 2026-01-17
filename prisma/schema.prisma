@@ -73,6 +73,7 @@ model UserMedia {
   year        Int?
   originCountry String?
   tmdbRating  Float?
+  mdlRating   Float?   // MDL community rating
   genres      String?  // Store as comma-separated values
 
   updatedAt   DateTime @updatedAt
