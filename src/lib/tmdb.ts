@@ -70,6 +70,39 @@ export type TMDBSearchResult = {
     total_results: number;
 };
 
+export type TMDBPerson = {
+    id: number;
+    name: string;
+    biography: string;
+    birthday: string | null;
+    deathday: string | null;
+    place_of_birth: string | null;
+    profile_path: string | null;
+    gender: number; // 0 = Not set, 1 = Female, 2 = Male, 3 = Non-binary
+    known_for_department: string;
+    popularity: number;
+    also_known_as: string[];
+    homepage: string | null;
+};
+
+export type TMDBPersonCredits = {
+    id: number;
+    cast: {
+        id: number;
+        title?: string;
+        name?: string;
+        character: string;
+        poster_path: string | null;
+        backdrop_path: string | null;
+        release_date?: string;
+        first_air_date?: string;
+        vote_average: number;
+        media_type: "movie" | "tv";
+        episode_count?: number;
+        origin_country?: string[];
+    }[];
+};
+
 export async function fetchTMDB<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
     const apiKey = process.env.TMDB_API_KEY;
     if (!apiKey) {
@@ -102,4 +135,8 @@ export const tmdb = {
     discoverTV: (params: Record<string, string>) => fetchTMDB<TMDBSearchResult>("/discover/tv", params),
 
     getOnTheAir: (page = 1) => fetchTMDB<TMDBSearchResult>("/tv/on_the_air", { page: page.toString() }),
+
+    getPersonDetails: (id: string) => fetchTMDB<TMDBPerson>(`/person/${id}`),
+
+    getPersonCombinedCredits: (id: string) => fetchTMDB<TMDBPersonCredits>(`/person/${id}/combined_credits`),
 };

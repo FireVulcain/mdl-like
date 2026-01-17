@@ -34,8 +34,8 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
 
             <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
                 {cast.slice(0, 6).map((actor) => (
-                    <div key={actor.id} className="flex-none w-25 space-y-2">
-                        <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
+                    <Link key={actor.id} href={`/cast/${actor.id}`} className="flex-none w-25 space-y-2 group">
+                        <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                             {actor.profile ? (
                                 <Image
                                     src={actor.profile}
@@ -63,14 +63,14 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
                             )}
                         </div>
                         <div>
-                            <div className="text-sm font-medium truncate text-white" title={actor.name}>
+                            <div className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors" title={actor.name}>
                                 {actor.name}
                             </div>
                             <div className="text-xs text-gray-400 truncate" title={actor.character}>
                                 {actor.character}
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
