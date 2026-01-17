@@ -180,23 +180,29 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         return Array.from(genreSet).sort();
     }, [items]);
 
-    const handleProgress = useCallback(async (id: string, newProgress: number) => {
-        startTransition(() => {
-            setOptimisticItems({ id, progress: newProgress });
-        });
-        await updateProgress(id, newProgress);
-    }, [startTransition, setOptimisticItems]);
+    const handleProgress = useCallback(
+        async (id: string, newProgress: number) => {
+            startTransition(() => {
+                setOptimisticItems({ id, progress: newProgress });
+            });
+            await updateProgress(id, newProgress);
+        },
+        [startTransition, setOptimisticItems],
+    );
 
-    const handleStatusChange = useCallback(async (id: string, newStatus: string) => {
-        startTransition(() => {
-            setOptimisticItems({ id, status: newStatus });
-        });
-        try {
-            await updateUserMedia(id, { status: newStatus });
-        } catch (error) {
-            console.error("Failed to update status:", error);
-        }
-    }, [startTransition, setOptimisticItems]);
+    const handleStatusChange = useCallback(
+        async (id: string, newStatus: string) => {
+            startTransition(() => {
+                setOptimisticItems({ id, status: newStatus });
+            });
+            try {
+                await updateUserMedia(id, { status: newStatus });
+            } catch (error) {
+                console.error("Failed to update status:", error);
+            }
+        },
+        [startTransition, setOptimisticItems],
+    );
 
     const openEdit = useCallback((item: WatchlistItem) => {
         setEditingItem(item);
@@ -257,7 +263,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     {showStatusFilter && (
                         <>
                             <div className="fixed inset-0 z-10" onClick={() => setShowStatusFilter(false)} />
-                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[200px]">
+                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-50">
                                 {allStatuses.map((status) => {
                                     const Icon = statusConfig[status as keyof typeof statusConfig]?.icon;
                                     const config = statusConfig[status as keyof typeof statusConfig];
@@ -299,7 +305,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     {showCountryFilter && (
                         <>
                             <div className="fixed inset-0 z-10" onClick={() => setShowCountryFilter(false)} />
-                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[200px] max-h-[300px] overflow-y-auto">
+                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-50 max-h-75 overflow-y-auto">
                                 {allCountries.map((country) => (
                                     <button
                                         key={country}
@@ -336,7 +342,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     {showGenreFilter && (
                         <>
                             <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
-                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[200px] max-h-[300px] overflow-y-auto">
+                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-50 max-h-75 overflow-y-auto">
                                 {allGenres.map((genre) => (
                                     <button
                                         key={genre}
@@ -359,9 +365,9 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="h-9 px-4 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                    className="h-9 px-4 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
                 >
-                    <option value="default" className="bg-gray-900">
+                    <option value="default" className="bg-gray-800">
                         Sort: Default
                     </option>
                     <option value="rating-high" className="bg-gray-900">
@@ -394,7 +400,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 <select
                     value={filterYear}
                     onChange={(e) => setFilterYear(e.target.value)}
-                    className="h-9 px-4 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                    className="h-9 px-4 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
                 >
                     <option value="All" className="bg-gray-900">
                         All Years
@@ -416,13 +422,13 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </select>
 
                 {/* Search */}
-                <div className="flex-1 min-w-[200px] relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-0 group-hover:opacity-20 transition duration-500" />
+                <div className="flex-1 min-w-50 relative group">
+                    <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-full blur opacity-0 group-hover:opacity-20 transition duration-500" />
                     <Input
                         placeholder="Search titles..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="relative w-full h-9 bg-white/5 border-white/10 rounded-full text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
+                        className="relative w-full h-9 bg-white/8 border-white/10 rounded-full text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/12 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
                     />
                 </div>
 
@@ -432,7 +438,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     size="sm"
                     onClick={handleBackfill}
                     disabled={isBackfilling}
-                    className="h-9 px-4 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all gap-2"
+                    className="h-9 px-4 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all gap-2"
                 >
                     <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
                     {isBackfilling ? "Processing..." : "Refresh Backdrops"}
@@ -535,7 +541,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                             resultNodes.push(
                                 <div
                                     key={`group-${groupKey}`}
-                                    className="group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20"
+                                    className="group relative bg-linear-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20"
                                     onClick={() => toggleGroup(groupKey)}
                                     style={{
                                         boxShadow:
@@ -544,9 +550,9 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 >
                                     <div className="flex items-center gap-5 p-5">
                                         <div
-                                            className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md shadow-lg ${
+                                            className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md shadow-lg ${
                                                 first.backdrop || first.poster
-                                                    ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
+                                                    ? "bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 bg-size-[200%_100%] animate-shimmer"
                                                     : "bg-gray-800"
                                             }`}
                                         >
@@ -569,7 +575,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                             <div className="text-sm text-gray-400 mt-1">{group.length} seasons</div>
                                         </div>
                                         <ChevronRight className={`h-5 w-5 text-gray-400 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
-                                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
                                     </div>
                                 </div>,
                             );
@@ -669,8 +675,8 @@ const ItemCard = memo(function ItemCard({
         <div
             className={`group relative backdrop-blur-sm rounded-lg border transition-all hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
                 isChild
-                    ? "bg-gradient-to-br from-blue-500/[0.08] to-blue-500/[0.03] border-blue-500/20 hover:border-blue-500/40"
-                    : "bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-white/10 hover:border-white/20"
+                    ? "bg-linear-to-br from-blue-500/15 to-blue-500/8 border-blue-500/20 hover:border-blue-500/40"
+                    : "bg-linear-to-br from-white/10 to-white/5 border-white/10 hover:border-white/20"
             }`}
             style={{
                 boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
@@ -679,9 +685,9 @@ const ItemCard = memo(function ItemCard({
             <div className="flex items-center gap-5 px-5 py-3">
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                    className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg ${
+                    className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg ${
                         item.backdrop || item.poster
-                            ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
+                            ? "bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 bg-size[200%_100%] animate-shimmer"
                             : "bg-gray-800"
                     }`}
                 >
@@ -727,7 +733,7 @@ const ItemCard = memo(function ItemCard({
                 <button
                     ref={buttonRef}
                     onClick={handleDropdownToggle}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-[140px] justify-center hover:opacity-80 transition-opacity cursor-pointer`}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-35 justify-center hover:opacity-80 transition-opacity cursor-pointer`}
                 >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
@@ -737,9 +743,9 @@ const ItemCard = memo(function ItemCard({
                     typeof window !== "undefined" &&
                     createPortal(
                         <>
-                            <div className="fixed inset-0 z-[9998]" onClick={() => setShowStatusDropdown(false)} />
+                            <div className="fixed inset-0 z-9998" onClick={() => setShowStatusDropdown(false)} />
                             <div
-                                className="fixed z-[9999] bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[180px]"
+                                className="fixed z-9999 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-45"
                                 style={{
                                     top: `${dropdownPosition.top}px`,
                                     left: `${dropdownPosition.left}px`,
@@ -802,8 +808,8 @@ const ItemCard = memo(function ItemCard({
                         <div
                             className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
                                 item.status === "Completed"
-                                    ? "bg-gradient-to-r from-green-500 to-emerald-500"
-                                    : "bg-gradient-to-r from-blue-500 to-cyan-500"
+                                    ? "bg-linear-to-r from-green-500 to-emerald-500"
+                                    : "bg-linear-to-r from-blue-500 to-cyan-500"
                             }`}
                             style={{ width: `${progressPercent}%` }}
                         />
@@ -840,7 +846,7 @@ const ItemCard = memo(function ItemCard({
                     <Pencil className="h-4 w-4" />
                 </Button>
             </div>
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
         </div>
     );
 });

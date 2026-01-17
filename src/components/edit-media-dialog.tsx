@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { UnifiedMedia } from "@/services/media.service";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteUserMedia, updateUserMedia, addToWatchlist } from "@/actions/media";
-import { X, Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle } from "lucide-react";
+import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle } from "lucide-react";
 
 const MOCK_USER_ID = "mock-user-1";
 
@@ -132,7 +131,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-3xl max-h-[90vh] p-0 overflow-hidden gap-0 bg-gradient-to-br from-gray-900 to-black border border-white/10 flex flex-col">
+            <DialogContent className="max-w-3xl max-h-[90vh] p-0 overflow-hidden gap-0 bg-linear-to-br from-gray-900 to-black border border-white/10 flex flex-col">
                 <VisuallyHidden>
                     <DialogTitle>
                         {isEditing ? "Edit" : "Add to"} Watchlist - {displayTitle}
@@ -144,17 +143,16 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 </div>
 
                 {/* Header with Backdrop */}
-                <div className="relative h-48 [@media(max-height:700px)]:h-32 [@media(max-height:550px)]:h-24 overflow-hidden flex-shrink-0">
-                    {displayPoster && (
-                        <Image src={displayPoster} alt={displayTitle} fill className="object-cover opacity-40" />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="relative h-48 [@media(max-height:700px)]:h-32 [@media(max-height:550px)]:h-24 overflow-hidden shrink-0">
+                    {displayPoster && <Image src={displayPoster} alt={displayTitle} fill className="object-cover opacity-40" />}
+                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
                     <div className="absolute bottom-4 left-6">
-                        <h2 className="text-2xl [@media(max-height:700px)]:text-xl [@media(max-height:550px)]:text-lg font-bold text-white">{displayTitle}</h2>
+                        <h2 className="text-2xl [@media(max-height:700px)]:text-xl [@media(max-height:550px)]:text-lg font-bold text-white">
+                            {displayTitle}
+                        </h2>
                         <p className="text-gray-400 [@media(max-height:700px)]:text-sm [@media(max-height:550px)]:text-xs mt-1">{displayYear}</p>
                     </div>
                 </div>
-
 
                 {/* Content */}
                 <div className="p-6 space-y-6 overflow-y-auto">
@@ -210,8 +208,8 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 <div
                                     className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
                                         formData.status === "Completed"
-                                            ? "bg-gradient-to-r from-green-500 to-emerald-500"
-                                            : "bg-gradient-to-r from-blue-500 to-cyan-500"
+                                            ? "bg-linear-to-r from-green-500 to-emerald-500"
+                                            : "bg-linear-to-r from-blue-500 to-cyan-500"
                                     }`}
                                     style={{ width: `${progressPercent}%` }}
                                 />
@@ -228,16 +226,18 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
                                     <button
                                         key={rating}
-                                        onClick={() => setFormData((prev) => ({ 
-                                            ...prev, 
-                                            score: prev.score === rating ? 0 : rating 
-                                        }))}
+                                        onClick={() =>
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                score: prev.score === rating ? 0 : rating,
+                                            }))
+                                        }
                                         className={`h-10 w-10 rounded-lg border transition-all ${
                                             formData.score === rating
                                                 ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-500 ring-2 ring-yellow-500/30"
                                                 : formData.score > rating - 1 && formData.score < rating + 1
-                                                ? "bg-yellow-500/10 border-yellow-500/30 text-yellow-400"
-                                                : "bg-white/5 border-white/10 text-gray-500 hover:bg-white/10"
+                                                  ? "bg-yellow-500/10 border-yellow-500/30 text-yellow-400"
+                                                  : "bg-white/5 border-white/10 text-gray-500 hover:bg-white/10"
                                         }`}
                                     >
                                         <span className="text-sm font-semibold">{rating}</span>
@@ -249,10 +249,12 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 {[0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5].map((rating) => (
                                     <button
                                         key={rating}
-                                        onClick={() => setFormData((prev) => ({ 
-                                            ...prev, 
-                                            score: prev.score === rating ? 0 : rating 
-                                        }))}
+                                        onClick={() =>
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                score: prev.score === rating ? 0 : rating,
+                                            }))
+                                        }
                                         className={`h-8 w-10 rounded-lg border transition-all text-xs ${
                                             formData.score === rating
                                                 ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-500 ring-2 ring-yellow-500/30"
@@ -290,14 +292,14 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                         <Textarea
                             value={formData.notes}
                             onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
-                            className="min-h-[100px] bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:bg-white/10 focus:border-blue-500/50"
+                            className="min-h-25 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:bg-white/10 focus:border-blue-500/50"
                             placeholder="Add your thoughts..."
                         />
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="p-4 border-t border-white/10 bg-black/20 backdrop-blur-sm flex justify-between flex-shrink-0">
+                <div className="p-4 border-t border-white/10 bg-black/20 backdrop-blur-sm flex justify-between shrink-0">
                     {isEditing ? (
                         <Button
                             variant="ghost"

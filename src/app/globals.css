@@ -172,3 +172,63 @@
 .animate-shimmer {
     animation: shimmer 2s infinite linear;
 }
+
+@keyframes float-slow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translate(60px, -60px) scale(1.1);
+        opacity: 0.25;
+    }
+}
+
+@keyframes float-slower {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.18;
+    }
+    50% {
+        transform: translate(-80px, 60px) scale(1.15);
+        opacity: 0.22;
+    }
+}
+
+@keyframes float-slowest {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.16;
+    }
+    50% {
+        transform: translate(40px, 70px) scale(0.95);
+        opacity: 0.2;
+    }
+}
+
+@keyframes float-reverse {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.14;
+    }
+    50% {
+        transform: translate(-50px, -70px) scale(1.12);
+        opacity: 0.18;
+    }
+}
+
+.animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+}
+
+.animate-float-slower {
+    animation: float-slower 25s ease-in-out infinite;
+}
+
+.animate-float-slowest {
+    animation: float-slowest 30s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+    animation: float-reverse 22s ease-in-out infinite;
+}

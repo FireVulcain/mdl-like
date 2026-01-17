@@ -32,12 +32,13 @@ export default async function WatchlistPage() {
             {/* Animated Background */}
             <div className="fixed inset-0 -z-10">
                 {/* Base gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
-                
-                {/* Animated smoke/glow effects */}
-                <div className="absolute top-0 -left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute top-40 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] animate-pulse [animation-delay:1s]" />
-                <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-violet-500/20 rounded-full blur-[120px] animate-pulse [animation-delay:2s]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-950 to-slate-900" />
+
+                {/* Floating ambient glow effects */}
+                <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[140px] animate-float-slow" />
+                <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-500/18 rounded-full blur-[140px] animate-float-slower" />
+                <div className="absolute bottom-0 left-1/3 w-[550px] h-[550px] bg-violet-500/16 rounded-full blur-[140px] animate-float-slowest" />
+                <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-cyan-500/14 rounded-full blur-[140px] animate-float-reverse" />
                 
                 {/* Noise texture overlay */}
                 <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay">
