@@ -3,12 +3,11 @@
 import { useState, useMemo, useRef, useEffect, useOptimistic, useTransition } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress } from "@/actions/media";
 import { backfillBackdrops } from "@/actions/backfill";
-import { Plus, Minus, Pencil, ChevronRight, ChevronDown, Eye, CheckCircle, Clock, XCircle, RefreshCw } from "lucide-react";
+import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw } from "lucide-react";
 
 type WatchlistItem = {
     id: string;
@@ -63,16 +62,9 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
     // Optimistic updates
-    const [optimisticItems, setOptimisticItems] = useOptimistic(
-        items,
-        (state, update: OptimisticUpdate) => {
-            return state.map(item =>
-                item.id === update.id
-                    ? { ...item, ...update }
-                    : item
-            );
-        }
-    );
+    const [optimisticItems, setOptimisticItems] = useOptimistic(items, (state, update: OptimisticUpdate) => {
+        return state.map((item) => (item.id === update.id ? { ...item, ...update } : item));
+    });
     const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
@@ -96,7 +88,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     };
 
     const filteredItems = useMemo(() => {
-        let result = optimisticItems.filter((item) => {
+        const result = optimisticItems.filter((item) => {
             if (filterStatus !== "All" && item.status !== filterStatus) return false;
             if (filterCountry !== "All" && item.originCountry !== filterCountry) return false;
             if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
@@ -374,7 +366,11 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     }}
                                 >
                                     <div className="flex items-center gap-5 p-5">
-                                        <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer shadow-lg">
+                                        <div className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md shadow-lg ${
+                                            (first.backdrop || first.poster)
+                                                ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
+                                                : "bg-gray-800"
+                                        }`}>
                                             {(first.backdrop || first.poster) && (
                                                 <Image
                                                     src={first.backdrop || first.poster!}
@@ -382,7 +378,10 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     fill
                                                     className="object-cover opacity-0 transition-all duration-500"
                                                     loading="lazy"
-                                                    onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                                                    onLoad={(e) => {
+                                                        e.currentTarget.classList.replace("opacity-0", "opacity-100");
+                                                        e.currentTarget.parentElement?.classList.remove("animate-shimmer");
+                                                    }}
                                                 />
                                             )}
                                         </div>
@@ -393,7 +392,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         <ChevronRight className={`h-5 w-5 text-gray-400 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
                                         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                                     </div>
-                                </div>
+                                </div>,
                             );
 
                             // Child Cards
@@ -406,7 +405,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                             style={{ animationDelay: `${index * 80}ms` }}
                                         >
                                             <ItemCard item={item} handleProgress={handleProgress} openEdit={openEdit} isChild={true} />
-                                        </div>
+                                        </div>,
                                     );
                                 });
                             }
@@ -469,7 +468,11 @@ function ItemCard({
             <div className="flex items-center gap-5 px-5 py-3">
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                    className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer hover:ring-2 hover:ring-white/20 transition-all shadow-lg"
+                    className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg ${
+                        (item.backdrop || item.poster)
+                            ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
+                            : "bg-gray-800"
+                    }`}
                 >
                     {(item.backdrop || item.poster) && (
                         <Image
@@ -478,7 +481,10 @@ function ItemCard({
                             fill
                             className="object-cover opacity-0 transition-all duration-500"
                             loading="lazy"
-                            onLoad={(e) => e.currentTarget.classList.replace("opacity-0", "opacity-100")}
+                            onLoad={(e) => {
+                                e.currentTarget.classList.replace("opacity-0", "opacity-100");
+                                e.currentTarget.parentElement?.classList.remove("animate-shimmer");
+                            }}
                         />
                     )}
                 </Link>
