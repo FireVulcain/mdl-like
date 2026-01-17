@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect, useOptimistic, useTransition } from "react";
+import { useState, useMemo, useRef, useOptimistic, useTransition, memo, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { updateProgress } from "@/actions/media";
+import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops } from "@/actions/backfill";
-import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw } from "lucide-react";
+import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter } from "lucide-react";
 
 type WatchlistItem = {
     id: string;
@@ -25,6 +26,7 @@ type WatchlistItem = {
     notes: string | null;
     season: number;
     mediaType: string;
+    genres: string | null;
 };
 
 interface WatchlistTableProps {
@@ -48,9 +50,18 @@ const statusConfig = {
     Dropped: { icon: XCircle, color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
 };
 
+// Generate a unique color overlay for each season based on season number
+const getSeasonGradient = (seasonNumber: number): string => {
+    // Calculate hue based on season number (distribute evenly across color wheel)
+    const hue = (seasonNumber * 137.5) % 360; // Golden angle for good distribution
+    // Subtle but visible: lower saturation (60%), moderate opacity (0.25 -> 0.08)
+    return `linear-gradient(to right, hsla(${hue}, 60%, 50%, 0.25), hsla(${hue}, 60%, 50%, 0.08))`;
+};
+
 export function WatchlistTable({ items }: WatchlistTableProps) {
-    const [filterStatus, setFilterStatus] = useState<string>("All");
-    const [filterCountry, setFilterCountry] = useState<string>("All");
+    const [filterStatuses, setFilterStatuses] = useState<string[]>([]);
+    const [filterCountries, setFilterCountries] = useState<string[]>([]);
+    const [filterGenres, setFilterGenres] = useState<string[]>([]);
     const [filterYear, setFilterYear] = useState<string>("All");
     const [search, setSearch] = useState("");
     const [editingItem, setEditingItem] = useState<WatchlistItem | null>(null);
@@ -58,24 +69,15 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
-    const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
-    const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+    const [showStatusFilter, setShowStatusFilter] = useState(false);
+    const [showCountryFilter, setShowCountryFilter] = useState(false);
+    const [showGenreFilter, setShowGenreFilter] = useState(false);
 
     // Optimistic updates
     const [optimisticItems, setOptimisticItems] = useOptimistic(items, (state, update: OptimisticUpdate) => {
         return state.map((item) => (item.id === update.id ? { ...item, ...update } : item));
     });
-    const [isPending, startTransition] = useTransition();
-
-    useEffect(() => {
-        const activeButton = buttonRefs.current[filterStatus];
-        if (activeButton) {
-            setSliderStyle({
-                left: activeButton.offsetLeft,
-                width: activeButton.offsetWidth,
-            });
-        }
-    }, [filterStatus]);
+    const [, startTransition] = useTransition();
 
     const toggleGroup = (key: string) => {
         const newSet = new Set(expandedGroups);
@@ -89,8 +91,21 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     const filteredItems = useMemo(() => {
         const result = optimisticItems.filter((item) => {
-            if (filterStatus !== "All" && item.status !== filterStatus) return false;
-            if (filterCountry !== "All" && item.originCountry !== filterCountry) return false;
+            // Multi-select status filter
+            if (filterStatuses.length > 0 && !filterStatuses.includes(item.status)) return false;
+
+            // Multi-select country filter
+            if (filterCountries.length > 0 && (!item.originCountry || !filterCountries.includes(item.originCountry))) return false;
+
+            // Multi-select genre filter
+            if (filterGenres.length > 0) {
+                if (!item.genres) return false;
+                const itemGenres = item.genres.split(",").map((g) => g.trim());
+                const hasMatchingGenre = filterGenres.some((fg) => itemGenres.includes(fg));
+                if (!hasMatchingGenre) return false;
+            }
+
+            // Search filter
             if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
 
             // Year filter
@@ -135,19 +150,58 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         }
 
         return result;
-    }, [optimisticItems, filterStatus, filterCountry, search, filterYear, sortBy]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
 
-    const handleProgress = async (id: string, newProgress: number) => {
+    // Helper functions for multi-select filters
+    const toggleStatus = (status: string) => {
+        setFilterStatuses((prev) => (prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]));
+    };
+
+    const toggleCountry = (country: string) => {
+        setFilterCountries((prev) => (prev.includes(country) ? prev.filter((c) => c !== country) : [...prev, country]));
+    };
+
+    const toggleGenre = (genre: string) => {
+        setFilterGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]));
+    };
+
+    // Extract unique values for filters
+    const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
+    const allCountries = useMemo(() => {
+        return Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean))).sort() as string[];
+    }, [items]);
+    const allGenres = useMemo(() => {
+        const genreSet = new Set<string>();
+        items.forEach((item) => {
+            if (item.genres) {
+                item.genres.split(",").forEach((g) => genreSet.add(g.trim()));
+            }
+        });
+        return Array.from(genreSet).sort();
+    }, [items]);
+
+    const handleProgress = useCallback(async (id: string, newProgress: number) => {
         startTransition(() => {
             setOptimisticItems({ id, progress: newProgress });
         });
         await updateProgress(id, newProgress);
-    };
+    }, [startTransition, setOptimisticItems]);
 
-    const openEdit = (item: WatchlistItem) => {
+    const handleStatusChange = useCallback(async (id: string, newStatus: string) => {
+        startTransition(() => {
+            setOptimisticItems({ id, status: newStatus });
+        });
+        try {
+            await updateUserMedia(id, { status: newStatus });
+        } catch (error) {
+            console.error("Failed to update status:", error);
+        }
+    }, [startTransition, setOptimisticItems]);
+
+    const openEdit = useCallback((item: WatchlistItem) => {
         setEditingItem(item);
         setEditOpen(true);
-    };
+    }, []);
 
     const handleEditClose = (isOpen: boolean) => {
         setEditOpen(isOpen);
@@ -183,133 +237,256 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     return (
         <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-4">
-                <div className="flex gap-2 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5 relative">
-                    <div
-                        className="absolute bg-blue-500 rounded-md transition-all duration-300 ease-out"
-                        style={{
-                            left: `${sliderStyle.left}px`,
-                            width: `${sliderStyle.width}px`,
-                            height: "calc(100% - 8px)",
-                            top: "4px",
-                        }}
-                    />
-                    {["All", "Watching", "Completed", "Plan to Watch", "Dropped"].map((s) => (
-                        <Button
-                            key={s}
-                            ref={(el) => {
-                                buttonRefs.current[s] = el;
-                            }}
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setFilterStatus(s)}
-                            className={`rounded-md px-4 transition-all relative z-10 ${
-                                filterStatus === s ? "text-white hover:bg-transparent" : "text-gray-400 hover:text-white hover:bg-white/5"
-                            }`}
-                        >
-                            {s}
-                        </Button>
+            {/* Filter Pills Row */}
+            <div className="flex flex-wrap items-center gap-3">
+                {/* Status Filter Dropdown */}
+                <div className="relative">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowStatusFilter(!showStatusFilter)}
+                        className={`h-9 px-4 rounded-full border transition-all cursor-pointer ${
+                            filterStatuses.length > 0
+                                ? "bg-blue-500/20 border-blue-500/50 text-blue-400 hover:bg-blue-500/30"
+                                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
+                        }`}
+                    >
+                        <Filter className="h-3.5 w-3.5 mr-2" />
+                        Status {filterStatuses.length > 0 && `(${filterStatuses.length})`}
+                    </Button>
+                    {showStatusFilter && (
+                        <>
+                            <div className="fixed inset-0 z-10" onClick={() => setShowStatusFilter(false)} />
+                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[200px]">
+                                {allStatuses.map((status) => {
+                                    const Icon = statusConfig[status as keyof typeof statusConfig]?.icon;
+                                    const config = statusConfig[status as keyof typeof statusConfig];
+                                    return (
+                                        <button
+                                            key={status}
+                                            onClick={() => toggleStatus(status)}
+                                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all cursor-pointer ${
+                                                filterStatuses.includes(status)
+                                                    ? `${config?.bg} ${config?.color} ${config?.border} border`
+                                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                            }`}
+                                        >
+                                            {Icon && <Icon className="h-4 w-4" />}
+                                            {status}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </>
+                    )}
+                </div>
+
+                {/* Country Filter Dropdown */}
+                <div className="relative">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowCountryFilter(!showCountryFilter)}
+                        className={`h-9 px-4 rounded-full border transition-all cursor-pointer ${
+                            filterCountries.length > 0
+                                ? "bg-purple-500/20 border-purple-500/50 text-purple-400 hover:bg-purple-500/30"
+                                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
+                        }`}
+                    >
+                        <Filter className="h-3.5 w-3.5 mr-2" />
+                        Country {filterCountries.length > 0 && `(${filterCountries.length})`}
+                    </Button>
+                    {showCountryFilter && (
+                        <>
+                            <div className="fixed inset-0 z-10" onClick={() => setShowCountryFilter(false)} />
+                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[200px] max-h-[300px] overflow-y-auto">
+                                {allCountries.map((country) => (
+                                    <button
+                                        key={country}
+                                        onClick={() => toggleCountry(country)}
+                                        className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all cursor-pointer ${
+                                            filterCountries.includes(country)
+                                                ? "bg-purple-500/20 text-purple-400 border border-purple-500/50"
+                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                        }`}
+                                    >
+                                        {country}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+
+                {/* Genre Filter Dropdown */}
+                <div className="relative">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowGenreFilter(!showGenreFilter)}
+                        className={`h-9 px-4 rounded-full border transition-all cursor-pointer ${
+                            filterGenres.length > 0
+                                ? "bg-green-500/20 border-green-500/50 text-green-400 hover:bg-green-500/30"
+                                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
+                        }`}
+                    >
+                        <Filter className="h-3.5 w-3.5 mr-2" />
+                        Genre {filterGenres.length > 0 && `(${filterGenres.length})`}
+                    </Button>
+                    {showGenreFilter && (
+                        <>
+                            <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
+                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[200px] max-h-[300px] overflow-y-auto">
+                                {allGenres.map((genre) => (
+                                    <button
+                                        key={genre}
+                                        onClick={() => toggleGenre(genre)}
+                                        className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all cursor-pointer ${
+                                            filterGenres.includes(genre)
+                                                ? "bg-green-500/20 text-green-400 border border-green-500/50"
+                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                        }`}
+                                    >
+                                        {genre}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+
+                {/* Sort Dropdown */}
+                <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="h-9 px-4 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                >
+                    <option value="default" className="bg-gray-900">
+                        Sort: Default
+                    </option>
+                    <option value="rating-high" className="bg-gray-900">
+                        Rating: High to Low
+                    </option>
+                    <option value="rating-low" className="bg-gray-900">
+                        Rating: Low to High
+                    </option>
+                    <option value="progress-high" className="bg-gray-900">
+                        Progress: High to Low
+                    </option>
+                    <option value="progress-low" className="bg-gray-900">
+                        Progress: Low to High
+                    </option>
+                    <option value="title-az" className="bg-gray-900">
+                        Title: A-Z
+                    </option>
+                    <option value="title-za" className="bg-gray-900">
+                        Title: Z-A
+                    </option>
+                    <option value="year-new" className="bg-gray-900">
+                        Year: Newest
+                    </option>
+                    <option value="year-old" className="bg-gray-900">
+                        Year: Oldest
+                    </option>
+                </select>
+
+                {/* Year Dropdown */}
+                <select
+                    value={filterYear}
+                    onChange={(e) => setFilterYear(e.target.value)}
+                    className="h-9 px-4 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
+                >
+                    <option value="All" className="bg-gray-900">
+                        All Years
+                    </option>
+                    {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                        <option key={year} value={year} className="bg-gray-900">
+                            {year}
+                        </option>
                     ))}
+                    <option value="2010s" className="bg-gray-900">
+                        2010-2019
+                    </option>
+                    <option value="2000s" className="bg-gray-900">
+                        2000-2009
+                    </option>
+                    <option value="Older" className="bg-gray-900">
+                        Before 2000
+                    </option>
+                </select>
+
+                {/* Search */}
+                <div className="flex-1 min-w-[200px] relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-0 group-hover:opacity-20 transition duration-500" />
+                    <Input
+                        placeholder="Search titles..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="relative w-full h-9 bg-white/5 border-white/10 rounded-full text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
+                    />
                 </div>
 
-                <div className="flex gap-3 p-1 bg-black/20 backdrop-blur-sm rounded-lg border border-white/5">
-                    <select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
-                    >
-                        <option value="default" className="bg-gray-900">
-                            Sort by: Default
-                        </option>
-                        <option value="rating-high" className="bg-gray-900">
-                            Rating: High to Low
-                        </option>
-                        <option value="rating-low" className="bg-gray-900">
-                            Rating: Low to High
-                        </option>
-                        <option value="progress-high" className="bg-gray-900">
-                            Progress: High to Low
-                        </option>
-                        <option value="progress-low" className="bg-gray-900">
-                            Progress: Low to High
-                        </option>
-                        <option value="title-az" className="bg-gray-900">
-                            Title: A-Z
-                        </option>
-                        <option value="title-za" className="bg-gray-900">
-                            Title: Z-A
-                        </option>
-                        <option value="year-new" className="bg-gray-900">
-                            Year: Newest
-                        </option>
-                        <option value="year-old" className="bg-gray-900">
-                            Year: Oldest
-                        </option>
-                    </select>
-
-                    <select
-                        value={filterCountry}
-                        onChange={(e) => setFilterCountry(e.target.value)}
-                        className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
-                    >
-                        <option value="All" className="bg-gray-900">
-                            All Countries
-                        </option>
-                        {Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean)))
-                            .sort()
-                            .map((country) => (
-                                <option key={country} value={country!} className="bg-gray-900">
-                                    {country}
-                                </option>
-                            ))}
-                    </select>
-
-                    <select
-                        value={filterYear}
-                        onChange={(e) => setFilterYear(e.target.value)}
-                        className="bg-transparent text-gray-300 text-sm px-3 py-2 rounded-md border border-white/10 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer"
-                    >
-                        <option value="All" className="bg-gray-900">
-                            All Years
-                        </option>
-                        {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map((year) => (
-                            <option key={year} value={year} className="bg-gray-900">
-                                {year}
-                            </option>
-                        ))}
-                        <option value="2010s" className="bg-gray-900">
-                            2010-2019
-                        </option>
-                        <option value="2000s" className="bg-gray-900">
-                            2000-2009
-                        </option>
-                        <option value="Older" className="bg-gray-900">
-                            Before 2000
-                        </option>
-                    </select>
-                </div>
-                <div className="flex-1 min-w-[200px] relative group flex gap-3">
-                    <div className="relative flex-1 group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
-                        <Input
-                            placeholder="Search titles..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="relative w-full h-10 bg-white/5 border-white/5 rounded-xl text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
-                        />
-                    </div>
-                </div>
+                {/* Backfill Button */}
                 <Button
                     variant="ghost"
                     size="sm"
                     onClick={handleBackfill}
                     disabled={isBackfilling}
-                    className="cursor-pointer h-10 px-4 bg-white/5 border border-white/5 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all gap-2"
+                    className="h-9 px-4 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all gap-2"
                 >
                     <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
                     {isBackfilling ? "Processing..." : "Refresh Backdrops"}
                 </Button>
             </div>
+
+            {/* Active Filter Pills */}
+            {(filterStatuses.length > 0 || filterCountries.length > 0 || filterGenres.length > 0) && (
+                <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-sm text-gray-500">Active filters:</span>
+                    {filterStatuses.map((status) => (
+                        <button
+                            key={status}
+                            onClick={() => toggleStatus(status)}
+                            className="flex items-center gap-1.5 px-3 py-1 bg-blue-500/20 border border-blue-500/50 text-blue-400 rounded-full text-sm hover:bg-blue-500/30 transition-all group"
+                        >
+                            {status}
+                            <X className="h-3 w-3 group-hover:text-blue-300" />
+                        </button>
+                    ))}
+                    {filterCountries.map((country) => (
+                        <button
+                            key={country}
+                            onClick={() => toggleCountry(country)}
+                            className="flex items-center gap-1.5 px-3 py-1 bg-purple-500/20 border border-purple-500/50 text-purple-400 rounded-full text-sm hover:bg-purple-500/30 transition-all group"
+                        >
+                            {country}
+                            <X className="h-3 w-3 group-hover:text-purple-300" />
+                        </button>
+                    ))}
+                    {filterGenres.map((genre) => (
+                        <button
+                            key={genre}
+                            onClick={() => toggleGenre(genre)}
+                            className="flex items-center gap-1.5 px-3 py-1 bg-green-500/20 border border-green-500/50 text-green-400 rounded-full text-sm hover:bg-green-500/30 transition-all group"
+                        >
+                            {genre}
+                            <X className="h-3 w-3 group-hover:text-green-300" />
+                        </button>
+                    ))}
+                    {(filterStatuses.length > 0 || filterCountries.length > 0 || filterGenres.length > 0) && (
+                        <button
+                            onClick={() => {
+                                setFilterStatuses([]);
+                                setFilterCountries([]);
+                                setFilterGenres([]);
+                            }}
+                            className="px-3 py-1 bg-red-500/20 border border-red-500/50 text-red-400 rounded-full text-sm hover:bg-red-500/30 transition-all"
+                        >
+                            Clear all
+                        </button>
+                    )}
+                </div>
+            )}
 
             <div className="space-y-2">
                 {(() => {
@@ -366,11 +543,13 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     }}
                                 >
                                     <div className="flex items-center gap-5 p-5">
-                                        <div className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md shadow-lg ${
-                                            (first.backdrop || first.poster)
-                                                ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
-                                                : "bg-gray-800"
-                                        }`}>
+                                        <div
+                                            className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md shadow-lg ${
+                                                first.backdrop || first.poster
+                                                    ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
+                                                    : "bg-gray-800"
+                                            }`}
+                                        >
                                             {(first.backdrop || first.poster) && (
                                                 <Image
                                                     src={first.backdrop || first.poster!}
@@ -404,14 +583,28 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                             className="ml-8 animate-slide-down-row opacity-0"
                                             style={{ animationDelay: `${index * 80}ms` }}
                                         >
-                                            <ItemCard item={item} handleProgress={handleProgress} openEdit={openEdit} isChild={true} />
+                                            <ItemCard
+                                                item={item}
+                                                handleProgress={handleProgress}
+                                                handleStatusChange={handleStatusChange}
+                                                openEdit={openEdit}
+                                                isChild={true}
+                                            />
                                         </div>,
                                     );
                                 });
                             }
                         } else {
                             // Single Card
-                            resultNodes.push(<ItemCard key={first.id} item={first} handleProgress={handleProgress} openEdit={openEdit} />);
+                            resultNodes.push(
+                                <ItemCard
+                                    key={first.id}
+                                    item={first}
+                                    handleProgress={handleProgress}
+                                    handleStatusChange={handleStatusChange}
+                                    openEdit={openEdit}
+                                />,
+                            );
                         }
                     });
 
@@ -439,24 +632,42 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     );
 }
 
-function ItemCard({
+const ItemCard = memo(function ItemCard({
     item,
     handleProgress,
+    handleStatusChange,
     openEdit,
     isChild = false,
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number) => void;
+    handleStatusChange: (id: string, newStatus: string) => void;
     openEdit: (item: WatchlistItem) => void;
     isChild?: boolean;
 }) {
+    const [showStatusDropdown, setShowStatusDropdown] = useState(false);
+    const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+    const buttonRef = useRef<HTMLButtonElement>(null);
     const statusInfo = statusConfig[item.status as keyof typeof statusConfig] || statusConfig["Plan to Watch"];
     const StatusIcon = statusInfo.icon;
     const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
+    const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
+
+    const handleDropdownToggle = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (!showStatusDropdown && buttonRef.current) {
+            const rect = buttonRef.current.getBoundingClientRect();
+            setDropdownPosition({
+                top: rect.bottom + 8,
+                left: rect.right - 180, // Align to right edge
+            });
+        }
+        setShowStatusDropdown(!showStatusDropdown);
+    };
 
     return (
         <div
-            className={`group relative backdrop-blur-sm rounded-lg border transition-all overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
+            className={`group relative backdrop-blur-sm rounded-lg border transition-all hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
                 isChild
                     ? "bg-gradient-to-br from-blue-500/[0.08] to-blue-500/[0.03] border-blue-500/20 hover:border-blue-500/40"
                     : "bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-white/10 hover:border-white/20"
@@ -469,23 +680,29 @@ function ItemCard({
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
                     className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg ${
-                        (item.backdrop || item.poster)
+                        item.backdrop || item.poster
                             ? "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-[length:200%_100%] animate-shimmer"
                             : "bg-gray-800"
                     }`}
                 >
                     {(item.backdrop || item.poster) && (
-                        <Image
-                            src={item.backdrop || item.poster!}
-                            alt={item.title || ""}
-                            fill
-                            className="object-cover opacity-0 transition-all duration-500"
-                            loading="lazy"
-                            onLoad={(e) => {
-                                e.currentTarget.classList.replace("opacity-0", "opacity-100");
-                                e.currentTarget.parentElement?.classList.remove("animate-shimmer");
-                            }}
-                        />
+                        <>
+                            <Image
+                                src={item.backdrop || item.poster!}
+                                alt={item.title || ""}
+                                fill
+                                className="object-cover opacity-0 transition-all duration-500"
+                                loading="lazy"
+                                onLoad={(e) => {
+                                    e.currentTarget.classList.replace("opacity-0", "opacity-100");
+                                    e.currentTarget.parentElement?.classList.remove("animate-shimmer");
+                                }}
+                            />
+                            {/* Season color overlay - only show if this is a child (season) card */}
+                            {isChild && (
+                                <div className="absolute inset-0 pointer-events-none" style={{ background: getSeasonGradient(item.season) }} />
+                            )}
+                        </>
                     )}
                 </Link>
 
@@ -506,12 +723,54 @@ function ItemCard({
                     </div>
                 </div>
 
-                <div
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-[140px] justify-center`}
+                {/* Status Dropdown */}
+                <button
+                    ref={buttonRef}
+                    onClick={handleDropdownToggle}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-[140px] justify-center hover:opacity-80 transition-opacity cursor-pointer`}
                 >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
-                </div>
+                </button>
+
+                {showStatusDropdown &&
+                    typeof window !== "undefined" &&
+                    createPortal(
+                        <>
+                            <div className="fixed inset-0 z-[9998]" onClick={() => setShowStatusDropdown(false)} />
+                            <div
+                                className="fixed z-[9999] bg-gray-900 border border-white/10 rounded-lg shadow-xl p-2 min-w-[180px]"
+                                style={{
+                                    top: `${dropdownPosition.top}px`,
+                                    left: `${dropdownPosition.left}px`,
+                                }}
+                            >
+                                {allStatuses.map((status) => {
+                                    const config = statusConfig[status as keyof typeof statusConfig];
+                                    const Icon = config?.icon;
+                                    return (
+                                        <button
+                                            key={status}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleStatusChange(item.id, status);
+                                                setShowStatusDropdown(false);
+                                            }}
+                                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all ${
+                                                item.status === status
+                                                    ? `${config?.bg} ${config?.color} ${config?.border} border`
+                                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                            }`}
+                                        >
+                                            {Icon && <Icon className="h-4 w-4" />}
+                                            {status}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </>,
+                        document.body,
+                    )}
 
                 <div className="w-42 space-y-2">
                     <div className="flex items-center gap-2">
@@ -584,4 +843,4 @@ function ItemCard({
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
     );
-}
+});
