@@ -2,26 +2,39 @@
 
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useRef, useEffect, useTransition } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export function SearchInput() {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const pathname = usePathname();
     const [isPending, startTransition] = useTransition();
 
-    const handleSearch = useDebouncedCallback((term: string) => {
-        const params = new URLSearchParams(searchParams);
-        if (term) {
-            params.set("q", term);
-        } else {
-            params.delete("q");
-        }
+    // Store the page the user was on before searching
+    const previousPathRef = useRef<string | null>(null);
 
-        startTransition(() => {
-            router.replace(`/search?${params.toString()}`);
-        });
+    // Track the path when not on search page
+    useEffect(() => {
+        if (pathname !== "/search") {
+            previousPathRef.current = pathname;
+        }
+    }, [pathname]);
+
+    const handleSearch = useDebouncedCallback((term: string) => {
+        if (term) {
+            const params = new URLSearchParams(searchParams);
+            params.set("q", term);
+            startTransition(() => {
+                router.replace(`/search?${params.toString()}`);
+            });
+        } else {
+            // Navigate back to previous page or home
+            startTransition(() => {
+                router.replace(previousPathRef.current || "/");
+            });
+        }
     }, 300);
 
     return (

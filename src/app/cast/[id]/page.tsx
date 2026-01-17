@@ -112,9 +112,13 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
         return dateB.localeCompare(dateA);
     });
 
-    // Separate movies and TV shows
+    // TMDB TV genre IDs for reality/variety content
+    const realityGenreIds = [10764, 10767, 10763]; // Reality, Talk, News
+
+    // Separate movies, series (scripted TV), and TV shows (reality/variety)
     const movies = sortedCredits.filter((c) => c.media_type === "movie");
-    const tvShows = sortedCredits.filter((c) => c.media_type === "tv");
+    const tvShows = sortedCredits.filter((c) => c.media_type === "tv" && c.genre_ids?.some((id) => realityGenreIds.includes(id)));
+    const series = sortedCredits.filter((c) => c.media_type === "tv" && !c.genre_ids?.some((id) => realityGenreIds.includes(id)));
 
     return (
         <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
@@ -262,20 +266,20 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                         <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
-                        {/* TV Shows Section */}
-                        {tvShows.length > 0 && (
+                        {/* Series Section (Scripted TV) */}
+                        {series.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-pink-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-purple-400" />
-                                    <h3 className="text-lg font-semibold text-white">TV Shows</h3>
-                                    <span className="text-sm text-gray-400">({tvShows.length})</span>
+                                    <h3 className="text-lg font-semibold text-white">Series</h3>
+                                    <span className="text-sm text-gray-400">({series.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                                    {tvShows.map((credit) => (
-                                        <CreditCard key={`tv-${credit.id}-${credit.character}`} credit={credit} />
+                                    {series.map((credit) => (
+                                        <CreditCard key={`series-${credit.id}-${credit.character}`} credit={credit} />
                                     ))}
                                 </div>
                             </div>
@@ -300,7 +304,26 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                             </div>
                         )}
 
-                        {movies.length === 0 && tvShows.length === 0 && (
+                        {/* TV Shows Section (Reality/Variety) */}
+                        {tvShows.length > 0 && (
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-1 h-6 bg-linear-to-b from-emerald-500 to-teal-500 rounded-full" />
+                                    <Tv className="h-5 w-5 text-emerald-400" />
+                                    <h3 className="text-lg font-semibold text-white">TV Shows</h3>
+                                    <span className="text-sm text-gray-400">({tvShows.length})</span>
+                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                </div>
+
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                                    {tvShows.map((credit) => (
+                                        <CreditCard key={`tv-${credit.id}-${credit.character}`} credit={credit} />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {movies.length === 0 && tvShows.length === 0 && series.length === 0 && (
                             <div className="text-center py-12 text-gray-400">No filmography information available.</div>
                         )}
                     </div>

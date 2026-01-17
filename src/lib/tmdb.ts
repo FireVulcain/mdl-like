@@ -100,6 +100,7 @@ export type TMDBPersonCredits = {
         media_type: "movie" | "tv";
         episode_count?: number;
         origin_country?: string[];
+        genre_ids?: number[];
     }[];
 };
 
