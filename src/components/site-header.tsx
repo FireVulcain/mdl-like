@@ -3,9 +3,9 @@
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { Film, Clapperboard, MonitorPlay } from "lucide-react";
+import { MonitorPlay } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -31,7 +31,7 @@ export function SiteHeader() {
                 className={cn(
                     "container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
                     "border border-white/5 shadow-2xl shadow-black/20",
-                    scrolled ? "bg-[#1c1c1e]/80 backdrop-blur-xl border-white/10 h-14" : "bg-transparent border-transparent"
+                    scrolled ? "bg-gray-900/80 backdrop-blur-xl border-white/10 h-14" : "bg-gray-900/50 backdrop-blur-md border-white/5",
                 )}
             >
                 {/* Branding */}
@@ -39,7 +39,7 @@ export function SiteHeader() {
                     <div className="p-2 rounded-xl bg-primary/10 transition-colors">
                         <MonitorPlay className="h-5 w-5 text-primary transition-colors" />
                     </div>
-                    <span className="font-black text-xl tracking-tighter bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent transition-all">
+                    <span className="font-black text-xl tracking-tighter bg-linear-to-r from-white to-white/60 bg-clip-text text-transparent transition-all">
                         MEDIA<span className="text-primary">TRACKER</span>
                     </span>
                 </Link>
@@ -54,7 +54,7 @@ export function SiteHeader() {
                                 href={item.href}
                                 className={cn(
                                     "relative px-4 py-1.5 text-sm font-semibold transition-colors rounded-lg",
-                                    isActive ? "text-white" : "text-muted-foreground hover:text-white"
+                                    isActive ? "text-white" : "text-muted-foreground hover:text-white",
                                 )}
                             >
                                 {isActive && (
@@ -73,14 +73,14 @@ export function SiteHeader() {
                 {/* Search & Actions */}
                 <div className="flex items-center gap-4 flex-1 md:flex-none justify-end">
                     <div className="w-full max-w-xs group relative">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+                        <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
                         <Suspense fallback={<div className="h-10 w-full bg-muted/20 rounded-xl animate-pulse" />}>
                             <SearchInput />
                         </Suspense>
                     </div>
 
                     {/* User Mini Profile Placeholder (Optional Premium Touch) */}
-                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 cursor-pointer hover:border-primary/50 transition-all">
+                    <div className="h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 cursor-pointer hover:border-primary/50 transition-all">
                         <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center text-xs font-bold text-primary">
                             ND
                         </div>

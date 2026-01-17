@@ -24,19 +24,16 @@ type MatchResult = {
  * Scrape watchlist from MyDramaList
  */
 async function scrapeMDLWatchlist(username: string): Promise<MDLItem[]> {
+    const userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
     const browser = await puppeteer.launch({
         headless: true,
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        args: ["--no-sandbox", "--disable-setuid-sandbox", `--user-agent=${userAgent}`],
     });
 
     try {
         const page = await browser.newPage();
         const items: MDLItem[] = [];
-
-        // Set user agent to mimic a real browser
-        await page.setUserAgent(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        );
 
         // Visit the watchlist page
         await page.goto(`https://mydramalist.com/dramalist/${username}`, {
@@ -48,12 +45,7 @@ async function scrapeMDLWatchlist(username: string): Promise<MDLItem[]> {
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         // Try multiple possible selectors
-        const possibleSelectors = [
-            ".msv2-table tbody tr",
-            "table tbody tr",
-            ".list-item",
-            "[class*='table'] tr",
-        ];
+        const possibleSelectors = [".msv2-table tbody tr", "table tbody tr", ".list-item", "[class*='table'] tr"];
 
         let foundSelector = null;
         for (const selector of possibleSelectors) {
@@ -148,10 +140,10 @@ function matchItems(mdlItems: MDLItem[], dbItems: UserMedia[]): MatchResult[] {
 
         // Get base title without season info
         const mdlBaseTitle = mdlItem.title
-            .replace(/:\s*season\s*\d+.*$/i, '')
-            .replace(/\s*-?\s*season\s*\d+.*$/i, '')
-            .replace(/\s*-?\s*part\s*\d+.*$/i, '')
-            .replace(/\s*season\s*\d+.*$/i, '')
+            .replace(/:\s*season\s*\d+.*$/i, "")
+            .replace(/\s*-?\s*season\s*\d+.*$/i, "")
+            .replace(/\s*-?\s*part\s*\d+.*$/i, "")
+            .replace(/\s*season\s*\d+.*$/i, "")
             .trim();
 
         for (const dbItem of dbItems) {
@@ -161,18 +153,12 @@ function matchItems(mdlItems: MDLItem[], dbItems: UserMedia[]): MatchResult[] {
             }
 
             // Calculate title similarity with both full title and base title
-            const fullTitleScore = ratio(
-                mdlItem.title.toLowerCase(),
-                (dbItem.title || "").toLowerCase(),
-            );
+            const fullTitleScore = ratio(mdlItem.title.toLowerCase(), (dbItem.title || "").toLowerCase());
 
-            const baseTitleScore = ratio(
-                mdlBaseTitle.toLowerCase(),
-                (dbItem.title || "").toLowerCase(),
-            );
+            const baseTitleScore = ratio(mdlBaseTitle.toLowerCase(), (dbItem.title || "").toLowerCase());
 
             // Use the better score
-            let titleScore = Math.max(fullTitleScore, baseTitleScore);
+            const titleScore = Math.max(fullTitleScore, baseTitleScore);
 
             // Season matching bonus/penalty
             let seasonBonus = 0;
