@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, useOptimistic, useTransition } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +32,14 @@ interface WatchlistTableProps {
     items: WatchlistItem[];
 }
 
+type OptimisticUpdate = {
+    id: string;
+    progress?: number;
+    status?: string;
+    score?: number | null;
+    notes?: string | null;
+};
+
 import { EditMediaDialog } from "./edit-media-dialog";
 
 const statusConfig = {
@@ -54,6 +62,19 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
     const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
+    // Optimistic updates
+    const [optimisticItems, setOptimisticItems] = useOptimistic(
+        items,
+        (state, update: OptimisticUpdate) => {
+            return state.map(item =>
+                item.id === update.id
+                    ? { ...item, ...update }
+                    : item
+            );
+        }
+    );
+    const [isPending, startTransition] = useTransition();
+
     useEffect(() => {
         const activeButton = buttonRefs.current[filterStatus];
         if (activeButton) {
@@ -75,7 +96,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     };
 
     const filteredItems = useMemo(() => {
-        let result = items.filter((item) => {
+        let result = optimisticItems.filter((item) => {
             if (filterStatus !== "All" && item.status !== filterStatus) return false;
             if (filterCountry !== "All" && item.originCountry !== filterCountry) return false;
             if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
@@ -122,15 +143,33 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         }
 
         return result;
-    }, [items, filterStatus, filterCountry, search, filterYear, sortBy]);
+    }, [optimisticItems, filterStatus, filterCountry, search, filterYear, sortBy]);
 
     const handleProgress = async (id: string, newProgress: number) => {
+        startTransition(() => {
+            setOptimisticItems({ id, progress: newProgress });
+        });
         await updateProgress(id, newProgress);
     };
 
     const openEdit = (item: WatchlistItem) => {
         setEditingItem(item);
         setEditOpen(true);
+    };
+
+    const handleEditClose = (isOpen: boolean) => {
+        setEditOpen(isOpen);
+        // Clear editing item when dialog closes to prevent glitches
+        if (!isOpen) {
+            // Small delay to allow dialog close animation to complete
+            setTimeout(() => setEditingItem(null), 100);
+        }
+    };
+
+    const handleOptimisticEdit = (id: string, updates: Partial<WatchlistItem>) => {
+        startTransition(() => {
+            setOptimisticItems({ id, ...updates });
+        });
     };
 
     const handleBackfill = async () => {
@@ -388,7 +427,15 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 )}
             </div>
 
-            {editingItem && <EditMediaDialog key={editingItem.id} item={editingItem} open={editOpen} onOpenChange={setEditOpen} />}
+            {editingItem && (
+                <EditMediaDialog
+                    key={editingItem.id}
+                    item={editingItem}
+                    open={editOpen}
+                    onOpenChange={handleEditClose}
+                    onOptimisticUpdate={handleOptimisticEdit}
+                />
+            )}
         </div>
     );
 }

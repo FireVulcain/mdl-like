@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { UnifiedMedia } from "@/services/media.service";
 import { Button } from "@/components/ui/button";
@@ -36,6 +36,7 @@ interface EditMediaDialogProps {
     totalEp?: number | null;
     open: boolean;
     onOpenChange: (open: boolean) => void;
+    onOptimisticUpdate?: (id: string, updates: Partial<WatchlistItem>) => void;
 }
 
 const statusOptions = [
@@ -45,7 +46,7 @@ const statusOptions = [
     { value: "Dropped", label: "Dropped", icon: XCircle, color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
 ];
 
-export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChange }: EditMediaDialogProps) {
+export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChange, onOptimisticUpdate }: EditMediaDialogProps) {
     const isEditing = !!item;
 
     const [formData, setFormData] = useState({
@@ -57,6 +58,18 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
     const [loading, setLoading] = useState(false);
 
+    // Reset form data when item changes (but only when dialog opens)
+    useEffect(() => {
+        if (open && item) {
+            setFormData({
+                status: item.status || "Watching",
+                progress: item.progress || 0,
+                score: item.score || 0,
+                notes: item.notes || "",
+            });
+        }
+    }, [open, item?.id]); // Only depend on open and item.id to avoid resetting during optimistic updates
+
     const displayTitle = item?.title || media?.title || "";
     const displayYear = item?.year || media?.year || "";
     const displayPoster = item?.backdrop || item?.poster || media?.backdrop || media?.poster || "";
@@ -65,6 +78,20 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
     const handleSave = async () => {
         setLoading(true);
+
+        // Close the dialog first to prevent glitches
+        onOpenChange(false);
+
+        // Optimistically update the UI immediately after closing
+        if (isEditing && item && onOptimisticUpdate) {
+            onOptimisticUpdate(item.id, {
+                status: formData.status,
+                progress: formData.progress,
+                score: formData.score,
+                notes: formData.notes,
+            });
+        }
+
         try {
             if (isEditing && item) {
                 await updateUserMedia(item.id, {
@@ -80,9 +107,10 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     notes: formData.notes || undefined,
                 });
             }
-            onOpenChange(false);
         } catch (error) {
             console.error("Failed to save", error);
+            // In a production app, you might want to show an error toast here
+            // and possibly revert the optimistic update
         } finally {
             setLoading(false);
         }
