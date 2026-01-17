@@ -37,89 +37,113 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const updateAction = userMedia ? updateProgress.bind(null, userMedia.id) : undefined;
 
     return (
-        <div>
+        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
             {/* Backdrop */}
-            <div className="relative h-[40vh] w-full overflow-hidden">
+            <div className="relative h-[50vh] w-full overflow-hidden">
                 {media.backdrop ? (
                     <>
                         <Image src={media.backdrop} alt={media.title} fill className="object-cover" priority />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                        {/* Overlay gradient for better text readability */}
+                        <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/60 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-gray-900" />
                     </>
                 ) : (
-                    <div className="h-full w-full bg-secondary" />
+                    <div className="h-full w-full bg-linear-to-br from-gray-800 to-gray-900" />
                 )}
             </div>
 
-            <div className="container relative -top-20 z-10 grid gap-8 md:grid-cols-[300px_1fr] m-auto">
+            <div className="container relative -top-20 z-10 grid gap-8 md:grid-cols-[300px_1fr] m-auto pb-20">
                 {/* Poster & Actions */}
                 <div className="space-y-4">
-                    <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-xl ring-4 ring-background">
+                    <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
                         {media.poster ? (
                             <Image src={media.poster} alt={media.title} fill className="object-cover" priority />
                         ) : (
-                            <div className="flex h-full items-center justify-center bg-muted text-muted-foreground">No Poster</div>
+                            <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">No Poster</div>
                         )}
                     </div>
 
-                    <div className="rounded-lg border bg-card p-4 shadow-sm space-y-4 text-base">
-                        <div className="grid grid-cols-[100px_1fr] gap-2">
-                            <span className="text-muted-foreground font-medium">Title:</span>
-                            <span>{media.title}</span>
+                    <div
+                        className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
+                        style={{
+                            background: "rgba(17, 24, 39, 0.6)",
+                            backdropFilter: "blur(20px)",
+                            boxShadow:
+                                "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                        }}
+                    >
+                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
-                            <span className="text-muted-foreground font-medium">Type:</span>
-                            <span>{media.type === "TV" ? "TV Show" : "Movie"}</span>
+                        <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
+                            <span className="text-gray-400 font-medium">Title</span>
+                            <span className="text-white">{media.title}</span>
 
-                            <span className="text-muted-foreground font-medium">Country:</span>
+                            <span className="text-gray-400 font-medium">Type</span>
+                            <span className="text-white">{media.type === "TV" ? "TV Show" : "Movie"}</span>
+
+                            <span className="text-gray-400 font-medium">Country</span>
                             <span className="flex items-center gap-2">
-                                {media.originCountry}{" "}
-                                <Badge variant="secondary" className="text-[10px] h-5">
+                                <span className="text-white">{media.originCountry}</span>
+                                <Badge variant="secondary" className="text-[10px] h-5 bg-white/10 text-gray-300 border-white/10">
                                     {media.originCountry}
                                 </Badge>
                             </span>
 
                             {media.totalEp && (
                                 <>
-                                    <span className="text-muted-foreground font-medium">Episodes:</span>
-                                    <span>{media.totalEp}</span>
+                                    <span className="text-gray-400 font-medium">Episodes</span>
+                                    <span className="text-white">{media.totalEp}</span>
                                 </>
                             )}
 
                             {media.aired && (
                                 <>
-                                    <span className="text-muted-foreground font-medium">Aired:</span>
-                                    <span>{media.aired}</span>
+                                    <span className="text-gray-400 font-medium">Aired</span>
+                                    <span className="text-white">{media.aired}</span>
                                 </>
                             )}
 
                             {media.network && (
                                 <>
-                                    <span className="text-muted-foreground font-medium">Network:</span>
-                                    <span>{media.network}</span>
+                                    <span className="text-gray-400 font-medium">Network</span>
+                                    <span className="text-white">{media.network}</span>
                                 </>
                             )}
 
                             {media.duration && (
                                 <>
-                                    <span className="text-muted-foreground font-medium">Duration:</span>
-                                    <span>{media.duration}</span>
+                                    <span className="text-gray-400 font-medium">Duration</span>
+                                    <span className="text-white">{media.duration}</span>
                                 </>
                             )}
 
                             {media.contentRating && (
                                 <>
-                                    <span className="text-muted-foreground font-medium">Rating:</span>
-                                    <Badge variant="outline">{media.contentRating}</Badge>
+                                    <span className="text-gray-400 font-medium">Rating</span>
+                                    <Badge variant="outline" className="w-fit bg-white/5 text-gray-300 border-white/20">
+                                        {media.contentRating}
+                                    </Badge>
                                 </>
                             )}
                         </div>
                     </div>
 
-                    <div className="rounded-lg border bg-card p-4 shadow-sm space-y-4">
-                        <h3 className="font-semibold">Track Progress</h3>
+                    <div
+                        className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-5"
+                        style={{
+                            background: "rgba(17, 24, 39, 0.6)",
+                            backdropFilter: "blur(20px)",
+                            boxShadow:
+                                "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                        }}
+                    >
+                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+
+                        <h3 className="font-semibold text-lg text-white">Track Progress</h3>
 
                         {/* Season Selector (Only if TV and has seasons) */}
                         {media.type === "TV" && media.seasons && media.seasons.length > 0 && (
-                            <div className="mb-2">
+                            <div>
                                 <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
                             </div>
                         )}
@@ -127,7 +151,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         <AddToListButton media={media} userMedia={userMedia} season={selectedSeason} totalEp={episodeCount} />
 
                         <div className="pt-2">
-                            <div className="text-base font-medium mb-2">Episodes</div>
                             {userMedia ? (
                                 <ProgressTracker
                                     current={userMedia.progress}
@@ -136,7 +159,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     onUpdate={updateAction}
                                 />
                             ) : (
-                                <div className="text-base text-muted-foreground">Add to list to track progress</div>
+                                <div className="text-sm text-gray-400 text-center py-4">Add to list to track progress</div>
                             )}
                         </div>
                     </div>

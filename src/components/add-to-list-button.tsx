@@ -36,18 +36,27 @@ export function AddToListButton({ media, userMedia, season, totalEp }: AddToList
   return (
     <>
       {userMedia ? (
-        <Button variant="secondary" size="sm" onClick={() => setOpen(true)} className="gap-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setOpen(true)}
+          className="w-full h-10 gap-2 bg-white/8 border border-white/10 rounded-lg text-gray-300 hover:text-white hover:bg-white/12 transition-all"
+        >
           <Pencil className="h-4 w-4" /> Edit List Entry
         </Button>
       ) : (
-        <Button onClick={() => setOpen(true)} size="sm" className="gap-2">
+        <Button
+          onClick={() => setOpen(true)}
+          size="sm"
+          className="w-full h-10 gap-2 bg-linear-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-lg shadow-lg transition-all"
+        >
           <Plus className="h-4 w-4" /> Add to List
         </Button>
       )}
 
       {open && (
-        <EditMediaDialog 
-            open={open} 
+        <EditMediaDialog
+            open={open}
             onOpenChange={setOpen}
             item={item}
             media={media}

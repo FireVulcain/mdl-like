@@ -30,32 +30,50 @@ export function ProgressTracker({ current, total, status, onUpdate, className }:
     };
 
     const percentage = total ? (progress / total) * 100 : 0;
+    const isCompleted = total && progress >= total;
 
     return (
-        <div className={cn("space-y-2", className)}>
-            <div className="flex items-center justify-between text-base">
-                <span className="text-muted-foreground">Progress</span>
-                <span className="font-medium">
+        <div className={cn("space-y-4", className)}>
+            <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-400">Episodes Watched</span>
+                <span className="text-white font-semibold">
                     {progress} {total ? `/ ${total}` : "eps"}
                 </span>
             </div>
 
-            {total && <Progress value={percentage} className="h-2" />}
+            {total && (
+                <div className="relative h-2 overflow-hidden rounded-full bg-white/5">
+                    <div
+                        className={`h-full transition-all duration-500 ${
+                            isCompleted
+                                ? "bg-linear-to-r from-green-500 to-emerald-500"
+                                : "bg-linear-to-r from-blue-500 to-cyan-500"
+                        }`}
+                        style={{ width: `${percentage}%` }}
+                    />
+                </div>
+            )}
 
             <div className="flex items-center gap-2">
-                <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => handleUpdate(progress - 1)} disabled={progress <= 0}>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-9 w-9 rounded-full bg-white/8 border border-white/10 text-gray-400 hover:text-white hover:bg-white/12 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                    onClick={() => handleUpdate(progress - 1)}
+                    disabled={progress <= 0}
+                >
                     <Minus className="h-4 w-4" />
                 </Button>
                 <Input
                     type="number"
-                    className="h-8 w-16 text-center"
+                    className="flex-1 h-9 bg-white/8 border-white/10 rounded-lg text-white text-center focus-visible:bg-white/12 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     value={progress}
                     onChange={(e) => handleUpdate(parseInt(e.target.value) || 0)}
                 />
                 <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
-                    className="h-8 w-8"
+                    className="h-9 w-9 rounded-full bg-white/8 border border-white/10 text-gray-400 hover:text-white hover:bg-white/12 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                     onClick={() => handleUpdate(progress + 1)}
                     disabled={total ? progress >= total : false}
                 >
