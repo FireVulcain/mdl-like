@@ -75,6 +75,30 @@ export async function getDashboardStats(userId: string): Promise<DashboardStats>
     };
 }
 
+export async function getContinueWatching(userId: string) {
+    const items = await prisma.userMedia.findMany({
+        where: {
+            userId,
+            mediaType: "TV",
+            status: "Watching",
+            progress: { gt: 0 },
+        },
+        orderBy: { updatedAt: "desc" },
+        take: 6,
+    });
+
+    return items.map((item) => ({
+        id: item.id,
+        title: item.title,
+        poster: item.poster || "",
+        backdrop: item.backdrop,
+        progress: item.progress,
+        totalEp: item.totalEp || 1,
+        externalId: item.externalId,
+        source: item.source,
+    }));
+}
+
 export async function backfillGenres(userId: string) {
     const items = await prisma.userMedia.findMany({
         where: {
