@@ -43,10 +43,10 @@ async function getBrowser(): Promise<Browser> {
  * Optimized scraping for a single page
  */
 async function scrapeMDLPage(browser: Browser, url: string, defaultStatus: string): Promise<MDLItem[]> {
+    const context = browser.defaultBrowserContext();
     const page: Page = await browser.newPage();
     try {
-        // 1. Inject the Bypass Cookie
-        await page.setCookie({
+        await context.setCookie({
             name: "cf_clearance",
             value: process.env.MDL_COOKIE || "",
             domain: ".mydramalist.com",
@@ -65,7 +65,9 @@ async function scrapeMDLPage(browser: Browser, url: string, defaultStatus: strin
             }
         });
 
-        await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
+        await page.setUserAgent({
+            userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        });
 
         await page.goto(url, {
             waitUntil: "domcontentloaded",
