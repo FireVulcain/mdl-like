@@ -53,7 +53,7 @@ export default async function WatchlistPage() {
 
             {/* Content */}
             <div className="container py-8 space-y-6 m-auto max-w-[80%] relative z-10">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between watchlist-header">
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>
                         <p className="text-muted-foreground mt-1">

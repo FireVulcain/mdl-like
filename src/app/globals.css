@@ -174,7 +174,8 @@
 }
 
 @keyframes float-slow {
-    0%, 100% {
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
         opacity: 0.2;
     }
@@ -185,7 +186,8 @@
 }
 
 @keyframes float-slower {
-    0%, 100% {
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
         opacity: 0.18;
     }
@@ -196,7 +198,8 @@
 }
 
 @keyframes float-slowest {
-    0%, 100% {
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
         opacity: 0.16;
     }
@@ -207,7 +210,8 @@
 }
 
 @keyframes float-reverse {
-    0%, 100% {
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
         opacity: 0.14;
     }
@@ -231,4 +235,257 @@
 
 .animate-float-reverse {
     animation: float-reverse 22s ease-in-out infinite;
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE STYLES FOR WATCHLIST
+   Only affects screens below 768px (md breakpoint)
+   ===================================================== */
+
+@media (max-width: 767px) {
+    /* Watchlist container - full width on mobile */
+    .container.max-w-\[80\%\] {
+        max-width: 100% !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* =====================================================
+       HEADER - Stack title and stats vertically
+       ===================================================== */
+    .watchlist-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+
+    .watchlist-stats {
+        width: 100%;
+        gap: 0.5rem !important;
+    }
+
+    .watchlist-stats > div {
+        flex: 1;
+        padding: 0.625rem 0.75rem !important;
+        min-width: 0;
+    }
+
+    .watchlist-stats > div > div:first-child {
+        font-size: 1.25rem !important;
+    }
+
+    .watchlist-stats > div .text-sm {
+        font-size: 0.65rem !important;
+        white-space: nowrap;
+    }
+
+    /* =====================================================
+       FILTERS - Stack in grid, hide import/backfill
+       ===================================================== */
+    .filter-row {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Hide Import MDL and Refresh Backdrops buttons on mobile */
+    .filter-row > button:has(.lucide-book-open),
+    .filter-row > button:has(.lucide-refresh-cw) {
+        display: none !important;
+    }
+
+    /* Filter dropdown buttons - half width */
+    .filter-row > .filter-dropdown,
+    .filter-row > .select-wrapper {
+        flex: 1 1 calc(50% - 0.25rem);
+        min-width: calc(50% - 0.25rem);
+    }
+
+    .filter-row > .filter-dropdown > button {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .filter-row > .select-wrapper > select {
+        width: 100%;
+        font-size: 0.75rem;
+        padding-left: 0.75rem;
+    }
+
+    /* Search bar - full width */
+    .filter-row > .flex-1 {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        order: -1;
+    }
+
+    .filter-row > .flex-1 input {
+        font-size: 0.875rem;
+    }
+
+    /* Active filters - horizontal scroll */
+    .active-filters {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 0.25rem;
+    }
+
+    .active-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .active-filters > button,
+    .active-filters > span {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    /* Filter dropdowns - position below the button (only for filter-dropdown, not select-wrapper) */
+    .filter-row > .filter-dropdown > .absolute {
+        position: absolute !important;
+        left: 0 !important;
+        right: auto !important;
+        top: 100% !important;
+        bottom: auto !important;
+        margin-top: 0.5rem;
+        max-height: 50vh;
+        max-width: calc(100vw - 2rem) !important;
+        width: max-content !important;
+        min-width: 100% !important;
+        border-radius: 0.5rem;
+        z-index: 50;
+        overflow-x: hidden;
+    }
+
+    /* Genre dropdown (3rd filter on right side) - prevent right overflow */
+    .filter-row > .filter-dropdown:nth-child(3) > .absolute {
+        left: 0 !important;
+    }
+
+    /* =====================================================
+       PARENT CARDS (Multi-season groups)
+       ===================================================== */
+    .parent-card-inner {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 0.75rem !important;
+        gap: 0.75rem !important;
+    }
+
+    .parent-card-inner > .relative.h-20.w-32 {
+        width: 100% !important;
+        height: 120px !important;
+    }
+
+    .parent-card-inner > .flex-1 {
+        width: 100%;
+    }
+
+    .parent-card-inner > svg {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+    }
+
+    /* Child cards margin */
+    .items-list > .ml-8 {
+        margin-left: 0.5rem !important;
+    }
+
+    /* =====================================================
+       ITEM CARDS - Vertical mobile layout
+       ===================================================== */
+    .item-card-inner {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 0.75rem !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Card image - full width banner */
+    .card-image {
+        width: 100% !important;
+        height: 120px !important;
+    }
+
+    /* Title section */
+    .card-info {
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: 1rem !important;
+    }
+
+    /* Status button - full width */
+    .card-status {
+        width: 100%;
+        justify-content: center;
+        padding: 0.625rem 1rem !important;
+        order: 2;
+    }
+
+    /* Rating section - horizontal, centered */
+    .card-rating {
+        flex-direction: row !important;
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 1.5rem !important;
+        order: 3;
+    }
+
+    /* Progress section - full width, at bottom */
+    .card-progress {
+        width: 100% !important;
+        order: 4;
+    }
+
+    .progress-btn {
+        height: 2.5rem !important;
+        width: 2.5rem !important;
+    }
+
+    .progress-btn svg {
+        height: 1.25rem !important;
+        width: 1.25rem !important;
+    }
+
+    .progress-bar {
+        height: 0.5rem !important;
+    }
+
+    /* Edit button - overlay on image */
+    .card-edit-btn {
+        position: absolute !important;
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+        height: 2rem !important;
+        width: 2rem !important;
+        background: rgba(0, 0, 0, 0.6) !important;
+        border-radius: 0.375rem !important;
+        z-index: 10;
+    }
+
+    /* Status dropdown portal */
+    body > div[class*="fixed"][class*="z-9999"] {
+        left: 1rem !important;
+        right: 1rem !important;
+        width: auto !important;
+        min-width: auto !important;
+    }
+
+    body > div[class*="fixed"][class*="z-9999"] button {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Empty state */
+    .items-list > .p-12 {
+        padding: 3rem 1rem !important;
+    }
 }

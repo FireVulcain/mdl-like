@@ -12,7 +12,7 @@ export function WatchlistStats({ stats }: WatchlistStatsProps) {
         : "0.0";
 
     return (
-        <div className="flex gap-4">
+        <div className="flex gap-4 watchlist-stats">
             <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 px-6 py-4 shadow-md shadow-black/20">
                 <div className="text-3xl font-bold text-white">{watchTimeHours}h</div>
                 <div className="text-sm text-gray-400 mt-1">Total Watched</div>

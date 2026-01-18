@@ -273,11 +273,11 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 watchlist-container">
             {/* Filter Pills Row */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3 filter-row">
                 {/* Status Filter Dropdown */}
-                <div className="relative">
+                <div className="relative filter-dropdown">
                     <Button
                         variant="ghost"
                         size="sm"
@@ -319,7 +319,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
 
                 {/* Country Filter Dropdown */}
-                <div className="relative">
+                <div className="relative filter-dropdown">
                     <Button
                         variant="ghost"
                         size="sm"
@@ -356,7 +356,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
 
                 {/* Genre Filter Dropdown */}
-                <div className="relative">
+                <div className="relative filter-dropdown">
                     <Button
                         variant="ghost"
                         size="sm"
@@ -393,7 +393,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
 
                 {/* Sort Dropdown */}
-                <div className="relative">
+                <div className="relative select-wrapper">
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
@@ -431,7 +431,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
 
                 {/* Year Dropdown */}
-                <div className="relative">
+                <div className="relative select-wrapper">
                     <select
                         value={filterYear}
                         onChange={(e) => setFilterYear(e.target.value)}
@@ -493,7 +493,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
             {/* Active Filter Pills */}
             {(filterStatuses.length > 0 || filterCountries.length > 0 || filterGenres.length > 0) && (
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2 active-filters">
                     <span className="text-sm text-gray-500">Active filters:</span>
                     {filterStatuses.map((status) => (
                         <button
@@ -540,7 +540,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 </div>
             )}
 
-            <div className="space-y-2">
+            <div className="space-y-2 items-list">
                 {(() => {
                     const showsWithWatchingSeason = new Set<string>();
                     filteredItems.forEach((item) => {
@@ -587,14 +587,14 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                             resultNodes.push(
                                 <div
                                     key={`group-${groupKey}`}
-                                    className="group relative bg-linear-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20"
+                                    className="group relative bg-linear-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 parent-card"
                                     onClick={() => toggleGroup(groupKey)}
                                     style={{
                                         boxShadow:
                                             "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
                                     }}
                                 >
-                                    <div className="flex items-center gap-5 p-5">
+                                    <div className="flex items-center gap-5 p-5 parent-card-inner">
                                         <div
                                             className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md shadow-lg ${
                                                 first.backdrop || first.poster
@@ -728,7 +728,7 @@ const ItemCard = memo(function ItemCard({
 
     return (
         <div
-            className={`group relative backdrop-blur-sm rounded-lg border transition-all hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 ${
+            className={`group relative backdrop-blur-sm rounded-lg border transition-all hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 item-card ${
                 isChild
                     ? "bg-linear-to-br from-blue-500/15 to-blue-500/8 border-blue-500/20 hover:border-blue-500/40"
                     : "bg-linear-to-br from-white/10 to-white/5 border-white/10 hover:border-white/20"
@@ -737,10 +737,10 @@ const ItemCard = memo(function ItemCard({
                 boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
             }}
         >
-            <div className="flex items-center gap-5 px-5 py-3">
+            <div className="flex items-center gap-5 px-5 py-3 item-card-inner">
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                    className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg ${
+                    className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg card-image ${
                         item.backdrop || item.poster
                             ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
                             : "bg-gray-800"
@@ -776,11 +776,11 @@ const ItemCard = memo(function ItemCard({
                     )}
                 </Link>
 
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 card-info">
                     <div className="flex items-center gap-2 mb-1.5">
                         <Link
                             href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                            className="font-semibold text-xl text-white hover:text-blue-400 transition-colors line-clamp-1"
+                            className="font-semibold text-xl text-white hover:text-blue-400 transition-colors line-clamp-1 card-title"
                         >
                             {item.title}
                         </Link>
@@ -797,7 +797,7 @@ const ItemCard = memo(function ItemCard({
                 <button
                     ref={buttonRef}
                     onClick={handleDropdownToggle}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-35 justify-center hover:opacity-80 transition-opacity cursor-pointer`}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-35 justify-center hover:opacity-80 transition-opacity cursor-pointer card-status`}
                 >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
@@ -842,14 +842,14 @@ const ItemCard = memo(function ItemCard({
                         document.body,
                     )}
 
-                <div className="w-42 space-y-2">
+                <div className="w-42 space-y-2 card-progress">
                     <div className="flex items-center gap-2">
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleProgress(item.id, Math.max(0, item.progress - 1));
                             }}
-                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
                         >
                             <Minus className="h-4 w-4" />
                         </button>
@@ -863,12 +863,12 @@ const ItemCard = memo(function ItemCard({
                                 e.stopPropagation();
                                 handleProgress(item.id, item.progress + 1);
                             }}
-                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
                         >
                             <Plus className="h-4 w-4" />
                         </button>
                     </div>
-                    <div className="relative h-2 bg-black/30 rounded-full overflow-hidden">
+                    <div className="relative h-2 bg-black/30 rounded-full overflow-hidden progress-bar">
                         <div
                             className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
                                 item.status === "Completed"
@@ -880,7 +880,7 @@ const ItemCard = memo(function ItemCard({
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-1 w-24 justify-center">
+                <div className="flex flex-col items-center gap-1 w-24 justify-center card-rating">
                     {/* Personal Score */}
                     {item.score ? (
                         <div className="flex items-center gap-1.5">
@@ -914,7 +914,7 @@ const ItemCard = memo(function ItemCard({
                         e.stopPropagation();
                         openEdit(item);
                     }}
-                    className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10"
+                    className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10 card-edit-btn"
                 >
                     <Pencil className="h-4 w-4" />
                 </Button>
