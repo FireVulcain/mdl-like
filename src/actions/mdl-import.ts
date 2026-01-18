@@ -188,8 +188,18 @@ export async function importMDLNotes(userId: string, mdlUsername: string = "Popo
         const dbItems = await prisma.userMedia.findMany({ where: { userId } });
         const matches = matchItems(uniqueMdlItems, dbItems);
 
-        // Batch update database...
-        // (Keep your existing prisma update logic here)
+        // Batch update database with MDL ratings
+        const updatePromises = matches.map((match) => {
+            const mdlRating = match.mdlItem.rating ? parseFloat(match.mdlItem.rating) : null;
+            return prisma.userMedia.update({
+                where: { id: match.dbItem.id },
+                data: {
+                    mdlRating: mdlRating,
+                },
+            });
+        });
+
+        await Promise.all(updatePromises);
 
         const endTime = performance.now();
         const totalTime = ((endTime - startTime) / 1000).toFixed(2);
@@ -199,6 +209,16 @@ export async function importMDLNotes(userId: string, mdlUsername: string = "Popo
             message: `Imported via Browserless in ${totalTime}s!`,
             stats: { scraped: uniqueMdlItems.length, matched: matches.length, updated: matches.length },
             duration: totalTime,
+            scrapedItems: uniqueMdlItems,
+            matchedItems: matches.map((m) => ({
+                mdlTitle: m.mdlItem.title,
+                mdlYear: m.mdlItem.year,
+                mdlStatus: m.mdlItem.status,
+                mdlProgress: m.mdlItem.progress,
+                dbTitle: m.dbItem.title,
+                dbId: m.dbItem.id,
+                confidence: m.confidence,
+            })),
         };
     } catch (error: unknown) {
         console.error("Import Error:", error);

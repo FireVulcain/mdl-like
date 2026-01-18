@@ -254,13 +254,12 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             if (result.success) {
                 alert(
                     `${result.message}\n` +
-                        `Total time: ${result.duration}s\n\n` + // Added duration here
+                        `Total time: ${result.duration}s\n\n` +
                         `Stats:\n` +
                         `- Scraped: ${result.stats?.scraped}\n` +
                         `- Matched: ${result.stats?.matched}\n` +
-                        `- Updated: ${result.stats?.updated}`,
+                        `- Updated: ${result.stats?.updated}\n\n`,
                 );
-                // Refresh the page to show updated notes
                 window.location.reload();
             } else {
                 alert(`Failed: ${result.message}`);
