@@ -1,10 +1,13 @@
 "use server";
 
-import puppeteer, { Browser, Page, HTTPRequest } from "puppeteer-core";
+import { Browser, Page, HTTPRequest } from "puppeteer-core";
 import chromium from "@sparticuz/chromium-min";
 import { ratio } from "fuzzball";
 import { prisma } from "@/lib/prisma";
 import type { UserMedia } from "@prisma/client";
+
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 // --- Types ---
 type MDLItem = {
@@ -33,19 +36,20 @@ const MDL_STATUS_PAGES = [
 /**
  * Helper to launch the browser based on environment
  */
-async function getBrowser(): Promise<Browser> {
+async function getBrowser() {
     const isProd = process.env.NODE_ENV === "production";
 
-    // Fix: Accessing chromium properties correctly for TS
-    // @sparticuz/chromium-min might not export types perfectly,
-    // so we use standard Puppeteer defaults if they are missing.
     return await puppeteer.launch({
-        args: isProd ? [...chromium.args, "--hide-scrollbars", "--disable-web-security"] : ["--no-sandbox"],
-        defaultViewport: { width: 1280, height: 720 },
+        args: [
+            ...chromium.args,
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-blink-features=AutomationControlled", // Hides the "automated" flag
+        ],
         executablePath: isProd
             ? await chromium.executablePath(`https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar`)
-            : "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-        headless: isProd ? true : true, // Explicitly set boolean
+            : "YOUR_LOCAL_CHROME_PATH",
+        headless: isProd ? true : true,
     });
 }
 
@@ -53,7 +57,12 @@ async function getBrowser(): Promise<Browser> {
  * Optimized scraping for a single page
  */
 async function scrapeMDLPage(browser: Browser, url: string, defaultStatus: string): Promise<MDLItem[]> {
-    const page: Page = await browser.newPage();
+    const page = await browser.newPage();
+    await page.setCookie({
+        name: "cf_clearance",
+        value: "YOUR_COOKIE_VALUE_HERE",
+        domain: ".mydramalist.com",
+    });
     try {
         await page.setRequestInterception(true);
 
