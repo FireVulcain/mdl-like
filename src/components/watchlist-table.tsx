@@ -250,9 +250,12 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setIsImportingMDL(true);
         try {
             const result = await importMDLNotes("mock-user-1");
+
             if (result.success) {
                 alert(
-                    `${result.message}\n\nStats:\n` +
+                    `${result.message}\n` +
+                        `Total time: ${result.duration}s\n\n` + // Added duration here
+                        `Stats:\n` +
                         `- Scraped: ${result.stats?.scraped}\n` +
                         `- Matched: ${result.stats?.matched}\n` +
                         `- Updated: ${result.stats?.updated}`,

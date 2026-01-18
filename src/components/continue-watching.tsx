@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -29,14 +29,14 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
             <div className="flex items-center gap-3">
                 <Play className="h-5 w-5 text-blue-400" />
                 <h2 className="text-2xl font-bold text-white">Continue Watching</h2>
+                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent"></div>
+                <Link href="/watchlist" className="ml-auto flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors">
+                    View Watchlist
+                    <ArrowRight className="h-4 w-4" />
+                </Link>
             </div>
             <ScrollArea className="w-full whitespace-nowrap -mx-4 px-4">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex gap-4 py-2 px-4"
-                >
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="flex gap-4 py-2 px-4">
                     {items.map((show, index) => {
                         const progressPercent = (show.progress / show.totalEp) * 100;
                         return (
@@ -47,10 +47,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                 transition={{ duration: 0.3, delay: index * 0.05 }}
                                 className="w-96 shrink-0"
                             >
-                                <Link
-                                    href={`/media/${show.source.toLowerCase()}-${show.externalId}`}
-                                    className="group block"
-                                >
+                                <Link href={`/media/${show.source.toLowerCase()}-${show.externalId}`} className="group block">
                                     <div className="relative aspect-video rounded-lg overflow-hidden bg-black/20 border border-white/5 hover:border-white/20 transition-all shadow-lg">
                                         {(show.backdrop || show.poster) && (
                                             <Image
@@ -70,12 +67,12 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         </div>
 
                                         <div className="absolute bottom-0 left-0 right-0 p-2.5">
-                                            <p className="text-white font-medium text-sm mb-1.5 line-clamp-1 whitespace-normal">
-                                                {show.title}
-                                            </p>
+                                            <p className="text-white font-medium text-sm mb-1.5 line-clamp-1 whitespace-normal">{show.title}</p>
                                             <div className="space-y-1">
                                                 <div className="flex justify-between text-xs text-gray-300">
-                                                    <span>Ep {show.progress} / {show.totalEp}</span>
+                                                    <span>
+                                                        Ep {show.progress} / {show.totalEp}
+                                                    </span>
                                                     <span>{Math.round(progressPercent)}%</span>
                                                 </div>
                                                 <div className="relative h-1 bg-white/20 rounded-full overflow-hidden">
