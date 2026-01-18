@@ -708,20 +708,24 @@ const ItemCard = memo(function ItemCard({
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
-    const buttonRef = useRef<HTMLButtonElement>(null);
+    const desktopButtonRef = useRef<HTMLButtonElement>(null);
+    const mobileButtonRef = useRef<HTMLButtonElement>(null);
     const statusInfo = statusConfig[item.status as keyof typeof statusConfig] || statusConfig["Plan to Watch"];
     const StatusIcon = statusInfo.icon;
     const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
     const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
 
-    const handleDropdownToggle = (e: React.MouseEvent) => {
+    const handleDropdownToggle = (e: React.MouseEvent, isMobile: boolean = false) => {
         e.stopPropagation();
-        if (!showStatusDropdown && buttonRef.current) {
-            const rect = buttonRef.current.getBoundingClientRect();
-            setDropdownPosition({
-                top: rect.bottom + 8,
-                left: rect.right - 180, // Align to right edge
-            });
+        if (!showStatusDropdown) {
+            const buttonEl = isMobile ? mobileButtonRef.current : desktopButtonRef.current;
+            if (buttonEl) {
+                const rect = buttonEl.getBoundingClientRect();
+                setDropdownPosition({
+                    top: rect.bottom + 8,
+                    left: isMobile ? Math.max(16, rect.left) : rect.right - 180, // Mobile: align left, Desktop: align right
+                });
+            }
         }
         setShowStatusDropdown(!showStatusDropdown);
     };
@@ -777,27 +781,38 @@ const ItemCard = memo(function ItemCard({
                 </Link>
 
                 <div className="flex-1 min-w-0 card-info">
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <Link
-                            href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                            className="font-semibold text-xl text-white hover:text-blue-400 transition-colors line-clamp-1 card-title"
-                        >
-                            {item.title}
-                        </Link>
-                        {item.mediaType === "TV" && item.season > 0 && (
-                            <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
-                        )}
+                    <div className="card-info-text">
+                        <div className="flex items-center gap-2 mb-1.5">
+                            <Link
+                                href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
+                                className="font-semibold text-xl text-white hover:text-blue-400 transition-colors line-clamp-1 card-title"
+                            >
+                                {item.title}
+                            </Link>
+                            {item.mediaType === "TV" && item.season > 0 && (
+                                <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
+                            )}
+                        </div>
+                        <div className="text-sm text-gray-400">
+                            {item.originCountry || "Unknown"} · {item.year || "N/A"}
+                        </div>
                     </div>
-                    <div className="text-sm text-gray-400">
-                        {item.originCountry || "Unknown"} · {item.year || "N/A"}
-                    </div>
+                    {/* Mobile Status Button - centered with entire title block */}
+                    <button
+                        ref={mobileButtonRef}
+                        onClick={(e) => handleDropdownToggle(e, true)}
+                        className={`mobile-status-btn items-center gap-1.5 px-2.5 py-1 rounded-full ${statusInfo.bg} border ${statusInfo.border} hover:opacity-80 transition-opacity cursor-pointer shrink-0`}
+                    >
+                        <StatusIcon className={`h-3.5 w-3.5 ${statusInfo.color}`} />
+                        <span className={`text-xs font-medium ${statusInfo.color}`}>{item.status}</span>
+                    </button>
                 </div>
 
-                {/* Status Dropdown */}
+                {/* Desktop Status Dropdown */}
                 <button
-                    ref={buttonRef}
-                    onClick={handleDropdownToggle}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-35 justify-center hover:opacity-80 transition-opacity cursor-pointer card-status`}
+                    ref={desktopButtonRef}
+                    onClick={(e) => handleDropdownToggle(e, false)}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-35 justify-center hover:opacity-80 transition-opacity cursor-pointer card-status desktop-status-btn`}
                 >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
@@ -849,7 +864,7 @@ const ItemCard = memo(function ItemCard({
                                 e.stopPropagation();
                                 handleProgress(item.id, Math.max(0, item.progress - 1));
                             }}
-                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
+                            className="cursor-pointer h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
                         >
                             <Minus className="h-4 w-4" />
                         </button>
@@ -863,7 +878,7 @@ const ItemCard = memo(function ItemCard({
                                 e.stopPropagation();
                                 handleProgress(item.id, item.progress + 1);
                             }}
-                            className="h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
+                            className="cursor-pointer h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
                         >
                             <Plus className="h-4 w-4" />
                         </button>
