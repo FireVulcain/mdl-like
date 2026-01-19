@@ -10,6 +10,7 @@ import { MediaCard } from "@/components/media-card";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
+import { TrailerButton } from "@/components/trailer-button";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -184,6 +185,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
                         </div>
+                        {media.trailer && (
+                            <div className="mt-4">
+                                <TrailerButton trailer={media.trailer} />
+                            </div>
+                        )}
                     </div>
 
                     <div className="prose prose-invert max-w-none">

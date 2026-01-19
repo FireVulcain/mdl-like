@@ -61,6 +61,16 @@ export type TMDBMedia = {
     release_dates?: {
         results: { iso_3166_1: string; release_dates: { certification: string }[] }[];
     };
+    videos?: {
+        results: {
+            id: string;
+            key: string; // YouTube video ID
+            name: string;
+            site: string; // "YouTube", "Vimeo", etc.
+            type: string; // "Trailer", "Teaser", "Clip", "Featurette", etc.
+            official: boolean;
+        }[];
+    };
 };
 
 export type TMDBSearchResult = {

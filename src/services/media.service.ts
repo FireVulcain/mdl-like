@@ -38,6 +38,10 @@ export type UnifiedMedia = {
     network?: string;
     genres?: string[];
     contentRating?: string;
+    trailer?: {
+        key: string; // YouTube video ID
+        name: string;
+    };
 };
 
 export const mediaService = {
@@ -78,14 +82,14 @@ export const mediaService = {
                 let type: "tv" | "movie" = "tv";
 
                 try {
-                    // append_to_response for credits, recommendations, images, content_ratings, release_dates
+                    // append_to_response for credits, recommendations, images, content_ratings, videos
                     details = await fetchTMDB<TMDBMedia>(`/tv/${externalId}`, {
-                        append_to_response: "credits,recommendations,images,content_ratings",
+                        append_to_response: "credits,recommendations,images,content_ratings,videos",
                         include_image_language: "en,null",
                     });
                 } catch (e) {
                     details = await fetchTMDB<TMDBMedia>(`/movie/${externalId}`, {
-                        append_to_response: "credits,recommendations,images,release_dates",
+                        append_to_response: "credits,recommendations,images,release_dates,videos",
                         include_image_language: "en,null",
                     });
                     type = "movie";
@@ -109,6 +113,17 @@ export const mediaService = {
                     const h = Math.floor(runtime / 60);
                     const m = runtime % 60;
                     return h > 0 ? `${h} hr. ${m} min.` : `${m} min.`;
+                };
+
+                // Helper for trailer (prioritize official YouTube trailers)
+                const getTrailer = () => {
+                    const videos = details.videos?.results || [];
+                    // Find official trailer first, then any trailer, then teaser
+                    const trailer =
+                        videos.find((v) => v.site === "YouTube" && v.type === "Trailer" && v.official) ||
+                        videos.find((v) => v.site === "YouTube" && v.type === "Trailer") ||
+                        videos.find((v) => v.site === "YouTube" && v.type === "Teaser");
+                    return trailer ? { key: trailer.key, name: trailer.name } : undefined;
                 };
 
                 return {
@@ -135,6 +150,7 @@ export const mediaService = {
                     network: details.networks?.[0]?.name,
                     genres: details.genres?.map((g) => g.name) || [],
                     contentRating: getRating(),
+                    trailer: getTrailer(),
 
                     seasons: details.seasons
                         ?.map((s) => ({
