@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef, useOptimistic, useTransition, memo, useCallback } from "react";
+import { useState, useMemo, useRef, useOptimistic, useTransition, memo, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -75,6 +75,10 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
+
+    // Infinite scroll
+    const [displayCount, setDisplayCount] = useState(10);
+    const loadMoreRef = useRef<HTMLDivElement>(null);
 
     // Optimistic updates
     const [optimisticItems, setOptimisticItems] = useOptimistic(items, (state, update: OptimisticUpdate) => {
@@ -154,6 +158,34 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
         return result;
     }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
+
+    // Reset display count when filters change
+    useEffect(() => {
+        setDisplayCount(10);
+    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
+
+    // Infinite scroll observer
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setDisplayCount((prev) => prev + 10);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        const currentRef = loadMoreRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, []);
 
     // Helper functions for multi-select filters
     const toggleStatus = (status: string) => {
@@ -575,7 +607,11 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     });
 
                     const resultNodes: React.ReactNode[] = [];
-                    groupOrder.forEach((groupKey) => {
+                    let displayedCount = 0;
+
+                    for (const groupKey of groupOrder) {
+                        if (displayedCount >= displayCount) break;
+
                         const group = groupedItems[groupKey];
                         group.sort((a, b) => a.season - b.season);
                         const first = group[0];
@@ -634,6 +670,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     </div>
                                 </div>,
                             );
+                            displayedCount++;
 
                             // Child Cards
                             if (isExpanded) {
@@ -666,8 +703,9 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     openEdit={openEdit}
                                 />,
                             );
+                            displayedCount++;
                         }
-                    });
+                    }
 
                     return resultNodes;
                 })()}
@@ -677,6 +715,11 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         <div className="text-gray-400 text-lg">No items found</div>
                         <div className="text-gray-500 text-sm mt-2">Try adjusting your filters</div>
                     </div>
+                )}
+
+                {/* Infinite scroll sentinel */}
+                {filteredItems.length > 0 && (
+                    <div ref={loadMoreRef} className="h-10" />
                 )}
             </div>
 
