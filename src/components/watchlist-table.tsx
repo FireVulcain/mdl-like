@@ -7,9 +7,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
-import { backfillBackdrops } from "@/actions/backfill";
+import { backfillBackdrops, refreshAllBackdrops } from "@/actions/backfill";
 import { importMDLNotes } from "@/actions/mdl-import";
-import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen } from "lucide-react";
+import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen, ImageOff } from "lucide-react";
 
 type WatchlistItem = {
     id: string;
@@ -50,14 +50,6 @@ const statusConfig = {
     Completed: { icon: CheckCircle, color: "text-green-400", bg: "bg-green-500/10", border: "border-green-500/20" },
     "Plan to Watch": { icon: Clock, color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
     Dropped: { icon: XCircle, color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
-};
-
-// Generate a unique color overlay for each season based on season number
-const getSeasonGradient = (seasonNumber: number): string => {
-    // Calculate hue based on season number (distribute evenly across color wheel)
-    const hue = (seasonNumber * 137.5) % 360; // Golden angle for good distribution
-    // Subtle but visible: lower saturation (60%), moderate opacity (0.25 -> 0.08)
-    return `linear-gradient(to right, hsla(${hue}, 60%, 50%, 0.25), hsla(${hue}, 60%, 50%, 0.08))`;
 };
 
 export function WatchlistTable({ items }: WatchlistTableProps) {
@@ -260,13 +252,17 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     };
 
     const handleBackfill = async () => {
-        if (!confirm("This will fetch backdrops for all items missing them. Continue?")) return;
+        if (!confirm("This will refresh backdrops for all multi-season shows (assigning different images per season). Continue?")) return;
 
         setIsBackfilling(true);
         try {
-            const result = await backfillBackdrops("mock-user-1");
+            // First backfill missing backdrops
+            await backfillBackdrops("mock-user-1");
+            // Then refresh multi-season shows to get different backdrops per season
+            const result = await refreshAllBackdrops("mock-user-1");
             if (result.success) {
-                alert(`Successfully updated ${result.count} items!`);
+                alert(`Successfully updated ${result.count} season backdrops!`);
+                window.location.reload();
             }
         } catch (error) {
             console.error("Backfill failed:", error);
@@ -635,10 +631,10 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                             className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md shadow-lg ${
                                                 first.backdrop || first.poster
                                                     ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-[length:200%_100%] animate-shimmer"
-                                                    : "bg-gray-800"
+                                                    : "bg-gray-800/50 border border-dashed border-gray-600"
                                             }`}
                                         >
-                                            {(first.backdrop || first.poster) && (
+                                            {(first.backdrop || first.poster) ? (
                                                 <Image
                                                     src={first.backdrop || first.poster!}
                                                     alt={first.title || ""}
@@ -659,6 +655,11 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                         }, 100);
                                                     }}
                                                 />
+                                            ) : (
+                                                <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+                                                    <ImageOff className="h-6 w-6 mb-1" />
+                                                    <span className="text-[10px]">No image</span>
+                                                </div>
                                             )}
                                         </div>
                                         <div className="flex-1">
@@ -790,10 +791,10 @@ const ItemCard = memo(function ItemCard({
                     className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg card-image ${
                         item.backdrop || item.poster
                             ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
-                            : "bg-gray-800"
+                            : "bg-gray-800/50 border border-dashed border-gray-600"
                     }`}
                 >
-                    {(item.backdrop || item.poster) && (
+                    {(item.backdrop || item.poster) ? (
                         <>
                             <Image
                                 src={item.backdrop || item.poster!}
@@ -815,11 +816,12 @@ const ItemCard = memo(function ItemCard({
                                     }, 100);
                                 }}
                             />
-                            {/* Season color overlay - only show if this is a child (season) card */}
-                            {isChild && (
-                                <div className="absolute inset-0 pointer-events-none" style={{ background: getSeasonGradient(item.season) }} />
-                            )}
                         </>
+                    ) : (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+                            <ImageOff className="h-6 w-6 mb-1" />
+                            <span className="text-[10px]">No image</span>
+                        </div>
                     )}
                 </Link>
 
