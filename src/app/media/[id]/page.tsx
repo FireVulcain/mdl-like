@@ -131,41 +131,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
                     </div>
 
-                    <div
-                        className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-5"
-                        style={{
-                            background: "rgba(17, 24, 39, 0.6)",
-                            backdropFilter: "blur(20px)",
-                            boxShadow:
-                                "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
-                        }}
-                    >
-                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-
-                        <h3 className="font-semibold text-lg text-white">Track Progress</h3>
-
-                        {/* Season Selector (Only if TV and has seasons) */}
-                        {media.type === "TV" && media.seasons && media.seasons.length > 0 && (
-                            <div>
-                                <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
-                            </div>
-                        )}
-
-                        <AddToListButton media={media} userMedia={userMedia} season={selectedSeason} totalEp={episodeCount} />
-
-                        <div className="pt-2">
-                            {userMedia ? (
-                                <ProgressTracker
-                                    current={userMedia.progress}
-                                    total={episodeCount}
-                                    status={userMedia.status}
-                                    onUpdate={updateAction}
-                                />
-                            ) : (
-                                <div className="text-sm text-gray-400 text-center py-4">Add to list to track progress</div>
-                            )}
-                        </div>
-                    </div>
                 </div>
 
                 {/* Info */}
@@ -185,11 +150,31 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
                         </div>
-                        {media.trailer && (
-                            <div className="mt-4">
-                                <TrailerButton trailer={media.trailer} />
-                            </div>
-                        )}
+
+                        {/* Action Bar */}
+                        <div className="flex flex-wrap items-center gap-3 mt-5">
+                            {media.trailer && <TrailerButton trailer={media.trailer} />}
+
+                            {/* Season Selector (compact) */}
+                            {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
+                                <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
+                            )}
+
+                            <AddToListButton media={media} userMedia={userMedia} season={selectedSeason} totalEp={episodeCount} />
+
+                            {/* Compact Progress Indicator */}
+                            {userMedia && (
+                                <div className="flex items-center px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+                                    <ProgressTracker
+                                        current={userMedia.progress}
+                                        total={episodeCount}
+                                        status={userMedia.status}
+                                        onUpdate={updateAction}
+                                        compact
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     <div className="prose prose-invert max-w-none">

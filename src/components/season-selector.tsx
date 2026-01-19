@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface Season {
   seasonNumber: number;
@@ -28,12 +28,11 @@ export function SeasonSelector({ seasons, selectedSeason }: SeasonSelectorProps)
   };
 
   return (
-    <div className="relative w-full">
-      <label className="text-sm text-gray-400 mb-2 block">Season</label>
+    <div className="relative">
       <select
         value={selectedSeason.toString()}
         onChange={handleChange}
-        className="w-full h-10 pl-4 pr-10 rounded-lg bg-white/8 border border-white/10 text-white text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer appearance-none"
+        className="h-10 pl-4 pr-9 rounded-xl bg-white/10 border border-white/10 text-white text-sm font-medium hover:bg-white/15 hover:border-white/20 focus:border-blue-500 focus:outline-none transition-all cursor-pointer appearance-none"
       >
         {seasons.map((season) => (
           <option key={season.seasonNumber} value={season.seasonNumber.toString()} className="bg-gray-900">
@@ -41,7 +40,7 @@ export function SeasonSelector({ seasons, selectedSeason }: SeasonSelectorProps)
           </option>
         ))}
       </select>
-      <ChevronRight className="absolute right-3 top-10.5 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none rotate-90" />
+      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
     </div>
   );
 }

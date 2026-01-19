@@ -1,6 +1,5 @@
 "use client";
 
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, Minus } from "lucide-react";
@@ -13,9 +12,10 @@ interface ProgressTrackerProps {
     status: string;
     onUpdate?: (progress: number) => void;
     className?: string;
+    compact?: boolean;
 }
 
-export function ProgressTracker({ current, total, status, onUpdate, className }: ProgressTrackerProps) {
+export function ProgressTracker({ current, total, status, onUpdate, className, compact = false }: ProgressTrackerProps) {
     // Local state for immediate feedback
     const [progress, setProgress] = useState(current);
 
@@ -32,6 +32,36 @@ export function ProgressTracker({ current, total, status, onUpdate, className }:
     const percentage = total ? (progress / total) * 100 : 0;
     const isCompleted = total && progress >= total;
 
+    // Compact inline version
+    if (compact) {
+        return (
+            <div className={cn("flex items-center gap-2", className)}>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7 rounded-full bg-white/10 text-gray-400 hover:text-white hover:bg-white/20 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                    onClick={() => handleUpdate(progress - 1)}
+                    disabled={progress <= 0}
+                >
+                    <Minus className="h-3 w-3" />
+                </Button>
+                <span className="text-white font-medium text-sm min-w-[60px] text-center">
+                    {progress} {total ? `/ ${total}` : "eps"}
+                </span>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7 rounded-full bg-white/10 text-gray-400 hover:text-white hover:bg-white/20 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                    onClick={() => handleUpdate(progress + 1)}
+                    disabled={total ? progress >= total : false}
+                >
+                    <Plus className="h-3 w-3" />
+                </Button>
+            </div>
+        );
+    }
+
+    // Full version
     return (
         <div className={cn("space-y-4", className)}>
             <div className="flex items-center justify-between">
