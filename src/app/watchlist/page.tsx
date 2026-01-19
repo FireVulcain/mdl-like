@@ -15,10 +15,8 @@ export default async function WatchlistPage() {
 
     try {
         if (process.env.NEXT_PHASE !== "phase-production-build") {
-            [watchlist, stats] = await Promise.all([
-                getWatchlist(MOCK_USER_ID),
-                getDashboardStats(MOCK_USER_ID)
-            ]);
+            watchlist = await getWatchlist(MOCK_USER_ID);
+            stats = await getDashboardStats(MOCK_USER_ID, watchlist);
         }
     } catch (error) {
         console.error("Error fetching data:", error);

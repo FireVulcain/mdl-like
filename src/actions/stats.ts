@@ -3,8 +3,10 @@
 import { prisma } from "@/lib/prisma";
 import { type DashboardStats, EMPTY_STATS } from "@/types/stats";
 
-export async function getDashboardStats(userId: string): Promise<DashboardStats> {
-    const items = await prisma.userMedia.findMany({
+type UserMediaItem = Awaited<ReturnType<typeof prisma.userMedia.findMany>>[number];
+
+export async function getDashboardStats(userId: string, existingItems?: UserMediaItem[]): Promise<DashboardStats> {
+    const items = existingItems ?? await prisma.userMedia.findMany({
         where: { userId },
     });
 
