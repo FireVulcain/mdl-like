@@ -76,6 +76,7 @@ model UserMedia {
   tmdbRating  Float?
   mdlRating   Float?   // MDL community rating
   genres      String?  // Store as comma-separated values
+  airingStatus String? // "Returning Series", "Ended", "Canceled", etc. from TMDB
 
   updatedAt   DateTime @updatedAt
   

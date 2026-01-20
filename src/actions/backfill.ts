@@ -162,3 +162,64 @@ export async function refreshAllBackdrops(userId: string) {
     revalidatePath("/watchlist");
     return { success: true, count };
 }
+
+// Backfill airing status for all items
+export async function backfillAiringStatus(userId: string) {
+    if (!userId) throw new Error("Unauthorized");
+
+    const items = await prisma.userMedia.findMany({
+        where: {
+            userId,
+            airingStatus: null,
+            mediaType: "TV", // Only TV shows have airing status
+        },
+    });
+
+    if (items.length === 0) return { success: true, count: 0, message: "No items to update" };
+
+    // Group by show to avoid duplicate API calls
+    const showGroups = new Map<string, typeof items>();
+    for (const item of items) {
+        const key = `${item.source}-${item.externalId}`;
+        if (!showGroups.has(key)) {
+            showGroups.set(key, []);
+        }
+        showGroups.get(key)!.push(item);
+    }
+
+    const detailsCache = new Map<string, Awaited<ReturnType<typeof mediaService.getDetails>>>();
+
+    let count = 0;
+    for (const [key, groupItems] of showGroups) {
+        try {
+            const firstItem = groupItems[0];
+            const mediaId = `${firstItem.source.toLowerCase()}-${firstItem.externalId}`;
+
+            let details = detailsCache.get(mediaId);
+            if (!details) {
+                details = await mediaService.getDetails(mediaId);
+                if (details) {
+                    detailsCache.set(mediaId, details);
+                }
+                // Rate limiting
+                await new Promise((r) => setTimeout(r, 100));
+            }
+
+            if (details?.status) {
+                // Update all seasons of this show with the same airing status
+                for (const item of groupItems) {
+                    await prisma.userMedia.update({
+                        where: { id: item.id },
+                        data: { airingStatus: details.status },
+                    });
+                    count++;
+                }
+            }
+        } catch (e) {
+            console.error(`Failed to backfill airing status for ${key}`, e);
+        }
+    }
+
+    revalidatePath("/watchlist");
+    return { success: true, count, message: `Updated ${count} items` };
+}

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
-import { backfillBackdrops, refreshAllBackdrops } from "@/actions/backfill";
+import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus } from "@/actions/backfill";
 import { importMDLNotes } from "@/actions/mdl-import";
 import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen, ImageOff } from "lucide-react";
 
@@ -29,6 +29,7 @@ type WatchlistItem = {
     season: number;
     mediaType: string;
     genres: string | null;
+    airingStatus: string | null;
 };
 
 interface WatchlistTableProps {
@@ -64,6 +65,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isImportingMDL, setIsImportingMDL] = useState(false);
+    const [isBackfillingAiring, setIsBackfillingAiring] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
@@ -300,6 +302,22 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         }
     };
 
+    const handleBackfillAiring = async () => {
+        setIsBackfillingAiring(true);
+        try {
+            const result = await backfillAiringStatus("mock-user-1");
+            if (result.success) {
+                alert(`${result.message}`);
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error("Airing status backfill failed:", error);
+            alert("Failed to backfill airing status. Check console.");
+        } finally {
+            setIsBackfillingAiring(false);
+        }
+    };
+
     return (
         <div className="space-y-6 watchlist-container">
             {/* Filter Pills Row */}
@@ -516,6 +534,18 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 >
                     <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
                     {isBackfilling ? "Processing..." : "Refresh Backdrops"}
+                </Button>
+
+                {/* Backfill Airing Status Button */}
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleBackfillAiring}
+                    disabled={isBackfillingAiring}
+                    className="h-9 px-4 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all gap-2"
+                >
+                    <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
+                    {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
                 </Button>
             </div>
 
@@ -836,6 +866,11 @@ const ItemCard = memo(function ItemCard({
                             </Link>
                             {item.mediaType === "TV" && item.season > 0 && (
                                 <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
+                            )}
+                            {item.airingStatus === "Returning Series" && item.totalEp && item.progress < item.totalEp && (
+                                <span className="text-[10px] font-semibold uppercase tracking-wide text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded">
+                                    airing
+                                </span>
                             )}
                         </div>
                         <div className="text-sm text-gray-400">

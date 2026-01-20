@@ -62,6 +62,7 @@ export async function addToWatchlist(
                     year: media.year ? parseInt(media.year) : null,
                     originCountry: media.originCountry,
                     genres: media.genres?.join(","),
+                    airingStatus: media.status || null,
                 },
             });
         }
@@ -85,6 +86,7 @@ export async function addToWatchlist(
                 originCountry: media.originCountry,
                 totalEp: epCount,
                 genres: media.genres?.join(","),
+                airingStatus: media.status || null,
             },
         });
 
