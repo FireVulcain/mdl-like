@@ -11,6 +11,7 @@ import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { TrailerButton } from "@/components/trailer-button";
+import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -131,6 +132,16 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
                     </div>
 
+                    {/* Next Episode Countdown (for ongoing TV shows) */}
+                    {media.type === "TV" && (
+                        <NextEpisodeCountdown
+                            nextEpisode={media.nextEpisode}
+                            currentSeason={currentSeasonData}
+                            totalEpisodes={episodeCount ?? undefined}
+                            status={media.status}
+                            firstAirDate={media.firstAirDate}
+                        />
+                    )}
                 </div>
 
                 {/* Info */}

@@ -20,6 +20,7 @@ export type UnifiedMedia = {
         episodeCount: number;
         name: string;
         poster: string | null;
+        airDate: string | null;
     }[];
     cast?: {
         id: number;
@@ -42,6 +43,14 @@ export type UnifiedMedia = {
         key: string; // YouTube video ID
         name: string;
     };
+    nextEpisode?: {
+        airDate: string; // ISO date string
+        episodeNumber: number;
+        seasonNumber: number;
+        name: string;
+    } | null;
+    totalSeasons?: number;
+    firstAirDate?: string | null; // Raw first air date (YYYY-MM-DD)
 };
 
 export const mediaService = {
@@ -158,8 +167,21 @@ export const mediaService = {
                             episodeCount: s.episode_count,
                             name: s.name,
                             poster: s.poster_path ? TMDB_CONFIG.w500Image(s.poster_path) : null,
+                            airDate: s.air_date || null,
                         }))
                         .filter((s) => s.seasonNumber > 0), // Filter out "Specials" (Season 0) usually
+
+                    // Next Episode (for ongoing series)
+                    nextEpisode: details.next_episode_to_air
+                        ? {
+                              airDate: details.next_episode_to_air.air_date,
+                              episodeNumber: details.next_episode_to_air.episode_number,
+                              seasonNumber: details.next_episode_to_air.season_number,
+                              name: details.next_episode_to_air.name,
+                          }
+                        : null,
+                    totalSeasons: details.number_of_seasons,
+                    firstAirDate: details.first_air_date || null,
 
                     cast: details.credits?.cast?.map((actor) => ({
                         id: actor.id,

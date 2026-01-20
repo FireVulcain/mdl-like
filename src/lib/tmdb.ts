@@ -71,6 +71,16 @@ export type TMDBMedia = {
             official: boolean;
         }[];
     };
+    next_episode_to_air?: {
+        id: number;
+        name: string;
+        overview: string;
+        air_date: string;
+        episode_number: number;
+        season_number: number;
+        runtime: number | null;
+    } | null;
+    number_of_seasons?: number;
 };
 
 export type TMDBSearchResult = {
