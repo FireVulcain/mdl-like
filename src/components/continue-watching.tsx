@@ -30,14 +30,22 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                 <Play className="h-4 w-4 md:h-5 md:w-5 text-blue-400" />
                 <h2 className="text-lg md:text-2xl font-bold text-white">Continue Watching</h2>
                 <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent"></div>
-                <Link href="/watchlist" className="ml-auto flex items-center gap-1 text-xs md:text-sm text-gray-400 hover:text-white transition-colors">
+                <Link
+                    href="/watchlist"
+                    className="ml-auto flex items-center gap-1 text-xs md:text-sm text-gray-400 hover:text-white transition-colors"
+                >
                     <span className="hidden sm:inline">View Watchlist</span>
                     <span className="sm:hidden">View</span>
                     <ArrowRight className="h-3 w-3 md:h-4 md:w-4" />
                 </Link>
             </div>
             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4"
+                >
                     {items.map((show, index) => {
                         const progressPercent = (show.progress / show.totalEp) * 100;
                         return (
@@ -55,6 +63,9 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                                 src={show.backdrop || show.poster}
                                                 alt={show.title ?? ""}
                                                 fill
+                                                sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 384px"
+                                                priority={index === 0}
+                                                fetchPriority={index === 0 ? "high" : "auto"}
                                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                                             />
                                         )}
@@ -68,7 +79,9 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         </div>
 
                                         <div className="absolute bottom-0 left-0 right-0 p-2 md:p-2.5">
-                                            <p className="text-white font-medium text-xs md:text-sm mb-1 md:mb-1.5 line-clamp-1 whitespace-normal">{show.title}</p>
+                                            <p className="text-white font-medium text-xs md:text-sm mb-1 md:mb-1.5 line-clamp-1 whitespace-normal">
+                                                {show.title}
+                                            </p>
                                             <div className="space-y-0.5 md:space-y-1">
                                                 <div className="flex justify-between text-[10px] md:text-xs text-gray-300">
                                                     <span>

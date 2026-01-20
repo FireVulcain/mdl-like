@@ -147,6 +147,13 @@ export async function updateUserMedia(id: string, data: Partial<any>) {
     }
 }
 
+// Helper to optimize TMDB image URLs (convert original to w1280 for backdrops)
+function optimizeImageUrl(url: string | null): string | null {
+    if (!url) return null;
+    // Replace /original/ with /w1280/ for TMDB backdrop images
+    return url.replace("/t/p/original/", "/t/p/w1280/");
+}
+
 export async function getWatchlist(userId: string) {
     if (!userId) return []; // or throw
 
@@ -163,21 +170,27 @@ export async function getWatchlist(userId: string) {
         Dropped: 5,
     };
 
-    return items.sort((a, b) => {
-        const weightA = statusWeight[a.status] || 99;
-        const weightB = statusWeight[b.status] || 99;
+    return items
+        .map((item) => ({
+            ...item,
+            // Optimize backdrop URLs for better performance
+            backdrop: optimizeImageUrl(item.backdrop),
+        }))
+        .sort((a, b) => {
+            const weightA = statusWeight[a.status] || 99;
+            const weightB = statusWeight[b.status] || 99;
 
-        if (weightA !== weightB) {
-            return weightA - weightB;
-        }
+            if (weightA !== weightB) {
+                return weightA - weightB;
+            }
 
-        // Secondary sort by Title
-        const titleDiff = (a.title || "").localeCompare(b.title || "");
-        if (titleDiff !== 0) {
-            return titleDiff;
-        }
+            // Secondary sort by Title
+            const titleDiff = (a.title || "").localeCompare(b.title || "");
+            if (titleDiff !== 0) {
+                return titleDiff;
+            }
 
-        // Tertiary sort by Season
-        return (a.season || 1) - (b.season || 1);
-    });
+            // Tertiary sort by Season
+            return (a.season || 1) - (b.season || 1);
+        });
 }

@@ -3,7 +3,12 @@ import { mediaService } from "@/services/media.service";
 import { getContinueWatching } from "@/actions/stats";
 import { ContinueWatching } from "@/components/continue-watching";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { TrendingSection } from "@/components/trending-section";
+import dynamic from "next/dynamic";
+
+// Dynamically import TrendingSection (below the fold) to reduce initial JS bundle
+const TrendingSection = dynamic(() => import("@/components/trending-section").then(mod => mod.TrendingSection), {
+    loading: () => <div className="h-[500px] animate-pulse bg-white/5 rounded-3xl" />,
+});
 
 const MOCK_USER_ID = "mock-user-1";
 

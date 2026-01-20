@@ -68,7 +68,7 @@ export const mediaService = {
                 type: (item.media_type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
                 title: item.title || item.name || "Unknown",
                 poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
-                backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                 year: (item.release_date || item.first_air_date || "").split("-")[0],
                 originCountry: item.origin_country?.[0] || "US", // Fallback to US if missing (common for movies)
                 synopsis: item.overview,
@@ -142,7 +142,7 @@ export const mediaService = {
                     type: (type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
                     title: details.title || details.name || "Unknown",
                     poster: details.poster_path ? TMDB_CONFIG.w500Image(details.poster_path) : null,
-                    backdrop: details.backdrop_path ? TMDB_CONFIG.originalImage(details.backdrop_path) : null,
+                    backdrop: details.backdrop_path ? TMDB_CONFIG.w1280Backdrop(details.backdrop_path) : null,
                     year: (details.release_date || details.first_air_date || "").split("-")[0],
                     originCountry: details.origin_country?.[0] || "US",
                     synopsis: details.overview,
@@ -192,7 +192,7 @@ export const mediaService = {
 
                     // Map Images
                     images: {
-                        backdrops: details.images?.backdrops?.map((b) => TMDB_CONFIG.originalImage(b.file_path)) || [],
+                        backdrops: details.images?.backdrops?.map((b) => TMDB_CONFIG.w1280Backdrop(b.file_path)) || [],
                         posters: details.images?.posters?.map((p) => TMDB_CONFIG.w500Image(p.file_path)) || [],
                     },
 
@@ -204,7 +204,7 @@ export const mediaService = {
                         type: (item.media_type === "movie" || (!item.media_type && type === "movie") ? "MOVIE" : "TV") as "MOVIE" | "TV",
                         title: item.title || item.name || "Unknown",
                         poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
-                        backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                        backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                         year: (item.release_date || item.first_air_date || "").split("-")[0],
                         originCountry: item.origin_country?.[0] || "US",
                         synopsis: item.overview,
@@ -233,7 +233,7 @@ export const mediaService = {
                     type: (item.media_type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
                     title: item.title || item.name || "Unknown",
                     poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
-                    backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                    backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                     year: (item.release_date || item.first_air_date || "").split("-")[0],
                     originCountry: item.origin_country?.[0] || "US",
                     synopsis: item.overview,
@@ -285,7 +285,7 @@ export const mediaService = {
                 type: "TV",
                 title: item.name || "Unknown",
                 poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
-                backdrop: item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null,
+                backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                 year: (item.first_air_date || "").split("-")[0],
                 originCountry: "KR",
                 synopsis: item.overview,

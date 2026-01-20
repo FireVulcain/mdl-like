@@ -682,9 +682,11 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     src={first.backdrop || first.poster!}
                                                     alt={first.title || ""}
                                                     fill
-                                                    className="object-cover opacity-0 transition-opacity duration-700 ease-out"
-                                                    loading="lazy"
+                                                    sizes="(max-width: 768px) 384px, 512px"
+                                                    className={`object-cover transition-opacity duration-700 ease-out ${displayedCount === 0 ? "opacity-100" : "opacity-0"}`}
+                                                    {...(displayedCount === 0 ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
                                                     onLoad={(e) => {
+                                                        if (displayedCount === 0) return; // Skip animation for priority images
                                                         const img = e.currentTarget;
                                                         const container = img.parentElement;
                                                         // Add a small delay to ensure the shimmer is visible
@@ -738,6 +740,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                             }
                         } else {
                             // Single Card
+                            const isFirstItem = displayedCount === 0;
                             resultNodes.push(
                                 <ItemCard
                                     key={first.id}
@@ -745,6 +748,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     handleProgress={handleProgress}
                                     handleStatusChange={handleStatusChange}
                                     openEdit={openEdit}
+                                    isFirst={isFirstItem}
                                 />,
                             );
                             displayedCount++;
@@ -786,12 +790,14 @@ const ItemCard = memo(function ItemCard({
     handleStatusChange,
     openEdit,
     isChild = false,
+    isFirst = false,
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
     handleStatusChange: (id: string, newStatus: string, title?: string) => void;
     openEdit: (item: WatchlistItem) => void;
     isChild?: boolean;
+    isFirst?: boolean;
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -843,9 +849,11 @@ const ItemCard = memo(function ItemCard({
                                 src={item.backdrop || item.poster!}
                                 alt={item.title || ""}
                                 fill
-                                className="object-cover opacity-0 transition-opacity duration-700 ease-out"
-                                loading="lazy"
+                                sizes="128px"
+                                className={`object-cover transition-opacity duration-700 ease-out ${isFirst ? "opacity-100" : "opacity-0"}`}
+                                {...(isFirst ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
                                 onLoad={(e) => {
+                                    if (isFirst) return; // Skip animation for priority images
                                     const img = e.currentTarget;
                                     const container = img.parentElement;
                                     // Add a small delay to ensure the shimmer is visible

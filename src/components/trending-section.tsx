@@ -56,6 +56,7 @@ export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
                         src={spotlight.backdrop || spotlight.poster || ""}
                         alt={spotlight.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 85vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         priority
                     />

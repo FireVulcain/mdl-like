@@ -77,6 +77,12 @@ export async function getDashboardStats(userId: string, existingItems?: UserMedi
     };
 }
 
+// Helper to optimize TMDB image URLs (convert original to w1280 for backdrops)
+function optimizeImageUrl(url: string | null): string | null {
+    if (!url) return null;
+    return url.replace("/t/p/original/", "/t/p/w1280/");
+}
+
 export async function getContinueWatching(userId: string) {
     const items = await prisma.userMedia.findMany({
         where: {
@@ -93,7 +99,7 @@ export async function getContinueWatching(userId: string) {
         id: item.id,
         title: item.title,
         poster: item.poster || "",
-        backdrop: item.backdrop,
+        backdrop: optimizeImageUrl(item.backdrop),
         progress: item.progress,
         totalEp: item.totalEp || 1,
         externalId: item.externalId,

@@ -4,7 +4,13 @@ const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 export const TMDB_CONFIG = {
     imageBaseUrl: TMDB_IMAGE_BASE_URL,
     originalImage: (path: string) => `${TMDB_IMAGE_BASE_URL}/original${path}`,
+    // Poster sizes (for portrait images)
+    w342Image: (path: string) => `${TMDB_IMAGE_BASE_URL}/w342${path}`,
     w500Image: (path: string) => `${TMDB_IMAGE_BASE_URL}/w500${path}`,
+    w780Image: (path: string) => `${TMDB_IMAGE_BASE_URL}/w780${path}`,
+    // Backdrop sizes (for landscape images) - use these instead of original for better performance
+    w780Backdrop: (path: string) => `${TMDB_IMAGE_BASE_URL}/w780${path}`,
+    w1280Backdrop: (path: string) => `${TMDB_IMAGE_BASE_URL}/w1280${path}`,
 };
 
 
