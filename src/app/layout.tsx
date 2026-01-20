@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,18 @@ export default async function RootLayout({
             {isAuthenticated && <SiteHeader />}
             <main className={isAuthenticated ? "flex-1 pt-24" : "flex-1"}>{children}</main>
           </div>
+          <Toaster
+            position="top-right"
+            theme="dark"
+            richColors
+            toastOptions={{
+              style: {
+                background: "rgba(31, 41, 55, 0.95)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                backdropFilter: "blur(8px)",
+              },
+            }}
+          />
         </Providers>
       </body>
     </html>

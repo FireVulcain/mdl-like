@@ -9,6 +9,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteUserMedia, updateUserMedia, addToWatchlist } from "@/actions/media";
 import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle } from "lucide-react";
+import { toast } from "sonner";
 
 const MOCK_USER_ID = "mock-user-1";
 
@@ -35,7 +36,7 @@ interface EditMediaDialogProps {
     totalEp?: number | null;
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    onOptimisticUpdate?: (id: string, updates: Partial<WatchlistItem>) => void;
+    onOptimisticUpdate?: (id: string, updates: Partial<WatchlistItem>, title?: string) => void;
 }
 
 const statusOptions = [
@@ -99,17 +100,22 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     score: formData.score,
                     notes: formData.notes,
                 });
+                toast.success("Changes saved", {
+                    description: displayTitle,
+                });
             } else if (media) {
                 await addToWatchlist(MOCK_USER_ID, media, formData.status, season || 1, totalEp || undefined, {
                     progress: formData.progress,
                     score: formData.score || undefined,
                     notes: formData.notes || undefined,
                 });
+                toast.success("Added to watchlist", {
+                    description: displayTitle,
+                });
             }
         } catch (error) {
             console.error("Failed to save", error);
-            // In a production app, you might want to show an error toast here
-            // and possibly revert the optimistic update
+            toast.error("Failed to save changes");
         } finally {
             setLoading(false);
         }
@@ -122,8 +128,12 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
         try {
             await deleteUserMedia(item.id);
             onOpenChange(false);
+            toast.success("Removed from watchlist", {
+                description: displayTitle,
+            });
         } catch (error) {
             console.error("Failed to delete", error);
+            toast.error("Failed to delete");
         } finally {
             setLoading(false);
         }

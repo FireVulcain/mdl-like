@@ -10,6 +10,7 @@ import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus } from "@/actions/backfill";
 import { importMDLNotes } from "@/actions/mdl-import";
 import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen, ImageOff } from "lucide-react";
+import { toast } from "sonner";
 
 type WatchlistItem = {
     id: string;
@@ -210,24 +211,36 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     }, [items]);
 
     const handleProgress = useCallback(
-        async (id: string, newProgress: number) => {
+        async (id: string, newProgress: number, title?: string) => {
             startTransition(() => {
                 setOptimisticItems({ id, progress: newProgress });
             });
-            await updateProgress(id, newProgress);
+            try {
+                await updateProgress(id, newProgress);
+                toast.success(`Episode ${newProgress}`, {
+                    description: title || "Progress updated",
+                });
+            } catch (error) {
+                console.error("Failed to update progress:", error);
+                toast.error("Failed to update progress");
+            }
         },
         [startTransition, setOptimisticItems],
     );
 
     const handleStatusChange = useCallback(
-        async (id: string, newStatus: string) => {
+        async (id: string, newStatus: string, title?: string) => {
             startTransition(() => {
                 setOptimisticItems({ id, status: newStatus });
             });
             try {
                 await updateUserMedia(id, { status: newStatus });
+                toast.success(`Status: ${newStatus}`, {
+                    description: title || "Status updated",
+                });
             } catch (error) {
                 console.error("Failed to update status:", error);
+                toast.error("Failed to update status");
             }
         },
         [startTransition, setOptimisticItems],
@@ -775,8 +788,8 @@ const ItemCard = memo(function ItemCard({
     isChild = false,
 }: {
     item: WatchlistItem;
-    handleProgress: (id: string, progress: number) => void;
-    handleStatusChange: (id: string, newStatus: string) => void;
+    handleProgress: (id: string, progress: number, title?: string) => void;
+    handleStatusChange: (id: string, newStatus: string, title?: string) => void;
     openEdit: (item: WatchlistItem) => void;
     isChild?: boolean;
 }) {
@@ -918,7 +931,7 @@ const ItemCard = memo(function ItemCard({
                                             key={status}
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                handleStatusChange(item.id, status);
+                                                handleStatusChange(item.id, status, item.title || undefined);
                                                 setShowStatusDropdown(false);
                                             }}
                                             className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all ${
@@ -942,7 +955,7 @@ const ItemCard = memo(function ItemCard({
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
-                                handleProgress(item.id, Math.max(0, item.progress - 1));
+                                handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
                             }}
                             className="cursor-pointer h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
                         >
@@ -956,7 +969,7 @@ const ItemCard = memo(function ItemCard({
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
-                                handleProgress(item.id, item.progress + 1);
+                                handleProgress(item.id, item.progress + 1, item.title || undefined);
                             }}
                             className="cursor-pointer h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
                         >
