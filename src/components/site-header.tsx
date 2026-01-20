@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { MonitorPlay, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -43,12 +43,9 @@ export function SiteHeader() {
                 )}
             >
                 {/* Branding */}
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="p-2 rounded-xl bg-primary/10 transition-colors">
-                        <MonitorPlay className="h-5 w-5 text-primary transition-colors" />
-                    </div>
-                    <span className="font-black text-xl tracking-tighter bg-linear-to-r from-white to-white/60 bg-clip-text text-transparent transition-all">
-                        MEDIA<span className="text-primary">TRACKER</span>
+                <Link href="/" className="group">
+                    <span className="font-black text-2xl tracking-tight text-white transition-all group-hover:opacity-80">
+                        track<span className="text-primary">r</span>
                     </span>
                 </Link>
 
