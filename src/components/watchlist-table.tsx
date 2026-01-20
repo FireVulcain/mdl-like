@@ -682,7 +682,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     src={first.backdrop || first.poster!}
                                                     alt={first.title || ""}
                                                     fill
-                                                    sizes="(max-width: 768px) 384px, 512px"
+                                                    sizes="(max-width: 768px) 640px, 384px"
                                                     className={`object-cover transition-opacity duration-700 ease-out ${displayedCount === 0 ? "opacity-100" : "opacity-0"}`}
                                                     {...(displayedCount === 0 ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
                                                     onLoad={(e) => {
@@ -849,7 +849,7 @@ const ItemCard = memo(function ItemCard({
                                 src={item.backdrop || item.poster!}
                                 alt={item.title || ""}
                                 fill
-                                sizes="128px"
+                                sizes="(max-width: 768px) 640px, 384px"
                                 className={`object-cover transition-opacity duration-700 ease-out ${isFirst ? "opacity-100" : "opacity-0"}`}
                                 {...(isFirst ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
                                 onLoad={(e) => {
