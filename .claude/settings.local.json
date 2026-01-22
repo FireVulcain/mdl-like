@@ -18,7 +18,9 @@
       "mcp__chrome-devtools__handle_dialog",
       "Bash(netstat:*)",
       "Bash(findstr:*)",
-      "Bash(taskkill //F //PID 15968)"
+      "Bash(taskkill //F //PID 15968)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next build)"
     ]
   }
 }

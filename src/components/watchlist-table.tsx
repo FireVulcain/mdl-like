@@ -12,6 +12,13 @@ import { importMDLNotes } from "@/actions/mdl-import";
 import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen, ImageOff } from "lucide-react";
 import { toast } from "sonner";
 
+type NextEpisodeData = {
+    airDate: string;
+    episodeNumber: number;
+    seasonNumber: number;
+    name?: string;
+};
+
 type WatchlistItem = {
     id: string;
     source: string;
@@ -31,6 +38,8 @@ type WatchlistItem = {
     mediaType: string;
     genres: string | null;
     airingStatus: string | null;
+    nextEpisode?: NextEpisodeData | null;
+    seasonAirDate?: string | null;
 };
 
 interface WatchlistTableProps {
@@ -46,6 +55,7 @@ type OptimisticUpdate = {
 };
 
 import { EditMediaDialog } from "./edit-media-dialog";
+import { NextEpisodeIndicator } from "./next-episode-indicator";
 
 const statusConfig = {
     Watching: { icon: Eye, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
@@ -894,8 +904,18 @@ const ItemCard = memo(function ItemCard({
                                 </span>
                             )}
                         </div>
-                        <div className="text-sm text-gray-400">
-                            {item.originCountry || "Unknown"} · {item.year || "N/A"}
+                        <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-sm text-gray-400">
+                                {item.originCountry || "Unknown"} · {item.year || "N/A"}
+                            </span>
+                            {item.status === "Watching" && (
+                                <NextEpisodeIndicator
+                                    nextEpisode={item.nextEpisode}
+                                    totalEpisodes={item.totalEp}
+                                    status={item.airingStatus}
+                                    seasonAirDate={item.seasonAirDate}
+                                />
+                            )}
                         </div>
                     </div>
                     {/* Mobile Status Button - centered with entire title block */}

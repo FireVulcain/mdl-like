@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"; // Need to create this
 import { UnifiedMedia } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
+import { tmdb } from "@/lib/tmdb";
 
 // Ensure we have a singleton Prisma client
 // We need to create src/lib/prisma.ts first if not exists, but I'll assume I need to create it.
@@ -154,6 +155,13 @@ function optimizeImageUrl(url: string | null): string | null {
     return url.replace("/t/p/original/", "/t/p/w1280/");
 }
 
+type NextEpisodeData = {
+    airDate: string;
+    episodeNumber: number;
+    seasonNumber: number;
+    name?: string;
+};
+
 export async function getWatchlist(userId: string) {
     if (!userId) return []; // or throw
 
@@ -170,12 +178,57 @@ export async function getWatchlist(userId: string) {
         Dropped: 5,
     };
 
+    // Fetch next episode data for "Watching" items that are airing
+    const watchingAiringItems = items.filter(
+        (item) =>
+            item.status === "Watching" &&
+            item.airingStatus === "Returning Series" &&
+            item.mediaType === "TV" &&
+            item.source === "TMDB"
+    );
+
+    // Create a map to store next episode data, keyed by externalId
+    const nextEpisodeMap = new Map<string, { nextEpisode: NextEpisodeData | null; seasonAirDate: string | null }>();
+
+    // Fetch next episode data in parallel (batched)
+    if (watchingAiringItems.length > 0) {
+        const fetchPromises = watchingAiringItems.map(async (item) => {
+            try {
+                const details = await tmdb.getDetails("tv", item.externalId);
+                const nextEpisode = details.next_episode_to_air
+                    ? {
+                          airDate: details.next_episode_to_air.air_date,
+                          episodeNumber: details.next_episode_to_air.episode_number,
+                          seasonNumber: details.next_episode_to_air.season_number,
+                          name: details.next_episode_to_air.name,
+                      }
+                    : null;
+
+                // Find the season air date for the current season the user is watching
+                const seasonData = details.seasons?.find((s) => s.season_number === item.season);
+                const seasonAirDate = seasonData?.air_date || details.first_air_date || null;
+
+                nextEpisodeMap.set(`${item.externalId}-${item.season}`, { nextEpisode, seasonAirDate });
+            } catch (error) {
+                console.error(`Failed to fetch next episode for ${item.title}:`, error);
+            }
+        });
+
+        await Promise.all(fetchPromises);
+    }
+
     return items
-        .map((item) => ({
-            ...item,
-            // Optimize backdrop URLs for better performance
-            backdrop: optimizeImageUrl(item.backdrop),
-        }))
+        .map((item) => {
+            const episodeData = nextEpisodeMap.get(`${item.externalId}-${item.season}`);
+            return {
+                ...item,
+                // Optimize backdrop URLs for better performance
+                backdrop: optimizeImageUrl(item.backdrop),
+                // Add next episode data for watching items
+                nextEpisode: episodeData?.nextEpisode || null,
+                seasonAirDate: episodeData?.seasonAirDate || null,
+            };
+        })
         .sort((a, b) => {
             const weightA = statusWeight[a.status] || 99;
             const weightB = statusWeight[b.status] || 99;
