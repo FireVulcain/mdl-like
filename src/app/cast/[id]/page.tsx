@@ -4,10 +4,11 @@ import { TMDB_CONFIG } from "@/lib/tmdb";
 import Image from "next/image";
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
-import { ArrowLeft, Star, Film, Tv } from "lucide-react";
+import { ArrowLeft, Star, Film, Tv, Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { TMDBPerson, TMDBPersonCredits } from "@/lib/tmdb";
 import { getPersonData } from "@/actions/person";
+import { getWatchlistExternalIds } from "@/actions/user-media";
 
 function getGenderLabel(gender: number): string {
     switch (gender) {
@@ -48,15 +49,20 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
     const { id } = use(params);
     const [person, setPerson] = useState<TMDBPerson | null>(null);
     const [credits, setCredits] = useState<TMDBPersonCredits | null>(null);
+    const [watchlistIds, setWatchlistIds] = useState<Set<string>>(new Set());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const data = await getPersonData(id);
+                const [data, watchlistExternalIds] = await Promise.all([
+                    getPersonData(id),
+                    getWatchlistExternalIds()
+                ]);
                 setPerson(data.person);
                 setCredits(data.credits);
+                setWatchlistIds(new Set(watchlistExternalIds));
                 if (!data.person) {
                     setError(true);
                 }
@@ -279,7 +285,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                     {series.map((credit) => (
-                                        <CreditCard key={`series-${credit.id}-${credit.character}`} credit={credit} />
+                                        <CreditCard key={`series-${credit.id}-${credit.character}`} credit={credit} inWatchlist={watchlistIds.has(String(credit.id))} />
                                     ))}
                                 </div>
                             </div>
@@ -298,7 +304,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                     {movies.map((credit) => (
-                                        <CreditCard key={`movie-${credit.id}-${credit.character}`} credit={credit} />
+                                        <CreditCard key={`movie-${credit.id}-${credit.character}`} credit={credit} inWatchlist={watchlistIds.has(String(credit.id))} />
                                     ))}
                                 </div>
                             </div>
@@ -317,7 +323,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                     {tvShows.map((credit) => (
-                                        <CreditCard key={`tv-${credit.id}-${credit.character}`} credit={credit} />
+                                        <CreditCard key={`tv-${credit.id}-${credit.character}`} credit={credit} inWatchlist={watchlistIds.has(String(credit.id))} />
                                     ))}
                                 </div>
                             </div>
@@ -347,9 +353,10 @@ interface CreditCardProps {
         episode_count?: number;
         origin_country?: string[];
     };
+    inWatchlist?: boolean;
 }
 
-function CreditCard({ credit }: CreditCardProps) {
+function CreditCard({ credit, inWatchlist }: CreditCardProps) {
     const title = credit.title || credit.name || "Unknown";
     const year = (credit.release_date || credit.first_air_date || "").slice(0, 4);
     const mediaId = `tmdb-${credit.id}`;
@@ -400,6 +407,15 @@ function CreditCard({ credit }: CreditCardProps) {
                         <div className="absolute right-2 top-2">
                             <Badge variant="secondary" className="bg-black/60 font-mono text-xs text-white backdrop-blur-sm">
                                 {countryCode}
+                            </Badge>
+                        </div>
+                    )}
+
+                    {/* Watchlist Badge */}
+                    {inWatchlist && (
+                        <div className="absolute left-2 bottom-2">
+                            <Badge variant="secondary" className="bg-emerald-500/90 text-xs text-white backdrop-blur-sm">
+                                <Bookmark className="h-3 w-3 fill-current" />
                             </Badge>
                         </div>
                     )}
