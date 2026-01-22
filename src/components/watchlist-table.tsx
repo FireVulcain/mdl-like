@@ -177,7 +177,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     setDisplayCount((prev) => prev + 10);
                 }
             },
-            { threshold: 0.1 }
+            { threshold: 0.1 },
         );
 
         const currentRef = loadMoreRef.current;
@@ -687,14 +687,16 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                     : "bg-gray-800/50 border border-dashed border-gray-600"
                                             }`}
                                         >
-                                            {(first.backdrop || first.poster) ? (
+                                            {first.backdrop || first.poster ? (
                                                 <Image
                                                     src={first.backdrop || first.poster!}
                                                     alt={first.title || ""}
                                                     fill
                                                     sizes="(max-width: 768px) 640px, 384px"
                                                     className={`object-cover transition-opacity duration-700 ease-out ${displayedCount === 0 ? "opacity-100" : "opacity-0"}`}
-                                                    {...(displayedCount === 0 ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
+                                                    {...(displayedCount === 0
+                                                        ? { priority: true, fetchPriority: "high" as const }
+                                                        : { loading: "lazy" as const })}
                                                     onLoad={(e) => {
                                                         if (displayedCount === 0) return; // Skip animation for priority images
                                                         const img = e.currentTarget;
@@ -776,9 +778,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 )}
 
                 {/* Infinite scroll sentinel */}
-                {filteredItems.length > 0 && (
-                    <div ref={loadMoreRef} className="h-10" />
-                )}
+                {filteredItems.length > 0 && <div ref={loadMoreRef} className="h-10" />}
             </div>
 
             {editingItem && (
@@ -853,7 +853,7 @@ const ItemCard = memo(function ItemCard({
                             : "bg-gray-800/50 border border-dashed border-gray-600"
                     }`}
                 >
-                    {(item.backdrop || item.poster) ? (
+                    {item.backdrop || item.poster ? (
                         <>
                             <Image
                                 src={item.backdrop || item.poster!}
@@ -908,7 +908,7 @@ const ItemCard = memo(function ItemCard({
                             <span className="text-sm text-gray-400">
                                 {item.originCountry || "Unknown"} · {item.year || "N/A"}
                             </span>
-                            {item.status === "Watching" && (
+                            {item.status === "Watching" && item.originCountry === "KR" && (
                                 <NextEpisodeIndicator
                                     nextEpisode={item.nextEpisode}
                                     totalEpisodes={item.totalEp}
