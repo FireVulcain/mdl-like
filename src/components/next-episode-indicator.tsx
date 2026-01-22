@@ -75,14 +75,41 @@ function calculateTimeLeft(airDate: string): TimeLeft | null {
     };
 }
 
-function formatTimeLeft(time: TimeLeft): string {
+function isToday(airDate: string): boolean {
+    const airDateTime = getAirDateTime(airDate);
+    const now = new Date();
+    return (
+        airDateTime.getFullYear() === now.getFullYear() &&
+        airDateTime.getMonth() === now.getMonth() &&
+        airDateTime.getDate() === now.getDate()
+    );
+}
+
+function isTomorrow(airDate: string): boolean {
+    const airDateTime = getAirDateTime(airDate);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return (
+        airDateTime.getFullYear() === tomorrow.getFullYear() &&
+        airDateTime.getMonth() === tomorrow.getMonth() &&
+        airDateTime.getDate() === tomorrow.getDate()
+    );
+}
+
+function formatTimeLeft(time: TimeLeft, airDate: string): { text: string; useIn: boolean } {
+    if (isToday(airDate)) {
+        return { text: 'Today', useIn: false };
+    }
+    if (isTomorrow(airDate)) {
+        return { text: 'Tomorrow', useIn: false };
+    }
     if (time.days > 0) {
-        return `${time.days}d ${time.hours}h`;
+        return { text: `${time.days}d ${time.hours}h`, useIn: true };
     }
     if (time.hours > 0) {
-        return `${time.hours}h ${time.minutes}m`;
+        return { text: `${time.hours}h ${time.minutes}m`, useIn: true };
     }
-    return `${time.minutes}m`;
+    return { text: `${time.minutes}m`, useIn: true };
 }
 
 export function NextEpisodeIndicator({
@@ -145,15 +172,17 @@ export function NextEpisodeIndicator({
 
     if (!mounted || !episodeData || !timeLeft) return null;
 
+    const formatted = formatTimeLeft(timeLeft, episodeData.airDate);
+
     return (
         <div className="flex items-center gap-1.5 text-xs text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2 py-1 rounded-md">
             <Clock className="h-3 w-3" />
             <span className="font-medium">
                 Ep {episodeData.episodeNumber}
             </span>
-            <span className="text-amber-400/70">in</span>
+            {formatted.useIn && <span className="text-amber-400/70">in</span>}
             <span className="font-semibold tabular-nums">
-                {formatTimeLeft(timeLeft)}
+                {formatted.text}
             </span>
         </div>
     );
