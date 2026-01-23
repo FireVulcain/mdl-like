@@ -1,27 +1,26 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
 datasource db {
   provider = "postgresql"
 }
 
-generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-}
-
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -35,9 +34,9 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
   password      String?
@@ -55,30 +54,33 @@ model VerificationToken {
 }
 
 model UserMedia {
-  id          String   @id @default(cuid())
-  userId      String
-  externalId  String   // The ID from TMDB or MDL
-  source      String   // "TMDB" or "MDL"
-  mediaType   String   // "TV" or "MOVIE"
-  status      String   // "WATCHING", "COMPLETED", etc.
-  season      Int      @default(1) // Season Number
-  progress    Int      // Current Episode
-  totalEp     Int?     // Total Episodes (cached from API)
-  score       Float?
-  notes       String?  @db.Text
-  
-  // Cached metadata for display (avoids N+1 API calls)
-  title       String? // Made optional to support existing rows if any, but should be populated
-  poster      String?
-  backdrop    String?
-  year        Int?
+  id            String   @id @default(cuid())
+  userId        String
+  externalId    String
+  source        String
+  mediaType     String
+  status        String
+  progress      Int
+  totalEp       Int?
+  score         Float?
+  title         String?
+  poster        String?
+  year          Int?
   originCountry String?
-  tmdbRating  Float?
-  mdlRating   Float?   // MDL community rating
-  genres      String?  // Store as comma-separated values
-  airingStatus String? // "Returning Series", "Ended", "Canceled", etc. from TMDB
+  updatedAt     DateTime @updatedAt
+  notes         String?
+  season        Int      @default(1)
+  tmdbRating    Float?
+  genres        String?
+  backdrop      String?
+  mdlRating     Float?
+  airingStatus  String?
+  lastWatchedAt DateTime?
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
-  updatedAt   DateTime @updatedAt
-  
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model SyncLog {
+  id       String   @id @default("daily-sync")
+  lastSync DateTime @default(now())
+  results  Json?
 }

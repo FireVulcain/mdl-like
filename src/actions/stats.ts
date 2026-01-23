@@ -91,7 +91,10 @@ export async function getContinueWatching(userId: string) {
             status: "Watching",
             progress: { gt: 0 },
         },
-        orderBy: { updatedAt: "desc" },
+        orderBy: [
+            { lastWatchedAt: { sort: "desc", nulls: "last" } },
+            { updatedAt: "desc" },
+        ],
         take: 6,
     });
 

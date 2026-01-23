@@ -55,6 +55,7 @@ export async function addToWatchlist(
                     progress: initialData?.progress ?? existing.progress,
                     score: initialData?.score ?? existing.score,
                     notes: initialData?.notes ?? existing.notes,
+                    lastWatchedAt: status === "Watching" || initialData?.progress !== undefined ? new Date() : undefined,
                     // Update cached metadata
                     totalEp: epCount,
                     title: media.title,
@@ -88,6 +89,7 @@ export async function addToWatchlist(
                 totalEp: epCount,
                 genres: media.genres?.join(","),
                 airingStatus: media.status || null,
+                lastWatchedAt: status === "Watching" || (initialData?.progress ?? 0) > 0 ? new Date() : null,
             },
         });
 
@@ -103,7 +105,10 @@ export async function updateProgress(id: string, progress: number) {
     try {
         const updated = await prisma.userMedia.update({
             where: { id },
-            data: { progress },
+            data: { 
+                progress,
+                lastWatchedAt: new Date()
+            },
         });
         revalidatePath("/watchlist");
         return updated;
@@ -138,6 +143,7 @@ export async function updateUserMedia(id: string, data: Partial<any>) {
                 progress,
                 score,
                 notes,
+                lastWatchedAt: (status !== undefined || progress !== undefined) ? new Date() : undefined,
             },
         });
         revalidatePath("/watchlist");
