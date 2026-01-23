@@ -36,7 +36,7 @@ export function ConfirmDialog({
                         variant="ghost"
                         onClick={() => onOpenChange(false)}
                         disabled={isLoading}
-                        className="text-gray-400 hover:text-white hover:bg-white/10"
+                        className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
                     >
                         {cancelLabel}
                     </Button>
@@ -46,7 +46,7 @@ export function ConfirmDialog({
                             onOpenChange(false);
                         }}
                         disabled={isLoading}
-                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                        className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                     >
                         {confirmLabel}
                     </Button>
