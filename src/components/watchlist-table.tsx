@@ -26,6 +26,9 @@ import {
     MoreVertical,
 } from "lucide-react";
 import { toast } from "sonner";
+import { ConfirmDialog } from "./confirm-dialog";
+
+type ConfirmAction = "mdl-import" | "backfill" | null;
 
 type NextEpisodeData = {
     airDate: string;
@@ -96,6 +99,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
+    const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
 
     // Infinite scroll
     const [displayCount, setDisplayCount] = useState(10);
@@ -293,49 +297,57 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     };
 
     const handleBackfill = async () => {
-        if (!confirm("This will refresh backdrops for all multi-season shows (assigning different images per season). Continue?")) return;
-
         setIsBackfilling(true);
+        const toastId = toast.loading("Refreshing backdrops...");
         try {
             // First backfill missing backdrops
             await backfillBackdrops("mock-user-1");
             // Then refresh multi-season shows to get different backdrops per season
             const result = await refreshAllBackdrops("mock-user-1");
             if (result.success) {
-                alert(`Successfully updated ${result.count} season backdrops!`);
-                window.location.reload();
+                toast.success(`Updated ${result.count} season backdrops`, {
+                    id: toastId,
+                    description: "Refreshing page...",
+                });
+                setTimeout(() => window.location.reload(), 1000);
+            } else {
+                toast.dismiss(toastId);
             }
         } catch (error) {
             console.error("Backfill failed:", error);
-            alert("Failed to backfill. check console.");
+            toast.error("Failed to refresh backdrops", {
+                id: toastId,
+                description: "Check console for details",
+            });
         } finally {
             setIsBackfilling(false);
         }
     };
 
     const handleMDLImport = async () => {
-        if (!confirm("This will import notes from your MyDramaList account. Continue?")) return;
-
         setIsImportingMDL(true);
+        const toastId = toast.loading("Importing notes from MDL...");
         try {
             const result = await importMDLNotes("mock-user-1");
 
             if (result.success) {
-                alert(
-                    `${result.message}\n` +
-                        `Total time: ${result.duration}s\n\n` +
-                        `Stats:\n` +
-                        `- Scraped: ${result.stats?.scraped}\n` +
-                        `- Matched: ${result.stats?.matched}\n` +
-                        `- Updated: ${result.stats?.updated}\n\n`,
-                );
-                window.location.reload();
+                toast.success(result.message, {
+                    id: toastId,
+                    description: `Scraped: ${result.stats?.scraped} · Matched: ${result.stats?.matched} · Updated: ${result.stats?.updated} (${result.duration}s)`,
+                });
+                setTimeout(() => window.location.reload(), 1500);
             } else {
-                alert(`Failed: ${result.message}`);
+                toast.error("Import failed", {
+                    id: toastId,
+                    description: result.message,
+                });
             }
         } catch (error) {
             console.error("MDL import failed:", error);
-            alert("Failed to import from MDL. Check console.");
+            toast.error("Failed to import from MDL", {
+                id: toastId,
+                description: "Check console for details",
+            });
         } finally {
             setIsImportingMDL(false);
         }
@@ -343,15 +355,24 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     const handleBackfillAiring = async () => {
         setIsBackfillingAiring(true);
+        const toastId = toast.loading("Updating airing status...");
         try {
             const result = await backfillAiringStatus("mock-user-1");
             if (result.success) {
-                alert(`${result.message}`);
-                window.location.reload();
+                toast.success("Airing status updated", {
+                    id: toastId,
+                    description: result.message,
+                });
+                setTimeout(() => window.location.reload(), 1000);
+            } else {
+                toast.dismiss(toastId);
             }
         } catch (error) {
             console.error("Airing status backfill failed:", error);
-            alert("Failed to backfill airing status. Check console.");
+            toast.error("Failed to update airing status", {
+                id: toastId,
+                description: "Check console for details",
+            });
         } finally {
             setIsBackfillingAiring(false);
         }
@@ -557,7 +578,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         variant="ghost"
                         size="sm"
                         onClick={() => setShowActionsMenu(!showActionsMenu)}
-                        className="h-9 px-3 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all"
+                        className="cursor-pointer h-9 px-3 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all"
                     >
                         <MoreVertical className="h-4 w-4" />
                     </Button>
@@ -568,7 +589,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 <button
                                     onClick={() => {
                                         setShowActionsMenu(false);
-                                        handleMDLImport();
+                                        setConfirmAction("mdl-import");
                                     }}
                                     disabled={isImportingMDL}
                                     className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -579,7 +600,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                 <button
                                     onClick={() => {
                                         setShowActionsMenu(false);
-                                        handleBackfill();
+                                        setConfirmAction("backfill");
                                     }}
                                     disabled={isBackfilling}
                                     className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -822,6 +843,24 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     onOptimisticUpdate={handleOptimisticEdit}
                 />
             )}
+
+            <ConfirmDialog
+                open={confirmAction === "mdl-import"}
+                onOpenChange={(open) => !open && setConfirmAction(null)}
+                title="Import MDL Notes"
+                description="This will import notes from your MyDramaList account. Continue?"
+                confirmLabel="Import"
+                onConfirm={handleMDLImport}
+            />
+
+            <ConfirmDialog
+                open={confirmAction === "backfill"}
+                onOpenChange={(open) => !open && setConfirmAction(null)}
+                title="Refresh Backdrops"
+                description="This will refresh backdrops for all multi-season shows, assigning different images per season. Continue?"
+                confirmLabel="Refresh"
+                onConfirm={handleBackfill}
+            />
         </div>
     );
 }
