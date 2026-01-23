@@ -13,9 +13,12 @@ const TrendingSection = dynamic(() => import("@/components/trending-section").th
 const MOCK_USER_ID = "mock-user-1";
 
 export default async function Home() {
-    const trending = await mediaService.getTrending();
-    const kdramas = await mediaService.getKDramas();
-    const continueWatchingItems = await getContinueWatching(MOCK_USER_ID);
+    // Parallel fetch: all 3 operations are independent
+    const [trending, kdramas, continueWatchingItems] = await Promise.all([
+        mediaService.getTrending(),
+        mediaService.getKDramas(),
+        getContinueWatching(MOCK_USER_ID),
+    ]);
 
     return (
         <div className="container py-6 md:py-8 space-y-12 md:space-y-24 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0">

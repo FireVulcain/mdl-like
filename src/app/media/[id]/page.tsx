@@ -17,8 +17,8 @@ import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 const MOCK_USER_ID = "mock-user-1";
 
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
-    const { id } = await params;
-    const { season } = await searchParams;
+    // Parallel fetch: params and searchParams are independent
+    const [{ id }, { season }] = await Promise.all([params, searchParams]);
     const media = await mediaService.getDetails(id);
 
     if (!media) {
@@ -171,7 +171,36 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
                             )}
 
-                            <AddToListButton media={media} userMedia={userMedia} season={selectedSeason} totalEp={episodeCount} />
+                            <AddToListButton
+                                // Only pass fields needed by client (server-serialization optimization)
+                                media={{
+                                    id: media.id,
+                                    externalId: media.externalId,
+                                    source: media.source,
+                                    type: media.type,
+                                    title: media.title,
+                                    poster: media.poster,
+                                    backdrop: media.backdrop,
+                                    year: media.year,
+                                    originCountry: media.originCountry,
+                                    status: media.status,
+                                    totalEp: media.totalEp,
+                                    genres: media.genres,
+                                    seasons: media.seasons?.map(s => ({
+                                        seasonNumber: s.seasonNumber,
+                                        poster: s.poster,
+                                        episodeCount: s.episodeCount,
+                                        name: s.name,
+                                        airDate: s.airDate,
+                                    })),
+                                    // Omit heavy unused fields: cast, images, recommendations, synopsis, rating, etc.
+                                    synopsis: '',
+                                    rating: 0,
+                                }}
+                                userMedia={userMedia}
+                                season={selectedSeason}
+                                totalEp={episodeCount}
+                            />
 
                             {/* Compact Progress Indicator */}
                             {userMedia && (

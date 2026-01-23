@@ -1,11 +1,13 @@
 "use server";
 
+import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 
 const MOCK_USER_ID = "mock-user-1";
 
 // Helper to get user specific media data
-export async function getUserMedia(userId: string, externalId: string, source: string, season: number = 1) {
+// Wrapped with React.cache() for per-request deduplication
+export const getUserMedia = cache(async (userId: string, externalId: string, source: string, season: number = 1) => {
   if (!userId) return null;
 
   return await prisma.userMedia.findFirst({
@@ -16,15 +18,16 @@ export async function getUserMedia(userId: string, externalId: string, source: s
       season,
     }
   });
-}
+});
 
 // Get all externalIds in user's watchlist (for batch checking)
 // Returns an array since Sets can't be serialized across client-server boundary
-export async function getWatchlistExternalIds(): Promise<string[]> {
+// Wrapped with React.cache() for per-request deduplication
+export const getWatchlistExternalIds = cache(async (): Promise<string[]> => {
   const items = await prisma.userMedia.findMany({
     where: { userId: MOCK_USER_ID },
     select: { externalId: true }
   });
 
   return items.map(item => item.externalId);
-}
+});

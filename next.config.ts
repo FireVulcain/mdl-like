@@ -16,7 +16,24 @@ const nextConfig: NextConfig = {
   },
   // Enable experimental optimizations
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts'],
+    optimizePackageImports: [
+      // Icon library (1,583 modules if imported from barrel)
+      'lucide-react',
+      // Animation library
+      'framer-motion',
+      // Charting library
+      'recharts',
+      // Radix UI primitives (avoid loading all primitives)
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-select',
+      '@radix-ui/react-scroll-area',
+      '@radix-ui/react-progress',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-slot',
+      '@radix-ui/react-visually-hidden',
+      // Toast library
+      'sonner',
+    ],
   },
 };
 

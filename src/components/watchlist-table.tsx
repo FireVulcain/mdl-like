@@ -661,8 +661,8 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     for (const groupKey of groupOrder) {
                         if (displayedCount >= displayCount) break;
 
-                        const group = groupedItems[groupKey];
-                        group.sort((a, b) => a.season - b.season);
+                        // Use toSorted() to avoid mutating the memoized array
+                        const group = groupedItems[groupKey].toSorted((a, b) => a.season - b.season);
                         const first = group[0];
                         const isMultiSeason = group.length > 1;
                         const isExpanded = expandedGroups.has(groupKey);

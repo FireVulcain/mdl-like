@@ -261,22 +261,25 @@ export const mediaService = {
 
     async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[] }> {
         try {
-            // Trending K-Dramas (using popularity as proxy for trending within category)
-            const popularRes = await tmdb.discoverTV({
-                with_origin_country: "KR",
-                with_genres: "18", // Drama
-                sort_by: "popularity.desc",
-            });
-
-            // Currently Airing K-Dramas
             const today = new Date().toISOString().split("T")[0];
-            const airingRes = await tmdb.discoverTV({
-                with_origin_country: "KR",
-                with_genres: "18",
-                "air_date.gte": today,
-                "first_air_date.lte": today, // Ensure it has actually started
-                sort_by: "popularity.desc",
-            });
+
+            // Parallel fetch: both API calls are independent
+            const [popularRes, airingRes] = await Promise.all([
+                // Trending K-Dramas (using popularity as proxy for trending within category)
+                tmdb.discoverTV({
+                    with_origin_country: "KR",
+                    with_genres: "18", // Drama
+                    sort_by: "popularity.desc",
+                }),
+                // Currently Airing K-Dramas
+                tmdb.discoverTV({
+                    with_origin_country: "KR",
+                    with_genres: "18",
+                    "air_date.gte": today,
+                    "first_air_date.lte": today, // Ensure it has actually started
+                    sort_by: "popularity.desc",
+                }),
+            ]);
 
             const transform = (item: TMDBMedia): UnifiedMedia => ({
                 id: `tmdb-${item.id}`,
