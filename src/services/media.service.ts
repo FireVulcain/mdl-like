@@ -1,4 +1,4 @@
-import { tmdb, TMDBMedia, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
+import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 
 export type UnifiedMedia = {
     id: string; // Unified: "tmdb-123" or "mdl-456"
@@ -53,14 +53,36 @@ export type UnifiedMedia = {
     firstAirDate?: string | null; // Raw first air date (YYYY-MM-DD)
 };
 
+export type UnifiedPerson = {
+    id: string; // "person-123"
+    externalId: string;
+    name: string;
+    profileImage: string | null;
+    knownForDepartment: string;
+    popularity: number;
+    knownFor: {
+        id: number;
+        title: string;
+        mediaType: "movie" | "tv";
+        poster: string | null;
+    }[];
+};
+
+export type SearchResults = {
+    media: UnifiedMedia[];
+    people: UnifiedPerson[];
+};
+
 export const mediaService = {
-    async search(query: string): Promise<UnifiedMedia[]> {
+    async search(query: string): Promise<SearchResults> {
         // Primary Source: TMDB
         const tmdbResults = await tmdb.searchMulti(query);
 
-        // Transform TMDB results
-        const unifiedResults: UnifiedMedia[] = tmdbResults.results
-            .filter((item) => item.media_type === "movie" || item.media_type === "tv")
+        // Transform TMDB media results
+        const mediaResults: UnifiedMedia[] = tmdbResults.results
+            .filter((item): item is TMDBMedia & { media_type: "movie" | "tv" } =>
+                item.media_type === "movie" || item.media_type === "tv"
+            )
             .map((item) => ({
                 id: `tmdb-${item.id}`,
                 externalId: item.id.toString(),
@@ -70,16 +92,35 @@ export const mediaService = {
                 poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
                 backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                 year: (item.release_date || item.first_air_date || "").split("-")[0],
-                originCountry: item.origin_country?.[0] || "US", // Fallback to US if missing (common for movies)
+                originCountry: item.origin_country?.[0] || "US",
                 synopsis: item.overview,
                 rating: item.vote_average,
                 popularity: item.popularity,
             }))
             .sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
 
+        // Transform TMDB person results
+        const peopleResults: UnifiedPerson[] = tmdbResults.results
+            .filter((item): item is TMDBPersonSearchResult => item.media_type === "person")
+            .map((item) => ({
+                id: `person-${item.id}`,
+                externalId: item.id.toString(),
+                name: item.name,
+                profileImage: item.profile_path ? TMDB_CONFIG.w500Image(item.profile_path) : null,
+                knownForDepartment: item.known_for_department,
+                popularity: item.popularity,
+                knownFor: item.known_for.slice(0, 3).map((work) => ({
+                    id: work.id,
+                    title: work.title || work.name || "Unknown",
+                    mediaType: work.media_type,
+                    poster: work.poster_path ? TMDB_CONFIG.w342Image(work.poster_path) : null,
+                })),
+            }))
+            .sort((a, b) => b.popularity - a.popularity);
+
         // TODO: Implement MDL search and deduplication logic here
 
-        return unifiedResults as UnifiedMedia[];
+        return { media: mediaResults, people: peopleResults };
     },
 
     async getDetails(id: string): Promise<UnifiedMedia | null> {

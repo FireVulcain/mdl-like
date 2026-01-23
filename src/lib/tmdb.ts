@@ -89,7 +89,16 @@ export type TMDBMedia = {
     number_of_seasons?: number;
 };
 
-export type TMDBSearchResult = {
+// Result type for /search/multi endpoint (includes persons)
+export type TMDBMultiSearchResult = {
+    page: number;
+    results: (TMDBMedia | TMDBPersonSearchResult)[];
+    total_pages: number;
+    total_results: number;
+};
+
+// Result type for media-only endpoints (discover, trending, on_the_air)
+export type TMDBMediaResult = {
     page: number;
     results: TMDBMedia[];
     total_pages: number;
@@ -109,6 +118,24 @@ export type TMDBPerson = {
     popularity: number;
     also_known_as: string[];
     homepage: string | null;
+};
+
+// Person result from /search/multi endpoint
+export type TMDBPersonSearchResult = {
+    id: number;
+    name: string;
+    profile_path: string | null;
+    known_for_department: string;
+    popularity: number;
+    gender: number;
+    media_type: "person";
+    known_for: {
+        id: number;
+        title?: string;
+        name?: string;
+        media_type: "movie" | "tv";
+        poster_path: string | null;
+    }[];
 };
 
 export type TMDBPersonCredits = {
@@ -152,16 +179,16 @@ export async function fetchTMDB<T>(endpoint: string, params: Record<string, stri
 }
 
 export const tmdb = {
-    searchMulti: (query: string, page = 1) => fetchTMDB<TMDBSearchResult>("/search/multi", { query, page: page.toString() }),
+    searchMulti: (query: string, page = 1) => fetchTMDB<TMDBMultiSearchResult>("/search/multi", { query, page: page.toString() }),
 
     getDetails: (type: "movie" | "tv", id: string) => fetchTMDB<TMDBMedia>(`/${type}/${id}`),
 
     getTrending: (type: "all" | "movie" | "tv" = "all", timeWindow: "day" | "week" = "week") =>
-        fetchTMDB<TMDBSearchResult>(`/trending/${type}/${timeWindow}`),
+        fetchTMDB<TMDBMediaResult>(`/trending/${type}/${timeWindow}`),
 
-    discoverTV: (params: Record<string, string>) => fetchTMDB<TMDBSearchResult>("/discover/tv", params),
+    discoverTV: (params: Record<string, string>) => fetchTMDB<TMDBMediaResult>("/discover/tv", params),
 
-    getOnTheAir: (page = 1) => fetchTMDB<TMDBSearchResult>("/tv/on_the_air", { page: page.toString() }),
+    getOnTheAir: (page = 1) => fetchTMDB<TMDBMediaResult>("/tv/on_the_air", { page: page.toString() }),
 
     getPersonDetails: (id: string) => fetchTMDB<TMDBPerson>(`/person/${id}`),
 
