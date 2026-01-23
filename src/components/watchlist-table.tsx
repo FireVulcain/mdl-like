@@ -9,7 +9,22 @@ import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus } from "@/actions/backfill";
 import { importMDLNotes } from "@/actions/mdl-import";
-import { Plus, Minus, Pencil, ChevronRight, Eye, CheckCircle, Clock, XCircle, RefreshCw, X, Filter, BookOpen, ImageOff } from "lucide-react";
+import {
+    Plus,
+    Minus,
+    Pencil,
+    ChevronRight,
+    Eye,
+    CheckCircle,
+    Clock,
+    XCircle,
+    RefreshCw,
+    X,
+    Filter,
+    BookOpen,
+    ImageOff,
+    MoreVertical,
+} from "lucide-react";
 import { toast } from "sonner";
 
 type NextEpisodeData = {
@@ -80,6 +95,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
+    const [showActionsMenu, setShowActionsMenu] = useState(false);
 
     // Infinite scroll
     const [displayCount, setDisplayCount] = useState(10);
@@ -535,41 +551,57 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     />
                 </div>
 
-                {/* Import MDL Notes Button */}
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleMDLImport}
-                    disabled={isImportingMDL}
-                    className="h-9 px-4 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all gap-2"
-                >
-                    <BookOpen className={`h-4 w-4 ${isImportingMDL ? "animate-pulse" : ""}`} />
-                    {isImportingMDL ? "Importing..." : "Import MDL Notes"}
-                </Button>
-
-                {/* Backfill Button */}
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleBackfill}
-                    disabled={isBackfilling}
-                    className="h-9 px-4 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all gap-2"
-                >
-                    <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
-                    {isBackfilling ? "Processing..." : "Refresh Backdrops"}
-                </Button>
-
-                {/* Backfill Airing Status Button */}
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleBackfillAiring}
-                    disabled={isBackfillingAiring}
-                    className="h-9 px-4 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all gap-2"
-                >
-                    <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
-                    {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
-                </Button>
+                {/* Actions Dropdown */}
+                <div className="relative filter-dropdown">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setShowActionsMenu(!showActionsMenu)}
+                        className="h-9 px-3 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all"
+                    >
+                        <MoreVertical className="h-4 w-4" />
+                    </Button>
+                    {showActionsMenu && (
+                        <>
+                            <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
+                            <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-3xs">
+                                <button
+                                    onClick={() => {
+                                        setShowActionsMenu(false);
+                                        handleMDLImport();
+                                    }}
+                                    disabled={isImportingMDL}
+                                    className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <BookOpen className={`h-4 w-4 ${isImportingMDL ? "animate-pulse" : ""}`} />
+                                    {isImportingMDL ? "Importing..." : "Import MDL Notes"}
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setShowActionsMenu(false);
+                                        handleBackfill();
+                                    }}
+                                    disabled={isBackfilling}
+                                    className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
+                                    {isBackfilling ? "Processing..." : "Refresh Backdrops"}
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setShowActionsMenu(false);
+                                        handleBackfillAiring();
+                                    }}
+                                    disabled={isBackfillingAiring}
+                                    className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
+                                    {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
 
             {/* Active Filter Pills */}
