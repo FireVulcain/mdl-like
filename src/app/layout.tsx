@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
 import { Toaster } from "sonner";
+import { SyncNotification } from "@/components/sync-notification";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ export default async function RootLayout({
               },
             }}
           />
+          {isAuthenticated && <SyncNotification />}
         </Providers>
       </body>
     </html>
