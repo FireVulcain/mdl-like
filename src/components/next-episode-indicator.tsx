@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useMemo } from 'react';
-import { Clock } from 'lucide-react';
+import { useEffect, useState, useMemo } from "react";
 
 interface NextEpisodeData {
     airDate: string;
@@ -27,27 +26,27 @@ interface TimeLeft {
 const BROADCAST_HOUR_KST = 22;
 
 function getAirDateTime(airDate: string): Date {
-    const [year, month, day] = airDate.split('-').map(Number);
+    const [year, month, day] = airDate.split("-").map(Number);
     const utcHour = BROADCAST_HOUR_KST - 9;
     return new Date(Date.UTC(year, month - 1, day, utcHour, 0, 0));
 }
 
 function getEpisodeAirDate(seasonAirDate: string, episodeNumber: number): string {
-    const [year, month, day] = seasonAirDate.split('-').map(Number);
+    const [year, month, day] = seasonAirDate.split("-").map(Number);
     const weekNumber = Math.ceil(episodeNumber / 2);
     const isSecondOfWeek = episodeNumber % 2 === 0;
     const daysFromStart = (weekNumber - 1) * 7 + (isSecondOfWeek ? 1 : 0);
     const epDate = new Date(year, month - 1, day + daysFromStart);
     const epYear = epDate.getFullYear();
-    const epMonth = String(epDate.getMonth() + 1).padStart(2, '0');
-    const epDay = String(epDate.getDate()).padStart(2, '0');
+    const epMonth = String(epDate.getMonth() + 1).padStart(2, "0");
+    const epDay = String(epDate.getDate()).padStart(2, "0");
     return `${epYear}-${epMonth}-${epDay}`;
 }
 
 function predictNextEpisode(
     seasonAirDate: string,
     totalEpisodes: number,
-    startFromEpisode: number = 1
+    startFromEpisode: number = 1,
 ): { airDate: string; episodeNumber: number; isPredicted: boolean } | null {
     const now = new Date();
 
@@ -78,11 +77,7 @@ function calculateTimeLeft(airDate: string): TimeLeft | null {
 function isToday(airDate: string): boolean {
     const airDateTime = getAirDateTime(airDate);
     const now = new Date();
-    return (
-        airDateTime.getFullYear() === now.getFullYear() &&
-        airDateTime.getMonth() === now.getMonth() &&
-        airDateTime.getDate() === now.getDate()
-    );
+    return airDateTime.getFullYear() === now.getFullYear() && airDateTime.getMonth() === now.getMonth() && airDateTime.getDate() === now.getDate();
 }
 
 function isTomorrow(airDate: string): boolean {
@@ -98,10 +93,10 @@ function isTomorrow(airDate: string): boolean {
 
 function formatTimeLeft(time: TimeLeft, airDate: string): { text: string; useIn: boolean } {
     if (isToday(airDate)) {
-        return { text: 'Today', useIn: false };
+        return { text: "Today", useIn: false };
     }
     if (isTomorrow(airDate)) {
-        return { text: 'Tomorrow', useIn: false };
+        return { text: "Tomorrow", useIn: false };
     }
     if (time.days > 0) {
         return { text: `${time.days}d ${time.hours}h`, useIn: true };
@@ -112,17 +107,12 @@ function formatTimeLeft(time: TimeLeft, airDate: string): { text: string; useIn:
     return { text: `${time.minutes}m`, useIn: true };
 }
 
-export function NextEpisodeIndicator({
-    nextEpisode,
-    totalEpisodes,
-    status,
-    seasonAirDate,
-}: NextEpisodeIndicatorProps) {
+export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seasonAirDate }: NextEpisodeIndicatorProps) {
     const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
     const [mounted, setMounted] = useState(false);
 
     const episodeData = useMemo(() => {
-        const isOngoing = status === 'Returning Series' || status === 'In Production';
+        const isOngoing = status === "Returning Series" || status === "In Production";
 
         // Check if TMDB data is available and hasn't aired yet
         if (nextEpisode) {
@@ -175,15 +165,11 @@ export function NextEpisodeIndicator({
     const formatted = formatTimeLeft(timeLeft, episodeData.airDate);
 
     return (
-        <div className="flex items-center gap-1.5 text-xs text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2 py-1 rounded-md">
-            <Clock className="h-3 w-3" />
-            <span className="font-medium">
-                Ep {episodeData.episodeNumber}
-            </span>
-            {formatted.useIn && <span className="text-amber-400/70">in</span>}
-            <span className="font-semibold tabular-nums">
+        <span className="inline-flex items-center gap-1.5 text-xs text-gray-300 bg-white/10 border border-white/10 px-2 py-0.5 rounded">
+            <span className="text-white font-medium tabular-nums">
+                Ep {episodeData.episodeNumber} {formatted.useIn ? "in " : ""}
                 {formatted.text}
             </span>
-        </div>
+        </span>
     );
 }

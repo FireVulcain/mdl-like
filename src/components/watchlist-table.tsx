@@ -969,14 +969,9 @@ const ItemCard = memo(function ItemCard({
                             {item.mediaType === "TV" && item.season > 0 && (
                                 <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
                             )}
-                            {item.airingStatus === "Returning Series" && item.totalEp && item.progress < item.totalEp && (
-                                <span className="text-[10px] font-semibold uppercase tracking-wide text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded">
-                                    airing
-                                </span>
-                            )}
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-sm text-gray-400">
+                        <div className="flex items-center gap-2 flex-wrap text-sm text-gray-400">
+                            <span>
                                 {item.originCountry || "Unknown"} · {item.year || "N/A"}
                             </span>
                             {item.status === "Watching" && item.originCountry === "KR" && (
