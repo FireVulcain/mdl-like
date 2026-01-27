@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
-import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus } from "@/actions/backfill";
+import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus, refreshMediaData } from "@/actions/backfill";
 import { importMDLNotes } from "@/actions/mdl-import";
 import {
     Plus,
@@ -122,6 +122,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isImportingMDL, setIsImportingMDL] = useState(false);
     const [isBackfillingAiring, setIsBackfillingAiring] = useState(false);
+    const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
@@ -379,6 +380,31 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             });
         } finally {
             setIsBackfillingAiring(false);
+        }
+    };
+
+    const handleRefreshMedia = async () => {
+        setIsRefreshingMedia(true);
+        const toastId = toast.loading("Refreshing media data from TMDB...");
+        try {
+            const result = await refreshMediaData("mock-user-1");
+            if (result.success) {
+                toast.success("Media data refreshed", {
+                    id: toastId,
+                    description: result.message,
+                });
+                setTimeout(() => window.location.reload(), 1000);
+            } else {
+                toast.dismiss(toastId);
+            }
+        } catch (error) {
+            console.error("Media refresh failed:", error);
+            toast.error("Failed to refresh media data", {
+                id: toastId,
+                description: "Check console for details",
+            });
+        } finally {
+            setIsRefreshingMedia(false);
         }
     };
 
@@ -674,6 +700,18 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
                                             {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
+                                        </button>
+                                        <div className="my-1 border-t border-white/5" />
+                                        <button
+                                            onClick={() => {
+                                                setShowActionsMenu(false);
+                                                handleRefreshMedia();
+                                            }}
+                                            disabled={isRefreshingMedia}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <RefreshCw className={`h-4 w-4 ${isRefreshingMedia ? "animate-spin" : ""}`} />
+                                            {isRefreshingMedia ? "Refreshing..." : "Refresh TMDB Data"}
                                         </button>
                                     </div>
                                 </>

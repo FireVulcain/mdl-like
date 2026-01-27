@@ -223,3 +223,82 @@ export async function backfillAiringStatus(userId: string) {
     revalidatePath("/watchlist");
     return { success: true, count, message: `Updated ${count} items` };
 }
+
+// Refresh media data from TMDB for "Plan to Watch" and "Watching" items
+export async function refreshMediaData(userId: string) {
+    if (!userId) throw new Error("Unauthorized");
+
+    const items = await prisma.userMedia.findMany({
+        where: {
+            userId,
+            status: {
+                in: ["Plan to Watch", "Watching"],
+            },
+        },
+    });
+
+    if (items.length === 0) return { success: true, count: 0, message: "No items to refresh" };
+
+    // Group by show to avoid duplicate API calls
+    const showGroups = new Map<string, typeof items>();
+    for (const item of items) {
+        const key = `${item.source}-${item.externalId}`;
+        if (!showGroups.has(key)) {
+            showGroups.set(key, []);
+        }
+        showGroups.get(key)!.push(item);
+    }
+
+    const detailsCache = new Map<string, Awaited<ReturnType<typeof mediaService.getDetails>>>();
+
+    let count = 0;
+    for (const [key, groupItems] of showGroups) {
+        try {
+            const firstItem = groupItems[0];
+            const mediaId = `${firstItem.source.toLowerCase()}-${firstItem.externalId}`;
+
+            let details = detailsCache.get(mediaId);
+            if (!details) {
+                details = await mediaService.getDetails(mediaId);
+                if (details) {
+                    detailsCache.set(mediaId, details);
+                }
+                // Rate limiting
+                await new Promise((r) => setTimeout(r, 100));
+            }
+
+            if (details) {
+                for (const item of groupItems) {
+                    // For TV shows with seasons, get the specific season's episode count
+                    let totalEp = details.totalEp;
+                    if (details.type === "TV" && details.seasons && item.season > 0) {
+                        const seasonData = details.seasons.find((s) => s.seasonNumber === item.season);
+                        if (seasonData) {
+                            totalEp = seasonData.episodeCount;
+                        }
+                    }
+
+                    await prisma.userMedia.update({
+                        where: { id: item.id },
+                        data: {
+                            title: details.title,
+                            poster: details.poster,
+                            backdrop: item.backdrop || details.backdrop, // Keep existing backdrop if set
+                            year: details.year ? parseInt(details.year) : null,
+                            totalEp: totalEp,
+                            airingStatus: details.status,
+                            genres: details.genres?.join(", ") || null,
+                            tmdbRating: details.rating,
+                        },
+                    });
+                    count++;
+                }
+            }
+        } catch (e) {
+            console.error(`Failed to refresh media data for ${key}`, e);
+        }
+    }
+
+    revalidatePath("/watchlist");
+    return { success: true, count, message: `Refreshed ${count} items` };
+}
