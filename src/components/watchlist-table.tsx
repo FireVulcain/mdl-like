@@ -789,9 +789,12 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         const isMultiSeason = group.length > 1;
                         const isExpanded = expandedGroups.has(groupKey);
 
+                        // Only animate initial batch to avoid glitchy delayed animations on infinite scroll
+                        const isInitialBatch = displayedCount < 10;
+
                         if (isMultiSeason) {
                             resultNodes.push(
-                                <div key={`group-${groupKey}`} className="group parent-card" style={{ animationDelay: `${displayedCount * 50}ms` }}>
+                                <div key={`group-${groupKey}`} className="group parent-card" style={isInitialBatch ? { animationDelay: `${displayedCount * 50}ms` } : undefined}>
                                     <div
                                         className="relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.01]"
                                         onClick={() => toggleGroup(groupKey)}
@@ -858,8 +861,8 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                             resultNodes.push(
                                 <div
                                     key={first.id}
-                                    className="animate-in fade-in slide-in-from-bottom-2 duration-500"
-                                    style={{ animationDelay: `${displayedCount * 50}ms` }}
+                                    className={isInitialBatch ? "animate-in fade-in slide-in-from-bottom-2 duration-500" : ""}
+                                    style={isInitialBatch ? { animationDelay: `${displayedCount * 50}ms` } : undefined}
                                 >
                                     <ItemCard
                                         item={first}
