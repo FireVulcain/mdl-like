@@ -13,17 +13,20 @@ import {
     Plus,
     Minus,
     Pencil,
-    ChevronRight,
+    ChevronDown,
     Eye,
     CheckCircle,
     Clock,
     XCircle,
     RefreshCw,
     X,
-    Filter,
+    Search,
     BookOpen,
     ImageOff,
-    MoreVertical,
+    MoreHorizontal,
+    Star,
+    Layers,
+    SlidersHorizontal,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -76,10 +79,34 @@ import { EditMediaDialog } from "./edit-media-dialog";
 import { NextEpisodeIndicator } from "./next-episode-indicator";
 
 const statusConfig = {
-    Watching: { icon: Eye, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
-    Completed: { icon: CheckCircle, color: "text-green-400", bg: "bg-green-500/10", border: "border-green-500/20" },
-    "Plan to Watch": { icon: Clock, color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
-    Dropped: { icon: XCircle, color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
+    Watching: {
+        icon: Eye,
+        color: "text-blue-400",
+        bg: "bg-blue-500/15",
+        border: "border-blue-500/30",
+        glow: "shadow-blue-500/20",
+    },
+    Completed: {
+        icon: CheckCircle,
+        color: "text-emerald-400",
+        bg: "bg-emerald-500/15",
+        border: "border-emerald-500/30",
+        glow: "shadow-emerald-500/20",
+    },
+    "Plan to Watch": {
+        icon: Clock,
+        color: "text-slate-400",
+        bg: "bg-slate-500/15",
+        border: "border-slate-500/30",
+        glow: "shadow-slate-500/20",
+    },
+    Dropped: {
+        icon: XCircle,
+        color: "text-rose-400",
+        bg: "bg-rose-500/15",
+        border: "border-rose-500/30",
+        glow: "shadow-rose-500/20",
+    },
 };
 
 export function WatchlistTable({ items }: WatchlistTableProps) {
@@ -103,7 +130,25 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     // Infinite scroll
     const [displayCount, setDisplayCount] = useState(10);
-    const loadMoreRef = useRef<HTMLDivElement>(null);
+    const observerRef = useRef<IntersectionObserver | null>(null);
+
+    const loadMoreRef = useCallback((node: HTMLDivElement | null) => {
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+        }
+
+        if (node) {
+            observerRef.current = new IntersectionObserver(
+                (entries) => {
+                    if (entries[0].isIntersecting) {
+                        setDisplayCount((prev) => prev + 10);
+                    }
+                },
+                { threshold: 0.1 },
+            );
+            observerRef.current.observe(node);
+        }
+    }, []);
 
     // Optimistic updates
     const [optimisticItems, setOptimisticItems] = useOptimistic(items, (state, update: OptimisticUpdate) => {
@@ -123,35 +168,24 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     const filteredItems = useMemo(() => {
         const result = optimisticItems.filter((item) => {
-            // Multi-select status filter
             if (filterStatuses.length > 0 && !filterStatuses.includes(item.status)) return false;
-
-            // Multi-select country filter
             if (filterCountries.length > 0 && (!item.originCountry || !filterCountries.includes(item.originCountry))) return false;
-
-            // Multi-select genre filter
             if (filterGenres.length > 0) {
                 if (!item.genres) return false;
                 const itemGenres = item.genres.split(",").map((g) => g.trim());
                 const hasMatchingGenre = filterGenres.some((fg) => itemGenres.includes(fg));
                 if (!hasMatchingGenre) return false;
             }
-
-            // Search filter
             if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
-
-            // Year filter
             if (filterYear !== "All" && item.year) {
                 if (filterYear === "2010s" && (item.year < 2010 || item.year >= 2020)) return false;
                 if (filterYear === "2000s" && (item.year < 2000 || item.year >= 2010)) return false;
                 if (filterYear === "Older" && item.year >= 2000) return false;
                 if (!["2010s", "2000s", "Older"].includes(filterYear) && item.year.toString() !== filterYear) return false;
             }
-
             return true;
         });
 
-        // Apply sorting
         if (sortBy !== "default") {
             result.sort((a, b) => {
                 switch (sortBy) {
@@ -184,35 +218,10 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         return result;
     }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
 
-    // Reset display count when filters change
     useEffect(() => {
         setDisplayCount(10);
     }, [filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
 
-    // Infinite scroll observer
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    setDisplayCount((prev) => prev + 10);
-                }
-            },
-            { threshold: 0.1 },
-        );
-
-        const currentRef = loadMoreRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
-
-    // Helper functions for multi-select filters
     const toggleStatus = (status: string) => {
         setFilterStatuses((prev) => (prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]));
     };
@@ -225,7 +234,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setFilterGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]));
     };
 
-    // Extract unique values for filters
     const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
     const allCountries = useMemo(() => {
         return Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean))).sort() as string[];
@@ -283,9 +291,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     const handleEditClose = (isOpen: boolean) => {
         setEditOpen(isOpen);
-        // Clear editing item when dialog closes to prevent glitches
         if (!isOpen) {
-            // Small delay to allow dialog close animation to complete
             setTimeout(() => setEditingItem(null), 100);
         }
     };
@@ -300,9 +306,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setIsBackfilling(true);
         const toastId = toast.loading("Refreshing backdrops...");
         try {
-            // First backfill missing backdrops
             await backfillBackdrops("mock-user-1");
-            // Then refresh multi-season shows to get different backdrops per season
             const result = await refreshAllBackdrops("mock-user-1");
             if (result.success) {
                 toast.success(`Updated ${result.count} season backdrops`, {
@@ -333,7 +337,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             if (result.success) {
                 toast.success(result.message, {
                     id: toastId,
-                    description: `Scraped: ${result.stats?.scraped} · Matched: ${result.stats?.matched} · Updated: ${result.stats?.updated} (${result.duration}s)`,
+                    description: `Scraped: ${result.stats?.scraped} | Matched: ${result.stats?.matched} | Updated: ${result.stats?.updated} (${result.duration}s)`,
                 });
                 setTimeout(() => window.location.reload(), 1500);
             } else {
@@ -378,303 +382,369 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         }
     };
 
+    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0);
+
     return (
-        <div className="space-y-6 watchlist-container">
-            {/* Filter Pills Row */}
-            <div className="flex flex-wrap items-center gap-3 filter-row">
-                {/* Status Filter Dropdown */}
-                <div className="relative filter-dropdown">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setShowStatusFilter(!showStatusFilter)}
-                        className={`h-9 px-4 rounded-full border transition-all cursor-pointer ${
-                            filterStatuses.length > 0
-                                ? "bg-blue-500/20 border-blue-500/50 text-blue-400 hover:bg-blue-500/30"
-                                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
-                        }`}
-                    >
-                        <Filter className="h-3.5 w-3.5 mr-2" />
-                        Status {filterStatuses.length > 0 && `(${filterStatuses.length})`}
-                    </Button>
-                    {showStatusFilter && (
-                        <>
-                            <div className="fixed inset-0 z-10" onClick={() => setShowStatusFilter(false)} />
-                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-50">
-                                {allStatuses.map((status) => {
-                                    const Icon = statusConfig[status as keyof typeof statusConfig]?.icon;
-                                    const config = statusConfig[status as keyof typeof statusConfig];
-                                    return (
+        <div className="watchlist-container relative">
+            {/* Ambient background glow */}
+            <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+                <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+                <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-rose-500/5 rounded-full blur-3xl" />
+            </div>
+
+            {/* Filter Bar */}
+            <div className="sticky top-20 z-30 -mx-4 px-4 py-2 filter-row">
+                <div className="relative">
+                    {/* Glass background */}
+                    <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-xl rounded-xl border border-white/5" />
+
+                    <div className="relative flex flex-wrap items-center gap-2 p-2.5">
+                        {/* Search */}
+                        <div className="flex-1 min-w-64 relative group">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-blue-500 transition-colors" />
+                            <Input
+                                placeholder="Search your collection..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full h-9 pl-9 pr-4 bg-white/5 border-0 rounded-lg text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-blue-500/50 focus-visible:bg-white/8 transition-all"
+                            />
+                        </div>
+
+                        {/* Filter Dropdowns */}
+                        <div className="flex items-center gap-2 filter-dropdown-group">
+                            {/* Status Filter */}
+                            <div className="relative filter-dropdown">
+                                <button
+                                    onClick={() => {
+                                        setShowStatusFilter(!showStatusFilter);
+                                        setShowCountryFilter(false);
+                                        setShowGenreFilter(false);
+                                    }}
+                                    className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
+                                        filterStatuses.length > 0
+                                            ? "bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30"
+                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                    }`}
+                                >
+                                    <Eye className="h-4 w-4" />
+                                    <span className="hidden sm:inline">Status</span>
+                                    {filterStatuses.length > 0 && (
+                                        <span className="bg-blue-500/30 text-blue-300 text-xs px-1.5 py-0.5 rounded-md">{filterStatuses.length}</span>
+                                    )}
+                                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showStatusFilter ? "rotate-180" : ""}`} />
+                                </button>
+                                {showStatusFilter && (
+                                    <>
+                                        <div className="fixed inset-0 z-10" onClick={() => setShowStatusFilter(false)} />
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-48 animate-in fade-in slide-in-from-top-2 duration-200">
+                                            {allStatuses.map((status) => {
+                                                const config = statusConfig[status as keyof typeof statusConfig];
+                                                const Icon = config?.icon;
+                                                const isSelected = filterStatuses.includes(status);
+                                                return (
+                                                    <button
+                                                        key={status}
+                                                        onClick={() => toggleStatus(status)}
+                                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
+                                                            isSelected
+                                                                ? `${config?.bg} ${config?.color}`
+                                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                        }`}
+                                                    >
+                                                        {Icon && <Icon className="h-4 w-4" />}
+                                                        <span className="flex-1 text-left">{status}</span>
+                                                        {isSelected && (
+                                                            <div className={`w-1.5 h-1.5 rounded-full ${config?.color.replace("text-", "bg-")}`} />
+                                                        )}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Country Filter */}
+                            <div className="relative filter-dropdown">
+                                <button
+                                    onClick={() => {
+                                        setShowCountryFilter(!showCountryFilter);
+                                        setShowStatusFilter(false);
+                                        setShowGenreFilter(false);
+                                    }}
+                                    className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
+                                        filterCountries.length > 0
+                                            ? "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30"
+                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                    }`}
+                                >
+                                    <span className="hidden sm:inline">Country</span>
+                                    {filterCountries.length > 0 && (
+                                        <span className="bg-rose-500/30 text-rose-300 text-xs px-1.5 py-0.5 rounded-md">
+                                            {filterCountries.length}
+                                        </span>
+                                    )}
+                                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showCountryFilter ? "rotate-180" : ""}`} />
+                                </button>
+                                {showCountryFilter && (
+                                    <>
+                                        <div className="fixed inset-0 z-10" onClick={() => setShowCountryFilter(false)} />
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                            {allCountries.map((country) => {
+                                                const isSelected = filterCountries.includes(country);
+                                                return (
+                                                    <button
+                                                        key={country}
+                                                        onClick={() => toggleCountry(country)}
+                                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
+                                                            isSelected
+                                                                ? "bg-rose-500/20 text-rose-400"
+                                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                        }`}
+                                                    >
+                                                        <span className="flex-1 text-left">{country}</span>
+                                                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Genre Filter */}
+                            <div className="relative filter-dropdown">
+                                <button
+                                    onClick={() => {
+                                        setShowGenreFilter(!showGenreFilter);
+                                        setShowStatusFilter(false);
+                                        setShowCountryFilter(false);
+                                    }}
+                                    className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
+                                        filterGenres.length > 0
+                                            ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30"
+                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                    }`}
+                                >
+                                    <span className="hidden sm:inline">Genre</span>
+                                    {filterGenres.length > 0 && (
+                                        <span className="bg-emerald-500/30 text-emerald-300 text-xs px-1.5 py-0.5 rounded-md">
+                                            {filterGenres.length}
+                                        </span>
+                                    )}
+                                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showGenreFilter ? "rotate-180" : ""}`} />
+                                </button>
+                                {showGenreFilter && (
+                                    <>
+                                        <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                            {allGenres.map((genre) => {
+                                                const isSelected = filterGenres.includes(genre);
+                                                return (
+                                                    <button
+                                                        key={genre}
+                                                        onClick={() => toggleGenre(genre)}
+                                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
+                                                            isSelected
+                                                                ? "bg-emerald-500/20 text-emerald-400"
+                                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                        }`}
+                                                    >
+                                                        <span className="flex-1 text-left">{genre}</span>
+                                                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="hidden md:block w-px h-6 bg-white/10" />
+
+                        {/* Sort & Year */}
+                        <div className="flex items-center gap-2">
+                            <div className="relative select-wrapper">
+                                <select
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                    className="h-9 pl-3 pr-8 rounded-lg bg-white/5 border-0 text-gray-300 text-sm hover:bg-white/8 focus:ring-1 focus:ring-blue-500/50 focus:outline-none transition-all cursor-pointer appearance-none"
+                                >
+                                    <option value="default" className="bg-gray-800">
+                                        Default
+                                    </option>
+                                    <option value="rating-high" className="bg-gray-800">
+                                        Rating: High
+                                    </option>
+                                    <option value="rating-low" className="bg-gray-800">
+                                        Rating: Low
+                                    </option>
+                                    <option value="progress-high" className="bg-gray-800">
+                                        Progress: High
+                                    </option>
+                                    <option value="progress-low" className="bg-gray-800">
+                                        Progress: Low
+                                    </option>
+                                    <option value="title-az" className="bg-gray-800">
+                                        Title: A-Z
+                                    </option>
+                                    <option value="title-za" className="bg-gray-800">
+                                        Title: Z-A
+                                    </option>
+                                    <option value="year-new" className="bg-gray-800">
+                                        Year: Newest
+                                    </option>
+                                    <option value="year-old" className="bg-gray-800">
+                                        Year: Oldest
+                                    </option>
+                                </select>
+                                <SlidersHorizontal className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                            </div>
+
+                            <div className="relative select-wrapper">
+                                <select
+                                    value={filterYear}
+                                    onChange={(e) => setFilterYear(e.target.value)}
+                                    className="h-9 pl-3 pr-8 rounded-lg bg-white/5 border-0 text-gray-300 text-sm hover:bg-white/8 focus:ring-1 focus:ring-blue-500/50 focus:outline-none transition-all cursor-pointer appearance-none"
+                                >
+                                    <option value="All" className="bg-gray-800">
+                                        All Years
+                                    </option>
+                                    {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map(
+                                        (year) => (
+                                            <option key={year} value={year} className="bg-gray-800">
+                                                {year}
+                                            </option>
+                                        ),
+                                    )}
+                                    <option value="2010s" className="bg-gray-800">
+                                        2010-2019
+                                    </option>
+                                    <option value="2000s" className="bg-gray-800">
+                                        2000-2009
+                                    </option>
+                                </select>
+                                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                            </div>
+                        </div>
+
+                        {/* Actions Menu */}
+                        <div className="relative filter-dropdown">
+                            <button
+                                onClick={() => setShowActionsMenu(!showActionsMenu)}
+                                className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer"
+                            >
+                                <MoreHorizontal className="h-5 w-5" />
+                            </button>
+                            {showActionsMenu && (
+                                <>
+                                    <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
+                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
                                         <button
-                                            key={status}
-                                            onClick={() => toggleStatus(status)}
-                                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all cursor-pointer ${
-                                                filterStatuses.includes(status)
-                                                    ? `${config?.bg} ${config?.color} ${config?.border} border`
-                                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
-                                            }`}
+                                            onClick={() => {
+                                                setShowActionsMenu(false);
+                                                setConfirmAction("mdl-import");
+                                            }}
+                                            disabled={isImportingMDL}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            {Icon && <Icon className="h-4 w-4" />}
-                                            {status}
+                                            <BookOpen className={`h-4 w-4 ${isImportingMDL ? "animate-pulse" : ""}`} />
+                                            {isImportingMDL ? "Importing..." : "Import MDL Notes"}
                                         </button>
-                                    );
-                                })}
-                            </div>
-                        </>
-                    )}
-                </div>
-
-                {/* Country Filter Dropdown */}
-                <div className="relative filter-dropdown">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setShowCountryFilter(!showCountryFilter)}
-                        className={`h-9 px-4 rounded-full border transition-all cursor-pointer ${
-                            filterCountries.length > 0
-                                ? "bg-purple-500/20 border-purple-500/50 text-purple-400 hover:bg-purple-500/30"
-                                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
-                        }`}
-                    >
-                        <Filter className="h-3.5 w-3.5 mr-2" />
-                        Country {filterCountries.length > 0 && `(${filterCountries.length})`}
-                    </Button>
-                    {showCountryFilter && (
-                        <>
-                            <div className="fixed inset-0 z-10" onClick={() => setShowCountryFilter(false)} />
-                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-50 max-h-75 overflow-y-auto">
-                                {allCountries.map((country) => (
-                                    <button
-                                        key={country}
-                                        onClick={() => toggleCountry(country)}
-                                        className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all cursor-pointer ${
-                                            filterCountries.includes(country)
-                                                ? "bg-purple-500/20 text-purple-400 border border-purple-500/50"
-                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
-                                        }`}
-                                    >
-                                        {country}
-                                    </button>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </div>
-
-                {/* Genre Filter Dropdown */}
-                <div className="relative filter-dropdown">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setShowGenreFilter(!showGenreFilter)}
-                        className={`h-9 px-4 rounded-full border transition-all cursor-pointer ${
-                            filterGenres.length > 0
-                                ? "bg-green-500/20 border-green-500/50 text-green-400 hover:bg-green-500/30"
-                                : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white"
-                        }`}
-                    >
-                        <Filter className="h-3.5 w-3.5 mr-2" />
-                        Genre {filterGenres.length > 0 && `(${filterGenres.length})`}
-                    </Button>
-                    {showGenreFilter && (
-                        <>
-                            <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
-                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-50 max-h-75 overflow-y-auto">
-                                {allGenres.map((genre) => (
-                                    <button
-                                        key={genre}
-                                        onClick={() => toggleGenre(genre)}
-                                        className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all cursor-pointer ${
-                                            filterGenres.includes(genre)
-                                                ? "bg-green-500/20 text-green-400 border border-green-500/50"
-                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
-                                        }`}
-                                    >
-                                        {genre}
-                                    </button>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </div>
-
-                {/* Sort Dropdown */}
-                <div className="relative select-wrapper">
-                    <select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        className="h-9 pl-4 pr-10 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer appearance-none w-full"
-                    >
-                        <option value="default" className="bg-gray-800">
-                            Sort: Default
-                        </option>
-                        <option value="rating-high" className="bg-gray-900">
-                            Rating: High to Low
-                        </option>
-                        <option value="rating-low" className="bg-gray-900">
-                            Rating: Low to High
-                        </option>
-                        <option value="progress-high" className="bg-gray-900">
-                            Progress: High to Low
-                        </option>
-                        <option value="progress-low" className="bg-gray-900">
-                            Progress: Low to High
-                        </option>
-                        <option value="title-az" className="bg-gray-900">
-                            Title: A-Z
-                        </option>
-                        <option value="title-za" className="bg-gray-900">
-                            Title: Z-A
-                        </option>
-                        <option value="year-new" className="bg-gray-900">
-                            Year: Newest
-                        </option>
-                        <option value="year-old" className="bg-gray-900">
-                            Year: Oldest
-                        </option>
-                    </select>
-                    <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none rotate-90" />
-                </div>
-
-                {/* Year Dropdown */}
-                <div className="relative select-wrapper">
-                    <select
-                        value={filterYear}
-                        onChange={(e) => setFilterYear(e.target.value)}
-                        className="h-9 pl-4 pr-10 rounded-full bg-white/8 border border-white/10 text-gray-300 text-sm hover:border-white/20 focus:border-blue-500 focus:outline-none transition-colors cursor-pointer appearance-none w-full"
-                    >
-                        <option value="All" className="bg-gray-900">
-                            All Years
-                        </option>
-                        {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map((year) => (
-                            <option key={year} value={year} className="bg-gray-900">
-                                {year}
-                            </option>
-                        ))}
-                        <option value="2010s" className="bg-gray-900">
-                            2010-2019
-                        </option>
-                        <option value="2000s" className="bg-gray-900">
-                            2000-2009
-                        </option>
-                    </select>
-                    <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none rotate-90" />
-                </div>
-
-                {/* Search */}
-                <div className="flex-1 min-w-50 relative group">
-                    <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-full blur opacity-0 group-hover:opacity-20 transition duration-500" />
-                    <Input
-                        placeholder="Search titles..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="relative w-full h-9 bg-white/8 border-white/10 rounded-full text-white placeholder:text-muted-foreground/50 focus-visible:bg-white/12 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
-                    />
-                </div>
-
-                {/* Actions Dropdown */}
-                <div className="relative filter-dropdown">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setShowActionsMenu(!showActionsMenu)}
-                        className="cursor-pointer h-9 px-3 bg-white/8 border border-white/10 rounded-full text-gray-400 hover:text-white hover:bg-white/12 transition-all"
-                    >
-                        <MoreVertical className="h-4 w-4" />
-                    </Button>
-                    {showActionsMenu && (
-                        <>
-                            <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
-                            <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-3xs">
-                                <button
-                                    onClick={() => {
-                                        setShowActionsMenu(false);
-                                        setConfirmAction("mdl-import");
-                                    }}
-                                    disabled={isImportingMDL}
-                                    className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    <BookOpen className={`h-4 w-4 ${isImportingMDL ? "animate-pulse" : ""}`} />
-                                    {isImportingMDL ? "Importing..." : "Import MDL Notes"}
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setShowActionsMenu(false);
-                                        setConfirmAction("backfill");
-                                    }}
-                                    disabled={isBackfilling}
-                                    className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
-                                    {isBackfilling ? "Processing..." : "Refresh Backdrops"}
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setShowActionsMenu(false);
-                                        handleBackfillAiring();
-                                    }}
-                                    disabled={isBackfillingAiring}
-                                    className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-left text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
-                                    {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
-                                </button>
-                            </div>
-                        </>
-                    )}
+                                        <button
+                                            onClick={() => {
+                                                setShowActionsMenu(false);
+                                                setConfirmAction("backfill");
+                                            }}
+                                            disabled={isBackfilling}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
+                                            {isBackfilling ? "Processing..." : "Refresh Backdrops"}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                setShowActionsMenu(false);
+                                                handleBackfillAiring();
+                                            }}
+                                            disabled={isBackfillingAiring}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
+                                            {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Active Filter Pills */}
-            {(filterStatuses.length > 0 || filterCountries.length > 0 || filterGenres.length > 0) && (
-                <div className="flex flex-wrap items-center gap-2 active-filters">
-                    <span className="text-sm text-gray-500">Active filters:</span>
-                    {filterStatuses.map((status) => (
-                        <button
-                            key={status}
-                            onClick={() => toggleStatus(status)}
-                            className="flex items-center gap-1.5 px-3 py-1 bg-blue-500/20 border border-blue-500/50 text-blue-400 rounded-full text-sm hover:bg-blue-500/30 transition-all group"
-                        >
-                            {status}
-                            <X className="h-3 w-3 group-hover:text-blue-300" />
-                        </button>
-                    ))}
+            {/* Active Filters */}
+            {activeFilterCount > 0 && (
+                <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-1 active-filters animate-in fade-in slide-in-from-top-1 duration-300">
+                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Filters:</span>
+                    {filterStatuses.map((status) => {
+                        const config = statusConfig[status as keyof typeof statusConfig];
+                        return (
+                            <button
+                                key={status}
+                                onClick={() => toggleStatus(status)}
+                                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${config?.bg} ${config?.color} hover:opacity-80 transition-all cursor-pointer group`}
+                            >
+                                {status}
+                                <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            </button>
+                        );
+                    })}
                     {filterCountries.map((country) => (
                         <button
                             key={country}
                             onClick={() => toggleCountry(country)}
-                            className="flex items-center gap-1.5 px-3 py-1 bg-purple-500/20 border border-purple-500/50 text-purple-400 rounded-full text-sm hover:bg-purple-500/30 transition-all group"
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-rose-500/15 text-rose-400 hover:opacity-80 transition-all cursor-pointer group"
                         >
                             {country}
-                            <X className="h-3 w-3 group-hover:text-purple-300" />
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     ))}
                     {filterGenres.map((genre) => (
                         <button
                             key={genre}
                             onClick={() => toggleGenre(genre)}
-                            className="flex items-center gap-1.5 px-3 py-1 bg-green-500/20 border border-green-500/50 text-green-400 rounded-full text-sm hover:bg-green-500/30 transition-all group"
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/15 text-emerald-400 hover:opacity-80 transition-all cursor-pointer group"
                         >
                             {genre}
-                            <X className="h-3 w-3 group-hover:text-green-300" />
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     ))}
-                    {(filterStatuses.length > 0 || filterCountries.length > 0 || filterGenres.length > 0) && (
+                    {filterYear !== "All" && (
                         <button
-                            onClick={() => {
-                                setFilterStatuses([]);
-                                setFilterCountries([]);
-                                setFilterGenres([]);
-                            }}
-                            className="px-3 py-1 bg-red-500/20 border border-red-500/50 text-red-400 rounded-full text-sm hover:bg-red-500/30 transition-all"
+                            onClick={() => setFilterYear("All")}
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-white/10 text-gray-300 hover:opacity-80 transition-all cursor-pointer group"
                         >
-                            Clear all
+                            {filterYear}
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     )}
+                    <button
+                        onClick={() => {
+                            setFilterStatuses([]);
+                            setFilterCountries([]);
+                            setFilterGenres([]);
+                            setFilterYear("All");
+                        }}
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
+                    >
+                        Clear all
+                    </button>
                 </div>
             )}
 
-            <div className="space-y-2 items-list">
+            {/* Items Grid */}
+            <div className="mt-4 space-y-2 items-list">
                 {(() => {
                     const showsWithWatchingSeason = new Set<string>();
                     filteredItems.forEach((item) => {
@@ -714,107 +784,90 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     for (const groupKey of groupOrder) {
                         if (displayedCount >= displayCount) break;
 
-                        // Use toSorted() to avoid mutating the memoized array
                         const group = groupedItems[groupKey].toSorted((a, b) => a.season - b.season);
                         const first = group[0];
                         const isMultiSeason = group.length > 1;
                         const isExpanded = expandedGroups.has(groupKey);
 
                         if (isMultiSeason) {
-                            // Parent Card
                             resultNodes.push(
-                                <div
-                                    key={`group-${groupKey}`}
-                                    className="group relative bg-linear-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer overflow-hidden hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 parent-card"
-                                    onClick={() => toggleGroup(groupKey)}
-                                    style={{
-                                        boxShadow:
-                                            "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
-                                    }}
-                                >
-                                    <div className="flex items-center gap-5 p-5 parent-card-inner">
-                                        <div
-                                            className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md shadow-lg ${
-                                                first.backdrop || first.poster
-                                                    ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-[length:200%_100%] animate-shimmer"
-                                                    : "bg-gray-800/50 border border-dashed border-gray-600"
-                                            }`}
-                                        >
+                                <div key={`group-${groupKey}`} className="group parent-card" style={{ animationDelay: `${displayedCount * 50}ms` }}>
+                                    <div
+                                        className="relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.01]"
+                                        onClick={() => toggleGroup(groupKey)}
+                                    >
+                                        {/* Background Image */}
+                                        <div className="absolute inset-0">
                                             {first.backdrop || first.poster ? (
                                                 <Image
                                                     src={first.backdrop || first.poster!}
-                                                    alt={first.title || ""}
+                                                    alt=""
                                                     fill
-                                                    sizes="(max-width: 768px) 640px, 384px"
-                                                    className={`object-cover transition-opacity duration-700 ease-out ${displayedCount === 0 ? "opacity-100" : "opacity-0"}`}
-                                                    {...(displayedCount === 0
-                                                        ? { priority: true, fetchPriority: "high" as const }
-                                                        : { loading: "lazy" as const })}
-                                                    onLoad={(e) => {
-                                                        if (displayedCount === 0) return; // Skip animation for priority images
-                                                        const img = e.currentTarget;
-                                                        const container = img.parentElement;
-                                                        // Add a small delay to ensure the shimmer is visible
-                                                        setTimeout(() => {
-                                                            img.classList.replace("opacity-0", "opacity-100");
-                                                            container?.classList.remove(
-                                                                "animate-shimmer",
-                                                                "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
-                                                                "bg-[length:200%_100%]",
-                                                            );
-                                                        }, 100);
-                                                    }}
+                                                    sizes="100vw"
+                                                    className="object-cover"
+                                                    {...(displayedCount === 0 ? { priority: true } : { loading: "lazy" as const })}
                                                 />
                                             ) : (
-                                                <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
-                                                    <ImageOff className="h-6 w-6 mb-1" />
-                                                    <span className="text-[10px]">No image</span>
-                                                </div>
+                                                <div className="w-full h-full bg-linear-to-br from-gray-800 to-gray-900" />
                                             )}
+                                            <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/90 to-gray-900/60" />
                                         </div>
-                                        <div className="flex-1">
-                                            <div className="font-semibold text-xl text-white">{first.title}</div>
-                                            <div className="text-sm text-gray-400 mt-1">{group.length} seasons</div>
+
+                                        <div className="relative flex items-center gap-4 p-4 parent-card-inner">
+                                            <div className="flex-1 min-w-0">
+                                                <h3 className="text-xl font-semibold text-white tracking-tight line-clamp-1">{first.title}</h3>
+                                                <div className="flex items-center gap-2 mt-1 text-sm text-gray-400">
+                                                    <span className="flex items-center gap-1.5">
+                                                        <Layers className="h-4 w-4" />
+                                                        {group.length} seasons
+                                                    </span>
+                                                    <span>{first.originCountry}</span>
+                                                </div>
+                                            </div>
+
+                                            <ChevronDown
+                                                className={`h-6 w-6 text-gray-400 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                                            />
                                         </div>
-                                        <ChevronRight className={`h-5 w-5 text-gray-400 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
-                                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
                                     </div>
+
+                                    {/* Expanded Seasons */}
+                                    {isExpanded && (
+                                        <div className="mt-1.5 ml-3 space-y-1.5">
+                                            {group.map((item, index) => (
+                                                <div
+                                                    key={item.id}
+                                                    className="animate-slide-down-row opacity-0"
+                                                    style={{ animationDelay: `${index * 60}ms` }}
+                                                >
+                                                    <ItemCard
+                                                        item={item}
+                                                        handleProgress={handleProgress}
+                                                        handleStatusChange={handleStatusChange}
+                                                        openEdit={openEdit}
+                                                        isChild={true}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>,
                             );
                             displayedCount++;
-
-                            // Child Cards
-                            if (isExpanded) {
-                                group.forEach((item, index) => {
-                                    resultNodes.push(
-                                        <div
-                                            key={item.id}
-                                            className="ml-8 animate-slide-down-row opacity-0"
-                                            style={{ animationDelay: `${index * 80}ms` }}
-                                        >
-                                            <ItemCard
-                                                item={item}
-                                                handleProgress={handleProgress}
-                                                handleStatusChange={handleStatusChange}
-                                                openEdit={openEdit}
-                                                isChild={true}
-                                            />
-                                        </div>,
-                                    );
-                                });
-                            }
                         } else {
-                            // Single Card
-                            const isFirstItem = displayedCount === 0;
                             resultNodes.push(
-                                <ItemCard
+                                <div
                                     key={first.id}
-                                    item={first}
-                                    handleProgress={handleProgress}
-                                    handleStatusChange={handleStatusChange}
-                                    openEdit={openEdit}
-                                    isFirst={isFirstItem}
-                                />,
+                                    className="animate-in fade-in slide-in-from-bottom-2 duration-500"
+                                    style={{ animationDelay: `${displayedCount * 50}ms` }}
+                                >
+                                    <ItemCard
+                                        item={first}
+                                        handleProgress={handleProgress}
+                                        handleStatusChange={handleStatusChange}
+                                        openEdit={openEdit}
+                                    />
+                                </div>,
                             );
                             displayedCount++;
                         }
@@ -824,13 +877,15 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 })()}
 
                 {filteredItems.length === 0 && (
-                    <div className="p-12 text-center">
-                        <div className="text-gray-400 text-lg">No items found</div>
-                        <div className="text-gray-500 text-sm mt-2">Try adjusting your filters</div>
+                    <div className="flex flex-col items-center justify-center py-24 text-center">
+                        <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-4">
+                            <Search className="h-8 w-8 text-gray-600" />
+                        </div>
+                        <p className="text-lg font-medium text-gray-400">No items found</p>
+                        <p className="text-sm text-gray-500 mt-1">Try adjusting your filters</p>
                     </div>
                 )}
 
-                {/* Infinite scroll sentinel */}
                 {filteredItems.length > 0 && <div ref={loadMoreRef} className="h-10" />}
             </div>
 
@@ -871,14 +926,12 @@ const ItemCard = memo(function ItemCard({
     handleStatusChange,
     openEdit,
     isChild = false,
-    isFirst = false,
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
     handleStatusChange: (id: string, newStatus: string, title?: string) => void;
     openEdit: (item: WatchlistItem) => void;
     isChild?: boolean;
-    isFirst?: boolean;
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -897,7 +950,7 @@ const ItemCard = memo(function ItemCard({
                 const rect = buttonEl.getBoundingClientRect();
                 setDropdownPosition({
                     top: rect.bottom + 8,
-                    left: isMobile ? Math.max(16, rect.left) : rect.right - 180, // Mobile: align left, Desktop: align right
+                    left: isMobile ? Math.max(16, rect.left) : rect.right - 180,
                 });
             }
         }
@@ -906,63 +959,72 @@ const ItemCard = memo(function ItemCard({
 
     return (
         <div
-            className={`group relative backdrop-blur-sm rounded-lg border transition-all hover:shadow-xl hover:shadow-black/30 shadow-md shadow-black/20 item-card ${
-                isChild
-                    ? "bg-linear-to-br from-blue-500/15 to-blue-500/8 border-blue-500/20 hover:border-blue-500/40"
-                    : "bg-linear-to-br from-white/10 to-white/5 border-white/10 hover:border-white/20"
+            className={`item-card group relative overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.005] ${
+                isChild ? "bg-linear-to-r from-blue-500/5 to-transparent border border-blue-500/10" : "bg-white/2"
             }`}
-            style={{
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
-            }}
         >
-            <div className="flex items-center gap-5 px-5 py-3 item-card-inner">
+            {/* Backdrop with gradient overlay */}
+            <div className="absolute inset-0 -z-10">
+                {(item.backdrop || item.poster) && !isChild ? (
+                    <>
+                        <Image
+                            src={item.backdrop || item.poster!}
+                            alt=""
+                            fill
+                            sizes="100vw"
+                            className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
+                            loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
+                    </>
+                ) : null}
+            </div>
+
+            <div className="relative flex items-center gap-4 p-3 item-card-inner">
+                {/* Thumbnail */}
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                    className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-md hover:ring-2 hover:ring-white/20 transition-all shadow-lg card-image ${
+                    className={`card-image relative shrink-0 overflow-hidden rounded-lg transition-all duration-300 group-hover:ring-2 group-hover:ring-blue-500/30 ${
+                        isChild ? "h-14 w-24" : "h-18 w-32"
+                    } ${
                         item.backdrop || item.poster
                             ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
-                            : "bg-gray-800/50 border border-dashed border-gray-600"
+                            : "bg-gray-800/50 border border-dashed border-gray-700"
                     }`}
                 >
                     {item.backdrop || item.poster ? (
-                        <>
-                            <Image
-                                src={item.backdrop || item.poster!}
-                                alt={item.title || ""}
-                                fill
-                                sizes="(max-width: 768px) 640px, 384px"
-                                className={`object-cover transition-opacity duration-700 ease-out ${isFirst ? "opacity-100" : "opacity-0"}`}
-                                {...(isFirst ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
-                                onLoad={(e) => {
-                                    if (isFirst) return; // Skip animation for priority images
-                                    const img = e.currentTarget;
-                                    const container = img.parentElement;
-                                    // Add a small delay to ensure the shimmer is visible
-                                    setTimeout(() => {
-                                        img.classList.replace("opacity-0", "opacity-100");
-                                        container?.classList.remove(
-                                            "animate-shimmer",
-                                            "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
-                                            "bg-size-[200%_100%]",
-                                        );
-                                    }, 100);
-                                }}
-                            />
-                        </>
+                        <Image
+                            src={item.backdrop || item.poster!}
+                            alt={item.title || ""}
+                            fill
+                            sizes="(max-width: 768px) 640px, 384px"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                            onLoad={(e) => {
+                                const container = e.currentTarget.parentElement;
+                                container?.classList.remove(
+                                    "animate-shimmer",
+                                    "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
+                                    "bg-size-[200%_100%]",
+                                );
+                            }}
+                        />
                     ) : (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
-                            <ImageOff className="h-6 w-6 mb-1" />
-                            <span className="text-[10px]">No image</span>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-600">
+                            <ImageOff className="h-5 w-5" />
                         </div>
                     )}
                 </Link>
 
+                {/* Info */}
                 <div className="flex-1 min-w-0 card-info">
                     <div className="card-info-text">
-                        <div className="flex items-center gap-2 mb-1.5">
+                        <div className="flex items-center gap-2 mb-0.5">
                             <Link
                                 href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
-                                className="font-semibold text-xl text-white hover:text-blue-400 transition-colors line-clamp-1 card-title"
+                                className={`font-semibold text-white hover:text-blue-400 transition-colors line-clamp-1 card-title ${
+                                    isChild ? "text-sm" : "text-base"
+                                }`}
                             >
                                 {item.title}
                             </Link>
@@ -970,10 +1032,10 @@ const ItemCard = memo(function ItemCard({
                                 <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
                             )}
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap text-sm text-gray-400">
-                            <span>
-                                {item.originCountry || "Unknown"} · {item.year || "N/A"}
-                            </span>
+                        <div className="flex items-center gap-2 flex-wrap text-sm text-gray-500">
+                            <span>{item.originCountry || "Unknown"}</span>
+                            <span className="w-1 h-1 rounded-full bg-gray-600" />
+                            <span>{item.year || "N/A"}</span>
                             {item.status === "Watching" && item.originCountry === "KR" && (
                                 <NextEpisodeIndicator
                                     nextEpisode={item.nextEpisode}
@@ -984,22 +1046,23 @@ const ItemCard = memo(function ItemCard({
                             )}
                         </div>
                     </div>
-                    {/* Mobile Status Button - centered with entire title block */}
+
+                    {/* Mobile Status */}
                     <button
                         ref={mobileButtonRef}
                         onClick={(e) => handleDropdownToggle(e, true)}
-                        className={`mobile-status-btn items-center gap-1.5 px-2.5 py-1 rounded-full ${statusInfo.bg} border ${statusInfo.border} hover:opacity-80 transition-opacity cursor-pointer shrink-0`}
+                        className={`mobile-status-btn items-center gap-1.5 px-2.5 py-1 rounded-lg ${statusInfo.bg} ${statusInfo.border} border hover:opacity-80 transition-opacity cursor-pointer shrink-0`}
                     >
                         <StatusIcon className={`h-3.5 w-3.5 ${statusInfo.color}`} />
                         <span className={`text-xs font-medium ${statusInfo.color}`}>{item.status}</span>
                     </button>
                 </div>
 
-                {/* Desktop Status Dropdown */}
+                {/* Status Badge - Desktop */}
                 <button
                     ref={desktopButtonRef}
                     onClick={(e) => handleDropdownToggle(e, false)}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${statusInfo.bg} border ${statusInfo.border} min-w-35 justify-center hover:opacity-80 transition-opacity cursor-pointer card-status desktop-status-btn`}
+                    className={`desktop-status-btn card-status flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${statusInfo.bg} ${statusInfo.border} border min-w-28 justify-center hover:opacity-80 transition-all cursor-pointer`}
                 >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
@@ -1011,7 +1074,7 @@ const ItemCard = memo(function ItemCard({
                         <>
                             <div className="fixed inset-0 z-9998" onClick={() => setShowStatusDropdown(false)} />
                             <div
-                                className="fixed z-9999 bg-gray-800 border border-white/10 rounded-lg shadow-xl p-2 min-w-45"
+                                className="fixed z-9999 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
                                 style={{
                                     top: `${dropdownPosition.top}px`,
                                     left: `${dropdownPosition.left}px`,
@@ -1020,6 +1083,7 @@ const ItemCard = memo(function ItemCard({
                                 {allStatuses.map((status) => {
                                     const config = statusConfig[status as keyof typeof statusConfig];
                                     const Icon = config?.icon;
+                                    const isSelected = item.status === status;
                                     return (
                                         <button
                                             key={status}
@@ -1028,14 +1092,13 @@ const ItemCard = memo(function ItemCard({
                                                 handleStatusChange(item.id, status, item.title || undefined);
                                                 setShowStatusDropdown(false);
                                             }}
-                                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all ${
-                                                item.status === status
-                                                    ? `${config?.bg} ${config?.color} ${config?.border} border`
-                                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
+                                                isSelected ? `${config?.bg} ${config?.color}` : "text-gray-400 hover:bg-white/5 hover:text-white"
                                             }`}
                                         >
                                             {Icon && <Icon className="h-4 w-4" />}
-                                            {status}
+                                            <span className="flex-1 text-left">{status}</span>
+                                            {isSelected && <div className={`w-1.5 h-1.5 rounded-full ${config?.color.replace("text-", "bg-")}`} />}
                                         </button>
                                     );
                                 })}
@@ -1044,71 +1107,68 @@ const ItemCard = memo(function ItemCard({
                         document.body,
                     )}
 
-                <div className="w-42 space-y-2 card-progress">
-                    <div className="flex items-center gap-2">
+                {/* Progress */}
+                <div className="card-progress w-36 space-y-3">
+                    <div className="flex items-center gap-1">
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
                             }}
-                            className="cursor-pointer h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
+                            className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
                         >
-                            <Minus className="h-4 w-4" />
+                            <Minus className="h-3.5 w-3.5" />
                         </button>
-                        <div className="flex-1 text-center">
-                            <span className="font-semibold text-white text-lg">{item.progress}</span>
-                            <span className="text-gray-500"> / </span>
-                            <span className="text-gray-400">{item.totalEp || "?"}</span>
+                        <div className="flex-1 text-center text-sm">
+                            <span className="font-semibold text-white tabular-nums">{item.progress}</span>
+                            <span className="text-gray-600 mx-0.5">/</span>
+                            <span className="text-gray-500 tabular-nums">{item.totalEp || "?"}</span>
                         </div>
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleProgress(item.id, item.progress + 1, item.title || undefined);
                             }}
-                            className="cursor-pointer h-7 w-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors progress-btn"
+                            className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
                         >
-                            <Plus className="h-4 w-4" />
+                            <Plus className="h-3.5 w-3.5" />
                         </button>
                     </div>
-                    <div className="relative h-2 bg-black/30 rounded-full overflow-hidden progress-bar">
+                    <div className="relative h-1 bg-white/5 rounded-full overflow-hidden progress-bar">
                         <div
-                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
+                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ${
                                 item.status === "Completed"
-                                    ? "bg-linear-to-r from-green-500 to-emerald-500"
-                                    : "bg-linear-to-r from-blue-500 to-cyan-500"
+                                    ? "bg-linear-to-r from-emerald-500 to-emerald-400"
+                                    : item.status === "Plan to Watch"
+                                      ? "bg-linear-to-r from-slate-500 to-slate-400"
+                                      : item.status === "Dropped"
+                                        ? "bg-linear-to-r from-rose-500 to-rose-400"
+                                        : "bg-linear-to-r from-blue-500 to-blue-400"
                             }`}
                             style={{ width: `${progressPercent}%` }}
                         />
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-1 w-24 justify-center card-rating">
-                    {/* Personal Score */}
+                {/* Rating */}
+                <div className="card-rating flex flex-col items-center gap-0 w-16">
                     {item.score ? (
-                        <div className="flex items-center gap-1.5">
-                            <svg className="h-4 w-4 text-yellow-500 fill-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                />
-                            </svg>
-                            <span className="text-white font-semibold text-sm">{item.score.toFixed(1)}</span>
+                        <div className="flex items-center gap-1">
+                            <Star className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
+                            <span className="text-white font-semibold text-sm tabular-nums">{item.score.toFixed(1)}</span>
                         </div>
                     ) : (
-                        <span className="text-gray-500 text-xs">-</span>
+                        <span className="text-gray-600 text-xs">--</span>
                     )}
-
-                    {/* MDL Community Score */}
                     {item.mdlRating ? (
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1">
                             <span className="text-xs text-gray-400">MDL</span>
-                            <span className="text-blue-400 font-semibold text-sm">{item.mdlRating.toFixed(1)}</span>
+                            <span className="text-blue-400 text-xs tabular-nums">{item.mdlRating.toFixed(1)}</span>
                         </div>
                     ) : null}
                 </div>
 
+                {/* Edit */}
                 <Button
                     variant="ghost"
                     size="icon"
@@ -1116,12 +1176,11 @@ const ItemCard = memo(function ItemCard({
                         e.stopPropagation();
                         openEdit(item);
                     }}
-                    className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10 card-edit-btn"
+                    className="cursor-pointer card-edit-btn h-8 w-8 rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all"
                 >
                     <Pencil className="h-4 w-4" />
                 </Button>
             </div>
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
         </div>
     );
 });

@@ -21,7 +21,10 @@
       "Bash(taskkill //F //PID 15968)",
       "Bash(npx tsc:*)",
       "Bash(npx next build)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__click"
     ]
   }
 }

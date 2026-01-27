@@ -1,4 +1,5 @@
 import { type DashboardStats } from "@/types/stats";
+import { Clock, Target, Star } from "lucide-react";
 
 interface WatchlistStatsProps {
     stats: DashboardStats;
@@ -6,31 +7,53 @@ interface WatchlistStatsProps {
 
 export function WatchlistStats({ stats }: WatchlistStatsProps) {
     const watchTimeHours = Math.floor(stats.watchTimeMinutes / 60);
-    const avgScore = stats.ratingDistribution.length > 0
-        ? (stats.ratingDistribution.reduce((sum, r) => sum + (r.rating * r.count), 0) / 
-           stats.ratingDistribution.reduce((sum, r) => sum + r.count, 0)).toFixed(1)
-        : "0.0";
+    const avgScore =
+        stats.ratingDistribution.length > 0
+            ? (
+                  stats.ratingDistribution.reduce((sum, r) => sum + r.rating * r.count, 0) /
+                  stats.ratingDistribution.reduce((sum, r) => sum + r.count, 0)
+              ).toFixed(1)
+            : "0.0";
 
     return (
-        <div className="flex gap-4 watchlist-stats">
-            <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 px-6 py-4 shadow-md shadow-black/20">
-                <div className="text-3xl font-bold text-white">{watchTimeHours}h</div>
-                <div className="text-sm text-gray-400 mt-1">Total Watched</div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 px-6 py-4 shadow-md shadow-black/20">
-                <div className="text-3xl font-bold text-white">{Math.round(stats.completionRate)}%</div>
-                <div className="text-sm text-gray-400 mt-1">Completion</div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-sm rounded-lg border border-white/10 px-6 py-4 shadow-md shadow-black/20">
-                <div className="flex items-center gap-2">
-                    <svg className="h-6 w-6 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                    </svg>
-                    <span className="text-3xl font-bold text-white">{avgScore}</span>
+        <div className="flex gap-2 watchlist-stats">
+            {/* Watch Time */}
+            <div className="group relative bg-white/2 rounded-xl border border-white/5 px-4 py-3 transition-all hover:border-cyan-500/20 hover:bg-cyan-500/2">
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/15 transition-colors">
+                        <Clock className="h-4.5 w-4.5" />
+                    </div>
+                    <div>
+                        <div className="text-xl font-bold text-white tabular-nums">{watchTimeHours}h</div>
+                        <div className="text-xs text-gray-500">Total Watched</div>
+                    </div>
                 </div>
-                <div className="text-sm text-gray-400 mt-1">Avg Score</div>
+            </div>
+
+            {/* Completion Rate */}
+            <div className="group relative bg-white/2 rounded-xl border border-white/5 px-4 py-3 transition-all hover:border-emerald-500/20 hover:bg-emerald-500/2">
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/15 transition-colors">
+                        <Target className="h-4.5 w-4.5" />
+                    </div>
+                    <div>
+                        <div className="text-xl font-bold text-white tabular-nums">{Math.round(stats.completionRate)}%</div>
+                        <div className="text-xs text-gray-500">Completion</div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Average Score */}
+            <div className="group relative bg-white/2 rounded-xl border border-white/5 px-4 py-3 transition-all hover:border-amber-500/20 hover:bg-amber-500/2">
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 group-hover:bg-amber-500/15 transition-colors">
+                        <Star className="h-4.5 w-4.5 fill-amber-400" />
+                    </div>
+                    <div>
+                        <div className="text-xl font-bold text-white tabular-nums">{avgScore}</div>
+                        <div className="text-xs text-gray-500">Avg Score</div>
+                    </div>
+                </div>
             </div>
         </div>
     );
