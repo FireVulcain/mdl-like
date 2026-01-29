@@ -51,7 +51,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
 
     return (
         <section
-            className="relative h-[90vh] min-h-[500px] -mt-24 w-screen"
+            className="relative h-[90vh] min-h-125 -mt-24 w-full overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
@@ -71,16 +71,18 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             alt={selectedShow.title ?? ""}
                             fill
                             priority
-                            className="object-cover"
+                            sizes="100vw"
+                            quality={90}
+                            className="object-cover object-top"
                         />
                     )}
                 </motion.div>
             </AnimatePresence>
 
             {/* Gradient overlays */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/30" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0f]" />
+            <div className="absolute inset-0 bg-linear-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/30" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#0a0a0f]" />
 
             {/* Content */}
             <div className="relative h-full flex">
@@ -124,7 +126,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         initial={{ width: 0 }}
                                         animate={{ width: `${progressPercent}%` }}
                                         transition={{ duration: 0.6, ease: "easeOut" }}
-                                        className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full"
+                                        className="absolute inset-y-0 left-0 bg-linear-to-r from-blue-500 to-blue-400 rounded-full"
                                     />
                                 </div>
                             </div>
@@ -155,7 +157,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                     {/* Navigation arrow - always visible for infinite scroll */}
                     <button
                         onClick={() => handleSelect((selectedIndex - 1 + items.length) % items.length)}
-                        className="absolute -left-14 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 border border-white/10 transition-all"
+                        className="cursor-pointer absolute -left-14 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 border border-white/10 transition-all"
                     >
                         <ChevronLeft className="h-5 w-5 text-white" />
                     </button>
@@ -178,14 +180,12 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         key={`${show.id}-${index}`}
                                         onClick={() => handleSelect(actualIndex)}
                                         whileHover={{ scale: 1.03 }}
-                                        className={`relative shrink-0 w-[200px] h-[130px] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
-                                            isSelected
-                                                ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-[#0a0a0f]"
-                                                : "opacity-60 hover:opacity-100"
+                                        className={`relative shrink-0 w-50 h-32.5 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
+                                            isSelected ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-[#0a0a0f]" : "opacity-60 hover:opacity-100"
                                         }`}
                                     >
                                         <Image src={show.backdrop || show.poster} alt={show.title ?? ""} fill className="object-cover" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
                                         {/* Title overlay */}
                                         <div className="absolute bottom-0 left-0 right-0 p-2">
@@ -213,14 +213,6 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             })}
                         </motion.div>
                     </div>
-
-                    {/* Right navigation arrow - always visible for infinite scroll */}
-                    <button
-                        onClick={() => handleSelect((selectedIndex + 1) % items.length)}
-                        className="absolute -right-4 translate-x-full z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 border border-white/10 transition-all"
-                    >
-                        <ChevronRight className="h-5 w-5 text-white" />
-                    </button>
                 </div>
 
                 {/* Mobile: Bottom dots indicator */}

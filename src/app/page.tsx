@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 // Dynamically import TrendingSection (below the fold) to reduce initial JS bundle
 const TrendingSection = dynamic(() => import("@/components/trending-section").then((mod) => mod.TrendingSection), {
-    loading: () => <div className="h-[500px] animate-pulse bg-white/5 rounded-3xl" />,
+    loading: () => <div className="h-125 animate-pulse bg-white/5 rounded-3xl" />,
 });
 
 const MOCK_USER_ID = "mock-user-1";
@@ -31,8 +31,8 @@ export default async function Home() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
 
                 {/* Accent glows at edges only */}
-                <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[180px]" />
-                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-blue-500/12 rounded-full blur-[180px]" />
+                <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
+                <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
 
                 {/* Noise texture overlay */}
                 <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay">
@@ -51,11 +51,11 @@ export default async function Home() {
             {/* Content */}
             <div className="container py-6 md:py-8 space-y-12 md:space-y-24 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
                 {/* K-Drama Special Section */}
-                <section className="relative space-y-6 md:space-y-8 bg-white/[0.02] backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">
+                <section className="relative space-y-6 md:space-y-8 bg-white/2 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">
                     {/* Atmospheric Background Effects */}
                     <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-blue-500/8 rounded-full blur-[80px] md:blur-[120px] -z-10" />
                     <div className="absolute bottom-0 left-0 w-48 md:w-96 h-48 md:h-96 bg-blue-600/8 rounded-full blur-[80px] md:blur-[120px] -z-10" />
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -75,9 +75,9 @@ export default async function Home() {
                         {/* Trending K-Dramas */}
                         <div className="space-y-3 md:space-y-4">
                             <div className="flex items-center gap-2 md:gap-3">
-                                <div className="w-1 h-5 md:h-6 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full" />
+                                <div className="w-1 h-5 md:h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
                                 <h3 className="text-base md:text-lg font-semibold text-white">Popular Right Now</h3>
-                                <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                             </div>
                             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
                                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
@@ -97,9 +97,9 @@ export default async function Home() {
                         {/* Airing Now K-Dramas */}
                         <div className="space-y-3 md:space-y-4">
                             <div className="flex items-center gap-2 md:gap-3">
-                                <div className="w-1 h-5 md:h-6 bg-gradient-to-b from-emerald-500 to-emerald-400 rounded-full" />
+                                <div className="w-1 h-5 md:h-6 bg-linear-to-b from-emerald-500 to-emerald-400 rounded-full" />
                                 <h3 className="text-base md:text-lg font-semibold text-white">Airing Now</h3>
-                                <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                             </div>
                             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
                                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">

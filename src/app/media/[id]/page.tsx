@@ -63,7 +63,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {media.poster ? (
                             <Image src={media.poster} alt={media.title} fill className="object-cover" priority />
                         ) : (
-                            <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">No Poster</div>
+                            <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
+                                No Poster
+                            </div>
                         )}
                     </div>
 
@@ -186,7 +188,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     status: media.status,
                                     totalEp: media.totalEp,
                                     genres: media.genres,
-                                    seasons: media.seasons?.map(s => ({
+                                    seasons: media.seasons?.map((s) => ({
                                         seasonNumber: s.seasonNumber,
                                         poster: s.poster,
                                         episodeCount: s.episodeCount,
@@ -194,7 +196,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         airDate: s.airDate,
                                     })),
                                     // Omit heavy unused fields: cast, images, recommendations, synopsis, rating, etc.
-                                    synopsis: '',
+                                    synopsis: "",
                                     rating: 0,
                                 }}
                                 userMedia={userMedia}
