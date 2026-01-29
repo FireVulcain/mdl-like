@@ -76,8 +76,8 @@ export function ProgressTracker({ current, total, status, onUpdate, className, c
                     <div
                         className={`h-full transition-all duration-500 ${
                             isCompleted
-                                ? "bg-linear-to-r from-green-500 to-emerald-500"
-                                : "bg-linear-to-r from-blue-500 to-cyan-500"
+                                ? "bg-gradient-to-r from-green-500 to-emerald-500"
+                                : "bg-gradient-to-r from-blue-500 to-blue-400"
                         }`}
                         style={{ width: `${percentage}%` }}
                     />

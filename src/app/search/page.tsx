@@ -32,7 +32,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                     {media.length > 0 && (
                         <section className="space-y-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full" />
+                                <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full" />
                                 <Film className="h-5 w-5 text-blue-400" />
                                 <h2 className="text-lg font-semibold">Movies & Series</h2>
                                 <span className="text-sm text-muted-foreground">({media.length})</span>

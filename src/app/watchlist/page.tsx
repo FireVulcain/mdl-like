@@ -37,7 +37,7 @@ export default async function WatchlistPage() {
 
                 {/* Accent glows at edges only - not interfering with content */}
                 <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[180px]" />
-                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-cyan-600/12 rounded-full blur-[180px]" />
+                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-blue-500/12 rounded-full blur-[180px]" />
 
                 {/* Noise texture overlay */}
                 <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay">

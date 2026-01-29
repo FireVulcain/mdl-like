@@ -18,9 +18,9 @@ export function WatchlistStats({ stats }: WatchlistStatsProps) {
     return (
         <div className="flex gap-2 watchlist-stats">
             {/* Watch Time */}
-            <div className="group relative bg-white/2 rounded-xl border border-white/5 px-4 py-3 transition-all hover:border-cyan-500/20 hover:bg-cyan-500/2">
+            <div className="group relative bg-white/2 rounded-xl border border-white/5 px-4 py-3 transition-all hover:border-blue-500/20 hover:bg-blue-500/2">
                 <div className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/15 transition-colors">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-500/10 text-blue-400 group-hover:bg-blue-500/15 transition-colors">
                         <Clock className="h-4.5 w-4.5" />
                     </div>
                     <div>

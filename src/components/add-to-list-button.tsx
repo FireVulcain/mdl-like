@@ -56,7 +56,7 @@ export function AddToListButton({ media, userMedia, season, totalEp }: AddToList
                     <Button
                         onClick={() => setOpen(true)}
                         size="icon"
-                        className="h-10 w-10 bg-linear-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl shadow-lg transition-all cursor-pointer"
+                        className="h-10 w-10 bg-gradient-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 text-white rounded-xl shadow-lg transition-all cursor-pointer"
                     >
                         <Plus className="h-4 w-4" />
                     </Button>

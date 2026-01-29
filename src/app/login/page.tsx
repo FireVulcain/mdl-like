@@ -41,16 +41,17 @@ export default function LoginPage() {
 
     return (
         <div className="relative min-h-screen overflow-hidden flex items-center justify-center -mt-24">
-            {/* Animated Background */}
+            {/* Background */}
             <div className="fixed inset-0 -z-10">
-                {/* Base gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-950 to-slate-900" />
+                {/* Deep dark base */}
+                <div className="absolute inset-0 bg-[#0a0a0f]" />
 
-                {/* Floating ambient glow effects */}
-                <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[140px] animate-float-slow" />
-                <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-500/18 rounded-full blur-[140px] animate-float-slower" />
-                <div className="absolute bottom-0 left-1/3 w-[550px] h-[550px] bg-violet-500/16 rounded-full blur-[140px] animate-float-slowest" />
-                <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-cyan-500/14 rounded-full blur-[140px] animate-float-reverse" />
+                {/* Subtle radial gradient for depth */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
+
+                {/* Accent glows at edges */}
+                <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[180px]" />
+                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-blue-500/12 rounded-full blur-[180px]" />
 
                 {/* Noise texture overlay */}
                 <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay">

@@ -13,9 +13,10 @@ export function SiteHeader() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    // Check if we're on the main media detail page (has backdrop)
-    // Match /media/[id] but not /media/[id]/photos or /media/[id]/cast
+    // Check if we're on a page with a hero backdrop (home or media detail)
+    const isHomePage = pathname === "/";
     const isMediaDetailPage = /^\/media\/[^/]+$/.test(pathname);
+    const hasHeroBackdrop = isHomePage || isMediaDetailPage;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,8 +39,8 @@ export function SiteHeader() {
                     "container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
                     scrolled
                         ? "bg-gray-900/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20 h-14"
-                        : isMediaDetailPage
-                          ? "bg-gray-900/30 backdrop-blur-sm border border-white/5"
+                        : hasHeroBackdrop
+                          ? "bg-black/40 backdrop-blur-md border border-white/10"
                           : "bg-gray-900/50 backdrop-blur-md border border-white/5 shadow-2xl shadow-black/20",
                 )}
             >
