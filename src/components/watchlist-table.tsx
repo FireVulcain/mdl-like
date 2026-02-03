@@ -38,6 +38,7 @@ type NextEpisodeData = {
     episodeNumber: number;
     seasonNumber: number;
     name?: string;
+    seasonEpisodeCount?: number;
 };
 
 type WatchlistItem = {

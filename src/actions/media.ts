@@ -167,6 +167,7 @@ type NextEpisodeData = {
     episodeNumber: number;
     seasonNumber: number;
     name?: string;
+    seasonEpisodeCount?: number; // Total episodes in season (from TVmaze, more accurate than TMDB)
 };
 
 export async function getWatchlist(userId: string) {

@@ -49,6 +49,7 @@ export type UnifiedMedia = {
         episodeNumber: number;
         seasonNumber: number;
         name: string;
+        seasonEpisodeCount?: number; // From TVmaze - more accurate than TMDB
     } | null;
     totalSeasons?: number;
     firstAirDate?: string | null; // Raw first air date (YYYY-MM-DD)
@@ -178,7 +179,7 @@ export const mediaService = {
                 };
 
                 // Fetch next episode from TVmaze (for TV shows only)
-                let nextEpisodeData: { airDate: string; episodeNumber: number; seasonNumber: number; name: string } | null = null;
+                let nextEpisodeData: { airDate: string; episodeNumber: number; seasonNumber: number; name: string; seasonEpisodeCount?: number } | null = null;
                 if (type === "tv") {
                     try {
                         // Get external IDs from TMDB

@@ -8,6 +8,7 @@ interface NextEpisodeData {
     episodeNumber: number;
     seasonNumber: number;
     name: string;
+    seasonEpisodeCount?: number; // From TVmaze - more accurate than TMDB's totalEpisodes
 }
 
 interface SeasonData {
@@ -259,8 +260,10 @@ export function NextEpisodeCountdown({
         return null;
     }
 
-    const episodeText = totalEpisodes
-        ? `Episode ${episodeData.episodeNumber} of ${totalEpisodes}`
+    // Prefer seasonEpisodeCount from TVmaze (more accurate for shows with different season structures)
+    const effectiveTotalEpisodes = nextEpisode?.seasonEpisodeCount || totalEpisodes;
+    const episodeText = effectiveTotalEpisodes
+        ? `Episode ${episodeData.episodeNumber} of ${effectiveTotalEpisodes}`
         : `Episode ${episodeData.episodeNumber}`;
 
     return (
