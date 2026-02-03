@@ -1,4 +1,5 @@
-import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
+import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB, TMDBExternalIds } from "@/lib/tmdb";
+import { tvmaze } from "@/lib/tvmaze";
 
 export type UnifiedMedia = {
     id: string; // Unified: "tmdb-123" or "mdl-456"
@@ -176,6 +177,38 @@ export const mediaService = {
                     return trailer ? { key: trailer.key, name: trailer.name } : undefined;
                 };
 
+                // Fetch next episode from TVmaze (for TV shows only)
+                let nextEpisodeData: { airDate: string; episodeNumber: number; seasonNumber: number; name: string } | null = null;
+                if (type === "tv") {
+                    try {
+                        // Get external IDs from TMDB
+                        const externalIds = await tmdb.getExternalIds("tv", externalId);
+
+                        // Try TVmaze lookup by IMDB ID first, then TVDB ID, then show name
+                        if (externalIds?.imdb_id) {
+                            nextEpisodeData = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
+                        }
+                        if (!nextEpisodeData && externalIds?.tvdb_id) {
+                            nextEpisodeData = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
+                        }
+                        if (!nextEpisodeData && details.name) {
+                            nextEpisodeData = await tvmaze.getNextEpisodeByName(details.name);
+                        }
+                    } catch (error) {
+                        console.error("Error fetching next episode from TVmaze:", error);
+                    }
+
+                    // Fall back to TMDB if TVmaze doesn't have the data
+                    if (!nextEpisodeData && details.next_episode_to_air) {
+                        nextEpisodeData = {
+                            airDate: details.next_episode_to_air.air_date,
+                            episodeNumber: details.next_episode_to_air.episode_number,
+                            seasonNumber: details.next_episode_to_air.season_number,
+                            name: details.next_episode_to_air.name,
+                        };
+                    }
+                }
+
                 return {
                     id: `tmdb-${details.id}`,
                     externalId: details.id.toString(),
@@ -212,15 +245,8 @@ export const mediaService = {
                         }))
                         .filter((s) => s.seasonNumber > 0), // Filter out "Specials" (Season 0) usually
 
-                    // Next Episode (for ongoing series)
-                    nextEpisode: details.next_episode_to_air
-                        ? {
-                              airDate: details.next_episode_to_air.air_date,
-                              episodeNumber: details.next_episode_to_air.episode_number,
-                              seasonNumber: details.next_episode_to_air.season_number,
-                              name: details.next_episode_to_air.name,
-                          }
-                        : null,
+                    // Next Episode (from TVmaze, with TMDB fallback)
+                    nextEpisode: nextEpisodeData,
                     totalSeasons: details.number_of_seasons,
                     firstAirDate: details.first_air_date || null,
 

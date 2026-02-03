@@ -3,7 +3,8 @@
 import { prisma } from "@/lib/prisma"; // Need to create this
 import { UnifiedMedia } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
-import { tmdb } from "@/lib/tmdb";
+import { tmdb, TMDBExternalIds } from "@/lib/tmdb";
+import { tvmaze } from "@/lib/tvmaze";
 
 // Ensure we have a singleton Prisma client
 // We need to create src/lib/prisma.ts first if not exists, but I'll assume I need to create it.
@@ -184,11 +185,11 @@ export async function getWatchlist(userId: string) {
         Dropped: 5,
     };
 
-    // Fetch next episode data for "Watching" items that are airing
-    const watchingAiringItems = items.filter(
+    // Fetch next episode data for "Watching" and "Plan to Watch" items that are airing
+    const airingItems = items.filter(
         (item) =>
-            item.status === "Watching" &&
-            item.airingStatus === "Returning Series" &&
+            (item.status === "Watching" || item.status === "Plan to Watch") &&
+            (item.airingStatus === "Returning Series" || item.airingStatus === "In Production") &&
             item.mediaType === "TV" &&
             item.source === "TMDB"
     );
@@ -196,23 +197,51 @@ export async function getWatchlist(userId: string) {
     // Create a map to store next episode data, keyed by externalId
     const nextEpisodeMap = new Map<string, { nextEpisode: NextEpisodeData | null; seasonAirDate: string | null }>();
 
-    // Fetch next episode data in parallel (batched)
-    if (watchingAiringItems.length > 0) {
-        const fetchPromises = watchingAiringItems.map(async (item) => {
+    // Fetch next episode data in parallel (batched) using TVmaze with TMDB fallback
+    if (airingItems.length > 0) {
+        const fetchPromises = airingItems.map(async (item) => {
             try {
+                // Get TMDB details for season air date and external IDs
                 const details = await tmdb.getDetails("tv", item.externalId);
-                const nextEpisode = details.next_episode_to_air
-                    ? {
-                          airDate: details.next_episode_to_air.air_date,
-                          episodeNumber: details.next_episode_to_air.episode_number,
-                          seasonNumber: details.next_episode_to_air.season_number,
-                          name: details.next_episode_to_air.name,
-                      }
-                    : null;
-
-                // Find the season air date for the current season the user is watching
                 const seasonData = details.seasons?.find((s) => s.season_number === item.season);
                 const seasonAirDate = seasonData?.air_date || details.first_air_date || null;
+
+                // Try to get next episode from TVmaze first
+                let nextEpisode: NextEpisodeData | null = null;
+
+                try {
+                    // Get external IDs from TMDB
+                    const externalIds = await tmdb.getExternalIds("tv", item.externalId);
+
+                    // Try TVmaze lookup by IMDB ID first, then TVDB ID, then show name
+                    if (externalIds?.imdb_id) {
+                        nextEpisode = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
+                    }
+                    if (!nextEpisode && externalIds?.tvdb_id) {
+                        nextEpisode = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
+                    }
+                    if (!nextEpisode && item.title) {
+                        nextEpisode = await tvmaze.getNextEpisodeByName(item.title);
+                    }
+                } catch (tvmazeError) {
+                    console.error(`TVmaze lookup failed for ${item.title}:`, tvmazeError);
+                }
+
+                // Fall back to TMDB if TVmaze doesn't have the data
+                if (!nextEpisode && details.next_episode_to_air) {
+                    nextEpisode = {
+                        airDate: details.next_episode_to_air.air_date,
+                        episodeNumber: details.next_episode_to_air.episode_number,
+                        seasonNumber: details.next_episode_to_air.season_number,
+                        name: details.next_episode_to_air.name,
+                    };
+                }
+
+                // Only include next episode if it's for the season the user is tracking
+                // This prevents showing "Season 4 Episode 1" when the user has "Season 3" in their watchlist
+                if (nextEpisode && nextEpisode.seasonNumber !== item.season) {
+                    nextEpisode = null;
+                }
 
                 nextEpisodeMap.set(`${item.externalId}-${item.season}`, { nextEpisode, seasonAirDate });
             } catch (error) {

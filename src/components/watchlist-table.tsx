@@ -1080,7 +1080,7 @@ const ItemCard = memo(function ItemCard({
                             <span>{item.originCountry || "Unknown"}</span>
                             <span className="w-1 h-1 rounded-full bg-gray-600" />
                             <span>{item.year || "N/A"}</span>
-                            {item.status === "Watching" && item.originCountry === "KR" && (
+                            {item.status !== "Completed" && (
                                 <NextEpisodeIndicator
                                     nextEpisode={item.nextEpisode}
                                     totalEpisodes={item.totalEp}

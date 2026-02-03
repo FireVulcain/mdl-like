@@ -157,6 +157,16 @@ export type TMDBPersonCredits = {
     }[];
 };
 
+export type TMDBExternalIds = {
+    id: number;
+    imdb_id: string | null;
+    tvdb_id: number | null;
+    wikidata_id: string | null;
+    facebook_id: string | null;
+    instagram_id: string | null;
+    twitter_id: string | null;
+};
+
 export async function fetchTMDB<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
     const apiKey = process.env.TMDB_API_KEY;
     if (!apiKey) {
@@ -193,4 +203,6 @@ export const tmdb = {
     getPersonDetails: (id: string) => fetchTMDB<TMDBPerson>(`/person/${id}`),
 
     getPersonCombinedCredits: (id: string) => fetchTMDB<TMDBPersonCredits>(`/person/${id}/combined_credits`),
+
+    getExternalIds: (type: "movie" | "tv", id: string) => fetchTMDB<TMDBExternalIds>(`/${type}/${id}/external_ids`),
 };
