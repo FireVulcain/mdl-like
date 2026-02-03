@@ -20,7 +20,7 @@ export async function addToWatchlist(
         progress?: number;
         score?: number;
         notes?: string;
-    }
+    },
 ) {
     if (!userId) throw new Error("Unauthorized");
 
@@ -106,9 +106,9 @@ export async function updateProgress(id: string, progress: number) {
     try {
         const updated = await prisma.userMedia.update({
             where: { id },
-            data: { 
+            data: {
                 progress,
-                lastWatchedAt: new Date()
+                lastWatchedAt: new Date(),
             },
         });
         revalidatePath("/watchlist");
@@ -144,7 +144,7 @@ export async function updateUserMedia(id: string, data: Partial<any>) {
                 progress,
                 score,
                 notes,
-                lastWatchedAt: (status !== undefined || progress !== undefined) ? new Date() : undefined,
+                lastWatchedAt: status !== undefined || progress !== undefined ? new Date() : undefined,
             },
         });
         revalidatePath("/watchlist");
@@ -191,7 +191,7 @@ export async function getWatchlist(userId: string) {
             (item.status === "Watching" || item.status === "Plan to Watch") &&
             (item.airingStatus === "Returning Series" || item.airingStatus === "In Production") &&
             item.mediaType === "TV" &&
-            item.source === "TMDB"
+            item.source === "TMDB",
     );
 
     // Create a map to store next episode data, keyed by externalId
@@ -235,12 +235,6 @@ export async function getWatchlist(userId: string) {
                         seasonNumber: details.next_episode_to_air.season_number,
                         name: details.next_episode_to_air.name,
                     };
-                }
-
-                // Only include next episode if it's for the season the user is tracking
-                // This prevents showing "Season 4 Episode 1" when the user has "Season 3" in their watchlist
-                if (nextEpisode && nextEpisode.seasonNumber !== item.season) {
-                    nextEpisode = null;
                 }
 
                 nextEpisodeMap.set(`${item.externalId}-${item.season}`, { nextEpisode, seasonAirDate });
