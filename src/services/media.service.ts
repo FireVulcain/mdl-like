@@ -327,12 +327,14 @@ export const mediaService = {
         }
     },
 
-    async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[] }> {
+    async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             const today = new Date().toISOString().split("T")[0];
+            const tomorrow = new Date(Date.now() + 86400000).toISOString().split("T")[0];
+            const sixMonthsLater = new Date(Date.now() + 180 * 86400000).toISOString().split("T")[0];
 
-            // Parallel fetch: both API calls are independent
-            const [popularRes, airingRes] = await Promise.all([
+            // Parallel fetch: all three API calls are independent
+            const [popularRes, airingRes, upcomingRes] = await Promise.all([
                 // Trending K-Dramas (using popularity as proxy for trending within category)
                 tmdb.discoverTV({
                     with_origin_country: "KR",
@@ -347,30 +349,52 @@ export const mediaService = {
                     "first_air_date.lte": today, // Ensure it has actually started
                     sort_by: "popularity.desc",
                 }),
+                // Upcoming K-Dramas (premiering in the next 6 months)
+                tmdb.discoverTV({
+                    with_origin_country: "KR",
+                    with_genres: "18",
+                    "first_air_date.gte": tomorrow,
+                    "first_air_date.lte": sixMonthsLater,
+                    sort_by: "popularity.desc",
+                }),
             ]);
 
-            const transform = (item: TMDBMedia): UnifiedMedia => ({
+            const transform = (item: TMDBMedia, posterOverride?: string | null): UnifiedMedia => ({
                 id: `tmdb-${item.id}`,
                 externalId: item.id.toString(),
                 source: "TMDB",
                 type: "TV",
                 title: item.name || "Unknown",
-                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : (posterOverride ?? null),
                 backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                 year: (item.first_air_date || "").split("-")[0],
                 originCountry: "KR",
                 synopsis: item.overview,
                 rating: item.vote_average,
                 popularity: item.popularity,
+                firstAirDate: item.first_air_date || null,
             });
 
+            // For upcoming shows missing a TMDB poster, fall back to TVmaze
+            const upcomingPosterOverrides = new Map<number, string>();
+            const missingPosters = upcomingRes.results.filter((item) => !item.poster_path);
+            if (missingPosters.length > 0) {
+                await Promise.all(
+                    missingPosters.map(async (item) => {
+                        const poster = await tvmaze.getPosterByName(item.name || "");
+                        if (poster) upcomingPosterOverrides.set(item.id, poster);
+                    })
+                );
+            }
+
             return {
-                trending: popularRes.results.map(transform),
-                airing: airingRes.results.map(transform),
+                trending: popularRes.results.map((item) => transform(item)),
+                airing: airingRes.results.map((item) => transform(item)),
+                upcoming: upcomingRes.results.map((item) => transform(item, upcomingPosterOverrides.get(item.id))),
             };
         } catch (error) {
             console.error("Error fetching K-Dramas", error);
-            return { trending: [], airing: [] };
+            return { trending: [], airing: [], upcoming: [] };
         }
     },
 };

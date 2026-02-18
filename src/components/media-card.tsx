@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,13 +9,14 @@ import Image from "next/image";
 interface MediaCardProps {
     media: UnifiedMedia;
     className?: string;
+    overlay?: React.ReactNode;
 }
 
-export function MediaCard({ media, className }: MediaCardProps) {
+export function MediaCard({ media, className, overlay }: MediaCardProps) {
     return (
         <Link href={`/media/${media.id}`} className={cn("group block", className)}>
             <Card className="overflow-hidden border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
-                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md bg-secondary">
+                <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
                     {media.poster ? (
                         <Image
                             src={media.poster}
@@ -38,6 +40,7 @@ export function MediaCard({ media, className }: MediaCardProps) {
                             </Badge>
                         </div>
                     )}
+                    {overlay}
                 </div>
                 <CardContent className="p-2">
                     <h3 className="line-clamp-1 font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">

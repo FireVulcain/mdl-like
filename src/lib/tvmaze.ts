@@ -3,6 +3,10 @@ const TVMAZE_BASE_URL = "https://api.tvmaze.com";
 export type TVMazeShow = {
     id: number;
     name: string;
+    image?: {
+        medium: string | null;
+        original: string | null;
+    } | null;
     externals: {
         tvrage: number | null;
         thetvdb: number | null;
@@ -161,6 +165,18 @@ export const tvmaze = {
         }
 
         return extractNextEpisodeData(show, show.id);
+    },
+
+    /**
+     * Search for a show by name and return its poster URL (medium size), or null if not found.
+     * Used as a fallback when TMDB has no poster for a show.
+     */
+    async getPosterByName(showName: string): Promise<string | null> {
+        const searchResults = await fetchTVMaze<{ score: number; show: TVMazeShow }[]>(`/search/shows`, {
+            q: showName,
+        });
+        if (!searchResults || searchResults.length === 0) return null;
+        return searchResults[0].show.image?.medium ?? null;
     },
 
     /**

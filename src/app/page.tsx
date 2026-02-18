@@ -67,7 +67,7 @@ export default async function Home() {
                                     <span className="text-[10px] md:text-xs font-medium text-blue-300">LIVE</span>
                                 </div>
                             </div>
-                            <p className="text-xs md:text-sm text-gray-400">Fresh from Seoul · Trending and currently airing series</p>
+                            <p className="text-xs md:text-sm text-gray-400">Fresh from Seoul · Trending, airing, and upcoming series</p>
                         </div>
                     </div>
 
@@ -115,6 +115,43 @@ export default async function Home() {
                                 <ScrollBar orientation="horizontal" className="opacity-50" />
                             </ScrollArea>
                         </div>
+
+                        {/* Upcoming K-Dramas */}
+                        {kdramas.upcoming.length > 0 && (
+                            <div className="space-y-3 md:space-y-4">
+                                <div className="flex items-center gap-2 md:gap-3">
+                                    <div className="w-1 h-5 md:h-6 bg-linear-to-b from-amber-500 to-amber-400 rounded-full" />
+                                    <h3 className="text-base md:text-lg font-semibold text-white">Coming Soon</h3>
+                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                </div>
+                                <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
+                                    <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
+                                        {kdramas.upcoming.map((media) => (
+                                            <div
+                                                key={media.id}
+                                                className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300"
+                                            >
+                                                <MediaCard
+                                                    media={media}
+                                                    overlay={
+                                                        media.firstAirDate ? (
+                                                            <span className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-amber-400">
+                                                                {new Date(media.firstAirDate + "T00:00:00").toLocaleDateString("en-US", {
+                                                                    month: "short",
+                                                                    day: "numeric",
+                                                                    year: "numeric",
+                                                                })}
+                                                            </span>
+                                                        ) : null
+                                                    }
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <ScrollBar orientation="horizontal" className="opacity-50" />
+                                </ScrollArea>
+                            </div>
+                        )}
                     </div>
                 </section>
 
