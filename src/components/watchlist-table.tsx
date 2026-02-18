@@ -27,9 +27,11 @@ import {
     Star,
     Layers,
     SlidersHorizontal,
+    ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type ConfirmAction = "mdl-import" | "backfill" | null;
 
@@ -1102,6 +1104,26 @@ const ItemCard = memo(function ItemCard({
                         <span className={`text-xs font-medium ${statusInfo.color}`}>{item.status}</span>
                     </button>
                 </div>
+
+                {/* MDL Link - Desktop, KR/CN only */}
+                {(item.originCountry === "KR" || item.originCountry === "CN") && (
+                    <TooltipProvider delayDuration={300}>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.open(`https://mydramalist.com/search?q=${encodeURIComponent(item.title || "")}`, "_blank", "noopener,noreferrer");
+                                    }}
+                                    className="desktop-status-btn card-status cursor-pointer h-8 w-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all shrink-0"
+                                >
+                                    <ExternalLink className="h-4 w-4" />
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">Search on MyDramaList</TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                )}
 
                 {/* Status Badge - Desktop */}
                 <button

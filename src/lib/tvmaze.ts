@@ -55,23 +55,29 @@ async function fetchTVMaze<T>(endpoint: string, params: Record<string, string> =
     const queryString = queryParams.toString();
     const url = `${TVMAZE_BASE_URL}${endpoint}${queryString ? `?${queryString}` : ""}`;
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+
     try {
         const res = await fetch(url, {
-            next: { revalidate: 3600 }, // Cache for 1 hour
+            next: { revalidate: 3600 },
+            signal: controller.signal,
         });
 
         if (!res.ok) {
             if (res.status === 404) {
-                return null; // Show not found
+                return null;
             }
             console.error(`TVMaze API Error: ${res.status} ${res.statusText}`);
             return null;
         }
 
         return res.json();
-    } catch (error) {
-        console.error("TVMaze fetch error:", error);
+    } catch {
+        // Covers ECONNRESET, AbortError (timeout), and other network failures
         return null;
+    } finally {
+        clearTimeout(timeout);
     }
 }
 
