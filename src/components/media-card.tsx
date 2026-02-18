@@ -26,7 +26,9 @@ export function MediaCard({ media, className, overlay }: MediaCardProps) {
                             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
                         />
                     ) : (
-                        <div className="flex h-full items-center justify-center text-muted-foreground">No Image</div>
+                        <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-sm">
+                            No Poster
+                        </div>
                     )}
                     <div className="absolute right-2 top-2">
                         <Badge variant="secondary" className="bg-black/60 font-mono text-xs text-white backdrop-blur-sm">
