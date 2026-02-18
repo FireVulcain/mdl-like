@@ -30,6 +30,7 @@ export function SiteHeader() {
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Watchlist", href: "/watchlist" },
+        { name: "Schedule", href: "/schedule" },
     ];
 
     return (

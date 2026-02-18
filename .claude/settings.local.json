@@ -26,7 +26,10 @@
       "mcp__chrome-devtools__new_page",
       "mcp__chrome-devtools__click",
       "mcp__chrome-devtools__evaluate_script",
-      "WebFetch(domain:www.tvmaze.com)"
+      "WebFetch(domain:www.tvmaze.com)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import Link from "next/link";
 
 interface NextEpisodeData {
     airDate: string;
@@ -164,12 +165,18 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
 
     const formatted = formatTimeLeft(timeLeft, episodeData.airDate);
 
+    const scheduleHref = `/schedule?date=${episodeData.airDate}`;
+
     return (
-        <span className="inline-flex items-center gap-1.5 text-xs text-gray-300 bg-white/10 border border-white/10 px-2 py-0.5 rounded">
+        <Link
+            href={scheduleHref}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1.5 text-xs text-gray-300 bg-white/10 border border-white/10 px-2 py-0.5 rounded hover:bg-white/20 hover:border-white/20 transition-colors"
+        >
             <span className="text-white font-medium tabular-nums">
                 Ep {episodeData.episodeNumber} {formatted.useIn ? "in " : ""}
                 {formatted.text}
             </span>
-        </span>
+        </Link>
     );
 }

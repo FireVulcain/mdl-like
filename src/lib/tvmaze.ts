@@ -186,6 +186,49 @@ export const tvmaze = {
     },
 
     /**
+     * Get all upcoming (future) episodes for a show, resolved by IMDB ID, TVDB ID, or name.
+     * Returns a flat list sorted by air date ascending.
+     */
+    async getUpcomingEpisodes({
+        imdbId,
+        tvdbId,
+        showName,
+    }: {
+        imdbId?: string | null;
+        tvdbId?: number | null;
+        showName?: string | null;
+    }): Promise<NextEpisodeResult[]> {
+        // Resolve TVmaze show (IMDB → TVDB → name)
+        let show: TVMazeShow | null = null;
+
+        if (imdbId) {
+            show = await fetchTVMaze<TVMazeShow>(`/lookup/shows`, { imdb: imdbId });
+        }
+        if (!show && tvdbId) {
+            show = await fetchTVMaze<TVMazeShow>(`/lookup/shows`, { thetvdb: tvdbId.toString() });
+        }
+        if (!show && showName) {
+            const results = await fetchTVMaze<{ show: TVMazeShow }[]>(`/search/shows`, { q: showName });
+            if (results?.length) show = results[0].show;
+        }
+
+        if (!show) return [];
+
+        const today = new Date().toISOString().split("T")[0];
+        const episodes = await fetchTVMaze<TVMazeEpisode[]>(`/shows/${show.id}/episodes`);
+        if (!episodes) return [];
+
+        return episodes
+            .filter((ep) => ep.airdate >= today && ep.number > 0)
+            .map((ep) => ({
+                airDate: ep.airdate,
+                episodeNumber: ep.number,
+                seasonNumber: ep.season,
+                name: ep.name,
+            }));
+    },
+
+    /**
      * Search for a show by name and get next episode info
      */
     async getNextEpisodeByName(showName: string): Promise<NextEpisodeResult | null> {
