@@ -1,4 +1,4 @@
-import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB, TMDBExternalIds } from "@/lib/tmdb";
+import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
 
 export type UnifiedMedia = {
@@ -390,7 +390,11 @@ export const mediaService = {
             return {
                 trending: popularRes.results.map((item) => transform(item)),
                 airing: airingRes.results.map((item) => transform(item)),
-                upcoming: upcomingRes.results.map((item) => transform(item, upcomingPosterOverrides.get(item.id))),
+                upcoming: upcomingRes.results.map((item) => {
+                    const tvmazePoster = upcomingPosterOverrides.get(item.id);
+                    const backdropFallback = item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null;
+                    return transform(item, tvmazePoster ?? backdropFallback);
+                }),
             };
         } catch (error) {
             console.error("Error fetching K-Dramas", error);
