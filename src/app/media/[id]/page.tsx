@@ -3,7 +3,7 @@ import { ProgressTracker } from "@/components/progress-tracker";
 import { mediaService } from "@/services/media.service";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getUserMedia } from "@/actions/user-media";
+import { getUserMedia, getWatchlistExternalIds } from "@/actions/user-media";
 import { updateProgress } from "@/actions/media";
 import { AddToListButton } from "@/components/add-to-list-button";
 import { MediaCard } from "@/components/media-card";
@@ -12,7 +12,7 @@ import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
-import { ExternalLink } from "lucide-react";
+import { Bookmark, ExternalLink } from "lucide-react";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -33,8 +33,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const currentSeasonData = media.seasons?.find((s) => s.seasonNumber === selectedSeason);
     const episodeCount = currentSeasonData?.episodeCount || (selectedSeason === 1 ? media.totalEp : null) || null; // Fallback for movies or missing season data
 
-    // Fetch user media specifically for this season
-    const userMedia = await getUserMedia(MOCK_USER_ID, media.externalId, media.source, selectedSeason);
+    // Parallel fetch: userMedia and watchlist IDs are independent
+    const [userMedia, watchlistExternalIds] = await Promise.all([
+        getUserMedia(MOCK_USER_ID, media.externalId, media.source, selectedSeason),
+        getWatchlistExternalIds(),
+    ]);
+    const watchlistIds = new Set(watchlistExternalIds);
 
     // Determine update action if userMedia exists
     const updateAction = userMedia ? updateProgress.bind(null, userMedia.id) : undefined;
@@ -246,7 +250,19 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
                             <div className="grid grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-6">
                                 {media.recommendations.map((item) => (
-                                    <MediaCard key={item.id} media={item} />
+                                    <MediaCard
+                                        key={item.id}
+                                        media={item}
+                                        overlay={
+                                            watchlistIds.has(item.externalId) ? (
+                                                <div className="absolute bottom-2 left-2">
+                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                    </span>
+                                                </div>
+                                            ) : null
+                                        }
+                                    />
                                 ))}
                             </div>
                         </div>

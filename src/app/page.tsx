@@ -1,8 +1,10 @@
 import { MediaCard } from "@/components/media-card";
 import { mediaService } from "@/services/media.service";
 import { getContinueWatching } from "@/actions/stats";
+import { getWatchlistExternalIds } from "@/actions/user-media";
 import { ContinueWatching } from "@/components/continue-watching";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Bookmark } from "lucide-react";
 import dynamic from "next/dynamic";
 
 // Dynamically import TrendingSection (below the fold) to reduce initial JS bundle
@@ -13,12 +15,14 @@ const TrendingSection = dynamic(() => import("@/components/trending-section").th
 const MOCK_USER_ID = "mock-user-1";
 
 export default async function Home() {
-    // Parallel fetch: all 3 operations are independent
-    const [trending, kdramas, continueWatchingItems] = await Promise.all([
+    // Parallel fetch: all operations are independent
+    const [trending, kdramas, continueWatchingItems, watchlistExternalIds] = await Promise.all([
         mediaService.getTrending(),
         mediaService.getKDramas(),
         getContinueWatching(MOCK_USER_ID),
+        getWatchlistExternalIds(),
     ]);
+    const watchlistIds = new Set(watchlistExternalIds);
 
     return (
         <div className="relative min-h-screen">
@@ -86,7 +90,18 @@ export default async function Home() {
                                             key={media.id}
                                             className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300"
                                         >
-                                            <MediaCard media={media} />
+                                            <MediaCard
+                                                media={media}
+                                                overlay={
+                                                    watchlistIds.has(media.externalId) ? (
+                                                        <div className="absolute bottom-2 left-2">
+                                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                            </span>
+                                                        </div>
+                                                    ) : null
+                                                }
+                                            />
                                         </div>
                                     ))}
                                 </div>
@@ -108,7 +123,18 @@ export default async function Home() {
                                             key={media.id}
                                             className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300"
                                         >
-                                            <MediaCard media={media} />
+                                            <MediaCard
+                                                media={media}
+                                                overlay={
+                                                    watchlistIds.has(media.externalId) ? (
+                                                        <div className="absolute bottom-2 left-2">
+                                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                            </span>
+                                                        </div>
+                                                    ) : null
+                                                }
+                                            />
                                         </div>
                                     ))}
                                 </div>
@@ -134,15 +160,24 @@ export default async function Home() {
                                                 <MediaCard
                                                     media={media}
                                                     overlay={
-                                                        media.firstAirDate ? (
-                                                            <span className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-amber-400">
-                                                                {new Date(media.firstAirDate + "T00:00:00").toLocaleDateString("en-US", {
-                                                                    month: "short",
-                                                                    day: "numeric",
-                                                                    year: "numeric",
-                                                                })}
-                                                            </span>
-                                                        ) : null
+                                                        <>
+                                                            {media.firstAirDate && (
+                                                                <span className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-amber-400">
+                                                                    {new Date(media.firstAirDate + "T00:00:00").toLocaleDateString("en-US", {
+                                                                        month: "short",
+                                                                        day: "numeric",
+                                                                        year: "numeric",
+                                                                    })}
+                                                                </span>
+                                                            )}
+                                                            {watchlistIds.has(media.externalId) && (
+                                                                <div className="absolute bottom-2 right-2">
+                                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                                    </span>
+                                                                </div>
+                                                            )}
+                                                        </>
                                                     }
                                                 />
                                             </div>
