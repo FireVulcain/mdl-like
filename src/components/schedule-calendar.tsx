@@ -238,6 +238,17 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                 </div>
 
                 {/* Legend */}
+                <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-[10px]">7</span>
+                        <span>Today</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <span className="w-5 h-5 rounded bg-amber-500/10 ring-1 ring-inset ring-amber-500/30" />
+                        <span>Linked date</span>
+                    </div>
+                </div>
+
                 {entries.length === 0 && (
                     <div className="text-center py-16 text-gray-500">
                         <CalendarDays className="h-12 w-12 mx-auto mb-3 opacity-30" />
