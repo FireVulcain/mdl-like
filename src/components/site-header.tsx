@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { Menu, X } from "lucide-react";
+import { ExternalLink, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -75,6 +75,15 @@ export function SiteHeader() {
                             </Link>
                         );
                     })}
+                    <a
+                        href="https://mydramalist.com/dramalist/Popoooo_"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-white transition-colors rounded-lg"
+                    >
+                        MDL
+                        <ExternalLink className="h-3 w-3" />
+                    </a>
                 </nav>
 
                 {/* Search & Actions */}
@@ -140,6 +149,15 @@ export function SiteHeader() {
                                     </Link>
                                 );
                             })}
+                            <a
+                                href="https://mydramalist.com/dramalist/Popoooo_"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 px-4 py-3 text-sm font-semibold text-muted-foreground hover:text-white hover:bg-white/5 transition-colors rounded-xl"
+                            >
+                                MDL
+                                <ExternalLink className="h-3 w-3" />
+                            </a>
                         </nav>
 
                         {/* Mobile Profile */}
