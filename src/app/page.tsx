@@ -159,6 +159,7 @@ export default async function Home() {
                                             >
                                                 <MediaCard
                                                     media={media}
+                                                    sizes="(max-width: 768px) 200vw, 1200px"
                                                     overlay={
                                                         <>
                                                             {media.firstAirDate && (

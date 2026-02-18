@@ -10,9 +10,10 @@ interface MediaCardProps {
     media: UnifiedMedia;
     className?: string;
     overlay?: React.ReactNode;
+    sizes?: string;
 }
 
-export function MediaCard({ media, className, overlay }: MediaCardProps) {
+export function MediaCard({ media, className, overlay, sizes = "(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw" }: MediaCardProps) {
     return (
         <Link href={`/media/${media.id}`} className={cn("group block", className)}>
             <Card className="overflow-hidden border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
@@ -23,7 +24,7 @@ export function MediaCard({ media, className, overlay }: MediaCardProps) {
                             alt={media.title}
                             fill
                             className="object-cover transition-opacity duration-300 group-hover:opacity-80"
-                            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                            sizes={sizes}
                         />
                     ) : (
                         <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-sm">

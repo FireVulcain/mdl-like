@@ -392,7 +392,7 @@ export const mediaService = {
                 airing: airingRes.results.map((item) => transform(item)),
                 upcoming: upcomingRes.results.map((item) => {
                     const tvmazePoster = upcomingPosterOverrides.get(item.id);
-                    const backdropFallback = item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null;
+                    const backdropFallback = item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null;
                     return transform(item, tvmazePoster ?? backdropFallback);
                 }),
             };
