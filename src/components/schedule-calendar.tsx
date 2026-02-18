@@ -171,11 +171,11 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                         ].filter(Boolean).join(" ")}
                                     >
                                         {/* Day number */}
-                                        <div className="flex justify-end">
+                                        <div className="flex justify-center">
                                             <span
                                                 className={`text-sm font-semibold w-7 h-7 flex items-center justify-center rounded-full ${
                                                     isToday
-                                                        ? "bg-primary text-white"
+                                                        ? "text-primary"
                                                         : cell.current
                                                         ? "text-gray-300"
                                                         : "text-gray-600"
@@ -187,7 +187,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
                                         {/* Episode icons — one per show */}
                                         {dayGroups.length > 0 && (
-                                            <div className="flex flex-wrap gap-1 mt-0.5">
+                                            <div className="flex flex-wrap gap-1 mt-0.5 justify-center">
                                                 {dayGroups.slice(0, 4).map((showEps, gi) => {
                                                     const first = showEps[0];
                                                     return (
@@ -240,7 +240,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                 {/* Legend */}
                 <div className="flex items-center gap-4 text-xs text-gray-500">
                     <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-[10px]">7</span>
+                        <span className="w-5 h-5 rounded bg-primary/5 flex items-center justify-center text-primary font-semibold text-[10px]">7</span>
                         <span>Today</span>
                     </div>
                     <div className="flex items-center gap-2">
