@@ -62,7 +62,7 @@ export async function getScheduleEntries(userId: string): Promise<ScheduleEntry[
             status: { in: ["Watching", "Plan to Watch", "Completed"] },
             mediaType: "TV",
             source: "TMDB",
-            originCountry: { in: ["KR", "CN"] },
+            originCountry: { in: ["KR", "CN", "JP"] },
         },
         select: {
             externalId: true,
@@ -144,7 +144,7 @@ export async function refreshScheduleCache(userId: string): Promise<void> {
             status: { in: ["Watching", "Plan to Watch"] },
             mediaType: "TV",
             source: "TMDB",
-            originCountry: { in: ["KR", "CN"] },
+            originCountry: { in: ["KR", "CN", "JP"] },
         },
         select: {
             externalId: true,
