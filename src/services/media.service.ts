@@ -82,9 +82,7 @@ export const mediaService = {
 
         // Transform TMDB media results
         const mediaResults: UnifiedMedia[] = tmdbResults.results
-            .filter((item): item is TMDBMedia & { media_type: "movie" | "tv" } =>
-                item.media_type === "movie" || item.media_type === "tv"
-            )
+            .filter((item): item is TMDBMedia & { media_type: "movie" | "tv" } => item.media_type === "movie" || item.media_type === "tv")
             .map((item) => ({
                 id: `tmdb-${item.id}`,
                 externalId: item.id.toString(),
@@ -179,7 +177,13 @@ export const mediaService = {
                 };
 
                 // Fetch next episode from TVmaze (for TV shows only)
-                let nextEpisodeData: { airDate: string; episodeNumber: number; seasonNumber: number; name: string; seasonEpisodeCount?: number } | null = null;
+                let nextEpisodeData: {
+                    airDate: string;
+                    episodeNumber: number;
+                    seasonNumber: number;
+                    name: string;
+                    seasonEpisodeCount?: number;
+                } | null = null;
                 if (type === "tv") {
                     try {
                         // Get external IDs from TMDB
@@ -327,6 +331,82 @@ export const mediaService = {
         }
     },
 
+    async browseDramas({
+        category = "popular",
+        country = "KR",
+        sort = "popularity.desc",
+        genres = "18",
+        year,
+        page = 1,
+    }: {
+        category?: string;
+        country?: string;
+        sort?: string;
+        genres?: string; // comma-separated TMDB genre IDs
+        year?: string;
+        page?: number;
+    }): Promise<{ items: UnifiedMedia[]; totalPages: number; totalResults: number }> {
+        try {
+            const today = new Date().toISOString().split("T")[0];
+            const tomorrow = new Date(Date.now() + 86400000).toISOString().split("T")[0];
+            const twelveMonthsLater = new Date(Date.now() + 365 * 86400000).toISOString().split("T")[0];
+
+            const originCountry = country === "all" ? "KR|CN" : country;
+
+            const params: Record<string, string> = {
+                with_origin_country: originCountry,
+                sort_by: sort,
+                page: page.toString(),
+            };
+
+            params["first_air_date.gte"] = "2010-01-01";
+
+            if (genres) params.with_genres = genres;
+
+            // Require a minimum vote count when sorting by rating to avoid
+            // unknown shows with 1-2 votes at 10/10 dominating the results
+            if (sort === "vote_average.desc") params["vote_count.gte"] = "100";
+
+            if (category === "airing") {
+                params["air_date.gte"] = today;
+                params["first_air_date.lte"] = today;
+            } else if (category === "upcoming") {
+                params["first_air_date.gte"] = tomorrow;
+                params["first_air_date.lte"] = twelveMonthsLater;
+            } else if (year) {
+                params["first_air_date.gte"] = `${year}-01-01`;
+                params["first_air_date.lte"] = `${year}-12-31`;
+            }
+
+            const result = await tmdb.discoverTV(params);
+
+            const items: UnifiedMedia[] = result.results.map((item) => ({
+                id: `tmdb-${item.id}`,
+                externalId: item.id.toString(),
+                source: "TMDB",
+                type: "TV",
+                title: item.name || "Unknown",
+                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
+                year: (item.first_air_date || "").split("-")[0],
+                originCountry: item.origin_country?.[0] ?? (country === "all" ? "" : country),
+                synopsis: item.overview,
+                rating: item.vote_average,
+                popularity: item.popularity,
+                firstAirDate: item.first_air_date || null,
+            }));
+
+            return {
+                items,
+                totalPages: Math.min(result.total_pages, 100),
+                totalResults: result.total_results,
+            };
+        } catch (error) {
+            console.error("Error browsing dramas:", error);
+            return { items: [], totalPages: 0, totalResults: 0 };
+        }
+    },
+
     async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             const today = new Date().toISOString().split("T")[0];
@@ -383,7 +463,7 @@ export const mediaService = {
                     missingPosters.map(async (item) => {
                         const poster = await tvmaze.getPosterByName(item.name || "");
                         if (poster) upcomingPosterOverrides.set(item.id, poster);
-                    })
+                    }),
                 );
             }
 

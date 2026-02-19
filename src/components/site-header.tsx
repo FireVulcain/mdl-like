@@ -29,6 +29,7 @@ export function SiteHeader() {
 
     const navItems = [
         { name: "Home", href: "/" },
+        { name: "Dramas", href: "/dramas?category=popular&country=KR&sort=vote_average.desc", activePath: "/dramas" },
         { name: "Watchlist", href: "/watchlist" },
         { name: "Schedule", href: "/schedule" },
     ];
@@ -55,7 +56,7 @@ export function SiteHeader() {
                 {/* Navigation */}
                 <nav className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-xl">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href;
+                        const isActive = pathname === (item.activePath ?? item.href);
                         return (
                             <Link
                                 key={item.href}
@@ -133,7 +134,7 @@ export function SiteHeader() {
                         {/* Mobile Navigation */}
                         <nav className="flex flex-col gap-1">
                             {navItems.map((item) => {
-                                const isActive = pathname === item.href;
+                                const isActive = pathname === (item.activePath ?? item.href);
                                 return (
                                     <Link
                                         key={item.href}

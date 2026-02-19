@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { MediaCard } from "@/components/media-card";
 import { mediaService } from "@/services/media.service";
 import { getContinueWatching } from "@/actions/stats";
 import { getWatchlistExternalIds } from "@/actions/user-media";
 import { ContinueWatching } from "@/components/continue-watching";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Bookmark } from "lucide-react";
+import { Bookmark, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
 // Dynamically import TrendingSection (below the fold) to reduce initial JS bundle
@@ -82,6 +83,12 @@ export default async function Home() {
                                 <div className="w-1 h-5 md:h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
                                 <h3 className="text-base md:text-lg font-semibold text-white">Popular Right Now</h3>
                                 <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                <Link
+                                    href="/dramas?category=popular&country=KR"
+                                    className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
+                                >
+                                    See more <ChevronRight className="h-3.5 w-3.5" />
+                                </Link>
                             </div>
                             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
                                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
@@ -115,6 +122,12 @@ export default async function Home() {
                                 <div className="w-1 h-5 md:h-6 bg-linear-to-b from-emerald-500 to-emerald-400 rounded-full" />
                                 <h3 className="text-base md:text-lg font-semibold text-white">Airing Now</h3>
                                 <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                <Link
+                                    href="/dramas?category=airing&country=KR"
+                                    className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
+                                >
+                                    See more <ChevronRight className="h-3.5 w-3.5" />
+                                </Link>
                             </div>
                             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
                                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
@@ -149,6 +162,12 @@ export default async function Home() {
                                     <div className="w-1 h-5 md:h-6 bg-linear-to-b from-amber-500 to-amber-400 rounded-full" />
                                     <h3 className="text-base md:text-lg font-semibold text-white">Coming Soon</h3>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <Link
+                                        href="/dramas?category=upcoming&country=KR"
+                                        className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
+                                    >
+                                        See more <ChevronRight className="h-3.5 w-3.5" />
+                                    </Link>
                                 </div>
                                 <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
                                     <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
