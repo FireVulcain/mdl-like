@@ -90,7 +90,7 @@ export default async function Home() {
                                     See more <ChevronRight className="h-3.5 w-3.5" />
                                 </Link>
                             </div>
-                            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
+                            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
                                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
                                     {kdramas.trending.map((media) => (
                                         <div
@@ -129,7 +129,7 @@ export default async function Home() {
                                     See more <ChevronRight className="h-3.5 w-3.5" />
                                 </Link>
                             </div>
-                            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
+                            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
                                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
                                     {kdramas.airing.map((media) => (
                                         <div
@@ -169,7 +169,7 @@ export default async function Home() {
                                         See more <ChevronRight className="h-3.5 w-3.5" />
                                     </Link>
                                 </div>
-                                <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4">
+                                <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
                                     <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
                                         {kdramas.upcoming.map((media) => (
                                             <div

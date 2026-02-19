@@ -32,7 +32,7 @@ export function PhotosScroll({ backdrops, mediaId }: PhotosScrollProps) {
                 </Link>
             </div>
 
-            <ScrollArea className="w-full whitespace-nowrap rounded-md">
+            <ScrollArea className="w-full whitespace-nowrap rounded-md" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex w-max space-x-4 pb-4">
                     {preview.map((src, index) => (
                         <button
