@@ -74,46 +74,65 @@ export async function getScheduleEntries(userId: string): Promise<ScheduleEntry[
 
     if (items.length === 0) return [];
 
+    const mediaIds = items.map((i) => `${i.source.toLowerCase()}-${i.externalId}`);
+
+    // Single bulk query for all cached episodes — eliminates N+1 DB round trips
+    const allCached = await prisma.cachedEpisode.findMany({
+        where: { mediaId: { in: mediaIds } },
+    });
+
+    const cacheByMediaId = new Map<string, typeof allCached>();
+    for (const ep of allCached) {
+        if (!cacheByMediaId.has(ep.mediaId)) cacheByMediaId.set(ep.mediaId, []);
+        cacheByMediaId.get(ep.mediaId)!.push(ep);
+    }
+
     const results: ScheduleEntry[] = [];
+    const cacheMisses: typeof items = [];
 
-    await withConcurrency(items, 3, async (item) => {
-        try {
-            const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
+    for (const item of items) {
+        const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
+        const cached = cacheByMediaId.get(mediaId);
 
-            // Serve from DB cache if available
-            const cached = await prisma.cachedEpisode.findMany({ where: { mediaId } });
-            if (cached.length > 0) {
-                for (const ep of cached) {
-                    results.push({
-                        title: item.title || "Unknown",
-                        poster: item.poster,
-                        episodeNumber: ep.episodeNumber,
-                        seasonNumber: ep.seasonNumber,
-                        episodeName: ep.episodeName ?? undefined,
-                        airDate: ep.airDate,
-                        mediaId,
-                    });
-                }
-                return;
-            }
-
-            // Cache miss: fetch all episodes from TVmaze and persist
-            const episodes = await fetchAndCacheEpisodes(mediaId, item.externalId, item.title);
-            for (const ep of episodes) {
+        if (cached && cached.length > 0) {
+            for (const ep of cached) {
                 results.push({
                     title: item.title || "Unknown",
                     poster: item.poster,
                     episodeNumber: ep.episodeNumber,
                     seasonNumber: ep.seasonNumber,
-                    episodeName: ep.episodeName,
+                    episodeName: ep.episodeName ?? undefined,
                     airDate: ep.airDate,
                     mediaId,
                 });
             }
-        } catch (error) {
-            console.error(`Failed to get schedule for ${item.title}:`, error);
+        } else {
+            cacheMisses.push(item);
         }
-    });
+    }
+
+    // Fetch from TVmaze only for cache misses (rare after initial population)
+    if (cacheMisses.length > 0) {
+        await withConcurrency(cacheMisses, 3, async (item) => {
+            try {
+                const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
+                const episodes = await fetchAndCacheEpisodes(mediaId, item.externalId, item.title);
+                for (const ep of episodes) {
+                    results.push({
+                        title: item.title || "Unknown",
+                        poster: item.poster,
+                        episodeNumber: ep.episodeNumber,
+                        seasonNumber: ep.seasonNumber,
+                        episodeName: ep.episodeName,
+                        airDate: ep.airDate,
+                        mediaId,
+                    });
+                }
+            } catch (error) {
+                console.error(`Failed to get schedule for ${item.title}:`, error);
+            }
+        });
+    }
 
     return results.sort((a, b) => a.airDate.localeCompare(b.airDate));
 }
