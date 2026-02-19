@@ -11,6 +11,8 @@ export const TMDB_CONFIG = {
     // Backdrop sizes (for landscape images) - use these instead of original for better performance
     w780Backdrop: (path: string) => `${TMDB_IMAGE_BASE_URL}/w780${path}`,
     w1280Backdrop: (path: string) => `${TMDB_IMAGE_BASE_URL}/w1280${path}`,
+    // Episode still sizes (landscape thumbnails)
+    w300Still: (path: string) => `${TMDB_IMAGE_BASE_URL}/w300${path}`,
 };
 
 
@@ -157,6 +159,27 @@ export type TMDBPersonCredits = {
     }[];
 };
 
+export type TMDBEpisode = {
+    id: number;
+    name: string;
+    overview: string;
+    episode_number: number;
+    season_number: number;
+    air_date: string | null;
+    still_path: string | null;
+    vote_average: number;
+    runtime: number | null;
+};
+
+export type TMDBSeasonDetails = {
+    id: number;
+    name: string;
+    overview: string;
+    season_number: number;
+    air_date: string | null;
+    episodes: TMDBEpisode[];
+};
+
 export type TMDBExternalIds = {
     id: number;
     imdb_id: string | null;
@@ -205,4 +228,7 @@ export const tmdb = {
     getPersonCombinedCredits: (id: string) => fetchTMDB<TMDBPersonCredits>(`/person/${id}/combined_credits`),
 
     getExternalIds: (type: "movie" | "tv", id: string) => fetchTMDB<TMDBExternalIds>(`/${type}/${id}/external_ids`),
+
+    getSeasonDetails: (seriesId: string, seasonNumber: number) =>
+        fetchTMDB<TMDBSeasonDetails>(`/tv/${seriesId}/season/${seasonNumber}`),
 };

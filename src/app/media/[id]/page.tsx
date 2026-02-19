@@ -12,7 +12,9 @@ import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
+import { EpisodeGuide } from "@/components/media/episode-guide";
 import { Bookmark, ExternalLink } from "lucide-react";
+import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -32,6 +34,26 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     // Find metadata for this season (if available)
     const currentSeasonData = media.seasons?.find((s) => s.seasonNumber === selectedSeason);
     const episodeCount = currentSeasonData?.episodeCount || (selectedSeason === 1 ? media.totalEp : null) || null; // Fallback for movies or missing season data
+
+    // Fetch season episodes (TV only)
+    let episodes: { id: number; number: number; name: string; overview: string; airDate: string | null; still: string | null; runtime: number | null; rating: number }[] = [];
+    if (media.type === "TV") {
+        try {
+            const seasonData = await tmdb.getSeasonDetails(media.externalId, selectedSeason);
+            episodes = (seasonData.episodes || []).map((ep: TMDBEpisode) => ({
+                id: ep.id,
+                number: ep.episode_number,
+                name: ep.name,
+                overview: ep.overview,
+                airDate: ep.air_date,
+                still: ep.still_path ? TMDB_CONFIG.w300Still(ep.still_path) : null,
+                runtime: ep.runtime,
+                rating: ep.vote_average,
+            }));
+        } catch {
+            // Episodes unavailable — render guide without them
+        }
+    }
 
     // Parallel fetch: userMedia and watchlist IDs are independent
     const [userMedia, watchlistExternalIds] = await Promise.all([
@@ -240,6 +262,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* Cast & Credits */}
                     <CastScroll cast={media.cast || []} mediaId={media.id} />
+
+                    {/* Episode Guide */}
+                    {media.type === "TV" && episodes.length > 0 && (
+                        <EpisodeGuide episodes={episodes} season={selectedSeason} />
+                    )}
 
                     {/* Photos */}
                     <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
