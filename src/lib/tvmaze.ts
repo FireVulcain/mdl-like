@@ -44,7 +44,7 @@ export type NextEpisodeResult = {
     seasonEpisodeCount?: number; // Total episodes in this season (from TVmaze)
 };
 
-async function fetchTVMaze<T>(endpoint: string, params: Record<string, string> = {}): Promise<T | null> {
+async function fetchTVMaze<T>(endpoint: string, params: Record<string, string> = {}, retries = 2): Promise<T | null> {
     const apiKey = process.env.TVMAZE_API_KEY;
 
     const queryParams = new URLSearchParams(params);
@@ -65,8 +65,11 @@ async function fetchTVMaze<T>(endpoint: string, params: Record<string, string> =
         });
 
         if (!res.ok) {
-            if (res.status === 404) {
-                return null;
+            if (res.status === 404) return null;
+            if (res.status === 429 && retries > 0) {
+                const retryAfter = parseInt(res.headers.get("Retry-After") ?? "10", 10);
+                await new Promise((r) => setTimeout(r, retryAfter * 1000));
+                return fetchTVMaze<T>(endpoint, params, retries - 1);
             }
             console.error(`TVMaze API Error: ${res.status} ${res.statusText}`);
             return null;
@@ -220,6 +223,47 @@ export const tvmaze = {
 
         return episodes
             .filter((ep) => ep.airdate >= today && ep.number > 0)
+            .map((ep) => ({
+                airDate: ep.airdate,
+                episodeNumber: ep.number,
+                seasonNumber: ep.season,
+                name: ep.name,
+            }));
+    },
+
+    /**
+     * Get ALL episodes for a show (past and future), resolved by IMDB ID, TVDB ID, or name.
+     * Returns a flat list sorted by season/episode order.
+     */
+    async getAllEpisodes({
+        imdbId,
+        tvdbId,
+        showName,
+    }: {
+        imdbId?: string | null;
+        tvdbId?: number | null;
+        showName?: string | null;
+    }): Promise<NextEpisodeResult[]> {
+        let show: TVMazeShow | null = null;
+
+        if (imdbId) {
+            show = await fetchTVMaze<TVMazeShow>(`/lookup/shows`, { imdb: imdbId });
+        }
+        if (!show && tvdbId) {
+            show = await fetchTVMaze<TVMazeShow>(`/lookup/shows`, { thetvdb: tvdbId.toString() });
+        }
+        if (!show && showName) {
+            const results = await fetchTVMaze<{ show: TVMazeShow }[]>(`/search/shows`, { q: showName });
+            if (results?.length) show = results[0].show;
+        }
+
+        if (!show) return [];
+
+        const episodes = await fetchTVMaze<TVMazeEpisode[]>(`/shows/${show.id}/episodes`);
+        if (!episodes) return [];
+
+        return episodes
+            .filter((ep) => ep.number > 0)
             .map((ep) => ({
                 airDate: ep.airdate,
                 episodeNumber: ep.number,

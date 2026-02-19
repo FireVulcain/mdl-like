@@ -3,16 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarDays, MoreHorizontal, RefreshCw } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
+import { refreshScheduleCache } from "@/actions/schedule";
 
 export type { ScheduleEntry };
 
-const MONTH_NAMES = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
-];
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const DAY_HEADERS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
@@ -35,16 +33,36 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
     const [year, setYear] = useState(initial.y);
     const [month, setMonth] = useState(initial.m);
+    const [showActionsMenu, setShowActionsMenu] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
+    const handleRefresh = async () => {
+        setIsRefreshing(true);
+        setShowActionsMenu(false);
+        try {
+            await refreshScheduleCache("mock-user-1");
+            window.location.reload();
+        } finally {
+            setIsRefreshing(false);
+        }
+    };
 
     const goToPrev = () => {
-        if (month === 0) { setYear(y => y - 1); setMonth(11); }
-        else setMonth(m => m - 1);
+        if (month === 0) {
+            setYear((y) => y - 1);
+            setMonth(11);
+        } else setMonth((m) => m - 1);
     };
     const goToNext = () => {
-        if (month === 11) { setYear(y => y + 1); setMonth(0); }
-        else setMonth(m => m + 1);
+        if (month === 11) {
+            setYear((y) => y + 1);
+            setMonth(0);
+        } else setMonth((m) => m + 1);
     };
-    const goToToday = () => { setYear(today.getFullYear()); setMonth(today.getMonth()); };
+    const goToToday = () => {
+        setYear(today.getFullYear());
+        setMonth(today.getMonth());
+    };
 
     // Map airDate -> (mediaId -> episodes[]) — one icon per show per day
     const byDate = new Map<string, Map<string, ScheduleEntry[]>>();
@@ -86,7 +104,6 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
     return (
         <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
             <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
-
                 {/* Page header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -105,6 +122,30 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
                     {/* Month navigation */}
                     <div className="flex items-center gap-2">
+                        {/* Actions menu */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowActionsMenu(!showActionsMenu)}
+                                className="cursor-pointer h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white border border-white/10 transition-colors"
+                            >
+                                <MoreHorizontal className="h-5 w-5" />
+                            </button>
+                            {showActionsMenu && (
+                                <>
+                                    <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
+                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <button
+                                            onClick={handleRefresh}
+                                            disabled={isRefreshing}
+                                            className="cursor-pointer w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors disabled:opacity-50"
+                                        >
+                                            <RefreshCw className={`h-4 w-4 text-blue-400 ${isRefreshing ? "animate-spin" : ""}`} />
+                                            {isRefreshing ? "Refreshing..." : "Refresh schedule"}
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
                         <button
                             onClick={goToToday}
                             className="cursor-pointer px-3 py-1.5 text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors"
@@ -112,13 +153,19 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                             Today
                         </button>
                         <div className="flex items-center bg-white/5 border border-white/10 rounded-xl overflow-hidden">
-                            <button onClick={goToPrev} className="cursor-pointer p-2.5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white">
+                            <button
+                                onClick={goToPrev}
+                                className="cursor-pointer p-2.5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+                            >
                                 <ChevronLeft className="h-4 w-4" />
                             </button>
                             <span className="px-4 text-sm font-semibold text-white w-40 text-center">
                                 {MONTH_NAMES[month]} {year}
                             </span>
-                            <button onClick={goToNext} className="cursor-pointer p-2.5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white">
+                            <button
+                                onClick={goToNext}
+                                className="cursor-pointer p-2.5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+                            >
                                 <ChevronRight className="h-4 w-4" />
                             </button>
                         </div>
@@ -132,9 +179,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                         {DAY_HEADERS.map((day, i) => (
                             <div
                                 key={day}
-                                className={`py-3 text-center text-xs font-semibold tracking-wider ${
-                                    i >= 5 ? "text-gray-500" : "text-gray-400"
-                                }`}
+                                className={`py-3 text-center text-xs font-semibold tracking-wider ${i >= 5 ? "text-gray-500" : "text-gray-400"}`}
                             >
                                 {day}
                             </div>
@@ -168,17 +213,15 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                             cell.current && isWeekend && !isHighlighted ? "bg-white/1.5" : "",
                                             cell.current && isToday && !isHighlighted ? "bg-primary/5" : "",
                                             cell.current && isHighlighted ? "bg-amber-500/10 ring-1 ring-inset ring-amber-500/30" : "",
-                                        ].filter(Boolean).join(" ")}
+                                        ]
+                                            .filter(Boolean)
+                                            .join(" ")}
                                     >
                                         {/* Day number */}
                                         <div className="flex justify-center">
                                             <span
                                                 className={`text-sm font-semibold w-7 h-7 flex items-center justify-center rounded-full ${
-                                                    isToday
-                                                        ? "text-primary"
-                                                        : cell.current
-                                                        ? "text-gray-300"
-                                                        : "text-gray-600"
+                                                    isToday ? "text-primary" : cell.current ? "text-gray-300" : "text-gray-600"
                                                 }`}
                                             >
                                                 {cell.day}
@@ -215,7 +258,8 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                                                 <p className="font-semibold mb-1">{first.title}</p>
                                                                 {showEps.map((ep, ei) => (
                                                                     <p key={ei} className="text-gray-400 text-xs">
-                                                                        S{String(ep.seasonNumber).padStart(2, "0")}E{String(ep.episodeNumber).padStart(2, "0")}
+                                                                        S{String(ep.seasonNumber).padStart(2, "0")}E
+                                                                        {String(ep.episodeNumber).padStart(2, "0")}
                                                                         {ep.episodeName ? ` · ${ep.episodeName}` : ""}
                                                                     </p>
                                                                 ))}
@@ -240,7 +284,9 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                 {/* Legend */}
                 <div className="flex items-center gap-4 text-xs text-gray-500">
                     <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded bg-primary/5 flex items-center justify-center text-primary font-semibold text-[10px]">7</span>
+                        <span className="w-5 h-5 rounded bg-primary/5 flex items-center justify-center text-primary font-semibold text-[10px]">
+                            7
+                        </span>
                         <span>Today</span>
                     </div>
                     <div className="flex items-center gap-2">

@@ -84,3 +84,15 @@ model SyncLog {
   lastSync DateTime @default(now())
   results  Json?
 }
+
+model CachedEpisode {
+  id            String   @id @default(cuid())
+  mediaId       String
+  airDate       String
+  episodeNumber Int
+  seasonNumber  Int
+  episodeName   String?
+  createdAt     DateTime @default(now())
+
+  @@index([mediaId])
+}
