@@ -265,7 +265,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* Episode Guide */}
                     {media.type === "TV" && episodes.length > 0 && (
-                        <EpisodeGuide episodes={episodes} season={selectedSeason} />
+                        <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />
                     )}
 
                     {/* Photos */}

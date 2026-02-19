@@ -18,9 +18,10 @@ interface Episode {
 interface EpisodeGuideProps {
     episodes: Episode[];
     season: number;
+    poster: string | null;
 }
 
-function EpisodeRow({ ep }: { ep: Episode }) {
+function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
     const [expanded, setExpanded] = useState(false);
     const hasOverview = ep.overview.trim().length > 0;
     const isLong = ep.overview.length > 150;
@@ -30,15 +31,15 @@ function EpisodeRow({ ep }: { ep: Episode }) {
         : null;
 
     return (
-        <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/[0.03] p-3 transition-colors hover:bg-white/[0.06]">
+        <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
             {/* Episode still */}
             <div className="relative flex-none w-36 aspect-video overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
-                {ep.still ? (
+                {ep.still || poster ? (
                     <Image
-                        src={ep.still}
+                        src={ep.still ?? poster!}
                         alt={ep.name}
                         fill
-                        className="object-cover opacity-0 transition-opacity duration-500"
+                        className={`opacity-0 transition-opacity duration-500 ${ep.still ? "object-cover" : "object-cover object-top"}`}
                         loading="lazy"
                         sizes="144px"
                         onLoad={(e) => {
@@ -106,7 +107,7 @@ function EpisodeRow({ ep }: { ep: Episode }) {
     );
 }
 
-export function EpisodeGuide({ episodes, season }: EpisodeGuideProps) {
+export function EpisodeGuide({ episodes, season, poster }: EpisodeGuideProps) {
     const [showAll, setShowAll] = useState(false);
     // Show 4 rows collapsed: 3 full + the 4th partially cut by the fade
     const INITIAL_COUNT = 4;
@@ -126,7 +127,7 @@ export function EpisodeGuide({ episodes, season }: EpisodeGuideProps) {
             <div className="relative">
                 <div className="flex flex-col gap-2">
                     {visible.map((ep) => (
-                        <EpisodeRow key={ep.id} ep={ep} />
+                        <EpisodeRow key={ep.id} ep={ep} poster={poster} />
                     ))}
                 </div>
 
