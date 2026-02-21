@@ -21,6 +21,6 @@ export const config = {
          * - public files (public folder)
          * - api/cron/* (cron jobs use their own auth)
          */
-        "/((?!_next/static|_next/image|favicon.ico|api/cron|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+        "/((?!_next/static|_next/image|favicon.ico|api/cron|api/ping|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
     ],
 };
