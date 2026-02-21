@@ -1,16 +1,18 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X } from "lucide-react";
+import { ExternalLink, Menu, X, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [profileOpen, setProfileOpen] = useState(false);
+    const profileRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
 
     // Check if we're on a page with a hero backdrop (home or media detail)
@@ -22,10 +24,19 @@ export function SiteHeader() {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
-        // Passive listener improves scroll performance by not blocking the main thread
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+                setProfileOpen(false);
+            }
+        };
+        if (profileOpen) document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [profileOpen]);
 
     const navItems = [
         { name: "Home", href: "/" },
@@ -97,11 +108,61 @@ export function SiteHeader() {
                         </Suspense>
                     </div>
 
-                    {/* User Mini Profile Placeholder (Optional Premium Touch) */}
-                    <div className="hidden sm:flex h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 cursor-pointer hover:border-primary/50 transition-all">
-                        <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center text-xs font-bold text-primary">
-                            ND
+                    {/* Profile dropdown */}
+                    <div ref={profileRef} className="relative hidden sm:block">
+                        <div
+                            onClick={() => setProfileOpen((o) => !o)}
+                            className={cn(
+                                "flex h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border p-0.5 cursor-pointer transition-all",
+                                profileOpen ? "border-primary/60 shadow-lg shadow-primary/10" : "border-white/10 hover:border-primary/50",
+                            )}
+                        >
+                            <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center text-xs font-bold text-primary">
+                                ND
+                            </div>
                         </div>
+
+                        <AnimatePresence>
+                            {profileOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                                    transition={{ duration: 0.15, ease: "easeOut" }}
+                                    className="absolute right-0 top-full mt-2 w-48 bg-gray-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden z-50"
+                                >
+                                    {/* Account header */}
+                                    <div className="flex items-center gap-3 px-4 py-3 border-b border-white/6">
+                                        <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5">
+                                            <div className="h-full w-full rounded-md bg-background flex items-center justify-center text-[10px] font-bold text-primary">
+                                                ND
+                                            </div>
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-sm font-semibold text-white truncate">My Account</p>
+                                            <p className="text-xs text-white/40 truncate">Personal</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Menu items */}
+                                    <div className="p-1.5">
+                                        <Link
+                                            href="/history"
+                                            onClick={() => setProfileOpen(false)}
+                                            className={cn(
+                                                "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                                                pathname === "/history"
+                                                    ? "bg-primary/15 text-white"
+                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                            )}
+                                        >
+                                            <Clock className="h-4 w-4 shrink-0" />
+                                            History
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -164,14 +225,27 @@ export function SiteHeader() {
 
                         {/* Mobile Profile */}
                         <div className="mt-4 pt-4 border-t border-white/10 sm:hidden">
-                            <div className="flex items-center gap-3 px-4 py-2">
-                                <div className="h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5">
-                                    <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center text-xs font-bold text-primary">
+                            <div className="flex items-center gap-3 px-4 py-2 mb-1">
+                                <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5">
+                                    <div className="h-full w-full rounded-md bg-background flex items-center justify-center text-[10px] font-bold text-primary">
                                         ND
                                     </div>
                                 </div>
-                                <span className="text-sm font-medium text-white">Profile</span>
+                                <span className="text-sm font-semibold text-white">My Account</span>
                             </div>
+                            <Link
+                                href="/history"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={cn(
+                                    "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
+                                    pathname === "/history"
+                                        ? "bg-primary/15 border border-primary/20 text-white"
+                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                )}
+                            >
+                                <Clock className="h-4 w-4 shrink-0" />
+                                History
+                            </Link>
                         </div>
                     </div>
                 </motion.div>

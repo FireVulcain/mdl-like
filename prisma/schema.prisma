@@ -34,15 +34,16 @@ model Session {
 }
 
 model User {
-  id            String      @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?     @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
   password      String?
   accounts      Account[]
   sessions      Session[]
   media         UserMedia[]
+  activityLogs  ActivityLog[]
 }
 
 model VerificationToken {
@@ -83,6 +84,25 @@ model SyncLog {
   id       String   @id @default("daily-sync")
   lastSync DateTime @default(now())
   results  Json?
+}
+
+model ActivityLog {
+  id          String   @id @default(cuid())
+  userId      String
+  userMediaId String?
+  externalId  String
+  source      String
+  mediaType   String
+  title       String
+  poster      String?
+  action      String
+  payload     Json?
+  createdAt   DateTime @default(now())
+  isBackfill  Boolean  @default(false)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([userMediaId])
 }
 
 model CachedEpisode {

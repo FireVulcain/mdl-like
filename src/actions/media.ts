@@ -5,6 +5,98 @@ import { UnifiedMedia } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
 import { tmdb, TMDBExternalIds } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
+import { ActivityAction, ActivityActionType } from "@/types/activity";
+import { Prisma } from "@prisma/client";
+
+// Upsert progress log: within a 30-min window, update the existing entry rather than
+// create a new one. This means a misclick that corrects ep 16 → 15 rewrites the log
+// to show ep 15 (or deletes it entirely if back to the original starting point).
+async function upsertProgressLog(data: {
+    userId: string;
+    userMediaId: string;
+    externalId: string;
+    source: string;
+    mediaType: string;
+    title: string;
+    poster?: string | null;
+    previousProgress: number;
+    newProgress: number;
+}) {
+    if (data.previousProgress === data.newProgress) return;
+
+    try {
+        const thirtyMinsAgo = new Date(Date.now() - 30 * 60 * 1000);
+        const recentLog = await prisma.activityLog.findFirst({
+            where: {
+                userMediaId: data.userMediaId,
+                action: ActivityAction.PROGRESS,
+                createdAt: { gte: thirtyMinsAgo },
+            },
+            orderBy: { createdAt: "desc" },
+        });
+
+        if (recentLog) {
+            const originalFrom = ((recentLog.payload as Record<string, unknown>)?.from as number) ?? 0;
+            if (data.newProgress <= originalFrom) {
+                // Fully corrected back — remove the log entirely
+                await prisma.activityLog.delete({ where: { id: recentLog.id } });
+            } else {
+                // Partial correction — update the "to" value in place
+                await prisma.activityLog.update({
+                    where: { id: recentLog.id },
+                    data: { payload: { from: originalFrom, to: data.newProgress } as Prisma.InputJsonValue },
+                });
+            }
+        } else if (data.newProgress > data.previousProgress) {
+            // No recent log — create a fresh one (only for forward progress)
+            await logActivity({
+                userId: data.userId,
+                userMediaId: data.userMediaId,
+                externalId: data.externalId,
+                source: data.source,
+                mediaType: data.mediaType,
+                title: data.title,
+                poster: data.poster,
+                action: ActivityAction.PROGRESS,
+                payload: { from: data.previousProgress, to: data.newProgress },
+            });
+        }
+    } catch (e) {
+        console.error("[ActivityLog] Failed to upsert progress log:", e);
+    }
+}
+
+async function logActivity(data: {
+    userId: string;
+    userMediaId: string | null;
+    externalId: string;
+    source: string;
+    mediaType: string;
+    title: string;
+    poster?: string | null;
+    action: ActivityActionType;
+    payload?: Record<string, unknown>;
+    isBackfill?: boolean;
+}) {
+    try {
+        await prisma.activityLog.create({
+            data: {
+                userId: data.userId,
+                userMediaId: data.userMediaId,
+                externalId: data.externalId,
+                source: data.source,
+                mediaType: data.mediaType,
+                title: data.title,
+                poster: data.poster ?? null,
+                action: data.action,
+                payload: data.payload ? (data.payload as Prisma.InputJsonValue) : undefined,
+                isBackfill: data.isBackfill ?? false,
+            },
+        });
+    } catch (e) {
+        console.error("[ActivityLog] Failed to write log:", e);
+    }
+}
 
 // Ensure we have a singleton Prisma client
 // We need to create src/lib/prisma.ts first if not exists, but I'll assume I need to create it.
@@ -49,7 +141,7 @@ export async function addToWatchlist(
         }
 
         if (existing) {
-            return await prisma.userMedia.update({
+            const updated = await prisma.userMedia.update({
                 where: { id: existing.id },
                 data: {
                     status,
@@ -68,6 +160,22 @@ export async function addToWatchlist(
                     airingStatus: media.status || null,
                 },
             });
+            if (existing.status !== status) {
+                await logActivity({
+                    userId,
+                    userMediaId: existing.id,
+                    externalId: media.externalId,
+                    source: media.source,
+                    mediaType: media.type,
+                    title: media.title,
+                    poster: displayPoster,
+                    action: ActivityAction.STATUS_CHANGED,
+                    payload: { from: existing.status, to: status },
+                });
+            }
+            revalidatePath("/watchlist");
+            revalidatePath("/history");
+            return updated;
         }
 
         const newItem = await prisma.userMedia.create({
@@ -94,7 +202,20 @@ export async function addToWatchlist(
             },
         });
 
+        await logActivity({
+            userId,
+            userMediaId: newItem.id,
+            externalId: media.externalId,
+            source: media.source,
+            mediaType: media.type,
+            title: media.title,
+            poster: displayPoster,
+            action: ActivityAction.ADDED,
+            payload: { status, season },
+        });
+
         revalidatePath("/watchlist");
+        revalidatePath("/history");
         return newItem;
     } catch (error) {
         console.error("Failed to add to watchlist:", error);
@@ -104,6 +225,9 @@ export async function addToWatchlist(
 
 export async function updateProgress(id: string, progress: number) {
     try {
+        const current = await prisma.userMedia.findUnique({ where: { id } });
+        const previousProgress = current?.progress ?? 0;
+
         const updated = await prisma.userMedia.update({
             where: { id },
             data: {
@@ -111,7 +235,21 @@ export async function updateProgress(id: string, progress: number) {
                 lastWatchedAt: new Date(),
             },
         });
+
+        await upsertProgressLog({
+            userId: updated.userId,
+            userMediaId: id,
+            externalId: updated.externalId,
+            source: updated.source,
+            mediaType: updated.mediaType,
+            title: updated.title ?? "",
+            poster: updated.poster,
+            previousProgress,
+            newProgress: progress,
+        });
+
         revalidatePath("/watchlist");
+        revalidatePath("/history");
         return updated;
     } catch (error) {
         console.error("Failed to update progress:", error);
@@ -121,12 +259,24 @@ export async function updateProgress(id: string, progress: number) {
 
 export async function deleteUserMedia(id: string) {
     try {
+        const item = await prisma.userMedia.findUnique({ where: { id } });
         await prisma.userMedia.delete({ where: { id } });
+
+        if (item) {
+            await logActivity({
+                userId: item.userId,
+                userMediaId: null,
+                externalId: item.externalId,
+                source: item.source,
+                mediaType: item.mediaType,
+                title: item.title ?? "",
+                poster: item.poster,
+                action: ActivityAction.REMOVED,
+            });
+        }
+
         revalidatePath("/watchlist");
-        revalidatePath("/media/[id]"); // We ideally need to know the media ID, but revalidatePath for a route pattern works broadly or we rely on specific path.
-        // Actually revalidatePath with [id] layout doesn't work like glob.
-        // We would need the externalId to revalidate specific page.
-        // For now, watchlist is main priority.
+        revalidatePath("/history");
     } catch (error) {
         console.error("Failed to delete user media:", error);
         throw new Error("Failed to delete user media");
@@ -136,6 +286,7 @@ export async function deleteUserMedia(id: string) {
 export async function updateUserMedia(id: string, data: Partial<any>) {
     // Using any simply to avoid tight coupling with type def repetition, but safer to use type
     try {
+        const current = await prisma.userMedia.findUnique({ where: { id } });
         const { status, progress, score, notes } = data;
         const updated = await prisma.userMedia.update({
             where: { id },
@@ -147,7 +298,37 @@ export async function updateUserMedia(id: string, data: Partial<any>) {
                 lastWatchedAt: status !== undefined || progress !== undefined ? new Date() : undefined,
             },
         });
+
+        const base = {
+            userId: updated.userId,
+            userMediaId: id,
+            externalId: updated.externalId,
+            source: updated.source,
+            mediaType: updated.mediaType,
+            title: updated.title ?? "",
+            poster: updated.poster,
+        };
+
+        if (status !== undefined && current?.status !== status) {
+            await logActivity({ ...base, action: ActivityAction.STATUS_CHANGED, payload: { from: current?.status, to: status } });
+        }
+        if (progress !== undefined) {
+            await upsertProgressLog({
+                ...base,
+                userMediaId: id,
+                previousProgress: current?.progress ?? 0,
+                newProgress: progress,
+            });
+        }
+        if (score !== undefined && score > 0 && current?.score !== score) {
+            await logActivity({ ...base, action: ActivityAction.SCORED, payload: { from: current?.score ?? null, to: score } });
+        }
+        if (notes !== undefined && notes && current?.notes !== notes) {
+            await logActivity({ ...base, action: ActivityAction.NOTED });
+        }
+
         revalidatePath("/watchlist");
+        revalidatePath("/history");
         return updated;
     } catch (error) {
         console.error("Failed to update user media:", error);
@@ -240,7 +421,11 @@ export async function getWatchlist(userId: string) {
 
                 nextEpisodeMap.set(`${item.externalId}-${item.season}`, { nextEpisode, seasonAirDate });
             } catch (error) {
-                console.error(`Failed to fetch next episode for ${item.title}:`, error);
+                // 404 means the TMDB ID is stale/removed — skip silently
+                const is404 = error instanceof Error && error.message.includes("404");
+                if (!is404) {
+                    console.warn(`Failed to fetch next episode for ${item.title}:`, error);
+                }
             }
         });
 
