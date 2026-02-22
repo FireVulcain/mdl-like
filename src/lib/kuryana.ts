@@ -81,15 +81,22 @@ export interface KuryanaCastResult {
 }
 
 async function kuryanaFetch<T>(path: string, timeoutMs = 8000): Promise<T | null> {
+    // Use AbortController instead of AbortSignal.timeout — the latter creates a
+    // DOMException with a read-only `message` property that Next.js's fetch cache
+    // interceptor tries to overwrite, causing an unhandled TypeError crash.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
         const res = await fetch(`${BASE_URL}${path}`, {
-            signal: AbortSignal.timeout(timeoutMs),
+            signal: controller.signal,
             next: { revalidate: 0 },
         });
         if (!res.ok) return null;
         return res.json() as Promise<T>;
     } catch {
         return null;
+    } finally {
+        clearTimeout(timer);
     }
 }
 

@@ -1,13 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, Film, Star, Tv } from "lucide-react";
+import { ArrowLeft, Bookmark, ExternalLink, Film, Star, Tv } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { kuryanaGetPerson, KuryanaWorkItem } from "@/lib/kuryana";
+import { kuryanaGetPerson, kuryanaGetDetails, KuryanaWorkItem } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
+import { getWatchlistExternalIds } from "@/actions/user-media";
+import { BiographyExpander } from "@/components/media/biography-expander";
 
 function sortWorks(works: KuryanaWorkItem[]): KuryanaWorkItem[] {
     return [...works].sort((a, b) => {
@@ -28,16 +31,43 @@ function extractFullMdlSlug(link: string): string | null {
     return match ? match[1] : null;
 }
 
+// Async server component — streams in the Kuryana poster for unlinked dramas
+async function MdlDramaPoster({ mdlSlug }: { mdlSlug: string }) {
+    const details = await kuryanaGetDetails(mdlSlug);
+    const poster = details?.data?.poster;
+    if (!poster) {
+        return (
+            <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
+                No Image
+            </div>
+        );
+    }
+    return (
+        <Image
+            src={poster}
+            alt="poster"
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+        />
+    );
+}
+
+// Max concurrent Kuryana poster fetches — beyond this, unlinked cards show "No Image" statically
+const MAX_KURYANA_POSTER_FETCHES = 12;
+
 function WorkCard({
     work,
     internalLink,
     poster,
     fullMdlSlug,
+    inWatchlist,
 }: {
     work: KuryanaWorkItem;
     internalLink: string | null;
     poster: string | null;
     fullMdlSlug: string | null;
+    inWatchlist: boolean;
 }) {
     const title = work.title.name;
     const year = typeof work.year === "number" ? work.year : "TBA";
@@ -54,6 +84,14 @@ function WorkCard({
                         className="object-cover"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                     />
+                ) : fullMdlSlug ? (
+                    <Suspense
+                        fallback={
+                            <div className="w-full h-full bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                        }
+                    >
+                        <MdlDramaPoster mdlSlug={fullMdlSlug} />
+                    </Suspense>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
                         No Image
@@ -73,6 +111,14 @@ function WorkCard({
                     <div className="absolute bottom-1.5 right-1.5">
                         <Badge className="bg-purple-500/80 text-xs text-white backdrop-blur-sm">
                             {work.episodes} ep
+                        </Badge>
+                    </div>
+                )}
+
+                {inWatchlist && (
+                    <div className="absolute bottom-1.5 left-1.5">
+                        <Badge className="bg-emerald-500/90 text-xs text-white backdrop-blur-sm px-1.5">
+                            <Bookmark className="h-3 w-3 fill-current" />
                         </Badge>
                     </div>
                 )}
@@ -172,11 +218,15 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         }
     }
 
-    const tmdbDetails = await Promise.all(
-        linkedEntries.map(({ tmdbExternalId, mediaType }) =>
-            tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null),
+    const [tmdbDetails, watchlistExternalIds] = await Promise.all([
+        Promise.all(
+            linkedEntries.map(({ tmdbExternalId, mediaType }) =>
+                tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null),
+            ),
         ),
-    );
+        getWatchlistExternalIds(),
+    ]);
+    const watchlistIds = new Set(watchlistExternalIds);
 
     const posterMap = new Map<string, string | null>(); // numericMdlId → poster URL
     linkedEntries.forEach(({ mdlNumericId }, i) => {
@@ -199,8 +249,31 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         return tmdbId ? `/media/tmdb-${tmdbId}` : null;
     }
 
+    // Only give the first MAX_KURYANA_POSTER_FETCHES unlinked works a slug to fetch —
+    // the rest show "No Image" statically so we don't fire dozens of Kuryana calls.
+    let kuryanaPosterBudget = MAX_KURYANA_POSTER_FETCHES;
+    function getMdlSlugForCard(work: KuryanaWorkItem): string | null {
+        const internalLink = getInternalLink(work);
+        if (internalLink) return extractFullMdlSlug(work.title.link); // linked — no Kuryana needed
+        const slug = extractFullMdlSlug(work.title.link);
+        if (!slug || kuryanaPosterBudget <= 0) return null;
+        kuryanaPosterBudget--;
+        return slug;
+    }
+
+    function isInWatchlist(work: KuryanaWorkItem): boolean {
+        const id = extractMdlId(work._slug);
+        if (!id) return false;
+        const tmdbId = mdlToTmdb.get(id);
+        return tmdbId ? watchlistIds.has(tmdbId) : false;
+    }
+
     const bio = data.about
-        ? data.about.replace(/\s*(Edit Biography|Source:.*)?$/, "").trim()
+        ? data.about
+              .replace(/\s*\(?\s*Source:[\s\S]*$/i, "")   // strip (Source: ...) and everything after
+              .replace(/\s*Edit Biography[\s\S]*$/i, "")   // strip Edit Biography and everything after
+              .replace(/[\s(]+$/, "")                  // strip any trailing ( or whitespace left behind
+              .trim()
         : null;
     const alsoKnownAs = details.also_known_as
         ? details.also_known_as.split(",").map((s) => s.trim()).filter(Boolean)
@@ -320,7 +393,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         {bio && (
                             <div>
                                 <h3 className="text-lg font-semibold mb-3 text-white">Biography</h3>
-                                <p className="leading-relaxed text-muted-foreground whitespace-pre-line">{bio}</p>
+                                <BiographyExpander text={bio} />
                             </div>
                         )}
 
@@ -342,7 +415,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            fullMdlSlug={extractFullMdlSlug(work.title.link)}
+                                            fullMdlSlug={getMdlSlugForCard(work)}
+                                            inWatchlist={isInWatchlist(work)}
                                         />
                                     ))}
                                 </div>
@@ -365,7 +439,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            fullMdlSlug={extractFullMdlSlug(work.title.link)}
+                                            fullMdlSlug={getMdlSlugForCard(work)}
+                                            inWatchlist={isInWatchlist(work)}
                                         />
                                     ))}
                                 </div>
@@ -388,7 +463,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            fullMdlSlug={extractFullMdlSlug(work.title.link)}
+                                            fullMdlSlug={getMdlSlugForCard(work)}
+                                            inWatchlist={isInWatchlist(work)}
                                         />
                                     ))}
                                 </div>

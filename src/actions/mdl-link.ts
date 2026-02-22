@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
+import { tmdb, TMDB_CONFIG, TMDBMedia } from "@/lib/tmdb";
 import { kuryanaGetDetails, kuryanaGetCast } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { MdlCast, MdlCastMember } from "@/lib/mdl-data";
@@ -20,8 +20,7 @@ export interface TmdbSearchResult {
 export async function searchTmdbDramas(query: string): Promise<TmdbSearchResult[]> {
     if (!query.trim()) return [];
     const result = await tmdb.searchMulti(query);
-    return result.results
-        .filter((item) => item.media_type === "tv" || item.media_type === "movie")
+    return (result.results.filter((item) => item.media_type === "tv" || item.media_type === "movie") as TMDBMedia[])
         .slice(0, 12)
         .map((item) => ({
             externalId: item.id.toString(),
