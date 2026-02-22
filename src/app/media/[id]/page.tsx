@@ -10,13 +10,15 @@ import { MediaCard } from "@/components/media-card";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
-import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
+import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
+import { MdlRankRow } from "@/components/media/mdl-rank-row";
+import { MdlSection } from "@/components/media/mdl-section";
 import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
 import { Bookmark, ExternalLink } from "lucide-react";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
-import { getMdlData } from "@/actions/mdl";
+import { Suspense } from "react";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -61,11 +63,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const MDL_COUNTRIES = new Set(["KR", "CN", "JP", "TW", "TH", "HK"]);
     const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
 
-    // Parallel fetch: userMedia, watchlist IDs, and MDL enrichment data
-    const [userMedia, watchlistExternalIds, mdlData] = await Promise.all([
+    // Parallel fetch: userMedia and watchlist IDs — MDL streams in separately via Suspense
+    const [userMedia, watchlistExternalIds] = await Promise.all([
         getUserMedia(MOCK_USER_ID, media.externalId, media.source, selectedSeason),
         getWatchlistExternalIds(),
-        isMdlRelevant ? getMdlData(media.externalId, media.title, media.year).catch(() => null) : null,
     ]);
     const watchlistIds = new Set(watchlistExternalIds);
 
@@ -175,11 +176,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
 
-                            {mdlData?.mdlRanking && (
-                                <>
-                                    <span className="text-gray-400 font-medium">MDL Rank</span>
-                                    <span className="text-sky-400 font-medium">#{mdlData.mdlRanking}</span>
-                                </>
+                            {isMdlRelevant && (
+                                <Suspense fallback={null}>
+                                    <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} />
+                                </Suspense>
                             )}
                         </div>
                     </div>
@@ -212,11 +212,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     <span className="text-yellow-500 font-medium">★ {media.rating.toFixed(1)}</span>
                                 </>
                             )}
-                            {mdlData?.mdlRating && (
-                                <>
-                                    <span>•</span>
-                                    <span className="text-sky-400 font-medium">MDL {mdlData.mdlRating.toFixed(1)}</span>
-                                </>
+                            {isMdlRelevant && (
+                                <Suspense fallback={null}>
+                                    <MdlRatingBadge externalId={media.externalId} title={media.title} year={media.year} />
+                                </Suspense>
                             )}
                         </div>
 
@@ -280,26 +279,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         <p className="leading-relaxed text-muted-foreground">{media.synopsis}</p>
                     </div>
 
-                    {/* MDL Tags */}
-                    {mdlData?.tags && mdlData.tags.length > 0 && (
-                        <div>
-                            <h3 className="text-lg font-semibold mb-3">Tags</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {mdlData.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/60 hover:text-white/90 hover:border-white/20 transition-colors"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Cast & Credits — MDL when available, TMDB fallback */}
-                    {mdlData?.cast ? (
-                        <MdlCastScroll cast={mdlData.cast} tmdbCast={media.cast || []} />
+                    {/* MDL Tags + Cast — streams in after TMDB cast (fallback) */}
+                    {isMdlRelevant ? (
+                        <Suspense fallback={<CastScroll cast={media.cast || []} mediaId={media.id} />}>
+                            <MdlSection
+                                externalId={media.externalId}
+                                title={media.title}
+                                year={media.year}
+                                tmdbCast={media.cast || []}
+                                mediaId={media.id}
+                            />
+                        </Suspense>
                     ) : (
                         <CastScroll cast={media.cast || []} mediaId={media.id} />
                     )}
