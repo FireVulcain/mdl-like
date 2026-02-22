@@ -60,13 +60,15 @@ function WorkCard({
     work,
     internalLink,
     poster,
-    fullMdlSlug,
+    posterSlug,
+    linkSlug,
     inWatchlist,
 }: {
     work: KuryanaWorkItem;
     internalLink: string | null;
     poster: string | null;
-    fullMdlSlug: string | null;
+    posterSlug: string | null; // budget-capped: drives the Kuryana poster Suspense
+    linkSlug: string | null;   // always set: drives the Link button
     inWatchlist: boolean;
 }) {
     const title = work.title.name;
@@ -84,13 +86,13 @@ function WorkCard({
                         className="object-cover"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                     />
-                ) : fullMdlSlug ? (
+                ) : posterSlug ? (
                     <Suspense
                         fallback={
                             <div className="w-full h-full bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
                         }
                     >
-                        <MdlDramaPoster mdlSlug={fullMdlSlug} />
+                        <MdlDramaPoster mdlSlug={posterSlug} />
                     </Suspense>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
@@ -123,9 +125,9 @@ function WorkCard({
                     </div>
                 )}
 
-                {!internalLink && fullMdlSlug && (
-                    <div className="absolute bottom-1.5 left-1.5">
-                        <LinkToTmdbButton mdlSlug={fullMdlSlug} defaultQuery={title} />
+                {!internalLink && linkSlug && (
+                    <div className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 backdrop-blur-sm">
+                        <LinkToTmdbButton mdlSlug={linkSlug} defaultQuery={title} />
                     </div>
                 )}
             </div>
@@ -150,7 +152,7 @@ function WorkCard({
         );
     }
 
-    if (!fullMdlSlug) {
+    if (!linkSlug) {
         return (
             <a href={work.title.link} target="_blank" rel="noopener noreferrer" className="group block">
                 {card}
@@ -415,7 +417,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            fullMdlSlug={getMdlSlugForCard(work)}
+                                            posterSlug={getMdlSlugForCard(work)}
+                                            linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
                                         />
                                     ))}
@@ -439,7 +442,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            fullMdlSlug={getMdlSlugForCard(work)}
+                                            posterSlug={getMdlSlugForCard(work)}
+                                            linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
                                         />
                                     ))}
@@ -463,7 +467,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            fullMdlSlug={getMdlSlugForCard(work)}
+                                            posterSlug={getMdlSlugForCard(work)}
+                                            linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
                                         />
                                     ))}
