@@ -4,8 +4,9 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Bookmark, ExternalLink, Film, Star, Tv } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { kuryanaGetPerson, kuryanaGetDetails, KuryanaWorkItem } from "@/lib/kuryana";
+import { kuryanaGetPerson, kuryanaGetDetails, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
@@ -166,10 +167,26 @@ function WorkCard({
 export default async function MdlPersonPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    const person = await kuryanaGetPerson(slug);
-    if (!person?.data) notFound();
+    // Check DB cache first (7-day TTL) — avoids a live Kuryana call on every page visit
+    const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+    const staleAt = new Date(Date.now() - PERSON_CACHE_TTL_MS);
+    const cachedRow = await prisma.cachedKuryanaPerson.findUnique({ where: { slug } });
 
-    const { data } = person;
+    let data: KuryanaPersonResult["data"] | null = null;
+    if (cachedRow && cachedRow.cachedAt > staleAt) {
+        data = cachedRow.dataJson as KuryanaPersonResult["data"];
+    } else {
+        const fetched = await kuryanaGetPerson(slug);
+        data = fetched?.data ?? null;
+        if (data) {
+            await prisma.cachedKuryanaPerson.upsert({
+                where: { slug },
+                create: { slug, dataJson: data as unknown as Prisma.InputJsonValue },
+                update: { dataJson: data as unknown as Prisma.InputJsonValue, cachedAt: new Date() },
+            });
+        }
+    }
+    if (!data) notFound();
     const details = data.details ?? {};
 
     const dramas = sortWorks(data.works.Drama ?? []);

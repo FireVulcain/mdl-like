@@ -117,6 +117,12 @@ model CachedMdlData {
   cachedAt       DateTime @default(now())
 }
 
+model CachedKuryanaPerson {
+  slug      String   @id
+  dataJson  Json
+  cachedAt  DateTime @default(now())
+}
+
 model CachedEpisode {
   id            String   @id @default(cuid())
   mediaId       String
