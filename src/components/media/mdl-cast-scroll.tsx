@@ -22,7 +22,20 @@ function normalizeName(name: string): string {
     return name.toLowerCase().replace(/[\s\-.']/g, "");
 }
 
+// "/people/16660-song-zu-er" → "16660-song-zu-er"
+function mdlPersonSlug(slug: string): string | null {
+    const match = slug.match(/\/people\/(.+)$/);
+    return match ? match[1] : null;
+}
+
 function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number }) {
+    // Prefer TMDB person page; fall back to internal MDL person page if slug available
+    const href = tmdbId
+        ? `/cast/${tmdbId}`
+        : actor.slug
+          ? `/people/${mdlPersonSlug(actor.slug)}`
+          : null;
+
     const inner = (
         <div className="flex-none w-25 space-y-2 group cursor-pointer">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
@@ -63,9 +76,9 @@ function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number })
         </div>
     );
 
-    if (tmdbId) {
+    if (href) {
         return (
-            <Link href={`/cast/${tmdbId}`} className="flex-none">
+            <Link href={href} className="flex-none">
                 {inner}
             </Link>
         );

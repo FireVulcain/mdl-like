@@ -177,7 +177,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             )}
 
                             {isMdlRelevant && (
-                                <Suspense fallback={null}>
+                                <Suspense fallback={
+                                    <>
+                                        <span className="text-gray-400 font-medium">MDL Rank</span>
+                                        <span className="inline-block h-4 w-10 rounded bg-sky-500/20 animate-pulse" />
+                                    </>
+                                }>
                                     <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} />
                                 </Suspense>
                             )}
@@ -213,7 +218,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
                             {isMdlRelevant && (
-                                <Suspense fallback={null}>
+                                <Suspense fallback={
+                                    <>
+                                        <span>•</span>
+                                        <span className="inline-block h-4 w-14 rounded-md bg-sky-500/20 animate-pulse" />
+                                    </>
+                                }>
                                     <MdlRatingBadge externalId={media.externalId} title={media.title} year={media.year} />
                                 </Suspense>
                             )}
@@ -281,7 +291,15 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* MDL Tags + Cast — streams in after TMDB cast (fallback) */}
                     {isMdlRelevant ? (
-                        <Suspense fallback={<CastScroll cast={media.cast || []} mediaId={media.id} />}>
+                        <Suspense fallback={
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
+                                    <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
+                                </div>
+                                <CastScroll cast={media.cast || []} mediaId={media.id} />
+                            </div>
+                        }>
                             <MdlSection
                                 externalId={media.externalId}
                                 title={media.title}

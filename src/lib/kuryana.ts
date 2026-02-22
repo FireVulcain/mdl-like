@@ -25,6 +25,8 @@ export interface KuryanaDetails {
     data: {
         link: string;
         title: string;
+        complete_title: string;
+        sub_title: string; // e.g. "환혼 ‧ Drama ‧ 2022" — first segment is the native title
         year: string;
         rating: number | string | null;
         poster: string;
@@ -101,4 +103,49 @@ export async function kuryanaGetDetails(slug: string): Promise<KuryanaDetails | 
 
 export async function kuryanaGetCast(slug: string): Promise<KuryanaCastResult | null> {
     return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`);
+}
+
+export interface KuryanaWorkItem {
+    _slug: string; // e.g. "mdl-687393"
+    year: number | string; // number or "TBA"
+    title: {
+        link: string;
+        name: string;
+    };
+    rating: number;
+    role: {
+        name: string | null;
+        type: string;
+    };
+    episodes?: number;
+}
+
+export interface KuryanaPersonResult {
+    slug_query: string;
+    data: {
+        link: string;
+        name: string;
+        about: string;
+        profile: string;
+        works: {
+            Drama?: KuryanaWorkItem[];
+            Movie?: KuryanaWorkItem[];
+            Special?: KuryanaWorkItem[];
+            "TV Show"?: KuryanaWorkItem[];
+            Producer?: KuryanaWorkItem[];
+            [key: string]: KuryanaWorkItem[] | undefined;
+        };
+        details: {
+            also_known_as?: string;
+            nationality?: string;
+            gender?: string;
+            born?: string;
+            age?: string;
+        };
+    };
+    scrape_date: string;
+}
+
+export async function kuryanaGetPerson(slug: string): Promise<KuryanaPersonResult | null> {
+    return kuryanaFetch<KuryanaPersonResult>(`/people/${slug}`);
 }
