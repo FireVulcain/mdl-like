@@ -42,7 +42,7 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
             )}
 
             {data?.cast ? (
-                <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} />
+                <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} mediaId={mediaId} />
             ) : (
                 <CastScroll cast={tmdbCast} mediaId={mediaId} />
             )}
