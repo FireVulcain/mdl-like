@@ -4,12 +4,13 @@ interface Props {
     externalId: string;
     title: string;
     year: string;
+    nativeTitle?: string;
 }
 
 // Async server component — streams in the MDL rating badge inline next to TMDB rating.
 // Renders nothing while pending (fallback={null} in the Suspense wrapper).
-export async function MdlRatingBadge({ externalId, title, year }: Props) {
-    const data = await getMdlData(externalId, title, year);
+export async function MdlRatingBadge({ externalId, title, year, nativeTitle }: Props) {
+    const data = await getMdlData(externalId, title, year, nativeTitle);
     if (!data?.mdlRating) return null;
 
     return (

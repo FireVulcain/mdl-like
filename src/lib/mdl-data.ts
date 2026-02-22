@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { prisma } from "@/lib/prisma";
-import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember, KuryanaDrama } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 
 export interface MdlCastMember {
@@ -28,6 +28,40 @@ export interface MdlData {
 
 const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
+// Strip everything that isn't a letter, digit, or non-latin character for fuzzy comparison
+function normalizeTitle(s: string): string {
+    return s.toLowerCase().replace(/[^a-z0-9\u0080-\uffff]/g, "");
+}
+
+// Remove leading punctuation/symbols that break Kuryana search (e.g. "#Alive" → "Alive")
+function sanitizeForSearch(s: string): string {
+    return s.replace(/^[^a-zA-Z0-9\u0080-\uffff]+/, "").trim();
+}
+
+// Among dramas matching the target year (±1), pick the one whose title best matches
+// one of the provided query strings. Falls back to the first year match.
+function bestYearMatch(dramas: KuryanaDrama[], targetYear: number, queries: string[]): KuryanaDrama | null {
+    const byYear = dramas.filter((d) => d.year === targetYear);
+    const byYearFuzzy = dramas.filter((d) => Math.abs(d.year - targetYear) <= 1);
+    const candidates = byYear.length ? byYear : byYearFuzzy;
+    if (!candidates.length) return null;
+    if (candidates.length === 1) return candidates[0];
+
+    const normQueries = queries.map(normalizeTitle).filter(Boolean);
+    for (const q of normQueries) {
+        const exact = candidates.find((d) => normalizeTitle(d.title) === q);
+        if (exact) return exact;
+    }
+    for (const q of normQueries) {
+        const partial = candidates.find((d) => {
+            const dt = normalizeTitle(d.title);
+            return dt.includes(q) || q.includes(dt);
+        });
+        if (partial) return partial;
+    }
+    return candidates[0];
+}
+
 function normalizeCast(members: KuryanaCastMember[]): MdlCastMember[] {
     return members.map((m) => ({
         name: m.name,
@@ -54,6 +88,7 @@ export const getMdlData = cache(async function getMdlData(
     tmdbExternalId: string,
     title: string,
     year: string,
+    nativeTitle?: string,
 ): Promise<MdlData | null> {
     const cached = await prisma.cachedMdlData.findUnique({
         where: { tmdbExternalId },
@@ -113,18 +148,33 @@ export const getMdlData = cache(async function getMdlData(
         }
     }
 
-    // Cache miss — search Kuryana
+    // Cache miss — search Kuryana with both native + English titles, merge results,
+    // then pick the best year+title match from the full pool.
     try {
-        const searchResult = await kuryanaSearch(title);
-        if (!searchResult?.results?.dramas?.length) return null;
-
         const targetYear = parseInt(year);
-        const dramas = searchResult.results.dramas;
+        const queries = [nativeTitle, title].filter(Boolean) as string[];
 
-        const match =
-            dramas.find((d) => d.year === targetYear) ??
-            dramas.find((d) => Math.abs(d.year - targetYear) <= 1);
+        // Strip leading symbols before searching (e.g. "#Alive" → "Alive" so Kuryana finds it)
+        const searchNative = nativeTitle ? sanitizeForSearch(nativeTitle) : null;
+        const searchEnglish = sanitizeForSearch(title) || title;
 
+        // Run searches in parallel when both titles are available
+        const [nativeResults, englishResults] = await Promise.all([
+            searchNative ? kuryanaSearch(searchNative) : Promise.resolve(null),
+            kuryanaSearch(searchEnglish),
+        ]);
+
+        // Merge, deduplicating by slug (native results first so they score first)
+        const seen = new Set<string>();
+        const dramas: KuryanaDrama[] = [];
+        for (const d of [
+            ...(nativeResults?.results?.dramas ?? []),
+            ...(englishResults?.results?.dramas ?? []),
+        ]) {
+            if (!seen.has(d.slug)) { seen.add(d.slug); dramas.push(d); }
+        }
+
+        const match = bestYearMatch(dramas, targetYear, queries);
         if (!match) return null;
 
         const [details, castResult] = await Promise.all([

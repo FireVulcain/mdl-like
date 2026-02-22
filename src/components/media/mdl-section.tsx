@@ -13,14 +13,15 @@ interface Props {
     externalId: string;
     title: string;
     year: string;
+    nativeTitle?: string;
     tmdbCast: Actor[];
     mediaId: string;
 }
 
 // Async server component — streams in MDL tags + cast.
 // The Suspense fallback (TMDB cast) shows immediately; this swaps in when Kuryana responds.
-export async function MdlSection({ externalId, title, year, tmdbCast, mediaId }: Props) {
-    const data = await getMdlData(externalId, title, year);
+export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId }: Props) {
+    const data = await getMdlData(externalId, title, year, nativeTitle);
 
     return (
         <>

@@ -7,6 +7,7 @@ export type UnifiedMedia = {
     source: "TMDB" | "MDL";
     type: "MOVIE" | "TV";
     title: string;
+    nativeTitle?: string;
     poster: string | null;
     backdrop: string | null;
     year: string;
@@ -220,6 +221,7 @@ export const mediaService = {
                     source: "TMDB" as "TMDB" | "MDL",
                     type: (type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
                     title: details.title || details.name || "Unknown",
+                    nativeTitle: details.original_title || details.original_name || undefined,
                     poster: details.poster_path ? TMDB_CONFIG.w500Image(details.poster_path) : null,
                     backdrop: details.backdrop_path ? TMDB_CONFIG.w1280Backdrop(details.backdrop_path) : null,
                     year: (details.release_date || details.first_air_date || "").split("-")[0],

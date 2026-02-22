@@ -183,7 +183,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         <span className="inline-block h-4 w-10 rounded bg-sky-500/20 animate-pulse" />
                                     </>
                                 }>
-                                    <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} />
+                                    <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
                                 </Suspense>
                             )}
                         </div>
@@ -224,7 +224,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         <span className="inline-block h-4 w-14 rounded-md bg-sky-500/20 animate-pulse" />
                                     </>
                                 }>
-                                    <MdlRatingBadge externalId={media.externalId} title={media.title} year={media.year} />
+                                    <MdlRatingBadge externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
                                 </Suspense>
                             )}
                         </div>
@@ -304,6 +304,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 externalId={media.externalId}
                                 title={media.title}
                                 year={media.year}
+                                nativeTitle={media.nativeTitle}
                                 tmdbCast={media.cast || []}
                                 mediaId={media.id}
                             />
