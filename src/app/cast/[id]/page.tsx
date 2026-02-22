@@ -144,7 +144,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                 {/* Profile Section */}
                 <div className="grid gap-8 md:grid-cols-[280px_1fr]">
                     {/* Profile Image */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 md:sticky md:top-24 md:self-start">
                         <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
                             {person.profile_path ? (
                                 <Image

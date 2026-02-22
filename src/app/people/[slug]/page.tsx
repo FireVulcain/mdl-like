@@ -296,7 +296,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
                 <div className="grid gap-8 md:grid-cols-[280px_1fr]">
                     {/* Left: Photo + Info */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 md:sticky md:top-24 md:self-start">
                         {data.profile ? (
                             <MdlPersonImage src={data.profile} alt={data.name} />
                         ) : (
