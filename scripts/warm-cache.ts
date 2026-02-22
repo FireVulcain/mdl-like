@@ -32,14 +32,47 @@ dotenv.config(); // fills anything not already set from .env
 import { PrismaClient, Prisma } from "@prisma/client";
 import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
-import {
-    kuryanaSearch,
-    kuryanaGetDetails,
-    kuryanaGetCast,
-    kuryanaGetPerson,
-    type KuryanaDrama,
-    type KuryanaCastMember,
+// Import only types — the runtime functions use `next: { revalidate: 0 }` which
+// Node.js 22's strict undici rejects.  We define our own plain-fetch wrappers below.
+import type {
+    KuryanaDrama,
+    KuryanaCastMember,
+    KuryanaSearchResult,
+    KuryanaDetails,
+    KuryanaCastResult,
+    KuryanaPersonResult,
 } from "../src/lib/kuryana";
+
+// ─── Script-local Kuryana fetch (no Next.js options) ──────────────────────────
+
+const KURYANA_BASE = process.env.KURYANA_URL ?? "https://kuryana.tbdh.app";
+
+async function kuryanaFetch<T>(path: string): Promise<T | null> {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10_000);
+    try {
+        const res = await fetch(`${KURYANA_BASE}${path}`, { signal: controller.signal });
+        if (!res.ok) {
+            console.log(`    [kuryana ${res.status}] ${path}`);
+            return null;
+        }
+        return res.json() as Promise<T>;
+    } catch (e) {
+        console.log(`    [kuryana err] ${path} — ${e instanceof Error ? e.message : e}`);
+        return null;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+const kuryanaSearch = (q: string) =>
+    kuryanaFetch<KuryanaSearchResult>(`/search/q/${encodeURIComponent(q)}`);
+const kuryanaGetDetails = (slug: string) =>
+    kuryanaFetch<KuryanaDetails>(`/id/${slug}`);
+const kuryanaGetCast = (slug: string) =>
+    kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`);
+const kuryanaGetPerson = (slug: string) =>
+    kuryanaFetch<KuryanaPersonResult>(`/people/${slug}`);
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 
@@ -281,7 +314,7 @@ async function phase1(rows: MediaRow[]): Promise<Set<string>> {
             // Collect Main + Support slugs for phase 2 (skip Guest, too peripheral)
             if (data.cast) {
                 for (const m of [...data.cast.main, ...data.cast.support]) {
-                    if (m.slug) allCastSlugs.add(m.slug);
+                    if (m.slug) allCastSlugs.add(m.slug.replace(/^\/people\//, ""));
                 }
             }
             ok++;
@@ -338,20 +371,15 @@ async function phase2(slugs: string[]): Promise<void> {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-    const args = process.argv.slice(2);
-    const phase1Only = args.includes("--phase1-only");
-    const phase2Only = args.includes("--phase2-only");
+    // Search full argv — avoids index-shifting issues when invoked via npx/tsx
+    const phase1Only = process.argv.includes("--phase1-only");
+    const phase2Only = process.argv.includes("--phase2-only");
     const runPhase1 = !phase2Only;
     const runPhase2 = !phase1Only;
 
     console.log("🔥  Kuryana cache warmer\n");
-
-    // ── Fetch watchlist ────────────────────────────────────────────────────────
-    const allMedia = await prisma.userMedia.findMany({
-        where: { source: "tmdb" },
-        select: { externalId: true, title: true, year: true, mediaType: true },
-        distinct: ["externalId"],
-    });
+    if (phase1Only) console.log("  (--phase1-only: skipping phase 2)\n");
+    if (phase2Only) console.log("  (--phase2-only: skipping phase 1)\n");
 
     const staleAt = new Date(Date.now() - CACHE_TTL_MS);
 
@@ -359,6 +387,12 @@ async function main() {
     let newSlugsFromPhase1 = new Set<string>();
 
     if (runPhase1) {
+        const allMedia = await prisma.userMedia.findMany({
+            where: { source: "TMDB" },
+            select: { externalId: true, title: true, year: true, mediaType: true },
+            distinct: ["externalId"],
+        });
+
         const freshMdlIds = new Set(
             (
                 await prisma.cachedMdlData.findMany({
@@ -397,7 +431,7 @@ async function main() {
                     support?: { slug: string }[];
                 };
                 for (const m of [...(c.main ?? []), ...(c.support ?? [])]) {
-                    if (m.slug) allCastSlugs.add(m.slug);
+                    if (m.slug) allCastSlugs.add(m.slug.replace(/^\/people\//, ""));
                 }
             }
         }
