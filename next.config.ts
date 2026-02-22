@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/t/p/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.mydramalist.com',
+      },
     ],
     // 384px for desktop, 640px for mobile (high DPI)
     deviceSizes: [384, 640, 750, 828, 1080, 1200, 1920],

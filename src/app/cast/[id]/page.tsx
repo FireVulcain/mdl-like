@@ -54,6 +54,10 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [id]);
+
+    useEffect(() => {
         async function fetchData() {
             try {
                 const [data, watchlistExternalIds] = await Promise.all([

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X, Clock } from "lucide-react";
+import { ExternalLink, Menu, X, Clock, Bookmark } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -147,6 +147,19 @@ export function SiteHeader() {
                                     {/* Menu items */}
                                     <div className="p-1.5">
                                         <Link
+                                            href="/watchlist"
+                                            onClick={() => setProfileOpen(false)}
+                                            className={cn(
+                                                "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                                                pathname === "/watchlist"
+                                                    ? "bg-primary/15 text-white"
+                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                            )}
+                                        >
+                                            <Bookmark className="h-4 w-4 shrink-0" />
+                                            Watchlist
+                                        </Link>
+                                        <Link
                                             href="/history"
                                             onClick={() => setProfileOpen(false)}
                                             className={cn(
@@ -233,6 +246,19 @@ export function SiteHeader() {
                                 </div>
                                 <span className="text-sm font-semibold text-white">My Account</span>
                             </div>
+                            <Link
+                                href="/watchlist"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={cn(
+                                    "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
+                                    pathname === "/watchlist"
+                                        ? "bg-primary/15 border border-primary/20 text-white"
+                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                )}
+                            >
+                                <Bookmark className="h-4 w-4 shrink-0" />
+                                Watchlist
+                            </Link>
                             <Link
                                 href="/history"
                                 onClick={() => setMobileMenuOpen(false)}

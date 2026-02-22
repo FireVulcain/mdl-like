@@ -105,6 +105,18 @@ model ActivityLog {
   @@index([userMediaId])
 }
 
+model CachedMdlData {
+  id             String   @id @default(cuid())
+  tmdbExternalId String   @unique
+  mdlSlug        String
+  mdlRating      Float?
+  mdlRanking     Int?
+  mdlPopularity  Int?
+  tags           Json?
+  castJson       Json?
+  cachedAt       DateTime @default(now())
+}
+
 model CachedEpisode {
   id            String   @id @default(cuid())
   mediaId       String
