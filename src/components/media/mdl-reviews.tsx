@@ -19,7 +19,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
 
     const parts = review.review ?? [];
     const title = parts[0] ?? "";
-    const body = parts.slice(1).join(" ").trim();
+    const body = parts.slice(1).join("\n\n").trim();
     const isLong = body.length > TRUNCATE_LENGTH;
     const displayBody = isLong && !expanded ? `${body.slice(0, TRUNCATE_LENGTH).trimEnd()}…` : body;
 
@@ -82,7 +82,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                     <p className="text-sm font-semibold text-white leading-snug">{title}</p>
                 )}
                 {body && (
-                    <p className="text-sm text-gray-400 leading-relaxed">{displayBody}</p>
+                    <p className="text-sm text-gray-400 leading-relaxed whitespace-pre-line">{displayBody}</p>
                 )}
                 {isLong && (
                     <button
