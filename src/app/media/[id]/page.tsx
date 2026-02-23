@@ -16,11 +16,12 @@ import { MdlSection } from "@/components/media/mdl-section";
 import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
-import { Bookmark, ExternalLink } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 import { Suspense } from "react";
 import { MdlRefetchButton } from "@/components/media/mdl-refetch-button";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
+import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -113,15 +114,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 No Poster
                             </div>
                         )}
-                        <a
-                            href={`https://mydramalist.com/search?q=${encodeURIComponent(media.title)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
-                        >
-                            <ExternalLink className="size-3" />
-                            MDL
-                        </a>
+                        {isMdlRelevant && (
+                            <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
+                                <MdlPosterLink externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
+                            </Suspense>
+                        )}
                     </div>
 
                     <div
