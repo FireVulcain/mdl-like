@@ -37,21 +37,9 @@ async function MdlDramaPoster({ mdlSlug }: { mdlSlug: string }) {
     const details = await kuryanaGetDetails(mdlSlug);
     const poster = details?.data?.poster;
     if (!poster) {
-        return (
-            <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
-                No Image
-            </div>
-        );
+        return <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>;
     }
-    return (
-        <Image
-            src={poster}
-            alt="poster"
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-        />
-    );
+    return <Image src={poster} alt="poster" fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" />;
 }
 
 // Max concurrent Kuryana poster fetches — beyond this, unlinked cards show "No Image" statically
@@ -69,7 +57,7 @@ function WorkCard({
     internalLink: string | null;
     poster: string | null;
     posterSlug: string | null; // budget-capped: drives the Kuryana poster Suspense
-    linkSlug: string | null;   // always set: drives the Link button
+    linkSlug: string | null; // always set: drives the Link button
     inWatchlist: boolean;
 }) {
     const title = work.title.name;
@@ -80,13 +68,7 @@ function WorkCard({
         <div className="space-y-2">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-linear-to-br from-gray-800 to-gray-900 shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
                 {poster ? (
-                    <Image
-                        src={poster}
-                        alt={title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                    />
+                    <Image src={poster} alt={title} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" />
                 ) : posterSlug ? (
                     <Suspense
                         fallback={
@@ -96,9 +78,7 @@ function WorkCard({
                         <MdlDramaPoster mdlSlug={posterSlug} />
                     </Suspense>
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
-                        No Image
-                    </div>
+                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>
                 )}
 
                 {work.rating > 0 && (
@@ -112,9 +92,7 @@ function WorkCard({
 
                 {work.episodes && work.episodes > 0 && (
                     <div className="absolute bottom-1.5 right-1.5">
-                        <Badge className="bg-purple-500/80 text-xs text-white backdrop-blur-sm">
-                            {work.episodes} ep
-                        </Badge>
+                        <Badge className="bg-purple-500/80 text-xs text-white backdrop-blur-sm">{work.episodes} ep</Badge>
                     </div>
                 )}
 
@@ -134,12 +112,8 @@ function WorkCard({
             </div>
 
             <div>
-                <p className="font-semibold text-sm leading-tight text-white group-hover:text-blue-400 transition-colors line-clamp-1">
-                    {title}
-                </p>
-                {character && (
-                    <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">as {character}</p>
-                )}
+                <p className="font-semibold text-sm leading-tight text-white group-hover:text-blue-400 transition-colors line-clamp-1">{title}</p>
+                {character && <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">as {character}</p>}
                 <p className="text-xs text-gray-500 mt-0.5">{year}</p>
             </div>
         </div>
@@ -238,11 +212,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     }
 
     const [tmdbDetails, watchlistExternalIds] = await Promise.all([
-        Promise.all(
-            linkedEntries.map(({ tmdbExternalId, mediaType }) =>
-                tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null),
-            ),
-        ),
+        Promise.all(linkedEntries.map(({ tmdbExternalId, mediaType }) => tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null))),
         getWatchlistExternalIds(),
     ]);
     const watchlistIds = new Set(watchlistExternalIds);
@@ -250,10 +220,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     const posterMap = new Map<string, string | null>(); // numericMdlId → poster URL
     linkedEntries.forEach(({ mdlNumericId }, i) => {
         const detail = tmdbDetails[i];
-        posterMap.set(
-            mdlNumericId,
-            detail?.poster_path ? TMDB_CONFIG.w342Image(detail.poster_path) : null,
-        );
+        posterMap.set(mdlNumericId, detail?.poster_path ? TMDB_CONFIG.w342Image(detail.poster_path) : null);
     });
 
     function getPoster(work: KuryanaWorkItem): string | null {
@@ -289,24 +256,24 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
     const bio = data.about
         ? data.about
-              .replace(/\s*\(?\s*Source:[\s\S]*$/i, "")   // strip (Source: ...) and everything after
-              .replace(/\s*Edit Biography[\s\S]*$/i, "")   // strip Edit Biography and everything after
-              .replace(/[\s(]+$/, "")                  // strip any trailing ( or whitespace left behind
+              .replace(/\s*\(?\s*Source:[\s\S]*$/i, "") // strip (Source: ...) and everything after
+              .replace(/\s*Edit Biography[\s\S]*$/i, "") // strip Edit Biography and everything after
+              .replace(/[\s(]+$/, "") // strip any trailing ( or whitespace left behind
               .trim()
         : null;
     const alsoKnownAs = details.also_known_as
-        ? details.also_known_as.split(",").map((s) => s.trim()).filter(Boolean)
+        ? details.also_known_as
+              .split(",")
+              .map((s) => s.trim())
+              .filter(Boolean)
         : [];
 
     const grid = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4";
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b ">
             <div className="container py-8 space-y-8 m-auto">
-                <Link
-                    href="/"
-                    className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                >
+                <Link href="/" className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to Home
                 </Link>
@@ -327,8 +294,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             style={{
                                 background: "rgba(17, 24, 39, 0.6)",
                                 backdropFilter: "blur(20px)",
-                                boxShadow:
-                                    "0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2), inset 0 1px 0 0 rgba(255,255,255,0.1)",
+                                boxShadow: "0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2), inset 0 1px 0 0 rgba(255,255,255,0.1)",
                             }}
                         >
                             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
@@ -361,19 +327,12 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                         <span className="text-gray-400 font-medium block mb-1">Also Known As</span>
                                         <div className="flex flex-wrap gap-1">
                                             {alsoKnownAs.slice(0, 6).map((name) => (
-                                                <Badge
-                                                    key={name}
-                                                    variant="secondary"
-                                                    className="text-xs bg-white/10 text-gray-300 border-white/10"
-                                                >
+                                                <Badge key={name} variant="secondary" className="text-xs bg-white/10 text-gray-300 border-white/10">
                                                     {name}
                                                 </Badge>
                                             ))}
                                             {alsoKnownAs.length > 6 && (
-                                                <Badge
-                                                    variant="secondary"
-                                                    className="text-xs bg-white/10 text-gray-400 border-white/10"
-                                                >
+                                                <Badge variant="secondary" className="text-xs bg-white/10 text-gray-400 border-white/10">
                                                     +{alsoKnownAs.length - 6} more
                                                 </Badge>
                                             )}
@@ -393,9 +352,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                     via MDL
                                 </Badge>
                                 <span className="text-gray-500">•</span>
-                                <span className="text-gray-400">
-                                    {dramas.length + movies.length + specials.length} works
-                                </span>
+                                <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
                                 <span className="text-gray-500">•</span>
                                 <a
                                     href={data.link}
@@ -494,9 +451,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         )}
 
                         {dramas.length === 0 && movies.length === 0 && specials.length === 0 && (
-                            <div className="text-center py-12 text-gray-400">
-                                No filmography information available.
-                            </div>
+                            <div className="text-center py-12 text-gray-400">No filmography information available.</div>
                         )}
                     </div>
                 </div>

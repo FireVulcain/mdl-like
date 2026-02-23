@@ -13,14 +13,11 @@ export default async function CastPage({ params }: { params: Promise<{ id: strin
     }
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b">
             <div className="container py-8 space-y-6 m-auto">
                 {/* Header */}
                 <div className="space-y-4">
-                    <Link
-                        href={`/media/${id}`}
-                        className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                    >
+                    <Link href={`/media/${id}`} className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to {media.title}
                     </Link>

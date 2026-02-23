@@ -8,7 +8,7 @@ const DAY_HEADERS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
 function ScheduleSkeleton() {
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b ">
             <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
                 {/* Page header skeleton */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -37,11 +37,9 @@ function ScheduleSkeleton() {
                         {Array.from({ length: 35 }).map((_, i) => (
                             <div
                                 key={i}
-                                className={[
-                                    "min-h-28 p-2",
-                                    i < 28 ? "border-b border-white/5" : "",
-                                    i % 7 !== 6 ? "border-r border-white/5" : "",
-                                ].filter(Boolean).join(" ")}
+                                className={["min-h-28 p-2", i < 28 ? "border-b border-white/5" : "", i % 7 !== 6 ? "border-r border-white/5" : ""]
+                                    .filter(Boolean)
+                                    .join(" ")}
                             />
                         ))}
                     </div>

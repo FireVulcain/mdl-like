@@ -60,10 +60,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
     useEffect(() => {
         async function fetchData() {
             try {
-                const [data, watchlistExternalIds] = await Promise.all([
-                    getPersonData(id),
-                    getWatchlistExternalIds()
-                ]);
+                const [data, watchlistExternalIds] = await Promise.all([getPersonData(id), getWatchlistExternalIds()]);
                 setPerson(data.person);
                 setCredits(data.credits);
                 setWatchlistIds(new Set(watchlistExternalIds));
@@ -81,7 +78,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+            <div className="min-h-screen bg-linear-to-b ">
                 <div className="container py-8 m-auto">
                     <div className="grid gap-8 md:grid-cols-[280px_1fr]">
                         {/* Loading skeleton for profile */}
@@ -102,7 +99,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
     if (error || !person) {
         return (
-            <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black flex items-center justify-center">
+            <div className="min-h-screen bg-linear-to-b  flex items-center justify-center">
                 <div className="text-center space-y-4">
                     <h1 className="text-2xl font-bold text-white">Person not found</h1>
                     <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
@@ -131,7 +128,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
     const series = sortedCredits.filter((c) => c.media_type === "tv" && !c.genre_ids?.some((id) => realityGenreIds.includes(id)));
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b ">
             <div className="container py-8 space-y-8 m-auto">
                 {/* Header */}
                 <div className="space-y-4">
@@ -289,7 +286,11 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                     {series.map((credit) => (
-                                        <CreditCard key={`series-${credit.id}-${credit.character}`} credit={credit} inWatchlist={watchlistIds.has(String(credit.id))} />
+                                        <CreditCard
+                                            key={`series-${credit.id}-${credit.character}`}
+                                            credit={credit}
+                                            inWatchlist={watchlistIds.has(String(credit.id))}
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -308,7 +309,11 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                     {movies.map((credit) => (
-                                        <CreditCard key={`movie-${credit.id}-${credit.character}`} credit={credit} inWatchlist={watchlistIds.has(String(credit.id))} />
+                                        <CreditCard
+                                            key={`movie-${credit.id}-${credit.character}`}
+                                            credit={credit}
+                                            inWatchlist={watchlistIds.has(String(credit.id))}
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -327,7 +332,11 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                     {tvShows.map((credit) => (
-                                        <CreditCard key={`tv-${credit.id}-${credit.character}`} credit={credit} inWatchlist={watchlistIds.has(String(credit.id))} />
+                                        <CreditCard
+                                            key={`tv-${credit.id}-${credit.character}`}
+                                            credit={credit}
+                                            inWatchlist={watchlistIds.has(String(credit.id))}
+                                        />
                                     ))}
                                 </div>
                             </div>

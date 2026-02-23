@@ -16,14 +16,11 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
     const hasPosters = media.images?.posters && media.images.posters.length > 0;
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b ">
             <div className="container py-8 space-y-8 m-auto">
                 {/* Header */}
                 <div className="space-y-4">
-                    <Link
-                        href={`/media/${id}`}
-                        className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                    >
+                    <Link href={`/media/${id}`} className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to {media.title}
                     </Link>
@@ -42,9 +39,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
 
                 <PhotoGallery backdrops={media.images?.backdrops || []} posters={media.images?.posters || []} />
 
-                {!hasBackdrops && !hasPosters && (
-                    <div className="text-center py-12 text-gray-400">No photos available.</div>
-                )}
+                {!hasBackdrops && !hasPosters && <div className="text-center py-12 text-gray-400">No photos available.</div>}
             </div>
         </div>
     );

@@ -102,7 +102,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
     const episodesThisMonth = entries.filter((e) => e.airDate.startsWith(thisMonthPrefix)).length;
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black">
+        <div className="min-h-screen bg-linear-to-b ">
             <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
                 {/* Page header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
