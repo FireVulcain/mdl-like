@@ -110,8 +110,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Poster & Actions */}
                 <div className="space-y-4">
                     <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
-                        {media.poster ? (
-                            <Image src={media.poster} alt={media.title} fill className="object-cover" priority />
+                        {(currentSeasonData?.poster || media.poster) ? (
+                            <Image src={currentSeasonData?.poster ?? media.poster!} alt={media.title} fill className="object-cover" priority />
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
                                 No Poster
