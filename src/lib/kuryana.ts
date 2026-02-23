@@ -1,4 +1,4 @@
-const BASE_URL = process.env.KURYANA_URL ?? "https://kuryana.tbdh.app";
+const BASE_URL = process.env.KURYANA_URL ?? "https://mdl-scrapper-jade.vercel.app";
 
 export interface KuryanaDrama {
     slug: string;
