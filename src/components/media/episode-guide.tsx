@@ -36,9 +36,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
     const hasOverview = ep.overview.trim().length > 0;
     const isLong = ep.overview.length > 150;
 
-    const formattedDate = ep.airDate
-        ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
-        : null;
+    const formattedDate = ep.airDate ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
 
     return (
         <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
@@ -88,9 +86,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
                     </div>
                 </div>
 
-                {formattedDate && (
-                    <span className="text-[11px] text-gray-500">{formattedDate}</span>
-                )}
+                {formattedDate && <span className="text-[11px] text-gray-500">{formattedDate}</span>}
 
                 {hasOverview && (
                     <div className="mt-0.5">
@@ -103,9 +99,13 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
                                 className="mt-1 flex items-center gap-0.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors"
                             >
                                 {expanded ? (
-                                    <>Less <ChevronUp className="size-3" /></>
+                                    <>
+                                        Less <ChevronUp className="size-3" />
+                                    </>
                                 ) : (
-                                    <>More <ChevronDown className="size-3" /></>
+                                    <>
+                                        More <ChevronDown className="size-3" />
+                                    </>
                                 )}
                             </button>
                         )}
@@ -121,9 +121,7 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
     const hasSynopsis = !!ep.synopsis?.trim();
     const isLong = (ep.synopsis?.length ?? 0) > 150;
 
-    const formattedDate = ep.airDate
-        ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
-        : null;
+    const formattedDate = ep.airDate ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
 
     return (
         <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
@@ -165,9 +163,7 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
                     )}
                 </div>
 
-                {formattedDate && (
-                    <span className="text-[11px] text-gray-500">{formattedDate}</span>
-                )}
+                {formattedDate && <span className="text-[11px] text-gray-500">{formattedDate}</span>}
 
                 {hasSynopsis && (
                     <div className="mt-0.5">
@@ -180,9 +176,13 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
                                 className="mt-1 flex items-center gap-0.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors"
                             >
                                 {expanded ? (
-                                    <>Less <ChevronUp className="size-3" /></>
+                                    <>
+                                        Less <ChevronUp className="size-3" />
+                                    </>
                                 ) : (
-                                    <>More <ChevronDown className="size-3" /></>
+                                    <>
+                                        More <ChevronDown className="size-3" />
+                                    </>
                                 )}
                             </button>
                         )}
@@ -211,11 +211,11 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold text-white">Episode Guide</h3>
-                    <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
-                        source === "mdl"
-                            ? "bg-sky-500/15 text-sky-400 border-sky-500/20"
-                            : "bg-white/5 text-gray-400 border-white/10"
-                    }`}>
+                    <span
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
+                            source === "mdl" ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"
+                        }`}
+                    >
                         via {source === "mdl" ? "MDL" : "TMDB"}
                     </span>
                 </div>
@@ -223,21 +223,23 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
                     {mdlEpisodes && (
                         <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5">
                             <button
-                                onClick={() => { setSource("mdl"); setShowAll(false); }}
+                                onClick={() => {
+                                    setSource("mdl");
+                                    setShowAll(false);
+                                }}
                                 className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                    source === "mdl"
-                                        ? "bg-white text-gray-900"
-                                        : "text-gray-400 hover:text-white"
+                                    source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
                                 }`}
                             >
                                 MDL
                             </button>
                             <button
-                                onClick={() => { setSource("tmdb"); setShowAll(false); }}
+                                onClick={() => {
+                                    setSource("tmdb");
+                                    setShowAll(false);
+                                }}
                                 className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                    source === "tmdb"
-                                        ? "bg-white text-gray-900"
-                                        : "text-gray-400 hover:text-white"
+                                    source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
                                 }`}
                             >
                                 TMDB
@@ -255,8 +257,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
                 <div className="flex flex-col gap-2">
                     {source === "mdl" && activeEpisodes
                         ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} />)
-                        : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} />)
-                    }
+                        : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} />)}
                 </div>
 
                 {/* Fade gradient — only when collapsed and there are more episodes */}
@@ -271,9 +272,13 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
                     className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/5 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
                 >
                     {showAll ? (
-                        <>Show less <ChevronUp className="size-4" /></>
+                        <>
+                            Show less <ChevronUp className="size-4" />
+                        </>
                     ) : (
-                        <>Show all {count} episodes <ChevronDown className="size-4" /></>
+                        <>
+                            Show all {count} episodes <ChevronDown className="size-4" />
+                        </>
                     )}
                 </button>
             )}

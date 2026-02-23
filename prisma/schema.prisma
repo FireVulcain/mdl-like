@@ -123,6 +123,16 @@ model CachedKuryanaPerson {
   cachedAt  DateTime @default(now())
 }
 
+model MdlSeasonLink {
+  id             String @id @default(cuid())
+  tmdbExternalId String
+  season         Int
+  mdlSlug        String
+
+  @@unique([tmdbExternalId, season])
+  @@index([tmdbExternalId])
+}
+
 model CachedEpisode {
   id            String   @id @default(cuid())
   mediaId       String

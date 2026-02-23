@@ -1,4 +1,5 @@
 import { getMdlData } from "@/lib/mdl-data";
+import { prisma } from "@/lib/prisma";
 import { ExternalLink } from "lucide-react";
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
     title: string;
     year: string;
     nativeTitle?: string;
+    season?: number;
 }
 
 const LINK_CLASS =
@@ -13,10 +15,21 @@ const LINK_CLASS =
 
 // Async server component — streams in a direct MDL link once the slug is resolved.
 // getMdlData uses React cache(), so this is free if MdlSection already fetched the data.
-export async function MdlPosterLink({ externalId, title, year, nativeTitle }: Props) {
+// For seasons 2+, checks MdlSeasonLink first to point to the correct season page.
+export async function MdlPosterLink({ externalId, title, year, nativeTitle, season }: Props) {
     const data = await getMdlData(externalId, title, year, nativeTitle);
-    const href = data?.mdlSlug
-        ? `https://mydramalist.com/${data.mdlSlug}`
+
+    let slug = data?.mdlSlug ?? null;
+
+    if (season && season > 1 && data?.mdlSlug) {
+        const seasonLink = await prisma.mdlSeasonLink.findUnique({
+            where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
+        });
+        if (seasonLink) slug = seasonLink.mdlSlug;
+    }
+
+    const href = slug
+        ? `https://mydramalist.com/${slug}`
         : `https://mydramalist.com/search?q=${encodeURIComponent(title)}`;
 
     return (

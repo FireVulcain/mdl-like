@@ -117,7 +117,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         )}
                         {isMdlRelevant && (
                             <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
-                                <MdlPosterLink externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
+                                <MdlPosterLink externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
                             </Suspense>
                         )}
                     </div>
@@ -344,6 +344,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     season={selectedSeason}
                                     poster={media.poster}
                                     externalId={media.externalId}
+                                    mediaId={media.id}
+                                    title={media.title}
                                 />
                             </Suspense>
                         ) : (

@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
 import { EpisodeGuide, type MdlEpisodeItem } from "./episode-guide";
+import { MdlSeasonLinkButton } from "./mdl-season-link-button";
 
 interface TmdbEpisode {
     id: number;
@@ -18,21 +19,37 @@ interface Props {
     season: number;
     poster: string | null;
     externalId: string;
+    mediaId: string;
+    title: string;
 }
 
 // Async server component — fetches MDL episode list + individual episode details
 // (for synopsis) in parallel, then passes everything to the EpisodeGuide toggle.
 // Wrapped in Suspense in the media page so the TMDB-only guide shows immediately.
-export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId }: Props) {
+export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId, mediaId, title }: Props) {
     const cached = await prisma.cachedMdlData.findUnique({
         where: { tmdbExternalId: externalId },
         select: { mdlSlug: true },
     });
 
+    // Seasons 2+ require a manually linked slug (stored in MdlSeasonLink).
+    // Season 1 uses the base slug from CachedMdlData.
+    let effectiveSlug: string | null = null;
+    if (cached?.mdlSlug) {
+        if (season === 1) {
+            effectiveSlug = cached.mdlSlug;
+        } else {
+            const seasonLink = await prisma.mdlSeasonLink.findUnique({
+                where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
+            });
+            effectiveSlug = seasonLink?.mdlSlug ?? null;
+        }
+    }
+
     let mdlEpisodes: MdlEpisodeItem[] | null = null;
 
-    if (cached?.mdlSlug) {
-        const list = await kuryanaGetEpisodesList(cached.mdlSlug);
+    if (effectiveSlug) {
+        const list = await kuryanaGetEpisodesList(effectiveSlug);
         if (list?.data?.episodes?.length) {
             const listEpisodes = list.data.episodes;
             const showTitle = list.data.title;
@@ -42,7 +59,7 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
                 listEpisodes.map((ep, i) => {
                     const numMatch = ep.link.match(/\/episode\/(\d+)/);
                     const number = numMatch ? parseInt(numMatch[1]) : i + 1;
-                    return kuryanaGetEpisode(cached.mdlSlug!, number);
+                    return kuryanaGetEpisode(effectiveSlug!, number);
                 })
             );
 
@@ -75,12 +92,25 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
         }
     }
 
+    // Show a link button for seasons 2+ that haven't been linked yet
+    const showLinkButton = season > 1 && !!cached?.mdlSlug && !effectiveSlug;
+
     return (
-        <EpisodeGuide
-            episodes={tmdbEpisodes}
-            season={season}
-            poster={poster}
-            mdlEpisodes={mdlEpisodes}
-        />
+        <div className="space-y-3">
+            <EpisodeGuide
+                episodes={tmdbEpisodes}
+                season={season}
+                poster={poster}
+                mdlEpisodes={mdlEpisodes}
+            />
+            {showLinkButton && (
+                <MdlSeasonLinkButton
+                    tmdbExternalId={externalId}
+                    season={season}
+                    mediaId={mediaId}
+                    title={title}
+                />
+            )}
+        </div>
     );
 }
