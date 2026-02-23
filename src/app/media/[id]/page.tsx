@@ -19,6 +19,7 @@ import { EpisodeGuide } from "@/components/media/episode-guide";
 import { Bookmark, ExternalLink } from "lucide-react";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 import { Suspense } from "react";
+import { MdlRefetchButton } from "@/components/media/mdl-refetch-button";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -268,6 +269,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 season={selectedSeason}
                                 totalEp={episodeCount}
                             />
+
+                            {isMdlRelevant && (
+                                <MdlRefetchButton tmdbExternalId={media.externalId} mediaId={media.id} />
+                            )}
 
                             {/* Compact Progress Indicator */}
                             {userMedia && (

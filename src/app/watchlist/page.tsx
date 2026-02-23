@@ -1,30 +1,29 @@
-import { getWatchlist } from "@/actions/media";
-import { getDashboardStats } from "@/actions/stats";
-import { EMPTY_STATS } from "@/types/stats";
-import { WatchlistTable } from "@/components/watchlist-table";
-import { WatchlistStats } from "@/components/watchlist-stats";
-
-const MOCK_USER_ID = "mock-user-1";
+import { WatchlistData } from "@/components/watchlist-data";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
-export default async function WatchlistPage() {
-    let watchlist: Awaited<ReturnType<typeof getWatchlist>> = [];
-    let stats = EMPTY_STATS;
+function WatchlistSkeleton() {
+    return (
+        <div className="space-y-6 animate-pulse">
+            <div className="flex items-center justify-between">
+                <div className="h-4 w-48 rounded bg-white/10" />
+                <div className="flex gap-2">
+                    {[0, 1, 2].map((i) => (
+                        <div key={i} className="h-16 w-32 rounded-xl bg-white/5 border border-white/5" />
+                    ))}
+                </div>
+            </div>
+            <div className="space-y-2">
+                {[0, 1, 2, 3, 4].map((i) => (
+                    <div key={i} className="h-16 rounded-xl bg-white/5 border border-white/5" />
+                ))}
+            </div>
+        </div>
+    );
+}
 
-    try {
-        if (process.env.NEXT_PHASE !== "phase-production-build") {
-            watchlist = await getWatchlist(MOCK_USER_ID);
-            stats = await getDashboardStats(MOCK_USER_ID, watchlist);
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-
-    const watchingCount = watchlist.filter((i) => i.status === "Watching").length;
-    const completedCount = watchlist.filter((i) => i.totalEp && i.progress >= i.totalEp).length;
-
+export default function WatchlistPage() {
     return (
         <div className="relative min-h-screen overflow-hidden">
             {/* Background */}
@@ -52,18 +51,10 @@ export default async function WatchlistPage() {
 
             {/* Content */}
             <div className="container py-8 space-y-6 m-auto max-w-[80%] relative z-10">
-                <div className="flex items-center justify-between watchlist-header">
-                    <div>
-                        <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>
-                        <p className="text-muted-foreground mt-1">
-                            {watchlist.length} titles · {watchingCount} watching · {completedCount} completed
-                        </p>
-                    </div>
-
-                    <WatchlistStats stats={stats} />
-                </div>
-
-                <WatchlistTable items={watchlist} />
+                <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>
+                <Suspense fallback={<WatchlistSkeleton />}>
+                    <WatchlistData />
+                </Suspense>
             </div>
         </div>
     );
