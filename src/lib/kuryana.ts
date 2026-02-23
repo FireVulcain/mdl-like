@@ -156,3 +156,36 @@ export interface KuryanaPersonResult {
 export async function kuryanaGetPerson(slug: string): Promise<KuryanaPersonResult | null> {
     return kuryanaFetch<KuryanaPersonResult>(`/people/${slug}`);
 }
+
+export interface KuryanaReview {
+    reviewer: {
+        name: string;
+        user_link: string;
+        user_image: string | null;
+        info: string | null; // e.g. "210 people found this review helpful"
+    };
+    review: string[] | null; // [title, ...body paragraphs]
+    ratings: {
+        overall: number;
+        Story?: number;
+        "Acting/Cast"?: number;
+        Music?: number;
+        "Rewatch Value"?: number;
+        [key: string]: number | undefined;
+    } | null;
+}
+
+export interface KuryanaReviewsResult {
+    slug_query: string;
+    data: {
+        link: string;
+        title: string;
+        poster: string;
+        reviews: KuryanaReview[];
+    };
+    scrape_date: string;
+}
+
+export async function kuryanaGetReviews(slug: string, page = 1): Promise<KuryanaReviewsResult | null> {
+    return kuryanaFetch<KuryanaReviewsResult>(`/id/${slug}/reviews?page=${page}`);
+}

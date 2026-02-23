@@ -20,6 +20,7 @@ import { Bookmark, ExternalLink } from "lucide-react";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 import { Suspense } from "react";
 import { MdlRefetchButton } from "@/components/media/mdl-refetch-button";
+import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -41,7 +42,16 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const episodeCount = currentSeasonData?.episodeCount || (selectedSeason === 1 ? media.totalEp : null) || null; // Fallback for movies or missing season data
 
     // Fetch season episodes (TV only)
-    let episodes: { id: number; number: number; name: string; overview: string; airDate: string | null; still: string | null; runtime: number | null; rating: number }[] = [];
+    let episodes: {
+        id: number;
+        number: number;
+        name: string;
+        overview: string;
+        airDate: string | null;
+        still: string | null;
+        runtime: number | null;
+        rating: number;
+    }[] = [];
     if (media.type === "TV") {
         try {
             const seasonData = await tmdb.getSeasonDetails(media.externalId, selectedSeason);
@@ -75,7 +85,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const updateAction = userMedia ? updateProgress.bind(null, userMedia.id) : undefined;
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-gray-900 via-gray-900 to-black -mt-24">
+        <div className="min-h-screen bg-linear-to-b -mt-24">
             {/* Backdrop */}
             <div className="relative h-[50vh] w-full overflow-hidden">
                 {media.backdrop ? (
@@ -178,12 +188,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             )}
 
                             {isMdlRelevant && (
-                                <Suspense fallback={
-                                    <>
-                                        <span className="text-gray-400 font-medium">MDL Rank</span>
-                                        <span className="inline-block h-4 w-10 rounded bg-sky-500/20 animate-pulse" />
-                                    </>
-                                }>
+                                <Suspense
+                                    fallback={
+                                        <>
+                                            <span className="text-gray-400 font-medium">MDL Rank</span>
+                                            <span className="inline-block h-4 w-10 rounded bg-sky-500/20 animate-pulse" />
+                                        </>
+                                    }
+                                >
                                     <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
                                 </Suspense>
                             )}
@@ -219,13 +231,20 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
                             {isMdlRelevant && (
-                                <Suspense fallback={
-                                    <>
-                                        <span>•</span>
-                                        <span className="inline-block h-4 w-14 rounded-md bg-sky-500/20 animate-pulse" />
-                                    </>
-                                }>
-                                    <MdlRatingBadge externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
+                                <Suspense
+                                    fallback={
+                                        <>
+                                            <span>•</span>
+                                            <span className="inline-block h-4 w-14 rounded-md bg-sky-500/20 animate-pulse" />
+                                        </>
+                                    }
+                                >
+                                    <MdlRatingBadge
+                                        externalId={media.externalId}
+                                        title={media.title}
+                                        year={media.year}
+                                        nativeTitle={media.nativeTitle}
+                                    />
                                 </Suspense>
                             )}
                         </div>
@@ -270,9 +289,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 totalEp={episodeCount}
                             />
 
-                            {isMdlRelevant && (
-                                <MdlRefetchButton tmdbExternalId={media.externalId} mediaId={media.id} />
-                            )}
+                            {isMdlRelevant && <MdlRefetchButton tmdbExternalId={media.externalId} mediaId={media.id} />}
 
                             {/* Compact Progress Indicator */}
                             {userMedia && (
@@ -296,15 +313,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* MDL Tags + Cast — streams in after TMDB cast (fallback) */}
                     {isMdlRelevant ? (
-                        <Suspense fallback={
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-2">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-                                    <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
+                        <Suspense
+                            fallback={
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
+                                        <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
+                                    </div>
+                                    <CastScroll cast={media.cast || []} mediaId={media.id} />
                                 </div>
-                                <CastScroll cast={media.cast || []} mediaId={media.id} />
-                            </div>
-                        }>
+                            }
+                        >
                             <MdlSection
                                 externalId={media.externalId}
                                 title={media.title}
@@ -319,12 +338,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     )}
 
                     {/* Episode Guide */}
-                    {media.type === "TV" && episodes.length > 0 && (
-                        <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />
-                    )}
+                    {media.type === "TV" && episodes.length > 0 && <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />}
 
                     {/* Photos */}
                     <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
+
+                    {/* MDL Reviews */}
+                    {isMdlRelevant && (
+                        <Suspense fallback={null}>
+                            <MdlReviewsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} mediaId={media.id} />
+                        </Suspense>
+                    )}
 
                     {/* Recommendations */}
                     {media.recommendations && media.recommendations.length > 0 && (
