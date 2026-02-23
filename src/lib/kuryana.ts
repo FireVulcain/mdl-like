@@ -189,3 +189,42 @@ export interface KuryanaReviewsResult {
 export async function kuryanaGetReviews(slug: string, page = 1): Promise<KuryanaReviewsResult | null> {
     return kuryanaFetch<KuryanaReviewsResult>(`/id/${slug}/reviews?page=${page}`);
 }
+
+export interface KuryanaEpisodeListItem {
+    title: string;    // e.g. "The Prisoner of Beauty Episode 1"
+    image: string;
+    link: string;     // e.g. ".../episode/1"
+    rating: string;   // e.g. "9.3/10 from 233 users"
+    air_date: string;
+}
+
+export interface KuryanaEpisodesListResult {
+    slug_query: string;
+    data: {
+        title: string;
+        episodes: KuryanaEpisodeListItem[];
+    };
+    scrape_date: string;
+}
+
+export async function kuryanaGetEpisodesList(slug: string): Promise<KuryanaEpisodesListResult | null> {
+    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes/`);
+}
+
+export interface KuryanaEpisodeResult {
+    slug_query: string;
+    data: {
+        link: string;
+        title: string;
+        episode_title: string;
+        image: string;
+        rating: number;
+        synopsis: string;
+        air_date: string;
+    };
+    scrape_date: string;
+}
+
+export async function kuryanaGetEpisode(slug: string, episodeNumber: number): Promise<KuryanaEpisodeResult | null> {
+    return kuryanaFetch<KuryanaEpisodeResult>(`/id/${slug}/episode/${episodeNumber}`);
+}

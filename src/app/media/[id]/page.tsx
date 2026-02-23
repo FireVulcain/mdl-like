@@ -16,6 +16,7 @@ import { MdlSection } from "@/components/media/mdl-section";
 import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
+import { MdlEpisodeGuideSection } from "@/components/media/mdl-episode-guide-section";
 import { Bookmark } from "lucide-react";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 import { Suspense } from "react";
@@ -103,7 +104,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 )}
             </div>
 
-            <div className="container relative -top-20 z-10 grid gap-8 md:grid-cols-[300px_1fr] m-auto pb-20">
+            <div className="container relative -top-20 z-10 grid gap-8 md:grid-cols-[300px_1fr] m-auto pb-20 px-4 md:px-6">
                 {/* Poster & Actions */}
                 <div className="space-y-4">
                     <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
@@ -335,7 +336,20 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     )}
 
                     {/* Episode Guide */}
-                    {media.type === "TV" && episodes.length > 0 && <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />}
+                    {media.type === "TV" && episodes.length > 0 && (
+                        isMdlRelevant ? (
+                            <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />}>
+                                <MdlEpisodeGuideSection
+                                    tmdbEpisodes={episodes}
+                                    season={selectedSeason}
+                                    poster={media.poster}
+                                    externalId={media.externalId}
+                                />
+                            </Suspense>
+                        ) : (
+                            <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />
+                        )
+                    )}
 
                     {/* Photos */}
                     <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
@@ -351,7 +365,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {media.recommendations && media.recommendations.length > 0 && (
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
-                            <div className="grid grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-6">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
                                 {media.recommendations.map((item) => (
                                     <MediaCard
                                         key={item.id}
