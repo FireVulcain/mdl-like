@@ -1,45 +1,62 @@
-import Link from "next/link";
-import { MediaCard } from "@/components/media-card";
-import { mediaService } from "@/services/media.service";
-import { getContinueWatching } from "@/actions/stats";
-import { getWatchlistExternalIds } from "@/actions/user-media";
-import { ContinueWatching } from "@/components/continue-watching";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Bookmark, ChevronRight } from "lucide-react";
-import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { ContinueWatchingData } from "@/components/continue-watching-data";
+import { KDramaSectionData } from "@/components/kdrama-section-data";
+import { TrendingData } from "@/components/trending-data";
 
-// Dynamically import TrendingSection (below the fold) to reduce initial JS bundle
-const TrendingSection = dynamic(() => import("@/components/trending-section").then((mod) => mod.TrendingSection), {
-    loading: () => <div className="h-125 animate-pulse bg-white/5 rounded-3xl" />,
-});
+export const dynamic = "force-dynamic";
 
-const MOCK_USER_ID = "mock-user-1";
+function HeroSkeleton() {
+    return (
+        <div className="relative h-[90vh] min-h-125 -mt-24 w-full overflow-hidden bg-linear-to-b from-gray-900 to-[#0a0a0f] animate-pulse">
+            <div className="absolute inset-0 bg-linear-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent" />
+            <div className="relative h-full flex">
+                <div className="flex-1 flex flex-col justify-end pb-16 md:pb-24 pl-[5%] md:pl-[7.5%] space-y-4 md:space-y-6 max-w-xl">
+                    <div className="h-6 w-40 rounded-full bg-blue-500/20 border border-blue-500/30" />
+                    <div className="space-y-3">
+                        <div className="h-12 md:h-16 w-3/4 rounded-xl bg-white/10" />
+                        <div className="h-12 md:h-16 w-1/2 rounded-xl bg-white/10" />
+                    </div>
+                    <div className="h-4 w-56 rounded bg-white/10" />
+                    <div className="h-1.5 w-64 md:w-80 rounded-full bg-white/10" />
+                    <div className="flex gap-4 pt-2">
+                        <div className="h-12 w-32 rounded-xl bg-blue-500/30" />
+                        <div className="h-12 w-36 rounded-xl bg-white/10 border border-white/10" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-export default async function Home() {
-    // Parallel fetch: all operations are independent
-    const [trending, kdramas, continueWatchingItems, watchlistExternalIds] = await Promise.all([
-        mediaService.getTrending(),
-        mediaService.getKDramas(),
-        getContinueWatching(MOCK_USER_ID),
-        getWatchlistExternalIds(),
-    ]);
-    const watchlistIds = new Set(watchlistExternalIds);
+function KDramaSkeleton() {
+    return (
+        <section className="relative space-y-6 md:space-y-8 bg-white/2 p-4 md:p-8 rounded-xl border border-white/5 animate-pulse">
+            <div className="h-8 w-56 rounded-lg bg-white/10" />
+            <div className="space-y-8">
+                {[0, 1].map((i) => (
+                    <div key={i} className="space-y-3">
+                        <div className="h-5 w-40 rounded bg-white/10" />
+                        <div className="flex gap-4 overflow-hidden">
+                            {Array.from({ length: 6 }).map((_, j) => (
+                                <div key={j} className="w-32 sm:w-40 md:w-55 shrink-0 aspect-2/3 rounded-xl bg-white/5" />
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
 
+export default function Home() {
     return (
         <div className="relative min-h-screen">
             {/* Background */}
             <div className="fixed inset-0 -z-10">
-                {/* Deep dark base */}
                 <div className="absolute inset-0 bg-[#0a0a0f]" />
-
-                {/* Subtle radial gradient for depth */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
-
-                {/* Accent glows at edges only */}
                 <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
                 <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
-
-                {/* Noise texture overlay */}
                 <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay">
                     <svg width="100%" height="100%">
                         <filter id="noise">
@@ -50,168 +67,22 @@ export default async function Home() {
                 </div>
             </div>
 
-            {/* Hero - Continue Watching (outside container, full bleed) */}
-            <ContinueWatching items={continueWatchingItems} />
+            {/* Hero — ContinueWatching: DB-only fetch, resolves in ~10ms */}
+            <Suspense fallback={<HeroSkeleton />}>
+                <ContinueWatchingData />
+            </Suspense>
 
             {/* Content */}
             <div className="container py-6 md:py-8 space-y-12 md:space-y-24 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
-                {/* K-Drama Special Section */}
-                <section className="relative space-y-6 md:space-y-8 bg-white/2 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">
-                    {/* Atmospheric Background Effects */}
-                    <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-blue-500/8 rounded-full blur-[80px] md:blur-[120px] -z-10" />
-                    <div className="absolute bottom-0 left-0 w-48 md:w-96 h-48 md:h-96 bg-blue-600/8 rounded-full blur-[80px] md:blur-[120px] -z-10" />
-                    <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                {/* K-Drama section — 3 parallel TMDB calls */}
+                <Suspense fallback={<KDramaSkeleton />}>
+                    <KDramaSectionData />
+                </Suspense>
 
-                    {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div className="space-y-1 md:space-y-2">
-                            <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-                                <h2 className="text-xl md:text-3xl font-bold text-white">K-Drama Universe</h2>
-                                <div className="flex items-center gap-1.5 px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
-                                    <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-blue-500 animate-pulse" />
-                                    <span className="text-[10px] md:text-xs font-medium text-blue-300">LIVE</span>
-                                </div>
-                            </div>
-                            <p className="text-xs md:text-sm text-gray-400">Fresh from Seoul · Trending, airing, and upcoming series</p>
-                        </div>
-                    </div>
-
-                    <div className="space-y-6 md:space-y-10">
-                        {/* Trending K-Dramas */}
-                        <div className="space-y-3 md:space-y-4">
-                            <div className="flex items-center gap-2 md:gap-3">
-                                <div className="w-1 h-5 md:h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
-                                <h3 className="text-base md:text-lg font-semibold text-white">Popular Right Now</h3>
-                                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
-                                <Link
-                                    href="/dramas?category=popular&country=KR"
-                                    className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
-                                >
-                                    See more <ChevronRight className="h-3.5 w-3.5" />
-                                </Link>
-                            </div>
-                            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                                <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
-                                    {kdramas.trending.map((media) => (
-                                        <div
-                                            key={media.id}
-                                            className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300"
-                                        >
-                                            <MediaCard
-                                                media={media}
-                                                overlay={
-                                                    watchlistIds.has(media.externalId) ? (
-                                                        <div className="absolute bottom-2 left-2">
-                                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                            </span>
-                                                        </div>
-                                                    ) : null
-                                                }
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                                <ScrollBar orientation="horizontal" className="opacity-50" />
-                            </ScrollArea>
-                        </div>
-
-                        {/* Airing Now K-Dramas */}
-                        <div className="space-y-3 md:space-y-4">
-                            <div className="flex items-center gap-2 md:gap-3">
-                                <div className="w-1 h-5 md:h-6 bg-linear-to-b from-emerald-500 to-emerald-400 rounded-full" />
-                                <h3 className="text-base md:text-lg font-semibold text-white">Airing Now</h3>
-                                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
-                                <Link
-                                    href="/dramas?category=airing&country=KR"
-                                    className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
-                                >
-                                    See more <ChevronRight className="h-3.5 w-3.5" />
-                                </Link>
-                            </div>
-                            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                                <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
-                                    {kdramas.airing.map((media) => (
-                                        <div
-                                            key={media.id}
-                                            className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300"
-                                        >
-                                            <MediaCard
-                                                media={media}
-                                                overlay={
-                                                    watchlistIds.has(media.externalId) ? (
-                                                        <div className="absolute bottom-2 left-2">
-                                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                            </span>
-                                                        </div>
-                                                    ) : null
-                                                }
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                                <ScrollBar orientation="horizontal" className="opacity-50" />
-                            </ScrollArea>
-                        </div>
-
-                        {/* Upcoming K-Dramas */}
-                        {kdramas.upcoming.length > 0 && (
-                            <div className="space-y-3 md:space-y-4">
-                                <div className="flex items-center gap-2 md:gap-3">
-                                    <div className="w-1 h-5 md:h-6 bg-linear-to-b from-amber-500 to-amber-400 rounded-full" />
-                                    <h3 className="text-base md:text-lg font-semibold text-white">Coming Soon</h3>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
-                                    <Link
-                                        href="/dramas?category=upcoming&country=KR"
-                                        className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
-                                    >
-                                        See more <ChevronRight className="h-3.5 w-3.5" />
-                                    </Link>
-                                </div>
-                                <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                                    <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
-                                        {kdramas.upcoming.map((media) => (
-                                            <div
-                                                key={media.id}
-                                                className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300"
-                                            >
-                                                <MediaCard
-                                                    media={media}
-                                                    sizes="(max-width: 768px) 200vw, 1200px"
-                                                    overlay={
-                                                        <>
-                                                            {media.firstAirDate && (
-                                                                <span className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-amber-400">
-                                                                    {new Date(media.firstAirDate + "T00:00:00").toLocaleDateString("en-US", {
-                                                                        month: "short",
-                                                                        day: "numeric",
-                                                                        year: "numeric",
-                                                                    })}
-                                                                </span>
-                                                            )}
-                                                            {watchlistIds.has(media.externalId) && (
-                                                                <div className="absolute bottom-2 right-2">
-                                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                                    </span>
-                                                                </div>
-                                                            )}
-                                                        </>
-                                                    }
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <ScrollBar orientation="horizontal" className="opacity-50" />
-                                </ScrollArea>
-                            </div>
-                        )}
-                    </div>
-                </section>
-
-                {/* Trending Section */}
-                <TrendingSection items={trending} />
+                {/* Trending section — 1 TMDB call */}
+                <Suspense fallback={<div className="h-125 animate-pulse bg-white/5 rounded-3xl" />}>
+                    <TrendingData />
+                </Suspense>
             </div>
         </div>
     );
