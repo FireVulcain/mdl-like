@@ -54,9 +54,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         runtime: number | null;
         rating: number;
     }[] = [];
+    let seasonOverview: string | null = null;
     if (media.type === "TV") {
         try {
             const seasonData = await tmdb.getSeasonDetails(media.externalId, selectedSeason);
+            seasonOverview = seasonData.overview || null;
             episodes = (seasonData.episodes || []).map((ep: TMDBEpisode) => ({
                 id: ep.id,
                 number: ep.episode_number,
@@ -194,7 +196,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         </>
                                     }
                                 >
-                                    <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
+                                    <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
                                 </Suspense>
                             )}
                         </div>
@@ -242,6 +244,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         title={media.title}
                                         year={media.year}
                                         nativeTitle={media.nativeTitle}
+                                        season={selectedSeason}
                                     />
                                 </Suspense>
                             )}
@@ -306,7 +309,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     <div className="prose prose-invert max-w-none">
                         <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
-                        <p className="leading-relaxed text-muted-foreground">{media.synopsis}</p>
+                        <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
                     </div>
 
                     {/* MDL Tags + Cast — streams in after TMDB cast (fallback) */}
@@ -329,6 +332,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 nativeTitle={media.nativeTitle}
                                 tmdbCast={media.cast || []}
                                 mediaId={media.id}
+                                season={selectedSeason}
                             />
                         </Suspense>
                     ) : (

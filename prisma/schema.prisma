@@ -124,10 +124,16 @@ model CachedKuryanaPerson {
 }
 
 model MdlSeasonLink {
-  id             String @id @default(cuid())
+  id             String    @id @default(cuid())
   tmdbExternalId String
   season         Int
   mdlSlug        String
+  mdlRating      Float?
+  mdlRanking     Int?
+  mdlPopularity  Int?
+  castJson       Json?
+  tags           Json?
+  cachedAt       DateTime?
 
   @@unique([tmdbExternalId, season])
   @@index([tmdbExternalId])

@@ -82,6 +82,39 @@ function parseCastJson(raw: Prisma.JsonValue): MdlCast | null {
     };
 }
 
+// Returns cached MDL data for a specific season (2+) from MdlSeasonLink.
+// Returns null if: season not linked, DB error, or row has no useful data yet
+// (so the caller's ?? fallback reaches getMdlData for season-1 data).
+export const getMdlSeasonData = cache(async function getMdlSeasonData(
+    tmdbExternalId: string,
+    season: number,
+): Promise<MdlData | null> {
+    if (season <= 1) return null;
+    try {
+        const row = await prisma.mdlSeasonLink.findUnique({
+            where: { tmdbExternalId_season: { tmdbExternalId, season } },
+        });
+        if (!row) return null;
+
+        const cast = parseCastJson(row.castJson);
+        // Row exists but Kuryana data wasn't cached yet — fall back to getMdlData
+        if (!row.mdlRating && !row.mdlRanking && !cast?.main.length && !cast?.support.length) {
+            return null;
+        }
+
+        return {
+            mdlSlug: row.mdlSlug,
+            mdlRating: row.mdlRating,
+            mdlRanking: row.mdlRanking,
+            mdlPopularity: row.mdlPopularity,
+            tags: (row.tags as string[]) ?? [],
+            cast,
+        };
+    } catch {
+        return null;
+    }
+});
+
 // cache() deduplicates calls with identical arguments within a single render pass,
 // so MdlRatingBadge, MdlRankRow and MdlSection can all call this without extra DB/network hits.
 export const getMdlData = cache(async function getMdlData(

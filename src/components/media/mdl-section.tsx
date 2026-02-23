@@ -1,4 +1,4 @@
-import { getMdlData } from "@/lib/mdl-data";
+import { getMdlData, getMdlSeasonData } from "@/lib/mdl-data";
 import { MdlCastScroll } from "./mdl-cast-scroll";
 import { CastScroll } from "./cast-scroll";
 
@@ -16,12 +16,15 @@ interface Props {
     nativeTitle?: string;
     tmdbCast: Actor[];
     mediaId: string;
+    season?: number;
 }
 
 // Async server component — streams in MDL tags + cast.
 // The Suspense fallback (TMDB cast) shows immediately; this swaps in when Kuryana responds.
-export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId }: Props) {
-    const data = await getMdlData(externalId, title, year, nativeTitle);
+export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId, season }: Props) {
+    const data = season && season > 1
+        ? (await getMdlSeasonData(externalId, season)) ?? await getMdlData(externalId, title, year, nativeTitle)
+        : await getMdlData(externalId, title, year, nativeTitle);
 
     return (
         <>
