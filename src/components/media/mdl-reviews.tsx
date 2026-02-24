@@ -58,7 +58,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                             {review.reviewer.name}
                         </a>
                         {helpfulCount != null && (
-                            <p className="text-[11px] text-gray-500 truncate">
+                            <p className="text-xs text-gray-500 truncate">
                                 {helpfulCount.toLocaleString()} found this helpful
                             </p>
                         )}
@@ -82,12 +82,12 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                     <p className="text-sm font-semibold text-white leading-snug">{title}</p>
                 )}
                 {body && (
-                    <p className="text-sm text-gray-400 leading-relaxed whitespace-pre-line">{displayBody}</p>
+                    <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">{displayBody}</p>
                 )}
                 {isLong && (
                     <button
                         onClick={() => setExpanded((v) => !v)}
-                        className="flex items-center gap-0.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors"
+                        className="flex items-center gap-0.5 text-xs text-blue-400 hover:text-blue-300 transition-colors"
                     >
                         {expanded ? <>Show less <ChevronUp className="size-3" /></> : <>Show more <ChevronDown className="size-3" /></>}
                     </button>
@@ -100,7 +100,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                     {subRatings.map((key) => (
                         <span
                             key={key}
-                            className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 border border-white/8 text-[11px] text-gray-400"
+                            className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 border border-white/8 text-xs text-gray-400"
                         >
                             <span className="text-gray-500">{key}</span>
                             <span className="font-medium text-white/70">{review.ratings?.[key]!.toFixed(1)}</span>

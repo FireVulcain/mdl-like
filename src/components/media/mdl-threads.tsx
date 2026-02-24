@@ -96,30 +96,30 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
             {/* Content */}
             <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 flex-wrap">
-                    <span className={`font-semibold text-white ${nested ? "text-xs" : "text-sm"}`}>
+                    <span className="text-sm font-semibold text-white">
                         {comment.author}
                     </span>
-                    <span className="text-[11px] text-gray-600">{relativeTime(comment.date_added)}</span>
+                    <span className="text-xs text-gray-500">{relativeTime(comment.date_added)}</span>
                 </div>
 
                 {comment.spoiler && !revealed ? (
                     <div className="mt-1.5">
                         <button
                             onClick={() => setRevealed(true)}
-                            className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-500 hover:text-white hover:bg-white/10 transition-colors"
+                            className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
                         >
                             Reveal Spoiler
                         </button>
                     </div>
                 ) : (
                     <div className="mt-1">
-                        <p className={`text-gray-400 leading-relaxed whitespace-pre-line ${nested ? "text-xs" : "text-sm"}`}>
+                        <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">
                             {displayText}
                         </p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-0.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors"
+                                className="mt-0.5 text-xs text-blue-400 hover:text-blue-300 transition-colors"
                             >
                                 {expanded ? "Show less" : "Show more"}
                             </button>
@@ -129,7 +129,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
 
                 <div className="flex items-center gap-3 mt-1.5">
                     {comment.likes > 0 && (
-                        <span className="flex items-center gap-1 text-[11px] text-gray-600">
+                        <span className="flex items-center gap-1 text-xs text-gray-500">
                             <Heart className="size-3" />
                             {comment.likes}
                         </span>
@@ -137,7 +137,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                     {comment.children.length > 0 && (
                         <button
                             onClick={() => setShowReplies((v) => !v)}
-                            className="text-[11px] text-gray-600 hover:text-gray-400 transition-colors"
+                            className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
                         >
                             {showReplies
                                 ? "Hide replies"
@@ -195,7 +195,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
                     <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
                         via MDL
                     </span>
-                    <span className="text-[11px] text-gray-600">{total.toLocaleString()}</span>
+                    <span className="text-xs text-gray-500">{total.toLocaleString()}</span>
                 </div>
                 <MessageSquare className="size-4 text-gray-700" />
             </div>

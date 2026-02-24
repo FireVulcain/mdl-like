@@ -24,6 +24,7 @@ import { MdlRefetchButton } from "@/components/media/mdl-refetch-button";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
+import { MediaNav, NavSection } from "@/components/media/media-nav";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -315,69 +316,90 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
                     </div>
 
+                    {/* In-page navigation */}
+                    {(() => {
+                        const navSections: NavSection[] = [
+                            { id: "section-cast", label: "Cast & Credits" },
+                            ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episode Guide" }] : []),
+                            ...((media.images?.backdrops?.length ?? 0) > 0 ? [{ id: "section-photos", label: "Photos" }] : []),
+                            ...(isMdlRelevant ? [{ id: "section-reviews", label: "Reviews" }] : []),
+                            ...((media.recommendations?.length ?? 0) > 0 ? [{ id: "section-recommendations", label: "Recommendations" }] : []),
+                            ...(isMdlRelevant ? [{ id: "section-comments", label: "Comments" }] : []),
+                        ];
+                        return <MediaNav sections={navSections} />;
+                    })()}
+
                     <div className="prose prose-invert max-w-none">
                         <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
                         <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
                     </div>
 
                     {/* MDL Tags + Cast — streams in after TMDB cast (fallback) */}
-                    {isMdlRelevant ? (
-                        <Suspense
-                            fallback={
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-2">
-                                        <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-                                        <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
+                    <div id="section-cast">
+                        {isMdlRelevant ? (
+                            <Suspense
+                                fallback={
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-2">
+                                            <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
+                                            <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
+                                        </div>
+                                        <CastScroll cast={media.cast || []} mediaId={media.id} />
                                     </div>
-                                    <CastScroll cast={media.cast || []} mediaId={media.id} />
-                                </div>
-                            }
-                        >
-                            <MdlSection
-                                externalId={media.externalId}
-                                title={media.title}
-                                year={media.year}
-                                nativeTitle={media.nativeTitle}
-                                tmdbCast={media.cast || []}
-                                mediaId={media.id}
-                                season={selectedSeason}
-                            />
-                        </Suspense>
-                    ) : (
-                        <CastScroll cast={media.cast || []} mediaId={media.id} />
-                    )}
-
-                    {/* Episode Guide */}
-                    {media.type === "TV" && episodes.length > 0 && (
-                        isMdlRelevant ? (
-                            <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />}>
-                                <MdlEpisodeGuideSection
-                                    tmdbEpisodes={episodes}
-                                    season={selectedSeason}
-                                    poster={media.poster}
+                                }
+                            >
+                                <MdlSection
                                     externalId={media.externalId}
-                                    mediaId={media.id}
                                     title={media.title}
+                                    year={media.year}
+                                    nativeTitle={media.nativeTitle}
+                                    tmdbCast={media.cast || []}
+                                    mediaId={media.id}
+                                    season={selectedSeason}
                                 />
                             </Suspense>
                         ) : (
-                            <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />
-                        )
+                            <CastScroll cast={media.cast || []} mediaId={media.id} />
+                        )}
+                    </div>
+
+                    {/* Episode Guide */}
+                    {media.type === "TV" && episodes.length > 0 && (
+                        <div id="section-episodes">
+                            {isMdlRelevant ? (
+                                <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />}>
+                                    <MdlEpisodeGuideSection
+                                        tmdbEpisodes={episodes}
+                                        season={selectedSeason}
+                                        poster={media.poster}
+                                        externalId={media.externalId}
+                                        mediaId={media.id}
+                                        title={media.title}
+                                    />
+                                </Suspense>
+                            ) : (
+                                <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />
+                            )}
+                        </div>
                     )}
 
                     {/* Photos */}
-                    <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
+                    <div id="section-photos">
+                        <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
+                    </div>
 
                     {/* MDL Reviews */}
                     {isMdlRelevant && (
-                        <Suspense fallback={null}>
-                            <MdlReviewsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} mediaId={media.id} />
-                        </Suspense>
+                        <div id="section-reviews">
+                            <Suspense fallback={null}>
+                                <MdlReviewsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} mediaId={media.id} />
+                            </Suspense>
+                        </div>
                     )}
 
                     {/* Recommendations */}
                     {media.recommendations && media.recommendations.length > 0 && (
-                        <div>
+                        <div id="section-recommendations">
                             <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
                             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
                                 {media.recommendations.map((item) => (
@@ -401,9 +423,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* MDL Comments */}
                     {isMdlRelevant && (
-                        <Suspense fallback={null}>
-                            <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
-                        </Suspense>
+                        <div id="section-comments">
+                            <Suspense fallback={null}>
+                                <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
+                            </Suspense>
+                        </div>
                     )}
                 </div>
             </div>

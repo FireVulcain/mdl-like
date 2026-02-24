@@ -47,7 +47,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
                         src={ep.still ?? poster!}
                         alt={ep.name}
                         fill
-                        className={`opacity-0 transition-opacity duration-500 ${ep.still ? "object-cover" : "object-cover object-top"}`}
+                        className="opacity-0 transition-opacity duration-500 object-cover object-top"
                         loading="lazy"
                         sizes="144px"
                         onLoad={(e) => {
@@ -132,7 +132,7 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
                         src={ep.image ?? poster!}
                         alt={ep.title}
                         fill
-                        className="opacity-0 transition-opacity duration-500 object-cover"
+                        className="opacity-0 transition-opacity duration-500 object-cover object-top"
                         loading="lazy"
                         sizes="144px"
                         onLoad={(e) => {
@@ -167,9 +167,7 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
 
                 {hasSynopsis && (
                     <div className="mt-0.5">
-                        <p className={`text-sm text-gray-400 leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>
-                            {ep.synopsis}
-                        </p>
+                        <p className={`text-sm text-gray-400 leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>{ep.synopsis}</p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}

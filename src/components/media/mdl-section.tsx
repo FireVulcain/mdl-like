@@ -44,11 +44,13 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
                 </div>
             )}
 
-            {data?.cast ? (
-                <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} mediaId={mediaId} />
-            ) : (
-                <CastScroll cast={tmdbCast} mediaId={mediaId} />
-            )}
+            <div className={data?.tags && data.tags.length > 0 ? "mt-6" : undefined}>
+                {data?.cast ? (
+                    <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} mediaId={mediaId} />
+                ) : (
+                    <CastScroll cast={tmdbCast} mediaId={mediaId} />
+                )}
+            </div>
         </>
     );
 }
