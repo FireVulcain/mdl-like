@@ -242,22 +242,25 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
                             {isMdlRelevant && (
-                                <Suspense
-                                    fallback={
-                                        <>
-                                            <span>•</span>
-                                            <span className="inline-block h-4 w-14 rounded-md bg-sky-500/20 animate-pulse" />
-                                        </>
-                                    }
-                                >
-                                    <MdlRatingBadge
-                                        externalId={media.externalId}
-                                        title={media.title}
-                                        year={media.year}
-                                        nativeTitle={media.nativeTitle}
-                                        season={selectedSeason}
-                                    />
-                                </Suspense>
+                                <>
+                                    <Suspense
+                                        fallback={
+                                            <>
+                                                <span>•</span>
+                                                <span className="inline-block h-4 w-14 rounded-md bg-sky-500/20 animate-pulse" />
+                                            </>
+                                        }
+                                    >
+                                        <MdlRatingBadge
+                                            externalId={media.externalId}
+                                            title={media.title}
+                                            year={media.year}
+                                            nativeTitle={media.nativeTitle}
+                                            season={selectedSeason}
+                                        />
+                                    </Suspense>
+                                    <MdlRefetchButton tmdbExternalId={media.externalId} mediaId={media.id} />
+                                </>
                             )}
                         </div>
 
@@ -295,8 +298,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 season={selectedSeason}
                                 totalEp={episodeCount}
                             />
-
-                            {isMdlRelevant && <MdlRefetchButton tmdbExternalId={media.externalId} mediaId={media.id} />}
 
                             {/* Compact Progress Indicator */}
                             {userMedia && (

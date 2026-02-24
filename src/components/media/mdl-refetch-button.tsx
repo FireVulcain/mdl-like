@@ -36,11 +36,10 @@ export function MdlRefetchButton({ tmdbExternalId, mediaId }: MdlRefetchButtonPr
         <button
             onClick={handleRefetch}
             disabled={loading}
-            title="Refetch MDL data"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10 text-sm text-gray-300 hover:text-white hover:bg-white/15 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Refresh MDL cache"
+            className="text-gray-600 hover:text-gray-400 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
-            <RefreshCw className={`size-3.5 ${loading ? "animate-spin" : ""}`} />
-            <span>MDL</span>
+            <RefreshCw className={`size-3 ${loading ? "animate-spin" : ""}`} />
         </button>
     );
 }
