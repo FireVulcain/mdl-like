@@ -89,6 +89,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     });
 
     const [loading, setLoading] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     // Only reset form when dialog opens or item ID changes, not on every item property change
 
@@ -151,10 +152,15 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
         }
     };
 
-    const handleDelete = async () => {
+    const handleDelete = () => {
         if (!isEditing || !item) return;
-        if (!confirm("Are you sure you want to delete this item?")) return;
+        setConfirmDelete(true);
+    };
+
+    const confirmAndDelete = async () => {
+        if (!item) return;
         setLoading(true);
+        setConfirmDelete(false);
         try {
             await deleteUserMedia(item.id);
             onOpenChange(false);
@@ -169,8 +175,13 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
         }
     };
 
+    const handleOpenChange = (value: boolean) => {
+        if (!value) setConfirmDelete(false);
+        onOpenChange(value);
+    };
+
     return (
-        <Dialog open={open} onOpenChange={onOpenChange}>
+        <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogContent
                 showCloseButton={false}
                 className="max-w-lg max-h-[90vh] p-0 overflow-hidden gap-0 bg-gray-900 border border-white/10 rounded-2xl flex flex-col shadow-2xl shadow-black/50"
@@ -188,7 +199,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                     {/* Close button */}
                     <button
-                        onClick={() => onOpenChange(false)}
+                        onClick={() => handleOpenChange(false)}
                         className="cursor-pointer absolute top-4 right-4 h-9 w-9 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/60 transition-all"
                     >
                         <X className="h-5 w-5" />
@@ -233,7 +244,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                         <div className="flex items-center gap-5">
                             <button
                                 onClick={() => setFormData((prev) => ({ ...prev, progress: Math.max(0, prev.progress - 1) }))}
-                                className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/5"
+                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/5"
                             >
                                 <Minus className="h-5 w-5" />
                             </button>
@@ -262,7 +273,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                             <button
                                 onClick={() => setFormData((prev) => ({ ...prev, progress: prev.progress + 1 }))}
-                                className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/5"
+                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/5"
                             >
                                 <Plus className="h-5 w-5" />
                             </button>
@@ -287,7 +298,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 <button
                                     key={rating}
                                     onClick={() => setFormData((prev) => ({ ...prev, score: prev.score === rating ? 0 : rating }))}
-                                    className={`flex-1 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-all ${
+                                    className={`cursor-pointer flex-1 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-all ${
                                         formData.score >= rating
                                             ? "bg-amber-500/30 text-amber-300 border border-amber-500/40"
                                             : "bg-white/3 text-gray-600 hover:bg-white/10 hover:text-gray-400 border border-transparent"
@@ -304,7 +315,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 <button
                                     key={rating}
                                     onClick={() => setFormData((prev) => ({ ...prev, score: prev.score === rating ? 0 : rating }))}
-                                    className={`text-xs transition-all ${
+                                    className={`cursor-pointer text-xs transition-all ${
                                         formData.score === rating ? "text-amber-400 font-medium" : "text-gray-600 hover:text-gray-400"
                                     }`}
                                 >
@@ -327,36 +338,61 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 </div>
 
                 {/* Footer */}
-                <div className="px-6 py-4 border-t border-white/5 flex justify-between items-center shrink-0">
-                    {isEditing ? (
-                        <button
-                            onClick={handleDelete}
-                            disabled={loading}
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-all disabled:opacity-50"
-                        >
-                            <Trash2 className="h-4 w-4" />
-                            <span>Delete</span>
-                        </button>
+                <div className="px-6 py-4 border-t border-white/5 flex justify-between items-center shrink-0 min-h-17">
+                    {confirmDelete ? (
+                        <>
+                            <p className="text-sm text-gray-400">
+                                Remove <span className="text-white/80 font-medium">&ldquo;{displayTitle}&rdquo;</span>?
+                            </p>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setConfirmDelete(false)}
+                                    className="cursor-pointer h-9 px-4 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 text-sm transition-all"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={confirmAndDelete}
+                                    disabled={loading}
+                                    className="cursor-pointer h-9 px-4 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 text-sm font-medium transition-all disabled:opacity-50"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        </>
                     ) : (
-                        <div />
+                        <>
+                            {isEditing ? (
+                                <button
+                                    onClick={handleDelete}
+                                    disabled={loading}
+                                    className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-all disabled:opacity-50"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                    <span>Delete</span>
+                                </button>
+                            ) : (
+                                <div />
+                            )}
+                            <div className="flex gap-3">
+                                <Button
+                                    variant="ghost"
+                                    onClick={() => onOpenChange(false)}
+                                    disabled={loading}
+                                    className="cursor-pointer h-10 px-5 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    onClick={handleSave}
+                                    disabled={loading}
+                                    className="cursor-pointer h-10 px-6 bg-blue-500 hover:bg-blue-400 text-gray-900 font-semibold rounded-xl transition-all"
+                                >
+                                    {loading ? "Saving..." : isEditing ? "Save Changes" : "Add to List"}
+                                </Button>
+                            </div>
+                        </>
                     )}
-                    <div className="flex gap-3">
-                        <Button
-                            variant="ghost"
-                            onClick={() => onOpenChange(false)}
-                            disabled={loading}
-                            className="h-10 px-5 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl"
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            onClick={handleSave}
-                            disabled={loading}
-                            className="h-10 px-6 bg-blue-500 hover:bg-blue-400 text-gray-900 font-semibold rounded-xl transition-all"
-                        >
-                            {loading ? "Saving..." : isEditing ? "Save Changes" : "Add to List"}
-                        </Button>
-                    </div>
                 </div>
             </DialogContent>
         </Dialog>
