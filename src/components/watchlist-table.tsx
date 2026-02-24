@@ -1107,7 +1107,7 @@ const ItemCard = memo(function ItemCard({
                 </div>
 
                 {/* MDL Link - Desktop, KR/CN only */}
-                {(item.originCountry === "KR" || item.originCountry === "CN") && (
+                {(item.originCountry === "KR" || item.originCountry === "CN" || item.originCountry === "JP") && (
                     <TooltipProvider delayDuration={300}>
                         <Tooltip>
                             <TooltipTrigger asChild>
