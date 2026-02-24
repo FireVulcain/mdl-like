@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, Minus } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface ProgressTrackerProps {
@@ -18,6 +18,11 @@ interface ProgressTrackerProps {
 export function ProgressTracker({ current, total, status, onUpdate, className, compact = false }: ProgressTrackerProps) {
     // Local state for immediate feedback
     const [progress, setProgress] = useState(current);
+
+    // Sync with server value when the prop changes (e.g. season switch)
+    useEffect(() => {
+        setProgress(current);
+    }, [current]);
 
     const handleUpdate = (newVal: number) => {
         const val = Math.max(0, newVal);

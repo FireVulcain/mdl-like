@@ -217,13 +217,24 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Info */}
                 <div className="pt-20 md:pt-0 space-y-8 min-w-0">
                     <div>
-                        <h1 className="text-4xl font-bold mb-2">{media.title}</h1>
+                        <h1 className="text-4xl font-bold mb-2 flex items-baseline gap-2">
+                            <span>{media.title}</span>
+                            {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
+                                <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
+                            )}
+                        </h1>
                         <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
                             <span>{media.year}</span>
                             <span>•</span>
                             <Badge variant="outline">{media.originCountry}</Badge>
                             <span>•</span>
                             <span>{media.type}</span>
+                            {media.type === "TV" && episodeCount && (
+                                <>
+                                    <span>•</span>
+                                    <span>{episodeCount} eps</span>
+                                </>
+                            )}
                             {media.rating > 0 && (
                                 <>
                                     <span>•</span>
@@ -253,11 +264,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {/* Action Bar */}
                         <div className="flex flex-wrap items-center gap-3 mt-5">
                             {media.trailer && <TrailerButton trailer={media.trailer} />}
-
-                            {/* Season Selector (compact) */}
-                            {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
-                                <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
-                            )}
 
                             <AddToListButton
                                 // Only pass fields needed by client (server-serialization optimization)
