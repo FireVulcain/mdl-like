@@ -41,7 +41,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
     return (
         <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
             {/* Episode still */}
-            <div className="relative flex-none w-36 aspect-video overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
+            <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
                 {ep.still || poster ? (
                     <Image
                         src={ep.still ?? poster!}
@@ -119,14 +119,14 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
 function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | null }) {
     const [expanded, setExpanded] = useState(false);
     const hasSynopsis = !!ep.synopsis?.trim();
-    const isLong = (ep.synopsis?.length ?? 0) > 150;
+    const isLong = (ep.synopsis?.length ?? 0) > 60;
 
     const formattedDate = ep.airDate ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
 
     return (
         <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
             {/* Episode still */}
-            <div className="relative flex-none w-36 aspect-video overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
+            <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
                 {ep.image || poster ? (
                     <Image
                         src={ep.image ?? poster!}
@@ -167,8 +167,8 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
 
                 {hasSynopsis && (
                     <div className="mt-0.5">
-                        <p className="text-sm text-gray-400 leading-relaxed">
-                            {isLong && !expanded ? `${ep.synopsis!.slice(0, 150).trimEnd()}…` : ep.synopsis}
+                        <p className={`text-sm text-gray-400 leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>
+                            {ep.synopsis}
                         </p>
                         {isLong && (
                             <button
@@ -208,18 +208,18 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-white">Episode Guide</h3>
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
+                <div className="flex items-center gap-2 min-w-0">
+                    <h3 className="text-lg font-semibold text-white shrink-0">Episode Guide</h3>
                     <span
-                        className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
+                        className={`whitespace-nowrap shrink-0 px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
                             source === "mdl" ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"
                         }`}
                     >
                         via {source === "mdl" ? "MDL" : "TMDB"}
                     </span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 shrink-0">
                     {mdlEpisodes && (
                         <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5">
                             <button
@@ -246,7 +246,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
                             </button>
                         </div>
                     )}
-                    <span className="text-sm text-gray-400">
+                    <span className="whitespace-nowrap text-sm text-gray-400">
                         Season {season} · {count} episodes
                     </span>
                 </div>

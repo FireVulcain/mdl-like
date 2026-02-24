@@ -228,3 +228,30 @@ export interface KuryanaEpisodeResult {
 export async function kuryanaGetEpisode(slug: string, episodeNumber: number): Promise<KuryanaEpisodeResult | null> {
     return kuryanaFetch<KuryanaEpisodeResult>(`/id/${slug}/episode/${episodeNumber}`);
 }
+
+export interface MdlComment {
+    id: number;
+    raw_message: string;
+    message: string;
+    likes: number;
+    replies: number;
+    spoiler: boolean;
+    date_added: string;
+    reply_pid: number | null;
+    parent_id: number | null;
+    depth: number;
+    deleted: boolean;
+    author: string;
+    role: string;
+}
+
+export interface MdlThreadsResult {
+    total: number;
+    has_more: boolean;
+    disabled: boolean;
+    comments: MdlComment[];
+}
+
+export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
+    return kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`);
+}

@@ -22,6 +22,7 @@ import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 import { Suspense } from "react";
 import { MdlRefetchButton } from "@/components/media/mdl-refetch-button";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
+import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 
 // Mock User ID
@@ -396,6 +397,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 ))}
                             </div>
                         </div>
+                    )}
+
+                    {/* MDL Comments */}
+                    {isMdlRelevant && (
+                        <Suspense fallback={null}>
+                            <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
+                        </Suspense>
                     )}
                 </div>
             </div>
