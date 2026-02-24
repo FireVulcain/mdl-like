@@ -402,7 +402,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* MDL Comments */}
                     {isMdlRelevant && (
                         <Suspense fallback={null}>
-                            <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} />
+                            <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
                         </Suspense>
                     )}
                 </div>
