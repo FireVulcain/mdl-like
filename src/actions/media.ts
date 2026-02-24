@@ -367,6 +367,19 @@ export async function getWatchlist(userId: string) {
         Dropped: 5,
     };
 
+    // Kick off MDL slug lookups immediately, in parallel with the TMDB/TVmaze fetches below
+    const uniqueExternalIds = [...new Set(items.map((i) => i.externalId))];
+    const mdlSlugPromise = Promise.all([
+        prisma.cachedMdlData.findMany({
+            where: { tmdbExternalId: { in: uniqueExternalIds } },
+            select: { tmdbExternalId: true, mdlSlug: true },
+        }),
+        prisma.mdlSeasonLink.findMany({
+            where: { tmdbExternalId: { in: uniqueExternalIds } },
+            select: { tmdbExternalId: true, season: true, mdlSlug: true },
+        }),
+    ]);
+
     // Fetch next episode data for "Watching" and "Plan to Watch" items that are airing
     const airingItems = items.filter(
         (item) =>
@@ -432,9 +445,18 @@ export async function getWatchlist(userId: string) {
         await Promise.all(fetchPromises);
     }
 
+    // Await MDL slug data (likely already resolved by the time TMDB/TVmaze finishes)
+    const [cachedMdlRows, seasonLinkRows] = await mdlSlugPromise;
+    const mdlSlugByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
+    const mdlSlugBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
+
     return items
         .map((item) => {
             const episodeData = nextEpisodeMap.get(`${item.externalId}-${item.season}`);
+            const mdlSlug =
+                mdlSlugBySeason.get(`${item.externalId}-${item.season}`) ??
+                mdlSlugByExternalId.get(item.externalId) ??
+                null;
             return {
                 ...item,
                 // Optimize backdrop URLs for better performance
@@ -442,6 +464,7 @@ export async function getWatchlist(userId: string) {
                 // Add next episode data for watching items
                 nextEpisode: episodeData?.nextEpisode || null,
                 seasonAirDate: episodeData?.seasonAirDate || null,
+                mdlSlug,
             };
         })
         .sort((a, b) => {

@@ -64,6 +64,7 @@ type WatchlistItem = {
     airingStatus: string | null;
     nextEpisode?: NextEpisodeData | null;
     seasonAirDate?: string | null;
+    mdlSlug?: string | null;
 };
 
 interface WatchlistTableProps {
@@ -1113,14 +1114,20 @@ const ItemCard = memo(function ItemCard({
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        window.open(`https://mydramalist.com/search?q=${encodeURIComponent(item.title || "")}`, "_blank", "noopener,noreferrer");
+                                        window.open(
+                                            item.mdlSlug
+                                                ? `https://mydramalist.com/${item.mdlSlug}`
+                                                : `https://mydramalist.com/search?q=${encodeURIComponent(item.title || "")}`,
+                                            "_blank",
+                                            "noopener,noreferrer",
+                                        );
                                     }}
                                     className="desktop-status-btn card-status cursor-pointer h-8 w-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all shrink-0"
                                 >
                                     <ExternalLink className="h-4 w-4" />
                                 </button>
                             </TooltipTrigger>
-                            <TooltipContent side="top">Search on MyDramaList</TooltipContent>
+                            <TooltipContent side="top">{item.mdlSlug ? "View on MyDramaList" : "Search on MyDramaList"}</TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
                 )}
