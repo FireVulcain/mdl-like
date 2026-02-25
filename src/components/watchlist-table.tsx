@@ -786,7 +786,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             )}
 
             {/* Items Grid */}
-            <div className="mt-4 space-y-2 items-list">
+            <div className="mt-4 space-y-1.5 items-list">
                 {(() => {
                     const showsWithWatchingSeason = new Set<string>();
                     filteredItems.forEach((item) => {
@@ -1028,12 +1028,12 @@ const ItemCard = memo(function ItemCard({
                 ) : null}
             </div>
 
-            <div className="relative flex items-center gap-4 p-3 item-card-inner">
+            <div className="relative flex items-center gap-3 p-2 item-card-inner">
                 {/* Thumbnail */}
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
                     className={`card-image relative shrink-0 overflow-hidden rounded-lg transition-all duration-300 group-hover:ring-2 group-hover:ring-blue-500/30 ${
-                        isChild ? "h-14 w-24" : "h-18 w-32"
+                        isChild ? "h-12 w-20" : "h-14 w-24"
                     } ${
                         item.backdrop || item.poster
                             ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
@@ -1045,7 +1045,7 @@ const ItemCard = memo(function ItemCard({
                             src={item.backdrop || item.poster!}
                             alt={item.title || ""}
                             fill
-                            sizes="(max-width: 768px) 640px, 384px"
+                            sizes="(max-width: 768px) 640px, 320px"
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                             onLoad={(e) => {
@@ -1182,7 +1182,7 @@ const ItemCard = memo(function ItemCard({
                     )}
 
                 {/* Progress */}
-                <div className="card-progress w-36 space-y-3">
+                <div className="card-progress w-32 space-y-2">
                     <div className="flex items-center gap-1">
                         <button
                             onClick={(e) => {
