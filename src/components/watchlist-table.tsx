@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus, refreshMediaData } from "@/actions/backfill";
 import { importMDLNotes } from "@/actions/mdl-import";
+import { importWatchlist } from "@/actions/import-watchlist";
 import {
     Plus,
     Minus,
@@ -29,6 +30,7 @@ import {
     SlidersHorizontal,
     ExternalLink,
     Download,
+    Upload,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -133,6 +135,8 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [showGenreFilter, setShowGenreFilter] = useState(false);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
+    const [isImportingJSON, setIsImportingJSON] = useState(false);
+    const importFileRef = useRef<HTMLInputElement>(null);
 
     // Infinite scroll
     const [displayCount, setDisplayCount] = useState(10);
@@ -468,8 +472,46 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         downloadFile(JSON.stringify(data, null, 2), "watchlist.json", "application/json");
     };
 
+    const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        e.target.value = "";
+
+        let parsed: unknown[];
+        try {
+            const text = await file.text();
+            parsed = JSON.parse(text);
+            if (!Array.isArray(parsed)) throw new Error("File must contain a JSON array.");
+        } catch (err) {
+            toast.error("Invalid JSON file", { description: err instanceof Error ? err.message : "Could not parse file." });
+            return;
+        }
+
+        setIsImportingJSON(true);
+        try {
+            const result = await importWatchlist(parsed);
+            if (result.imported > 0) {
+                toast.success(`Imported ${result.imported} item${result.imported !== 1 ? "s" : ""}`, {
+                    description: result.skipped > 0 ? `${result.skipped} already existed and were skipped.` : undefined,
+                });
+            } else {
+                toast.info("Nothing new to import", {
+                    description: `All ${result.skipped} item${result.skipped !== 1 ? "s" : ""} already exist in your watchlist.`,
+                });
+            }
+            if (result.errors.length > 0) {
+                console.warn("Import errors:", result.errors);
+            }
+        } catch {
+            toast.error("Import failed", { description: "An unexpected error occurred." });
+        } finally {
+            setIsImportingJSON(false);
+        }
+    };
+
     return (
         <div className="watchlist-container relative">
+            <input ref={importFileRef} type="file" accept=".json" className="hidden" onChange={handleImportFile} />
             {/* Ambient background glow */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
                 <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
@@ -785,6 +827,14 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         >
                                             <Download className="h-4 w-4" />
                                             Export as JSON
+                                        </button>
+                                        <button
+                                            onClick={() => { setShowActionsMenu(false); importFileRef.current?.click(); }}
+                                            disabled={isImportingJSON}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <Upload className="h-4 w-4" />
+                                            {isImportingJSON ? "Importing..." : "Import from JSON"}
                                         </button>
                                     </div>
                                 </>
