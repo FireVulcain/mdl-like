@@ -372,11 +372,11 @@ export async function getWatchlist() {
     const mdlSlugPromise = Promise.all([
         prisma.cachedMdlData.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
-            select: { tmdbExternalId: true, mdlSlug: true },
+            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true },
         }),
         prisma.mdlSeasonLink.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
-            select: { tmdbExternalId: true, season: true, mdlSlug: true },
+            select: { tmdbExternalId: true, season: true, mdlSlug: true, mdlRating: true },
         }),
     ]);
 
@@ -448,14 +448,22 @@ export async function getWatchlist() {
     // Await MDL slug data (likely already resolved by the time TMDB/TVmaze finishes)
     const [cachedMdlRows, seasonLinkRows] = await mdlSlugPromise;
     const mdlSlugByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
+    const mdlRatingByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlRating]));
     const mdlSlugBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
+    const mdlRatingBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlRating]));
 
     return items
         .map((item) => {
             const episodeData = nextEpisodeMap.get(`${item.externalId}-${item.season}`);
+            const seasonKey = `${item.externalId}-${item.season}`;
             const mdlSlug =
-                mdlSlugBySeason.get(`${item.externalId}-${item.season}`) ??
+                mdlSlugBySeason.get(seasonKey) ??
                 mdlSlugByExternalId.get(item.externalId) ??
+                null;
+            const mdlRating =
+                mdlRatingBySeason.get(seasonKey) ??
+                mdlRatingByExternalId.get(item.externalId) ??
+                item.mdlRating ??
                 null;
             return {
                 ...item,
@@ -465,6 +473,7 @@ export async function getWatchlist() {
                 nextEpisode: episodeData?.nextEpisode || null,
                 seasonAirDate: episodeData?.seasonAirDate || null,
                 mdlSlug,
+                mdlRating,
             };
         })
         .sort((a, b) => {

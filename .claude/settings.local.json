@@ -29,7 +29,22 @@
       "WebFetch(domain:www.tvmaze.com)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npx prisma migrate dev:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(cd:*)",
+      "WebFetch(domain:kuryana.tbdh.app)",
+      "Bash(curl:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(python -c \" import json, sys data = json.load\\(sys.stdin\\) person = data[''data''] print\\(''Keys:'', list\\(person.keys\\(\\)\\)\\) print\\(''Works keys:'', list\\(person.get\\(''works'', {}\\).keys\\(\\)\\)\\) print\\(''First drama:'', json.dumps\\(person[''works''][''Drama''][5], indent=2\\)\\) \")",
+      "Bash(python -c:*)",
+      "Bash(grep:*)",
+      "Bash(npx prisma:*)",
+      "Bash(echo 'DELETE FROM \"\"CachedMdlData\"\" WHERE \"\"mdlSlug\"\" = '\"''\"'66143-break-the-silence-the-movie'\"''\"';')",
+      "Bash(xargs ls -ltr)",
+      "Bash(ADMIN_EMAIL=user2@test.com ADMIN_PASSWORD=u21PLtp6ucAyTuv0 npx tsx scripts/seed-admin.ts)",
+      "Bash(npx tsx -e \":*)",
+      "Bash(npx tsx scripts/_create-user2.ts)"
     ]
   }
 }

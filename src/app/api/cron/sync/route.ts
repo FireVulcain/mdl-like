@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
-import { importMDLNotes } from "@/actions/mdl-import";
 
 // Vercel cron jobs use this header for authentication
 const CRON_SECRET = process.env.CRON_SECRET;
-
-const MDL_USERNAME = process.env.MDL_USERNAME || "Popoooo_";
 
 export const maxDuration = 300; // 5 minutes max for Vercel Pro, 60s for Hobby
 export const dynamic = "force-dynamic";
@@ -36,14 +33,7 @@ export async function GET(request: NextRequest) {
     const startTime = Date.now();
 
     try {
-        // Task 1: Import MDL notes (most important, runs first)
-        const mdlResult = await runMDLImport();
-        results.push(mdlResult);
-
-        // Wait 3 seconds between tasks to let Supabase connection pool recover
-        await delay(3000);
-
-        // Task 2: Backfill missing backdrops
+        // Task 1: Backfill missing backdrops
         const backdropResult = await runBackfillBackdrops();
         results.push(backdropResult);
 
@@ -117,39 +107,6 @@ export async function GET(request: NextRequest) {
             },
             { status: 500 }
         );
-    }
-}
-
-async function runMDLImport(): Promise<TaskResult> {
-    const taskStart = Date.now();
-    try {
-        const users = await prisma.user.findMany({ select: { id: true } });
-        let totalScraped = 0, totalMatched = 0, totalUpdated = 0;
-
-        for (const user of users) {
-            const result = await importMDLNotes(user.id, MDL_USERNAME);
-            if (result.success && result.stats) {
-                totalScraped += result.stats.scraped ?? 0;
-                totalMatched += result.stats.matched ?? 0;
-                totalUpdated += result.stats.updated ?? 0;
-            }
-        }
-
-        return {
-            task: "mdl-import",
-            success: true,
-            scraped: totalScraped,
-            matched: totalMatched,
-            count: totalUpdated,
-            duration: Date.now() - taskStart,
-        };
-    } catch (error) {
-        return {
-            task: "mdl-import",
-            success: false,
-            error: error instanceof Error ? error.message : "Unknown error",
-            duration: Date.now() - taskStart,
-        };
     }
 }
 

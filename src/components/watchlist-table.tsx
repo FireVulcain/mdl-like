@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus, refreshMediaData } from "@/actions/backfill";
-import { importMDLNotes } from "@/actions/mdl-import";
 import { importWatchlist } from "@/actions/import-watchlist";
 import {
     Plus,
@@ -22,7 +21,6 @@ import {
     RefreshCw,
     X,
     Search,
-    BookOpen,
     ImageOff,
     MoreHorizontal,
     Star,
@@ -36,7 +34,7 @@ import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
-type ConfirmAction = "mdl-import" | "backfill" | null;
+type ConfirmAction = "backfill" | null;
 
 type NextEpisodeData = {
     airDate: string;
@@ -127,7 +125,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
-    const [isImportingMDL, setIsImportingMDL] = useState(false);
     const [isBackfillingAiring, setIsBackfillingAiring] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
@@ -335,35 +332,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             });
         } finally {
             setIsBackfilling(false);
-        }
-    };
-
-    const handleMDLImport = async () => {
-        setIsImportingMDL(true);
-        const toastId = toast.loading("Importing notes from MDL...");
-        try {
-            const result = await importMDLNotes();
-
-            if (result.success) {
-                toast.success(result.message, {
-                    id: toastId,
-                    description: `Scraped: ${result.stats?.scraped} | Matched: ${result.stats?.matched} | Updated: ${result.stats?.updated} (${result.duration}s)`,
-                });
-                setTimeout(() => window.location.reload(), 1500);
-            } else {
-                toast.error("Import failed", {
-                    id: toastId,
-                    description: result.message,
-                });
-            }
-        } catch (error) {
-            console.error("MDL import failed:", error);
-            toast.error("Failed to import from MDL", {
-                id: toastId,
-                description: "Check console for details",
-            });
-        } finally {
-            setIsImportingMDL(false);
         }
     };
 
@@ -771,17 +739,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
-                                                setConfirmAction("mdl-import");
-                                            }}
-                                            disabled={isImportingMDL}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                                        >
-                                            <BookOpen className={`h-4 w-4 ${isImportingMDL ? "animate-pulse" : ""}`} />
-                                            {isImportingMDL ? "Importing..." : "Import MDL Notes"}
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                setShowActionsMenu(false);
                                                 setConfirmAction("backfill");
                                             }}
                                             disabled={isBackfilling}
@@ -1065,15 +1022,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                     onOptimisticUpdate={handleOptimisticEdit}
                 />
             )}
-
-            <ConfirmDialog
-                open={confirmAction === "mdl-import"}
-                onOpenChange={(open) => !open && setConfirmAction(null)}
-                title="Import MDL Notes"
-                description="This will import notes from your MyDramaList account. Continue?"
-                confirmLabel="Import"
-                onConfirm={handleMDLImport}
-            />
 
             <ConfirmDialog
                 open={confirmAction === "backfill"}
