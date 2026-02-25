@@ -96,7 +96,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             <div className="relative h-[50vh] w-full overflow-hidden">
                 {media.backdrop ? (
                     <>
-                        <Image src={media.backdrop} alt={media.title} fill className="object-cover" priority />
+                        <Image src={media.backdrop.replace("/t/p/w1280/", "/t/p/original/")} alt={media.title} fill className="object-cover" priority />
                         {/* Top gradient for header readability on bright images */}
                         <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/60 via-black/30 to-transparent" />
                         {/* Overlay gradient for better text readability */}
