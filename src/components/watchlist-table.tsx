@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
-import { backfillBackdrops, refreshAllBackdrops, backfillAiringStatus, refreshMediaData } from "@/actions/backfill";
+import { backfillBackdrops, refreshAllBackdrops, refreshMediaData } from "@/actions/backfill";
 import { importWatchlist } from "@/actions/import-watchlist";
 import {
     Plus,
@@ -125,7 +125,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
-    const [isBackfillingAiring, setIsBackfillingAiring] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
@@ -332,31 +331,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
             });
         } finally {
             setIsBackfilling(false);
-        }
-    };
-
-    const handleBackfillAiring = async () => {
-        setIsBackfillingAiring(true);
-        const toastId = toast.loading("Updating airing status...");
-        try {
-            const result = await backfillAiringStatus();
-            if (result.success) {
-                toast.success("Airing status updated", {
-                    id: toastId,
-                    description: result.message,
-                });
-                setTimeout(() => window.location.reload(), 1000);
-            } else {
-                toast.dismiss(toastId);
-            }
-        } catch (error) {
-            console.error("Airing status backfill failed:", error);
-            toast.error("Failed to update airing status", {
-                id: toastId,
-                description: "Check console for details",
-            });
-        } finally {
-            setIsBackfillingAiring(false);
         }
     };
 
@@ -747,18 +721,6 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                             <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
                                             {isBackfilling ? "Processing..." : "Refresh Backdrops"}
                                         </button>
-                                        <button
-                                            onClick={() => {
-                                                setShowActionsMenu(false);
-                                                handleBackfillAiring();
-                                            }}
-                                            disabled={isBackfillingAiring}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                                        >
-                                            <RefreshCw className={`h-4 w-4 ${isBackfillingAiring ? "animate-spin" : ""}`} />
-                                            {isBackfillingAiring ? "Processing..." : "Update Airing Status"}
-                                        </button>
-                                        <div className="my-1 border-t border-white/5" />
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
