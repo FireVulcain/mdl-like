@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { tvmaze } from "@/lib/tvmaze";
 import { tmdb } from "@/lib/tmdb";
+import { getCurrentUserId } from "@/lib/session";
 
 export type ScheduleEntry = {
     title: string;
@@ -55,7 +56,8 @@ async function fetchAndCacheEpisodes(
     }));
 }
 
-export async function getScheduleEntries(userId: string): Promise<ScheduleEntry[]> {
+export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
+    const userId = await getCurrentUserId();
     const items = await prisma.userMedia.findMany({
         where: {
             userId,
@@ -137,7 +139,8 @@ export async function getScheduleEntries(userId: string): Promise<ScheduleEntry[
     return results.sort((a, b) => a.airDate.localeCompare(b.airDate));
 }
 
-export async function refreshScheduleCache(userId: string): Promise<void> {
+export async function refreshScheduleCache(): Promise<void> {
+    const userId = await getCurrentUserId();
     const items = await prisma.userMedia.findMany({
         where: {
             userId,

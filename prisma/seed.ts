@@ -11,6 +11,8 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  // This fixed ID is intentional for local dev with SKIP_AUTH=true.
+  // The app's getCurrentUserId() returns this ID when SKIP_AUTH=true (via DEV_USER_ID env or fallback).
   const id = 'mock-user-1';
   await prisma.user.upsert({
     where: { id },
@@ -21,7 +23,7 @@ async function main() {
       email: 'mock@example.com',
     },
   });
-  console.log(`User ${id} created/ensured.`);
+  console.log(`Dev seed user ensured (id: ${id}).`);
 }
 
 main()

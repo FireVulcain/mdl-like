@@ -11,8 +11,6 @@ import { deleteUserMedia, updateUserMedia, addToWatchlist } from "@/actions/medi
 import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle, Star, X } from "lucide-react";
 import { toast } from "sonner";
 
-const MOCK_USER_ID = "mock-user-1";
-
 export type WatchlistItem = {
     id: string;
     status: string;
@@ -135,7 +133,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     description: displayTitle,
                 });
             } else if (media) {
-                await addToWatchlist(MOCK_USER_ID, media, formData.status, season || 1, totalEp || undefined, {
+                await addToWatchlist(media, formData.status, season || 1, totalEp || undefined, {
                     progress: formData.progress,
                     score: formData.score || undefined,
                     notes: formData.notes || undefined,

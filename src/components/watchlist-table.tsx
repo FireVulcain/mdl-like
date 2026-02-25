@@ -312,8 +312,8 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setIsBackfilling(true);
         const toastId = toast.loading("Refreshing backdrops...");
         try {
-            await backfillBackdrops("mock-user-1");
-            const result = await refreshAllBackdrops("mock-user-1");
+            await backfillBackdrops();
+            const result = await refreshAllBackdrops();
             if (result.success) {
                 toast.success(`Updated ${result.count} season backdrops`, {
                     id: toastId,
@@ -338,7 +338,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setIsImportingMDL(true);
         const toastId = toast.loading("Importing notes from MDL...");
         try {
-            const result = await importMDLNotes("mock-user-1");
+            const result = await importMDLNotes();
 
             if (result.success) {
                 toast.success(result.message, {
@@ -367,7 +367,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setIsBackfillingAiring(true);
         const toastId = toast.loading("Updating airing status...");
         try {
-            const result = await backfillAiringStatus("mock-user-1");
+            const result = await backfillAiringStatus();
             if (result.success) {
                 toast.success("Airing status updated", {
                     id: toastId,
@@ -392,7 +392,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
         setIsRefreshingMedia(true);
         const toastId = toast.loading("Refreshing media data from TMDB...");
         try {
-            const result = await refreshMediaData("mock-user-1");
+            const result = await refreshMediaData();
             if (result.success) {
                 toast.success("Media data refreshed", {
                     id: toastId,

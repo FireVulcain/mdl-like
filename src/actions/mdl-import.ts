@@ -4,6 +4,7 @@ import puppeteer, { Browser, Page, HTTPRequest } from "puppeteer-core";
 import { ratio } from "fuzzball";
 import { prisma } from "@/lib/prisma";
 import type { UserMedia } from "@prisma/client";
+import { getCurrentUserId } from "@/lib/session";
 
 // --- Types ---
 type MDLItem = {
@@ -162,7 +163,8 @@ function matchItems(mdlItems: MDLItem[], dbItems: UserMedia[]): MatchResult[] {
  * MAIN ACTION
  */
 
-export async function importMDLNotes(userId: string, mdlUsername: string = "Popoooo_") {
+export async function importMDLNotes(userId?: string, mdlUsername: string = "Popoooo_") {
+    const resolvedUserId = userId ?? await getCurrentUserId();
     const startTime = performance.now();
     let browser: Browser | null = null;
 
@@ -185,7 +187,7 @@ export async function importMDLNotes(userId: string, mdlUsername: string = "Popo
             return { success: false, message: "Browserless connected, but found no items. Check the username." };
         }
 
-        const dbItems = await prisma.userMedia.findMany({ where: { userId } });
+        const dbItems = await prisma.userMedia.findMany({ where: { userId: resolvedUserId } });
         const matches = matchItems(uniqueMdlItems, dbItems);
 
         // Batch update database with MDL ratings

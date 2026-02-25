@@ -36,7 +36,6 @@ type ActivityLogItem = {
 type Props = {
     initialItems: ActivityLogItem[];
     initialNextCursor: string | null;
-    userId: string;
 };
 
 const ACTION_CONFIG: Record<
@@ -215,7 +214,7 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
     );
 }
 
-export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) {
+export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
     const [items, setItems] = useState<ActivityLogItem[]>(initialItems);
     const [nextCursor, setNextCursor] = useState<string | null>(initialNextCursor);
     const [isLoading, setIsLoading] = useState(false);
@@ -229,7 +228,7 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         (async () => {
             setIsLoading(true);
             try {
-                const data = await getActivityLog(userId, undefined, filterActions.length > 0 ? filterActions : undefined);
+                const data = await getActivityLog(undefined, filterActions.length > 0 ? filterActions : undefined);
                 if (!cancelled) {
                     setItems(data.items);
                     setNextCursor(data.nextCursor);
@@ -255,8 +254,8 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
     const handleRegenerate = async () => {
         setIsRegenerating(true);
         try {
-            await backfillActivityLog(userId);
-            const data = await getActivityLog(userId, undefined, filterActions.length > 0 ? filterActions : undefined);
+            await backfillActivityLog();
+            const data = await getActivityLog(undefined, filterActions.length > 0 ? filterActions : undefined);
             setItems(data.items);
             setNextCursor(data.nextCursor);
         } catch (e) {
@@ -270,7 +269,7 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         if (!nextCursor || isLoading) return;
         setIsLoading(true);
         try {
-            const data = await getActivityLog(userId, nextCursor, filterActions.length > 0 ? filterActions : undefined);
+            const data = await getActivityLog(nextCursor, filterActions.length > 0 ? filterActions : undefined);
             setItems((prev) => [...prev, ...data.items]);
             setNextCursor(data.nextCursor);
         } catch (e) {
@@ -278,7 +277,7 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         } finally {
             setIsLoading(false);
         }
-    }, [nextCursor, isLoading, userId, filterActions]);
+    }, [nextCursor, isLoading, filterActions]);
 
     useEffect(() => {
         const el = loadMoreRef.current;

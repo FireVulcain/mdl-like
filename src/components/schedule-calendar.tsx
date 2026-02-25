@@ -40,7 +40,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
         setIsRefreshing(true);
         setShowActionsMenu(false);
         try {
-            await refreshScheduleCache("mock-user-1");
+            await refreshScheduleCache();
             window.location.reload();
         } finally {
             setIsRefreshing(false);

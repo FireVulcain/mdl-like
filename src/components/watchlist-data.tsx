@@ -2,9 +2,7 @@ import { cache } from "react";
 import { getWatchlist } from "@/actions/media";
 import { WatchlistTable } from "@/components/watchlist-table";
 
-const MOCK_USER_ID = "mock-user-1";
-
-export const getCachedWatchlist = cache(() => getWatchlist(MOCK_USER_ID));
+export const getCachedWatchlist = cache(() => getWatchlist());
 
 export async function WatchlistData() {
     let watchlist: Awaited<ReturnType<typeof getWatchlist>> = [];

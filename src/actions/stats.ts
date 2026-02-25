@@ -2,10 +2,12 @@
 
 import { prisma } from "@/lib/prisma";
 import { type DashboardStats, EMPTY_STATS } from "@/types/stats";
+import { getCurrentUserId } from "@/lib/session";
 
 type UserMediaItem = Awaited<ReturnType<typeof prisma.userMedia.findMany>>[number];
 
-export async function getDashboardStats(userId: string, existingItems?: UserMediaItem[]): Promise<DashboardStats> {
+export async function getDashboardStats(existingItems?: UserMediaItem[]): Promise<DashboardStats> {
+    const userId = await getCurrentUserId();
     const items = existingItems ?? await prisma.userMedia.findMany({
         where: { userId },
     });
@@ -78,7 +80,8 @@ export async function getDashboardStats(userId: string, existingItems?: UserMedi
 }
 
 
-export async function getContinueWatching(userId: string) {
+export async function getContinueWatching() {
+    const userId = await getCurrentUserId();
     const items = await prisma.userMedia.findMany({
         where: {
             userId,
@@ -106,7 +109,8 @@ export async function getContinueWatching(userId: string) {
     }));
 }
 
-export async function backfillGenres(userId: string) {
+export async function backfillGenres() {
+    const userId = await getCurrentUserId();
     const items = await prisma.userMedia.findMany({
         where: {
             userId,

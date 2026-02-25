@@ -1,8 +1,6 @@
 import { getActivityLog, backfillActivityLog } from "@/actions/history";
 import { HistoryFeed } from "@/components/history-feed";
 
-const MOCK_USER_ID = "mock-user-1";
-
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -11,11 +9,11 @@ export default async function HistoryPage() {
 
     try {
         if (process.env.NEXT_PHASE !== "phase-production-build") {
-            const data = await getActivityLog(MOCK_USER_ID);
+            const data = await getActivityLog();
             if (data.items.length === 0) {
                 // Auto-backfill on first visit
-                await backfillActivityLog(MOCK_USER_ID);
-                const backfilled = await getActivityLog(MOCK_USER_ID);
+                await backfillActivityLog();
+                const backfilled = await getActivityLog();
                 initialData = backfilled;
             } else {
                 initialData = data;
@@ -39,7 +37,7 @@ export default async function HistoryPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Activity History</h1>
                     <p className="text-muted-foreground mt-1">A log of every action tracked on your watchlist</p>
                 </div>
-                <HistoryFeed initialItems={initialData.items} initialNextCursor={initialData.nextCursor} userId={MOCK_USER_ID} />
+                <HistoryFeed initialItems={initialData.items} initialNextCursor={initialData.nextCursor} />
             </div>
         </div>
     );

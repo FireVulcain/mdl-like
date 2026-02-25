@@ -3,9 +3,10 @@
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
+import { getCurrentUserId } from "@/lib/session";
 
-export async function backfillBackdrops(userId: string) {
-    if (!userId) throw new Error("Unauthorized");
+export async function backfillBackdrops() {
+    const userId = await getCurrentUserId();
 
     const items = await prisma.userMedia.findMany({
         where: {
@@ -88,8 +89,8 @@ export async function backfillBackdrops(userId: string) {
 }
 
 // Re-backfill all backdrops (even existing ones) to assign different images per season
-export async function refreshAllBackdrops(userId: string) {
-    if (!userId) throw new Error("Unauthorized");
+export async function refreshAllBackdrops() {
+    const userId = await getCurrentUserId();
 
     const items = await prisma.userMedia.findMany({
         where: { userId },
@@ -164,8 +165,8 @@ export async function refreshAllBackdrops(userId: string) {
 }
 
 // Backfill airing status for all items
-export async function backfillAiringStatus(userId: string) {
-    if (!userId) throw new Error("Unauthorized");
+export async function backfillAiringStatus() {
+    const userId = await getCurrentUserId();
 
     const items = await prisma.userMedia.findMany({
         where: {
@@ -225,8 +226,8 @@ export async function backfillAiringStatus(userId: string) {
 }
 
 // Refresh media data from TMDB for "Plan to Watch" and "Watching" items
-export async function refreshMediaData(userId: string) {
-    if (!userId) throw new Error("Unauthorized");
+export async function refreshMediaData() {
+    const userId = await getCurrentUserId();
 
     const items = await prisma.userMedia.findMany({
         where: {

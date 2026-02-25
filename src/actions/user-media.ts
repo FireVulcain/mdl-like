@@ -2,8 +2,7 @@
 
 import { cache } from "react";
 import { prisma } from "@/lib/prisma";
-
-const MOCK_USER_ID = "mock-user-1";
+import { getCurrentUserId } from "@/lib/session";
 
 // Helper to get user specific media data
 // Wrapped with React.cache() for per-request deduplication
@@ -24,8 +23,9 @@ export const getUserMedia = cache(async (userId: string, externalId: string, sou
 // Returns an array since Sets can't be serialized across client-server boundary
 // Wrapped with React.cache() for per-request deduplication
 export const getWatchlistExternalIds = cache(async (): Promise<string[]> => {
+  const userId = await getCurrentUserId();
   const items = await prisma.userMedia.findMany({
-    where: { userId: MOCK_USER_ID },
+    where: { userId },
     select: { externalId: true }
   });
 

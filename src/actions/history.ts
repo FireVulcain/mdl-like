@@ -3,10 +3,12 @@
 import { prisma } from "@/lib/prisma";
 import { ActivityAction } from "@/types/activity";
 import { Prisma } from "@prisma/client";
+import { getCurrentUserId } from "@/lib/session";
 
 const PAGE_SIZE = 30;
 
-export async function getActivityLog(userId: string, cursor?: string, filterActions?: string[]) {
+export async function getActivityLog(cursor?: string, filterActions?: string[]) {
+    const userId = await getCurrentUserId();
     const where: Prisma.ActivityLogWhereInput = { userId };
     if (filterActions && filterActions.length > 0) {
         where.action = { in: filterActions };
@@ -30,7 +32,8 @@ export async function deleteActivityLog(id: string) {
     await prisma.activityLog.delete({ where: { id } });
 }
 
-export async function backfillActivityLog(userId: string) {
+export async function backfillActivityLog() {
+    const userId = await getCurrentUserId();
     // Delete existing backfill rows for this user (idempotent)
     await prisma.activityLog.deleteMany({
         where: { userId, isBackfill: true },

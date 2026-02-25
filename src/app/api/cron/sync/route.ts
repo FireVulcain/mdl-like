@@ -6,8 +6,6 @@ import { importMDLNotes } from "@/actions/mdl-import";
 // Vercel cron jobs use this header for authentication
 const CRON_SECRET = process.env.CRON_SECRET;
 
-// Mock user ID - same as used in the app
-const MOCK_USER_ID = "mock-user-1";
 const MDL_USERNAME = process.env.MDL_USERNAME || "Popoooo_";
 
 export const maxDuration = 300; // 5 minutes max for Vercel Pro, 60s for Hobby
@@ -125,23 +123,24 @@ export async function GET(request: NextRequest) {
 async function runMDLImport(): Promise<TaskResult> {
     const taskStart = Date.now();
     try {
-        const result = await importMDLNotes(MOCK_USER_ID, MDL_USERNAME);
+        const users = await prisma.user.findMany({ select: { id: true } });
+        let totalScraped = 0, totalMatched = 0, totalUpdated = 0;
 
-        if (!result.success) {
-            return {
-                task: "mdl-import",
-                success: false,
-                error: result.message,
-                duration: Date.now() - taskStart,
-            };
+        for (const user of users) {
+            const result = await importMDLNotes(user.id, MDL_USERNAME);
+            if (result.success && result.stats) {
+                totalScraped += result.stats.scraped ?? 0;
+                totalMatched += result.stats.matched ?? 0;
+                totalUpdated += result.stats.updated ?? 0;
+            }
         }
 
         return {
             task: "mdl-import",
             success: true,
-            scraped: result.stats?.scraped ?? 0,
-            matched: result.stats?.matched ?? 0,
-            count: result.stats?.updated ?? 0,
+            scraped: totalScraped,
+            matched: totalMatched,
+            count: totalUpdated,
             duration: Date.now() - taskStart,
         };
     } catch (error) {
@@ -159,7 +158,6 @@ async function runBackfillBackdrops(): Promise<TaskResult> {
     try {
         const items = await prisma.userMedia.findMany({
             where: {
-                userId: MOCK_USER_ID,
                 backdrop: null,
             },
         });
@@ -255,7 +253,6 @@ async function runBackfillAiring(): Promise<TaskResult> {
     try {
         const items = await prisma.userMedia.findMany({
             where: {
-                userId: MOCK_USER_ID,
                 airingStatus: null,
                 mediaType: "TV",
             },

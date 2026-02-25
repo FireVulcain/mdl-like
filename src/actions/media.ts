@@ -7,6 +7,7 @@ import { tmdb, TMDBExternalIds } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
 import { ActivityAction, ActivityActionType } from "@/types/activity";
 import { Prisma } from "@prisma/client";
+import { getCurrentUserId } from "@/lib/session";
 
 // Upsert progress log: within a 30-min window, update the existing entry rather than
 // create a new one. This means a misclick that corrects ep 16 → 15 rewrites the log
@@ -103,7 +104,6 @@ async function logActivity(data: {
 // Actually, I'll create it in the next step or use the one generated if standard, but best practice is a singleton.
 
 export async function addToWatchlist(
-    userId: string,
     media: UnifiedMedia,
     status: string = "Plan to Watch",
     season: number = 1,
@@ -114,7 +114,7 @@ export async function addToWatchlist(
         notes?: string;
     },
 ) {
-    if (!userId) throw new Error("Unauthorized");
+    const userId = await getCurrentUserId();
 
     try {
         const existing = await prisma.userMedia.findFirst({
@@ -351,8 +351,8 @@ type NextEpisodeData = {
     seasonEpisodeCount?: number; // Total episodes in season (from TVmaze, more accurate than TMDB)
 };
 
-export async function getWatchlist(userId: string) {
-    if (!userId) return []; // or throw
+export async function getWatchlist() {
+    const userId = await getCurrentUserId();
 
     const items = await prisma.userMedia.findMany({
         where: { userId },

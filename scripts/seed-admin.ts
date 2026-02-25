@@ -24,36 +24,26 @@ async function main() {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-    const userId = "mock-user-1";
 
-    // Try to find existing user by ID first (preserve existing data)
-    const existingUser = await prisma.user.findUnique({
-        where: { id: userId },
-    });
+    // Look up by email (the natural unique key) to support fresh deployments
+    // Also check legacy "mock-user-1" ID so existing data is preserved during migration
+    const byEmail = await prisma.user.findUnique({ where: { email } });
+    const byLegacyId = await prisma.user.findUnique({ where: { id: "mock-user-1" } });
+    const existingUser = byEmail ?? byLegacyId;
 
     let user;
     if (existingUser) {
-        // Update existing user with email and password
         user = await prisma.user.update({
-            where: { id: userId },
-            data: {
-                email,
-                name: "Admin",
-                password: hashedPassword,
-            },
+            where: { id: existingUser.id },
+            data: { email, name: "Admin", password: hashedPassword },
         });
-        console.log(`Existing user updated with admin credentials: ${user.email}`);
+        console.log(`Admin user updated: ${user.email} (id: ${user.id})`);
     } else {
-        // Create new user
+        // Fresh deployment — let Prisma generate a real cuid
         user = await prisma.user.create({
-            data: {
-                id: userId,
-                email,
-                name: "Admin",
-                password: hashedPassword,
-            },
+            data: { email, name: "Admin", password: hashedPassword },
         });
-        console.log(`Admin user created: ${user.email}`);
+        console.log(`Admin user created: ${user.email} (id: ${user.id})`);
     }
 }
 

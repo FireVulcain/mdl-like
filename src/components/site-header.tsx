@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X, Clock, Bookmark } from "lucide-react";
+import { ExternalLink, Menu, X, Clock, Bookmark, LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -172,6 +173,14 @@ export function SiteHeader() {
                                             <Clock className="h-4 w-4 shrink-0" />
                                             History
                                         </Link>
+                                        <div className="my-1 border-t border-white/6" />
+                                        <button
+                                            onClick={() => { setProfileOpen(false); signOut({ callbackUrl: "/login" }); }}
+                                            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-white/60 hover:text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer"
+                                        >
+                                            <LogOut className="h-4 w-4 shrink-0" />
+                                            Sign out
+                                        </button>
                                     </div>
                                 </motion.div>
                             )}
@@ -272,6 +281,14 @@ export function SiteHeader() {
                                 <Clock className="h-4 w-4 shrink-0" />
                                 History
                             </Link>
+                            <div className="my-1 border-t border-white/10" />
+                            <button
+                                onClick={() => { setMobileMenuOpen(false); signOut({ callbackUrl: "/login" }); }}
+                                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-white/60 hover:text-red-400 hover:bg-red-500/10 transition-colors rounded-xl cursor-pointer"
+                            >
+                                <LogOut className="h-4 w-4 shrink-0" />
+                                Sign out
+                            </button>
                         </div>
                     </div>
                 </motion.div>

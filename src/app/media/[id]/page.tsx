@@ -26,9 +26,7 @@ import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
 import { WatchProvidersRow } from "@/components/media/watch-providers-row";
-
-// Mock User ID
-const MOCK_USER_ID = "mock-user-1";
+import { getCurrentUserId } from "@/lib/session";
 
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
     // Parallel fetch: params and searchParams are independent
@@ -82,10 +80,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
 
     // Parallel fetch: userMedia and watchlist IDs — MDL streams in separately via Suspense
-    const [userMedia, watchlistExternalIds] = await Promise.all([
-        getUserMedia(MOCK_USER_ID, media.externalId, media.source, selectedSeason),
+    const [userId, watchlistExternalIds] = await Promise.all([
+        getCurrentUserId(),
         getWatchlistExternalIds(),
     ]);
+    const userMedia = await getUserMedia(userId, media.externalId, media.source, selectedSeason);
     const watchlistIds = new Set(watchlistExternalIds);
 
     // Determine update action if userMedia exists
