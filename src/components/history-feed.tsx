@@ -8,6 +8,16 @@ import { ActivityAction } from "@/types/activity";
 import { Plus, Trash2, Play, RefreshCw, Star, FileText, Clock, X, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// All filterable action types with their display config
+const FILTER_OPTIONS = [
+    { action: ActivityAction.PROGRESS, label: "Watched", color: "text-violet-400", activeClass: "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" },
+    { action: ActivityAction.ADDED, label: "Added", color: "text-blue-400", activeClass: "bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30" },
+    { action: ActivityAction.SCORED, label: "Rated", color: "text-yellow-400", activeClass: "bg-yellow-500/20 text-yellow-400 ring-1 ring-yellow-500/30" },
+    { action: ActivityAction.STATUS_CHANGED, label: "Status", color: "text-amber-400", activeClass: "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30" },
+    { action: ActivityAction.NOTED, label: "Noted", color: "text-slate-400", activeClass: "bg-slate-500/20 text-slate-400 ring-1 ring-slate-500/30" },
+    { action: ActivityAction.REMOVED, label: "Removed", color: "text-rose-400", activeClass: "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30" },
+];
+
 type ActivityLogItem = {
     id: string;
     userId: string;
@@ -210,7 +220,33 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
     const [nextCursor, setNextCursor] = useState<string | null>(initialNextCursor);
     const [isLoading, setIsLoading] = useState(false);
     const [isRegenerating, setIsRegenerating] = useState(false);
+    const [filterActions, setFilterActions] = useState<string[]>([]);
     const loadMoreRef = useRef<HTMLDivElement>(null);
+
+    // Re-fetch from the top whenever filters change
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            setIsLoading(true);
+            try {
+                const data = await getActivityLog(userId, undefined, filterActions.length > 0 ? filterActions : undefined);
+                if (!cancelled) {
+                    setItems(data.items);
+                    setNextCursor(data.nextCursor);
+                }
+            } catch (e) {
+                console.error("Failed to filter history:", e);
+            } finally {
+                if (!cancelled) setIsLoading(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filterActions]);
+
+    const toggleFilter = (action: string) => {
+        setFilterActions((prev) => prev.includes(action) ? prev.filter((a) => a !== action) : [...prev, action]);
+    };
 
     const handleDelete = useCallback((id: string) => {
         setItems((prev) => prev.filter((item) => item.id !== id));
@@ -220,7 +256,7 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         setIsRegenerating(true);
         try {
             await backfillActivityLog(userId);
-            const data = await getActivityLog(userId);
+            const data = await getActivityLog(userId, undefined, filterActions.length > 0 ? filterActions : undefined);
             setItems(data.items);
             setNextCursor(data.nextCursor);
         } catch (e) {
@@ -234,7 +270,7 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         if (!nextCursor || isLoading) return;
         setIsLoading(true);
         try {
-            const data = await getActivityLog(userId, nextCursor);
+            const data = await getActivityLog(userId, nextCursor, filterActions.length > 0 ? filterActions : undefined);
             setItems((prev) => [...prev, ...data.items]);
             setNextCursor(data.nextCursor);
         } catch (e) {
@@ -242,7 +278,7 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         } finally {
             setIsLoading(false);
         }
-    }, [nextCursor, isLoading, userId]);
+    }, [nextCursor, isLoading, userId, filterActions]);
 
     useEffect(() => {
         const el = loadMoreRef.current;
@@ -257,7 +293,9 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
         return () => observer.disconnect();
     }, [loadMore]);
 
-    if (items.length === 0) {
+    const isEmpty = items.length === 0 && !isLoading;
+
+    if (isEmpty && filterActions.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-24 text-center">
                 <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
@@ -270,20 +308,53 @@ export function HistoryFeed({ initialItems, initialNextCursor, userId }: Props) 
     }
 
     const groups = groupByDate(items);
+    const showEmptyFiltered = isEmpty && filterActions.length > 0;
 
     return (
         <div className="space-y-6">
-            {/* Regenerate backfill */}
-            <div className="flex justify-end">
+            {/* Filter bar */}
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                    {FILTER_OPTIONS.map((opt) => {
+                        const isActive = filterActions.includes(opt.action);
+                        return (
+                            <button
+                                key={opt.action}
+                                onClick={() => toggleFilter(opt.action)}
+                                className={cn(
+                                    "h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer",
+                                    isActive ? opt.activeClass : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white",
+                                )}
+                            >
+                                {opt.label}
+                            </button>
+                        );
+                    })}
+                    {filterActions.length > 0 && (
+                        <button
+                            onClick={() => setFilterActions([])}
+                            className="h-7 px-2 rounded-lg text-xs text-gray-600 hover:text-white transition-colors flex items-center gap-1"
+                        >
+                            <X className="h-3 w-3" />
+                            Clear
+                        </button>
+                    )}
+                </div>
                 <button
                     onClick={handleRegenerate}
                     disabled={isRegenerating}
-                    className="flex items-center gap-1.5 text-xs text-white/20 hover:text-white/50 transition-colors disabled:opacity-50"
+                    className="flex items-center gap-1.5 text-xs text-white/20 hover:text-white/50 transition-colors disabled:opacity-50 shrink-0"
                 >
                     <RotateCcw className={cn("h-3 w-3", isRegenerating && "animate-spin")} />
                     {isRegenerating ? "Regenerating…" : "Regenerate historical data"}
                 </button>
             </div>
+
+            {showEmptyFiltered && (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <p className="text-sm font-medium text-white/40">No activity matches these filters</p>
+                </div>
+            )}
 
             {groups.map(([label, groupItems]) => (
                 <div key={label}>

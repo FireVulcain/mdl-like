@@ -25,6 +25,7 @@ import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
+import { WatchProvidersRow } from "@/components/media/watch-providers-row";
 
 // Mock User ID
 const MOCK_USER_ID = "mock-user-1";
@@ -201,6 +202,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
                                 </Suspense>
                             )}
+
+                            <Suspense fallback={null}>
+                                <WatchProvidersRow type={media.type === "TV" ? "tv" : "movie"} id={media.externalId} />
+                            </Suspense>
                         </div>
                     </div>
 

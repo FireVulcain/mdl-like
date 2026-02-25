@@ -28,6 +28,7 @@ import {
     Layers,
     SlidersHorizontal,
     ExternalLink,
+    Download,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -414,6 +415,59 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0);
 
+    const downloadFile = (content: string, filename: string, mimeType: string) => {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const exportCSV = () => {
+        const headers = ["Title", "Type", "Status", "Season", "Progress", "Total Episodes", "Score", "MDL Rating", "Country", "Year", "Genres", "Notes", "Airing Status"];
+        const escape = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+        const rows = filteredItems.map((item) => [
+            item.title,
+            item.mediaType,
+            item.status,
+            item.season,
+            item.progress,
+            item.totalEp ?? "",
+            item.score ?? "",
+            item.mdlRating ?? "",
+            item.originCountry ?? "",
+            item.year ?? "",
+            item.genres ?? "",
+            item.notes ?? "",
+            item.airingStatus ?? "",
+        ]);
+        const csv = [headers, ...rows].map((row) => row.map(escape).join(",")).join("\n");
+        downloadFile(csv, "watchlist.csv", "text/csv;charset=utf-8;");
+    };
+
+    const exportJSON = () => {
+        const data = filteredItems.map((item) => ({
+            title: item.title,
+            type: item.mediaType,
+            status: item.status,
+            season: item.season,
+            progress: item.progress,
+            totalEpisodes: item.totalEp,
+            score: item.score,
+            mdlRating: item.mdlRating,
+            country: item.originCountry,
+            year: item.year,
+            genres: item.genres,
+            notes: item.notes,
+            airingStatus: item.airingStatus,
+            source: item.source,
+            externalId: item.externalId,
+        }));
+        downloadFile(JSON.stringify(data, null, 2), "watchlist.json", "application/json");
+    };
+
     return (
         <div className="watchlist-container relative">
             {/* Ambient background glow */}
@@ -716,6 +770,21 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isRefreshingMedia ? "animate-spin" : ""}`} />
                                             {isRefreshingMedia ? "Refreshing..." : "Refresh TMDB Data"}
+                                        </button>
+                                        <div className="my-1 border-t border-white/5" />
+                                        <button
+                                            onClick={() => { setShowActionsMenu(false); exportCSV(); }}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer"
+                                        >
+                                            <Download className="h-4 w-4" />
+                                            Export as CSV
+                                        </button>
+                                        <button
+                                            onClick={() => { setShowActionsMenu(false); exportJSON(); }}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer"
+                                        >
+                                            <Download className="h-4 w-4" />
+                                            Export as JSON
                                         </button>
                                     </div>
                                 </>

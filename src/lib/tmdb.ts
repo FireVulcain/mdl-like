@@ -182,6 +182,25 @@ export type TMDBSeasonDetails = {
     episodes: TMDBEpisode[];
 };
 
+export type TMDBProvider = {
+    logo_path: string;
+    provider_id: number;
+    provider_name: string;
+    display_priority: number;
+};
+
+export type TMDBWatchProviders = {
+    id: number;
+    results: {
+        [countryCode: string]: {
+            link: string;
+            flatrate?: TMDBProvider[];
+            buy?: TMDBProvider[];
+            rent?: TMDBProvider[];
+        };
+    };
+};
+
 export type TMDBExternalIds = {
     id: number;
     imdb_id: string | null;
@@ -233,4 +252,7 @@ export const tmdb = {
 
     getSeasonDetails: (seriesId: string, seasonNumber: number) =>
         fetchTMDB<TMDBSeasonDetails>(`/tv/${seriesId}/season/${seasonNumber}`),
+
+    getWatchProviders: (type: "movie" | "tv", id: string) =>
+        fetchTMDB<TMDBWatchProviders>(`/${type}/${id}/watch/providers`),
 };

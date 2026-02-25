@@ -6,9 +6,14 @@ import { Prisma } from "@prisma/client";
 
 const PAGE_SIZE = 30;
 
-export async function getActivityLog(userId: string, cursor?: string) {
+export async function getActivityLog(userId: string, cursor?: string, filterActions?: string[]) {
+    const where: Prisma.ActivityLogWhereInput = { userId };
+    if (filterActions && filterActions.length > 0) {
+        where.action = { in: filterActions };
+    }
+
     const logs = await prisma.activityLog.findMany({
-        where: { userId },
+        where,
         orderBy: { createdAt: "desc" },
         take: PAGE_SIZE + 1,
         ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
