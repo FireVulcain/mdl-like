@@ -70,6 +70,7 @@ type WatchlistItem = {
 
 interface WatchlistTableProps {
     items: WatchlistItem[];
+    readOnly?: boolean;
 }
 
 type OptimisticUpdate = {
@@ -114,7 +115,7 @@ const statusConfig = {
     },
 };
 
-export function WatchlistTable({ items }: WatchlistTableProps) {
+export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps) {
     const [filterStatuses, setFilterStatuses] = useState<string[]>([]);
     const [filterCountries, setFilterCountries] = useState<string[]>([]);
     const [filterGenres, setFilterGenres] = useState<string[]>([]);
@@ -453,7 +454,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
 
     return (
         <div className="watchlist-container relative">
-            <input ref={importFileRef} type="file" accept=".json" className="hidden" onChange={handleImportFile} />
+            {!readOnly && <input ref={importFileRef} type="file" accept=".json" className="hidden" onChange={handleImportFile} />}
             {/* Ambient background glow */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
                 <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
@@ -699,7 +700,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                         </div>
 
                         {/* Actions Menu */}
-                        <div className="relative filter-dropdown">
+                        {!readOnly && <div className="relative filter-dropdown">
                             <button
                                 onClick={() => setShowActionsMenu(!showActionsMenu)}
                                 className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer"
@@ -758,7 +759,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                     </div>
                                 </>
                             )}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>
@@ -932,6 +933,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                                         handleStatusChange={handleStatusChange}
                                                         openEdit={openEdit}
                                                         isChild={true}
+                                                        readOnly={readOnly}
                                                     />
                                                 </div>
                                             ))}
@@ -952,6 +954,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                                         handleProgress={handleProgress}
                                         handleStatusChange={handleStatusChange}
                                         openEdit={openEdit}
+                                        readOnly={readOnly}
                                     />
                                 </div>,
                             );
@@ -975,7 +978,7 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 {filteredItems.length > 0 && <div ref={loadMoreRef} className="h-10" />}
             </div>
 
-            {editingItem && (
+            {!readOnly && editingItem && (
                 <EditMediaDialog
                     key={editingItem.id}
                     item={editingItem}
@@ -985,14 +988,16 @@ export function WatchlistTable({ items }: WatchlistTableProps) {
                 />
             )}
 
-            <ConfirmDialog
-                open={confirmAction === "backfill"}
-                onOpenChange={(open) => !open && setConfirmAction(null)}
-                title="Refresh Backdrops"
-                description="This will refresh backdrops for all multi-season shows, assigning different images per season. Continue?"
-                confirmLabel="Refresh"
-                onConfirm={handleBackfill}
-            />
+            {!readOnly && (
+                <ConfirmDialog
+                    open={confirmAction === "backfill"}
+                    onOpenChange={(open) => !open && setConfirmAction(null)}
+                    title="Refresh Backdrops"
+                    description="This will refresh backdrops for all multi-season shows, assigning different images per season. Continue?"
+                    confirmLabel="Refresh"
+                    onConfirm={handleBackfill}
+                />
+            )}
         </div>
     );
 }
@@ -1003,12 +1008,14 @@ const ItemCard = memo(function ItemCard({
     handleStatusChange,
     openEdit,
     isChild = false,
+    readOnly = false,
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
     handleStatusChange: (id: string, newStatus: string, title?: string) => void;
     openEdit: (item: WatchlistItem) => void;
     isChild?: boolean;
+    readOnly?: boolean;
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -1127,8 +1134,8 @@ const ItemCard = memo(function ItemCard({
                     {/* Mobile Status */}
                     <button
                         ref={mobileButtonRef}
-                        onClick={(e) => handleDropdownToggle(e, true)}
-                        className={`mobile-status-btn items-center gap-1.5 px-2.5 py-1 rounded-lg ${statusInfo.bg} ${statusInfo.border} border hover:opacity-80 transition-opacity cursor-pointer shrink-0`}
+                        onClick={readOnly ? undefined : (e) => handleDropdownToggle(e, true)}
+                        className={`mobile-status-btn items-center gap-1.5 px-2.5 py-1 rounded-lg ${statusInfo.bg} ${statusInfo.border} border transition-opacity shrink-0 ${readOnly ? "" : "hover:opacity-80 cursor-pointer"}`}
                     >
                         <StatusIcon className={`h-3.5 w-3.5 ${statusInfo.color}`} />
                         <span className={`text-xs font-medium ${statusInfo.color}`}>{item.status}</span>
@@ -1164,14 +1171,14 @@ const ItemCard = memo(function ItemCard({
                 {/* Status Badge - Desktop */}
                 <button
                     ref={desktopButtonRef}
-                    onClick={(e) => handleDropdownToggle(e, false)}
-                    className={`desktop-status-btn card-status flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${statusInfo.bg} ${statusInfo.border} border min-w-28 justify-center hover:opacity-80 transition-all cursor-pointer`}
+                    onClick={readOnly ? undefined : (e) => handleDropdownToggle(e, false)}
+                    className={`desktop-status-btn card-status flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${statusInfo.bg} ${statusInfo.border} border min-w-28 justify-center transition-all ${readOnly ? "" : "hover:opacity-80 cursor-pointer"}`}
                 >
                     <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
                     <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
                 </button>
 
-                {showStatusDropdown &&
+                {!readOnly && showStatusDropdown &&
                     typeof window !== "undefined" &&
                     createPortal(
                         <>
@@ -1213,29 +1220,33 @@ const ItemCard = memo(function ItemCard({
                 {/* Progress */}
                 <div className="card-progress w-32 space-y-2">
                     <div className="flex items-center gap-1">
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
-                            }}
-                            className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
-                        >
-                            <Minus className="h-3.5 w-3.5" />
-                        </button>
+                        {!readOnly && (
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
+                                }}
+                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
+                            >
+                                <Minus className="h-3.5 w-3.5" />
+                            </button>
+                        )}
                         <div className="flex-1 text-center text-sm">
                             <span className="font-semibold text-white tabular-nums">{item.progress}</span>
                             <span className="text-gray-600 mx-0.5">/</span>
                             <span className="text-gray-500 tabular-nums">{item.totalEp || "?"}</span>
                         </div>
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleProgress(item.id, item.progress + 1, item.title || undefined);
-                            }}
-                            className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
-                        >
-                            <Plus className="h-3.5 w-3.5" />
-                        </button>
+                        {!readOnly && (
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleProgress(item.id, item.progress + 1, item.title || undefined);
+                                }}
+                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
+                            >
+                                <Plus className="h-3.5 w-3.5" />
+                            </button>
+                        )}
                     </div>
                     <div className="relative h-1 bg-white/5 rounded-full overflow-hidden progress-bar">
                         <div
@@ -1272,17 +1283,19 @@ const ItemCard = memo(function ItemCard({
                 </div>
 
                 {/* Edit */}
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        openEdit(item);
-                    }}
-                    className="cursor-pointer card-edit-btn h-8 w-8 rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all"
-                >
-                    <Pencil className="h-4 w-4" />
-                </Button>
+                {!readOnly && (
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            openEdit(item);
+                        }}
+                        className="cursor-pointer card-edit-btn h-8 w-8 rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all"
+                    >
+                        <Pencil className="h-4 w-4" />
+                    </Button>
+                )}
             </div>
         </div>
     );

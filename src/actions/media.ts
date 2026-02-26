@@ -351,9 +351,7 @@ type NextEpisodeData = {
     seasonEpisodeCount?: number; // Total episodes in season (from TVmaze, more accurate than TMDB)
 };
 
-export async function getWatchlist() {
-    const userId = await getCurrentUserId();
-
+async function getWatchlistForUser(userId: string) {
     const items = await prisma.userMedia.findMany({
         where: { userId },
         // We'll sort in memory to handle the custom status order
@@ -493,4 +491,13 @@ export async function getWatchlist() {
             // Tertiary sort by Season
             return (a.season || 1) - (b.season || 1);
         });
+}
+
+export async function getWatchlist() {
+    const userId = await getCurrentUserId();
+    return getWatchlistForUser(userId);
+}
+
+export async function getPublicWatchlist(userId: string) {
+    return getWatchlistForUser(userId);
 }
