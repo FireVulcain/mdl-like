@@ -192,7 +192,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                 {/* Header with Backdrop */}
                 <div className="relative h-48 overflow-hidden shrink-0">
-                    {displayPoster && <Image src={displayPoster} alt={displayTitle} fill className="object-cover" />}
+                    {displayPoster && <Image unoptimized={true} src={displayPoster} alt={displayTitle} fill className="object-cover" />}
                     <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/60 to-transparent" />
 
                     {/* Close button */}

@@ -34,7 +34,7 @@ export function PhotoGallery({ backdrops, posters }: PhotoGalleryProps) {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                <Image
+                                <Image unoptimized={true}
                                     src={src}
                                     alt={`Backdrop ${index + 1}`}
                                     fill
@@ -75,7 +75,7 @@ export function PhotoGallery({ backdrops, posters }: PhotoGalleryProps) {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                <Image
+                                <Image unoptimized={true}
                                     src={src}
                                     alt={`Poster ${index + 1}`}
                                     fill

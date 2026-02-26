@@ -239,7 +239,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                                                 <Link href={`/media/${first.mediaId}`}>
                                                                     <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-gray-800 hover:ring-primary/70 hover:scale-110 transition-all bg-gray-800 shrink-0">
                                                                         {first.poster ? (
-                                                                            <Image
+                                                                            <Image unoptimized={true}
                                                                                 src={first.poster}
                                                                                 alt={first.title}
                                                                                 fill

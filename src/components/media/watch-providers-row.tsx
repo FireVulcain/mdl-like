@@ -62,18 +62,16 @@ export async function WatchProvidersRow({ type, id }: { type: "movie" | "tv"; id
                         className="shrink-0"
                     >
                         <Image
+                            unoptimized={true}
                             src={TMDB_CONFIG.w500Image(p.logo_path)}
                             alt={p.provider_name}
                             width={26}
                             height={26}
                             className="rounded-md hover:scale-110 transition-transform"
-                            unoptimized
                         />
                     </a>
                 ))}
-                {!isStreaming && (
-                    <span className="text-xs text-gray-500">Buy / Rent</span>
-                )}
+                {!isStreaming && <span className="text-xs text-gray-500">Buy / Rent</span>}
             </div>
         </>
     );

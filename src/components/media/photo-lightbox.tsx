@@ -55,7 +55,7 @@ export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate 
                                 transition={{ type: "spring", duration: 0.4, bounce: 0 }}
                                 className="relative w-full h-full flex items-center justify-center"
                             >
-                                <Image
+                                <Image unoptimized={true}
                                     src={src}
                                     alt="Preview"
                                     fill

@@ -43,7 +43,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
             {/* Episode still */}
             <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
                 {ep.still || poster ? (
-                    <Image
+                    <Image unoptimized={true}
                         src={ep.still ?? poster!}
                         alt={ep.name}
                         fill
@@ -128,7 +128,7 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
             {/* Episode still */}
             <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
                 {ep.image || poster ? (
-                    <Image
+                    <Image unoptimized={true}
                         src={ep.image ?? poster!}
                         alt={ep.title}
                         fill

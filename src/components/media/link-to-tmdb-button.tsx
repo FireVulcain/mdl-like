@@ -162,12 +162,10 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                             >
                                                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
                                                     {result.poster ? (
-                                                        <Image
+                                                        <Image unoptimized={true}
                                                             src={result.poster}
                                                             alt={result.title}
-                                                            fill
-                                                            unoptimized={true}
-                                                            className="object-cover"
+                                                            fill className="object-cover"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">

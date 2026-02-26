@@ -151,7 +151,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                     <div className="space-y-4 md:sticky md:top-24 md:self-start">
                         <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
                             {person.profile_path ? (
-                                <Image
+                                <Image unoptimized={true}
                                     src={TMDB_CONFIG.w500Image(person.profile_path)}
                                     alt={person.name}
                                     fill
@@ -390,7 +390,7 @@ function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
             <div className="space-y-2">
                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
                     {credit.poster_path ? (
-                        <Image
+                        <Image unoptimized={true}
                             src={TMDB_CONFIG.w500Image(credit.poster_path)}
                             alt={title}
                             fill

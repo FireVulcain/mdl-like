@@ -66,7 +66,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                     className="absolute inset-0"
                 >
                     {(selectedShow.backdrop || selectedShow.poster) && (
-                        <Image
+                        <Image unoptimized={true}
                             src={selectedShow.backdrop || selectedShow.poster}
                             alt={selectedShow.title ?? ""}
                             fill
@@ -184,7 +184,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                             isSelected ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-[#0a0a0f]" : "opacity-60 hover:opacity-100"
                                         }`}
                                     >
-                                        <Image src={show.backdrop || show.poster} alt={show.title ?? ""} fill className="object-cover" />
+                                        <Image unoptimized={true} src={show.backdrop || show.poster} alt={show.title ?? ""} fill className="object-cover" />
                                         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
                                         {/* Title overlay */}

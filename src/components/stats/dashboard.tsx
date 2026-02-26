@@ -159,7 +159,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                             >
                                                 <div className="relative aspect-video rounded-lg overflow-hidden bg-black/20">
                                                     {(show.backdrop || show.poster) && (
-                                                        <Image
+                                                        <Image unoptimized={true}
                                                             src={show.backdrop || show.poster}
                                                             alt={show.title}
                                                             fill

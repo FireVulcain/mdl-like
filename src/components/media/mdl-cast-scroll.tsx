@@ -39,12 +39,10 @@ function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number })
         <div className="flex-none w-25 space-y-2 group cursor-pointer">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                 {actor.profileImage ? (
-                    <Image
+                    <Image unoptimized={true}
                         src={actor.profileImage}
                         alt={actor.name}
-                        fill
-                        unoptimized={true}
-                        className="object-cover opacity-0 transition-opacity duration-700 ease-out"
+                        fill className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                         loading="lazy"
                         onLoad={(e) => {
                             const img = e.currentTarget;
@@ -150,12 +148,10 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                             <Link key={actor.id} href={`/cast/${actor.id}`} className="flex-none w-25 space-y-2 group">
                                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                                     {actor.profile ? (
-                                        <Image
+                                        <Image unoptimized={true}
                                             src={actor.profile}
                                             alt={actor.name}
-                                            fill
-                                            unoptimized={true}
-                                            className="object-cover opacity-0 transition-opacity duration-700 ease-out"
+                                            fill className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                             loading="lazy"
                                             onLoad={(e) => {
                                                 const img = e.currentTarget;

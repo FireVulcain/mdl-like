@@ -10,10 +10,25 @@ import { cn } from "@/lib/utils";
 
 // All filterable action types with their display config
 const FILTER_OPTIONS = [
-    { action: ActivityAction.PROGRESS, label: "Watched", color: "text-violet-400", activeClass: "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" },
+    {
+        action: ActivityAction.PROGRESS,
+        label: "Watched",
+        color: "text-violet-400",
+        activeClass: "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30",
+    },
     { action: ActivityAction.ADDED, label: "Added", color: "text-blue-400", activeClass: "bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30" },
-    { action: ActivityAction.SCORED, label: "Rated", color: "text-yellow-400", activeClass: "bg-yellow-500/20 text-yellow-400 ring-1 ring-yellow-500/30" },
-    { action: ActivityAction.STATUS_CHANGED, label: "Status", color: "text-amber-400", activeClass: "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30" },
+    {
+        action: ActivityAction.SCORED,
+        label: "Rated",
+        color: "text-yellow-400",
+        activeClass: "bg-yellow-500/20 text-yellow-400 ring-1 ring-yellow-500/30",
+    },
+    {
+        action: ActivityAction.STATUS_CHANGED,
+        label: "Status",
+        color: "text-amber-400",
+        activeClass: "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30",
+    },
     { action: ActivityAction.NOTED, label: "Noted", color: "text-slate-400", activeClass: "bg-slate-500/20 text-slate-400 ring-1 ring-slate-500/30" },
     { action: ActivityAction.REMOVED, label: "Removed", color: "text-rose-400", activeClass: "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30" },
 ];
@@ -38,10 +53,7 @@ type Props = {
     initialNextCursor: string | null;
 };
 
-const ACTION_CONFIG: Record<
-    string,
-    { icon: React.ElementType; color: string; label: string }
-> = {
+const ACTION_CONFIG: Record<string, { icon: React.ElementType; color: string; label: string }> = {
     [ActivityAction.ADDED]: { icon: Plus, color: "text-blue-400", label: "Added" },
     [ActivityAction.REMOVED]: { icon: Trash2, color: "text-rose-400", label: "Removed" },
     [ActivityAction.PROGRESS]: { icon: Play, color: "text-violet-400", label: "Watched" },
@@ -107,11 +119,7 @@ function formatRelativeTime(date: Date): string {
 }
 
 function isSameDay(a: Date, b: Date): boolean {
-    return (
-        a.getFullYear() === b.getFullYear() &&
-        a.getMonth() === b.getMonth() &&
-        a.getDate() === b.getDate()
-    );
+    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
 
 function getDateGroupLabel(date: Date): string {
@@ -159,18 +167,16 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
     };
 
     return (
-        <div className={cn("flex items-start gap-3 py-3 px-4 hover:bg-white/3 transition-all group", deleting && "opacity-0 scale-95 pointer-events-none")}>
+        <div
+            className={cn(
+                "flex items-start gap-3 py-3 px-4 hover:bg-white/3 transition-all group",
+                deleting && "opacity-0 scale-95 pointer-events-none",
+            )}
+        >
             {/* Poster */}
             <div className="shrink-0 w-8 h-12 rounded-md overflow-hidden bg-white/5 border border-white/10">
                 {item.poster ? (
-                    <Image
-                        src={item.poster}
-                        alt={item.title}
-                        width={32}
-                        height={48}
-                        className="w-full h-full object-cover"
-                        unoptimized
-                    />
+                    <Image unoptimized={true} src={item.poster} alt={item.title} width={32} height={48} className="w-full h-full object-cover" />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">
                         <Icon className={cn("h-3 w-3", config.color)} />
@@ -187,7 +193,12 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
             <div className="flex-1 min-w-0">
                 <p
                     className="text-sm text-muted-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: text.replace(/<b>(.*?)<\/b>/g, `<a href="${href}" class="font-semibold text-white hover:text-primary transition-colors">$1</a>`) }}
+                    dangerouslySetInnerHTML={{
+                        __html: text.replace(
+                            /<b>(.*?)<\/b>/g,
+                            `<a href="${href}" class="font-semibold text-white hover:text-primary transition-colors">$1</a>`,
+                        ),
+                    }}
                 />
                 {item.isBackfill && (
                     <span className="inline-flex items-center gap-1 mt-0.5 text-xs text-white/25">
@@ -239,12 +250,14 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                 if (!cancelled) setIsLoading(false);
             }
         })();
-        return () => { cancelled = true; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => {
+            cancelled = true;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterActions]);
 
     const toggleFilter = (action: string) => {
-        setFilterActions((prev) => prev.includes(action) ? prev.filter((a) => a !== action) : [...prev, action]);
+        setFilterActions((prev) => (prev.includes(action) ? prev.filter((a) => a !== action) : [...prev, action]));
     };
 
     const handleDelete = useCallback((id: string) => {
@@ -380,9 +393,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
             )}
 
             {!nextCursor && items.length > 0 && (
-                <p className="text-center text-xs text-white/20 pb-8">
-                    You&apos;ve reached the beginning of your history
-                </p>
+                <p className="text-center text-xs text-white/20 pb-8">You&apos;ve reached the beginning of your history</p>
             )}
         </div>
     );

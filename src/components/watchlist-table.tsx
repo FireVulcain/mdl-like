@@ -886,7 +886,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         {/* Background Image */}
                                         <div className="absolute inset-0">
                                             {first.backdrop || first.poster ? (
-                                                <Image
+                                                <Image unoptimized={true}
                                                     src={first.backdrop || first.poster!}
                                                     alt=""
                                                     fill
@@ -1051,7 +1051,7 @@ const ItemCard = memo(function ItemCard({
             <div className="absolute inset-0 -z-10">
                 {(item.backdrop || item.poster) && !isChild ? (
                     <>
-                        <Image
+                        <Image unoptimized={true}
                             src={item.backdrop || item.poster!}
                             alt=""
                             fill
@@ -1077,7 +1077,7 @@ const ItemCard = memo(function ItemCard({
                     }`}
                 >
                     {item.backdrop || item.poster ? (
-                        <Image
+                        <Image unoptimized={true}
                             src={item.backdrop || item.poster!}
                             alt={item.title || ""}
                             fill

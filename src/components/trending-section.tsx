@@ -52,7 +52,7 @@ export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
             >
                 {/* Background Image / Backdrop */}
                 <div className="absolute inset-0">
-                    <Image
+                    <Image unoptimized={true}
                         src={spotlight.backdrop || spotlight.poster || ""}
                         alt={spotlight.title}
                         fill

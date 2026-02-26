@@ -16,7 +16,7 @@ export function PersonCard({ person, className }: PersonCardProps) {
             <Card className="overflow-hidden border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
                 <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md bg-secondary">
                     {person.profileImage ? (
-                        <Image
+                        <Image unoptimized={true}
                             src={person.profileImage}
                             alt={person.name}
                             fill

@@ -131,7 +131,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                                             >
                                                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
                                                     {drama.thumb ? (
-                                                        <Image src={drama.thumb} alt={drama.title} fill unoptimized={true} className="object-cover" />
+                                                        <Image unoptimized={true} src={drama.thumb} alt={drama.title} fill className="object-cover" />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
                                                             No Image

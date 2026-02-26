@@ -28,12 +28,10 @@ export function MediaCard({
             <Card className="overflow-hidden border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
                     {media.poster ? (
-                        <Image
+                        <Image unoptimized={true}
                             src={media.poster}
                             alt={media.title}
-                            fill
-                            unoptimized={true}
-                            className="object-cover transition-opacity duration-300 group-hover:opacity-80"
+                            fill className="object-cover transition-opacity duration-300 group-hover:opacity-80"
                             sizes={sizes}
                         />
                     ) : (

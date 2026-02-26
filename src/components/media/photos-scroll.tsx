@@ -41,7 +41,7 @@ export function PhotosScroll({ backdrops, mediaId }: PhotosScrollProps) {
                             onClick={() => setLightboxIndex(index)}
                         >
                             <div className="relative aspect-video w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer group">
-                                <Image
+                                <Image unoptimized={true}
                                     src={src}
                                     alt={`Photo ${index + 1}`}
                                     fill

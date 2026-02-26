@@ -89,7 +89,7 @@ export function PublicActivityFeed({ items }: { items: ActivityEntry[] }) {
                         {entry.poster ? (
                             <Link href={mediaHref} className="shrink-0">
                                 <div className="relative h-8 w-14 rounded overflow-hidden">
-                                    <Image src={entry.poster} alt={entry.title} fill className="object-cover" sizes="56px" />
+                                    <Image unoptimized={true} src={entry.poster} alt={entry.title} fill className="object-cover" sizes="56px" />
                                 </div>
                             </Link>
                         ) : (

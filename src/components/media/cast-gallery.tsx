@@ -25,12 +25,10 @@ export function CastGallery({ cast }: CastGalleryProps) {
                 <Link key={actor.id} href={`/cast/${actor.id}`} className="space-y-3 group block">
                     <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
                         {actor.profile ? (
-                            <Image
+                            <Image unoptimized={true}
                                 src={actor.profile}
                                 alt={actor.name}
-                                fill
-                                unoptimized={true}
-                                className="object-cover opacity-0 transition-opacity duration-700 ease-out"
+                                fill className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                 loading="lazy"
                                 onLoad={(e) => {
                                     const img = e.currentTarget;

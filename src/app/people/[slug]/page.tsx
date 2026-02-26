@@ -40,12 +40,10 @@ async function MdlDramaPoster({ mdlSlug }: { mdlSlug: string }) {
         return <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>;
     }
     return (
-        <Image
+        <Image unoptimized={true}
             src={poster}
             alt="poster"
-            fill
-            unoptimized={true}
-            className="object-cover"
+            fill className="object-cover"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
         />
     );
@@ -79,12 +77,10 @@ function WorkCard({
         <div className="space-y-2">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-linear-to-br from-gray-800 to-gray-900 shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
                 {poster ? (
-                    <Image
+                    <Image unoptimized={true}
                         src={poster}
                         alt={title}
-                        fill
-                        unoptimized={true}
-                        className="object-cover"
+                        fill className="object-cover"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                     />
                 ) : posterSlug ? (
