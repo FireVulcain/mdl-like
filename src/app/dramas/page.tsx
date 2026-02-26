@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
 import { mediaService } from "@/services/media.service";
+import { getMdlRatingsForTmdbIds } from "@/actions/person";
 
 type SearchParams = Promise<{
     category?: string;
@@ -106,6 +107,10 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         page,
     });
 
+    const tmdbIdsToFetch = items.filter((item) => item.id.startsWith("tmdb-")).map((item) => item.externalId);
+
+    const mdlRatingsMap = await getMdlRatingsForTmdbIds(tmdbIdsToFetch);
+
     const baseParams: Record<string, string> = { category, country, sort, genres: genresParam };
     if (year) baseParams.year = year;
     baseParams.page = page.toString();
@@ -169,6 +174,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                     <MediaCard
                                         key={media.id}
                                         media={media}
+                                        mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
                                         sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 33vw, 25vw"
                                     />
                                 ))}
@@ -211,7 +217,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                             >
                                                 {p}
                                             </Link>
-                                        ),
+                                        )
                                     )}
                                 </div>
 
@@ -309,7 +315,9 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                         <div className="mt-1 space-y-0.5">
                                             <Link
                                                 href={buildUrl(baseParams, { year: null, page: "1" })}
-                                                className={`flex px-3 py-1.5 rounded-lg text-xs transition-all ${!year ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                                                className={`flex px-3 py-1.5 rounded-lg text-xs transition-all ${
+                                                    !year ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                }`}
                                             >
                                                 All time
                                             </Link>
@@ -317,7 +325,11 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 <Link
                                                     key={y}
                                                     href={buildUrl(baseParams, { year: y.toString(), page: "1" })}
-                                                    className={`flex px-3 py-1.5 rounded-lg text-xs transition-all ${year === y.toString() ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                                                    className={`flex px-3 py-1.5 rounded-lg text-xs transition-all ${
+                                                        year === y.toString()
+                                                            ? "bg-white/8 text-white"
+                                                            : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                    }`}
                                                 >
                                                     {y}
                                                 </Link>
@@ -336,11 +348,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             const isNonDefault = nonDefaultSelected.length > 0 || selectedGenres.length === 0;
                             const activeLabels = TMDB_GENRES.filter((g) => selectedGenres.includes(g.id)).map((g) => g.label);
                             const summaryLabel =
-                                activeLabels.length === 0
-                                    ? "Any"
-                                    : activeLabels.length === 1
-                                      ? activeLabels[0]
-                                      : `${activeLabels.length} genres`;
+                                activeLabels.length === 0 ? "Any" : activeLabels.length === 1 ? activeLabels[0] : `${activeLabels.length} genres`;
                             return (
                                 <div className="space-y-1.5">
                                     <div className="flex items-center justify-between">

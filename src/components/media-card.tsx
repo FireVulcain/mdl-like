@@ -6,14 +6,23 @@ import { cn } from "@/lib/utils";
 import { UnifiedMedia } from "@/services/media.service";
 import Image from "next/image";
 
+import { Star } from "lucide-react";
+
 interface MediaCardProps {
     media: UnifiedMedia;
     className?: string;
     overlay?: React.ReactNode;
     sizes?: string;
+    mdlRating?: number;
 }
 
-export function MediaCard({ media, className, overlay, sizes = "(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw" }: MediaCardProps) {
+export function MediaCard({
+    media,
+    className,
+    overlay,
+    sizes = "(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw",
+    mdlRating,
+}: MediaCardProps) {
     return (
         <Link href={`/media/${media.id}`} className={cn("group block", className)}>
             <Card className="overflow-hidden border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
@@ -36,11 +45,21 @@ export function MediaCard({ media, className, overlay, sizes = "(max-width: 768p
                             {media.originCountry}
                         </Badge>
                     </div>
-                    {media.rating > 0 && (
-                        <div className="absolute left-2 top-2">
-                            <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500">
-                                {media.rating.toFixed(1)}
-                            </Badge>
+                    {/* Rating Badges */}
+                    {(media.rating > 0 || (mdlRating != null && mdlRating > 0)) && (
+                        <div className="absolute left-2 top-2 flex flex-row gap-1">
+                            {media.rating > 0 && (
+                                <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500 text-xs px-1.5 flex items-center">
+                                    <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                    {media.rating.toFixed(1)}
+                                </Badge>
+                            )}
+                            {mdlRating != null && mdlRating > 0 && (
+                                <Badge variant="default" className="bg-sky-500/90 text-white hover:bg-sky-500 text-xs px-1.5 flex items-center">
+                                    <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                    {mdlRating.toFixed(1)}
+                                </Badge>
+                            )}
                         </div>
                     )}
                     {overlay}
