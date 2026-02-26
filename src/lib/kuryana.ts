@@ -15,7 +15,12 @@ export interface KuryanaSearchResult {
     query: string;
     results: {
         dramas: KuryanaDrama[];
-        people: unknown[];
+        people: {
+            slug: string;
+            thumb: string;
+            name: string;
+            nationality: string;
+        }[];
     };
     scrape_date: string;
 }
@@ -191,10 +196,10 @@ export async function kuryanaGetReviews(slug: string, page = 1): Promise<Kuryana
 }
 
 export interface KuryanaEpisodeListItem {
-    title: string;    // e.g. "The Prisoner of Beauty Episode 1"
+    title: string; // e.g. "The Prisoner of Beauty Episode 1"
     image: string;
-    link: string;     // e.g. ".../episode/1"
-    rating: string;   // e.g. "9.3/10 from 233 users"
+    link: string; // e.g. ".../episode/1"
+    rating: string; // e.g. "9.3/10 from 233 users"
     air_date: string;
 }
 

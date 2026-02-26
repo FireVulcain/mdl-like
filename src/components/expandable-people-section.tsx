@@ -24,7 +24,12 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
             <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex gap-4 pt-1 pb-3">
                     {people.map((person) => (
-                        <Link key={person.id} href={`/cast/${person.externalId}`} className="flex-none w-28 text-center group space-y-2">
+                        <Link
+                            key={person.id}
+                            href={person.source === "MDL" ? `/${person.externalId}` : `/cast/${person.externalId}`}
+                            className="flex-none w-28 text-center group space-y-2"
+                        >
+                            {" "}
                             <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-purple-500/50 transition-all shadow-lg bg-secondary">
                                 {person.profileImage ? (
                                     <Image src={person.profileImage} alt={person.name} fill className="object-cover" sizes="80px" />

@@ -1,5 +1,7 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
+import { kuryanaSearch } from "@/lib/kuryana";
+import { prisma } from "@/lib/prisma";
 
 export type UnifiedMedia = {
     id: string; // Unified: "tmdb-123" or "mdl-456"
@@ -59,6 +61,7 @@ export type UnifiedMedia = {
 export type UnifiedPerson = {
     id: string; // "person-123"
     externalId: string;
+    source?: "TMDB" | "MDL";
     name: string;
     profileImage: string | null;
     knownForDepartment: string;
@@ -78,8 +81,8 @@ export type SearchResults = {
 
 export const mediaService = {
     async search(query: string): Promise<SearchResults> {
-        // Primary Source: TMDB
-        const tmdbResults = await tmdb.searchMulti(query);
+        // Fetch from TMDB and Kuryana in parallel
+        const [tmdbResults, kuryanaResults] = await Promise.all([tmdb.searchMulti(query), kuryanaSearch(query).catch(() => null)]);
 
         // Transform TMDB media results
         const mediaResults: UnifiedMedia[] = tmdbResults.results
@@ -119,9 +122,42 @@ export const mediaService = {
             }))
             .sort((a, b) => b.popularity - a.popularity);
 
-        // TODO: Implement MDL search and deduplication logic here
+        // Transform Kuryana person results
+        const kuryanaPeople: UnifiedPerson[] = (kuryanaResults?.results.people || []).map((person) => ({
+            id: `mdl-${person.slug}`,
+            externalId: person.slug, // e.g. "people/3014-park-hyung-shik"
+            source: "MDL",
+            name: person.name,
+            profileImage: person.thumb,
+            knownForDepartment: "Acting", // Default for MDL
+            popularity: 1000, // Arbitrary high popularity so they stand out if needed
+            knownFor: [],
+        }));
 
-        return { media: mediaResults, people: peopleResults };
+        // Prepend Kuryana people before TMDB people — deduplicating linked TMDB results
+        let filteredTmdbPeople = peopleResults;
+
+        if (kuryanaPeople.length > 0) {
+            // 1. Database Link Deduplication (if they've been cached before)
+            const kuryanaSlugs = kuryanaPeople.map((p) => p.externalId);
+            const linkedData = await prisma.cachedMdlData.findMany({
+                where: { mdlSlug: { in: kuryanaSlugs } },
+                select: { tmdbExternalId: true },
+            });
+
+            const linkedTmdbIds = new Set(linkedData.map((d) => d.tmdbExternalId));
+
+            // 2. Name deduplication fallback (case-insensitive & ignoring spaces/hyphens)
+            const normalizeName = (name: string) => name.replace(/[\W_]+/g, "").toLowerCase();
+            const kuryanaNames = new Set(kuryanaPeople.map((p) => normalizeName(p.name)));
+
+            // Filter out TMDB results that are either linked in DB or have the exact same normalized name
+            filteredTmdbPeople = peopleResults.filter((p) => !linkedTmdbIds.has(p.externalId) && !kuryanaNames.has(normalizeName(p.name)));
+        }
+
+        const mergedPeople = [...kuryanaPeople, ...filteredTmdbPeople];
+
+        return { media: mediaResults, people: mergedPeople };
     },
 
     async getDetails(id: string): Promise<UnifiedMedia | null> {
