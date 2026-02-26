@@ -32,6 +32,7 @@ export function MediaCard({
                             src={media.poster}
                             alt={media.title}
                             fill
+                            unoptimized={true}
                             className="object-cover transition-opacity duration-300 group-hover:opacity-80"
                             sizes={sizes}
                         />

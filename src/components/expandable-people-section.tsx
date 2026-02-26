@@ -32,7 +32,14 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                             {" "}
                             <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-purple-500/50 transition-all shadow-lg bg-secondary">
                                 {person.profileImage ? (
-                                    <Image src={person.profileImage} alt={person.name} fill className="object-cover" sizes="80px" />
+                                    <Image
+                                        src={person.profileImage}
+                                        alt={person.name}
+                                        fill
+                                        unoptimized={true}
+                                        className="object-cover"
+                                        sizes="80px"
+                                    />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">No Image</div>
                                 )}

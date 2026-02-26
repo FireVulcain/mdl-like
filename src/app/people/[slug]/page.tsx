@@ -39,7 +39,16 @@ async function MdlDramaPoster({ mdlSlug }: { mdlSlug: string }) {
     if (!poster) {
         return <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>;
     }
-    return <Image src={poster} alt="poster" fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" />;
+    return (
+        <Image
+            src={poster}
+            alt="poster"
+            fill
+            unoptimized={true}
+            className="object-cover"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+        />
+    );
 }
 
 // Max concurrent Kuryana poster fetches — beyond this, unlinked cards show "No Image" statically
@@ -70,7 +79,14 @@ function WorkCard({
         <div className="space-y-2">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-linear-to-br from-gray-800 to-gray-900 shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
                 {poster ? (
-                    <Image src={poster} alt={title} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" />
+                    <Image
+                        src={poster}
+                        alt={title}
+                        fill
+                        unoptimized={true}
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                    />
                 ) : posterSlug ? (
                     <Suspense
                         fallback={

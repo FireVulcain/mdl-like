@@ -14,6 +14,7 @@ export function MdlPersonImage({ src, alt }: Props) {
                 src={src}
                 alt={alt}
                 fill
+                unoptimized={true}
                 className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                 priority
                 onLoad={(e) => {
@@ -24,7 +25,7 @@ export function MdlPersonImage({ src, alt }: Props) {
                         container?.classList.remove(
                             "animate-shimmer",
                             "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
-                            "bg-size-[200%_100%]",
+                            "bg-size-[200%_100%]"
                         );
                     }, 100);
                 }}
