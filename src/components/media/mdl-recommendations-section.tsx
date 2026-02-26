@@ -49,7 +49,12 @@ export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, 
     }
 
     if ((!tmdbRecs || tmdbRecs.length === 0) && (!mdlRecs || mdlRecs.length === 0)) {
-        return null;
+        return (
+            <div>
+                <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
+                <div className="text-center py-12 text-gray-400">No recommendations available.</div>
+            </div>
+        );
     }
 
     return <RecommendationsWithToggle tmdbRecs={tmdbRecs} mdlRecs={mdlRecs} watchlistIds={watchlistIds} linkedMap={linkedMap} />;

@@ -1,26 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { PersonCard } from "@/components/person-card";
+import Link from "next/link";
+import Image from "next/image";
 import { UnifiedPerson } from "@/services/media.service";
-import { Users, ChevronDown, ChevronUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Users } from "lucide-react";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
 
 interface ExpandablePeopleSectionProps {
     people: UnifiedPerson[];
 }
 
-// Show 6 items per row on xl screens (matches the grid)
-const INITIAL_COUNT = 6;
-
 export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps) {
-    const [expanded, setExpanded] = useState(false);
-
-    const displayedPeople = expanded ? people : people.slice(0, INITIAL_COUNT);
-    const hasMore = people.length > INITIAL_COUNT;
-
     return (
-        <section className="space-y-4">
+        <section className="space-y-3">
             <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full" />
                 <Users className="h-5 w-5 text-purple-400" />
@@ -28,30 +21,30 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                 <span className="text-sm text-muted-foreground">({people.length})</span>
                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                {displayedPeople.map((person) => (
-                    <PersonCard key={person.id} person={person} />
-                ))}
-            </div>
-            {hasMore && (
-                <Button
-                    variant="ghost"
-                    className="w-full text-muted-foreground hover:text-foreground"
-                    onClick={() => setExpanded(!expanded)}
-                >
-                    {expanded ? (
-                        <>
-                            <ChevronUp className="h-4 w-4 mr-2" />
-                            Show less
-                        </>
-                    ) : (
-                        <>
-                            <ChevronDown className="h-4 w-4 mr-2" />
-                            Show {people.length - INITIAL_COUNT} more people
-                        </>
-                    )}
-                </Button>
-            )}
+            <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
+                <div className="flex gap-4 pt-1 pb-3">
+                    {people.map((person) => (
+                        <Link key={person.id} href={`/cast/${person.externalId}`} className="flex-none w-28 text-center group space-y-2">
+                            <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-purple-500/50 transition-all shadow-lg bg-secondary">
+                                {person.profileImage ? (
+                                    <Image src={person.profileImage} alt={person.name} fill className="object-cover" sizes="80px" />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">No Image</div>
+                                )}
+                            </div>
+                            <div className="whitespace-normal">
+                                <p className="text-sm font-medium leading-tight text-foreground group-hover:text-purple-400 transition-colors line-clamp-1">
+                                    {person.name}
+                                </p>
+                                <Badge variant="secondary" className="mt-1 text-[10px] bg-white/10 text-gray-400 border-white/10">
+                                    {person.knownForDepartment}
+                                </Badge>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
         </section>
     );
 }

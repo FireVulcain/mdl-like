@@ -63,23 +63,27 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
             </div>
 
             {source === "tmdb" || !hasMdl ? (
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
-                    {tmdbRecs.map((item) => (
-                        <MediaCard
-                            key={item.id}
-                            media={item}
-                            overlay={
-                                watchlistSet.has(item.externalId) ? (
-                                    <div className="absolute bottom-2 left-2">
-                                        <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                            <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                        </span>
-                                    </div>
-                                ) : null
-                            }
-                        />
-                    ))}
-                </div>
+                tmdbRecs.length > 0 ? (
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
+                        {tmdbRecs.map((item) => (
+                            <MediaCard
+                                key={item.id}
+                                media={item}
+                                overlay={
+                                    watchlistSet.has(item.externalId) ? (
+                                        <div className="absolute bottom-2 left-2">
+                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                            </span>
+                                        </div>
+                                    ) : null
+                                }
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-12 text-gray-400">No recommendations available via TMDB.</div>
+                )
             ) : (
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
                     {mdlRecs.slice(0, 6).map((item) => {

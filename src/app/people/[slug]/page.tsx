@@ -52,6 +52,7 @@ function WorkCard({
     posterSlug,
     linkSlug,
     inWatchlist,
+    mdlRating,
 }: {
     work: KuryanaWorkItem;
     internalLink: string | null;
@@ -59,6 +60,7 @@ function WorkCard({
     posterSlug: string | null; // budget-capped: drives the Kuryana poster Suspense
     linkSlug: string | null; // always set: drives the Link button
     inWatchlist: boolean;
+    mdlRating?: number | null;
 }) {
     const title = work.title.name;
     const year = typeof work.year === "number" ? work.year : "TBA";
@@ -81,12 +83,20 @@ function WorkCard({
                     <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>
                 )}
 
-                {work.rating > 0 && (
-                    <div className="absolute left-1.5 top-1.5">
-                        <Badge className="bg-yellow-500/90 text-black text-[10px] px-1.5">
-                            <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
-                            {work.rating.toFixed(1)}
-                        </Badge>
+                {(work.rating > 0 || (mdlRating != null && mdlRating > 0)) && (
+                    <div className="absolute left-1.5 top-1.5 flex flex-row gap-1">
+                        {work.rating > 0 && (
+                            <Badge className="bg-yellow-500/90 text-black text-[10px] px-1.5">
+                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                {work.rating.toFixed(1)}
+                            </Badge>
+                        )}
+                        {mdlRating != null && mdlRating > 0 && (
+                            <Badge className="bg-sky-500/90 text-white text-[10px] px-1.5">
+                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                {mdlRating.toFixed(1)}
+                            </Badge>
+                        )}
                     </div>
                 )}
 
@@ -175,14 +185,16 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         mdlIds.length > 0
             ? await prisma.cachedMdlData.findMany({
                   where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
-                  select: { mdlSlug: true, tmdbExternalId: true },
+                  select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true },
               })
             : [];
 
     const mdlToTmdb = new Map<string, string>(); // numericMdlId → tmdbExternalId
+    const mdlRatingMap = new Map<string, number>(); // numericMdlId → mdlRating
     for (const item of cached) {
         const numericId = item.mdlSlug.split("-")[0];
         mdlToTmdb.set(numericId, item.tmdbExternalId);
+        if (item.mdlRating != null) mdlRatingMap.set(numericId, item.mdlRating);
     }
 
     // Batch-fetch TMDB posters for linked works (server-side, cached 1h by Next.js)
@@ -225,7 +237,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
     function getPoster(work: KuryanaWorkItem): string | null {
         const id = extractMdlId(work._slug);
-        return id ? (posterMap.get(id) ?? null) : null;
+        return id ? posterMap.get(id) ?? null : null;
     }
 
     function getInternalLink(work: KuryanaWorkItem): string | null {
@@ -252,6 +264,12 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         if (!id) return false;
         const tmdbId = mdlToTmdb.get(id);
         return tmdbId ? watchlistIds.has(tmdbId) : false;
+    }
+
+    function getCachedMdlRating(work: KuryanaWorkItem): number | null {
+        const id = extractMdlId(work._slug);
+        if (!id) return null;
+        return mdlRatingMap.get(id) ?? null;
     }
 
     const bio = data.about
@@ -394,6 +412,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             posterSlug={getMdlSlugForCard(work)}
                                             linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
+                                            mdlRating={getCachedMdlRating(work)}
                                         />
                                     ))}
                                 </div>
@@ -419,6 +438,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             posterSlug={getMdlSlugForCard(work)}
                                             linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
+                                            mdlRating={getCachedMdlRating(work)}
                                         />
                                     ))}
                                 </div>
@@ -444,6 +464,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             posterSlug={getMdlSlugForCard(work)}
                                             linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
+                                            mdlRating={getCachedMdlRating(work)}
                                         />
                                     ))}
                                 </div>

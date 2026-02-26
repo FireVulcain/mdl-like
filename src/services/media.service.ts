@@ -447,7 +447,7 @@ export const mediaService = {
                 source: "TMDB",
                 type: "TV",
                 title: item.name || "Unknown",
-                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : (posterOverride ?? null),
+                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : posterOverride ?? null,
                 backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
                 year: (item.first_air_date || "").split("-")[0],
                 originCountry: "KR",
@@ -465,7 +465,7 @@ export const mediaService = {
                     missingPosters.map(async (item) => {
                         const poster = await tvmaze.getPosterByName(item.name || "");
                         if (poster) upcomingPosterOverrides.set(item.id, poster);
-                    }),
+                    })
                 );
             }
 

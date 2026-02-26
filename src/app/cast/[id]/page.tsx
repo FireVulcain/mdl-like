@@ -7,7 +7,7 @@ import { use, useEffect, useState } from "react";
 import { ArrowLeft, Star, Film, Tv, Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { TMDBPerson, TMDBPersonCredits } from "@/lib/tmdb";
-import { getPersonData } from "@/actions/person";
+import { getPersonData, getMdlRatingsForTmdbIds } from "@/actions/person";
 import { getWatchlistExternalIds } from "@/actions/user-media";
 
 function getGenderLabel(gender: number): string {
@@ -50,6 +50,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
     const [person, setPerson] = useState<TMDBPerson | null>(null);
     const [credits, setCredits] = useState<TMDBPersonCredits | null>(null);
     const [watchlistIds, setWatchlistIds] = useState<Set<string>>(new Set());
+    const [mdlRatings, setMdlRatings] = useState<Record<string, number>>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -64,6 +65,12 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                 setPerson(data.person);
                 setCredits(data.credits);
                 setWatchlistIds(new Set(watchlistExternalIds));
+                // Batch-fetch MDL ratings for all credits
+                if (data.credits?.cast) {
+                    const tmdbIds = [...new Set(data.credits.cast.map((c) => String(c.id)))];
+                    const ratings = await getMdlRatingsForTmdbIds(tmdbIds);
+                    setMdlRatings(ratings);
+                }
                 if (!data.person) {
                     setError(true);
                 }
@@ -158,7 +165,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                             container?.classList.remove(
                                                 "animate-shimmer",
                                                 "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
-                                                "bg-size-[200%_100%]",
+                                                "bg-size-[200%_100%]"
                                             );
                                         }, 100);
                                     }}
@@ -290,6 +297,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                             key={`series-${credit.id}-${credit.character}`}
                                             credit={credit}
                                             inWatchlist={watchlistIds.has(String(credit.id))}
+                                            mdlRating={mdlRatings[String(credit.id)]}
                                         />
                                     ))}
                                 </div>
@@ -313,6 +321,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                             key={`movie-${credit.id}-${credit.character}`}
                                             credit={credit}
                                             inWatchlist={watchlistIds.has(String(credit.id))}
+                                            mdlRating={mdlRatings[String(credit.id)]}
                                         />
                                     ))}
                                 </div>
@@ -367,9 +376,10 @@ interface CreditCardProps {
         origin_country?: string[];
     };
     inWatchlist?: boolean;
+    mdlRating?: number;
 }
 
-function CreditCard({ credit, inWatchlist }: CreditCardProps) {
+function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
     const title = credit.title || credit.name || "Unknown";
     const year = (credit.release_date || credit.first_air_date || "").slice(0, 4);
     const mediaId = `tmdb-${credit.id}`;
@@ -394,7 +404,7 @@ function CreditCard({ credit, inWatchlist }: CreditCardProps) {
                                     container?.classList.remove(
                                         "animate-shimmer",
                                         "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
-                                        "bg-size-[200%_100%]",
+                                        "bg-size-[200%_100%]"
                                     );
                                 }, 100);
                             }}
@@ -405,13 +415,21 @@ function CreditCard({ credit, inWatchlist }: CreditCardProps) {
                         </div>
                     )}
 
-                    {/* Rating Badge */}
-                    {credit.vote_average > 0 && (
-                        <div className="absolute left-2 top-2">
-                            <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500 text-xs">
-                                <Star className="h-3 w-3 mr-1 fill-current" />
-                                {credit.vote_average.toFixed(1)}
-                            </Badge>
+                    {/* Rating Badges */}
+                    {(credit.vote_average > 0 || mdlRating) && (
+                        <div className="absolute left-2 top-2 flex flex-row gap-1">
+                            {credit.vote_average > 0 && (
+                                <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500 text-xs">
+                                    <Star className="h-3 w-3 mr-1 fill-current" />
+                                    {credit.vote_average.toFixed(1)}
+                                </Badge>
+                            )}
+                            {mdlRating && (
+                                <Badge variant="default" className="bg-sky-500/90 text-white hover:bg-sky-500 text-xs">
+                                    <Star className="h-3 w-3 mr-1 fill-current" />
+                                    {mdlRating.toFixed(1)}
+                                </Badge>
+                            )}
                         </div>
                     )}
 
