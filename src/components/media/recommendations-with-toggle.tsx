@@ -45,9 +45,7 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                         <button
                             onClick={() => setSource("mdl")}
                             className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                                source === "mdl"
-                                    ? "bg-primary/20 text-white border border-primary/30"
-                                    : "text-gray-400 hover:text-white"
+                                source === "mdl" ? "bg-primary/20 text-white border border-primary/30" : "text-gray-400 hover:text-white"
                             }`}
                         >
                             MDL
@@ -55,9 +53,7 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                         <button
                             onClick={() => setSource("tmdb")}
                             className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                                source === "tmdb"
-                                    ? "bg-primary/20 text-white border border-primary/30"
-                                    : "text-gray-400 hover:text-white"
+                                source === "tmdb" ? "bg-primary/20 text-white border border-primary/30" : "text-gray-400 hover:text-white"
                             }`}
                         >
                             TMDB
@@ -91,18 +87,13 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                         const tmdbId = localLinkedMap[slug];
 
                         if (tmdbId) {
-                            // Already linked → internal navigation
                             return (
-                                <Link
-                                    key={item.url}
-                                    href={`/media/tmdb-${tmdbId}`}
-                                    className="group block"
-                                >
+                                <Link key={item.url} href={`/media/tmdb-${tmdbId}`} className="group block">
                                     <div className="border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
                                         <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
-                                                src={item.img.replace("_4t.", "_4f.")}
+                                                src={item.img}
                                                 alt={item.title}
                                                 className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
                                                 loading="lazy"

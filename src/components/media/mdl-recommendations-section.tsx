@@ -36,7 +36,7 @@ export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, 
     }
 
     // Batch-check which MDL rec slugs are already linked to a TMDB entry
-    let linkedMap: Record<string, string> = {};
+    const linkedMap: Record<string, string> = {};
     if (mdlRecs && mdlRecs.length > 0) {
         const slugs = mdlRecs.map((r) => r.url.replace(/^\//, ""));
         const linked = await prisma.cachedMdlData.findMany({
@@ -48,12 +48,9 @@ export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, 
         }
     }
 
-    return (
-        <RecommendationsWithToggle
-            tmdbRecs={tmdbRecs}
-            mdlRecs={mdlRecs}
-            watchlistIds={watchlistIds}
-            linkedMap={linkedMap}
-        />
-    );
+    if ((!tmdbRecs || tmdbRecs.length === 0) && (!mdlRecs || mdlRecs.length === 0)) {
+        return null;
+    }
+
+    return <RecommendationsWithToggle tmdbRecs={tmdbRecs} mdlRecs={mdlRecs} watchlistIds={watchlistIds} linkedMap={linkedMap} />;
 }

@@ -79,10 +79,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
 
     // Parallel fetch: userMedia and watchlist IDs — MDL streams in separately via Suspense
-    const [userId, watchlistExternalIds] = await Promise.all([
-        getCurrentUserId(),
-        getWatchlistExternalIds(),
-    ]);
+    const [userId, watchlistExternalIds] = await Promise.all([getCurrentUserId(), getWatchlistExternalIds()]);
     const userMedia = await getUserMedia(userId, media.externalId, media.source, selectedSeason);
     const watchlistIds = new Set(watchlistExternalIds);
 
@@ -95,7 +92,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             <div className="relative h-[50vh] w-full overflow-hidden">
                 {media.backdrop ? (
                     <>
-                        <Image src={media.backdrop.replace("/t/p/w1280/", "/t/p/original/")} alt={media.title} fill className="object-cover" priority />
+                        <Image
+                            src={media.backdrop.replace("/t/p/w1280/", "/t/p/original/")}
+                            alt={media.title}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
                         {/* Top gradient for header readability on bright images */}
                         <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/60 via-black/30 to-transparent" />
                         {/* Overlay gradient for better text readability */}
@@ -111,7 +114,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Poster & Actions */}
                 <div className="space-y-4">
                     <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
-                        {(currentSeasonData?.poster || media.poster) ? (
+                        {currentSeasonData?.poster || media.poster ? (
                             <Image src={currentSeasonData?.poster ?? media.poster!} alt={media.title} fill className="object-cover" priority />
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
@@ -120,7 +123,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         )}
                         {isMdlRelevant && (
                             <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
-                                <MdlPosterLink externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
+                                <MdlPosterLink
+                                    externalId={media.externalId}
+                                    title={media.title}
+                                    year={media.year}
+                                    nativeTitle={media.nativeTitle}
+                                    season={selectedSeason}
+                                />
                             </Suspense>
                         )}
                     </div>
@@ -197,7 +206,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         </>
                                     }
                                 >
-                                    <MdlRankRow externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
+                                    <MdlRankRow
+                                        externalId={media.externalId}
+                                        title={media.title}
+                                        year={media.year}
+                                        nativeTitle={media.nativeTitle}
+                                        season={selectedSeason}
+                                    />
                                 </Suspense>
                             )}
 
@@ -326,7 +341,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episode Guide" }] : []),
                             ...((media.images?.backdrops?.length ?? 0) > 0 ? [{ id: "section-photos", label: "Photos" }] : []),
                             ...(isMdlRelevant ? [{ id: "section-reviews", label: "Reviews" }] : []),
-                            ...((media.recommendations?.length ?? 0) > 0 ? [{ id: "section-recommendations", label: "Recommendations" }] : []),
+                            { id: "section-recommendations", label: "Recommendations" },
                             ...(isMdlRelevant ? [{ id: "section-comments", label: "Comments" }] : []),
                         ];
                         return <MediaNav sections={navSections} />;
@@ -395,30 +410,40 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {isMdlRelevant && (
                         <div id="section-reviews">
                             <Suspense fallback={null}>
-                                <MdlReviewsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} mediaId={media.id} />
-                            </Suspense>
-                        </div>
-                    )}
-
-                    {/* Recommendations */}
-                    {media.recommendations && media.recommendations.length > 0 && (
-                        <div id="section-recommendations">
-                            <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
-                                <MdlRecommendationsSection
-                                    tmdbRecs={media.recommendations}
+                                <MdlReviewsSection
                                     externalId={media.externalId}
-                                    season={selectedSeason}
-                                    watchlistIds={watchlistExternalIds}
+                                    title={media.title}
+                                    year={media.year}
+                                    nativeTitle={media.nativeTitle}
+                                    mediaId={media.id}
                                 />
                             </Suspense>
                         </div>
                     )}
 
+                    {/* Recommendations */}
+                    <div id="section-recommendations">
+                        <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
+                            <MdlRecommendationsSection
+                                tmdbRecs={media.recommendations || []}
+                                externalId={media.externalId}
+                                season={selectedSeason}
+                                watchlistIds={watchlistExternalIds}
+                            />
+                        </Suspense>
+                    </div>
+
                     {/* MDL Comments */}
                     {isMdlRelevant && (
                         <div id="section-comments">
                             <Suspense fallback={null}>
-                                <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
+                                <MdlThreadsSection
+                                    externalId={media.externalId}
+                                    title={media.title}
+                                    year={media.year}
+                                    nativeTitle={media.nativeTitle}
+                                    season={selectedSeason}
+                                />
                             </Suspense>
                         </div>
                     )}
