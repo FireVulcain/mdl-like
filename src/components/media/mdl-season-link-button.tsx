@@ -75,10 +75,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
 
     return (
         <>
-            <button
-                onClick={handleOpen}
-                className="flex items-center gap-1.5 text-xs text-sky-400/70 hover:text-sky-400 transition-colors"
-            >
+            <button onClick={handleOpen} className="flex items-center gap-1.5 text-xs text-sky-400/70 hover:text-sky-400 transition-colors">
                 <Link2 className="size-3" />
                 Link MDL Season {season}
             </button>
@@ -86,9 +83,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
                     <DialogHeader>
-                        <DialogTitle className="text-white">
-                            Link Season {season} to MDL
-                        </DialogTitle>
+                        <DialogTitle className="text-white">Link Season {season} to MDL</DialogTitle>
                     </DialogHeader>
 
                     {linked ? (
@@ -136,12 +131,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                                             >
                                                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
                                                     {drama.thumb ? (
-                                                        <Image
-                                                            src={drama.thumb}
-                                                            alt={drama.title}
-                                                            fill
-                                                            className="object-cover"
-                                                        />
+                                                        <Image src={drama.thumb} alt={drama.title} fill unoptimized={true} className="object-cover" />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
                                                             No Image
@@ -150,8 +140,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                                                     {drama.ranking && (
                                                         <div className="absolute top-1.5 left-1.5">
                                                             <Badge className="bg-yellow-500/90 text-black text-[10px] px-1.5">
-                                                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
-                                                                #{drama.ranking}
+                                                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />#{drama.ranking}
                                                             </Badge>
                                                         </div>
                                                     )}

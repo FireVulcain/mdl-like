@@ -10,10 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { searchTmdbDramas, createMdlLink, getMdlNativeTitle, TmdbSearchResult } from "@/actions/mdl-link";
 
 interface Props {
-    mdlSlug: string;      // e.g. "687393-the-prisoner-of-beauty"
+    mdlSlug: string; // e.g. "687393-the-prisoner-of-beauty"
     defaultQuery: string; // drama title to pre-fill the search
     onLinked?: (tmdbExternalId: string) => void; // called after a successful link
-    compact?: boolean;    // icon-only button (for image overlay use)
+    compact?: boolean; // icon-only button (for image overlay use)
 }
 
 export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = false }: Props) {
@@ -105,9 +105,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
                     <DialogHeader>
-                        <DialogTitle className="text-white">
-                            Link &ldquo;{defaultQuery}&rdquo; to TMDB
-                        </DialogTitle>
+                        <DialogTitle className="text-white">Link &ldquo;{defaultQuery}&rdquo; to TMDB</DialogTitle>
                     </DialogHeader>
 
                     {linked ? (
@@ -142,9 +140,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                 />
                             </div>
 
-                            {error && (
-                                <p className="text-sm text-red-400">{error}</p>
-                            )}
+                            {error && <p className="text-sm text-red-400">{error}</p>}
 
                             <div className="min-h-[200px]">
                                 {searching || isPending ? (
@@ -170,6 +166,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                                             src={result.poster}
                                                             alt={result.title}
                                                             fill
+                                                            unoptimized={true}
                                                             className="object-cover"
                                                         />
                                                     ) : (
