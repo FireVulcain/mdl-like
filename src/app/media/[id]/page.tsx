@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 import { getUserMedia, getWatchlistExternalIds } from "@/actions/user-media";
 import { updateProgress } from "@/actions/media";
 import { AddToListButton } from "@/components/add-to-list-button";
-import { MediaCard } from "@/components/media-card";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
@@ -17,12 +16,12 @@ import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
 import { MdlEpisodeGuideSection } from "@/components/media/mdl-episode-guide-section";
-import { Bookmark } from "lucide-react";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
 import { Suspense } from "react";
 import { MdlRefetchButton } from "@/components/media/mdl-refetch-button";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
+import { MdlRecommendationsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
 import { WatchProvidersRow } from "@/components/media/watch-providers-row";
@@ -404,24 +403,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* Recommendations */}
                     {media.recommendations && media.recommendations.length > 0 && (
                         <div id="section-recommendations">
-                            <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
-                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
-                                {media.recommendations.map((item) => (
-                                    <MediaCard
-                                        key={item.id}
-                                        media={item}
-                                        overlay={
-                                            watchlistIds.has(item.externalId) ? (
-                                                <div className="absolute bottom-2 left-2">
-                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                    </span>
-                                                </div>
-                                            ) : null
-                                        }
-                                    />
-                                ))}
-                            </div>
+                            <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
+                                <MdlRecommendationsSection
+                                    tmdbRecs={media.recommendations}
+                                    externalId={media.externalId}
+                                    season={selectedSeason}
+                                    watchlistIds={watchlistExternalIds}
+                                />
+                            </Suspense>
                         </div>
                     )}
 

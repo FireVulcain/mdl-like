@@ -44,7 +44,8 @@
       "Bash(xargs ls -ltr)",
       "Bash(ADMIN_EMAIL=user2@test.com ADMIN_PASSWORD=u21PLtp6ucAyTuv0 npx tsx scripts/seed-admin.ts)",
       "Bash(npx tsx -e \":*)",
-      "Bash(npx tsx scripts/_create-user2.ts)"
+      "Bash(npx tsx scripts/_create-user2.ts)",
+      "WebFetch(domain:mdl-scrapper-jade.vercel.app)"
     ]
   }
 }

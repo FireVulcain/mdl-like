@@ -255,3 +255,22 @@ export interface MdlThreadsResult {
 export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
     return kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`);
 }
+
+export interface KuryanaRecommendation {
+    img: string;
+    title: string;
+    url: string; // e.g. "/768987-wan-xin-ji"
+}
+
+export interface KuryanaRecommendationsResult {
+    slug_query: string;
+    data: {
+        link: string;
+        recommendations: KuryanaRecommendation[];
+    };
+    scrape_date: string;
+}
+
+export async function kuryanaGetRecommendations(slug: string): Promise<KuryanaRecommendationsResult | null> {
+    return kuryanaFetch<KuryanaRecommendationsResult>(`/id/${slug}/recs`);
+}
