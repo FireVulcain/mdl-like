@@ -25,10 +25,7 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
         <div>
             <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-white">Cast & Credits</h3>
-                <Link
-                    href={`/media/${mediaId}/cast`}
-                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                >
+                <Link href={`/media/${mediaId}/cast`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
                     View all →
                 </Link>
             </div>
@@ -43,6 +40,7 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
                                         src={actor.profile}
                                         alt={actor.name}
                                         fill
+                                        unoptimized={true}
                                         className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                         loading="lazy"
                                         onLoad={(e) => {
@@ -65,7 +63,10 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
                                 )}
                             </div>
                             <div>
-                                <div className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors" title={actor.name}>
+                                <div
+                                    className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors"
+                                    title={actor.name}
+                                >
                                     {actor.name}
                                 </div>
                                 <div className="text-xs text-gray-400 truncate" title={actor.character}>

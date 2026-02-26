@@ -33,11 +33,7 @@ function mdlPersonSlug(slug: string): string | null {
 
 function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number }) {
     // Prefer TMDB person page; fall back to internal MDL person page if slug available
-    const href = tmdbId
-        ? `/cast/${tmdbId}`
-        : actor.slug
-          ? `/people/${mdlPersonSlug(actor.slug)}`
-          : null;
+    const href = tmdbId ? `/cast/${tmdbId}` : actor.slug ? `/people/${mdlPersonSlug(actor.slug)}` : null;
 
     const inner = (
         <div className="flex-none w-25 space-y-2 group cursor-pointer">
@@ -47,6 +43,7 @@ function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number })
                         src={actor.profileImage}
                         alt={actor.name}
                         fill
+                        unoptimized={true}
                         className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                         loading="lazy"
                         onLoad={(e) => {
@@ -112,11 +109,11 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold text-white">Cast & Credits</h3>
-                    <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
-                        source === "mdl"
-                            ? "bg-sky-500/15 text-sky-400 border-sky-500/20"
-                            : "bg-white/5 text-gray-400 border-white/10"
-                    }`}>
+                    <span
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
+                            source === "mdl" ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"
+                        }`}
+                    >
                         via {source === "mdl" ? "MDL" : "TMDB"}
                     </span>
                 </div>
@@ -125,9 +122,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                         <button
                             onClick={() => setSource("mdl")}
                             className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                source === "mdl"
-                                    ? "bg-white text-gray-900"
-                                    : "text-gray-400 hover:text-white"
+                                source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
                             }`}
                         >
                             MDL
@@ -135,18 +130,13 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                         <button
                             onClick={() => setSource("tmdb")}
                             className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                source === "tmdb"
-                                    ? "bg-white text-gray-900"
-                                    : "text-gray-400 hover:text-white"
+                                source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
                             }`}
                         >
                             TMDB
                         </button>
                     </div>
-                    <Link
-                        href={`/media/${mediaId}/cast`}
-                        className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                    >
+                    <Link href={`/media/${mediaId}/cast`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
                         View all →
                     </Link>
                 </div>
@@ -164,6 +154,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                             src={actor.profile}
                                             alt={actor.name}
                                             fill
+                                            unoptimized={true}
                                             className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                             loading="lazy"
                                             onLoad={(e) => {
@@ -186,7 +177,10 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                     )}
                                 </div>
                                 <div>
-                                    <div className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors" title={actor.name}>
+                                    <div
+                                        className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors"
+                                        title={actor.name}
+                                    >
                                         {actor.name}
                                     </div>
                                     <div className="text-xs text-gray-400 truncate" title={actor.character}>

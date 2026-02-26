@@ -29,6 +29,7 @@ export function CastGallery({ cast }: CastGalleryProps) {
                                 src={actor.profile}
                                 alt={actor.name}
                                 fill
+                                unoptimized={true}
                                 className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                                 loading="lazy"
                                 onLoad={(e) => {
