@@ -12,9 +12,11 @@ import { searchTmdbDramas, createMdlLink, getMdlNativeTitle, TmdbSearchResult } 
 interface Props {
     mdlSlug: string;      // e.g. "687393-the-prisoner-of-beauty"
     defaultQuery: string; // drama title to pre-fill the search
+    onLinked?: (tmdbExternalId: string) => void; // called after a successful link
+    compact?: boolean;    // icon-only button (for image overlay use)
 }
 
-export function LinkToTmdbButton({ mdlSlug, defaultQuery }: Props) {
+export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = false }: Props) {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState(defaultQuery);
     const [results, setResults] = useState<TmdbSearchResult[]>([]);
@@ -72,6 +74,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery }: Props) {
             const res = await createMdlLink(mdlSlug, result.externalId);
             if (res.ok) {
                 setLinked(result.externalId);
+                onLinked?.(result.externalId);
             } else {
                 setError(res.error ?? "Something went wrong.");
             }
@@ -80,14 +83,24 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery }: Props) {
 
     return (
         <>
-            <button
-                onClick={handleOpen}
-                title="Link to TMDB"
-                className="cursor-pointer shrink-0 flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium text-white/40 hover:text-sky-400 hover:bg-sky-500/10 border border-transparent hover:border-sky-500/20 transition-all"
-            >
-                <Link2 className="h-3 w-3" />
-                Link
-            </button>
+            {compact ? (
+                <button
+                    onClick={handleOpen}
+                    title="Link to TMDB"
+                    className="cursor-pointer flex items-center justify-center h-6 w-6 rounded-md bg-black/60 backdrop-blur-sm text-white/60 hover:text-sky-400 hover:bg-sky-500/20 transition-all"
+                >
+                    <Link2 className="h-3.5 w-3.5" />
+                </button>
+            ) : (
+                <button
+                    onClick={handleOpen}
+                    title="Link to TMDB"
+                    className="cursor-pointer shrink-0 flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium text-white/40 hover:text-sky-400 hover:bg-sky-500/10 border border-transparent hover:border-sky-500/20 transition-all"
+                >
+                    <Link2 className="h-3 w-3" />
+                    Link
+                </button>
+            )}
 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="max-w-2xl bg-gray-900 border-white/10">

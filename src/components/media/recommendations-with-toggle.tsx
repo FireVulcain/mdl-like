@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Bookmark, ExternalLink } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
+import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import type { UnifiedMedia } from "@/services/media.service";
 import type { KuryanaRecommendation } from "@/lib/kuryana";
 
@@ -10,12 +12,18 @@ interface Props {
     tmdbRecs: UnifiedMedia[];
     mdlRecs: KuryanaRecommendation[] | null;
     watchlistIds: string[];
+    linkedMap: Record<string, string>; // mdlSlug → tmdbExternalId
 }
 
-export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds }: Props) {
+export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap }: Props) {
     const hasMdl = mdlRecs && mdlRecs.length > 0;
     const [source, setSource] = useState<"tmdb" | "mdl">(hasMdl ? "mdl" : "tmdb");
+    const [localLinkedMap, setLocalLinkedMap] = useState<Record<string, string>>(linkedMap);
     const watchlistSet = new Set(watchlistIds);
+
+    function handleLinked(mdlSlug: string, tmdbExternalId: string) {
+        setLocalLinkedMap((prev) => ({ ...prev, [mdlSlug]: tmdbExternalId }));
+    }
 
     return (
         <div>
@@ -78,35 +86,78 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds }: P
                 </div>
             ) : (
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
-                    {mdlRecs.slice(0, 6).map((item) => (
-                        <a
-                            key={item.url}
-                            href={`https://mydramalist.com${item.url}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group block"
-                        >
-                            <div className="border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
-                                <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={item.img.replace("_4t.", "_4f.")}
-                                        alt={item.title}
-                                        className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
-                                        loading="lazy"
-                                    />
-                                    <div className="absolute inset-0 flex items-end justify-end p-1.5">
-                                        <ExternalLink className="h-3.5 w-3.5 text-white/60 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {mdlRecs.slice(0, 6).map((item) => {
+                        const slug = item.url.replace(/^\//, "");
+                        const tmdbId = localLinkedMap[slug];
+
+                        if (tmdbId) {
+                            // Already linked → internal navigation
+                            return (
+                                <Link
+                                    key={item.url}
+                                    href={`/media/tmdb-${tmdbId}`}
+                                    className="group block"
+                                >
+                                    <div className="border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
+                                        <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={item.img.replace("_4t.", "_4f.")}
+                                                alt={item.title}
+                                                className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <div className="p-2">
+                                            <h3 className="line-clamp-1 font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">
+                                                {item.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </Link>
+                            );
+                        }
+
+                        // Not linked → external link + Link button overlay
+                        return (
+                            <div key={item.url} className="group block">
+                                <div className="border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
+                                    <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
+                                        <a
+                                            href={`https://mydramalist.com${item.url}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="absolute inset-0"
+                                        >
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={item.img.replace("_4t.", "_4f.")}
+                                                alt={item.title}
+                                                className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+                                                loading="lazy"
+                                            />
+                                            <div className="absolute inset-0 flex items-end justify-end p-1.5">
+                                                <ExternalLink className="h-3.5 w-3.5 text-white/60 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            </div>
+                                        </a>
+                                        <div className="absolute bottom-1.5 left-1.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <LinkToTmdbButton
+                                                mdlSlug={slug}
+                                                defaultQuery={item.title}
+                                                compact
+                                                onLinked={(tmdbExternalId) => handleLinked(slug, tmdbExternalId)}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="p-2">
+                                        <h3 className="line-clamp-1 font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">
+                                            {item.title}
+                                        </h3>
                                     </div>
                                 </div>
-                                <div className="p-2">
-                                    <h3 className="line-clamp-1 font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">
-                                        {item.title}
-                                    </h3>
-                                </div>
                             </div>
-                        </a>
-                    ))}
+                        );
+                    })}
                 </div>
             )}
         </div>
