@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Heart, ChevronDown, RefreshCw, MessageSquare } from "lucide-react";
 import { MdlComment } from "@/lib/kuryana";
 import { loadMoreComments } from "@/actions/mdl-threads";
@@ -41,16 +42,7 @@ function relativeTime(dateStr: string): string {
     return `${Math.floor(months / 12)}y ago`;
 }
 
-const AUTHOR_COLORS = [
-    "bg-blue-500",
-    "bg-emerald-500",
-    "bg-violet-500",
-    "bg-amber-500",
-    "bg-rose-500",
-    "bg-sky-500",
-    "bg-pink-500",
-    "bg-teal-500",
-];
+const AUTHOR_COLORS = ["bg-blue-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500", "bg-rose-500", "bg-sky-500", "bg-pink-500", "bg-teal-500"];
 
 function getAuthorColor(name: string): string {
     const hash = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
@@ -58,7 +50,10 @@ function getAuthorColor(name: string): string {
 }
 
 function stripHtml(str: string): string {
-    return str.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    return str
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
 }
 
 const MESSAGE_TRUNCATE = 280;
@@ -88,17 +83,19 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
         <div className="flex gap-2.5">
             {/* Avatar */}
             <div
-                className={`${nested ? "size-6 text-[9px]" : "size-7 text-[10px]"} shrink-0 rounded-full ${avatarColor}/80 flex items-center justify-center font-bold text-white mt-0.5 select-none`}
+                className={`relative ${nested ? "size-6 text-[9px]" : "size-7 text-[10px]"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-white/5"} flex items-center justify-center font-bold text-white mt-0.5 select-none overflow-hidden`}
             >
-                {initials}
+                {comment.avatar_url ? (
+                    <Image src={comment.avatar_url} alt={comment.author} fill className="object-cover" unoptimized={true} />
+                ) : (
+                    initials
+                )}
             </div>
 
             {/* Content */}
             <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 flex-wrap">
-                    <span className="text-sm font-semibold text-white">
-                        {comment.author}
-                    </span>
+                    <span className="text-sm font-semibold text-white">{comment.author}</span>
                     <span className="text-xs text-gray-500">{relativeTime(comment.date_added)}</span>
                 </div>
 
@@ -113,9 +110,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                     </div>
                 ) : (
                     <div className="mt-1">
-                        <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">
-                            {displayText}
-                        </p>
+                        <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">{displayText}</p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
@@ -135,13 +130,8 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                         </span>
                     )}
                     {comment.children.length > 0 && (
-                        <button
-                            onClick={() => setShowReplies((v) => !v)}
-                            className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
-                        >
-                            {showReplies
-                                ? "Hide replies"
-                                : `${comment.children.length} ${comment.children.length === 1 ? "reply" : "replies"}`}
+                        <button onClick={() => setShowReplies((v) => !v)} className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
+                            {showReplies ? "Hide replies" : `${comment.children.length} ${comment.children.length === 1 ? "reply" : "replies"}`}
                         </button>
                     )}
                 </div>
@@ -192,9 +182,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold text-white">Comments</h3>
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
-                        via MDL
-                    </span>
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">via MDL</span>
                     <span className="text-xs text-gray-500">{total.toLocaleString()}</span>
                 </div>
                 <MessageSquare className="size-4 text-gray-700" />
@@ -202,10 +190,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
 
             <div className="flex flex-col gap-2">
                 {tree.map((comment) => (
-                    <div
-                        key={comment.id}
-                        className="rounded-xl border border-white/5 bg-white/3 p-3.5 hover:bg-white/[0.04] transition-colors"
-                    >
+                    <div key={comment.id} className="rounded-xl border border-white/5 bg-white/3 p-3.5 hover:bg-white/[0.04] transition-colors">
                         <CommentCard comment={comment} />
                     </div>
                 ))}

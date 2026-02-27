@@ -248,6 +248,16 @@ export interface MdlComment {
     deleted: boolean;
     author: string;
     role: string;
+    avatar_url?: string;
+}
+
+export interface KuryanaThreadAuthor {
+    username: string;
+    display_name: string;
+    avatar_url: string;
+    vip: boolean;
+    star: boolean;
+    verified: boolean;
 }
 
 export interface MdlThreadsResult {
@@ -255,10 +265,24 @@ export interface MdlThreadsResult {
     has_more: boolean;
     disabled: boolean;
     comments: MdlComment[];
+    authors?: Record<string, KuryanaThreadAuthor>;
 }
 
 export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
-    return kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`);
+    const res = await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`);
+    if (!res) return null;
+
+    // Inject avatar_url into each comment
+    if (res.authors && res.comments) {
+        res.comments = res.comments.map((c) => {
+            const authorData = Object.values(res.authors!).find((a) => a.username === c.author || a.display_name === c.author);
+            return {
+                ...c,
+                avatar_url: authorData?.avatar_url,
+            };
+        });
+    }
+    return res;
 }
 
 export interface KuryanaRecommendation {
