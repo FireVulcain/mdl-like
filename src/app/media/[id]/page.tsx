@@ -23,9 +23,11 @@ import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
 import { MdlRecommendationsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
+import { prisma } from "@/lib/prisma";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
 import { WatchProvidersRow } from "@/components/media/watch-providers-row";
 import { getCurrentUserId } from "@/lib/session";
+import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
     // Parallel fetch: params and searchParams are independent
@@ -79,7 +81,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
 
     // Parallel fetch: userMedia and watchlist IDs — MDL streams in separately via Suspense
-    const [userId, watchlistExternalIds] = await Promise.all([getCurrentUserId(), getWatchlistExternalIds()]);
+    const [userId, watchlistExternalIds, cached] = await Promise.all([
+        getCurrentUserId(),
+        getWatchlistExternalIds(),
+        isMdlRelevant ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true } }) : null,
+    ]);
     const userMedia = await getUserMedia(userId, media.externalId, media.source, selectedSeason);
     const watchlistIds = new Set(watchlistExternalIds);
 
@@ -92,7 +98,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             <div className="relative h-[50vh] w-full overflow-hidden">
                 {media.backdrop ? (
                     <>
-                        <Image unoptimized={true}
+                        <Image
+                            unoptimized={true}
                             src={media.backdrop.replace("/t/p/w1280/", "/t/p/original/")}
                             alt={media.title}
                             fill
@@ -115,7 +122,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 <div className="space-y-4">
                     <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
                         {currentSeasonData?.poster || media.poster ? (
-                            <Image unoptimized={true} src={currentSeasonData?.poster ?? media.poster!} alt={media.title} fill className="object-cover" priority />
+                            <Image
+                                unoptimized={true}
+                                src={currentSeasonData?.poster ?? media.poster!}
+                                alt={media.title}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
                                 No Poster
@@ -279,6 +293,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                             season={selectedSeason}
                                         />
                                     </Suspense>
+                                    <MdlLinkEditor
+                                        tmdbExternalId={media.externalId}
+                                        mediaType={media.type === "TV" ? "tv" : "movie"}
+                                        currentSlug={cached?.mdlSlug}
+                                        defaultQuery={media.title}
+                                    />
                                     <MdlRefetchButton tmdbExternalId={media.externalId} mediaId={media.id} />
                                 </>
                             )}
