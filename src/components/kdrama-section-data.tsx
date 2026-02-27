@@ -1,16 +1,20 @@
 import { mediaService } from "@/services/media.service";
 import { getWatchlistExternalIds } from "@/actions/user-media";
+import { getMdlRatingsForTmdbIds } from "@/actions/person";
 import { MediaCard } from "@/components/media-card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Bookmark, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export async function KDramaSectionData() {
-    const [kdramas, watchlistExternalIds] = await Promise.all([
-        mediaService.getKDramas(),
-        getWatchlistExternalIds(),
-    ]);
+    const [kdramas, watchlistExternalIds] = await Promise.all([mediaService.getKDramas(), getWatchlistExternalIds()]);
     const watchlistIds = new Set(watchlistExternalIds);
+
+    const allTmdbIds = [...kdramas.trending, ...kdramas.airing, ...kdramas.upcoming]
+        .filter((item) => item.id.startsWith("tmdb-"))
+        .map((item) => item.externalId);
+
+    const mdlRatingsMap = await getMdlRatingsForTmdbIds(allTmdbIds);
 
     return (
         <section className="relative space-y-6 md:space-y-8 bg-white/2 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">
@@ -53,6 +57,7 @@ export async function KDramaSectionData() {
                                 <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
                                     <MediaCard
                                         media={media}
+                                        mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
                                         overlay={
                                             watchlistIds.has(media.externalId) ? (
                                                 <div className="absolute bottom-2 left-2">
@@ -89,6 +94,7 @@ export async function KDramaSectionData() {
                                 <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
                                     <MediaCard
                                         media={media}
+                                        mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
                                         overlay={
                                             watchlistIds.has(media.externalId) ? (
                                                 <div className="absolute bottom-2 left-2">
@@ -126,6 +132,7 @@ export async function KDramaSectionData() {
                                     <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
                                         <MediaCard
                                             media={media}
+                                            mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
                                             sizes="(max-width: 768px) 200vw, 1200px"
                                             overlay={
                                                 <>

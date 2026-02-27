@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetRecommendations } from "@/lib/kuryana";
 import { RecommendationsWithToggle } from "./recommendations-with-toggle";
+import { getMdlRatingsForTmdbIds } from "@/actions/person";
 import type { UnifiedMedia } from "@/services/media.service";
 
 interface Props {
@@ -35,18 +36,25 @@ export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, 
         mdlRecs = result?.data?.recommendations ?? null;
     }
 
-    // Batch-check which MDL rec slugs are already linked to a TMDB entry
+    // Batch-check which MDL rec slugs are already linked to a TMDB entry + get ratings
     const linkedMap: Record<string, string> = {};
+    const mdlSlugToRatingMap: Record<string, number> = {};
+
     if (mdlRecs && mdlRecs.length > 0) {
         const slugs = mdlRecs.map((r) => r.url.replace(/^\//, ""));
         const linked = await prisma.cachedMdlData.findMany({
             where: { mdlSlug: { in: slugs } },
-            select: { mdlSlug: true, tmdbExternalId: true },
+            select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true },
         });
         for (const row of linked) {
             linkedMap[row.mdlSlug] = row.tmdbExternalId;
+            if (row.mdlRating != null) mdlSlugToRatingMap[row.mdlSlug] = row.mdlRating;
         }
     }
+
+    // Pre-fetch MDL ratings for the TMDB recs
+    const tmdbIds = tmdbRecs.filter((m) => m.id.startsWith("tmdb-")).map((m) => m.externalId);
+    const tmdbMdlRatingsMap = await getMdlRatingsForTmdbIds(tmdbIds);
 
     if ((!tmdbRecs || tmdbRecs.length === 0) && (!mdlRecs || mdlRecs.length === 0)) {
         return (
@@ -57,5 +65,14 @@ export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, 
         );
     }
 
-    return <RecommendationsWithToggle tmdbRecs={tmdbRecs} mdlRecs={mdlRecs} watchlistIds={watchlistIds} linkedMap={linkedMap} />;
+    return (
+        <RecommendationsWithToggle
+            tmdbRecs={tmdbRecs}
+            mdlRecs={mdlRecs}
+            watchlistIds={watchlistIds}
+            linkedMap={linkedMap}
+            tmdbRatingsMap={tmdbMdlRatingsMap}
+            mdlSlugToRatingMap={mdlSlugToRatingMap}
+        />
+    );
 }

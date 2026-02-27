@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bookmark, ExternalLink } from "lucide-react";
+import { Bookmark, ExternalLink, Star } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
+import { Badge } from "@/components/ui/badge";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import type { UnifiedMedia } from "@/services/media.service";
 import type { KuryanaRecommendation } from "@/lib/kuryana";
@@ -13,9 +14,11 @@ interface Props {
     mdlRecs: KuryanaRecommendation[] | null;
     watchlistIds: string[];
     linkedMap: Record<string, string>; // mdlSlug → tmdbExternalId
+    tmdbRatingsMap: Record<string, number>;
+    mdlSlugToRatingMap: Record<string, number>;
 }
 
-export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap }: Props) {
+export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmdbRatingsMap, mdlSlugToRatingMap }: Props) {
     const hasMdl = mdlRecs && mdlRecs.length > 0;
     const [source, setSource] = useState<"tmdb" | "mdl">(hasMdl ? "mdl" : "tmdb");
     const [localLinkedMap, setLocalLinkedMap] = useState<Record<string, string>>(linkedMap);
@@ -69,6 +72,7 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                             <MediaCard
                                 key={item.id}
                                 media={item}
+                                mdlRating={item.id.startsWith("tmdb-") ? tmdbRatingsMap[item.externalId] : undefined}
                                 overlay={
                                     watchlistSet.has(item.externalId) ? (
                                         <div className="absolute bottom-2 left-2">
@@ -95,6 +99,14 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                                 <Link key={item.url} href={`/media/tmdb-${tmdbId}`} className="group block">
                                     <div className="border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
                                         <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
+                                            {mdlSlugToRatingMap[slug] != null && mdlSlugToRatingMap[slug] > 0 && (
+                                                <div className="absolute left-1.5 top-1.5 z-10">
+                                                    <Badge className="bg-sky-500/90 text-white text-[10px] px-1.5 shadow-md">
+                                                        <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                                        {mdlSlugToRatingMap[slug].toFixed(1)}
+                                                    </Badge>
+                                                </div>
+                                            )}
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={item.img}
@@ -118,6 +130,14 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                             <div key={item.url} className="group block">
                                 <div className="border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
                                     <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
+                                        {mdlSlugToRatingMap[slug] != null && mdlSlugToRatingMap[slug] > 0 && (
+                                            <div className="absolute left-1.5 top-1.5 z-10">
+                                                <Badge className="bg-sky-500/90 text-white text-[10px] px-1.5 shadow-md pointer-events-none">
+                                                    <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                                    {mdlSlugToRatingMap[slug].toFixed(1)}
+                                                </Badge>
+                                            </div>
+                                        )}
                                         <a
                                             href={`https://mydramalist.com${item.url}`}
                                             target="_blank"
