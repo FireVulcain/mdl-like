@@ -1,8 +1,11 @@
+import React from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
-import { mediaService } from "@/services/media.service";
+import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
+import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { getMdlRatingsForTmdbIds } from "@/actions/person";
+import { prisma } from "@/lib/prisma";
 
 type SearchParams = Promise<{
     category?: string;
@@ -42,11 +45,18 @@ const COUNTRY_OPTIONS = [
     { value: "CN", label: "Chinese" },
 ];
 
-const SORT_OPTIONS = [
+// TMDB sort options (used when country=all)
+const TMDB_SORT_OPTIONS = [
     { value: "vote_average.desc", label: "Top Rated" },
     { value: "popularity.desc", label: "Most Popular" },
     { value: "first_air_date.desc", label: "Newest First" },
     { value: "first_air_date.asc", label: "Oldest First" },
+];
+
+// MDL/Kuryana sort options (used when country=KR or CN)
+const MDL_SORT_OPTIONS = [
+    { value: "top", label: "Top Rated" },
+    { value: "popular", label: "Most Popular" },
 ];
 
 const TMDB_GENRES = [
@@ -98,18 +108,60 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const selectedGenres = rawGenres ? rawGenres.split(",").filter(Boolean) : ["18"];
     const genresParam = selectedGenres.join(",");
 
-    const { items, totalPages, totalResults } = await mediaService.browseDramas({
-        category,
-        country,
-        sort,
-        genres: genresParam,
-        year,
-        page,
-    });
+    // MDL mode when country is KR or CN
+    const isMdlMode = country === "KR" || country === "CN";
 
-    const tmdbIdsToFetch = items.filter((item) => item.id.startsWith("tmdb-")).map((item) => item.externalId);
+    // Effective sort value for MDL mode
+    const mdlSort = sort === "popular" ? "popular" : "top";
 
-    const mdlRatingsMap = await getMdlRatingsForTmdbIds(tmdbIdsToFetch);
+    // Fetch data
+    let items: UnifiedMedia[] = [];
+    let totalPages = 1;
+    let totalResults = 0;
+    let hasNextPage = false;
+
+    if (isMdlMode) {
+        const result = await mediaService.browseDramasMDL({
+            country: country as "KR" | "CN",
+            category,
+            sort: mdlSort,
+            page,
+        });
+        items = result.items;
+        hasNextPage = result.hasNextPage;
+        totalPages = hasNextPage ? page + 1 : page;
+    } else {
+        const result = await mediaService.browseDramas({
+            category,
+            country,
+            sort,
+            genres: genresParam,
+            year,
+            page,
+        });
+        items = result.items;
+        totalPages = result.totalPages;
+        totalResults = result.totalResults;
+    }
+
+    // For TMDB items, fetch MDL ratings overlay
+    const mdlRatingsMap: Record<string, number | undefined> = {};
+    if (!isMdlMode) {
+        const tmdbIds = items.filter((i) => i.id.startsWith("tmdb-")).map((i) => i.externalId);
+        const ratings = await getMdlRatingsForTmdbIds(tmdbIds);
+        Object.assign(mdlRatingsMap, ratings);
+    }
+
+    // For MDL items, look up which slugs are already linked to a TMDB entry
+    let linkedBySlug = new Map<string, string>();
+    if (isMdlMode && items.length > 0) {
+        const slugs = items.map((m) => m.id.replace(/^mdl-/, ""));
+        const linkedRows = await prisma.cachedMdlData.findMany({
+            where: { mdlSlug: { in: slugs } },
+            select: { mdlSlug: true, tmdbExternalId: true },
+        });
+        linkedBySlug = new Map(linkedRows.map((r) => [r.mdlSlug, r.tmdbExternalId]));
+    }
 
     const baseParams: Record<string, string> = { category, country, sort, genres: genresParam };
     if (year) baseParams.year = year;
@@ -157,10 +209,16 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     <main className="flex-1 min-w-0 w-full">
                         {/* Results meta */}
                         <div className="flex items-center justify-between mb-5">
-                            <p className="text-sm text-gray-400">
-                                <span className="text-white font-medium">{totalResults.toLocaleString()}</span> shows found
-                            </p>
-                            {totalPages > 1 && (
+                            {isMdlMode ? (
+                                <p className="text-sm text-gray-400">
+                                    Page <span className="text-white font-medium">{page}</span> · MDL data
+                                </p>
+                            ) : (
+                                <p className="text-sm text-gray-400">
+                                    <span className="text-white font-medium">{totalResults.toLocaleString()}</span> shows found
+                                </p>
+                            )}
+                            {!isMdlMode && totalPages > 1 && (
                                 <p className="text-xs text-gray-500">
                                     Page {page} of {totalPages}
                                 </p>
@@ -170,70 +228,126 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         {/* Grid */}
                         {items.length > 0 ? (
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
-                                {items.map((media) => (
-                                    <MediaCard
-                                        key={media.id}
-                                        media={media}
-                                        mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
-                                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 33vw, 25vw"
-                                    />
-                                ))}
+                                {items.map((media) => {
+                                    if (isMdlMode) {
+                                        const slug = media.id.replace(/^mdl-/, "");
+                                        const tmdbExternalId = linkedBySlug.get(slug);
+                                        const href = tmdbExternalId
+                                            ? `/media/tmdb-${tmdbExternalId}`
+                                            : `https://mydramalist.com/${slug}`;
+                                        const overlay = !tmdbExternalId ? (
+                                            <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <LinkToTmdbButton mdlSlug={slug} defaultQuery={media.title} compact />
+                                            </div>
+                                        ) : undefined;
+                                        return (
+                                            <MediaCard
+                                                key={media.id}
+                                                media={media}
+                                                mdlRating={media.rating || undefined}
+                                                href={href}
+                                                overlay={overlay}
+                                                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 33vw, 25vw"
+                                            />
+                                        );
+                                    }
+                                    return (
+                                        <MediaCard
+                                            key={media.id}
+                                            media={media}
+                                            mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
+                                            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 33vw, 25vw"
+                                        />
+                                    );
+                                })}
                             </div>
                         ) : (
                             <div className="text-center py-24 text-gray-500">No shows found for the selected filters.</div>
                         )}
 
                         {/* Pagination */}
-                        {totalPages > 1 && (
-                            <div className="flex items-center justify-center gap-1.5 mt-10">
-                                <Link
-                                    href={buildUrl(baseParams, { page: Math.max(1, page - 1).toString() })}
-                                    aria-disabled={page <= 1}
-                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
-                                        page <= 1
-                                            ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
-                                            : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
-                                    }`}
-                                >
-                                    <ChevronLeft className="h-4 w-4" />
-                                    Prev
-                                </Link>
-
-                                <div className="flex items-center gap-1">
-                                    {pageNumbers.map((p, i) =>
-                                        p === "..." ? (
-                                            <span key={`ellipsis-${i}`} className="px-2 py-2 text-sm text-gray-500">
-                                                ...
-                                            </span>
-                                        ) : (
-                                            <Link
-                                                key={p}
-                                                href={buildUrl(baseParams, { page: p.toString() })}
-                                                className={`min-w-9 px-2 py-2 rounded-lg text-sm font-medium text-center transition-all border ${
-                                                    p === page
-                                                        ? "bg-white/15 text-white border-white/25"
-                                                        : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"
-                                                }`}
-                                            >
-                                                {p}
-                                            </Link>
-                                        )
-                                    )}
+                        {isMdlMode ? (
+                            (page > 1 || hasNextPage) && (
+                                <div className="flex items-center justify-center gap-3 mt-10">
+                                    <Link
+                                        href={buildUrl(baseParams, { page: Math.max(1, page - 1).toString() })}
+                                        aria-disabled={page <= 1}
+                                        className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                            page <= 1
+                                                ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
+                                                : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        <ChevronLeft className="h-4 w-4" />
+                                        Prev
+                                    </Link>
+                                    <span className="text-sm text-gray-500">Page {page}</span>
+                                    <Link
+                                        href={buildUrl(baseParams, { page: (page + 1).toString() })}
+                                        aria-disabled={!hasNextPage}
+                                        className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                            !hasNextPage
+                                                ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
+                                                : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        Next
+                                        <ChevronRight className="h-4 w-4" />
+                                    </Link>
                                 </div>
+                            )
+                        ) : (
+                            totalPages > 1 && (
+                                <div className="flex items-center justify-center gap-1.5 mt-10">
+                                    <Link
+                                        href={buildUrl(baseParams, { page: Math.max(1, page - 1).toString() })}
+                                        aria-disabled={page <= 1}
+                                        className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                            page <= 1
+                                                ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
+                                                : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        <ChevronLeft className="h-4 w-4" />
+                                        Prev
+                                    </Link>
 
-                                <Link
-                                    href={buildUrl(baseParams, { page: Math.min(totalPages, page + 1).toString() })}
-                                    aria-disabled={page >= totalPages}
-                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
-                                        page >= totalPages
-                                            ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
-                                            : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
-                                    }`}
-                                >
-                                    Next
-                                    <ChevronRight className="h-4 w-4" />
-                                </Link>
-                            </div>
+                                    <div className="flex items-center gap-1">
+                                        {pageNumbers.map((p, i) =>
+                                            p === "..." ? (
+                                                <span key={`ellipsis-${i}`} className="px-2 py-2 text-sm text-gray-500">
+                                                    ...
+                                                </span>
+                                            ) : (
+                                                <Link
+                                                    key={p}
+                                                    href={buildUrl(baseParams, { page: p.toString() })}
+                                                    className={`min-w-9 px-2 py-2 rounded-lg text-sm font-medium text-center transition-all border ${
+                                                        p === page
+                                                            ? "bg-white/15 text-white border-white/25"
+                                                            : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"
+                                                    }`}
+                                                >
+                                                    {p}
+                                                </Link>
+                                            )
+                                        )}
+                                    </div>
+
+                                    <Link
+                                        href={buildUrl(baseParams, { page: Math.min(totalPages, page + 1).toString() })}
+                                        aria-disabled={page >= totalPages}
+                                        className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                            page >= totalPages
+                                                ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
+                                                : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        Next
+                                        <ChevronRight className="h-4 w-4" />
+                                    </Link>
+                                </div>
+                            )
                         )}
                     </main>
 
@@ -286,23 +400,26 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         <div className="space-y-2">
                             <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Sort by</h4>
                             <div className="space-y-0.5">
-                                {SORT_OPTIONS.map((opt) => (
-                                    <Link
-                                        key={opt.value}
-                                        href={buildUrl(baseParams, { sort: opt.value, page: "1" })}
-                                        className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all ${
-                                            sort === opt.value ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
-                                        }`}
-                                    >
-                                        <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${sort === opt.value ? "bg-white/70" : "bg-white/20"}`} />
-                                        {opt.label}
-                                    </Link>
-                                ))}
+                                {(isMdlMode ? MDL_SORT_OPTIONS : TMDB_SORT_OPTIONS).map((opt) => {
+                                    const isActive = isMdlMode ? mdlSort === opt.value : sort === opt.value;
+                                    return (
+                                        <Link
+                                            key={opt.value}
+                                            href={buildUrl(baseParams, { sort: opt.value, page: "1" })}
+                                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all ${
+                                                isActive ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                            }`}
+                                        >
+                                            <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${isActive ? "bg-white/70" : "bg-white/20"}`} />
+                                            {opt.label}
+                                        </Link>
+                                    );
+                                })}
                             </div>
                         </div>
 
-                        {/* Year (popular only) */}
-                        {category === "popular" && (
+                        {/* Year (popular + TMDB only) */}
+                        {!isMdlMode && category === "popular" && (
                             <>
                                 <div className="h-px bg-white/5" />
                                 <div className="space-y-1.5">
@@ -340,53 +457,54 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             </>
                         )}
 
-                        <div className="h-px bg-white/5" />
-
-                        {/* Genre */}
-                        {(() => {
+                        {/* Genre (TMDB only) */}
+                        {!isMdlMode && (() => {
                             const nonDefaultSelected = selectedGenres.filter((g) => g !== "18");
                             const isNonDefault = nonDefaultSelected.length > 0 || selectedGenres.length === 0;
                             const activeLabels = TMDB_GENRES.filter((g) => selectedGenres.includes(g.id)).map((g) => g.label);
                             const summaryLabel =
                                 activeLabels.length === 0 ? "Any" : activeLabels.length === 1 ? activeLabels[0] : `${activeLabels.length} genres`;
                             return (
-                                <div className="space-y-1.5">
-                                    <div className="flex items-center justify-between">
-                                        <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
-                                        {selectedGenres.length > 0 && (
-                                            <Link
-                                                href={buildUrl(baseParams, { genres: null, page: "1" })}
-                                                className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
-                                            >
-                                                Clear
-                                            </Link>
-                                        )}
-                                    </div>
-                                    <details className="group" open={isNonDefault}>
-                                        <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
-                                            <span>{summaryLabel}</span>
-                                            <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
-                                        </summary>
-                                        <div className="mt-1.5 flex flex-wrap gap-1.5">
-                                            {TMDB_GENRES.map((genre) => {
-                                                const active = selectedGenres.includes(genre.id);
-                                                return (
-                                                    <Link
-                                                        key={genre.id}
-                                                        href={genreToggleUrl(genre.id)}
-                                                        className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                                                            active
-                                                                ? "bg-white/15 text-white border border-white/25"
-                                                                : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
-                                                        }`}
-                                                    >
-                                                        {genre.label}
-                                                    </Link>
-                                                );
-                                            })}
+                                <>
+                                    <div className="h-px bg-white/5" />
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center justify-between">
+                                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
+                                            {selectedGenres.length > 0 && (
+                                                <Link
+                                                    href={buildUrl(baseParams, { genres: null, page: "1" })}
+                                                    className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
+                                                >
+                                                    Clear
+                                                </Link>
+                                            )}
                                         </div>
-                                    </details>
-                                </div>
+                                        <details className="group" open={isNonDefault}>
+                                            <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                                                <span>{summaryLabel}</span>
+                                                <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
+                                            </summary>
+                                            <div className="mt-1.5 flex flex-wrap gap-1.5">
+                                                {TMDB_GENRES.map((genre) => {
+                                                    const active = selectedGenres.includes(genre.id);
+                                                    return (
+                                                        <Link
+                                                            key={genre.id}
+                                                            href={genreToggleUrl(genre.id)}
+                                                            className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                                                                active
+                                                                    ? "bg-white/15 text-white border border-white/25"
+                                                                    : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
+                                                            }`}
+                                                        >
+                                                            {genre.label}
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </div>
+                                        </details>
+                                    </div>
+                                </>
                             );
                         })()}
                     </aside>

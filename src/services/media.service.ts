@@ -488,6 +488,55 @@ export const mediaService = {
         }
     },
 
+    async browseDramasMDL({
+        country,
+        category = "popular",
+        sort,
+        page = 1,
+    }: {
+        country: "KR" | "CN";
+        category?: string;
+        sort?: string;
+        page?: number;
+    }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
+        try {
+            // Map page category to Kuryana status
+            const status = category === "airing" ? "ongoing" : category === "upcoming" ? "upcoming" : "completed";
+            const kurSort = sort === "popular" ? "popular" : undefined;
+            const fn = country === "KR" ? kuryanaGetKoreanTop : kuryanaGetChineseTop;
+            const res = await fn(status, page, kurSort);
+            const shows = res?.data.shows ?? [];
+
+            const transform = (item: KuryanaChineseShow): UnifiedMedia => {
+                const slug = item.url.replace(/^\//, "");
+                return {
+                    id: `mdl-${slug}`,
+                    externalId: item.id,
+                    source: "MDL",
+                    type: "TV",
+                    title: item.title,
+                    nativeTitle: item.original_title || undefined,
+                    poster: item.img || null,
+                    backdrop: null,
+                    year: item.year,
+                    originCountry: country,
+                    synopsis: item.synopsis,
+                    rating: item.rating,
+                    popularity: item.rank,
+                    firstAirDate: null,
+                };
+            };
+
+            return {
+                items: shows.map(transform),
+                hasNextPage: shows.length >= 20,
+            };
+        } catch (error) {
+            console.error("Error browsing MDL dramas", error);
+            return { items: [], hasNextPage: false };
+        }
+    },
+
     async getCDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             // Use Kuryana's own Chinese top lists — much more accurate than TMDB CN discovery
