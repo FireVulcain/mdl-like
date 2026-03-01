@@ -51,7 +51,7 @@ export function MediaCard({
                 {/* Rating Badges */}
                 {(media.rating > 0 || (mdlRating != null && mdlRating > 0)) && (
                     <div className="absolute left-2 top-2 flex flex-row gap-1">
-                        {media.rating > 0 && (
+                        {media.source !== "MDL" && media.rating > 0 && (
                             <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500 text-xs px-1.5 flex items-center">
                                 <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
                                 {media.rating.toFixed(1)}
