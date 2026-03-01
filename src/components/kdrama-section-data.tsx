@@ -62,7 +62,7 @@ function KDramaRow({
     seeMoreHref,
 }: {
     items: UnifiedMedia[];
-    linkedBySlug: Map<string, string>;
+    linkedBySlug: Map<string, { tmdbExternalId: string; season?: number }>;
     watchlistIds: Set<string>;
     accentClass: string;
     label: string;
