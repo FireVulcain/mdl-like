@@ -37,9 +37,9 @@ export function ProgressBar() {
           !event.metaKey &&
           !event.shiftKey
         ) {
-          // Don't trigger if it's the same page
-          const currentPath = window.location.pathname;
-          if (href !== currentPath && href.split('?')[0] !== currentPath) {
+          // Don't trigger if href resolves to the exact same URL (same path + same query)
+          const currentFull = window.location.pathname + window.location.search;
+          if (href !== currentFull) {
             setState('loading');
           }
         }
