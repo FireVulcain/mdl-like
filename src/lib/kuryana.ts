@@ -353,3 +353,42 @@ export async function kuryanaGetAllTop(
     const q = sort ? `&sort=${sort}` : "";
     return kuryanaFetch<KuryanaChineseTopResult>(`/top?page=${page}${q}`);
 }
+
+// ─── Unified browse endpoint ────────────────────────────────────────────────
+
+export type KuryanaTopCountry =
+    | "korean"
+    | "japanese"
+    | "chinese"
+    | "taiwanese"
+    | "hongkong"
+    | "thai"
+    | "philippine"
+    | "singaporean";
+
+export interface KuryanaTopParams {
+    page?: number;
+    sort?: string;
+    genre?: string;       // comma-separated MDL genre names (e.g. "romance,drama")
+    year_from?: number;
+    year_to?: number;
+    rating_min?: number;
+    rating_max?: number;
+}
+
+export async function kuryanaGetTop(
+    country: "all" | KuryanaTopCountry,
+    status: "ongoing" | "upcoming" | "completed",
+    params?: KuryanaTopParams,
+): Promise<KuryanaChineseTopResult | null> {
+    const path = country === "all" ? "/top" : `/top/${country}`;
+    const query = new URLSearchParams({ status });
+    if (params?.page && params.page > 1) query.set("page", String(params.page));
+    if (params?.sort) query.set("sort", params.sort);
+    if (params?.genre) query.set("genre", params.genre);
+    if (params?.year_from) query.set("year_from", String(params.year_from));
+    if (params?.year_to) query.set("year_to", String(params.year_to));
+    if (params?.rating_min) query.set("rating_min", String(params.rating_min));
+    if (params?.rating_max) query.set("rating_max", String(params.rating_max));
+    return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`);
+}

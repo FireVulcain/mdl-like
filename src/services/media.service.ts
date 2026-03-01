@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, kuryanaGetAllTop, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, kuryanaGetTop, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 export type UnifiedMedia = {
@@ -493,24 +493,45 @@ export const mediaService = {
         category = "popular",
         sort,
         page = 1,
+        genre,
+        year_from,
+        year_to,
+        rating_min,
     }: {
-        country: "KR" | "CN" | "all";
+        country: string;
         category?: string;
         sort?: string;
         page?: number;
+        genre?: string;
+        year_from?: number;
+        year_to?: number;
+        rating_min?: number;
     }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
-        try {
-            // Map category to Kuryana status
-            const status = category === "airing" ? "ongoing" : category === "upcoming" ? "upcoming" : "completed";
-            const kurSort = sort === "popular" ? "popular" : undefined;
+        // Map app country codes → Kuryana country names
+        const COUNTRY_MAP: Record<string, "all" | KuryanaTopCountry> = {
+            all: "all",
+            KR: "korean",
+            CN: "chinese",
+            JP: "japanese",
+            TW: "taiwanese",
+            HK: "hongkong",
+            TH: "thai",
+            PH: "philippine",
+            SG: "singaporean",
+        };
 
-            let res;
-            if (country === "all") {
-                res = await kuryanaGetAllTop(page, kurSort);
-            } else {
-                const fn = country === "KR" ? kuryanaGetKoreanTop : kuryanaGetChineseTop;
-                res = await fn(status, page, kurSort);
-            }
+        try {
+            const status = category === "airing" ? "ongoing" : category === "upcoming" ? "upcoming" : "completed";
+            const kuryanaCountry = COUNTRY_MAP[country] ?? "all";
+
+            const res = await kuryanaGetTop(kuryanaCountry, status, {
+                page,
+                sort: sort === "popular" ? "popular" : undefined,
+                genre,
+                year_from,
+                year_to,
+                rating_min,
+            });
             const shows = res?.data.shows ?? [];
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
@@ -525,7 +546,7 @@ export const mediaService = {
                     poster: item.img || null,
                     backdrop: null,
                     year: item.year,
-                    originCountry: country,
+                    originCountry: country === "all" ? "" : country,
                     synopsis: item.synopsis,
                     rating: item.rating,
                     popularity: item.rank,

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
@@ -11,24 +11,25 @@ type SearchParams = Promise<{
     country?: string;
     sort?: string;
     page?: string;
+    genre?: string;
+    year_from?: string;
+    year_to?: string;
+    rating_min?: string;
 }>;
 
 const CATEGORY_CONFIG = {
     popular: {
         label: "All",
-        accent: "bg-blue-500/20 text-blue-300 border border-blue-500/30",
         bar: "from-blue-500 to-blue-400",
         dot: "bg-blue-400",
     },
     airing: {
         label: "Airing Now",
-        accent: "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30",
         bar: "from-emerald-500 to-emerald-400",
         dot: "bg-emerald-400",
     },
     upcoming: {
         label: "Coming Soon",
-        accent: "bg-amber-500/20 text-amber-300 border border-amber-500/30",
         bar: "from-amber-500 to-amber-400",
         dot: "bg-amber-400",
     },
@@ -40,13 +41,77 @@ const COUNTRY_OPTIONS = [
     { value: "all", label: "All" },
     { value: "KR", label: "Korean" },
     { value: "CN", label: "Chinese" },
+    { value: "JP", label: "Japanese" },
+    { value: "TH", label: "Thai" },
+    { value: "TW", label: "Taiwanese" },
+    { value: "HK", label: "Hong Kong" },
+    { value: "PH", label: "Philippine" },
+    { value: "SG", label: "Singaporean" },
 ];
 
-// MDL/Kuryana sort options
 const MDL_SORT_OPTIONS = [
     { value: "top", label: "Top Rated" },
     { value: "popular", label: "Most Popular" },
 ];
+
+const MDL_GENRES = [
+    { value: "action", label: "Action" },
+    { value: "adventure", label: "Adventure" },
+    { value: "animals", label: "Animals" },
+    { value: "business", label: "Business" },
+    { value: "comedy", label: "Comedy" },
+    { value: "crime", label: "Crime" },
+    { value: "detective", label: "Detective" },
+    { value: "documentary", label: "Documentary" },
+    { value: "drama", label: "Drama" },
+    { value: "family", label: "Family" },
+    { value: "fantasy", label: "Fantasy" },
+    { value: "food", label: "Food" },
+    { value: "friendship", label: "Friendship" },
+    { value: "historical", label: "Historical" },
+    { value: "horror", label: "Horror" },
+    { value: "investigation", label: "Investigation" },
+    { value: "law", label: "Law" },
+    { value: "life", label: "Life" },
+    { value: "manga", label: "Manga" },
+    { value: "martial_arts", label: "Martial Arts" },
+    { value: "mature", label: "Mature" },
+    { value: "medical", label: "Medical" },
+    { value: "melodrama", label: "Melodrama" },
+    { value: "military", label: "Military" },
+    { value: "music", label: "Music" },
+    { value: "mystery", label: "Mystery" },
+    { value: "political", label: "Political" },
+    { value: "psychological", label: "Psychological" },
+    { value: "romance", label: "Romance" },
+    { value: "school", label: "School" },
+    { value: "sci_fi", label: "Sci-Fi" },
+    { value: "sitcom", label: "Sitcom" },
+    { value: "sports", label: "Sports" },
+    { value: "supernatural", label: "Supernatural" },
+    { value: "suspense", label: "Suspense" },
+    { value: "thriller", label: "Thriller" },
+    { value: "tokusatsu", label: "Tokusatsu" },
+    { value: "tragedy", label: "Tragedy" },
+    { value: "vampire", label: "Vampire" },
+    { value: "war", label: "War" },
+    { value: "western", label: "Western" },
+    { value: "wuxia", label: "Wuxia" },
+    { value: "youth", label: "Youth" },
+    { value: "zombies", label: "Zombies" },
+];
+
+const RATING_MIN_OPTIONS = [
+    { value: "", label: "Any" },
+    { value: "7", label: "7.0+" },
+    { value: "7.5", label: "7.5+" },
+    { value: "8", label: "8.0+" },
+    { value: "8.5", label: "8.5+" },
+    { value: "9", label: "9.0+" },
+];
+
+const currentYear = new Date().getFullYear();
+const YEAR_OPTIONS = Array.from({ length: currentYear - 1990 + 1 }, (_, i) => currentYear - i);
 
 function buildUrl(base: Record<string, string>, overrides: Record<string, string | null | undefined>) {
     const params = { ...base };
@@ -61,22 +126,39 @@ function buildUrl(base: Record<string, string>, overrides: Record<string, string
 }
 
 export default async function DramasPage({ searchParams }: { searchParams: SearchParams }) {
-    const { category: rawCategory, country: rawCountry, sort: rawSort, page: rawPage } = await searchParams;
+    const {
+        category: rawCategory,
+        country: rawCountry,
+        sort: rawSort,
+        page: rawPage,
+        genre: rawGenre,
+        year_from: rawYearFrom,
+        year_to: rawYearTo,
+        rating_min: rawRatingMin,
+    } = await searchParams;
 
     const category: Category = (rawCategory as Category) in CATEGORY_CONFIG ? (rawCategory as Category) : "popular";
     const country = rawCountry ?? "all";
-    const sort = rawSort ?? "popularity.desc";
+    const sort = rawSort ?? "top";
     const page = Math.max(1, parseInt(rawPage ?? "1", 10));
+    const genre = rawGenre ?? "";
+    const year_from = rawYearFrom ? parseInt(rawYearFrom, 10) : undefined;
+    const year_to = rawYearTo ? parseInt(rawYearTo, 10) : undefined;
+    const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
 
-    // Effective MDL sort value
     const mdlSort = sort === "popular" ? "popular" : "top";
 
-    // All countries now use Kuryana MDL data
+    const selectedGenres = genre ? genre.split(",").filter(Boolean) : [];
+
     const result = await mediaService.browseDramasMDL({
-        country: country as "KR" | "CN" | "all",
+        country,
         category,
         sort: mdlSort,
         page,
+        genre: selectedGenres.length > 0 ? selectedGenres.join(",") : undefined,
+        year_from,
+        year_to,
+        rating_min,
     });
     const items: UnifiedMedia[] = result.items;
     const hasNextPage = result.hasNextPage;
@@ -92,10 +174,24 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         linkedBySlug = new Map(linkedRows.map((r) => [r.mdlSlug, r.tmdbExternalId]));
     }
 
+    // Build base params for URL construction (only include active filters)
     const baseParams: Record<string, string> = { category, country, sort };
+    if (genre) baseParams.genre = genre;
+    if (rawYearFrom) baseParams.year_from = rawYearFrom;
+    if (rawYearTo) baseParams.year_to = rawYearTo;
+    if (rawRatingMin) baseParams.rating_min = rawRatingMin;
     baseParams.page = page.toString();
 
     const catConfig = CATEGORY_CONFIG[category];
+
+    function genreToggleUrl(genreValue: string) {
+        const next = selectedGenres.includes(genreValue)
+            ? selectedGenres.filter((g) => g !== genreValue)
+            : [...selectedGenres, genreValue];
+        return buildUrl(baseParams, { genre: next.length > 0 ? next.join(",") : null, page: "1" });
+    }
+
+    const hasActiveFilters = selectedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin;
 
     return (
         <div className="relative min-h-screen">
@@ -120,7 +216,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         <div className={`w-1 h-7 bg-linear-to-b ${catConfig.bar} rounded-full`} />
                         <h1 className="text-2xl md:text-3xl font-bold text-white">K-Drama Universe</h1>
                     </div>
-                    <p className="text-sm text-gray-400 ml-4">Korean &amp; Chinese dramas</p>
+                    <p className="text-sm text-gray-400 ml-4">Asian dramas · Powered by MDL</p>
                 </div>
 
                 {/* Two-column layout */}
@@ -132,6 +228,14 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             <p className="text-sm text-gray-400">
                                 Page <span className="text-white font-medium">{page}</span> · MDL data
                             </p>
+                            {hasActiveFilters && (
+                                <Link
+                                    href={buildUrl({ category, country, sort }, { page: "1" })}
+                                    className="text-xs text-gray-500 hover:text-white transition-colors"
+                                >
+                                    Clear filters
+                                </Link>
+                            )}
                         </div>
 
                         {/* Grid */}
@@ -164,7 +268,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             <div className="text-center py-24 text-gray-500">No shows found for the selected filters.</div>
                         )}
 
-                        {/* Pagination — prev/next only (total pages unknown from MDL API) */}
+                        {/* Pagination — prev/next (total pages unknown from MDL API) */}
                         {(page > 1 || hasNextPage) && (
                             <div className="flex items-center justify-center gap-3 mt-10">
                                 <Link
@@ -198,6 +302,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                     {/* Right: Filters sidebar */}
                     <aside className="w-full lg:w-52 xl:w-56 shrink-0 lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
+
                         {/* Category */}
                         <div className="space-y-2">
                             <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Category</h4>
@@ -227,7 +332,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                     <Link
                                         key={opt.value}
                                         href={buildUrl(baseParams, { country: opt.value, page: "1" })}
-                                        className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                                        className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
                                             country === opt.value
                                                 ? "bg-white/15 text-white border border-white/25"
                                                 : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
@@ -259,6 +364,136 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                 ))}
                             </div>
                         </div>
+
+                        <div className="h-px bg-white/5" />
+
+                        {/* Genre */}
+                        <div className="space-y-1.5">
+                            <div className="flex items-center justify-between">
+                                <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
+                                {selectedGenres.length > 0 && (
+                                    <Link
+                                        href={buildUrl(baseParams, { genre: null, page: "1" })}
+                                        className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
+                                    >
+                                        Clear
+                                    </Link>
+                                )}
+                            </div>
+                            <details className="group" open={selectedGenres.length > 0}>
+                                <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                                    <span>
+                                        {selectedGenres.length === 0
+                                            ? "Any"
+                                            : selectedGenres.length === 1
+                                              ? MDL_GENRES.find((g) => g.value === selectedGenres[0])?.label ?? selectedGenres[0]
+                                              : `${selectedGenres.length} genres`}
+                                    </span>
+                                    <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
+                                </summary>
+                                <div className="mt-1.5 flex flex-wrap gap-1.5 max-h-48 overflow-y-auto pr-0.5">
+                                    {MDL_GENRES.map((g) => {
+                                        const active = selectedGenres.includes(g.value);
+                                        return (
+                                            <Link
+                                                key={g.value}
+                                                href={genreToggleUrl(g.value)}
+                                                className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                                                    active
+                                                        ? "bg-white/15 text-white border border-white/25"
+                                                        : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
+                                                }`}
+                                            >
+                                                {g.label}
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </details>
+                        </div>
+
+                        <div className="h-px bg-white/5" />
+
+                        {/* Year range */}
+                        <div className="space-y-1.5">
+                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Year</h4>
+                            <div className="flex gap-1.5 items-center">
+                                <details className="group flex-1">
+                                    <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
+                                        <span>{rawYearFrom ?? "From"}</span>
+                                        <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
+                                    </summary>
+                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-white/10 rounded-lg shadow-xl max-h-48 overflow-y-auto">
+                                        <Link
+                                            href={buildUrl(baseParams, { year_from: null, page: "1" })}
+                                            className={`block px-3 py-1.5 text-xs transition-all ${!rawYearFrom ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                                        >
+                                            Any
+                                        </Link>
+                                        {YEAR_OPTIONS.map((y) => (
+                                            <Link
+                                                key={y}
+                                                href={buildUrl(baseParams, { year_from: y.toString(), page: "1" })}
+                                                className={`block px-3 py-1.5 text-xs transition-all ${
+                                                    rawYearFrom === y.toString() ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                }`}
+                                            >
+                                                {y}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </details>
+                                <span className="text-gray-600 text-xs shrink-0">—</span>
+                                <details className="group flex-1">
+                                    <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
+                                        <span>{rawYearTo ?? "To"}</span>
+                                        <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
+                                    </summary>
+                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-white/10 rounded-lg shadow-xl max-h-48 overflow-y-auto">
+                                        <Link
+                                            href={buildUrl(baseParams, { year_to: null, page: "1" })}
+                                            className={`block px-3 py-1.5 text-xs transition-all ${!rawYearTo ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                                        >
+                                            Any
+                                        </Link>
+                                        {YEAR_OPTIONS.map((y) => (
+                                            <Link
+                                                key={y}
+                                                href={buildUrl(baseParams, { year_to: y.toString(), page: "1" })}
+                                                className={`block px-3 py-1.5 text-xs transition-all ${
+                                                    rawYearTo === y.toString() ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                }`}
+                                            >
+                                                {y}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+
+                        <div className="h-px bg-white/5" />
+
+                        {/* Min Rating */}
+                        <div className="space-y-2">
+                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Min Rating</h4>
+                            <div className="flex flex-wrap gap-1.5">
+                                {RATING_MIN_OPTIONS.map((opt) => (
+                                    <Link
+                                        key={opt.value}
+                                        href={buildUrl(baseParams, { rating_min: opt.value || null, page: "1" })}
+                                        className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                                            (rawRatingMin ?? "") === opt.value
+                                                ? "bg-white/15 text-white border border-white/25"
+                                                : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        {opt.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
                     </aside>
                 </div>
             </div>
