@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, kuryanaGetAllTop, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 export type UnifiedMedia = {
@@ -494,17 +494,23 @@ export const mediaService = {
         sort,
         page = 1,
     }: {
-        country: "KR" | "CN";
+        country: "KR" | "CN" | "all";
         category?: string;
         sort?: string;
         page?: number;
     }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
         try {
-            // Map page category to Kuryana status
+            // Map category to Kuryana status
             const status = category === "airing" ? "ongoing" : category === "upcoming" ? "upcoming" : "completed";
             const kurSort = sort === "popular" ? "popular" : undefined;
-            const fn = country === "KR" ? kuryanaGetKoreanTop : kuryanaGetChineseTop;
-            const res = await fn(status, page, kurSort);
+
+            let res;
+            if (country === "all") {
+                res = await kuryanaGetAllTop(page, kurSort);
+            } else {
+                const fn = country === "KR" ? kuryanaGetKoreanTop : kuryanaGetChineseTop;
+                res = await fn(status, page, kurSort);
+            }
             const shows = res?.data.shows ?? [];
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {

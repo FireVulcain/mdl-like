@@ -344,3 +344,12 @@ export async function kuryanaGetKoreanTop(
     const q = sort ? `&sort=${sort}` : "";
     return kuryanaFetch<KuryanaChineseTopResult>(`/top/korean?status=${status}&page=${page}${q}`);
 }
+
+// Combined KR+CN endpoint — no country filter needed
+export async function kuryanaGetAllTop(
+    page = 1,
+    sort?: string,
+): Promise<KuryanaChineseTopResult | null> {
+    const q = sort ? `&sort=${sort}` : "";
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top?page=${page}${q}`);
+}
