@@ -1,20 +1,120 @@
-import { mediaService } from "@/services/media.service";
+import React from "react";
+import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { getWatchlistExternalIds } from "@/actions/user-media";
-import { getMdlRatingsForTmdbIds } from "@/actions/person";
 import { MediaCard } from "@/components/media-card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Bookmark, ChevronRight } from "lucide-react";
+import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+
+// Build the slug from the MDL url field (e.g. "/754361-title" → "754361-title")
+function mdlSlugFromUrl(url: string) {
+    return url.replace(/^\//, "");
+}
+
+// Resolve the href and overlay for a KDrama card
+function resolveCard(
+    media: UnifiedMedia,
+    linkedBySlug: Map<string, string>, // mdlSlug → tmdbExternalId
+    watchlistIds: Set<string>,
+): { href: string; overlay: React.ReactNode } {
+    const slug = mdlSlugFromUrl(media.id.replace(/^mdl-/, ""));
+    const tmdbExternalId = linkedBySlug.get(slug);
+
+    const bookmarkOverlay = watchlistIds.has(media.externalId) ? (
+        <div className="absolute bottom-2 left-2">
+            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+            </span>
+        </div>
+    ) : null;
+
+    if (tmdbExternalId) {
+        return {
+            href: `/media/tmdb-${tmdbExternalId}`,
+            overlay: bookmarkOverlay,
+        };
+    }
+
+    // Not linked yet — open MDL externally and show the link button
+    const mdlUrl = `https://mydramalist.com/${slug}`;
+    return {
+        href: mdlUrl,
+        overlay: (
+            <>
+                {bookmarkOverlay}
+                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <LinkToTmdbButton mdlSlug={slug} defaultQuery={media.title} compact />
+                </div>
+            </>
+        ),
+    };
+}
+
+function KDramaRow({
+    items,
+    linkedBySlug,
+    watchlistIds,
+    accentClass,
+    label,
+    seeMoreHref,
+}: {
+    items: UnifiedMedia[];
+    linkedBySlug: Map<string, string>;
+    watchlistIds: Set<string>;
+    accentClass: string;
+    label: string;
+    seeMoreHref: string;
+}) {
+    return (
+        <div className="space-y-3 md:space-y-4">
+            <div className="flex items-center gap-2 md:gap-3">
+                <div className={`w-1 h-5 md:h-6 rounded-full ${accentClass}`} />
+                <h3 className="text-base md:text-lg font-semibold text-white">{label}</h3>
+                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                <Link
+                    href={seeMoreHref}
+                    className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
+                >
+                    See more <ChevronRight className="h-3.5 w-3.5" />
+                </Link>
+            </div>
+            <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
+                <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
+                    {items.map((media) => {
+                        const { href, overlay } = resolveCard(media, linkedBySlug, watchlistIds);
+                        return (
+                            <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
+                                <MediaCard
+                                    media={media}
+                                    mdlRating={media.rating || undefined}
+                                    href={href}
+                                    overlay={overlay}
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+                <ScrollBar orientation="horizontal" className="opacity-50" />
+            </ScrollArea>
+        </div>
+    );
+}
 
 export async function KDramaSectionData() {
     const [kdramas, watchlistExternalIds] = await Promise.all([mediaService.getKDramas(), getWatchlistExternalIds()]);
     const watchlistIds = new Set(watchlistExternalIds);
 
-    const allTmdbIds = [...kdramas.trending, ...kdramas.airing, ...kdramas.upcoming]
-        .filter((item) => item.id.startsWith("tmdb-"))
-        .map((item) => item.externalId);
+    // Batch-look up which MDL slugs are already linked to a TMDB entry in the cache
+    const allShows = [...kdramas.trending, ...kdramas.airing, ...kdramas.upcoming];
+    const slugs = allShows.map((m) => mdlSlugFromUrl(m.id.replace(/^mdl-/, "")));
 
-    const mdlRatingsMap = await getMdlRatingsForTmdbIds(allTmdbIds);
+    const linkedRows = await prisma.cachedMdlData.findMany({
+        where: { mdlSlug: { in: slugs } },
+        select: { mdlSlug: true, tmdbExternalId: true },
+    });
+    const linkedBySlug = new Map(linkedRows.map((r) => [r.mdlSlug, r.tmdbExternalId]));
 
     return (
         <section className="relative space-y-6 md:space-y-8 bg-white/2 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">
@@ -38,129 +138,31 @@ export async function KDramaSectionData() {
             </div>
 
             <div className="space-y-6 md:space-y-10">
-                {/* Trending K-Dramas */}
-                <div className="space-y-3 md:space-y-4">
-                    <div className="flex items-center gap-2 md:gap-3">
-                        <div className="w-1 h-5 md:h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
-                        <h3 className="text-base md:text-lg font-semibold text-white">Popular Right Now</h3>
-                        <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
-                        <Link
-                            href="/dramas?category=popular&country=KR"
-                            className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
-                        >
-                            See more <ChevronRight className="h-3.5 w-3.5" />
-                        </Link>
-                    </div>
-                    <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                        <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
-                            {kdramas.trending.map((media) => (
-                                <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
-                                    <MediaCard
-                                        media={media}
-                                        mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
-                                        overlay={
-                                            watchlistIds.has(media.externalId) ? (
-                                                <div className="absolute bottom-2 left-2">
-                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                    </span>
-                                                </div>
-                                            ) : null
-                                        }
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <ScrollBar orientation="horizontal" className="opacity-50" />
-                    </ScrollArea>
-                </div>
-
-                {/* Airing Now K-Dramas */}
-                <div className="space-y-3 md:space-y-4">
-                    <div className="flex items-center gap-2 md:gap-3">
-                        <div className="w-1 h-5 md:h-6 bg-linear-to-b from-emerald-500 to-emerald-400 rounded-full" />
-                        <h3 className="text-base md:text-lg font-semibold text-white">Airing Now</h3>
-                        <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
-                        <Link
-                            href="/dramas?category=airing&country=KR"
-                            className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
-                        >
-                            See more <ChevronRight className="h-3.5 w-3.5" />
-                        </Link>
-                    </div>
-                    <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                        <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
-                            {kdramas.airing.map((media) => (
-                                <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
-                                    <MediaCard
-                                        media={media}
-                                        mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
-                                        overlay={
-                                            watchlistIds.has(media.externalId) ? (
-                                                <div className="absolute bottom-2 left-2">
-                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                    </span>
-                                                </div>
-                                            ) : null
-                                        }
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <ScrollBar orientation="horizontal" className="opacity-50" />
-                    </ScrollArea>
-                </div>
-
-                {/* Upcoming K-Dramas */}
+                <KDramaRow
+                    items={kdramas.trending}
+                    linkedBySlug={linkedBySlug}
+                    watchlistIds={watchlistIds}
+                    accentClass="bg-linear-to-b from-blue-500 to-blue-400"
+                    label="Popular Right Now"
+                    seeMoreHref="/dramas?category=popular&country=KR"
+                />
+                <KDramaRow
+                    items={kdramas.airing}
+                    linkedBySlug={linkedBySlug}
+                    watchlistIds={watchlistIds}
+                    accentClass="bg-linear-to-b from-emerald-500 to-emerald-400"
+                    label="Airing Now"
+                    seeMoreHref="/dramas?category=airing&country=KR"
+                />
                 {kdramas.upcoming.length > 0 && (
-                    <div className="space-y-3 md:space-y-4">
-                        <div className="flex items-center gap-2 md:gap-3">
-                            <div className="w-1 h-5 md:h-6 bg-linear-to-b from-amber-500 to-amber-400 rounded-full" />
-                            <h3 className="text-base md:text-lg font-semibold text-white">Coming Soon</h3>
-                            <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
-                            <Link
-                                href="/dramas?category=upcoming&country=KR"
-                                className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
-                            >
-                                See more <ChevronRight className="h-3.5 w-3.5" />
-                            </Link>
-                        </div>
-                        <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                            <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
-                                {kdramas.upcoming.map((media) => (
-                                    <div key={media.id} className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
-                                        <MediaCard
-                                            media={media}
-                                            mdlRating={media.id.startsWith("tmdb-") ? mdlRatingsMap[media.externalId] : undefined}
-                                            sizes="(max-width: 768px) 200vw, 1200px"
-                                            overlay={
-                                                <>
-                                                    {media.firstAirDate && (
-                                                        <span className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-amber-400">
-                                                            {new Date(media.firstAirDate + "T00:00:00").toLocaleDateString("en-US", {
-                                                                month: "short",
-                                                                day: "numeric",
-                                                                year: "numeric",
-                                                            })}
-                                                        </span>
-                                                    )}
-                                                    {watchlistIds.has(media.externalId) && (
-                                                        <div className="absolute bottom-2 right-2">
-                                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </>
-                                            }
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                            <ScrollBar orientation="horizontal" className="opacity-50" />
-                        </ScrollArea>
-                    </div>
+                    <KDramaRow
+                        items={kdramas.upcoming}
+                        linkedBySlug={linkedBySlug}
+                        watchlistIds={watchlistIds}
+                        accentClass="bg-linear-to-b from-amber-500 to-amber-400"
+                        label="Coming Soon"
+                        seeMoreHref="/dramas?category=upcoming&country=KR"
+                    />
                 )}
             </div>
         </section>

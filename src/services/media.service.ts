@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetChineseTop, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 export type UnifiedMedia = {
@@ -447,72 +447,40 @@ export const mediaService = {
 
     async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
-            const today = new Date().toISOString().split("T")[0];
-            const tomorrow = new Date(Date.now() + 86400000).toISOString().split("T")[0];
-            const sixMonthsLater = new Date(Date.now() + 180 * 86400000).toISOString().split("T")[0];
-
-            // Parallel fetch: all three API calls are independent
-            const [popularRes, airingRes, upcomingRes] = await Promise.all([
-                // Trending K-Dramas (using popularity as proxy for trending within category)
-                tmdb.discoverTV({
-                    with_origin_country: "KR",
-                    with_genres: "18", // Drama
-                    sort_by: "popularity.desc",
-                }),
-                // Currently Airing K-Dramas
-                tmdb.discoverTV({
-                    with_origin_country: "KR",
-                    with_genres: "18",
-                    "air_date.gte": today,
-                    "first_air_date.lte": today, // Ensure it has actually started
-                    sort_by: "popularity.desc",
-                }),
-                // Upcoming K-Dramas (premiering in the next 6 months)
-                tmdb.discoverTV({
-                    with_origin_country: "KR",
-                    with_genres: "18",
-                    "first_air_date.gte": tomorrow,
-                    "first_air_date.lte": sixMonthsLater,
-                    sort_by: "popularity.desc",
-                }),
+            // Use Kuryana's own Korean top lists — much more accurate than TMDB KR discovery
+            // completed = top-rated finished dramas (Popular Right Now)
+            // ongoing   = currently airing
+            // upcoming  = not yet started
+            const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
+                kuryanaGetKoreanTop("completed"),
+                kuryanaGetKoreanTop("ongoing"),
+                kuryanaGetKoreanTop("upcoming"),
             ]);
 
-            const transform = (item: TMDBMedia, posterOverride?: string | null): UnifiedMedia => ({
-                id: `tmdb-${item.id}`,
-                externalId: item.id.toString(),
-                source: "TMDB",
-                type: "TV",
-                title: item.name || "Unknown",
-                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : posterOverride ?? null,
-                backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
-                year: (item.first_air_date || "").split("-")[0],
-                originCountry: "KR",
-                synopsis: item.overview,
-                rating: item.vote_average,
-                popularity: item.popularity,
-                firstAirDate: item.first_air_date || null,
-            });
-
-            // For upcoming shows missing a TMDB poster, fall back to TVmaze
-            const upcomingPosterOverrides = new Map<number, string>();
-            const missingPosters = upcomingRes.results.filter((item) => !item.poster_path);
-            if (missingPosters.length > 0) {
-                await Promise.all(
-                    missingPosters.map(async (item) => {
-                        const poster = await tvmaze.getPosterByName(item.name || "");
-                        if (poster) upcomingPosterOverrides.set(item.id, poster);
-                    })
-                );
-            }
+            const transform = (item: KuryanaChineseShow): UnifiedMedia => {
+                const slug = item.url.replace(/^\//, "");
+                return {
+                    id: `mdl-${slug}`,
+                    externalId: item.id,
+                    source: "MDL",
+                    type: "TV",
+                    title: item.title,
+                    nativeTitle: item.original_title || undefined,
+                    poster: item.img || null,
+                    backdrop: null,
+                    year: item.year,
+                    originCountry: "KR",
+                    synopsis: item.synopsis,
+                    rating: item.rating,
+                    popularity: item.rank,
+                    firstAirDate: null,
+                };
+            };
 
             return {
-                trending: popularRes.results.map((item) => transform(item)),
-                airing: airingRes.results.map((item) => transform(item)),
-                upcoming: upcomingRes.results.map((item) => {
-                    const tvmazePoster = upcomingPosterOverrides.get(item.id);
-                    const backdropFallback = item.backdrop_path ? TMDB_CONFIG.originalImage(item.backdrop_path) : null;
-                    return transform(item, tvmazePoster ?? backdropFallback);
-                }),
+                trending: (completedRes?.data.shows ?? []).map(transform),
+                airing: (ongoingRes?.data.shows ?? []).map(transform),
+                upcoming: (upcomingRes?.data.shows ?? []).map(transform),
             };
         } catch (error) {
             console.error("Error fetching K-Dramas", error);

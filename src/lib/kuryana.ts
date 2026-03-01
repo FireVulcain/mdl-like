@@ -333,3 +333,10 @@ export async function kuryanaGetChineseTop(
 ): Promise<KuryanaChineseTopResult | null> {
     return kuryanaFetch<KuryanaChineseTopResult>(`/top/chinese?status=${status}&page=${page}`);
 }
+
+export async function kuryanaGetKoreanTop(
+    status: "ongoing" | "upcoming" | "completed",
+    page = 1,
+): Promise<KuryanaChineseTopResult | null> {
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top/korean?status=${status}&page=${page}`);
+}
