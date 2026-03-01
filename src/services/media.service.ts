@@ -454,7 +454,7 @@ export const mediaService = {
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
                 kuryanaGetKoreanTop("completed"),
                 kuryanaGetKoreanTop("ongoing"),
-                kuryanaGetKoreanTop("upcoming"),
+                kuryanaGetKoreanTop("upcoming", 1, "popular"),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
@@ -497,7 +497,7 @@ export const mediaService = {
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
                 kuryanaGetChineseTop("completed"),
                 kuryanaGetChineseTop("ongoing"),
-                kuryanaGetChineseTop("upcoming"),
+                kuryanaGetChineseTop("upcoming", 1, "popular"),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {

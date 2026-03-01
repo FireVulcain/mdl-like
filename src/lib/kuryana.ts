@@ -330,13 +330,17 @@ export interface KuryanaChineseTopResult {
 export async function kuryanaGetChineseTop(
     status: "ongoing" | "upcoming" | "completed",
     page = 1,
+    sort?: string,
 ): Promise<KuryanaChineseTopResult | null> {
-    return kuryanaFetch<KuryanaChineseTopResult>(`/top/chinese?status=${status}&page=${page}`);
+    const q = sort ? `&sort=${sort}` : "";
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top/chinese?status=${status}&page=${page}${q}`);
 }
 
 export async function kuryanaGetKoreanTop(
     status: "ongoing" | "upcoming" | "completed",
     page = 1,
+    sort?: string,
 ): Promise<KuryanaChineseTopResult | null> {
-    return kuryanaFetch<KuryanaChineseTopResult>(`/top/korean?status=${status}&page=${page}`);
+    const q = sort ? `&sort=${sort}` : "";
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top/korean?status=${status}&page=${page}${q}`);
 }
