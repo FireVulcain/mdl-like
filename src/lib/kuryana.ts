@@ -303,3 +303,33 @@ export interface KuryanaRecommendationsResult {
 export async function kuryanaGetRecommendations(slug: string): Promise<KuryanaRecommendationsResult | null> {
     return kuryanaFetch<KuryanaRecommendationsResult>(`/id/${slug}/recs`);
 }
+
+export interface KuryanaChineseShow {
+    id: string;
+    title: string;
+    original_title: string;
+    url: string; // e.g. "/754361-love-story-in-the-1970s"
+    img: string;
+    rank: number;
+    type: string;
+    year: string;
+    episodes: number;
+    rating: number;
+    synopsis: string;
+}
+
+export interface KuryanaChineseTopResult {
+    slug_query: string;
+    data: {
+        link: string;
+        shows: KuryanaChineseShow[];
+    };
+    scrape_date: string;
+}
+
+export async function kuryanaGetChineseTop(
+    status: "ongoing" | "upcoming" | "completed",
+    page = 1,
+): Promise<KuryanaChineseTopResult | null> {
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top/chinese?status=${status}&page=${page}`);
+}

@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetChineseTop, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 export type UnifiedMedia = {
@@ -516,6 +516,50 @@ export const mediaService = {
             };
         } catch (error) {
             console.error("Error fetching K-Dramas", error);
+            return { trending: [], airing: [], upcoming: [] };
+        }
+    },
+
+    async getCDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
+        try {
+            // Use Kuryana's own Chinese top lists — much more accurate than TMDB CN discovery
+            // completed = top-rated finished dramas (Popular Right Now)
+            // ongoing   = currently airing
+            // upcoming  = not yet started
+            const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
+                kuryanaGetChineseTop("completed"),
+                kuryanaGetChineseTop("ongoing"),
+                kuryanaGetChineseTop("upcoming"),
+            ]);
+
+            const transform = (item: KuryanaChineseShow): UnifiedMedia => {
+                // url is "/754361-love-story-in-the-1970s" → slug is the part after "/"
+                const slug = item.url.replace(/^\//, "");
+                return {
+                    id: `mdl-${slug}`,
+                    externalId: item.id,
+                    source: "MDL",
+                    type: "TV",
+                    title: item.title,
+                    nativeTitle: item.original_title || undefined,
+                    poster: item.img || null,
+                    backdrop: null,
+                    year: item.year,
+                    originCountry: "CN",
+                    synopsis: item.synopsis,
+                    rating: item.rating,
+                    popularity: item.rank,
+                    firstAirDate: null,
+                };
+            };
+
+            return {
+                trending: (completedRes?.data.shows ?? []).map(transform),
+                airing: (ongoingRes?.data.shows ?? []).map(transform),
+                upcoming: (upcomingRes?.data.shows ?? []).map(transform),
+            };
+        } catch (error) {
+            console.error("Error fetching C-Dramas", error);
             return { trending: [], airing: [], upcoming: [] };
         }
     },

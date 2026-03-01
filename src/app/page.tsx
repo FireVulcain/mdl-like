@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { ContinueWatchingData } from "@/components/continue-watching-data";
 import { KDramaSectionData } from "@/components/kdrama-section-data";
+import { CDramaSectionData } from "@/components/cdrama-section-data";
 import { TrendingData } from "@/components/trending-data";
 
 export const dynamic = "force-dynamic";
@@ -77,6 +78,11 @@ export default function Home() {
                 {/* K-Drama section — 3 parallel TMDB calls */}
                 <Suspense fallback={<KDramaSkeleton />}>
                     <KDramaSectionData />
+                </Suspense>
+
+                {/* C-Drama section — 3 parallel TMDB calls */}
+                <Suspense fallback={<KDramaSkeleton />}>
+                    <CDramaSectionData />
                 </Suspense>
 
                 {/* Trending section — 1 TMDB call */}

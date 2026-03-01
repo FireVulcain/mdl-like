@@ -62,7 +62,9 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
         })();
     }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    function handleOpen() {
+    function handleOpen(e: React.MouseEvent) {
+        e.preventDefault();
+        e.stopPropagation();
         setOpen(true);
         setLinked(null);
         setError(null);
