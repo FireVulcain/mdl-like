@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
@@ -240,7 +240,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                         {/* Grid */}
                         {items.length > 0 ? (
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-5">
                                 {items.map((media) => {
                                     const slug = media.id.replace(/^mdl-/, "");
                                     const tmdbExternalId = linkedBySlug.get(slug);
@@ -325,23 +325,37 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         <div className="h-px bg-white/5" />
 
                         {/* Country */}
-                        <div className="space-y-2">
+                        <div className="space-y-1.5">
                             <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Country</h4>
-                            <div className="flex flex-wrap gap-1.5">
-                                {COUNTRY_OPTIONS.map((opt) => (
-                                    <Link
-                                        key={opt.value}
-                                        href={buildUrl(baseParams, { country: opt.value, page: "1" })}
-                                        className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
-                                            country === opt.value
-                                                ? "bg-white/15 text-white border border-white/25"
-                                                : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
-                                        }`}
-                                    >
-                                        {opt.label}
-                                    </Link>
-                                ))}
-                            </div>
+                            <details className="group" open>
+                                <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                                    <span>{COUNTRY_OPTIONS.find((o) => o.value === country)?.label ?? "All"}</span>
+                                    <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
+                                </summary>
+                                <div className="mt-2 grid grid-cols-2 gap-x-1 gap-y-0.5">
+                                    {COUNTRY_OPTIONS.map((opt) => {
+                                        const active = country === opt.value;
+                                        return (
+                                            <Link
+                                                key={opt.value}
+                                                href={buildUrl(baseParams, { country: opt.value, page: "1" })}
+                                                className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/country hover:bg-white/5"
+                                            >
+                                                <div
+                                                    className={`w-3.5 h-3.5 rounded-full shrink-0 border flex items-center justify-center transition-all ${
+                                                        active ? "bg-white/20 border-white/40" : "border-white/20"
+                                                    }`}
+                                                >
+                                                    {active && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                                                </div>
+                                                <span className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/country:text-white"}`}>
+                                                    {opt.label}
+                                                </span>
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </details>
                         </div>
 
                         <div className="h-px bg-white/5" />
@@ -376,7 +390,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                         href={buildUrl(baseParams, { genre: null, page: "1" })}
                                         className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
                                     >
-                                        Clear
+                                        Clear ({selectedGenres.length})
                                     </Link>
                                 )}
                             </div>
@@ -387,24 +401,29 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                             ? "Any"
                                             : selectedGenres.length === 1
                                               ? MDL_GENRES.find((g) => g.value === selectedGenres[0])?.label ?? selectedGenres[0]
-                                              : `${selectedGenres.length} genres`}
+                                              : `${selectedGenres.length} selected`}
                                     </span>
                                     <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
                                 </summary>
-                                <div className="mt-1.5 flex flex-wrap gap-1.5 max-h-48 overflow-y-auto pr-0.5">
+                                <div className="mt-2 grid grid-cols-2 gap-x-1 gap-y-0.5">
                                     {MDL_GENRES.map((g) => {
                                         const active = selectedGenres.includes(g.value);
                                         return (
                                             <Link
                                                 key={g.value}
                                                 href={genreToggleUrl(g.value)}
-                                                className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
-                                                    active
-                                                        ? "bg-white/15 text-white border border-white/25"
-                                                        : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
-                                                }`}
+                                                className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/genre hover:bg-white/5"
                                             >
-                                                {g.label}
+                                                <div
+                                                    className={`w-3.5 h-3.5 rounded shrink-0 border flex items-center justify-center transition-all ${
+                                                        active ? "bg-white/20 border-white/40" : "border-white/20"
+                                                    }`}
+                                                >
+                                                    {active && <Check className="h-2.5 w-2.5 text-white" />}
+                                                </div>
+                                                <span className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/genre:text-white"}`}>
+                                                    {g.label}
+                                                </span>
                                             </Link>
                                         );
                                     })}
