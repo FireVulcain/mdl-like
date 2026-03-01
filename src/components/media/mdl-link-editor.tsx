@@ -2,8 +2,9 @@
 
 import { useState, useTransition, useEffect } from "react";
 import Image from "next/image";
-import { Link2, Search, Loader2 } from "lucide-react";
+import { Link2, Search, Loader2, RefreshCw } from "lucide-react";
 import { useDebounce } from "@/hooks/use-debounce";
+import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -17,14 +18,37 @@ interface MdlLinkEditorProps {
     mediaType: "tv" | "movie";
     currentSlug?: string | null;
     defaultQuery?: string;
+    mediaId?: string;
 }
 
-export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQuery }: MdlLinkEditorProps) {
+export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQuery, mediaId }: MdlLinkEditorProps) {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState(defaultQuery || "");
     const [results, setResults] = useState<KuryanaSearchResult["results"]["dramas"]>([]);
     const [isSearching, setIsSearching] = useState(false);
     const [isPending, startTransition] = useTransition();
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
+    async function handleRefresh() {
+        if (!mediaId) return;
+        setIsRefreshing(true);
+        try {
+            const res = await fetch("/api/mdl/reset", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ tmdbExternalId, mediaId }),
+            });
+            if (!res.ok) throw new Error();
+            toast.success("MDL data refreshed");
+            setOpen(false);
+            router.refresh();
+        } catch {
+            toast.error("Failed to refresh MDL cache");
+        } finally {
+            setIsRefreshing(false);
+        }
+    }
 
     const debouncedSearch = useDebounce(async (q: string) => {
         if (!q || q.length < 2) {
@@ -80,7 +104,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <button
-                    className="flex shrink-0 h-6 items-center gap-1.5 px-2 py-1 rounded bg-white/[0.03] hover:bg-white/10 text-white/40 hover:text-white transition-colors"
+                    className="flex shrink-0 h-6 items-center gap-1.5 px-2 py-1 rounded bg-white/3 hover:bg-white/10 text-white/40 hover:text-white transition-colors"
                     title="Edit MDL Link"
                 >
                     <Link2 className="h-3 w-3" />
@@ -88,7 +112,20 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
             </DialogTrigger>
             <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
                 <DialogHeader>
-                    <DialogTitle className="text-white">Link MDL Entry</DialogTitle>
+                    <div className="flex items-center justify-between gap-2 pr-8">
+                        <DialogTitle className="text-white">Link MDL Entry</DialogTitle>
+                        {mediaId && (
+                            <button
+                                onClick={handleRefresh}
+                                disabled={isRefreshing}
+                                title="Refresh MDL cache"
+                                className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-40"
+                            >
+                                <RefreshCw className={`h-3 w-3 ${isRefreshing ? "animate-spin" : ""}`} />
+                                Refresh cache
+                            </button>
+                        )}
+                    </div>
                     <DialogDescription className="text-gray-400">Search and select the correct MDL entry for this TMDB show.</DialogDescription>
                 </DialogHeader>
 
@@ -104,7 +141,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                         />
                     </div>
 
-                    <div className="min-h-[200px]">
+                    <div className="min-h-50">
                         {isSearching || isPending ? (
                             <div className="flex items-center justify-center h-48">
                                 <Loader2 className="h-6 w-6 text-sky-400 animate-spin" />
@@ -114,7 +151,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                 {query.trim().length >= 2 ? "No results found." : "Start typing to search…"}
                             </div>
                         ) : (
-                            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 max-h-[400px] overflow-y-auto pr-1">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 max-h-100 overflow-y-auto pr-1">
                                 {results.map((item: any) => {
                                     const isCurrent = currentSlug && item.slug.includes(currentSlug);
 

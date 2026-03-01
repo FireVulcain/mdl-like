@@ -16,13 +16,14 @@ function mdlSlugFromUrl(url: string) {
 // Resolve the href and overlay for a CDrama card
 function resolveCard(
     media: UnifiedMedia,
-    linkedBySlug: Map<string, string>, // mdlSlug → tmdbExternalId
+    linkedBySlug: Map<string, { tmdbExternalId: string; season?: number }>,
     watchlistIds: Set<string>,
 ): { href: string; overlay: React.ReactNode } {
     const slug = mdlSlugFromUrl(media.id.replace(/^mdl-/, ""));
-    const tmdbExternalId = linkedBySlug.get(slug);
+    const entry = linkedBySlug.get(slug);
+    const tmdbExternalId = entry?.tmdbExternalId;
 
-    const bookmarkOverlay = watchlistIds.has(media.externalId) ? (
+    const bookmarkOverlay = tmdbExternalId && watchlistIds.has(tmdbExternalId) ? (
         <div className="absolute bottom-2 left-2">
             <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
                 <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
@@ -32,7 +33,7 @@ function resolveCard(
 
     if (tmdbExternalId) {
         return {
-            href: `/media/tmdb-${tmdbExternalId}`,
+            href: `/media/tmdb-${tmdbExternalId}${entry?.season ? `?season=${entry.season}` : ""}`,
             overlay: bookmarkOverlay,
         };
     }
@@ -110,11 +111,20 @@ export async function CDramaSectionData() {
     const allShows = [...cdramas.trending, ...cdramas.airing, ...cdramas.upcoming];
     const slugs = allShows.map((m) => mdlSlugFromUrl(m.id.replace(/^mdl-/, "")));
 
-    const linkedRows = await prisma.cachedMdlData.findMany({
-        where: { mdlSlug: { in: slugs } },
-        select: { mdlSlug: true, tmdbExternalId: true },
-    });
-    const linkedBySlug = new Map(linkedRows.map((r) => [r.mdlSlug, r.tmdbExternalId]));
+    const [linkedRows, seasonRows] = await Promise.all([
+        prisma.cachedMdlData.findMany({
+            where: { mdlSlug: { in: slugs } },
+            select: { mdlSlug: true, tmdbExternalId: true },
+        }),
+        prisma.mdlSeasonLink.findMany({
+            where: { mdlSlug: { in: slugs } },
+            select: { mdlSlug: true, tmdbExternalId: true, season: true },
+        }),
+    ]);
+    const linkedBySlug = new Map([
+        ...linkedRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
+        ...seasonRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId, season: r.season }] as const),
+    ]);
 
     return (
         <section className="relative space-y-6 md:space-y-8 bg-white/2 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">

@@ -53,6 +53,95 @@ export async function getMdlNativeTitle(mdlSlug: string): Promise<string | null>
     return native || null;
 }
 
+// Checks if a TMDB ID is already linked and returns available seasons from TMDB.
+// Used to decide whether to go through the normal flow or the season-picker flow.
+export async function checkAndGetSeasons(tmdbExternalId: string): Promise<{
+    alreadyLinked: boolean;
+    seasons: { number: number; name: string }[];
+    takenSeasons: number[]; // seasons already saved in MdlSeasonLink
+}> {
+    const existing = await prisma.cachedMdlData.findUnique({
+        where: { tmdbExternalId },
+        select: { mdlSlug: true },
+    });
+
+    if (!existing) return { alreadyLinked: false, seasons: [], takenSeasons: [] };
+
+    const [tmdbDetails, seasonLinks] = await Promise.all([
+        tmdb.getDetails("tv", tmdbExternalId),
+        prisma.mdlSeasonLink.findMany({
+            where: { tmdbExternalId },
+            select: { season: true },
+        }),
+    ]);
+
+    const seasons = (tmdbDetails?.seasons ?? [])
+        .filter((s) => s.season_number > 0)
+        .map((s) => ({ number: s.season_number, name: s.name || `Season ${s.season_number}` }));
+
+    const takenSeasons = [1, ...seasonLinks.map((l) => l.season)]; // season 1 = main CachedMdlData entry
+
+    return { alreadyLinked: true, seasons, takenSeasons };
+}
+
+// Saves a season-specific MDL link (season 2+) into MdlSeasonLink.
+export async function createMdlSeasonLink(
+    mdlSlug: string,
+    tmdbExternalId: string,
+    season: number,
+): Promise<{ ok: boolean; error?: string }> {
+    try {
+        const [details, castResult] = await Promise.all([
+            kuryanaGetDetails(mdlSlug),
+            kuryanaGetCast(mdlSlug),
+        ]);
+
+        const ranked = details?.data?.details?.ranked;
+        const popularity = details?.data?.details?.popularity;
+        const mdlRating = details?.data?.rating != null ? parseFloat(String(details.data.rating)) || null : null;
+        const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
+        const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+        const tags = details?.data?.others?.tags ?? [];
+
+        const cast: MdlCast | null = castResult?.data?.casts
+            ? {
+                  main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
+                  support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
+                  guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+              }
+            : null;
+
+        await prisma.mdlSeasonLink.upsert({
+            where: { tmdbExternalId_season: { tmdbExternalId, season } },
+            create: {
+                tmdbExternalId,
+                season,
+                mdlSlug,
+                mdlRating,
+                mdlRanking,
+                mdlPopularity,
+                tags,
+                castJson: cast as unknown as Prisma.InputJsonValue,
+                cachedAt: new Date(),
+            },
+            update: {
+                mdlSlug,
+                mdlRating,
+                mdlRanking,
+                mdlPopularity,
+                tags,
+                castJson: cast as unknown as Prisma.InputJsonValue,
+                cachedAt: new Date(),
+            },
+        });
+
+        return { ok: true };
+    } catch (e) {
+        console.error("[MDL season link] Failed:", e);
+        return { ok: false, error: "Failed to fetch MDL data. Try again." };
+    }
+}
+
 // Creates (or updates) a CachedMdlData entry by fetching fresh data from Kuryana.
 // Called after the user manually picks a TMDB match in the link modal.
 export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Promise<{ ok: boolean; error?: string }> {

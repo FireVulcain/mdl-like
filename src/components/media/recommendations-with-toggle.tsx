@@ -107,6 +107,13 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                                                     </Badge>
                                                 </div>
                                             )}
+                                            {watchlistSet.has(tmdbId) && (
+                                                <div className="absolute bottom-2 left-2 z-10">
+                                                    <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                    </span>
+                                                </div>
+                                            )}
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={item.img}

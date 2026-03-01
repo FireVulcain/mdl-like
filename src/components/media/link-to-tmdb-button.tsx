@@ -3,11 +3,18 @@
 import { useState, useEffect, useTransition, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Link2, Search, Check, Loader2, Star } from "lucide-react";
+import { Link2, Search, Check, Loader2, Star, ChevronLeft } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { searchTmdbDramas, createMdlLink, getMdlNativeTitle, TmdbSearchResult } from "@/actions/mdl-link";
+import {
+    searchTmdbDramas,
+    createMdlLink,
+    createMdlSeasonLink,
+    checkAndGetSeasons,
+    getMdlNativeTitle,
+    TmdbSearchResult,
+} from "@/actions/mdl-link";
 
 interface Props {
     mdlSlug: string; // e.g. "687393-the-prisoner-of-beauty"
@@ -16,18 +23,26 @@ interface Props {
     compact?: boolean; // icon-only button (for image overlay use)
 }
 
+type DialogStep = "search" | "season" | "success";
+
 export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = false }: Props) {
     const [open, setOpen] = useState(false);
+    const [step, setStep] = useState<DialogStep>("search");
     const [query, setQuery] = useState(defaultQuery);
     const [results, setResults] = useState<TmdbSearchResult[]>([]);
     const [searching, setSearching] = useState(false);
-    const [linked, setLinked] = useState<string | null>(null); // tmdbExternalId after success
+    const [linked, setLinked] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
-    // Blocks the debounced effect while the initial open search is in progress
     const initialSearching = useRef(false);
 
-    // Debounced search for when the user manually types after the modal is loaded
+    // Season picker state
+    const [pendingResult, setPendingResult] = useState<TmdbSearchResult | null>(null);
+    const [availableSeasons, setAvailableSeasons] = useState<{ number: number; name: string }[]>([]);
+    const [selectedSeason, setSelectedSeason] = useState<number>(2);
+    const [checkingLink, setCheckingLink] = useState(false);
+
+    // Debounced search
     useEffect(() => {
         if (initialSearching.current) return;
         if (!open || !query.trim()) return;
@@ -40,21 +55,23 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
         return () => clearTimeout(timer);
     }, [query, open]);
 
-    // On open: fetch native title first, then search — spinner shows the whole time
+    // On open: fetch native title first, then search
     useEffect(() => {
         if (!open) return;
         initialSearching.current = true;
         setResults([]);
         setSearching(true);
+        setStep("search");
+        setPendingResult(null);
         (async () => {
             try {
                 const native = await getMdlNativeTitle(mdlSlug);
-                const q = native ?? defaultQuery;
+                const q = native ?? defaultQuery.replace(/\s+(Season|Part|시즌|파트)\s*\d+\s*$/i, "").trim();
                 setQuery(q);
                 const res = await searchTmdbDramas(q);
                 setResults(res);
             } catch {
-                // silently fail, user can still type manually
+                // silently fail
             } finally {
                 setSearching(false);
                 initialSearching.current = false;
@@ -70,13 +87,42 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
         setError(null);
     }
 
-    function handleSelect(result: TmdbSearchResult) {
+    async function handleSelect(result: TmdbSearchResult) {
         setError(null);
+        setCheckingLink(true);
+        const check = await checkAndGetSeasons(result.externalId);
+        setCheckingLink(false);
+
+        if (check.alreadyLinked) {
+            // Filter out already-taken seasons so the user only sees valid choices
+            const free = check.seasons.filter((s) => !check.takenSeasons.includes(s.number));
+            const options = free.length > 0 ? free : check.seasons;
+            setPendingResult(result);
+            setAvailableSeasons(options);
+            setSelectedSeason(options[0]?.number ?? 2);
+            setStep("season");
+        } else {
+            startTransition(async () => {
+                const res = await createMdlLink(mdlSlug, result.externalId);
+                if (res.ok) {
+                    setLinked(result.externalId);
+                    onLinked?.(result.externalId);
+                    setStep("success");
+                } else {
+                    setError(res.error ?? "Something went wrong.");
+                }
+            });
+        }
+    }
+
+    function handleSeasonConfirm() {
+        if (!pendingResult) return;
         startTransition(async () => {
-            const res = await createMdlLink(mdlSlug, result.externalId);
+            const res = await createMdlSeasonLink(mdlSlug, pendingResult.externalId, selectedSeason);
             if (res.ok) {
-                setLinked(result.externalId);
-                onLinked?.(result.externalId);
+                setLinked(pendingResult.externalId);
+                onLinked?.(pendingResult.externalId);
+                setStep("success");
             } else {
                 setError(res.error ?? "Something went wrong.");
             }
@@ -107,11 +153,12 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
                     <DialogHeader>
-                        <DialogTitle className="text-white">Link &ldquo;{defaultQuery}&rdquo; to TMDB</DialogTitle>
+                        <DialogTitle className="text-white">
+                            Link &ldquo;{defaultQuery}&rdquo; to TMDB
+                        </DialogTitle>
                     </DialogHeader>
 
-                    {linked ? (
-                        /* Success state */
+                    {step === "success" ? (
                         <div className="flex flex-col items-center gap-4 py-8">
                             <div className="h-12 w-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
                                 <Check className="h-6 w-6 text-emerald-400" />
@@ -128,8 +175,79 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                 Open media page →
                             </Link>
                         </div>
+                    ) : step === "season" && pendingResult ? (
+                        <div className="space-y-5">
+                            {/* Show card summary */}
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+                                {pendingResult.poster && (
+                                    <div className="relative w-10 shrink-0 aspect-2/3 rounded overflow-hidden">
+                                        <Image
+                                            unoptimized
+                                            src={pendingResult.poster}
+                                            alt={pendingResult.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                )}
+                                <div>
+                                    <p className="text-sm font-medium text-white">{pendingResult.title}</p>
+                                    <p className="text-xs text-amber-400 mt-0.5">
+                                        Already linked — Season 1 is taken
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <p className="text-sm text-gray-300">
+                                    Which season does{" "}
+                                    <span className="text-white font-medium">&ldquo;{defaultQuery}&rdquo;</span>{" "}
+                                    correspond to?
+                                </p>
+                                {availableSeasons.length > 0 ? (
+                                    <select
+                                        value={selectedSeason}
+                                        onChange={(e) => setSelectedSeason(Number(e.target.value))}
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500/50"
+                                    >
+                                        {availableSeasons.map((s) => (
+                                            <option key={s.number} value={s.number} className="bg-gray-900">
+                                                {s.name || `Season ${s.number}`}
+                                            </option>
+                                        ))}
+                                    </select>
+                                ) : (
+                                    <p className="text-sm text-gray-500">
+                                        No additional seasons found on TMDB for this show.
+                                    </p>
+                                )}
+                            </div>
+
+                            {error && <p className="text-sm text-red-400">{error}</p>}
+
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => { setStep("search"); setError(null); }}
+                                    className="flex items-center gap-1 px-4 py-2 rounded-xl border border-white/10 text-gray-400 text-sm hover:text-white transition-colors"
+                                >
+                                    <ChevronLeft className="h-4 w-4" />
+                                    Back
+                                </button>
+                                <button
+                                    onClick={handleSeasonConfirm}
+                                    disabled={isPending || availableSeasons.length === 0}
+                                    className="flex-1 flex items-center justify-center px-4 py-2 rounded-xl bg-sky-500/20 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {isPending ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        `Link as Season ${selectedSeason}`
+                                    )}
+                                </button>
+                            </div>
+                        </div>
                     ) : (
-                        /* Search state */
+                        /* Search step */
                         <div className="space-y-4">
                             <div className="relative">
                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -145,7 +263,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                             {error && <p className="text-sm text-red-400">{error}</p>}
 
                             <div className="min-h-[200px]">
-                                {searching || isPending ? (
+                                {searching || isPending || checkingLink ? (
                                     <div className="flex items-center justify-center h-48">
                                         <Loader2 className="h-6 w-6 text-sky-400 animate-spin" />
                                     </div>
@@ -159,15 +277,17 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                             <button
                                                 key={result.externalId}
                                                 onClick={() => handleSelect(result)}
-                                                disabled={isPending}
+                                                disabled={isPending || checkingLink}
                                                 className="cursor-pointer group text-left space-y-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
                                                     {result.poster ? (
-                                                        <Image unoptimized={true}
+                                                        <Image
+                                                            unoptimized={true}
                                                             src={result.poster}
                                                             alt={result.title}
-                                                            fill className="object-cover"
+                                                            fill
+                                                            className="object-cover"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">

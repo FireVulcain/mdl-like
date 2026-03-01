@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { Check, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bookmark, Check, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { MediaCard } from "@/components/media-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { prisma } from "@/lib/prisma";
+import { getWatchlistExternalIds } from "@/actions/user-media";
 
 type SearchParams = Promise<{
     category?: string;
@@ -163,15 +165,27 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const items: UnifiedMedia[] = result.items;
     const hasNextPage = result.hasNextPage;
 
-    // Look up which MDL slugs are already linked to a TMDB entry
-    let linkedBySlug = new Map<string, string>();
+    // Look up which MDL slugs are already linked to a TMDB entry + fetch watchlist in parallel
+    let linkedBySlug = new Map<string, { tmdbExternalId: string; season?: number }>();
+    let watchlistIds = new Set<string>();
     if (items.length > 0) {
         const slugs = items.map((m) => m.id.replace(/^mdl-/, ""));
-        const linkedRows = await prisma.cachedMdlData.findMany({
-            where: { mdlSlug: { in: slugs } },
-            select: { mdlSlug: true, tmdbExternalId: true },
-        });
-        linkedBySlug = new Map(linkedRows.map((r) => [r.mdlSlug, r.tmdbExternalId]));
+        const [linkedRows, seasonRows, watchlistExternalIds] = await Promise.all([
+            prisma.cachedMdlData.findMany({
+                where: { mdlSlug: { in: slugs } },
+                select: { mdlSlug: true, tmdbExternalId: true },
+            }),
+            prisma.mdlSeasonLink.findMany({
+                where: { mdlSlug: { in: slugs } },
+                select: { mdlSlug: true, tmdbExternalId: true, season: true },
+            }),
+            getWatchlistExternalIds(),
+        ]);
+        linkedBySlug = new Map([
+            ...linkedRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
+            ...seasonRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId, season: r.season }] as const),
+        ]);
+        watchlistIds = new Set(watchlistExternalIds);
     }
 
     // Build base params for URL construction (only include active filters)
@@ -185,9 +199,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const catConfig = CATEGORY_CONFIG[category];
 
     function genreToggleUrl(genreValue: string) {
-        const next = selectedGenres.includes(genreValue)
-            ? selectedGenres.filter((g) => g !== genreValue)
-            : [...selectedGenres, genreValue];
+        const next = selectedGenres.includes(genreValue) ? selectedGenres.filter((g) => g !== genreValue) : [...selectedGenres, genreValue];
         return buildUrl(baseParams, { genre: next.length > 0 ? next.join(",") : null, page: "1" });
     }
 
@@ -243,13 +255,21 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-5">
                                 {items.map((media) => {
                                     const slug = media.id.replace(/^mdl-/, "");
-                                    const tmdbExternalId = linkedBySlug.get(slug);
+                                    const entry = linkedBySlug.get(slug);
+                                    const tmdbExternalId = entry?.tmdbExternalId;
                                     const href = tmdbExternalId
-                                        ? `/media/tmdb-${tmdbExternalId}`
+                                        ? `/media/tmdb-${tmdbExternalId}${entry?.season ? `?season=${entry.season}` : ""}`
                                         : `https://mydramalist.com/${slug}`;
+                                    const inWatchlist = !!tmdbExternalId && watchlistIds.has(tmdbExternalId);
                                     const overlay = !tmdbExternalId ? (
                                         <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <LinkToTmdbButton mdlSlug={slug} defaultQuery={media.title} compact />
+                                        </div>
+                                    ) : inWatchlist ? (
+                                        <div className="absolute bottom-1.5 left-1.5">
+                                            <Badge className="bg-emerald-500/90 text-white backdrop-blur-sm px-1.5">
+                                                <Bookmark className="h-3 w-3 fill-current" />
+                                            </Badge>
                                         </div>
                                     ) : undefined;
                                     return (
@@ -301,8 +321,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     </main>
 
                     {/* Right: Filters sidebar */}
-                    <aside className="w-full lg:w-52 xl:w-56 shrink-0 lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
-
+                    <aside className="w-full lg:w-52 xl:w-75 shrink-0 lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
                         {/* Category */}
                         <div className="space-y-2">
                             <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Category</h4>
@@ -348,7 +367,9 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 >
                                                     {active && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                                                 </div>
-                                                <span className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/country:text-white"}`}>
+                                                <span
+                                                    className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/country:text-white"}`}
+                                                >
                                                     {opt.label}
                                                 </span>
                                             </Link>
@@ -372,7 +393,9 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                             mdlSort === opt.value ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
                                         }`}
                                     >
-                                        <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${mdlSort === opt.value ? "bg-white/70" : "bg-white/20"}`} />
+                                        <div
+                                            className={`w-1.5 h-1.5 rounded-full shrink-0 ${mdlSort === opt.value ? "bg-white/70" : "bg-white/20"}`}
+                                        />
                                         {opt.label}
                                     </Link>
                                 ))}
@@ -400,7 +423,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                         {selectedGenres.length === 0
                                             ? "Any"
                                             : selectedGenres.length === 1
-                                              ? MDL_GENRES.find((g) => g.value === selectedGenres[0])?.label ?? selectedGenres[0]
+                                              ? (MDL_GENRES.find((g) => g.value === selectedGenres[0])?.label ?? selectedGenres[0])
                                               : `${selectedGenres.length} selected`}
                                     </span>
                                     <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
@@ -454,7 +477,9 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 key={y}
                                                 href={buildUrl(baseParams, { year_from: y.toString(), page: "1" })}
                                                 className={`block px-3 py-1.5 text-xs transition-all ${
-                                                    rawYearFrom === y.toString() ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                    rawYearFrom === y.toString()
+                                                        ? "text-white bg-white/8"
+                                                        : "text-gray-400 hover:text-white hover:bg-white/5"
                                                 }`}
                                             >
                                                 {y}
@@ -480,7 +505,9 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 key={y}
                                                 href={buildUrl(baseParams, { year_to: y.toString(), page: "1" })}
                                                 className={`block px-3 py-1.5 text-xs transition-all ${
-                                                    rawYearTo === y.toString() ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                    rawYearTo === y.toString()
+                                                        ? "text-white bg-white/8"
+                                                        : "text-gray-400 hover:text-white hover:bg-white/5"
                                                 }`}
                                             >
                                                 {y}
@@ -512,7 +539,6 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                 ))}
                             </div>
                         </div>
-
                     </aside>
                 </div>
             </div>
