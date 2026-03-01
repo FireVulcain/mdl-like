@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
-import { backfillBackdrops, refreshAllBackdrops, refreshMediaData } from "@/actions/backfill";
+import { backfillBackdrops, refreshAllBackdrops, refreshMediaData, refreshWatchlistMdlRatings } from "@/actions/backfill";
 import { importWatchlist } from "@/actions/import-watchlist";
 import {
     Plus,
@@ -127,6 +127,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [sortBy, setSortBy] = useState<string>("default");
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
+    const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
@@ -357,6 +358,31 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             });
         } finally {
             setIsRefreshingMedia(false);
+        }
+    };
+
+    const handleRefreshMdlRatings = async () => {
+        setIsRefreshingMdl(true);
+        const toastId = toast.loading("Refreshing MDL ratings for watchlist...");
+        try {
+            const result = await refreshWatchlistMdlRatings();
+            if (result.success) {
+                toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}`, {
+                    id: toastId,
+                    description: "Refreshing page...",
+                });
+                setTimeout(() => window.location.reload(), 1000);
+            } else {
+                toast.dismiss(toastId);
+            }
+        } catch (error) {
+            console.error("MDL refresh failed:", error);
+            toast.error("Failed to refresh MDL ratings", {
+                id: toastId,
+                description: "Check console for details",
+            });
+        } finally {
+            setIsRefreshingMdl(false);
         }
     };
 
@@ -732,6 +758,17 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isRefreshingMedia ? "animate-spin" : ""}`} />
                                             {isRefreshingMedia ? "Refreshing..." : "Refresh TMDB Data"}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                setShowActionsMenu(false);
+                                                handleRefreshMdlRatings();
+                                            }}
+                                            disabled={isRefreshingMdl}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <RefreshCw className={`h-4 w-4 ${isRefreshingMdl ? "animate-spin" : ""}`} />
+                                            {isRefreshingMdl ? "Refreshing..." : "Refresh MDL Ratings"}
                                         </button>
                                         <div className="my-1 border-t border-white/5" />
                                         <button

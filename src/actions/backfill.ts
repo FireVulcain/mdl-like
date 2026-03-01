@@ -4,6 +4,45 @@ import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
 import { getCurrentUserId } from "@/lib/session";
+import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember, KuryanaDrama } from "@/lib/kuryana";
+import { Prisma } from "@prisma/client";
+
+// Helpers shared with mdl-data.ts (duplicated here to avoid importing a React-cached module in a server action)
+function normalizeTitle(s: string): string {
+    return s.toLowerCase().replace(/[^a-z0-9\u0080-\uffff]/g, "");
+}
+function sanitizeForSearch(s: string): string {
+    return s.replace(/^[^a-zA-Z0-9\u0080-\uffff]+/, "").trim();
+}
+function bestYearMatch(dramas: KuryanaDrama[], targetYear: number, queries: string[]): KuryanaDrama | null {
+    const byYear = dramas.filter((d) => d.year === targetYear);
+    const byYearFuzzy = dramas.filter((d) => Math.abs(d.year - targetYear) <= 1);
+    const candidates = byYear.length ? byYear : byYearFuzzy;
+    if (!candidates.length) return null;
+    if (candidates.length === 1) return candidates[0];
+    const normQueries = queries.map(normalizeTitle).filter(Boolean);
+    for (const q of normQueries) {
+        const exact = candidates.find((d) => normalizeTitle(d.title) === q);
+        if (exact) return exact;
+    }
+    for (const q of normQueries) {
+        const partial = candidates.find((d) => {
+            const dt = normalizeTitle(d.title);
+            return dt.includes(q) || q.includes(dt);
+        });
+        if (partial) return partial;
+    }
+    return candidates[0];
+}
+function normalizeCast(members: KuryanaCastMember[]) {
+    return members.map((m) => ({
+        name: m.name,
+        profileImage: m.profile_image ?? "",
+        slug: m.slug,
+        characterName: m.role?.name ?? "",
+        roleType: m.role?.type ?? "Support Role",
+    }));
+}
 
 export async function backfillBackdrops() {
     const userId = await getCurrentUserId();
@@ -302,4 +341,163 @@ export async function refreshMediaData() {
 
     revalidatePath("/watchlist");
     return { success: true, count, message: `Refreshed ${count} items` };
+}
+
+// Force-refresh MDL ratings for all shows currently in the user's watchlist,
+// bypassing the normal 7-day TTL. Uses existing MDL slugs when available to
+// skip the search step and only re-fetch the details endpoint.
+export async function refreshWatchlistMdlRatings() {
+    const userId = await getCurrentUserId();
+
+    // Fetch all distinct shows (externalId) in the watchlist
+    const rawItems = await prisma.userMedia.findMany({
+        where: { userId },
+        select: { externalId: true, title: true, year: true },
+        distinct: ["externalId"],
+    });
+
+    if (rawItems.length === 0) return { success: true, count: 0 };
+
+    const uniqueExternalIds = rawItems.map((i) => i.externalId);
+
+    // Pre-load any known slugs to skip the search step where possible
+    const cachedRows = await prisma.cachedMdlData.findMany({
+        where: { tmdbExternalId: { in: uniqueExternalIds } },
+        select: { tmdbExternalId: true, mdlSlug: true },
+    });
+    const slugByExternalId = new Map(cachedRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
+
+    let count = 0;
+    for (const item of rawItems) {
+        try {
+            const existingSlug = slugByExternalId.get(item.externalId);
+
+            if (existingSlug) {
+                // Fast path: slug already known — re-fetch details directly
+                const [details, castResult] = await Promise.all([
+                    kuryanaGetDetails(existingSlug),
+                    kuryanaGetCast(existingSlug),
+                ]);
+
+                if (details?.data) {
+                    const ranked = details.data.details?.ranked;
+                    const popularity = details.data.details?.popularity;
+                    const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
+                    const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
+                    const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+                    const tags = details.data.others?.tags ?? [];
+                    const cast = castResult?.data?.casts
+                        ? {
+                              main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
+                              support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
+                              guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                          }
+                        : undefined;
+
+                    await prisma.cachedMdlData.update({
+                        where: { tmdbExternalId: item.externalId },
+                        data: {
+                            mdlRating,
+                            mdlRanking,
+                            mdlPopularity,
+                            tags,
+                            ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
+                            cachedAt: new Date(),
+                        },
+                    });
+                    count++;
+                }
+            } else {
+                // Slow path: no slug yet — search Kuryana to find the show
+                if (!item.title || !item.year) continue;
+                const targetYear = item.year;
+                const searchTitle = sanitizeForSearch(item.title) || item.title;
+
+                const searchResult = await kuryanaSearch(searchTitle);
+                const dramas = searchResult?.results?.dramas ?? [];
+                const match = bestYearMatch(dramas, targetYear, [item.title]);
+                if (!match) continue;
+
+                const [details, castResult] = await Promise.all([
+                    kuryanaGetDetails(match.slug),
+                    kuryanaGetCast(match.slug),
+                ]);
+
+                if (!details?.data) continue;
+
+                const ranked = details.data.details?.ranked;
+                const popularity = details.data.details?.popularity;
+                const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
+                const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
+                const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+                const tags = details.data.others?.tags ?? [];
+                const cast = castResult?.data?.casts
+                    ? {
+                          main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
+                          support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
+                          guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                      }
+                    : null;
+
+                await prisma.cachedMdlData.upsert({
+                    where: { tmdbExternalId: item.externalId },
+                    create: {
+                        tmdbExternalId: item.externalId,
+                        mdlSlug: match.slug,
+                        mdlRating,
+                        mdlRanking,
+                        mdlPopularity,
+                        tags,
+                        castJson: cast as unknown as Prisma.InputJsonValue,
+                    },
+                    update: {
+                        mdlSlug: match.slug,
+                        mdlRating,
+                        mdlRanking,
+                        mdlPopularity,
+                        tags,
+                        castJson: cast as unknown as Prisma.InputJsonValue,
+                        cachedAt: new Date(),
+                    },
+                });
+                count++;
+            }
+        } catch (e) {
+            console.error(`[MDL Refresh] Failed for externalId ${item.externalId}:`, e);
+        }
+
+        // Polite rate limiting between Kuryana requests
+        await new Promise((r) => setTimeout(r, 400));
+    }
+
+    // Also refresh any MdlSeasonLink rows (season 2+ with manual MDL links)
+    const seasonLinks = await prisma.mdlSeasonLink.findMany({
+        where: { tmdbExternalId: { in: uniqueExternalIds } },
+        select: { tmdbExternalId: true, season: true, mdlSlug: true },
+    });
+
+    for (const link of seasonLinks) {
+        try {
+            const details = await kuryanaGetDetails(link.mdlSlug);
+            if (details?.data) {
+                const ranked = details.data.details?.ranked;
+                const popularity = details.data.details?.popularity;
+                const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
+                const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
+                const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+                const tags = details.data.others?.tags ?? [];
+
+                await prisma.mdlSeasonLink.update({
+                    where: { tmdbExternalId_season: { tmdbExternalId: link.tmdbExternalId, season: link.season } },
+                    data: { mdlRating, mdlRanking, mdlPopularity, tags, cachedAt: new Date() },
+                });
+            }
+        } catch (e) {
+            console.error(`[MDL Refresh] Failed season link ${link.tmdbExternalId} s${link.season}:`, e);
+        }
+        await new Promise((r) => setTimeout(r, 400));
+    }
+
+    revalidatePath("/watchlist");
+    return { success: true, count };
 }

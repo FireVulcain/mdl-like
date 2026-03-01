@@ -23,7 +23,7 @@ export function MdlRefetchButton({ tmdbExternalId, mediaId }: MdlRefetchButtonPr
                 body: JSON.stringify({ tmdbExternalId, mediaId }),
             });
             if (!res.ok) throw new Error("Reset failed");
-            toast.success("MDL cache cleared — refreshing data…");
+            toast.success("MDL data refreshed");
             router.refresh();
         } catch {
             toast.error("Failed to reset MDL cache");
