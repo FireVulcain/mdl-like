@@ -12,6 +12,7 @@ import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
 import { MdlRankRow } from "@/components/media/mdl-rank-row";
 import { MdlSection } from "@/components/media/mdl-section";
+import { SynopsisBlock } from "@/components/media/synopsis-block";
 import { TrailerButton } from "@/components/trailer-button";
 import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
@@ -388,10 +389,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <Suspense
                                 fallback={
                                     <div className="space-y-4">
-                                        <div className="prose prose-invert max-w-none">
-                                            <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
-                                            <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
-                                        </div>
+                                        <SynopsisBlock text={seasonOverview || media.synopsis || ""} />
                                         <div className="flex items-center gap-2">
                                             <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
                                             <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
@@ -413,10 +411,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         ) : (
                             <>
-                                <div className="prose prose-invert max-w-none">
-                                    <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
-                                    <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
-                                </div>
+                                <SynopsisBlock text={seasonOverview || media.synopsis || ""} />
                                 <CastScroll cast={media.cast || []} mediaId={media.id} />
                             </>
                         )}

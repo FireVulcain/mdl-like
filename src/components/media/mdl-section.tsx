@@ -1,6 +1,7 @@
 import { getMdlData, getMdlSeasonData } from "@/lib/mdl-data";
 import { MdlCastScroll } from "./mdl-cast-scroll";
 import { CastScroll } from "./cast-scroll";
+import { SynopsisBlock } from "./synopsis-block";
 
 interface Actor {
     id: number;
@@ -31,13 +32,10 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
 
     return (
         <>
-            <div className="prose prose-invert max-w-none">
-                <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
-                <p className="leading-relaxed text-muted-foreground whitespace-pre-line">{synopsis}</p>
-            </div>
+            <SynopsisBlock text={synopsis} />
 
             {data?.tags && data.tags.length > 0 && (
-                <div>
+                <div className="mt-6">
                     <h3 className="text-lg font-semibold mb-3">Tags</h3>
                     <div className="flex flex-wrap gap-2">
                         {data.tags.map((tag) => (
