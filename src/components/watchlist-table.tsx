@@ -29,6 +29,7 @@ import {
     ExternalLink,
     Download,
     Upload,
+    Tv,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -128,6 +129,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
+    const [filterAiringOnly, setFilterAiringOnly] = useState(false);
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
@@ -191,6 +193,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                 if (filterYear === "Older" && item.year >= 2000) return false;
                 if (!["2010s", "2000s", "Older"].includes(filterYear) && item.year.toString() !== filterYear) return false;
             }
+            if (filterAiringOnly && !item.nextEpisode) return false;
             return true;
         });
 
@@ -217,6 +220,22 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         return (b.year || 0) - (a.year || 0);
                     case "year-old":
                         return (a.year || 0) - (b.year || 0);
+                    case "next-episode-asc": {
+                        const aDate = a.nextEpisode?.airDate ?? null;
+                        const bDate = b.nextEpisode?.airDate ?? null;
+                        if (aDate && bDate) return aDate.localeCompare(bDate);
+                        if (aDate) return -1;
+                        if (bDate) return 1;
+                        return 0;
+                    }
+                    case "next-episode-desc": {
+                        const aDate = a.nextEpisode?.airDate ?? null;
+                        const bDate = b.nextEpisode?.airDate ?? null;
+                        if (aDate && bDate) return bDate.localeCompare(aDate);
+                        if (aDate) return 1;
+                        if (bDate) return -1;
+                        return 0;
+                    }
                     default:
                         return 0;
                 }
@@ -224,11 +243,11 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
 
         return result;
-    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly]);
 
     useEffect(() => {
         setDisplayCount(10);
-    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy]);
+    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly]);
 
     const toggleStatus = (status: string) => {
         setFilterStatuses((prev) => (prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]));
@@ -386,7 +405,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     };
 
-    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0);
+    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0);
 
     const downloadFile = (content: string, filename: string, mimeType: string) => {
         const blob = new Blob([content], { type: mimeType });
@@ -656,6 +675,19 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             </div>
                         </div>
 
+                        {/* Airing toggle */}
+                        <button
+                            onClick={() => setFilterAiringOnly((prev) => !prev)}
+                            className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
+                                filterAiringOnly
+                                    ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30"
+                                    : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                            }`}
+                        >
+                            <Tv className="h-4 w-4" />
+                            <span className="hidden sm:inline">Airing</span>
+                        </button>
+
                         {/* Divider */}
                         <div className="hidden md:block w-px h-6 bg-white/10" />
 
@@ -693,6 +725,12 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     </option>
                                     <option value="year-old" className="bg-gray-800">
                                         Year: Oldest
+                                    </option>
+                                    <option value="next-episode-asc" className="bg-gray-800">
+                                        Next Episode: Soonest
+                                    </option>
+                                    <option value="next-episode-desc" className="bg-gray-800">
+                                        Next Episode: Latest
                                     </option>
                                 </select>
                                 <SlidersHorizontal className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
@@ -847,12 +885,22 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     )}
+                    {filterAiringOnly && (
+                        <button
+                            onClick={() => setFilterAiringOnly(false)}
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 hover:opacity-80 transition-all cursor-pointer group"
+                        >
+                            Airing
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                        </button>
+                    )}
                     <button
                         onClick={() => {
                             setFilterStatuses([]);
                             setFilterCountries([]);
                             setFilterGenres([]);
                             setFilterYear("All");
+                            setFilterAiringOnly(false);
                         }}
                         className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
                     >
