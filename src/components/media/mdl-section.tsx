@@ -33,7 +33,7 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
         <>
             <div className="prose prose-invert max-w-none">
                 <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
-                <p className="leading-relaxed text-muted-foreground">{synopsis}</p>
+                <p className="leading-relaxed text-muted-foreground whitespace-pre-line">{synopsis}</p>
             </div>
 
             {data?.tags && data.tags.length > 0 && (
