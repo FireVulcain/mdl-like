@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useOptimistic, useTransition, memo, useCallback, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -119,28 +119,28 @@ const statusConfig = {
 
 export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps) {
     const searchParams = useSearchParams();
-    const router = useRouter();
 
-    // Filter/sort state derived from URL — survives back/forward navigation
-    const filterStatuses = useMemo(() => searchParams.get("status")?.split(",").filter(Boolean) ?? [], [searchParams]);
-    const filterCountries = useMemo(() => searchParams.get("country")?.split(",").filter(Boolean) ?? [], [searchParams]);
-    const filterGenres = useMemo(() => searchParams.get("genre")?.split(",").filter(Boolean) ?? [], [searchParams]);
-    const filterYear = searchParams.get("year") ?? "All";
-    const search = searchParams.get("q") ?? "";
-    const sortBy = searchParams.get("sort") ?? "default";
-    const filterAiringOnly = searchParams.get("airing") === "1";
+    // Filter/sort: useState for instant UI updates, URL synced silently via
+    // history.replaceState so back/forward navigation restores state without
+    // triggering a server round-trip.
+    const [filterStatuses, setFilterStatuses] = useState<string[]>(() => searchParams.get("status")?.split(",").filter(Boolean) ?? []);
+    const [filterCountries, setFilterCountries] = useState<string[]>(() => searchParams.get("country")?.split(",").filter(Boolean) ?? []);
+    const [filterGenres, setFilterGenres] = useState<string[]>(() => searchParams.get("genre")?.split(",").filter(Boolean) ?? []);
+    const [filterYear, setFilterYear] = useState<string>(() => searchParams.get("year") ?? "All");
+    const [search, setSearch] = useState<string>(() => searchParams.get("q") ?? "");
+    const [sortBy, setSortBy] = useState<string>(() => searchParams.get("sort") ?? "default");
+    const [filterAiringOnly, setFilterAiringOnly] = useState<boolean>(() => searchParams.get("airing") === "1");
 
-    const updateParams = useCallback((updates: Record<string, string | null>) => {
-        const params = new URLSearchParams(searchParams.toString());
-        for (const [key, value] of Object.entries(updates)) {
-            if (value === null || value === "") {
-                params.delete(key);
-            } else {
-                params.set(key, value);
-            }
+    const syncUrl = useCallback((key: string, value: string | null) => {
+        const params = new URLSearchParams(window.location.search);
+        if (value === null || value === "") {
+            params.delete(key);
+        } else {
+            params.set(key, value);
         }
-        router.replace(`?${params.toString()}`, { scroll: false });
-    }, [searchParams, router]);
+        const qs = params.toString();
+        window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+    }, []);
 
     const [editingItem, setEditingItem] = useState<WatchlistItem | null>(null);
     const [editOpen, setEditOpen] = useState(false);
@@ -269,17 +269,20 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
 
     const toggleStatus = (status: string) => {
         const next = filterStatuses.includes(status) ? filterStatuses.filter((s) => s !== status) : [...filterStatuses, status];
-        updateParams({ status: next.join(",") || null });
+        setFilterStatuses(next);
+        syncUrl("status", next.join(",") || null);
     };
 
     const toggleCountry = (country: string) => {
         const next = filterCountries.includes(country) ? filterCountries.filter((c) => c !== country) : [...filterCountries, country];
-        updateParams({ country: next.join(",") || null });
+        setFilterCountries(next);
+        syncUrl("country", next.join(",") || null);
     };
 
     const toggleGenre = (genre: string) => {
         const next = filterGenres.includes(genre) ? filterGenres.filter((g) => g !== genre) : [...filterGenres, genre];
-        updateParams({ genre: next.join(",") || null });
+        setFilterGenres(next);
+        syncUrl("genre", next.join(",") || null);
     };
 
     const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
@@ -540,7 +543,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             <Input
                                 placeholder="Search your collection..."
                                 value={search}
-                                onChange={(e) => updateParams({ q: e.target.value || null })}
+                                onChange={(e) => { setSearch(e.target.value); syncUrl("q", e.target.value || null); }}
                                 className="w-full h-9 pl-9 pr-4 bg-white/5 border-0 rounded-lg text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-blue-500/50 focus-visible:bg-white/8 transition-all"
                             />
                         </div>
@@ -698,7 +701,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
 
                         {/* Airing toggle */}
                         <button
-                            onClick={() => updateParams({ airing: filterAiringOnly ? null : "1" })}
+                            onClick={() => { const next = !filterAiringOnly; setFilterAiringOnly(next); syncUrl("airing", next ? "1" : null); }}
                             className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                 filterAiringOnly
                                     ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30"
@@ -717,7 +720,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             <div className="relative select-wrapper">
                                 <select
                                     value={sortBy}
-                                    onChange={(e) => updateParams({ sort: e.target.value === "default" ? null : e.target.value })}
+                                    onChange={(e) => { setSortBy(e.target.value); syncUrl("sort", e.target.value === "default" ? null : e.target.value); }}
                                     className="h-9 pl-3 pr-8 rounded-lg bg-white/5 border-0 text-gray-300 text-sm hover:bg-white/8 focus:ring-1 focus:ring-blue-500/50 focus:outline-none transition-all cursor-pointer appearance-none"
                                 >
                                     <option value="default" className="bg-gray-800">
@@ -760,7 +763,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             <div className="relative select-wrapper">
                                 <select
                                     value={filterYear}
-                                    onChange={(e) => updateParams({ year: e.target.value === "All" ? null : e.target.value })}
+                                    onChange={(e) => { setFilterYear(e.target.value); syncUrl("year", e.target.value === "All" ? null : e.target.value); }}
                                     className="h-9 pl-3 pr-8 rounded-lg bg-white/5 border-0 text-gray-300 text-sm hover:bg-white/8 focus:ring-1 focus:ring-blue-500/50 focus:outline-none transition-all cursor-pointer appearance-none"
                                 >
                                     <option value="All" className="bg-gray-800">
@@ -899,7 +902,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     ))}
                     {filterYear !== "All" && (
                         <button
-                            onClick={() => updateParams({ year: null })}
+                            onClick={() => { setFilterYear("All"); syncUrl("year", null); }}
                             className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-white/10 text-gray-300 hover:opacity-80 transition-all cursor-pointer group"
                         >
                             {filterYear}
@@ -908,7 +911,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     )}
                     {filterAiringOnly && (
                         <button
-                            onClick={() => updateParams({ airing: null })}
+                            onClick={() => { setFilterAiringOnly(false); syncUrl("airing", null); }}
                             className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 hover:opacity-80 transition-all cursor-pointer group"
                         >
                             Airing
@@ -916,7 +919,11 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         </button>
                     )}
                     <button
-                        onClick={() => updateParams({ status: null, country: null, genre: null, year: null, airing: null, q: null })}
+                        onClick={() => {
+                            setFilterStatuses([]); setFilterCountries([]); setFilterGenres([]);
+                            setFilterYear("All"); setFilterAiringOnly(false); setSearch("");
+                            window.history.replaceState(null, "", window.location.pathname);
+                        }}
                         className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
                     >
                         Clear all
