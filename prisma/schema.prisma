@@ -114,6 +114,7 @@ model CachedMdlData {
   mdlPopularity  Int?
   tags           Json?
   castJson       Json?
+  synopsis       String?
   cachedAt       DateTime @default(now())
 }
 
@@ -133,6 +134,7 @@ model MdlSeasonLink {
   mdlPopularity  Int?
   castJson       Json?
   tags           Json?
+  synopsis       String?
   cachedAt       DateTime?
 
   @@unique([tmdbExternalId, season])

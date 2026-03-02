@@ -17,17 +17,25 @@ interface Props {
     tmdbCast: Actor[];
     mediaId: string;
     season?: number;
+    tmdbSynopsis: string;
 }
 
-// Async server component — streams in MDL tags + cast.
-// The Suspense fallback (TMDB cast) shows immediately; this swaps in when Kuryana responds.
-export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId, season }: Props) {
+// Async server component — streams in MDL synopsis + tags + cast.
+// The Suspense fallback (TMDB synopsis + TMDB cast) shows immediately; this swaps in when Kuryana responds.
+export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId, season, tmdbSynopsis }: Props) {
     const data = season && season > 1
         ? (await getMdlSeasonData(externalId, season)) ?? await getMdlData(externalId, title, year, nativeTitle)
         : await getMdlData(externalId, title, year, nativeTitle);
 
+    const synopsis = data?.synopsis || tmdbSynopsis;
+
     return (
         <>
+            <div className="prose prose-invert max-w-none">
+                <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
+                <p className="leading-relaxed text-muted-foreground">{synopsis}</p>
+            </div>
+
             {data?.tags && data.tags.length > 0 && (
                 <div>
                     <h3 className="text-lg font-semibold mb-3">Tags</h3>

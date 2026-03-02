@@ -24,6 +24,7 @@ export interface MdlData {
     mdlPopularity: number | null;
     tags: string[];
     cast: MdlCast | null;
+    synopsis: string | null;
 }
 
 const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -109,6 +110,7 @@ export const getMdlSeasonData = cache(async function getMdlSeasonData(
             mdlPopularity: row.mdlPopularity,
             tags: (row.tags as string[]) ?? [],
             cast,
+            synopsis: row.synopsis ?? null,
         };
     } catch {
         return null;
@@ -140,6 +142,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity: cached.mdlPopularity,
                 tags: (cached.tags as string[]) ?? [],
                 cast,
+                synopsis: cached.synopsis ?? null,
             };
         }
 
@@ -168,6 +171,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity: cached.mdlPopularity,
                 tags: (cached.tags as string[]) ?? [],
                 cast: newCast,
+                synopsis: cached.synopsis ?? null,
             };
         } catch {
             return {
@@ -177,6 +181,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity: cached.mdlPopularity,
                 tags: (cached.tags as string[]) ?? [],
                 cast: null,
+                synopsis: cached.synopsis ?? null,
             };
         }
     }
@@ -224,6 +229,7 @@ export const getMdlData = cache(async function getMdlData(
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const tags = details.data.others?.tags ?? [];
+        const synopsis = details.data.synopsis || null;
 
         const cast: MdlCast | null = castResult?.data?.casts
             ? {
@@ -243,6 +249,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
+                synopsis,
             },
             update: {
                 mdlSlug: match.slug,
@@ -251,11 +258,12 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
+                synopsis,
                 cachedAt: new Date(),
             },
         });
 
-        return { mdlSlug: match.slug, mdlRating, mdlRanking, mdlPopularity, tags, cast };
+        return { mdlSlug: match.slug, mdlRating, mdlRanking, mdlPopularity, tags, cast, synopsis };
     } catch (e) {
         console.error("[MDL] Failed to fetch MDL data for:", title, e);
         return null;

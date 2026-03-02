@@ -382,17 +382,16 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         return <MediaNav sections={navSections} />;
                     })()}
 
-                    <div className="prose prose-invert max-w-none">
-                        <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
-                        <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
-                    </div>
-
-                    {/* MDL Tags + Cast — streams in after TMDB cast (fallback) */}
+                    {/* MDL Tags + Cast — streams in after TMDB synopsis + cast (fallback) */}
                     <div id="section-cast">
                         {isMdlRelevant ? (
                             <Suspense
                                 fallback={
                                     <div className="space-y-4">
+                                        <div className="prose prose-invert max-w-none">
+                                            <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
+                                            <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
+                                        </div>
                                         <div className="flex items-center gap-2">
                                             <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
                                             <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
@@ -409,10 +408,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     tmdbCast={media.cast || []}
                                     mediaId={media.id}
                                     season={selectedSeason}
+                                    tmdbSynopsis={seasonOverview || media.synopsis || ""}
                                 />
                             </Suspense>
                         ) : (
-                            <CastScroll cast={media.cast || []} mediaId={media.id} />
+                            <>
+                                <div className="prose prose-invert max-w-none">
+                                    <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
+                                    <p className="leading-relaxed text-muted-foreground">{seasonOverview || media.synopsis}</p>
+                                </div>
+                                <CastScroll cast={media.cast || []} mediaId={media.id} />
+                            </>
                         )}
                     </div>
 
