@@ -135,15 +135,49 @@ export const getMdlData = cache(async function getMdlData(
         const castIsEmpty = !cast || (cast.main.length === 0 && cast.support.length === 0 && cast.guest.length === 0);
 
         if (!castIsEmpty) {
-            return {
-                mdlSlug: cached.mdlSlug,
-                mdlRating: cached.mdlRating,
-                mdlRanking: cached.mdlRanking,
-                mdlPopularity: cached.mdlPopularity,
-                tags: (cached.tags as string[]) ?? [],
-                cast,
-                synopsis: cached.synopsis ?? null,
-            };
+            if (cached.synopsis !== null) {
+                // True full hit — everything cached
+                return {
+                    mdlSlug: cached.mdlSlug,
+                    mdlRating: cached.mdlRating,
+                    mdlRanking: cached.mdlRanking,
+                    mdlPopularity: cached.mdlPopularity,
+                    tags: (cached.tags as string[]) ?? [],
+                    cast,
+                    synopsis: cached.synopsis,
+                };
+            }
+
+            // Cast present but synopsis not yet stored — fetch it and backfill
+            try {
+                const details = await kuryanaGetDetails(cached.mdlSlug);
+                const synopsis = details?.data?.synopsis || null;
+                if (synopsis) {
+                    await prisma.cachedMdlData.update({
+                        where: { tmdbExternalId },
+                        data: { synopsis },
+                    });
+                }
+                return {
+                    mdlSlug: cached.mdlSlug,
+                    mdlRating: cached.mdlRating,
+                    mdlRanking: cached.mdlRanking,
+                    mdlPopularity: cached.mdlPopularity,
+                    tags: (cached.tags as string[]) ?? [],
+                    cast,
+                    synopsis,
+                };
+            } catch {
+                return {
+                    mdlSlug: cached.mdlSlug,
+                    mdlRating: cached.mdlRating,
+                    mdlRanking: cached.mdlRanking,
+                    mdlPopularity: cached.mdlPopularity,
+                    tags: (cached.tags as string[]) ?? [],
+                    cast,
+                    synopsis: null,
+                };
+            }
         }
 
         // Partial cache hit — metadata fresh but cast missing
