@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2 } from "lucide-react";
+import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
@@ -189,6 +189,19 @@ export function SiteHeader() {
                                             <Clock className="h-4 w-4 shrink-0" />
                                             History
                                         </Link>
+                                        <Link
+                                            href="/stats"
+                                            onClick={() => setProfileOpen(false)}
+                                            className={cn(
+                                                "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                                                pathname === "/stats"
+                                                    ? "bg-primary/15 text-white"
+                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                            )}
+                                        >
+                                            <BarChart3 className="h-4 w-4 shrink-0" />
+                                            Stats
+                                        </Link>
                                         <div className="my-1 border-t border-white/6" />
                                         <button
                                             onClick={() => { setProfileOpen(false); signOut({ callbackUrl: "/login" }); }}
@@ -311,6 +324,19 @@ export function SiteHeader() {
                             >
                                 <Clock className="h-4 w-4 shrink-0" />
                                 History
+                            </Link>
+                            <Link
+                                href="/stats"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={cn(
+                                    "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
+                                    pathname === "/stats"
+                                        ? "bg-primary/15 border border-primary/20 text-white"
+                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                )}
+                            >
+                                <BarChart3 className="h-4 w-4 shrink-0" />
+                                Stats
                             </Link>
                             <div className="my-1 border-t border-white/10" />
                             <button

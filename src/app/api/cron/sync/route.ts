@@ -367,6 +367,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const tags = details.data.others?.tags ?? [];
+                    const genres = details.data.others?.genres ?? [];
                     const cast = castResult?.data?.casts
                         ? {
                               main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
@@ -382,6 +383,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                             mdlRanking,
                             mdlPopularity,
                             tags,
+                            ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                             ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
                             cachedAt: new Date(),
                         },
@@ -420,10 +422,15 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const tags = details.data.others?.tags ?? [];
+                    const genres = details.data.others?.genres ?? [];
 
                     await prisma.mdlSeasonLink.update({
                         where: { tmdbExternalId_season: { tmdbExternalId: link.tmdbExternalId, season: link.season } },
-                        data: { mdlRating, mdlRanking, mdlPopularity, tags, cachedAt: new Date() },
+                        data: {
+                            mdlRating, mdlRanking, mdlPopularity, tags,
+                            ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
+                            cachedAt: new Date(),
+                        },
                     });
                     count++;
                 }

@@ -11,6 +11,9 @@ export type DashboardStats = {
     activityHeatmap: { date: string; count: number }[];
     topGenres: { name: string; count: number; percentage: number }[];
     decadeDistribution: { decade: string; count: number }[];
+    countryBreakdown: { country: string; count: number }[];
+    yearBreakdown: { year: number; count: number }[];
+    topActors: { name: string; profileImage: string; slug: string; count: number }[];
 };
 
 export const EMPTY_STATS: DashboardStats = {
@@ -26,4 +29,7 @@ export const EMPTY_STATS: DashboardStats = {
     activityHeatmap: [],
     topGenres: [],
     decadeDistribution: [],
+    countryBreakdown: [],
+    yearBreakdown: [],
+    topActors: [],
 };
