@@ -165,7 +165,7 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
 
     const formatted = formatTimeLeft(timeLeft, episodeData.airDate);
 
-    const scheduleHref = `/schedule?date=${episodeData.airDate}`;
+    const scheduleHref = `/calendar?date=${episodeData.airDate}`;
 
     return (
         <Link

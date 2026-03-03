@@ -172,5 +172,5 @@ export async function refreshScheduleCache(): Promise<void> {
         }
     });
 
-    revalidatePath("/schedule");
+    revalidatePath("/calendar");
 }

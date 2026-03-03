@@ -111,7 +111,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                             <CalendarDays className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                            <h1 className="text-2xl font-bold text-white">Schedule</h1>
+                            <h1 className="text-2xl font-bold text-white">Calendar</h1>
                             <p className="text-sm text-gray-400">
                                 {episodesThisMonth > 0
                                     ? `${episodesThisMonth} episode${episodesThisMonth !== 1 ? "s" : ""} airing in ${MONTH_NAMES[month]}`

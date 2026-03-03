@@ -17,7 +17,7 @@ function ScheduleSkeleton() {
                             <CalendarDays className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                            <h1 className="text-2xl font-bold text-white">Schedule</h1>
+                            <h1 className="text-2xl font-bold text-white">Calendar</h1>
                             <div className="h-4 w-48 mt-1 rounded bg-white/10 animate-pulse" />
                         </div>
                     </div>

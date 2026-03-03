@@ -44,7 +44,7 @@ export function SiteHeader() {
         { name: "Home", href: "/" },
         { name: "Dramas", href: "/dramas?category=popular&country=KR&sort=vote_average.desc", activePath: "/dramas" },
         { name: "Watchlist", href: "/watchlist" },
-        { name: "Schedule", href: "/schedule" },
+        { name: "Calendar", href: "/calendar" },
     ];
 
     return (
