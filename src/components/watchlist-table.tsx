@@ -1194,7 +1194,7 @@ const ItemCard = memo(function ItemCard({
             <div className="relative flex items-center gap-3 p-2 item-card-inner">
                 {/* Thumbnail */}
                 <Link
-                    href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
+                    href={`/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`}
                     className={`card-image relative shrink-0 overflow-hidden rounded-lg transition-all duration-300 group-hover:ring-2 group-hover:ring-blue-500/30 ${
                         isChild ? "h-12 w-20" : "h-14 w-24"
                     } ${
@@ -1232,7 +1232,7 @@ const ItemCard = memo(function ItemCard({
                     <div className="card-info-text">
                         <div className="flex items-center gap-2 mb-0.5">
                             <Link
-                                href={`/media/${item.source.toLowerCase()}-${item.externalId}`}
+                                href={`/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`}
                                 className={`font-semibold text-white hover:text-blue-400 transition-colors line-clamp-1 card-title ${
                                     isChild ? "text-sm" : "text-base"
                                 }`}
