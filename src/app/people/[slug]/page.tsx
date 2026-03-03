@@ -97,15 +97,15 @@ function WorkCard({
 
                 {(work.rating > 0 || (mdlRating != null && mdlRating > 0)) && (
                     <div className="absolute left-1.5 top-1.5 flex flex-row gap-1">
-                        {work.rating > 0 && (
-                            <Badge className="bg-yellow-500/90 text-black text-[10px] px-1.5">
-                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                        {work.rating > 0 && !(mdlRating != null && mdlRating > 0) && (
+                            <Badge className="bg-yellow-500/90 text-black text-xs px-1.5">
+                                <Star className="h-3 w-3 mr-0.5 fill-current" />
                                 {work.rating.toFixed(1)}
                             </Badge>
                         )}
                         {mdlRating != null && mdlRating > 0 && (
-                            <Badge className="bg-sky-500/90 text-white text-[10px] px-1.5">
-                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                            <Badge className="bg-sky-500/90 text-white text-xs px-1.5">
+                                <Star className="h-3 w-3 mr-0.5 fill-current" />
                                 {mdlRating.toFixed(1)}
                             </Badge>
                         )}

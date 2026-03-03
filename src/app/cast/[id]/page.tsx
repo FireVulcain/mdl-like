@@ -418,7 +418,7 @@ function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
                     {/* Rating Badges */}
                     {(credit.vote_average > 0 || mdlRating) && (
                         <div className="absolute left-2 top-2 flex flex-row gap-1">
-                            {credit.vote_average > 0 && (
+                            {credit.vote_average > 0 && !mdlRating && (
                                 <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500 text-xs">
                                     <Star className="h-3 w-3 mr-1 fill-current" />
                                     {credit.vote_average.toFixed(1)}
