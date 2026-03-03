@@ -85,10 +85,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const [userId, watchlistExternalIds, cached, existingSeasonLink] = await Promise.all([
         getCurrentUserId(),
         getWatchlistExternalIds(),
-        isMdlRelevant ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true } }) : null,
-        isMdlRelevant && selectedSeason > 1 ? prisma.mdlSeasonLink.findUnique({ where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } }, select: { mdlSlug: true } }) : null,
+        isMdlRelevant ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true, mdlRating: true } }) : null,
+        isMdlRelevant && selectedSeason > 1 ? prisma.mdlSeasonLink.findUnique({ where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } }, select: { mdlSlug: true, mdlRating: true } }) : null,
     ]);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
+    const hasMdlRating = !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
     const userMedia = await getUserMedia(userId, media.externalId, media.source, selectedSeason);
     const watchlistIds = new Set(watchlistExternalIds);
 
@@ -272,7 +273,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     <span>{episodeCount} eps</span>
                                 </>
                             )}
-                            {media.rating > 0 && (
+                            {media.rating > 0 && !hasMdlRating && (
                                 <>
                                     <span>•</span>
                                     <span className="text-yellow-500 font-medium">★ {media.rating.toFixed(1)}</span>
