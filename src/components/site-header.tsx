@@ -5,17 +5,46 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3 } from "lucide-react";
+import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3, Camera, Loader2 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
+import { updateAvatar } from "@/actions/avatar";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
-    const { data: session } = useSession();
+    const { data: session, update } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
+    const [avatarUploading, setAvatarUploading] = useState(false);
     const profileRef = useRef<HTMLDivElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const pathname = usePathname();
+
+    const avatarSrc = session?.user?.image ?? null;
+
+    async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        e.target.value = "";
+        setAvatarUploading(true);
+        try {
+            const bitmap = await createImageBitmap(file);
+            const canvas = document.createElement("canvas");
+            canvas.width = 200;
+            canvas.height = 200;
+            const ctx = canvas.getContext("2d")!;
+            const size = Math.min(bitmap.width, bitmap.height);
+            const sx = (bitmap.width - size) / 2;
+            const sy = (bitmap.height - size) / 2;
+            ctx.drawImage(bitmap, sx, sy, size, size, 0, 0, 200, 200);
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+            const res = await updateAvatar(dataUrl);
+            if (!res.ok) { console.error(res.error); return; }
+            await update({ image: dataUrl });
+        } finally {
+            setAvatarUploading(false);
+        }
+    }
 
     // Check if we're on a page with a hero backdrop (home or media detail)
     const isHomePage = pathname === "/";
@@ -115,12 +144,16 @@ export function SiteHeader() {
                         <div
                             onClick={() => setProfileOpen((o) => !o)}
                             className={cn(
-                                "flex h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border p-0.5 cursor-pointer transition-all",
+                                "flex h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border p-0.5 cursor-pointer transition-all overflow-hidden",
                                 profileOpen ? "border-primary/60 shadow-lg shadow-primary/10" : "border-white/10 hover:border-primary/50",
                             )}
                         >
-                            <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center text-xs font-bold text-primary">
-                                ND
+                            <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center overflow-hidden">
+                                {avatarSrc ? (
+                                    <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
+                                ) : (
+                                    <span className="text-xs font-bold text-primary">ND</span>
+                                )}
                             </div>
                         </div>
 
@@ -135,10 +168,27 @@ export function SiteHeader() {
                                 >
                                     {/* Account header */}
                                     <div className="flex items-center gap-3 px-4 py-3 border-b border-white/6">
-                                        <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5">
-                                            <div className="h-full w-full rounded-md bg-background flex items-center justify-center text-[10px] font-bold text-primary">
-                                                ND
+                                        <div className="relative h-8 w-8 shrink-0">
+                                            <div className="h-8 w-8 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 overflow-hidden">
+                                                <div className="h-full w-full rounded-md bg-background flex items-center justify-center overflow-hidden">
+                                                    {avatarSrc ? (
+                                                        <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
+                                                    ) : (
+                                                        <span className="text-[10px] font-bold text-primary">ND</span>
+                                                    )}
+                                                </div>
                                             </div>
+                                            <button
+                                                onClick={() => fileInputRef.current?.click()}
+                                                className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-primary flex items-center justify-center hover:bg-primary/80 transition-colors cursor-pointer"
+                                                title="Upload avatar"
+                                            >
+                                                {avatarUploading ? (
+                                                    <Loader2 className="h-2.5 w-2.5 text-white animate-spin" />
+                                                ) : (
+                                                    <Camera className="h-2.5 w-2.5 text-white" />
+                                                )}
+                                            </button>
                                         </div>
                                         <div className="min-w-0">
                                             <p className="text-sm font-semibold text-white truncate">My Account</p>
@@ -277,9 +327,13 @@ export function SiteHeader() {
                         {/* Mobile Profile */}
                         <div className="mt-4 pt-4 border-t border-white/10 sm:hidden">
                             <div className="flex items-center gap-3 px-4 py-2 mb-1">
-                                <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5">
-                                    <div className="h-full w-full rounded-md bg-background flex items-center justify-center text-[10px] font-bold text-primary">
-                                        ND
+                                <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 overflow-hidden">
+                                    <div className="h-full w-full rounded-md bg-background flex items-center justify-center overflow-hidden">
+                                        {avatarSrc ? (
+                                            <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
+                                        ) : (
+                                            <span className="text-[10px] font-bold text-primary">ND</span>
+                                        )}
                                     </div>
                                 </div>
                                 <span className="text-sm font-semibold text-white">My Account</span>
@@ -350,6 +404,14 @@ export function SiteHeader() {
                     </div>
                 </motion.div>
             )}
+
+            <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleAvatarChange}
+            />
         </header>
     );
 }
