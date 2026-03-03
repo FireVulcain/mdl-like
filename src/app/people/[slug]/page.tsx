@@ -193,20 +193,33 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     const allWorks = [...dramas, ...movies, ...specials];
     const mdlIds = allWorks.map((w) => extractMdlId(w._slug)).filter(Boolean) as string[];
 
-    const cached =
+    const [cached, seasonLinkRows] =
         mdlIds.length > 0
-            ? await prisma.cachedMdlData.findMany({
-                  where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
-                  select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true },
-              })
-            : [];
+            ? await Promise.all([
+                  prisma.cachedMdlData.findMany({
+                      where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
+                      select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true },
+                  }),
+                  prisma.mdlSeasonLink.findMany({
+                      where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
+                      select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true, season: true },
+                  }),
+              ])
+            : [[], []];
 
     const mdlToTmdb = new Map<string, string>(); // numericMdlId → tmdbExternalId
+    const mdlSeasonMap = new Map<string, number>(); // numericMdlId → season number (season links only)
     const mdlRatingMap = new Map<string, number>(); // numericMdlId → mdlRating
     for (const item of cached) {
         const numericId = item.mdlSlug.split("-")[0];
         mdlToTmdb.set(numericId, item.tmdbExternalId);
         if (item.mdlRating != null) mdlRatingMap.set(numericId, item.mdlRating);
+    }
+    for (const item of seasonLinkRows) {
+        const numericId = item.mdlSlug.split("-")[0];
+        if (!mdlToTmdb.has(numericId)) mdlToTmdb.set(numericId, item.tmdbExternalId);
+        mdlSeasonMap.set(numericId, item.season);
+        if (item.mdlRating != null && !mdlRatingMap.has(numericId)) mdlRatingMap.set(numericId, item.mdlRating);
     }
 
     // Batch-fetch TMDB posters for linked works (server-side, cached 1h by Next.js)
@@ -256,7 +269,9 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         const id = extractMdlId(work._slug);
         if (!id) return null;
         const tmdbId = mdlToTmdb.get(id);
-        return tmdbId ? `/media/tmdb-${tmdbId}` : null;
+        if (!tmdbId) return null;
+        const season = mdlSeasonMap.get(id);
+        return season ? `/media/tmdb-${tmdbId}?season=${season}` : `/media/tmdb-${tmdbId}`;
     }
 
     // Only give the first MAX_KURYANA_POSTER_FETCHES unlinked works a slug to fetch —
