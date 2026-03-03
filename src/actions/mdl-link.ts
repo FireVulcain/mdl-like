@@ -54,9 +54,10 @@ export async function getMdlNativeTitle(mdlSlug: string): Promise<string | null>
 }
 
 // Checks if a TMDB ID is already linked and returns available seasons from TMDB.
-// Used to decide whether to go through the normal flow or the season-picker flow.
+// Used to decide whether to go through the normal flow, the season-picker flow, or the alias flow.
 export async function checkAndGetSeasons(tmdbExternalId: string): Promise<{
     alreadyLinked: boolean;
+    linkedTitle: string | null; // title of the already-linked show
     seasons: { number: number; name: string }[];
     takenSeasons: number[]; // seasons already saved in MdlSeasonLink
 }> {
@@ -65,7 +66,7 @@ export async function checkAndGetSeasons(tmdbExternalId: string): Promise<{
         select: { mdlSlug: true },
     });
 
-    if (!existing) return { alreadyLinked: false, seasons: [], takenSeasons: [] };
+    if (!existing) return { alreadyLinked: false, linkedTitle: null, seasons: [], takenSeasons: [] };
 
     const [tmdbDetails, seasonLinks] = await Promise.all([
         tmdb.getDetails("tv", tmdbExternalId),
@@ -80,8 +81,28 @@ export async function checkAndGetSeasons(tmdbExternalId: string): Promise<{
         .map((s) => ({ number: s.season_number, name: s.name || `Season ${s.season_number}` }));
 
     const takenSeasons = [1, ...seasonLinks.map((l) => l.season)]; // season 1 = main CachedMdlData entry
+    const linkedTitle = tmdbDetails?.name ?? tmdbDetails?.title ?? null;
 
-    return { alreadyLinked: true, seasons, takenSeasons };
+    return { alreadyLinked: true, linkedTitle, seasons, takenSeasons };
+}
+
+// Creates an MdlAlias entry pointing an MDL slug at an existing CachedMdlData entry.
+// Used for "same show, different part" cases (e.g. The Glory Part 1 & Part 2 → same TMDB entry).
+export async function createMdlAlias(
+    mdlSlug: string,
+    tmdbExternalId: string,
+): Promise<{ ok: boolean; error?: string }> {
+    try {
+        await prisma.mdlAlias.upsert({
+            where: { mdlSlug },
+            create: { mdlSlug, tmdbExternalId },
+            update: { tmdbExternalId },
+        });
+        return { ok: true };
+    } catch (e) {
+        console.error("[MDL alias] Failed:", e);
+        return { ok: false, error: "Failed to save alias. Try again." };
+    }
 }
 
 // Saves a season-specific MDL link (season 2+) into MdlSeasonLink.

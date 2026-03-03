@@ -143,6 +143,15 @@ model MdlSeasonLink {
   @@index([tmdbExternalId])
 }
 
+model MdlAlias {
+  id             String   @id @default(cuid())
+  mdlSlug        String   @unique // the alias MDL slug (e.g. "the-glory-part-2")
+  tmdbExternalId String           // points to the main CachedMdlData entry
+  createdAt      DateTime @default(now())
+
+  @@index([tmdbExternalId])
+}
+
 model CachedEpisode {
   id            String   @id @default(cuid())
   mediaId       String

@@ -11,6 +11,7 @@ import {
     searchTmdbDramas,
     createMdlLink,
     createMdlSeasonLink,
+    createMdlAlias,
     checkAndGetSeasons,
     getMdlNativeTitle,
     TmdbSearchResult,
@@ -23,7 +24,7 @@ interface Props {
     compact?: boolean; // icon-only button (for image overlay use)
 }
 
-type DialogStep = "search" | "season" | "success";
+type DialogStep = "search" | "already-linked" | "season" | "success";
 
 export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = false }: Props) {
     const [open, setOpen] = useState(false);
@@ -36,8 +37,9 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
     const [isPending, startTransition] = useTransition();
     const initialSearching = useRef(false);
 
-    // Season picker state
+    // Season picker / alias state
     const [pendingResult, setPendingResult] = useState<TmdbSearchResult | null>(null);
+    const [linkedTitle, setLinkedTitle] = useState<string | null>(null);
     const [availableSeasons, setAvailableSeasons] = useState<{ number: number; name: string }[]>([]);
     const [selectedSeason, setSelectedSeason] = useState<number>(2);
     const [checkingLink, setCheckingLink] = useState(false);
@@ -98,9 +100,10 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
             const free = check.seasons.filter((s) => !check.takenSeasons.includes(s.number));
             const options = free.length > 0 ? free : check.seasons;
             setPendingResult(result);
+            setLinkedTitle(check.linkedTitle);
             setAvailableSeasons(options);
             setSelectedSeason(options[0]?.number ?? 2);
-            setStep("season");
+            setStep("already-linked");
         } else {
             startTransition(async () => {
                 const res = await createMdlLink(mdlSlug, result.externalId);
@@ -119,6 +122,20 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
         if (!pendingResult) return;
         startTransition(async () => {
             const res = await createMdlSeasonLink(mdlSlug, pendingResult.externalId, selectedSeason);
+            if (res.ok) {
+                setLinked(pendingResult.externalId);
+                onLinked?.(pendingResult.externalId);
+                setStep("success");
+            } else {
+                setError(res.error ?? "Something went wrong.");
+            }
+        });
+    }
+
+    function handleAliasConfirm() {
+        if (!pendingResult) return;
+        startTransition(async () => {
+            const res = await createMdlAlias(mdlSlug, pendingResult.externalId);
             if (res.ok) {
                 setLinked(pendingResult.externalId);
                 onLinked?.(pendingResult.externalId);
@@ -174,6 +191,55 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                             >
                                 Open media page →
                             </Link>
+                        </div>
+                    ) : step === "already-linked" && pendingResult ? (
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+                                {pendingResult.poster && (
+                                    <div className="relative w-10 shrink-0 aspect-2/3 rounded overflow-hidden">
+                                        <Image unoptimized src={pendingResult.poster} alt={pendingResult.title} fill className="object-cover" />
+                                    </div>
+                                )}
+                                <div>
+                                    <p className="text-sm font-medium text-white">{linkedTitle ?? pendingResult.title}</p>
+                                    <p className="text-xs text-amber-400 mt-0.5">Already linked to another MDL entry</p>
+                                </div>
+                            </div>
+
+                            <p className="text-sm text-gray-300">
+                                How does <span className="text-white font-medium">&ldquo;{defaultQuery}&rdquo;</span> relate to this show?
+                            </p>
+
+                            {error && <p className="text-sm text-red-400">{error}</p>}
+
+                            <div className="flex flex-col gap-2">
+                                <button
+                                    onClick={handleAliasConfirm}
+                                    disabled={isPending}
+                                    className="flex flex-col items-start px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-left hover:bg-emerald-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <span className="text-sm font-medium text-emerald-400">Same show — different part</span>
+                                    <span className="text-xs text-gray-400 mt-0.5">e.g. Part 1 &amp; Part 2 split for broadcast. Both link to the same page.</span>
+                                </button>
+                                <button
+                                    onClick={() => { setStep("season"); setError(null); }}
+                                    disabled={isPending || availableSeasons.length === 0}
+                                    className="flex flex-col items-start px-4 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-left hover:bg-sky-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <span className="text-sm font-medium text-sky-400">Different season</span>
+                                    <span className="text-xs text-gray-400 mt-0.5">
+                                        {availableSeasons.length > 0 ? "Genuinely a new season on TMDB." : "No additional seasons available on TMDB."}
+                                    </span>
+                                </button>
+                            </div>
+
+                            <button
+                                onClick={() => { setStep("search"); setError(null); }}
+                                className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                            >
+                                <ChevronLeft className="h-4 w-4" />
+                                Back to search
+                            </button>
                         </div>
                     ) : step === "season" && pendingResult ? (
                         <div className="space-y-5">

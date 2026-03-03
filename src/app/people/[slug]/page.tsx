@@ -193,7 +193,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     const allWorks = [...dramas, ...movies, ...specials];
     const mdlIds = allWorks.map((w) => extractMdlId(w._slug)).filter(Boolean) as string[];
 
-    const [cached, seasonLinkRows] =
+    const [cached, seasonLinkRows, aliasRows] =
         mdlIds.length > 0
             ? await Promise.all([
                   prisma.cachedMdlData.findMany({
@@ -204,8 +204,12 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                       where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
                       select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true, season: true },
                   }),
+                  prisma.mdlAlias.findMany({
+                      where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
+                      select: { mdlSlug: true, tmdbExternalId: true },
+                  }),
               ])
-            : [[], []];
+            : [[], [], []];
 
     const mdlToTmdb = new Map<string, string>(); // numericMdlId → tmdbExternalId
     const mdlSeasonMap = new Map<string, number>(); // numericMdlId → season number (season links only)
@@ -220,6 +224,13 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         if (!mdlToTmdb.has(numericId)) mdlToTmdb.set(numericId, item.tmdbExternalId);
         mdlSeasonMap.set(numericId, item.season);
         if (item.mdlRating != null && !mdlRatingMap.has(numericId)) mdlRatingMap.set(numericId, item.mdlRating);
+    }
+    const aliasNumericIds = new Set<string>();
+    for (const item of aliasRows) {
+        const numericId = item.mdlSlug.split("-")[0];
+        if (!mdlToTmdb.has(numericId)) mdlToTmdb.set(numericId, item.tmdbExternalId);
+        aliasNumericIds.add(numericId);
+        // aliases have no season param — they link directly to the main show page
     }
 
     // Batch-fetch TMDB posters for linked works (server-side, cached 1h by Next.js)
@@ -296,7 +307,10 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     function getCachedMdlRating(work: KuryanaWorkItem): number | null {
         const id = extractMdlId(work._slug);
         if (!id) return null;
-        return mdlRatingMap.get(id) ?? null;
+        if (mdlRatingMap.has(id)) return mdlRatingMap.get(id)!;
+        // For alias items, work.rating IS the MDL rating — show it as blue
+        if (aliasNumericIds.has(id) && work.rating > 0) return work.rating;
+        return null;
     }
 
     const bio = data.about
