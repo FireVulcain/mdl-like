@@ -111,7 +111,7 @@ export async function CDramaSectionData() {
     const allShows = [...cdramas.trending, ...cdramas.airing, ...cdramas.upcoming];
     const slugs = allShows.map((m) => mdlSlugFromUrl(m.id.replace(/^mdl-/, "")));
 
-    const [linkedRows, seasonRows] = await Promise.all([
+    const [linkedRows, seasonRows, aliasRows] = await Promise.all([
         prisma.cachedMdlData.findMany({
             where: { mdlSlug: { in: slugs } },
             select: { mdlSlug: true, tmdbExternalId: true },
@@ -120,10 +120,15 @@ export async function CDramaSectionData() {
             where: { mdlSlug: { in: slugs } },
             select: { mdlSlug: true, tmdbExternalId: true, season: true },
         }),
+        prisma.mdlAlias.findMany({
+            where: { mdlSlug: { in: slugs } },
+            select: { mdlSlug: true, tmdbExternalId: true },
+        }),
     ]);
     const linkedBySlug = new Map([
         ...linkedRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
         ...seasonRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId, season: r.season }] as const),
+        ...aliasRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
     ]);
 
     return (
