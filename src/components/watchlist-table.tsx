@@ -410,11 +410,12 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         try {
             const result = await refreshWatchlistMdlRatings();
             if (result.success) {
-                toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}`, {
+                const skippedNote = result.skipped ? ` (${result.skipped} already fresh)` : "";
+                toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}${skippedNote}`, {
                     id: toastId,
-                    description: "Refreshing page...",
+                    description: result.count > 0 ? "Refreshing page..." : "Everything is up to date.",
                 });
-                setTimeout(() => window.location.reload(), 1000);
+                if (result.count > 0) setTimeout(() => window.location.reload(), 1000);
             } else {
                 toast.dismiss(toastId);
             }
