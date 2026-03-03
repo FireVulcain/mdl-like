@@ -23,6 +23,7 @@ export interface MdlData {
     mdlRanking: number | null;
     mdlPopularity: number | null;
     tags: string[];
+    genres: string[];
     cast: MdlCast | null;
     synopsis: string | null;
 }
@@ -109,6 +110,7 @@ export const getMdlSeasonData = cache(async function getMdlSeasonData(
             mdlRanking: row.mdlRanking,
             mdlPopularity: row.mdlPopularity,
             tags: (row.tags as string[]) ?? [],
+            genres: (row.genres as string[]) ?? [],
             cast,
             synopsis: row.synopsis ?? null,
         };
@@ -135,7 +137,8 @@ export const getMdlData = cache(async function getMdlData(
         const castIsEmpty = !cast || (cast.main.length === 0 && cast.support.length === 0 && cast.guest.length === 0);
 
         if (!castIsEmpty) {
-            if (cached.synopsis !== null) {
+            const cachedGenres = (cached.genres as string[] | null) ?? null;
+            if (cached.synopsis !== null && cachedGenres && cachedGenres.length > 0) {
                 // True full hit — everything cached
                 return {
                     mdlSlug: cached.mdlSlug,
@@ -143,20 +146,27 @@ export const getMdlData = cache(async function getMdlData(
                     mdlRanking: cached.mdlRanking,
                     mdlPopularity: cached.mdlPopularity,
                     tags: (cached.tags as string[]) ?? [],
+                    genres: cachedGenres,
                     cast,
                     synopsis: cached.synopsis,
                 };
             }
 
-            // Cast present but synopsis not yet stored — fetch it and backfill
+            // Cast present but synopsis or genres missing — fetch details and backfill
             try {
                 const details = await kuryanaGetDetails(cached.mdlSlug);
-                const synopsis = details?.data?.synopsis || null;
-                if (synopsis) {
+                const synopsis = cached.synopsis ?? details?.data?.synopsis ?? null;
+                const newGenres = cachedGenres?.length ? cachedGenres : (details?.data?.others?.genres ?? []);
+                try {
                     await prisma.cachedMdlData.update({
                         where: { tmdbExternalId },
-                        data: { synopsis },
+                        data: {
+                            ...(synopsis && !cached.synopsis ? { synopsis } : {}),
+                            ...(newGenres.length ? { genres: newGenres as unknown as Prisma.InputJsonValue } : {}),
+                        },
                     });
+                } catch (e) {
+                    console.error("[MDL] backfill update failed:", e);
                 }
                 return {
                     mdlSlug: cached.mdlSlug,
@@ -164,6 +174,7 @@ export const getMdlData = cache(async function getMdlData(
                     mdlRanking: cached.mdlRanking,
                     mdlPopularity: cached.mdlPopularity,
                     tags: (cached.tags as string[]) ?? [],
+                    genres: newGenres,
                     cast,
                     synopsis,
                 };
@@ -174,8 +185,9 @@ export const getMdlData = cache(async function getMdlData(
                     mdlRanking: cached.mdlRanking,
                     mdlPopularity: cached.mdlPopularity,
                     tags: (cached.tags as string[]) ?? [],
+                    genres: cachedGenres ?? [],
                     cast,
-                    synopsis: null,
+                    synopsis: cached.synopsis ?? null,
                 };
             }
         }
@@ -204,6 +216,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlRanking: cached.mdlRanking,
                 mdlPopularity: cached.mdlPopularity,
                 tags: (cached.tags as string[]) ?? [],
+                genres: (cached.genres as string[]) ?? [],
                 cast: newCast,
                 synopsis: cached.synopsis ?? null,
             };
@@ -214,6 +227,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlRanking: cached.mdlRanking,
                 mdlPopularity: cached.mdlPopularity,
                 tags: (cached.tags as string[]) ?? [],
+                genres: (cached.genres as string[]) ?? [],
                 cast: null,
                 synopsis: cached.synopsis ?? null,
             };
@@ -263,6 +277,7 @@ export const getMdlData = cache(async function getMdlData(
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const tags = details.data.others?.tags ?? [];
+        const genres = details.data.others?.genres ?? [];
         const synopsis = details.data.synopsis || null;
 
         const cast: MdlCast | null = castResult?.data?.casts
@@ -282,6 +297,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlRanking,
                 mdlPopularity,
                 tags,
+                genres,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 synopsis,
             },
@@ -291,13 +307,14 @@ export const getMdlData = cache(async function getMdlData(
                 mdlRanking,
                 mdlPopularity,
                 tags,
+                genres,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 synopsis,
                 cachedAt: new Date(),
             },
         });
 
-        return { mdlSlug: match.slug, mdlRating, mdlRanking, mdlPopularity, tags, cast, synopsis };
+        return { mdlSlug: match.slug, mdlRating, mdlRanking, mdlPopularity, tags, genres, cast, synopsis };
     } catch (e) {
         console.error("[MDL] Failed to fetch MDL data for:", title, e);
         return null;

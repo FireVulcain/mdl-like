@@ -407,6 +407,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     mediaId={media.id}
                                     season={selectedSeason}
                                     tmdbSynopsis={seasonOverview || media.synopsis || ""}
+                                    originCountry={media.originCountry}
                                 />
                             </Suspense>
                         ) : (
