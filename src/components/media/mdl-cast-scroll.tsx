@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { MdlCast, MdlCastMember } from "@/actions/mdl";
 
 interface TmdbActor {
@@ -16,7 +15,6 @@ interface TmdbActor {
 
 interface MdlCastScrollProps {
     cast: MdlCast;
-    // TMDB cast for cross-referencing names → internal person page links
     tmdbCast: TmdbActor[];
     mediaId: string;
 }
@@ -25,24 +23,24 @@ function normalizeName(name: string): string {
     return name.toLowerCase().replace(/[\s\-.']/g, "");
 }
 
-// "/people/16660-song-zu-er" → "16660-song-zu-er"
 function mdlPersonSlug(slug: string): string | null {
     const match = slug.match(/\/people\/(.+)$/);
     return match ? match[1] : null;
 }
 
 function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number }) {
-    // Prefer TMDB person page; fall back to internal MDL person page if slug available
     const href = tmdbId ? `/cast/${tmdbId}` : actor.slug ? `/people/${mdlPersonSlug(actor.slug)}` : null;
 
     const inner = (
-        <div className="flex-none w-25 space-y-2 group cursor-pointer">
+        <div className="space-y-2 group cursor-pointer">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                 {actor.profileImage ? (
-                    <Image unoptimized={true}
+                    <Image
+                        unoptimized={true}
                         src={actor.profileImage}
                         alt={actor.name}
-                        fill className="object-cover opacity-0 transition-opacity duration-700 ease-out"
+                        fill
+                        className="object-cover opacity-0 transition-opacity duration-700 ease-out"
                         loading="lazy"
                         onLoad={(e) => {
                             const img = e.currentTarget;
@@ -64,10 +62,10 @@ function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number })
                 )}
             </div>
             <div>
-                <div className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors" title={actor.name}>
+                <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors leading-snug">
                     {actor.name}
                 </div>
-                <div className="text-xs text-gray-400 truncate" title={actor.characterName}>
+                <div className="text-xs text-gray-400 leading-snug mt-0.5">
                     {actor.characterName}
                 </div>
             </div>
@@ -75,15 +73,13 @@ function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number })
     );
 
     if (href) {
-        return (
-            <Link href={href} className="flex-none">
-                {inner}
-            </Link>
-        );
+        return <Link href={href}>{inner}</Link>;
     }
 
-    return <div className="flex-none">{inner}</div>;
+    return <div>{inner}</div>;
 }
+
+const CAST_GRID = "grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-4";
 
 export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
     const [showSupport, setShowSupport] = useState(false);
@@ -94,12 +90,10 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
 
     if (main.length === 0 && totalSupport === 0) return null;
 
-    // Build normalized name → TMDB person ID map for cross-referencing
     const tmdbMap = new Map<string, number>();
     for (const actor of tmdbCast) {
         tmdbMap.set(normalizeName(actor.name), actor.id);
     }
-
     const getTmdbId = (name: string) => tmdbMap.get(normalizeName(name));
 
     return (
@@ -109,7 +103,9 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                     <h3 className="text-lg font-semibold text-white">Cast & Credits</h3>
                     <span
                         className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
-                            source === "mdl" ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"
+                            source === "mdl"
+                                ? "bg-sky-500/15 text-sky-400 border-sky-500/20"
+                                : "bg-white/5 text-gray-400 border-white/10"
                         }`}
                     >
                         via {source === "mdl" ? "MDL" : "TMDB"}
@@ -142,52 +138,48 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
 
             {/* TMDB view */}
             {source === "tmdb" && (
-                <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
-                    <div className="flex gap-4 pb-4">
-                        {tmdbCast.slice(0, 6).map((actor) => (
-                            <Link key={actor.id} href={`/cast/${actor.id}`} className="flex-none w-25 space-y-2 group">
-                                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
-                                    {actor.profile ? (
-                                        <Image unoptimized={true}
-                                            src={actor.profile}
-                                            alt={actor.name}
-                                            fill className="object-cover opacity-0 transition-opacity duration-700 ease-out"
-                                            loading="lazy"
-                                            onLoad={(e) => {
-                                                const img = e.currentTarget;
-                                                const container = img.parentElement;
-                                                setTimeout(() => {
-                                                    img.classList.replace("opacity-0", "opacity-100");
-                                                    container?.classList.remove(
-                                                        "animate-shimmer",
-                                                        "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
-                                                        "bg-size-[200%_100%]"
-                                                    );
-                                                }, 100);
-                                            }}
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-xs text-gray-400 p-1 text-center bg-linear-to-br from-gray-800 to-gray-900">
-                                            No Image
-                                        </div>
-                                    )}
-                                </div>
-                                <div>
-                                    <div
-                                        className="text-sm font-medium truncate text-white group-hover:text-blue-400 transition-colors"
-                                        title={actor.name}
-                                    >
-                                        {actor.name}
+                <div className={CAST_GRID}>
+                    {tmdbCast.slice(0, 12).map((actor) => (
+                        <Link key={actor.id} href={`/cast/${actor.id}`} className="space-y-2 group">
+                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
+                                {actor.profile ? (
+                                    <Image
+                                        unoptimized={true}
+                                        src={actor.profile}
+                                        alt={actor.name}
+                                        fill
+                                        className="object-cover opacity-0 transition-opacity duration-700 ease-out"
+                                        loading="lazy"
+                                        onLoad={(e) => {
+                                            const img = e.currentTarget;
+                                            const container = img.parentElement;
+                                            setTimeout(() => {
+                                                img.classList.replace("opacity-0", "opacity-100");
+                                                container?.classList.remove(
+                                                    "animate-shimmer",
+                                                    "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]",
+                                                    "bg-size-[200%_100%]"
+                                                );
+                                            }, 100);
+                                        }}
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400 p-1 text-center bg-linear-to-br from-gray-800 to-gray-900">
+                                        No Image
                                     </div>
-                                    <div className="text-xs text-gray-400 truncate" title={actor.character}>
-                                        {actor.character}
-                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors leading-snug">
+                                    {actor.name}
                                 </div>
-                            </Link>
-                        ))}
-                    </div>
-                    <ScrollBar orientation="horizontal" />
-                </ScrollArea>
+                                <div className="text-xs text-gray-400 leading-snug mt-0.5">
+                                    {actor.character}
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             )}
 
             {/* MDL view */}
@@ -196,14 +188,11 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                     {main.length > 0 && (
                         <>
                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Main Role</p>
-                            <ScrollArea className="w-full whitespace-nowrap mb-4" viewportStyle={{ overflowY: "hidden" }}>
-                                <div className="flex gap-4 pb-4">
-                                    {main.map((actor) => (
-                                        <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
-                                    ))}
-                                </div>
-                                <ScrollBar orientation="horizontal" />
-                            </ScrollArea>
+                            <div className={`${CAST_GRID} mb-6`}>
+                                {main.map((actor) => (
+                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                ))}
+                            </div>
                         </>
                     )}
 
@@ -222,27 +211,21 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                     {support.length > 0 && (
                                         <>
                                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Support Role</p>
-                                            <ScrollArea className="w-full whitespace-nowrap mb-4" viewportStyle={{ overflowY: "hidden" }}>
-                                                <div className="flex gap-4 pb-4">
-                                                    {support.map((actor) => (
-                                                        <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
-                                                    ))}
-                                                </div>
-                                                <ScrollBar orientation="horizontal" />
-                                            </ScrollArea>
+                                            <div className={`${CAST_GRID} mb-6`}>
+                                                {support.map((actor) => (
+                                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                                ))}
+                                            </div>
                                         </>
                                     )}
                                     {guest.length > 0 && (
                                         <>
                                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Guest Role</p>
-                                            <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
-                                                <div className="flex gap-4 pb-4">
-                                                    {guest.map((actor) => (
-                                                        <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
-                                                    ))}
-                                                </div>
-                                                <ScrollBar orientation="horizontal" />
-                                            </ScrollArea>
+                                            <div className={CAST_GRID}>
+                                                {guest.map((actor) => (
+                                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                                ))}
+                                            </div>
                                         </>
                                     )}
                                 </>
