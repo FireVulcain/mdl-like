@@ -170,7 +170,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     let watchlistIds = new Set<string>();
     if (items.length > 0) {
         const slugs = items.map((m) => m.id.replace(/^mdl-/, ""));
-        const [linkedRows, seasonRows, watchlistExternalIds] = await Promise.all([
+        const [linkedRows, seasonRows, aliasRows, watchlistExternalIds] = await Promise.all([
             prisma.cachedMdlData.findMany({
                 where: { mdlSlug: { in: slugs } },
                 select: { mdlSlug: true, tmdbExternalId: true },
@@ -179,11 +179,16 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                 where: { mdlSlug: { in: slugs } },
                 select: { mdlSlug: true, tmdbExternalId: true, season: true },
             }),
+            prisma.mdlAlias.findMany({
+                where: { mdlSlug: { in: slugs } },
+                select: { mdlSlug: true, tmdbExternalId: true },
+            }),
             getWatchlistExternalIds(),
         ]);
         linkedBySlug = new Map([
             ...linkedRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
             ...seasonRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId, season: r.season }] as const),
+            ...aliasRows.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
         ]);
         watchlistIds = new Set(watchlistExternalIds);
     }
