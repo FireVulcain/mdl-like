@@ -92,6 +92,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
 
     const totalHeatmapActions = stats.activityHeatmap.reduce((s, d) => s + d.count, 0);
     const { weeks, monthLabels } = buildHeatmapGrid(stats.activityHeatmap);
+    const listCount = Math.min(stats.topGenres.length, stats.countryBreakdown.length, 8);
     const maxCountry = stats.countryBreakdown[0]?.count ?? 1;
 
     // Rating: only 1–10, no zero
@@ -331,9 +332,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 {stats.topGenres.length > 0 ? (
-                                    stats.topGenres.map((genre, i) => (
+                                    stats.topGenres.slice(0, listCount).map((genre, i) => (
                                         <div key={genre.name} className="space-y-1.5">
                                             <div className="flex justify-between text-sm">
                                                 <span className="font-medium text-white">{genre.name}</span>
@@ -370,7 +371,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-3">
-                                    {stats.countryBreakdown.slice(0, 8).map(({ country, count }, i) => (
+                                    {stats.countryBreakdown.slice(0, listCount).map(({ country, count }, i) => (
                                         <div key={country} className="space-y-1.5">
                                             <div className="flex justify-between text-sm">
                                                 <span className="font-medium text-white">{COUNTRY_LABELS[country] ?? country}</span>

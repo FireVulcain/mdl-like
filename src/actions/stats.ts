@@ -61,7 +61,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
         .map(([name, value]) => ({ name, value }))
         .sort((a, b) => b.value - a.value);
 
-    const topGenres = genreData.slice(0, 5).map((g) => ({
+    const topGenres = genreData.slice(0, 8).map((g) => ({
         name: g.name,
         count: g.value,
         percentage: items.length > 0 ? (g.value / items.length) * 100 : 0,
