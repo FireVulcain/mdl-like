@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { type DashboardStats } from "@/types/stats";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Counter } from "./counter";
 import { Play, Tv, Clock, CheckCircle2, BarChart3, Star, TrendingUp, Globe, Calendar, Users } from "lucide-react";
 import Link from "next/link";
@@ -64,7 +63,9 @@ function cellColor(count: number) {
     return "bg-green-400";
 }
 
-const CARD = "bg-linear-to-br from-white/5 to-white/1 backdrop-blur-sm border-white/10 hover:border-white/20 transition-all";
+const CARD = "bg-linear-to-br from-white/5 to-white/1 backdrop-blur-sm border-white/10 hover:border-white/20 transition-all rounded-xl border";
+const CARD_HEADER = "px-6 pt-6 pb-4";
+const CARD_CONTENT = "px-6 pb-6";
 
 interface StatsDashboardProps {
     stats: DashboardStats;
@@ -141,9 +142,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                         ),
                         icon: <CheckCircle2 className="h-7 w-7 text-green-400 opacity-40" />,
                     },
-                ] as const).map(({ label, value, sub, icon }, i) => (
+                ] as const).map(({ label, value, sub, icon }) => (
                     <motion.div key={label} variants={item}>
-                        <div className={`${CARD} rounded-xl border p-4 flex items-center justify-between gap-3`}>
+                        <div className={`${CARD} p-4 flex items-center justify-between gap-3`}>
                             <div className="min-w-0">
                                 <p className="text-xs text-gray-400 mb-0.5">{label}</p>
                                 <p className="text-2xl font-bold text-white">{value}</p>
@@ -158,14 +159,14 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Row 2 — Most Seen Actors */}
             {stats.topActors.length > 0 && (
                 <motion.div variants={item}>
-                    <Card className={CARD}>
-                        <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2 text-white">
+                    <div className={CARD}>
+                        <div className={CARD_HEADER}>
+                            <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                                 <Users className="h-4 w-4 text-pink-400" />
                                 Most Seen Actors
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
+                            </h3>
+                        </div>
+                        <div className={CARD_CONTENT}>
                             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                                 {stats.topActors.map((actor) => (
                                     <Link key={actor.slug} href={actor.slug.startsWith("/") ? actor.slug : `/people/${actor.slug}`} className="group flex flex-col items-center gap-2 text-center">
@@ -191,80 +192,75 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     </Link>
                                 ))}
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </motion.div>
             )}
 
             {/* Row 3 — Activity Heatmap */}
             <motion.div variants={item}>
-                <Card className={CARD}>
-                    <CardHeader>
-                        <CardTitle className="text-base flex items-center gap-2 text-white">
+                <div className={CARD}>
+                    <div className={CARD_HEADER}>
+                        <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                             <Calendar className="h-4 w-4 text-green-400" />
                             Activity — past year
                             <span className="ml-auto text-xs font-normal text-gray-500">
                                 {totalHeatmapActions} action{totalHeatmapActions !== 1 ? "s" : ""}
                             </span>
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div>
-                            <div>
-                                {/* Month labels — same flex structure as the grid so they align perfectly */}
-                                <div className="flex gap-0.5 mb-1 h-4">
-                                    {weeks.map((_week, wi) => {
-                                        const ml = monthLabels.find((m) => m.col === wi);
-                                        return (
-                                            <div key={wi} className="flex-1 relative">
-                                                {ml && (
-                                                    <span className="absolute text-[10px] text-gray-500 whitespace-nowrap" style={{ left: 0 }}>
-                                                        {ml.label}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                <div className="flex gap-0.5">
-                                    {weeks.map((week, wi) => (
-                                        <div key={wi} className="flex-1 flex flex-col gap-0.5">
-                                            {week.map((day, di) => (
-                                                <div
-                                                    key={di}
-                                                    title={day.count >= 0 ? `${day.date}: ${day.count} action${day.count !== 1 ? "s" : ""}` : ""}
-                                                    className={`w-full aspect-square rounded-[2px] ${cellColor(day.count)}`}
-                                                />
-                                            ))}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="flex items-center gap-1.5 mt-3 justify-end">
-                                    <span className="text-[10px] text-gray-600">Less</span>
-                                    {["bg-white/5", "bg-green-900/60", "bg-green-700/70", "bg-green-500/80", "bg-green-400"].map((c) => (
-                                        <div key={c} className={`w-2.5 h-2.5 rounded-[2px] ${c}`} />
-                                    ))}
-                                    <span className="text-[10px] text-gray-600">More</span>
-                                </div>
-                            </div>
+                        </h3>
+                    </div>
+                    <div className={CARD_CONTENT}>
+                        {/* Month labels — same flex structure as the grid so they align perfectly */}
+                        <div className="flex gap-0.5 mb-1 h-4">
+                            {weeks.map((_week, wi) => {
+                                const ml = monthLabels.find((m) => m.col === wi);
+                                return (
+                                    <div key={wi} className="flex-1 relative">
+                                        {ml && (
+                                            <span className="absolute text-[10px] text-gray-500 whitespace-nowrap" style={{ left: 0 }}>
+                                                {ml.label}
+                                            </span>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
-                    </CardContent>
-                </Card>
+                        <div className="flex gap-0.5">
+                            {weeks.map((week, wi) => (
+                                <div key={wi} className="flex-1 flex flex-col gap-0.5">
+                                    {week.map((day, di) => (
+                                        <div
+                                            key={di}
+                                            title={day.count >= 0 ? `${day.date}: ${day.count} action${day.count !== 1 ? "s" : ""}` : ""}
+                                            className={`w-full aspect-square rounded-[2px] ${cellColor(day.count)}`}
+                                        />
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex items-center gap-1.5 mt-3 justify-end">
+                            <span className="text-[10px] text-gray-600">Less</span>
+                            {["bg-white/5", "bg-green-900/60", "bg-green-700/70", "bg-green-500/80", "bg-green-400"].map((c) => (
+                                <div key={c} className={`w-2.5 h-2.5 rounded-[2px] ${c}`} />
+                            ))}
+                            <span className="text-[10px] text-gray-600">More</span>
+                        </div>
+                    </div>
+                </div>
             </motion.div>
 
-            {/* Row 3 — Rating Distribution + By Year (both bar charts, similar height) */}
+            {/* Row 4 — Rating Distribution + By Year (both bar charts, similar height) */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Rating Distribution — custom vertical bars */}
                 <motion.div variants={item}>
-                    <Card className={CARD}>
-                        <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2 text-white">
+                    <div className={CARD}>
+                        <div className={CARD_HEADER}>
+                            <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                                 <BarChart3 className="h-4 w-4 text-blue-400" />
                                 Rating Distribution
                                 <span className="ml-auto text-xs font-normal text-gray-500">{ratedItems} rated</span>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
+                            </h3>
+                        </div>
+                        <div className={CARD_CONTENT}>
                             <div className="flex items-end gap-1.5 h-32">
                                 {ratingBars.map(({ rating, count }, i) => (
                                     <div key={rating} className="flex-1 flex flex-col items-center gap-1.5">
@@ -282,21 +278,20 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     </div>
                                 ))}
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </motion.div>
 
-                {/* Year — custom vertical bars */}
                 {recentYears.length > 0 && (
                     <motion.div variants={item}>
-                        <Card className={CARD}>
-                            <CardHeader>
-                                <CardTitle className="text-base flex items-center gap-2 text-white">
+                        <div className={CARD}>
+                            <div className={CARD_HEADER}>
+                                <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                                     <Tv className="h-4 w-4 text-violet-400" />
                                     By Year
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
+                                </h3>
+                            </div>
+                            <div className={CARD_CONTENT}>
                                 <div className="flex items-end gap-1 h-32">
                                     {recentYears.map(({ year, count }, i) => (
                                         <div key={year} className="flex-1 flex flex-col items-center gap-1">
@@ -314,24 +309,23 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         </div>
                                     ))}
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
                     </motion.div>
                 )}
             </div>
 
-            {/* Row 4 — Top Genres + By Country (both lists, similar height) */}
+            {/* Row 5 — Top Genres + By Country (both lists, similar height) */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Top Genres */}
                 <motion.div variants={item}>
-                    <Card className={CARD}>
-                        <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2 text-white">
+                    <div className={CARD}>
+                        <div className={CARD_HEADER}>
+                            <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                                 <TrendingUp className="h-4 w-4 text-emerald-400" />
                                 Top Genres
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
+                            </h3>
+                        </div>
+                        <div className={CARD_CONTENT}>
                             <div className="space-y-3">
                                 {stats.topGenres.length > 0 ? (
                                     stats.topGenres.slice(0, listCount).map((genre, i) => (
@@ -355,21 +349,20 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     <p className="text-sm text-gray-500 text-center py-8">No genre data yet</p>
                                 )}
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </motion.div>
 
-                {/* By Country */}
                 {stats.countryBreakdown.length > 0 && (
                     <motion.div variants={item}>
-                        <Card className={CARD}>
-                            <CardHeader>
-                                <CardTitle className="text-base flex items-center gap-2 text-white">
+                        <div className={CARD}>
+                            <div className={CARD_HEADER}>
+                                <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                                     <Globe className="h-4 w-4 text-sky-400" />
                                     By Country
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
+                                </h3>
+                            </div>
+                            <div className={CARD_CONTENT}>
                                 <div className="space-y-3">
                                     {stats.countryBreakdown.slice(0, listCount).map(({ country, count }, i) => (
                                         <div key={country} className="space-y-1.5">
@@ -388,23 +381,23 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         </div>
                                     ))}
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
                     </motion.div>
                 )}
             </div>
 
-            {/* Row 5 — Continue Watching */}
+            {/* Row 6 — Continue Watching */}
             {continueWatching.length > 0 && (
                 <motion.div variants={item}>
-                    <Card className={CARD}>
-                        <CardHeader>
-                            <CardTitle className="text-base flex items-center gap-2 text-white">
+                    <div className={CARD}>
+                        <div className={CARD_HEADER}>
+                            <h3 className="text-base font-semibold flex items-center gap-2 text-white">
                                 <Play className="h-4 w-4 text-blue-400" />
                                 Continue Watching
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
+                            </h3>
+                        </div>
+                        <div className={CARD_CONTENT}>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {continueWatching.slice(0, 6).map((show) => {
                                     const progressPercent = (show.progress / show.totalEp) * 100;
@@ -441,8 +434,8 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     );
                                 })}
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </motion.div>
             )}
         </motion.div>
