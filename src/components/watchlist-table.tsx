@@ -988,40 +988,59 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     style={{ animationDelay }}
                                 >
                                     <div
-                                        className="relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.01]"
+                                        className="item-card relative overflow-hidden rounded-2xl bg-white/2 cursor-pointer transition-all duration-300 hover:scale-[1.005]"
                                         onClick={() => toggleGroup(groupKey)}
                                     >
-                                        {/* Background Image */}
-                                        <div className="absolute inset-0">
-                                            {first.backdrop || first.poster ? (
-                                                <Image unoptimized={true}
-                                                    src={first.backdrop || first.poster!}
-                                                    alt=""
-                                                    fill
-                                                    sizes="100vw"
-                                                    className="object-cover"
-                                                    {...(displayedCount === 0 ? { priority: true } : { loading: "lazy" as const })}
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full bg-linear-to-br from-gray-800 to-gray-900" />
+                                        <div className="absolute inset-0 -z-10">
+                                            {(first.backdrop || first.poster) && (
+                                                <>
+                                                    <Image unoptimized={true}
+                                                        src={first.backdrop || first.poster!}
+                                                        alt=""
+                                                        fill
+                                                        sizes="100vw"
+                                                        className="object-cover opacity-30"
+                                                        {...(displayedCount === 0 ? { priority: true } : { loading: "lazy" as const })}
+                                                    />
+                                                    <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
+                                                </>
                                             )}
-                                            <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/90 to-gray-900/60" />
                                         </div>
+                                        <div className="relative flex items-center gap-3 p-2 parent-card-inner">
+                                            {/* Thumbnail */}
+                                            <div className="relative shrink-0 h-14 w-24 rounded-lg overflow-hidden bg-gray-800/50">
+                                                {first.backdrop || first.poster ? (
+                                                    <Image unoptimized={true}
+                                                        src={first.backdrop || first.poster!}
+                                                        alt={first.title || ""}
+                                                        fill
+                                                        sizes="192px"
+                                                        className="object-cover"
+                                                        loading="lazy"
+                                                    />
+                                                ) : (
+                                                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                                        <ImageOff className="h-5 w-5" />
+                                                    </div>
+                                                )}
+                                            </div>
 
-                                        <div className="relative flex items-center gap-4 p-4 parent-card-inner">
                                             <div className="flex-1 min-w-0">
-                                                <h3 className="text-xl font-semibold text-white tracking-tight line-clamp-1">{first.title}</h3>
-                                                <div className="flex items-center gap-2 mt-1 text-sm text-gray-400">
-                                                    <span className="flex items-center gap-1.5">
-                                                        <Layers className="h-4 w-4" />
-                                                        {group.length} seasons
+                                                <div className="flex items-center gap-2 mb-0.5">
+                                                    <h3 className="text-base font-semibold text-white line-clamp-1">{first.title}</h3>
+                                                    <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded flex items-center gap-1 shrink-0">
+                                                        <Layers className="h-3 w-3" />{group.length} seasons
                                                     </span>
-                                                    <span>{first.originCountry}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-sm text-gray-500">
+                                                    <span>{first.originCountry || "Unknown"}</span>
+                                                    <span className="w-1 h-1 rounded-full bg-gray-600" />
+                                                    <span>{first.year || "N/A"}</span>
                                                 </div>
                                             </div>
 
                                             <ChevronDown
-                                                className={`h-6 w-6 text-gray-400 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                                                className={`h-5 w-5 text-gray-400 transition-transform duration-300 shrink-0 ${isExpanded ? "rotate-180" : ""}`}
                                             />
                                         </div>
                                     </div>
@@ -1152,12 +1171,12 @@ const ItemCard = memo(function ItemCard({
     return (
         <div
             className={`item-card group relative overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.005] ${
-                isChild ? "bg-linear-to-r from-blue-500/5 to-transparent border border-blue-500/10" : "bg-white/2"
+                isChild ? "bg-white/3 border border-white/5" : "bg-white/2"
             }`}
         >
             {/* Backdrop with gradient overlay */}
             <div className="absolute inset-0 -z-10">
-                {(item.backdrop || item.poster) && !isChild ? (
+                {(item.backdrop || item.poster) ? (
                     <>
                         <Image unoptimized={true}
                             src={item.backdrop || item.poster!}
