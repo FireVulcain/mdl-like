@@ -27,6 +27,7 @@ import { WatchProvidersRow } from "@/components/media/watch-providers-row";
 import { getCurrentUserId } from "@/lib/session";
 import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
+import { StickySidebar } from "@/components/media/sticky-sidebar";
 
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
     // Parallel fetch: params and searchParams are independent
@@ -120,8 +121,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
             <div className="container relative -top-20 z-10 grid gap-8 md:grid-cols-[300px_1fr] m-auto pb-20 px-4 md:px-6">
                 {/* Poster & Actions */}
-                <div className="space-y-4">
-                    <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
+                <StickySidebar>
+                    <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
                         {currentSeasonData?.poster || media.poster ? (
                             <Image
                                 unoptimized={true}
@@ -281,7 +282,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             firstAirDate={media.firstAirDate}
                         />
                     )}
-                </div>
+                </StickySidebar>
 
                 {/* Info */}
                 <div className="pt-20 md:pt-0 space-y-8 min-w-0">
