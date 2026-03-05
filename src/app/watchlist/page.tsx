@@ -46,7 +46,7 @@ export default function WatchlistPage() {
             </div>
 
             {/* Content */}
-            <div className="container py-8 m-auto max-w-[80%] relative z-10 space-y-6">
+            <div className="container py-6 m-auto md:max-w-[80%] relative z-10 space-y-4 px-4">
                 <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>

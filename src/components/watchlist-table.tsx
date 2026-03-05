@@ -539,7 +539,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
 
                     <div className="relative flex flex-wrap items-center gap-2 p-2.5">
                         {/* Search */}
-                        <div className="flex-1 min-w-64 relative group">
+                        <div className="w-full md:flex-1 md:min-w-0 relative group">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-blue-500 transition-colors" />
                             <Input
                                 placeholder="Search your collection..."
@@ -550,7 +550,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         </div>
 
                         {/* Filter Dropdowns */}
-                        <div className="flex items-center gap-2 filter-dropdown-group">
+                        <div className="flex items-center gap-2 filter-dropdown-group w-full md:w-auto overflow-x-auto scrollbar-none pb-0.5 md:pb-0">
                             {/* Status Filter */}
                             <div className="relative filter-dropdown">
                                 <button
@@ -566,7 +566,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     }`}
                                 >
                                     <Eye className="h-4 w-4" />
-                                    <span className="hidden sm:inline">Status</span>
+                                    <span className="">Status</span>
                                     {filterStatuses.length > 0 && (
                                         <span className="bg-blue-500/30 text-blue-300 text-xs px-1.5 py-0.5 rounded-md">{filterStatuses.length}</span>
                                     )}
@@ -617,7 +617,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                             : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
                                     }`}
                                 >
-                                    <span className="hidden sm:inline">Country</span>
+                                    <span className="">Country</span>
                                     {filterCountries.length > 0 && (
                                         <span className="bg-rose-500/30 text-rose-300 text-xs px-1.5 py-0.5 rounded-md">
                                             {filterCountries.length}
@@ -665,7 +665,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                             : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
                                     }`}
                                 >
-                                    <span className="hidden sm:inline">Genre</span>
+                                    <span className="">Genre</span>
                                     {filterGenres.length > 0 && (
                                         <span className="bg-emerald-500/30 text-emerald-300 text-xs px-1.5 py-0.5 rounded-md">
                                             {filterGenres.length}
@@ -698,26 +698,25 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     </>
                                 )}
                             </div>
-                        </div>
 
                         {/* Airing toggle */}
                         <button
                             onClick={() => { const next = !filterAiringOnly; setFilterAiringOnly(next); syncUrl("airing", next ? "1" : null); }}
-                            className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
+                            className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                 filterAiringOnly
                                     ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30"
                                     : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
                             }`}
                         >
                             <Tv className="h-4 w-4" />
-                            <span className="hidden sm:inline">Airing</span>
+                            <span className="">Airing</span>
                         </button>
 
                         {/* Divider */}
-                        <div className="hidden md:block w-px h-6 bg-white/10" />
+                        <div className="w-px h-6 bg-white/10 shrink-0" />
 
                         {/* Sort & Year */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 shrink-0">
                             <div className="relative select-wrapper">
                                 <select
                                     value={sortBy}
@@ -789,7 +788,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         </div>
 
                         {/* Actions Menu */}
-                        {!readOnly && <div className="relative filter-dropdown">
+                        {!readOnly && <div className="relative filter-dropdown shrink-0">
                             <button
                                 onClick={() => setShowActionsMenu(!showActionsMenu)}
                                 className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer"
@@ -860,6 +859,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 </>
                             )}
                         </div>}
+                        </div>
                     </div>
                 </div>
             </div>
