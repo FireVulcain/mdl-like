@@ -33,8 +33,14 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
     const [year, setYear] = useState(initial.y);
     const [month, setMonth] = useState(initial.m);
+    const [asianOnly, setAsianOnly] = useState(true);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
+
+    const ASIAN_COUNTRIES = ["KR", "CN", "JP", "TW", "TH", "HK"];
+    const filteredEntries = asianOnly
+        ? entries.filter((e) => ASIAN_COUNTRIES.includes(e.originCountry))
+        : entries;
 
     const handleRefresh = async () => {
         setIsRefreshing(true);
@@ -66,7 +72,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
     // Map airDate -> (mediaId -> episodes[]) — one icon per show per day
     const byDate = new Map<string, Map<string, ScheduleEntry[]>>();
-    for (const entry of entries) {
+    for (const entry of filteredEntries) {
         if (!byDate.has(entry.airDate)) byDate.set(entry.airDate, new Map());
         const byShow = byDate.get(entry.airDate)!;
         if (!byShow.has(entry.mediaId)) byShow.set(entry.mediaId, []);
@@ -99,7 +105,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
     const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
     const thisMonthPrefix = `${year}-${String(month + 1).padStart(2, "0")}`;
-    const episodesThisMonth = entries.filter((e) => e.airDate.startsWith(thisMonthPrefix)).length;
+    const episodesThisMonth = filteredEntries.filter((e) => e.airDate.startsWith(thisMonthPrefix)).length;
 
     return (
         <div className="min-h-screen bg-linear-to-b ">
@@ -122,6 +128,21 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
                     {/* Month navigation */}
                     <div className="flex items-center gap-2">
+                        <div className="flex items-center bg-white/5 border border-white/10 rounded-lg overflow-hidden text-sm font-medium">
+                            <button
+                                onClick={() => setAsianOnly(true)}
+                                className={`cursor-pointer px-3 py-1.5 transition-colors ${asianOnly ? "bg-primary/20 text-primary" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                            >
+                                KR · CN · JP
+                            </button>
+                            <div className="w-px h-4 bg-white/10" />
+                            <button
+                                onClick={() => setAsianOnly(false)}
+                                className={`cursor-pointer px-3 py-1.5 transition-colors ${!asianOnly ? "bg-primary/20 text-primary" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                            >
+                                All shows
+                            </button>
+                        </div>
                         {/* Actions menu */}
                         <div className="relative">
                             <button
@@ -295,7 +316,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                     </div>
                 </div>
 
-                {entries.length === 0 && (
+                {filteredEntries.length === 0 && (
                     <div className="text-center py-16 text-gray-500">
                         <CalendarDays className="h-12 w-12 mx-auto mb-3 opacity-30" />
                         <p className="font-medium">No upcoming episodes</p>

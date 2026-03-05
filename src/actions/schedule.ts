@@ -14,6 +14,7 @@ export type ScheduleEntry = {
     episodeName?: string;
     airDate: string; // YYYY-MM-DD
     mediaId: string;
+    originCountry: string;
 };
 
 // TVmaze rate limit: 20 req/10s — cap concurrent show fetches at 3
@@ -64,19 +65,22 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
             status: { in: ["Watching", "Plan to Watch", "Completed"] },
             mediaType: "TV",
             source: "TMDB",
-            originCountry: { in: ["KR", "CN", "JP"] },
         },
         select: {
             externalId: true,
             source: true,
             title: true,
             poster: true,
+            originCountry: true,
         },
     });
 
     if (items.length === 0) return [];
 
-    const mediaIds = items.map((i) => `${i.source.toLowerCase()}-${i.externalId}`);
+    // Deduplicate by mediaId — same show can appear multiple times (different tracked seasons)
+    const uniqueItems = [...new Map(items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}`, i])).values()];
+
+    const mediaIds = uniqueItems.map((i) => `${i.source.toLowerCase()}-${i.externalId}`);
 
     // Single bulk query for all cached episodes — eliminates N+1 DB round trips
     const allCached = await prisma.cachedEpisode.findMany({
@@ -90,9 +94,9 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
     }
 
     const results: ScheduleEntry[] = [];
-    const cacheMisses: typeof items = [];
+    const cacheMisses: typeof uniqueItems = [];
 
-    for (const item of items) {
+    for (const item of uniqueItems) {
         const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
         const cached = cacheByMediaId.get(mediaId);
 
@@ -106,6 +110,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                     episodeName: ep.episodeName ?? undefined,
                     airDate: ep.airDate,
                     mediaId,
+                    originCountry: item.originCountry || "",
                 });
             }
         } else {
@@ -128,6 +133,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                         episodeName: ep.episodeName,
                         airDate: ep.airDate,
                         mediaId,
+                        originCountry: item.originCountry || "",
                     });
                 }
             } catch (error) {
@@ -147,7 +153,6 @@ export async function refreshScheduleCache(): Promise<void> {
             status: { in: ["Watching", "Plan to Watch"] },
             mediaType: "TV",
             source: "TMDB",
-            originCountry: { in: ["KR", "CN", "JP"] },
         },
         select: {
             externalId: true,
@@ -158,12 +163,14 @@ export async function refreshScheduleCache(): Promise<void> {
 
     if (items.length === 0) return;
 
+    const uniqueItems = [...new Map(items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}`, i])).values()];
+
     // Clear existing cache for these shows
-    const mediaIds = items.map((i) => `${i.source.toLowerCase()}-${i.externalId}`);
+    const mediaIds = uniqueItems.map((i) => `${i.source.toLowerCase()}-${i.externalId}`);
     await prisma.cachedEpisode.deleteMany({ where: { mediaId: { in: mediaIds } } });
 
     // Re-fetch and re-cache
-    await withConcurrency(items, 3, async (item) => {
+    await withConcurrency(uniqueItems, 3, async (item) => {
         try {
             const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
             await fetchAndCacheEpisodes(mediaId, item.externalId, item.title);
