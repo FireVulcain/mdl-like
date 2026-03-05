@@ -550,7 +550,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         </div>
 
                         {/* Filter Dropdowns */}
-                        <div className="flex items-center gap-2 filter-dropdown-group w-full md:w-auto overflow-x-auto scrollbar-none pb-0.5 md:pb-0">
+                        <div className="flex items-center gap-2 filter-dropdown-group w-full md:w-auto overflow-x-auto md:overflow-visible scrollbar-none pb-0.5 md:pb-0">
                             {/* Status Filter */}
                             <div className="relative filter-dropdown">
                                 <button
