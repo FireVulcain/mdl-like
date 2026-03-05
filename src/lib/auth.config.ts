@@ -32,21 +32,15 @@ export const authConfig: NextAuthConfig = {
 
       return true;
     },
-    async jwt({ token, user, trigger, session: updatedSession }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.image = user.image ?? null;
-      }
-      // Support client-side session.update({ image }) after avatar upload
-      if (trigger === "update" && updatedSession?.image !== undefined) {
-        token.image = updatedSession.image;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
-        session.user.image = (token.image as string | null | undefined) ?? null;
       }
       return session;
     },

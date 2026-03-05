@@ -11,16 +11,18 @@ import { updateAvatar } from "@/actions/avatar";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
-    const { data: session, update } = useSession();
+    const { data: session } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
     const [avatarUploading, setAvatarUploading] = useState(false);
+    const [avatarCacheBust, setAvatarCacheBust] = useState(0);
+    const [avatarError, setAvatarError] = useState(false);
     const profileRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pathname = usePathname();
 
-    const avatarSrc = session?.user?.image ?? null;
+    const avatarSrc = session?.user ? `/api/me/avatar?t=${avatarCacheBust}` : null;
 
     async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
@@ -40,7 +42,8 @@ export function SiteHeader() {
             const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
             const res = await updateAvatar(dataUrl);
             if (!res.ok) { console.error(res.error); return; }
-            await update({ image: dataUrl });
+            setAvatarError(false);
+            setAvatarCacheBust(Date.now());
         } finally {
             setAvatarUploading(false);
         }
@@ -149,8 +152,8 @@ export function SiteHeader() {
                             )}
                         >
                             <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center overflow-hidden">
-                                {avatarSrc ? (
-                                    <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
+                                {avatarSrc && !avatarError ? (
+                                    <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" onError={() => setAvatarError(true)} />
                                 ) : (
                                     <span className="text-xs font-bold text-primary">ND</span>
                                 )}
@@ -171,8 +174,8 @@ export function SiteHeader() {
                                         <div className="relative h-8 w-8 shrink-0">
                                             <div className="h-8 w-8 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 overflow-hidden">
                                                 <div className="h-full w-full rounded-md bg-background flex items-center justify-center overflow-hidden">
-                                                    {avatarSrc ? (
-                                                        <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
+                                                    {avatarSrc && !avatarError ? (
+                                                        <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" onError={() => setAvatarError(true)} />
                                                     ) : (
                                                         <span className="text-[10px] font-bold text-primary">ND</span>
                                                     )}
@@ -329,8 +332,8 @@ export function SiteHeader() {
                             <div className="flex items-center gap-3 px-4 py-2 mb-1">
                                 <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 overflow-hidden">
                                     <div className="h-full w-full rounded-md bg-background flex items-center justify-center overflow-hidden">
-                                        {avatarSrc ? (
-                                            <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
+                                        {avatarSrc && !avatarError ? (
+                                            <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" onError={() => setAvatarError(true)} />
                                         ) : (
                                             <span className="text-[10px] font-bold text-primary">ND</span>
                                         )}
