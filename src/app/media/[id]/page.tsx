@@ -1,10 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import { ProgressTracker } from "@/components/progress-tracker";
 import { mediaService } from "@/services/media.service";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getUserMedia, getWatchlistExternalIds } from "@/actions/user-media";
-import { updateProgress } from "@/actions/media";
 import { AddToListButton } from "@/components/add-to-list-button";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
@@ -94,7 +92,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const watchlistIds = new Set(watchlistExternalIds);
 
     // Determine update action if userMedia exists
-    const updateAction = userMedia ? updateProgress.bind(null, userMedia.id) : undefined;
 
     return (
         <div className="min-h-screen bg-linear-to-b -mt-24">
@@ -151,6 +148,36 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         )}
                     </div>
+
+                    <AddToListButton
+                        media={{
+                            id: media.id,
+                            externalId: media.externalId,
+                            source: media.source,
+                            type: media.type,
+                            title: media.title,
+                            poster: media.poster,
+                            backdrop: media.backdrop,
+                            year: media.year,
+                            originCountry: media.originCountry,
+                            status: media.status,
+                            totalEp: media.totalEp,
+                            genres: media.genres,
+                            seasons: media.seasons?.map((s) => ({
+                                seasonNumber: s.seasonNumber,
+                                poster: s.poster,
+                                episodeCount: s.episodeCount,
+                                name: s.name,
+                                airDate: s.airDate,
+                            })),
+                            synopsis: "",
+                            rating: 0,
+                        }}
+                        userMedia={userMedia}
+                        season={selectedSeason}
+                        totalEp={episodeCount}
+                        className="w-full justify-center"
+                    />
 
                     <div
                         className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
@@ -322,53 +349,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
 
                         {/* Action Bar */}
-                        <div className="flex flex-wrap items-center gap-3 mt-5">
-                            {media.trailer && <TrailerButton trailer={media.trailer} />}
-
-                            <AddToListButton
-                                // Only pass fields needed by client (server-serialization optimization)
-                                media={{
-                                    id: media.id,
-                                    externalId: media.externalId,
-                                    source: media.source,
-                                    type: media.type,
-                                    title: media.title,
-                                    poster: media.poster,
-                                    backdrop: media.backdrop,
-                                    year: media.year,
-                                    originCountry: media.originCountry,
-                                    status: media.status,
-                                    totalEp: media.totalEp,
-                                    genres: media.genres,
-                                    seasons: media.seasons?.map((s) => ({
-                                        seasonNumber: s.seasonNumber,
-                                        poster: s.poster,
-                                        episodeCount: s.episodeCount,
-                                        name: s.name,
-                                        airDate: s.airDate,
-                                    })),
-                                    // Omit heavy unused fields: cast, images, recommendations, synopsis, rating, etc.
-                                    synopsis: "",
-                                    rating: 0,
-                                }}
-                                userMedia={userMedia}
-                                season={selectedSeason}
-                                totalEp={episodeCount}
-                            />
-
-                            {/* Compact Progress Indicator */}
-                            {userMedia && (
-                                <div className="flex items-center px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
-                                    <ProgressTracker
-                                        current={userMedia.progress}
-                                        total={episodeCount}
-                                        status={userMedia.status}
-                                        onUpdate={updateAction}
-                                        compact
-                                    />
-                                </div>
-                            )}
-                        </div>
+                        {media.trailer && (
+                            <div className="mt-5">
+                                <TrailerButton trailer={media.trailer} />
+                            </div>
+                        )}
                     </div>
 
                     {/* In-page navigation */}
