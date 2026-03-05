@@ -96,7 +96,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     return (
         <div className="min-h-screen bg-linear-to-b -mt-24">
             {/* Backdrop */}
-            <div className="relative h-[50vh] w-full overflow-hidden">
+            <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
                 {media.backdrop ? (
                     <>
                         <Image
