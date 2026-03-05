@@ -84,8 +84,15 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const [userId, watchlistExternalIds, cached, existingSeasonLink] = await Promise.all([
         getCurrentUserId(),
         getWatchlistExternalIds(),
-        isMdlRelevant ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true, mdlRating: true } }) : null,
-        isMdlRelevant && selectedSeason > 1 ? prisma.mdlSeasonLink.findUnique({ where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } }, select: { mdlSlug: true, mdlRating: true } }) : null,
+        isMdlRelevant
+            ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true, mdlRating: true } })
+            : null,
+        isMdlRelevant && selectedSeason > 1
+            ? prisma.mdlSeasonLink.findUnique({
+                  where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } },
+                  select: { mdlSlug: true, mdlRating: true },
+              })
+            : null,
     ]);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     const hasMdlRating = !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
@@ -180,9 +187,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         className="w-full justify-center"
                     />
 
-                    {media.trailer && (
-                        <TrailerButton trailer={media.trailer} className="w-full justify-center" />
-                    )}
+                    {media.trailer && <TrailerButton trailer={media.trailer} className="w-full justify-center" />}
 
                     <div
                         className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
@@ -285,7 +290,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 </StickySidebar>
 
                 {/* Info */}
-                <div className="pt-20 md:pt-0 space-y-8 min-w-0">
+                <div className="md:pt-20 space-y-8 min-w-0">
                     <div>
                         <h1 className="text-4xl font-bold mb-2 flex items-baseline gap-2">
                             <span>{media.title}</span>
@@ -352,7 +357,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
                         </div>
-
                     </div>
 
                     {/* In-page navigation */}
