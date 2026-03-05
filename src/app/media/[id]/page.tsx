@@ -179,6 +179,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         className="w-full justify-center"
                     />
 
+                    {media.trailer && (
+                        <TrailerButton trailer={media.trailer} className="w-full justify-center" />
+                    )}
+
                     <div
                         className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
                         style={{
@@ -348,12 +352,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             )}
                         </div>
 
-                        {/* Action Bar */}
-                        {media.trailer && (
-                            <div className="mt-5">
-                                <TrailerButton trailer={media.trailer} />
-                            </div>
-                        )}
                     </div>
 
                     {/* In-page navigation */}
