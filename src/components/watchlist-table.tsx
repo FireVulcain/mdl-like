@@ -151,6 +151,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
+    const [showSortFilter, setShowSortFilter] = useState(false);
+    const [showYearFilter, setShowYearFilter] = useState(false);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
     const [isImportingJSON, setIsImportingJSON] = useState(false);
@@ -558,6 +560,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         setShowStatusFilter(!showStatusFilter);
                                         setShowCountryFilter(false);
                                         setShowGenreFilter(false);
+                                        setShowSortFilter(false);
+                                        setShowYearFilter(false);
                                     }}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterStatuses.length > 0
@@ -610,6 +614,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         setShowCountryFilter(!showCountryFilter);
                                         setShowStatusFilter(false);
                                         setShowGenreFilter(false);
+                                        setShowSortFilter(false);
+                                        setShowYearFilter(false);
                                     }}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterCountries.length > 0
@@ -658,6 +664,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         setShowGenreFilter(!showGenreFilter);
                                         setShowStatusFilter(false);
                                         setShowCountryFilter(false);
+                                        setShowSortFilter(false);
+                                        setShowYearFilter(false);
                                     }}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterGenres.length > 0
@@ -715,77 +723,108 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         {/* Divider */}
                         <div className="w-px h-6 bg-white/10 shrink-0" />
 
-                        {/* Sort & Year */}
-                        <div className="flex items-center gap-2 shrink-0">
-                            <div className="relative select-wrapper">
-                                <select
-                                    value={sortBy}
-                                    onChange={(e) => { setSortBy(e.target.value); syncUrl("sort", e.target.value === "default" ? null : e.target.value); }}
-                                    className="h-9 pl-3 pr-8 rounded-lg bg-white/5 border-0 text-gray-300 text-sm hover:bg-white/8 focus:ring-1 focus:ring-blue-500/50 focus:outline-none transition-all cursor-pointer appearance-none"
-                                >
-                                    <option value="default" className="bg-gray-800">
-                                        Default
-                                    </option>
-                                    <option value="rating-high" className="bg-gray-800">
-                                        Rating: High
-                                    </option>
-                                    <option value="rating-low" className="bg-gray-800">
-                                        Rating: Low
-                                    </option>
-                                    <option value="progress-high" className="bg-gray-800">
-                                        Progress: High
-                                    </option>
-                                    <option value="progress-low" className="bg-gray-800">
-                                        Progress: Low
-                                    </option>
-                                    <option value="title-az" className="bg-gray-800">
-                                        Title: A-Z
-                                    </option>
-                                    <option value="title-za" className="bg-gray-800">
-                                        Title: Z-A
-                                    </option>
-                                    <option value="year-new" className="bg-gray-800">
-                                        Year: Newest
-                                    </option>
-                                    <option value="year-old" className="bg-gray-800">
-                                        Year: Oldest
-                                    </option>
-                                    <option value="next-episode-asc" className="bg-gray-800">
-                                        Next Episode: Soonest
-                                    </option>
-                                    <option value="next-episode-desc" className="bg-gray-800">
-                                        Next Episode: Latest
-                                    </option>
-                                </select>
-                                <SlidersHorizontal className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
-                            </div>
-
-                            <div className="relative select-wrapper">
-                                <select
-                                    value={filterYear}
-                                    onChange={(e) => { setFilterYear(e.target.value); syncUrl("year", e.target.value === "All" ? null : e.target.value); }}
-                                    className="h-9 pl-3 pr-8 rounded-lg bg-white/5 border-0 text-gray-300 text-sm hover:bg-white/8 focus:ring-1 focus:ring-blue-500/50 focus:outline-none transition-all cursor-pointer appearance-none"
-                                >
-                                    <option value="All" className="bg-gray-800">
-                                        All Years
-                                    </option>
-                                    {Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => new Date().getFullYear() - i).map(
-                                        (year) => (
-                                            <option key={year} value={year} className="bg-gray-800">
-                                                {year}
-                                            </option>
-                                        ),
+                        {/* Sort */}
+                        {(() => {
+                            const sortLabels: Record<string, string> = {
+                                default: "Sort", "rating-high": "Rating ↓", "rating-low": "Rating ↑",
+                                "progress-high": "Progress ↓", "progress-low": "Progress ↑",
+                                "title-az": "Title A-Z", "title-za": "Title Z-A",
+                                "year-new": "Year ↓", "year-old": "Year ↑",
+                                "next-episode-asc": "Next Ep ↑", "next-episode-desc": "Next Ep ↓",
+                            };
+                            const sortOptions = [
+                                { value: "default", label: "Default" },
+                                { value: "rating-high", label: "Rating: High" },
+                                { value: "rating-low", label: "Rating: Low" },
+                                { value: "progress-high", label: "Progress: High" },
+                                { value: "progress-low", label: "Progress: Low" },
+                                { value: "title-az", label: "Title: A-Z" },
+                                { value: "title-za", label: "Title: Z-A" },
+                                { value: "year-new", label: "Year: Newest" },
+                                { value: "year-old", label: "Year: Oldest" },
+                                { value: "next-episode-asc", label: "Next Episode: Soonest" },
+                                { value: "next-episode-desc", label: "Next Episode: Latest" },
+                            ];
+                            const isActive = sortBy !== "default";
+                            return (
+                                <div className="relative filter-dropdown shrink-0">
+                                    <button
+                                        onClick={() => { setShowSortFilter(!showSortFilter); setShowYearFilter(false); setShowStatusFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`}
+                                    >
+                                        <SlidersHorizontal className="h-4 w-4" />
+                                        <span>{sortLabels[sortBy] ?? "Sort"}</span>
+                                        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showSortFilter ? "rotate-180" : ""}`} />
+                                    </button>
+                                    {showSortFilter && (
+                                        <>
+                                            <div className="fixed inset-0 z-10" onClick={() => setShowSortFilter(false)} />
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-48 animate-in fade-in slide-in-from-top-2 duration-200">
+                                                {sortOptions.map((opt) => {
+                                                    const isSelected = sortBy === opt.value;
+                                                    return (
+                                                        <button
+                                                            key={opt.value}
+                                                            onClick={() => { setSortBy(opt.value); syncUrl("sort", opt.value === "default" ? null : opt.value); setShowSortFilter(false); }}
+                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-violet-500/20 text-violet-400" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
+                                                        >
+                                                            <span className="flex-1 text-left">{opt.label}</span>
+                                                            {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </>
                                     )}
-                                    <option value="2010s" className="bg-gray-800">
-                                        2010-2019
-                                    </option>
-                                    <option value="2000s" className="bg-gray-800">
-                                        2000-2009
-                                    </option>
-                                </select>
-                                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
-                            </div>
-                        </div>
+                                </div>
+                            );
+                        })()}
+
+                        {/* Year */}
+                        {(() => {
+                            const yearOptions = [
+                                { value: "All", label: "All Years" },
+                                ...Array.from({ length: new Date().getFullYear() - 2020 + 1 }, (_, i) => {
+                                    const y = new Date().getFullYear() - i;
+                                    return { value: String(y), label: String(y) };
+                                }),
+                                { value: "2010s", label: "2010-2019" },
+                                { value: "2000s", label: "2000-2009" },
+                            ];
+                            const isActive = filterYear !== "All";
+                            const label = isActive ? (yearOptions.find(o => o.value === filterYear)?.label ?? filterYear) : "Year";
+                            return (
+                                <div className="relative filter-dropdown shrink-0">
+                                    <button
+                                        onClick={() => { setShowYearFilter(!showYearFilter); setShowSortFilter(false); setShowStatusFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-orange-500/20 text-orange-400 ring-1 ring-orange-500/30" : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`}
+                                    >
+                                        <span>{label}</span>
+                                        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showYearFilter ? "rotate-180" : ""}`} />
+                                    </button>
+                                    {showYearFilter && (
+                                        <>
+                                            <div className="fixed inset-0 z-10" onClick={() => setShowYearFilter(false)} />
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-36 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                                {yearOptions.map((opt) => {
+                                                    const isSelected = filterYear === opt.value;
+                                                    return (
+                                                        <button
+                                                            key={opt.value}
+                                                            onClick={() => { setFilterYear(opt.value); syncUrl("year", opt.value === "All" ? null : opt.value); setShowYearFilter(false); }}
+                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-orange-500/20 text-orange-400" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
+                                                        >
+                                                            <span className="flex-1 text-left">{opt.label}</span>
+                                                            {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })()}
 
                         {/* Actions Menu */}
                         {!readOnly && <div className="relative filter-dropdown shrink-0">
