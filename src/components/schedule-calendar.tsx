@@ -133,7 +133,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                 onClick={() => setAsianOnly(true)}
                                 className={`cursor-pointer px-3 py-1.5 transition-colors ${asianOnly ? "bg-primary/20 text-primary" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
                             >
-                                KR · CN · JP
+                                Asian shows
                             </button>
                             <div className="w-px h-4 bg-white/10" />
                             <button
