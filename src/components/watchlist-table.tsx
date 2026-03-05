@@ -1146,6 +1146,9 @@ const ItemCard = memo(function ItemCard({
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+    const [showCompletion, setShowCompletion] = useState(false);
+    const [completionScore, setCompletionScore] = useState(0);
+    const [completionSaving, setCompletionSaving] = useState(false);
     const desktopButtonRef = useRef<HTMLButtonElement>(null);
     const mobileButtonRef = useRef<HTMLButtonElement>(null);
     const statusInfo = statusConfig[item.status as keyof typeof statusConfig] || statusConfig["Plan to Watch"];
@@ -1344,6 +1347,89 @@ const ItemCard = memo(function ItemCard({
                         document.body,
                     )}
 
+                {/* Completion dialog */}
+                {showCompletion && typeof window !== "undefined" && createPortal(
+                    <>
+                        <div className="fixed inset-0 z-9998 bg-black/60 backdrop-blur-sm" onClick={() => setShowCompletion(false)} />
+                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-gray-900 border border-white/10 rounded-2xl shadow-2xl shadow-black/60 p-6 animate-in fade-in zoom-in-95 duration-200">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="h-10 w-10 rounded-xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                                    <CheckCircle className="h-5 w-5 text-emerald-400" />
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-white text-sm">All episodes watched!</p>
+                                    <p className="text-xs text-gray-400 truncate max-w-56">{item.title}</p>
+                                </div>
+                            </div>
+
+                            <p className="text-xs text-gray-400 mb-3">Rate it before marking as completed</p>
+
+                            <div className="grid grid-cols-10 gap-1 mb-2">
+                                {[1,2,3,4,5,6,7,8,9,10].map((r) => (
+                                    <div key={r} className="flex flex-col gap-0.5">
+                                        <button
+                                            onClick={() => setCompletionScore(completionScore === r ? 0 : r)}
+                                            className={`cursor-pointer h-9 rounded-lg text-sm font-semibold transition-all ${
+                                                completionScore === r
+                                                    ? "bg-amber-500/30 text-amber-300 border border-amber-500/40"
+                                                    : "bg-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300 border border-transparent"
+                                            }`}
+                                        >
+                                            {r}
+                                        </button>
+                                        {r < 10 && (
+                                            <button
+                                                onClick={() => setCompletionScore(completionScore === r + 0.5 ? 0 : r + 0.5)}
+                                                className={`cursor-pointer h-5 rounded text-[10px] font-medium transition-all ${
+                                                    completionScore === r + 0.5
+                                                        ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                                                        : "text-gray-600 hover:text-gray-300 border border-transparent hover:bg-white/5"
+                                                }`}
+                                            >
+                                                .5
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-center text-xs text-gray-500 mb-5 h-4">
+                                {completionScore > 0 ? `${completionScore}/10` : "No rating"}
+                            </p>
+
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setShowCompletion(false)}
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                                >
+                                    Skip
+                                </button>
+                                <button
+                                    disabled={completionSaving}
+                                    onClick={async () => {
+                                        setCompletionSaving(true);
+                                        try {
+                                            await updateUserMedia(item.id, {
+                                                status: "Completed",
+                                                ...(completionScore > 0 ? { score: completionScore } : {}),
+                                            });
+                                            toast.success("Marked as completed", { description: item.title || undefined });
+                                            setShowCompletion(false);
+                                        } catch {
+                                            toast.error("Failed to save");
+                                        } finally {
+                                            setCompletionSaving(false);
+                                        }
+                                    }}
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
+                                >
+                                    {completionSaving ? "Saving…" : "Complete"}
+                                </button>
+                            </div>
+                        </div>
+                    </>,
+                    document.body,
+                )}
+
                 {/* Progress */}
                 <div className="card-progress w-32 space-y-2">
                     <div className="flex items-center gap-1">
@@ -1367,7 +1453,12 @@ const ItemCard = memo(function ItemCard({
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    handleProgress(item.id, item.progress + 1, item.title || undefined);
+                                    const next = item.progress + 1;
+                                    handleProgress(item.id, next, item.title || undefined);
+                                    if (item.totalEp && next >= item.totalEp) {
+                                        setCompletionScore(0);
+                                        setShowCompletion(true);
+                                    }
                                 }}
                                 className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
                             >
