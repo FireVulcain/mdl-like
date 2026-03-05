@@ -6,11 +6,12 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useRef, useEffect, useTransition } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-export function SearchInput() {
+export function SearchInput({ autoFocus }: { autoFocus?: boolean }) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
-    const [isPending, startTransition] = useTransition();
+    const [, startTransition] = useTransition();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     // Store the page the user was on before searching
     const previousPathRef = useRef<string | null>(null);
@@ -21,6 +22,14 @@ export function SearchInput() {
             previousPathRef.current = pathname;
         }
     }, [pathname]);
+
+    useEffect(() => {
+        if (autoFocus) {
+            // Small delay to let the overlay animation settle before focusing
+            const t = setTimeout(() => inputRef.current?.focus(), 100);
+            return () => clearTimeout(t);
+        }
+    }, [autoFocus]);
 
     const handleSearch = useDebouncedCallback((term: string) => {
         if (term) {
@@ -41,6 +50,7 @@ export function SearchInput() {
         <div className="relative w-full group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <Input
+                ref={inputRef}
                 type="search"
                 placeholder="Search dramas, movies..."
                 className="pl-10 h-10 bg-white/5 border-white/5 rounded-xl focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 transition-all placeholder:text-muted-foreground/50"

@@ -14,7 +14,7 @@ export default async function CastPage({ params }: { params: Promise<{ id: strin
 
     return (
         <div className="min-h-screen bg-linear-to-b">
-            <div className="container py-8 space-y-6 m-auto">
+            <div className="container py-8 space-y-6 m-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="space-y-4">
                     <Link href={`/media/${id}`} className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">

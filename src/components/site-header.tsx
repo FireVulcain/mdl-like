@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3, Camera, Loader2 } from "lucide-react";
+import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3, Camera, Loader2, Search } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { updateAvatar } from "@/actions/avatar";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,7 @@ export function SiteHeader() {
     const { data: session } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
     const [avatarUploading, setAvatarUploading] = useState(false);
     const [avatarCacheBust, setAvatarCacheBust] = useState(0);
@@ -72,6 +73,13 @@ export function SiteHeader() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [profileOpen]);
 
+    // Close mobile search bar only when navigating away from search
+    useEffect(() => {
+        if (pathname !== "/search") {
+            setMobileSearchOpen(false);
+        }
+    }, [pathname]);
+
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Dramas", href: "/dramas?category=popular&country=KR&sort=vote_average.desc", activePath: "/dramas" },
@@ -83,7 +91,7 @@ export function SiteHeader() {
         <header className={cn("fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-in-out px-4", scrolled ? "py-2" : "py-4")}>
             <div
                 className={cn(
-                    "container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
+                    "relative container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
                     scrolled
                         ? "bg-gray-900/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20 h-14"
                         : hasHeroBackdrop
@@ -91,8 +99,46 @@ export function SiteHeader() {
                           : "bg-gray-900/50 backdrop-blur-md border border-white/5 shadow-2xl shadow-black/20",
                 )}
             >
+                {/* Mobile inline search bar — absolute so it doesn't affect flex layout */}
+                <AnimatePresence>
+                    {mobileSearchOpen && (
+                        <motion.div
+                            initial={{ clipPath: "inset(0 0 0 100%)" }}
+                            animate={{ clipPath: "inset(0 0 0 0%)" }}
+                            exit={{ clipPath: "inset(0 0 0 100%)" }}
+                            transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                            className="absolute inset-0 flex items-center gap-2 px-4 md:hidden rounded-2xl overflow-hidden"
+                        >
+                            <motion.div
+                                className="flex-1 min-w-0"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.12, delay: 0.08 }}
+                            >
+                                <Suspense fallback={<div className="h-10 w-full bg-muted/20 rounded-xl animate-pulse" />}>
+                                    <SearchInput autoFocus />
+                                </Suspense>
+                            </motion.div>
+                            <motion.button
+                                onClick={() => setMobileSearchOpen(false)}
+                                className="cursor-pointer shrink-0 p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.1, delay: 0.1 }}
+                            >
+                                <X className="h-5 w-5 text-white" />
+                            </motion.button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
                 {/* Branding */}
-                <Link href="/" className="group">
+                <Link
+                    href="/"
+                    className={cn("group shrink-0 transition-opacity duration-100", mobileSearchOpen ? "opacity-0 pointer-events-none" : "opacity-100")}
+                >
                     <span className="font-black text-2xl tracking-tight text-white transition-all group-hover:opacity-80">
                         track<span className="text-primary">r</span>
                     </span>
@@ -134,7 +180,7 @@ export function SiteHeader() {
                 </nav>
 
                 {/* Search & Actions */}
-                <div className="flex items-center gap-4 flex-1 md:flex-none justify-end">
+                <div className={cn("flex items-center gap-4 flex-1 md:flex-none justify-end transition-opacity duration-100", mobileSearchOpen && "opacity-0 pointer-events-none")}>
                     <div className="hidden sm:block w-full max-w-xs group relative">
                         <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
                         <Suspense fallback={<div className="h-10 w-full bg-muted/20 rounded-xl animate-pulse" />}>
@@ -269,6 +315,15 @@ export function SiteHeader() {
                         </AnimatePresence>
                     </div>
 
+                    {/* Mobile Search Button */}
+                    <button
+                        onClick={() => setMobileSearchOpen(true)}
+                        className="cursor-pointer md:hidden p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                        aria-label="Search"
+                    >
+                        <Search className="h-5 w-5 text-white" />
+                    </button>
+
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -289,13 +344,6 @@ export function SiteHeader() {
                     className="container mx-auto mt-2 px-4"
                 >
                     <div className="bg-gray-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl shadow-black/40">
-                        {/* Mobile Search */}
-                        <div className="mb-4 sm:hidden">
-                            <Suspense fallback={<div className="h-10 w-full bg-muted/20 rounded-xl animate-pulse" />}>
-                                <SearchInput />
-                            </Suspense>
-                        </div>
-
                         {/* Mobile Navigation */}
                         <nav className="flex flex-col gap-1">
                             {navItems.map((item) => {
@@ -407,6 +455,7 @@ export function SiteHeader() {
                     </div>
                 </motion.div>
             )}
+
 
             <input
                 ref={fileInputRef}

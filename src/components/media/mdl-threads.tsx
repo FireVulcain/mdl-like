@@ -110,7 +110,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                     </div>
                 ) : (
                     <div className="mt-1">
-                        <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">{displayText}</p>
+                        <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line wrap-break-word">{displayText}</p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}

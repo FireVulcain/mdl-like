@@ -331,7 +331,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
     return (
         <div className="min-h-screen bg-linear-to-b ">
-            <div className="container py-8 space-y-8 m-auto">
+            <div className="container py-8 space-y-8 m-auto px-4 md:px-6">
                 <Link href="/" className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to Home

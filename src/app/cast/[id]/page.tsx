@@ -136,7 +136,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
     return (
         <div className="min-h-screen bg-linear-to-b ">
-            <div className="container py-8 space-y-8 m-auto">
+            <div className="container py-8 space-y-8 m-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="space-y-4">
                     <Link href="/" className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors">
@@ -308,7 +308,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {movies.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full" />
+                                    <div className="w-1 h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
                                     <Film className="h-5 w-5 text-blue-400" />
                                     <h3 className="text-lg font-semibold text-white">Movies</h3>
                                     <span className="text-sm text-gray-400">({movies.length})</span>
