@@ -15,6 +15,7 @@ interface MediaCardProps {
     sizes?: string;
     mdlRating?: number;
     href?: string; // Overrides the default /media/${media.id} link
+    showSourceBadge?: boolean;
 }
 
 export function MediaCard({
@@ -24,6 +25,7 @@ export function MediaCard({
     sizes = "(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw",
     mdlRating,
     href,
+    showSourceBadge = false,
 }: MediaCardProps) {
     const resolvedHref = href ?? `/media/${media.id}`;
     const isExternal = resolvedHref.startsWith("http");
@@ -73,7 +75,7 @@ export function MediaCard({
                         )}
                     </div>
                 )}
-                {media.source === "MDL" && (
+                {showSourceBadge && media.source === "MDL" && (
                     <div className="absolute bottom-2 left-2">
                         <Badge variant="secondary" className="bg-sky-500/80 text-white text-[10px] font-bold px-1.5 py-0 backdrop-blur-sm">
                             MDL

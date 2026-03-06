@@ -45,7 +45,7 @@ export function SearchMediaGrid({ media, query }: { media: UnifiedMedia[]; query
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {displayed.map((item) => (
-                    <MediaCard key={item.id} media={item} />
+                    <MediaCard key={item.id} media={item} showSourceBadge />
                 ))}
             </div>
         </div>
