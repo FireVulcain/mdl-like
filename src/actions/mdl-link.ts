@@ -129,6 +129,7 @@ export async function createMdlSeasonLink(
                   main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
                   support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
                   guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                  cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
               }
             : null;
 
@@ -184,6 +185,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
                   main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
                   support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
                   guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                  cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
               }
             : null;
 

@@ -8,13 +8,14 @@ export interface MdlCastMember {
     profileImage: string;
     slug: string;
     characterName: string;
-    roleType: "Main Role" | "Support Role" | "Guest Role";
+    roleType: "Main Role" | "Support Role" | "Guest Role" | "Cameo";
 }
 
 export interface MdlCast {
     main: MdlCastMember[];
     support: MdlCastMember[];
     guest: MdlCastMember[];
+    cameo: MdlCastMember[];
 }
 
 export interface MdlData {
@@ -81,6 +82,7 @@ function parseCastJson(raw: Prisma.JsonValue): MdlCast | null {
         main: (obj.main as MdlCastMember[]) ?? [],
         support: (obj.support as MdlCastMember[]) ?? [],
         guest: (obj.guest as MdlCastMember[]) ?? [],
+        cameo: (obj.cameo as MdlCastMember[]) ?? [],
     };
 }
 
@@ -135,8 +137,14 @@ export const getMdlData = cache(async function getMdlData(
     if (cached && cached.cachedAt > staleAt) {
         const cast = parseCastJson(cached.castJson);
         const castIsEmpty = !cast || (cast.main.length === 0 && cast.support.length === 0 && cast.guest.length === 0);
+        // If the stored cast JSON pre-dates cameo support, re-fetch to populate it
+        const castMissingCameo =
+            cached.castJson &&
+            typeof cached.castJson === "object" &&
+            !Array.isArray(cached.castJson) &&
+            !("cameo" in (cached.castJson as object));
 
-        if (!castIsEmpty) {
+        if (!castIsEmpty && !castMissingCameo) {
             const cachedGenres = (cached.genres as string[] | null) ?? null;
             if (cached.synopsis !== null && cachedGenres && cachedGenres.length > 0) {
                 // True full hit — everything cached
@@ -200,6 +208,7 @@ export const getMdlData = cache(async function getMdlData(
                       main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
                       support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
                       guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                      cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
                   }
                 : null;
 
@@ -285,6 +294,7 @@ export const getMdlData = cache(async function getMdlData(
                   main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
                   support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
                   guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                  cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
               }
             : null;
 

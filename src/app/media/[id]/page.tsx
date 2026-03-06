@@ -63,7 +63,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         );
 
         // Convert KuryanaCastResult to MdlCast grouped format
-        const mdlCast: MdlCast = { main: [], support: [], guest: [] };
+        const mdlCast: MdlCast = { main: [], support: [], guest: [], cameo: [] };
         if (castResult?.data?.casts) {
             const roles = castResult.data.casts;
             const normalize = (members: typeof roles["Main Role"]) =>
@@ -77,6 +77,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             mdlCast.main = normalize(roles["Main Role"]);
             mdlCast.support = normalize(roles["Support Role"]);
             mdlCast.guest = normalize(roles["Guest Role"]);
+            mdlCast.cameo = normalize(roles["Cameo"]);
         }
 
         const navSections: NavSection[] = [
