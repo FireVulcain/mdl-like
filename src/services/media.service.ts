@@ -99,12 +99,12 @@ function countryFromKuryanaType(type: string | undefined): string {
 
 export const mediaService = {
     async search(query: string): Promise<SearchResults> {
-        // Fetch from TMDB and Kuryana in parallel
+        // Fetch from TMDB and Kuryana (people only) in parallel
         const [tmdbResults, kuryanaResults] = await Promise.all([tmdb.searchMulti(query), kuryanaSearch(query).catch(() => null)]);
 
         // Transform TMDB media results with recency-weighted sorting
         // Items before 2000 get 10% weight, 2000-2009 get 50%, 2010+ get full weight
-        const tmdbMediaResults: UnifiedMedia[] = tmdbResults.results
+        const mediaResults: UnifiedMedia[] = tmdbResults.results
             .filter((item): item is TMDBMedia & { media_type: "movie" | "tv" } => item.media_type === "movie" || item.media_type === "tv")
             .map((item) => ({
                 id: `tmdb-${item.id}`,
@@ -127,25 +127,6 @@ export const mediaService = {
                 const multB = yearB >= 2010 ? 1 : yearB >= 2000 ? 0.5 : 0.1;
                 return (b.popularity || 0) * multB - (a.popularity || 0) * multA;
             });
-
-        // Kuryana drama results (MDL-indexed Asian dramas) — most relevant for this app
-        const kuryanaMediaResults: UnifiedMedia[] = (kuryanaResults?.results.dramas || []).map((drama) => ({
-            id: `mdl-${drama.slug}`,
-            externalId: drama.slug,
-            source: "MDL" as "TMDB" | "MDL",
-            type: "TV" as "MOVIE" | "TV",
-            title: drama.title,
-            poster: mdlPoster(drama.thumb),
-            backdrop: null,
-            year: drama.year?.toString() || "",
-            originCountry: countryFromKuryanaType(drama.type),
-            synopsis: "",
-            rating: drama.rating ?? 0,
-            popularity: parseInt(drama.ranking) || 0,
-        }));
-
-        // Merge: Kuryana dramas first (directly indexed from MDL, most relevant for Asian content), then TMDB
-        const mediaResults = [...kuryanaMediaResults, ...tmdbMediaResults];
 
         // Transform TMDB person results
         const peopleResults: UnifiedPerson[] = tmdbResults.results
@@ -202,6 +183,24 @@ export const mediaService = {
         const mergedPeople = [...kuryanaPeople, ...filteredTmdbPeople];
 
         return { media: mediaResults, people: mergedPeople };
+    },
+
+    async searchMdlMedia(query: string): Promise<UnifiedMedia[]> {
+        const kuryanaResults = await kuryanaSearch(query).catch(() => null);
+        return (kuryanaResults?.results.dramas || []).map((drama) => ({
+            id: `mdl-${drama.slug}`,
+            externalId: drama.slug,
+            source: "MDL" as const,
+            type: "TV" as const,
+            title: drama.title,
+            poster: mdlPoster(drama.thumb),
+            backdrop: null,
+            year: drama.year?.toString() || "",
+            originCountry: countryFromKuryanaType(drama.type),
+            synopsis: "",
+            rating: drama.rating ?? 0,
+            popularity: parseInt(drama.ranking) || 0,
+        }));
     },
 
     async getDetails(id: string): Promise<UnifiedMedia | null> {
