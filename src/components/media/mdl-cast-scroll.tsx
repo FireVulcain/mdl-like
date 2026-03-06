@@ -85,8 +85,8 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
     const [showSupport, setShowSupport] = useState(false);
     const [source, setSource] = useState<"mdl" | "tmdb">("mdl");
 
-    const { main, support, guest } = cast;
-    const totalSupport = support.length + guest.length;
+    const { main, support, guest, cameo } = cast;
+    const totalSupport = support.length + guest.length + cameo.length;
 
     if (main.length === 0 && totalSupport === 0) return null;
 
@@ -205,7 +205,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                 className="flex items-center gap-1.5 text-sm text-white/50 hover:text-white/80 transition-colors mb-3"
                             >
                                 {showSupport ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                                {showSupport ? "Hide" : "Show"} support & guest cast ({totalSupport})
+                                {showSupport ? "Hide" : "Show"} support, guest & cameo cast ({totalSupport})
                             </button>
 
                             {showSupport && (
@@ -223,8 +223,18 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                     {guest.length > 0 && (
                                         <>
                                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Guest Role</p>
-                                            <div className={CAST_GRID}>
+                                            <div className={`${CAST_GRID} mb-6`}>
                                                 {guest.map((actor) => (
+                                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                    {cameo.length > 0 && (
+                                        <>
+                                            <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Cameo</p>
+                                            <div className={CAST_GRID}>
+                                                {cameo.map((actor) => (
                                                     <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
                                                 ))}
                                             </div>
