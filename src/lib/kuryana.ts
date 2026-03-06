@@ -9,6 +9,7 @@ export interface KuryanaDrama {
     type: string;
     year: number;
     series: string;
+    rating?: number;
 }
 
 export interface KuryanaSearchResult {
