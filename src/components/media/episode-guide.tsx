@@ -218,7 +218,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
                     </span>
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
-                    {mdlEpisodes && (
+                    {mdlEpisodes && episodes.length > 0 && (
                         <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5">
                             <button
                                 onClick={() => {

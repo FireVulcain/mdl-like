@@ -18,28 +18,32 @@ interface Props {
     season: number;
     poster: string | null;
     externalId: string;
+    mdlSlug?: string; // When provided, skips the TMDB→MDL slug lookup (for MDL-native pages)
 }
 
 // Async server component — fetches MDL episode list + individual episode details
 // (for synopsis) in parallel, then passes everything to the EpisodeGuide toggle.
 // Wrapped in Suspense in the media page so the TMDB-only guide shows immediately.
-export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId }: Props) {
-    const cached = await prisma.cachedMdlData.findUnique({
-        where: { tmdbExternalId: externalId },
-        select: { mdlSlug: true },
-    });
+export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId, mdlSlug: directSlug }: Props) {
+    let effectiveSlug: string | null = directSlug ?? null;
 
-    // Seasons 2+ require a manually linked slug (stored in MdlSeasonLink).
-    // Season 1 uses the base slug from CachedMdlData.
-    let effectiveSlug: string | null = null;
-    if (cached?.mdlSlug) {
-        if (season === 1) {
-            effectiveSlug = cached.mdlSlug;
-        } else {
-            const seasonLink = await prisma.mdlSeasonLink.findUnique({
-                where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
-            });
-            effectiveSlug = seasonLink?.mdlSlug ?? null;
+    if (!effectiveSlug) {
+        const cached = await prisma.cachedMdlData.findUnique({
+            where: { tmdbExternalId: externalId },
+            select: { mdlSlug: true },
+        });
+
+        // Seasons 2+ require a manually linked slug (stored in MdlSeasonLink).
+        // Season 1 uses the base slug from CachedMdlData.
+        if (cached?.mdlSlug) {
+            if (season === 1) {
+                effectiveSlug = cached.mdlSlug;
+            } else {
+                const seasonLink = await prisma.mdlSeasonLink.findUnique({
+                    where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
+                });
+                effectiveSlug = seasonLink?.mdlSlug ?? null;
+            }
         }
     }
 

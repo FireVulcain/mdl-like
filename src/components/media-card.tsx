@@ -43,16 +43,24 @@ export function MediaCard({
                         No Poster
                     </div>
                 )}
-                <div className="absolute right-2 top-2">
-                    <Badge variant="secondary" className="bg-black/60 font-mono text-xs text-white backdrop-blur-sm">
-                        {media.originCountry}
-                    </Badge>
-                </div>
+                {media.originCountry && (
+                    <div className="absolute right-2 top-2">
+                        <Badge variant="secondary" className="bg-black/60 font-mono text-xs text-white backdrop-blur-sm">
+                            {media.originCountry}
+                        </Badge>
+                    </div>
+                )}
                 {/* Rating Badges */}
                 {(media.rating > 0 || (mdlRating != null && mdlRating > 0)) && (
                     <div className="absolute left-2 top-2 flex flex-row gap-1">
                         {media.source !== "MDL" && media.rating > 0 && (
                             <Badge variant="default" className="bg-yellow-500/90 text-black hover:bg-yellow-500 text-xs px-1.5 flex items-center">
+                                <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
+                                {media.rating.toFixed(1)}
+                            </Badge>
+                        )}
+                        {media.source === "MDL" && media.rating > 0 && (
+                            <Badge variant="default" className="bg-sky-500/90 text-white hover:bg-sky-500 text-xs px-1.5 flex items-center">
                                 <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
                                 {media.rating.toFixed(1)}
                             </Badge>
@@ -63,6 +71,13 @@ export function MediaCard({
                                 {mdlRating.toFixed(1)}
                             </Badge>
                         )}
+                    </div>
+                )}
+                {media.source === "MDL" && (
+                    <div className="absolute bottom-2 left-2">
+                        <Badge variant="secondary" className="bg-sky-500/80 text-white text-[10px] font-bold px-1.5 py-0 backdrop-blur-sm">
+                            MDL
+                        </Badge>
                     </div>
                 )}
                 {overlay}

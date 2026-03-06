@@ -8,15 +8,16 @@ interface Props {
     year: string;
     nativeTitle?: string;
     mediaId: string;
+    mdlSlug?: string; // When provided, skips the TMDB→MDL slug lookup (for MDL-native pages)
 }
 
 // Async server component — streams in MDL reviews.
 // getMdlData uses React cache(), so the slug lookup is free if MdlSection already resolved it.
-export async function MdlReviewsSection({ externalId, title, year, nativeTitle, mediaId }: Props) {
-    const mdlData = await getMdlData(externalId, title, year, nativeTitle);
-    if (!mdlData?.mdlSlug) return null;
+export async function MdlReviewsSection({ externalId, title, year, nativeTitle, mediaId, mdlSlug: directSlug }: Props) {
+    const slug = directSlug ?? (await getMdlData(externalId, title, year, nativeTitle))?.mdlSlug;
+    if (!slug) return null;
 
-    const result = await kuryanaGetReviews(mdlData.mdlSlug);
+    const result = await kuryanaGetReviews(slug);
     const reviews = result?.data?.reviews ?? [];
     const mdlLink = result?.data?.link ?? `https://mydramalist.com/search?q=${encodeURIComponent(title)}`;
 
@@ -25,7 +26,7 @@ export async function MdlReviewsSection({ externalId, title, year, nativeTitle, 
     return (
         <MdlReviews
             initialReviews={reviews}
-            mdlSlug={mdlData.mdlSlug}
+            mdlSlug={slug}
             mdlLink={mdlLink}
             previewLimit={3}
             allReviewsHref={`/media/${mediaId}/reviews`}

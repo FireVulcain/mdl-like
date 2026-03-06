@@ -43,7 +43,7 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                         </span>
                     )}
                 </div>
-                {hasMdl && (
+                {hasMdl && tmdbRecs.length > 0 && (
                     <div className="flex items-center gap-1 bg-white/5 p-1 rounded-lg">
                         <button
                             onClick={() => setSource("mdl")}

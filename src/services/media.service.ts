@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, kuryanaGetTop, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 export type UnifiedMedia = {
@@ -79,13 +79,32 @@ export type SearchResults = {
     people: UnifiedPerson[];
 };
 
+// Kuryana returns "/assets/nsfw.jpg" for adult content — not a real URL, treat as no poster
+function mdlPoster(url: string | null | undefined): string | null {
+    if (!url || url.includes("/assets/nsfw.jpg")) return null;
+    return url;
+}
+
+// Parse country ISO code from Kuryana type strings like "Korean Drama", "Japanese Movie", etc.
+const KURYANA_TYPE_COUNTRY: Record<string, string> = {
+    korean: "KR", japanese: "JP", chinese: "CN", taiwanese: "TW",
+    thai: "TH", filipino: "PH", philippine: "PH", hongkong: "HK",
+    singaporean: "SG", american: "US",
+};
+function countryFromKuryanaType(type: string | undefined): string {
+    if (!type) return "";
+    const first = type.split(" ")[0].toLowerCase();
+    return KURYANA_TYPE_COUNTRY[first] || "";
+}
+
 export const mediaService = {
     async search(query: string): Promise<SearchResults> {
         // Fetch from TMDB and Kuryana in parallel
         const [tmdbResults, kuryanaResults] = await Promise.all([tmdb.searchMulti(query), kuryanaSearch(query).catch(() => null)]);
 
-        // Transform TMDB media results
-        const mediaResults: UnifiedMedia[] = tmdbResults.results
+        // Transform TMDB media results with recency-weighted sorting
+        // Items before 2000 get 10% weight, 2000-2009 get 50%, 2010+ get full weight
+        const tmdbMediaResults: UnifiedMedia[] = tmdbResults.results
             .filter((item): item is TMDBMedia & { media_type: "movie" | "tv" } => item.media_type === "movie" || item.media_type === "tv")
             .map((item) => ({
                 id: `tmdb-${item.id}`,
@@ -101,7 +120,32 @@ export const mediaService = {
                 rating: item.vote_average,
                 popularity: item.popularity,
             }))
-            .sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+            .sort((a, b) => {
+                const yearA = parseInt(a.year) || 0;
+                const yearB = parseInt(b.year) || 0;
+                const multA = yearA >= 2010 ? 1 : yearA >= 2000 ? 0.5 : 0.1;
+                const multB = yearB >= 2010 ? 1 : yearB >= 2000 ? 0.5 : 0.1;
+                return (b.popularity || 0) * multB - (a.popularity || 0) * multA;
+            });
+
+        // Kuryana drama results (MDL-indexed Asian dramas) — most relevant for this app
+        const kuryanaMediaResults: UnifiedMedia[] = (kuryanaResults?.results.dramas || []).map((drama) => ({
+            id: `mdl-${drama.slug}`,
+            externalId: drama.slug,
+            source: "MDL" as "TMDB" | "MDL",
+            type: "TV" as "MOVIE" | "TV",
+            title: drama.title,
+            poster: mdlPoster(drama.thumb),
+            backdrop: null,
+            year: drama.year?.toString() || "",
+            originCountry: countryFromKuryanaType(drama.type),
+            synopsis: "",
+            rating: drama.rating ?? 0,
+            popularity: parseInt(drama.ranking) || 0,
+        }));
+
+        // Merge: Kuryana dramas first (directly indexed from MDL, most relevant for Asian content), then TMDB
+        const mediaResults = [...kuryanaMediaResults, ...tmdbMediaResults];
 
         // Transform TMDB person results
         const peopleResults: UnifiedPerson[] = tmdbResults.results
@@ -161,7 +205,9 @@ export const mediaService = {
     },
 
     async getDetails(id: string): Promise<UnifiedMedia | null> {
-        const [source, externalId] = id.split("-");
+        const dashIdx = id.indexOf("-");
+        const source = id.slice(0, dashIdx);
+        const externalId = id.slice(dashIdx + 1);
 
         if (source === "tmdb") {
             try {
@@ -325,6 +371,62 @@ export const mediaService = {
                 console.error("Error fetching details", error);
                 return null;
             }
+        }
+
+        if (source === "mdl") {
+            const [details, castResult] = await Promise.all([kuryanaGetDetails(externalId), kuryanaGetCast(externalId)]);
+            if (!details) return null;
+
+            const d = details.data;
+
+            // Native title is the first segment of sub_title: "한국어 ‧ Drama ‧ 2022"
+            const nativeTitle = d.sub_title?.split("‧")[0]?.trim() || undefined;
+
+            // Map country name to ISO code
+            const COUNTRY_MAP: Record<string, string> = {
+                "South Korea": "KR", Korea: "KR", China: "CN", Japan: "JP",
+                Taiwan: "TW", Thailand: "TH", "Hong Kong": "HK",
+                Philippines: "PH", Singapore: "SG", "United States": "US",
+            };
+            const originCountry = COUNTRY_MAP[d.details.country] || "";
+
+            const totalEp = parseInt(d.details.episodes) || undefined;
+            const type: "MOVIE" | "TV" = d.details.type?.toLowerCase().includes("movie") ? "MOVIE" : "TV";
+            const rating = typeof d.rating === "number" ? d.rating : parseFloat(String(d.rating ?? "0")) || 0;
+
+            // Build flat cast list for generic consumers (watchlist etc.)
+            const flatCast: NonNullable<UnifiedMedia["cast"]> = [];
+            if (castResult?.data?.casts) {
+                const roles = castResult.data.casts;
+                [...(roles["Main Role"] ?? []), ...(roles["Support Role"] ?? []), ...(roles["Guest Role"] ?? [])].forEach(
+                    (actor, i) => {
+                        flatCast.push({ id: i, name: actor.name, character: actor.role?.name ?? "", profile: mdlPoster(actor.profile_image) });
+                    }
+                );
+            } else {
+                d.casts.forEach((actor, i) => flatCast.push({ id: i, name: actor.name, character: "", profile: mdlPoster(actor.profile_image) }));
+            }
+
+            return {
+                id: `mdl-${externalId}`,
+                externalId,
+                source: "MDL",
+                type,
+                title: d.title,
+                nativeTitle,
+                poster: mdlPoster(d.poster),
+                backdrop: null,
+                year: d.year || "",
+                originCountry,
+                synopsis: d.synopsis,
+                rating,
+                totalEp,
+                aired: d.details.aired || undefined,
+                network: d.details.original_network || undefined,
+                duration: d.details.duration || undefined,
+                genres: d.others.genres || [],
+                cast: flatCast,
+            };
         }
 
         return null;

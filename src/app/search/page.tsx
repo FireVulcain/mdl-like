@@ -1,4 +1,4 @@
-import { MediaCard } from "@/components/media-card";
+import { SearchMediaGrid } from "@/components/search-media-grid";
 import { ExpandablePeopleSection } from "@/components/expandable-people-section";
 import { mediaService } from "@/services/media.service";
 import { Film } from "lucide-react";
@@ -38,11 +38,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                                 <span className="text-sm text-muted-foreground">({media.length})</span>
                                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
                             </div>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                                {media.map((item) => (
-                                    <MediaCard key={item.id} media={item} />
-                                ))}
-                            </div>
+                            <SearchMediaGrid media={media} />
                         </section>
                     )}
                 </>

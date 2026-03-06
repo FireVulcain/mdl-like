@@ -112,24 +112,26 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                     </span>
                 </div>
                 <div className="flex items-center gap-3">
-                    <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5">
-                        <button
-                            onClick={() => setSource("mdl")}
-                            className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
-                            }`}
-                        >
-                            MDL
-                        </button>
-                        <button
-                            onClick={() => setSource("tmdb")}
-                            className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
-                            }`}
-                        >
-                            TMDB
-                        </button>
-                    </div>
+                    {tmdbCast.length > 0 && (
+                        <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5">
+                            <button
+                                onClick={() => setSource("mdl")}
+                                className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
+                                    source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
+                                }`}
+                            >
+                                MDL
+                            </button>
+                            <button
+                                onClick={() => setSource("tmdb")}
+                                className={`px-3 py-1 text-xs rounded font-medium transition-colors ${
+                                    source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
+                                }`}
+                            >
+                                TMDB
+                            </button>
+                        </div>
+                    )}
                     <Link href={`/media/${mediaId}/cast`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
                         View all →
                     </Link>

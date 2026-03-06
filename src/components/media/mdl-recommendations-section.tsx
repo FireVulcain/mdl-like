@@ -9,24 +9,28 @@ interface Props {
     externalId: string;
     season: number;
     watchlistIds: string[];
+    mdlSlug?: string; // When provided, skips the TMDB→MDL slug lookup (for MDL-native pages)
 }
 
-export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, watchlistIds }: Props) {
-    // Resolve the effective MDL slug (season-aware, same logic as episode guide)
-    const cached = await prisma.cachedMdlData.findUnique({
-        where: { tmdbExternalId: externalId },
-        select: { mdlSlug: true },
-    });
+export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, watchlistIds, mdlSlug: directSlug }: Props) {
+    let effectiveSlug: string | null = directSlug ?? null;
 
-    let effectiveSlug: string | null = null;
-    if (cached?.mdlSlug) {
-        if (season === 1) {
-            effectiveSlug = cached.mdlSlug;
-        } else {
-            const seasonLink = await prisma.mdlSeasonLink.findUnique({
-                where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
-            });
-            effectiveSlug = seasonLink?.mdlSlug ?? null;
+    if (!effectiveSlug) {
+        // Resolve the effective MDL slug (season-aware, same logic as episode guide)
+        const cached = await prisma.cachedMdlData.findUnique({
+            where: { tmdbExternalId: externalId },
+            select: { mdlSlug: true },
+        });
+
+        if (cached?.mdlSlug) {
+            if (season === 1) {
+                effectiveSlug = cached.mdlSlug;
+            } else {
+                const seasonLink = await prisma.mdlSeasonLink.findUnique({
+                    where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
+                });
+                effectiveSlug = seasonLink?.mdlSlug ?? null;
+            }
         }
     }
 

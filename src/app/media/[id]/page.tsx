@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { mediaService } from "@/services/media.service";
 import Image from "next/image";
@@ -16,6 +17,9 @@ import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
 import { MdlEpisodeGuideSection } from "@/components/media/mdl-episode-guide-section";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
+import { kuryanaGetCast } from "@/lib/kuryana";
+import { MdlCast } from "@/lib/mdl-data";
+import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
 import { Suspense } from "react";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
@@ -36,6 +40,260 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
     if (!media) {
         notFound();
+    }
+
+    // MDL-native page: data already comes from Kuryana, skip all TMDB-specific fetches
+    if (media.source === "MDL") {
+        const [userId, watchlistExternalIds, castResult, linkedTmdb] = await Promise.all([
+            getCurrentUserId(),
+            getWatchlistExternalIds(),
+            kuryanaGetCast(media.externalId),
+            // Check if this MDL slug is already linked to a TMDB entry (so watchlist check works
+            // even if the user added the series via TMDB search)
+            prisma.cachedMdlData.findFirst({
+                where: { mdlSlug: media.externalId },
+                select: { tmdbExternalId: true },
+            }),
+        ]);
+        const userMedia = await getUserMedia(
+            userId,
+            linkedTmdb?.tmdbExternalId ?? media.externalId,
+            linkedTmdb ? "TMDB" : "MDL",
+            1
+        );
+
+        // Convert KuryanaCastResult to MdlCast grouped format
+        const mdlCast: MdlCast = { main: [], support: [], guest: [] };
+        if (castResult?.data?.casts) {
+            const roles = castResult.data.casts;
+            const normalize = (members: typeof roles["Main Role"]) =>
+                (members ?? []).map((m) => ({
+                    name: m.name,
+                    profileImage: m.profile_image ?? "",
+                    slug: m.slug,
+                    characterName: m.role?.name ?? "",
+                    roleType: m.role?.type ?? ("Support Role" as const),
+                }));
+            mdlCast.main = normalize(roles["Main Role"]);
+            mdlCast.support = normalize(roles["Support Role"]);
+            mdlCast.guest = normalize(roles["Guest Role"]);
+        }
+
+        const navSections: NavSection[] = [
+            { id: "section-cast", label: "Cast & Credits" },
+            ...(media.type === "TV" ? [{ id: "section-episodes", label: "Episode Guide" }] : []),
+            { id: "section-reviews", label: "Reviews" },
+            { id: "section-recommendations", label: "Recommendations" },
+            { id: "section-comments", label: "Comments" },
+        ];
+
+        return (
+            <div className="min-h-screen bg-linear-to-b -mt-24">
+                <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
+                    <div className="h-full w-full bg-linear-to-br from-gray-800 to-gray-900" />
+                </div>
+
+                <div className="container relative -top-20 z-10 grid gap-8 md:grid-cols-[300px_1fr] m-auto pb-20 px-4 md:px-6">
+                    <StickySidebar>
+                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
+                            {media.poster ? (
+                                <Image unoptimized src={media.poster} alt={media.title} fill className="object-cover" priority />
+                            ) : (
+                                <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
+                                    No Poster
+                                </div>
+                            )}
+                            <a
+                                href={`https://mydramalist.com/${media.externalId}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
+                            >
+                                <ExternalLink className="size-3" />
+                                MDL
+                            </a>
+                        </div>
+
+                        <AddToListButton
+                            media={{
+                                id: media.id,
+                                externalId: media.externalId,
+                                source: media.source,
+                                type: media.type,
+                                title: media.title,
+                                poster: media.poster,
+                                backdrop: media.backdrop,
+                                year: media.year,
+                                originCountry: media.originCountry,
+                                status: media.status,
+                                totalEp: media.totalEp,
+                                genres: media.genres,
+                                synopsis: "",
+                                rating: 0,
+                            }}
+                            userMedia={userMedia}
+                            season={1}
+                            totalEp={media.totalEp ?? null}
+                            className="w-full justify-center"
+                        />
+
+                        <div
+                            className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
+                            style={{
+                                background: "rgba(17, 24, 39, 0.6)",
+                                backdropFilter: "blur(20px)",
+                                boxShadow:
+                                    "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                            }}
+                        >
+                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                            <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
+                                <span className="text-gray-400 font-medium">Title</span>
+                                <span className="text-white">{media.title}</span>
+
+                                <span className="text-gray-400 font-medium">Type</span>
+                                <span className="text-white">{media.type === "TV" ? "TV Show" : "Movie"}</span>
+
+                                <span className="text-gray-400 font-medium">Country</span>
+                                <span className="flex items-center gap-2">
+                                    <span className="text-white">{media.originCountry}</span>
+                                    <Badge variant="secondary" className="text-[10px] h-5 bg-white/10 text-gray-300 border-white/10">
+                                        {media.originCountry}
+                                    </Badge>
+                                </span>
+
+                                {media.totalEp && (
+                                    <>
+                                        <span className="text-gray-400 font-medium">Episodes</span>
+                                        <span className="text-white">{media.totalEp}</span>
+                                    </>
+                                )}
+
+                                {media.aired && (
+                                    <>
+                                        <span className="text-gray-400 font-medium">Aired</span>
+                                        <span className="text-white">{media.aired}</span>
+                                    </>
+                                )}
+
+                                {media.network && (
+                                    <>
+                                        <span className="text-gray-400 font-medium">Network</span>
+                                        <span className="text-white">{media.network}</span>
+                                    </>
+                                )}
+
+                                {media.duration && (
+                                    <>
+                                        <span className="text-gray-400 font-medium">Duration</span>
+                                        <span className="text-white">{media.duration}</span>
+                                    </>
+                                )}
+
+                                {media.rating > 0 && (
+                                    <>
+                                        <span className="text-gray-400 font-medium">MDL Score</span>
+                                        <span className="text-yellow-400 font-semibold">★ {media.rating.toFixed(1)}</span>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </StickySidebar>
+
+                    <div className="md:pt-20 space-y-8 min-w-0">
+                        <div>
+                            <h1 className="text-4xl font-bold mb-2">{media.title}</h1>
+                            <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
+                                <span>{media.year}</span>
+                                <span>•</span>
+                                <Badge variant="outline">{media.originCountry}</Badge>
+                                <span>•</span>
+                                <span>{media.type}</span>
+                                {media.totalEp && (
+                                    <>
+                                        <span>•</span>
+                                        <span>{media.totalEp} eps</span>
+                                    </>
+                                )}
+                                {media.rating > 0 && (
+                                    <>
+                                        <span>•</span>
+                                        <span className="text-yellow-500 font-medium">★ {media.rating.toFixed(1)}</span>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        <MediaNav sections={navSections} />
+
+                        <div id="section-cast" className="space-y-4">
+                            <SynopsisBlock text={media.synopsis || ""} />
+                            {media.genres && media.genres.length > 0 && (
+                                <div className="flex flex-wrap gap-1.5">
+                                    {media.genres.map((g) => (
+                                        <Badge key={g} variant="secondary" className="bg-white/10 text-gray-300 border-white/10">
+                                            {g}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            )}
+                            <div className="mt-2">
+                                <MdlCastScroll cast={mdlCast} tmdbCast={[]} mediaId={media.id} />
+                            </div>
+                        </div>
+
+                        {media.type === "TV" && (
+                            <div id="section-episodes">
+                                <Suspense fallback={<EpisodeGuide episodes={[]} season={1} poster={media.poster} />}>
+                                    <MdlEpisodeGuideSection
+                                        tmdbEpisodes={[]}
+                                        season={1}
+                                        poster={media.poster}
+                                        externalId={media.externalId}
+                                        mdlSlug={media.externalId}
+                                    />
+                                </Suspense>
+                            </div>
+                        )}
+
+                        <div id="section-reviews">
+                            <Suspense fallback={null}>
+                                <MdlReviewsSection
+                                    externalId={media.externalId}
+                                    title={media.title}
+                                    year={media.year}
+                                    mediaId={media.id}
+                                    mdlSlug={media.externalId}
+                                />
+                            </Suspense>
+                        </div>
+
+                        <div id="section-recommendations">
+                            <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
+                                <MdlRecommendationsSection
+                                    tmdbRecs={[]}
+                                    externalId={media.externalId}
+                                    season={1}
+                                    watchlistIds={watchlistExternalIds}
+                                    mdlSlug={media.externalId}
+                                />
+                            </Suspense>
+                        </div>
+
+                        <div id="section-comments">
+                            <Suspense fallback={null}>
+                                <MdlThreadsSection
+                                    externalId={media.externalId}
+                                    title={media.title}
+                                    year={media.year}
+                                    mdlSlug={media.externalId}
+                                />
+                            </Suspense>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     // Determine current season logic
