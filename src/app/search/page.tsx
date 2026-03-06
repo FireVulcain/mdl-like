@@ -38,7 +38,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                                 <span className="text-sm text-muted-foreground">({media.length})</span>
                                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
                             </div>
-                            <SearchMediaGrid media={media} query={query} />
+                            <SearchMediaGrid key={query} media={media} query={query} />
                         </section>
                     )}
                 </>
