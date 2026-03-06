@@ -217,6 +217,18 @@ export async function kuryanaGetEpisodesList(slug: string): Promise<KuryanaEpiso
     return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes/`);
 }
 
+export interface KuryanaEpisodeReview {
+    id: string;
+    author: string;
+    author_url: string;
+    author_avatar: string;
+    helpful_count: number;
+    date: string;
+    rating: number;
+    headline: string;
+    body: string;
+}
+
 export interface KuryanaEpisodeResult {
     slug_query: string;
     data: {
@@ -227,6 +239,7 @@ export interface KuryanaEpisodeResult {
         rating: number;
         synopsis: string;
         air_date: string;
+        reviews?: KuryanaEpisodeReview[];
     };
     scrape_date: string;
 }

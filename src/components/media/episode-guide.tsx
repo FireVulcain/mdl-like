@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Star, Clock } from "lucide-react";
 
@@ -29,6 +30,7 @@ interface EpisodeGuideProps {
     season: number;
     poster: string | null;
     mdlEpisodes?: MdlEpisodeItem[] | null;
+    mediaId?: string;
 }
 
 function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
@@ -116,45 +118,78 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
     );
 }
 
-function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | null }) {
+function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: string | null; mediaId?: string }) {
     const [expanded, setExpanded] = useState(false);
     const hasSynopsis = !!ep.synopsis?.trim();
     const isLong = (ep.synopsis?.length ?? 0) > 60;
 
     const formattedDate = ep.airDate ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
 
+    const episodeHref = mediaId ? `/media/${mediaId}/episode/${ep.number}` : undefined;
+
     return (
-        <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
-            {/* Episode still */}
-            <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
-                {ep.image || poster ? (
-                    <Image unoptimized={true}
-                        src={ep.image ?? poster!}
-                        alt={ep.title}
-                        fill
-                        className="opacity-0 transition-opacity duration-500 object-cover object-top"
-                        loading="lazy"
-                        sizes="144px"
-                        onLoad={(e) => {
-                            (e.currentTarget as HTMLImageElement).classList.replace("opacity-0", "opacity-100");
-                        }}
-                    />
-                ) : (
-                    <div className="flex h-full w-full items-center justify-center">
-                        <span className="text-xs text-gray-500">No image</span>
-                    </div>
-                )}
-                <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
-                    Ep {ep.number}
-                </span>
-            </div>
+        <div className="flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
+            {/* Episode still — clicking navigates to episode page */}
+            {episodeHref ? (
+                <Link href={episodeHref} className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10 shrink-0">
+                    {ep.image || poster ? (
+                        <Image unoptimized={true}
+                            src={ep.image ?? poster!}
+                            alt={ep.title}
+                            fill
+                            className="opacity-0 transition-opacity duration-500 object-cover object-top"
+                            loading="lazy"
+                            sizes="144px"
+                            onLoad={(e) => {
+                                (e.currentTarget as HTMLImageElement).classList.replace("opacity-0", "opacity-100");
+                            }}
+                        />
+                    ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                            <span className="text-xs text-gray-500">No image</span>
+                        </div>
+                    )}
+                    <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
+                        Ep {ep.number}
+                    </span>
+                </Link>
+            ) : (
+                <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
+                    {ep.image || poster ? (
+                        <Image unoptimized={true}
+                            src={ep.image ?? poster!}
+                            alt={ep.title}
+                            fill
+                            className="opacity-0 transition-opacity duration-500 object-cover object-top"
+                            loading="lazy"
+                            sizes="144px"
+                            onLoad={(e) => {
+                                (e.currentTarget as HTMLImageElement).classList.replace("opacity-0", "opacity-100");
+                            }}
+                        />
+                    ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                            <span className="text-xs text-gray-500">No image</span>
+                        </div>
+                    )}
+                    <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
+                        Ep {ep.number}
+                    </span>
+                </div>
+            )}
 
             {/* Episode info */}
             <div className="flex-1 min-w-0 flex flex-col gap-1">
                 <div className="flex items-start justify-between gap-2">
-                    <h4 className="font-medium text-white leading-snug truncate" title={ep.title}>
-                        {ep.title}
-                    </h4>
+                    {episodeHref ? (
+                        <Link href={episodeHref} className="font-medium leading-snug truncate hover:text-blue-400 transition-colors" title={ep.title}>
+                            {ep.title}
+                        </Link>
+                    ) : (
+                        <h4 className="font-medium text-white leading-snug truncate" title={ep.title}>
+                            {ep.title}
+                        </h4>
+                    )}
                     {ep.rating !== null && ep.rating > 0 && (
                         <span className="flex items-center gap-0.5 flex-none text-[11px] text-yellow-400/90">
                             <Star className="size-3 fill-current" />
@@ -171,16 +206,12 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-1 flex items-center gap-0.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors"
+                                className="mt-1 flex items-center gap-0.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors cursor-pointer"
                             >
                                 {expanded ? (
-                                    <>
-                                        Less <ChevronUp className="size-3" />
-                                    </>
+                                    <>Less <ChevronUp className="size-3" /></>
                                 ) : (
-                                    <>
-                                        More <ChevronDown className="size-3" />
-                                    </>
+                                    <>More <ChevronDown className="size-3" /></>
                                 )}
                             </button>
                         )}
@@ -191,7 +222,7 @@ function MdlEpisodeRow({ ep, poster }: { ep: MdlEpisodeItem; poster: string | nu
     );
 }
 
-export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeGuideProps) {
+export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId }: EpisodeGuideProps) {
     const [showAll, setShowAll] = useState(false);
     const [source, setSource] = useState<"tmdb" | "mdl">("mdl");
 
@@ -254,7 +285,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes }: EpisodeG
             <div className="relative">
                 <div className="flex flex-col gap-2">
                     {source === "mdl" && activeEpisodes
-                        ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} />)
+                        ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} />)
                         : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} />)}
                 </div>
 

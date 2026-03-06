@@ -251,6 +251,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         poster={media.poster}
                                         externalId={media.externalId}
                                         mdlSlug={media.externalId}
+                                        mediaId={id}
                                     />
                                 </Suspense>
                             </div>
@@ -675,6 +676,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         season={selectedSeason}
                                         poster={media.poster}
                                         externalId={media.externalId}
+                                        mediaId={id}
                                     />
                                 </Suspense>
                             ) : (

@@ -19,12 +19,13 @@ interface Props {
     poster: string | null;
     externalId: string;
     mdlSlug?: string; // When provided, skips the TMDB→MDL slug lookup (for MDL-native pages)
+    mediaId?: string; // Full media ID for episode page links (e.g. "tmdb-249972")
 }
 
 // Async server component — fetches MDL episode list + individual episode details
 // (for synopsis) in parallel, then passes everything to the EpisodeGuide toggle.
 // Wrapped in Suspense in the media page so the TMDB-only guide shows immediately.
-export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId, mdlSlug: directSlug }: Props) {
+export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId, mdlSlug: directSlug, mediaId }: Props) {
     let effectiveSlug: string | null = directSlug ?? null;
 
     if (!effectiveSlug) {
@@ -99,6 +100,7 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
             season={season}
             poster={poster}
             mdlEpisodes={mdlEpisodes}
+            mediaId={mediaId}
         />
     );
 }
