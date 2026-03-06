@@ -65,7 +65,7 @@ export function MediaCard({
                                 {media.rating.toFixed(1)}
                             </Badge>
                         )}
-                        {mdlRating != null && mdlRating > 0 && (
+                        {mdlRating != null && mdlRating > 0 && media.source !== "MDL" && (
                             <Badge variant="default" className="bg-sky-500/90 text-white hover:bg-sky-500 text-xs px-1.5 flex items-center">
                                 <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
                                 {mdlRating.toFixed(1)}
