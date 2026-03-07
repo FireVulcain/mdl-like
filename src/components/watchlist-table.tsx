@@ -148,7 +148,6 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
-    const [showStatusFilter, setShowStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
     const [showSortFilter, setShowSortFilter] = useState(false);
@@ -270,9 +269,9 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     }, [filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly]);
 
     const toggleStatus = (status: string) => {
-        const next = filterStatuses.includes(status) ? filterStatuses.filter((s) => s !== status) : [...filterStatuses, status];
+        const next = filterStatuses.includes(status) ? [] : [status];
         setFilterStatuses(next);
-        syncUrl("status", next.join(",") || null);
+        syncUrl("status", next[0] ?? null);
     };
 
     const toggleCountry = (country: string) => {
@@ -553,66 +552,33 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
 
                         {/* Filter Dropdowns */}
                         <div className="flex items-center gap-2 filter-dropdown-group w-full md:w-auto overflow-x-auto md:overflow-visible scrollbar-none pb-0.5 md:pb-0">
-                            {/* Status Filter */}
-                            <div className="relative filter-dropdown">
-                                <button
-                                    onClick={() => {
-                                        setShowStatusFilter(!showStatusFilter);
-                                        setShowCountryFilter(false);
-                                        setShowGenreFilter(false);
-                                        setShowSortFilter(false);
-                                        setShowYearFilter(false);
-                                    }}
-                                    className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
-                                        filterStatuses.length > 0
-                                            ? "bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30"
-                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
-                                    }`}
-                                >
-                                    <Eye className="h-4 w-4" />
-                                    <span className="">Status</span>
-                                    {filterStatuses.length > 0 && (
-                                        <span className="bg-blue-500/30 text-blue-300 text-xs px-1.5 py-0.5 rounded-md">{filterStatuses.length}</span>
-                                    )}
-                                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showStatusFilter ? "rotate-180" : ""}`} />
-                                </button>
-                                {showStatusFilter && (
-                                    <>
-                                        <div className="fixed inset-0 z-10" onClick={() => setShowStatusFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-48 animate-in fade-in slide-in-from-top-2 duration-200">
-                                            {allStatuses.map((status) => {
-                                                const config = statusConfig[status as keyof typeof statusConfig];
-                                                const Icon = config?.icon;
-                                                const isSelected = filterStatuses.includes(status);
-                                                return (
-                                                    <button
-                                                        key={status}
-                                                        onClick={() => toggleStatus(status)}
-                                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
-                                                            isSelected
-                                                                ? `${config?.bg} ${config?.color}`
-                                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
-                                                        }`}
-                                                    >
-                                                        {Icon && <Icon className="h-4 w-4" />}
-                                                        <span className="flex-1 text-left">{status}</span>
-                                                        {isSelected && (
-                                                            <div className={`w-1.5 h-1.5 rounded-full ${config?.color.replace("text-", "bg-")}`} />
-                                                        )}
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    </>
-                                )}
-                            </div>
+                            {/* Status Pills */}
+                            {allStatuses.map((status) => {
+                                const config = statusConfig[status as keyof typeof statusConfig];
+                                const Icon = config?.icon;
+                                const isSelected = filterStatuses.includes(status);
+                                return (
+                                    <button
+                                        key={status}
+                                        onClick={() => toggleStatus(status)}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${
+                                            isSelected
+                                                ? `${config?.bg} ${config?.color} ring-1 ${config?.border}`
+                                                : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                        }`}
+                                    >
+                                        {Icon && <Icon className="h-4 w-4" />}
+                                        <span>{status}</span>
+                                    </button>
+                                );
+                            })}
 
                             {/* Country Filter */}
                             <div className="relative filter-dropdown">
                                 <button
                                     onClick={() => {
                                         setShowCountryFilter(!showCountryFilter);
-                                        setShowStatusFilter(false);
+
                                         setShowGenreFilter(false);
                                         setShowSortFilter(false);
                                         setShowYearFilter(false);
@@ -662,7 +628,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 <button
                                     onClick={() => {
                                         setShowGenreFilter(!showGenreFilter);
-                                        setShowStatusFilter(false);
+
                                         setShowCountryFilter(false);
                                         setShowSortFilter(false);
                                         setShowYearFilter(false);
@@ -749,7 +715,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             return (
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
-                                        onClick={() => { setShowSortFilter(!showSortFilter); setShowYearFilter(false); setShowStatusFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
+                                        onClick={() => { setShowSortFilter(!showSortFilter); setShowYearFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
                                         className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`}
                                     >
                                         <SlidersHorizontal className="h-4 w-4" />
@@ -796,7 +762,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             return (
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
-                                        onClick={() => { setShowYearFilter(!showYearFilter); setShowSortFilter(false); setShowStatusFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
+                                        onClick={() => { setShowYearFilter(!showYearFilter); setShowSortFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
                                         className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-orange-500/20 text-orange-400 ring-1 ring-orange-500/30" : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`}
                                     >
                                         <span>{label}</span>
@@ -907,19 +873,6 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             {activeFilterCount > 0 && (
                 <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-1 active-filters animate-in fade-in slide-in-from-top-1 duration-300">
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Filters:</span>
-                    {filterStatuses.map((status) => {
-                        const config = statusConfig[status as keyof typeof statusConfig];
-                        return (
-                            <button
-                                key={status}
-                                onClick={() => toggleStatus(status)}
-                                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${config?.bg} ${config?.color} hover:opacity-80 transition-all cursor-pointer group`}
-                            >
-                                {status}
-                                <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
-                            </button>
-                        );
-                    })}
                     {filterCountries.map((country) => (
                         <button
                             key={country}
