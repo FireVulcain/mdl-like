@@ -111,7 +111,7 @@ export const getMdlSeasonData = cache(async function getMdlSeasonData(
             mdlRating: row.mdlRating,
             mdlRanking: row.mdlRanking,
             mdlPopularity: row.mdlPopularity,
-            tags: (row.tags as string[]) ?? [],
+            tags: ((row.tags as string[]) ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean),
             genres: (row.genres as string[]) ?? [],
             cast,
             synopsis: row.synopsis ?? null,
@@ -153,7 +153,7 @@ export const getMdlData = cache(async function getMdlData(
                     mdlRating: cached.mdlRating,
                     mdlRanking: cached.mdlRanking,
                     mdlPopularity: cached.mdlPopularity,
-                    tags: (cached.tags as string[]) ?? [],
+                    tags: ((cached.tags as string[]) ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean),
                     genres: cachedGenres,
                     cast,
                     synopsis: cached.synopsis,
@@ -181,7 +181,7 @@ export const getMdlData = cache(async function getMdlData(
                     mdlRating: cached.mdlRating,
                     mdlRanking: cached.mdlRanking,
                     mdlPopularity: cached.mdlPopularity,
-                    tags: (cached.tags as string[]) ?? [],
+                    tags: ((cached.tags as string[]) ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean),
                     genres: newGenres,
                     cast,
                     synopsis,
@@ -192,7 +192,7 @@ export const getMdlData = cache(async function getMdlData(
                     mdlRating: cached.mdlRating,
                     mdlRanking: cached.mdlRanking,
                     mdlPopularity: cached.mdlPopularity,
-                    tags: (cached.tags as string[]) ?? [],
+                    tags: ((cached.tags as string[]) ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean),
                     genres: cachedGenres ?? [],
                     cast,
                     synopsis: cached.synopsis ?? null,
@@ -224,7 +224,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlRating: cached.mdlRating,
                 mdlRanking: cached.mdlRanking,
                 mdlPopularity: cached.mdlPopularity,
-                tags: (cached.tags as string[]) ?? [],
+                tags: ((cached.tags as string[]) ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean),
                 genres: (cached.genres as string[]) ?? [],
                 cast: newCast,
                 synopsis: cached.synopsis ?? null,
@@ -235,7 +235,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlRating: cached.mdlRating,
                 mdlRanking: cached.mdlRanking,
                 mdlPopularity: cached.mdlPopularity,
-                tags: (cached.tags as string[]) ?? [],
+                tags: ((cached.tags as string[]) ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean),
                 genres: (cached.genres as string[]) ?? [],
                 cast: null,
                 synopsis: cached.synopsis ?? null,
@@ -285,7 +285,7 @@ export const getMdlData = cache(async function getMdlData(
         const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
-        const tags = details.data.others?.tags ?? [];
+        const tags = (details.data.others?.tags ?? []).map((t) => t.replace(/\s*\(.*?tags\)\s*$/i, "").trim()).filter(Boolean);
         const genres = details.data.others?.genres ?? [];
         const synopsis = details.data.synopsis || null;
 
