@@ -152,6 +152,18 @@ model MdlAlias {
   @@index([tmdbExternalId])
 }
 
+model CachedMdlEpisode {
+  id            String   @id @default(cuid())
+  mdlSlug       String
+  episodeNumber Int
+  synopsis      String?
+  episodeTitle  String?
+  cachedAt      DateTime @default(now())
+
+  @@unique([mdlSlug, episodeNumber])
+  @@index([mdlSlug])
+}
+
 model CachedEpisode {
   id            String   @id @default(cuid())
   mediaId       String
