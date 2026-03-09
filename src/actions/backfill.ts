@@ -346,12 +346,15 @@ export async function refreshMediaData() {
 // Force-refresh MDL ratings for all shows currently in the user's watchlist,
 // bypassing the normal 7-day TTL. Uses existing MDL slugs when available to
 // skip the search step and only re-fetch the details endpoint.
-export async function refreshWatchlistMdlRatings() {
+export async function refreshWatchlistMdlRatings(statuses?: string[]) {
     const userId = await getCurrentUserId();
 
-    // Fetch all distinct shows (externalId) in the watchlist
+    // Fetch all distinct shows (externalId) in the watchlist, optionally filtered by status
     const rawItems = await prisma.userMedia.findMany({
-        where: { userId },
+        where: {
+            userId,
+            ...(statuses?.length ? { status: { in: statuses } } : {}),
+        },
         select: { externalId: true, title: true, year: true },
         distinct: ["externalId"],
     });

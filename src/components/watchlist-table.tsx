@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 type ConfirmAction = "backfill" | null;
@@ -148,6 +149,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
+    const [showMdlRefreshModal, setShowMdlRefreshModal] = useState(false);
+    const [mdlRefreshStatuses, setMdlRefreshStatuses] = useState<string[]>([]);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
     const [showSortFilter, setShowSortFilter] = useState(false);
@@ -405,11 +408,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     };
 
-    const handleRefreshMdlRatings = async () => {
+    const handleRefreshMdlRatings = async (statuses: string[]) => {
         setIsRefreshingMdl(true);
-        const toastId = toast.loading("Refreshing MDL ratings for watchlist...");
+        setShowMdlRefreshModal(false);
+        const label = statuses.length === 0 ? "all media" : statuses.join(", ");
+        const toastId = toast.loading(`Refreshing MDL ratings for ${label}...`);
         try {
-            const result = await refreshWatchlistMdlRatings();
+            const result = await refreshWatchlistMdlRatings(statuses.length ? statuses : undefined);
             if (result.success) {
                 const skippedNote = result.skipped ? ` (${result.skipped} already fresh)` : "";
                 toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}${skippedNote}`, {
@@ -829,7 +834,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
-                                                handleRefreshMdlRatings();
+                                                setMdlRefreshStatuses([]);
+                                                setShowMdlRefreshModal(true);
                                             }}
                                             disabled={isRefreshingMdl}
                                             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -1116,6 +1122,71 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     confirmLabel="Refresh"
                     onConfirm={handleBackfill}
                 />
+            )}
+
+            {!readOnly && (
+                <Dialog open={showMdlRefreshModal} onOpenChange={setShowMdlRefreshModal}>
+                    <DialogContent className="sm:max-w-md bg-gray-900 border-white/10">
+                        <DialogHeader>
+                            <DialogTitle className="text-white">Refresh MDL Ratings</DialogTitle>
+                            <DialogDescription className="text-gray-400">
+                                Select which statuses to refresh. Only stale entries (older than 6 hours) will be updated.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex flex-wrap gap-2 py-2">
+                            <button
+                                onClick={() => setMdlRefreshStatuses([])}
+                                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                                    mdlRefreshStatuses.length === 0
+                                        ? "bg-white/20 text-white"
+                                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                }`}
+                            >
+                                All media
+                            </button>
+                            {allStatuses.map((status) => {
+                                const cfg = statusConfig[status as keyof typeof statusConfig];
+                                const Icon = cfg.icon;
+                                const isSelected = mdlRefreshStatuses.includes(status);
+                                return (
+                                    <button
+                                        key={status}
+                                        onClick={() =>
+                                            setMdlRefreshStatuses((prev) =>
+                                                prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]
+                                            )
+                                        }
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                                            isSelected
+                                                ? `bg-white/15 ${cfg.color}`
+                                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        <Icon className="h-3.5 w-3.5" />
+                                        {status}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        <DialogFooter className="gap-2 sm:gap-2">
+                            <Button
+                                variant="ghost"
+                                onClick={() => setShowMdlRefreshModal(false)}
+                                disabled={isRefreshingMdl}
+                                className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                onClick={() => handleRefreshMdlRatings(mdlRefreshStatuses)}
+                                disabled={isRefreshingMdl}
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
+                            >
+                                Start Refresh
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             )}
         </div>
     );
