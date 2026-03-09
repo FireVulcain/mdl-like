@@ -363,22 +363,15 @@ export async function refreshWatchlistMdlRatings(statuses?: string[]) {
 
     const uniqueExternalIds = rawItems.map((i) => i.externalId);
 
-    // Pre-load slugs and cachedAt to skip fresh items and the search step where possible
-    const STALE_MS = 6 * 60 * 60 * 1000; // 6 hours — daily cron handles full refresh
-    const staleThreshold = new Date(Date.now() - STALE_MS);
+    // Pre-load slugs to reuse known MDL slugs and skip the search step where possible
     const cachedRows = await prisma.cachedMdlData.findMany({
         where: { tmdbExternalId: { in: uniqueExternalIds } },
         select: { tmdbExternalId: true, mdlSlug: true, cachedAt: true },
     });
     const cachedMap = new Map(cachedRows.map((r) => [r.tmdbExternalId, r]));
 
-    // Only process stale or uncached items
-    const itemsToRefresh = rawItems.filter((item) => {
-        const cached = cachedMap.get(item.externalId);
-        if (!cached) return true; // no cache yet
-        return cached.cachedAt < staleThreshold;
-    });
-    const skipped = rawItems.length - itemsToRefresh.length;
+    const itemsToRefresh = rawItems;
+    const skipped = 0;
 
     async function refreshOneItem(item: (typeof rawItems)[number]): Promise<boolean> {
         const cached = cachedMap.get(item.externalId);
@@ -496,9 +489,7 @@ export async function refreshWatchlistMdlRatings(statuses?: string[]) {
         where: { tmdbExternalId: { in: uniqueExternalIds } },
         select: { tmdbExternalId: true, season: true, mdlSlug: true, cachedAt: true },
     });
-    const staleSeasonLinks = allSeasonLinks.filter(
-        (l) => !l.cachedAt || l.cachedAt < staleThreshold
-    );
+    const staleSeasonLinks = allSeasonLinks;
 
     for (let i = 0; i < staleSeasonLinks.length; i += BATCH_SIZE) {
         const batch = staleSeasonLinks.slice(i, i + BATCH_SIZE);

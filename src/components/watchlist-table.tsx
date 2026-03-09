@@ -416,8 +416,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         try {
             const result = await refreshWatchlistMdlRatings(statuses.length ? statuses : undefined);
             if (result.success) {
-                const skippedNote = result.skipped ? ` (${result.skipped} already fresh)` : "";
-                toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}${skippedNote}`, {
+                toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}`, {
                     id: toastId,
                     description: result.count > 0 ? "Refreshing page..." : "Everything is up to date.",
                 });
@@ -1130,7 +1129,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         <DialogHeader>
                             <DialogTitle className="text-white">Refresh MDL Ratings</DialogTitle>
                             <DialogDescription className="text-gray-400">
-                                Select which statuses to refresh. Only stale entries (older than 6 hours) will be updated.
+                                Select which statuses to refresh.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="flex flex-wrap gap-2 py-2">
