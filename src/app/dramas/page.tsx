@@ -264,7 +264,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                     const tmdbExternalId = entry?.tmdbExternalId;
                                     const href = tmdbExternalId
                                         ? `/media/tmdb-${tmdbExternalId}${entry?.season ? `?season=${entry.season}` : ""}`
-                                        : `https://mydramalist.com/${slug}`;
+                                        : `/media/mdl-${slug}`;
                                     const inWatchlist = !!tmdbExternalId && watchlistIds.has(tmdbExternalId);
                                     const overlay = !tmdbExternalId ? (
                                         <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">

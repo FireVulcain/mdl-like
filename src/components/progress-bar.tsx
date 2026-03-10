@@ -22,6 +22,10 @@ export function ProgressBar() {
   useEffect(() => {
     const handleAnchorClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
+
+      // Don't trigger if the click landed on a button nested inside a link card
+      if (target.closest('button')) return;
+
       const anchor = target.closest('a');
 
       if (anchor) {

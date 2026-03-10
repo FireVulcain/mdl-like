@@ -38,10 +38,9 @@ function resolveCard(
         };
     }
 
-    // Not linked yet — open MDL externally and show the link button
-    const mdlUrl = `https://mydramalist.com/${slug}`;
+    // Not linked yet — navigate to internal MDL page and show the link button
     return {
-        href: mdlUrl,
+        href: `/media/mdl-${slug}`,
         overlay: (
             <>
                 {bookmarkOverlay}

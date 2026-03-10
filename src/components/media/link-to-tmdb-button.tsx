@@ -84,6 +84,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
     function handleOpen(e: React.MouseEvent) {
         e.preventDefault();
         e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
         setOpen(true);
         setLinked(null);
         setError(null);
@@ -167,6 +168,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                 </button>
             )}
 
+            <div onClick={(e) => e.stopPropagation()}>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
                     <DialogHeader>
@@ -393,6 +395,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                     )}
                 </DialogContent>
             </Dialog>
+            </div>
         </>
     );
 }

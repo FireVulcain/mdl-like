@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bookmark, ExternalLink, Star } from "lucide-react";
+import { Bookmark, Star } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
 import { Badge } from "@/components/ui/badge";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
@@ -145,10 +145,8 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                                                 </Badge>
                                             </div>
                                         )}
-                                        <a
-                                            href={`https://mydramalist.com${item.url}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                        <Link
+                                            href={`/media/mdl-${slug}`}
                                             className="absolute inset-0"
                                         >
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -158,10 +156,7 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
                                                 className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
                                                 loading="lazy"
                                             />
-                                            <div className="absolute inset-0 flex items-end justify-end p-1.5">
-                                                <ExternalLink className="h-3.5 w-3.5 text-white/60 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            </div>
-                                        </a>
+                                        </Link>
                                         <div className="absolute bottom-1.5 left-1.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <LinkToTmdbButton
                                                 mdlSlug={slug}

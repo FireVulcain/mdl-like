@@ -194,7 +194,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 {media.rating > 0 && (
                                     <>
                                         <span className="text-gray-400 font-medium">MDL Score</span>
-                                        <span className="text-yellow-400 font-semibold">★ {media.rating.toFixed(1)}</span>
+                                        <span className="text-sky-400 font-medium">MDL {media.rating.toFixed(1)}</span>
                                     </>
                                 )}
                             </div>
@@ -219,7 +219,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 {media.rating > 0 && (
                                     <>
                                         <span>•</span>
-                                        <span className="text-yellow-500 font-medium">★ {media.rating.toFixed(1)}</span>
+                                        <span className="text-sky-400 font-medium">MDL {media.rating.toFixed(1)}</span>
                                     </>
                                 )}
                             </div>
