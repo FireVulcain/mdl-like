@@ -29,7 +29,7 @@ export async function MdlThreadsSection({ externalId, title, year, nativeTitle, 
     if (!mdlId) return null;
 
     const result = await kuryanaGetThreads(mdlId);
-    if (!result || result.disabled || result.comments.length === 0) return null;
+    if (!result || result.disabled || !result.comments || result.comments.length === 0) return null;
 
     return (
         <MdlThreads

@@ -55,18 +55,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 select: { tmdbExternalId: true },
             }),
         ]);
-        const userMedia = await getUserMedia(
-            userId,
-            linkedTmdb?.tmdbExternalId ?? media.externalId,
-            linkedTmdb ? "TMDB" : "MDL",
-            1
-        );
+        const userMedia = await getUserMedia(userId, linkedTmdb?.tmdbExternalId ?? media.externalId, linkedTmdb ? "TMDB" : "MDL", 1);
 
         // Convert KuryanaCastResult to MdlCast grouped format
         const mdlCast: MdlCast = { main: [], support: [], guest: [], cameo: [] };
         if (castResult?.data?.casts) {
             const roles = castResult.data.casts;
-            const normalize = (members: typeof roles["Main Role"]) =>
+            const normalize = (members: (typeof roles)["Main Role"]) =>
                 (members ?? []).map((m) => ({
                     name: m.name,
                     profileImage: m.profile_image ?? "",
@@ -284,12 +279,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                         <div id="section-comments">
                             <Suspense fallback={null}>
-                                <MdlThreadsSection
-                                    externalId={media.externalId}
-                                    title={media.title}
-                                    year={media.year}
-                                    mdlSlug={media.externalId}
-                                />
+                                <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} mdlSlug={media.externalId} />
                             </Suspense>
                         </div>
                     </div>
@@ -337,7 +327,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     }
 
     // MDL is only relevant for Asian dramas (KR, CN, JP, TW, TH, HK)
-    const MDL_COUNTRIES = new Set(["KR", "CN", "JP", "TW", "TH", "HK"]);
+    const MDL_COUNTRIES = new Set(["KR", "CN", "JP", "TW", "TH", "HK", "US"]);
     const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
 
     // Parallel fetch: userMedia and watchlist IDs — MDL streams in separately via Suspense
