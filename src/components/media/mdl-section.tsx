@@ -78,14 +78,16 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
                 <div className="mt-6">
                     <h3 className="text-lg font-semibold mb-3">Tags</h3>
                     <div className="flex flex-wrap gap-2">
-                        {data.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/60 hover:text-white/90 hover:border-white/20 transition-colors"
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                        {data.tags.map((tag) => {
+                            const pillClass = "px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/60 hover:text-white/90 hover:border-white/20 transition-colors";
+                            return tag.id > 0 ? (
+                                <Link key={tag.id} href={`/dramas?tag=${tag.id}&tag_name=${encodeURIComponent(tag.name)}`} className={pillClass}>
+                                    {tag.name}
+                                </Link>
+                            ) : (
+                                <span key={tag.name} className={pillClass}>{tag.name}</span>
+                            );
+                        })}
                     </div>
                 </div>
             )}

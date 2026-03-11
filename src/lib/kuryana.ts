@@ -53,7 +53,7 @@ export interface KuryanaDetails {
             genres: string[];
             directors: string[];
             screenwriter: string[];
-            tags: string[];
+            tags: { id: number; name: string }[];
         };
     };
     scrape_date: string;
@@ -388,6 +388,24 @@ export interface KuryanaTopParams {
     year_to?: number;
     rating_min?: number;
     rating_max?: number;
+    tag?: number;         // MDL tag ID (e.g. 370 for "Revenge")
+}
+
+export interface KuryanaTagResult {
+    id: number;
+    name: string;
+    slug: string;
+    category_id: number;
+    category_name: string;
+    spoiler: boolean;
+    pending: boolean;
+    description: string;
+}
+
+export async function kuryanaSearchTags(q: string): Promise<KuryanaTagResult[]> {
+    if (q.length < 2) return [];
+    const res = await kuryanaFetch<KuryanaTagResult[]>(`/tags/search?q=${encodeURIComponent(q)}`);
+    return res ?? [];
 }
 
 export async function kuryanaGetTop(
@@ -404,5 +422,6 @@ export async function kuryanaGetTop(
     if (params?.year_to) query.set("year_to", String(params.year_to));
     if (params?.rating_min) query.set("rating_min", String(params.rating_min));
     if (params?.rating_max) query.set("rating_max", String(params.rating_max));
+    if (params?.tag) query.set("tag", String(params.tag));
     return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`);
 }
