@@ -109,6 +109,7 @@ model CachedMdlData {
   id             String   @id @default(cuid())
   tmdbExternalId String   @unique
   mdlSlug        String
+  mdlDisabled    Boolean  @default(false)
   mdlRating      Float?
   mdlRanking     Int?
   mdlPopularity  Int?

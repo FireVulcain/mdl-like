@@ -133,6 +133,8 @@ export const getMdlData = cache(async function getMdlData(
         where: { tmdbExternalId },
     });
 
+    if (cached?.mdlDisabled) return null;
+
     const staleAt = new Date(Date.now() - CACHE_TTL_MS);
     if (cached && cached.cachedAt > staleAt) {
         const cast = parseCastJson(cached.castJson);

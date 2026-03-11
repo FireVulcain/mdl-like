@@ -335,7 +335,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         getCurrentUserId(),
         getWatchlistExternalIds(),
         isMdlRelevant
-            ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true, mdlRating: true } })
+            ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true, mdlRating: true, mdlDisabled: true } })
             : null,
         isMdlRelevant && selectedSeason > 1
             ? prisma.mdlSeasonLink.findUnique({
@@ -602,6 +602,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                             currentSlug={cached?.mdlSlug}
                                             defaultQuery={media.title}
                                             mediaId={media.id}
+                                            isDisabled={cached?.mdlDisabled ?? false}
                                         />
                                     )}
                                 </>

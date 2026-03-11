@@ -49,6 +49,7 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
             create: {
                 tmdbExternalId,
                 mdlSlug: newMdlSlug,
+                mdlDisabled: false,
                 mdlRating,
                 mdlRanking,
                 mdlPopularity,
@@ -57,6 +58,7 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
             },
             update: {
                 mdlSlug: newMdlSlug,
+                mdlDisabled: false,
                 mdlRating,
                 mdlRanking,
                 mdlPopularity,
@@ -72,5 +74,21 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
     } catch (e) {
         console.error("[MDL Link Update Failed]", e);
         return { success: false, error: "Failed to update MDL link in database." };
+    }
+}
+
+export async function toggleMdlDisabled(tmdbExternalId: string, disabled: boolean) {
+    if (!tmdbExternalId) throw new Error("Missing tmdbExternalId");
+    try {
+        await prisma.cachedMdlData.upsert({
+            where: { tmdbExternalId },
+            create: { tmdbExternalId, mdlSlug: "", mdlDisabled: disabled },
+            update: { mdlDisabled: disabled },
+        });
+        revalidatePath(`/media/${tmdbExternalId}`);
+        return { success: true };
+    } catch (e) {
+        console.error("[MDL Toggle Disabled Failed]", e);
+        return { success: false, error: "Failed to update MDL disabled state." };
     }
 }

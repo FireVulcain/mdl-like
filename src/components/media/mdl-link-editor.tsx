@@ -2,14 +2,14 @@
 
 import { useState, useTransition, useEffect } from "react";
 import Image from "next/image";
-import { Link2, Search, Loader2, RefreshCw } from "lucide-react";
+import { Link2, Search, Loader2, RefreshCw, Ban, Link2Off } from "lucide-react";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { kuryanaSearch, KuryanaSearchResult } from "@/lib/kuryana";
-import { updateMdlLink } from "@/actions/mdl-editor";
+import { updateMdlLink, toggleMdlDisabled } from "@/actions/mdl-editor";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -19,9 +19,10 @@ interface MdlLinkEditorProps {
     currentSlug?: string | null;
     defaultQuery?: string;
     mediaId?: string;
+    isDisabled?: boolean;
 }
 
-export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQuery, mediaId }: MdlLinkEditorProps) {
+export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQuery, mediaId, isDisabled = false }: MdlLinkEditorProps) {
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState(defaultQuery || "");
@@ -29,6 +30,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
     const [isSearching, setIsSearching] = useState(false);
     const [isPending, startTransition] = useTransition();
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [isTogglingBlock, setIsTogglingBlock] = useState(false);
 
     async function handleRefresh() {
         if (!mediaId) return;
@@ -47,6 +49,22 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
             toast.error("Failed to refresh MDL cache");
         } finally {
             setIsRefreshing(false);
+        }
+    }
+
+    async function handleToggleBlock() {
+        setIsTogglingBlock(true);
+        try {
+            const result = await toggleMdlDisabled(tmdbExternalId, !isDisabled);
+            if (result.success) {
+                toast.success(isDisabled ? "MDL lookups re-enabled" : "MDL lookups blocked for this show");
+                setOpen(false);
+                router.refresh();
+            } else {
+                toast.error(result.error || "Failed to update MDL block state.");
+            }
+        } finally {
+            setIsTogglingBlock(false);
         }
     }
 
@@ -104,27 +122,48 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <button
-                    className="flex shrink-0 h-6 items-center gap-1.5 px-2 py-1 rounded bg-white/3 hover:bg-white/10 text-white/40 hover:text-white transition-colors"
-                    title="Edit MDL Link"
+                    className={cn(
+                        "flex shrink-0 h-6 items-center gap-1.5 px-2 py-1 rounded transition-colors",
+                        isDisabled
+                            ? "bg-red-500/10 hover:bg-red-500/20 text-red-400/70 hover:text-red-400"
+                            : "bg-white/3 hover:bg-white/10 text-white/40 hover:text-white"
+                    )}
+                    title={isDisabled ? "MDL blocked — click to manage" : "Edit MDL Link"}
                 >
-                    <Link2 className="h-3 w-3" />
+                    {isDisabled ? <Link2Off className="h-3 w-3" /> : <Link2 className="h-3 w-3" />}
                 </button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
                 <DialogHeader>
                     <div className="flex items-center justify-between gap-2 pr-8">
                         <DialogTitle className="text-white">Link MDL Entry</DialogTitle>
-                        {mediaId && (
+                        <div className="flex items-center gap-1">
+                            {mediaId && (
+                                <button
+                                    onClick={handleRefresh}
+                                    disabled={isRefreshing}
+                                    title="Refresh MDL cache"
+                                    className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-40"
+                                >
+                                    <RefreshCw className={`h-3 w-3 ${isRefreshing ? "animate-spin" : ""}`} />
+                                    Refresh cache
+                                </button>
+                            )}
                             <button
-                                onClick={handleRefresh}
-                                disabled={isRefreshing}
-                                title="Refresh MDL cache"
-                                className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-40"
+                                onClick={handleToggleBlock}
+                                disabled={isTogglingBlock}
+                                title={isDisabled ? "Re-enable MDL lookups" : "Block MDL lookups for this show"}
+                                className={cn(
+                                    "flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors disabled:opacity-40",
+                                    isDisabled
+                                        ? "text-red-400 hover:text-white hover:bg-red-500/20"
+                                        : "text-gray-400 hover:text-red-400 hover:bg-red-500/10"
+                                )}
                             >
-                                <RefreshCw className={`h-3 w-3 ${isRefreshing ? "animate-spin" : ""}`} />
-                                Refresh cache
+                                <Ban className="h-3 w-3" />
+                                {isDisabled ? "Unblock MDL" : "Block MDL"}
                             </button>
-                        )}
+                        </div>
                     </div>
                     <DialogDescription className="text-gray-400">Search and select the correct MDL entry for this TMDB show.</DialogDescription>
                 </DialogHeader>
