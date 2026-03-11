@@ -1321,7 +1321,7 @@ const ItemCard = memo(function ItemCard({
                             alt={item.title || ""}
                             fill
                             sizes="112px"
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="object-fill transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                             onLoad={(e) => {
                                 const container = e.currentTarget.parentElement;
