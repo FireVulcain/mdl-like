@@ -175,7 +175,7 @@ async function fetchMdlData(
     mdlRating: number | null;
     mdlRanking: number | null;
     mdlPopularity: number | null;
-    tags: string[];
+    tags: { id: number; name: string }[];
     cast: MdlCast | null;
 } | null> {
     const targetYear = parseInt(year);
@@ -218,7 +218,7 @@ async function fetchMdlData(
         details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
-    const tags = details.data.others?.tags ?? [];
+    const tags = (details.data.others?.tags ?? []).map((t) => ({ id: t.id, name: t.name }));
 
     const cast: MdlCast | null = castResult?.data?.casts
         ? {
