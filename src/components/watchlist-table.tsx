@@ -31,6 +31,8 @@ import {
     Download,
     Upload,
     Tv,
+    GalleryVertical,
+    GalleryHorizontal,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -131,6 +133,11 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [search, setSearch] = useState<string>(() => searchParams.get("q") ?? "");
     const [sortBy, setSortBy] = useState<string>(() => searchParams.get("sort") ?? "default");
     const [filterAiringOnly, setFilterAiringOnly] = useState<boolean>(() => searchParams.get("airing") === "1");
+    const [thumbnailStyle, setThumbnailStyle] = useState<"poster" | "backdrop">("poster");
+    useEffect(() => {
+        const saved = localStorage.getItem("watchlist-thumbnail-style");
+        if (saved === "poster" || saved === "backdrop") setThumbnailStyle(saved);
+    }, []);
 
     const syncUrl = useCallback((key: string, value: string | null) => {
         const params = new URLSearchParams(window.location.search);
@@ -796,6 +803,30 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             );
                         })()}
 
+                        {/* Thumbnail Style Toggle */}
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <button
+                                        onClick={() => {
+                                            const next = thumbnailStyle === "poster" ? "backdrop" : "poster";
+                                            setThumbnailStyle(next);
+                                            localStorage.setItem("watchlist-thumbnail-style", next);
+                                        }}
+                                        className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer shrink-0"
+                                    >
+                                        {thumbnailStyle === "poster"
+                                            ? <GalleryVertical className="h-4 w-4" />
+                                            : <GalleryHorizontal className="h-4 w-4" />
+                                        }
+                                    </button>
+                                </TooltipTrigger>
+                                <TooltipContent side="bottom">
+                                    {thumbnailStyle === "poster" ? "Switch to backdrop thumbnails" : "Switch to poster thumbnails"}
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+
                         {/* Actions Menu */}
                         {!readOnly && <div className="relative filter-dropdown shrink-0">
                             <button
@@ -878,6 +909,16 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             {activeFilterCount > 0 && (
                 <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-1 active-filters animate-in fade-in slide-in-from-top-1 duration-300">
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Filters:</span>
+                    {filterStatuses.map((status) => (
+                        <button
+                            key={status}
+                            onClick={() => toggleStatus(status)}
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-blue-500/15 text-blue-400 hover:opacity-80 transition-all cursor-pointer group"
+                        >
+                            {status}
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                        </button>
+                    ))}
                     {filterCountries.map((country) => (
                         <button
                             key={country}
@@ -1005,10 +1046,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         </div>
                                         <div className="relative flex items-center gap-3 p-2 parent-card-inner">
                                             {/* Thumbnail */}
-                                            <div className="relative shrink-0 h-14 w-24 rounded-lg overflow-hidden bg-gray-800/50">
-                                                {first.backdrop || first.poster ? (
+                                            <div className={`relative shrink-0 rounded-lg overflow-hidden bg-gray-800/50 ${thumbnailStyle === "poster" ? "h-20 w-14" : "h-14 w-24"}`}>
+                                                {(thumbnailStyle === "poster" ? first.poster || first.backdrop : first.backdrop || first.poster) ? (
                                                     <Image unoptimized={true}
-                                                        src={first.backdrop || first.poster!}
+                                                        src={thumbnailStyle === "poster" ? (first.poster || first.backdrop!) : (first.backdrop || first.poster!)}
                                                         alt={first.title || ""}
                                                         fill
                                                         sizes="192px"
@@ -1058,6 +1099,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                         openEdit={openEdit}
                                                         isChild={true}
                                                         readOnly={readOnly}
+                                                        thumbnailStyle={thumbnailStyle}
                                                     />
                                                 </div>
                                             ))}
@@ -1079,6 +1121,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         handleStatusChange={handleStatusChange}
                                         openEdit={openEdit}
                                         readOnly={readOnly}
+                                        thumbnailStyle={thumbnailStyle}
                                     />
                                 </div>,
                             );
@@ -1198,6 +1241,7 @@ const ItemCard = memo(function ItemCard({
     openEdit,
     isChild = false,
     readOnly = false,
+    thumbnailStyle = "poster",
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
@@ -1205,6 +1249,7 @@ const ItemCard = memo(function ItemCard({
     openEdit: (item: WatchlistItem) => void;
     isChild?: boolean;
     readOnly?: boolean;
+    thumbnailStyle?: "poster" | "backdrop";
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -1261,19 +1306,21 @@ const ItemCard = memo(function ItemCard({
                 <Link
                     href={`/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`}
                     className={`card-image relative shrink-0 overflow-hidden rounded-lg transition-all duration-300 group-hover:ring-2 group-hover:ring-blue-500/30 ${
-                        isChild ? "h-12 w-20" : "h-14 w-24"
+                        thumbnailStyle === "poster"
+                            ? (isChild ? "h-14 w-10" : "h-20 w-14")
+                            : (isChild ? "h-12 w-20" : "h-14 w-24")
                     } ${
-                        item.backdrop || item.poster
+                        (thumbnailStyle === "poster" ? item.poster || item.backdrop : item.backdrop || item.poster)
                             ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
                             : "bg-gray-800/50 border border-dashed border-gray-700"
                     }`}
                 >
-                    {item.backdrop || item.poster ? (
+                    {(thumbnailStyle === "poster" ? item.poster || item.backdrop : item.backdrop || item.poster) ? (
                         <Image unoptimized={true}
-                            src={item.backdrop || item.poster!}
+                            src={thumbnailStyle === "poster" ? (item.poster || item.backdrop!) : (item.backdrop || item.poster!)}
                             alt={item.title || ""}
                             fill
-                            sizes="(max-width: 768px) 640px, 320px"
+                            sizes="112px"
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                             onLoad={(e) => {
