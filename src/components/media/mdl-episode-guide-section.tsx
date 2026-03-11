@@ -34,8 +34,12 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
     if (!effectiveSlug) {
         const cached = await prisma.cachedMdlData.findUnique({
             where: { tmdbExternalId: externalId },
-            select: { mdlSlug: true },
+            select: { mdlSlug: true, mdlDisabled: true },
         });
+
+        if (cached?.mdlDisabled) {
+            return <EpisodeGuide episodes={tmdbEpisodes} season={season} poster={poster} mdlEpisodes={null} mediaId={mediaId} />;
+        }
 
         // Seasons 2+ require a manually linked slug (stored in MdlSeasonLink).
         // Season 1 uses the base slug from CachedMdlData.
