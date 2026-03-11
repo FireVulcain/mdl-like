@@ -598,6 +598,7 @@ export const mediaService = {
         year_from,
         year_to,
         rating_min,
+        tag,
     }: {
         country: string;
         category?: string;
@@ -607,6 +608,7 @@ export const mediaService = {
         year_from?: number;
         year_to?: number;
         rating_min?: number;
+        tag?: number;
     }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
         // Map app country codes → Kuryana country names
         const COUNTRY_MAP: Record<string, "all" | KuryanaTopCountry> = {
@@ -632,6 +634,7 @@ export const mediaService = {
                 year_from,
                 year_to,
                 rating_min,
+                tag,
             });
             const shows = res?.data.shows ?? [];
 

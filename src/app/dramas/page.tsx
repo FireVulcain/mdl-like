@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { Bookmark, Check, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { prisma } from "@/lib/prisma";
 import { getWatchlistExternalIds } from "@/actions/user-media";
+import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 
 type SearchParams = Promise<{
     category?: string;
@@ -17,6 +18,8 @@ type SearchParams = Promise<{
     year_from?: string;
     year_to?: string;
     rating_min?: string;
+    tag?: string;
+    tag_name?: string;
 }>;
 
 const CATEGORY_CONFIG = {
@@ -137,6 +140,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         year_from: rawYearFrom,
         year_to: rawYearTo,
         rating_min: rawRatingMin,
+        tag: rawTag,
+        tag_name: rawTagName,
     } = await searchParams;
 
     const category: Category = (rawCategory as Category) in CATEGORY_CONFIG ? (rawCategory as Category) : "popular";
@@ -147,6 +152,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const year_from = rawYearFrom ? parseInt(rawYearFrom, 10) : undefined;
     const year_to = rawYearTo ? parseInt(rawYearTo, 10) : undefined;
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
+    const tag = rawTag ? parseInt(rawTag, 10) : undefined;
 
     const mdlSort = sort === "popular" ? "popular" : "top";
 
@@ -161,6 +167,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         year_from,
         year_to,
         rating_min,
+        tag,
     });
     const items: UnifiedMedia[] = result.items;
     const hasNextPage = result.hasNextPage;
@@ -199,6 +206,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     if (rawYearFrom) baseParams.year_from = rawYearFrom;
     if (rawYearTo) baseParams.year_to = rawYearTo;
     if (rawRatingMin) baseParams.rating_min = rawRatingMin;
+    if (rawTag) { baseParams.tag = rawTag; if (rawTagName) baseParams.tag_name = rawTagName; }
     baseParams.page = page.toString();
 
     const catConfig = CATEGORY_CONFIG[category];
@@ -208,7 +216,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         return buildUrl(baseParams, { genre: next.length > 0 ? next.join(",") : null, page: "1" });
     }
 
-    const hasActiveFilters = selectedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin;
+    const hasActiveFilters = selectedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin || rawTag;
 
     return (
         <div className="relative min-h-screen">
@@ -458,6 +466,13 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                 </div>
                             </details>
                         </div>
+
+                        <div className="h-px bg-white/5" />
+
+                        {/* Tags */}
+                        <Suspense fallback={null}>
+                            <TagSearchFilter activeTagId={rawTag} activeTagName={rawTagName} />
+                        </Suspense>
 
                         <div className="h-px bg-white/5" />
 
