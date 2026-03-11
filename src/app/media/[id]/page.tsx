@@ -345,7 +345,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             : null,
     ]);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
-    const hasMdlRating = !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
+    const hasMdlRating = !cached?.mdlDisabled && !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
     const userMedia = await getUserMedia(userId, media.externalId, media.source, selectedSeason);
     const watchlistIds = new Set(watchlistExternalIds);
 
