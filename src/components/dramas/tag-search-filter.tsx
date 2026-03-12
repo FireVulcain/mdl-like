@@ -126,7 +126,7 @@ export function TagSearchFilter({ activeTagId, activeTagName }: Props) {
                             <button
                                 key={tag.id}
                                 onClick={() => selectTag(tag)}
-                                className="w-full text-left px-3 py-2 text-xs text-gray-300 hover:bg-white/8 hover:text-white transition-all capitalize"
+                                className="w-full text-left px-3 py-2 text-xs text-gray-300 hover:bg-white/8 hover:text-white transition-all capitalize cursor-pointer"
                             >
                                 {tag.name}
                             </button>

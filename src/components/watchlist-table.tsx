@@ -166,6 +166,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
     const [isImportingJSON, setIsImportingJSON] = useState(false);
     const importFileRef = useRef<HTMLInputElement>(null);
+    const [statusLabelHidden, setStatusLabelHidden] = useState(false);
+    useEffect(() => {
+        const check = () => setStatusLabelHidden(window.innerWidth >= 768 && window.innerWidth < 1536);
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
 
     // Infinite scroll
     const [displayCount, setDisplayCount] = useState(10);
@@ -564,13 +571,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         {/* Filter Dropdowns */}
                         <div className="flex items-center gap-2 filter-dropdown-group w-full md:w-auto overflow-x-auto md:overflow-visible scrollbar-none pb-0.5 md:pb-0">
                             {/* Status Pills */}
+                            <TooltipProvider delayDuration={300}>
                             {allStatuses.map((status) => {
                                 const config = statusConfig[status as keyof typeof statusConfig];
                                 const Icon = config?.icon;
                                 const isSelected = filterStatuses.includes(status);
-                                return (
+                                const btn = (
                                     <button
-                                        key={status}
                                         onClick={() => toggleStatus(status)}
                                         className={`h-9 px-3 rounded-lg flex items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                             isSelected
@@ -578,11 +585,18 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                 : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
                                         }`}
                                     >
-                                        {Icon && <Icon className="h-4 w-4" />}
-                                        <span>{status}</span>
+                                        {Icon && <Icon className="h-4 w-4 shrink-0" />}
+                                        <span className="inline md:hidden 2xl:inline">{status}</span>
                                     </button>
                                 );
+                                return statusLabelHidden ? (
+                                    <Tooltip key={status}>
+                                        <TooltipTrigger asChild>{btn}</TooltipTrigger>
+                                        <TooltipContent side="bottom">{status}</TooltipContent>
+                                    </Tooltip>
+                                ) : <span key={status}>{btn}</span>;
                             })}
+                            </TooltipProvider>
 
                             {/* Country Filter */}
                             <div className="relative filter-dropdown">
