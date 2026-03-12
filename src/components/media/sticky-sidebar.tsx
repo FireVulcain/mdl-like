@@ -45,7 +45,7 @@ export function StickySidebar({ children }: { children: React.ReactNode }) {
                 top: sticky ? top : undefined,
                 alignSelf: "start",
             }}
-            className="xl:space-y-4 xl:pb-6"
+            className="space-y-3 md:space-y-4 pb-2 md:pb-6"
         >
             {children}
         </div>
