@@ -158,6 +158,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
     const [showMdlRefreshModal, setShowMdlRefreshModal] = useState(false);
     const [mdlRefreshStatuses, setMdlRefreshStatuses] = useState<string[]>([]);
+    const [showMobileStatusFilter, setShowMobileStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
     const [showSortFilter, setShowSortFilter] = useState(false);
@@ -570,31 +571,78 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
 
                         {/* Filter Dropdowns */}
                         <div className="flex items-center gap-2 filter-dropdown-group w-full md:w-auto overflow-x-auto md:overflow-visible scrollbar-none pb-0.5 md:pb-0">
-                            {/* Status Pills */}
+                            {/* Status — mobile dropdown */}
+                            <div className="relative shrink-0 md:hidden">
+                                <button
+                                    onClick={() => setShowMobileStatusFilter(!showMobileStatusFilter)}
+                                    className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
+                                        filterStatuses.length > 0
+                                            ? "bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/30"
+                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                    }`}
+                                >
+                                    <SlidersHorizontal className="h-4 w-4 shrink-0" />
+                                    <span>Status</span>
+                                    {filterStatuses.length > 0 && (
+                                        <span className="bg-blue-500/30 text-blue-300 text-xs px-1.5 py-0.5 rounded-md">{filterStatuses.length}</span>
+                                    )}
+                                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showMobileStatusFilter ? "rotate-180" : ""}`} />
+                                </button>
+                                {showMobileStatusFilter && (
+                                    <>
+                                        <div className="fixed inset-0 z-10" onClick={() => setShowMobileStatusFilter(false)} />
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in slide-in-from-top-2 duration-200">
+                                            {allStatuses.map((status) => {
+                                                const config = statusConfig[status as keyof typeof statusConfig];
+                                                const Icon = config?.icon;
+                                                const isSelected = filterStatuses.includes(status);
+                                                return (
+                                                    <button
+                                                        key={status}
+                                                        onClick={() => { toggleStatus(status); setShowMobileStatusFilter(false); }}
+                                                        className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer ${
+                                                            isSelected
+                                                                ? `${config?.bg} ${config?.color}`
+                                                                : "text-gray-300 hover:bg-white/8 hover:text-white"
+                                                        }`}
+                                                    >
+                                                        {Icon && <Icon className="h-4 w-4 shrink-0" />}
+                                                        <span>{status}</span>
+                                                        {isSelected && <CheckCircle className="h-3.5 w-3.5 ml-auto" />}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Status Pills — desktop */}
                             <TooltipProvider delayDuration={300}>
                             {allStatuses.map((status) => {
                                 const config = statusConfig[status as keyof typeof statusConfig];
                                 const Icon = config?.icon;
                                 const isSelected = filterStatuses.includes(status);
-                                const btn = (
-                                    <button
-                                        onClick={() => toggleStatus(status)}
-                                        className={`h-9 px-3 rounded-lg flex items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${
-                                            isSelected
-                                                ? `${config?.bg} ${config?.color} ring-1 ${config?.border}`
-                                                : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
-                                        }`}
-                                    >
+                                const btnClass = `hidden md:flex h-9 px-3 rounded-lg items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${isSelected ? `${config?.bg} ${config?.color} ring-1 ${config?.border}` : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`;
+                                if (statusLabelHidden) {
+                                    return (
+                                        <Tooltip key={status}>
+                                            <TooltipTrigger asChild>
+                                                <button className={btnClass} onClick={() => toggleStatus(status)}>
+                                                    {Icon && <Icon className="h-4 w-4 shrink-0" />}
+                                                    <span className="2xl:inline hidden">{status}</span>
+                                                </button>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="bottom">{status}</TooltipContent>
+                                        </Tooltip>
+                                    );
+                                }
+                                return (
+                                    <button key={status} className={btnClass} onClick={() => toggleStatus(status)}>
                                         {Icon && <Icon className="h-4 w-4 shrink-0" />}
-                                        <span className="inline md:hidden 2xl:inline">{status}</span>
+                                        <span className="2xl:inline hidden">{status}</span>
                                     </button>
                                 );
-                                return statusLabelHidden ? (
-                                    <Tooltip key={status}>
-                                        <TooltipTrigger asChild>{btn}</TooltipTrigger>
-                                        <TooltipContent side="bottom">{status}</TooltipContent>
-                                    </Tooltip>
-                                ) : <span key={status}>{btn}</span>;
                             })}
                             </TooltipProvider>
 
@@ -827,7 +875,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                             setThumbnailStyle(next);
                                             localStorage.setItem("watchlist-thumbnail-style", next);
                                         }}
-                                        className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer shrink-0"
+                                        className="hidden md:flex h-9 w-9 rounded-lg bg-white/5 items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer shrink-0"
                                     >
                                         {thumbnailStyle === "poster"
                                             ? <GalleryVertical className="h-4 w-4" />
