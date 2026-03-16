@@ -145,6 +145,28 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
     return results.sort((a, b) => a.airDate.localeCompare(b.airDate));
 }
 
+export async function refreshSingleShow(mediaId: string): Promise<void> {
+    await getCurrentUserId(); // ensure authenticated
+
+    await prisma.cachedEpisode.deleteMany({ where: { mediaId } });
+
+    // mediaId format: "tmdb-{externalId}"
+    const [source, externalId] = [mediaId.split("-")[0], mediaId.split("-").slice(1).join("-")];
+    const item = await prisma.userMedia.findFirst({
+        where: {
+            externalId,
+            source: source.toUpperCase(),
+            mediaType: "TV",
+        },
+        select: { title: true },
+    });
+
+    if (!item) return;
+
+    await fetchAndCacheEpisodes(mediaId, externalId, item.title);
+    revalidatePath("/calendar");
+}
+
 export async function refreshScheduleCache(): Promise<void> {
     const userId = await getCurrentUserId();
     const items = await prisma.userMedia.findMany({

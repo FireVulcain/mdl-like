@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, CalendarDays, MoreHorizontal, RefreshCw } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
-import { refreshScheduleCache } from "@/actions/schedule";
+import { refreshScheduleCache, refreshSingleShow } from "@/actions/schedule";
 
 export type { ScheduleEntry };
 
@@ -36,11 +36,22 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
     const [asianOnly, setAsianOnly] = useState(true);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [refreshingShowId, setRefreshingShowId] = useState<string | null>(null);
 
     const ASIAN_COUNTRIES = ["KR", "CN", "JP", "TW", "TH", "HK"];
     const filteredEntries = asianOnly
         ? entries.filter((e) => ASIAN_COUNTRIES.includes(e.originCountry))
         : entries;
+
+    const handleRefreshShow = async (mediaId: string) => {
+        setRefreshingShowId(mediaId);
+        try {
+            await refreshSingleShow(mediaId);
+            window.location.reload();
+        } finally {
+            setRefreshingShowId(null);
+        }
+    };
 
     const handleRefresh = async () => {
         setIsRefreshing(true);
@@ -276,7 +287,21 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                                                 </Link>
                                                             </TooltipTrigger>
                                                             <TooltipContent side="top">
-                                                                <p className="font-semibold mb-1">{first.title}</p>
+                                                                <div className="flex items-center justify-between gap-3 mb-1">
+                                                                    <p className="font-semibold">{first.title}</p>
+                                                                    <button
+                                                                        onClick={(e) => {
+                                                                            e.preventDefault();
+                                                                            e.stopPropagation();
+                                                                            handleRefreshShow(first.mediaId);
+                                                                        }}
+                                                                        disabled={refreshingShowId === first.mediaId}
+                                                                        className="cursor-pointer text-gray-400 hover:text-white transition-colors disabled:opacity-50 shrink-0"
+                                                                        title="Refresh this show"
+                                                                    >
+                                                                        <RefreshCw className={`h-3 w-3 ${refreshingShowId === first.mediaId ? "animate-spin" : ""}`} />
+                                                                    </button>
+                                                                </div>
                                                                 {showEps.map((ep, ei) => (
                                                                     <p key={ei} className="text-gray-400 text-xs">
                                                                         S{String(ep.seasonNumber).padStart(2, "0")}E
