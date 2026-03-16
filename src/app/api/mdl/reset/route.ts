@@ -30,8 +30,8 @@ export async function POST(req: Request) {
         // Slug already known — fetch fresh data directly, no title search needed
         try {
             const [details, castResult] = await Promise.all([
-                kuryanaGetDetails(existing.mdlSlug),
-                kuryanaGetCast(existing.mdlSlug),
+                kuryanaGetDetails(existing.mdlSlug, true),
+                kuryanaGetCast(existing.mdlSlug, true),
             ]);
 
             if (details?.data) {

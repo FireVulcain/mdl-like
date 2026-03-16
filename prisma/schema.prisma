@@ -173,6 +173,8 @@ model CachedEpisode {
   seasonNumber  Int
   episodeName   String?
   createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
 
+  @@unique([mediaId, seasonNumber, episodeNumber])
   @@index([mediaId])
 }

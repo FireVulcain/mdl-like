@@ -22,7 +22,7 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
 
     try {
         // Fetch fresh data for the new slug immediately
-        const [details, castResult] = await Promise.all([kuryanaGetDetails(newMdlSlug), kuryanaGetCast(newMdlSlug)]);
+        const [details, castResult] = await Promise.all([kuryanaGetDetails(newMdlSlug, true), kuryanaGetCast(newMdlSlug, true)]);
 
         if (!details?.data) {
             return { success: false, error: "Failed to fetch details for the new MDL link." };

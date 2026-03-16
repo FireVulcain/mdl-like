@@ -1,9 +1,10 @@
-import { getDashboardStats } from "@/actions/stats";
+import { type DashboardStats } from "@/types/stats";
 import { WatchlistStats } from "@/components/watchlist-stats";
-import { getCachedWatchlist } from "@/components/watchlist-data";
 
-export async function WatchlistHeaderStats() {
-    const watchlist = await getCachedWatchlist();
-    const stats = await getDashboardStats(watchlist);
+interface WatchlistHeaderStatsProps {
+    stats: DashboardStats;
+}
+
+export function WatchlistHeaderStats({ stats }: WatchlistHeaderStatsProps) {
     return <WatchlistStats stats={stats} />;
 }

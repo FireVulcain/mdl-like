@@ -356,8 +356,8 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
 
             try {
                 const [details, castResult] = await Promise.all([
-                    kuryanaGetDetails(row.mdlSlug),
-                    kuryanaGetCast(row.mdlSlug),
+                    kuryanaGetDetails(row.mdlSlug, true),
+                    kuryanaGetCast(row.mdlSlug, true),
                 ]);
 
                 if (details?.data) {
@@ -414,7 +414,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
             if (Date.now() - cronStart > BUDGET_MS) break;
 
             try {
-                const details = await kuryanaGetDetails(link.mdlSlug);
+                const details = await kuryanaGetDetails(link.mdlSlug, true);
                 if (details?.data) {
                     const ranked = details.data.details?.ranked;
                     const popularity = details.data.details?.popularity;

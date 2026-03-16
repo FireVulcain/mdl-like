@@ -1,7 +1,12 @@
-import { getCachedWatchlist } from "@/components/watchlist-data";
+import { getWatchlist } from "@/actions/media";
 
-export async function WatchlistSubtitle() {
-    const watchlist = await getCachedWatchlist();
+type WatchlistItem = Awaited<ReturnType<typeof getWatchlist>>[number];
+
+interface WatchlistSubtitleProps {
+    watchlist: WatchlistItem[];
+}
+
+export function WatchlistSubtitle({ watchlist }: WatchlistSubtitleProps) {
     const watchingCount = watchlist.filter((i) => i.status === "Watching").length;
     const completedCount = watchlist.filter((i) => i.totalEp && i.progress >= i.totalEp).length;
 

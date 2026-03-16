@@ -113,8 +113,8 @@ export async function createMdlSeasonLink(
 ): Promise<{ ok: boolean; error?: string }> {
     try {
         const [details, castResult] = await Promise.all([
-            kuryanaGetDetails(mdlSlug),
-            kuryanaGetCast(mdlSlug),
+            kuryanaGetDetails(mdlSlug, true),
+            kuryanaGetCast(mdlSlug, true),
         ]);
 
         const ranked = details?.data?.details?.ranked;
@@ -169,8 +169,8 @@ export async function createMdlSeasonLink(
 export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Promise<{ ok: boolean; error?: string }> {
     try {
         const [details, castResult] = await Promise.all([
-            kuryanaGetDetails(mdlSlug),
-            kuryanaGetCast(mdlSlug),
+            kuryanaGetDetails(mdlSlug, true),
+            kuryanaGetCast(mdlSlug, true),
         ]);
 
         const ranked = details?.data?.details?.ranked;

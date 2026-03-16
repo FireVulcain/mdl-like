@@ -139,6 +139,36 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         if (saved === "poster" || saved === "backdrop") setThumbnailStyle(saved);
     }, []);
 
+    // Lazy-load next-episode data client-side after initial render to avoid
+    // blocking SSR with 45+ external API calls.
+    const [nextEpisodeMap, setNextEpisodeMap] = useState<Record<string, NextEpisodeData | null>>({});
+    useEffect(() => {
+        if (readOnly) return;
+        const airingWatching = items.filter(
+            (i) =>
+                (i.status === "Watching" || i.status === "Plan to Watch") &&
+                (i.airingStatus === "Returning Series" || i.airingStatus === "In Production") &&
+                i.mediaType === "TV" &&
+                i.source === "TMDB",
+        );
+        if (airingWatching.length === 0) return;
+
+        fetch("/api/next-episodes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                items: airingWatching.map((i) => ({
+                    tmdbId: i.externalId,
+                    season: i.season,
+                    title: i.title ?? "",
+                })),
+            }),
+        })
+            .then((r) => r.json())
+            .then((data: Record<string, NextEpisodeData | null>) => setNextEpisodeMap(data))
+            .catch(() => {});
+    }, [items, readOnly]);
+
     const syncUrl = useCallback((key: string, value: string | null) => {
         const params = new URLSearchParams(window.location.search);
         if (value === null || value === "") {
@@ -230,7 +260,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                 if (filterYear === "Older" && item.year >= 2000) return false;
                 if (!["2010s", "2000s", "Older"].includes(filterYear) && item.year.toString() !== filterYear) return false;
             }
-            if (filterAiringOnly && !item.nextEpisode) return false;
+            if (filterAiringOnly && !(item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`])) return false;
             return true;
         });
 
@@ -258,16 +288,16 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     case "year-old":
                         return (a.year || 0) - (b.year || 0);
                     case "next-episode-asc": {
-                        const aDate = a.nextEpisode?.airDate ?? null;
-                        const bDate = b.nextEpisode?.airDate ?? null;
+                        const aDate = (a.nextEpisode ?? nextEpisodeMap[`${a.externalId}-${a.season}`])?.airDate ?? null;
+                        const bDate = (b.nextEpisode ?? nextEpisodeMap[`${b.externalId}-${b.season}`])?.airDate ?? null;
                         if (aDate && bDate) return aDate.localeCompare(bDate);
                         if (aDate) return -1;
                         if (bDate) return 1;
                         return 0;
                     }
                     case "next-episode-desc": {
-                        const aDate = a.nextEpisode?.airDate ?? null;
-                        const bDate = b.nextEpisode?.airDate ?? null;
+                        const aDate = (a.nextEpisode ?? nextEpisodeMap[`${a.externalId}-${a.season}`])?.airDate ?? null;
+                        const bDate = (b.nextEpisode ?? nextEpisodeMap[`${b.externalId}-${b.season}`])?.airDate ?? null;
                         if (aDate && bDate) return bDate.localeCompare(aDate);
                         if (aDate) return 1;
                         if (bDate) return -1;
@@ -1162,6 +1192,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                         isChild={true}
                                                         readOnly={readOnly}
                                                         thumbnailStyle={thumbnailStyle}
+                                                        nextEpisodeMap={nextEpisodeMap}
                                                     />
                                                 </div>
                                             ))}
@@ -1184,6 +1215,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         openEdit={openEdit}
                                         readOnly={readOnly}
                                         thumbnailStyle={thumbnailStyle}
+                                        nextEpisodeMap={nextEpisodeMap}
                                     />
                                 </div>,
                             );
@@ -1304,6 +1336,7 @@ const ItemCard = memo(function ItemCard({
     isChild = false,
     readOnly = false,
     thumbnailStyle = "poster",
+    nextEpisodeMap = {},
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
@@ -1312,6 +1345,7 @@ const ItemCard = memo(function ItemCard({
     isChild?: boolean;
     readOnly?: boolean;
     thumbnailStyle?: "poster" | "backdrop";
+    nextEpisodeMap?: Record<string, NextEpisodeData | null>;
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -1423,7 +1457,7 @@ const ItemCard = memo(function ItemCard({
                             <span>{item.year || "N/A"}</span>
                             {item.status !== "Completed" && (
                                 <NextEpisodeIndicator
-                                    nextEpisode={item.nextEpisode}
+                                    nextEpisode={item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`] ?? null}
                                     totalEpisodes={item.totalEp}
                                     status={item.airingStatus}
                                     seasonAirDate={item.seasonAirDate}

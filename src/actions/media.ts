@@ -3,8 +3,6 @@
 import { prisma } from "@/lib/prisma"; // Need to create this
 import { UnifiedMedia } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
-import { tmdb, TMDBExternalIds } from "@/lib/tmdb";
-import { tvmaze } from "@/lib/tvmaze";
 import { ActivityAction, ActivityActionType } from "@/types/activity";
 import { Prisma } from "@prisma/client";
 import { getCurrentUserId } from "@/lib/session";
@@ -365,9 +363,8 @@ async function getWatchlistForUser(userId: string) {
         Dropped: 5,
     };
 
-    // Kick off MDL slug lookups immediately, in parallel with the TMDB/TVmaze fetches below
     const uniqueExternalIds = [...new Set(items.map((i) => i.externalId))];
-    const mdlSlugPromise = Promise.all([
+    const [cachedMdlRows, seasonLinkRows] = await Promise.all([
         prisma.cachedMdlData.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
             select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true },
@@ -377,74 +374,6 @@ async function getWatchlistForUser(userId: string) {
             select: { tmdbExternalId: true, season: true, mdlSlug: true, mdlRating: true },
         }),
     ]);
-
-    // Fetch next episode data for "Watching" and "Plan to Watch" items that are airing
-    const airingItems = items.filter(
-        (item) =>
-            (item.status === "Watching" || item.status === "Plan to Watch") &&
-            (item.airingStatus === "Returning Series" || item.airingStatus === "In Production") &&
-            item.mediaType === "TV" &&
-            item.source === "TMDB",
-    );
-
-    // Create a map to store next episode data, keyed by externalId
-    const nextEpisodeMap = new Map<string, { nextEpisode: NextEpisodeData | null; seasonAirDate: string | null }>();
-
-    // Fetch next episode data in parallel (batched) using TVmaze with TMDB fallback
-    if (airingItems.length > 0) {
-        const fetchPromises = airingItems.map(async (item) => {
-            try {
-                // Get TMDB details for season air date and external IDs
-                const details = await tmdb.getDetails("tv", item.externalId);
-                const seasonData = details.seasons?.find((s) => s.season_number === item.season);
-                const seasonAirDate = seasonData?.air_date || details.first_air_date || null;
-
-                // Try to get next episode from TVmaze first
-                let nextEpisode: NextEpisodeData | null = null;
-
-                try {
-                    // Get external IDs from TMDB
-                    const externalIds = await tmdb.getExternalIds("tv", item.externalId);
-
-                    // Try TVmaze lookup by IMDB ID first, then TVDB ID, then show name
-                    if (externalIds?.imdb_id) {
-                        nextEpisode = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
-                    }
-                    if (!nextEpisode && externalIds?.tvdb_id) {
-                        nextEpisode = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
-                    }
-                    if (!nextEpisode && item.title) {
-                        nextEpisode = await tvmaze.getNextEpisodeByName(item.title);
-                    }
-                } catch (tvmazeError) {
-                    console.error(`TVmaze lookup failed for ${item.title}:`, tvmazeError);
-                }
-
-                // Fall back to TMDB if TVmaze doesn't have the data
-                if (!nextEpisode && details.next_episode_to_air) {
-                    nextEpisode = {
-                        airDate: details.next_episode_to_air.air_date,
-                        episodeNumber: details.next_episode_to_air.episode_number,
-                        seasonNumber: details.next_episode_to_air.season_number,
-                        name: details.next_episode_to_air.name,
-                    };
-                }
-
-                nextEpisodeMap.set(`${item.externalId}-${item.season}`, { nextEpisode, seasonAirDate });
-            } catch (error) {
-                // 404 means the TMDB ID is stale/removed — skip silently
-                const is404 = error instanceof Error && error.message.includes("404");
-                if (!is404) {
-                    console.warn(`Failed to fetch next episode for ${item.title}:`, error);
-                }
-            }
-        });
-
-        await Promise.all(fetchPromises);
-    }
-
-    // Await MDL slug data (likely already resolved by the time TMDB/TVmaze finishes)
-    const [cachedMdlRows, seasonLinkRows] = await mdlSlugPromise;
     const mdlSlugByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
     const mdlRatingByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlRating]));
     const mdlSlugBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
@@ -452,7 +381,6 @@ async function getWatchlistForUser(userId: string) {
 
     return items
         .map((item) => {
-            const episodeData = nextEpisodeMap.get(`${item.externalId}-${item.season}`);
             const seasonKey = `${item.externalId}-${item.season}`;
             const mdlSlug =
                 mdlSlugBySeason.get(seasonKey) ??
@@ -467,9 +395,9 @@ async function getWatchlistForUser(userId: string) {
                 ...item,
                 // Optimize backdrop URLs for better performance
                 backdrop: optimizeImageUrl(item.backdrop),
-                // Add next episode data for watching items
-                nextEpisode: episodeData?.nextEpisode || null,
-                seasonAirDate: episodeData?.seasonAirDate || null,
+                // Next episode data is fetched client-side via /api/next-episodes
+                nextEpisode: null as NextEpisodeData | null,
+                seasonAirDate: null as string | null,
                 mdlSlug,
                 mdlRating,
             };

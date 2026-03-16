@@ -1,32 +1,15 @@
 import { WatchlistData } from "@/components/watchlist-data";
 import { WatchlistHeaderStats } from "@/components/watchlist-header-stats";
 import { WatchlistSubtitle } from "@/components/watchlist-subtitle";
-import { Suspense } from "react";
+import { getWatchlist } from "@/actions/media";
+import { getDashboardStats } from "@/actions/stats";
 
 export const dynamic = "force-dynamic";
 
-function StatsSkeleton() {
-    return (
-        <div className="flex gap-2">
-            {[0, 1, 2].map((i) => (
-                <div key={i} className="h-16 w-32 rounded-xl bg-white/5 border border-white/5 animate-pulse" />
-            ))}
-        </div>
-    );
-}
+export default async function WatchlistPage() {
+    const watchlist = await getWatchlist();
+    const stats = await getDashboardStats(watchlist);
 
-function TableSkeleton() {
-    return (
-        <div className="space-y-3 animate-pulse">
-            <div className="h-4 w-56 rounded bg-white/5" />
-            {[0, 1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-16 rounded-xl bg-white/5 border border-white/5" />
-            ))}
-        </div>
-    );
-}
-
-export default function WatchlistPage() {
     return (
         <div className="relative min-h-screen overflow-hidden">
             {/* Background */}
@@ -50,17 +33,11 @@ export default function WatchlistPage() {
                 <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight">My Watchlist</h1>
-                        <Suspense fallback={<div className="h-4 w-56 rounded bg-white/5 animate-pulse mt-1" />}>
-                            <WatchlistSubtitle />
-                        </Suspense>
+                        <WatchlistSubtitle watchlist={watchlist} />
                     </div>
-                    <Suspense fallback={<StatsSkeleton />}>
-                        <WatchlistHeaderStats />
-                    </Suspense>
+                    <WatchlistHeaderStats stats={stats} />
                 </div>
-                <Suspense fallback={<TableSkeleton />}>
-                    <WatchlistData />
-                </Suspense>
+                <WatchlistData watchlist={watchlist} />
             </div>
         </div>
     );

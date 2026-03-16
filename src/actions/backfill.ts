@@ -379,8 +379,8 @@ export async function refreshWatchlistMdlRatings(statuses?: string[]) {
 
         if (existingSlug) {
             const [details, castResult] = await Promise.all([
-                kuryanaGetDetails(existingSlug),
-                kuryanaGetCast(existingSlug),
+                kuryanaGetDetails(existingSlug, true),
+                kuryanaGetCast(existingSlug, true),
             ]);
             if (!details?.data) return false;
 
@@ -421,8 +421,8 @@ export async function refreshWatchlistMdlRatings(statuses?: string[]) {
             if (!match) return false;
 
             const [details, castResult] = await Promise.all([
-                kuryanaGetDetails(match.slug),
-                kuryanaGetCast(match.slug),
+                kuryanaGetDetails(match.slug, true),
+                kuryanaGetCast(match.slug, true),
             ]);
             if (!details?.data) return false;
 
@@ -496,7 +496,7 @@ export async function refreshWatchlistMdlRatings(statuses?: string[]) {
         await Promise.allSettled(
             batch.map(async (link) => {
                 try {
-                    const details = await kuryanaGetDetails(link.mdlSlug);
+                    const details = await kuryanaGetDetails(link.mdlSlug, true);
                     if (details?.data) {
                         const ranked = details.data.details?.ranked;
                         const popularity = details.data.details?.popularity;

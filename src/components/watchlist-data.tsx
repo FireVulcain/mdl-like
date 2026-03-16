@@ -1,17 +1,12 @@
-import { cache } from "react";
 import { getWatchlist } from "@/actions/media";
 import { WatchlistTable } from "@/components/watchlist-table";
 
-export const getCachedWatchlist = cache(() => getWatchlist());
+type WatchlistItem = Awaited<ReturnType<typeof getWatchlist>>[number];
 
-export async function WatchlistData() {
-    let watchlist: Awaited<ReturnType<typeof getWatchlist>> = [];
+interface WatchlistDataProps {
+    watchlist: WatchlistItem[];
+}
 
-    try {
-        watchlist = await getCachedWatchlist();
-    } catch (error) {
-        console.error("Error fetching watchlist data:", error);
-    }
-
+export function WatchlistData({ watchlist }: WatchlistDataProps) {
     return <WatchlistTable items={watchlist} />;
 }

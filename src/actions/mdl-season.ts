@@ -28,8 +28,8 @@ export async function setMdlSeasonSlug(
     // Fetch details + cast from Kuryana and cache them in the same row
     try {
         const [details, castResult] = await Promise.all([
-            kuryanaGetDetails(mdlSlug),
-            kuryanaGetCast(mdlSlug),
+            kuryanaGetDetails(mdlSlug, true),
+            kuryanaGetCast(mdlSlug, true),
         ]);
 
         if (details?.data) {

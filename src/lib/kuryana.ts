@@ -86,7 +86,7 @@ export interface KuryanaCastResult {
     scrape_date: string;
 }
 
-async function kuryanaFetch<T>(path: string, timeoutMs = 8000): Promise<T | null> {
+async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600): Promise<T | null> {
     // Use AbortController instead of AbortSignal.timeout — the latter creates a
     // DOMException with a read-only `message` property that Next.js's fetch cache
     // interceptor tries to overwrite, causing an unhandled TypeError crash.
@@ -95,7 +95,7 @@ async function kuryanaFetch<T>(path: string, timeoutMs = 8000): Promise<T | null
     try {
         const res = await fetch(`${BASE_URL}${path}`, {
             signal: controller.signal,
-            next: { revalidate: 0 },
+            next: { revalidate },
         });
         if (!res.ok) return null;
         return res.json() as Promise<T>;
@@ -107,15 +107,16 @@ async function kuryanaFetch<T>(path: string, timeoutMs = 8000): Promise<T | null
 }
 
 export async function kuryanaSearch(query: string): Promise<KuryanaSearchResult | null> {
-    return kuryanaFetch<KuryanaSearchResult>(`/search/q/${encodeURIComponent(query)}`);
+    // Search results change frequently — keep short-lived
+    return kuryanaFetch<KuryanaSearchResult>(`/search/q/${encodeURIComponent(query)}`, 8000, 300);
 }
 
-export async function kuryanaGetDetails(slug: string): Promise<KuryanaDetails | null> {
-    return kuryanaFetch<KuryanaDetails>(`/id/${slug}`);
+export async function kuryanaGetDetails(slug: string, fresh = false): Promise<KuryanaDetails | null> {
+    return kuryanaFetch<KuryanaDetails>(`/id/${slug}`, 8000, fresh ? 0 : 3600);
 }
 
-export async function kuryanaGetCast(slug: string): Promise<KuryanaCastResult | null> {
-    return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`);
+export async function kuryanaGetCast(slug: string, fresh = false): Promise<KuryanaCastResult | null> {
+    return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`, 8000, fresh ? 0 : 3600);
 }
 
 export interface KuryanaWorkItem {
