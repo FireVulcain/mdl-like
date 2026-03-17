@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember } from "@/lib/kuryana";
 import { revalidatePath } from "next/cache";
 import { Prisma } from "@prisma/client";
+import { refreshSingleShow } from "@/actions/schedule";
 
 function normalizeCast(members: KuryanaCastMember[]) {
     return members.map((m) => ({
@@ -27,6 +28,9 @@ export async function POST(req: Request) {
     });
 
     if (existing?.mdlSlug) {
+        // Clear cached episode synopses so they're re-fetched on next load
+        await prisma.cachedMdlEpisode.deleteMany({ where: { mdlSlug: existing.mdlSlug } });
+
         // Slug already known — fetch fresh data directly, no title search needed
         try {
             const [details, castResult] = await Promise.all([
@@ -72,6 +76,7 @@ export async function POST(req: Request) {
     }
 
     if (mediaId) {
+        await refreshSingleShow(mediaId);
         revalidatePath(`/media/${mediaId}`);
     }
 
