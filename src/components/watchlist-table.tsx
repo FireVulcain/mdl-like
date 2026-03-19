@@ -1482,21 +1482,15 @@ const ItemCard = memo(function ItemCard({
                     <TooltipProvider delayDuration={300}>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        window.open(
-                                            item.mdlSlug
-                                                ? `https://mydramalist.com/${item.mdlSlug}`
-                                                : `https://mydramalist.com/search?q=${encodeURIComponent(item.title || "")}`,
-                                            "_blank",
-                                            "noopener,noreferrer",
-                                        );
-                                    }}
+                                <a
+                                    href={item.mdlSlug ? `https://mydramalist.com/${item.mdlSlug}` : `https://mydramalist.com/search?q=${encodeURIComponent(item.title || "")}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
                                     className="desktop-status-btn card-status cursor-pointer h-8 w-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all shrink-0"
                                 >
                                     <ExternalLink className="h-4 w-4" />
-                                </button>
+                                </a>
                             </TooltipTrigger>
                             <TooltipContent side="top">{item.mdlSlug ? "View on MyDramaList" : "Search on MyDramaList"}</TooltipContent>
                         </Tooltip>
