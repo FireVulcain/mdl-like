@@ -66,7 +66,11 @@ function calculateTimeLeft(airDate: string): TimeLeft | null {
     const now = new Date();
     const difference = airDateTime.getTime() - now.getTime();
 
-    if (difference <= 0) return null;
+    if (difference <= 0) {
+        // Episode air time passed but date is still today — show "Today"
+        if (isToday(airDate)) return { days: 0, hours: 0, minutes: 0 };
+        return null;
+    }
 
     return {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -115,12 +119,12 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
     const episodeData = useMemo(() => {
         const isOngoing = status === "Returning Series" || status === "In Production";
 
-        // Check if TMDB data is available and hasn't aired yet
+        // Check if TMDB data is available and hasn't aired yet (or airs today)
         if (nextEpisode) {
             const tmdbAirDateTime = getAirDateTime(nextEpisode.airDate);
             const now = new Date();
 
-            if (tmdbAirDateTime > now) {
+            if (tmdbAirDateTime > now || isToday(nextEpisode.airDate)) {
                 return {
                     airDate: nextEpisode.airDate,
                     episodeNumber: nextEpisode.episodeNumber,
