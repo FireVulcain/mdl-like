@@ -1,9 +1,13 @@
 import { notFound } from "next/navigation";
 import { getPublicUser, getPublicActivity, getPublicStats } from "@/actions/public-profile";
 import { getPublicWatchlist } from "@/actions/media";
+import { getPublicPodiums } from "@/actions/podium";
 import { WatchlistTable } from "@/components/watchlist-table";
 import { PublicActivityFeed } from "@/components/public-activity-feed";
+import { PodiumSection } from "@/components/podium-section";
+import { CollapsibleSection } from "@/components/collapsible-section";
 import { Star, Clock } from "lucide-react";
+import { auth } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -18,17 +22,28 @@ function formatWatchTime(minutes: number): string {
 export default async function PublicProfilePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
-    const [user, watchlist, activity, stats] = await Promise.all([
+    const [user, watchlist, activity, stats, podiums, session] = await Promise.all([
         getPublicUser(id),
         getPublicWatchlist(id),
         getPublicActivity(id, 20),
         getPublicStats(id),
+        getPublicPodiums(id),
+        auth(),
     ]);
 
     if (!user) notFound();
 
+    const currentUserId = process.env.SKIP_AUTH === "true"
+        ? (process.env.DEV_USER_ID ?? "mock-user-1")
+        : (session?.user?.id ?? null);
+    const isOwner = currentUserId === id;
+
     const displayName = user.name ?? "Anonymous";
     const totalItems = stats.totalShows + stats.totalMovies;
+
+    // Only show podium section if owner OR at least one completed podium exists
+    const anyPodium = Object.values(podiums).some((p) => p.length === 3);
+    const showPodium = isOwner || anyPodium;
 
     return (
         <div className="relative min-h-screen overflow-hidden">
@@ -88,15 +103,25 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                     </div>
                 )}
 
-                {/* Recent Activity */}
+                {/* Podium */}
+                {showPodium && (
+                    <PodiumSection
+                        podiums={podiums}
+                        isOwner={isOwner}
+                        profileUserId={id}
+                        watchlist={watchlist}
+                    />
+                )}
+
+                {/* Recent Activity — collapsible */}
                 {activity.length > 0 && (
-                    <div>
-                        <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-gray-400" />
-                            Recent Activity
-                        </h2>
+                    <CollapsibleSection
+                        title="Recent Activity"
+                        icon={<Clock className="h-4 w-4 text-gray-400" />}
+                        defaultOpen={false}
+                    >
                         <PublicActivityFeed items={activity} />
-                    </div>
+                    </CollapsibleSection>
                 )}
 
                 {/* Watchlist */}

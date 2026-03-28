@@ -34,9 +34,9 @@ model Session {
 }
 
 model User {
-  id            String        @id @default(cuid())
+  id            String          @id @default(cuid())
   name          String?
-  email         String?       @unique
+  email         String?         @unique
   emailVerified DateTime?
   image         String?
   password      String?
@@ -44,6 +44,7 @@ model User {
   sessions      Session[]
   media         UserMedia[]
   activityLogs  ActivityLog[]
+  podiums       ProfilePodium[]
 }
 
 model VerificationToken {
@@ -78,6 +79,23 @@ model UserMedia {
   airingStatus  String?
   lastWatchedAt DateTime?
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ProfilePodium {
+  id         String @id @default(cuid())
+  userId     String
+  category   String // "general" | "kdrama" | "cdrama"
+  rank       Int    // 1, 2, 3
+  externalId String
+  source     String
+  mediaType  String
+  title      String
+  poster     String?
+  year       Int?
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, category, rank])
+  @@index([userId, category])
 }
 
 model SyncLog {
