@@ -77,6 +77,7 @@ export type UnifiedPerson = {
 export type SearchResults = {
     media: UnifiedMedia[];
     people: UnifiedPerson[];
+    totalPages: number;
 };
 
 // Kuryana returns "/assets/nsfw.jpg" for adult content — not a real URL, treat as no poster
@@ -182,7 +183,28 @@ export const mediaService = {
 
         const mergedPeople = [...kuryanaPeople, ...filteredTmdbPeople];
 
-        return { media: mediaResults, people: mergedPeople };
+        return { media: mediaResults, people: mergedPeople, totalPages: tmdbResults.total_pages };
+    },
+
+    async searchMediaPage(query: string, page: number): Promise<{ media: UnifiedMedia[]; totalPages: number }> {
+        const tmdbResults = await tmdb.searchMulti(query, page);
+        const media: UnifiedMedia[] = tmdbResults.results
+            .filter((item): item is TMDBMedia & { media_type: "movie" | "tv" } => item.media_type === "movie" || item.media_type === "tv")
+            .map((item) => ({
+                id: `tmdb-${item.id}`,
+                externalId: item.id.toString(),
+                source: "TMDB" as "TMDB" | "MDL",
+                type: (item.media_type === "movie" ? "MOVIE" : "TV") as "MOVIE" | "TV",
+                title: item.title || item.name || "Unknown",
+                poster: item.poster_path ? TMDB_CONFIG.w500Image(item.poster_path) : null,
+                backdrop: item.backdrop_path ? TMDB_CONFIG.w1280Backdrop(item.backdrop_path) : null,
+                year: (item.release_date || item.first_air_date || "").split("-")[0],
+                originCountry: item.origin_country?.[0] || "US",
+                synopsis: item.overview,
+                rating: item.vote_average,
+                popularity: item.popularity,
+            }));
+        return { media, totalPages: tmdbResults.total_pages };
     },
 
     async searchMdlMedia(query: string): Promise<UnifiedMedia[]> {
