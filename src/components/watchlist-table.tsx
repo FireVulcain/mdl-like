@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useOptimistic, useTransition, memo, useCallback, useEffect } from "react";
+import Fuse from "fuse.js";
 import { useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import Link from "next/link";
@@ -243,7 +244,16 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         setExpandedGroups(newSet);
     };
 
+    const fuse = useMemo(
+        () => new Fuse(optimisticItems, { keys: ["title"], threshold: 0.4, ignoreLocation: true, minMatchCharLength: 2 }),
+        [optimisticItems],
+    );
+
     const filteredItems = useMemo(() => {
+        const fuzzyIds = search.length >= 2
+            ? new Set(fuse.search(search).map((r) => r.item.id))
+            : null;
+
         const result = optimisticItems.filter((item) => {
             if (filterStatuses.length > 0 && !filterStatuses.includes(item.status)) return false;
             if (filterCountries.length > 0 && (!item.originCountry || !filterCountries.includes(item.originCountry))) return false;
@@ -253,7 +263,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                 const hasMatchingGenre = filterGenres.some((fg) => itemGenres.includes(fg));
                 if (!hasMatchingGenre) return false;
             }
-            if (search && !item.title?.toLowerCase().includes(search.toLowerCase())) return false;
+            if (search) {
+                if (fuzzyIds !== null) {
+                    if (!fuzzyIds.has(item.id)) return false;
+                } else {
+                    if (!item.title?.toLowerCase().includes(search.toLowerCase())) return false;
+                }
+            }
             if (filterYear !== "All" && item.year) {
                 if (filterYear === "2010s" && (item.year < 2010 || item.year >= 2020)) return false;
                 if (filterYear === "2000s" && (item.year < 2000 || item.year >= 2010)) return false;
@@ -310,7 +326,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
 
         return result;
-    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly, fuse]);
 
     useEffect(() => {
         setDisplayCount(10);
