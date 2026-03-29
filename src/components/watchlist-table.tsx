@@ -250,8 +250,9 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     );
 
     const filteredItems = useMemo(() => {
-        const fuzzyIds = search.length >= 2
-            ? new Set(fuse.search(search).map((r) => r.item.id))
+        // Build id → rank map so we can both filter and sort by Fuse relevance
+        const fuseRankMap = search.length >= 2
+            ? new Map(fuse.search(search).map((r, i) => [r.item.id, i]))
             : null;
 
         const result = optimisticItems.filter((item) => {
@@ -264,8 +265,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                 if (!hasMatchingGenre) return false;
             }
             if (search) {
-                if (fuzzyIds !== null) {
-                    if (!fuzzyIds.has(item.id)) return false;
+                if (fuseRankMap !== null) {
+                    if (!fuseRankMap.has(item.id)) return false;
                 } else {
                     if (!item.title?.toLowerCase().includes(search.toLowerCase())) return false;
                 }
@@ -279,6 +280,11 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             if (filterAiringOnly && !(item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`])) return false;
             return true;
         });
+
+        // When fuzzy search is active, sort by relevance score regardless of sortBy
+        if (fuseRankMap) {
+            return result.sort((a, b) => (fuseRankMap.get(a.id) ?? 999) - (fuseRankMap.get(b.id) ?? 999));
+        }
 
         if (sortBy !== "default") {
             result.sort((a, b) => {
