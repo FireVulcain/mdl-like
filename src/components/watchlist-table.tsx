@@ -1014,9 +1014,12 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             </div>
 
             {/* Active Filters */}
-            {activeFilterCount > 0 && (
+            {(activeFilterCount > 0 || search) && (
                 <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-1 active-filters animate-in fade-in slide-in-from-top-1 duration-300">
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Filters:</span>
+                    <span className="text-xs font-semibold text-white/70 bg-white/8 px-2 py-0.5 rounded-md">
+                        {filteredItems.length} result{filteredItems.length !== 1 ? "s" : ""}
+                    </span>
                     {filterStatuses.map((status) => (
                         <button
                             key={status}
