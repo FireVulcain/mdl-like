@@ -40,11 +40,12 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
-  accounts      Account[]
-  sessions      Session[]
-  media         UserMedia[]
-  activityLogs  ActivityLog[]
-  podiums       ProfilePodium[]
+  accounts        Account[]
+  sessions        Session[]
+  media           UserMedia[]
+  activityLogs    ActivityLog[]
+  podiums         ProfilePodium[]
+  lastSeenSync    DateTime?
 }
 
 model VerificationToken {

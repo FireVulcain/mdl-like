@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { getLastSyncInfo, type SyncInfo } from "@/actions/sync";
-
-const LAST_SEEN_SYNC_KEY = "lastSeenSyncTimestamp";
+import { getLastSyncInfo, markSyncAsSeen } from "@/actions/sync";
 
 export function SyncNotification() {
     const [hasChecked, setHasChecked] = useState(false);
@@ -16,53 +14,43 @@ export function SyncNotification() {
             try {
                 const syncInfo = await getLastSyncInfo();
 
-                if (!syncInfo) {
+                if (!syncInfo || syncInfo.seen) {
                     setHasChecked(true);
                     return;
                 }
 
-                const lastSeenSync = localStorage.getItem(LAST_SEEN_SYNC_KEY);
-                const lastSyncTimestamp = syncInfo.lastSync.getTime();
+                const results = syncInfo.results;
+                const totalTasks = results?.tasks?.length ?? 0;
+                const timeAgo = getTimeAgo(syncInfo.lastSync);
 
-                // Check if this sync is newer than what the user has seen
-                if (!lastSeenSync || parseInt(lastSeenSync) < lastSyncTimestamp) {
-                    // Show toast notification
-                    const results = syncInfo.results;
-                    const successCount = results?.tasks?.filter((t) => t.success).length ?? 0;
-                    const totalTasks = results?.tasks?.length ?? 0;
+                if (results?.error) {
+                    toast.error("Background sync encountered an error", {
+                        description: `Sync ran ${timeAgo} but failed: ${results.error}`,
+                        duration: 6000,
+                    });
+                } else if (totalTasks > 0) {
+                    const taskSummary = results?.tasks
+                        ?.map((t) => {
+                            if (!t.success) return `${formatTaskName(t.task)}: failed`;
+                            if (t.task === "mdl-import") {
+                                if (t.matched === 0) return null;
+                                return `${formatTaskName(t.task)}: ${t.matched} matched`;
+                            }
+                            if (t.count === 0) return null;
+                            return `${formatTaskName(t.task)}: ${t.count} updated`;
+                        })
+                        .filter(Boolean)
+                        .join(", ");
 
-                    const timeAgo = getTimeAgo(syncInfo.lastSync);
-
-                    if (results?.error) {
-                        toast.error("Background sync encountered an error", {
-                            description: `Sync ran ${timeAgo} but failed: ${results.error}`,
-                            duration: 6000,
-                        });
-                    } else if (totalTasks > 0) {
-                        const taskSummary = results?.tasks
-                            ?.map((t) => {
-                                if (!t.success) return `${formatTaskName(t.task)}: failed`;
-                                if (t.task === "mdl-import") {
-                                    if (t.matched === 0) return null;
-                                    return `${formatTaskName(t.task)}: ${t.matched} matched`;
-                                }
-                                if (t.count === 0) return null;
-                                return `${formatTaskName(t.task)}: ${t.count} updated`;
-                            })
-                            .filter(Boolean)
-                            .join(", ");
-
-                        toast.success("Background sync completed", {
-                            description: taskSummary
-                                ? `${timeAgo} - ${taskSummary}`
-                                : `${timeAgo} - No updates needed`,
-                            duration: 5000,
-                        });
-                    }
-
-                    // Mark this sync as seen
-                    localStorage.setItem(LAST_SEEN_SYNC_KEY, lastSyncTimestamp.toString());
+                    toast.success("Background sync completed", {
+                        description: taskSummary
+                            ? `${timeAgo} - ${taskSummary}`
+                            : `${timeAgo} - No updates needed`,
+                        duration: 5000,
+                    });
                 }
+
+                await markSyncAsSeen();
             } catch (error) {
                 console.error("Failed to check sync status:", error);
             } finally {
@@ -70,7 +58,6 @@ export function SyncNotification() {
             }
         };
 
-        // Small delay to let the page render first
         const timeout = setTimeout(checkSync, 1000);
         return () => clearTimeout(timeout);
     }, [hasChecked]);
