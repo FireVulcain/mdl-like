@@ -153,24 +153,29 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                 </div>
 
                 {/* Right side - Horizontal carousel at screen edge */}
-                <div className="hidden md:flex absolute right-0 bottom-24 items-center">
-                    {/* Navigation arrow - always visible for infinite scroll */}
-                    <button
-                        onClick={() => handleSelect((selectedIndex - 1 + items.length) % items.length)}
-                        className="cursor-pointer absolute -left-14 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 border border-white/10 transition-all"
-                    >
-                        <ChevronLeft className="h-5 w-5 text-white" />
-                    </button>
+                <div className="hidden md:flex absolute right-8 bottom-24 items-center">
+                    {/* Navigation arrow - only shown when there are multiple items */}
+                    {items.length > 1 && (
+                        <button
+                            onClick={() => handleSelect((selectedIndex - 1 + items.length) % items.length)}
+                            className="cursor-pointer absolute -left-14 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 border border-white/10 transition-all"
+                        >
+                            <ChevronLeft className="h-5 w-5 text-white" />
+                        </button>
+                    )}
 
-                    {/* Carousel container - shows 2.5 cards with padding for ring */}
-                    <div className="overflow-hidden pl-2 py-2" style={{ width: "calc(2.5 * 200px + 2 * 16px + 8px)" }}>
+                    {/* Carousel container - shows 2.5 cards with padding for ring (or 1 card when single item) */}
+                    <div
+                        className="overflow-hidden px-2 py-2"
+                        style={{ width: items.length === 1 ? "calc(1 * 200px + 16px)" : "calc(2.5 * 200px + 2 * 16px + 16px)" }}
+                    >
                         <motion.div
                             className="flex gap-4 pl-1"
                             animate={{ x: -selectedIndex * (200 + 16) }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
-                            {/* Render items twice for infinite scroll illusion */}
-                            {[...items, ...items].map((show, index) => {
+                            {/* Render items twice for infinite scroll illusion (only when multiple items) */}
+                            {(items.length > 1 ? [...items, ...items] : items).map((show, index) => {
                                 const actualIndex = index % items.length;
                                 const isSelected = actualIndex === selectedIndex;
                                 const showProgress = (show.progress / show.totalEp) * 100;
