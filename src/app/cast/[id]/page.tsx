@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import type { TMDBPerson, TMDBPersonCredits } from "@/lib/tmdb";
 import { getPersonData, getMdlRatingsForTmdbIds } from "@/actions/person";
 import { getWatchlistExternalIds } from "@/actions/user-media";
+import { StickySidebar } from "@/components/media/sticky-sidebar";
+import { BiographyExpander } from "@/components/media/biography-expander";
 
 function getGenderLabel(gender: number): string {
     switch (gender) {
@@ -85,17 +87,27 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-linear-to-b ">
-                <div className="container py-8 m-auto">
-                    <div className="grid gap-8 md:grid-cols-[280px_1fr]">
-                        {/* Loading skeleton for profile */}
-                        <div className="space-y-4">
+            <div className="min-h-screen bg-linear-to-b">
+                <div className="container py-8 m-auto px-4 md:px-6">
+                    <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
+                        {/* Mobile skeleton */}
+                        <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
+                            <div className="relative aspect-2/3 overflow-hidden rounded-xl bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                            <div className="space-y-2 py-0.5">
+                                <div className="h-4 w-32 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                                <div className="h-3 w-20 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                            </div>
+                        </div>
+                        {/* Desktop skeleton sidebar */}
+                        <div className="hidden md:block space-y-4">
                             <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
                             <div className="h-64 rounded-xl bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
                         </div>
-                        <div className="space-y-4">
-                            <div className="h-12 w-64 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
-                            <div className="h-6 w-32 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                        <div className="space-y-4 md:pt-6">
+                            <div className="hidden md:block space-y-2">
+                                <div className="h-12 w-64 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                                <div className="h-6 w-32 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
+                            </div>
                             <div className="h-48 rounded bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
                         </div>
                     </div>
@@ -146,9 +158,43 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                 </div>
 
                 {/* Profile Section */}
-                <div className="grid gap-8 md:grid-cols-[280px_1fr]">
-                    {/* Profile Image */}
-                    <div className="space-y-4 md:self-start">
+                <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
+                    {/* Mobile header: compact photo + name */}
+                    <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
+                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
+                            {person.profile_path ? (
+                                <Image
+                                    unoptimized={true}
+                                    src={TMDB_CONFIG.w500Image(person.profile_path)}
+                                    alt={person.name}
+                                    fill
+                                    className="object-cover opacity-0 transition-opacity duration-700 ease-out"
+                                    priority
+                                    onLoad={(e) => {
+                                        const img = e.currentTarget;
+                                        const container = img.parentElement;
+                                        setTimeout(() => {
+                                            img.classList.replace("opacity-0", "opacity-100");
+                                            container?.classList.remove("animate-shimmer", "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))]", "bg-size-[200%_100%]");
+                                        }, 100);
+                                    }}
+                                />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center text-gray-400 bg-linear-to-br from-gray-800 to-gray-900 text-xs">No Image</div>
+                            )}
+                        </div>
+                        <div className="flex flex-col gap-2 min-w-0 py-0.5">
+                            <h1 className="text-base font-bold leading-snug text-white">{person.name}</h1>
+                            <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{person.known_for_department}</Badge>
+                                {credits && <span className="text-gray-400">{credits.cast.length} credits</span>}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Desktop sidebar: Profile Image + Personal Info */}
+                    <div className="hidden md:block">
+                    <StickySidebar>
                         <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
                             {person.profile_path ? (
                                 <Image
@@ -249,12 +295,13 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 )}
                             </div>
                         </div>
+                    </StickySidebar>
                     </div>
 
                     {/* Main Content */}
-                    <div className="space-y-8">
-                        {/* Name & Title */}
-                        <div>
+                    <div className="space-y-8 min-w-0 md:pt-6">
+                        {/* Name & Title (desktop only) */}
+                        <div className="hidden md:block">
                             <h1 className="text-4xl font-bold mb-2 text-white">{person.name}</h1>
                             <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
                                 <Badge variant="outline" className="bg-white/5 text-gray-300 border-white/20">
@@ -273,9 +320,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {person.biography && (
                             <div>
                                 <h3 className="text-lg font-semibold mb-3 text-white">Biography</h3>
-                                <div className="prose prose-invert max-w-none">
-                                    <p className="leading-relaxed text-muted-foreground whitespace-pre-line">{person.biography}</p>
-                                </div>
+                                <BiographyExpander text={person.biography} />
                             </div>
                         )}
 

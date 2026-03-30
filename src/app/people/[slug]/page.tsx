@@ -12,6 +12,7 @@ import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
 import { getWatchlistExternalIds } from "@/actions/user-media";
 import { BiographyExpander } from "@/components/media/biography-expander";
+import { StickySidebar } from "@/components/media/sticky-sidebar";
 
 function sortWorks(works: KuryanaWorkItem[]): KuryanaWorkItem[] {
     return [...works].sort((a, b) => {
@@ -341,16 +342,37 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                     Back to Home
                 </Link>
 
-                <div className="grid gap-8 md:grid-cols-[280px_1fr]">
-                    {/* Left: Photo + Info */}
-                    <div className="space-y-4 md:self-start">
-                        {data.profile ? (
-                            <MdlPersonImage src={data.profile} alt={data.name} />
-                        ) : (
-                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 flex items-center justify-center text-gray-400 bg-linear-to-br from-gray-800 to-gray-900">
-                                No Image
+                <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
+                    {/* Mobile header: compact photo + name */}
+                    <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
+                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10">
+                            {data.profile ? (
+                                <Image unoptimized src={data.profile} alt={data.name} fill className="object-cover" priority />
+                            ) : (
+                                <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Image</div>
+                            )}
+                        </div>
+                        <div className="flex flex-col gap-2 min-w-0 py-0.5">
+                            <h1 className="text-base font-bold leading-snug text-white">{data.name}</h1>
+                            <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">via MDL</Badge>
+                                <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
                             </div>
-                        )}
+                            <a
+                                href={data.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors"
+                            >
+                                View on MDL
+                                <ExternalLink className="h-3 w-3" />
+                            </a>
+                        </div>
+                    </div>
+                    {/* Desktop sidebar: Photo + Info */}
+                    <div className="hidden md:block">
+                    <StickySidebar>
+                        <MdlPersonImage src={data.profile ?? ""} alt={data.name} />
 
                         <div
                             className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
@@ -404,11 +426,12 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                 )}
                             </div>
                         </div>
+                    </StickySidebar>
                     </div>
 
                     {/* Right: Name + Bio + Filmography */}
-                    <div className="space-y-8">
-                        <div>
+                    <div className="space-y-8 min-w-0 md:pt-6">
+                        <div className="hidden md:block">
                             <h1 className="text-4xl font-bold mb-2 text-white">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
                                 <Badge variant="outline" className="bg-white/5 text-gray-300 border-white/20">

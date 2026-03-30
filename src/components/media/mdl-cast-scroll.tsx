@@ -79,7 +79,7 @@ function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number })
     return <div>{inner}</div>;
 }
 
-const CAST_GRID = "grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-4";
+const CAST_GRID = "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4";
 
 export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
     const [showSupport, setShowSupport] = useState(false);
