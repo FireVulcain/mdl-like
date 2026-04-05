@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Star, Clock } from "lucide-react";
+import { ChevronDown, ChevronUp, Star, Clock, Check } from "lucide-react";
 
 interface Episode {
     id: number;
@@ -31,9 +31,10 @@ interface EpisodeGuideProps {
     poster: string | null;
     mdlEpisodes?: MdlEpisodeItem[] | null;
     mediaId?: string;
+    watchedProgress?: number;
 }
 
-function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
+function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | null; isWatched?: boolean }) {
     const [expanded, setExpanded] = useState(false);
     const hasOverview = ep.overview.trim().length > 0;
     const isLong = ep.overview.length > 150;
@@ -41,7 +42,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
     const formattedDate = ep.airDate ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
 
     return (
-        <div className="group flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
+        <div className={`group flex gap-4 rounded-xl border p-3 transition-colors ${isWatched ? "border-emerald-500/15 bg-emerald-950/20 hover:bg-emerald-950/30" : "border-white/5 bg-white/3 hover:bg-white/6"}`}>
             {/* Episode still */}
             <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
                 {ep.still || poster ? (
@@ -49,7 +50,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
                         src={ep.still ?? poster!}
                         alt={ep.name}
                         fill
-                        className="opacity-0 transition-opacity duration-500 object-cover object-top"
+                        className={`opacity-0 transition-opacity duration-500 object-cover object-top ${isWatched ? "brightness-75" : ""}`}
                         loading="lazy"
                         sizes="144px"
                         onLoad={(e) => {
@@ -64,6 +65,11 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
                 <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
                     Ep {ep.number}
                 </span>
+                {isWatched && (
+                    <span className="absolute top-1.5 right-1.5 flex items-center justify-center rounded-full bg-black/60 p-0.5 backdrop-blur-sm">
+                        <Check className="size-3 text-emerald-400" strokeWidth={3} />
+                    </span>
+                )}
             </div>
 
             {/* Episode info */}
@@ -118,7 +124,7 @@ function EpisodeRow({ ep, poster }: { ep: Episode; poster: string | null }) {
     );
 }
 
-function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: string | null; mediaId?: string }) {
+function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem; poster: string | null; mediaId?: string; isWatched?: boolean }) {
     const [expanded, setExpanded] = useState(false);
     const hasSynopsis = !!ep.synopsis?.trim();
     const isLong = (ep.synopsis?.length ?? 0) > 60;
@@ -128,7 +134,7 @@ function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: st
     const episodeHref = mediaId ? `/media/${mediaId}/episode/${ep.number}` : undefined;
 
     return (
-        <div className="flex gap-4 rounded-xl border border-white/5 bg-white/3 p-3 transition-colors hover:bg-white/6">
+        <div className={`flex gap-4 rounded-xl border p-3 transition-colors ${isWatched ? "border-emerald-500/15 bg-emerald-950/20 hover:bg-emerald-950/30" : "border-white/5 bg-white/3 hover:bg-white/6"}`}>
             {/* Episode still — clicking navigates to episode page */}
             {episodeHref ? (
                 <Link href={episodeHref} className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10 shrink-0">
@@ -137,7 +143,7 @@ function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: st
                             src={ep.image ?? poster!}
                             alt={ep.title}
                             fill
-                            className="opacity-0 transition-opacity duration-500 object-cover object-top"
+                            className={`opacity-0 transition-opacity duration-500 object-cover object-top ${isWatched ? "brightness-75" : ""}`}
                             loading="lazy"
                             sizes="144px"
                             onLoad={(e) => {
@@ -152,6 +158,11 @@ function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: st
                     <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
                         Ep {ep.number}
                     </span>
+                    {isWatched && (
+                        <span className="absolute top-1.5 right-1.5 flex items-center justify-center rounded-full bg-black/60 p-0.5 backdrop-blur-sm">
+                            <Check className="size-3 text-emerald-400" strokeWidth={3} />
+                        </span>
+                    )}
                 </Link>
             ) : (
                 <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
@@ -160,7 +171,7 @@ function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: st
                             src={ep.image ?? poster!}
                             alt={ep.title}
                             fill
-                            className="opacity-0 transition-opacity duration-500 object-cover object-top"
+                            className={`opacity-0 transition-opacity duration-500 object-cover object-top ${isWatched ? "brightness-75" : ""}`}
                             loading="lazy"
                             sizes="144px"
                             onLoad={(e) => {
@@ -175,6 +186,11 @@ function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: st
                     <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
                         Ep {ep.number}
                     </span>
+                    {isWatched && (
+                        <span className="absolute top-1.5 right-1.5 flex items-center justify-center rounded-full bg-black/60 p-0.5 backdrop-blur-sm">
+                            <Check className="size-3 text-emerald-400" strokeWidth={3} />
+                        </span>
+                    )}
                 </div>
             )}
 
@@ -222,7 +238,7 @@ function MdlEpisodeRow({ ep, poster, mediaId }: { ep: MdlEpisodeItem; poster: st
     );
 }
 
-export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId }: EpisodeGuideProps) {
+export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, watchedProgress }: EpisodeGuideProps) {
     const [showAll, setShowAll] = useState(false);
     const [source, setSource] = useState<"tmdb" | "mdl">("mdl");
 
@@ -285,8 +301,8 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId }:
             <div className="relative">
                 <div className="flex flex-col gap-2">
                     {source === "mdl" && activeEpisodes
-                        ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} />)
-                        : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} />)}
+                        ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)
+                        : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)}
                 </div>
 
                 {/* Fade gradient — only when collapsed and there are more episodes */}

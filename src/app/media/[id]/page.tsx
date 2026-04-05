@@ -846,17 +846,18 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {media.type === "TV" && episodes.length > 0 && (
                         <div id="section-episodes">
                             {isMdlRelevant ? (
-                                <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />}>
+                                <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} />}>
                                     <MdlEpisodeGuideSection
                                         tmdbEpisodes={episodes}
                                         season={selectedSeason}
                                         poster={media.poster}
                                         externalId={media.externalId}
                                         mediaId={id}
+                                        watchedProgress={userMedia?.progress}
                                     />
                                 </Suspense>
                             ) : (
-                                <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} />
+                                <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} />
                             )}
                         </div>
                     )}
