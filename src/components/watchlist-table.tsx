@@ -1207,7 +1207,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-sm text-gray-500">
-                                                    <span>{first.originCountry || "Unknown"}</span>
+                                                    <span>{first.originCountry ? countryName(first.originCountry) : "Unknown"}</span>
                                                     <span className="w-1 h-1 rounded-full bg-gray-600" />
                                                     <span>{first.year || "N/A"}</span>
                                                 </div>
@@ -1496,7 +1496,7 @@ const ItemCard = memo(function ItemCard({
                             )}
                         </div>
                         <div className="flex items-center gap-2 flex-wrap text-sm text-gray-500">
-                            <span>{item.originCountry || "Unknown"}</span>
+                            <span>{item.originCountry ? countryName(item.originCountry) : "Unknown"}</span>
                             <span className="w-1 h-1 rounded-full bg-gray-600" />
                             <span>{item.year || "N/A"}</span>
                             {item.status !== "Completed" && (
