@@ -205,6 +205,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
     const [isBackfilling, setIsBackfilling] = useState(false);
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
+    const [showTmdbRefreshModal, setShowTmdbRefreshModal] = useState(false);
+    const [tmdbRefreshStatuses, setTmdbRefreshStatuses] = useState<string[]>([]);
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
     const [showMdlRefreshModal, setShowMdlRefreshModal] = useState(false);
     const [mdlRefreshStatuses, setMdlRefreshStatuses] = useState<string[]>([]);
@@ -469,11 +471,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     };
 
-    const handleRefreshMedia = async () => {
+    const handleRefreshMedia = async (statuses: string[]) => {
         setIsRefreshingMedia(true);
-        const toastId = toast.loading("Refreshing media data from TMDB...");
+        setShowTmdbRefreshModal(false);
+        const label = statuses.length === 0 ? "all media" : statuses.join(", ");
+        const toastId = toast.loading(`Refreshing TMDB data for ${label}...`);
         try {
-            const result = await refreshMediaData();
+            const result = await refreshMediaData(statuses.length ? statuses : undefined);
             if (result.success) {
                 toast.success("Media data refreshed", {
                     id: toastId,
@@ -986,7 +990,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
-                                                handleRefreshMedia();
+                                                setTmdbRefreshStatuses([]);
+                                                setShowTmdbRefreshModal(true);
                                             }}
                                             disabled={isRefreshingMedia}
                                             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -1302,6 +1307,71 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     confirmLabel="Refresh"
                     onConfirm={handleBackfill}
                 />
+            )}
+
+            {!readOnly && (
+                <Dialog open={showTmdbRefreshModal} onOpenChange={setShowTmdbRefreshModal}>
+                    <DialogContent className="sm:max-w-md bg-gray-900 border-white/10">
+                        <DialogHeader>
+                            <DialogTitle className="text-white">Refresh TMDB Data</DialogTitle>
+                            <DialogDescription className="text-gray-400">
+                                Select which statuses to refresh.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex flex-wrap gap-2 py-2">
+                            <button
+                                onClick={() => setTmdbRefreshStatuses([])}
+                                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                                    tmdbRefreshStatuses.length === 0
+                                        ? "bg-white/20 text-white"
+                                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                }`}
+                            >
+                                All media
+                            </button>
+                            {allStatuses.map((status) => {
+                                const cfg = statusConfig[status as keyof typeof statusConfig];
+                                const Icon = cfg.icon;
+                                const isSelected = tmdbRefreshStatuses.includes(status);
+                                return (
+                                    <button
+                                        key={status}
+                                        onClick={() =>
+                                            setTmdbRefreshStatuses((prev) =>
+                                                prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]
+                                            )
+                                        }
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                                            isSelected
+                                                ? `bg-white/15 ${cfg.color}`
+                                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        <Icon className="h-3.5 w-3.5" />
+                                        {status}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        <DialogFooter className="gap-2 sm:gap-2">
+                            <Button
+                                variant="ghost"
+                                onClick={() => setShowTmdbRefreshModal(false)}
+                                disabled={isRefreshingMedia}
+                                className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                onClick={() => handleRefreshMedia(tmdbRefreshStatuses)}
+                                disabled={isRefreshingMedia}
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
+                            >
+                                Start Refresh
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             )}
 
             {!readOnly && (

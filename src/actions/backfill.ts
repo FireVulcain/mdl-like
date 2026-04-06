@@ -264,15 +264,17 @@ export async function backfillAiringStatus() {
     return { success: true, count, message: `Updated ${count} items` };
 }
 
-// Refresh media data from TMDB for "Plan to Watch" and "Watching" items
-export async function refreshMediaData() {
+// Refresh media data from TMDB for items matching the given statuses (defaults to "Plan to Watch" + "Watching")
+export async function refreshMediaData(statuses?: string[]) {
     const userId = await getCurrentUserId();
+
+    const statusFilter = statuses?.length ? statuses : ["Plan to Watch", "Watching"];
 
     const items = await prisma.userMedia.findMany({
         where: {
             userId,
             status: {
-                in: ["Plan to Watch", "Watching"],
+                in: statusFilter,
             },
         },
     });
