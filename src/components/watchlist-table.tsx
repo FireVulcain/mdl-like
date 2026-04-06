@@ -40,6 +40,25 @@ import { ConfirmDialog } from "./confirm-dialog";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
+const COUNTRY_NAMES: Record<string, string> = {
+    AF: "Afghanistan", AL: "Albania", DZ: "Algeria", AR: "Argentina", AU: "Australia",
+    AT: "Austria", BE: "Belgium", BR: "Brazil", CA: "Canada", CL: "Chile",
+    CN: "China", CO: "Colombia", HR: "Croatia", CZ: "Czech Republic", DK: "Denmark",
+    EG: "Egypt", FI: "Finland", FR: "France", DE: "Germany", GR: "Greece",
+    HK: "Hong Kong", HU: "Hungary", IN: "India", ID: "Indonesia", IR: "Iran",
+    IQ: "Iraq", IE: "Ireland", IL: "Israel", IT: "Italy", JP: "Japan",
+    JO: "Jordan", KZ: "Kazakhstan", KE: "Kenya", KR: "South Korea", KW: "Kuwait",
+    LB: "Lebanon", MY: "Malaysia", MX: "Mexico", MA: "Morocco", NL: "Netherlands",
+    NZ: "New Zealand", NG: "Nigeria", NO: "Norway", PK: "Pakistan", PE: "Peru",
+    PH: "Philippines", PL: "Poland", PT: "Portugal", QA: "Qatar", RO: "Romania",
+    RU: "Russia", SA: "Saudi Arabia", RS: "Serbia", SG: "Singapore", ZA: "South Africa",
+    ES: "Spain", SE: "Sweden", CH: "Switzerland", TW: "Taiwan", TH: "Thailand",
+    TR: "Turkey", UA: "Ukraine", AE: "United Arab Emirates", GB: "United Kingdom",
+    US: "United States", UZ: "Uzbekistan", VN: "Vietnam",
+};
+
+const countryName = (code: string) => COUNTRY_NAMES[code] ?? code;
+
 type ConfirmAction = "backfill" | null;
 
 type NextEpisodeData = {
@@ -738,7 +757,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                                 : "text-gray-400 hover:bg-white/5 hover:text-white"
                                                         }`}
                                                     >
-                                                        <span className="flex-1 text-left">{country}</span>
+                                                        <span className="flex-1 text-left">{countryName(country)}</span>
                                                         {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />}
                                                     </button>
                                                 );
@@ -1042,7 +1061,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             onClick={() => toggleCountry(country)}
                             className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-rose-500/15 text-rose-400 hover:opacity-80 transition-all cursor-pointer group"
                         >
-                            {country}
+                            {countryName(country)}
                             <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     ))}
