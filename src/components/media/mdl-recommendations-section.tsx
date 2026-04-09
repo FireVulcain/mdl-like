@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetRecommendations } from "@/lib/kuryana";
-import { RecommendationsWithToggle } from "./recommendations-with-toggle";
+import { RecsWithToggle } from "./recommendations-with-toggle";
 import { getMdlRatingsForTmdbIds } from "@/actions/person";
 import type { UnifiedMedia } from "@/services/media.service";
 
@@ -12,7 +12,7 @@ interface Props {
     mdlSlug?: string; // When provided, skips the TMDB→MDL slug lookup (for MDL-native pages)
 }
 
-export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, watchlistIds, mdlSlug: directSlug }: Props) {
+export async function MdlRecsSection({ tmdbRecs, externalId, season, watchlistIds, mdlSlug: directSlug }: Props) {
     let effectiveSlug: string | null = directSlug ?? null;
 
     if (!effectiveSlug) {
@@ -63,14 +63,14 @@ export async function MdlRecommendationsSection({ tmdbRecs, externalId, season, 
     if ((!tmdbRecs || tmdbRecs.length === 0) && (!mdlRecs || mdlRecs.length === 0)) {
         return (
             <div>
-                <h3 className="text-lg font-semibold mb-4">Recommendations</h3>
+                <h3 className="text-lg font-semibold mb-4">Recs</h3>
                 <div className="text-center py-12 text-gray-400">No recommendations available.</div>
             </div>
         );
     }
 
     return (
-        <RecommendationsWithToggle
+        <RecsWithToggle
             tmdbRecs={tmdbRecs}
             mdlRecs={mdlRecs}
             watchlistIds={watchlistIds}

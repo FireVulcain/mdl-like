@@ -18,7 +18,7 @@ interface Props {
     mdlSlugToRatingMap: Record<string, number>;
 }
 
-export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmdbRatingsMap, mdlSlugToRatingMap }: Props) {
+export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmdbRatingsMap, mdlSlugToRatingMap }: Props) {
     const hasMdl = mdlRecs && mdlRecs.length > 0;
     const [source, setSource] = useState<"tmdb" | "mdl">(hasMdl ? "mdl" : "tmdb");
     const [localLinkedMap, setLocalLinkedMap] = useState<Record<string, string>>(linkedMap);
@@ -32,7 +32,7 @@ export function RecommendationsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, lin
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">Recommendations</h3>
+                    <h3 className="text-lg font-semibold">Recs</h3>
                     {source === "mdl" && hasMdl ? (
                         <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
                             via MDL

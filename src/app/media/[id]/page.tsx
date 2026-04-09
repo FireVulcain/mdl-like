@@ -23,7 +23,7 @@ import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
 import { Suspense } from "react";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
-import { MdlRecommendationsSection } from "@/components/media/mdl-recommendations-section";
+import { MdlRecsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { prisma } from "@/lib/prisma";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
@@ -76,10 +76,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         }
 
         const navSections: NavSection[] = [
-            { id: "section-cast", label: "Cast & Credits" },
-            ...(media.type === "TV" ? [{ id: "section-episodes", label: "Episode Guide" }] : []),
+            { id: "section-cast", label: "Cast" },
+            ...(media.type === "TV" ? [{ id: "section-episodes", label: "Episodes" }] : []),
             { id: "section-reviews", label: "Reviews" },
-            { id: "section-recommendations", label: "Recommendations" },
+            { id: "section-recommendations", label: "Recs" },
             { id: "section-comments", label: "Comments" },
         ];
 
@@ -346,7 +346,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                         <div id="section-recommendations">
                             <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
-                                <MdlRecommendationsSection
+                                <MdlRecsSection
                                     tmdbRecs={[]}
                                     externalId={media.externalId}
                                     season={1}
@@ -797,11 +797,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* In-page navigation */}
                     {(() => {
                         const navSections: NavSection[] = [
-                            { id: "section-cast", label: "Cast & Credits" },
-                            ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episode Guide" }] : []),
+                            { id: "section-cast", label: "Cast" },
+                            ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episodes" }] : []),
                             ...((media.images?.backdrops?.length ?? 0) > 0 ? [{ id: "section-photos", label: "Photos" }] : []),
                             ...(isMdlRelevant ? [{ id: "section-reviews", label: "Reviews" }] : []),
-                            { id: "section-recommendations", label: "Recommendations" },
+                            { id: "section-recommendations", label: "Recs" },
                             ...(isMdlRelevant ? [{ id: "section-comments", label: "Comments" }] : []),
                         ];
                         return <MediaNav sections={navSections} />;
@@ -885,7 +885,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* Recommendations */}
                     <div id="section-recommendations">
                         <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
-                            <MdlRecommendationsSection
+                            <MdlRecsSection
                                 tmdbRecs={media.recommendations || []}
                                 externalId={media.externalId}
                                 season={selectedSeason}

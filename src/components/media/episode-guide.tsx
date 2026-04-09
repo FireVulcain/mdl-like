@@ -255,7 +255,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
         <div>
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
                 <div className="flex items-center gap-2 min-w-0">
-                    <h3 className="text-lg font-semibold text-white shrink-0">Episode Guide</h3>
+                    <h3 className="text-lg font-semibold text-white shrink-0">Episodes</h3>
                     <span
                         className={`whitespace-nowrap shrink-0 px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
                             source === "mdl" ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"

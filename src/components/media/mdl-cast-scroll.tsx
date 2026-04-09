@@ -100,7 +100,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-white">Cast & Credits</h3>
+                    <h3 className="text-lg font-semibold text-white">Cast</h3>
                     <span
                         className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
                             source === "mdl"
