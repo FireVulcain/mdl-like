@@ -33,7 +33,7 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
     const [year, setYear] = useState(initial.y);
     const [month, setMonth] = useState(initial.m);
-    const [asianOnly, setAsianOnly] = useState(true);
+    const [asianOnly, setAsianOnly] = useState(false);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [refreshingShowId, setRefreshingShowId] = useState<string | null>(null);
