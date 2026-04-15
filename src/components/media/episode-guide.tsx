@@ -263,6 +263,14 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
                     >
                         via {source === "mdl" ? "MDL" : "TMDB"}
                     </span>
+                    {mdlEpisodes && mediaId && (
+                        <Link
+                            href={`/media/${mediaId}/episodes?season=${season}`}
+                            className="shrink-0 text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                        >
+                            View all →
+                        </Link>
+                    )}
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
                     {mdlEpisodes && episodes.length > 0 && (
