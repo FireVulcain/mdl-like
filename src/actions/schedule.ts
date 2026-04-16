@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { tvmaze } from "@/lib/tvmaze";
 import { tmdb } from "@/lib/tmdb";
+import { kuryanaGetEpisodesList } from "@/lib/kuryana";
 import { getCurrentUserId } from "@/lib/session";
 
 export type ScheduleEntry = {
@@ -24,21 +25,42 @@ async function withConcurrency<T>(items: T[], concurrency: number, fn: (item: T)
     }
 }
 
+const MDL_MONTH: Record<string, string> = {
+    January: "01", February: "02", March: "03", April: "04",
+    May: "05", June: "06", July: "07", August: "08",
+    September: "09", October: "10", November: "11", December: "12",
+};
+
+function parseMdlAirDate(raw: string | null | undefined): string | null {
+    if (!raw) return null;
+    // "May 13, 2025" → "2025-05-13"
+    const m = raw.match(/^(\w+)\s+(\d+),\s+(\d{4})$/);
+    if (!m) return null;
+    const month = MDL_MONTH[m[1]];
+    if (!month) return null;
+    return `${m[3]}-${month}-${m[2].padStart(2, "0")}`;
+}
+
 async function fetchAndCacheEpisodes(
     mediaId: string,
     externalId: string,
     title: string | null,
 ): Promise<{ airDate: string; episodeNumber: number; seasonNumber: number; episodeName?: string }[]> {
-    const externalIds = await tmdb.getExternalIds("tv", externalId);
-    const episodes = await tvmaze.getAllEpisodes({
-        imdbId: externalIds?.imdb_id,
-        tvdbId: externalIds?.tvdb_id,
-        showName: title,
-    });
+    let tvmazeEpisodes: Awaited<ReturnType<typeof tvmaze.getAllEpisodes>> = [];
+    try {
+        const externalIds = await tmdb.getExternalIds("tv", externalId);
+        tvmazeEpisodes = await tvmaze.getAllEpisodes({
+            imdbId: externalIds?.imdb_id,
+            tvdbId: externalIds?.tvdb_id,
+            showName: title,
+        });
+    } catch {
+        // TMDB/TVmaze lookup failed — fall through to MDL fallback
+    }
 
-    if (episodes.length > 0) {
+    if (tvmazeEpisodes.length > 0) {
         await prisma.cachedEpisode.createMany({
-            data: episodes.map((ep) => ({
+            data: tvmazeEpisodes.map((ep) => ({
                 mediaId,
                 airDate: ep.airDate,
                 episodeNumber: ep.episodeNumber,
@@ -47,14 +69,50 @@ async function fetchAndCacheEpisodes(
             })),
             skipDuplicates: true,
         });
+        return tvmazeEpisodes.map((ep) => ({
+            airDate: ep.airDate,
+            episodeNumber: ep.episodeNumber,
+            seasonNumber: ep.seasonNumber,
+            episodeName: ep.name,
+        }));
     }
 
-    return episodes.map((ep) => ({
-        airDate: ep.airDate,
-        episodeNumber: ep.episodeNumber,
-        seasonNumber: ep.seasonNumber,
-        episodeName: ep.name,
-    }));
+    // TVmaze returned nothing — try MDL episodes as fallback
+    const mdlRow = await prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: externalId } });
+    if (!mdlRow?.mdlSlug) return [];
+
+    const mdlResult = await kuryanaGetEpisodesList(mdlRow.mdlSlug);
+    if (!mdlResult?.data?.episodes?.length) return [];
+
+    const episodes: { airDate: string; episodeNumber: number; seasonNumber: number; episodeName?: string }[] = [];
+    for (const ep of mdlResult.data.episodes) {
+        const airDate = parseMdlAirDate(ep.air_date);
+        if (!airDate) continue;
+        // Extract episode number from link: ".../episode/3" → 3
+        const epNumMatch = ep.link.match(/\/episode\/(\d+)/);
+        if (!epNumMatch) continue;
+        episodes.push({
+            airDate,
+            episodeNumber: parseInt(epNumMatch[1]),
+            seasonNumber: 1,
+            episodeName: ep.title,
+        });
+    }
+
+    if (episodes.length > 0) {
+        await prisma.cachedEpisode.createMany({
+            data: episodes.map((ep) => ({
+                mediaId,
+                airDate: ep.airDate,
+                episodeNumber: ep.episodeNumber,
+                seasonNumber: ep.seasonNumber,
+                episodeName: ep.episodeName || null,
+            })),
+            skipDuplicates: true,
+        });
+    }
+
+    return episodes;
 }
 
 export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
