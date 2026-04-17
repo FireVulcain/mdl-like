@@ -284,7 +284,7 @@ export interface MdlThreadsResult {
 }
 
 export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
-    const res = await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`);
+    const res = await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, 8000, 0);
     if (!res) return null;
 
     // Inject avatar_url into each comment
