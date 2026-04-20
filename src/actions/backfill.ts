@@ -4,36 +4,11 @@ import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
 import { getCurrentUserId } from "@/lib/session";
-import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember, KuryanaDrama } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 
-// Helpers shared with mdl-data.ts (duplicated here to avoid importing a React-cached module in a server action)
-function normalizeTitle(s: string): string {
-    return s.toLowerCase().replace(/[^a-z0-9\u0080-\uffff]/g, "");
-}
-function sanitizeForSearch(s: string): string {
-    return s.replace(/^[^a-zA-Z0-9\u0080-\uffff]+/, "").trim();
-}
-function bestYearMatch(dramas: KuryanaDrama[], targetYear: number, queries: string[]): KuryanaDrama | null {
-    const byYear = dramas.filter((d) => d.year === targetYear);
-    const byYearFuzzy = dramas.filter((d) => Math.abs(d.year - targetYear) <= 1);
-    const candidates = byYear.length ? byYear : byYearFuzzy;
-    if (!candidates.length) return null;
-    if (candidates.length === 1) return candidates[0];
-    const normQueries = queries.map(normalizeTitle).filter(Boolean);
-    for (const q of normQueries) {
-        const exact = candidates.find((d) => normalizeTitle(d.title) === q);
-        if (exact) return exact;
-    }
-    for (const q of normQueries) {
-        const partial = candidates.find((d) => {
-            const dt = normalizeTitle(d.title);
-            return dt.includes(q) || q.includes(dt);
-        });
-        if (partial) return partial;
-    }
-    return candidates[0];
-}
+
+
 function normalizeCast(members: KuryanaCastMember[]) {
     return members.map((m) => ({
         name: m.name,
@@ -368,106 +343,55 @@ export async function refreshWatchlistMdlRatings(statuses?: string[]) {
     // Pre-load slugs to reuse known MDL slugs and skip the search step where possible
     const cachedRows = await prisma.cachedMdlData.findMany({
         where: { tmdbExternalId: { in: uniqueExternalIds } },
-        select: { tmdbExternalId: true, mdlSlug: true, cachedAt: true },
+        select: { tmdbExternalId: true, mdlSlug: true, mdlDisabled: true, cachedAt: true },
     });
     const cachedMap = new Map(cachedRows.map((r) => [r.tmdbExternalId, r]));
 
-    const itemsToRefresh = rawItems;
-    const skipped = 0;
+    // Only refresh shows that already have a confirmed MDL slug and are not disabled
+    const itemsToRefresh = rawItems.filter((i) => {
+        const cached = cachedMap.get(i.externalId);
+        return cached?.mdlSlug && !cached.mdlDisabled;
+    });
+    const skipped = rawItems.length - itemsToRefresh.length;
 
     async function refreshOneItem(item: (typeof rawItems)[number]): Promise<boolean> {
-        const cached = cachedMap.get(item.externalId);
-        const existingSlug = cached?.mdlSlug;
+        const slug = cachedMap.get(item.externalId)?.mdlSlug;
+        if (!slug) return false;
 
-        if (existingSlug) {
-            const [details, castResult] = await Promise.all([
-                kuryanaGetDetails(existingSlug, true),
-                kuryanaGetCast(existingSlug, true),
-            ]);
-            if (!details?.data) return false;
+        const [details, castResult] = await Promise.all([
+            kuryanaGetDetails(slug, true),
+            kuryanaGetCast(slug, true),
+        ]);
+        if (!details?.data) return false;
 
-            const ranked = details.data.details?.ranked;
-            const popularity = details.data.details?.popularity;
-            const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
-            const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
-            const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
-            const tags = details.data.others?.tags ?? [];
-            const genres = details.data.others?.genres ?? [];
-            const cast = castResult?.data?.casts
-                ? {
-                      main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                      support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                      guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-                  }
-                : undefined;
+        const ranked = details.data.details?.ranked;
+        const popularity = details.data.details?.popularity;
+        const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
+        const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
+        const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+        const tags = details.data.others?.tags ?? [];
+        const genres = details.data.others?.genres ?? [];
+        const cast = castResult?.data?.casts
+            ? {
+                  main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
+                  support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
+                  guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+              }
+            : undefined;
 
-            await prisma.cachedMdlData.update({
-                where: { tmdbExternalId: item.externalId },
-                data: {
-                    mdlRating,
-                    mdlRanking,
-                    mdlPopularity,
-                    tags,
-                    ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
-                    ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
-                    cachedAt: new Date(),
-                },
-            });
-            return true;
-        } else {
-            if (!item.title || !item.year) return false;
-            const searchTitle = sanitizeForSearch(item.title) || item.title;
-            const searchResult = await kuryanaSearch(searchTitle);
-            const dramas = searchResult?.results?.dramas ?? [];
-            const match = bestYearMatch(dramas, item.year, [item.title]);
-            if (!match) return false;
-
-            const [details, castResult] = await Promise.all([
-                kuryanaGetDetails(match.slug, true),
-                kuryanaGetCast(match.slug, true),
-            ]);
-            if (!details?.data) return false;
-
-            const ranked = details.data.details?.ranked;
-            const popularity = details.data.details?.popularity;
-            const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
-            const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
-            const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
-            const tags = details.data.others?.tags ?? [];
-            const genres = details.data.others?.genres ?? [];
-            const cast = castResult?.data?.casts
-                ? {
-                      main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                      support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                      guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-                  }
-                : null;
-
-            await prisma.cachedMdlData.upsert({
-                where: { tmdbExternalId: item.externalId },
-                create: {
-                    tmdbExternalId: item.externalId,
-                    mdlSlug: match.slug,
-                    mdlRating,
-                    mdlRanking,
-                    mdlPopularity,
-                    tags,
-                    ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
-                    castJson: cast as unknown as Prisma.InputJsonValue,
-                },
-                update: {
-                    mdlSlug: match.slug,
-                    mdlRating,
-                    mdlRanking,
-                    mdlPopularity,
-                    tags,
-                    ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
-                    castJson: cast as unknown as Prisma.InputJsonValue,
-                    cachedAt: new Date(),
-                },
-            });
-            return true;
-        }
+        await prisma.cachedMdlData.update({
+            where: { tmdbExternalId: item.externalId },
+            data: {
+                mdlRating,
+                mdlRanking,
+                mdlPopularity,
+                tags,
+                ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
+                ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
+                cachedAt: new Date(),
+            },
+        });
+        return true;
     }
 
     // Process in parallel batches of 3 to stay polite to Kuryana
