@@ -384,11 +384,11 @@ async function getWatchlistForUser(userId: string) {
             const seasonKey = `${item.externalId}-${item.season}`;
             const mdlSlug =
                 mdlSlugBySeason.get(seasonKey) ??
-                mdlSlugByExternalId.get(item.externalId) ??
+                (item.season <= 1 ? mdlSlugByExternalId.get(item.externalId) : null) ??
                 null;
             const mdlRating =
                 mdlRatingBySeason.get(seasonKey) ??
-                mdlRatingByExternalId.get(item.externalId) ??
+                (item.season <= 1 ? mdlRatingByExternalId.get(item.externalId) : null) ??
                 null;
             return {
                 ...item,
