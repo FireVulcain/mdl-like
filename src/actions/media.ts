@@ -389,7 +389,6 @@ async function getWatchlistForUser(userId: string) {
             const mdlRating =
                 mdlRatingBySeason.get(seasonKey) ??
                 mdlRatingByExternalId.get(item.externalId) ??
-                item.mdlRating ??
                 null;
             return {
                 ...item,
