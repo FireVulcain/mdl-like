@@ -256,14 +256,12 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
                 <div className="flex items-center gap-2 min-w-0">
                     <h3 className="text-lg font-semibold text-white shrink-0">Episodes</h3>
-                    <span
-                        className={`whitespace-nowrap shrink-0 px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
-                            source === "mdl" ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"
-                        }`}
-                    >
-                        via {source === "mdl" ? "MDL" : "TMDB"}
-                    </span>
-                    {mdlEpisodes && mediaId && (
+                    {mdlEpisodes && (
+                        <span className="whitespace-nowrap shrink-0 px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
+                            via MDL
+                        </span>
+                    )}
+                    {mediaId && (
                         <Link
                             href={`/media/${mediaId}/episodes?season=${season}`}
                             className="shrink-0 text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"

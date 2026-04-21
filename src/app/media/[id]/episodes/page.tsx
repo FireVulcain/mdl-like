@@ -5,7 +5,6 @@ import { ArrowLeft, Star, Calendar } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
 import type { MdlEpisodeItem } from "@/components/media/episode-guide";
-import { EpisodeRatingsChart, type EpisodeChartPoint } from "@/components/media/episode-ratings-chart";
 import { EpisodeRatingGrid, type GridRatings } from "@/components/media/episode-rating-grid";
 import { mediaService } from "@/services/media.service";
 import { tmdb } from "@/lib/tmdb";
@@ -100,17 +99,19 @@ export default async function EpisodesPage({
     const media = await mediaService.getDetails(id);
     if (!media || media.type !== "TV") notFound();
 
-    const allSeasons = (media.seasons ?? []).filter((s) => s.seasonNumber > 0);
-    if (allSeasons.length === 0) notFound();
-    const seasonNumbers = allSeasons.map((s) => s.seasonNumber);
-
     const dashIdx = id.indexOf("-");
     const source = id.slice(0, dashIdx);
     const externalId = id.slice(dashIdx + 1);
+    const isTmdb = source === "tmdb";
+
+    // MDL-native shows may not have a seasons array (comes from TMDB) — default to season 1
+    const allSeasons = (media.seasons ?? []).filter((s) => s.seasonNumber > 0);
+    const effectiveSeasons = allSeasons.length > 0 ? allSeasons : [{ seasonNumber: 1, episodeCount: 0, name: "Season 1", poster: null, airDate: null }];
+    const seasonNumbers = effectiveSeasons.map((s) => s.seasonNumber);
 
     // ── MDL slug resolution ──────────────────────────────────────────────────
     const mdlSlugMap = new Map<number, string>();
-    if (source === "tmdb") {
+    if (isTmdb) {
         const [cachedMdl, seasonLinks] = await Promise.all([
             prisma.cachedMdlData.findUnique({
                 where: { tmdbExternalId: externalId },
@@ -123,16 +124,19 @@ export default async function EpisodesPage({
         ]);
         if (cachedMdl?.mdlSlug && !cachedMdl.mdlDisabled) mdlSlugMap.set(1, cachedMdl.mdlSlug);
         for (const link of seasonLinks) mdlSlugMap.set(link.season, link.mdlSlug);
-    } else if (source === "mdl") {
+    } else {
+        // MDL-native: externalId is already the MDL slug
         mdlSlugMap.set(1, externalId);
     }
 
-    // ── Parallel: TMDB all seasons + MDL light ratings + MDL full for selected season ──
-    const selectedMdlSlug = mdlSlugMap.get(selectedSeason) ?? null;
+    // Verify at least one MDL slug or TMDB data exists
+    const selectedMdlSlug = mdlSlugMap.get(selectedSeason) ?? mdlSlugMap.get(1) ?? null;
+    if (!isTmdb && !selectedMdlSlug) notFound();
 
+    // ── Parallel: TMDB all seasons (TMDB only) + MDL light ratings + MDL full ──
     const [tmdbResults, mdlLightResults, mdlEpisodes] = await Promise.all([
-        // TMDB episodes for every season
-        Promise.all(
+        // TMDB episodes — only fetch when source is TMDB
+        isTmdb ? Promise.all(
             seasonNumbers.map(async (sNum) => {
                 try {
                     const data = await tmdb.getSeasonDetails(externalId, sNum);
@@ -141,7 +145,7 @@ export default async function EpisodesPage({
                     return { season: sNum, episodes: [] };
                 }
             })
-        ),
+        ) : Promise.resolve(seasonNumbers.map((sNum) => ({ season: sNum, episodes: [] }))),
         // MDL light ratings for every season (grid only)
         Promise.all(
             seasonNumbers.map(async (sNum) => {
@@ -183,7 +187,7 @@ export default async function EpisodesPage({
     // ── Max episodes for grid row count ─────────────────────────────────────
     const maxEpisodes = Math.max(
         1,
-        ...allSeasons.map((s) =>
+        ...effectiveSeasons.map((s) =>
             Math.max(
                 s.episodeCount ?? 0,
                 Object.keys(tmdbGrid[s.seasonNumber] ?? {}).length,
@@ -210,10 +214,6 @@ export default async function EpisodesPage({
           }));
 
     // Chart: prefer MDL ratings, fall back to TMDB
-    const chartData: EpisodeChartPoint[] = (hasMdlForSelected ? mdlEpisodes : cards)
-        .filter((ep) => (ep.rating ?? 0) > 0)
-        .map((ep) => ({ ep: ep.number, label: `E${ep.number}`, rating: ep.rating!, title: ep.title }));
-
     const isMultiSeason = allSeasons.length > 1;
 
     return (
@@ -229,31 +229,29 @@ export default async function EpisodesPage({
                 <div>
                     <h1 className="text-2xl font-bold text-white">{media.title}</h1>
                     <p className="text-sm text-gray-400 mt-1">
-                        {allSeasons.length} season{allSeasons.length !== 1 ? "s" : ""}
+                        {effectiveSeasons.length} season{effectiveSeasons.length !== 1 ? "s" : ""}
                     </p>
                 </div>
 
-                {/* Multi-season rating grid */}
-                {isMultiSeason && (
-                    <div className="rounded-xl border border-white/5 bg-white/3 p-5">
-                        <div className="flex items-center gap-2 mb-5">
-                            <h2 className="text-sm font-semibold text-white">Episode Ratings</h2>
-                            <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${hasMdlData ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"}`}>
-                                via {hasMdlData ? "MDL" : "TMDB"}
-                            </span>
-                        </div>
-                        <EpisodeRatingGrid
-                            mediaId={id}
-                            seasons={seasonNumbers}
-                            maxEpisodes={maxEpisodes}
-                            tmdbGrid={tmdbGrid}
-                            mdlGrid={hasMdlData ? mdlGrid : undefined}
-                            tmdbAvg={tmdbAvg}
-                            mdlAvg={hasMdlData ? mdlAvg : undefined}
-                            selectedSeason={selectedSeason}
-                        />
+                {/* Rating grid */}
+                <div className="rounded-xl border border-white/5 bg-white/3 p-5">
+                    <div className="flex items-center gap-2 mb-5">
+                        <h2 className="text-sm font-semibold text-white">Episode Ratings</h2>
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${hasMdlData ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"}`}>
+                            via {hasMdlData ? "MDL" : "TMDB"}
+                        </span>
                     </div>
-                )}
+                    <EpisodeRatingGrid
+                        mediaId={id}
+                        seasons={seasonNumbers}
+                        maxEpisodes={maxEpisodes}
+                        tmdbGrid={tmdbGrid}
+                        mdlGrid={hasMdlData ? mdlGrid : undefined}
+                        tmdbAvg={tmdbAvg}
+                        mdlAvg={hasMdlData ? mdlAvg : undefined}
+                        selectedSeason={selectedSeason}
+                    />
+                </div>
 
                 {/* Season detail */}
                 <div>
@@ -285,14 +283,6 @@ export default async function EpisodesPage({
                             </div>
                         )}
                     </div>
-
-                    {/* Chart */}
-                    {chartData.length > 1 && (
-                        <div className="mb-5 rounded-xl border border-white/5 bg-white/3 p-4">
-                            <p className="text-xs font-medium text-gray-400 mb-3">Episode Ratings</p>
-                            <EpisodeRatingsChart data={chartData} />
-                        </div>
-                    )}
 
                     {/* Episode cards */}
                     {cards.length > 0 ? (

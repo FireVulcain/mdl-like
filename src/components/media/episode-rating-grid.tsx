@@ -40,6 +40,7 @@ export function EpisodeRatingGrid({ mediaId, seasons, maxEpisodes, tmdbGrid, mdl
     const grid = source === "mdl" && mdlGrid ? mdlGrid : tmdbGrid;
     const avgs = source === "mdl" && mdlAvg ? mdlAvg : tmdbAvg;
     const episodes = Array.from({ length: maxEpisodes }, (_, i) => i + 1);
+    const isMulti = seasons.length > 1;
 
     return (
         <div>
@@ -55,78 +56,58 @@ export function EpisodeRatingGrid({ mediaId, seasons, maxEpisodes, tmdbGrid, mdl
                 </div>
                 {hasMdl && (
                     <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5 shrink-0">
-                        <button
-                            onClick={() => setSource("mdl")}
-                            className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}
-                        >
-                            MDL
-                        </button>
-                        <button
-                            onClick={() => setSource("tmdb")}
-                            className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}
-                        >
-                            TMDB
-                        </button>
+                        <button onClick={() => setSource("mdl")} className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}>MDL</button>
+                        <button onClick={() => setSource("tmdb")} className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}>TMDB</button>
                     </div>
                 )}
             </div>
 
-            {/* Grid */}
+            {/* Horizontal: seasons as rows, episodes as columns */}
             <div className="overflow-x-auto">
                 <table className="border-separate border-spacing-1">
                     <thead>
                         <tr>
-                            <th className="w-9" />
-                            {seasons.map((s) => (
-                                <th key={s} className="min-w-[52px]">
-                                    <Link
-                                        href={`/media/${mediaId}/episodes?season=${s}`}
-                                        className={`block w-full text-center py-1 rounded-lg text-xs font-semibold transition-colors ${
-                                            s === selectedSeason
-                                                ? "bg-white/15 text-white"
-                                                : "text-gray-400 hover:text-white hover:bg-white/10"
-                                        }`}
-                                    >
-                                        S{s}
-                                    </Link>
+                            {isMulti && <th className="w-9" />}
+                            {episodes.map((ep) => (
+                                <th key={ep} className="min-w-11">
+                                    <span className="block text-center text-[10px] text-gray-500 font-medium pb-0.5">E{ep}</span>
                                 </th>
                             ))}
+                            <th className="min-w-11">
+                                <span className="block text-center text-[10px] text-gray-500 font-semibold pb-0.5">AVG</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {episodes.map((ep) => (
-                            <tr key={ep}>
-                                <td className="text-[11px] text-gray-500 text-right pr-2 font-medium">
-                                    E{ep}
-                                </td>
-                                {seasons.map((s) => {
+                        {seasons.map((s) => (
+                            <tr key={s}>
+                                {isMulti && (
+                                    <td className="pr-2">
+                                        <Link
+                                            href={`/media/${mediaId}/episodes?season=${s}`}
+                                            className={`block text-center text-[11px] font-semibold py-1 rounded-lg transition-colors ${s === selectedSeason ? "bg-white/15 text-white" : "text-gray-500 hover:text-white hover:bg-white/10"}`}
+                                        >
+                                            S{s}
+                                        </Link>
+                                    </td>
+                                )}
+                                {episodes.map((ep) => {
                                     const rating = grid[s]?.[ep];
                                     return (
-                                        <td key={s} className="p-0">
+                                        <td key={ep} className="p-0">
                                             <span className={`block w-full text-center text-[11px] font-bold py-1.5 rounded-lg ${ratingCell(rating)}`}>
                                                 {rating ? rating.toFixed(1) : "?"}
                                             </span>
                                         </td>
                                     );
                                 })}
+                                <td className="p-0">
+                                    <span className={`block w-full text-center text-[11px] font-bold py-1.5 rounded-lg ${ratingCell(avgs[s])}`}>
+                                        {avgs[s] ? avgs[s]!.toFixed(1) : "—"}
+                                    </span>
+                                </td>
                             </tr>
                         ))}
-                        {/* AVG row */}
-                        <tr>
-                            <td className="text-[10px] text-gray-500 text-right pr-2 font-semibold pt-2">
-                                AVG.
-                            </td>
-                            {seasons.map((s) => {
-                                const avg = avgs[s];
-                                return (
-                                    <td key={s} className="p-0 pt-2">
-                                        <span className={`block w-full text-center text-[11px] font-bold py-1.5 rounded-lg ${ratingCell(avg)}`}>
-                                            {avg ? avg.toFixed(1) : "—"}
-                                        </span>
-                                    </td>
-                                );
-                            })}
-                        </tr>
                     </tbody>
                 </table>
             </div>
