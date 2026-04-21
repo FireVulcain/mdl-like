@@ -35,6 +35,7 @@ function ratingCell(rating: number | null | undefined): string {
 
 export function EpisodeRatingGrid({ mediaId, seasons, maxEpisodes, tmdbGrid, mdlGrid, tmdbAvg, mdlAvg, selectedSeason }: Props) {
     const hasMdl = !!mdlGrid && Object.values(mdlGrid).some((s) => Object.keys(s).length > 0);
+    const hasTmdb = Object.values(tmdbGrid).some((s) => Object.keys(s).length > 0);
     const [source, setSource] = useState<"tmdb" | "mdl">(hasMdl ? "mdl" : "tmdb");
 
     const grid = source === "mdl" && mdlGrid ? mdlGrid : tmdbGrid;
@@ -54,7 +55,7 @@ export function EpisodeRatingGrid({ mediaId, seasons, maxEpisodes, tmdbGrid, mdl
                         </span>
                     ))}
                 </div>
-                {hasMdl && (
+                {hasMdl && hasTmdb && (
                     <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5 shrink-0">
                         <button onClick={() => setSource("mdl")} className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}>MDL</button>
                         <button onClick={() => setSource("tmdb")} className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}>TMDB</button>

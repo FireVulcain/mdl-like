@@ -12,12 +12,19 @@ import { tmdb } from "@/lib/tmdb";
 const SYNOPSIS_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const EMPTY_TTL_MS = 24 * 60 * 60 * 1000;
 
+const NOW = new Date();
+function isReleased(airDate: string | null | undefined): boolean {
+    if (!airDate) return true; // no date info → assume released
+    return new Date(airDate) <= NOW;
+}
+
 // Light fetch — episodes list only, no individual episode calls (just for grid ratings)
 async function fetchMdlRatingsLight(mdlSlug: string): Promise<Map<number, number> | null> {
     const list = await kuryanaGetEpisodesList(mdlSlug);
     if (!list?.data?.episodes?.length) return null;
     const result = new Map<number, number>();
     list.data.episodes.forEach((ep, i) => {
+        if (!isReleased(ep.air_date)) return;
         const m = ep.link.match(/\/episode\/(\d+)/);
         const num = m ? parseInt(m[1]) : i + 1;
         const ratingMatch = ep.rating.match(/^([\d.]+)\//);
@@ -81,7 +88,8 @@ async function fetchMdlEpisodes(mdlSlug: string): Promise<MdlEpisodeItem[]> {
         const synopsis = detail?.data?.synopsis || cached?.synopsis || null;
         const title = episodeTitle || (ep.title.startsWith(showTitle) ? ep.title.slice(showTitle.length).trim() : ep.title);
         const ratingMatch = ep.rating.match(/^([\d.]+)\//);
-        const rating = detail?.data?.rating ?? (ratingMatch ? parseFloat(ratingMatch[1]) : null);
+        const rawRating = detail?.data?.rating ?? (ratingMatch ? parseFloat(ratingMatch[1]) : null);
+        const rating = isReleased(ep.air_date) ? rawRating : null;
         return { number, title, image: ep.image || null, airDate: ep.air_date || null, rating, synopsis };
     });
 }
@@ -163,7 +171,7 @@ export default async function EpisodesPage({
     const tmdbAvg: Record<number, number | null> = {};
     for (const { season: sNum, episodes } of tmdbResults) {
         tmdbGrid[sNum] = {};
-        const rated = episodes.filter((ep) => ep.vote_average > 0);
+        const rated = episodes.filter((ep) => ep.vote_average > 0 && isReleased(ep.air_date));
         for (const ep of rated) tmdbGrid[sNum][ep.episode_number] = ep.vote_average;
         tmdbAvg[sNum] = rated.length ? rated.reduce((s, e) => s + e.vote_average, 0) / rated.length : null;
     }
