@@ -168,6 +168,7 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
     if (!mounted || !episodeData || !timeLeft) return null;
 
     const formatted = formatTimeLeft(timeLeft, episodeData.airDate);
+    const isAiring = episodeData.episodeNumber > 1 || isToday(episodeData.airDate);
 
     const scheduleHref = `/calendar?date=${episodeData.airDate}`;
 
@@ -177,6 +178,12 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
             onClick={(e) => e.stopPropagation()}
             className="inline-flex items-center gap-1.5 text-xs text-gray-300 bg-white/10 border border-white/10 px-2 py-0.5 rounded hover:bg-white/20 hover:border-white/20 transition-colors"
         >
+            {isAiring && (
+                <span className="relative flex h-1.5 w-1.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animation-duration-[2s]" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
+                </span>
+            )}
             <span className="text-white font-medium tabular-nums">
                 Ep {episodeData.episodeNumber} {formatted.useIn ? "in " : ""}
                 {formatted.text}
