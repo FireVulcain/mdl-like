@@ -137,41 +137,39 @@ export function EpisodeRatingGrid({ mediaId, seasons, maxEpisodes, tmdbGrid, mdl
                                             </Link>
                                         </th>
                                     ))}
-                                    <th className="min-w-13">
-                                        <span className="block text-center text-xs text-gray-500 font-semibold pb-1">AVG.</span>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {episodes.map((ep) => {
-                                    const epAvg = seasons.reduce((sum, s) => {
-                                        const r = grid[s]?.[ep];
-                                        return r ? { sum: sum.sum + r, count: sum.count + 1 } : sum;
-                                    }, { sum: 0, count: 0 });
-                                    const epAvgVal = epAvg.count > 0 ? epAvg.sum / epAvg.count : null;
-                                    return (
-                                        <tr key={ep}>
-                                            <td className="text-right pr-2">
-                                                <span className="text-xs text-gray-500 font-medium">E{ep}</span>
-                                            </td>
-                                            {seasons.map((s) => {
-                                                const rating = grid[s]?.[ep];
-                                                return (
-                                                    <td key={s} className="p-0">
-                                                        <span className={`block w-full text-center text-sm font-bold py-2 rounded-md ${ratingCell(rating)}`}>
-                                                            {rating ? rating.toFixed(1) : "?"}
-                                                        </span>
-                                                    </td>
-                                                );
-                                            })}
-                                            <td className="p-0">
-                                                <span className={`block w-full text-center text-sm font-bold py-2 rounded-md underline underline-offset-2 decoration-white/30 ${ratingCell(epAvgVal)}`}>
-                                                    {epAvgVal ? epAvgVal.toFixed(1) : "—"}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
+                                {episodes.map((ep) => (
+                                    <tr key={ep}>
+                                        <td className="text-right pr-2">
+                                            <span className="text-xs text-gray-500 font-medium">E{ep}</span>
+                                        </td>
+                                        {seasons.map((s) => {
+                                            const rating = grid[s]?.[ep];
+                                            return (
+                                                <td key={s} className="p-0">
+                                                    <span className={`block w-full text-center text-sm font-bold py-2 rounded-md ${ratingCell(rating)}`}>
+                                                        {rating ? rating.toFixed(1) : "?"}
+                                                    </span>
+                                                </td>
+                                            );
+                                        })}
+                                    </tr>
+                                ))}
+                                {/* AVG row at the bottom */}
+                                <tr>
+                                    <td className="text-right pr-2 pt-1">
+                                        <span className="text-xs text-gray-500 font-semibold">AVG.</span>
+                                    </td>
+                                    {seasons.map((s) => (
+                                        <td key={s} className="p-0 pt-1">
+                                            <span className={`block w-full text-center text-sm font-bold py-2 rounded-md underline underline-offset-2 decoration-white/30 ${ratingCell(avgs[s])}`}>
+                                                {avgs[s] ? avgs[s]!.toFixed(1) : "—"}
+                                            </span>
+                                        </td>
+                                    ))}
+                                </tr>
                             </tbody>
                         </>
                     )}
