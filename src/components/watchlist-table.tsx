@@ -330,6 +330,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         return (b.year || 0) - (a.year || 0);
                     case "year-old":
                         return (a.year || 0) - (b.year || 0);
+                    case "mdl-rating-high":
+                        return (b.mdlRating || 0) - (a.mdlRating || 0);
+                    case "mdl-rating-low":
+                        return (a.mdlRating || 0) - (b.mdlRating || 0);
                     case "next-episode-asc": {
                         const aDate = (a.nextEpisode ?? nextEpisodeMap[`${a.externalId}-${a.season}`])?.airDate ?? null;
                         const bDate = (b.nextEpisode ?? nextEpisodeMap[`${b.externalId}-${b.season}`])?.airDate ?? null;
@@ -845,21 +849,18 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 "title-az": "Title A-Z", "title-za": "Title Z-A",
                                 "year-new": "Year ↓", "year-old": "Year ↑",
                                 "next-episode-asc": "Next Ep ↑", "next-episode-desc": "Next Ep ↓",
+                                "mdl-rating-high": "MDL Rating ↓", "mdl-rating-low": "MDL Rating ↑",
                             };
-                            const sortOptions = [
-                                { value: "default", label: "Default" },
-                                { value: "rating-high", label: "Rating: High" },
-                                { value: "rating-low", label: "Rating: Low" },
-                                { value: "progress-high", label: "Progress: High" },
-                                { value: "progress-low", label: "Progress: Low" },
-                                { value: "title-az", label: "Title: A-Z" },
-                                { value: "title-za", label: "Title: Z-A" },
-                                { value: "year-new", label: "Year: Newest" },
-                                { value: "year-old", label: "Year: Oldest" },
-                                { value: "next-episode-asc", label: "Next Episode: Soonest" },
-                                { value: "next-episode-desc", label: "Next Episode: Latest" },
+                            const sortGroups: { label: string; a: string; b: string; aLabel: string; bLabel: string }[] = [
+                                { label: "Rating",       a: "rating-high",        b: "rating-low",         aLabel: "High", bLabel: "Low" },
+                                { label: "MDL Rating",   a: "mdl-rating-high",    b: "mdl-rating-low",     aLabel: "High", bLabel: "Low" },
+                                { label: "Progress",     a: "progress-high",      b: "progress-low",       aLabel: "High", bLabel: "Low" },
+                                { label: "Title",        a: "title-az",           b: "title-za",           aLabel: "A-Z",  bLabel: "Z-A" },
+                                { label: "Year",         a: "year-new",           b: "year-old",           aLabel: "New",  bLabel: "Old" },
+                                { label: "Next Episode", a: "next-episode-asc",   b: "next-episode-desc",  aLabel: "Soon", bLabel: "Late" },
                             ];
                             const isActive = sortBy !== "default";
+                            const pick = (v: string) => { setSortBy(v); syncUrl("sort", v === "default" ? null : v); setShowSortFilter(false); };
                             return (
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
@@ -873,20 +874,30 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     {showSortFilter && (
                                         <>
                                             <div className="fixed inset-0 z-10" onClick={() => setShowSortFilter(false)} />
-                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-48 animate-in fade-in slide-in-from-top-2 duration-200">
-                                                {sortOptions.map((opt) => {
-                                                    const isSelected = sortBy === opt.value;
-                                                    return (
-                                                        <button
-                                                            key={opt.value}
-                                                            onClick={() => { setSortBy(opt.value); syncUrl("sort", opt.value === "default" ? null : opt.value); setShowSortFilter(false); }}
-                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-violet-500/20 text-violet-400" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
-                                                        >
-                                                            <span className="flex-1 text-left">{opt.label}</span>
-                                                            {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />}
-                                                        </button>
-                                                    );
-                                                })}
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-3 w-56 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1">
+                                                <button
+                                                    onClick={() => pick("default")}
+                                                    className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${sortBy === "default" ? "bg-violet-500/20 text-violet-400" : "text-gray-500 hover:text-white hover:bg-white/5"}`}
+                                                >
+                                                    Default
+                                                </button>
+                                                <div className="border-t border-white/8 my-1" />
+                                                {sortGroups.map((g) => (
+                                                    <div key={g.label} className="flex items-center gap-2">
+                                                        <span className="text-xs text-gray-500 w-24 shrink-0">{g.label}</span>
+                                                        <div className="flex gap-1 flex-1">
+                                                            {[{ v: g.a, lbl: g.aLabel }, { v: g.b, lbl: g.bLabel }].map(({ v, lbl }) => (
+                                                                <button
+                                                                    key={v}
+                                                                    onClick={() => pick(v)}
+                                                                    className={`flex-1 py-1 rounded text-xs font-medium transition-all cursor-pointer ${sortBy === v ? "bg-violet-500/30 text-violet-300" : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"}`}
+                                                                >
+                                                                    {lbl}
+                                                                </button>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
                                         </>
                                     )}
