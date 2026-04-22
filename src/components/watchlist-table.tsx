@@ -1569,14 +1569,18 @@ const ItemCard = memo(function ItemCard({
                             <span>{item.originCountry ? countryName(item.originCountry) : "Unknown"}</span>
                             <span className="w-1 h-1 rounded-full bg-gray-600" />
                             <span>{item.year || "N/A"}</span>
-                            {item.status !== "Completed" && (
-                                <NextEpisodeIndicator
-                                    nextEpisode={item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`] ?? null}
-                                    totalEpisodes={item.totalEp}
-                                    status={item.airingStatus}
-                                    seasonAirDate={item.seasonAirDate}
-                                />
-                            )}
+                            {item.status !== "Completed" && (() => {
+                                const nextEp = item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`] ?? null;
+                                const relevant = nextEp?.seasonNumber === item.season ? nextEp : null;
+                                return (
+                                    <NextEpisodeIndicator
+                                        nextEpisode={relevant}
+                                        totalEpisodes={item.totalEp}
+                                        status={item.airingStatus}
+                                        seasonAirDate={item.seasonAirDate}
+                                    />
+                                );
+                            })()}
                         </div>
                     </div>
 
