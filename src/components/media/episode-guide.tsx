@@ -5,6 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Star, Clock, Check } from "lucide-react";
 
+function isReleased(airDate: string | null | undefined): boolean {
+    if (!airDate) return true;
+    return new Date(airDate) <= new Date();
+}
+
 interface Episode {
     id: number;
     number: number;
@@ -79,7 +84,7 @@ function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | n
                         {ep.name}
                     </h4>
                     <div className="flex items-center gap-2 flex-none text-[11px] text-gray-400">
-                        {ep.rating > 0 && (
+                        {ep.rating > 0 && isReleased(ep.airDate) && (
                             <span className="flex items-center gap-0.5 text-yellow-400/90">
                                 <Star className="size-3 fill-current" />
                                 {ep.rating.toFixed(1)}
@@ -206,7 +211,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                             {ep.title}
                         </h4>
                     )}
-                    {ep.rating !== null && ep.rating > 0 && (
+                    {ep.rating !== null && ep.rating > 0 && isReleased(ep.airDate) && (
                         <span className="flex items-center gap-0.5 flex-none text-[11px] text-yellow-400/90">
                             <Star className="size-3 fill-current" />
                             {ep.rating.toFixed(1)}
