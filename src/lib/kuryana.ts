@@ -384,12 +384,14 @@ export type KuryanaTopCountry =
 export interface KuryanaTopParams {
     page?: number;
     sort?: string;
-    genre?: string;       // comma-separated MDL genre names (e.g. "romance,drama")
+    genre?: string;         // comma-separated MDL genre names to include (e.g. "romance,drama")
+    genre_exclude?: string; // comma-separated MDL genre names to exclude
     year_from?: number;
     year_to?: number;
     rating_min?: number;
     rating_max?: number;
-    tag?: number;         // MDL tag ID (e.g. 370 for "Revenge")
+    tag?: number;           // MDL tag ID to include (e.g. 370 for "Revenge")
+    tag_exclude?: number;   // MDL tag ID to exclude
 }
 
 export interface KuryanaTagResult {
@@ -419,10 +421,12 @@ export async function kuryanaGetTop(
     if (params?.page && params.page > 1) query.set("page", String(params.page));
     if (params?.sort) query.set("sort", params.sort);
     if (params?.genre) query.set("genre", params.genre);
+    if (params?.genre_exclude) query.set("genre_exclude", params.genre_exclude);
     if (params?.year_from) query.set("year_from", String(params.year_from));
     if (params?.year_to) query.set("year_to", String(params.year_to));
     if (params?.rating_min) query.set("rating_min", String(params.rating_min));
     if (params?.rating_max) query.set("rating_max", String(params.rating_max));
     if (params?.tag) query.set("tag", String(params.tag));
+    if (params?.tag_exclude) query.set("tag_exclude", String(params.tag_exclude));
     return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`);
 }

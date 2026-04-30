@@ -617,20 +617,24 @@ export const mediaService = {
         sort,
         page = 1,
         genre,
+        genre_exclude,
         year_from,
         year_to,
         rating_min,
         tag,
+        tag_exclude,
     }: {
         country: string;
         category?: string;
         sort?: string;
         page?: number;
         genre?: string;
+        genre_exclude?: string;
         year_from?: number;
         year_to?: number;
         rating_min?: number;
         tag?: number;
+        tag_exclude?: number;
     }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
         // Map app country codes → Kuryana country names
         const COUNTRY_MAP: Record<string, "all" | KuryanaTopCountry> = {
@@ -653,10 +657,12 @@ export const mediaService = {
                 page,
                 sort: sort === "popular" ? "popular" : undefined,
                 genre,
+                genre_exclude,
                 year_from,
                 year_to,
                 rating_min,
                 tag,
+                tag_exclude,
             });
             const shows = res?.data.shows ?? [];
 

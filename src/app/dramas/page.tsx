@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
-import { Bookmark, Check, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bookmark, Check, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaCard } from "@/components/media-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
@@ -15,11 +15,14 @@ type SearchParams = Promise<{
     sort?: string;
     page?: string;
     genre?: string;
+    genre_exclude?: string;
     year_from?: string;
     year_to?: string;
     rating_min?: string;
     tag?: string;
     tag_name?: string;
+    tag_exclude?: string;
+    tag_exclude_name?: string;
 }>;
 
 const CATEGORY_CONFIG = {
@@ -137,11 +140,14 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         sort: rawSort,
         page: rawPage,
         genre: rawGenre,
+        genre_exclude: rawGenreExclude,
         year_from: rawYearFrom,
         year_to: rawYearTo,
         rating_min: rawRatingMin,
         tag: rawTag,
         tag_name: rawTagName,
+        tag_exclude: rawTagExclude,
+        tag_exclude_name: rawTagExcludeName,
     } = await searchParams;
 
     const category: Category = (rawCategory as Category) in CATEGORY_CONFIG ? (rawCategory as Category) : "popular";
@@ -149,14 +155,17 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const sort = rawSort ?? "top";
     const page = Math.max(1, parseInt(rawPage ?? "1", 10));
     const genre = rawGenre ?? "";
+    const genreExclude = rawGenreExclude ?? "";
     const year_from = rawYearFrom ? parseInt(rawYearFrom, 10) : undefined;
     const year_to = rawYearTo ? parseInt(rawYearTo, 10) : undefined;
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
     const tag = rawTag ? parseInt(rawTag, 10) : undefined;
+    const tagExclude = rawTagExclude ? parseInt(rawTagExclude, 10) : undefined;
 
     const mdlSort = sort === "popular" ? "popular" : "top";
 
     const selectedGenres = genre ? genre.split(",").filter(Boolean) : [];
+    const excludedGenres = genreExclude ? genreExclude.split(",").filter(Boolean) : [];
 
     const result = await mediaService.browseDramasMDL({
         country,
@@ -164,10 +173,12 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         sort: mdlSort,
         page,
         genre: selectedGenres.length > 0 ? selectedGenres.join(",") : undefined,
+        genre_exclude: excludedGenres.length > 0 ? excludedGenres.join(",") : undefined,
         year_from,
         year_to,
         rating_min,
         tag,
+        tag_exclude: tagExclude,
     });
     const items: UnifiedMedia[] = result.items;
     const hasNextPage = result.hasNextPage;
@@ -203,20 +214,41 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     // Build base params for URL construction (only include active filters)
     const baseParams: Record<string, string> = { category, country, sort };
     if (genre) baseParams.genre = genre;
+    if (genreExclude) baseParams.genre_exclude = genreExclude;
     if (rawYearFrom) baseParams.year_from = rawYearFrom;
     if (rawYearTo) baseParams.year_to = rawYearTo;
     if (rawRatingMin) baseParams.rating_min = rawRatingMin;
     if (rawTag) { baseParams.tag = rawTag; if (rawTagName) baseParams.tag_name = rawTagName; }
+    if (rawTagExclude) { baseParams.tag_exclude = rawTagExclude; if (rawTagExcludeName) baseParams.tag_exclude_name = rawTagExcludeName; }
     baseParams.page = page.toString();
 
     const catConfig = CATEGORY_CONFIG[category];
 
+    // Three-state toggle: neutral → include → exclude → neutral
     function genreToggleUrl(genreValue: string) {
-        const next = selectedGenres.includes(genreValue) ? selectedGenres.filter((g) => g !== genreValue) : [...selectedGenres, genreValue];
-        return buildUrl(baseParams, { genre: next.length > 0 ? next.join(",") : null, page: "1" });
+        if (selectedGenres.includes(genreValue)) {
+            // include → exclude
+            const nextInclude = selectedGenres.filter((g) => g !== genreValue);
+            const nextExclude = [...excludedGenres, genreValue];
+            return buildUrl(baseParams, {
+                genre: nextInclude.length > 0 ? nextInclude.join(",") : null,
+                genre_exclude: nextExclude.join(","),
+                page: "1",
+            });
+        } else if (excludedGenres.includes(genreValue)) {
+            // exclude → neutral
+            const nextExclude = excludedGenres.filter((g) => g !== genreValue);
+            return buildUrl(baseParams, {
+                genre_exclude: nextExclude.length > 0 ? nextExclude.join(",") : null,
+                page: "1",
+            });
+        } else {
+            // neutral → include
+            return buildUrl(baseParams, { genre: [...selectedGenres, genreValue].join(","), page: "1" });
+        }
     }
 
-    const hasActiveFilters = selectedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin || rawTag;
+    const hasActiveFilters = selectedGenres.length > 0 || excludedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin || rawTag || rawTagExclude;
 
     return (
         <div className="relative min-h-screen">
@@ -421,43 +453,44 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         <div className="space-y-1.5">
                             <div className="flex items-center justify-between">
                                 <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
-                                {selectedGenres.length > 0 && (
+                                {(selectedGenres.length > 0 || excludedGenres.length > 0) && (
                                     <Link
-                                        href={buildUrl(baseParams, { genre: null, page: "1" })}
+                                        href={buildUrl(baseParams, { genre: null, genre_exclude: null, page: "1" })}
                                         className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
                                     >
-                                        Clear ({selectedGenres.length})
+                                        Clear ({selectedGenres.length + excludedGenres.length})
                                     </Link>
                                 )}
                             </div>
-                            <details className="group" open={selectedGenres.length > 0}>
+                            <details className="group" open={selectedGenres.length > 0 || excludedGenres.length > 0}>
                                 <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
                                     <span>
-                                        {selectedGenres.length === 0
+                                        {selectedGenres.length === 0 && excludedGenres.length === 0
                                             ? "Any"
-                                            : selectedGenres.length === 1
-                                              ? (MDL_GENRES.find((g) => g.value === selectedGenres[0])?.label ?? selectedGenres[0])
-                                              : `${selectedGenres.length} selected`}
+                                            : `${selectedGenres.length + excludedGenres.length} selected`}
                                     </span>
                                     <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
                                 </summary>
                                 <div className="mt-2 grid grid-cols-2 gap-x-1 gap-y-0.5">
                                     {MDL_GENRES.map((g) => {
-                                        const active = selectedGenres.includes(g.value);
+                                        const included = selectedGenres.includes(g.value);
+                                        const excluded = excludedGenres.includes(g.value);
                                         return (
                                             <Link
                                                 key={g.value}
                                                 href={genreToggleUrl(g.value)}
+                                                title={included ? "Click to exclude" : excluded ? "Click to clear" : "Click to include"}
                                                 className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/genre hover:bg-white/5"
                                             >
-                                                <div
-                                                    className={`w-3.5 h-3.5 rounded shrink-0 border flex items-center justify-center transition-all ${
-                                                        active ? "bg-white/20 border-white/40" : "border-white/20"
-                                                    }`}
-                                                >
-                                                    {active && <Check className="h-2.5 w-2.5 text-white" />}
+                                                <div className={`w-3.5 h-3.5 rounded shrink-0 border flex items-center justify-center transition-all ${
+                                                    included ? "bg-emerald-500/30 border-emerald-500/60" :
+                                                    excluded ? "bg-red-500/30 border-red-500/60" :
+                                                    "border-white/20"
+                                                }`}>
+                                                    {included && <Check className="h-2.5 w-2.5 text-emerald-400" />}
+                                                    {excluded && <X className="h-2.5 w-2.5 text-red-400" />}
                                                 </div>
-                                                <span className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/genre:text-white"}`}>
+                                                <span className={`truncate ${included ? "text-emerald-400" : excluded ? "text-red-400" : "text-gray-400 group-hover/genre:text-white"}`}>
                                                     {g.label}
                                                 </span>
                                             </Link>
@@ -471,7 +504,12 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                         {/* Tags */}
                         <Suspense fallback={null}>
-                            <TagSearchFilter activeTagId={rawTag} activeTagName={rawTagName} />
+                            <TagSearchFilter
+                                activeTagId={rawTag}
+                                activeTagName={rawTagName}
+                                activeTagExcludeId={rawTagExclude}
+                                activeTagExcludeName={rawTagExcludeName}
+                            />
                         </Suspense>
 
                         <div className="h-px bg-white/5" />
