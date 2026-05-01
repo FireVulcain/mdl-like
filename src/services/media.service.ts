@@ -42,6 +42,7 @@ export type UnifiedMedia = {
     aired?: string;
     network?: string;
     genres?: string[];
+    tags?: { id: number; name: string }[];
     contentRating?: string;
     trailer?: {
         key: string; // YouTube video ID
@@ -56,6 +57,7 @@ export type UnifiedMedia = {
     } | null;
     totalSeasons?: number;
     firstAirDate?: string | null; // Raw first air date (YYYY-MM-DD)
+    mdlRanking?: string; // e.g. "#39230"
 };
 
 export type UnifiedPerson = {
@@ -415,6 +417,22 @@ export const mediaService = {
             const type: "MOVIE" | "TV" = d.details.type?.toLowerCase().includes("movie") ? "MOVIE" : "TV";
             const rating = typeof d.rating === "number" ? d.rating : parseFloat(String(d.rating ?? "0")) || 0;
 
+            // Build next episode from exact Kuryana timestamp
+            let mdlNextEpisode: UnifiedMedia["nextEpisode"] | undefined;
+            if (d.next_episode_airing?.released_at) {
+                const tsMs = parseInt(d.next_episode_airing.released_at) * 1000;
+                // Convert to KST date (UTC+9) so the component's 22:00 KST assumption aligns
+                const kst = new Date(tsMs + 9 * 3600 * 1000);
+                const airDate = `${kst.getUTCFullYear()}-${String(kst.getUTCMonth() + 1).padStart(2, "0")}-${String(kst.getUTCDate()).padStart(2, "0")}`;
+                mdlNextEpisode = {
+                    airDate,
+                    episodeNumber: parseInt(d.next_episode_airing.episode_number) || 1,
+                    seasonNumber: 1,
+                    name: "",
+                    seasonEpisodeCount: parseInt(d.next_episode_airing.episodes) || undefined,
+                };
+            }
+
             // Build flat cast list for generic consumers (watchlist etc.)
             const flatCast: NonNullable<UnifiedMedia["cast"]> = [];
             if (castResult?.data?.casts) {
@@ -442,11 +460,14 @@ export const mediaService = {
                 synopsis: d.synopsis,
                 rating,
                 totalEp,
-                aired: d.details.aired || undefined,
+                aired: d.details.aired || d.details.airs || undefined,
                 network: d.details.original_network || undefined,
                 duration: d.details.duration || undefined,
                 genres: d.others.genres || [],
+                tags: d.others.tags ?? [],
                 cast: flatCast,
+                nextEpisode: mdlNextEpisode,
+                mdlRanking: d.details.ranked || undefined,
             };
         }
 

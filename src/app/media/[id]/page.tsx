@@ -55,7 +55,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 select: { tmdbExternalId: true },
             }),
         ]);
-        const userMedia = await getUserMedia(userId, linkedTmdb?.tmdbExternalId ?? media.externalId, linkedTmdb ? "TMDB" : "MDL", 1);
+        // Check TMDB entry first (if linked), fall back to MDL entry in case user added it before the link existed
+        const userMedia =
+            (await getUserMedia(userId, linkedTmdb?.tmdbExternalId ?? media.externalId, linkedTmdb ? "TMDB" : "MDL", 1)) ??
+            (linkedTmdb?.tmdbExternalId ? await getUserMedia(userId, media.externalId, "MDL", 1) : null);
 
         // Convert KuryanaCastResult to MdlCast grouped format
         const mdlCast: MdlCast = { main: [], support: [], guest: [], cameo: [] };
@@ -247,8 +250,22 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         <span className="text-sky-400 font-medium">MDL {media.rating.toFixed(1)}</span>
                                     </>
                                 )}
+
+                                {media.mdlRanking && (
+                                    <>
+                                        <span className="text-gray-400 font-medium">MDL Rank</span>
+                                        <span className="text-sky-400 font-medium">{media.mdlRanking}</span>
+                                    </>
+                                )}
                             </div>
                         </div>
+
+                        {media.type === "TV" && media.nextEpisode && (
+                            <NextEpisodeCountdown
+                                nextEpisode={media.nextEpisode}
+                                totalEpisodes={media.totalEp}
+                            />
+                        )}
                     </StickySidebar>
                     </div>
 
@@ -304,12 +321,35 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         <div id="section-cast" className="space-y-4">
                             <SynopsisBlock text={media.synopsis || ""} />
                             {media.genres && media.genres.length > 0 && (
-                                <div className="flex flex-wrap gap-1.5">
-                                    {media.genres.map((g) => (
-                                        <Badge key={g} variant="secondary" className="bg-white/10 text-gray-300 border-white/10">
-                                            {g}
-                                        </Badge>
-                                    ))}
+                                <div className="mt-6">
+                                    <h3 className="text-lg font-semibold mb-3">Genres</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {media.genres.map((g) => (
+                                            <a
+                                                key={g}
+                                                href={`/dramas?genre=${encodeURIComponent(g)}`}
+                                                className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sm text-sky-300/80 hover:text-sky-200 hover:border-sky-400/30 transition-colors"
+                                            >
+                                                {g}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                            {media.tags && media.tags.length > 0 && (
+                                <div className="mt-6">
+                                    <h3 className="text-lg font-semibold mb-3">Tags</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {media.tags.map((t) => (
+                                            <a
+                                                key={t.id}
+                                                href={`/dramas?tag=${t.id}&tag_name=${encodeURIComponent(t.name)}`}
+                                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/60 hover:text-white/90 hover:border-white/20 transition-colors"
+                                            >
+                                                {t.name}
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                             <div className="mt-2">
@@ -425,7 +465,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     ]);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     const hasMdlRating = !cached?.mdlDisabled && !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
-    const userMedia = await getUserMedia(userId, media.externalId, media.source, selectedSeason);
+    // If no TMDB watchlist entry, fall back to the linked MDL entry (user may have added via MDL page)
+    const userMedia =
+        (await getUserMedia(userId, media.externalId, media.source, selectedSeason)) ??
+        (cached?.mdlSlug && !cached.mdlDisabled
+            ? await getUserMedia(userId, cached.mdlSlug, "MDL", selectedSeason)
+            : null);
     const watchlistIds = new Set(watchlistExternalIds);
 
     // Determine update action if userMedia exists

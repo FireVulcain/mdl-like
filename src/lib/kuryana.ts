@@ -38,11 +38,21 @@ export interface KuryanaDetails {
         poster: string;
         synopsis: string;
         casts: { name: string; profile_image: string; slug: string }[];
+        next_episode_airing?: {
+            id: string;
+            episode_number: string;
+            episodes: string;
+            released_at: string; // Unix timestamp (seconds)
+            duration: string;
+            timezone: string;
+        } | null;
+        current_episode?: string;
         details: {
             country: string;
             type: string;
             episodes: string;
-            aired: string;
+            aired?: string;
+            airs?: string;
             original_network: string;
             duration: string;
             score: string;
