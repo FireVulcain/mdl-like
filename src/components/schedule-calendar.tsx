@@ -34,14 +34,15 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
     const [year, setYear] = useState(initial.y);
     const [month, setMonth] = useState(initial.m);
     const [asianOnly, setAsianOnly] = useState(false);
+    const [includePlanToWatch, setIncludePlanToWatch] = useState(true);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [refreshingShowId, setRefreshingShowId] = useState<string | null>(null);
 
     const ASIAN_COUNTRIES = ["KR", "CN", "JP", "TW", "TH", "HK"];
-    const filteredEntries = asianOnly
-        ? entries.filter((e) => ASIAN_COUNTRIES.includes(e.originCountry))
-        : entries;
+    const filteredEntries = entries
+        .filter((e) => !asianOnly || ASIAN_COUNTRIES.includes(e.originCountry))
+        .filter((e) => includePlanToWatch || e.status !== "Plan to Watch");
 
     const handleRefreshShow = async (mediaId: string) => {
         setRefreshingShowId(mediaId);
@@ -154,6 +155,12 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                                 All shows
                             </button>
                         </div>
+                        <button
+                            onClick={() => setIncludePlanToWatch((v) => !v)}
+                            className={`cursor-pointer px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors ${includePlanToWatch ? "bg-primary/20 text-primary border-primary/30" : "bg-white/5 text-gray-400 border-white/10 hover:text-white hover:bg-white/10"}`}
+                        >
+                            Plan to Watch
+                        </button>
                         {/* Actions menu */}
                         <div className="relative">
                             <button

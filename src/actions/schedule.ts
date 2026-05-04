@@ -16,6 +16,7 @@ export type ScheduleEntry = {
     airDate: string; // YYYY-MM-DD
     mediaId: string;
     originCountry: string;
+    status: string;
 };
 
 // TVmaze rate limit: 20 req/10s — cap concurrent show fetches at 3
@@ -130,6 +131,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
             title: true,
             poster: true,
             originCountry: true,
+            status: true,
         },
     });
 
@@ -169,6 +171,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                     airDate: ep.airDate,
                     mediaId,
                     originCountry: item.originCountry || "",
+                    status: item.status,
                 });
             }
         } else {
@@ -192,6 +195,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                         airDate: ep.airDate,
                         mediaId,
                         originCountry: item.originCountry || "",
+                        status: item.status,
                     });
                 }
             } catch (error) {
