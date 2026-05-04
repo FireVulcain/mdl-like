@@ -635,7 +635,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         totalEp={episodeCount}
                         className="w-full justify-center"
                     />
-
                     {media.trailer && <TrailerButton trailer={media.trailer} className="w-full justify-center" />}
 
                     <div

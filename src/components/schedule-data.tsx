@@ -1,7 +1,8 @@
 import { getScheduleEntries } from "@/actions/schedule";
+import { getCalendarPreferences } from "@/actions/preferences";
 import { ScheduleCalendar } from "@/components/schedule-calendar";
 
 export async function ScheduleData({ initialDate }: { initialDate?: string }) {
-    const entries = await getScheduleEntries();
-    return <ScheduleCalendar entries={entries} initialDate={initialDate} />;
+    const [entries, prefs] = await Promise.all([getScheduleEntries(), getCalendarPreferences()]);
+    return <ScheduleCalendar entries={entries} initialDate={initialDate} initialPrefs={prefs} />;
 }

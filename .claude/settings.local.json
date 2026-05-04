@@ -46,7 +46,9 @@
       "Bash(npx tsx -e \":*)",
       "Bash(npx tsx scripts/_create-user2.ts)",
       "WebFetch(domain:mdl-scrapper-jade.vercel.app)",
-      "Bash(python3 -:*)"
+      "Bash(python3 -:*)",
+      "Bash(git pull *)",
+      "Bash(git stash *)"
     ]
   }
 }

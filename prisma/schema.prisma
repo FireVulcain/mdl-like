@@ -34,18 +34,26 @@ model Session {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String           @id @default(cuid())
   name          String?
-  email         String?         @unique
+  email         String?          @unique
   emailVerified DateTime?
   image         String?
   password      String?
-  accounts        Account[]
-  sessions        Session[]
-  media           UserMedia[]
-  activityLogs    ActivityLog[]
-  podiums         ProfilePodium[]
-  lastSeenSync    DateTime?
+  accounts      Account[]
+  sessions      Session[]
+  media         UserMedia[]
+  activityLogs  ActivityLog[]
+  podiums       ProfilePodium[]
+  preferences   UserPreferences?
+  lastSeenSync  DateTime?
+}
+
+model UserPreferences {
+  userId                     String  @id
+  calendarAsianOnly          Boolean @default(false)
+  calendarIncludePlanToWatch Boolean @default(true)
+  user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
@@ -57,7 +65,7 @@ model VerificationToken {
 }
 
 model UserMedia {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   userId        String
   externalId    String
   source        String
@@ -70,30 +78,30 @@ model UserMedia {
   poster        String?
   year          Int?
   originCountry String?
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime  @updatedAt
   notes         String?
-  season        Int      @default(1)
+  season        Int       @default(1)
   tmdbRating    Float?
   genres        String?
   backdrop      String?
   mdlRating     Float?
   airingStatus  String?
   lastWatchedAt DateTime?
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model ProfilePodium {
-  id         String @id @default(cuid())
+  id         String  @id @default(cuid())
   userId     String
   category   String // "general" | "kdrama" | "cdrama"
-  rank       Int    // 1, 2, 3
+  rank       Int // 1, 2, 3
   externalId String
   source     String
   mediaType  String
   title      String
   poster     String?
   year       Int?
-  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, category, rank])
   @@index([userId, category])
@@ -140,9 +148,9 @@ model CachedMdlData {
 }
 
 model CachedKuryanaPerson {
-  slug      String   @id
-  dataJson  Json
-  cachedAt  DateTime @default(now())
+  slug     String   @id
+  dataJson Json
+  cachedAt DateTime @default(now())
 }
 
 model MdlSeasonLink {
@@ -166,7 +174,7 @@ model MdlSeasonLink {
 model MdlAlias {
   id             String   @id @default(cuid())
   mdlSlug        String   @unique // the alias MDL slug (e.g. "the-glory-part-2")
-  tmdbExternalId String           // points to the main CachedMdlData entry
+  tmdbExternalId String // points to the main CachedMdlData entry
   createdAt      DateTime @default(now())
 
   @@index([tmdbExternalId])

@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, CalendarDays, MoreHorizontal, RefreshCw } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { refreshScheduleCache, refreshSingleShow } from "@/actions/schedule";
+import { saveCalendarPreferences, type CalendarPreferences } from "@/actions/preferences";
 
 export type { ScheduleEntry };
 
@@ -18,7 +19,7 @@ function toDateStr(year: number, month: number, day: number) {
     return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
-export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEntry[]; initialDate?: string }) {
+export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entries: ScheduleEntry[]; initialDate?: string; initialPrefs?: CalendarPreferences }) {
     const today = new Date();
 
     // Parse "YYYY-MM-DD" param — derive initial month and highlighted date
@@ -33,8 +34,8 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
 
     const [year, setYear] = useState(initial.y);
     const [month, setMonth] = useState(initial.m);
-    const [asianOnly, setAsianOnly] = useState(false);
-    const [includePlanToWatch, setIncludePlanToWatch] = useState(true);
+    const [asianOnly, setAsianOnly] = useState(initialPrefs?.calendarAsianOnly ?? false);
+    const [includePlanToWatch, setIncludePlanToWatch] = useState(initialPrefs?.calendarIncludePlanToWatch ?? true);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [refreshingShowId, setRefreshingShowId] = useState<string | null>(null);
@@ -138,41 +139,45 @@ export function ScheduleCalendar({ entries, initialDate }: { entries: ScheduleEn
                         </div>
                     </div>
 
-                    {/* Month navigation */}
+                    {/* Controls */}
                     <div className="flex items-center gap-2">
-                        <div className="flex items-center bg-white/5 border border-white/10 rounded-lg overflow-hidden text-sm font-medium">
-                            <button
-                                onClick={() => setAsianOnly(true)}
-                                className={`cursor-pointer px-3 py-1.5 transition-colors ${asianOnly ? "bg-primary/20 text-primary" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
-                            >
-                                Asian shows
-                            </button>
-                            <div className="w-px h-4 bg-white/10" />
-                            <button
-                                onClick={() => setAsianOnly(false)}
-                                className={`cursor-pointer px-3 py-1.5 transition-colors ${!asianOnly ? "bg-primary/20 text-primary" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
-                            >
-                                All shows
-                            </button>
-                        </div>
-                        <button
-                            onClick={() => setIncludePlanToWatch((v) => !v)}
-                            className={`cursor-pointer px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors ${includePlanToWatch ? "bg-primary/20 text-primary border-primary/30" : "bg-white/5 text-gray-400 border-white/10 hover:text-white hover:bg-white/10"}`}
-                        >
-                            Plan to Watch
-                        </button>
-                        {/* Actions menu */}
+                        {/* Filters menu */}
                         <div className="relative">
                             <button
                                 onClick={() => setShowActionsMenu(!showActionsMenu)}
-                                className="cursor-pointer h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white border border-white/10 transition-colors"
+                                className={`cursor-pointer h-9 w-9 rounded-lg flex items-center justify-center border transition-colors ${showActionsMenu || asianOnly || !includePlanToWatch ? "bg-primary/20 text-primary border-primary/30" : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"}`}
                             >
-                                <MoreHorizontal className="h-5 w-5" />
+                                <SlidersHorizontal className="h-4 w-4" />
                             </button>
                             {showActionsMenu && (
                                 <>
                                     <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
                                     <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <p className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Region</p>
+                                        <button
+                                            onClick={() => { setAsianOnly(false); saveCalendarPreferences({ calendarAsianOnly: false }); }}
+                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors"
+                                        >
+                                            All shows
+                                            {!asianOnly && <Check className="h-3.5 w-3.5 text-primary" />}
+                                        </button>
+                                        <button
+                                            onClick={() => { setAsianOnly(true); saveCalendarPreferences({ calendarAsianOnly: true }); }}
+                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors"
+                                        >
+                                            Asian shows only
+                                            {asianOnly && <Check className="h-3.5 w-3.5 text-primary" />}
+                                        </button>
+                                        <div className="my-1.5 border-t border-white/10" />
+                                        <p className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Show</p>
+                                        <button
+                                            onClick={() => { const next = !includePlanToWatch; setIncludePlanToWatch(next); saveCalendarPreferences({ calendarIncludePlanToWatch: next }); }}
+                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors"
+                                        >
+                                            Plan to Watch
+                                            {includePlanToWatch && <Check className="h-3.5 w-3.5 text-primary" />}
+                                        </button>
+                                        <div className="my-1.5 border-t border-white/10" />
                                         <button
                                             onClick={handleRefresh}
                                             disabled={isRefreshing}
