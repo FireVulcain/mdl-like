@@ -237,13 +237,12 @@ function renderFeed() {
   });
 
   feed.innerHTML = "";
-  let todayEl = null;
   let total = 0;
 
   byDate.forEach((dayMap, dateStr) => {
     const section = document.createElement("div");
     section.className = "feed-section";
-    if (dateStr === today) { section.id = "today-section"; todayEl = section; }
+    if (dateStr === today) section.id = "today-section";
 
     const hdr = document.createElement("div");
     hdr.className = "feed-date-header" + (dateStr === today ? " is-today" : "");
@@ -292,7 +291,6 @@ function renderFeed() {
   const src = isPersonal ? "Your watchlist" : "Trending";
   setFooter(`${total} upcoming episode${total !== 1 ? "s" : ""} · ${src}`);
 
-  if (todayEl) requestAnimationFrame(() => todayEl.scrollIntoView({ block: "start", behavior: "instant" }));
 }
 
 // ── Footer / mode badge ───────────────────────────────────────────────────────
