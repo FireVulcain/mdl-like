@@ -9,9 +9,10 @@ const COUNTRY_CODES = { korean: "KR", chinese: "CN", japanese: "JP", thai: "TH" 
 const COUNTRY_FLAGS = { KR: "🇰🇷", CN: "🇨🇳", JP: "🇯🇵", TH: "🇹🇭", TW: "🇹🇼", US: "🇺🇸" };
 
 // ── State ────────────────────────────────────────────────────────────────────
-let allShows   = [];
-let loading    = false;
-let isPersonal = false;
+let allShows      = [];
+let loading       = false;
+let isPersonal    = false;
+let filterStatus  = "all"; // "all" | "Watching" | "Plan to Watch"
 
 let settings = {
   appUrl: "",
@@ -111,6 +112,7 @@ async function fetchPersonalSchedule() {
       totalEp: 0,
       epName:  ep.episodeName || "",
       season:  ep.seasonNumber,
+      status:  ep.status || "",
     })).sort((a, b) => a.airTs - b.airTs);
 
     console.log("[Drama Calendar] Personal entries mapped:", result.length,
@@ -210,6 +212,7 @@ function renderFeed() {
 
   const upcoming = allShows
     .filter(s => s.airDate >= today)
+    .filter(s => !isPersonal || filterStatus === "all" || s.status === filterStatus)
     .sort((a, b) => a.airDate.localeCompare(b.airDate) || a.ep - b.ep);
 
   if (!upcoming.length) {
@@ -306,6 +309,7 @@ async function initData(forceRefresh = false) {
 
   try {
     allShows = await getShows(forceRefresh);
+    document.getElementById("filter-bar").classList.toggle("hidden", !isPersonal);
     renderFeed();
   } catch (err) {
     setFooter("Failed to load — check connection");
@@ -324,6 +328,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("btn-today").addEventListener("click", () => {
     const el = document.getElementById("today-section");
     if (el) el.scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterStatus = btn.dataset.filter;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b === btn));
+      renderFeed();
+    });
   });
 
   document.getElementById("btn-refresh").addEventListener("click", () => initData(true));
