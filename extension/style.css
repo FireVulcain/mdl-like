@@ -215,18 +215,19 @@ select:focus { outline: none; border-color: var(--primary); }
 .agenda-feed::-webkit-scrollbar-track { background: transparent; }
 .agenda-feed::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-.feed-section { margin-bottom: 2px; }
+.feed-section { margin-bottom: 4px; }
+.feed-section + .feed-section { margin-top: 8px; border-top: 1px solid var(--border); padding-top: 2px; }
 
 .feed-date-header {
   position: sticky;
   top: 0;
   z-index: 1;
-  padding: 10px 4px 5px;
-  font-size: 10px;
+  padding: 10px 4px 6px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
+  letter-spacing: 0.07em;
+  color: var(--text-dim);
   background: var(--bg);
 }
 .feed-date-header.is-today { color: var(--primary); }
