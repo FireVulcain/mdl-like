@@ -170,7 +170,7 @@ select:focus { outline: none; border-color: var(--primary); }
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 5px 14px;
 }
 .nav-btn {
   width: 26px; height: 26px;
@@ -218,7 +218,7 @@ select:focus { outline: none; border-color: var(--primary); }
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
-  padding: 4px 0;
+  padding: 2px 0;
 }
 .day-headers .weekend { color: #475569; }
 
@@ -234,9 +234,9 @@ select:focus { outline: none; border-color: var(--primary); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  padding: 5px 2px;
-  min-height: 52px;
+  gap: 2px;
+  padding: 4px 2px;
+  min-height: 42px;
   cursor: pointer;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -254,10 +254,10 @@ select:focus { outline: none; border-color: var(--primary); }
 .cal-cell.selected:hover { background: rgba(99,102,241,0.25); }
 
 .cal-day-num {
-  width: 22px; height: 22px;
+  width: 20px; height: 20px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-dim);
   flex-shrink: 0;
