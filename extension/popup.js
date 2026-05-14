@@ -53,6 +53,7 @@ function updateFooterCount() {
 async function loadSettings() {
   const stored = await chrome.storage.local.get("settings");
   if (stored.settings) settings = { ...settings, ...stored.settings };
+  console.log("[Drama Calendar] Loaded settings:", settings);
 
   document.getElementById("app-url").value = settings.appUrl || "";
   document.getElementById("shows-per-country").value = settings.showsPerCountry;
@@ -78,38 +79,51 @@ async function saveSettings() {
 // Calls /api/ext/schedule on the user's app with their session cookie.
 // Returns ScheduleEntry[] or null if not authenticated / URL not set.
 async function fetchPersonalSchedule() {
-  if (!settings.appUrl) return null;
+  if (!settings.appUrl) {
+    console.log("[Drama Calendar] No app URL configured — skipping personal fetch");
+    return null;
+  }
+  const url = `${settings.appUrl}/api/ext/schedule`;
+  console.log("[Drama Calendar] Fetching personal schedule from:", url);
   try {
-    const res = await fetch(`${settings.appUrl}/api/ext/schedule`, {
+    const res = await fetch(url, {
       credentials: "include",
       headers: { "Accept": "application/json" },
     });
-    if (!res.ok) return null; // 401 = not logged in, etc.
-    const entries = await res.json(); // ScheduleEntry[]
-    if (!Array.isArray(entries) || entries.length === 0) return null;
-
-    // Convert ScheduleEntry to our internal show format
-    // Group by mediaId — one "show" per mediaId with its next upcoming air date
-    const byMedia = new Map();
-    for (const ep of entries) {
-      if (!byMedia.has(ep.mediaId)) {
-        byMedia.set(ep.mediaId, {
-          title:   ep.title,
-          poster:  ep.poster,
-          slug:    ep.mediaId,
-          country: ep.originCountry || "",
-          rating:  0,
-          airDate: ep.airDate,
-          airTs:   new Date(ep.airDate).getTime() / 1000,
-          ep:      ep.episodeNumber,
-          totalEp: 0,
-          epName:  ep.episodeName || "",
-          season:  ep.seasonNumber,
-        });
-      }
+    console.log("[Drama Calendar] Response status:", res.status, res.statusText);
+    console.log("[Drama Calendar] Response headers:", Object.fromEntries(res.headers.entries()));
+    if (!res.ok) {
+      console.warn("[Drama Calendar] Non-OK response — falling back to Kuryana. Status:", res.status);
+      return null;
     }
-    return [...byMedia.values()].sort((a, b) => a.airTs - b.airTs);
-  } catch {
+    const entries = await res.json(); // ScheduleEntry[]
+    console.log("[Drama Calendar] Personal entries received:", entries.length, entries.slice(0, 3));
+    if (!Array.isArray(entries) || entries.length === 0) {
+      console.warn("[Drama Calendar] Empty or non-array response — falling back to Kuryana");
+      return null;
+    }
+
+    // Keep every episode as its own calendar event (same as the app calendar).
+    // Each entry has its own airDate so the calendar places dots correctly.
+    const result = entries.map(ep => ({
+      title:   ep.title,
+      poster:  ep.poster,
+      slug:    ep.mediaId,
+      country: ep.originCountry || "",
+      rating:  0,
+      airDate: ep.airDate,
+      airTs:   new Date(ep.airDate).getTime() / 1000,
+      ep:      ep.episodeNumber,
+      totalEp: 0,
+      epName:  ep.episodeName || "",
+      season:  ep.seasonNumber,
+    })).sort((a, b) => a.airTs - b.airTs);
+
+    console.log("[Drama Calendar] Personal entries mapped:", result.length,
+      "date range:", result[0]?.airDate, "→", result[result.length - 1]?.airDate);
+    return result;
+  } catch (err) {
+    console.error("[Drama Calendar] fetchPersonalSchedule threw:", err);
     return null;
   }
 }
@@ -169,20 +183,26 @@ async function getShows(forceRefresh = false) {
     const stored = await chrome.storage.local.get(CACHE_KEY);
     const cache  = stored[CACHE_KEY];
     if (cache && Date.now() - cache.ts < CACHE_TTL) {
+      console.log("[Drama Calendar] Cache HIT — age:", Math.round((Date.now() - cache.ts) / 1000), "s, personal:", cache.isPersonal, "shows:", cache.shows.length);
       isPersonal = cache.isPersonal;
       return cache.shows;
     }
+    console.log("[Drama Calendar] Cache MISS — fetching fresh data");
+  } else {
+    console.log("[Drama Calendar] Force refresh — bypassing cache");
   }
 
   // Try personal schedule first
   const personal = await fetchPersonalSchedule();
   if (personal) {
+    console.log("[Drama Calendar] Using PERSONAL schedule, caching", personal.length, "shows");
     isPersonal = true;
     await chrome.storage.local.set({ [CACHE_KEY]: { shows: personal, ts: Date.now(), isPersonal: true } });
     return personal;
   }
 
   // Fall back to Kuryana public data
+  console.log("[Drama Calendar] Falling back to KURYANA public data");
   isPersonal = false;
   const shows = await fetchKuryanaShows();
   await chrome.storage.local.set({ [CACHE_KEY]: { shows, ts: Date.now(), isPersonal: false } });
