@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Drama Calendar",
+  "version": "1.0.0",
+  "description": "Quick view of airing Asian dramas — K-drama, C-drama, and more.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://mdl-scrapper-jade.vercel.app/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Drama Calendar",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
