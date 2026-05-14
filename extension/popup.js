@@ -219,7 +219,7 @@ function renderCalendar() {
   const offset = (first.getDay() + 6) % 7;
   const prevDays = new Date(calYear, calMonth, 0).getDate();
 
-  // One dot per unique show per day (not one per episode)
+  // One thumbnail per unique show per day (not one per episode)
   const dotMap = {};
   const seenDots = new Set();
   allShows.forEach(s => {
@@ -227,7 +227,7 @@ function renderCalendar() {
     if (seenDots.has(key)) return;
     seenDots.add(key);
     if (!dotMap[s.airDate]) dotMap[s.airDate] = [];
-    dotMap[s.airDate].push(s.country);
+    dotMap[s.airDate].push({ country: s.country, poster: s.poster });
   });
 
   const cells = [];
@@ -271,19 +271,30 @@ function renderCalendar() {
 
     const dots = dotMap[dateStr];
     if (dots?.length && cell.cur) {
-      const dotRow = document.createElement("div");
-      dotRow.className = "cal-dots";
-      dots.slice(0, 6).forEach(code => {
-        const dot = document.createElement("div");
-        dot.className = `cal-dot dot-${code || "default"}`;
-        dotRow.appendChild(dot);
+      const thumbRow = document.createElement("div");
+      thumbRow.className = "cal-thumbs";
+      const MAX = 3;
+      const visible = dots.length > MAX ? dots.slice(0, MAX - 1) : dots;
+      const overflow = dots.length - visible.length;
+      visible.forEach(({ country, poster }) => {
+        const wrap = document.createElement("div");
+        wrap.className = `cal-thumb dot-${country || "default"}`;
+        if (poster) {
+          const img = document.createElement("img");
+          img.src = poster;
+          img.alt = "";
+          img.loading = "lazy";
+          wrap.appendChild(img);
+        }
+        thumbRow.appendChild(wrap);
       });
-      if (dots.length > 6) {
+      if (overflow > 0) {
         const more = document.createElement("div");
-        more.className = "cal-dot dot-default";
-        dotRow.appendChild(more);
+        more.className = "cal-thumb-more";
+        more.textContent = `+${overflow}`;
+        thumbRow.appendChild(more);
       }
-      div.appendChild(dotRow);
+      div.appendChild(thumbRow);
     }
 
     if (cell.cur) {
