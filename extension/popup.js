@@ -205,10 +205,6 @@ async function getShows(forceRefresh = false) {
 
 // ── Render: Feed ─────────────────────────────────────────────────────────────
 function renderFeed() {
-  document.getElementById("month-label").textContent = `${MONTH_NAMES[calMonth]} ${calYear}`;
-
-  const today  = todayStr();
-  const first  = new Date(calYear, calMonth, 1);
   const feed = document.getElementById("agenda-feed");
   const today = todayStr();
 
