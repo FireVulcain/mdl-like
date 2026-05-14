@@ -219,8 +219,13 @@ function renderCalendar() {
   const offset = (first.getDay() + 6) % 7;
   const prevDays = new Date(calYear, calMonth, 0).getDate();
 
+  // One dot per unique show per day (not one per episode)
   const dotMap = {};
+  const seenDots = new Set();
   allShows.forEach(s => {
+    const key = `${s.airDate}::${s.slug}::${s.season ?? 1}`;
+    if (seenDots.has(key)) return;
+    seenDots.add(key);
     if (!dotMap[s.airDate]) dotMap[s.airDate] = [];
     dotMap[s.airDate].push(s.country);
   });
@@ -311,14 +316,33 @@ function renderAgenda() {
     return;
   }
 
-  list.innerHTML = "";
+  // Group episodes by show + season so multi-episode drops show as one card
+  const groups = new Map();
   dayShows.forEach(s => {
-    const epLabel  = isPersonal
-      ? `S${String(s.season || 1).padStart(2,"0")}E${String(s.ep).padStart(2,"0")}`
-      : (s.totalEp ? `EP ${s.ep}/${s.totalEp}` : `EP ${s.ep}`);
+    const key = `${s.slug}::${s.season ?? 1}`;
+    if (!groups.has(key)) groups.set(key, { ...s, eps: [s.ep] });
+    else groups.get(key).eps.push(s.ep);
+  });
+
+  list.innerHTML = "";
+  groups.forEach(s => {
+    s.eps.sort((a, b) => a - b);
+
+    let epLabel;
+    if (!isPersonal) {
+      epLabel = s.totalEp ? `EP ${s.eps[0]}/${s.totalEp}` : `EP ${s.eps[0]}`;
+    } else if (s.eps.length === 1) {
+      epLabel = `S${String(s.season || 1).padStart(2,"0")}E${String(s.eps[0]).padStart(2,"0")}`;
+    } else {
+      const sn = `S${String(s.season || 1).padStart(2,"0")}`;
+      const e1 = `E${String(s.eps[0]).padStart(2,"0")}`;
+      const eN = `E${String(s.eps[s.eps.length - 1]).padStart(2,"0")}`;
+      epLabel = `${sn}${e1}–${eN}`;
+    }
+
     const flag     = COUNTRY_FLAGS[s.country] || "";
     const ratingTxt = !isPersonal && s.rating > 0 ? `★ ${s.rating.toFixed(1)}` : "";
-    const epName   = s.epName ? `<span class="ep-name">${s.epName}</span>` : "";
+    const epName   = s.eps.length === 1 && s.epName ? `<span class="ep-name">${s.epName}</span>` : "";
 
     const card = document.createElement("div");
     card.className = "show-card";
