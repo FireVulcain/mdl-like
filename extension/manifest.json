@@ -1,12 +1,10 @@
 {
   "manifest_version": 3,
   "name": "Drama Calendar",
-  "version": "1.0.0",
-  "description": "Quick view of airing Asian dramas — K-drama, C-drama, and more.",
+  "version": "1.1.0",
+  "description": "Your personal drama airing calendar — shows from your watchlist.",
   "permissions": ["storage"],
-  "host_permissions": [
-    "https://mdl-scrapper-jade.vercel.app/*"
-  ],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Drama Calendar",

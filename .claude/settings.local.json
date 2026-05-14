@@ -47,8 +47,19 @@
       "Bash(npx tsx scripts/_create-user2.ts)",
       "WebFetch(domain:mdl-scrapper-jade.vercel.app)",
       "Bash(python3 -:*)",
+      "Bash(1:*)",
+      "mcp__chrome-devtools__get_network_request",
+      "Bash(cat src/app/u/[id]/page.tsx)",
+      "Bash(cat src/app/api/auth/[...nextauth]/route.ts)",
+      "Bash(head -100 src/app/media/[id]/page.tsx)",
+      "Bash(find '/c/Users/Admin/Desktop/Tout/projets/MDL like' -type f -name *search*)",
+      "Bash(npm list:*)",
+      "Bash(mkdir -p \"c:/Users/Admin/Desktop/Tout/projets/MDL like/extension/icons\")",
       "Bash(git pull *)",
       "Bash(git stash *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Admin\\Desktop\\Tout\\projets\\MDL like\\extension"
     ]
   }
 }

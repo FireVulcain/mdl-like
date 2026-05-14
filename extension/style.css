@@ -109,6 +109,37 @@ body {
 .country-toggle input { display: none; }
 .country-toggle.active { background: var(--bg-active); border-color: rgba(99,102,241,0.4); color: var(--text); }
 
+.settings-row--col { flex-direction: column; gap: 5px; }
+.settings-hint { font-size: 10px; color: var(--text-muted); font-weight: 400; }
+.settings-note { font-size: 10px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+.settings-group { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+.settings-group-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+
+.url-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 5px 8px;
+  font-size: 11px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.url-input:focus { border-color: var(--primary); }
+.url-input::placeholder { color: var(--text-muted); }
+
+.mode-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.mode-badge.personal { background: var(--primary-dim); color: var(--primary); border: 1px solid rgba(99,102,241,0.3); }
+.mode-badge.public { background: rgba(100,116,139,0.15); color: var(--text-muted); border: 1px solid var(--border); }
+
 select {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -344,6 +375,14 @@ select:focus { outline: none; border-color: var(--primary); }
   color: var(--text-dim);
 }
 .show-country { font-size: 13px; }
+.ep-name {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
 .show-rating {
   margin-left: auto;
   font-size: 10px;

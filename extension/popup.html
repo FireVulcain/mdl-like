@@ -37,23 +37,34 @@
     <!-- Settings panel (hidden by default) -->
     <div id="settings-panel" class="settings-panel hidden">
       <div class="settings-title">Settings</div>
-      <div class="settings-row">
-        <label class="settings-label">Countries</label>
-        <div class="country-toggles">
-          <label class="country-toggle"><input type="checkbox" data-country="korean" checked /> 🇰🇷 Korean</label>
-          <label class="country-toggle"><input type="checkbox" data-country="chinese" checked /> 🇨🇳 Chinese</label>
-          <label class="country-toggle"><input type="checkbox" data-country="japanese" /> 🇯🇵 Japanese</label>
-          <label class="country-toggle"><input type="checkbox" data-country="thai" /> 🇹🇭 Thai</label>
+
+      <div class="settings-row settings-row--col">
+        <label class="settings-label">App URL <span class="settings-hint">(your deployed site)</span></label>
+        <input id="app-url" type="url" placeholder="https://your-app.vercel.app" class="url-input" />
+        <p class="settings-note">Must be logged in to that site in Chrome. Leave empty to show all trending shows instead.</p>
+      </div>
+
+      <div id="public-settings" class="settings-group">
+        <div class="settings-group-label">Fallback / public mode</div>
+        <div class="settings-row">
+          <label class="settings-label">Countries</label>
+          <div class="country-toggles">
+            <label class="country-toggle"><input type="checkbox" data-country="korean" checked /> 🇰🇷 Korean</label>
+            <label class="country-toggle"><input type="checkbox" data-country="chinese" checked /> 🇨🇳 Chinese</label>
+            <label class="country-toggle"><input type="checkbox" data-country="japanese" /> 🇯🇵 Japanese</label>
+            <label class="country-toggle"><input type="checkbox" data-country="thai" /> 🇹🇭 Thai</label>
+          </div>
+        </div>
+        <div class="settings-row">
+          <label class="settings-label">Shows per country</label>
+          <select id="shows-per-country">
+            <option value="5">5</option>
+            <option value="8" selected>8</option>
+            <option value="12">12</option>
+          </select>
         </div>
       </div>
-      <div class="settings-row">
-        <label class="settings-label">Shows per country</label>
-        <select id="shows-per-country">
-          <option value="5">5</option>
-          <option value="8" selected>8</option>
-          <option value="12">12</option>
-        </select>
-      </div>
+
       <button id="btn-save-settings" class="save-btn">Save &amp; Refresh</button>
     </div>
 
