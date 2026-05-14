@@ -7,15 +7,11 @@ const CACHE_TTL   = 60 * 60 * 1000; // 1 hour
 
 const COUNTRY_CODES = { korean: "KR", chinese: "CN", japanese: "JP", thai: "TH" };
 const COUNTRY_FLAGS = { KR: "🇰🇷", CN: "🇨🇳", JP: "🇯🇵", TH: "🇹🇭", TW: "🇹🇼", US: "🇺🇸" };
-const MONTH_NAMES   = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 // ── State ────────────────────────────────────────────────────────────────────
-let allShows     = [];
-let selectedDate = todayStr();
-let calYear      = new Date().getFullYear();
-let calMonth     = new Date().getMonth();
-let loading      = false;
-let isPersonal   = false; // true when data came from the user's app
+let allShows   = [];
+let loading    = false;
+let isPersonal = false;
 
 let settings = {
   appUrl: "",
@@ -31,22 +27,20 @@ function todayStr() {
 function fmt(y, m, d) {
   return `${y}-${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
 }
-function formatDayLabel(dateStr) {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-}
 function kstDateStr(unixSeconds) {
   const kst = new Date(unixSeconds * 1000 + 9 * 3600 * 1000);
   return fmt(kst.getUTCFullYear(), kst.getUTCMonth() + 1, kst.getUTCDate());
 }
-function thisMonthCount() {
-  const prefix = `${calYear}-${String(calMonth + 1).padStart(2,"0")}`;
-  return allShows.filter(s => s.airDate.startsWith(prefix)).length;
-}
-function updateFooterCount() {
-  const n = thisMonthCount();
-  const src = isPersonal ? "Your watchlist" : "Trending";
-  setFooter(n > 0 ? `${n} episode${n !== 1 ? "s" : ""} in ${MONTH_NAMES[calMonth]} · ${src}` : `Nothing in ${MONTH_NAMES[calMonth]} · ${src}`);
+function dateSectionLabel(dateStr) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const dt = new Date(y, m - 1, d);
+  const today = todayStr();
+  const tom = new Date(); tom.setDate(tom.getDate() + 1);
+  const tomorrowStr = fmt(tom.getFullYear(), tom.getMonth() + 1, tom.getDate());
+  const monthDay = dt.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+  if (dateStr === today) return `Today · ${monthDay}`;
+  if (dateStr === tomorrowStr) return `Tomorrow · ${monthDay}`;
+  return dt.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 }
 
 // ── Settings ─────────────────────────────────────────────────────────────────
@@ -209,169 +203,97 @@ async function getShows(forceRefresh = false) {
   return shows;
 }
 
-// ── Render: Calendar ──────────────────────────────────────────────────────────
-function renderCalendar() {
+// ── Render: Feed ─────────────────────────────────────────────────────────────
+function renderFeed() {
   document.getElementById("month-label").textContent = `${MONTH_NAMES[calMonth]} ${calYear}`;
 
   const today  = todayStr();
   const first  = new Date(calYear, calMonth, 1);
-  const daysIn = new Date(calYear, calMonth + 1, 0).getDate();
-  const offset = (first.getDay() + 6) % 7;
-  const prevDays = new Date(calYear, calMonth, 0).getDate();
+  const feed = document.getElementById("agenda-feed");
+  const today = todayStr();
 
-  // One thumbnail per unique show per day (not one per episode)
-  const dotMap = {};
-  const seenDots = new Set();
-  allShows.forEach(s => {
-    const key = `${s.airDate}::${s.slug}::${s.season ?? 1}`;
-    if (seenDots.has(key)) return;
-    seenDots.add(key);
-    if (!dotMap[s.airDate]) dotMap[s.airDate] = [];
-    dotMap[s.airDate].push({ country: s.country, poster: s.poster });
-  });
+  const upcoming = allShows
+    .filter(s => s.airDate >= today)
+    .sort((a, b) => a.airDate.localeCompare(b.airDate) || a.ep - b.ep);
 
-  const cells = [];
-  for (let i = offset - 1; i >= 0; i--) {
-    const mo = calMonth === 0 ? 11 : calMonth - 1;
-    const yr = calMonth === 0 ? calYear - 1 : calYear;
-    cells.push({ d: prevDays - i, m: mo, y: yr, cur: false });
-  }
-  for (let d = 1; d <= daysIn; d++) cells.push({ d, m: calMonth, y: calYear, cur: true });
-  const trail = (7 - (cells.length % 7)) % 7;
-  for (let d = 1; d <= trail; d++) {
-    const mo = calMonth === 11 ? 0 : calMonth + 1;
-    const yr = calMonth === 11 ? calYear + 1 : calYear;
-    cells.push({ d, m: mo, y: yr, cur: false });
-  }
-
-  const container = document.getElementById("calendar-cells");
-  container.innerHTML = "";
-
-  cells.forEach((cell, i) => {
-    const dateStr  = fmt(cell.y, cell.m + 1, cell.d);
-    const isToday    = dateStr === today;
-    const isSelected = dateStr === selectedDate;
-    const isPast     = dateStr < today;
-    const colIdx     = i % 7;
-    const isWeekend  = colIdx === 5 || colIdx === 6;
-
-    const div = document.createElement("div");
-    div.className = ["cal-cell",
-      !cell.cur ? "other-month" : "",
-      isPast && !isToday ? "past" : "",
-      isToday    ? "today" : "",
-      isSelected ? "selected" : "",
-      isWeekend  ? "weekend" : "",
-    ].filter(Boolean).join(" ");
-
-    const num = document.createElement("div");
-    num.className = "cal-day-num";
-    num.textContent = cell.d;
-    div.appendChild(num);
-
-    const dots = dotMap[dateStr];
-    if (dots?.length && cell.cur) {
-      const thumbRow = document.createElement("div");
-      thumbRow.className = "cal-thumbs";
-      const MAX = 3;
-      const visible = dots.length > MAX ? dots.slice(0, MAX - 1) : dots;
-      const overflow = dots.length - visible.length;
-      visible.forEach(({ country, poster }) => {
-        const wrap = document.createElement("div");
-        wrap.className = `cal-thumb dot-${country || "default"}`;
-        if (poster) {
-          const img = document.createElement("img");
-          img.src = poster;
-          img.alt = "";
-          img.loading = "lazy";
-          wrap.appendChild(img);
-        }
-        thumbRow.appendChild(wrap);
-      });
-      if (overflow > 0) {
-        const more = document.createElement("div");
-        more.className = "cal-thumb-more";
-        more.textContent = `+${overflow}`;
-        thumbRow.appendChild(more);
-      }
-      div.appendChild(thumbRow);
-    }
-
-    if (cell.cur) {
-      div.addEventListener("click", () => {
-        selectedDate = dateStr;
-        renderCalendar();
-        renderAgenda();
-      });
-    }
-    container.appendChild(div);
-  });
-}
-
-// ── Render: Agenda ────────────────────────────────────────────────────────────
-function renderAgenda() {
-  const dayShows = allShows.filter(s => s.airDate === selectedDate);
-  document.getElementById("agenda-header").textContent =
-    selectedDate ? formatDayLabel(selectedDate) : "Select a day";
-
-  const list = document.getElementById("agenda-list");
-
-  if (!dayShows.length) {
-    list.innerHTML = `
+  if (!upcoming.length) {
+    feed.innerHTML = `
       <div class="empty-state">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3">
           <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
         </svg>
-        <p>No shows airing this day</p>
+        <p>No upcoming episodes found</p>
       </div>`;
     return;
   }
 
-  // Group episodes by show + season so multi-episode drops show as one card
-  const groups = new Map();
-  dayShows.forEach(s => {
-    const key = `${s.slug}::${s.season ?? 1}`;
-    if (!groups.has(key)) groups.set(key, { ...s, eps: [s.ep] });
-    else groups.get(key).eps.push(s.ep);
+  // Group by date → then by show+season within each date
+  const byDate = new Map();
+  upcoming.forEach(ep => {
+    if (!byDate.has(ep.airDate)) byDate.set(ep.airDate, new Map());
+    const key = `${ep.slug}::${ep.season ?? 1}`;
+    const day = byDate.get(ep.airDate);
+    if (!day.has(key)) day.set(key, { ...ep, eps: [ep.ep] });
+    else day.get(key).eps.push(ep.ep);
   });
 
-  list.innerHTML = "";
-  groups.forEach(s => {
-    s.eps.sort((a, b) => a - b);
+  feed.innerHTML = "";
+  let todayEl = null;
+  let total = 0;
 
-    let epLabel;
-    if (!isPersonal) {
-      epLabel = s.totalEp ? `EP ${s.eps[0]}/${s.totalEp}` : `EP ${s.eps[0]}`;
-    } else if (s.eps.length === 1) {
-      epLabel = `S${String(s.season || 1).padStart(2,"0")}E${String(s.eps[0]).padStart(2,"0")}`;
-    } else {
-      const sn = `S${String(s.season || 1).padStart(2,"0")}`;
-      const e1 = `E${String(s.eps[0]).padStart(2,"0")}`;
-      const eN = `E${String(s.eps[s.eps.length - 1]).padStart(2,"0")}`;
-      epLabel = `${sn}${e1}–${eN}`;
-    }
+  byDate.forEach((dayMap, dateStr) => {
+    const section = document.createElement("div");
+    section.className = "feed-section";
+    if (dateStr === today) { section.id = "today-section"; todayEl = section; }
 
-    const flag     = COUNTRY_FLAGS[s.country] || "";
-    const ratingTxt = !isPersonal && s.rating > 0 ? `★ ${s.rating.toFixed(1)}` : "";
-    const epName   = s.eps.length === 1 && s.epName ? `<span class="ep-name">${s.epName}</span>` : "";
+    const hdr = document.createElement("div");
+    hdr.className = "feed-date-header" + (dateStr === today ? " is-today" : "");
+    hdr.textContent = dateSectionLabel(dateStr);
+    section.appendChild(hdr);
 
-    const card = document.createElement("div");
-    card.className = "show-card";
-    card.innerHTML = `
-      ${s.poster
-        ? `<img class="show-poster" src="${s.poster}" alt="" loading="lazy" />`
-        : `<div class="show-poster-placeholder">${s.title.slice(0,2).toUpperCase()}</div>`}
-      <div class="show-info">
-        <div class="show-title" title="${s.title}">${s.title}</div>
-        <div class="show-meta">
-          <span class="show-ep">${epLabel}</span>
-          ${flag ? `<span class="show-country">${flag}</span>` : ""}
-          ${epName}
-          ${ratingTxt ? `<span class="show-rating">${ratingTxt}</span>` : ""}
-        </div>
-      </div>`;
-    list.appendChild(card);
+    dayMap.forEach(s => {
+      s.eps.sort((a, b) => a - b);
+      total++;
+
+      let epLabel;
+      if (!isPersonal) {
+        epLabel = s.totalEp ? `EP ${s.eps[0]}/${s.totalEp}` : `EP ${s.eps[0]}`;
+      } else if (s.eps.length === 1) {
+        epLabel = `S${String(s.season || 1).padStart(2,"0")}E${String(s.eps[0]).padStart(2,"0")}`;
+      } else {
+        const sn = `S${String(s.season || 1).padStart(2,"0")}`;
+        epLabel = `${sn}E${String(s.eps[0]).padStart(2,"0")}–E${String(s.eps[s.eps.length-1]).padStart(2,"0")}`;
+      }
+
+      const flag = COUNTRY_FLAGS[s.country] || "";
+      const ratingTxt = !isPersonal && s.rating > 0 ? `★ ${s.rating.toFixed(1)}` : "";
+      const epName = s.eps.length === 1 && s.epName ? `<span class="ep-name">${s.epName}</span>` : "";
+
+      const card = document.createElement("div");
+      card.className = "show-card";
+      card.innerHTML = `
+        ${s.poster
+          ? `<img class="show-poster" src="${s.poster}" alt="" loading="lazy" />`
+          : `<div class="show-poster-placeholder">${s.title.slice(0,2).toUpperCase()}</div>`}
+        <div class="show-info">
+          <div class="show-title" title="${s.title}">${s.title}</div>
+          <div class="show-meta">
+            <span class="show-ep">${epLabel}</span>
+            ${flag ? `<span class="show-country">${flag}</span>` : ""}
+            ${epName}
+            ${ratingTxt ? `<span class="show-rating">${ratingTxt}</span>` : ""}
+          </div>
+        </div>`;
+      section.appendChild(card);
+    });
+
+    feed.appendChild(section);
   });
+
+  const src = isPersonal ? "Your watchlist" : "Trending";
+  setFooter(`${total} upcoming episode${total !== 1 ? "s" : ""} · ${src}`);
+
+  if (todayEl) requestAnimationFrame(() => todayEl.scrollIntoView({ block: "start", behavior: "instant" }));
 }
 
 // ── Footer / mode badge ───────────────────────────────────────────────────────
@@ -388,12 +310,10 @@ async function initData(forceRefresh = false) {
 
   try {
     allShows = await getShows(forceRefresh);
-    renderCalendar();
-    renderAgenda();
-    updateFooterCount();
+    renderFeed();
   } catch (err) {
     setFooter("Failed to load — check connection");
-    document.getElementById("agenda-list").innerHTML =
+    document.getElementById("agenda-feed").innerHTML =
       `<div class="error-state">⚠ ${err.message}</div>`;
   } finally {
     loading = false;
@@ -404,20 +324,10 @@ async function initData(forceRefresh = false) {
 // ── Events ────────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
   await loadSettings();
-  renderCalendar();
 
-  document.getElementById("btn-prev").addEventListener("click", () => {
-    if (calMonth === 0) { calYear--; calMonth = 11; } else calMonth--;
-    renderCalendar(); renderAgenda(); updateFooterCount();
-  });
-  document.getElementById("btn-next").addEventListener("click", () => {
-    if (calMonth === 11) { calYear++; calMonth = 0; } else calMonth++;
-    renderCalendar(); renderAgenda(); updateFooterCount();
-  });
   document.getElementById("btn-today").addEventListener("click", () => {
-    const now = new Date();
-    calYear = now.getFullYear(); calMonth = now.getMonth(); selectedDate = todayStr();
-    renderCalendar(); renderAgenda(); updateFooterCount();
+    const el = document.getElementById("today-section");
+    if (el) el.scrollIntoView({ block: "start", behavior: "smooth" });
   });
 
   document.getElementById("btn-refresh").addEventListener("click", () => initData(true));
