@@ -12,7 +12,7 @@ const COUNTRY_FLAGS = { KR: "🇰🇷", CN: "🇨🇳", JP: "🇯🇵", TH: "�
 let allShows      = [];
 let loading       = false;
 let isPersonal    = false;
-let filterStatus  = "all"; // "all" | "Watching" | "Plan to Watch"
+let filterStatus  = "Watching"; // "all" | "Watching" | "Plan to Watch"
 
 let settings = {
   appUrl: "",
