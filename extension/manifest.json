@@ -3,7 +3,7 @@
   "name": "Drama Calendar",
   "version": "1.1.0",
   "description": "Your personal drama airing calendar — shows from your watchlist.",
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs"],
   "host_permissions": ["<all_urls>"],
   "icons": {
     "16": "icons/icon16.png",

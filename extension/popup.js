@@ -272,7 +272,45 @@ function renderFeed() {
             ${epName}
             ${ratingTxt ? `<span class="show-rating">${ratingTxt}</span>` : ""}
           </div>
-        </div>`;
+        </div>
+        ${isPersonal ? `<button class="check-btn" title="Mark as watched">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>` : ""}`;
+
+      // Open show page on card click
+      if (isPersonal && settings.appUrl) {
+        card.style.cursor = "pointer";
+        card.addEventListener("click", () => {
+          chrome.tabs.create({ url: `${settings.appUrl}/media/${s.slug}` });
+        });
+      }
+
+      // Mark as watched
+      const checkBtn = card.querySelector(".check-btn");
+      if (checkBtn) {
+        checkBtn.addEventListener("click", async (e) => {
+          e.stopPropagation();
+          const episode = s.eps[s.eps.length - 1];
+          checkBtn.disabled = true;
+          try {
+            const res = await fetch(`${settings.appUrl}/api/ext/progress`, {
+              method: "POST",
+              credentials: "include",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ mediaId: s.slug, episode }),
+            });
+            if (res.ok) {
+              checkBtn.classList.add("check-btn--done");
+              checkBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+            } else {
+              checkBtn.disabled = false;
+            }
+          } catch {
+            checkBtn.disabled = false;
+          }
+        });
+      }
+
       section.appendChild(card);
     });
 
