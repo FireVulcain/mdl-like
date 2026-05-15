@@ -357,6 +357,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (el) el.scrollIntoView({ block: "start", behavior: "smooth" });
   });
 
+  const btnWatchlist = document.getElementById("btn-watchlist");
+  if (settings.appUrl) btnWatchlist.style.display = "";
+  btnWatchlist.addEventListener("click", () => {
+    if (settings.appUrl) chrome.tabs.create({ url: `${settings.appUrl}/watchlist` });
+  });
+
   document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       filterStatus = btn.dataset.filter;
