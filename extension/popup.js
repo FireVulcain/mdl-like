@@ -3,7 +3,6 @@
 // ── Config ───────────────────────────────────────────────────────────────────
 const KURYANA     = "https://mdl-scrapper-jade.vercel.app";
 const CACHE_KEY   = "drama_calendar_v2";
-const CACHE_TTL   = 60 * 60 * 1000; // 1 hour
 
 const COUNTRY_CODES = { korean: "KR", chinese: "CN", japanese: "JP", thai: "TH" };
 const COUNTRY_FLAGS = { KR: "🇰🇷", CN: "🇨🇳", JP: "🇯🇵", TH: "🇹🇭", TW: "🇹🇼", US: "🇺🇸" };
@@ -178,30 +177,22 @@ async function getShows(forceRefresh = false) {
   if (!forceRefresh) {
     const stored = await chrome.storage.local.get(CACHE_KEY);
     const cache  = stored[CACHE_KEY];
-    if (cache && Date.now() - cache.ts < CACHE_TTL) {
-      console.log("[Drama Calendar] Cache HIT — age:", Math.round((Date.now() - cache.ts) / 1000), "s, personal:", cache.isPersonal, "shows:", cache.shows.length);
+    if (cache?.shows?.length) {
       isPersonal = cache.isPersonal;
       return cache.shows;
     }
-    console.log("[Drama Calendar] Cache MISS — fetching fresh data");
-  } else {
-    console.log("[Drama Calendar] Force refresh — bypassing cache");
   }
 
-  // Try personal schedule first
   const personal = await fetchPersonalSchedule();
   if (personal) {
-    console.log("[Drama Calendar] Using PERSONAL schedule, caching", personal.length, "shows");
     isPersonal = true;
-    await chrome.storage.local.set({ [CACHE_KEY]: { shows: personal, ts: Date.now(), isPersonal: true } });
+    await chrome.storage.local.set({ [CACHE_KEY]: { shows: personal, isPersonal: true } });
     return personal;
   }
 
-  // Fall back to Kuryana public data
-  console.log("[Drama Calendar] Falling back to KURYANA public data");
   isPersonal = false;
   const shows = await fetchKuryanaShows();
-  await chrome.storage.local.set({ [CACHE_KEY]: { shows, ts: Date.now(), isPersonal: false } });
+  await chrome.storage.local.set({ [CACHE_KEY]: { shows, isPersonal: false } });
   return shows;
 }
 
