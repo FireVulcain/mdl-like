@@ -358,7 +358,7 @@ export async function kuryanaGetChineseTop(
     sort?: string,
 ): Promise<KuryanaChineseTopResult | null> {
     const q = sort ? `&sort=${sort}` : "";
-    return kuryanaFetch<KuryanaChineseTopResult>(`/top/chinese?status=${status}&page=${page}${q}`);
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top/chinese?status=${status}&page=${page}${q}`, 8000, 0);
 }
 
 export async function kuryanaGetKoreanTop(
@@ -367,7 +367,7 @@ export async function kuryanaGetKoreanTop(
     sort?: string,
 ): Promise<KuryanaChineseTopResult | null> {
     const q = sort ? `&sort=${sort}` : "";
-    return kuryanaFetch<KuryanaChineseTopResult>(`/top/korean?status=${status}&page=${page}${q}`);
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top/korean?status=${status}&page=${page}${q}`, 8000, 0);
 }
 
 // Combined KR+CN endpoint — no country filter needed
@@ -376,7 +376,7 @@ export async function kuryanaGetAllTop(
     sort?: string,
 ): Promise<KuryanaChineseTopResult | null> {
     const q = sort ? `&sort=${sort}` : "";
-    return kuryanaFetch<KuryanaChineseTopResult>(`/top?page=${page}${q}`);
+    return kuryanaFetch<KuryanaChineseTopResult>(`/top?page=${page}${q}`, 8000, 0);
 }
 
 // ─── Unified browse endpoint ────────────────────────────────────────────────
@@ -438,5 +438,5 @@ export async function kuryanaGetTop(
     if (params?.rating_max) query.set("rating_max", String(params.rating_max));
     if (params?.tag) query.set("tag", String(params.tag));
     if (params?.tag_exclude) query.set("tag_exclude", String(params.tag_exclude));
-    return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`);
+    return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`, 8000, 0);
 }
