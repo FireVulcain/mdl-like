@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { UnifiedMedia } from "@/services/media.service";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteUserMedia, updateUserMedia, addToWatchlist, getMediaImages } from "@/actions/media";
-import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle, Star, X, ImageIcon, Check } from "lucide-react";
+import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle, Star, X, ImageIcon, Check, ZoomIn } from "lucide-react";
 import { toast } from "sonner";
 
 export type WatchlistItem = {
@@ -95,6 +96,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     const [loadingImages, setLoadingImages] = useState(false);
     const [selectedBackdrop, setSelectedBackdrop] = useState<string | null>(null);
     const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
     // Only reset form when dialog opens or item ID changes, not on every item property change
 
@@ -215,10 +217,16 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     };
 
     return (
+        <>
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogContent
                 showCloseButton={false}
                 className="max-w-lg max-h-[90vh] p-0 overflow-hidden gap-0 bg-gray-900 border border-white/10 rounded-2xl flex flex-col shadow-2xl shadow-black/50"
+                onPointerDownOutside={(e) => {
+                    if ((e.target as HTMLElement)?.closest("[data-image-preview-overlay]")) {
+                        e.preventDefault();
+                    }
+                }}
             >
                 <VisuallyHidden>
                     <DialogTitle>
@@ -301,7 +309,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                         <button
                                                             key={url}
                                                             onClick={() => setSelectedPoster(url)}
-                                                            className={`relative shrink-0 h-24 w-16 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                                                            className={`group/thumb relative shrink-0 h-24 w-16 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                                                                 isSelected ? "border-blue-500" : "border-transparent hover:border-white/30"
                                                             }`}
                                                         >
@@ -311,6 +319,16 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                                     <Check className="h-5 w-5 text-white drop-shadow" />
                                                                 </div>
                                                             )}
+                                                            <span
+                                                                role="button"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setPreviewUrl(url);
+                                                                }}
+                                                                className="absolute top-1 right-1 h-5 w-5 rounded-full bg-black/60 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity"
+                                                            >
+                                                                <ZoomIn className="h-3 w-3 text-white" />
+                                                            </span>
                                                         </button>
                                                     );
                                                 })}
@@ -331,7 +349,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                         <button
                                                             key={url}
                                                             onClick={() => setSelectedBackdrop(url)}
-                                                            className={`relative shrink-0 h-16 w-28 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                                                            className={`group/thumb relative shrink-0 h-16 w-28 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                                                                 isSelected ? "border-blue-500" : "border-transparent hover:border-white/30"
                                                             }`}
                                                         >
@@ -341,6 +359,16 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                                     <Check className="h-5 w-5 text-white drop-shadow" />
                                                                 </div>
                                                             )}
+                                                            <span
+                                                                role="button"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setPreviewUrl(url);
+                                                                }}
+                                                                className="absolute top-1 right-1 h-5 w-5 rounded-full bg-black/60 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity"
+                                                            >
+                                                                <ZoomIn className="h-3 w-3 text-white" />
+                                                            </span>
                                                         </button>
                                                     );
                                                 })}
@@ -512,5 +540,30 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 </div>
             </DialogContent>
         </Dialog>
+
+        {previewUrl && typeof document !== "undefined" && createPortal(
+            <div
+                data-image-preview-overlay
+                className="fixed inset-0 z-100 bg-black/85 flex items-center justify-center p-8 cursor-zoom-out pointer-events-auto"
+                onClick={() => setPreviewUrl(null)}
+            >
+                <button
+                    onClick={() => setPreviewUrl(null)}
+                    className="cursor-pointer absolute top-4 right-4 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all"
+                >
+                    <X className="h-5 w-5" />
+                </button>
+                <Image
+                    unoptimized
+                    src={previewUrl}
+                    alt=""
+                    width={1280}
+                    height={720}
+                    className="max-h-[85vh] max-w-[90vw] w-auto h-auto rounded-lg object-contain shadow-2xl"
+                />
+            </div>,
+            document.body
+        )}
+        </>
     );
 }
