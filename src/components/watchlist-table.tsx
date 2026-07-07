@@ -104,6 +104,8 @@ type OptimisticUpdate = {
     status?: string;
     score?: number | null;
     notes?: string | null;
+    poster?: string | null;
+    backdrop?: string | null;
 };
 
 import { EditMediaDialog } from "./edit-media-dialog";

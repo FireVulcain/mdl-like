@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma"; // Need to create this
-import { UnifiedMedia } from "@/services/media.service";
+import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
 import { ActivityAction, ActivityActionType } from "@/types/activity";
 import { Prisma } from "@prisma/client";
@@ -281,11 +281,23 @@ export async function deleteUserMedia(id: string) {
     }
 }
 
+// Fetch alternate poster/backdrop images available on TMDB for a given media,
+// so the user can manually pick which one to use instead of the auto-selected one.
+export async function getMediaImages(source: string, externalId: string) {
+    if (source !== "TMDB") return { posters: [], backdrops: [] };
+
+    const details = await mediaService.getDetails(`tmdb-${externalId}`);
+    return {
+        posters: details?.images?.posters || [],
+        backdrops: details?.images?.backdrops || [],
+    };
+}
+
 export async function updateUserMedia(id: string, data: Partial<any>) {
     // Using any simply to avoid tight coupling with type def repetition, but safer to use type
     try {
         const current = await prisma.userMedia.findUnique({ where: { id } });
-        const { status, progress, score, notes } = data;
+        const { status, progress, score, notes, poster, backdrop } = data;
         const updated = await prisma.userMedia.update({
             where: { id },
             data: {
@@ -293,6 +305,8 @@ export async function updateUserMedia(id: string, data: Partial<any>) {
                 progress,
                 score,
                 notes,
+                poster,
+                backdrop,
                 lastWatchedAt: status !== undefined || progress !== undefined ? new Date() : undefined,
             },
         });

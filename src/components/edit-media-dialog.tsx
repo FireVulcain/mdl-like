@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Textarea } from "@/components/ui/textarea";
-import { deleteUserMedia, updateUserMedia, addToWatchlist } from "@/actions/media";
-import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle, Star, X } from "lucide-react";
+import { deleteUserMedia, updateUserMedia, addToWatchlist, getMediaImages } from "@/actions/media";
+import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle, Star, X, ImageIcon, Check } from "lucide-react";
 import { toast } from "sonner";
 
 export type WatchlistItem = {
@@ -25,6 +25,8 @@ export type WatchlistItem = {
     originCountry: string | null;
     season?: number;
     mediaType?: string;
+    source?: string;
+    externalId?: string;
 };
 
 interface EditMediaDialogProps {
@@ -89,6 +91,11 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     const [loading, setLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
 
+    const [imageOptions, setImageOptions] = useState<{ posters: string[]; backdrops: string[] } | null>(null);
+    const [loadingImages, setLoadingImages] = useState(false);
+    const [selectedBackdrop, setSelectedBackdrop] = useState<string | null>(null);
+    const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
+
     // Only reset form when dialog opens or item ID changes, not on every item property change
 
     useEffect(() => {
@@ -99,12 +106,32 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 score: item.score || 0,
                 notes: item.notes || "",
             });
+            setSelectedBackdrop(item.backdrop || null);
+            setSelectedPoster(item.poster || null);
         }
     }, [open, item?.id]);
 
+    const editSource = isEditing ? item?.source : undefined;
+    const editExternalId = isEditing ? item?.externalId : undefined;
+
+    // Lazily fetch alternate TMDB images once the user opens the picker, rather than on every dialog open
+    const loadImageOptions = async () => {
+        if (!editSource || !editExternalId || loadingImages) return;
+        setLoadingImages(true);
+        try {
+            const result = await getMediaImages(editSource, editExternalId);
+            setImageOptions(result);
+        } catch (error) {
+            console.error("Failed to fetch TMDB images", error);
+            toast.error("Failed to load image options");
+        } finally {
+            setLoadingImages(false);
+        }
+    };
+
     const displayTitle = item?.title || media?.title || "";
     const displayYear = item?.year || media?.year || "";
-    const displayPoster = item?.backdrop || item?.poster || media?.backdrop || media?.poster || "";
+    const displayPoster = selectedBackdrop || item?.poster || media?.backdrop || media?.poster || "";
     const displayTotalEp = item?.totalEp || totalEp || media?.totalEp || null;
     const progressPercent = displayTotalEp ? (formData.progress / displayTotalEp) * 100 : 0;
 
@@ -112,12 +139,20 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
         setLoading(true);
         onOpenChange(false);
 
+        const backdropChanged = isEditing && item && selectedBackdrop !== (item.backdrop || null);
+        const posterChanged = isEditing && item && selectedPoster !== (item.poster || null);
+        const imageUpdates = {
+            ...(backdropChanged ? { backdrop: selectedBackdrop } : {}),
+            ...(posterChanged ? { poster: selectedPoster } : {}),
+        };
+
         if (isEditing && item && onOptimisticUpdate) {
             onOptimisticUpdate(item.id, {
                 status: formData.status,
                 progress: formData.progress,
                 score: formData.score,
                 notes: formData.notes,
+                ...imageUpdates,
             });
         }
 
@@ -128,6 +163,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     progress: formData.progress,
                     score: formData.score,
                     notes: formData.notes,
+                    ...imageUpdates,
                 });
                 toast.success("Changes saved", {
                     description: displayTitle,
@@ -235,6 +271,88 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                             })}
                         </div>
                     </div>
+
+                    {/* Image Picker */}
+                    {editSource === "TMDB" && (
+                        <div className="space-y-3">
+                            <div className="flex items-center justify-between">
+                                <label className="text-sm font-medium text-gray-400">Images</label>
+                                {!imageOptions && (
+                                    <button
+                                        onClick={loadImageOptions}
+                                        disabled={loadingImages}
+                                        className="cursor-pointer flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-all disabled:opacity-50"
+                                    >
+                                        <ImageIcon className="h-3.5 w-3.5" />
+                                        {loadingImages ? "Loading..." : "Choose image"}
+                                    </button>
+                                )}
+                            </div>
+                            {imageOptions && (
+                                <div className="space-y-4">
+                                    {/* Poster - used as the thumbnail in the watchlist */}
+                                    <div className="space-y-2">
+                                        <p className="text-xs text-gray-500">Poster (list thumbnail)</p>
+                                        {imageOptions.posters.length > 0 ? (
+                                            <div className="flex gap-2 overflow-x-auto pb-1">
+                                                {imageOptions.posters.map((url) => {
+                                                    const isSelected = selectedPoster === url;
+                                                    return (
+                                                        <button
+                                                            key={url}
+                                                            onClick={() => setSelectedPoster(url)}
+                                                            className={`relative shrink-0 h-24 w-16 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                                                                isSelected ? "border-blue-500" : "border-transparent hover:border-white/30"
+                                                            }`}
+                                                        >
+                                                            <Image unoptimized src={url} alt="" fill className="object-cover" />
+                                                            {isSelected && (
+                                                                <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
+                                                                    <Check className="h-5 w-5 text-white drop-shadow" />
+                                                                </div>
+                                                            )}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        ) : (
+                                            <p className="text-xs text-gray-600">No alternate posters available.</p>
+                                        )}
+                                    </div>
+
+                                    {/* Backdrop - used as this dialog's header image */}
+                                    <div className="space-y-2">
+                                        <p className="text-xs text-gray-500">Backdrop (dialog header)</p>
+                                        {imageOptions.backdrops.length > 0 ? (
+                                            <div className="flex gap-2 overflow-x-auto pb-1">
+                                                {imageOptions.backdrops.map((url) => {
+                                                    const isSelected = selectedBackdrop === url;
+                                                    return (
+                                                        <button
+                                                            key={url}
+                                                            onClick={() => setSelectedBackdrop(url)}
+                                                            className={`relative shrink-0 h-16 w-28 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                                                                isSelected ? "border-blue-500" : "border-transparent hover:border-white/30"
+                                                            }`}
+                                                        >
+                                                            <Image unoptimized src={url} alt="" fill className="object-cover" />
+                                                            {isSelected && (
+                                                                <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
+                                                                    <Check className="h-5 w-5 text-white drop-shadow" />
+                                                                </div>
+                                                            )}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        ) : (
+                                            <p className="text-xs text-gray-600">No alternate backdrops available.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
 
                     {/* Progress */}
                     <div className="space-y-3">
