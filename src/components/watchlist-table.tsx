@@ -1191,7 +1191,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                         alt=""
                                                         fill
                                                         sizes="100vw"
-                                                        className="object-cover opacity-30"
+                                                        className="object-cover opacity-60"
                                                         {...(displayedCount === 0 ? { priority: true } : { loading: "lazy" as const })}
                                                     />
                                                     <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
@@ -1516,7 +1516,7 @@ const ItemCard = memo(function ItemCard({
                             alt=""
                             fill
                             sizes="100vw"
-                            className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
+                            className="object-cover opacity-60 transition-opacity duration-500 group-hover:opacity-70"
                             loading="lazy"
                         />
                         <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
