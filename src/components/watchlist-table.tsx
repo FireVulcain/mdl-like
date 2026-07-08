@@ -209,9 +209,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [isRefreshingMedia, setIsRefreshingMedia] = useState(false);
     const [showTmdbRefreshModal, setShowTmdbRefreshModal] = useState(false);
     const [tmdbRefreshStatuses, setTmdbRefreshStatuses] = useState<string[]>([]);
+    const [tmdbRefreshSelectedIds, setTmdbRefreshSelectedIds] = useState<Set<string>>(new Set());
+    const [tmdbRefreshSearch, setTmdbRefreshSearch] = useState("");
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
     const [showMdlRefreshModal, setShowMdlRefreshModal] = useState(false);
     const [mdlRefreshStatuses, setMdlRefreshStatuses] = useState<string[]>([]);
+    const [mdlRefreshSelectedIds, setMdlRefreshSelectedIds] = useState<Set<string>>(new Set());
+    const [mdlRefreshSearch, setMdlRefreshSearch] = useState("");
     const [showMobileStatusFilter, setShowMobileStatusFilter] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
@@ -477,13 +481,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     };
 
-    const handleRefreshMedia = async (statuses: string[]) => {
+    const handleRefreshMedia = async (ids: string[]) => {
+        if (ids.length === 0) return;
         setIsRefreshingMedia(true);
         setShowTmdbRefreshModal(false);
-        const label = statuses.length === 0 ? "all media" : statuses.join(", ");
-        const toastId = toast.loading(`Refreshing TMDB data for ${label}...`);
+        const toastId = toast.loading(`Refreshing TMDB data for ${ids.length} item${ids.length !== 1 ? "s" : ""}...`);
         try {
-            const result = await refreshMediaData(statuses.length ? statuses : undefined);
+            const result = await refreshMediaData(ids);
             if (result.success) {
                 toast.success("Media data refreshed", {
                     id: toastId,
@@ -504,13 +508,13 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     };
 
-    const handleRefreshMdlRatings = async (statuses: string[]) => {
+    const handleRefreshMdlRatings = async (ids: string[]) => {
+        if (ids.length === 0) return;
         setIsRefreshingMdl(true);
         setShowMdlRefreshModal(false);
-        const label = statuses.length === 0 ? "all media" : statuses.join(", ");
-        const toastId = toast.loading(`Refreshing MDL ratings for ${label}...`);
+        const toastId = toast.loading(`Refreshing MDL ratings for ${ids.length} item${ids.length !== 1 ? "s" : ""}...`);
         try {
-            const result = await refreshWatchlistMdlRatings(statuses.length ? statuses : undefined);
+            const result = await refreshWatchlistMdlRatings(ids);
             if (result.success) {
                 toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}`, {
                     id: toastId,
@@ -529,6 +533,80 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         } finally {
             setIsRefreshingMdl(false);
         }
+    };
+
+    const applyTmdbRefreshStatuses = (statuses: string[]) => {
+        setTmdbRefreshStatuses(statuses);
+        const matching = statuses.length ? items.filter((i) => statuses.includes(i.status)) : items;
+        setTmdbRefreshSelectedIds(new Set(matching.map((i) => i.id)));
+        setTmdbRefreshSearch("");
+    };
+
+    const tmdbStatusMatchingItems = useMemo(
+        () => (tmdbRefreshStatuses.length ? items.filter((i) => tmdbRefreshStatuses.includes(i.status)) : items),
+        [items, tmdbRefreshStatuses]
+    );
+
+    const tmdbChecklistItems = useMemo(() => {
+        const q = tmdbRefreshSearch.trim().toLowerCase();
+        return q ? tmdbStatusMatchingItems.filter((i) => (i.title ?? "").toLowerCase().includes(q)) : tmdbStatusMatchingItems;
+    }, [tmdbStatusMatchingItems, tmdbRefreshSearch]);
+
+    const toggleTmdbRefreshItem = (id: string) => {
+        setTmdbRefreshSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    };
+
+    const allTmdbChecklistSelected = tmdbChecklistItems.length > 0 && tmdbChecklistItems.every((i) => tmdbRefreshSelectedIds.has(i.id));
+
+    const toggleAllTmdbChecklist = () => {
+        setTmdbRefreshSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (allTmdbChecklistSelected) tmdbChecklistItems.forEach((i) => next.delete(i.id));
+            else tmdbChecklistItems.forEach((i) => next.add(i.id));
+            return next;
+        });
+    };
+
+    const applyMdlRefreshStatuses = (statuses: string[]) => {
+        setMdlRefreshStatuses(statuses);
+        const matching = statuses.length ? items.filter((i) => statuses.includes(i.status)) : items;
+        setMdlRefreshSelectedIds(new Set(matching.map((i) => i.id)));
+        setMdlRefreshSearch("");
+    };
+
+    const mdlStatusMatchingItems = useMemo(
+        () => (mdlRefreshStatuses.length ? items.filter((i) => mdlRefreshStatuses.includes(i.status)) : items),
+        [items, mdlRefreshStatuses]
+    );
+
+    const mdlChecklistItems = useMemo(() => {
+        const q = mdlRefreshSearch.trim().toLowerCase();
+        return q ? mdlStatusMatchingItems.filter((i) => (i.title ?? "").toLowerCase().includes(q)) : mdlStatusMatchingItems;
+    }, [mdlStatusMatchingItems, mdlRefreshSearch]);
+
+    const toggleMdlRefreshItem = (id: string) => {
+        setMdlRefreshSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    };
+
+    const allMdlChecklistSelected = mdlChecklistItems.length > 0 && mdlChecklistItems.every((i) => mdlRefreshSelectedIds.has(i.id));
+
+    const toggleAllMdlChecklist = () => {
+        setMdlRefreshSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (allMdlChecklistSelected) mdlChecklistItems.forEach((i) => next.delete(i.id));
+            else mdlChecklistItems.forEach((i) => next.add(i.id));
+            return next;
+        });
     };
 
     const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0);
@@ -1003,7 +1081,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
-                                                setTmdbRefreshStatuses([]);
+                                                applyTmdbRefreshStatuses([]);
                                                 setShowTmdbRefreshModal(true);
                                             }}
                                             disabled={isRefreshingMedia}
@@ -1015,7 +1093,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
-                                                setMdlRefreshStatuses([]);
+                                                applyMdlRefreshStatuses([]);
                                                 setShowMdlRefreshModal(true);
                                             }}
                                             disabled={isRefreshingMdl}
@@ -1324,16 +1402,16 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
 
             {!readOnly && (
                 <Dialog open={showTmdbRefreshModal} onOpenChange={setShowTmdbRefreshModal}>
-                    <DialogContent className="sm:max-w-md bg-gray-900 border-white/10">
+                    <DialogContent className="sm:max-w-lg bg-gray-900 border-white/10">
                         <DialogHeader>
                             <DialogTitle className="text-white">Refresh TMDB Data</DialogTitle>
                             <DialogDescription className="text-gray-400">
-                                Select which statuses to refresh.
+                                Select which statuses to refresh, then pick individual titles below.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="flex flex-wrap gap-2 py-2">
                             <button
-                                onClick={() => setTmdbRefreshStatuses([])}
+                                onClick={() => applyTmdbRefreshStatuses([])}
                                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                     tmdbRefreshStatuses.length === 0
                                         ? "bg-white/20 text-white"
@@ -1350,8 +1428,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     <button
                                         key={status}
                                         onClick={() =>
-                                            setTmdbRefreshStatuses((prev) =>
-                                                prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]
+                                            applyTmdbRefreshStatuses(
+                                                tmdbRefreshStatuses.includes(status)
+                                                    ? tmdbRefreshStatuses.filter((s) => s !== status)
+                                                    : [...tmdbRefreshStatuses, status]
                                             )
                                         }
                                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
@@ -1366,6 +1446,56 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 );
                             })}
                         </div>
+                        <div className="flex items-center gap-2">
+                            <div className="relative flex-1">
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-500" />
+                                <input
+                                    type="text"
+                                    value={tmdbRefreshSearch}
+                                    onChange={(e) => setTmdbRefreshSearch(e.target.value)}
+                                    placeholder="Filter titles..."
+                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/20"
+                                />
+                            </div>
+                            <button
+                                onClick={toggleAllTmdbChecklist}
+                                disabled={tmdbChecklistItems.length === 0}
+                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {allTmdbChecklistSelected ? "Deselect all" : "Select all"}
+                            </button>
+                        </div>
+                        <div className="max-h-64 overflow-y-auto rounded-lg border border-white/10 divide-y divide-white/5">
+                            {tmdbChecklistItems.length === 0 && (
+                                <div className="text-sm text-gray-500 px-3 py-4 text-center">No matching titles</div>
+                            )}
+                            {tmdbChecklistItems.map((item) => {
+                                const cfg = statusConfig[item.status as keyof typeof statusConfig];
+                                return (
+                                    <label
+                                        key={item.id}
+                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={tmdbRefreshSelectedIds.has(item.id)}
+                                            onChange={() => toggleTmdbRefreshItem(item.id)}
+                                            className="h-4 w-4 rounded accent-blue-500 shrink-0 cursor-pointer"
+                                        />
+                                        {item.poster ? (
+                                            <Image unoptimized src={item.poster} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
+                                        ) : (
+                                            <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
+                                        )}
+                                        <span className="flex-1 min-w-0 truncate text-sm text-gray-200">{item.title}</span>
+                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-gray-500"}`}>{item.status}</span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                            {tmdbRefreshSelectedIds.size} of {tmdbStatusMatchingItems.length} selected
+                        </div>
                         <DialogFooter className="gap-2 sm:gap-2">
                             <Button
                                 variant="ghost"
@@ -1376,8 +1506,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 Cancel
                             </Button>
                             <Button
-                                onClick={() => handleRefreshMedia(tmdbRefreshStatuses)}
-                                disabled={isRefreshingMedia}
+                                onClick={() => handleRefreshMedia(Array.from(tmdbRefreshSelectedIds))}
+                                disabled={isRefreshingMedia || tmdbRefreshSelectedIds.size === 0}
                                 className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                             >
                                 Start Refresh
@@ -1393,12 +1523,12 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         <DialogHeader>
                             <DialogTitle className="text-white">Refresh MDL Ratings</DialogTitle>
                             <DialogDescription className="text-gray-400">
-                                Select which statuses to refresh.
+                                Select which statuses to refresh, then pick individual titles below.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="flex flex-wrap gap-2 py-2">
                             <button
-                                onClick={() => setMdlRefreshStatuses([])}
+                                onClick={() => applyMdlRefreshStatuses([])}
                                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                     mdlRefreshStatuses.length === 0
                                         ? "bg-white/20 text-white"
@@ -1415,8 +1545,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                     <button
                                         key={status}
                                         onClick={() =>
-                                            setMdlRefreshStatuses((prev) =>
-                                                prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status]
+                                            applyMdlRefreshStatuses(
+                                                mdlRefreshStatuses.includes(status)
+                                                    ? mdlRefreshStatuses.filter((s) => s !== status)
+                                                    : [...mdlRefreshStatuses, status]
                                             )
                                         }
                                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
@@ -1431,6 +1563,56 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 );
                             })}
                         </div>
+                        <div className="flex items-center gap-2">
+                            <div className="relative flex-1">
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-500" />
+                                <input
+                                    type="text"
+                                    value={mdlRefreshSearch}
+                                    onChange={(e) => setMdlRefreshSearch(e.target.value)}
+                                    placeholder="Filter titles..."
+                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/20"
+                                />
+                            </div>
+                            <button
+                                onClick={toggleAllMdlChecklist}
+                                disabled={mdlChecklistItems.length === 0}
+                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {allMdlChecklistSelected ? "Deselect all" : "Select all"}
+                            </button>
+                        </div>
+                        <div className="max-h-64 overflow-y-auto rounded-lg border border-white/10 divide-y divide-white/5">
+                            {mdlChecklistItems.length === 0 && (
+                                <div className="text-sm text-gray-500 px-3 py-4 text-center">No matching titles</div>
+                            )}
+                            {mdlChecklistItems.map((item) => {
+                                const cfg = statusConfig[item.status as keyof typeof statusConfig];
+                                return (
+                                    <label
+                                        key={item.id}
+                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={mdlRefreshSelectedIds.has(item.id)}
+                                            onChange={() => toggleMdlRefreshItem(item.id)}
+                                            className="h-4 w-4 rounded accent-blue-500 shrink-0 cursor-pointer"
+                                        />
+                                        {item.poster ? (
+                                            <Image unoptimized src={item.poster} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
+                                        ) : (
+                                            <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
+                                        )}
+                                        <span className="flex-1 min-w-0 truncate text-sm text-gray-200">{item.title}</span>
+                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-gray-500"}`}>{item.status}</span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                            {mdlRefreshSelectedIds.size} of {mdlStatusMatchingItems.length} selected
+                        </div>
                         <DialogFooter className="gap-2 sm:gap-2">
                             <Button
                                 variant="ghost"
@@ -1441,8 +1623,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 Cancel
                             </Button>
                             <Button
-                                onClick={() => handleRefreshMdlRatings(mdlRefreshStatuses)}
-                                disabled={isRefreshingMdl}
+                                onClick={() => handleRefreshMdlRatings(Array.from(mdlRefreshSelectedIds))}
+                                disabled={isRefreshingMdl || mdlRefreshSelectedIds.size === 0}
                                 className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                             >
                                 Start Refresh

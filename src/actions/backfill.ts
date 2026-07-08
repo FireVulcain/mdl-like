@@ -240,17 +240,15 @@ export async function backfillAiringStatus() {
 }
 
 // Refresh media data from TMDB for items matching the given statuses (defaults to "Plan to Watch" + "Watching")
-export async function refreshMediaData(statuses?: string[]) {
+export async function refreshMediaData(ids: string[]) {
     const userId = await getCurrentUserId();
 
-    const statusFilter = statuses?.length ? statuses : ["Plan to Watch", "Watching"];
+    if (ids.length === 0) return { success: true, count: 0, message: "No items selected" };
 
     const items = await prisma.userMedia.findMany({
         where: {
             userId,
-            status: {
-                in: statusFilter,
-            },
+            id: { in: ids },
         },
     });
 
@@ -323,14 +321,16 @@ export async function refreshMediaData(statuses?: string[]) {
 // Force-refresh MDL ratings for all shows currently in the user's watchlist,
 // bypassing the normal 7-day TTL. Uses existing MDL slugs when available to
 // skip the search step and only re-fetch the details endpoint.
-export async function refreshWatchlistMdlRatings(statuses?: string[]) {
+export async function refreshWatchlistMdlRatings(ids: string[]) {
     const userId = await getCurrentUserId();
 
-    // Fetch all distinct shows (externalId) in the watchlist, optionally filtered by status
+    if (ids.length === 0) return { success: true, count: 0, skipped: 0 };
+
+    // Fetch all distinct shows (externalId) among the selected watchlist items
     const rawItems = await prisma.userMedia.findMany({
         where: {
             userId,
-            ...(statuses?.length ? { status: { in: statuses } } : {}),
+            id: { in: ids },
         },
         select: { externalId: true, title: true, year: true },
         distinct: ["externalId"],
