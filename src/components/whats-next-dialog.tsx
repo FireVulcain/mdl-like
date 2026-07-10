@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, ImageOff, ArrowDownWideNarrow } from "lucide-react";
+import { Sparkles, ImageOff, ArrowDownWideNarrow, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import type { RecommendationsPayload } from "@/actions/recommendations";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import type { RecommendationPick, RecommendationsPayload } from "@/actions/recommendations";
 
 interface WhatsNextDialogProps {
     open: boolean;
@@ -13,6 +14,7 @@ interface WhatsNextDialogProps {
     payload: RecommendationsPayload | null;
     loading: boolean;
     onSortByMatch: () => void;
+    onDismiss: (pick: RecommendationPick) => void;
 }
 
 const RANK_STYLES = [
@@ -30,7 +32,7 @@ function matchColor(score: number): string {
     return "text-gray-400";
 }
 
-export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortByMatch }: WhatsNextDialogProps) {
+export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortByMatch, onDismiss }: WhatsNextDialogProps) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-xl bg-gray-900 border-white/10">
@@ -48,7 +50,7 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                     <div className="space-y-2 py-2">
                         {Array.from({ length: 5 }).map((_, i) => (
                             <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-white/3 animate-pulse">
-                                <div className="w-12 h-[68px] rounded-lg bg-white/10 shrink-0" />
+                                <div className="w-12 h-17 rounded-lg bg-white/10 shrink-0" />
                                 <div className="flex-1 space-y-2">
                                     <div className="h-4 w-2/5 rounded bg-white/10" />
                                     <div className="h-3 w-3/5 rounded bg-white/5" />
@@ -78,7 +80,7 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                                 >
                                     {idx + 1}
                                 </span>
-                                <div className="relative w-12 h-[68px] rounded-lg overflow-hidden bg-gray-800 shrink-0">
+                                <div className="relative w-12 h-17 rounded-lg overflow-hidden bg-gray-800 shrink-0">
                                     {pick.poster ? (
                                         <Image
                                             unoptimized
@@ -126,6 +128,24 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                                     {pick.score}
                                     <span className="text-[10px] font-medium opacity-60">%</span>
                                 </div>
+                                <TooltipProvider delayDuration={300}>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    onDismiss(pick);
+                                                }}
+                                                className="shrink-0 h-7 w-7 rounded-lg flex items-center justify-center text-gray-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all cursor-pointer"
+                                                aria-label="Not interested"
+                                            >
+                                                <X className="h-4 w-4" />
+                                            </button>
+                                        </TooltipTrigger>
+                                        <TooltipContent side="left">Not interested</TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                             </Link>
                         ))}
                     </div>

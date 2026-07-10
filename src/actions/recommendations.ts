@@ -64,15 +64,17 @@ function parseGenres(raw: Prisma.JsonValue | null, tmdbGenres: string | null): s
 export async function getRecommendations(): Promise<RecommendationsPayload> {
     const userId = await getCurrentUserId();
 
-    const [userMedia, podiums] = await Promise.all([
+    const [userMedia, podiums, feedback] = await Promise.all([
         prisma.userMedia.findMany({ where: { userId } }),
         prisma.profilePodium.findMany({ where: { userId }, select: { externalId: true } }),
+        prisma.recommendationFeedback.findMany({ where: { userId }, select: { externalId: true, season: true } }),
     ]);
 
     if (userMedia.length === 0) return { ranked: [], topPicks: [], watchedCount: 0 };
 
     const externalIds = Array.from(new Set(userMedia.map((m) => m.externalId)));
     const podiumIds = new Set(podiums.map((p) => p.externalId));
+    const dismissedKeys = new Set(feedback.map((f) => `${f.externalId}-${f.season}`));
     const ptwRows = userMedia.filter((m) => m.status === "Plan to Watch");
 
     const [mdlRows, addLogs] = await Promise.all([
@@ -139,15 +141,17 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
             mdlPopularity: mdl?.mdlPopularity ?? null,
             isPodium: podiumIds.has(m.externalId),
             addedAt: addedAtByMediaId.get(m.id) ?? null,
+            isDismissed: m.status === "Plan to Watch" && dismissedKeys.has(`${m.externalId}-${m.season}`),
         };
     };
 
     const allItems = userMedia.map(toRecItem);
     const profile = buildTasteProfile(allItems);
 
-    // Candidates: Plan to Watch only. Skip later seasons of shows where an earlier
-    // season is also PTW — recommending "S3" before S1 is watched makes no sense.
-    const ptwItems = allItems.filter((i) => i.status === "Plan to Watch");
+    // Candidates: Plan to Watch only, minus dismissed ("not interested") items.
+    // Skip later seasons of shows where an earlier season is also PTW —
+    // recommending "S3" before S1 is watched makes no sense.
+    const ptwItems = allItems.filter((i) => i.status === "Plan to Watch" && !i.isDismissed);
     const minPtwSeason = new Map<string, number>();
     for (const i of ptwItems) {
         const cur = minPtwSeason.get(i.externalId);
@@ -210,4 +214,24 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
     });
 
     return { ranked, topPicks, watchedCount: profile.watchedCount };
+}
+
+// "Not interested" on a recommendation: hides the show+season from future picks
+// and feeds a mild negative signal into the taste profile.
+export async function dismissRecommendation(externalId: string, season: number) {
+    const userId = await getCurrentUserId();
+    await prisma.recommendationFeedback.upsert({
+        where: { userId_externalId_season: { userId, externalId, season } },
+        create: { userId, externalId, season },
+        update: {},
+    });
+    return { success: true };
+}
+
+export async function undoDismissRecommendation(externalId: string, season: number) {
+    const userId = await getCurrentUserId();
+    await prisma.recommendationFeedback.deleteMany({
+        where: { userId, externalId, season },
+    });
+    return { success: true };
 }

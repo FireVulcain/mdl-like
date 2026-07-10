@@ -36,6 +36,7 @@ export type RecMediaItem = {
     // User signals
     isPodium: boolean;
     addedAt: Date | null; // when the user added this row to the watchlist
+    isDismissed?: boolean; // "not interested" feedback on a recommendation
 };
 
 export type RecReason = { label: string; points: number };
@@ -124,7 +125,11 @@ function maxNormalize(map: FacetMap): FacetMap {
 }
 
 export function buildTasteProfile(items: RecMediaItem[], now = new Date()): TasteProfile {
-    const watched = items.filter((i) => i.status === "Completed" || i.status === "Watching" || i.status === "Dropped");
+    // Dismissed recommendations count as a mild "not my thing" signal, weaker than
+    // an explicit Drop (the user never tried the show, they just waved it away).
+    const watched = items.filter(
+        (i) => i.status === "Completed" || i.status === "Watching" || i.status === "Dropped" || i.isDismissed,
+    );
 
     const scored = watched.filter((i) => i.score !== null);
     const meanScore = scored.length >= 3 ? scored.reduce((acc, i) => acc + i.score!, 0) / scored.length : 7.5;
@@ -139,7 +144,11 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
     const lengthBuckets: FacetMap = new Map();
 
     for (const item of watched) {
-        const base = item.status === "Completed" ? 1.0 : item.status === "Watching" ? 0.7 : -0.8;
+        const base =
+            item.status === "Completed" ? 1.0
+            : item.status === "Watching" ? 0.7
+            : item.status === "Dropped" ? -0.8
+            : -0.3; // dismissed recommendation
 
         // Mean-centered enthusiasm: an 8 from someone who averages 8.5 is lukewarm.
         // Maps roughly to [0.3 … 2.0]; unscored items count as neutral.
@@ -188,7 +197,7 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
         decades: maxNormalize(decades),
         lengthBuckets: maxNormalize(lengthBuckets),
         meanScore,
-        watchedCount: watched.length,
+        watchedCount: watched.filter((i) => i.status !== "Plan to Watch").length,
         recentlyCompletedFeatures,
     };
 }

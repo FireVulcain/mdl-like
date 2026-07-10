@@ -46,7 +46,22 @@ model User {
   activityLogs  ActivityLog[]
   podiums       ProfilePodium[]
   preferences   UserPreferences?
+  recFeedback   RecommendationFeedback[]
   lastSeenSync  DateTime?
+}
+
+// "Not interested" dismissals from the recommendation dialog. Keyed by show+season
+// (not UserMedia id) so the signal survives watchlist row deletion/re-creation.
+model RecommendationFeedback {
+  id         String   @id @default(cuid())
+  userId     String
+  externalId String
+  season     Int      @default(1)
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, externalId, season])
+  @@index([userId])
 }
 
 model UserPreferences {

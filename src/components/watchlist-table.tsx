@@ -11,7 +11,13 @@ import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, refreshMediaData, refreshWatchlistMdlRatings } from "@/actions/backfill";
 import { importWatchlist } from "@/actions/import-watchlist";
-import { getRecommendations, type RecommendationsPayload } from "@/actions/recommendations";
+import {
+    getRecommendations,
+    dismissRecommendation,
+    undoDismissRecommendation,
+    type RecommendationPick,
+    type RecommendationsPayload,
+} from "@/actions/recommendations";
 import { WhatsNextDialog } from "./whats-next-dialog";
 import {
     Plus,
@@ -306,6 +312,47 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     useEffect(() => {
         if (sortBy === "recommended" && !readOnly) ensureRecommendations();
     }, [sortBy, readOnly, ensureRecommendations]);
+
+    const refetchRecommendations = useCallback(() => {
+        getRecommendations().then(setRecPayload).catch(() => {});
+    }, []);
+
+    const handleDismissRec = useCallback(
+        async (pick: RecommendationPick) => {
+            // Optimistic removal from picks and sort scores
+            setRecPayload((prev) =>
+                prev
+                    ? {
+                          ...prev,
+                          topPicks: prev.topPicks.filter((p) => p.id !== pick.id),
+                          ranked: prev.ranked.filter((r) => r.id !== pick.id),
+                      }
+                    : prev,
+            );
+            try {
+                await dismissRecommendation(pick.externalId, pick.season);
+                refetchRecommendations(); // backfill the freed pick slot
+                toast("Not interested", {
+                    description: pick.title ?? undefined,
+                    action: {
+                        label: "Undo",
+                        onClick: async () => {
+                            try {
+                                await undoDismissRecommendation(pick.externalId, pick.season);
+                            } finally {
+                                refetchRecommendations();
+                            }
+                        },
+                    },
+                });
+            } catch (error) {
+                console.error("Failed to dismiss recommendation:", error);
+                toast.error("Failed to save feedback");
+                refetchRecommendations(); // restore accurate state
+            }
+        },
+        [refetchRecommendations],
+    );
 
     const filteredItems = useMemo(() => {
         // Build id → rank map so we can both filter and sort by Fuse relevance
@@ -1455,6 +1502,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     onOpenChange={setShowWhatsNext}
                     payload={recPayload}
                     loading={recLoading}
+                    onDismiss={handleDismissRec}
                     onSortByMatch={() => {
                         setShowWhatsNext(false);
                         setFilterStatuses(["Plan to Watch"]);
