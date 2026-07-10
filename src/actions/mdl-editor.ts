@@ -35,6 +35,8 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const tags = details.data.others?.tags ?? [];
+        const directors = details.data.others?.directors ?? [];
+        const screenwriters = details.data.others?.screenwriter ?? [];
 
         const cast = castResult?.data?.casts
             ? {
@@ -55,6 +57,8 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
                 mdlPopularity,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
+                directors,
+                screenwriters,
             },
             update: {
                 mdlSlug: newMdlSlug,
@@ -64,6 +68,8 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
                 mdlPopularity,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
+                directors,
+                screenwriters,
                 cachedAt: new Date(),
             },
         });

@@ -143,6 +143,8 @@ model CachedMdlData {
   tags           Json?
   genres         Json?
   castJson       Json?
+  directors      Json?
+  screenwriters  Json?
   synopsis       String?
   cachedAt       DateTime @default(now())
 }

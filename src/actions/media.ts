@@ -128,13 +128,21 @@ export async function addToWatchlist(
         // Otherwise fallback to media.totalEp if likely a movie or single season, or just media.totalEp if undefined.
         const epCount = totalEpForSeason || media.totalEp || null;
 
-        // Determine correct poster
-        // If we have seasons data and we are adding a specific season
+        // Determine correct poster and year
+        // If we have seasons data and we are adding a specific season, prefer the
+        // season's own air year — media.year is the show's FIRST air year, which is
+        // wrong for later seasons (e.g. a 2024 show whose S2 airs in 2027).
         let displayPoster = media.poster;
+        let displayYear = media.year ? parseInt(media.year) : null;
         if (media.seasons && season) {
             const seasonData = media.seasons.find((s) => s.seasonNumber === season);
             if (seasonData && seasonData.poster) {
                 displayPoster = seasonData.poster;
+            }
+            if (seasonData?.airDate) {
+                displayYear = parseInt(seasonData.airDate.slice(0, 4)) || displayYear;
+            } else if (seasonData && season > 1) {
+                displayYear = null; // announced season, air date unknown — better N/A than the show's first-air year
             }
         }
 
@@ -152,7 +160,7 @@ export async function addToWatchlist(
                     title: media.title,
                     poster: displayPoster,
                     backdrop: media.backdrop || media.poster || null,
-                    year: media.year ? parseInt(media.year) : null,
+                    year: displayYear,
                     originCountry: media.originCountry,
                     genres: media.genres?.join(","),
                     airingStatus: media.status || null,
@@ -191,7 +199,7 @@ export async function addToWatchlist(
                 title: media.title,
                 poster: displayPoster,
                 backdrop: media.backdrop || media.poster || null,
-                year: media.year ? parseInt(media.year) : null,
+                year: displayYear,
                 originCountry: media.originCountry,
                 totalEp: epCount,
                 genres: media.genres?.join(","),

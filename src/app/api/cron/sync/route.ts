@@ -368,6 +368,8 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];
+                    const directors = details.data.others?.directors ?? [];
+                    const screenwriters = details.data.others?.screenwriter ?? [];
                     const cast = castResult?.data?.casts
                         ? {
                               main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
@@ -385,6 +387,8 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                             tags,
                             ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                             ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
+                            directors,
+                            screenwriters,
                             cachedAt: new Date(),
                         },
                     });

@@ -264,6 +264,27 @@ export async function refreshMediaData(ids: string[]) {
         showGroups.get(key)!.push(item);
     }
 
+    // MDL season links let us fall back to MDL's air year when TMDB hasn't dated a
+    // season yet (common for announced-only seasons — MDL often knows first).
+    const seasonLinks = await prisma.mdlSeasonLink.findMany({
+        where: { tmdbExternalId: { in: items.map((i) => i.externalId) }, season: { gt: 1 } },
+        select: { tmdbExternalId: true, season: true, mdlSlug: true },
+    });
+    const mdlSlugBySeason = new Map(seasonLinks.map((l) => [`${l.tmdbExternalId}-${l.season}`, l.mdlSlug]));
+
+    const mdlYearFromSlug = async (slug: string): Promise<number | null> => {
+        try {
+            const mdlDetails = await kuryanaGetDetails(slug);
+            const fromYear = parseInt(mdlDetails?.data?.year ?? "");
+            if (!Number.isNaN(fromYear) && fromYear > 1900) return fromYear;
+            const aired = mdlDetails?.data?.details?.aired ?? mdlDetails?.data?.details?.airs;
+            const match = aired?.match(/\b(19|20)\d{2}\b/);
+            return match ? parseInt(match[0]) : null;
+        } catch {
+            return null;
+        }
+    };
+
     const detailsCache = new Map<string, Awaited<ReturnType<typeof mediaService.getDetails>>>();
 
     let count = 0;
@@ -285,11 +306,22 @@ export async function refreshMediaData(ids: string[]) {
             if (details) {
                 for (const item of groupItems) {
                     // For TV shows with seasons, get the specific season's episode count
+                    // and air year — details.year is the show's FIRST air year, which is
+                    // wrong for later seasons.
                     let totalEp = details.totalEp;
+                    let year = details.year ? parseInt(details.year) : null;
                     if (details.type === "TV" && details.seasons && item.season > 0) {
                         const seasonData = details.seasons.find((s) => s.seasonNumber === item.season);
                         if (seasonData) {
                             totalEp = seasonData.episodeCount;
+                            if (seasonData.airDate) {
+                                year = parseInt(seasonData.airDate.slice(0, 4)) || year;
+                            } else if (item.season > 1) {
+                                // TMDB hasn't dated this season — try the linked MDL entry,
+                                // else N/A (better than the show's first-air year)
+                                const slug = mdlSlugBySeason.get(`${item.externalId}-${item.season}`);
+                                year = slug ? await mdlYearFromSlug(slug) : null;
+                            }
                         }
                     }
 
@@ -299,7 +331,7 @@ export async function refreshMediaData(ids: string[]) {
                             title: details.title,
                             poster: details.poster,
                             backdrop: item.backdrop || details.backdrop, // Keep existing backdrop if set
-                            year: details.year ? parseInt(details.year) : null,
+                            year,
                             totalEp: totalEp,
                             airingStatus: details.status,
                             genres: details.genres?.join(", ") || null,
@@ -371,6 +403,8 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const tags = details.data.others?.tags ?? [];
         const genres = details.data.others?.genres ?? [];
+        const directors = details.data.others?.directors ?? [];
+        const screenwriters = details.data.others?.screenwriter ?? [];
         const cast = castResult?.data?.casts
             ? {
                   main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
@@ -388,6 +422,8 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
                 tags,
                 ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                 ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
+                directors,
+                screenwriters,
                 cachedAt: new Date(),
             },
         });

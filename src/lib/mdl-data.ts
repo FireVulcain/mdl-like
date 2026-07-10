@@ -315,6 +315,8 @@ export const getMdlData = cache(async function getMdlData(
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const tags: MdlTag[] = (details.data.others?.tags ?? []).map((t) => ({ id: t.id, name: cleanTagName(t.name) })).filter((t) => t.name.length > 0);
         const genres = details.data.others?.genres ?? [];
+        const directors = details.data.others?.directors ?? [];
+        const screenwriters = details.data.others?.screenwriter ?? [];
         const synopsis = details.data.synopsis || null;
 
         const cast: MdlCast | null = castResult?.data?.casts
@@ -337,6 +339,8 @@ export const getMdlData = cache(async function getMdlData(
                 tags: tags as unknown as Prisma.InputJsonValue,
                 genres,
                 castJson: cast as unknown as Prisma.InputJsonValue,
+                directors,
+                screenwriters,
                 synopsis,
             },
             update: {
@@ -347,6 +351,8 @@ export const getMdlData = cache(async function getMdlData(
                 tags: tags as unknown as Prisma.InputJsonValue,
                 genres,
                 castJson: cast as unknown as Prisma.InputJsonValue,
+                directors,
+                screenwriters,
                 synopsis,
                 cachedAt: new Date(),
             },

@@ -45,6 +45,8 @@ export async function POST(req: Request) {
                 const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                 const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                 const tags = details.data.others?.tags ?? [];
+                const directors = details.data.others?.directors ?? [];
+                const screenwriters = details.data.others?.screenwriter ?? [];
                 const cast = castResult?.data?.casts
                     ? {
                           main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
@@ -61,6 +63,8 @@ export async function POST(req: Request) {
                         mdlPopularity,
                         tags,
                         ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
+                        directors,
+                        screenwriters,
                         cachedAt: new Date(),
                     },
                 });
