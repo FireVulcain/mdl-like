@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, refreshMediaData, refreshWatchlistMdlRatings } from "@/actions/backfill";
 import { importWatchlist } from "@/actions/import-watchlist";
+import { getRecommendations, type RecommendationsPayload } from "@/actions/recommendations";
+import { WhatsNextDialog } from "./whats-next-dialog";
 import {
     Plus,
     Minus,
@@ -34,6 +36,7 @@ import {
     Tv,
     GalleryVertical,
     GalleryHorizontal,
+    Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -217,6 +220,9 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [mdlRefreshSelectedIds, setMdlRefreshSelectedIds] = useState<Set<string>>(new Set());
     const [mdlRefreshSearch, setMdlRefreshSearch] = useState("");
     const [showMobileStatusFilter, setShowMobileStatusFilter] = useState(false);
+    const [showWhatsNext, setShowWhatsNext] = useState(false);
+    const [recPayload, setRecPayload] = useState<RecommendationsPayload | null>(null);
+    const [recLoading, setRecLoading] = useState(false);
     const [showCountryFilter, setShowCountryFilter] = useState(false);
     const [showGenreFilter, setShowGenreFilter] = useState(false);
     const [showSortFilter, setShowSortFilter] = useState(false);
@@ -276,6 +282,31 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         [optimisticItems],
     );
 
+    // Recommendations are fetched lazily (first open of the dialog or first use of the
+    // "Match" sort) and kept for the lifetime of the page.
+    const ensureRecommendations = useCallback(async () => {
+        if (recPayload || recLoading) return;
+        setRecLoading(true);
+        try {
+            setRecPayload(await getRecommendations());
+        } catch (error) {
+            console.error("Failed to load recommendations:", error);
+            toast.error("Failed to load recommendations");
+        } finally {
+            setRecLoading(false);
+        }
+    }, [recPayload, recLoading]);
+
+    const recInfoById = useMemo(() => {
+        if (!recPayload) return null;
+        return new Map(recPayload.ranked.map((r) => [r.id, r]));
+    }, [recPayload]);
+
+    // Restore scores when the page loads with ?sort=recommended in the URL
+    useEffect(() => {
+        if (sortBy === "recommended" && !readOnly) ensureRecommendations();
+    }, [sortBy, readOnly, ensureRecommendations]);
+
     const filteredItems = useMemo(() => {
         // Build id → rank map so we can both filter and sort by Fuse relevance
         const fuseRankMap = search.length >= 2
@@ -316,6 +347,9 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         if (sortBy !== "default") {
             result.sort((a, b) => {
                 switch (sortBy) {
+                    case "recommended":
+                        // Scored (Plan to Watch) items first by match, everything else after
+                        return (recInfoById?.get(b.id)?.score ?? -1) - (recInfoById?.get(a.id)?.score ?? -1);
                     case "rating-high":
                         return (b.score || 0) - (a.score || 0);
                     case "rating-low":
@@ -363,7 +397,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
 
         return result;
-    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly, fuse]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
 
     useEffect(() => {
         setDisplayCount(10);
@@ -918,6 +952,20 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             <span className="">Airing</span>
                         </button>
 
+                        {/* What to watch next */}
+                        {!readOnly && (
+                            <button
+                                onClick={() => {
+                                    setShowWhatsNext(true);
+                                    ensureRecommendations();
+                                }}
+                                className="h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 bg-violet-500/10 text-violet-400 hover:bg-violet-500/20 ring-1 ring-violet-500/20"
+                            >
+                                <Sparkles className="h-4 w-4" />
+                                <span>What&apos;s next?</span>
+                            </button>
+                        )}
+
                         {/* Divider */}
                         <div className="w-px h-6 bg-white/10 shrink-0" />
 
@@ -930,6 +978,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 "year-new": "Year ↓", "year-old": "Year ↑",
                                 "next-episode-asc": "Next Ep ↑", "next-episode-desc": "Next Ep ↓",
                                 "mdl-rating-high": "MDL Rating ↓", "mdl-rating-low": "MDL Rating ↑",
+                                recommended: "Match ↓",
                             };
                             const sortGroups: { label: string; a: string; b: string; aLabel: string; bLabel: string }[] = [
                                 { label: "Rating",       a: "rating-high",        b: "rating-low",         aLabel: "High", bLabel: "Low" },
@@ -961,6 +1010,15 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                 >
                                                     Default
                                                 </button>
+                                                {!readOnly && (
+                                                    <button
+                                                        onClick={() => { pick("recommended"); ensureRecommendations(); }}
+                                                        className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${sortBy === "recommended" ? "bg-violet-500/20 text-violet-400" : "text-gray-500 hover:text-white hover:bg-white/5"}`}
+                                                    >
+                                                        <Sparkles className="h-3 w-3" />
+                                                        Best match for you
+                                                    </button>
+                                                )}
                                                 <div className="border-t border-white/8 my-1" />
                                                 {sortGroups.map((g) => (
                                                     <div key={g.label} className="flex items-center gap-2">
@@ -1333,6 +1391,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                         readOnly={readOnly}
                                                         thumbnailStyle={thumbnailStyle}
                                                         nextEpisodeMap={nextEpisodeMap}
+                                                        recInfo={sortBy === "recommended" ? recInfoById?.get(item.id) : undefined}
                                                     />
                                                 </div>
                                             ))}
@@ -1356,6 +1415,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         readOnly={readOnly}
                                         thumbnailStyle={thumbnailStyle}
                                         nextEpisodeMap={nextEpisodeMap}
+                                        recInfo={sortBy === "recommended" ? recInfoById?.get(first.id) : undefined}
                                     />
                                 </div>,
                             );
@@ -1386,6 +1446,22 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     open={editOpen}
                     onOpenChange={handleEditClose}
                     onOptimisticUpdate={handleOptimisticEdit}
+                />
+            )}
+
+            {!readOnly && (
+                <WhatsNextDialog
+                    open={showWhatsNext}
+                    onOpenChange={setShowWhatsNext}
+                    payload={recPayload}
+                    loading={recLoading}
+                    onSortByMatch={() => {
+                        setShowWhatsNext(false);
+                        setFilterStatuses(["Plan to Watch"]);
+                        syncUrl("status", "Plan to Watch");
+                        setSortBy("recommended");
+                        syncUrl("sort", "recommended");
+                    }}
                 />
             )}
 
@@ -1646,6 +1722,7 @@ const ItemCard = memo(function ItemCard({
     readOnly = false,
     thumbnailStyle = "poster",
     nextEpisodeMap = {},
+    recInfo,
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
@@ -1655,6 +1732,7 @@ const ItemCard = memo(function ItemCard({
     readOnly?: boolean;
     thumbnailStyle?: "poster" | "backdrop";
     nextEpisodeMap?: Record<string, NextEpisodeData | null>;
+    recInfo?: { score: number; reasons: string[] };
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -1758,6 +1836,29 @@ const ItemCard = memo(function ItemCard({
                             </Link>
                             {item.mediaType === "TV" && item.season > 0 && (
                                 <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
+                            )}
+                            {recInfo && (
+                                <TooltipProvider delayDuration={300}>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <span className="flex items-center gap-1 text-xs font-semibold text-violet-300 bg-violet-500/15 border border-violet-500/20 px-2 py-1 rounded shrink-0 cursor-default">
+                                                <Sparkles className="h-3 w-3" />
+                                                {recInfo.score}%
+                                            </span>
+                                        </TooltipTrigger>
+                                        <TooltipContent side="bottom" className="max-w-64">
+                                            {recInfo.reasons.length > 0 ? (
+                                                <ul className="space-y-0.5">
+                                                    {recInfo.reasons.map((r) => (
+                                                        <li key={r}>• {r}</li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                "Matches your overall taste"
+                                            )}
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                             )}
                         </div>
                         <div className="flex items-center gap-2 flex-wrap text-sm text-gray-500">
