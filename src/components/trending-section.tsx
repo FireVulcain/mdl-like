@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { UnifiedMedia } from "@/services/media.service";
 import { MediaCard } from "@/components/media-card";
 import { Badge } from "@/components/ui/badge";
-import { Play, Star, TrendingUp } from "lucide-react";
+import { HomeSectionHeader } from "@/components/home-section-header";
+import { Play, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,18 +31,17 @@ export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
     };
 
     return (
-        <div className="space-y-6 md:space-y-12">
-            {/* Section Header */}
-            <div className="flex items-center gap-3 md:gap-4">
-                <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-orange-500/10 border border-orange-500/20">
-                    <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-orange-500" />
-                </div>
-                <div className="flex-1 min-w-0">
-                    <h2 className="text-lg md:text-2xl font-bold tracking-tight">Trending Worldwide</h2>
-                    <p className="text-xs md:text-sm text-muted-foreground truncate md:whitespace-normal">Most popular movies and shows this week across all platforms.</p>
-                </div>
-                <div className="hidden md:block h-px flex-1 bg-linear-to-r from-border to-transparent ml-4" />
-            </div>
+        <div className="relative space-y-6 md:space-y-10">
+            {/* Ambient glow anchored to the page, not a box */}
+            <div className="absolute -top-24 right-1/4 w-72 md:w-120 h-72 md:h-120 bg-orange-500/6 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none" />
+
+            <HomeSectionHeader
+                index="04"
+                eyebrow="Worldwide"
+                title="Trending Worldwide"
+                subtitle="Most popular movies and shows this week across all platforms"
+                accent="orange"
+            />
 
             {/* Spotlight Hero */}
             <motion.div

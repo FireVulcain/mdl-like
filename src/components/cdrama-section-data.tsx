@@ -5,6 +5,7 @@ import { MediaCard } from "@/components/media-card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Bookmark, ChevronRight } from "lucide-react";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
+import { HomeSectionHeader, HomeRowLabel } from "@/components/home-section-header";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
@@ -68,14 +69,13 @@ function CDramaRow({
     seeMoreHref: string;
 }) {
     return (
-        <div className="space-y-3 md:space-y-4">
-            <div className="flex items-center gap-2 md:gap-3">
-                <div className={`w-1 h-5 md:h-6 rounded-full ${accentClass}`} />
-                <h3 className="text-base md:text-lg font-semibold text-white">{label}</h3>
-                <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+        <div className="space-y-2 md:space-y-3">
+            <div className="flex items-center gap-3">
+                <HomeRowLabel dotClass={accentClass} label={label} />
+                <div className="flex-1 h-px bg-linear-to-r from-white/8 to-transparent" />
                 <Link
                     href={seeMoreHref}
-                    className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-white transition-colors shrink-0"
+                    className="flex items-center gap-0.5 text-xs text-gray-500 hover:text-white transition-colors shrink-0"
                 >
                     See more <ChevronRight className="h-3.5 w-3.5" />
                 </Link>
@@ -131,32 +131,25 @@ export async function CDramaSectionData() {
     ]);
 
     return (
-        <section className="relative space-y-6 md:space-y-8 bg-white/2 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-white/5 shadow-lg overflow-hidden">
-            {/* Atmospheric Background Effects */}
-            <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-rose-500/8 rounded-full blur-[80px] md:blur-[120px] -z-10" />
-            <div className="absolute bottom-0 left-0 w-48 md:w-96 h-48 md:h-96 bg-rose-600/8 rounded-full blur-[80px] md:blur-[120px] -z-10" />
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <section className="relative space-y-6 md:space-y-10">
+            {/* Ambient glow anchored to the page, not a box */}
+            <div className="absolute -top-24 left-0 w-72 md:w-120 h-72 md:h-120 bg-rose-500/6 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none" />
 
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div className="space-y-1 md:space-y-2">
-                    <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-                        <h2 className="text-xl md:text-3xl font-bold text-white">C-Drama Universe</h2>
-                        <div className="flex items-center gap-1.5 px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-rose-500/10 border border-rose-500/20">
-                            <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-rose-500 animate-pulse" />
-                            <span className="text-[10px] md:text-xs font-medium text-rose-300">LIVE</span>
-                        </div>
-                    </div>
-                    <p className="text-xs md:text-sm text-gray-400">Fresh from China · Trending, airing, and upcoming series</p>
-                </div>
-            </div>
+            <HomeSectionHeader
+                index="03"
+                eyebrow="China"
+                title="C-Drama Universe"
+                subtitle="Fresh from China · Trending, airing, and upcoming series"
+                accent="rose"
+                live
+            />
 
             <div className="space-y-6 md:space-y-10">
                 <CDramaRow
                     items={cdramas.trending}
                     linkedBySlug={linkedBySlug}
                     watchlistIds={watchlistIds}
-                    accentClass="bg-linear-to-b from-rose-500 to-rose-400"
+                    accentClass="bg-rose-400"
                     label="Popular Right Now"
                     seeMoreHref="/dramas?category=popular&country=CN"
                 />
@@ -164,7 +157,7 @@ export async function CDramaSectionData() {
                     items={cdramas.airing}
                     linkedBySlug={linkedBySlug}
                     watchlistIds={watchlistIds}
-                    accentClass="bg-linear-to-b from-violet-500 to-violet-400"
+                    accentClass="bg-violet-400"
                     label="Airing Now"
                     seeMoreHref="/dramas?category=airing&country=CN"
                 />
@@ -173,7 +166,7 @@ export async function CDramaSectionData() {
                         items={cdramas.upcoming}
                         linkedBySlug={linkedBySlug}
                         watchlistIds={watchlistIds}
-                        accentClass="bg-linear-to-b from-amber-500 to-amber-400"
+                        accentClass="bg-amber-400"
                         label="Coming Soon"
                         seeMoreHref="/dramas?category=upcoming&country=CN"
                     />

@@ -32,12 +32,17 @@ function HeroSkeleton() {
 
 function KDramaSkeleton() {
     return (
-        <section className="relative space-y-6 md:space-y-8 bg-white/2 p-4 md:p-8 rounded-xl border border-white/5 animate-pulse">
-            <div className="h-8 w-56 rounded-lg bg-white/10" />
+        <section className="relative space-y-6 md:space-y-10 animate-pulse">
+            <div className="space-y-3">
+                <div className="h-3 w-40 rounded bg-white/8" />
+                <div className="h-9 w-72 rounded-lg bg-white/10" />
+                <div className="h-3 w-56 rounded bg-white/5" />
+                <div className="h-px w-full bg-white/8" />
+            </div>
             <div className="space-y-8">
                 {[0, 1].map((i) => (
                     <div key={i} className="space-y-3">
-                        <div className="h-5 w-40 rounded bg-white/10" />
+                        <div className="h-4 w-40 rounded bg-white/8" />
                         <div className="flex gap-4 overflow-hidden">
                             {Array.from({ length: 6 }).map((_, j) => (
                                 <div key={j} className="w-32 sm:w-40 md:w-55 shrink-0 aspect-2/3 rounded-xl bg-white/5" />
@@ -75,7 +80,7 @@ export default function Home() {
             </Suspense>
 
             {/* Content */}
-            <div className="container py-6 md:py-8 space-y-12 md:space-y-24 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
+            <div className="container py-10 md:py-16 space-y-16 md:space-y-32 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
                 {/* Actor radar — personal picks from favorite actors' filmographies (24h cached) */}
                 <Suspense fallback={<KDramaSkeleton />}>
                     <ActorRadarData />
