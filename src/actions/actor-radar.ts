@@ -1,6 +1,6 @@
 "use server";
 
-import { unstable_cache, revalidateTag } from "next/cache";
+import { unstable_cache, updateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { kuryanaSearch } from "@/lib/kuryana";
@@ -20,7 +20,7 @@ export async function excludeRadarActor(personSlug: string, name: string, profil
             update: { name, profileImage },
         }),
     ]);
-    revalidateTag(`actor-radar-${userId}`, "max");
+    updateTag(`actor-radar-${userId}`);
     return { success: true };
 }
 
@@ -36,14 +36,14 @@ export async function pinRadarActor(personSlug: string, name: string, profileIma
             update: { name, profileImage },
         }),
     ]);
-    revalidateTag(`actor-radar-${userId}`, "max");
+    updateTag(`actor-radar-${userId}`);
     return { success: true };
 }
 
 export async function unpinRadarActor(personSlug: string) {
     const userId = await getCurrentUserId();
     await prisma.actorRadarPin.deleteMany({ where: { userId, personSlug } });
-    revalidateTag(`actor-radar-${userId}`, "max");
+    updateTag(`actor-radar-${userId}`);
     return { success: true };
 }
 
@@ -64,7 +64,7 @@ export async function searchRadarPeople(query: string): Promise<{ slug: string; 
 export async function restoreRadarActor(personSlug: string) {
     const userId = await getCurrentUserId();
     await prisma.actorRadarExclusion.deleteMany({ where: { userId, personSlug } });
-    revalidateTag(`actor-radar-${userId}`, "max");
+    updateTag(`actor-radar-${userId}`);
     return { success: true };
 }
 
