@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { ContinueWatchingData } from "@/components/continue-watching-data";
+import { ActorRadarData } from "@/components/actor-radar-data";
 import { KDramaSectionData } from "@/components/kdrama-section-data";
 import { CDramaSectionData } from "@/components/cdrama-section-data";
 import { TrendingData } from "@/components/trending-data";
@@ -75,6 +76,11 @@ export default function Home() {
 
             {/* Content */}
             <div className="container py-6 md:py-8 space-y-12 md:space-y-24 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
+                {/* Actor radar — personal picks from favorite actors' filmographies (24h cached) */}
+                <Suspense fallback={<KDramaSkeleton />}>
+                    <ActorRadarData />
+                </Suspense>
+
                 {/* K-Drama section — 3 parallel TMDB calls */}
                 <Suspense fallback={<KDramaSkeleton />}>
                     <KDramaSectionData />

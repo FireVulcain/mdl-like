@@ -47,7 +47,39 @@ model User {
   podiums       ProfilePodium[]
   preferences   UserPreferences?
   recFeedback   RecommendationFeedback[]
+  radarExclusions ActorRadarExclusion[]
+  radarPins     ActorRadarPin[]
   lastSeenSync  DateTime?
+}
+
+// Actors the user manually added to the "From Actors You Watch" radar —
+// always scanned, regardless of computed affinity.
+model ActorRadarPin {
+  id           String   @id @default(cuid())
+  userId       String
+  personSlug   String // bare kuryana person slug
+  name         String
+  profileImage String?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, personSlug])
+  @@index([userId])
+}
+
+// Actors the user has removed from the "From Actors You Watch" radar.
+// Kept as rows (not a Json blob) so they can be listed and restored.
+model ActorRadarExclusion {
+  id           String   @id @default(cuid())
+  userId       String
+  personSlug   String // bare kuryana person slug, e.g. "22074-go-yoon-jung"
+  name         String
+  profileImage String?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, personSlug])
+  @@index([userId])
 }
 
 // "Not interested" dismissals from the recommendation dialog. Keyed by show+season
