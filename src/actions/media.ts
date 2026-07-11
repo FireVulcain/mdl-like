@@ -389,7 +389,7 @@ async function getWatchlistForUser(userId: string) {
     const [cachedMdlRows, seasonLinkRows] = await Promise.all([
         prisma.cachedMdlData.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
-            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true },
+            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true, tags: true },
         }),
         prisma.mdlSeasonLink.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
@@ -398,6 +398,17 @@ async function getWatchlistForUser(userId: string) {
     ]);
     const mdlSlugByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
     const mdlRatingByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlRating]));
+    // MDL theme tags (legacy string[] or {id, name}[]), cleaned of the "(... tags)" suffix
+    const parseTagNames = (raw: unknown): string[] =>
+        Array.isArray(raw)
+            ? (raw as unknown[])
+                  .map((t) =>
+                      typeof t === "string" ? t : t && typeof t === "object" && "name" in t ? String((t as { name: unknown }).name) : "",
+                  )
+                  .map((n) => n.replace(/\s*\(.*?tags\)\s*$/i, "").trim())
+                  .filter(Boolean)
+            : [];
+    const tagsByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, parseTagNames(r.tags)]));
     const mdlSlugBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
     const mdlRatingBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlRating]));
 
@@ -421,6 +432,7 @@ async function getWatchlistForUser(userId: string) {
                 seasonAirDate: null as string | null,
                 mdlSlug,
                 mdlRating,
+                tags: tagsByExternalId.get(item.externalId) ?? [],
             };
         })
         .sort((a, b) => {

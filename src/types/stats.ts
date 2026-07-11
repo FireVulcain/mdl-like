@@ -10,6 +10,7 @@ export type DashboardStats = {
     monthlyActivity: { month: string; count: number }[];
     activityHeatmap: { date: string; count: number }[];
     topGenres: { name: string; count: number; percentage: number }[];
+    topThemes: { name: string; count: number }[];
     decadeDistribution: { decade: string; count: number }[];
     countryBreakdown: { country: string; count: number }[];
     yearBreakdown: { year: number; count: number }[];
@@ -28,6 +29,7 @@ export const EMPTY_STATS: DashboardStats = {
     monthlyActivity: [],
     activityHeatmap: [],
     topGenres: [],
+    topThemes: [],
     decadeDistribution: [],
     countryBreakdown: [],
     yearBreakdown: [],

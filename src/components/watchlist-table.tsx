@@ -43,6 +43,7 @@ import {
     GalleryVertical,
     GalleryHorizontal,
     Sparkles,
+    Tags,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -100,6 +101,7 @@ type WatchlistItem = {
     nextEpisode?: NextEpisodeData | null;
     seasonAirDate?: string | null;
     mdlSlug?: string | null;
+    tags?: string[];
 };
 
 interface WatchlistTableProps {
@@ -161,6 +163,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     const [filterCountries, setFilterCountries] = useState<string[]>(() => searchParams.get("country")?.split(",").filter(Boolean) ?? []);
     const [filterGenres, setFilterGenres] = useState<string[]>(() => searchParams.get("genre")?.split(",").filter(Boolean) ?? []);
     const [filterYear, setFilterYear] = useState<string>(() => searchParams.get("year") ?? "All");
+    // Theme (MDL tag) filter — no dropdown UI; set via URL deep links (e.g. from /stats)
+    const [filterTheme, setFilterTheme] = useState<string>(() => searchParams.get("theme") ?? "");
     const [search, setSearch] = useState<string>(() => searchParams.get("q") ?? "");
     const [sortBy, setSortBy] = useState<string>(() => searchParams.get("sort") ?? "default");
     const [filterAiringOnly, setFilterAiringOnly] = useState<boolean>(() => searchParams.get("airing") === "1");
@@ -376,6 +380,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     if (!item.title?.toLowerCase().includes(search.toLowerCase())) return false;
                 }
             }
+            if (filterTheme && !(item.tags ?? []).includes(filterTheme)) return false;
             if (filterYear !== "All" && item.year) {
                 if (filterYear === "2010s" && (item.year < 2010 || item.year >= 2020)) return false;
                 if (filterYear === "2000s" && (item.year < 2000 || item.year >= 2010)) return false;
@@ -444,11 +449,11 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
 
         return result;
-    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
 
     useEffect(() => {
         setDisplayCount(10);
-    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, sortBy, filterAiringOnly]);
+    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, sortBy, filterAiringOnly]);
 
     const toggleStatus = (status: string) => {
         const next = filterStatuses.includes(status) ? [] : [status];
@@ -690,7 +695,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         });
     };
 
-    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0);
+    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0) + (filterTheme ? 1 : 0);
 
     const downloadFile = (content: string, filename: string, mimeType: string) => {
         const blob = new Blob([content], { type: mimeType });
@@ -1294,10 +1299,20 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                             <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     )}
+                    {filterTheme && (
+                        <button
+                            onClick={() => { setFilterTheme(""); syncUrl("theme", null); }}
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-violet-500/15 text-violet-400 hover:opacity-80 transition-all cursor-pointer group"
+                        >
+                            <Tags className="h-3 w-3" />
+                            {filterTheme}
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                        </button>
+                    )}
                     <button
                         onClick={() => {
                             setFilterStatuses([]); setFilterCountries([]); setFilterGenres([]);
-                            setFilterYear("All"); setFilterAiringOnly(false); setSearch("");
+                            setFilterYear("All"); setFilterAiringOnly(false); setSearch(""); setFilterTheme("");
                             window.history.replaceState(null, "", window.location.pathname);
                         }}
                         className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-white hover:bg-white/5 transition-all cursor-pointer"

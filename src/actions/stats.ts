@@ -33,7 +33,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     // Genre Breakdown — prefer MDL genres when cached, fall back to TMDB genres
     const mdlGenreRows = await prisma.cachedMdlData.findMany({
         where: { tmdbExternalId: { in: items.map((i) => i.externalId) } },
-        select: { tmdbExternalId: true, genres: true },
+        select: { tmdbExternalId: true, genres: true, tags: true },
     });
     const mdlGenresByExternalId = new Map(
         mdlGenreRows
@@ -66,6 +66,25 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
         count: g.value,
         percentage: items.length > 0 ? (g.value / items.length) * 100 : 0,
     }));
+
+    // Theme Breakdown — MDL tags, counted once per show (CachedMdlData is unique per
+    // show, so season rows can't double-count). Tags Json can be legacy string[] or {id, name}[].
+    const themeMap = new Map<string, number>();
+    for (const row of mdlGenreRows) {
+        if (!Array.isArray(row.tags)) continue;
+        const seen = new Set<string>();
+        for (const t of row.tags as unknown[]) {
+            const rawName = typeof t === "string" ? t : t && typeof t === "object" && "name" in t ? String((t as { name: unknown }).name) : "";
+            const name = rawName.replace(/\s*\(.*?tags\)\s*$/i, "").trim();
+            if (!name || seen.has(name)) continue;
+            seen.add(name);
+            themeMap.set(name, (themeMap.get(name) || 0) + 1);
+        }
+    }
+    const topThemes = Array.from(themeMap.entries())
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 24);
 
     // Rating Distribution
     const ratings = Array.from({ length: 11 }, (_, i) => ({ rating: i, count: 0 }));
@@ -162,6 +181,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
         monthlyActivity,
         activityHeatmap,
         topGenres,
+        topThemes,
         decadeDistribution: [],
         countryBreakdown,
         yearBreakdown,

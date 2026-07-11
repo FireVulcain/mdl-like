@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { type DashboardStats } from "@/types/stats";
 import { Counter } from "./counter";
-import { Play, Tv, Clock, CheckCircle2, BarChart3, Star, TrendingUp, Globe, Calendar, Users } from "lucide-react";
+import { Play, Tv, Clock, CheckCircle2, BarChart3, Star, TrendingUp, Globe, Calendar, Users, Tags } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -386,6 +386,47 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     </motion.div>
                 )}
             </div>
+
+            {/* Row 5b — Top Themes (MDL tags) */}
+            {stats.topThemes.length > 0 && (
+                <motion.div variants={item}>
+                    <div className={CARD}>
+                        <div className={CARD_HEADER}>
+                            <h3 className="text-base font-semibold flex items-center gap-2 text-white">
+                                <Tags className="h-4 w-4 text-violet-400" />
+                                Top Themes
+                            </h3>
+                        </div>
+                        <div className={CARD_CONTENT}>
+                            <div className="flex flex-wrap gap-2">
+                                {stats.topThemes.map((theme, i) => {
+                                    const intensity = theme.count / stats.topThemes[0].count;
+                                    return (
+                                        <motion.span
+                                            key={theme.name}
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 0.15 + i * 0.03 }}
+                                        >
+                                            <Link
+                                                href={`/watchlist?theme=${encodeURIComponent(theme.name)}`}
+                                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-violet-200 border hover:brightness-135 transition-all"
+                                                style={{
+                                                    backgroundColor: `rgba(139, 92, 246, ${0.08 + intensity * 0.22})`,
+                                                    borderColor: `rgba(139, 92, 246, ${0.15 + intensity * 0.35})`,
+                                                }}
+                                            >
+                                                {theme.name}
+                                                <span className="text-xs text-violet-300/60">{theme.count}</span>
+                                            </Link>
+                                        </motion.span>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            )}
 
             {/* Row 6 — Continue Watching */}
             {continueWatching.length > 0 && (
