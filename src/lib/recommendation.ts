@@ -19,6 +19,7 @@ export type RecMediaItem = {
     mediaType: string;
     status: string;
     score: number | null;
+    progress: number;
     totalEp: number | null;
     tmdbRating: number | null;
     airingStatus: string | null;

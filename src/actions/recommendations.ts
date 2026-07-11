@@ -126,6 +126,7 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
             mediaType: m.mediaType,
             status: m.status,
             score: m.score,
+            progress: m.progress,
             totalEp: m.totalEp,
             tmdbRating: m.tmdbRating,
             airingStatus: m.airingStatus,
@@ -177,8 +178,12 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
                     if (season.air_date) {
                         if (season.air_date > today) unreleased.add(c.id);
                         else c.year = parseInt(season.air_date.slice(0, 4)); // true season year for era fit + display
-                    } else if (season.episode_count === 0) {
-                        unreleased.add(c.id); // announced but nothing aired yet
+                    } else if (c.progress === 0) {
+                        // No air date at all — treat as unreleased. TMDB sometimes lists a
+                        // phantom TBA episode (episode_count 1) for announced seasons, so the
+                        // count can't be trusted; existing watch progress is the only
+                        // reliable evidence the season actually aired despite the data gap.
+                        unreleased.add(c.id);
                     }
                 } catch {
                     // TMDB hiccup: keep the candidate rather than silently hiding it
