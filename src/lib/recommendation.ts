@@ -126,14 +126,39 @@ function maxNormalize(map: FacetMap): FacetMap {
 }
 
 export function buildTasteProfile(items: RecMediaItem[], now = new Date()): TasteProfile {
+    const watchedRows = items.filter((i) => i.status === "Completed" || i.status === "Watching" || i.status === "Dropped");
     // Dismissed recommendations count as a mild "not my thing" signal, weaker than
     // an explicit Drop (the user never tried the show, they just waved it away).
-    const watched = items.filter(
-        (i) => i.status === "Completed" || i.status === "Watching" || i.status === "Dropped" || i.isDismissed,
-    );
+    const dismissedItems = items.filter((i) => i.isDismissed && i.status === "Plan to Watch");
 
-    const scored = watched.filter((i) => i.score !== null);
+    const scored = watchedRows.filter((i) => i.score !== null);
     const meanScore = scored.length >= 3 ? scored.reduce((acc, i) => acc + i.score!, 0) / scored.length : 7.5;
+
+    // Collapse season rows: ONE taste contribution per show. Genres/tags/cast are
+    // show-level data, so without this an 8-season show would stamp its features
+    // 8× into the profile and drown everything else. Watching many seasons is
+    // still a (mild, capped) extra signal.
+    const byShow = new Map<string, RecMediaItem[]>();
+    for (const row of watchedRows) {
+        const arr = byShow.get(row.externalId);
+        if (arr) arr.push(row);
+        else byShow.set(row.externalId, [row]);
+    }
+    const watched: { item: RecMediaItem; multiplier: number }[] = [];
+    for (const rows of byShow.values()) {
+        const best = rows.find((r) => r.status === "Completed") ?? rows.find((r) => r.status === "Watching") ?? rows[0];
+        const showScored = rows.filter((r) => r.score !== null);
+        const avgScore = showScored.length ? showScored.reduce((a, r) => a + r.score!, 0) / showScored.length : null;
+        const latest = rows.reduce<Date | null>((acc, r) => {
+            const d = r.lastWatchedAt ?? r.updatedAt;
+            return !acc || d > acc ? d : acc;
+        }, null);
+        watched.push({
+            item: { ...best, score: avgScore, lastWatchedAt: latest, isPodium: rows.some((r) => r.isPodium) },
+            multiplier: Math.min(1 + 0.15 * (rows.length - 1), 1.5),
+        });
+    }
+    for (const d of dismissedItems) watched.push({ item: d, multiplier: 1 });
 
     const genres: FacetMap = new Map();
     const tags: FacetMap = new Map();
@@ -144,7 +169,7 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
     const decades: FacetMap = new Map();
     const lengthBuckets: FacetMap = new Map();
 
-    for (const item of watched) {
+    for (const { item, multiplier } of watched) {
         const base =
             item.status === "Completed" ? 1.0
             : item.status === "Watching" ? 0.7
@@ -160,7 +185,7 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
 
         const recency = decayWeight(item.lastWatchedAt ?? item.updatedAt, now, PROFILE_RECENCY_HALF_LIFE_MONTHS);
         // Recency should fade influence, not flip it — floor at 0.25 so old favorites still count.
-        let w = base * quality * Math.max(0.25, recency);
+        let w = base * quality * Math.max(0.25, recency) * multiplier;
         if (item.isPodium && w > 0) w *= PODIUM_BOOST;
 
         for (const g of item.genres) addWeight(genres, g, w);
@@ -183,6 +208,7 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
 
     // Anti-repetition: remember what the last 2 completed shows "felt like"
     const recentCompleted = watched
+        .map((w) => w.item)
         .filter((i) => i.status === "Completed")
         .toSorted((a, b) => (b.lastWatchedAt ?? b.updatedAt).getTime() - (a.lastWatchedAt ?? a.updatedAt).getTime())
         .slice(0, 2);
@@ -198,7 +224,7 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
         decades: maxNormalize(decades),
         lengthBuckets: maxNormalize(lengthBuckets),
         meanScore,
-        watchedCount: watched.filter((i) => i.status !== "Plan to Watch").length,
+        watchedCount: byShow.size,
         recentlyCompletedFeatures,
     };
 }
