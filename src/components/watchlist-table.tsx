@@ -102,6 +102,7 @@ type WatchlistItem = {
     seasonAirDate?: string | null;
     mdlSlug?: string | null;
     tags?: string[];
+    mdlGenres?: string[];
 };
 
 interface WatchlistTableProps {
@@ -368,8 +369,12 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             if (filterStatuses.length > 0 && !filterStatuses.includes(item.status)) return false;
             if (filterCountries.length > 0 && (!item.originCountry || !filterCountries.includes(item.originCountry))) return false;
             if (filterGenres.length > 0) {
-                if (!item.genres) return false;
-                const itemGenres = item.genres.split(",").map((g) => g.trim());
+                // Match TMDB genres (row column) OR MDL genres — stats deep links use MDL names
+                const itemGenres = [
+                    ...(item.genres ? item.genres.split(",").map((g) => g.trim()) : []),
+                    ...(item.mdlGenres ?? []),
+                ];
+                if (itemGenres.length === 0) return false;
                 const hasMatchingGenre = filterGenres.some((fg) => itemGenres.includes(fg));
                 if (!hasMatchingGenre) return false;
             }

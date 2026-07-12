@@ -389,7 +389,7 @@ async function getWatchlistForUser(userId: string) {
     const [cachedMdlRows, seasonLinkRows] = await Promise.all([
         prisma.cachedMdlData.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
-            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true, tags: true },
+            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true, tags: true, genres: true },
         }),
         prisma.mdlSeasonLink.findMany({
             where: { tmdbExternalId: { in: uniqueExternalIds } },
@@ -409,6 +409,14 @@ async function getWatchlistForUser(userId: string) {
                   .filter(Boolean)
             : [];
     const tagsByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, parseTagNames(r.tags)]));
+    // MDL genres (plain string[]) — the stats page's Top Genres prefers these, so the
+    // watchlist genre filter must be able to match them too
+    const mdlGenresByExternalId = new Map(
+        cachedMdlRows.map((r) => [
+            r.tmdbExternalId,
+            Array.isArray(r.genres) ? (r.genres as string[]).map((g) => g.trim()).filter(Boolean) : [],
+        ]),
+    );
     const mdlSlugBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
     const mdlRatingBySeason = new Map(seasonLinkRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlRating]));
 
@@ -433,6 +441,7 @@ async function getWatchlistForUser(userId: string) {
                 mdlSlug,
                 mdlRating,
                 tags: tagsByExternalId.get(item.externalId) ?? [],
+                mdlGenres: mdlGenresByExternalId.get(item.externalId) ?? [],
             };
         })
         .sort((a, b) => {

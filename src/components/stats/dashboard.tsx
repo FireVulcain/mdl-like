@@ -329,9 +329,15 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                             <div className="space-y-3">
                                 {stats.topGenres.length > 0 ? (
                                     stats.topGenres.slice(0, listCount).map((genre, i) => (
-                                        <div key={genre.name} className="space-y-1.5">
+                                        <Link
+                                            key={genre.name}
+                                            href={`/watchlist?genre=${encodeURIComponent(genre.name)}`}
+                                            className="block space-y-1.5 group/genre -mx-2 px-2 py-1 rounded-lg hover:bg-white/5 transition-colors"
+                                        >
                                             <div className="flex justify-between text-sm">
-                                                <span className="font-medium text-white">{genre.name}</span>
+                                                <span className="font-medium text-white group-hover/genre:text-emerald-300 transition-colors">
+                                                    {genre.name}
+                                                </span>
                                                 <span className="text-gray-400">{genre.count} titles</span>
                                             </div>
                                             <div className="relative h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
@@ -343,7 +349,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                     style={{ background: `linear-gradient(90deg, ${GENRE_COLORS[i % GENRE_COLORS.length]}, ${GENRE_COLORS[(i + 1) % GENRE_COLORS.length]})` }}
                                                 />
                                             </div>
-                                        </div>
+                                        </Link>
                                     ))
                                 ) : (
                                     <p className="text-sm text-gray-500 text-center py-8">No genre data yet</p>
