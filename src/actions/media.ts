@@ -301,8 +301,16 @@ export async function getMediaImages(source: string, externalId: string) {
     };
 }
 
-export async function updateUserMedia(id: string, data: Partial<any>) {
-    // Using any simply to avoid tight coupling with type def repetition, but safer to use type
+export type UpdateUserMediaData = {
+    status?: string;
+    progress?: number;
+    score?: number | null;
+    notes?: string | null;
+    poster?: string | null;
+    backdrop?: string | null;
+};
+
+export async function updateUserMedia(id: string, data: UpdateUserMediaData) {
     try {
         const current = await prisma.userMedia.findUnique({ where: { id } });
         const { status, progress, score, notes, poster, backdrop } = data;
@@ -340,7 +348,7 @@ export async function updateUserMedia(id: string, data: Partial<any>) {
                 newProgress: progress,
             });
         }
-        if (score !== undefined && score > 0 && current?.score !== score) {
+        if (score !== undefined && score !== null && score > 0 && current?.score !== score) {
             await logActivity({ ...base, action: ActivityAction.SCORED, payload: { from: current?.score ?? null, to: score } });
         }
         if (notes !== undefined && notes && current?.notes !== notes) {

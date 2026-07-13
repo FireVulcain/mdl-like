@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo, useRef, useOptimistic, useTransition, memo, useCallback, useEffect } from "react";
+import { useState, useMemo, useRef, memo, useCallback, useEffect } from "react";
 import Fuse from "fuse.js";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -103,6 +103,7 @@ type WatchlistItem = {
     mdlSlug?: string | null;
     tags?: string[];
     mdlGenres?: string[];
+    createdAt?: Date | string;
 };
 
 interface WatchlistTableProps {
@@ -156,6 +157,7 @@ const statusConfig = {
 
 export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps) {
     const searchParams = useSearchParams();
+    const router = useRouter();
 
     // Filter/sort: useState for instant UI updates, URL synced silently via
     // history.replaceState so back/forward navigation restores state without
@@ -272,11 +274,23 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     }, []);
 
-    // Optimistic updates
-    const [optimisticItems, setOptimisticItems] = useOptimistic(items, (state, update: OptimisticUpdate) => {
-        return state.map((item) => (item.id === update.id ? { ...item, ...update } : item));
-    });
-    const [, startTransition] = useTransition();
+    // Optimistic updates: a plain override map (not useOptimistic) so writes can be
+    // debounced — useOptimistic reverts unless the server call shares its transition.
+    const [optimisticOverrides, setOptimisticOverrides] = useState<Record<string, OptimisticUpdate>>({});
+    const setOptimisticItems = useCallback((update: OptimisticUpdate) => {
+        setOptimisticOverrides((prev) => ({ ...prev, [update.id]: { ...prev[update.id], ...update } }));
+    }, []);
+    const clearOptimisticItem = useCallback((id: string) => {
+        setOptimisticOverrides((prev) => {
+            const next = { ...prev };
+            delete next[id];
+            return next;
+        });
+    }, []);
+    const optimisticItems = useMemo(() => {
+        if (Object.keys(optimisticOverrides).length === 0) return items;
+        return items.map((item) => (optimisticOverrides[item.id] ? { ...item, ...optimisticOverrides[item.id] } : item));
+    }, [items, optimisticOverrides]);
 
     const toggleGroup = (key: string) => {
         const newSet = new Set(expandedGroups);
@@ -427,6 +441,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         return (b.year || 0) - (a.year || 0);
                     case "year-old":
                         return (a.year || 0) - (b.year || 0);
+                    case "added-new":
+                        return new Date(b.createdAt ?? 0).getTime() - new Date(a.createdAt ?? 0).getTime();
+                    case "added-old":
+                        return new Date(a.createdAt ?? 0).getTime() - new Date(b.createdAt ?? 0).getTime();
                     case "mdl-rating-high":
                         return (b.mdlRating || 0) - (a.mdlRating || 0);
                     case "mdl-rating-low":
@@ -461,9 +479,9 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     }, [filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, sortBy, filterAiringOnly]);
 
     const toggleStatus = (status: string) => {
-        const next = filterStatuses.includes(status) ? [] : [status];
+        const next = filterStatuses.includes(status) ? filterStatuses.filter((s) => s !== status) : [...filterStatuses, status];
         setFilterStatuses(next);
-        syncUrl("status", next[0] ?? null);
+        syncUrl("status", next.join(",") || null);
     };
 
     const toggleCountry = (country: string) => {
@@ -492,29 +510,57 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         return Array.from(genreSet).sort();
     }, [items]);
 
-    const handleProgress = useCallback(
-        async (id: string, newProgress: number, title?: string) => {
-            startTransition(() => {
-                setOptimisticItems({ id, progress: newProgress });
-            });
+    // Progress clicks are debounced per item: rapid +/- taps update the UI instantly
+    // but send ONE server write (and one toast) once the clicking settles.
+    const PROGRESS_DEBOUNCE_MS = 800;
+    const progressTimers = useRef(new Map<string, { timer: ReturnType<typeof setTimeout>; value: number; title?: string }>());
+
+    const commitProgress = useCallback(
+        async (id: string, value: number, title?: string) => {
             try {
-                await updateProgress(id, newProgress);
-                toast.success(`Episode ${newProgress}`, {
+                await updateProgress(id, value);
+                toast.success(`Episode ${value}`, {
+                    id: `progress-${id}`,
                     description: title || "Progress updated",
                 });
             } catch (error) {
                 console.error("Failed to update progress:", error);
-                toast.error("Failed to update progress");
+                toast.error("Failed to update progress", { id: `progress-${id}` });
+                clearOptimisticItem(id); // roll back to the server value
             }
         },
-        [startTransition, setOptimisticItems],
+        [clearOptimisticItem],
     );
+
+    const handleProgress = useCallback(
+        (id: string, newProgress: number, title?: string) => {
+            setOptimisticItems({ id, progress: newProgress });
+            const pending = progressTimers.current.get(id);
+            if (pending) clearTimeout(pending.timer);
+            const timer = setTimeout(() => {
+                progressTimers.current.delete(id);
+                commitProgress(id, newProgress, title);
+            }, PROGRESS_DEBOUNCE_MS);
+            progressTimers.current.set(id, { timer, value: newProgress, title });
+        },
+        [setOptimisticItems, commitProgress],
+    );
+
+    // Flush pending progress writes if the component unmounts mid-debounce
+    useEffect(() => {
+        const timers = progressTimers.current;
+        return () => {
+            for (const [id, pending] of timers) {
+                clearTimeout(pending.timer);
+                updateProgress(id, pending.value).catch((e) => console.error("Failed to flush progress:", e));
+            }
+            timers.clear();
+        };
+    }, []);
 
     const handleStatusChange = useCallback(
         async (id: string, newStatus: string, title?: string) => {
-            startTransition(() => {
-                setOptimisticItems({ id, status: newStatus });
-            });
+            setOptimisticItems({ id, status: newStatus });
             try {
                 await updateUserMedia(id, { status: newStatus });
                 toast.success(`Status: ${newStatus}`, {
@@ -523,9 +569,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             } catch (error) {
                 console.error("Failed to update status:", error);
                 toast.error("Failed to update status");
+                clearOptimisticItem(id);
             }
         },
-        [startTransition, setOptimisticItems],
+        [setOptimisticItems, clearOptimisticItem],
     );
 
     const openEdit = useCallback((item: WatchlistItem) => {
@@ -541,9 +588,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     };
 
     const handleOptimisticEdit = (id: string, updates: Partial<WatchlistItem>) => {
-        startTransition(() => {
-            setOptimisticItems({ id, ...updates });
-        });
+        setOptimisticItems({ id, ...updates });
     };
 
     const handleBackfill = async () => {
@@ -553,11 +598,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
             await backfillBackdrops();
             const result = await refreshAllBackdrops();
             if (result.success) {
-                toast.success(`Updated ${result.count} season backdrops`, {
-                    id: toastId,
-                    description: "Refreshing page...",
-                });
-                setTimeout(() => window.location.reload(), 1000);
+                toast.success(`Updated ${result.count} season backdrops`, { id: toastId });
+                router.refresh();
             } else {
                 toast.dismiss(toastId);
             }
@@ -572,28 +614,33 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         }
     };
 
+    // Bulk refreshes run in small client-driven chunks: one big server action would
+    // exceed serverless time limits (and give no progress feedback).
+    const TMDB_REFRESH_CHUNK = 8;
+    const MDL_REFRESH_CHUNK = 6;
+
     const handleRefreshMedia = async (ids: string[]) => {
         if (ids.length === 0) return;
         setIsRefreshingMedia(true);
         setShowTmdbRefreshModal(false);
-        const toastId = toast.loading(`Refreshing TMDB data for ${ids.length} item${ids.length !== 1 ? "s" : ""}...`);
+        const toastId = toast.loading(`Refreshing TMDB data… 0/${ids.length}`);
+        let refreshed = 0;
         try {
-            const result = await refreshMediaData(ids);
-            if (result.success) {
-                toast.success("Media data refreshed", {
-                    id: toastId,
-                    description: result.message,
-                });
-                setTimeout(() => window.location.reload(), 1000);
-            } else {
-                toast.dismiss(toastId);
+            for (let i = 0; i < ids.length; i += TMDB_REFRESH_CHUNK) {
+                const chunk = ids.slice(i, i + TMDB_REFRESH_CHUNK);
+                const result = await refreshMediaData(chunk);
+                refreshed += result.count ?? 0;
+                toast.loading(`Refreshing TMDB data… ${Math.min(i + TMDB_REFRESH_CHUNK, ids.length)}/${ids.length}`, { id: toastId });
             }
+            toast.success(`Refreshed ${refreshed} item${refreshed !== 1 ? "s" : ""}`, { id: toastId });
+            router.refresh();
         } catch (error) {
             console.error("Media refresh failed:", error);
             toast.error("Failed to refresh media data", {
                 id: toastId,
-                description: "Check console for details",
+                description: refreshed > 0 ? `${refreshed} item${refreshed !== 1 ? "s" : ""} were updated before the error` : "Check console for details",
             });
+            if (refreshed > 0) router.refresh();
         } finally {
             setIsRefreshingMedia(false);
         }
@@ -603,24 +650,27 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
         if (ids.length === 0) return;
         setIsRefreshingMdl(true);
         setShowMdlRefreshModal(false);
-        const toastId = toast.loading(`Refreshing MDL ratings for ${ids.length} item${ids.length !== 1 ? "s" : ""}...`);
+        const toastId = toast.loading(`Refreshing MDL ratings… 0/${ids.length}`);
+        let refreshed = 0;
         try {
-            const result = await refreshWatchlistMdlRatings(ids);
-            if (result.success) {
-                toast.success(`MDL ratings refreshed for ${result.count} show${result.count !== 1 ? "s" : ""}`, {
-                    id: toastId,
-                    description: result.count > 0 ? "Refreshing page..." : "Everything is up to date.",
-                });
-                if (result.count > 0) setTimeout(() => window.location.reload(), 1000);
-            } else {
-                toast.dismiss(toastId);
+            for (let i = 0; i < ids.length; i += MDL_REFRESH_CHUNK) {
+                const chunk = ids.slice(i, i + MDL_REFRESH_CHUNK);
+                const result = await refreshWatchlistMdlRatings(chunk);
+                refreshed += result.count ?? 0;
+                toast.loading(`Refreshing MDL ratings… ${Math.min(i + MDL_REFRESH_CHUNK, ids.length)}/${ids.length}`, { id: toastId });
             }
+            toast.success(`MDL ratings refreshed for ${refreshed} show${refreshed !== 1 ? "s" : ""}`, {
+                id: toastId,
+                description: refreshed > 0 ? undefined : "Everything is up to date.",
+            });
+            if (refreshed > 0) router.refresh();
         } catch (error) {
             console.error("MDL refresh failed:", error);
             toast.error("Failed to refresh MDL ratings", {
                 id: toastId,
-                description: "Check console for details",
+                description: refreshed > 0 ? `${refreshed} show${refreshed !== 1 ? "s" : ""} were updated before the error` : "Check console for details",
             });
+            if (refreshed > 0) router.refresh();
         } finally {
             setIsRefreshingMdl(false);
         }
@@ -1035,6 +1085,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 "year-new": "Year ↓", "year-old": "Year ↑",
                                 "next-episode-asc": "Next Ep ↑", "next-episode-desc": "Next Ep ↓",
                                 "mdl-rating-high": "MDL Rating ↓", "mdl-rating-low": "MDL Rating ↑",
+                                "added-new": "Added ↓", "added-old": "Added ↑",
                                 recommended: "Match ↓",
                             };
                             const sortGroups: { label: string; a: string; b: string; aLabel: string; bLabel: string }[] = [
@@ -1043,6 +1094,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 { label: "Progress",     a: "progress-high",      b: "progress-low",       aLabel: "High", bLabel: "Low" },
                                 { label: "Title",        a: "title-az",           b: "title-za",           aLabel: "A-Z",  bLabel: "Z-A" },
                                 { label: "Year",         a: "year-new",           b: "year-old",           aLabel: "New",  bLabel: "Old" },
+                                { label: "Added",        a: "added-new",          b: "added-old",          aLabel: "New",  bLabel: "Old" },
                                 { label: "Next Episode", a: "next-episode-asc",   b: "next-episode-desc",  aLabel: "Soon", bLabel: "Late" },
                             ];
                             const isActive = sortBy !== "default";
