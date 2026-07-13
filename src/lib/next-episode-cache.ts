@@ -14,20 +14,25 @@ const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
 /**
  * Look up next-episode data from the DB cache.
  * Returns the cached entry if found (regardless of staleness) and a flag indicating freshness.
+ *
+ * `fromDate` (YYYY-MM-DD) is the caller's "today" — pass the user's LOCAL date, not
+ * the server's UTC date. Otherwise, between the user's midnight and UTC midnight, a
+ * yesterday-dated episode still counts as "upcoming" and occludes today's episode.
  */
 export async function getCachedNextEpisodes(
     keys: Array<{ mediaId: string; seasonNumber: number }>,
+    fromDate?: string,
 ): Promise<Map<string, CachedNextEpisode & { fresh: boolean }>> {
     if (keys.length === 0) return new Map();
 
     const mediaIds = [...new Set(keys.map((k) => k.mediaId))];
-    const cutoff = new Date();
+    const cutoffDate = fromDate ?? new Date().toISOString().split("T")[0];
 
     // Fetch the soonest future episode per (mediaId, seasonNumber)
     const rows = await prisma.cachedEpisode.findMany({
         where: {
             mediaId: { in: mediaIds },
-            airDate: { gte: cutoff.toISOString().split("T")[0] },
+            airDate: { gte: cutoffDate },
         },
         orderBy: { airDate: "asc" },
     });

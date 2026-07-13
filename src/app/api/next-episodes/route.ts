@@ -63,9 +63,14 @@ export async function POST(req: NextRequest) {
     }
 
     let items: RequestItem[];
+    let tzOffsetMinutes = 0;
     try {
         const body = await req.json();
         items = body.items ?? [];
+        // JS getTimezoneOffset convention: UTC − local, in minutes (France summer = -120)
+        if (typeof body.tzOffsetMinutes === "number" && Math.abs(body.tzOffsetMinutes) <= 14 * 60) {
+            tzOffsetMinutes = body.tzOffsetMinutes;
+        }
     } catch {
         return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
     }
@@ -74,9 +79,13 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({});
     }
 
+    // "Today" from the USER's calendar, not the server's UTC clock — otherwise a
+    // yesterday-dated episode occludes today's between local midnight and UTC midnight
+    const localToday = new Date(Date.now() - tzOffsetMinutes * 60_000).toISOString().split("T")[0];
+
     // Check DB cache for all requested items in one query
     const cacheKeys = items.map((i) => ({ mediaId: i.tmdbId, seasonNumber: i.season }));
-    const cached = await getCachedNextEpisodes(cacheKeys);
+    const cached = await getCachedNextEpisodes(cacheKeys, localToday);
 
     const result: Record<string, NextEpisodeResult> = {};
     const missItems: RequestItem[] = [];
@@ -118,9 +127,15 @@ export async function POST(req: NextRequest) {
 
             if (outcome.status === "fulfilled" && outcome.value) {
                 const ep = outcome.value;
-                result[key] = ep;
+                // Sources can lag and still report an already-aired episode as "next"
+                // (TMDB especially) — from the user's calendar that's yesterday, skip it
+                if (ep.airDate >= localToday) {
+                    result[key] = ep;
+                } else if (!result[key]) {
+                    result[key] = null;
+                }
 
-                // Persist to cache (fire-and-forget — don't block the response)
+                // Persist to cache regardless (fire-and-forget — don't block the response)
                 upsertCachedNextEpisode({
                     mediaId: item.tmdbId,
                     airDate: ep.airDate,

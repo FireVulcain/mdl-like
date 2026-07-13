@@ -200,6 +200,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     season: i.season,
                     title: i.title ?? "",
                 })),
+                // Lets the server compute "today" from the user's calendar, not UTC
+                tzOffsetMinutes: new Date().getTimezoneOffset(),
             }),
         })
             .then((r) => r.json())
@@ -497,6 +499,16 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     };
 
     const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
+    // Shows tracked with more than one season row — for those, the next-episode
+    // badge only renders on the row whose season matches the episode data
+    const multiRowShows = useMemo(() => {
+        const counts = new Map<string, number>();
+        for (const item of items) {
+            const key = `${item.source}-${item.externalId}`;
+            counts.set(key, (counts.get(key) ?? 0) + 1);
+        }
+        return new Set([...counts.entries()].filter(([, n]) => n > 1).map(([k]) => k));
+    }, [items]);
     const allCountries = useMemo(() => {
         return Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean))).sort() as string[];
     }, [items]);
@@ -1046,9 +1058,20 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                 )}
                             </div>
 
-                        {/* Airing toggle */}
+                        {/* Airing toggle — also sorts by next episode, that's what you want to know */}
                         <button
-                            onClick={() => { const next = !filterAiringOnly; setFilterAiringOnly(next); syncUrl("airing", next ? "1" : null); }}
+                            onClick={() => {
+                                const next = !filterAiringOnly;
+                                setFilterAiringOnly(next);
+                                syncUrl("airing", next ? "1" : null);
+                                if (next) {
+                                    setSortBy("next-episode-asc");
+                                    syncUrl("sort", "next-episode-asc");
+                                } else if (sortBy === "next-episode-asc") {
+                                    setSortBy("default");
+                                    syncUrl("sort", null);
+                                }
+                            }}
                             className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                 filterAiringOnly
                                     ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30"
@@ -1349,7 +1372,14 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                     )}
                     {filterAiringOnly && (
                         <button
-                            onClick={() => { setFilterAiringOnly(false); syncUrl("airing", null); }}
+                            onClick={() => {
+                                setFilterAiringOnly(false);
+                                syncUrl("airing", null);
+                                if (sortBy === "next-episode-asc") {
+                                    setSortBy("default");
+                                    syncUrl("sort", null);
+                                }
+                            }}
                             className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 hover:opacity-80 transition-all cursor-pointer group"
                         >
                             Airing
@@ -1370,6 +1400,8 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                         onClick={() => {
                             setFilterStatuses([]); setFilterCountries([]); setFilterGenres([]);
                             setFilterYear("All"); setFilterAiringOnly(false); setSearch(""); setFilterTheme("");
+                            // The URL is fully wiped below, so the sort state must reset too
+                            setSortBy("default");
                             window.history.replaceState(null, "", window.location.pathname);
                         }}
                         className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
@@ -1511,6 +1543,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                                         thumbnailStyle={thumbnailStyle}
                                                         nextEpisodeMap={nextEpisodeMap}
                                                         recInfo={sortBy === "recommended" ? recInfoById?.get(item.id) : undefined}
+                                                        isOnlySeasonRow={!multiRowShows.has(`${item.source}-${item.externalId}`)}
                                                     />
                                                 </div>
                                             ))}
@@ -1535,6 +1568,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         thumbnailStyle={thumbnailStyle}
                                         nextEpisodeMap={nextEpisodeMap}
                                         recInfo={sortBy === "recommended" ? recInfoById?.get(first.id) : undefined}
+                                        isOnlySeasonRow={!multiRowShows.has(`${first.source}-${first.externalId}`)}
                                     />
                                 </div>,
                             );
@@ -1843,6 +1877,7 @@ const ItemCard = memo(function ItemCard({
     thumbnailStyle = "poster",
     nextEpisodeMap = {},
     recInfo,
+    isOnlySeasonRow = true,
 }: {
     item: WatchlistItem;
     handleProgress: (id: string, progress: number, title?: string) => void;
@@ -1853,6 +1888,7 @@ const ItemCard = memo(function ItemCard({
     thumbnailStyle?: "poster" | "backdrop";
     nextEpisodeMap?: Record<string, NextEpisodeData | null>;
     recInfo?: { score: number; reasons: string[] };
+    isOnlySeasonRow?: boolean;
 }) {
     const [showStatusDropdown, setShowStatusDropdown] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
@@ -1987,7 +2023,10 @@ const ItemCard = memo(function ItemCard({
                             <span>{item.year || "N/A"}</span>
                             {item.status !== "Completed" && (() => {
                                 const nextEp = item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`] ?? null;
-                                const relevant = nextEp?.seasonNumber === item.season ? nextEp : null;
+                                // TVmaze numbers seasons with its own scheme (splits, "season 2026"…),
+                                // so exact season matching only makes sense when the user tracks
+                                // multiple rows of the show; a single-row show owns its next episode.
+                                const relevant = nextEp && (nextEp.seasonNumber === item.season || isOnlySeasonRow) ? nextEp : null;
                                 return (
                                     <NextEpisodeIndicator
                                         nextEpisode={relevant}
