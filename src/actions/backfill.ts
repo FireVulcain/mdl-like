@@ -310,10 +310,14 @@ export async function refreshMediaData(ids: string[]) {
                     // wrong for later seasons.
                     let totalEp = details.totalEp;
                     let year = details.year ? parseInt(details.year) : null;
+                    let poster = details.poster;
                     if (details.type === "TV" && details.seasons && item.season > 0) {
                         const seasonData = details.seasons.find((s) => s.seasonNumber === item.season);
                         if (seasonData) {
                             totalEp = seasonData.episodeCount;
+                            // Keep the season-specific poster that addToWatchlist picked —
+                            // overwriting with the show poster loses per-season art
+                            if (seasonData.poster) poster = seasonData.poster;
                             if (seasonData.airDate) {
                                 year = parseInt(seasonData.airDate.slice(0, 4)) || year;
                             } else if (item.season > 1) {
@@ -329,7 +333,7 @@ export async function refreshMediaData(ids: string[]) {
                         where: { id: item.id },
                         data: {
                             title: details.title,
-                            poster: details.poster,
+                            poster,
                             backdrop: item.backdrop || details.backdrop, // Keep existing backdrop if set
                             year,
                             totalEp: totalEp,
