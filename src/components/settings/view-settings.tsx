@@ -45,7 +45,7 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
                                 : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
                         }`}
                     >
-                        <GalleryVertical className="h-4 w-4" />
+                        <GalleryHorizontal className="h-4 w-4" />
                         Posters
                     </button>
                     <button
@@ -56,7 +56,7 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
                                 : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
                         }`}
                     >
-                        <GalleryHorizontal className="h-4 w-4" />
+                        <GalleryVertical className="h-4 w-4" />
                         Backdrops
                     </button>
                 </div>
