@@ -3,8 +3,9 @@ import { tvmaze } from "@/lib/tvmaze";
 import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
-// MDL tag 1045 "LGBTQ+" — excluded from the home top lists (niche BL titles)
-const LGBTQ_TAG_ID = 1045;
+// MDL tags excluded from the home top lists:
+// 1045 "LGBTQ+" (niche BL titles), 14549 "Filmed Vertically", 18003 "Short Length Series"
+const HOME_EXCLUDED_TAGS = "1045,14549,18003";
 
 export type UnifiedMedia = {
     id: string; // Unified: "tmdb-123" or "mdl-456"
@@ -598,11 +599,11 @@ export const mediaService = {
             // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
-            // Home lists exclude MDL tag 1045 "LGBTQ+" (niche BL titles crowd the ranks)
+            // Home lists exclude some MDL tags (see HOME_EXCLUDED_TAGS)
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop("korean", "completed", { tag_exclude: LGBTQ_TAG_ID }),
-                kuryanaGetTop("korean", "ongoing", { tag_exclude: LGBTQ_TAG_ID }),
-                kuryanaGetTop("korean", "upcoming", { sort: "popular", tag_exclude: LGBTQ_TAG_ID }),
+                kuryanaGetTop("korean", "completed", { tag_exclude: HOME_EXCLUDED_TAGS }),
+                kuryanaGetTop("korean", "ongoing", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
+                kuryanaGetTop("korean", "upcoming", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
@@ -727,11 +728,11 @@ export const mediaService = {
             // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
-            // Home lists exclude MDL tag 1045 "LGBTQ+" (niche BL titles crowd the ranks)
+            // Home lists exclude some MDL tags (see HOME_EXCLUDED_TAGS)
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop("chinese", "completed", { tag_exclude: LGBTQ_TAG_ID }),
-                kuryanaGetTop("chinese", "ongoing", { tag_exclude: LGBTQ_TAG_ID }),
-                kuryanaGetTop("chinese", "upcoming", { sort: "popular", tag_exclude: LGBTQ_TAG_ID }),
+                kuryanaGetTop("chinese", "completed", { tag_exclude: HOME_EXCLUDED_TAGS }),
+                kuryanaGetTop("chinese", "ongoing", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
+                kuryanaGetTop("chinese", "upcoming", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {

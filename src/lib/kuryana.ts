@@ -400,8 +400,8 @@ export interface KuryanaTopParams {
     year_to?: number;
     rating_min?: number;
     rating_max?: number;
-    tag?: number;           // MDL tag ID to include (e.g. 370 for "Revenge")
-    tag_exclude?: number;   // MDL tag ID to exclude
+    tag?: number;                    // MDL tag ID to include (e.g. 370 for "Revenge")
+    tag_exclude?: number | string;   // MDL tag ID(s) to exclude — comma-separated for several (e.g. "1045,14549")
 }
 
 export interface KuryanaTagResult {
