@@ -12,7 +12,7 @@ export async function CDramaSectionData() {
     const excludeParam = excludedTags.map((t) => t.id).join(",") || undefined;
     // "See more" links carry the same exclusions/sort as the home lists to /dramas
     const homeFilterParams = excludeParam
-        ? `&tag_exclude=${excludeParam}&tag_exclude_name=${encodeURIComponent(excludedTags.map((t) => t.name).join(", "))}`
+        ? `&tag_exclude=${excludeParam}&tag_exclude_name=${encodeURIComponent(excludedTags.map((t) => t.name).join("|"))}`
         : "";
 
     const [cdramas, watchlistExternalIds] = await Promise.all([mediaService.getCDramas(excludeParam), getWatchlistExternalIds()]);

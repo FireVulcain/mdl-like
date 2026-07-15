@@ -17,6 +17,21 @@ interface Props {
     activeTagExcludeName?: string;
 }
 
+type TagRef = { id: string; name: string };
+
+// tag_exclude is a comma-separated id list; names travel in tag_exclude_name
+// joined with "|" (tag names can contain commas — legacy ", " links still parse
+// as long as no name contains a comma, else ids stand in as labels).
+function parseExcluded(ids?: string, names?: string): TagRef[] {
+    const idList = ids?.split(",").filter(Boolean) ?? [];
+    if (idList.length === 0) return [];
+    let nameList = names?.split("|").filter(Boolean) ?? [];
+    if (nameList.length !== idList.length && names?.includes(", ")) {
+        nameList = names.split(", ").filter(Boolean);
+    }
+    return idList.map((id, i) => ({ id, name: nameList[i]?.trim() || `#${id}` }));
+}
+
 export function TagSearchFilter({ activeTagId, activeTagName, activeTagExcludeId, activeTagExcludeName }: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -25,6 +40,8 @@ export function TagSearchFilter({ activeTagId, activeTagName, activeTagExcludeId
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const excluded = parseExcluded(activeTagExcludeId, activeTagExcludeName);
 
     // Debounced fetch
     useEffect(() => {
@@ -60,85 +77,121 @@ export function TagSearchFilter({ activeTagId, activeTagName, activeTagExcludeId
         return () => document.removeEventListener("mousedown", onClickOutside);
     }, []);
 
-    function selectTag(tag: TagResult, exclude = false) {
-        const params = new URLSearchParams(searchParams.toString());
-        // Clear both first, then set the chosen mode
-        params.delete("tag");
-        params.delete("tag_name");
-        params.delete("tag_exclude");
-        params.delete("tag_exclude_name");
-        if (exclude) {
-            params.set("tag_exclude", String(tag.id));
-            params.set("tag_exclude_name", tag.name);
+    function pushWithExcluded(params: URLSearchParams, list: TagRef[]) {
+        if (list.length > 0) {
+            params.set("tag_exclude", list.map((t) => t.id).join(","));
+            params.set("tag_exclude_name", list.map((t) => t.name).join("|"));
         } else {
-            params.set("tag", String(tag.id));
-            params.set("tag_name", tag.name);
+            params.delete("tag_exclude");
+            params.delete("tag_exclude_name");
         }
         params.set("page", "1");
         router.push(`/dramas?${params.toString()}`);
+    }
+
+    function selectTag(tag: TagResult, exclude = false) {
+        const params = new URLSearchParams(searchParams.toString());
+        if (exclude) {
+            // Append to the exclusion list (dedupe); an excluded tag can't stay included
+            if (params.get("tag") === String(tag.id)) {
+                params.delete("tag");
+                params.delete("tag_name");
+            }
+            const next = excluded.some((t) => t.id === String(tag.id))
+                ? excluded
+                : [...excluded, { id: String(tag.id), name: tag.name }];
+            pushWithExcluded(params, next);
+        } else {
+            // Single include tag; drop it from the exclusion list if present
+            params.set("tag", String(tag.id));
+            params.set("tag_name", tag.name);
+            pushWithExcluded(params, excluded.filter((t) => t.id !== String(tag.id)));
+        }
         setQuery("");
         setOpen(false);
     }
 
-    function toggleTagMode(toExclude: boolean) {
+    function removeExcluded(id: string) {
         const params = new URLSearchParams(searchParams.toString());
-        if (toExclude && activeTagId && activeTagName) {
-            params.delete("tag");
-            params.delete("tag_name");
-            params.set("tag_exclude", activeTagId);
-            params.set("tag_exclude_name", activeTagName);
-        } else if (!toExclude && activeTagExcludeId && activeTagExcludeName) {
-            params.delete("tag_exclude");
-            params.delete("tag_exclude_name");
-            params.set("tag", activeTagExcludeId);
-            params.set("tag_name", activeTagExcludeName);
-        }
-        params.set("page", "1");
-        router.push(`/dramas?${params.toString()}`);
+        pushWithExcluded(params, excluded.filter((t) => t.id !== id));
     }
 
-    function clearTag() {
+    function excludeCurrentInclude() {
+        if (!activeTagId || !activeTagName) return;
         const params = new URLSearchParams(searchParams.toString());
         params.delete("tag");
         params.delete("tag_name");
-        params.delete("tag_exclude");
-        params.delete("tag_exclude_name");
-        params.set("page", "1");
-        router.push(`/dramas?${params.toString()}`);
+        pushWithExcluded(params, [...excluded.filter((t) => t.id !== activeTagId), { id: activeTagId, name: activeTagName }]);
     }
 
-    const hasActive = !!(activeTagId || activeTagExcludeId);
-    const activeName = activeTagName || activeTagExcludeName;
-    const isExcluded = !!activeTagExcludeId;
+    function includeExcluded(tag: TagRef) {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("tag", tag.id);
+        params.set("tag_name", tag.name);
+        pushWithExcluded(params, excluded.filter((t) => t.id !== tag.id));
+    }
+
+    function clearInclude() {
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete("tag");
+        params.delete("tag_name");
+        pushWithExcluded(params, excluded);
+    }
+
+    function clearAll() {
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete("tag");
+        params.delete("tag_name");
+        pushWithExcluded(params, []);
+    }
+
+    const hasActive = !!(activeTagId || excluded.length > 0);
 
     return (
         <div className="space-y-2" ref={containerRef}>
             <div className="flex items-center justify-between">
                 <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Themes / Tags</h4>
                 {hasActive && (
-                    <button onClick={clearTag} className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors cursor-pointer">
+                    <button onClick={clearAll} className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors cursor-pointer">
                         Clear
                     </button>
                 )}
             </div>
 
-            {/* Active tag pill — click pill to toggle include/exclude, × to clear */}
-            {hasActive && activeName && (
-                <div className="flex items-center gap-1 w-fit max-w-full">
-                    <button
-                        onClick={() => toggleTagMode(!isExcluded)}
-                        title={isExcluded ? "Click to include" : "Click to exclude"}
-                        className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer ${
-                            isExcluded
-                                ? "bg-red-500 text-white hover:bg-red-600"
-                                : "bg-emerald-500 text-white hover:bg-emerald-600"
-                        }`}
-                    >
-                        {activeName}
-                    </button>
-                    <button onClick={clearTag} className="shrink-0 text-gray-500 hover:text-white transition-colors cursor-pointer">
-                        <X className="h-3.5 w-3.5" />
-                    </button>
+            {/* Active pills — click a pill to flip include/exclude, × to clear it */}
+            {hasActive && (
+                <div className="flex flex-wrap gap-1.5">
+                    {activeTagId && activeTagName && (
+                        <div className="flex items-center gap-1 w-fit max-w-full">
+                            <button
+                                onClick={excludeCurrentInclude}
+                                title="Click to exclude"
+                                className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500 text-white hover:bg-emerald-600 transition-colors cursor-pointer"
+                            >
+                                {activeTagName}
+                            </button>
+                            <button onClick={clearInclude} className="shrink-0 text-gray-500 hover:text-white transition-colors cursor-pointer">
+                                <X className="h-3.5 w-3.5" />
+                            </button>
+                        </div>
+                    )}
+                    {excluded.map((tag) => (
+                        <div key={tag.id} className="flex items-center gap-1 w-fit max-w-full">
+                            <button
+                                onClick={() => includeExcluded(tag)}
+                                title="Click to include"
+                                className="px-2.5 py-1 rounded-full text-xs font-medium bg-red-500 text-white hover:bg-red-600 transition-colors cursor-pointer"
+                            >
+                                {tag.name}
+                            </button>
+                            <button
+                                onClick={() => removeExcluded(tag.id)}
+                                className="shrink-0 text-gray-500 hover:text-white transition-colors cursor-pointer"
+                            >
+                                <X className="h-3.5 w-3.5" />
+                            </button>
+                        </div>
+                    ))}
                 </div>
             )}
 
