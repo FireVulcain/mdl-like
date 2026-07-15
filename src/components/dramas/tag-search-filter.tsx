@@ -15,6 +15,11 @@ interface Props {
     activeTagName?: string;
     activeTagExcludeId?: string;
     activeTagExcludeName?: string;
+    // The current exclusions come from Settings defaults, not the URL
+    excludedAreDefaults?: boolean;
+    // Settings defaults exist for this page — an empty list must be pinned
+    // in the URL (no_defaults=1) or they would silently reapply
+    hasBrowseDefaults?: boolean;
 }
 
 type TagRef = { id: string; name: string };
@@ -32,7 +37,14 @@ function parseExcluded(ids?: string, names?: string): TagRef[] {
     return idList.map((id, i) => ({ id, name: nameList[i]?.trim() || `#${id}` }));
 }
 
-export function TagSearchFilter({ activeTagId, activeTagName, activeTagExcludeId, activeTagExcludeName }: Props) {
+export function TagSearchFilter({
+    activeTagId,
+    activeTagName,
+    activeTagExcludeId,
+    activeTagExcludeName,
+    excludedAreDefaults = false,
+    hasBrowseDefaults = false,
+}: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [query, setQuery] = useState("");
@@ -81,9 +93,13 @@ export function TagSearchFilter({ activeTagId, activeTagName, activeTagExcludeId
         if (list.length > 0) {
             params.set("tag_exclude", list.map((t) => t.id).join(","));
             params.set("tag_exclude_name", list.map((t) => t.name).join("|"));
+            params.delete("no_defaults");
         } else {
             params.delete("tag_exclude");
             params.delete("tag_exclude_name");
+            // Pin the empty list, otherwise Settings defaults would reapply
+            if (hasBrowseDefaults) params.set("no_defaults", "1");
+            else params.delete("no_defaults");
         }
         params.set("page", "1");
         router.push(`/dramas?${params.toString()}`);
@@ -179,13 +195,18 @@ export function TagSearchFilter({ activeTagId, activeTagName, activeTagExcludeId
                         <div key={tag.id} className="flex items-center gap-1 w-fit max-w-full">
                             <button
                                 onClick={() => includeExcluded(tag)}
-                                title="Click to include"
-                                className="px-2.5 py-1 rounded-full text-xs font-medium bg-red-500 text-white hover:bg-red-600 transition-colors cursor-pointer"
+                                title={excludedAreDefaults ? "Default from Settings — click to include" : "Click to include"}
+                                className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                                    excludedAreDefaults
+                                        ? "bg-red-500/15 text-red-300 border border-red-500/40 hover:bg-red-500/25"
+                                        : "bg-red-500 text-white hover:bg-red-600"
+                                }`}
                             >
                                 {tag.name}
                             </button>
                             <button
                                 onClick={() => removeExcluded(tag.id)}
+                                title={excludedAreDefaults ? "Remove for this visit (Settings unchanged)" : undefined}
                                 className="shrink-0 text-gray-500 hover:text-white transition-colors cursor-pointer"
                             >
                                 <X className="h-3.5 w-3.5" />

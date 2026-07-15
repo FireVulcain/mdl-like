@@ -12,8 +12,15 @@ interface TagResult {
     description: string;
 }
 
-export function HomeExcludedTagsSetting({ initialTags }: { initialTags: ExcludedTag[] }) {
+export function HomeExcludedTagsSetting({
+    initialTags,
+    initialApplyToBrowse = false,
+}: {
+    initialTags: ExcludedTag[];
+    initialApplyToBrowse?: boolean;
+}) {
     const [tags, setTags] = useState<ExcludedTag[]>(initialTags);
+    const [applyToBrowse, setApplyToBrowse] = useState(initialApplyToBrowse);
     const [query, setQuery] = useState("");
     const [results, setResults] = useState<TagResult[]>([]);
     const [loading, setLoading] = useState(false);
@@ -71,7 +78,7 @@ export function HomeExcludedTagsSetting({ initialTags }: { initialTags: Excluded
     const save = async () => {
         setSaving(true);
         try {
-            await saveHomeExcludedTags(tags);
+            await saveHomeExcludedTags(tags, applyToBrowse);
             setDirty(false);
             toast.success("Home preferences saved");
         } catch {
@@ -141,6 +148,25 @@ export function HomeExcludedTagsSetting({ initialTags }: { initialTags: Excluded
                     </div>
                 )}
             </div>
+
+            <button
+                onClick={() => { setApplyToBrowse(!applyToBrowse); setDirty(true); }}
+                className="cursor-pointer flex items-center gap-3 group"
+            >
+                <span className={`relative h-6 w-11 rounded-full transition-colors ${applyToBrowse ? "bg-blue-500" : "bg-white/10"}`}>
+                    <span
+                        className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${
+                            applyToBrowse ? "left-5.5" : "left-0.5"
+                        }`}
+                    />
+                </span>
+                <span className="text-sm text-gray-300 group-hover:text-white transition-colors text-left">
+                    Also apply on the Dramas browse page
+                    <span className="block text-xs text-gray-600">
+                        Applied as default filters — you can lift them for a visit from the filter panel there.
+                    </span>
+                </span>
+            </button>
 
             <div className="flex items-center gap-3 pt-1">
                 <button

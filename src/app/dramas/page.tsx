@@ -7,6 +7,7 @@ import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { prisma } from "@/lib/prisma";
 import { getWatchlistExternalIds } from "@/actions/user-media";
+import { getExcludedTagsPreferences } from "@/actions/preferences";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 
 type SearchParams = Promise<{
@@ -23,6 +24,7 @@ type SearchParams = Promise<{
     tag_name?: string;
     tag_exclude?: string;
     tag_exclude_name?: string;
+    no_defaults?: string;
 }>;
 
 const CATEGORY_CONFIG = {
@@ -148,6 +150,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         tag_name: rawTagName,
         tag_exclude: rawTagExclude,
         tag_exclude_name: rawTagExcludeName,
+        no_defaults: rawNoDefaults,
     } = await searchParams;
 
     const category: Category = (rawCategory as Category) in CATEGORY_CONFIG ? (rawCategory as Category) : "popular";
@@ -160,8 +163,22 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const year_to = rawYearTo ? parseInt(rawYearTo, 10) : undefined;
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
     const tag = rawTag ? parseInt(rawTag, 10) : undefined;
-    // Kept as a raw string: supports comma-separated lists (e.g. from home "See more" links)
-    const tagExclude = rawTagExclude || undefined;
+
+    // Excluded tags: an explicit URL list always wins; otherwise, unless the
+    // user lifted them for this visit (no_defaults=1), the Settings exclusions
+    // apply when "also apply to browse" is enabled. Any filter interaction in
+    // the panel writes the effective list into the URL, so no hidden state.
+    // (tag_exclude is a raw string — supports comma-separated lists.)
+    const excludedPrefs = await getExcludedTagsPreferences();
+    const hasBrowseDefaults = excludedPrefs.applyToBrowse && excludedPrefs.tags.length > 0;
+    let tagExclude = rawTagExclude || undefined;
+    let tagExcludeName = rawTagExcludeName;
+    let excludedAreDefaults = false;
+    if (!tagExclude && rawNoDefaults !== "1" && hasBrowseDefaults) {
+        tagExclude = excludedPrefs.tags.map((t) => t.id).join(",");
+        tagExcludeName = excludedPrefs.tags.map((t) => t.name).join("|");
+        excludedAreDefaults = true;
+    }
 
     const mdlSort = sort === "popular" ? "popular" : "top";
 
@@ -221,6 +238,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     if (rawRatingMin) baseParams.rating_min = rawRatingMin;
     if (rawTag) { baseParams.tag = rawTag; if (rawTagName) baseParams.tag_name = rawTagName; }
     if (rawTagExclude) { baseParams.tag_exclude = rawTagExclude; if (rawTagExcludeName) baseParams.tag_exclude_name = rawTagExcludeName; }
+    // Defaults stay implicit (reapplied server-side), but an explicit opt-out must survive navigation
+    if (rawNoDefaults) baseParams.no_defaults = rawNoDefaults;
     baseParams.page = page.toString();
 
     const catConfig = CATEGORY_CONFIG[category];
@@ -249,7 +268,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         }
     }
 
-    const hasActiveFilters = selectedGenres.length > 0 || excludedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin || rawTag || rawTagExclude;
+    const hasActiveFilters = selectedGenres.length > 0 || excludedGenres.length > 0 || rawYearFrom || rawYearTo || rawRatingMin || rawTag || tagExclude;
 
     return (
         <div className="relative min-h-screen">
@@ -508,8 +527,10 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             <TagSearchFilter
                                 activeTagId={rawTag}
                                 activeTagName={rawTagName}
-                                activeTagExcludeId={rawTagExclude}
-                                activeTagExcludeName={rawTagExcludeName}
+                                activeTagExcludeId={tagExclude}
+                                activeTagExcludeName={tagExcludeName}
+                                excludedAreDefaults={excludedAreDefaults}
+                                hasBrowseDefaults={hasBrowseDefaults}
                             />
                         </Suspense>
 

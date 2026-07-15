@@ -103,6 +103,8 @@ model UserPreferences {
   // MDL tags excluded from the home top lists: [{ id, name }].
   // null = app defaults, [] = user explicitly cleared all exclusions.
   homeExcludedTags           Json?
+  // Also apply homeExcludedTags as default filters on the /dramas browse page
+  applyExcludedTagsToBrowse  Boolean @default(false)
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

@@ -6,32 +6,47 @@ import { revalidatePath } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { DEFAULT_EXCLUDED_TAGS, type ExcludedTag } from "@/lib/home-preferences";
 
-export async function getHomeExcludedTags(): Promise<ExcludedTag[]> {
+export type ExcludedTagsPreferences = {
+    tags: ExcludedTag[];
+    applyToBrowse: boolean;
+};
+
+export async function getExcludedTagsPreferences(): Promise<ExcludedTagsPreferences> {
     try {
         const userId = await getCurrentUserId();
         const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
-        // null/undefined = never configured → defaults; [] = user cleared everything on purpose
-        if (!prefs || prefs.homeExcludedTags === null || prefs.homeExcludedTags === undefined) {
-            return DEFAULT_EXCLUDED_TAGS;
-        }
-        return prefs.homeExcludedTags as ExcludedTag[];
+        // null/undefined tags = never configured → defaults; [] = user cleared everything on purpose
+        const tags =
+            !prefs || prefs.homeExcludedTags === null || prefs.homeExcludedTags === undefined
+                ? DEFAULT_EXCLUDED_TAGS
+                : (prefs.homeExcludedTags as ExcludedTag[]);
+        return { tags, applyToBrowse: prefs?.applyExcludedTagsToBrowse ?? false };
     } catch {
-        return DEFAULT_EXCLUDED_TAGS;
+        return { tags: DEFAULT_EXCLUDED_TAGS, applyToBrowse: false };
     }
 }
 
-export async function saveHomeExcludedTags(tags: ExcludedTag[]): Promise<void> {
+export async function getHomeExcludedTags(): Promise<ExcludedTag[]> {
+    return (await getExcludedTagsPreferences()).tags;
+}
+
+export async function saveHomeExcludedTags(tags: ExcludedTag[], applyToBrowse?: boolean): Promise<void> {
     const userId = await getCurrentUserId();
     const clean = tags
         .filter((t) => Number.isFinite(t.id) && typeof t.name === "string")
         .map((t) => ({ id: t.id, name: t.name.slice(0, 100) }));
 
+    const data = {
+        homeExcludedTags: clean as unknown as Prisma.InputJsonValue,
+        ...(applyToBrowse !== undefined ? { applyExcludedTagsToBrowse: applyToBrowse } : {}),
+    };
     await prisma.userPreferences.upsert({
         where: { userId },
-        create: { userId, homeExcludedTags: clean as unknown as Prisma.InputJsonValue },
-        update: { homeExcludedTags: clean as unknown as Prisma.InputJsonValue },
+        create: { userId, ...data },
+        update: data,
     });
     revalidatePath("/");
+    revalidatePath("/dramas");
 }
 
 export type CalendarPreferences = {

@@ -1,4 +1,4 @@
-import { getHomeExcludedTags, getCalendarPreferences } from "@/actions/preferences";
+import { getExcludedTagsPreferences, getCalendarPreferences } from "@/actions/preferences";
 import { getActorRadar } from "@/actions/actor-radar";
 import { HomeExcludedTagsSetting } from "@/components/settings/home-excluded-tags";
 import { CalendarSettings } from "@/components/settings/calendar-settings";
@@ -8,7 +8,7 @@ import { CalendarDays, House, UsersRound } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-    const [excludedTags, calendarPrefs] = await Promise.all([getHomeExcludedTags(), getCalendarPreferences()]);
+    const [excludedPrefs, calendarPrefs] = await Promise.all([getExcludedTagsPreferences(), getCalendarPreferences()]);
 
     let radar: Awaited<ReturnType<typeof getActorRadar>> | null = null;
     try {
@@ -51,7 +51,7 @@ export default async function SettingsPage() {
                                 Soon rows, and from their &ldquo;See more&rdquo; pages.
                             </p>
                         </div>
-                        <HomeExcludedTagsSetting initialTags={excludedTags} />
+                        <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
                     </section>
 
                     <section className="rounded-2xl bg-white/3 border border-white/8 p-6 space-y-5">
