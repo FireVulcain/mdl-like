@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 
 export type CachedNextEpisode = {
     airDate: string;
+    airDateTime: string | null; // exact ISO instant when the source knew it
     episodeNumber: number;
     seasonNumber: number;
     episodeName: string | null;
@@ -45,6 +46,7 @@ export async function getCachedNextEpisodes(
         if (match) {
             result.set(key, {
                 airDate: match.airDate,
+                airDateTime: match.airDateTime,
                 episodeNumber: match.episodeNumber,
                 seasonNumber: match.seasonNumber,
                 episodeName: match.episodeName,
@@ -87,6 +89,7 @@ export async function getCachedNextEpisodesByMediaId(
         if (result.has(row.mediaId)) continue; // rows are sorted, first hit is the soonest
         result.set(row.mediaId, {
             airDate: row.airDate,
+            airDateTime: row.airDateTime,
             episodeNumber: row.episodeNumber,
             seasonNumber: row.seasonNumber,
             episodeName: row.episodeName,
@@ -99,6 +102,7 @@ export async function getCachedNextEpisodesByMediaId(
 export async function upsertCachedNextEpisode(data: {
     mediaId: string;
     airDate: string;
+    airDateTime?: string | null;
     episodeNumber: number;
     seasonNumber: number;
     episodeName?: string | null;
@@ -113,12 +117,14 @@ export async function upsertCachedNextEpisode(data: {
         },
         update: {
             airDate: data.airDate,
+            airDateTime: data.airDateTime ?? null,
             episodeName: data.episodeName ?? null,
             updatedAt: new Date(),
         },
         create: {
             mediaId: data.mediaId,
             airDate: data.airDate,
+            airDateTime: data.airDateTime ?? null,
             episodeNumber: data.episodeNumber,
             seasonNumber: data.seasonNumber,
             episodeName: data.episodeName ?? null,

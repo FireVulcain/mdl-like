@@ -254,6 +254,7 @@ model CachedEpisode {
   id            String   @id @default(cuid())
   mediaId       String
   airDate       String
+  airDateTime   String? // exact ISO instant (from MDL), when the source knows it
   episodeNumber Int
   seasonNumber  Int
   episodeName   String?

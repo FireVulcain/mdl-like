@@ -74,6 +74,7 @@ type ConfirmAction = "backfill" | null;
 
 type NextEpisodeData = {
     airDate: string;
+    airDateTime?: string | null; // exact ISO instant when MDL-sourced
     episodeNumber: number;
     seasonNumber: number;
     name?: string;

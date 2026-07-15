@@ -47,7 +47,8 @@ export async function CDramaSectionData() {
     // page load has them without slowing this one down.
     const airingLookups = cdramas.airing.map((m) => {
         const slug = mdlSlugFromUrl(m.id.replace(/^mdl-/, ""));
-        return { cacheKey: nextEpisodeCacheKey(m, linkedBySlug), tmdbId: linkedBySlug.get(slug)?.tmdbExternalId, title: m.title };
+        const linked = linkedBySlug.get(slug);
+        return { cacheKey: nextEpisodeCacheKey(m, linkedBySlug), tmdbId: linked?.tmdbExternalId, title: m.title, mdlSlug: slug, season: linked?.season ?? 1 };
     });
     const cachedEpisodes = await getCachedNextEpisodesByMediaId(airingLookups.map((l) => l.cacheKey));
     const nextEpisodes: NextEpisodeMap = new Map(

@@ -45,6 +45,8 @@ export interface KuryanaDetails {
             released_at: string; // Unix timestamp (seconds)
             duration: string;
             timezone: string;
+            air_date?: string; // exact ISO instant, e.g. "2026-07-17T12:50:00+00:00"
+            air_date_local?: string; // same instant in broadcast tz, e.g. "2026-07-17T21:50:00+09:00"
         } | null;
         current_episode?: string;
         details: {
@@ -127,6 +129,38 @@ export async function kuryanaGetDetails(slug: string, fresh = false): Promise<Ku
 
 export async function kuryanaGetCast(slug: string, fresh = false): Promise<KuryanaCastResult | null> {
     return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`, 8000, fresh ? 0 : 3600);
+}
+
+export type MdlNextEpisode = {
+    airDate: string; // YYYY-MM-DD in the broadcast timezone's calendar
+    airDateTime: string | null; // exact ISO instant when known
+    episodeNumber: number;
+    totalEpisodes: number | null;
+};
+
+// MDL's next_episode_airing — the most reliable next-episode source for Asian
+// dramas, with the exact broadcast time (TVmaze/TMDB only know the date).
+export async function kuryanaGetNextEpisode(slug: string): Promise<MdlNextEpisode | null> {
+    const details = await kuryanaGetDetails(slug);
+    const nea = details?.data?.next_episode_airing;
+    if (!nea) return null;
+
+    const episodeNumber = parseInt(String(nea.episode_number));
+    if (!Number.isFinite(episodeNumber) || episodeNumber <= 0) return null;
+
+    // Exact instant: prefer the ISO field, fall back to the unix timestamp
+    let airDateTime: string | null = nea.air_date ?? null;
+    if (!airDateTime && nea.released_at) {
+        const ts = parseInt(String(nea.released_at));
+        if (Number.isFinite(ts) && ts > 0) airDateTime = new Date(ts * 1000).toISOString();
+    }
+
+    // The calendar date ("airs on July 17") belongs to the broadcast timezone
+    const airDate = (nea.air_date_local ?? airDateTime)?.slice(0, 10) ?? null;
+    if (!airDate || !/^\d{4}-\d{2}-\d{2}$/.test(airDate)) return null;
+
+    const totalEpisodes = nea.episodes ? parseInt(String(nea.episodes)) || null : null;
+    return { airDate, airDateTime, episodeNumber, totalEpisodes };
 }
 
 export interface KuryanaWorkItem {

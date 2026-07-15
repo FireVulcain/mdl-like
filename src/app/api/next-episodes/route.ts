@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { getCachedNextEpisodes, upsertCachedNextEpisode } from "@/lib/next-episode-cache";
 import { fetchNextEpisodeFromApis } from "@/lib/next-episode-fetch";
 
@@ -13,11 +14,37 @@ type RequestItem = {
 
 type NextEpisodeResult = {
     airDate: string;
+    airDateTime?: string | null;
     episodeNumber: number;
     seasonNumber: number;
     name?: string;
     seasonEpisodeCount?: number;
 } | null;
+
+// MDL slugs for the requested items: season links take priority; the show-level
+// slug only applies to season 1 (using it for S2+ would return S1's episodes)
+async function getMdlSlugs(items: RequestItem[]): Promise<Map<string, string>> {
+    const tmdbIds = [...new Set(items.map((i) => i.tmdbId))];
+    const [showRows, seasonRows] = await Promise.all([
+        prisma.cachedMdlData.findMany({
+            where: { tmdbExternalId: { in: tmdbIds }, mdlDisabled: false, mdlSlug: { not: "" } },
+            select: { tmdbExternalId: true, mdlSlug: true },
+        }),
+        prisma.mdlSeasonLink.findMany({
+            where: { tmdbExternalId: { in: tmdbIds } },
+            select: { tmdbExternalId: true, season: true, mdlSlug: true },
+        }),
+    ]);
+    const bySeason = new Map(seasonRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
+    const byShow = new Map(showRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
+
+    const result = new Map<string, string>();
+    for (const item of items) {
+        const slug = bySeason.get(`${item.tmdbId}-${item.season}`) ?? (item.season <= 1 ? byShow.get(item.tmdbId) : undefined);
+        if (slug) result.set(`${item.tmdbId}-${item.season}`, slug);
+    }
+    return result;
+}
 
 export async function POST(req: NextRequest) {
     const session = await auth();
@@ -60,6 +87,7 @@ export async function POST(req: NextRequest) {
             // Warm cache hit — return immediately, no external call needed
             result[key] = {
                 airDate: hit.airDate,
+                airDateTime: hit.airDateTime,
                 episodeNumber: hit.episodeNumber,
                 seasonNumber: hit.seasonNumber,
                 name: hit.episodeName ?? undefined,
@@ -71,6 +99,7 @@ export async function POST(req: NextRequest) {
             if (hit) {
                 result[key] = {
                     airDate: hit.airDate,
+                    airDateTime: hit.airDateTime,
                     episodeNumber: hit.episodeNumber,
                     seasonNumber: hit.seasonNumber,
                     name: hit.episodeName ?? undefined,
@@ -79,9 +108,17 @@ export async function POST(req: NextRequest) {
         }
     }
 
-    // Fetch all misses concurrently
+    // Fetch all misses concurrently — MDL first for linked shows, TVmaze/TMDB fallback
     if (missItems.length > 0) {
-        const fetched = await Promise.allSettled(missItems.map((item) => fetchNextEpisodeFromApis(item)));
+        const mdlSlugs = await getMdlSlugs(missItems);
+        const fetched = await Promise.allSettled(
+            missItems.map((item) =>
+                fetchNextEpisodeFromApis({
+                    ...item,
+                    mdlSlug: mdlSlugs.get(`${item.tmdbId}-${item.season}`) ?? null,
+                }),
+            ),
+        );
 
         for (let i = 0; i < missItems.length; i++) {
             const item = missItems[i];
@@ -102,6 +139,7 @@ export async function POST(req: NextRequest) {
                 upsertCachedNextEpisode({
                     mediaId: item.tmdbId,
                     airDate: ep.airDate,
+                    airDateTime: ep.airDateTime ?? null,
                     episodeNumber: ep.episodeNumber,
                     seasonNumber: ep.seasonNumber,
                     episodeName: ep.name ?? null,

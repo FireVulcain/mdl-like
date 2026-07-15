@@ -5,6 +5,7 @@ import Link from "next/link";
 
 interface NextEpisodeData {
     airDate: string;
+    airDateTime?: string | null; // exact ISO instant (MDL-sourced); date-only sources assume 22:00 KST
     episodeNumber: number;
     seasonNumber: number;
     name?: string;
@@ -30,6 +31,15 @@ function getAirDateTime(airDate: string): Date {
     const [year, month, day] = airDate.split("-").map(Number);
     const utcHour = BROADCAST_HOUR_KST - 9;
     return new Date(Date.UTC(year, month - 1, day, utcHour, 0, 0));
+}
+
+// Exact instant when the source knows it (MDL), 22:00 KST assumption otherwise
+function resolveAirMoment(airDate: string, airDateTime?: string | null): Date {
+    if (airDateTime) {
+        const exact = new Date(airDateTime);
+        if (!Number.isNaN(exact.getTime())) return exact;
+    }
+    return getAirDateTime(airDate);
 }
 
 function getEpisodeAirDate(seasonAirDate: string, episodeNumber: number): string {
@@ -61,14 +71,14 @@ function predictNextEpisode(
     return null;
 }
 
-function calculateTimeLeft(airDate: string): TimeLeft | null {
-    const airDateTime = getAirDateTime(airDate);
+function calculateTimeLeft(airDate: string, airDateTime?: string | null): TimeLeft | null {
+    const airMoment = resolveAirMoment(airDate, airDateTime);
     const now = new Date();
-    const difference = airDateTime.getTime() - now.getTime();
+    const difference = airMoment.getTime() - now.getTime();
 
     if (difference <= 0) {
         // Episode air time passed but date is still today — show "Today"
-        if (isToday(airDate)) return { days: 0, hours: 0, minutes: 0 };
+        if (isToday(airDate, airDateTime)) return { days: 0, hours: 0, minutes: 0 };
         return null;
     }
 
@@ -79,28 +89,28 @@ function calculateTimeLeft(airDate: string): TimeLeft | null {
     };
 }
 
-function isToday(airDate: string): boolean {
-    const airDateTime = getAirDateTime(airDate);
+function isToday(airDate: string, airDateTime?: string | null): boolean {
+    const airMoment = resolveAirMoment(airDate, airDateTime);
     const now = new Date();
-    return airDateTime.getFullYear() === now.getFullYear() && airDateTime.getMonth() === now.getMonth() && airDateTime.getDate() === now.getDate();
+    return airMoment.getFullYear() === now.getFullYear() && airMoment.getMonth() === now.getMonth() && airMoment.getDate() === now.getDate();
 }
 
-function isTomorrow(airDate: string): boolean {
-    const airDateTime = getAirDateTime(airDate);
+function isTomorrow(airDate: string, airDateTime?: string | null): boolean {
+    const airMoment = resolveAirMoment(airDate, airDateTime);
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return (
-        airDateTime.getFullYear() === tomorrow.getFullYear() &&
-        airDateTime.getMonth() === tomorrow.getMonth() &&
-        airDateTime.getDate() === tomorrow.getDate()
+        airMoment.getFullYear() === tomorrow.getFullYear() &&
+        airMoment.getMonth() === tomorrow.getMonth() &&
+        airMoment.getDate() === tomorrow.getDate()
     );
 }
 
-function formatTimeLeft(time: TimeLeft, airDate: string): { text: string; useIn: boolean } {
-    if (isToday(airDate)) {
+function formatTimeLeft(time: TimeLeft, airDate: string, airDateTime?: string | null): { text: string; useIn: boolean } {
+    if (isToday(airDate, airDateTime)) {
         return { text: "Today", useIn: false };
     }
-    if (isTomorrow(airDate)) {
+    if (isTomorrow(airDate, airDateTime)) {
         return { text: "Tomorrow", useIn: false };
     }
     if (time.days > 0) {
@@ -119,32 +129,35 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
     const episodeData = useMemo(() => {
         const isOngoing = status === "Returning Series" || status === "In Production";
 
-        // Check if TMDB data is available and hasn't aired yet (or airs today)
+        // Check if source data is available and hasn't aired yet (or airs today)
         if (nextEpisode) {
-            const tmdbAirDateTime = getAirDateTime(nextEpisode.airDate);
+            const airMoment = resolveAirMoment(nextEpisode.airDate, nextEpisode.airDateTime);
             const now = new Date();
 
-            if (tmdbAirDateTime > now || isToday(nextEpisode.airDate)) {
+            if (airMoment > now || isToday(nextEpisode.airDate, nextEpisode.airDateTime)) {
                 return {
                     airDate: nextEpisode.airDate,
+                    airDateTime: nextEpisode.airDateTime ?? null,
                     episodeNumber: nextEpisode.episodeNumber,
                     isPredicted: false,
                 };
             }
 
-            // TMDB episode already aired - fall back to prediction
+            // Source episode already aired - fall back to prediction
             if (isOngoing && seasonAirDate && totalEpisodes) {
                 const nextEpNumber = nextEpisode.episodeNumber + 1;
                 if (nextEpNumber <= totalEpisodes) {
-                    return predictNextEpisode(seasonAirDate, totalEpisodes, nextEpNumber);
+                    const predicted = predictNextEpisode(seasonAirDate, totalEpisodes, nextEpNumber);
+                    return predicted ? { ...predicted, airDateTime: null } : null;
                 }
             }
             return null;
         }
 
-        // No TMDB data - use prediction if show is ongoing
+        // No source data - use prediction if show is ongoing
         if (isOngoing && seasonAirDate && totalEpisodes) {
-            return predictNextEpisode(seasonAirDate, totalEpisodes);
+            const predicted = predictNextEpisode(seasonAirDate, totalEpisodes);
+            return predicted ? { ...predicted, airDateTime: null } : null;
         }
 
         return null;
@@ -154,10 +167,10 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
         setMounted(true);
         if (!episodeData) return;
 
-        setTimeLeft(calculateTimeLeft(episodeData.airDate));
+        setTimeLeft(calculateTimeLeft(episodeData.airDate, episodeData.airDateTime));
 
         const timer = setInterval(() => {
-            const newTimeLeft = calculateTimeLeft(episodeData.airDate);
+            const newTimeLeft = calculateTimeLeft(episodeData.airDate, episodeData.airDateTime);
             setTimeLeft(newTimeLeft);
             if (!newTimeLeft) clearInterval(timer);
         }, 60000); // Update every minute for the compact view
@@ -167,8 +180,8 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
 
     if (!mounted || !episodeData || !timeLeft) return null;
 
-    const formatted = formatTimeLeft(timeLeft, episodeData.airDate);
-    const isAiring = episodeData.episodeNumber > 1 || isToday(episodeData.airDate);
+    const formatted = formatTimeLeft(timeLeft, episodeData.airDate, episodeData.airDateTime);
+    const isAiring = episodeData.episodeNumber > 1 || isToday(episodeData.airDate, episodeData.airDateTime);
 
     const scheduleHref = `/calendar?date=${episodeData.airDate}`;
 

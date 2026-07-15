@@ -5,6 +5,7 @@ import { Calendar } from 'lucide-react';
 
 interface NextEpisodeData {
     airDate: string;
+    airDateTime?: string | null; // exact ISO instant (MDL-sourced); date-only sources assume 22:00 KST
     episodeNumber: number;
     seasonNumber: number;
     name: string;
@@ -140,10 +141,19 @@ function getAirDateTime(airDate: string): Date {
     return airDateTime;
 }
 
-function calculateTimeLeft(airDate: string): TimeLeft | null {
-    const airDateTime = getAirDateTime(airDate);
+// Exact instant when the source knows it (MDL), 22:00 KST assumption otherwise
+function resolveAirMoment(airDate: string, airDateTime?: string | null): Date {
+    if (airDateTime) {
+        const exact = new Date(airDateTime);
+        if (!Number.isNaN(exact.getTime())) return exact;
+    }
+    return getAirDateTime(airDate);
+}
+
+function calculateTimeLeft(airDate: string, airDateTime?: string | null): TimeLeft | null {
+    const airMoment = resolveAirMoment(airDate, airDateTime);
     const now = new Date();
-    const difference = airDateTime.getTime() - now.getTime();
+    const difference = airMoment.getTime() - now.getTime();
 
     if (difference <= 0) {
         return null; // Episode has already aired
@@ -157,14 +167,14 @@ function calculateTimeLeft(airDate: string): TimeLeft | null {
     };
 }
 
-function formatAirDate(airDate: string): string {
-    const airDateTime = getAirDateTime(airDate);
+function formatAirDate(airDate: string, airDateTime?: string | null): string {
+    const airMoment = resolveAirMoment(airDate, airDateTime);
 
-    return airDateTime.toLocaleDateString('en-US', {
+    return airMoment.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
-    }) + ' ' + airDateTime.toLocaleTimeString('en-US', {
+    }) + ' ' + airMoment.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
@@ -199,35 +209,38 @@ export function NextEpisodeCountdown({
         const isOngoing = status === 'Returning Series' || status === 'In Production';
         const airDateForPrediction = currentSeason?.airDate || firstAirDate;
 
-        // Check if TMDB data is available AND hasn't aired yet
+        // Check if source data is available AND hasn't aired yet
         if (nextEpisode) {
-            const tmdbAirDateTime = getAirDateTime(nextEpisode.airDate);
+            const airMoment = resolveAirMoment(nextEpisode.airDate, nextEpisode.airDateTime);
             const now = new Date();
 
-            // If TMDB episode hasn't aired yet, use it
-            if (tmdbAirDateTime > now) {
+            // If the episode hasn't aired yet, use it
+            if (airMoment > now) {
                 return {
                     airDate: nextEpisode.airDate,
+                    airDateTime: nextEpisode.airDateTime ?? null,
                     episodeNumber: nextEpisode.episodeNumber,
                     isPredicted: false,
                 };
             }
 
-            // TMDB episode already aired - fall back to prediction for the NEXT episode
+            // Episode already aired - fall back to prediction for the NEXT episode
             if (isOngoing && airDateForPrediction && totalEpisodes) {
                 // Predict starting from the episode AFTER the one that just aired
                 const nextEpNumber = nextEpisode.episodeNumber + 1;
                 if (nextEpNumber <= totalEpisodes) {
-                    return predictNextEpisodeFromNumber(airDateForPrediction, nextEpNumber, totalEpisodes);
+                    const predicted = predictNextEpisodeFromNumber(airDateForPrediction, nextEpNumber, totalEpisodes);
+                    return predicted ? { ...predicted, airDateTime: null } : null;
                 }
             }
 
             return null;
         }
 
-        // No TMDB data - use prediction if show is ongoing
+        // No source data - use prediction if show is ongoing
         if (isOngoing && airDateForPrediction && totalEpisodes) {
-            return predictNextEpisode(airDateForPrediction, totalEpisodes);
+            const predicted = predictNextEpisode(airDateForPrediction, totalEpisodes);
+            return predicted ? { ...predicted, airDateTime: null } : null;
         }
 
         return null;
@@ -239,11 +252,11 @@ export function NextEpisodeCountdown({
         if (!episodeData) return;
 
         // Calculate initial time
-        setTimeLeft(calculateTimeLeft(episodeData.airDate));
+        setTimeLeft(calculateTimeLeft(episodeData.airDate, episodeData.airDateTime));
 
         // Update every second
         const timer = setInterval(() => {
-            const newTimeLeft = calculateTimeLeft(episodeData.airDate);
+            const newTimeLeft = calculateTimeLeft(episodeData.airDate, episodeData.airDateTime);
             setTimeLeft(newTimeLeft);
 
             // Clear interval if countdown is done
@@ -290,7 +303,7 @@ export function NextEpisodeCountdown({
                             {episodeText} {episodeData.isPredicted ? 'estimated on' : 'airing on'}
                         </div>
                         <div className="text-xs text-gray-400 mt-0.5">
-                            {formatAirDate(episodeData.airDate)}
+                            {formatAirDate(episodeData.airDate, episodeData.airDateTime)}
                             {episodeData.isPredicted && (
                                 <span className="ml-1 text-yellow-500/70">*</span>
                             )}

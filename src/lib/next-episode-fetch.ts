@@ -1,6 +1,7 @@
 import { after } from "next/server";
 import { tmdb } from "@/lib/tmdb";
 import { tvmaze, NextEpisodeResult } from "@/lib/tvmaze";
+import { kuryanaGetNextEpisode } from "@/lib/kuryana";
 import { upsertCachedNextEpisode } from "@/lib/next-episode-cache";
 
 /**
@@ -21,10 +22,36 @@ async function getNextEpisodeByNameLoose(title: string): Promise<NextEpisodeResu
 
 /**
  * Next-episode waterfall shared by the /api/next-episodes route and the home
- * page prefill. With a TMDB id: TVmaze by IMDB → TVDB → name, then TMDB's own
- * next_episode_to_air. Without one (unlinked MDL show): TVmaze by name only.
+ * page prefill. MDL first when a slug is known — it's the authoritative source
+ * for Asian dramas and carries the EXACT broadcast time (TVmaze/TMDB only know
+ * the date, and often lag). Then with a TMDB id: TVmaze by IMDB → TVDB → name,
+ * then TMDB's own next_episode_to_air. Without one: TVmaze by name only.
  */
-export async function fetchNextEpisodeFromApis(item: { tmdbId?: string; title: string }): Promise<NextEpisodeResult | null> {
+export async function fetchNextEpisodeFromApis(item: {
+    tmdbId?: string;
+    title: string;
+    mdlSlug?: string | null;
+    season?: number;
+}): Promise<NextEpisodeResult | null> {
+    if (item.mdlSlug) {
+        try {
+            const mdlNext = await kuryanaGetNextEpisode(item.mdlSlug);
+            if (mdlNext) {
+                return {
+                    airDate: mdlNext.airDate,
+                    airDateTime: mdlNext.airDateTime,
+                    episodeNumber: mdlNext.episodeNumber,
+                    // The MDL entry IS the requested season's entity (one entry per season)
+                    seasonNumber: item.season ?? 1,
+                    name: "",
+                    seasonEpisodeCount: mdlNext.totalEpisodes ?? undefined,
+                };
+            }
+        } catch {
+            // fall through to TVmaze/TMDB
+        }
+    }
+
     try {
         if (!item.tmdbId) {
             return item.title ? await getNextEpisodeByNameLoose(item.title) : null;
@@ -69,7 +96,10 @@ export async function fetchNextEpisodeFromApis(item: { tmdbId?: string; title: s
  * polite with TVmaze; shows with no findable episode are simply retried on a
  * later visit.
  */
-export function prefillNextEpisodes(items: Array<{ cacheKey: string; tmdbId?: string; title: string }>, limit = 6) {
+export function prefillNextEpisodes(
+    items: Array<{ cacheKey: string; tmdbId?: string; title: string; mdlSlug?: string | null; season?: number }>,
+    limit = 6,
+) {
     if (items.length === 0) return;
 
     after(async () => {
@@ -80,6 +110,7 @@ export function prefillNextEpisodes(items: Array<{ cacheKey: string; tmdbId?: st
                     await upsertCachedNextEpisode({
                         mediaId: item.cacheKey,
                         airDate: ep.airDate,
+                        airDateTime: ep.airDateTime ?? null,
                         episodeNumber: ep.episodeNumber,
                         seasonNumber: ep.seasonNumber,
                         episodeName: ep.name ?? null,

@@ -38,6 +38,7 @@ export type TVMazeSeason = {
 
 export type NextEpisodeResult = {
     airDate: string;
+    airDateTime?: string | null; // exact ISO instant, only known for MDL-sourced results
     episodeNumber: number;
     seasonNumber: number;
     name: string;

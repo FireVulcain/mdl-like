@@ -17,7 +17,7 @@ import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
 import { MdlEpisodeGuideSection } from "@/components/media/mdl-episode-guide-section";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
-import { kuryanaGetCast } from "@/lib/kuryana";
+import { kuryanaGetCast, kuryanaGetNextEpisode, type MdlNextEpisode } from "@/lib/kuryana";
 import { MdlCast } from "@/lib/mdl-data";
 import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
 import { Suspense } from "react";
@@ -32,6 +32,20 @@ import { getCurrentUserId } from "@/lib/session";
 import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
+
+// MDL's next-episode data (exact broadcast time) mapped to the countdown's shape;
+// TVmaze/TMDB data stays as fallback when MDL doesn't know the next episode.
+function toCountdownEpisode(mdlNext: MdlNextEpisode | null, season: number) {
+    if (!mdlNext) return null;
+    return {
+        airDate: mdlNext.airDate,
+        airDateTime: mdlNext.airDateTime,
+        episodeNumber: mdlNext.episodeNumber,
+        seasonNumber: season,
+        name: "",
+        seasonEpisodeCount: mdlNext.totalEpisodes ?? undefined,
+    };
+}
 
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
     // Parallel fetch: params and searchParams are independent
@@ -59,6 +73,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         const userMedia =
             (await getUserMedia(userId, linkedTmdb?.tmdbExternalId ?? media.externalId, linkedTmdb ? "TMDB" : "MDL", 1)) ??
             (linkedTmdb?.tmdbExternalId ? await getUserMedia(userId, media.externalId, "MDL", 1) : null);
+
+        // MDL knows the exact next-episode broadcast time (cached 1h by the details fetch)
+        const mdlNextEpisode = media.type === "TV" ? await kuryanaGetNextEpisode(media.externalId) : null;
 
         // Convert KuryanaCastResult to MdlCast grouped format
         const mdlCast: MdlCast = { main: [], support: [], guest: [], cameo: [] };
@@ -260,9 +277,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         </div>
 
-                        {media.type === "TV" && media.nextEpisode && (
+                        {media.type === "TV" && (mdlNextEpisode || media.nextEpisode) && (
                             <NextEpisodeCountdown
-                                nextEpisode={media.nextEpisode}
+                                nextEpisode={toCountdownEpisode(mdlNextEpisode, 1) ?? media.nextEpisode}
                                 totalEpisodes={media.totalEp}
                             />
                         )}
@@ -471,6 +488,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         (cached?.mdlSlug && !cached.mdlDisabled
             ? await getUserMedia(userId, cached.mdlSlug, "MDL", selectedSeason)
             : null);
+
+    // MDL knows the exact next-episode broadcast time — prefer it over TVmaze/TMDB.
+    // Season links map per season; the show-level slug only stands for season 1.
+    const mdlSlugForSeason =
+        existingSeasonLink?.mdlSlug ??
+        (selectedSeason <= 1 && cached?.mdlSlug && !cached.mdlDisabled ? cached.mdlSlug : null);
+    const mdlNextEpisode = media.type === "TV" && mdlSlugForSeason ? await kuryanaGetNextEpisode(mdlSlugForSeason) : null;
     const watchlistIds = new Set(watchlistExternalIds);
 
     // Determine update action if userMedia exists
@@ -728,7 +752,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* Next Episode Countdown (for ongoing TV shows) */}
                     {media.type === "TV" && (
                         <NextEpisodeCountdown
-                            nextEpisode={media.nextEpisode}
+                            nextEpisode={toCountdownEpisode(mdlNextEpisode, selectedSeason) ?? media.nextEpisode}
                             currentSeason={currentSeasonData}
                             totalEpisodes={episodeCount ?? undefined}
                             status={media.status}
