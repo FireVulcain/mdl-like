@@ -105,6 +105,9 @@ model UserPreferences {
   homeExcludedTags           Json?
   // Also apply homeExcludedTags as default filters on the /dramas browse page
   applyExcludedTagsToBrowse  Boolean @default(false)
+  // Watchlist view defaults (URL params still win for a session)
+  watchlistThumbnailStyle    String  @default("poster") // "poster" | "backdrop"
+  watchlistDefaultSort       String  @default("default")
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

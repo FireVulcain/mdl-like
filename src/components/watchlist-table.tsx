@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
 import { backfillBackdrops, refreshAllBackdrops, refreshMediaData, refreshWatchlistMdlRatings } from "@/actions/backfill";
+import { saveViewPreferences } from "@/actions/preferences";
 import { importWatchlist } from "@/actions/import-watchlist";
 import {
     getRecommendations,
@@ -109,6 +110,9 @@ type WatchlistItem = {
 interface WatchlistTableProps {
     items: WatchlistItem[];
     readOnly?: boolean;
+    // View defaults from user preferences — URL params still win for a session
+    initialThumbnailStyle?: "poster" | "backdrop";
+    defaultSort?: string;
 }
 
 type OptimisticUpdate = {
@@ -155,7 +159,7 @@ const statusConfig = {
     },
 };
 
-export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps) {
+export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle = "poster", defaultSort = "default" }: WatchlistTableProps) {
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -169,13 +173,10 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
     // Theme (MDL tag) filter — no dropdown UI; set via URL deep links (e.g. from /stats)
     const [filterTheme, setFilterTheme] = useState<string>(() => searchParams.get("theme") ?? "");
     const [search, setSearch] = useState<string>(() => searchParams.get("q") ?? "");
-    const [sortBy, setSortBy] = useState<string>(() => searchParams.get("sort") ?? "default");
+    const [sortBy, setSortBy] = useState<string>(() => searchParams.get("sort") ?? defaultSort);
     const [filterAiringOnly, setFilterAiringOnly] = useState<boolean>(() => searchParams.get("airing") === "1");
-    const [thumbnailStyle, setThumbnailStyle] = useState<"poster" | "backdrop">("poster");
-    useEffect(() => {
-        const saved = localStorage.getItem("watchlist-thumbnail-style");
-        if (saved === "poster" || saved === "backdrop") setThumbnailStyle(saved);
-    }, []);
+    // Persisted in user preferences (was localStorage — didn't survive devices)
+    const [thumbnailStyle, setThumbnailStyle] = useState<"poster" | "backdrop">(initialThumbnailStyle);
 
     // Lazy-load next-episode data client-side after initial render to avoid
     // blocking SSR with 45+ external API calls.
@@ -1229,7 +1230,7 @@ export function WatchlistTable({ items, readOnly = false }: WatchlistTableProps)
                                         onClick={() => {
                                             const next = thumbnailStyle === "poster" ? "backdrop" : "poster";
                                             setThumbnailStyle(next);
-                                            localStorage.setItem("watchlist-thumbnail-style", next);
+                                            saveViewPreferences({ watchlistThumbnailStyle: next });
                                         }}
                                         className="hidden md:flex h-9 w-9 rounded-lg bg-white/5 items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer shrink-0"
                                     >

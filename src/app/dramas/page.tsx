@@ -153,6 +153,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         no_defaults: rawNoDefaults,
     } = await searchParams;
 
+    const excludedPrefs = await getExcludedTagsPreferences();
+
     const category: Category = (rawCategory as Category) in CATEGORY_CONFIG ? (rawCategory as Category) : "popular";
     const country = rawCountry ?? "all";
     const sort = rawSort ?? "top";
@@ -169,7 +171,6 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     // apply when "also apply to browse" is enabled. Any filter interaction in
     // the panel writes the effective list into the URL, so no hidden state.
     // (tag_exclude is a raw string — supports comma-separated lists.)
-    const excludedPrefs = await getExcludedTagsPreferences();
     const hasBrowseDefaults = excludedPrefs.applyToBrowse && excludedPrefs.tags.length > 0;
     let tagExclude = rawTagExclude || undefined;
     let tagExcludeName = rawTagExcludeName;

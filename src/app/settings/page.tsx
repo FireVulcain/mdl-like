@@ -1,14 +1,19 @@
-import { getExcludedTagsPreferences, getCalendarPreferences } from "@/actions/preferences";
+import { getExcludedTagsPreferences, getCalendarPreferences, getViewPreferences } from "@/actions/preferences";
 import { getActorRadar } from "@/actions/actor-radar";
 import { HomeExcludedTagsSetting } from "@/components/settings/home-excluded-tags";
 import { CalendarSettings } from "@/components/settings/calendar-settings";
+import { WatchlistViewSettings } from "@/components/settings/view-settings";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
-import { CalendarDays, House, UsersRound } from "lucide-react";
+import { Bookmark, CalendarDays, House, UsersRound } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-    const [excludedPrefs, calendarPrefs] = await Promise.all([getExcludedTagsPreferences(), getCalendarPreferences()]);
+    const [excludedPrefs, calendarPrefs, viewPrefs] = await Promise.all([
+        getExcludedTagsPreferences(),
+        getCalendarPreferences(),
+        getViewPreferences(),
+    ]);
 
     let radar: Awaited<ReturnType<typeof getActorRadar>> | null = null;
     try {
@@ -53,6 +58,20 @@ export default async function SettingsPage() {
                         </div>
                         <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
                     </section>
+
+                    <section className="rounded-2xl bg-white/3 border border-white/8 p-6 space-y-5">
+                        <div className="flex items-center gap-3">
+                            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-500/15 text-sky-400">
+                                <Bookmark className="h-4.5 w-4.5" />
+                            </span>
+                            <div>
+                                <h2 className="text-base font-bold text-white">Watchlist</h2>
+                                <p className="text-xs text-gray-500">Default view when opening your watchlist</p>
+                            </div>
+                        </div>
+                        <WatchlistViewSettings initialPrefs={viewPrefs} />
+                    </section>
+
 
                     <section className="rounded-2xl bg-white/3 border border-white/8 p-6 space-y-5">
                         <div className="flex items-center gap-3">

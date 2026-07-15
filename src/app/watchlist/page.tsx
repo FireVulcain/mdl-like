@@ -3,11 +3,12 @@ import { WatchlistHeaderStats } from "@/components/watchlist-header-stats";
 import { WatchlistSubtitle } from "@/components/watchlist-subtitle";
 import { getWatchlist } from "@/actions/media";
 import { getDashboardStats } from "@/actions/stats";
+import { getViewPreferences } from "@/actions/preferences";
 
 export const dynamic = "force-dynamic";
 
 export default async function WatchlistPage() {
-    const watchlist = await getWatchlist();
+    const [watchlist, viewPrefs] = await Promise.all([getWatchlist(), getViewPreferences()]);
     const stats = await getDashboardStats(watchlist);
 
     return (
@@ -37,7 +38,7 @@ export default async function WatchlistPage() {
                     </div>
                     <WatchlistHeaderStats stats={stats} />
                 </div>
-                <WatchlistData watchlist={watchlist} />
+                <WatchlistData watchlist={watchlist} viewPrefs={viewPrefs} />
             </div>
         </div>
     );

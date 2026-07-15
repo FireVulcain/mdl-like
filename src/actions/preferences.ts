@@ -49,6 +49,44 @@ export async function saveHomeExcludedTags(tags: ExcludedTag[], applyToBrowse?: 
     revalidatePath("/dramas");
 }
 
+export type ViewPreferences = {
+    watchlistThumbnailStyle: "poster" | "backdrop";
+    watchlistDefaultSort: string;
+};
+
+const VIEW_DEFAULTS: ViewPreferences = {
+    watchlistThumbnailStyle: "poster",
+    watchlistDefaultSort: "default",
+};
+
+export async function getViewPreferences(): Promise<ViewPreferences> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        if (!prefs) return VIEW_DEFAULTS;
+        return {
+            watchlistThumbnailStyle: prefs.watchlistThumbnailStyle === "backdrop" ? "backdrop" : "poster",
+            watchlistDefaultSort: prefs.watchlistDefaultSort,
+        };
+    } catch {
+        return VIEW_DEFAULTS;
+    }
+}
+
+export async function saveViewPreferences(prefs: Partial<ViewPreferences>): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, ...VIEW_DEFAULTS, ...prefs },
+            update: prefs,
+        });
+        revalidatePath("/watchlist");
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
 export type CalendarPreferences = {
     calendarAsianOnly: boolean;
     calendarIncludePlanToWatch: boolean;
