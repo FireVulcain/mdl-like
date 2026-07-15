@@ -61,6 +61,41 @@ export async function getCachedNextEpisodes(
  * Upsert a next-episode entry into the cache.
  * Uses the unique constraint (mediaId, seasonNumber, episodeNumber).
  */
+/**
+ * Like getCachedNextEpisodes, but keyed by mediaId only: returns the soonest
+ * future episode per media across ALL seasons. Used by the home page rows,
+ * where the exact season doesn't matter (and unlinked MDL shows are cached
+ * under `mdl-<slug>` keys with whatever season TVmaze reports).
+ */
+export async function getCachedNextEpisodesByMediaId(
+    mediaIds: string[],
+    fromDate?: string,
+): Promise<Map<string, CachedNextEpisode>> {
+    if (mediaIds.length === 0) return new Map();
+    const cutoffDate = fromDate ?? new Date().toISOString().split("T")[0];
+
+    const rows = await prisma.cachedEpisode.findMany({
+        where: {
+            mediaId: { in: [...new Set(mediaIds)] },
+            airDate: { gte: cutoffDate },
+        },
+        orderBy: { airDate: "asc" },
+    });
+
+    const result = new Map<string, CachedNextEpisode>();
+    for (const row of rows) {
+        if (result.has(row.mediaId)) continue; // rows are sorted, first hit is the soonest
+        result.set(row.mediaId, {
+            airDate: row.airDate,
+            episodeNumber: row.episodeNumber,
+            seasonNumber: row.seasonNumber,
+            episodeName: row.episodeName,
+            updatedAt: row.updatedAt,
+        });
+    }
+    return result;
+}
+
 export async function upsertCachedNextEpisode(data: {
     mediaId: string;
     airDate: string;

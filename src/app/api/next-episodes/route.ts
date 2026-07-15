@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { tmdb } from "@/lib/tmdb";
-import { tvmaze } from "@/lib/tvmaze";
 import { getCachedNextEpisodes, upsertCachedNextEpisode } from "@/lib/next-episode-cache";
+import { fetchNextEpisodeFromApis } from "@/lib/next-episode-fetch";
 
 export const maxDuration = 30;
 
@@ -19,42 +18,6 @@ type NextEpisodeResult = {
     name?: string;
     seasonEpisodeCount?: number;
 } | null;
-
-async function fetchFromApis(item: RequestItem): Promise<NextEpisodeResult> {
-    try {
-        const [details, externalIds] = await Promise.all([
-            tmdb.getDetails("tv", item.tmdbId),
-            tmdb.getExternalIds("tv", item.tmdbId),
-        ]);
-
-        let nextEpisode: NextEpisodeResult = null;
-
-        // TVMaze waterfall: IMDB → TVDB → name
-        if (externalIds?.imdb_id) {
-            nextEpisode = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
-        }
-        if (!nextEpisode && externalIds?.tvdb_id) {
-            nextEpisode = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
-        }
-        if (!nextEpisode && item.title) {
-            nextEpisode = await tvmaze.getNextEpisodeByName(item.title);
-        }
-
-        // TMDB fallback
-        if (!nextEpisode && details.next_episode_to_air) {
-            nextEpisode = {
-                airDate: details.next_episode_to_air.air_date,
-                episodeNumber: details.next_episode_to_air.episode_number,
-                seasonNumber: details.next_episode_to_air.season_number,
-                name: details.next_episode_to_air.name,
-            };
-        }
-
-        return nextEpisode;
-    } catch {
-        return null;
-    }
-}
 
 export async function POST(req: NextRequest) {
     const session = await auth();
@@ -118,7 +81,7 @@ export async function POST(req: NextRequest) {
 
     // Fetch all misses concurrently
     if (missItems.length > 0) {
-        const fetched = await Promise.allSettled(missItems.map((item) => fetchFromApis(item)));
+        const fetched = await Promise.allSettled(missItems.map((item) => fetchNextEpisodeFromApis(item)));
 
         for (let i = 0; i < missItems.length; i++) {
             const item = missItems[i];
