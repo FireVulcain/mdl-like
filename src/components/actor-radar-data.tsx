@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getActorRadar, type ActorRadarItem } from "@/actions/actor-radar";
-import { ActorRadarManage } from "@/components/actor-radar-manage";
 import { HomeSectionHeader } from "@/components/home-section-header";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { ImageOff, Star, UserRound } from "lucide-react";
+import { ImageOff, Settings2, Star, UserRound } from "lucide-react";
 
 // Radar card, in the same visual language as the drama rows' backdrop cards:
 // uncropped poster on the left over its own blurred artwork, violet accent.
@@ -136,14 +135,24 @@ export async function ActorRadarData() {
                                 />
                             ) : null,
                         )}
-                        <ActorRadarManage scannedActors={payload.scannedActors} excludedActors={payload.excludedActors} />
+                        <Link
+                            href="/settings"
+                            title="Manage actors in Settings"
+                            className="h-8 w-8 rounded-full flex items-center justify-center bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white ring-2 ring-[#0a0a0f] transition-all shrink-0"
+                        >
+                            <Settings2 className="h-4 w-4" />
+                        </Link>
                     </div>
                 }
             />
 
             {payload.items.length === 0 ? (
                 <p className="text-sm text-gray-500 py-4">
-                    Nothing on the radar — restore removed actors via the manage button above.
+                    Nothing on the radar — restore removed actors in{" "}
+                    <Link href="/settings" className="text-violet-400 hover:text-violet-300 transition-colors">
+                        Settings
+                    </Link>
+                    .
                 </p>
             ) : (
                 <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>

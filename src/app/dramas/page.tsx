@@ -160,7 +160,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const year_to = rawYearTo ? parseInt(rawYearTo, 10) : undefined;
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
     const tag = rawTag ? parseInt(rawTag, 10) : undefined;
-    const tagExclude = rawTagExclude ? parseInt(rawTagExclude, 10) : undefined;
+    // Kept as a raw string: supports comma-separated lists (e.g. from home "See more" links)
+    const tagExclude = rawTagExclude || undefined;
 
     const mdlSort = sort === "popular" ? "popular" : "top";
 

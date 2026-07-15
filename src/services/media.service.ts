@@ -3,9 +3,6 @@ import { tvmaze } from "@/lib/tvmaze";
 import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
-// MDL tags excluded from the home top lists:
-// 1045 "LGBTQ+" (niche BL titles), 14549 "Filmed Vertically", 18003 "Short Length Series"
-const HOME_EXCLUDED_TAGS = "1045,14549,18003";
 
 export type UnifiedMedia = {
     id: string; // Unified: "tmdb-123" or "mdl-456"
@@ -593,17 +590,17 @@ export const mediaService = {
         }
     },
 
-    async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
+    async getKDramas(excludeTags?: string): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             // Use Kuryana's own Korean top lists — much more accurate than TMDB KR discovery
             // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
-            // Home lists exclude some MDL tags (see HOME_EXCLUDED_TAGS)
+            // excludeTags: comma-separated MDL tag ids from user preferences
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop("korean", "completed", { tag_exclude: HOME_EXCLUDED_TAGS }),
-                kuryanaGetTop("korean", "ongoing", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
-                kuryanaGetTop("korean", "upcoming", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
+                kuryanaGetTop("korean", "completed", { tag_exclude: excludeTags }),
+                kuryanaGetTop("korean", "ongoing", { sort: "popular", tag_exclude: excludeTags }),
+                kuryanaGetTop("korean", "upcoming", { sort: "popular", tag_exclude: excludeTags }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
@@ -660,7 +657,7 @@ export const mediaService = {
         year_to?: number;
         rating_min?: number;
         tag?: number;
-        tag_exclude?: number;
+        tag_exclude?: number | string;
     }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
         // Map app country codes → Kuryana country names
         const COUNTRY_MAP: Record<string, "all" | KuryanaTopCountry> = {
@@ -722,17 +719,17 @@ export const mediaService = {
         }
     },
 
-    async getCDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
+    async getCDramas(excludeTags?: string): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             // Use Kuryana's own Chinese top lists — much more accurate than TMDB CN discovery
             // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
-            // Home lists exclude some MDL tags (see HOME_EXCLUDED_TAGS)
+            // excludeTags: comma-separated MDL tag ids from user preferences
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop("chinese", "completed", { tag_exclude: HOME_EXCLUDED_TAGS }),
-                kuryanaGetTop("chinese", "ongoing", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
-                kuryanaGetTop("chinese", "upcoming", { sort: "popular", tag_exclude: HOME_EXCLUDED_TAGS }),
+                kuryanaGetTop("chinese", "completed", { tag_exclude: excludeTags }),
+                kuryanaGetTop("chinese", "ongoing", { sort: "popular", tag_exclude: excludeTags }),
+                kuryanaGetTop("chinese", "upcoming", { sort: "popular", tag_exclude: excludeTags }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {

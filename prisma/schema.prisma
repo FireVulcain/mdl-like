@@ -100,6 +100,9 @@ model UserPreferences {
   userId                     String  @id
   calendarAsianOnly          Boolean @default(false)
   calendarIncludePlanToWatch Boolean @default(true)
+  // MDL tags excluded from the home top lists: [{ id, name }].
+  // null = app defaults, [] = user explicitly cleared all exclusions.
+  homeExcludedTags           Json?
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
-import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3, Camera, Loader2, Search } from "lucide-react";
+import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3, Camera, Loader2, Search, Settings } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { updateAvatar } from "@/actions/avatar";
 import { cn } from "@/lib/utils";
@@ -300,6 +300,19 @@ export function SiteHeader() {
                                         >
                                             <BarChart3 className="h-4 w-4 shrink-0" />
                                             Stats
+                                        </Link>
+                                        <Link
+                                            href="/settings"
+                                            onClick={() => setProfileOpen(false)}
+                                            className={cn(
+                                                "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                                                pathname === "/settings"
+                                                    ? "bg-primary/15 text-white"
+                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                            )}
+                                        >
+                                            <Settings className="h-4 w-4 shrink-0" />
+                                            Settings
                                         </Link>
                                         <div className="my-1 border-t border-white/6" />
                                         <button
