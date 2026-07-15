@@ -36,7 +36,6 @@ export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
             <div className="absolute -top-24 right-1/4 w-72 md:w-120 h-72 md:h-120 bg-orange-500/6 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none" />
 
             <HomeSectionHeader
-                index="04"
                 eyebrow="Worldwide"
                 title="Trending Worldwide"
                 subtitle="Most popular movies and shows this week across all platforms"

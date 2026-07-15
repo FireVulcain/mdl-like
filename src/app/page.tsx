@@ -80,7 +80,7 @@ export default function Home() {
             </Suspense>
 
             {/* Content */}
-            <div className="container py-10 md:py-16 space-y-16 md:space-y-32 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
+            <div className="container py-10 md:py-16 space-y-10 md:space-y-20 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
                 {/* Actor radar — personal picks from favorite actors' filmographies (24h cached) */}
                 <Suspense fallback={<KDramaSkeleton />}>
                     <ActorRadarData />

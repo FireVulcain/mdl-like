@@ -592,7 +592,7 @@ export const mediaService = {
     async getKDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             // Use Kuryana's own Korean top lists — much more accurate than TMDB KR discovery
-            // completed = top-rated finished dramas (Popular Right Now)
+            // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
@@ -720,7 +720,7 @@ export const mediaService = {
     async getCDramas(): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
             // Use Kuryana's own Chinese top lists — much more accurate than TMDB CN discovery
-            // completed = top-rated finished dramas (Popular Right Now)
+            // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
