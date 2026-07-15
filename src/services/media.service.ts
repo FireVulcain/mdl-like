@@ -1,7 +1,10 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetChineseTop, kuryanaGetKoreanTop, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
+
+// MDL tag 1045 "LGBTQ+" — excluded from the home top lists (niche BL titles)
+const LGBTQ_TAG_ID = 1045;
 
 export type UnifiedMedia = {
     id: string; // Unified: "tmdb-123" or "mdl-456"
@@ -595,10 +598,11 @@ export const mediaService = {
             // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
+            // Home lists exclude MDL tag 1045 "LGBTQ+" (niche BL titles crowd the ranks)
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetKoreanTop("completed"),
-                kuryanaGetKoreanTop("ongoing"),
-                kuryanaGetKoreanTop("upcoming", 1, "popular"),
+                kuryanaGetTop("korean", "completed", { tag_exclude: LGBTQ_TAG_ID }),
+                kuryanaGetTop("korean", "ongoing", { tag_exclude: LGBTQ_TAG_ID }),
+                kuryanaGetTop("korean", "upcoming", { sort: "popular", tag_exclude: LGBTQ_TAG_ID }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
@@ -723,10 +727,11 @@ export const mediaService = {
             // completed = top-rated finished dramas (Top Rated)
             // ongoing   = currently airing
             // upcoming  = not yet started
+            // Home lists exclude MDL tag 1045 "LGBTQ+" (niche BL titles crowd the ranks)
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetChineseTop("completed"),
-                kuryanaGetChineseTop("ongoing"),
-                kuryanaGetChineseTop("upcoming", 1, "popular"),
+                kuryanaGetTop("chinese", "completed", { tag_exclude: LGBTQ_TAG_ID }),
+                kuryanaGetTop("chinese", "ongoing", { tag_exclude: LGBTQ_TAG_ID }),
+                kuryanaGetTop("chinese", "upcoming", { sort: "popular", tag_exclude: LGBTQ_TAG_ID }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
