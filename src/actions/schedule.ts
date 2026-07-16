@@ -42,6 +42,19 @@ function parseMdlAirDate(raw: string | null | undefined): string | null {
     return `${m[3]}-${month}-${m[2].padStart(2, "0")}`;
 }
 
+// Negative cache: when no source knows a show's episodes, write a sentinel row
+// so the show counts as cached — otherwise every calendar load re-scrapes it
+// forever (episodeNumber 0 rows are filtered out when reading).
+async function markNoEpisodes(mediaId: string): Promise<never[]> {
+    await prisma.cachedEpisode
+        .createMany({
+            data: [{ mediaId, airDate: "1900-01-01", episodeNumber: 0, seasonNumber: 0 }],
+            skipDuplicates: true,
+        })
+        .catch(() => {});
+    return [];
+}
+
 async function fetchAndCacheEpisodes(
     mediaId: string,
     externalId: string,
@@ -80,10 +93,10 @@ async function fetchAndCacheEpisodes(
 
     // TVmaze returned nothing — try MDL episodes as fallback
     const mdlRow = await prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: externalId } });
-    if (!mdlRow?.mdlSlug) return [];
+    if (!mdlRow?.mdlSlug) return markNoEpisodes(mediaId);
 
     const mdlResult = await kuryanaGetEpisodesList(mdlRow.mdlSlug);
-    if (!mdlResult?.data?.episodes?.length) return [];
+    if (!mdlResult?.data?.episodes?.length) return markNoEpisodes(mediaId);
 
     const episodes: { airDate: string; episodeNumber: number; seasonNumber: number; episodeName?: string }[] = [];
     for (const ep of mdlResult.data.episodes) {
@@ -100,18 +113,18 @@ async function fetchAndCacheEpisodes(
         });
     }
 
-    if (episodes.length > 0) {
-        await prisma.cachedEpisode.createMany({
-            data: episodes.map((ep) => ({
-                mediaId,
-                airDate: ep.airDate,
-                episodeNumber: ep.episodeNumber,
-                seasonNumber: ep.seasonNumber,
-                episodeName: ep.episodeName || null,
-            })),
-            skipDuplicates: true,
-        });
-    }
+    if (episodes.length === 0) return markNoEpisodes(mediaId);
+
+    await prisma.cachedEpisode.createMany({
+        data: episodes.map((ep) => ({
+            mediaId,
+            airDate: ep.airDate,
+            episodeNumber: ep.episodeNumber,
+            seasonNumber: ep.seasonNumber,
+            episodeName: ep.episodeName || null,
+        })),
+        skipDuplicates: true,
+    });
 
     return episodes;
 }
@@ -162,6 +175,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
 
         if (cached && cached.length > 0) {
             for (const ep of cached) {
+                if (ep.episodeNumber <= 0) continue; // "no episodes found" sentinel
                 results.push({
                     title: item.title || "Unknown",
                     poster: item.poster,

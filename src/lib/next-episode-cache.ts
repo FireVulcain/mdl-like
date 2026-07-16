@@ -10,7 +10,9 @@ export type CachedNextEpisode = {
     updatedAt: Date;
 };
 
-const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
+// Air schedules rarely move intra-day, and MDL gives the exact broadcast time;
+// aired episodes are filtered out at read time anyway, which forces a refetch.
+const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
 
 /**
  * Look up next-episode data from the DB cache.

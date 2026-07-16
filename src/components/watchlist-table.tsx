@@ -9,7 +9,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateProgress, updateUserMedia } from "@/actions/media";
-import { backfillBackdrops, refreshAllBackdrops, refreshMediaData, refreshWatchlistMdlRatings } from "@/actions/backfill";
+import { backfillBackdrops, refreshAllBackdrops, refreshMediaData, refreshWatchlistMdlRatings, clearNextEpisodeCache } from "@/actions/backfill";
 import { saveViewPreferences } from "@/actions/preferences";
 import { importWatchlist } from "@/actions/import-watchlist";
 import {
@@ -45,6 +45,7 @@ import {
     GalleryHorizontal,
     Sparkles,
     Tags,
+    TimerReset,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -180,7 +181,10 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const [thumbnailStyle, setThumbnailStyle] = useState<"poster" | "backdrop">(initialThumbnailStyle);
 
     // Lazy-load next-episode data client-side after initial render to avoid
-    // blocking SSR with 45+ external API calls.
+    // blocking SSR with 45+ external API calls. The API answers from its DB
+    // cache instantly and refreshes misses in the background (kuryana scrapes
+    // are slow) — so when keys are pending, poll again a couple of times to
+    // pick up the freshly cached data within the same visit.
     const [nextEpisodeMap, setNextEpisodeMap] = useState<Record<string, NextEpisodeData | null>>({});
     useEffect(() => {
         if (readOnly) return;
@@ -193,22 +197,40 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         );
         if (airingWatching.length === 0) return;
 
-        fetch("/api/next-episodes", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                items: airingWatching.map((i) => ({
-                    tmdbId: i.externalId,
-                    season: i.season,
-                    title: i.title ?? "",
-                })),
-                // Lets the server compute "today" from the user's calendar, not UTC
-                tzOffsetMinutes: new Date().getTimezoneOffset(),
-            }),
-        })
-            .then((r) => r.json())
-            .then((data: Record<string, NextEpisodeData | null>) => setNextEpisodeMap(data))
-            .catch(() => {});
+        let cancelled = false;
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const RETRY_DELAYS_MS = [8_000, 20_000];
+
+        const load = (attempt: number) => {
+            fetch("/api/next-episodes", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    items: airingWatching.map((i) => ({
+                        tmdbId: i.externalId,
+                        season: i.season,
+                        title: i.title ?? "",
+                    })),
+                    // Lets the server compute "today" from the user's calendar, not UTC
+                    tzOffsetMinutes: new Date().getTimezoneOffset(),
+                }),
+            })
+                .then((r) => r.json())
+                .then((data: { results?: Record<string, NextEpisodeData | null>; pending?: string[] }) => {
+                    if (cancelled) return;
+                    setNextEpisodeMap((prev) => ({ ...prev, ...(data.results ?? {}) }));
+                    if ((data.pending?.length ?? 0) > 0 && attempt < RETRY_DELAYS_MS.length) {
+                        timer = setTimeout(() => load(attempt + 1), RETRY_DELAYS_MS[attempt]);
+                    }
+                })
+                .catch(() => {});
+        };
+        load(0);
+
+        return () => {
+            cancelled = true;
+            if (timer) clearTimeout(timer);
+        };
     }, [items, readOnly]);
 
     const syncUrl = useCallback((key: string, value: string | null) => {
@@ -232,6 +254,11 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const [tmdbRefreshSelectedIds, setTmdbRefreshSelectedIds] = useState<Set<string>>(new Set());
     const [tmdbRefreshSearch, setTmdbRefreshSearch] = useState("");
     const [isRefreshingMdl, setIsRefreshingMdl] = useState(false);
+    const [isClearingEpCache, setIsClearingEpCache] = useState(false);
+    const [showEpCacheModal, setShowEpCacheModal] = useState(false);
+    const [epCacheStatuses, setEpCacheStatuses] = useState<string[]>([]);
+    const [epCacheSelectedIds, setEpCacheSelectedIds] = useState<Set<string>>(new Set());
+    const [epCacheSearch, setEpCacheSearch] = useState("");
     const [showMdlRefreshModal, setShowMdlRefreshModal] = useState(false);
     const [mdlRefreshStatuses, setMdlRefreshStatuses] = useState<string[]>([]);
     const [mdlRefreshSelectedIds, setMdlRefreshSelectedIds] = useState<Set<string>>(new Set());
@@ -628,6 +655,24 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         }
     };
 
+    const handleClearEpisodeCache = async (ids: string[]) => {
+        setIsClearingEpCache(true);
+        setShowEpCacheModal(false);
+        const toastId = toast.loading("Clearing episode cache...");
+        try {
+            const result = await clearNextEpisodeCache(ids);
+            toast.success(`Cleared ${result.count} cached entries — refetching...`, { id: toastId });
+            // New items prop identity re-runs the next-episodes effect, which
+            // refetches the cleared shows (now misses) and re-polls for results
+            router.refresh();
+        } catch (error) {
+            console.error("Failed to clear episode cache:", error);
+            toast.error("Failed to clear episode cache", { id: toastId });
+        } finally {
+            setIsClearingEpCache(false);
+        }
+    };
+
     // Bulk refreshes run in small client-driven chunks: one big server action would
     // exceed serverless time limits (and give no progress feedback).
     const TMDB_REFRESH_CHUNK = 8;
@@ -760,6 +805,48 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
             const next = new Set(prev);
             if (allMdlChecklistSelected) mdlChecklistItems.forEach((i) => next.delete(i.id));
             else mdlChecklistItems.forEach((i) => next.add(i.id));
+            return next;
+        });
+    };
+
+    // Episode-cache clear modal — same status/checklist pattern; only TMDB TV
+    // shows are listed since only those have next-episode cache entries
+    const epCacheEligible = (list: WatchlistItem[]) => list.filter((i) => i.mediaType === "TV" && i.source === "TMDB");
+
+    const applyEpCacheStatuses = (statuses: string[]) => {
+        setEpCacheStatuses(statuses);
+        const matching = epCacheEligible(statuses.length ? items.filter((i) => statuses.includes(i.status)) : items);
+        setEpCacheSelectedIds(new Set(matching.map((i) => i.id)));
+        setEpCacheSearch("");
+    };
+
+    const epCacheStatusMatchingItems = useMemo(
+        () => epCacheEligible(epCacheStatuses.length ? items.filter((i) => epCacheStatuses.includes(i.status)) : items),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [items, epCacheStatuses]
+    );
+
+    const epCacheChecklistItems = useMemo(() => {
+        const q = epCacheSearch.trim().toLowerCase();
+        return q ? epCacheStatusMatchingItems.filter((i) => (i.title ?? "").toLowerCase().includes(q)) : epCacheStatusMatchingItems;
+    }, [epCacheStatusMatchingItems, epCacheSearch]);
+
+    const toggleEpCacheItem = (id: string) => {
+        setEpCacheSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    };
+
+    const allEpCacheChecklistSelected = epCacheChecklistItems.length > 0 && epCacheChecklistItems.every((i) => epCacheSelectedIds.has(i.id));
+
+    const toggleAllEpCacheChecklist = () => {
+        setEpCacheSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (allEpCacheChecklistSelected) epCacheChecklistItems.forEach((i) => next.delete(i.id));
+            else epCacheChecklistItems.forEach((i) => next.add(i.id));
             return next;
         });
     };
@@ -1293,6 +1380,18 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isRefreshingMdl ? "animate-spin" : ""}`} />
                                             {isRefreshingMdl ? "Refreshing..." : "Refresh MDL Ratings"}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                setShowActionsMenu(false);
+                                                applyEpCacheStatuses([]);
+                                                setShowEpCacheModal(true);
+                                            }}
+                                            disabled={isClearingEpCache}
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            <TimerReset className={`h-4 w-4 ${isClearingEpCache ? "animate-spin" : ""}`} />
+                                            {isClearingEpCache ? "Clearing..." : "Reset Episode Cache"}
                                         </button>
                                         <div className="my-1 border-t border-white/5" />
                                         <button
@@ -1860,6 +1959,124 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                             >
                                 Start Refresh
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            )}
+
+            {!readOnly && (
+                <Dialog open={showEpCacheModal} onOpenChange={setShowEpCacheModal}>
+                    <DialogContent className="sm:max-w-md bg-gray-900 border-white/10">
+                        <DialogHeader>
+                            <DialogTitle className="text-white">Reset Episode Cache</DialogTitle>
+                            <DialogDescription className="text-gray-400">
+                                Force a refetch of the next-episode dates for the selected shows. The calendar schedules
+                                are not affected.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex flex-wrap gap-2 py-2">
+                            <button
+                                onClick={() => applyEpCacheStatuses([])}
+                                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                                    epCacheStatuses.length === 0
+                                        ? "bg-white/20 text-white"
+                                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                }`}
+                            >
+                                All media
+                            </button>
+                            {allStatuses.map((status) => {
+                                const cfg = statusConfig[status as keyof typeof statusConfig];
+                                const Icon = cfg.icon;
+                                const isSelected = epCacheStatuses.includes(status);
+                                return (
+                                    <button
+                                        key={status}
+                                        onClick={() =>
+                                            applyEpCacheStatuses(
+                                                epCacheStatuses.includes(status)
+                                                    ? epCacheStatuses.filter((s) => s !== status)
+                                                    : [...epCacheStatuses, status]
+                                            )
+                                        }
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                                            isSelected
+                                                ? `bg-white/15 ${cfg.color}`
+                                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                    >
+                                        <Icon className="h-3.5 w-3.5" />
+                                        {status}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="relative flex-1">
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-500" />
+                                <input
+                                    type="text"
+                                    value={epCacheSearch}
+                                    onChange={(e) => setEpCacheSearch(e.target.value)}
+                                    placeholder="Filter titles..."
+                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/20"
+                                />
+                            </div>
+                            <button
+                                onClick={toggleAllEpCacheChecklist}
+                                disabled={epCacheChecklistItems.length === 0}
+                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {allEpCacheChecklistSelected ? "Deselect all" : "Select all"}
+                            </button>
+                        </div>
+                        <div className="max-h-64 overflow-y-auto rounded-lg border border-white/10 divide-y divide-white/5">
+                            {epCacheChecklistItems.length === 0 && (
+                                <div className="text-sm text-gray-500 px-3 py-4 text-center">No matching titles</div>
+                            )}
+                            {epCacheChecklistItems.map((item) => {
+                                const cfg = statusConfig[item.status as keyof typeof statusConfig];
+                                return (
+                                    <label
+                                        key={item.id}
+                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={epCacheSelectedIds.has(item.id)}
+                                            onChange={() => toggleEpCacheItem(item.id)}
+                                            className="h-4 w-4 rounded accent-blue-500 shrink-0 cursor-pointer"
+                                        />
+                                        {item.poster ? (
+                                            <Image unoptimized src={item.poster} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
+                                        ) : (
+                                            <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
+                                        )}
+                                        <span className="flex-1 min-w-0 truncate text-sm text-gray-200">{item.title}</span>
+                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-gray-500"}`}>{item.status}</span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                            {epCacheSelectedIds.size} of {epCacheStatusMatchingItems.length} selected
+                        </div>
+                        <DialogFooter className="gap-2 sm:gap-2">
+                            <Button
+                                variant="ghost"
+                                onClick={() => setShowEpCacheModal(false)}
+                                disabled={isClearingEpCache}
+                                className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                onClick={() => handleClearEpisodeCache(Array.from(epCacheSelectedIds))}
+                                disabled={isClearingEpCache || epCacheSelectedIds.size === 0}
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
+                            >
+                                Clear Cache
                             </Button>
                         </DialogFooter>
                     </DialogContent>

@@ -493,3 +493,24 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
     revalidatePath("/watchlist");
     return { success: true, count, skipped };
 }
+
+// Clear the next-episode cache for the selected watchlist items — useful when
+// MDL fixes a wrong air date and the 6h freshness window would keep serving
+// the stale one. CAUTION: CachedEpisode also stores the calendar's FULL
+// episode schedules under "tmdb-<id>" keys; next-episode entries use the raw
+// TMDB id, and only those may be deleted here.
+export async function clearNextEpisodeCache(ids: string[]) {
+    const userId = await getCurrentUserId();
+    if (ids.length === 0) return { success: true, count: 0 };
+
+    const items = await prisma.userMedia.findMany({
+        where: { userId, id: { in: ids } },
+        select: { externalId: true },
+    });
+    const mediaIds = [...new Set(items.map((i) => i.externalId))];
+    if (mediaIds.length === 0) return { success: true, count: 0 };
+
+    const { count } = await prisma.cachedEpisode.deleteMany({ where: { mediaId: { in: mediaIds } } });
+    revalidatePath("/watchlist");
+    return { success: true, count };
+}

@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getCachedNextEpisodes, upsertCachedNextEpisode } from "@/lib/next-episode-cache";
 import { fetchNextEpisodeFromApis } from "@/lib/next-episode-fetch";
 
-export const maxDuration = 30;
+// Background refresh (after()) counts toward the function duration
+export const maxDuration = 60;
+
+// Keys currently being refreshed in the background (per server instance) —
+// re-polls and concurrent tabs must not schedule duplicate scrapes
+const inFlightKeys = new Set<string>();
 
 type RequestItem = {
     tmdbId: string;
@@ -108,53 +114,55 @@ export async function POST(req: NextRequest) {
         }
     }
 
-    // Fetch all misses concurrently — MDL first for linked shows, TVmaze/TMDB fallback
-    if (missItems.length > 0) {
-        const mdlSlugs = await getMdlSlugs(missItems);
-        const fetched = await Promise.allSettled(
-            missItems.map((item) =>
-                fetchNextEpisodeFromApis({
-                    ...item,
-                    mdlSlug: mdlSlugs.get(`${item.tmdbId}-${item.season}`) ?? null,
-                }),
-            ),
-        );
+    // Misses are refreshed AFTER the response — kuryana scrapes an MDL page per
+    // show (seconds each), and blocking on ~15 of them left the watchlist with
+    // no indicators for 30s+. Instead: answer from cache instantly, persist the
+    // fresh data in the background, and tell the client which keys to re-poll.
+    // Keys already being fetched (previous request or re-poll) are skipped so
+    // polling can't stack duplicate scrape storms.
+    const pending = missItems.map((item) => `${item.tmdbId}-${item.season}`);
+    const toFetch = missItems.filter((item) => !inFlightKeys.has(`${item.tmdbId}-${item.season}`));
 
-        for (let i = 0; i < missItems.length; i++) {
-            const item = missItems[i];
-            const key = `${item.tmdbId}-${item.season}`;
-            const outcome = fetched[i];
-
-            if (outcome.status === "fulfilled" && outcome.value) {
-                const ep = outcome.value;
-                // Sources can lag and still report an already-aired episode as "next"
-                // (TMDB especially) — from the user's calendar that's yesterday, skip it
-                if (ep.airDate >= localToday) {
-                    result[key] = ep;
-                } else if (!result[key]) {
-                    result[key] = null;
+    if (toFetch.length > 0) {
+        toFetch.forEach((item) => inFlightKeys.add(`${item.tmdbId}-${item.season}`));
+        const mdlSlugs = await getMdlSlugs(toFetch);
+        after(async () => {
+            try {
+                // Small chunks: keeps the process responsive and kuryana happy
+                const CONCURRENCY = 4;
+                for (let i = 0; i < toFetch.length; i += CONCURRENCY) {
+                    const chunk = toFetch.slice(i, i + CONCURRENCY);
+                    await Promise.allSettled(
+                        chunk.map(async (item) => {
+                            const ep = await fetchNextEpisodeFromApis({
+                                ...item,
+                                mdlSlug: mdlSlugs.get(`${item.tmdbId}-${item.season}`) ?? null,
+                            });
+                            if (!ep) return;
+                            // Aired-yesterday entries from lagging sources are filtered at read time
+                            await upsertCachedNextEpisode({
+                                mediaId: item.tmdbId,
+                                airDate: ep.airDate,
+                                airDateTime: ep.airDateTime ?? null,
+                                episodeNumber: ep.episodeNumber,
+                                seasonNumber: ep.seasonNumber,
+                                episodeName: ep.name ?? null,
+                            });
+                        }),
+                    );
                 }
-
-                // Persist to cache regardless (fire-and-forget — don't block the response)
-                upsertCachedNextEpisode({
-                    mediaId: item.tmdbId,
-                    airDate: ep.airDate,
-                    airDateTime: ep.airDateTime ?? null,
-                    episodeNumber: ep.episodeNumber,
-                    seasonNumber: ep.seasonNumber,
-                    episodeName: ep.name ?? null,
-                }).catch(() => {});
-            } else if (outcome.status === "fulfilled") {
-                // No next episode found — keep any stale result or set null
-                if (!result[key]) result[key] = null;
+            } finally {
+                toFetch.forEach((item) => inFlightKeys.delete(`${item.tmdbId}-${item.season}`));
             }
-            // On rejection, leave stale result (already set above) or null
-        }
+        });
     }
 
-    return NextResponse.json(result, {
-        headers: {
-            "Cache-Control": "no-store",
+    return NextResponse.json(
+        { results: result, pending },
+        {
+            headers: {
+                "Cache-Control": "no-store",
+            },
         },
-    });
+    );
 }
