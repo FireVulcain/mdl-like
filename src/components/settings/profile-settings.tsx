@@ -10,6 +10,8 @@ import { toast } from "sonner";
 export function ProfileSettings({ initialPrefs, profileUserId }: { initialPrefs: ProfilePreferences; profileUserId: string }) {
     const [enabled, setEnabled] = useState(initialPrefs.publicProfileEnabled);
     const [showScores, setShowScores] = useState(initialPrefs.publicShowScores);
+    const [showPodium, setShowPodium] = useState(initialPrefs.publicShowPodium);
+    const [showActivity, setShowActivity] = useState(initialPrefs.publicShowActivity);
 
     const save = async (prefs: Partial<ProfilePreferences>) => {
         await saveProfilePreferences(prefs);
@@ -29,6 +31,18 @@ export function ProfileSettings({ initialPrefs, profileUserId }: { initialPrefs:
                 onChange={(next) => { setShowScores(next); save({ publicShowScores: next }); }}
                 label="Show my scores to visitors"
                 hint="When off, visitors see your watchlist without ratings (and no average score)."
+            />
+            <SettingToggle
+                checked={showPodium}
+                onChange={(next) => { setShowPodium(next); save({ publicShowPodium: next }); }}
+                label="Show my Top 3 to visitors"
+                hint="When off, the podium section is hidden from visitors. You still see it."
+            />
+            <SettingToggle
+                checked={showActivity}
+                onChange={(next) => { setShowActivity(next); save({ publicShowActivity: next }); }}
+                label="Show my recent activity to visitors"
+                hint="When off, the activity feed is hidden from visitors. You still see it."
             />
             <Link
                 href={`/u/${profileUserId}`}

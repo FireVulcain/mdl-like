@@ -33,40 +33,10 @@ const CATEGORIES: { key: PodiumCategory; label: string }[] = [
 ];
 
 const RANK_CONFIG = {
-    1: {
-        barHeight: 96,
-        posterClass: "w-24 h-36",
-        gradient: "from-amber-500/50 to-amber-700/30",
-        border: "border-amber-400/50",
-        glow: "shadow-[0_0_30px_rgba(251,191,36,0.25)]",
-        ring: "ring-amber-400/60",
-        textColor: "text-amber-300",
-        label: "1st",
-    },
-    2: {
-        barHeight: 64,
-        posterClass: "w-20 h-28",
-        gradient: "from-slate-300/40 to-slate-500/20",
-        border: "border-slate-300/40",
-        glow: "shadow-[0_0_20px_rgba(203,213,225,0.15)]",
-        ring: "ring-slate-300/50",
-        textColor: "text-slate-300",
-        label: "2nd",
-    },
-    3: {
-        barHeight: 48,
-        posterClass: "w-20 h-28",
-        gradient: "from-orange-700/40 to-orange-900/20",
-        border: "border-orange-600/40",
-        glow: "shadow-[0_0_20px_rgba(194,65,12,0.2)]",
-        ring: "ring-orange-600/50",
-        textColor: "text-orange-400",
-        label: "3rd",
-    },
+    1: { label: "1st", textColor: "text-amber-300" },
+    2: { label: "2nd", textColor: "text-slate-300" },
+    3: { label: "3rd", textColor: "text-orange-400" },
 } as const;
-
-// Display order: 2nd left, 1st center, 3rd right
-const DISPLAY_ORDER = [2, 1, 3] as const;
 
 const CDRAMA_COUNTRIES = ["CN", "TW", "HK", "MO"];
 
@@ -256,99 +226,121 @@ function MediaPicker({
 
 // ─── PodiumDisplay ────────────────────────────────────────────────────────────
 
-function PodiumBar({ rank, entry, animDelay }: { rank: 1 | 2 | 3; entry: PodiumEntry; animDelay: number }) {
-    const cfg = RANK_CONFIG[rank];
+// Champion spotlight: #1 as a lead card (uncropped poster over its own blurred
+// artwork, same construction as the home spotlight), #2/#3 stacked as minis.
+function LeadCard({ entry }: { entry: PodiumEntry }) {
     const mediaHref = `/media/${entry.source.toLowerCase()}-${entry.externalId}`;
-    const isFirst = rank === 1;
-
     return (
-        <div className="flex flex-col items-center">
-            {/* Poster card */}
-            <motion.div
-                initial={{ opacity: 0, y: -16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: animDelay + 0.22, duration: 0.45, ease: "easeOut" }}
-                className="relative group"
+        <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="h-full"
+        >
+            <Link
+                href={mediaHref}
+                className="group relative block h-56 md:h-full md:min-h-56 rounded-2xl overflow-hidden border border-amber-400/25 hover:border-amber-400/50 transition-colors"
             >
-                {isFirst && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -8, scale: 0.7 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ delay: animDelay + 0.45, type: "spring", stiffness: 260, damping: 18 }}
-                        className="absolute -top-6 left-1/2 -translate-x-1/2"
-                    >
-                        <Crown className="h-5 w-5 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-                    </motion.div>
+                {entry.poster && (
+                    <Image unoptimized src={entry.poster} alt="" fill className="object-cover scale-110 blur-2xl opacity-50" />
                 )}
-                <Link href={mediaHref} className="block">
-                    <div
-                        className={`relative ${cfg.posterClass} rounded-xl overflow-hidden ring-2 ${cfg.ring} ${cfg.glow} transition-transform duration-200 group-hover:scale-105`}
-                    >
+                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
+
+                <div className="relative h-full flex items-center gap-4 p-4 md:p-5">
+                    <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shadow-2xl shadow-black/60 shrink-0 bg-gray-800">
                         {entry.poster ? (
                             <Image
                                 unoptimized
                                 src={entry.poster}
                                 alt={entry.title}
                                 fill
-                                className="object-cover"
-                                sizes="96px"
+                                sizes="160px"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                         ) : (
-                            <div className="absolute inset-0 bg-white/8 flex items-center justify-center">
-                                <span className="text-gray-500 text-xs text-center px-1">{entry.title}</span>
+                            <div className="absolute inset-0 flex items-center justify-center text-gray-600 text-xs text-center px-1">
+                                {entry.title}
                             </div>
                         )}
-                        {/* Shimmer for 1st place */}
-                        {isFirst && (
-                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer-sweep_2.5s_ease-in-out_1s_forwards]" />
+                    </div>
+
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                        <p className="flex items-center gap-1.5 text-[11px] font-bold tracking-wide text-amber-400">
+                            <Crown className="h-3.5 w-3.5" />
+                            #1
+                        </p>
+                        <h4 className="text-lg md:text-xl font-extrabold text-white leading-tight line-clamp-3 group-hover:text-amber-200 transition-colors">
+                            {entry.title}
+                        </h4>
+                        {entry.year && <p className="text-xs text-white/60">{entry.year}</p>}
+                    </div>
+                </div>
+            </Link>
+        </motion.div>
+    );
+}
+
+function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; delay: number }) {
+    const cfg = RANK_CONFIG[rank];
+    const mediaHref = `/media/${entry.source.toLowerCase()}-${entry.externalId}`;
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay, duration: 0.4, ease: "easeOut" }}
+            className="flex-1 min-h-0"
+        >
+            <Link
+                href={mediaHref}
+                className="group relative block h-28 md:h-full rounded-xl overflow-hidden border border-white/8 hover:border-white/20 transition-colors"
+            >
+                {entry.poster && (
+                    <Image unoptimized src={entry.poster} alt="" fill className="object-cover scale-110 blur-2xl opacity-45" />
+                )}
+                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-black/15" />
+
+                <div className="relative h-full flex items-center gap-3 p-3">
+                    <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shadow-xl shadow-black/60 shrink-0 bg-gray-800">
+                        {entry.poster ? (
+                            <Image
+                                unoptimized
+                                src={entry.poster}
+                                alt={entry.title}
+                                fill
+                                sizes="80px"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                        ) : (
+                            <div className="absolute inset-0 flex items-center justify-center text-gray-600 text-[10px] text-center px-1">
+                                {entry.title}
+                            </div>
                         )}
                     </div>
-                </Link>
-                <p
-                    className={`mt-1.5 text-center text-xs font-medium ${cfg.textColor} max-w-24 truncate`}
-                    title={entry.title}
-                >
-                    {entry.title}
-                </p>
-                {entry.year && <p className="text-center text-[10px] text-gray-600 mt-0.5">{entry.year}</p>}
-            </motion.div>
 
-            {/* Platform bar */}
-            <motion.div
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={{
-                    delay: animDelay,
-                    type: "spring",
-                    stiffness: 180,
-                    damping: 22,
-                }}
-                style={{ height: cfg.barHeight, transformOrigin: "bottom" }}
-                className={`mt-2 w-full rounded-t-xl bg-linear-to-t ${cfg.gradient} border border-b-0 ${cfg.border} flex flex-col items-center justify-end pb-2.5 relative overflow-hidden`}
-            >
-                {/* Inner glow line at top */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent" />
-                <span className={`text-sm font-bold ${cfg.textColor}`}>{cfg.label}</span>
-            </motion.div>
-        </div>
+                    <div className="flex-1 min-w-0 space-y-0.5">
+                        <p className={`text-[10.5px] font-extrabold ${cfg.textColor}`}>#{rank}</p>
+                        <h4 className="text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-white/80 transition-colors">
+                            {entry.title}
+                        </h4>
+                        {entry.year && <p className="text-[11px] text-white/50">{entry.year}</p>}
+                    </div>
+                </div>
+            </Link>
+        </motion.div>
     );
 }
 
 function PodiumDisplay({ entries }: { entries: PodiumEntry[] }) {
     const byRank = Object.fromEntries(entries.map((e) => [e.rank, e])) as Record<number, PodiumEntry>;
+    if (!byRank[1]) return null;
 
     return (
-        <div className="flex items-end justify-center gap-3 pt-10 pb-0">
-            {DISPLAY_ORDER.map((rank) => {
-                const entry = byRank[rank];
-                if (!entry) return null;
-                const delayMap = { 1: 0.18, 2: 0.09, 3: 0 };
-                return (
-                    <div key={rank} className={`flex-1 max-w-[${rank === 1 ? "120px" : "96px"}]`}>
-                        <PodiumBar rank={rank as 1 | 2 | 3} entry={entry} animDelay={delayMap[rank as 1 | 2 | 3]} />
-                    </div>
-                );
-            })}
+        <div className="grid gap-3 md:grid-cols-[1.4fr_1fr]">
+            <LeadCard entry={byRank[1]} />
+            <div className="flex flex-col gap-3">
+                {byRank[2] && <MiniCard rank={2} entry={byRank[2]} delay={0.08} />}
+                {byRank[3] && <MiniCard rank={3} entry={byRank[3]} delay={0.16} />}
+            </div>
         </div>
     );
 }
@@ -419,7 +411,7 @@ function PodiumEditor({
                         key={key}
                         type="button"
                         onClick={() => setActiveTab(key)}
-                        className={`relative px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                        className={`cursor-pointer relative px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors ${
                             activeTab === key ? "text-white" : "text-gray-400 hover:text-gray-200"
                         }`}
                     >
@@ -576,11 +568,11 @@ export function PodiumSection({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="rounded-2xl bg-white/3 border border-white/8 overflow-hidden"
+                        className="space-y-4"
                     >
                         {/* Tabs */}
                         {tabsToShow.length > 1 && (
-                            <div className="flex gap-1 p-3 pb-0">
+                            <div className="flex gap-1">
                                 <div className="flex gap-1 p-1 rounded-xl bg-white/4 border border-white/8">
                                     {tabsToShow.map(({ key, label }) => {
                                         const completed = podiums[key].length === 3;
@@ -589,7 +581,7 @@ export function PodiumSection({
                                                 key={key}
                                                 onClick={() => setActiveTab(key)}
                                                 disabled={!completed && !isOwner}
-                                                className={`relative px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                                                className={`cursor-pointer relative px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors ${
                                                     safeActiveTab === key
                                                         ? "text-white"
                                                         : completed || isOwner
@@ -623,7 +615,6 @@ export function PodiumSection({
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.97 }}
                                 transition={{ duration: 0.22 }}
-                                className="px-6 pb-5"
                             >
                                 {podiums[safeActiveTab].length === 3 ? (
                                     <PodiumDisplay entries={podiums[safeActiveTab]} />

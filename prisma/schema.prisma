@@ -116,9 +116,11 @@ model UserPreferences {
   titleLanguage              String  @default("english")
   // Hide episode names/synopsis beyond current progress (episode guide, calendar, countdown)
   hideSpoilers               Boolean @default(false)
-  // Public profile /u/<id>: reachable at all, and whether scores are shown
+  // Public profile /u/<id>: reachable at all, and which blocks visitors see
   publicProfileEnabled       Boolean @default(true)
   publicShowScores           Boolean @default(true)
+  publicShowPodium           Boolean @default(true)
+  publicShowActivity         Boolean @default(true)
   // In-app banner after a background sync
   showSyncNotification       Boolean @default(true)
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -159,9 +159,16 @@ export async function saveDisplayPreferences(prefs: Partial<DisplayPreferences>)
 export type ProfilePreferences = {
     publicProfileEnabled: boolean;
     publicShowScores: boolean;
+    publicShowPodium: boolean;
+    publicShowActivity: boolean;
 };
 
-const PROFILE_DEFAULTS: ProfilePreferences = { publicProfileEnabled: true, publicShowScores: true };
+const PROFILE_DEFAULTS: ProfilePreferences = {
+    publicProfileEnabled: true,
+    publicShowScores: true,
+    publicShowPodium: true,
+    publicShowActivity: true,
+};
 
 export async function getProfilePreferences(): Promise<ProfilePreferences> {
     try {
@@ -178,7 +185,12 @@ export async function getProfileVisibility(userId: string): Promise<ProfilePrefe
     try {
         const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
         if (!prefs) return PROFILE_DEFAULTS;
-        return { publicProfileEnabled: prefs.publicProfileEnabled, publicShowScores: prefs.publicShowScores };
+        return {
+            publicProfileEnabled: prefs.publicProfileEnabled,
+            publicShowScores: prefs.publicShowScores,
+            publicShowPodium: prefs.publicShowPodium,
+            publicShowActivity: prefs.publicShowActivity,
+        };
     } catch {
         return PROFILE_DEFAULTS;
     }

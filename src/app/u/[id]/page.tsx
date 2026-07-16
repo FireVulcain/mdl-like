@@ -53,7 +53,8 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
     // Only show podium section if owner OR at least one completed podium exists
     const anyPodium = Object.values(podiums).some((p) => p.length === 3);
-    const showPodium = isOwner || anyPodium;
+    const showPodium = (isOwner || anyPodium) && (visibility.publicShowPodium || isOwner);
+    const showActivity = visibility.publicShowActivity || isOwner;
 
     return (
         <div className="relative min-h-screen overflow-hidden">
@@ -124,7 +125,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 )}
 
                 {/* Recent Activity — collapsible */}
-                {activity.length > 0 && (
+                {showActivity && activity.length > 0 && (
                     <CollapsibleSection
                         title="Recent Activity"
                         icon={<Clock className="h-4 w-4 text-gray-400" />}
