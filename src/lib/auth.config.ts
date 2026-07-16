@@ -14,9 +14,12 @@ export const authConfig: NextAuthConfig = {
       const isLoggedIn = !!auth?.user;
       const isLoginPage = nextUrl.pathname === "/login";
       const isAuthRoute = nextUrl.pathname.startsWith("/api/auth");
+      // Public profiles are readable without an account (visibility is
+      // enforced by the page itself via the owner's preferences)
+      const isPublicProfile = nextUrl.pathname.startsWith("/u/");
 
       // Allow auth routes to pass through
-      if (isAuthRoute) {
+      if (isAuthRoute || isPublicProfile) {
         return true;
       }
 
