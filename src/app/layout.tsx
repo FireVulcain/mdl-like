@@ -6,6 +6,7 @@ import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
 import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
+import { getNotificationPreferences } from "@/actions/preferences";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,9 @@ export default async function RootLayout({
   const skipAuth = process.env.SKIP_AUTH === "true";
   const session = await auth();
   const isAuthenticated = skipAuth || !!session;
+  const showSyncNotification = isAuthenticated
+    ? (await getNotificationPreferences()).showSyncNotification
+    : false;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -53,7 +57,7 @@ export default async function RootLayout({
               },
             }}
           />
-          {isAuthenticated && <SyncNotification />}
+          {showSyncNotification && <SyncNotification />}
         </Providers>
       </body>
     </html>

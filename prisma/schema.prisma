@@ -112,6 +112,15 @@ model UserPreferences {
   homeSections               Json?
   // Initial status in the "add to watchlist" dialog
   defaultAddStatus           String  @default("Watching")
+  // "english" | "native" — applied where a native title is known (home universes, media pages)
+  titleLanguage              String  @default("english")
+  // Hide episode names/synopsis beyond current progress (episode guide, calendar, countdown)
+  hideSpoilers               Boolean @default(false)
+  // Public profile /u/<id>: reachable at all, and whether scores are shown
+  publicProfileEnabled       Boolean @default(true)
+  publicShowScores           Boolean @default(true)
+  // In-app banner after a background sync
+  showSyncNotification       Boolean @default(true)
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -207,6 +216,14 @@ model CachedMdlData {
   screenwriters  Json?
   synopsis       String?
   cachedAt       DateTime @default(now())
+}
+
+// Native titles scraped from MDL detail pages (the top lists don't carry them).
+// Filled progressively in the background; "" = checked, no native title found.
+model MdlNativeTitle {
+  slug        String   @id
+  nativeTitle String
+  createdAt   DateTime @default(now())
 }
 
 model CachedKuryanaPerson {

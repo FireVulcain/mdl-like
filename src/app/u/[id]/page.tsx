@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPublicUser, getPublicActivity, getPublicStats } from "@/actions/public-profile";
+import { getProfileVisibility } from "@/actions/preferences";
 import { getPublicWatchlist } from "@/actions/media";
 import { getPublicPodiums } from "@/actions/podium";
 import { WatchlistTable } from "@/components/watchlist-table";
@@ -22,13 +23,14 @@ function formatWatchTime(minutes: number): string {
 export default async function PublicProfilePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
-    const [user, watchlist, activity, stats, podiums, session] = await Promise.all([
+    const [user, watchlist, activity, stats, podiums, session, visibility] = await Promise.all([
         getPublicUser(id),
         getPublicWatchlist(id),
         getPublicActivity(id, 20),
         getPublicStats(id),
         getPublicPodiums(id),
         auth(),
+        getProfileVisibility(id),
     ]);
 
     if (!user) notFound();
@@ -37,6 +39,14 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         ? (process.env.DEV_USER_ID ?? "mock-user-1")
         : (session?.user?.id ?? null);
     const isOwner = currentUserId === id;
+
+    // The owner can always preview their profile, even when it's disabled
+    if (!visibility.publicProfileEnabled && !isOwner) notFound();
+
+    // Hide personal scores from visitors when the owner opted out
+    const hideScores = !visibility.publicShowScores && !isOwner;
+    const visibleWatchlist = hideScores ? watchlist.map((i) => ({ ...i, score: null })) : watchlist;
+    const showAvgScore = stats.avgScore != null && !hideScores;
 
     const displayName = user.name ?? "Anonymous";
     const totalItems = stats.totalShows + stats.totalMovies;
@@ -73,7 +83,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 {/* Stats row */}
                 {totalItems > 0 && (
                     <div className="flex flex-wrap gap-3">
-                        {stats.avgScore != null && (
+                        {showAvgScore && stats.avgScore != null && (
                             <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/8">
                                 <Star className="h-4 w-4 text-amber-400 fill-amber-400 shrink-0" />
                                 <div>
@@ -127,10 +137,10 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 {/* Watchlist */}
                 <div>
                     <h2 className="text-lg font-semibold text-white mb-3">Watchlist</h2>
-                    {watchlist.length === 0 ? (
+                    {visibleWatchlist.length === 0 ? (
                         <p className="text-gray-500 text-sm">This watchlist is empty.</p>
                     ) : (
-                        <WatchlistTable items={watchlist} readOnly />
+                        <WatchlistTable items={visibleWatchlist} readOnly />
                     )}
                 </div>
             </div>

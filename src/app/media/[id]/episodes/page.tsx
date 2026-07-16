@@ -8,6 +8,9 @@ import type { MdlEpisodeItem } from "@/components/media/episode-guide";
 import { EpisodeRatingGrid, type GridRatings } from "@/components/media/episode-rating-grid";
 import { mediaService } from "@/services/media.service";
 import { tmdb } from "@/lib/tmdb";
+import { getUserMedia } from "@/actions/user-media";
+import { getDisplayPreferences } from "@/actions/preferences";
+import { getCurrentUserId } from "@/lib/session";
 
 const SYNOPSIS_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const EMPTY_TTL_MS = 24 * 60 * 60 * 1000;
@@ -210,7 +213,7 @@ export default async function EpisodesPage({
 
     // Cards: prefer MDL (has images + links), fall back to TMDB
     type CardEpisode = { number: number; title: string; image: string | null; airDate: string | null; rating: number | null; isLinked: boolean };
-    const cards: CardEpisode[] = hasMdlForSelected
+    let cards: CardEpisode[] = hasMdlForSelected
         ? mdlEpisodes.map((ep) => ({ number: ep.number, title: ep.title, image: ep.image, airDate: ep.airDate, rating: ep.rating, isLinked: true }))
         : selectedTmdb.map((ep) => ({
               number: ep.episode_number,
@@ -220,6 +223,20 @@ export default async function EpisodesPage({
               rating: ep.vote_average > 0 ? ep.vote_average : null,
               isLinked: false,
           }));
+
+    // Spoiler-free mode: mask titles/stills beyond the user's progress for tracked shows
+    const displayPrefs = await getDisplayPreferences();
+    if (displayPrefs.hideSpoilers) {
+        const userId = await getCurrentUserId().catch(() => null);
+        const userMedia = userId
+            ? await getUserMedia(userId, externalId, isTmdb ? "TMDB" : "MDL", isTmdb ? selectedSeason : 1)
+            : null;
+        if (userMedia) {
+            cards = cards.map((ep) =>
+                ep.number > userMedia.progress ? { ...ep, title: `Episode ${ep.number}`, image: null } : ep,
+            );
+        }
+    }
 
     // Chart: prefer MDL ratings, fall back to TMDB
     const isMultiSeason = allSeasons.length > 1;

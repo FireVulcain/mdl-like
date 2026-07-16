@@ -37,6 +37,9 @@ interface EpisodeGuideProps {
     mdlEpisodes?: MdlEpisodeItem[] | null;
     mediaId?: string;
     watchedProgress?: number;
+    // Spoiler-free mode: mask name/synopsis/still of episodes beyond the
+    // user's progress (only applies when the show is tracked)
+    hideSpoilers?: boolean;
 }
 
 function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | null; isWatched?: boolean }) {
@@ -243,9 +246,21 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
     );
 }
 
-export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, watchedProgress }: EpisodeGuideProps) {
+export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, watchedProgress, hideSpoilers }: EpisodeGuideProps) {
     const [showAll, setShowAll] = useState(false);
     const [source, setSource] = useState<"tmdb" | "mdl">("mdl");
+
+    // Mask unwatched episodes' details before rendering (data-level, so both
+    // row variants stay untouched)
+    const masking = hideSpoilers && watchedProgress !== undefined;
+    if (masking) {
+        episodes = episodes.map((ep) =>
+            ep.number > watchedProgress ? { ...ep, name: `Episode ${ep.number}`, overview: "", still: null } : ep,
+        );
+        mdlEpisodes = mdlEpisodes?.map((ep) =>
+            ep.number > watchedProgress ? { ...ep, title: `Episode ${ep.number}`, synopsis: null, image: null } : ep,
+        );
+    }
 
     const activeEpisodes = source === "mdl" && mdlEpisodes ? mdlEpisodes : null;
     const count = activeEpisodes ? activeEpisodes.length : episodes.length;

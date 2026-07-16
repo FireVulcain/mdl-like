@@ -120,6 +120,112 @@ export async function saveViewPreferences(prefs: Partial<ViewPreferences>): Prom
     }
 }
 
+export type DisplayPreferences = {
+    titleLanguage: "english" | "native";
+    hideSpoilers: boolean;
+};
+
+const DISPLAY_DEFAULTS: DisplayPreferences = { titleLanguage: "english", hideSpoilers: false };
+
+export async function getDisplayPreferences(): Promise<DisplayPreferences> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        if (!prefs) return DISPLAY_DEFAULTS;
+        return {
+            titleLanguage: prefs.titleLanguage === "native" ? "native" : "english",
+            hideSpoilers: prefs.hideSpoilers,
+        };
+    } catch {
+        return DISPLAY_DEFAULTS;
+    }
+}
+
+export async function saveDisplayPreferences(prefs: Partial<DisplayPreferences>): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, ...DISPLAY_DEFAULTS, ...prefs },
+            update: prefs,
+        });
+        revalidatePath("/");
+        revalidatePath("/calendar");
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
+export type ProfilePreferences = {
+    publicProfileEnabled: boolean;
+    publicShowScores: boolean;
+};
+
+const PROFILE_DEFAULTS: ProfilePreferences = { publicProfileEnabled: true, publicShowScores: true };
+
+export async function getProfilePreferences(): Promise<ProfilePreferences> {
+    try {
+        const userId = await getCurrentUserId();
+        return getProfileVisibility(userId);
+    } catch {
+        return PROFILE_DEFAULTS;
+    }
+}
+
+// Visibility of SOMEONE ELSE's profile — keyed by the profile owner's id, no
+// auth required (used by the public /u/<id> page).
+export async function getProfileVisibility(userId: string): Promise<ProfilePreferences> {
+    try {
+        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        if (!prefs) return PROFILE_DEFAULTS;
+        return { publicProfileEnabled: prefs.publicProfileEnabled, publicShowScores: prefs.publicShowScores };
+    } catch {
+        return PROFILE_DEFAULTS;
+    }
+}
+
+export async function saveProfilePreferences(prefs: Partial<ProfilePreferences>): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, ...PROFILE_DEFAULTS, ...prefs },
+            update: prefs,
+        });
+        revalidatePath(`/u/${userId}`);
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
+export type NotificationPreferences = {
+    showSyncNotification: boolean;
+};
+
+export async function getNotificationPreferences(): Promise<NotificationPreferences> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        return { showSyncNotification: prefs?.showSyncNotification ?? true };
+    } catch {
+        return { showSyncNotification: true };
+    }
+}
+
+export async function saveNotificationPreferences(prefs: Partial<NotificationPreferences>): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, showSyncNotification: prefs.showSyncNotification ?? true },
+            update: prefs,
+        });
+        revalidatePath("/", "layout");
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
 export type CalendarPreferences = {
     calendarAsianOnly: boolean;
     calendarIncludePlanToWatch: boolean;

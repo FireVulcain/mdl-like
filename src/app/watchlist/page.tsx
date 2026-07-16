@@ -3,13 +3,26 @@ import { WatchlistHeaderStats } from "@/components/watchlist-header-stats";
 import { WatchlistSubtitle } from "@/components/watchlist-subtitle";
 import { getWatchlist } from "@/actions/media";
 import { getDashboardStats } from "@/actions/stats";
-import { getViewPreferences } from "@/actions/preferences";
+import { getViewPreferences, getDisplayPreferences } from "@/actions/preferences";
+import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 
 export const dynamic = "force-dynamic";
 
 export default async function WatchlistPage() {
-    const [watchlist, viewPrefs] = await Promise.all([getWatchlist(), getViewPreferences()]);
+    const [watchlist, viewPrefs, displayPrefs] = await Promise.all([getWatchlist(), getViewPreferences(), getDisplayPreferences()]);
     const stats = await getDashboardStats(watchlist);
+
+    // Display-only native titles (stored titles stay english — they feed
+    // TVmaze/MDL matching); items without an MDL link keep their title.
+    let displayWatchlist = watchlist;
+    if (displayPrefs.titleLanguage === "native") {
+        const slugs = watchlist.map((i) => i.mdlSlug).filter((s): s is string => !!s);
+        const titles = await getNativeTitlesAndBackfill(slugs);
+        displayWatchlist = watchlist.map((i) => {
+            const native = i.mdlSlug ? titles.get(i.mdlSlug) : undefined;
+            return native ? { ...i, title: native } : i;
+        });
+    }
 
     return (
         <div className="relative min-h-screen overflow-hidden">
@@ -38,7 +51,7 @@ export default async function WatchlistPage() {
                     </div>
                     <WatchlistHeaderStats stats={stats} />
                 </div>
-                <WatchlistData watchlist={watchlist} viewPrefs={viewPrefs} />
+                <WatchlistData watchlist={displayWatchlist} viewPrefs={viewPrefs} />
             </div>
         </div>
     );

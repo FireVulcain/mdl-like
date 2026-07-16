@@ -4,7 +4,7 @@ import { mediaService } from "@/services/media.service";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getUserMedia, getWatchlistExternalIds } from "@/actions/user-media";
-import { getViewPreferences } from "@/actions/preferences";
+import { getViewPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { AddToListButton } from "@/components/add-to-list-button";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
@@ -51,11 +51,18 @@ function toCountdownEpisode(mdlNext: MdlNextEpisode | null, season: number) {
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
     // Parallel fetch: params and searchParams are independent
     const [{ id }, { season }] = await Promise.all([params, searchParams]);
-    const [media, viewPrefs] = await Promise.all([mediaService.getDetails(id), getViewPreferences()]);
+    const [media, viewPrefs, displayPrefs] = await Promise.all([mediaService.getDetails(id), getViewPreferences(), getDisplayPreferences()]);
 
     if (!media) {
         notFound();
     }
+
+    // Spoiler-free mode: never surface upcoming episode names
+    const spoilerSafe = <T extends { name?: string } | null | undefined>(ep: T): T =>
+        ep && displayPrefs.hideSpoilers ? { ...ep, name: "" } : ep;
+
+    // Hero title only — watchlist entries and TVmaze/MDL matching keep the english title
+    const displayTitle = displayPrefs.titleLanguage === "native" && media.nativeTitle ? media.nativeTitle : media.title;
 
     // MDL-native page: data already comes from Kuryana, skip all TMDB-specific fetches
     if (media.source === "MDL") {
@@ -131,7 +138,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
                             <div className="space-y-1">
-                                <h1 className="text-base font-bold leading-snug">{media.title}</h1>
+                                <h1 className="text-base font-bold leading-snug">{displayTitle}</h1>
                                 <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
                                     <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{media.originCountry}</Badge>
                                     <span>{media.year}</span>
@@ -280,7 +287,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                         {media.type === "TV" && (mdlNextEpisode || media.nextEpisode) && (
                             <NextEpisodeCountdown
-                                nextEpisode={toCountdownEpisode(mdlNextEpisode, 1) ?? media.nextEpisode}
+                                nextEpisode={toCountdownEpisode(mdlNextEpisode, 1) ?? spoilerSafe(media.nextEpisode)}
                                 totalEpisodes={media.totalEp}
                             />
                         )}
@@ -289,7 +296,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     <div className="space-y-8 min-w-0 md:pt-20">
                         <div className="hidden md:block">
-                            <h1 className="text-4xl font-bold mb-2">{media.title}</h1>
+                            <h1 className="text-4xl font-bold mb-2">{displayTitle}</h1>
                             <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
                                 <span>{media.year}</span>
                                 <span>•</span>
@@ -385,6 +392,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         externalId={media.externalId}
                                         mdlSlug={media.externalId}
                                         mediaId={id}
+                                        watchedProgress={userMedia?.progress}
+                                        hideSpoilers={displayPrefs.hideSpoilers}
                                     />
                                 </Suspense>
                             </div>
@@ -543,7 +552,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     <div className="flex flex-col gap-2 min-w-0 py-0.5">
                         <div className="space-y-1">
                             <h1 className="text-base font-bold leading-snug flex items-baseline gap-1.5 flex-wrap">
-                                <span>{media.title}</span>
+                                <span>{displayTitle}</span>
                                 {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
                                     <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
                                 )}
@@ -753,7 +762,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* Next Episode Countdown (for ongoing TV shows) */}
                     {media.type === "TV" && (
                         <NextEpisodeCountdown
-                            nextEpisode={toCountdownEpisode(mdlNextEpisode, selectedSeason) ?? media.nextEpisode}
+                            nextEpisode={toCountdownEpisode(mdlNextEpisode, selectedSeason) ?? spoilerSafe(media.nextEpisode)}
                             currentSeason={currentSeasonData}
                             totalEpisodes={episodeCount ?? undefined}
                             status={media.status}
@@ -767,7 +776,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 <div className="space-y-8 min-w-0 md:pt-20">
                     <div className="hidden md:block">
                         <h1 className="text-4xl font-bold mb-2 flex items-baseline gap-2">
-                            <span>{media.title}</span>
+                            <span>{displayTitle}</span>
                             {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
                                 <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
                             )}
@@ -915,7 +924,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {media.type === "TV" && episodes.length > 0 && (
                         <div id="section-episodes">
                             {isMdlRelevant ? (
-                                <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} />}>
+                                <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} hideSpoilers={displayPrefs.hideSpoilers} />}>
                                     <MdlEpisodeGuideSection
                                         tmdbEpisodes={episodes}
                                         season={selectedSeason}
@@ -923,10 +932,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         externalId={media.externalId}
                                         mediaId={id}
                                         watchedProgress={userMedia?.progress}
+                                        hideSpoilers={displayPrefs.hideSpoilers}
                                     />
                                 </Suspense>
                             ) : (
-                                <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} />
+                                <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} hideSpoilers={displayPrefs.hideSpoilers} />
                             )}
                         </div>
                     )}

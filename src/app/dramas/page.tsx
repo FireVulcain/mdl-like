@@ -7,7 +7,8 @@ import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { prisma } from "@/lib/prisma";
 import { getWatchlistExternalIds } from "@/actions/user-media";
-import { getExcludedTagsPreferences } from "@/actions/preferences";
+import { getExcludedTagsPreferences, getDisplayPreferences } from "@/actions/preferences";
+import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 
 type SearchParams = Promise<{
@@ -199,7 +200,18 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         tag,
         tag_exclude: tagExclude,
     });
-    const items: UnifiedMedia[] = result.items;
+    let items: UnifiedMedia[] = result.items;
+
+    // Display-only native titles (progressively cached from MDL detail pages)
+    const displayPrefs = await getDisplayPreferences();
+    if (displayPrefs.titleLanguage === "native" && items.length > 0) {
+        const slugOf = (m: UnifiedMedia) => m.id.replace(/^mdl-/, "");
+        const titles = await getNativeTitlesAndBackfill(items.map(slugOf));
+        items = items.map((m) => {
+            const native = m.nativeTitle || titles.get(slugOf(m));
+            return native ? { ...m, title: native } : m;
+        });
+    }
     const hasNextPage = result.hasNextPage;
 
     // Look up which MDL slugs are already linked to a TMDB entry + fetch watchlist in parallel
