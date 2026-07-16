@@ -1,6 +1,7 @@
-import { getExcludedTagsPreferences, getCalendarPreferences, getViewPreferences } from "@/actions/preferences";
+import { getExcludedTagsPreferences, getCalendarPreferences, getViewPreferences, getHomeSections } from "@/actions/preferences";
 import { getActorRadar } from "@/actions/actor-radar";
 import { HomeExcludedTagsSetting } from "@/components/settings/home-excluded-tags";
+import { HomeSectionsSetting } from "@/components/settings/home-sections-setting";
 import { CalendarSettings } from "@/components/settings/calendar-settings";
 import { WatchlistViewSettings } from "@/components/settings/view-settings";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
@@ -9,10 +10,11 @@ import { Bookmark, CalendarDays, House, UsersRound } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-    const [excludedPrefs, calendarPrefs, viewPrefs] = await Promise.all([
+    const [excludedPrefs, calendarPrefs, viewPrefs, homeSections] = await Promise.all([
         getExcludedTagsPreferences(),
         getCalendarPreferences(),
         getViewPreferences(),
+        getHomeSections(),
     ]);
 
     let radar: Awaited<ReturnType<typeof getActorRadar>> | null = null;
@@ -49,14 +51,27 @@ export default async function SettingsPage() {
                             </div>
                         </div>
 
-                        <div className="space-y-2">
-                            <h3 className="text-sm font-medium text-gray-400">Excluded tags</h3>
-                            <p className="text-xs text-gray-600">
-                                Titles carrying any of these MDL tags are hidden from the Top Rated, Airing Now and Coming
-                                Soon rows, and from their &ldquo;See more&rdquo; pages.
-                            </p>
+                        <div className="divide-y divide-white/8">
+                            <div className="space-y-2.5 pb-5">
+                                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Sections</h3>
+                                <p className="text-xs text-gray-600">
+                                    Choose which sections appear on the home page and in what order. Extra drama universes
+                                    (Japan, Taiwan, Thailand…) are available here too.
+                                </p>
+                                <HomeSectionsSetting initialSections={homeSections} />
+                            </div>
+
+                            <div className="space-y-4 pt-5">
+                                <div className="space-y-2">
+                                    <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Excluded tags</h3>
+                                    <p className="text-xs text-gray-600">
+                                        Titles carrying any of these MDL tags are hidden from the Top Rated, Airing Now and
+                                        Coming Soon rows, and from their &ldquo;See more&rdquo; pages.
+                                    </p>
+                                </div>
+                                <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
+                            </div>
                         </div>
-                        <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
                     </section>
 
                     <section className="rounded-2xl bg-white/3 border border-white/8 p-6 space-y-5">

@@ -3,13 +3,19 @@ import React from "react";
 // Unified editorial header for home-page sections: plain-case eyebrow label,
 // big title, a short accent rule. Usable from server and client.
 
-export type HomeAccent = "violet" | "sky" | "rose" | "orange";
+export type HomeAccent = "violet" | "sky" | "rose" | "orange" | "fuchsia" | "emerald" | "teal" | "indigo" | "lime" | "cyan";
 
 const ACCENTS: Record<HomeAccent, { text: string; dot: string }> = {
     violet: { text: "text-violet-400", dot: "bg-violet-400" },
     sky: { text: "text-sky-400", dot: "bg-sky-400" },
     rose: { text: "text-rose-400", dot: "bg-rose-400" },
     orange: { text: "text-orange-400", dot: "bg-orange-400" },
+    fuchsia: { text: "text-fuchsia-400", dot: "bg-fuchsia-400" },
+    emerald: { text: "text-emerald-400", dot: "bg-emerald-400" },
+    teal: { text: "text-teal-400", dot: "bg-teal-400" },
+    indigo: { text: "text-indigo-400", dot: "bg-indigo-400" },
+    lime: { text: "text-lime-400", dot: "bg-lime-400" },
+    cyan: { text: "text-cyan-400", dot: "bg-cyan-400" },
 };
 
 export function HomeSectionHeader({

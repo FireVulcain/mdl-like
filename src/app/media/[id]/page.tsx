@@ -4,6 +4,7 @@ import { mediaService } from "@/services/media.service";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getUserMedia, getWatchlistExternalIds } from "@/actions/user-media";
+import { getViewPreferences } from "@/actions/preferences";
 import { AddToListButton } from "@/components/add-to-list-button";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
@@ -50,7 +51,7 @@ function toCountdownEpisode(mdlNext: MdlNextEpisode | null, season: number) {
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
     // Parallel fetch: params and searchParams are independent
     const [{ id }, { season }] = await Promise.all([params, searchParams]);
-    const media = await mediaService.getDetails(id);
+    const [media, viewPrefs] = await Promise.all([mediaService.getDetails(id), getViewPreferences()]);
 
     if (!media) {
         notFound();
@@ -140,7 +141,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     {media.rating > 0 && <span className="text-sky-400 font-semibold">MDL {media.rating.toFixed(1)}</span>}
                                 </div>
                             </div>
-                            <AddToListButton
+                            <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                                 media={{
                                     id: media.id,
                                     externalId: media.externalId,
@@ -185,7 +186,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </a>
                         </div>
 
-                        <AddToListButton
+                        <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                             media={{
                                 id: media.id,
                                 externalId: media.externalId,
@@ -567,7 +568,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 )}
                             </div>
                         </div>
-                        <AddToListButton
+                        <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                             media={{
                                 id: media.id,
                                 externalId: media.externalId,
@@ -630,7 +631,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         )}
                     </div>
 
-                    <AddToListButton
+                    <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                         media={{
                             id: media.id,
                             externalId: media.externalId,

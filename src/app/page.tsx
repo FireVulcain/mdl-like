@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { ContinueWatchingData } from "@/components/continue-watching-data";
 import { ActorRadarData } from "@/components/actor-radar-data";
-import { KDramaSectionData } from "@/components/kdrama-section-data";
-import { CDramaSectionData } from "@/components/cdrama-section-data";
+import { DramaUniverseSection } from "@/components/drama-universe-section";
 import { TrendingData } from "@/components/trending-data";
+import { getHomeSections } from "@/actions/preferences";
 
 export const dynamic = "force-dynamic";
 
@@ -55,7 +55,35 @@ function KDramaSkeleton() {
     );
 }
 
-export default function Home() {
+// Sections are user-configurable (order + visibility) from /settings
+function renderSection(id: string) {
+    if (id === "actor-radar") {
+        return (
+            <Suspense key={id} fallback={<KDramaSkeleton />}>
+                <ActorRadarData />
+            </Suspense>
+        );
+    }
+    if (id === "trending") {
+        return (
+            <Suspense key={id} fallback={<div className="h-125 animate-pulse bg-white/5 rounded-3xl" />}>
+                <TrendingData />
+            </Suspense>
+        );
+    }
+    if (id.startsWith("drama-")) {
+        return (
+            <Suspense key={id} fallback={<KDramaSkeleton />}>
+                <DramaUniverseSection country={id.slice(6)} />
+            </Suspense>
+        );
+    }
+    return null;
+}
+
+export default async function Home() {
+    const sections = await getHomeSections();
+
     return (
         <div className="relative min-h-screen">
             {/* Background */}
@@ -81,25 +109,7 @@ export default function Home() {
 
             {/* Content */}
             <div className="container py-10 md:py-16 space-y-10 md:space-y-20 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
-                {/* Actor radar — personal picks from favorite actors' filmographies (24h cached) */}
-                <Suspense fallback={<KDramaSkeleton />}>
-                    <ActorRadarData />
-                </Suspense>
-
-                {/* K-Drama section — 3 parallel TMDB calls */}
-                <Suspense fallback={<KDramaSkeleton />}>
-                    <KDramaSectionData />
-                </Suspense>
-
-                {/* C-Drama section — 3 parallel TMDB calls */}
-                <Suspense fallback={<KDramaSkeleton />}>
-                    <CDramaSectionData />
-                </Suspense>
-
-                {/* Trending section — 1 TMDB call */}
-                <Suspense fallback={<div className="h-125 animate-pulse bg-white/5 rounded-3xl" />}>
-                    <TrendingData />
-                </Suspense>
+                {sections.filter((s) => s.enabled).map((s) => renderSection(s.id))}
             </div>
         </div>
     );

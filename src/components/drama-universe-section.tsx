@@ -5,9 +5,15 @@ import { HomeSectionHeader } from "@/components/home-section-header";
 import { DramaRow, mdlSlugFromUrl, nextEpisodeCacheKey, type NextEpisodeMap } from "@/components/drama-row";
 import { getCachedNextEpisodesByMediaId } from "@/lib/next-episode-cache";
 import { prefillNextEpisodes } from "@/lib/next-episode-fetch";
+import { UNIVERSES } from "@/lib/home-preferences";
 import { prisma } from "@/lib/prisma";
 
-export async function CDramaSectionData() {
+// One configurable "universe" (K-Drama, C-Drama, J-Drama…) — same layout for
+// every country, driven by the UNIVERSES config and user's home sections.
+export async function DramaUniverseSection({ country }: { country: string }) {
+    const cfg = UNIVERSES[country];
+    if (!cfg) return null;
+
     const excludedTags = await getHomeExcludedTags();
     const excludeParam = excludedTags.map((t) => t.id).join(",") || undefined;
     // "See more" links carry the same exclusions/sort as the home lists to /dramas
@@ -15,11 +21,14 @@ export async function CDramaSectionData() {
         ? `&tag_exclude=${excludeParam}&tag_exclude_name=${encodeURIComponent(excludedTags.map((t) => t.name).join("|"))}`
         : "";
 
-    const [cdramas, watchlistExternalIds] = await Promise.all([mediaService.getCDramas(excludeParam), getWatchlistExternalIds()]);
+    const [dramas, watchlistExternalIds] = await Promise.all([
+        mediaService.getDramasByCountry(cfg.kuryana, country, excludeParam),
+        getWatchlistExternalIds(),
+    ]);
     const watchlistIds = new Set(watchlistExternalIds);
 
     // Batch-look up which MDL slugs are already linked to a TMDB entry in the cache
-    const allShows = [...cdramas.trending, ...cdramas.airing, ...cdramas.upcoming];
+    const allShows = [...dramas.trending, ...dramas.airing, ...dramas.upcoming];
     const slugs = allShows.map((m) => mdlSlugFromUrl(m.id.replace(/^mdl-/, "")));
 
     const [linkedRows, seasonRows, aliasRows] = await Promise.all([
@@ -45,10 +54,9 @@ export async function CDramaSectionData() {
     // Next-episode dates for airing shows: serve from the DB cache, then
     // backfill misses AFTER the response (TMDB/TVmaze waterfall) so the next
     // page load has them without slowing this one down.
-    const airingLookups = cdramas.airing.map((m) => {
+    const airingLookups = dramas.airing.map((m) => {
         const slug = mdlSlugFromUrl(m.id.replace(/^mdl-/, ""));
-        const linked = linkedBySlug.get(slug);
-        return { cacheKey: nextEpisodeCacheKey(m, linkedBySlug), tmdbId: linked?.tmdbExternalId, title: m.title, mdlSlug: slug, season: linked?.season ?? 1 };
+        return { cacheKey: nextEpisodeCacheKey(m, linkedBySlug), tmdbId: linkedBySlug.get(slug)?.tmdbExternalId, title: m.title };
     });
     const cachedEpisodes = await getCachedNextEpisodesByMediaId(airingLookups.map((l) => l.cacheKey));
     const nextEpisodes: NextEpisodeMap = new Map(
@@ -59,46 +67,40 @@ export async function CDramaSectionData() {
     return (
         <section className="relative space-y-6 md:space-y-10">
             {/* Ambient glow anchored to the page, not a box */}
-            <div className="absolute -top-24 left-0 w-72 md:w-120 h-72 md:h-120 bg-rose-500/6 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none" />
+            <div className={`absolute -top-24 w-72 md:w-120 h-72 md:h-120 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none ${cfg.glow}`} />
 
-            <HomeSectionHeader
-                eyebrow="China"
-                title="C-Drama Universe"
-                subtitle="Fresh from China · Trending, airing, and upcoming series"
-                accent="rose"
-                live
-            />
+            <HomeSectionHeader eyebrow={cfg.eyebrow} title={cfg.title} subtitle={cfg.subtitle} accent={cfg.accent} live />
 
             <div className="space-y-3 md:space-y-5">
                 <DramaRow
-                    items={cdramas.trending}
+                    items={dramas.trending}
                     linkedBySlug={linkedBySlug}
                     watchlistIds={watchlistIds}
-                    accentClass="bg-rose-400"
-                    accentText="text-rose-400"
+                    accentClass={cfg.accentBg}
+                    accentText={cfg.accentText}
                     label="Top Rated"
-                    seeMoreHref={`/dramas?category=popular&country=CN${homeFilterParams}`}
+                    seeMoreHref={`/dramas?category=popular&country=${country}${homeFilterParams}`}
                     variant="spotlight"
                     leadKicker="#1 Top Rated"
                 />
                 <DramaRow
-                    items={cdramas.airing}
+                    items={dramas.airing}
                     linkedBySlug={linkedBySlug}
                     watchlistIds={watchlistIds}
-                    accentClass="bg-violet-400"
+                    accentClass={cfg.airingBg}
                     label="Airing Now"
-                    seeMoreHref={`/dramas?category=airing&country=CN&sort=popular${homeFilterParams}`}
+                    seeMoreHref={`/dramas?category=airing&country=${country}&sort=popular${homeFilterParams}`}
                     variant="backdrop"
                     nextEpisodes={nextEpisodes}
                 />
                 <DramaRow
-                    items={cdramas.upcoming}
+                    items={dramas.upcoming}
                     linkedBySlug={linkedBySlug}
                     watchlistIds={watchlistIds}
                     accentClass="bg-amber-400"
                     accentText="text-amber-400"
                     label="Coming Soon"
-                    seeMoreHref={`/dramas?category=upcoming&country=CN&sort=popular${homeFilterParams}`}
+                    seeMoreHref={`/dramas?category=upcoming&country=${country}&sort=popular${homeFilterParams}`}
                     variant="spotlight"
                     leadKicker="Most Anticipated"
                 />

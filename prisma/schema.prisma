@@ -108,6 +108,10 @@ model UserPreferences {
   // Watchlist view defaults (URL params still win for a session)
   watchlistThumbnailStyle    String  @default("poster") // "poster" | "backdrop"
   watchlistDefaultSort       String  @default("default")
+  // Ordered home sections: [{ id, enabled }]. null = default layout.
+  homeSections               Json?
+  // Initial status in the "add to watchlist" dialog
+  defaultAddStatus           String  @default("Watching")
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

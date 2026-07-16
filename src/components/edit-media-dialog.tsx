@@ -38,6 +38,8 @@ interface EditMediaDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     onOptimisticUpdate?: (id: string, updates: Partial<WatchlistItem>, title?: string) => void;
+    // Initial status when ADDING (user preference); editing always starts from the item's status
+    defaultStatus?: string;
 }
 
 const statusOptions = [
@@ -79,11 +81,11 @@ const statusOptions = [
     },
 ];
 
-export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChange, onOptimisticUpdate }: EditMediaDialogProps) {
+export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChange, onOptimisticUpdate, defaultStatus }: EditMediaDialogProps) {
     const isEditing = !!item;
 
     const [formData, setFormData] = useState({
-        status: item?.status || "Watching",
+        status: item?.status || defaultStatus || "Watching",
         progress: item?.progress || 0,
         score: item?.score || 0,
         notes: item?.notes || "",

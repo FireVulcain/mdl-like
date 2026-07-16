@@ -590,17 +590,22 @@ export const mediaService = {
         }
     },
 
-    async getKDramas(excludeTags?: string): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
+    // Home "universe" lists for any Kuryana-supported country, from MDL's own
+    // top lists — much more accurate than TMDB country discovery.
+    // completed = top-rated finished dramas (Top Rated)
+    // ongoing   = currently airing
+    // upcoming  = not yet started
+    // excludeTags: comma-separated MDL tag ids from user preferences
+    async getDramasByCountry(
+        country: KuryanaTopCountry,
+        isoCountry: string,
+        excludeTags?: string,
+    ): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
         try {
-            // Use Kuryana's own Korean top lists — much more accurate than TMDB KR discovery
-            // completed = top-rated finished dramas (Top Rated)
-            // ongoing   = currently airing
-            // upcoming  = not yet started
-            // excludeTags: comma-separated MDL tag ids from user preferences
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop("korean", "completed", { tag_exclude: excludeTags }),
-                kuryanaGetTop("korean", "ongoing", { sort: "popular", tag_exclude: excludeTags }),
-                kuryanaGetTop("korean", "upcoming", { sort: "popular", tag_exclude: excludeTags }),
+                kuryanaGetTop(country, "completed", { tag_exclude: excludeTags }),
+                kuryanaGetTop(country, "ongoing", { sort: "popular", tag_exclude: excludeTags }),
+                kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }),
             ]);
 
             const transform = (item: KuryanaChineseShow): UnifiedMedia => {
@@ -615,7 +620,7 @@ export const mediaService = {
                     poster: item.img || null,
                     backdrop: null,
                     year: item.year,
-                    originCountry: "KR",
+                    originCountry: isoCountry,
                     synopsis: item.synopsis,
                     rating: item.rating,
                     popularity: item.rank,
@@ -629,7 +634,7 @@ export const mediaService = {
                 upcoming: (upcomingRes?.data.shows ?? []).map(transform),
             };
         } catch (error) {
-            console.error("Error fetching K-Dramas", error);
+            console.error(`Error fetching ${country} dramas`, error);
             return { trending: [], airing: [], upcoming: [] };
         }
     },
@@ -719,48 +724,4 @@ export const mediaService = {
         }
     },
 
-    async getCDramas(excludeTags?: string): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
-        try {
-            // Use Kuryana's own Chinese top lists — much more accurate than TMDB CN discovery
-            // completed = top-rated finished dramas (Top Rated)
-            // ongoing   = currently airing
-            // upcoming  = not yet started
-            // excludeTags: comma-separated MDL tag ids from user preferences
-            const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop("chinese", "completed", { tag_exclude: excludeTags }),
-                kuryanaGetTop("chinese", "ongoing", { sort: "popular", tag_exclude: excludeTags }),
-                kuryanaGetTop("chinese", "upcoming", { sort: "popular", tag_exclude: excludeTags }),
-            ]);
-
-            const transform = (item: KuryanaChineseShow): UnifiedMedia => {
-                // url is "/754361-love-story-in-the-1970s" → slug is the part after "/"
-                const slug = item.url.replace(/^\//, "");
-                return {
-                    id: `mdl-${slug}`,
-                    externalId: item.id,
-                    source: "MDL",
-                    type: "TV",
-                    title: item.title,
-                    nativeTitle: item.original_title || undefined,
-                    poster: item.img || null,
-                    backdrop: null,
-                    year: item.year,
-                    originCountry: "CN",
-                    synopsis: item.synopsis,
-                    rating: item.rating,
-                    popularity: item.rank,
-                    firstAirDate: null,
-                };
-            };
-
-            return {
-                trending: (completedRes?.data.shows ?? []).map(transform),
-                airing: (ongoingRes?.data.shows ?? []).map(transform),
-                upcoming: (upcomingRes?.data.shows ?? []).map(transform),
-            };
-        } catch (error) {
-            console.error("Error fetching C-Dramas", error);
-            return { trending: [], airing: [], upcoming: [] };
-        }
-    },
 };

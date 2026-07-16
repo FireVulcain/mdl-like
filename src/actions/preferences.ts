@@ -4,7 +4,37 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { revalidatePath } from "next/cache";
 import { Prisma } from "@prisma/client";
-import { DEFAULT_EXCLUDED_TAGS, type ExcludedTag } from "@/lib/home-preferences";
+import {
+    DEFAULT_EXCLUDED_TAGS,
+    DEFAULT_HOME_SECTIONS,
+    normalizeHomeSections,
+    type ExcludedTag,
+    type HomeSectionConfig,
+} from "@/lib/home-preferences";
+
+export async function getHomeSections(): Promise<HomeSectionConfig[]> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        if (!prefs?.homeSections) return DEFAULT_HOME_SECTIONS;
+        return normalizeHomeSections(prefs.homeSections as HomeSectionConfig[]);
+    } catch {
+        return DEFAULT_HOME_SECTIONS;
+    }
+}
+
+export async function saveHomeSections(sections: HomeSectionConfig[]): Promise<void> {
+    const userId = await getCurrentUserId();
+    const clean = normalizeHomeSections(
+        sections.filter((s) => typeof s.id === "string").map((s) => ({ id: s.id, enabled: !!s.enabled })),
+    );
+    await prisma.userPreferences.upsert({
+        where: { userId },
+        create: { userId, homeSections: clean as unknown as Prisma.InputJsonValue },
+        update: { homeSections: clean as unknown as Prisma.InputJsonValue },
+    });
+    revalidatePath("/");
+}
 
 export type ExcludedTagsPreferences = {
     tags: ExcludedTag[];
@@ -52,11 +82,13 @@ export async function saveHomeExcludedTags(tags: ExcludedTag[], applyToBrowse?: 
 export type ViewPreferences = {
     watchlistThumbnailStyle: "poster" | "backdrop";
     watchlistDefaultSort: string;
+    defaultAddStatus: string;
 };
 
 const VIEW_DEFAULTS: ViewPreferences = {
     watchlistThumbnailStyle: "poster",
     watchlistDefaultSort: "default",
+    defaultAddStatus: "Watching",
 };
 
 export async function getViewPreferences(): Promise<ViewPreferences> {
@@ -67,6 +99,7 @@ export async function getViewPreferences(): Promise<ViewPreferences> {
         return {
             watchlistThumbnailStyle: prefs.watchlistThumbnailStyle === "backdrop" ? "backdrop" : "poster",
             watchlistDefaultSort: prefs.watchlistDefaultSort,
+            defaultAddStatus: prefs.defaultAddStatus,
         };
     } catch {
         return VIEW_DEFAULTS;

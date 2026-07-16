@@ -23,9 +23,12 @@ const WATCHLIST_SORT_OPTIONS: { value: string; label: string }[] = [
 
 // Saves on change, like the calendar settings. The watchlist page can still
 // override per session via its own sort picker / URL params.
+const ADD_STATUS_OPTIONS = ["Watching", "Completed", "Plan to Watch", "Dropped"];
+
 export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPreferences }) {
     const [thumbnailStyle, setThumbnailStyle] = useState(initialPrefs.watchlistThumbnailStyle);
     const [defaultSort, setDefaultSort] = useState(initialPrefs.watchlistDefaultSort);
+    const [addStatus, setAddStatus] = useState(initialPrefs.defaultAddStatus);
 
     const save = async (prefs: Partial<ViewPreferences>) => {
         await saveViewPreferences(prefs);
@@ -33,9 +36,9 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
     };
 
     return (
-        <div className="space-y-5">
-            <div className="space-y-2">
-                <h3 className="text-sm font-medium text-gray-400">Thumbnails</h3>
+        <div className="divide-y divide-white/8">
+            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
+                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Thumbnails</h3>
                 <div className="flex gap-2">
                     <button
                         onClick={() => { setThumbnailStyle("poster"); save({ watchlistThumbnailStyle: "poster" }); }}
@@ -62,8 +65,8 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
                 </div>
             </div>
 
-            <div className="space-y-2">
-                <h3 className="text-sm font-medium text-gray-400">Default sort</h3>
+            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
+                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Default sort</h3>
                 <select
                     value={defaultSort}
                     onChange={(e) => { setDefaultSort(e.target.value); save({ watchlistDefaultSort: e.target.value }); }}
@@ -76,6 +79,26 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
                     ))}
                 </select>
                 <p className="text-xs text-gray-600">Applied when opening the watchlist — the sort picker there still works per visit.</p>
+            </div>
+
+            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
+                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Default status when adding</h3>
+                <div className="flex flex-wrap gap-2">
+                    {ADD_STATUS_OPTIONS.map((status) => (
+                        <button
+                            key={status}
+                            onClick={() => { setAddStatus(status); save({ defaultAddStatus: status }); }}
+                            className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                                addStatus === status
+                                    ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30"
+                                    : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                            }`}
+                        >
+                            {status}
+                        </button>
+                    ))}
+                </div>
+                <p className="text-xs text-gray-600">Preselected status in the &ldquo;Add to Watchlist&rdquo; dialog.</p>
             </div>
         </div>
     );

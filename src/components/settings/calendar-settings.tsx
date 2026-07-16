@@ -16,9 +16,9 @@ export function CalendarSettings({ initialPrefs }: { initialPrefs: CalendarPrefe
     };
 
     return (
-        <div className="space-y-5">
-            <div className="space-y-2">
-                <h3 className="text-sm font-medium text-gray-400">Region</h3>
+        <div className="divide-y divide-white/8">
+            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
+                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Region</h3>
                 <div className="flex gap-2">
                     <button
                         onClick={() => { setAsianOnly(false); save({ calendarAsianOnly: false }); }}
@@ -39,8 +39,8 @@ export function CalendarSettings({ initialPrefs }: { initialPrefs: CalendarPrefe
                 </div>
             </div>
 
-            <div className="space-y-2">
-                <h3 className="text-sm font-medium text-gray-400">Statuses</h3>
+            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
+                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Statuses</h3>
                 <button
                     onClick={() => {
                         const next = !includePlanToWatch;

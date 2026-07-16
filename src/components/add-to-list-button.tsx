@@ -12,6 +12,8 @@ interface AddToListButtonProps {
     season: number;
     totalEp: number | null;
     className?: string;
+    // Initial status for the add dialog (user preference)
+    defaultStatus?: string;
 }
 
 const STATUS_CONFIG: Record<string, { label: string; icon: React.ElementType; text: string; bg: string; border: string; hover: string }> = {
@@ -22,7 +24,7 @@ const STATUS_CONFIG: Record<string, { label: string; icon: React.ElementType; te
     "On Hold":      { label: "On Hold",       icon: PauseCircle, text: "text-amber-400",   bg: "bg-amber-500/15",   border: "border-amber-500/30",   hover: "hover:bg-amber-500/25" },
 };
 
-export function AddToListButton({ media, userMedia, season, totalEp, className }: AddToListButtonProps) {
+export function AddToListButton({ media, userMedia, season, totalEp, className, defaultStatus }: AddToListButtonProps) {
     const [open, setOpen] = useState(false);
 
     const item: WatchlistItem | null = userMedia
@@ -74,7 +76,7 @@ export function AddToListButton({ media, userMedia, season, totalEp, className }
                 </Button>
             )}
 
-            {open && <EditMediaDialog open={open} onOpenChange={setOpen} item={item} media={media} season={season} totalEp={totalEp} />}
+            {open && <EditMediaDialog open={open} onOpenChange={setOpen} item={item} media={media} season={season} totalEp={totalEp} defaultStatus={defaultStatus} />}
         </>
     );
 }
