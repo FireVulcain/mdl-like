@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Star, Calendar } from "lucide-react";
+import { ArrowLeft, Star, Calendar, Check } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
 import type { MdlEpisodeItem } from "@/components/media/episode-guide";
@@ -52,7 +52,6 @@ async function fetchMdlEpisodes(mdlSlug: string): Promise<MdlEpisodeItem[]> {
         return m ? parseInt(m[1]) : i + 1;
     });
 
-    const now = Date.now();
     const cachedRows = await prisma.cachedMdlEpisode.findMany({
         where: { mdlSlug, episodeNumber: { in: episodeNumbers } },
     });
@@ -195,47 +194,62 @@ export default async function EpisodesPage({
         }
     }
 
-    // ── Max episodes for grid row count ─────────────────────────────────────
-    const maxEpisodes = Math.max(
-        1,
-        ...effectiveSeasons.map((s) =>
-            Math.max(
-                s.episodeCount ?? 0,
-                Object.keys(tmdbGrid[s.seasonNumber] ?? {}).length,
-                Object.keys(mdlGrid[s.seasonNumber] ?? {}).length,
-            )
-        )
-    );
+    // ── Episode count per season for the grid cells ──────────────────────────
+    const episodesPerSeason: Record<number, number> = {};
+    for (const s of effectiveSeasons) {
+        episodesPerSeason[s.seasonNumber] = Math.max(
+            s.episodeCount ?? 0,
+            Object.keys(tmdbGrid[s.seasonNumber] ?? {}).length,
+            Object.keys(mdlGrid[s.seasonNumber] ?? {}).length,
+        );
+    }
 
     // ── Selected season detail data ──────────────────────────────────────────
     const selectedTmdb = tmdbResults.find((r) => r.season === selectedSeason)?.episodes ?? [];
     const hasMdlForSelected = mdlEpisodes.length > 0;
 
-    // Cards: prefer MDL (has images + links), fall back to TMDB
-    type CardEpisode = { number: number; title: string; image: string | null; airDate: string | null; rating: number | null; isLinked: boolean };
-    let cards: CardEpisode[] = hasMdlForSelected
-        ? mdlEpisodes.map((ep) => ({ number: ep.number, title: ep.title, image: ep.image, airDate: ep.airDate, rating: ep.rating, isLinked: true }))
+    // Rows: prefer MDL (has images, synopses + links), fall back to TMDB
+    type EpisodeRow = {
+        number: number;
+        title: string;
+        image: string | null;
+        airDate: string | null;
+        rating: number | null;
+        synopsis: string | null;
+        isLinked: boolean;
+    };
+    let rows: EpisodeRow[] = hasMdlForSelected
+        ? mdlEpisodes.map((ep) => ({
+              number: ep.number,
+              title: ep.title,
+              image: ep.image,
+              airDate: ep.airDate,
+              rating: ep.rating,
+              synopsis: ep.synopsis ?? null,
+              isLinked: true,
+          }))
         : selectedTmdb.map((ep) => ({
               number: ep.episode_number,
               title: ep.name,
               image: ep.still_path ? `https://image.tmdb.org/t/p/w300${ep.still_path}` : null,
               airDate: ep.air_date,
               rating: ep.vote_average > 0 ? ep.vote_average : null,
+              synopsis: ep.overview || null,
               isLinked: false,
           }));
 
-    // Spoiler-free mode: mask titles/stills beyond the user's progress for tracked shows
-    const displayPrefs = await getDisplayPreferences();
-    if (displayPrefs.hideSpoilers) {
-        const userId = await getCurrentUserId().catch(() => null);
-        const userMedia = userId
-            ? await getUserMedia(userId, externalId, isTmdb ? "TMDB" : "MDL", isTmdb ? selectedSeason : 1)
-            : null;
-        if (userMedia) {
-            cards = cards.map((ep) =>
-                ep.number > userMedia.progress ? { ...ep, title: `Episode ${ep.number}`, image: null } : ep,
-            );
-        }
+    // User progress: powers the "watched" ticks, and the spoiler mask when enabled
+    const [displayPrefs, userId] = await Promise.all([getDisplayPreferences(), getCurrentUserId().catch(() => null)]);
+    const userMedia = userId
+        ? await getUserMedia(userId, externalId, isTmdb ? "TMDB" : "MDL", isTmdb ? selectedSeason : 1)
+        : null;
+    const watchedUpTo = userMedia?.progress ?? 0;
+
+    // Spoiler-free mode: mask titles/stills/synopses beyond the user's progress
+    if (displayPrefs.hideSpoilers && userMedia) {
+        rows = rows.map((ep) =>
+            ep.number > userMedia.progress ? { ...ep, title: `Episode ${ep.number}`, image: null, synopsis: null } : ep,
+        );
     }
 
     // Chart: prefer MDL ratings, fall back to TMDB
@@ -258,10 +272,10 @@ export default async function EpisodesPage({
                     </p>
                 </div>
 
-                {/* Rating grid */}
-                <div className="rounded-xl border border-white/5 bg-white/3 p-5">
+                {/* Rating grid — open layout, the colored cells structure themselves */}
+                <div>
                     <div className="flex items-center gap-2 mb-5">
-                        <h2 className="text-sm font-semibold text-white">Episode Ratings</h2>
+                        <h2 className="text-lg font-semibold text-white">Episode Ratings</h2>
                         <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${hasMdlData ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"}`}>
                             via {hasMdlData ? "MDL" : "TMDB"}
                         </span>
@@ -269,7 +283,7 @@ export default async function EpisodesPage({
                     <EpisodeRatingGrid
                         mediaId={id}
                         seasons={seasonNumbers}
-                        maxEpisodes={maxEpisodes}
+                        episodesPerSeason={episodesPerSeason}
                         tmdbGrid={tmdbGrid}
                         mdlGrid={hasMdlData ? mdlGrid : undefined}
                         tmdbAvg={tmdbAvg}
@@ -309,15 +323,17 @@ export default async function EpisodesPage({
                         )}
                     </div>
 
-                    {/* Episode cards */}
-                    {cards.length > 0 ? (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                            {cards.map((ep) => {
+                    {/* Episode list — MDL-style: one scannable row per episode */}
+                    {rows.length > 0 ? (
+                        <div className="space-y-2">
+                            {rows.map((ep) => {
+                                const watched = ep.number <= watchedUpTo;
                                 const inner = (
                                     <>
-                                        <div className="relative aspect-video bg-gray-800">
+                                        {/* Thumbnail */}
+                                        <div className="relative w-28 sm:w-44 aspect-video rounded-lg overflow-hidden bg-gray-800 shrink-0">
                                             {ep.image ? (
-                                                <Image unoptimized src={ep.image} alt={ep.title} fill className="object-cover" sizes="200px" loading="lazy" />
+                                                <Image unoptimized src={ep.image} alt={ep.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" sizes="176px" loading="lazy" />
                                             ) : (
                                                 <div className="flex h-full w-full items-center justify-center">
                                                     <span className="text-[10px] text-gray-600">No image</span>
@@ -326,33 +342,60 @@ export default async function EpisodesPage({
                                             <span className="absolute bottom-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
                                                 Ep {ep.number}
                                             </span>
-                                            {ep.rating !== null && ep.rating > 0 && (
-                                                <span className="absolute top-1 right-1 flex items-center gap-0.5 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-yellow-400 backdrop-blur-sm">
-                                                    <Star className="size-2.5 fill-current" />
-                                                    {ep.rating.toFixed(1)}
+                                            {watched && (
+                                                <span className="absolute top-1 right-1 flex items-center justify-center h-4.5 w-4.5 rounded-full bg-emerald-500/90 backdrop-blur-sm">
+                                                    <Check className="size-3 text-white" />
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="p-2">
-                                            <p className="text-xs font-medium text-white truncate leading-snug group-hover:text-blue-300 transition-colors" title={ep.title}>
-                                                {ep.title}
-                                            </p>
-                                            {ep.airDate && (
-                                                <p className="text-[10px] text-gray-500 mt-0.5 flex items-center gap-0.5">
-                                                    <Calendar className="size-2.5 shrink-0" />
-                                                    {new Date(ep.airDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+
+                                        {/* Info */}
+                                        <div className="flex-1 min-w-0 py-0.5">
+                                            <div className="flex items-start justify-between gap-3">
+                                                <p className="text-sm font-semibold text-white leading-snug group-hover:text-blue-300 transition-colors">
+                                                    <span className="text-gray-500 font-medium">Ep {ep.number}</span>
+                                                    {ep.title && ep.title !== `Episode ${ep.number}` && (
+                                                        <span className="text-gray-600 font-normal"> · </span>
+                                                    )}
+                                                    {ep.title !== `Episode ${ep.number}` ? ep.title : ""}
                                                 </p>
+                                                {ep.rating !== null && ep.rating > 0 && (
+                                                    <span className="flex items-center gap-1 text-xs font-bold text-yellow-400 shrink-0">
+                                                        <Star className="size-3 fill-current" />
+                                                        {ep.rating.toFixed(1)}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-center gap-2.5 mt-1 text-[11px] text-gray-500">
+                                                {ep.airDate && (
+                                                    <span className="flex items-center gap-1">
+                                                        <Calendar className="size-3 shrink-0" />
+                                                        {new Date(ep.airDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                                                    </span>
+                                                )}
+                                                {watched && (
+                                                    <span className="flex items-center gap-0.5 text-emerald-400 font-medium">
+                                                        <Check className="size-3" />
+                                                        Watched
+                                                    </span>
+                                                )}
+                                            </div>
+                                            {ep.synopsis && (
+                                                <p className="hidden sm:line-clamp-2 text-xs text-gray-500 leading-relaxed mt-1.5">{ep.synopsis}</p>
                                             )}
                                         </div>
                                     </>
                                 );
 
+                                const rowClass =
+                                    "group flex gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-xl border border-white/5 bg-white/3 transition-colors scroll-mt-28";
+
                                 return ep.isLinked ? (
-                                    <Link key={ep.number} href={`/media/${id}/episode/${ep.number}`} className="group rounded-xl overflow-hidden border border-white/5 bg-white/3 hover:bg-white/6 transition-colors">
+                                    <Link key={ep.number} id={`ep-${ep.number}`} href={`/media/${id}/episode/${ep.number}`} className={`${rowClass} hover:bg-white/7 hover:border-white/10`}>
                                         {inner}
                                     </Link>
                                 ) : (
-                                    <div key={ep.number} className="group rounded-xl overflow-hidden border border-white/5 bg-white/3">
+                                    <div key={ep.number} id={`ep-${ep.number}`} className={rowClass}>
                                         {inner}
                                     </div>
                                 );
