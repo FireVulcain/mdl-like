@@ -85,6 +85,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         // MDL knows the exact next-episode broadcast time (cached 1h by the details fetch)
         const mdlNextEpisode = media.type === "TV" ? await kuryanaGetNextEpisode(media.externalId) : null;
 
+        // A poster hand-picked in the watchlist wins over the auto-selected one
+        const displayPoster = userMedia?.poster ?? media.poster;
+
         // Convert KuryanaCastResult to MdlCast grouped format
         const mdlCast: MdlCast = { main: [], support: [], guest: [], cameo: [] };
         if (castResult?.data?.casts) {
@@ -121,8 +124,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {/* Mobile header: poster + title/metadata/action */}
                     <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
                         <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10">
-                            {media.poster ? (
-                                <Image unoptimized src={media.poster} alt={media.title} fill className="object-cover" priority />
+                            {displayPoster ? (
+                                <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
                             ) : (
                                 <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
                             )}
@@ -175,8 +178,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     <div className="hidden md:block">
                     <StickySidebar>
                         <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
-                            {media.poster ? (
-                                <Image unoptimized src={media.poster} alt={media.title} fill className="object-cover" priority />
+                            {displayPoster ? (
+                                <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
                             ) : (
                                 <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
                                     No Poster
@@ -505,6 +508,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         existingSeasonLink?.mdlSlug ??
         (selectedSeason <= 1 && cached?.mdlSlug && !cached.mdlDisabled ? cached.mdlSlug : null);
     const mdlNextEpisode = media.type === "TV" && mdlSlugForSeason ? await kuryanaGetNextEpisode(mdlSlugForSeason) : null;
+
+    // Images hand-picked in the watchlist win over the auto-selected ones. The row's
+    // backdrop only counts when it differs from its poster — addToWatchlist falls back
+    // to the poster when a show has no backdrop, and that must not become the hero.
+    const displayPoster = userMedia?.poster ?? currentSeasonData?.poster ?? media.poster;
+    const heroBackdrop =
+        (userMedia?.backdrop && userMedia.backdrop !== userMedia.poster ? userMedia.backdrop : null) ?? media.backdrop;
     const watchlistIds = new Set(watchlistExternalIds);
 
     // Determine update action if userMedia exists
@@ -513,11 +523,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         <div className="min-h-screen bg-linear-to-b -mt-24">
             {/* Backdrop */}
             <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
-                {media.backdrop ? (
+                {heroBackdrop ? (
                     <>
                         <Image
                             unoptimized={true}
-                            src={media.backdrop.replace("/t/p/w1280/", "/t/p/original/")}
+                            src={heroBackdrop.replace("/t/p/w1280/", "/t/p/original/")}
                             alt={media.title}
                             fill
                             className="object-cover"
@@ -538,8 +548,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Mobile header: poster + title/metadata/action */}
                 <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
                     <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10">
-                        {currentSeasonData?.poster || media.poster ? (
-                            <Image unoptimized src={currentSeasonData?.poster ?? media.poster!} alt={media.title} fill className="object-cover" priority />
+                        {displayPoster ? (
+                            <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
                         )}
@@ -613,10 +623,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 <div className="hidden md:block">
                 <StickySidebar>
                     <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
-                        {currentSeasonData?.poster || media.poster ? (
+                        {displayPoster ? (
                             <Image
                                 unoptimized={true}
-                                src={currentSeasonData?.poster ?? media.poster!}
+                                src={displayPoster}
                                 alt={media.title}
                                 fill
                                 className="object-cover"
