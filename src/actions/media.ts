@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { ActivityAction, ActivityActionType } from "@/types/activity";
 import { Prisma } from "@prisma/client";
 import { getCurrentUserId } from "@/lib/session";
+import { kuryanaGetDetails } from "@/lib/kuryana";
 
 // Upsert progress log: within a 30-min window, update the existing entry rather than
 // create a new one. This means a misclick that corrects ep 16 → 15 rewrites the log
@@ -289,15 +290,47 @@ export async function deleteUserMedia(id: string) {
     }
 }
 
-// Fetch alternate poster/backdrop images available on TMDB for a given media,
-// so the user can manually pick which one to use instead of the auto-selected one.
-export async function getMediaImages(source: string, externalId: string) {
-    if (source !== "TMDB") return { posters: [], backdrops: [] };
+// Fetch alternate poster/backdrop images for a given media — TMDB's alternates
+// plus the MDL entry's poster(s) — so the user can manually pick which one to use.
+export async function getMediaImages(source: string, externalId: string, season = 1) {
+    if (source === "MDL") {
+        // MDL-native row: externalId is the slug, one poster, no backdrops
+        const details = await kuryanaGetDetails(externalId);
+        const poster = details?.data?.poster;
+        return { posters: [], backdrops: [], mdlPosters: poster ? [poster] : [] };
+    }
+    if (source !== "TMDB") return { posters: [], backdrops: [], mdlPosters: [] };
 
-    const details = await mediaService.getDetails(`tmdb-${externalId}`);
+    // MDL slugs for this show: the season link's entry first (its poster is
+    // season-specific), then the main entry
+    const [details, cachedMdl, seasonLink] = await Promise.all([
+        mediaService.getDetails(`tmdb-${externalId}`),
+        prisma.cachedMdlData.findUnique({
+            where: { tmdbExternalId: externalId },
+            select: { mdlSlug: true, mdlDisabled: true },
+        }),
+        season > 1
+            ? prisma.mdlSeasonLink.findUnique({
+                  where: { tmdbExternalId_season: { tmdbExternalId: externalId, season } },
+                  select: { mdlSlug: true },
+              })
+            : null,
+    ]);
+
+    const slugs = [
+        ...(seasonLink?.mdlSlug ? [seasonLink.mdlSlug] : []),
+        ...(cachedMdl?.mdlSlug && !cachedMdl.mdlDisabled ? [cachedMdl.mdlSlug] : []),
+    ].filter((slug, i, arr) => arr.indexOf(slug) === i);
+
+    const mdlResults = await Promise.allSettled(slugs.map((slug) => kuryanaGetDetails(slug)));
+    const mdlPosters = mdlResults
+        .map((r) => (r.status === "fulfilled" ? r.value?.data?.poster : null))
+        .filter((p, i, arr): p is string => !!p && arr.indexOf(p) === i);
+
     return {
         posters: details?.images?.posters || [],
         backdrops: details?.images?.backdrops || [],
+        mdlPosters,
     };
 }
 

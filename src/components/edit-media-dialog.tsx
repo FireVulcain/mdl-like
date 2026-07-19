@@ -94,7 +94,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     const [loading, setLoading] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-    const [imageOptions, setImageOptions] = useState<{ posters: string[]; backdrops: string[] } | null>(null);
+    const [imageOptions, setImageOptions] = useState<{ posters: string[]; backdrops: string[]; mdlPosters: string[] } | null>(null);
     const [loadingImages, setLoadingImages] = useState(false);
     const [selectedBackdrop, setSelectedBackdrop] = useState<string | null>(null);
     const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
@@ -118,15 +118,15 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     const editSource = isEditing ? item?.source : undefined;
     const editExternalId = isEditing ? item?.externalId : undefined;
 
-    // Lazily fetch alternate TMDB images once the user opens the picker, rather than on every dialog open
+    // Lazily fetch alternate images (TMDB + MDL) once the user opens the picker
     const loadImageOptions = async () => {
         if (!editSource || !editExternalId || loadingImages) return;
         setLoadingImages(true);
         try {
-            const result = await getMediaImages(editSource, editExternalId);
+            const result = await getMediaImages(editSource, editExternalId, item?.season ?? 1);
             setImageOptions(result);
         } catch (error) {
-            console.error("Failed to fetch TMDB images", error);
+            console.error("Failed to fetch image options", error);
             toast.error("Failed to load image options");
         } finally {
             setLoadingImages(false);
@@ -283,7 +283,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     </div>
 
                     {/* Image Picker */}
-                    {editSource === "TMDB" && (
+                    {(editSource === "TMDB" || editSource === "MDL") && (
                         <div className="space-y-3">
                             <div className="flex items-center justify-between">
                                 <label className="text-sm font-medium text-gray-400">Images</label>
@@ -300,12 +300,15 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                             </div>
                             {imageOptions && (
                                 <div className="space-y-4">
-                                    {/* Poster - used as the thumbnail in the watchlist */}
+                                    {/* Poster - used as the thumbnail in the watchlist. MDL posters first, then TMDB alternates */}
                                     <div className="space-y-2">
                                         <p className="text-xs text-gray-500">Poster (list thumbnail)</p>
-                                        {imageOptions.posters.length > 0 ? (
+                                        {imageOptions.posters.length > 0 || imageOptions.mdlPosters.length > 0 ? (
                                             <div className="flex gap-2 overflow-x-auto pb-1">
-                                                {imageOptions.posters.map((url) => {
+                                                {[
+                                                    ...imageOptions.mdlPosters.map((url) => ({ url, isMdl: true })),
+                                                    ...imageOptions.posters.map((url) => ({ url, isMdl: false })),
+                                                ].map(({ url, isMdl }) => {
                                                     const isSelected = selectedPoster === url;
                                                     return (
                                                         <button
@@ -316,6 +319,11 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                             }`}
                                                         >
                                                             <Image unoptimized src={url} alt="" fill className="object-cover" />
+                                                            {isMdl && (
+                                                                <span className="absolute bottom-1 left-1 rounded bg-sky-500/90 px-1 py-px text-[8px] font-bold text-white">
+                                                                    MDL
+                                                                </span>
+                                                            )}
                                                             {isSelected && (
                                                                 <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
                                                                     <Check className="h-5 w-5 text-white drop-shadow" />
