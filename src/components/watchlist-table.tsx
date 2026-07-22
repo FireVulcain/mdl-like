@@ -174,6 +174,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const [filterYear, setFilterYear] = useState<string>(() => searchParams.get("year") ?? "All");
     // Theme (MDL tag) filter — no dropdown UI; set via URL deep links (e.g. from /stats)
     const [filterTheme, setFilterTheme] = useState<string>(() => searchParams.get("theme") ?? "");
+    // Score filter — no dropdown UI either; set via URL deep links (e.g. from /stats)
+    const [filterScore, setFilterScore] = useState<string>(() => searchParams.get("score") ?? "");
     const [search, setSearch] = useState<string>(() => searchParams.get("q") ?? "");
     const [sortBy, setSortBy] = useState<string>(() => searchParams.get("sort") ?? defaultSort);
     const [filterAiringOnly, setFilterAiringOnly] = useState<boolean>(() => searchParams.get("airing") === "1");
@@ -431,7 +433,11 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                 }
             }
             if (filterTheme && !(item.tags ?? []).includes(filterTheme)) return false;
-            if (filterYear !== "All" && item.year) {
+            // Rounded, to match how the stats page buckets ratings
+            if (filterScore && (item.score === null || Math.round(item.score) !== Number(filterScore))) return false;
+            if (filterYear !== "All") {
+                // Undated items can't match a year — without this they slipped through
+                if (!item.year) return false;
                 if (filterYear === "2010s" && (item.year < 2010 || item.year >= 2020)) return false;
                 if (filterYear === "2000s" && (item.year < 2000 || item.year >= 2010)) return false;
                 if (filterYear === "Older" && item.year >= 2000) return false;
@@ -503,11 +509,11 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         }
 
         return result;
-    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, filterScore, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
 
     useEffect(() => {
         setDisplayCount(10);
-    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, sortBy, filterAiringOnly]);
+    }, [filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, filterScore, sortBy, filterAiringOnly]);
 
     const toggleStatus = (status: string) => {
         const next = filterStatuses.includes(status) ? filterStatuses.filter((s) => s !== status) : [...filterStatuses, status];
@@ -851,7 +857,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         });
     };
 
-    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0) + (filterTheme ? 1 : 0);
+    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0) + (filterTheme ? 1 : 0) + (filterScore ? 1 : 0);
 
     const downloadFile = (content: string, filename: string, mimeType: string) => {
         const blob = new Blob([content], { type: mimeType });
@@ -1497,10 +1503,20 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     )}
+                    {filterScore && (
+                        <button
+                            onClick={() => { setFilterScore(""); syncUrl("score", null); }}
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-yellow-500/15 text-yellow-400 hover:opacity-80 transition-all cursor-pointer group"
+                        >
+                            <Star className="h-3 w-3 fill-current" />
+                            Rated {filterScore}
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                        </button>
+                    )}
                     <button
                         onClick={() => {
                             setFilterStatuses([]); setFilterCountries([]); setFilterGenres([]);
-                            setFilterYear("All"); setFilterAiringOnly(false); setSearch(""); setFilterTheme("");
+                            setFilterYear("All"); setFilterAiringOnly(false); setSearch(""); setFilterTheme(""); setFilterScore("");
                             // The URL is fully wiped below, so the sort state must reset too
                             setSortBy("default");
                             window.history.replaceState(null, "", window.location.pathname);
