@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
 import type { MdlEpisodeItem } from "@/components/media/episode-guide";
 import { EpisodeRatingGrid, type GridRatings } from "@/components/media/episode-rating-grid";
+import { ScrollToEpisodeButton } from "@/components/media/scroll-to-episode";
 import { mediaService } from "@/services/media.service";
 import { tmdb } from "@/lib/tmdb";
 import { getUserMedia } from "@/actions/user-media";
@@ -304,6 +305,10 @@ export default async function EpisodesPage({
                                 via MDL
                             </span>
                         )}
+                        {/* Jump to where the user left off — only if they've started but not finished */}
+                        {watchedUpTo > 0 && rows.some((r) => r.number === watchedUpTo + 1) && (
+                            <ScrollToEpisodeButton episodeNumber={watchedUpTo + 1} label={`Go to Ep ${watchedUpTo + 1}`} />
+                        )}
                         {isMultiSeason && (
                             <div className="flex gap-1 ml-auto flex-wrap">
                                 {seasonNumbers.map((s) => (
@@ -323,50 +328,62 @@ export default async function EpisodesPage({
                         )}
                     </div>
 
-                    {/* Episode list — MDL-style: one scannable row per episode */}
+                    {/* Episode grid — MDL-style cards, watched episodes marked */}
                     {rows.length > 0 ? (
-                        <div className="space-y-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-6">
                             {rows.map((ep) => {
                                 const watched = ep.number <= watchedUpTo;
                                 const inner = (
                                     <>
                                         {/* Thumbnail */}
-                                        <div className="relative w-28 sm:w-44 aspect-video rounded-lg overflow-hidden bg-gray-800 shrink-0">
+                                        <div className={`relative aspect-video rounded-xl overflow-hidden bg-gray-800 ring-1 transition-all ${watched ? "ring-emerald-500/40" : "ring-white/8 group-hover:ring-white/20"}`}>
                                             {ep.image ? (
-                                                <Image unoptimized src={ep.image} alt={ep.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" sizes="176px" loading="lazy" />
+                                                <Image
+                                                    unoptimized
+                                                    src={ep.image}
+                                                    alt={ep.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                                    sizes="(max-width: 640px) 50vw, 320px"
+                                                    loading="lazy"
+                                                />
                                             ) : (
                                                 <div className="flex h-full w-full items-center justify-center">
                                                     <span className="text-[10px] text-gray-600">No image</span>
                                                 </div>
                                             )}
-                                            <span className="absolute bottom-1 left-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
+                                            {/* Dark overlay marks an episode as already watched; fades on hover */}
+                                            {watched && (
+                                                <div className="absolute inset-0 bg-black/55 group-hover:bg-black/25 transition-colors" />
+                                            )}
+                                            <span className="absolute bottom-1.5 left-1.5 rounded bg-black/75 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
                                                 Ep {ep.number}
                                             </span>
+                                            {ep.rating !== null && ep.rating > 0 && (
+                                                <span className="absolute top-1.5 left-1.5 flex items-center gap-0.5 rounded bg-black/75 px-1.5 py-0.5 text-[10px] font-bold text-yellow-400 backdrop-blur-sm">
+                                                    <Star className="size-2.5 fill-current" />
+                                                    {ep.rating.toFixed(1)}
+                                                </span>
+                                            )}
                                             {watched && (
-                                                <span className="absolute top-1 right-1 flex items-center justify-center h-4.5 w-4.5 rounded-full bg-emerald-500/90 backdrop-blur-sm">
-                                                    <Check className="size-3 text-white" />
+                                                <span className="absolute top-1.5 right-1.5 flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500 shadow-lg shadow-black/40">
+                                                    <Check className="size-3 text-white" strokeWidth={3} />
                                                 </span>
                                             )}
                                         </div>
 
-                                        {/* Info */}
-                                        <div className="flex-1 min-w-0 py-0.5">
-                                            <div className="flex items-start justify-between gap-3">
-                                                <p className="text-sm font-semibold text-white leading-snug group-hover:text-blue-300 transition-colors">
-                                                    <span className="text-gray-500 font-medium">Ep {ep.number}</span>
-                                                    {ep.title && ep.title !== `Episode ${ep.number}` && (
+                                        {/* Caption */}
+                                        <div className="mt-2">
+                                            <p className={`text-sm font-semibold leading-snug line-clamp-2 transition-colors ${watched ? "text-white" : "text-gray-300"} group-hover:text-blue-300`}>
+                                                <span className="text-gray-500 font-medium">Ep {ep.number}</span>
+                                                {ep.title !== `Episode ${ep.number}` && (
+                                                    <>
                                                         <span className="text-gray-600 font-normal"> · </span>
-                                                    )}
-                                                    {ep.title !== `Episode ${ep.number}` ? ep.title : ""}
-                                                </p>
-                                                {ep.rating !== null && ep.rating > 0 && (
-                                                    <span className="flex items-center gap-1 text-xs font-bold text-yellow-400 shrink-0">
-                                                        <Star className="size-3 fill-current" />
-                                                        {ep.rating.toFixed(1)}
-                                                    </span>
+                                                        {ep.title}
+                                                    </>
                                                 )}
-                                            </div>
-                                            <div className="flex items-center gap-2.5 mt-1 text-[11px] text-gray-500">
+                                            </p>
+                                            <div className="flex items-center gap-2 mt-1 text-[11px] text-gray-500">
                                                 {ep.airDate && (
                                                     <span className="flex items-center gap-1">
                                                         <Calendar className="size-3 shrink-0" />
@@ -380,22 +397,18 @@ export default async function EpisodesPage({
                                                     </span>
                                                 )}
                                             </div>
-                                            {ep.synopsis && (
-                                                <p className="hidden sm:line-clamp-2 text-xs text-gray-500 leading-relaxed mt-1.5">{ep.synopsis}</p>
-                                            )}
                                         </div>
                                     </>
                                 );
 
-                                const rowClass =
-                                    "group flex gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-xl border border-white/5 bg-white/3 transition-colors scroll-mt-28";
+                                const cardClass = "group block scroll-mt-28";
 
                                 return ep.isLinked ? (
-                                    <Link key={ep.number} id={`ep-${ep.number}`} href={`/media/${id}/episode/${ep.number}`} className={`${rowClass} hover:bg-white/7 hover:border-white/10`}>
+                                    <Link key={ep.number} id={`ep-${ep.number}`} href={`/media/${id}/episode/${ep.number}`} className={cardClass}>
                                         {inner}
                                     </Link>
                                 ) : (
-                                    <div key={ep.number} id={`ep-${ep.number}`} className={rowClass}>
+                                    <div key={ep.number} id={`ep-${ep.number}`} className={cardClass}>
                                         {inner}
                                     </div>
                                 );
