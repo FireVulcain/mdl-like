@@ -115,6 +115,9 @@ interface WatchlistTableProps {
     // View defaults from user preferences — URL params still win for a session
     initialThumbnailStyle?: "poster" | "backdrop";
     defaultSort?: string;
+    // Cached next-episode data read server-side, so countdowns paint on first
+    // render instead of after a client round-trip. Keyed by `${externalId}-${season}`.
+    initialNextEpisodes?: Record<string, NextEpisodeData | null>;
 }
 
 type OptimisticUpdate = {
@@ -161,7 +164,7 @@ const statusConfig = {
     },
 };
 
-export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle = "poster", defaultSort = "default" }: WatchlistTableProps) {
+export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle = "poster", defaultSort = "default", initialNextEpisodes = {} }: WatchlistTableProps) {
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -187,7 +190,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     // cache instantly and refreshes misses in the background (kuryana scrapes
     // are slow) — so when keys are pending, poll again a couple of times to
     // pick up the freshly cached data within the same visit.
-    const [nextEpisodeMap, setNextEpisodeMap] = useState<Record<string, NextEpisodeData | null>>({});
+    const [nextEpisodeMap, setNextEpisodeMap] = useState<Record<string, NextEpisodeData | null>>(initialNextEpisodes);
     useEffect(() => {
         if (readOnly) return;
         const airingWatching = items.filter(
