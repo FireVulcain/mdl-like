@@ -25,10 +25,11 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     const tvTime = tv.reduce((acc, t) => acc + t.progress * 45, 0);
     const totalEpisodes = tv.reduce((acc, t) => acc + t.progress, 0);
 
-    // "Watched" means finished — a Plan to Watch entry (or one still in progress)
-    // has not been watched, so it must not inflate the headline count
-    const watchedMovies = movies.filter((i) => i.status === "Completed").length;
-    const watchedTv = tv.filter((i) => i.status === "Completed").length;
+    // "Watched" = finished or dropped (a dropped title was still watched, at least
+    // partly). Plan to Watch and in-progress entries must not inflate the count.
+    const isWatched = (status: string) => status === "Completed" || status === "Dropped";
+    const watchedMovies = movies.filter((i) => isWatched(i.status)).length;
+    const watchedTv = tv.filter((i) => isWatched(i.status)).length;
 
     // Completion Rate
     const completed = items.filter((i) => i.status === "Completed").length;

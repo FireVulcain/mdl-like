@@ -258,9 +258,11 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     <BlockHeader dotClass="bg-yellow-400" label="Your Ratings" meta={`${ratedItems} rated`} />
                     <div className="flex items-stretch gap-1.5 h-36 border-b border-white/8">
                         {ratingBars.map(({ rating, count }) => (
-                            <div
+                            <Link
                                 key={rating}
-                                className="flex-1 flex flex-col group"
+                                href={`/watchlist?score=${rating}`}
+                                aria-disabled={count === 0}
+                                className={`flex-1 flex flex-col group ${count === 0 ? "pointer-events-none" : ""}`}
                                 title={`${count} title${count !== 1 ? "s" : ""} rated ${rating}`}
                             >
                                 {/* Fixed label slot, outside the plot area — otherwise the labelled
@@ -278,7 +280,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         }}
                                     />
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                     <div className="flex gap-1.5 mt-1.5">
@@ -293,9 +295,11 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                         <BlockHeader dotClass="bg-fuchsia-400" label="By Release Year" />
                         <div className="flex items-stretch gap-1 h-36 border-b border-white/8">
                             {recentYears.map(({ year, count }) => (
-                                <div
+                                <Link
                                     key={year}
-                                    className="flex-1 flex flex-col group"
+                                    href={`/watchlist?year=${year}`}
+                                    aria-disabled={count === 0}
+                                    className={`flex-1 flex flex-col group ${count === 0 ? "pointer-events-none" : ""}`}
                                     title={`${count} title${count !== 1 ? "s" : ""} from ${year}`}
                                 >
                                     <div className="h-4 text-center text-[11px] leading-4 text-gray-400 tabular-nums">
@@ -311,7 +315,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                             }}
                                         />
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                         <div className="flex gap-1 mt-1.5">
