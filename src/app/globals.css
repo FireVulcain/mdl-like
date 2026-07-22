@@ -200,6 +200,26 @@
     animation: slideDownRow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
+/* Brief emerald flash when scrolling to an episode card via the pager button */
+@keyframes episode-flash {
+    0% {
+        outline-color: rgb(52 211 153 / 0);
+    }
+    15% {
+        outline-color: rgb(52 211 153 / 0.9);
+    }
+    100% {
+        outline-color: rgb(52 211 153 / 0);
+    }
+}
+
+.episode-flash {
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+    border-radius: 0.75rem;
+    animation: episode-flash 1.6s ease-out;
+}
+
 @keyframes pulse {
     0%,
     100% {
