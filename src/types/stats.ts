@@ -8,7 +8,9 @@ export type DashboardStats = {
     genreBreakdown: { name: string; value: number }[];
     ratingDistribution: { rating: number; count: number }[];
     monthlyActivity: { month: string; count: number }[];
-    activityHeatmap: { date: string; count: number }[];
+    // ISO timestamps of real (non-backfill) actions over the past year. Bucketing into
+    // days happens client-side so it follows the viewer's calendar, not the server's UTC.
+    activityTimestamps: string[];
     topGenres: { name: string; count: number; percentage: number }[];
     topThemes: { name: string; count: number }[];
     decadeDistribution: { decade: string; count: number }[];
@@ -27,7 +29,7 @@ export const EMPTY_STATS: DashboardStats = {
     genreBreakdown: [],
     ratingDistribution: [],
     monthlyActivity: [],
-    activityHeatmap: [],
+    activityTimestamps: [],
     topGenres: [],
     topThemes: [],
     decadeDistribution: [],

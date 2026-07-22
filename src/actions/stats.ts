@@ -19,11 +19,16 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     const movies = items.filter((i) => i.mediaType === "MOVIE");
     const tv = items.filter((i) => i.mediaType === "TV");
 
-    // Watch Time Estimations
+    // Watch Time Estimations — based on real progress, whatever the status
     // Movie: 120min, TV Episode: 45min
     const movieTime = movies.reduce((acc, m) => acc + (m.status === "Completed" || m.progress > 0 ? 120 : 0), 0);
     const tvTime = tv.reduce((acc, t) => acc + t.progress * 45, 0);
     const totalEpisodes = tv.reduce((acc, t) => acc + t.progress, 0);
+
+    // "Watched" means finished — a Plan to Watch entry (or one still in progress)
+    // has not been watched, so it must not inflate the headline count
+    const watchedMovies = movies.filter((i) => i.status === "Completed").length;
+    const watchedTv = tv.filter((i) => i.status === "Completed").length;
 
     // Completion Rate
     const completed = items.filter((i) => i.status === "Completed").length;
@@ -132,14 +137,9 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
         select: { createdAt: true },
     });
 
-    const heatmapMap = new Map<string, number>();
-    activityLogs.forEach((log) => {
-        const dateKey = log.createdAt.toISOString().slice(0, 10); // YYYY-MM-DD
-        heatmapMap.set(dateKey, (heatmapMap.get(dateKey) || 0) + 1);
-    });
-    const activityHeatmap = Array.from(heatmapMap.entries())
-        .map(([date, count]) => ({ date, count }))
-        .sort((a, b) => a.date.localeCompare(b.date));
+    // Raw instants — the client buckets them into days using the viewer's timezone.
+    // Bucketing here would use the server's UTC calendar and shift every cell.
+    const activityTimestamps = activityLogs.map((log) => log.createdAt.toISOString());
 
     // Monthly Activity — past 12 months, real actions only
     const twelveMonthsAgo = new Date();
@@ -170,8 +170,8 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     const monthlyActivity = Array.from(monthMap.entries()).map(([month, count]) => ({ month, count }));
 
     return {
-        totalMovies: movies.length,
-        totalTV: tv.length,
+        totalMovies: watchedMovies,
+        totalTV: watchedTv,
         totalEpisodes,
         watchTimeMinutes: movieTime + tvTime,
         completionRate,
@@ -179,7 +179,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
         genreBreakdown: genreData,
         ratingDistribution: ratings,
         monthlyActivity,
-        activityHeatmap,
+        activityTimestamps,
         topGenres,
         topThemes,
         decadeDistribution: [],
