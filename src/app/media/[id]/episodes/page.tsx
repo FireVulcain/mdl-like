@@ -368,8 +368,13 @@ export default async function EpisodesPage({
                                             <span className="absolute bottom-1.5 left-1.5 rounded bg-black/75 px-1.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
                                                 Ep {ep.number}
                                             </span>
+                                            {/* Blue when the rating came from MDL, yellow when it's TMDB's */}
                                             {ep.rating !== null && ep.rating > 0 && (
-                                                <span className="absolute top-1.5 left-1.5 flex items-center gap-0.5 rounded bg-black/75 px-1.5 py-0.5 text-[10px] font-bold text-yellow-400 backdrop-blur-sm">
+                                                <span
+                                                    className={`absolute top-1.5 left-1.5 flex items-center gap-0.5 rounded bg-black/75 px-1.5 py-0.5 text-[10px] font-bold backdrop-blur-sm ${
+                                                        hasMdlForSelected ? "text-sky-400" : "text-yellow-400"
+                                                    }`}
+                                                >
                                                     <Star className="size-2.5 fill-current" />
                                                     {ep.rating.toFixed(1)}
                                                 </span>

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Bookmark, ExternalLink, Film, Star, Tv } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { kuryanaGetPerson, kuryanaGetDetails, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
+import { kuryanaGetPerson, kuryanaGetDetails, mdlTitleFromLink, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
@@ -72,7 +72,8 @@ function WorkCard({
     inWatchlist: boolean;
     mdlRating?: number | null;
 }) {
-    const title = work.title.name;
+    // The person endpoint returns an empty title.name; fall back to the work's URL
+    const title = work.title.name || mdlTitleFromLink(work.title.link);
     const year = typeof work.year === "number" ? work.year : "TBA";
     const character = work.role.name || null;
 
@@ -100,22 +101,21 @@ function WorkCard({
                     <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>
                 )}
 
-                {(work.rating > 0 || (mdlRating != null && mdlRating > 0)) && (
-                    <div className="absolute left-1.5 top-1.5 flex flex-row gap-1">
-                        {work.rating > 0 && !(mdlRating != null && mdlRating > 0) && (
-                            <Badge className="bg-yellow-500/90 text-black text-xs px-1.5">
-                                <Star className="h-3 w-3 mr-0.5 fill-current" />
-                                {work.rating.toFixed(1)}
-                            </Badge>
-                        )}
-                        {mdlRating != null && mdlRating > 0 && (
+                {/* Both values are MDL ratings — our cached one when the work is linked,
+                    the scraped one otherwise — so both wear the site's MDL blue.
+                    Yellow is reserved for TMDB ratings. */}
+                {(() => {
+                    const rating = mdlRating != null && mdlRating > 0 ? mdlRating : work.rating > 0 ? work.rating : null;
+                    if (rating === null) return null;
+                    return (
+                        <div className="absolute left-1.5 top-1.5">
                             <Badge className="bg-sky-500/90 text-white text-xs px-1.5">
                                 <Star className="h-3 w-3 mr-0.5 fill-current" />
-                                {mdlRating.toFixed(1)}
+                                {rating.toFixed(1)}
                             </Badge>
-                        )}
-                    </div>
-                )}
+                        </div>
+                    );
+                })()}
 
                 {work.episodes && work.episodes > 0 && (
                     <div className="absolute bottom-1.5 right-1.5">

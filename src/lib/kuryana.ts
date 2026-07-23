@@ -178,6 +178,21 @@ export interface KuryanaWorkItem {
     episodes?: number;
 }
 
+// Person filmographies come back with an empty `title.name` — the readable title
+// only exists inside the work's URL (".../779732-moving-season-2"). Humanize that,
+// dropping the leading MDL id and any trailing "(2024)".
+export function mdlTitleFromLink(link: string | null | undefined): string {
+    if (!link) return "";
+    const slug = link.replace(/\/+$/, "").split("/").pop() ?? "";
+    return slug
+        .replace(/^\d+-/, "")
+        .split("-")
+        .filter(Boolean)
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")
+        .replace(/\s*\(\d{4}\)\s*$/, "");
+}
+
 export interface KuryanaPersonResult {
     slug_query: string;
     data: {

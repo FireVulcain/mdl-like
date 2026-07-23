@@ -66,10 +66,11 @@ export default async function EpisodePage({
                     <span>{d.air_date}</span>
                 </div>
             )}
+            {/* Scraped from MDL, so it wears MDL blue — yellow means TMDB */}
             {d.rating > 0 && (
                 <div className="flex items-center gap-1.5">
-                    <Star className="size-3.5 fill-yellow-400 text-yellow-400" />
-                    <span className="text-yellow-400 font-medium">{d.rating.toFixed(1)}</span>
+                    <Star className="size-3.5 fill-sky-400 text-sky-400" />
+                    <span className="text-sky-400 font-medium">{d.rating.toFixed(1)}</span>
                 </div>
             )}
             <a

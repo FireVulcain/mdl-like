@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { kuryanaGetPerson, kuryanaGetDetails, type KuryanaWorkItem, type KuryanaPersonResult } from "@/lib/kuryana";
+import { kuryanaGetPerson, kuryanaGetDetails, mdlTitleFromLink, type KuryanaWorkItem, type KuryanaPersonResult } from "@/lib/kuryana";
 import { buildTasteProfile, type RecMediaItem } from "@/lib/recommendation";
 import type { Prisma } from "@prisma/client";
 
@@ -304,12 +304,6 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
     // Posters + real titles via kuryana details (parallel, Next-cached; only for the
     // final few). Person filmographies return an empty title.name, so the details
     // title is the real source; humanized slug is the fallback.
-    const titleFromSlug = (slug: string) =>
-        slug
-            .replace(/^\d+-/, "")
-            .split("-")
-            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(" ");
     const posterResults = await Promise.allSettled(top.map((e) => kuryanaGetDetails(e.slug)));
 
     const radarItems: ActorRadarItem[] = top.map((entry, idx) => {
@@ -320,7 +314,7 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
         return {
             mdlId: entry.mdlId,
             slug: entry.slug,
-            title: (entry.work.title.name || detailsData?.title || titleFromSlug(entry.slug)).replace(/\s*\(\d{4}\)\s*$/, ""),
+            title: (entry.work.title.name || detailsData?.title || mdlTitleFromLink(entry.work.title.link)).replace(/\s*\(\d{4}\)\s*$/, ""),
             year: typeof entry.work.year === "number" ? entry.work.year : "TBA",
             mediaType: entry.mediaType,
             rating: entry.work.rating ?? 0,
