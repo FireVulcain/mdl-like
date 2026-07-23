@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Star, Calendar, Check } from "lucide-react";
+import { ArrowLeft, Star, Calendar, Check, MessageSquare } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
 import type { MdlEpisodeItem } from "@/components/media/episode-guide";
@@ -61,6 +61,9 @@ async function fetchMdlEpisodes(mdlSlug: string): Promise<MdlEpisodeItem[]> {
     const staleNumbers = episodeNumbers.filter((n) => {
         const row = cacheMap.get(n);
         if (!row) return true;
+        // Rows cached before reviewCount existed need one refresh to backfill it,
+        // otherwise they'd show no review badge until their 30-day TTL expires
+        if (row.reviewCount === null) return true;
         return Date.now() - row.cachedAt.getTime() > (row.synopsis ? SYNOPSIS_TTL_MS : EMPTY_TTL_MS);
     });
 
@@ -72,10 +75,12 @@ async function fetchMdlEpisodes(mdlSlug: string): Promise<MdlEpisodeItem[]> {
         await Promise.all(
             staleNumbers.map((n, i) => {
                 const detail = freshDetails[i];
+                // 0 (not null) once the fetch succeeded, so it isn't retried forever
+                const reviewCount = detail ? (detail.data?.reviews?.length ?? 0) : null;
                 return prisma.cachedMdlEpisode.upsert({
                     where: { mdlSlug_episodeNumber: { mdlSlug, episodeNumber: n } },
-                    create: { mdlSlug, episodeNumber: n, synopsis: detail?.data?.synopsis || null, episodeTitle: detail?.data?.episode_title || null },
-                    update: { synopsis: detail?.data?.synopsis || null, episodeTitle: detail?.data?.episode_title || null, cachedAt: new Date() },
+                    create: { mdlSlug, episodeNumber: n, synopsis: detail?.data?.synopsis || null, episodeTitle: detail?.data?.episode_title || null, reviewCount },
+                    update: { synopsis: detail?.data?.synopsis || null, episodeTitle: detail?.data?.episode_title || null, reviewCount, cachedAt: new Date() },
                 });
             })
         );
@@ -93,7 +98,8 @@ async function fetchMdlEpisodes(mdlSlug: string): Promise<MdlEpisodeItem[]> {
         const ratingMatch = ep.rating.match(/^([\d.]+)\//);
         const rawRating = detail?.data?.rating ?? (ratingMatch ? parseFloat(ratingMatch[1]) : null);
         const rating = isReleased(ep.air_date) ? rawRating : null;
-        return { number, title, image: ep.image || null, airDate: ep.air_date || null, rating, synopsis };
+        const reviewCount = detail ? (detail.data?.reviews?.length ?? 0) : (cached?.reviewCount ?? null);
+        return { number, title, image: ep.image || null, airDate: ep.air_date || null, rating, synopsis, reviewCount };
     });
 }
 
@@ -217,6 +223,7 @@ export default async function EpisodesPage({
         airDate: string | null;
         rating: number | null;
         synopsis: string | null;
+        reviewCount: number | null;
         isLinked: boolean;
     };
     let rows: EpisodeRow[] = hasMdlForSelected
@@ -227,6 +234,7 @@ export default async function EpisodesPage({
               airDate: ep.airDate,
               rating: ep.rating,
               synopsis: ep.synopsis ?? null,
+              reviewCount: ep.reviewCount ?? null,
               isLinked: true,
           }))
         : selectedTmdb.map((ep) => ({
@@ -236,6 +244,7 @@ export default async function EpisodesPage({
               airDate: ep.air_date,
               rating: ep.vote_average > 0 ? ep.vote_average : null,
               synopsis: ep.overview || null,
+              reviewCount: null, // TMDB episodes have no MDL reviews
               isLinked: false,
           }));
 
@@ -388,6 +397,12 @@ export default async function EpisodesPage({
                                                     <span className="flex items-center gap-1">
                                                         <Calendar className="size-3 shrink-0" />
                                                         {new Date(ep.airDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                                                    </span>
+                                                )}
+                                                {ep.reviewCount !== null && ep.reviewCount > 0 && (
+                                                    <span className="flex items-center gap-1">
+                                                        <MessageSquare className="size-3 shrink-0" />
+                                                        {ep.reviewCount}
                                                     </span>
                                                 )}
                                                 {watched && (

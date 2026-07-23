@@ -267,6 +267,7 @@ model CachedMdlEpisode {
   episodeNumber Int
   synopsis      String?
   episodeTitle  String?
+  reviewCount   Int?
   cachedAt      DateTime @default(now())
 
   @@unique([mdlSlug, episodeNumber])

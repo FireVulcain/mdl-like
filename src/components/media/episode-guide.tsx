@@ -28,6 +28,7 @@ export interface MdlEpisodeItem {
     airDate: string | null;
     rating: number | null;
     synopsis: string | null;
+    reviewCount?: number | null;
 }
 
 interface EpisodeGuideProps {
