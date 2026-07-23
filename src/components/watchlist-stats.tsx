@@ -1,8 +1,10 @@
 import { type DashboardStats } from "@/types/stats";
 import { Clock, Target, Star } from "lucide-react";
 
+// Only the three figures this header renders — so the watchlist can compute them
+// from its rows instead of running the full dashboard's queries.
 interface WatchlistStatsProps {
-    stats: DashboardStats;
+    stats: Pick<DashboardStats, "watchTimeMinutes" | "completionRate" | "ratingDistribution">;
 }
 
 export function WatchlistStats({ stats }: WatchlistStatsProps) {

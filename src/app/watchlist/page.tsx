@@ -2,7 +2,7 @@ import { WatchlistData } from "@/components/watchlist-data";
 import { WatchlistHeaderStats } from "@/components/watchlist-header-stats";
 import { WatchlistSubtitle } from "@/components/watchlist-subtitle";
 import { getWatchlist } from "@/actions/media";
-import { getDashboardStats } from "@/actions/stats";
+import { getWatchlistHeaderStats } from "@/actions/stats";
 import { getViewPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 
@@ -10,7 +10,8 @@ export const dynamic = "force-dynamic";
 
 export default async function WatchlistPage() {
     const [watchlist, viewPrefs, displayPrefs] = await Promise.all([getWatchlist(), getViewPreferences(), getDisplayPreferences()]);
-    const stats = await getDashboardStats(watchlist);
+    // Pure computation over the rows we already have — no extra queries
+    const stats = await getWatchlistHeaderStats(watchlist);
 
     // Display-only native titles (stored titles stay english — they feed
     // TVmaze/MDL matching); items without an MDL link keep their title.

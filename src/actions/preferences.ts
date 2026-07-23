@@ -1,5 +1,6 @@
 "use server";
 
+import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { revalidatePath } from "next/cache";
@@ -12,10 +13,15 @@ import {
     type HomeSectionConfig,
 } from "@/lib/home-preferences";
 
+// Every getter below reads the same row, and pages often call several of them in
+// one render (the watchlist calls two). cache() collapses those into one query per
+// request. Writers still hit the DB directly and revalidate as before.
+const getPreferencesRow = cache((userId: string) => prisma.userPreferences.findUnique({ where: { userId } }));
+
 export async function getHomeSections(): Promise<HomeSectionConfig[]> {
     try {
         const userId = await getCurrentUserId();
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         if (!prefs?.homeSections) return DEFAULT_HOME_SECTIONS;
         return normalizeHomeSections(prefs.homeSections as HomeSectionConfig[]);
     } catch {
@@ -44,7 +50,7 @@ export type ExcludedTagsPreferences = {
 export async function getExcludedTagsPreferences(): Promise<ExcludedTagsPreferences> {
     try {
         const userId = await getCurrentUserId();
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         // null/undefined tags = never configured → defaults; [] = user cleared everything on purpose
         const tags =
             !prefs || prefs.homeExcludedTags === null || prefs.homeExcludedTags === undefined
@@ -94,7 +100,7 @@ const VIEW_DEFAULTS: ViewPreferences = {
 export async function getViewPreferences(): Promise<ViewPreferences> {
     try {
         const userId = await getCurrentUserId();
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         if (!prefs) return VIEW_DEFAULTS;
         return {
             watchlistThumbnailStyle: prefs.watchlistThumbnailStyle === "backdrop" ? "backdrop" : "poster",
@@ -130,7 +136,7 @@ const DISPLAY_DEFAULTS: DisplayPreferences = { titleLanguage: "english", hideSpo
 export async function getDisplayPreferences(): Promise<DisplayPreferences> {
     try {
         const userId = await getCurrentUserId();
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         if (!prefs) return DISPLAY_DEFAULTS;
         return {
             titleLanguage: prefs.titleLanguage === "native" ? "native" : "english",
@@ -183,7 +189,7 @@ export async function getProfilePreferences(): Promise<ProfilePreferences> {
 // auth required (used by the public /u/<id> page).
 export async function getProfileVisibility(userId: string): Promise<ProfilePreferences> {
     try {
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         if (!prefs) return PROFILE_DEFAULTS;
         return {
             publicProfileEnabled: prefs.publicProfileEnabled,
@@ -217,7 +223,7 @@ export type NotificationPreferences = {
 export async function getNotificationPreferences(): Promise<NotificationPreferences> {
     try {
         const userId = await getCurrentUserId();
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         return { showSyncNotification: prefs?.showSyncNotification ?? true };
     } catch {
         return { showSyncNotification: true };
@@ -251,7 +257,7 @@ const DEFAULTS: CalendarPreferences = {
 export async function getCalendarPreferences(): Promise<CalendarPreferences> {
     try {
         const userId = await getCurrentUserId();
-        const prefs = await prisma.userPreferences.findUnique({ where: { userId } });
+        const prefs = await getPreferencesRow(userId);
         if (!prefs) return DEFAULTS;
         return {
             calendarAsianOnly: prefs.calendarAsianOnly,
