@@ -3,6 +3,7 @@
 import { useState, useEffect, useTransition, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Link2, Search, Check, Loader2, Star, ChevronLeft } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -35,6 +36,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
     const [linked, setLinked] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
     const initialSearching = useRef(false);
 
     // Season picker / alias state
@@ -112,6 +114,9 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                     setLinked(result.externalId);
                     onLinked?.(result.externalId);
                     setStep("success");
+                    // Re-render the page's server components so the new link shows
+                    // without a full reload (keeps scroll and client state)
+                    router.refresh();
                 } else {
                     setError(res.error ?? "Something went wrong.");
                 }
@@ -127,6 +132,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                 setLinked(pendingResult.externalId);
                 onLinked?.(pendingResult.externalId);
                 setStep("success");
+                router.refresh();
             } else {
                 setError(res.error ?? "Something went wrong.");
             }
@@ -141,6 +147,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                 setLinked(pendingResult.externalId);
                 onLinked?.(pendingResult.externalId);
                 setStep("success");
+                router.refresh();
             } else {
                 setError(res.error ?? "Something went wrong.");
             }

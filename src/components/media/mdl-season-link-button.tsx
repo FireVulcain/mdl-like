@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useTransition, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Link2, Search, Check, Loader2, Star } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -26,6 +27,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
     const [linked, setLinked] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
     const initialSearching = useRef(false);
 
     // Debounced search when user types
@@ -67,6 +69,8 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
             try {
                 await setMdlSeasonSlug(tmdbExternalId, season, drama.slug, mediaId);
                 setLinked(drama.title);
+                // Re-render the page's server components so the link shows immediately
+                router.refresh();
             } catch {
                 setError("Something went wrong.");
             }
