@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { UnifiedPerson } from "@/services/media.service";
+import { tmdbPersonHref } from "@/lib/person-links";
 import Image from "next/image";
 
 interface PersonCardProps {
@@ -12,7 +13,7 @@ interface PersonCardProps {
 
 export function PersonCard({ person, className }: PersonCardProps) {
     return (
-        <Link href={`/cast/${person.externalId}`} className={cn("group block", className)}>
+        <Link href={tmdbPersonHref(person.externalId)} className={cn("group block", className)}>
             <Card className="overflow-hidden border-0 bg-transparent shadow-none transition-transform duration-300 group-hover:scale-105">
                 <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md bg-secondary">
                     {person.profileImage ? (

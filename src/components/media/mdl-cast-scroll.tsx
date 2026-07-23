@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { MdlCast, MdlCastMember } from "@/actions/mdl";
+import { mdlPersonHref, tmdbPersonHref } from "@/lib/person-links";
 
 interface TmdbActor {
     id: number;
@@ -19,17 +20,11 @@ interface MdlCastScrollProps {
     mediaId: string;
 }
 
-function normalizeName(name: string): string {
-    return name.toLowerCase().replace(/[\s\-.']/g, "");
-}
-
-function mdlPersonSlug(slug: string): string | null {
-    const match = slug.match(/\/people\/(.+)$/);
-    return match ? match[1] : null;
-}
-
-function ActorCard({ actor, tmdbId }: { actor: MdlCastMember; tmdbId?: number }) {
-    const href = tmdbId ? `/cast/${tmdbId}` : actor.slug ? `/people/${mdlPersonSlug(actor.slug)}` : null;
+function ActorCard({ actor }: { actor: MdlCastMember }) {
+    // MDL cast always links to the MDL person page. Routing on a TMDB name match
+    // made two actors of the same show land on different routes depending on
+    // whether TMDB spelled the name the same way.
+    const href = mdlPersonHref(actor.slug);
 
     const inner = (
         <div className="space-y-2 group cursor-pointer">
@@ -90,12 +85,6 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
 
     if (main.length === 0 && totalSupport === 0) return null;
 
-    const tmdbMap = new Map<string, number>();
-    for (const actor of tmdbCast) {
-        tmdbMap.set(normalizeName(actor.name), actor.id);
-    }
-    const getTmdbId = (name: string) => tmdbMap.get(normalizeName(name));
-
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
@@ -142,7 +131,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
             {source === "tmdb" && (
                 <div className={CAST_GRID}>
                     {tmdbCast.slice(0, 12).map((actor) => (
-                        <Link key={actor.id} href={`/cast/${actor.id}`} className="space-y-2 group">
+                        <Link key={actor.id} href={tmdbPersonHref(actor.id)} className="space-y-2 group">
                             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                                 {actor.profile ? (
                                     <Image
@@ -192,7 +181,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Main Role</p>
                             <div className={`${CAST_GRID} mb-6`}>
                                 {main.map((actor) => (
-                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                    <ActorCard key={actor.slug} actor={actor} />
                                 ))}
                             </div>
                         </>
@@ -215,7 +204,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Support Role</p>
                                             <div className={`${CAST_GRID} mb-6`}>
                                                 {support.map((actor) => (
-                                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                                    <ActorCard key={actor.slug} actor={actor} />
                                                 ))}
                                             </div>
                                         </>
@@ -225,7 +214,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Guest Role</p>
                                             <div className={`${CAST_GRID} mb-6`}>
                                                 {guest.map((actor) => (
-                                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                                    <ActorCard key={actor.slug} actor={actor} />
                                                 ))}
                                             </div>
                                         </>
@@ -235,7 +224,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                             <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Cameo</p>
                                             <div className={CAST_GRID}>
                                                 {cameo.map((actor) => (
-                                                    <ActorCard key={actor.slug} actor={actor} tmdbId={getTmdbId(actor.name)} />
+                                                    <ActorCard key={actor.slug} actor={actor} />
                                                 ))}
                                             </div>
                                         </>

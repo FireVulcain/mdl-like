@@ -4,6 +4,7 @@ import { useMemo, useSyncExternalStore } from "react";
 import { type DashboardStats } from "@/types/stats";
 import { Counter } from "./counter";
 import { HomeRowLabel } from "@/components/home-section-header";
+import { mdlPersonHref } from "@/lib/person-links";
 import { Star, Users } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -226,7 +227,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     <BlockHeader dotClass="bg-rose-400" label="Most Seen Actors" />
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-3 gap-y-5">
                         {stats.topActors.map((actor) => (
-                            <Link key={actor.slug} href={actor.slug.startsWith("/") ? actor.slug : `/people/${actor.slug}`} className="group flex flex-col items-center gap-2 text-center">
+                            <Link key={actor.slug} href={mdlPersonHref(actor.slug) ?? "#"} className="group flex flex-col items-center gap-2 text-center">
                                 <div className="relative w-14 h-14 rounded-full overflow-hidden bg-white/5 ring-2 ring-white/10 group-hover:ring-rose-400/50 transition-all">
                                     {actor.profileImage ? (
                                         <Image

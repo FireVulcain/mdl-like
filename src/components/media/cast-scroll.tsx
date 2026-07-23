@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { tmdbPersonHref } from "@/lib/person-links";
 
 interface Actor {
     id: number;
@@ -33,7 +34,7 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
             <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex gap-4 pb-4">
                     {cast.slice(0, 6).map((actor) => (
-                        <Link key={actor.id} href={`/cast/${actor.id}`} className="flex-none w-25 space-y-2 group">
+                        <Link key={actor.id} href={tmdbPersonHref(actor.id)} className="flex-none w-25 space-y-2 group">
                             <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                                 {actor.profile ? (
                                     <Image unoptimized={true}

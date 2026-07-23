@@ -6,6 +6,7 @@ import { UnifiedPerson } from "@/services/media.service";
 import { Users } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
+import { mdlPersonHref, tmdbPersonHref } from "@/lib/person-links";
 
 interface ExpandablePeopleSectionProps {
     people: UnifiedPerson[];
@@ -26,7 +27,11 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                     {people.map((person) => (
                         <Link
                             key={person.id}
-                            href={person.source === "MDL" ? `/${person.externalId}` : `/cast/${person.externalId}`}
+                            href={
+                                person.source === "MDL"
+                                    ? (mdlPersonHref(person.externalId) ?? "#")
+                                    : tmdbPersonHref(person.externalId)
+                            }
                             className="flex-none w-28 text-center group space-y-2"
                         >
                             {" "}
