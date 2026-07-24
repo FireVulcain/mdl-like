@@ -60,6 +60,7 @@ export interface KuryanaDetails {
             score: string;
             ranked: string;
             popularity: string;
+            watchers?: string; // e.g. "10,345"
         };
         others: {
             genres: string[];
@@ -176,6 +177,13 @@ export interface KuryanaWorkItem {
         type: string;
     };
     episodes?: number;
+}
+
+// MDL watcher counts arrive as "10,345" — strip the separators to an int
+export function parseMdlWatchers(raw: string | null | undefined): number | null {
+    if (!raw) return null;
+    const n = parseInt(raw.replace(/[,\s]/g, ""), 10);
+    return Number.isFinite(n) ? n : null;
 }
 
 // Person filmographies come back with an empty `title.name` — the readable title

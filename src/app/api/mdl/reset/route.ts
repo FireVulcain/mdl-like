@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
 import { revalidatePath } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { refreshSingleShow } from "@/actions/schedule";
@@ -44,6 +44,7 @@ export async function POST(req: Request) {
                 const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
                 const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                 const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+                const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
                 const tags = details.data.others?.tags ?? [];
                 const directors = details.data.others?.directors ?? [];
                 const screenwriters = details.data.others?.screenwriter ?? [];
@@ -61,6 +62,7 @@ export async function POST(req: Request) {
                         mdlRating,
                         mdlRanking,
                         mdlPopularity,
+                        mdlWatchers,
                         tags,
                         ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
                         directors,

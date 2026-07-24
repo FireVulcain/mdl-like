@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, KuryanaDrama } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaDrama } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
@@ -38,6 +38,7 @@ export async function setMdlSeasonSlug(
             const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
             const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
             const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+            const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
             const tags = details.data.others?.tags ?? [];
 
             const cast = castResult?.data?.casts
@@ -63,6 +64,7 @@ export async function setMdlSeasonSlug(
                     mdlRating,
                     mdlRanking,
                     mdlPopularity,
+                    mdlWatchers,
                     tags: tags as unknown as Prisma.InputJsonValue,
                     castJson: cast as unknown as Prisma.InputJsonValue,
                     cachedAt: new Date(),

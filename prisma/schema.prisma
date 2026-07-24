@@ -211,6 +211,7 @@ model CachedMdlData {
   mdlRating      Float?
   mdlRanking     Int?
   mdlPopularity  Int?
+  mdlWatchers    Int?
   tags           Json?
   genres         Json?
   castJson       Json?
@@ -242,6 +243,7 @@ model MdlSeasonLink {
   mdlRating      Float?
   mdlRanking     Int?
   mdlPopularity  Int?
+  mdlWatchers    Int?
   castJson       Json?
   tags           Json?
   genres         Json?

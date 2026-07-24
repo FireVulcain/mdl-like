@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { tmdb, TMDB_CONFIG, TMDBMedia } from "@/lib/tmdb";
-import { kuryanaGetDetails, kuryanaGetCast } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { MdlCast, MdlCastMember } from "@/lib/mdl-data";
 import { KuryanaCastMember } from "@/lib/kuryana";
@@ -122,6 +122,7 @@ export async function createMdlSeasonLink(
         const mdlRating = details?.data?.rating != null ? parseFloat(String(details.data.rating)) || null : null;
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+        const mdlWatchers = parseMdlWatchers(details?.data?.details?.watchers);
         const tags = details?.data?.others?.tags ?? [];
 
         const cast: MdlCast | null = castResult?.data?.casts
@@ -142,6 +143,7 @@ export async function createMdlSeasonLink(
                 mdlRating,
                 mdlRanking,
                 mdlPopularity,
+                mdlWatchers,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 cachedAt: new Date(),
@@ -151,6 +153,7 @@ export async function createMdlSeasonLink(
                 mdlRating,
                 mdlRanking,
                 mdlPopularity,
+                mdlWatchers,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 cachedAt: new Date(),
@@ -178,6 +181,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
         const mdlRating = details?.data?.rating != null ? parseFloat(String(details.data.rating)) || null : null;
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+        const mdlWatchers = parseMdlWatchers(details?.data?.details?.watchers);
         const tags = details?.data?.others?.tags ?? [];
         const directors = details?.data?.others?.directors ?? [];
         const screenwriters = details?.data?.others?.screenwriter ?? [];
@@ -199,6 +203,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
                 mdlRating,
                 mdlRanking,
                 mdlPopularity,
+                mdlWatchers,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 directors,
@@ -209,6 +214,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
                 mdlRating,
                 mdlRanking,
                 mdlPopularity,
+                mdlWatchers,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 directors,

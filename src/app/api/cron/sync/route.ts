@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
-import { kuryanaGetDetails, kuryanaGetCast, KuryanaCastMember } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 
 // Vercel cron jobs use this header for authentication
@@ -366,6 +366,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
                     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+                    const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];
                     const directors = details.data.others?.directors ?? [];
@@ -384,6 +385,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                             mdlRating,
                             mdlRanking,
                             mdlPopularity,
+                            mdlWatchers,
                             tags,
                             ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                             ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
@@ -425,13 +427,14 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlRating = details.data.rating != null ? parseFloat(String(details.data.rating)) || null : null;
                     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
+                    const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];
 
                     await prisma.mdlSeasonLink.update({
                         where: { tmdbExternalId_season: { tmdbExternalId: link.tmdbExternalId, season: link.season } },
                         data: {
-                            mdlRating, mdlRanking, mdlPopularity, tags,
+                            mdlRating, mdlRanking, mdlPopularity, mdlWatchers, tags,
                             ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                             cachedAt: new Date(),
                         },
