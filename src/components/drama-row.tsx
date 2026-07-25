@@ -14,6 +14,12 @@ export function mdlSlugFromUrl(url: string) {
     return url.replace(/^\//, "");
 }
 
+// Flat surface behind the spotlight/airing cards. Deliberately neutral: the
+// posters carry the colour, and each universe's hue already shows up in the
+// accents (eyebrow, row dot, kicker, ambient glow). Tinting the fill too made
+// the rows read as a patchwork.
+const CARD_SURFACE = "bg-white/5";
+
 type LinkedMap = Map<string, { tmdbExternalId: string; season?: number }>;
 
 // Next-episode info keyed by CachedEpisode.mediaId: the TMDB external id for
@@ -131,10 +137,10 @@ async function getLeadExtras(media: UnifiedMedia): Promise<LeadExtras | null> {
     return { genres, cast, mdlRanking: row.mdlRanking };
 }
 
-// Variant A "spotlight" lead: wide card, sharp poster over its own blurred
-// artwork (MDL rows have no landscape backdrops), title and meta beside it.
-// No fixed height: it stretches to match the poster columns (image + caption)
-// so the row bottom stays aligned.
+// Variant A "spotlight" lead: wide card, sharp poster on a flat surface (MDL
+// rows have no landscape backdrops), title and meta beside it. No fixed
+// height: it stretches to match the poster columns (image + caption) so the
+// row bottom stays aligned.
 function LeadCard({
     media,
     href,
@@ -155,20 +161,8 @@ function LeadCard({
     return (
         <Link
             href={href}
-            className="group relative shrink-0 w-85 sm:w-100 md:w-140 lg:w-160 rounded-xl overflow-hidden border border-white/8 hover:border-white/15 transition-colors whitespace-normal"
+            className={`group relative shrink-0 w-85 sm:w-100 md:w-140 lg:w-160 rounded-xl overflow-hidden border border-white/8 hover:border-white/15 transition-colors whitespace-normal ${CARD_SURFACE}`}
         >
-            {media.poster && (
-                <Image
-                    unoptimized
-                    src={media.poster}
-                    alt=""
-                    fill
-                    sizes="544px"
-                    className="object-cover scale-110 blur-2xl opacity-50"
-                />
-            )}
-            <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
-
             <div className="relative h-full flex items-center gap-4 p-4 md:p-5">
                 <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shadow-2xl shadow-black/60 shrink-0 bg-gray-800">
                     {media.poster ? (
@@ -256,9 +250,9 @@ function LeadCard({
     );
 }
 
-// Variant B "backdrop": landscape card, uncropped poster on the left over its
-// own blurred artwork (a mini version of the spotlight lead — cropping MDL's
-// portrait posters into landscape mangles typographic ones).
+// Variant B "backdrop": landscape card, uncropped poster on the left on the
+// same flat surface as the spotlight lead (cropping MDL's portrait posters
+// into landscape mangles typographic ones).
 function BackdropCard({
     media,
     href,
@@ -275,20 +269,8 @@ function BackdropCard({
     return (
         <Link
             href={href}
-            className="group relative shrink-0 w-60 sm:w-72 md:w-80 h-36 sm:h-40 md:h-44 rounded-xl overflow-hidden border border-white/8 hover:border-white/15 transition-colors whitespace-normal"
+            className={`group relative shrink-0 w-60 sm:w-72 md:w-80 h-36 sm:h-40 md:h-44 rounded-xl overflow-hidden border border-white/8 hover:border-white/15 transition-colors whitespace-normal ${CARD_SURFACE}`}
         >
-            {media.poster && (
-                <Image
-                    unoptimized
-                    src={media.poster}
-                    alt=""
-                    fill
-                    sizes="320px"
-                    className="object-cover scale-110 blur-2xl opacity-50"
-                />
-            )}
-            <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
-
             <div className="relative h-full flex items-center gap-3 p-3">
                 <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shadow-xl shadow-black/60 shrink-0 bg-gray-800">
                     {media.poster ? (
