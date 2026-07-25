@@ -10,6 +10,7 @@ import { getWatchlistExternalIds } from "@/actions/user-media";
 import { getExcludedTagsPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
+import { PageBackground } from "@/components/page-background";
 
 type SearchParams = Promise<{
     category?: string;
@@ -287,13 +288,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
     return (
         <div className="relative min-h-screen">
-            {/* Background */}
-            <div className="fixed inset-0 -z-10">
-                <div className="absolute inset-0 bg-[#0a0a0f]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
-                <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
-                <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
-            </div>
+            <PageBackground />
 
             <div className="container py-6 md:py-10 max-w-[95%] md:max-w-[90%] mx-auto px-2 md:px-0 relative z-10">
                 {/* Breadcrumb */}

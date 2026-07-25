@@ -9,6 +9,7 @@ import { PodiumSection } from "@/components/podium-section";
 import { CollapsibleSection } from "@/components/collapsible-section";
 import { Star, Clock } from "lucide-react";
 import { auth } from "@/lib/auth";
+import { PageBackground } from "@/components/page-background";
 
 export const dynamic = "force-dynamic";
 
@@ -58,13 +59,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            {/* Background */}
-            <div className="fixed inset-0 -z-10">
-                <div className="absolute inset-0 bg-[#0a0a0f]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
-                <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
-                <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
-            </div>
+            <PageBackground />
 
             {/* Content */}
             <div className="container py-10 m-auto max-w-[80%] relative z-10 space-y-8">

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Loader2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { PageBackground } from "@/components/page-background";
 
 const fadeUp = {
     hidden: { opacity: 0, y: 16 },
@@ -50,21 +51,7 @@ export default function LoginPage() {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center -mt-24">
-            {/* Background — identical to rest of the site */}
-            <div className="fixed inset-0 -z-10">
-                <div className="absolute inset-0 bg-[#0a0a0f]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
-                <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
-                <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
-                <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay">
-                    <svg width="100%" height="100%">
-                        <filter id="noise">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" />
-                        </filter>
-                        <rect width="100%" height="100%" filter="url(#noise)" />
-                    </svg>
-                </div>
-            </div>
+            <PageBackground />
 
             <div className="relative z-10 w-full max-w-sm mx-4">
                 <motion.div

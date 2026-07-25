@@ -131,14 +131,14 @@ export async function ActorRadarData() {
                                     title={actor.name}
                                     width={32}
                                     height={32}
-                                    className="h-8 w-8 rounded-full object-cover ring-2 ring-[#0a0a0f]"
+                                    className="h-8 w-8 rounded-full object-cover ring-2 ring-page"
                                 />
                             ) : null,
                         )}
                         <Link
                             href="/settings"
                             title="Manage actors in Settings"
-                            className="h-8 w-8 rounded-full flex items-center justify-center bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white ring-2 ring-[#0a0a0f] transition-all shrink-0"
+                            className="h-8 w-8 rounded-full flex items-center justify-center bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white ring-2 ring-page transition-all shrink-0"
                         >
                             <Settings2 className="h-4 w-4" />
                         </Link>

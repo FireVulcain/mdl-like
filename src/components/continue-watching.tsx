@@ -80,9 +80,9 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
             </AnimatePresence>
 
             {/* Gradient overlays */}
-            <div className="absolute inset-0 bg-linear-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent" />
-            <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/30" />
-            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#0a0a0f]" />
+            <div className="absolute inset-0 bg-linear-to-r from-page via-page/80 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-page via-transparent to-page/30" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-page" />
 
             {/* Content */}
             <div className="relative h-full flex">
@@ -186,7 +186,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         onClick={() => handleSelect(actualIndex)}
                                         whileHover={{ scale: 1.03 }}
                                         className={`relative shrink-0 w-50 h-32.5 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
-                                            isSelected ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-[#0a0a0f]" : "opacity-60 hover:opacity-100"
+                                            isSelected ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-page" : "opacity-60 hover:opacity-100"
                                         }`}
                                     >
                                         <Image unoptimized={true} src={show.backdrop || show.poster} alt={show.title ?? ""} fill className="object-cover" />

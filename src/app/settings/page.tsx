@@ -18,6 +18,7 @@ import { ProfileSettings } from "@/components/settings/profile-settings";
 import { NotificationSettings } from "@/components/settings/notification-settings";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
 import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-tabs";
+import { PageBackground } from "@/components/page-background";
 
 export const dynamic = "force-dynamic";
 
@@ -91,11 +92,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <div className="fixed inset-0 -z-10">
-                <div className="absolute inset-0 bg-[#0a0a0f]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
-                <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
-            </div>
+            <PageBackground />
 
             <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
                 <div className="mb-8">

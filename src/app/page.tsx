@@ -4,13 +4,14 @@ import { ActorRadarData } from "@/components/actor-radar-data";
 import { DramaUniverseSection } from "@/components/drama-universe-section";
 import { TrendingData } from "@/components/trending-data";
 import { getHomeSections } from "@/actions/preferences";
+import { PageBackground } from "@/components/page-background";
 
 export const dynamic = "force-dynamic";
 
 function HeroSkeleton() {
     return (
-        <div className="relative h-[90vh] min-h-125 -mt-24 w-full overflow-hidden bg-linear-to-b from-gray-900 to-[#0a0a0f] animate-pulse">
-            <div className="absolute inset-0 bg-linear-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent" />
+        <div className="relative h-[90vh] min-h-125 -mt-24 w-full overflow-hidden bg-linear-to-b from-gray-900 to-page animate-pulse">
+            <div className="absolute inset-0 bg-linear-to-r from-page via-page/80 to-transparent" />
             <div className="relative h-full flex">
                 <div className="flex-1 flex flex-col justify-end pb-16 md:pb-24 pl-[5%] md:pl-[7.5%] space-y-4 md:space-y-6 max-w-xl">
                     <div className="h-6 w-40 rounded-full bg-blue-500/20 border border-blue-500/30" />
@@ -86,21 +87,7 @@ export default async function Home() {
 
     return (
         <div className="relative min-h-screen">
-            {/* Background */}
-            <div className="fixed inset-0 -z-10">
-                <div className="absolute inset-0 bg-[#0a0a0f]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.4)_0%,transparent_50%)]" />
-                <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
-                <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
-                <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay">
-                    <svg width="100%" height="100%">
-                        <filter id="noise">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" />
-                        </filter>
-                        <rect width="100%" height="100%" filter="url(#noise)" />
-                    </svg>
-                </div>
-            </div>
+            <PageBackground />
 
             {/* Hero — ContinueWatching: DB-only fetch, resolves in ~10ms */}
             <Suspense fallback={<HeroSkeleton />}>

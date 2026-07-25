@@ -35,6 +35,7 @@
 }
 
 @theme inline {
+    --color-page: var(--page-bg);
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-sans: var(--font-geist-sans);
@@ -78,6 +79,11 @@
 }
 
 :root {
+    /* The site's page canvas. Every backdrop, hero fade and ring-offset that
+       needs to blend into the page reads this, so darkness is tuned in one
+       place. Was #0a0a0f, which sat close enough to pure black that the lower
+       half of the viewport read as flat black. */
+    --page-bg: #101219;
     --radius: 0.625rem;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
