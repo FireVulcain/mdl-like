@@ -29,8 +29,10 @@ type SearchParams = Promise<{
 }>;
 
 const CATEGORY_CONFIG = {
+    // value stays "popular" (it's in shared/bookmarked URLs); the scraper call
+    // behind it only returns finished dramas, so the label says so
     popular: {
-        label: "All",
+        label: "Completed",
         bar: "from-blue-500 to-blue-400",
         dot: "bg-blue-400",
     },
