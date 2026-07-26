@@ -396,7 +396,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     </main>
 
                     {/* Right: Filters sidebar */}
-                    <aside className="w-full lg:w-52 xl:w-75 shrink-0 lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
+                    <aside className="w-full lg:w-52 xl:w-75 shrink-0 space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
                         {/* Category */}
                         <div className="space-y-2">
                             <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Category</h4>
