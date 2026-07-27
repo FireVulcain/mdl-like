@@ -64,6 +64,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     // Hero title only — watchlist entries and TVmaze/MDL matching keep the english title
     const displayTitle = displayPrefs.titleLanguage === "native" && media.nativeTitle ? media.nativeTitle : media.title;
 
+    // The other title, shown under the main one the way MDL does it. Which one
+    // that is follows the display preference, so it never repeats the heading —
+    // and it's dropped entirely when both titles are the same string.
+    const otherTitle = displayTitle === media.title ? media.nativeTitle : media.title;
+    const secondaryTitle = otherTitle && otherTitle !== displayTitle ? otherTitle : null;
+
     // MDL-native page: data already comes from Kuryana, skip all TMDB-specific fetches
     if (media.source === "MDL") {
         const [userId, watchlistExternalIds, castResult, linkedTmdb] = await Promise.all([
@@ -142,6 +148,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
                             <div className="space-y-1">
                                 <h1 className="text-base font-bold leading-snug">{displayTitle}</h1>
+                                {secondaryTitle && <p className="text-xs text-muted-foreground leading-snug">{secondaryTitle}</p>}
                                 <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
                                     <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{media.originCountry}</Badge>
                                     <span>{media.year}</span>
@@ -299,8 +306,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     <div className="space-y-8 min-w-0 md:pt-20">
                         <div className="hidden md:block">
-                            <h1 className="text-4xl font-bold mb-2">{displayTitle}</h1>
-                            <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
+                            <h1 className="text-4xl font-bold">{displayTitle}</h1>
+                            {secondaryTitle && <p className="mt-1 text-lg text-muted-foreground">{secondaryTitle}</p>}
+                            <div className="mt-2 flex flex-wrap gap-2 text-muted-foreground items-center">
                                 <span>{media.year}</span>
                                 <span>•</span>
                                 <Badge variant="outline">{media.originCountry}</Badge>
@@ -567,6 +575,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
                                 )}
                             </h1>
+                            {secondaryTitle && <p className="text-xs text-muted-foreground leading-snug">{secondaryTitle}</p>}
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
                                 <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{media.originCountry}</Badge>
                                 <span>{media.year}</span>
@@ -785,13 +794,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Info */}
                 <div className="space-y-8 min-w-0 md:pt-20">
                     <div className="hidden md:block">
-                        <h1 className="text-4xl font-bold mb-2 flex items-baseline gap-2">
+                        <h1 className="text-4xl font-bold flex items-baseline gap-2">
                             <span>{displayTitle}</span>
                             {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
                                 <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
                             )}
                         </h1>
-                        <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
+                        {secondaryTitle && <p className="mt-1 text-lg text-muted-foreground">{secondaryTitle}</p>}
+                        <div className="mt-2 flex flex-wrap gap-2 text-muted-foreground items-center">
                             <span>{media.year}</span>
                             <span>•</span>
                             <Badge variant="outline">{media.originCountry}</Badge>
