@@ -2228,7 +2228,9 @@ const ItemCard = memo(function ItemCard({
                             >
                                 {item.title}
                             </Link>
-                            {item.mediaType === "TV" && item.season > 0 && (
+                            {/* Only worth showing when it disambiguates: a show tracked as a
+                                single row owns its whole entry, so "S1" is noise there. */}
+                            {item.mediaType === "TV" && item.season > 0 && !isOnlySeasonRow && (
                                 <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
                             )}
                             {recInfo && (
