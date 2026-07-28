@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 
@@ -59,6 +59,7 @@ export type UnifiedMedia = {
     totalSeasons?: number;
     firstAirDate?: string | null; // Raw first air date (YYYY-MM-DD)
     mdlRanking?: string; // e.g. "#39230"
+    mdlWatchers?: number; // MDL-native pages only; TMDB pages read it from the cache via MdlRankRow
 };
 
 export type UnifiedPerson = {
@@ -469,6 +470,7 @@ export const mediaService = {
                 cast: flatCast,
                 nextEpisode: mdlNextEpisode,
                 mdlRanking: d.details.ranked || undefined,
+                mdlWatchers: parseMdlWatchers(d.details?.watchers) ?? undefined,
             };
         }
 

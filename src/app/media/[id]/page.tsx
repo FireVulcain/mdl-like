@@ -292,6 +292,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                         <span className="text-sky-400 font-medium">{media.mdlRanking}</span>
                                     </>
                                 )}
+
+                                {media.mdlWatchers ? (
+                                    <>
+                                        <span className="text-gray-400 font-medium">Watchers</span>
+                                        {/* Explicit locale: the server's own would group with spaces */}
+                                        <span className="text-white">{media.mdlWatchers.toLocaleString("en-US")}</span>
+                                    </>
+                                ) : null}
                             </div>
                         </div>
 
