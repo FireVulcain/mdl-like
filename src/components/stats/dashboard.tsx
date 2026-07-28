@@ -65,13 +65,33 @@ function buildHeatmapGrid(timestamps: string[]) {
     return { weeks, monthLabels };
 }
 
+// Every chart on this page plots a SINGLE series, so hue encodes nothing: there
+// is no identity to tell apart. One accent carries all data marks, and section
+// identity stays where it belongs — the coloured dot beside each header.
+const DATA_MARK = "bg-sky-400";
+
+// Sequential ramp for magnitude: one hue, monotone lightness, brighter as the
+// count grows (the anchor flips on a dark surface).
+//
+// The four data steps are literal hexes, not sky-900/700/500 with opacity,
+// because those composited to 1.5–2.0:1 against the page — a day with 1–2
+// actions was all but invisible. sky-900 at full opacity still lands on
+// 1.97:1, missing the 2:1 floor by a hair. These four were derived against
+// #101219 and pass all four ordinal checks (monotone L, adjacent ΔL ≥ 0.06,
+// light end 2.35:1, hue spread 10°). Don't "tidy" them back into tokens
+// without re-running the validator.
+//
+// Slot 0 is the empty day: a track, not a data step, so it stays recessive on
+// purpose — filled cells are supposed to be what you see.
+const HEAT_RAMP = ["bg-white/5", "bg-[#03567f]", "bg-[#0075b4]", "bg-[#00a5ef]", "bg-[#00bcfe]"];
+
 function cellColor(count: number) {
     if (count < 0) return "bg-transparent";
-    if (count === 0) return "bg-white/5";
-    if (count <= 2) return "bg-emerald-900/70";
-    if (count <= 4) return "bg-emerald-700/80";
-    if (count <= 7) return "bg-emerald-500/90";
-    return "bg-emerald-400";
+    if (count === 0) return HEAT_RAMP[0];
+    if (count <= 2) return HEAT_RAMP[1];
+    if (count <= 4) return HEAT_RAMP[2];
+    if (count <= 7) return HEAT_RAMP[3];
+    return HEAT_RAMP[4];
 }
 
 // Block header: accent dot + bold label, thin hairline, optional meta on the right
@@ -307,7 +327,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                 )}
                 <div className="flex items-center gap-1.5 mt-3 justify-end">
                     <span className="text-[10px] text-gray-600">Less</span>
-                    {["bg-white/5", "bg-emerald-900/70", "bg-emerald-700/80", "bg-emerald-500/90", "bg-emerald-400"].map((c) => (
+                    {HEAT_RAMP.map((c) => (
                         <div key={c} className={`w-2.5 h-2.5 rounded-[2px] ${c}`} />
                     ))}
                     <span className="text-[10px] text-gray-600">More</span>
@@ -335,7 +355,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 >
                                     <div
                                         className={`relative w-14 h-14 rounded-full overflow-hidden bg-white/5 ring-2 transition-all ${
-                                            open ? "ring-rose-400" : "ring-white/10 group-hover:ring-rose-400/50"
+                                            open ? "ring-sky-400" : "ring-white/10 group-hover:ring-sky-400/50"
                                         }`}
                                     >
                                         {actor.profileImage ? (
@@ -353,7 +373,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         )}
                                     </div>
                                     <div>
-                                        <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-rose-300" : "text-white group-hover:text-rose-300"}`}>
+                                        <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-sky-300" : "text-white group-hover:text-sky-300"}`}>
                                             {actor.name}
                                         </p>
                                         <p className="text-xs text-gray-500">
@@ -372,7 +392,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 <div className="flex items-center gap-3 shrink-0">
                                     <Link
                                         href={mdlPersonHref(openActorData.slug) ?? "#"}
-                                        className="text-xs text-rose-300 hover:text-rose-200 transition-colors"
+                                        className="text-xs text-sky-300 hover:text-sky-200 transition-colors"
                                     >
                                         View profile
                                     </Link>
@@ -390,7 +410,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 {openActorData.shows.map((s) => (
                                     <li key={s.href + s.title} className="w-20">
                                         <Link href={s.href} className="group/show block">
-                                            <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-white/5 ring-1 ring-white/10 group-hover/show:ring-rose-400/50 transition-all">
+                                            <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-white/5 ring-1 ring-white/10 group-hover/show:ring-sky-400/50 transition-all">
                                                 {s.poster ? (
                                                     <Image
                                                         unoptimized
@@ -443,7 +463,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     {/* Capped at 24px and centred, so the band's leftover is air.
                                         A bar that fills its slot reads as a thick saturated block. */}
                                     <div
-                                        className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] bg-yellow-400 transition-opacity group-hover:opacity-80"
+                                        className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] ${DATA_MARK} transition-opacity group-hover:opacity-80`}
                                         style={{
                                             height: `${Math.max((count / maxRatingCount) * 100, count > 0 ? 3 : 0)}%`,
                                             opacity: count === 0 ? 0.12 : undefined,
@@ -479,7 +499,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     <div className="relative flex-1">
                                         {/* Same 24px cap as Your Ratings — see the note there */}
                                         <div
-                                            className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] bg-fuchsia-400 transition-opacity group-hover:opacity-80"
+                                            className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] ${DATA_MARK} transition-opacity group-hover:opacity-80`}
                                             style={{
                                                 height: `${Math.max((count / maxYearCount) * 100, count > 0 ? 3 : 0)}%`,
                                                 opacity: count === 0 ? 0.12 : undefined,
@@ -513,13 +533,13 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     className="block space-y-1.5 group -mx-2 px-2 py-1 rounded-lg hover:bg-white/5 transition-colors"
                                 >
                                     <div className="flex justify-between items-baseline text-sm">
-                                        <span className="font-medium text-white group-hover:text-emerald-300 transition-colors">
+                                        <span className="font-medium text-white group-hover:text-sky-300 transition-colors">
                                             {genre.name}
                                         </span>
                                         <span className="text-xs text-gray-500 tabular-nums">{genre.count}</span>
                                     </div>
                                     <div className="relative h-1 w-full bg-white/6 rounded-full overflow-hidden">
-                                        <div className="h-full rounded-full bg-emerald-400" style={{ width: `${genre.percentage}%` }} />
+                                        <div className={`h-full rounded-full ${DATA_MARK}`} style={{ width: `${genre.percentage}%` }} />
                                     </div>
                                 </Link>
                             ))
@@ -540,7 +560,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         <span className="text-xs text-gray-500 tabular-nums">{count}</span>
                                     </div>
                                     <div className="relative h-1 w-full bg-white/6 rounded-full overflow-hidden">
-                                        <div className="h-full rounded-full bg-rose-400" style={{ width: `${(count / maxCountry) * 100}%` }} />
+                                        <div className={`h-full rounded-full ${DATA_MARK}`} style={{ width: `${(count / maxCountry) * 100}%` }} />
                                     </div>
                                 </div>
                             ))}
@@ -560,14 +580,14 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 <Link
                                     key={theme.name}
                                     href={`/watchlist?theme=${encodeURIComponent(theme.name)}`}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-violet-200 border hover:brightness-135 transition-all"
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-sky-100 border hover:brightness-135 transition-all"
                                     style={{
-                                        backgroundColor: `rgba(139, 92, 246, ${0.08 + intensity * 0.22})`,
-                                        borderColor: `rgba(139, 92, 246, ${0.15 + intensity * 0.35})`,
+                                        backgroundColor: `rgba(56, 189, 248, ${0.08 + intensity * 0.22})`,
+                                        borderColor: `rgba(56, 189, 248, ${0.15 + intensity * 0.35})`,
                                     }}
                                 >
                                     {theme.name}
-                                    <span className="text-xs text-violet-300/60">{theme.count}</span>
+                                    <span className="text-xs text-sky-200/70">{theme.count}</span>
                                 </Link>
                             );
                         })}
@@ -604,7 +624,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                 </div>
                                                 <div className="relative h-1 bg-white/20 rounded-full overflow-hidden">
                                                     <div
-                                                        className="absolute inset-y-0 left-0 bg-blue-400 rounded-full"
+                                                        className={`absolute inset-y-0 left-0 ${DATA_MARK} rounded-full`}
                                                         style={{ width: `${progressPercent}%` }}
                                                     />
                                                 </div>
