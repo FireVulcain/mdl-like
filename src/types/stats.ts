@@ -16,7 +16,14 @@ export type DashboardStats = {
     decadeDistribution: { decade: string; count: number }[];
     countryBreakdown: { country: string; count: number }[];
     yearBreakdown: { year: number; count: number }[];
-    topActors: { name: string; profileImage: string; slug: string; count: number }[];
+    topActors: {
+        name: string;
+        profileImage: string;
+        slug: string;
+        count: number;
+        // The shows behind the count, so the number can be checked without leaving the page
+        shows: { title: string; href: string; poster: string | null; year: number | null }[];
+    }[];
 };
 
 export const EMPTY_STATS: DashboardStats = {

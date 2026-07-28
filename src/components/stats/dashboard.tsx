@@ -7,7 +7,7 @@ import { HomeRowLabel } from "@/components/home-section-header";
 import { mdlPersonHref } from "@/lib/person-links";
 import { ACTION_COLOR, formatPayloadText, mediaHref } from "@/lib/activity-format";
 import { getActivityForDay, type DayActivityEntry } from "@/actions/stats";
-import { Star, Users, X } from "lucide-react";
+import { ImageOff, Star, Users, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -122,6 +122,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
     );
     // Heatmap day drill-down. Entries are fetched per click and cached by date,
     // so re-opening a day costs nothing.
+    const [openActor, setOpenActor] = useState<string | null>(null);
+    const openActorData = stats.topActors.find((a) => a.slug === openActor) ?? null;
+
     const [openDay, setOpenDay] = useState<{ date: string; label: string } | null>(null);
     const [dayCache, setDayCache] = useState<Record<string, DayActivityEntry[]>>({});
     const [loadingDay, setLoadingDay] = useState(false);
@@ -313,31 +316,105 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {stats.topActors.length > 0 && (
                 <div>
                     <BlockHeader dotClass="bg-rose-400" label="Most Seen Actors" />
+                    {/* The whole tile opens the breakdown rather than the profile: the
+                        count alone was a 10px target nested inside the link, and the
+                        number is easier to trust when you can see what makes it up.
+                        The profile link moves into the panel, where it has room. */}
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-3 gap-y-5">
-                        {stats.topActors.map((actor) => (
-                            <Link key={actor.slug} href={mdlPersonHref(actor.slug) ?? "#"} className="group flex flex-col items-center gap-2 text-center">
-                                <div className="relative w-14 h-14 rounded-full overflow-hidden bg-white/5 ring-2 ring-white/10 group-hover:ring-rose-400/50 transition-all">
-                                    {actor.profileImage ? (
-                                        <Image
-                                            unoptimized
-                                            src={actor.profileImage}
-                                            alt={actor.name}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
-                                    ) : (
-                                        <div className="absolute inset-0 flex items-center justify-center text-gray-600">
-                                            <Users className="h-5 w-5" />
-                                        </div>
-                                    )}
-                                </div>
-                                <div>
-                                    <p className="text-xs font-medium text-white line-clamp-1 group-hover:text-rose-300 transition-colors">{actor.name}</p>
-                                    <p className="text-[10px] text-gray-500">{actor.count} show{actor.count !== 1 ? "s" : ""}</p>
-                                </div>
-                            </Link>
-                        ))}
+                        {stats.topActors.map((actor) => {
+                            const open = openActor === actor.slug;
+                            return (
+                                <button
+                                    key={actor.slug}
+                                    type="button"
+                                    onClick={() => setOpenActor(open ? null : actor.slug)}
+                                    aria-expanded={open}
+                                    className="group flex flex-col items-center gap-2 text-center cursor-pointer"
+                                >
+                                    <div
+                                        className={`relative w-14 h-14 rounded-full overflow-hidden bg-white/5 ring-2 transition-all ${
+                                            open ? "ring-rose-400" : "ring-white/10 group-hover:ring-rose-400/50"
+                                        }`}
+                                    >
+                                        {actor.profileImage ? (
+                                            <Image
+                                                unoptimized
+                                                src={actor.profileImage}
+                                                alt={actor.name}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                                <Users className="h-5 w-5" />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-rose-300" : "text-white group-hover:text-rose-300"}`}>
+                                            {actor.name}
+                                        </p>
+                                        <p className="text-xs text-gray-500">
+                                            {actor.count} show{actor.count !== 1 ? "s" : ""}
+                                        </p>
+                                    </div>
+                                </button>
+                            );
+                        })}
                     </div>
+
+                    {openActorData && (
+                        <div className="mt-5 rounded-xl border border-white/10 bg-white/3 p-4">
+                            <div className="flex items-center justify-between gap-3 mb-3">
+                                <span className="text-sm font-semibold text-white">{openActorData.name}</span>
+                                <div className="flex items-center gap-3 shrink-0">
+                                    <Link
+                                        href={mdlPersonHref(openActorData.slug) ?? "#"}
+                                        className="text-xs text-rose-300 hover:text-rose-200 transition-colors"
+                                    >
+                                        View profile
+                                    </Link>
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpenActor(null)}
+                                        aria-label="Close"
+                                        className="text-gray-500 hover:text-white transition-colors"
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </button>
+                                </div>
+                            </div>
+                            <ul className="flex flex-wrap gap-3">
+                                {openActorData.shows.map((s) => (
+                                    <li key={s.href + s.title} className="w-20">
+                                        <Link href={s.href} className="group/show block">
+                                            <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-white/5 ring-1 ring-white/10 group-hover/show:ring-rose-400/50 transition-all">
+                                                {s.poster ? (
+                                                    <Image
+                                                        unoptimized
+                                                        src={s.poster}
+                                                        alt={s.title}
+                                                        fill
+                                                        sizes="80px"
+                                                        className="object-cover group-hover/show:scale-105 transition-transform duration-300"
+                                                    />
+                                                ) : (
+                                                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                                        <ImageOff className="h-4 w-4" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <p className="mt-1.5 text-[11px] leading-snug text-gray-400 line-clamp-2 group-hover/show:text-white transition-colors">
+                                                {s.title}
+                                            </p>
+                                            {/* The year is what the list is ordered by, so it earns its place */}
+                                            {s.year && <p className="text-[10px] text-gray-600 tabular-nums">{s.year}</p>}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
             )}
 

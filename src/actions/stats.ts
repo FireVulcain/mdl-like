@@ -223,7 +223,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     };
 }
 
-export async function getTopActors(): Promise<{ name: string; profileImage: string; slug: string; count: number }[]> {
+export async function getTopActors(): Promise<DashboardStats["topActors"]> {
     const userId = await getCurrentUserId();
 
     // Anything started counts — you've seen the actor's face whether or not you
@@ -232,7 +232,7 @@ export async function getTopActors(): Promise<{ name: string; profileImage: stri
     // used for watch time, which measures finished viewings, not exposure.)
     const userMedia = await prisma.userMedia.findMany({
         where: { userId, status: { not: "Plan to Watch" } },
-        select: { externalId: true, season: true },
+        select: { externalId: true, season: true, title: true, source: true, poster: true, year: true },
     });
 
     if (userMedia.length === 0) return [];
@@ -262,10 +262,10 @@ export async function getTopActors(): Promise<{ name: string; profileImage: stri
     // Leads only. Supporting roles were tried and drowned the list in character
     // actors — the kind who appear in three scenes of every drama ever made —
     // pushing the leads the user actually recognises off the board entirely.
-    const actorMap = new Map<string, { name: string; profileImage: string; slug: string; count: number }>();
+    const actorMap = new Map<string, DashboardStats["topActors"][number]>();
     const credited = new Set<string>(); // `${actorSlug}-${showId}` — a show counts once, however many of its seasons were watched
 
-    for (const { externalId, season } of userMedia) {
+    for (const { externalId, season, title, source, poster, year } of userMedia) {
         const cast = (seasonCast.get(`${externalId}-${season}`) ?? showCast.get(externalId)) as
             | { main?: CastMember[] }
             | null
@@ -276,15 +276,20 @@ export async function getTopActors(): Promise<{ name: string; profileImage: stri
             if (credited.has(key)) continue;
             credited.add(key);
 
+            // Collected in the same pass that counts, so the breakdown costs no
+            // extra query — only the 12 rows that survive the slice are shipped.
+            const show = { title: title || "Untitled", href: `/media/${source.toLowerCase()}-${externalId}`, poster, year };
             const existing = actorMap.get(member.slug);
             if (existing) {
                 existing.count++;
+                existing.shows.push(show);
             } else {
                 actorMap.set(member.slug, {
                     name: member.name,
                     profileImage: member.profileImage ?? "",
                     slug: member.slug,
                     count: 1,
+                    shows: [show],
                 });
             }
         }
@@ -292,7 +297,14 @@ export async function getTopActors(): Promise<{ name: string; profileImage: stri
 
     return Array.from(actorMap.values())
         .sort((a, b) => b.count - a.count)
-        .slice(0, 12);
+        .slice(0, 12)
+        // Newest first — reads as a career timeline. Undated entries sink to the
+        // bottom rather than leading the list, and ties fall back to the title so
+        // the order is stable between renders.
+        .map((a) => ({
+            ...a,
+            shows: a.shows.toSorted((x, y) => (y.year ?? 0) - (x.year ?? 0) || x.title.localeCompare(y.title)),
+        }));
 }
 
 export async function getContinueWatching() {
