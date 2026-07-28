@@ -226,28 +226,56 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
 export async function getTopActors(): Promise<{ name: string; profileImage: string; slug: string; count: number }[]> {
     const userId = await getCurrentUserId();
 
+    // Anything started counts — you've seen the actor's face whether or not you
+    // finished the show. Only Plan to Watch is excluded: those you haven't
+    // watched at all. (Deliberately looser than the Completed-or-Dropped rule
+    // used for watch time, which measures finished viewings, not exposure.)
     const userMedia = await prisma.userMedia.findMany({
-        where: { userId },
-        select: { externalId: true },
+        where: { userId, status: { not: "Plan to Watch" } },
+        select: { externalId: true, season: true },
     });
 
     if (userMedia.length === 0) return [];
 
-    const externalIds = userMedia.map((m) => m.externalId);
+    const externalIds = [...new Set(userMedia.map((m) => m.externalId))];
 
-    const cachedRows = await prisma.cachedMdlData.findMany({
-        where: { tmdbExternalId: { in: externalIds } },
-        select: { castJson: true },
-    });
+    // Two sources, because a show's cast changes between seasons: CachedMdlData
+    // holds one row per show (the season-1 cast), MdlSeasonLink one per linked
+    // season. Reading only the former made anyone promoted to lead in a later
+    // season invisible — Go Youn Jung is supporting in Alchemy of Souls S1 but
+    // heads the bill in S2.
+    const [showRows, seasonRows] = await Promise.all([
+        prisma.cachedMdlData.findMany({
+            where: { tmdbExternalId: { in: externalIds } },
+            select: { tmdbExternalId: true, castJson: true },
+        }),
+        prisma.mdlSeasonLink.findMany({
+            where: { tmdbExternalId: { in: externalIds } },
+            select: { tmdbExternalId: true, season: true, castJson: true },
+        }),
+    ]);
 
     type CastMember = { name: string; profileImage: string; slug: string; roleType: string };
-    const actorMap = new Map<string, { name: string; profileImage: string; slug: string; count: number }>();
+    const showCast = new Map(showRows.map((r) => [r.tmdbExternalId, r.castJson]));
+    const seasonCast = new Map(seasonRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.castJson]));
 
-    for (const row of cachedRows) {
-        if (!row.castJson) continue;
-        const cast = row.castJson as { main?: CastMember[] };
-        for (const member of cast.main ?? []) {
+    // Leads only. Supporting roles were tried and drowned the list in character
+    // actors — the kind who appear in three scenes of every drama ever made —
+    // pushing the leads the user actually recognises off the board entirely.
+    const actorMap = new Map<string, { name: string; profileImage: string; slug: string; count: number }>();
+    const credited = new Set<string>(); // `${actorSlug}-${showId}` — a show counts once, however many of its seasons were watched
+
+    for (const { externalId, season } of userMedia) {
+        const cast = (seasonCast.get(`${externalId}-${season}`) ?? showCast.get(externalId)) as
+            | { main?: CastMember[] }
+            | null
+            | undefined;
+        for (const member of cast?.main ?? []) {
             if (!member.slug) continue;
+            const key = `${member.slug}-${externalId}`;
+            if (credited.has(key)) continue;
+            credited.add(key);
+
             const existing = actorMap.get(member.slug);
             if (existing) {
                 existing.count++;
