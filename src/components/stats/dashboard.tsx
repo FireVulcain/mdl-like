@@ -186,7 +186,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                 ] as const).map(({ label, value, sub }, i) => (
                     <div key={label} className={`min-w-0 ${i > 0 ? "lg:border-l lg:border-white/8 lg:pl-8" : ""}`}>
                         <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">{label}</p>
-                        <p className="text-3xl md:text-4xl font-black tracking-tight text-white tabular-nums mt-1.5">{value}</p>
+                        {/* No tabular-nums here — Counter turns it on only while it
+                            counts, and a large settled figure wants proportional digits */}
+                        <p className="text-3xl md:text-4xl font-black tracking-tight text-white mt-1.5">{value}</p>
                         <p className="text-xs text-gray-500 mt-1">{sub}</p>
                     </div>
                 ))}
@@ -438,8 +440,10 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     <span className="hidden group-hover:inline">{count}</span>
                                 </div>
                                 <div className="relative flex-1">
+                                    {/* Capped at 24px and centred, so the band's leftover is air.
+                                        A bar that fills its slot reads as a thick saturated block. */}
                                     <div
-                                        className="absolute inset-x-0 bottom-0 rounded-t-lg bg-yellow-400 transition-opacity group-hover:opacity-80"
+                                        className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] bg-yellow-400 transition-opacity group-hover:opacity-80"
                                         style={{
                                             height: `${Math.max((count / maxRatingCount) * 100, count > 0 ? 3 : 0)}%`,
                                             opacity: count === 0 ? 0.12 : undefined,
@@ -473,8 +477,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         <span className="hidden group-hover:inline">{count}</span>
                                     </div>
                                     <div className="relative flex-1">
+                                        {/* Same 24px cap as Your Ratings — see the note there */}
                                         <div
-                                            className="absolute inset-x-0 bottom-0 rounded-t-lg bg-fuchsia-400 transition-opacity group-hover:opacity-80"
+                                            className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] bg-fuchsia-400 transition-opacity group-hover:opacity-80"
                                             style={{
                                                 height: `${Math.max((count / maxYearCount) * 100, count > 0 ? 3 : 0)}%`,
                                                 opacity: count === 0 ? 0.12 : undefined,
