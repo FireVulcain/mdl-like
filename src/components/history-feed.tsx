@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getActivityLog, deleteActivityLog, backfillActivityLog } from "@/actions/history";
 import { ActivityAction } from "@/types/activity";
+import { formatPayloadText } from "@/lib/activity-format";
 import { Plus, Trash2, Play, RefreshCw, Star, FileText, Clock, X, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -64,37 +65,6 @@ const ACTION_CONFIG: Record<string, { icon: React.ElementType; color: string; la
 
 function buildMediaHref(source: string, externalId: string) {
     return `/media/${source.toLowerCase()}-${externalId}`;
-}
-
-function formatPayloadText(action: string, payload: unknown, title: string): string {
-    const p = payload as Record<string, unknown> | null;
-    switch (action) {
-        case ActivityAction.ADDED:
-            return `Added <b>${title}</b> to watchlist${p?.status ? ` as ${p.status}` : ""}`;
-        case ActivityAction.REMOVED:
-            return `Removed <b>${title}</b> from watchlist`;
-        case ActivityAction.PROGRESS: {
-            const to = p?.to as number | undefined;
-            const from = p?.from as number | undefined;
-            if (to !== undefined && from !== undefined && to - from > 1) {
-                return `Watched episodes ${from + 1}–${to} of <b>${title}</b>`;
-            }
-            return `Watched episode ${to ?? "?"} of <b>${title}</b>`;
-        }
-        case ActivityAction.STATUS_CHANGED: {
-            const from = p?.from as string | undefined;
-            const to = p?.to as string | undefined;
-            return `Changed <b>${title}</b> from ${from ?? "?"} → ${to ?? "?"}`;
-        }
-        case ActivityAction.SCORED: {
-            const to = p?.to as number | undefined;
-            return `Rated <b>${title}</b> ${to ?? "?"}/10`;
-        }
-        case ActivityAction.NOTED:
-            return `Added a note to <b>${title}</b>`;
-        default:
-            return `Updated <b>${title}</b>`;
-    }
 }
 
 function formatRelativeTime(date: Date): string {

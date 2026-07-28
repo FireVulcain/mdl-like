@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { type DashboardStats } from "@/types/stats";
 import { Counter } from "./counter";
 import { HomeRowLabel } from "@/components/home-section-header";
 import { mdlPersonHref } from "@/lib/person-links";
-import { Star, Users } from "lucide-react";
+import { ACTION_COLOR, formatPayloadText, mediaHref } from "@/lib/activity-format";
+import { getActivityForDay, type DayActivityEntry } from "@/actions/stats";
+import { Star, Users, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -118,6 +120,25 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
         () => buildHeatmapGrid(isClient ? stats.activityTimestamps : []),
         [stats.activityTimestamps, isClient],
     );
+    // Heatmap day drill-down. Entries are fetched per click and cached by date,
+    // so re-opening a day costs nothing.
+    const [openDay, setOpenDay] = useState<{ date: string; label: string } | null>(null);
+    const [dayCache, setDayCache] = useState<Record<string, DayActivityEntry[]>>({});
+    const [loadingDay, setLoadingDay] = useState(false);
+
+    async function toggleDay(date: string, label: string) {
+        if (openDay?.date === date) return setOpenDay(null);
+        setOpenDay({ date, label });
+        if (dayCache[date]) return;
+        setLoadingDay(true);
+        try {
+            const entries = await getActivityForDay(date, new Date().getTimezoneOffset());
+            setDayCache((prev) => ({ ...prev, [date]: entries }));
+        } finally {
+            setLoadingDay(false);
+        }
+    }
+
     const listCount = Math.min(stats.topGenres.length, stats.countryBreakdown.length, 8);
     const maxCountry = stats.countryBreakdown[0]?.count ?? 1;
 
@@ -197,8 +218,17 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     <div key={di} className="w-full aspect-square" />
                                 ) : (
                                     <div key={di} className="relative group/day w-full aspect-square">
-                                        <div
-                                            className={`w-full h-full rounded-[2px] ring-white/60 group-hover/day:ring-1 ${cellColor(day.count)}`}
+                                        <button
+                                            type="button"
+                                            disabled={day.count === 0}
+                                            onClick={() => toggleDay(day.date, day.label)}
+                                            aria-label={`${day.count} actions on ${day.label}`}
+                                            // block + aspect-square, not h-full: a button is inline-block
+                                            // with native appearance, so a percentage height doesn't
+                                            // resolve against the wrapper the way the old div's did
+                                            className={`block w-full aspect-square rounded-[2px] ring-white/60 group-hover/day:ring-1 ${cellColor(day.count)} ${
+                                                day.count === 0 ? "cursor-default" : "cursor-pointer"
+                                            } ${openDay?.date === day.date ? "ring-1 ring-white" : ""}`}
                                         />
                                         <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-20 hidden group-hover/day:block whitespace-nowrap rounded-md border border-white/10 bg-gray-900 px-2 py-1 text-[11px] shadow-lg shadow-black/50">
                                             <span className="font-semibold text-white tabular-nums">
@@ -212,6 +242,64 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                         </div>
                     ))}
                 </div>
+                {openDay && (
+                    <div className="mt-4 rounded-xl border border-white/10 bg-white/3 p-4">
+                        <div className="flex items-center justify-between gap-3 mb-3">
+                            <span className="text-sm font-semibold text-white">{openDay.label}</span>
+                            <div className="flex items-center gap-3 shrink-0">
+                                <Link href="/history" className="text-xs text-sky-400 hover:text-sky-300 transition-colors">
+                                    View all history
+                                </Link>
+                                <button
+                                    type="button"
+                                    onClick={() => setOpenDay(null)}
+                                    aria-label="Close"
+                                    className="text-gray-500 hover:text-white transition-colors"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+                        </div>
+                        {loadingDay && !dayCache[openDay.date] ? (
+                            <p className="text-sm text-gray-500">Loading…</p>
+                        ) : (dayCache[openDay.date]?.length ?? 0) === 0 ? (
+                            <p className="text-sm text-gray-500">No activity on this day.</p>
+                        ) : (
+                            <ul className="space-y-2">
+                                {dayCache[openDay.date].map((e) => (
+                                    <li key={e.id}>
+                                        <Link
+                                            href={mediaHref(e.source, e.externalId)}
+                                            className="flex items-center gap-3 rounded-lg px-2 py-1.5 -mx-2 hover:bg-white/5 transition-colors"
+                                        >
+                                            {e.poster ? (
+                                                <Image
+                                                    unoptimized
+                                                    src={e.poster}
+                                                    alt=""
+                                                    width={28}
+                                                    height={42}
+                                                    className="h-10.5 w-7 rounded object-cover shrink-0"
+                                                />
+                                            ) : (
+                                                <span className="h-10.5 w-7 rounded bg-white/5 shrink-0" />
+                                            )}
+                                            <span
+                                                className={`text-sm min-w-0 flex-1 ${ACTION_COLOR[e.action] ?? "text-gray-300"}`}
+                                                dangerouslySetInnerHTML={{
+                                                    __html: formatPayloadText(e.action, e.payload, e.title),
+                                                }}
+                                            />
+                                            <span className="text-xs text-gray-500 tabular-nums shrink-0">
+                                                {new Date(e.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+                                            </span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
                 <div className="flex items-center gap-1.5 mt-3 justify-end">
                     <span className="text-[10px] text-gray-600">Less</span>
                     {["bg-white/5", "bg-emerald-900/70", "bg-emerald-700/80", "bg-emerald-500/90", "bg-emerald-400"].map((c) => (

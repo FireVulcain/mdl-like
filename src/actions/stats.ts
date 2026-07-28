@@ -328,3 +328,62 @@ export async function backfillGenres() {
 
     return { success: true, count };
 }
+
+export type DayActivityEntry = {
+    id: string;
+    action: string;
+    title: string;
+    poster: string | null;
+    source: string;
+    externalId: string;
+    payload: unknown;
+    at: string; // ISO instant; the client formats the time in its own zone
+};
+
+/**
+ * The activity behind one heatmap cell, loaded on click rather than shipped
+ * with the page — a year of entries with titles and posters is a lot of
+ * payload for squares the user will almost never open.
+ *
+ * `dateKey` is a YYYY-MM-DD in the VIEWER's calendar and `tzOffsetMinutes` its
+ * offset (JS convention: UTC − local, so France in summer sends -120). The day
+ * boundary is resolved from those two, matching the client-side bucketing that
+ * drew the cell in the first place.
+ */
+export async function getActivityForDay(dateKey: string, tzOffsetMinutes: number): Promise<DayActivityEntry[]> {
+    const userId = await getCurrentUserId();
+    if (!userId) return [];
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return [];
+    const offset = Math.abs(tzOffsetMinutes) <= 14 * 60 ? tzOffsetMinutes : 0;
+
+    const [y, m, d] = dateKey.split("-").map(Number);
+    const start = new Date(Date.UTC(y, m - 1, d) + offset * 60_000);
+    const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+
+    const logs = await prisma.activityLog.findMany({
+        where: { userId, isBackfill: false, createdAt: { gte: start, lt: end } },
+        orderBy: { createdAt: "desc" },
+        select: {
+            id: true,
+            action: true,
+            title: true,
+            poster: true,
+            source: true,
+            externalId: true,
+            payload: true,
+            createdAt: true,
+        },
+    });
+
+    return logs.map((l) => ({
+        id: l.id,
+        action: l.action,
+        title: l.title,
+        poster: l.poster,
+        source: l.source,
+        externalId: l.externalId,
+        payload: l.payload,
+        at: l.createdAt.toISOString(),
+    }));
+}
