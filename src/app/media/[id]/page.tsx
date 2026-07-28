@@ -1,4 +1,5 @@
-import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, Link2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { mediaService } from "@/services/media.service";
 import Image from "next/image";
@@ -11,6 +12,7 @@ import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
 import { MdlRankRow } from "@/components/media/mdl-rank-row";
+import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MdlSection } from "@/components/media/mdl-section";
 import { SynopsisBlock } from "@/components/media/synopsis-block";
 import { TrailerButton } from "@/components/trailer-button";
@@ -72,17 +74,32 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
     // MDL-native page: data already comes from Kuryana, skip all TMDB-specific fetches
     if (media.source === "MDL") {
-        const [userId, watchlistExternalIds, castResult, linkedTmdb] = await Promise.all([
+        // A slug reaches TMDB through any of three tables, the same set /dramas
+        // consults: the show-level cache, a season link (S2+), or an alias
+        // (Part 1 / Part 2 split). Reading only the first made season- and
+        // alias-linked entries look unlinked on their own page.
+        const [userId, watchlistExternalIds, castResult, showLink, seasonLink, aliasLink] = await Promise.all([
             getCurrentUserId(),
             getWatchlistExternalIds(),
             kuryanaGetCast(media.externalId),
-            // Check if this MDL slug is already linked to a TMDB entry (so watchlist check works
-            // even if the user added the series via TMDB search)
             prisma.cachedMdlData.findFirst({
                 where: { mdlSlug: media.externalId },
                 select: { tmdbExternalId: true },
             }),
+            prisma.mdlSeasonLink.findFirst({
+                where: { mdlSlug: media.externalId },
+                select: { tmdbExternalId: true, season: true },
+            }),
+            prisma.mdlAlias.findUnique({
+                where: { mdlSlug: media.externalId },
+                select: { tmdbExternalId: true },
+            }),
         ]);
+        const linkedTmdb = showLink ?? seasonLink ?? aliasLink;
+        const linkedSeason = seasonLink?.season;
+        const linkedHref = linkedTmdb
+            ? `/media/tmdb-${linkedTmdb.tmdbExternalId}${linkedSeason && linkedSeason > 1 ? `?season=${linkedSeason}` : ""}`
+            : null;
         // Check TMDB entry first (if linked), fall back to MDL entry in case user added it before the link existed
         const userMedia =
             (await getUserMedia(userId, linkedTmdb?.tmdbExternalId ?? media.externalId, linkedTmdb ? "TMDB" : "MDL", 1)) ??
@@ -336,6 +353,29 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 )}
                             </div>
                         </div>
+
+                        {/* TMDB bridge. Deliberately never a redirect — landing here is
+                            allowed, we just say where the richer page is. Unlinked, this
+                            is the one screen with enough context (synopsis, cast, year)
+                            to match the show confidently. */}
+                        {linkedHref ? (
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-sky-500/20 bg-sky-500/8 px-3 py-2 text-sm">
+                                <Link2 className="h-4 w-4 shrink-0 text-sky-400" />
+                                <span className="text-gray-300">
+                                    This drama is linked to a TMDB entry
+                                    {linkedSeason && linkedSeason > 1 ? ` (season ${linkedSeason})` : ""}.
+                                </span>
+                                <Link href={linkedHref} className="font-medium text-sky-400 hover:text-sky-300 transition-colors">
+                                    Open the full page →
+                                </Link>
+                            </div>
+                        ) : (
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-white/10 bg-white/3 px-3 py-2 text-sm">
+                                <Link2 className="h-4 w-4 shrink-0 text-gray-500" />
+                                <span className="text-gray-400">Not linked to TMDB yet — linking unlocks the full page.</span>
+                                <LinkToTmdbButton mdlSlug={media.externalId} defaultQuery={media.title} />
+                            </div>
+                        )}
 
                         {(media.aired || media.network || media.duration) && (
                             <div className="md:hidden grid grid-cols-[80px_1fr] gap-x-4 gap-y-1.5 text-sm">
