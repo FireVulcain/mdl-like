@@ -10,7 +10,7 @@ import { signOut, useSession } from "next-auth/react";
 import { updateAvatar } from "@/actions/avatar";
 import { cn } from "@/lib/utils";
 
-export function SiteHeader() {
+export function SiteHeader({ mdlProfileUrl }: { mdlProfileUrl?: string | null }) {
     const { data: session } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -168,15 +168,17 @@ export function SiteHeader() {
                             </Link>
                         );
                     })}
-                    <a
-                        href="https://mydramalist.com/dramalist/Popoooo_"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-white transition-colors rounded-lg"
-                    >
-                        MDL
-                        <ExternalLink className="h-3 w-3" />
-                    </a>
+                    {mdlProfileUrl && (
+                        <a
+                            href={mdlProfileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-white transition-colors rounded-lg"
+                        >
+                            MDL
+                            <ExternalLink className="h-3 w-3" />
+                        </a>
+                    )}
                 </nav>
 
                 {/* Search & Actions */}
@@ -377,15 +379,17 @@ export function SiteHeader() {
                                     </Link>
                                 );
                             })}
-                            <a
-                                href="https://mydramalist.com/dramalist/Popoooo_"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-4 py-3 text-sm font-semibold text-muted-foreground hover:text-white hover:bg-white/5 transition-colors rounded-xl"
-                            >
-                                MDL
-                                <ExternalLink className="h-3 w-3" />
-                            </a>
+                            {mdlProfileUrl && (
+                                <a
+                                    href={mdlProfileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1.5 px-4 py-3 text-sm font-semibold text-muted-foreground hover:text-white hover:bg-white/5 transition-colors rounded-xl"
+                                >
+                                    MDL
+                                    <ExternalLink className="h-3 w-3" />
+                                </a>
+                            )}
                         </nav>
 
                         {/* Mobile Profile */}

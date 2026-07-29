@@ -123,6 +123,8 @@ model UserPreferences {
   publicShowActivity         Boolean @default(true)
   // In-app banner after a background sync
   showSyncNotification       Boolean @default(true)
+  // Personal MyDramaList profile. Empty/null hides the MDL link in the header.
+  mdlProfileUrl              String?
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

@@ -4,6 +4,7 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { revalidatePath } from "next/cache";
+import { normalizeMdlProfileUrl } from "@/lib/mdl-profile-url";
 import { Prisma } from "@prisma/client";
 import {
     DEFAULT_EXCLUDED_TAGS,
@@ -241,6 +242,35 @@ export async function saveNotificationPreferences(prefs: Partial<NotificationPre
         revalidatePath("/", "layout");
     } catch {
         // Silently fail — preference save is non-critical
+    }
+}
+
+export async function getMdlProfileUrl(): Promise<string | null> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await getPreferencesRow(userId);
+        return prefs?.mdlProfileUrl || null;
+    } catch {
+        return null;
+    }
+}
+
+export async function saveMdlProfileUrl(raw: string): Promise<{ ok: boolean; url: string | null; error?: string }> {
+    const { url, error } = normalizeMdlProfileUrl(raw);
+    if (error) return { ok: false, url: null, error };
+
+    try {
+        const userId = await getCurrentUserId();
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, mdlProfileUrl: url },
+            update: { mdlProfileUrl: url },
+        });
+        // The header lives in the root layout, so the whole tree needs it
+        revalidatePath("/", "layout");
+        return { ok: true, url };
+    } catch {
+        return { ok: false, url: null, error: "Could not save. Try again." };
     }
 }
 

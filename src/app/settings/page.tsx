@@ -6,6 +6,7 @@ import {
     getDisplayPreferences,
     getProfilePreferences,
     getNotificationPreferences,
+    getMdlProfileUrl,
 } from "@/actions/preferences";
 import { getActorRadar } from "@/actions/actor-radar";
 import { getCurrentUserId } from "@/lib/session";
@@ -16,6 +17,7 @@ import { WatchlistViewSettings } from "@/components/settings/view-settings";
 import { DisplaySettings } from "@/components/settings/display-settings";
 import { ProfileSettings } from "@/components/settings/profile-settings";
 import { NotificationSettings } from "@/components/settings/notification-settings";
+import { MdlProfileSetting } from "@/components/settings/mdl-profile-setting";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
 import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-tabs";
 import { PageBackground } from "@/components/page-background";
@@ -23,7 +25,7 @@ import { PageBackground } from "@/components/page-background";
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
-    const [{ tab }, userId, excludedPrefs, calendarPrefs, viewPrefs, homeSections, displayPrefs, profilePrefs, notifPrefs] =
+    const [{ tab }, userId, excludedPrefs, calendarPrefs, viewPrefs, homeSections, displayPrefs, profilePrefs, notifPrefs, mdlProfileUrl] =
         await Promise.all([
             searchParams,
             getCurrentUserId().catch(() => null),
@@ -34,6 +36,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             getDisplayPreferences(),
             getProfilePreferences(),
             getNotificationPreferences(),
+            getMdlProfileUrl(),
         ]);
 
     let radar: Awaited<ReturnType<typeof getActorRadar>> | null = null;
@@ -81,7 +84,16 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         ...(radar
             ? { radar: <ActorRadarManagePanel scannedActors={radar.scannedActors} excludedActors={radar.excludedActors} /> }
             : {}),
-        display: <DisplaySettings initialPrefs={displayPrefs} />,
+        display: (
+            <div className="divide-y divide-white/8">
+                <div className="pb-5">
+                    <DisplaySettings initialPrefs={displayPrefs} />
+                </div>
+                <div className="pt-5">
+                    <MdlProfileSetting initialUrl={mdlProfileUrl} />
+                </div>
+            </div>
+        ),
         profile: userId ? (
             <ProfileSettings initialPrefs={profilePrefs} profileUserId={userId} />
         ) : (
