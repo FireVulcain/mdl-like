@@ -132,6 +132,7 @@ type OptimisticUpdate = {
 
 import { EditMediaDialog } from "./edit-media-dialog";
 import { NextEpisodeIndicator } from "./next-episode-indicator";
+import { mdlThumbImage } from "@/lib/kuryana";
 
 const statusConfig = {
     Watching: {
@@ -1594,7 +1595,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             {(first.backdrop || first.poster) && (
                                                 <>
                                                     <Image unoptimized={true}
-                                                        src={first.backdrop || first.poster!}
+                                                        src={mdlThumbImage(first.backdrop || first.poster!)!}
                                                         alt=""
                                                         fill
                                                         sizes="100vw"
@@ -1610,7 +1611,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             <div className={`relative shrink-0 rounded-lg overflow-hidden bg-gray-800/50 ${thumbnailStyle === "poster" ? "h-20 w-14" : "h-14 w-24"}`}>
                                                 {(thumbnailStyle === "poster" ? first.poster || first.backdrop : first.backdrop || first.poster) ? (
                                                     <Image unoptimized={true}
-                                                        src={thumbnailStyle === "poster" ? (first.poster || first.backdrop!) : (first.backdrop || first.poster!)}
+                                                        src={mdlThumbImage(thumbnailStyle === "poster" ? (first.poster || first.backdrop!) : (first.backdrop || first.poster!))!}
                                                         alt={first.title || ""}
                                                         fill
                                                         sizes="192px"
@@ -1833,7 +1834,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             className="h-4 w-4 rounded accent-blue-500 shrink-0 cursor-pointer"
                                         />
                                         {item.poster ? (
-                                            <Image unoptimized src={item.poster} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
+                                            <Image unoptimized src={mdlThumbImage(item.poster)!} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
                                         ) : (
                                             <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
                                         )}
@@ -1950,7 +1951,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             className="h-4 w-4 rounded accent-blue-500 shrink-0 cursor-pointer"
                                         />
                                         {item.poster ? (
-                                            <Image unoptimized src={item.poster} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
+                                            <Image unoptimized src={mdlThumbImage(item.poster)!} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
                                         ) : (
                                             <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
                                         )}
@@ -2068,7 +2069,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             className="h-4 w-4 rounded accent-blue-500 shrink-0 cursor-pointer"
                                         />
                                         {item.poster ? (
-                                            <Image unoptimized src={item.poster} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
+                                            <Image unoptimized src={mdlThumbImage(item.poster)!} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
                                         ) : (
                                             <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
                                         )}
@@ -2166,7 +2167,7 @@ const ItemCard = memo(function ItemCard({
                 {(item.backdrop || item.poster) ? (
                     <>
                         <Image unoptimized={true}
-                            src={item.backdrop || item.poster!}
+                            src={mdlThumbImage(item.backdrop || item.poster!)!}
                             alt=""
                             fill
                             sizes="100vw"
@@ -2194,7 +2195,7 @@ const ItemCard = memo(function ItemCard({
                 >
                     {(thumbnailStyle === "poster" ? item.poster || item.backdrop : item.backdrop || item.poster) ? (
                         <Image unoptimized={true}
-                            src={thumbnailStyle === "poster" ? (item.poster || item.backdrop!) : (item.backdrop || item.poster!)}
+                            src={mdlThumbImage(thumbnailStyle === "poster" ? (item.poster || item.backdrop!) : (item.backdrop || item.poster!))!}
                             alt={item.title || ""}
                             fill
                             sizes="112px"

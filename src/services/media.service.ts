@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaChineseShow } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaChineseShow, mdlFullSizeImage} from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 
@@ -455,7 +455,9 @@ export const mediaService = {
                 type,
                 title: d.title,
                 nativeTitle,
-                poster: mdlPoster(d.poster),
+                // Rendered large on the media page — cast avatars and grid
+                // thumbs below keep the small variant on purpose
+                poster: mdlFullSizeImage(mdlPoster(d.poster)),
                 backdrop: null,
                 year: d.year || "",
                 originCountry,

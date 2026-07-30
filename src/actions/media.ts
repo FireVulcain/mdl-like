@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { ActivityAction, ActivityActionType } from "@/types/activity";
 import { Prisma } from "@prisma/client";
 import { getCurrentUserId } from "@/lib/session";
-import { kuryanaGetDetails } from "@/lib/kuryana";
+import { kuryanaGetDetails, mdlFullSizeImage} from "@/lib/kuryana";
 
 // Upsert progress log: within a 30-min window, update the existing entry rather than
 // create a new one. This means a misclick that corrects ep 16 → 15 rewrites the log
@@ -296,7 +296,7 @@ export async function getMediaImages(source: string, externalId: string, season 
     if (source === "MDL") {
         // MDL-native row: externalId is the slug, one poster, no backdrops
         const details = await kuryanaGetDetails(externalId);
-        const poster = details?.data?.poster;
+        const poster = mdlFullSizeImage(details?.data?.poster);
         return { posters: [], backdrops: [], mdlPosters: poster ? [poster] : [] };
     }
     if (source !== "TMDB") return { posters: [], backdrops: [], mdlPosters: [] };
@@ -323,8 +323,10 @@ export async function getMediaImages(source: string, externalId: string, season 
     ].filter((slug, i, arr) => arr.indexOf(slug) === i);
 
     const mdlResults = await Promise.allSettled(slugs.map((slug) => kuryanaGetDetails(slug)));
+    // Offer the full-size original: whatever is picked here gets stored and
+    // later rendered large on the media page
     const mdlPosters = mdlResults
-        .map((r) => (r.status === "fulfilled" ? r.value?.data?.poster : null))
+        .map((r) => (r.status === "fulfilled" ? mdlFullSizeImage(r.value?.data?.poster) : null))
         .filter((p, i, arr): p is string => !!p && arr.indexOf(p) === i);
 
     return {
