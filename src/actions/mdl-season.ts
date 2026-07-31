@@ -39,6 +39,7 @@ export async function setMdlSeasonSlug(
             const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
             const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
             const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
+            const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
             const tags = details.data.others?.tags ?? [];
 
             const cast = castResult?.data?.casts
@@ -65,6 +66,7 @@ export async function setMdlSeasonSlug(
                     mdlRanking,
                     mdlPopularity,
                     mdlWatchers,
+                    aired,
                     tags: tags as unknown as Prisma.InputJsonValue,
                     castJson: cast as unknown as Prisma.InputJsonValue,
                     cachedAt: new Date(),

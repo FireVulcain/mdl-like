@@ -219,6 +219,10 @@ model CachedMdlData {
   castJson       Json?
   directors      Json?
   screenwriters  Json?
+  // MDL's own broadcast range for THIS entry, e.g. "Aug 7, 2026 - Sep 19, 2026".
+  // MDL files each season as its own entry, so it is the only per-season
+  // source we have: TMDB's first/last_air_date are show-level.
+  aired          String?
   synopsis       String?
   cachedAt       DateTime @default(now())
 }
@@ -249,6 +253,10 @@ model MdlSeasonLink {
   castJson       Json?
   tags           Json?
   genres         Json?
+  // MDL's own broadcast range for THIS entry, e.g. "Aug 7, 2026 - Sep 19, 2026".
+  // MDL files each season as its own entry, so it is the only per-season
+  // source we have: TMDB's first/last_air_date are show-level.
+  aired          String?
   synopsis       String?
   cachedAt       DateTime?
 

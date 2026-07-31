@@ -12,6 +12,7 @@ import { PhotosScroll } from "@/components/media/photos-scroll";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
 import { MdlRankRow } from "@/components/media/mdl-rank-row";
+import { MdlAiredRow } from "@/components/media/mdl-aired-row";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MdlSection } from "@/components/media/mdl-section";
 import { SynopsisBlock } from "@/components/media/synopsis-block";
@@ -771,12 +772,23 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
 
-                            {media.aired && (
-                                <>
-                                    <span className="text-gray-400 font-medium">Aired</span>
-                                    <span className="text-white">{media.aired}</span>
-                                </>
-                            )}
+                            <Suspense
+                                fallback={
+                                    <>
+                                        <span className="text-gray-400 font-medium">Aired</span>
+                                        <span className="text-white">{media.aired}</span>
+                                    </>
+                                }
+                            >
+                                <MdlAiredRow
+                                    externalId={media.externalId}
+                                    title={media.title}
+                                    year={media.year}
+                                    nativeTitle={media.nativeTitle}
+                                    season={selectedSeason}
+                                    fallback={media.aired}
+                                />
+                            </Suspense>
 
                             {media.network && (
                                 <>
@@ -913,12 +925,23 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {(media.aired || media.network || media.duration || media.contentRating) && (
                         <div className="md:hidden grid grid-cols-[80px_1fr] gap-x-4 gap-y-1.5 text-sm">
-                            {media.aired && (
-                                <>
-                                    <span className="text-gray-400">Aired</span>
-                                    <span className="text-white">{media.aired}</span>
-                                </>
-                            )}
+                            <Suspense
+                                fallback={
+                                    <>
+                                        <span className="text-gray-400">Aired</span>
+                                        <span className="text-white">{media.aired}</span>
+                                    </>
+                                }
+                            >
+                                <MdlAiredRow
+                                    externalId={media.externalId}
+                                    title={media.title}
+                                    year={media.year}
+                                    nativeTitle={media.nativeTitle}
+                                    season={selectedSeason}
+                                    fallback={media.aired}
+                                />
+                            </Suspense>
                             {media.network && (
                                 <>
                                     <span className="text-gray-400">Network</span>
