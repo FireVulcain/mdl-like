@@ -552,6 +552,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     ]);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     const hasMdlRating = !cached?.mdlDisabled && !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
+    // Blocking a show hides its MDL surface. The poster link needed its own
+    // check: with no slug it degrades to an MDL *search* URL, so a blocked show
+    // still offered a way over to MDL — and its Suspense fallback rendered that
+    // search link unconditionally, before any lookup had even run.
+    const showMdlPosterLink = isMdlRelevant && !cached?.mdlDisabled;
     // If no TMDB watchlist entry, fall back to the linked MDL entry (user may have added via MDL page)
     const userMedia =
         (await getUserMedia(userId, media.externalId, media.source, selectedSeason)) ??
@@ -610,7 +615,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
                         )}
-                        {isMdlRelevant && (
+                        {showMdlPosterLink && (
                             <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
                                 <MdlPosterLink externalId={media.externalId} title={media.title} year={media.year} nativeTitle={media.nativeTitle} season={selectedSeason} />
                             </Suspense>
@@ -695,7 +700,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 No Poster
                             </div>
                         )}
-                        {isMdlRelevant && (
+                        {showMdlPosterLink && (
                             <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
                                 <MdlPosterLink
                                     externalId={media.externalId}
