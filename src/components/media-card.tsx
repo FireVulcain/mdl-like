@@ -16,6 +16,9 @@ interface MediaCardProps {
     mdlRating?: number;
     href?: string; // Overrides the default /media/${media.id} link
     showSourceBadge?: boolean;
+    // Replaces the year in the caption. Used for a known premiere date, which
+    // says everything the year did and more.
+    captionLead?: React.ReactNode;
 }
 
 export function MediaCard({
@@ -26,6 +29,7 @@ export function MediaCard({
     mdlRating,
     href,
     showSourceBadge = false,
+    captionLead,
 }: MediaCardProps) {
     const resolvedHref = href ?? `/media/${media.id}`;
     const isExternal = resolvedHref.startsWith("http");
@@ -89,7 +93,7 @@ export function MediaCard({
                     {media.title}
                 </h3>
                 <p className="text-base text-muted-foreground">
-                    {media.year} • {media.type}
+                    {captionLead ?? media.year} • {media.type}
                 </p>
             </CardContent>
         </Card>

@@ -66,6 +66,15 @@ function formatAirDate(airDate: string): string {
     return target.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
+// A premiere is months out, not days, so the relative wording used for the next
+// episode doesn't apply. The year is always kept: this replaces the year in the
+// caption, so dropping it would take information away rather than add it.
+function formatPremiere(airDate: string): string {
+    const date = new Date(`${airDate}T00:00:00`);
+    if (Number.isNaN(date.getTime())) return "";
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
 function BookmarkBadge({ className }: { className: string }) {
     return (
         <div className={className}>
@@ -149,6 +158,7 @@ function LeadCard({
     kicker,
     kickerClass,
     extras,
+    premiere,
 }: {
     media: UnifiedMedia;
     href: string;
@@ -157,6 +167,7 @@ function LeadCard({
     kicker: string;
     kickerClass: string;
     extras?: LeadExtras | null;
+    premiere?: string;
 }) {
     return (
         <Link
@@ -187,7 +198,7 @@ function LeadCard({
                         {media.title}
                     </h4>
                     <div className="flex items-center gap-2.5 text-xs text-white/60">
-                        {media.year ? <span>{media.year}</span> : null}
+                        {premiere ? <span>{premiere}</span> : media.year ? <span>{media.year}</span> : null}
                         <MdlRating rating={media.rating} />
                         {extras?.mdlRanking ? <span className="text-sky-300/60 font-medium">MDL #{extras.mdlRanking}</span> : null}
                     </div>
@@ -321,11 +332,13 @@ function PosterCell({
     href,
     bookmarked,
     unlinkedSlug,
+    premiere,
 }: {
     media: UnifiedMedia;
     href: string;
     bookmarked: boolean;
     unlinkedSlug?: string;
+    premiere?: string;
 }) {
     const overlay = (
         <>
@@ -339,7 +352,13 @@ function PosterCell({
     );
     return (
         <div className="w-32 sm:w-40 md:w-55 shrink-0 transition-transform hover:scale-105 duration-300">
-            <MediaCard media={media} mdlRating={media.rating || undefined} href={href} overlay={overlay} />
+            <MediaCard
+                media={media}
+                mdlRating={media.rating || undefined}
+                href={href}
+                overlay={overlay}
+                captionLead={premiere}
+            />
         </div>
     );
 }
@@ -355,6 +374,7 @@ export async function DramaRow({
     variant = "posters",
     leadKicker,
     nextEpisodes,
+    datesArePremieres = false,
 }: {
     items: UnifiedMedia[];
     linkedBySlug: LinkedMap;
@@ -366,6 +386,9 @@ export async function DramaRow({
     variant?: "posters" | "spotlight" | "backdrop";
     leadKicker?: string;
     nextEpisodes?: NextEpisodeMap;
+    // Coming Soon: the cached date is a premiere, not the next episode of a
+    // show already running, so it is worded and placed differently
+    datesArePremieres?: boolean;
 }) {
     if (items.length === 0) return null;
 
@@ -394,6 +417,14 @@ export async function DramaRow({
                             kicker={leadKicker ?? `#1 ${label}`}
                             kickerClass={accentText}
                             extras={leadExtras}
+                            premiere={
+                                datesArePremieres
+                                    ? (() => {
+                                          const d = nextEpisodes?.get(nextEpisodeCacheKey(lead, linkedBySlug))?.airDate;
+                                          return d ? formatPremiere(d) : undefined;
+                                      })()
+                                    : undefined
+                            }
                         />
                     )}
                     {(showLead ? rest : items).map((media) => {
@@ -406,7 +437,19 @@ export async function DramaRow({
                                 nextEpisode={nextEpisodes?.get(resolved.cacheKey)}
                             />
                         ) : (
-                            <PosterCell key={media.id} media={media} {...resolved} />
+                            <PosterCell
+                                key={media.id}
+                                media={media}
+                                {...resolved}
+                                premiere={
+                                    datesArePremieres
+                                        ? (() => {
+                                              const d = nextEpisodes?.get(resolved.cacheKey)?.airDate;
+                                              return d ? formatPremiere(d) : undefined;
+                                          })()
+                                        : undefined
+                                }
+                            />
                         );
                     })}
                 </div>

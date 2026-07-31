@@ -77,11 +77,51 @@ export async function DramaUniverseSection({ country }: { country: string }) {
         const slug = mdlSlugFromUrl(m.id.replace(/^mdl-/, ""));
         return { cacheKey: nextEpisodeCacheKey(m, linkedBySlug), tmdbId: linkedBySlug.get(slug)?.tmdbExternalId, title: m.title };
     });
-    const cachedEpisodes = await getCachedNextEpisodesByMediaId(airingLookups.map((l) => l.cacheKey));
+
+    // Coming Soon premieres ride the very same machinery. MDL publishes an exact
+    // date for roughly a third of upcoming shows, and when it does it lands in
+    // next_episode_airing — the field this cache already holds. So the row costs
+    // no extra query: it only lengthens the `in` clause below.
+    //
+    // mdlSlug is passed here (the airing lookups don't) so the waterfall starts
+    // at MDL: TVmaze has no useful record of a drama that hasn't aired yet.
+    //
+    // Anything dated past next year is skipped — MDL won't have a day for it,
+    // and without this those rows would be re-scraped on every visit forever.
+    const cutoffYear = new Date().getFullYear() + 1;
+    const upcomingLookups = dramas.upcoming
+        .filter((m) => {
+            const year = parseInt(m.year, 10);
+            return !Number.isFinite(year) || year <= cutoffYear;
+        })
+        .map((m) => {
+            const slug = mdlSlugFromUrl(m.id.replace(/^mdl-/, ""));
+            return {
+                cacheKey: nextEpisodeCacheKey(m, linkedBySlug),
+                tmdbId: linkedBySlug.get(slug)?.tmdbExternalId,
+                title: m.title,
+                mdlSlug: slug,
+            };
+        });
+
+    const episodeLookups = [...airingLookups, ...upcomingLookups];
+    const cachedEpisodes = await getCachedNextEpisodesByMediaId(episodeLookups.map((l) => l.cacheKey));
     const nextEpisodes: NextEpisodeMap = new Map(
         [...cachedEpisodes].map(([key, v]) => [key, { airDate: v.airDate, episodeNumber: v.episodeNumber }]),
     );
-    prefillNextEpisodes(airingLookups.filter((l) => !cachedEpisodes.has(l.cacheKey)));
+
+    // Interleave the two queues rather than concatenating them. prefill only
+    // takes the first few per request, and the airing row alone carries more
+    // misses than that budget — shows TVmaze can't resolve stay missing and are
+    // retried forever — so appending upcoming meant it never got a turn.
+    const airingMisses = airingLookups.filter((l) => !cachedEpisodes.has(l.cacheKey));
+    const upcomingMisses = upcomingLookups.filter((l) => !cachedEpisodes.has(l.cacheKey));
+    const interleaved: (typeof airingMisses[number] | typeof upcomingMisses[number])[] = [];
+    for (let i = 0; i < Math.max(airingMisses.length, upcomingMisses.length); i++) {
+        if (airingMisses[i]) interleaved.push(airingMisses[i]);
+        if (upcomingMisses[i]) interleaved.push(upcomingMisses[i]);
+    }
+    prefillNextEpisodes(interleaved);
 
     return (
         <section className="relative space-y-6 md:space-y-10">
@@ -122,6 +162,8 @@ export async function DramaUniverseSection({ country }: { country: string }) {
                     seeMoreHref={`/dramas?category=upcoming&country=${country}&sort=popular${homeFilterParams}`}
                     variant="spotlight"
                     leadKicker="Most Anticipated"
+                    nextEpisodes={nextEpisodes}
+                    datesArePremieres
                 />
             </div>
         </section>
