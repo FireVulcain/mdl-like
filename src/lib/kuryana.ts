@@ -261,8 +261,16 @@ export interface KuryanaPersonResult {
     scrape_date: string;
 }
 
+/**
+ * revalidate 0 on purpose. CachedKuryanaPerson already holds this response for
+ * seven days, so Next's own fetch cache adds no hit-rate — it only adds a
+ * second, invisible layer of staleness: purging our row made the page refetch,
+ * and Next served the old body straight back, which we then re-persisted.
+ * A caller only reaches this function when the DB row is missing or stale, and
+ * that is precisely when a live answer is wanted.
+ */
 export async function kuryanaGetPerson(slug: string): Promise<KuryanaPersonResult | null> {
-    return kuryanaFetch<KuryanaPersonResult>(`/people/${slug}`);
+    return kuryanaFetch<KuryanaPersonResult>(`/people/${slug}`, 8000, 0);
 }
 
 export interface KuryanaReview {
