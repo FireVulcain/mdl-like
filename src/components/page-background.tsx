@@ -32,11 +32,12 @@ export function PageBackground() {
             <div className="absolute inset-0 bg-page" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.45)_0%,transparent_60%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(30,41,59,0.35)_0%,transparent_55%)]" />
-            {/* 180px blurs allocated enormous filter regions for a glow that is
-                barely visible at 15% opacity. Bigger, softer circles at a third
-                of the radius read the same. */}
-            <div className="absolute -top-56 -left-56 w-150 h-150 bg-blue-600/12 rounded-full blur-[60px]" />
-            <div className="absolute -bottom-56 -right-56 w-150 h-150 bg-blue-500/10 rounded-full blur-[60px]" />
+            {/* Left as they were. These two ride on every page, and only the
+                home page — the one stacking a glow per section on top of them —
+                ever dropped tiles, so shrinking them changed the look for
+                nothing. */}
+            <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
+            <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
             <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: GRAIN, backgroundRepeat: "repeat" }} />
         </div>
     );
