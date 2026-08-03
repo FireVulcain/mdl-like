@@ -3,30 +3,31 @@
 import { motion } from "framer-motion";
 import { UnifiedMedia } from "@/services/media.service";
 import { MediaCard } from "@/components/media-card";
-import { Badge } from "@/components/ui/badge";
 import { HomeSectionHeader } from "@/components/home-section-header";
-import { Bookmark, Play, Star } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Bookmark } from "lucide-react";
 
+/**
+ * Trending reads as a chart, because ranking is the whole point of it and no
+ * other home section is ranked — that is what sets it apart from the drama
+ * universes, which are carousels with no order to speak of.
+ *
+ * It used to lead with a full-bleed backdrop. Backdrops are landscape stills
+ * cropped blind by object-cover, so faces and titles landed off-centre often
+ * enough to look broken. Posters are authored to be read whole at this size,
+ * so the section is posters throughout and the framing problem disappears.
+ */
 export function TrendingSection({ items, watchlistIds = [] }: { items: UnifiedMedia[]; watchlistIds?: string[] }) {
     if (!items || items.length === 0) return null;
 
     const inWatchlist = new Set(watchlistIds);
-
-    const spotlight = items[0];
-    const rest = items.slice(1, 13); // Show top 12 more
+    // TMDB returns 20 per page, but getTrending drops person entries, so the
+    // count can land under 20 without warning — hence no number in the subtitle.
+    const ranked = items.slice(0, 20);
 
     const container = {
         hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
+        show: { opacity: 1, transition: { staggerChildren: 0.05 } },
     };
-
     const itemAnim = {
         hidden: { y: 20, opacity: 0 },
         show: { y: 0, opacity: 1 },
@@ -40,85 +41,41 @@ export function TrendingSection({ items, watchlistIds = [] }: { items: UnifiedMe
             <HomeSectionHeader
                 eyebrow="Worldwide"
                 title="Trending Worldwide"
-                subtitle="Most popular movies and shows this week across all platforms"
+                subtitle="The most popular titles this week, across every platform"
                 accent="orange"
             />
 
-            {/* Spotlight Hero */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative h-64 sm:h-80 md:h-100 rounded-2xl md:rounded-3xl overflow-hidden group border border-white/10 shadow-2xl shadow-orange-500/5"
-            >
-                {/* Background Image / Backdrop */}
-                <div className="absolute inset-0">
-                    <Image unoptimized={true}
-                        src={spotlight.backdrop || spotlight.poster || ""}
-                        alt={spotlight.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 85vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent" />
-                    <div className="absolute inset-0 bg-linear-to-r from-background via-background/20 to-transparent" />
-                </div>
-
-                {/* Content */}
-                <div className="absolute inset-0 p-4 sm:p-6 md:p-8 flex flex-col justify-end max-w-2xl space-y-2 md:space-y-4">
-                    <div className="flex items-center gap-2 md:gap-3">
-                        <Badge className="bg-orange-500 hover:bg-orange-600 border-none px-2 md:px-3 py-0.5 md:py-1 text-xs md:text-sm">#1 Trending</Badge>
-                        <div className="flex items-center gap-1 text-yellow-500 text-xs md:text-sm font-bold">
-                            <Star className="h-3 w-3 md:h-4 md:w-4 fill-current" />
-                            {spotlight.rating.toFixed(1)}
-                        </div>
-                        {inWatchlist.has(spotlight.externalId) && (
-                            <span className="flex items-center gap-1 rounded-md bg-emerald-500/90 px-2 py-0.5 text-xs font-semibold text-white backdrop-blur-sm">
-                                <Bookmark className="h-3 w-3 fill-current" />
-                                In watchlist
-                            </span>
-                        )}
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tighter text-white drop-shadow-lg leading-tight uppercase">
-                        {spotlight.title}
-                    </h3>
-
-                    <p className="text-muted-foreground line-clamp-2 text-sm md:text-lg drop-shadow hidden sm:block">{spotlight.synopsis}</p>
-
-                    <div className="flex items-center gap-4 pt-2 md:pt-4">
-                        <Link
-                            href={`/media/${spotlight.id}`}
-                            className="bg-white text-black px-4 md:px-8 py-2 md:py-3 rounded-full font-bold flex items-center gap-2 hover:bg-orange-500 hover:text-white transition-colors text-sm md:text-base"
-                        >
-                            <Play className="h-4 w-4 md:h-5 md:w-5 fill-current" />
-                            View Details
-                        </Link>
-                    </div>
-                </div>
-            </motion.div>
-
-            {/* Secondary Grid */}
             <motion.div
                 variants={container}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-6"
+                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6"
             >
-                {rest.map((media) => (
+                {ranked.map((media, i) => (
                     <motion.div key={media.id} variants={itemAnim}>
                         <MediaCard
                             media={media}
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                             overlay={
-                                inWatchlist.has(media.externalId) ? (
-                                    <div className="absolute bottom-2 left-2">
-                                        <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                            <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
-                                        </span>
-                                    </div>
-                                ) : undefined
+                                <>
+                                    {/* The numeral is this section's signature. Outlined rather
+                                        than filled so it sits over artwork without hiding it,
+                                        and large enough to read as a rank, not a badge. */}
+                                    <span
+                                        className="pointer-events-none absolute -bottom-1 left-1.5 text-5xl md:text-6xl font-black leading-none tabular-nums text-white/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
+                                        style={{ WebkitTextStroke: "1.5px rgba(0,0,0,0.5)" }}
+                                    >
+                                        {i + 1}
+                                    </span>
+                                    {inWatchlist.has(media.externalId) && (
+                                        <div className="absolute bottom-2 right-2">
+                                            <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                            </span>
+                                        </div>
+                                    )}
+                                </>
                             }
                         />
                     </motion.div>
