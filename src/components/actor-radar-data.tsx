@@ -112,7 +112,7 @@ export async function ActorRadarData() {
     return (
         <section className="relative space-y-6 md:space-y-10">
             {/* Ambient glow anchored to the page, not a box */}
-            <div className="absolute -top-24 left-1/4 w-72 md:w-120 h-72 md:h-120 bg-violet-500/6 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none" />
+            <div className="absolute -top-24 left-1/4 w-120 h-120 bg-violet-500/6 rounded-full blur-[160px] -z-10 pointer-events-none hidden md:block" />
 
             <HomeSectionHeader
                 eyebrow="For You"

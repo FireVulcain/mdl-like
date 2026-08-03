@@ -126,7 +126,7 @@ export async function DramaUniverseSection({ country }: { country: string }) {
     return (
         <section className="relative space-y-6 md:space-y-10">
             {/* Ambient glow anchored to the page, not a box */}
-            <div className={`absolute -top-24 w-72 md:w-120 h-72 md:h-120 rounded-full blur-[100px] md:blur-[160px] -z-10 pointer-events-none ${cfg.glow}`} />
+            <div className={`absolute -top-24 w-120 h-120 rounded-full blur-[160px] -z-10 pointer-events-none hidden md:block ${cfg.glow}`} />
 
             <HomeSectionHeader eyebrow={cfg.eyebrow} title={cfg.title} subtitle={cfg.subtitle} accent={cfg.accent} live />
 
