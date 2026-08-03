@@ -186,10 +186,21 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
     const scheduleHref = `/calendar?date=${episodeData.airDate}`;
 
     return (
+        // Two registers for one fact. On desktop this sits in a busy row of its
+        // own and needs a container to stay findable, so it keeps the pill. On
+        // mobile it joins a metadata sentence — country, year, this — and a
+        // bordered chip mid-sentence reads as a foreign object, so it drops the
+        // box and takes the line's ink; the pulsing dot doubles as the separator,
+        // which is why there is no bullet before it. Only that dot keeps
+        // colour, the way the score keeps only its star.
         <Link
             href={scheduleHref}
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 text-xs text-gray-300 bg-white/10 border border-white/10 px-2 py-0.5 rounded hover:bg-white/20 hover:border-white/20 transition-colors"
+            // No size or colour of its own on mobile: it inherits the meta
+            // line's, so it cannot drift from "Country · Year" the way an
+            // explicit lighter grey did — brighter text reads as bigger, and
+            // over a long string like "Ep 7 in 4d 17h" it took over the line.
+            className="inline-flex items-center gap-1.5 text-[13px] transition-colors md:rounded md:border md:border-white/10 md:bg-white/10 md:px-2 md:py-0.5 md:text-xs md:text-gray-300 md:hover:border-white/20 md:hover:bg-white/20"
         >
             {isAiring && (
                 <span className="relative flex h-1.5 w-1.5 shrink-0">
@@ -197,7 +208,7 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
                 </span>
             )}
-            <span className="text-white font-medium tabular-nums">
+            <span className="tabular-nums md:font-medium md:text-white">
                 Ep {episodeData.episodeNumber} {formatted.useIn ? "in " : ""}
                 {formatted.text}
             </span>

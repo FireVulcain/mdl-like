@@ -2262,6 +2262,27 @@ const ItemCard = memo(function ItemCard({
                             <span>{item.originCountry ? countryName(item.originCountry) : "Unknown"}</span>
                             <span className="w-1 h-1 rounded-full bg-gray-600" />
                             <span>{item.year || "N/A"}</span>
+                            {/* Mobile only — the ratings column is display:none below md
+                                (globals.css). Only the user's own score makes the trip: two
+                                numbers plus country, year and the episode badge do not fit a
+                                phone line, and a lone MDL figure on an unrated show was the
+                                one element that looked like debris. Sized like the rest of
+                                the line so it reads as metadata, not as a second counter. */}
+                            {/* Deliberately quieter than the desktop column, which lives in a
+                                slot of its own where a white bold figure reads fine. Here it
+                                joins a sentence — country, year, score — so it takes the
+                                line's own separator and ink, and only the star keeps colour.
+                                Matching the desktop treatment made it look like a badge
+                                dropped mid-line. */}
+                            {item.score ? (
+                                <>
+                                    <span className="md:hidden w-1 h-1 rounded-full bg-gray-600" />
+                                    <span className="md:hidden flex items-center gap-1 text-[13px] text-gray-300">
+                                        <Star className="h-3 w-3 text-amber-400/85 fill-amber-400/85" />
+                                        <span className="tabular-nums">{item.score.toFixed(1)}</span>
+                                    </span>
+                                </>
+                            ) : null}
                             {item.status !== "Completed" && (() => {
                                 const nextEp = item.nextEpisode ?? nextEpisodeMap[`${item.externalId}-${item.season}`] ?? null;
                                 // TVmaze numbers seasons with its own scheme (splits, "season 2026"…),
