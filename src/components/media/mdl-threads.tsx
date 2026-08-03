@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Heart, ChevronDown, RefreshCw, MessageSquare } from "lucide-react";
 import { MdlComment } from "@/lib/kuryana";
-import { loadMoreComments } from "@/actions/mdl-threads";
+import { loadMoreComments, type ThreadKind } from "@/actions/mdl-threads";
 
 type CommentNode = MdlComment & { children: CommentNode[] };
 
@@ -153,9 +153,12 @@ interface MdlThreadsProps {
     total: number;
     hasMore: boolean;
     mdlId: string;
+    // Person threads live at a different path but return the same payload, so
+    // the same list serves both — only the loader changes.
+    kind?: ThreadKind;
 }
 
-export function MdlThreads({ initialComments, total, hasMore: initialHasMore, mdlId }: MdlThreadsProps) {
+export function MdlThreads({ initialComments, total, hasMore: initialHasMore, mdlId, kind = "media" }: MdlThreadsProps) {
     const [allComments, setAllComments] = useState(initialComments);
     const [hasMore, setHasMore] = useState(initialHasMore);
     const [page, setPage] = useState(1);
@@ -166,7 +169,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
     async function handleLoadMore() {
         setLoading(true);
         try {
-            const next = await loadMoreComments(mdlId, page + 1);
+            const next = await loadMoreComments(mdlId, page + 1, kind);
             if (next.comments.length > 0) {
                 setAllComments((prev) => [...prev, ...next.comments]);
                 setPage((p) => p + 1);

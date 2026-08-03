@@ -392,21 +392,28 @@ export interface MdlThreadsResult {
     authors?: Record<string, KuryanaThreadAuthor>;
 }
 
-export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
-    const res = await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, 8000, 0);
+// Avatars arrive in a separate `authors` map keyed independently of the
+// comments, so they are folded in here rather than in every consumer.
+function withAvatars(res: MdlThreadsResult | null): MdlThreadsResult | null {
     if (!res) return null;
-
-    // Inject avatar_url into each comment
     if (res.authors && res.comments) {
         res.comments = res.comments.map((c) => {
             const authorData = Object.values(res.authors!).find((a) => a.username === c.author || a.display_name === c.author);
-            return {
-                ...c,
-                avatar_url: authorData?.avatar_url,
-            };
+            return { ...c, avatar_url: authorData?.avatar_url };
         });
     }
     return res;
+}
+
+export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
+    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, 8000, 0));
+}
+
+// Same payload shape as a drama's threads, different path. The endpoint takes
+// either the bare id or the full slug; the full slug is what the person page
+// already holds.
+export async function kuryanaGetPersonThreads(slug: string, page = 1): Promise<MdlThreadsResult | null> {
+    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 0));
 }
 
 export interface KuryanaRecommendation {

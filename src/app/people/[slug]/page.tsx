@@ -9,6 +9,7 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
+import { PersonThreadsSection } from "@/components/people/person-threads-section";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
 import { getWatchlistExternalIds } from "@/actions/user-media";
 import { BiographyExpander } from "@/components/media/biography-expander";
@@ -542,6 +543,11 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         {dramas.length === 0 && movies.length === 0 && specials.length === 0 && (
                             <div className="text-center py-12 text-gray-400">No filmography information available.</div>
                         )}
+
+                        {/* Streamed in so a slow scrape never holds up the filmography */}
+                        <Suspense fallback={null}>
+                            <PersonThreadsSection slug={slug} />
+                        </Suspense>
                     </div>
                 </div>
             </div>
