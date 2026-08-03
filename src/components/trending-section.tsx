@@ -5,12 +5,14 @@ import { UnifiedMedia } from "@/services/media.service";
 import { MediaCard } from "@/components/media-card";
 import { Badge } from "@/components/ui/badge";
 import { HomeSectionHeader } from "@/components/home-section-header";
-import { Play, Star } from "lucide-react";
+import { Bookmark, Play, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
+export function TrendingSection({ items, watchlistIds = [] }: { items: UnifiedMedia[]; watchlistIds?: string[] }) {
     if (!items || items.length === 0) return null;
+
+    const inWatchlist = new Set(watchlistIds);
 
     const spotlight = items[0];
     const rest = items.slice(1, 13); // Show top 12 more
@@ -71,6 +73,12 @@ export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
                             <Star className="h-3 w-3 md:h-4 md:w-4 fill-current" />
                             {spotlight.rating.toFixed(1)}
                         </div>
+                        {inWatchlist.has(spotlight.externalId) && (
+                            <span className="flex items-center gap-1 rounded-md bg-emerald-500/90 px-2 py-0.5 text-xs font-semibold text-white backdrop-blur-sm">
+                                <Bookmark className="h-3 w-3 fill-current" />
+                                In watchlist
+                            </span>
+                        )}
                     </div>
 
                     <h3 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tighter text-white drop-shadow-lg leading-tight uppercase">
@@ -101,7 +109,18 @@ export function TrendingSection({ items }: { items: UnifiedMedia[] }) {
             >
                 {rest.map((media) => (
                     <motion.div key={media.id} variants={itemAnim}>
-                        <MediaCard media={media} />
+                        <MediaCard
+                            media={media}
+                            overlay={
+                                inWatchlist.has(media.externalId) ? (
+                                    <div className="absolute bottom-2 left-2">
+                                        <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
+                                            <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                        </span>
+                                    </div>
+                                ) : undefined
+                            }
+                        />
                     </motion.div>
                 ))}
             </motion.div>
