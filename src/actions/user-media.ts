@@ -23,6 +23,23 @@ export const getUserMedia = cache(async (userId: string, externalId: string, sou
 // Also resolves MDL↔TMDB links so a show added under one ID is recognised under its linked ID too.
 // Returns an array since Sets can't be serialized across client-server boundary.
 // Wrapped with React.cache() for per-request deduplication.
+/**
+ * Hand-picked posters from the watchlist, so surfaces that list a user's shows
+ * can honour the artwork they chose instead of falling back to TMDB's.
+ *
+ * Returned as rows rather than a Map: this module is "use server", so the value
+ * crosses a serialization boundary. Callers key it themselves — by season where
+ * they know it, since a show tracked as several seasons has a poster per row.
+ */
+export const getWatchlistPosters = cache(async (): Promise<{ externalId: string; season: number; poster: string | null }[]> => {
+  const userId = await getCurrentUserId();
+  if (!userId) return [];
+  return prisma.userMedia.findMany({
+    where: { userId, source: "TMDB", poster: { not: null } },
+    select: { externalId: true, season: true, poster: true },
+  });
+});
+
 export const getWatchlistExternalIds = cache(async (): Promise<string[]> => {
   const userId = await getCurrentUserId();
   const items = await prisma.userMedia.findMany({

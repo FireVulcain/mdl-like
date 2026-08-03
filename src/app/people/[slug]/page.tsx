@@ -11,7 +11,7 @@ import { MdlPersonImage } from "@/components/media/mdl-person-image";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { PersonThreadsSection } from "@/components/people/person-threads-section";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
-import { getWatchlistExternalIds } from "@/actions/user-media";
+import { getWatchlistExternalIds, getWatchlistPosters } from "@/actions/user-media";
 import { BiographyExpander } from "@/components/media/biography-expander";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
 
@@ -265,16 +265,30 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         }
     }
 
-    const [tmdbDetails, watchlistExternalIds] = await Promise.all([
+    const [tmdbDetails, watchlistExternalIds, pickedPosters] = await Promise.all([
         Promise.all(linkedEntries.map(({ tmdbExternalId, mediaType }) => tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null))),
         getWatchlistExternalIds(),
+        getWatchlistPosters(),
     ]);
     const watchlistIds = new Set(watchlistExternalIds);
 
+    // A poster chosen in the watchlist wins over TMDB's, the same rule the media
+    // page applies. Keyed by season first, since a show tracked as several
+    // seasons carries one per row, then by show for everything else.
+    const pickedBySeason = new Map(pickedPosters.map((p) => [`${p.externalId}-${p.season}`, p.poster]));
+    const pickedByShow = new Map<string, string>();
+    for (const p of pickedPosters) if (p.poster && !pickedByShow.has(p.externalId)) pickedByShow.set(p.externalId, p.poster);
+
     const posterMap = new Map<string, string | null>(); // numericMdlId → poster URL
-    linkedEntries.forEach(({ mdlNumericId }, i) => {
+    linkedEntries.forEach(({ mdlNumericId, tmdbExternalId }, i) => {
+        const season = mdlSeasonMap.get(mdlNumericId);
+        const picked =
+            (season != null ? pickedBySeason.get(`${tmdbExternalId}-${season}`) : null) ??
+            pickedBySeason.get(`${tmdbExternalId}-1`) ??
+            pickedByShow.get(tmdbExternalId) ??
+            null;
         const detail = tmdbDetails[i];
-        posterMap.set(mdlNumericId, detail?.poster_path ? TMDB_CONFIG.w342Image(detail.poster_path) : null);
+        posterMap.set(mdlNumericId, picked ?? (detail?.poster_path ? TMDB_CONFIG.w342Image(detail.poster_path) : null));
     });
 
     function getPoster(work: KuryanaWorkItem): string | null {
