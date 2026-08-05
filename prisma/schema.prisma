@@ -224,6 +224,10 @@ model CachedMdlData {
   // source we have: TMDB's first/last_air_date are show-level.
   aired          String?
   synopsis       String?
+  // Last light refresh of the volatile numbers (rating, rank, watchers).
+  // Deliberately separate from cachedAt: bumping that one would keep pushing
+  // the 7-day cast/synopsis cycle out of reach on pages viewed often.
+  liveRefreshedAt DateTime?
   cachedAt       DateTime @default(now())
 }
 
@@ -258,6 +262,10 @@ model MdlSeasonLink {
   // source we have: TMDB's first/last_air_date are show-level.
   aired          String?
   synopsis       String?
+  // Last light refresh of the volatile numbers (rating, rank, watchers).
+  // Deliberately separate from cachedAt: bumping that one would keep pushing
+  // the 7-day cast/synopsis cycle out of reach on pages viewed often.
+  liveRefreshedAt DateTime?
   cachedAt       DateTime?
 
   @@unique([tmdbExternalId, season])

@@ -13,6 +13,7 @@ import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
 import { MdlRankRow } from "@/components/media/mdl-rank-row";
 import { MdlAiredRow } from "@/components/media/mdl-aired-row";
+import { MdlLiveRefresh } from "@/components/media/mdl-live-refresh";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MdlSection } from "@/components/media/mdl-section";
 import { SynopsisBlock } from "@/components/media/synopsis-block";
@@ -583,6 +584,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
     return (
         <div className="min-h-screen bg-linear-to-b -mt-24">
+            {/* Renders nothing: re-reads MDL's volatile numbers once the page is
+                on screen, and re-renders only if one of them moved. */}
+            <MdlLiveRefresh externalId={media.externalId} season={selectedSeason} />
+
             {/* Backdrop */}
             <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
                 {heroBackdrop ? (
