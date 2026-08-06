@@ -4,6 +4,7 @@ import Image from "next/image";
 import { UnifiedMedia } from "@/services/media.service";
 import { MediaCard } from "@/components/media-card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { DragScroll } from "@/components/drag-scroll";
 import { HomeRowLabel } from "@/components/home-section-header";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { Bookmark, ChevronRight, ImageOff, Star, UserRound } from "lucide-react";
@@ -408,6 +409,7 @@ export async function DramaRow({
                     See more <ChevronRight className="h-3.5 w-3.5" />
                 </Link>
             </div>
+            <DragScroll>
             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
                     {showLead && (
@@ -455,6 +457,7 @@ export async function DramaRow({
                 </div>
                 <ScrollBar orientation="horizontal" className="opacity-50" />
             </ScrollArea>
+            </DragScroll>
         </div>
     );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getActorRadar, type ActorRadarItem } from "@/actions/actor-radar";
 import { HomeSectionHeader } from "@/components/home-section-header";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { DragScroll } from "@/components/drag-scroll";
 import { ImageOff, Settings2, Star, UserRound } from "lucide-react";
 
 // Radar card, in the same visual language as the drama rows' backdrop cards:
@@ -155,6 +156,7 @@ export async function ActorRadarData() {
                     .
                 </p>
             ) : (
+                <DragScroll>
                 <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
                     <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
                         {payload.items.map((item) => (
@@ -163,6 +165,7 @@ export async function ActorRadarData() {
                     </div>
                     <ScrollBar orientation="horizontal" className="opacity-50" />
                 </ScrollArea>
+                </DragScroll>
             )}
         </section>
     );
