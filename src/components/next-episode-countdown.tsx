@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import { Calendar } from 'lucide-react';
+import { getAirDateTime, resolveAirMoment } from '@/lib/air-moment';
 
 interface NextEpisodeData {
     airDate: string;
@@ -42,10 +43,6 @@ interface PredictedEpisode {
     episodeNumber: number;
     isPredicted: boolean;
 }
-
-// Default broadcast time: 10:00 PM KST (22:00 UTC+9)
-const BROADCAST_HOUR_KST = 22;
-const BROADCAST_MINUTE_KST = 0;
 
 /**
  * Calculates the predicted air date for a specific episode number.
@@ -127,28 +124,6 @@ function predictNextEpisode(
     return predictNextEpisodeFromNumber(seasonAirDate, 1, totalEpisodes);
 }
 
-function getAirDateTime(airDate: string): Date {
-    // Parse the air date (YYYY-MM-DD format)
-    const [year, month, day] = airDate.split('-').map(Number);
-
-    // Create date at broadcast time in KST (UTC+9)
-    // We need to convert KST to UTC for accurate countdown
-    const utcHour = BROADCAST_HOUR_KST - 9; // Convert to UTC
-
-    // Create UTC date
-    const airDateTime = new Date(Date.UTC(year, month - 1, day, utcHour, BROADCAST_MINUTE_KST, 0));
-
-    return airDateTime;
-}
-
-// Exact instant when the source knows it (MDL), 22:00 KST assumption otherwise
-function resolveAirMoment(airDate: string, airDateTime?: string | null): Date {
-    if (airDateTime) {
-        const exact = new Date(airDateTime);
-        if (!Number.isNaN(exact.getTime())) return exact;
-    }
-    return getAirDateTime(airDate);
-}
 
 function calculateTimeLeft(airDate: string, airDateTime?: string | null): TimeLeft | null {
     const airMoment = resolveAirMoment(airDate, airDateTime);

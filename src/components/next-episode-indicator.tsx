@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
+import { getAirDateTime, resolveAirMoment } from "@/lib/air-moment";
 
 interface NextEpisodeData {
     airDate: string;
@@ -22,24 +23,6 @@ interface TimeLeft {
     days: number;
     hours: number;
     minutes: number;
-}
-
-// Default broadcast time: 10:00 PM KST (22:00 UTC+9)
-const BROADCAST_HOUR_KST = 22;
-
-function getAirDateTime(airDate: string): Date {
-    const [year, month, day] = airDate.split("-").map(Number);
-    const utcHour = BROADCAST_HOUR_KST - 9;
-    return new Date(Date.UTC(year, month - 1, day, utcHour, 0, 0));
-}
-
-// Exact instant when the source knows it (MDL), 22:00 KST assumption otherwise
-function resolveAirMoment(airDate: string, airDateTime?: string | null): Date {
-    if (airDateTime) {
-        const exact = new Date(airDateTime);
-        if (!Number.isNaN(exact.getTime())) return exact;
-    }
-    return getAirDateTime(airDate);
 }
 
 function getEpisodeAirDate(seasonAirDate: string, episodeNumber: number): string {

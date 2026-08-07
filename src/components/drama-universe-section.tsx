@@ -107,7 +107,13 @@ export async function DramaUniverseSection({ country }: { country: string }) {
     const episodeLookups = [...airingLookups, ...upcomingLookups];
     const cachedEpisodes = await getCachedNextEpisodesByMediaId(episodeLookups.map((l) => l.cacheKey));
     const nextEpisodes: NextEpisodeMap = new Map(
-        [...cachedEpisodes].map(([key, v]) => [key, { airDate: v.airDate, episodeNumber: v.episodeNumber }]),
+        [...cachedEpisodes].map(([key, v]) => [
+            key,
+            // airDateTime rides along: MDL knows the exact instant for a good
+            // share of airing shows, and it is what the watchlist counts down
+            // to — without it the two can land a day apart on the same show.
+            { airDate: v.airDate, airDateTime: v.airDateTime, episodeNumber: v.episodeNumber },
+        ]),
     );
 
     // Interleave the two queues rather than concatenating them. prefill only

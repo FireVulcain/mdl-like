@@ -8,6 +8,7 @@ import { DragScroll } from "@/components/drag-scroll";
 import { HomeRowLabel } from "@/components/home-section-header";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { Bookmark, ChevronRight, ImageOff, Star, UserRound } from "lucide-react";
+import { formatAirDayRelative } from "@/lib/air-moment";
 import { prisma } from "@/lib/prisma";
 
 // Build the slug from the MDL url field (e.g. "/754361-title" → "754361-title")
@@ -25,7 +26,7 @@ type LinkedMap = Map<string, { tmdbExternalId: string; season?: number }>;
 
 // Next-episode info keyed by CachedEpisode.mediaId: the TMDB external id for
 // linked shows, `mdl-<slug>` for unlinked ones.
-export type NextEpisodeMap = Map<string, { airDate: string; episodeNumber: number }>;
+export type NextEpisodeMap = Map<string, { airDate: string; airDateTime?: string | null; episodeNumber: number }>;
 
 // Cache key under which a show's next episode is stored (see NextEpisodeMap)
 export function nextEpisodeCacheKey(media: UnifiedMedia, linkedBySlug: LinkedMap): string {
@@ -53,18 +54,6 @@ function resolveCard(
     }
 
     return { href: `/media/mdl-${slug}`, bookmarked: false, unlinkedSlug: slug, cacheKey: `mdl-${slug}` };
-}
-
-// "Today" / "Tomorrow" / "Fri" / "Jul 21", from a YYYY-MM-DD air date
-function formatAirDate(airDate: string): string {
-    const target = new Date(`${airDate}T00:00:00`);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const diffDays = Math.round((target.getTime() - today.getTime()) / 86_400_000);
-    if (diffDays <= 0) return "Today";
-    if (diffDays === 1) return "Tomorrow";
-    if (diffDays < 7) return target.toLocaleDateString("en-US", { weekday: "short" });
-    return target.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 // A premiere is months out, not days, so the relative wording used for the next
@@ -276,7 +265,7 @@ function BackdropCard({
     href: string;
     bookmarked: boolean;
     unlinkedSlug?: string;
-    nextEpisode?: { airDate: string; episodeNumber: number };
+    nextEpisode?: { airDate: string; airDateTime?: string | null; episodeNumber: number };
 }) {
     return (
         <Link
@@ -307,12 +296,21 @@ function BackdropCard({
                     </h4>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-white/60">
                         {nextEpisode ? (
+                            // No separator inside this one: unlike a weekday, "in 3d"
+                            // completes the phrase rather than standing as a second
+                            // field, and a bullet mid-sentence broke it in two.
                             <span className="text-emerald-400 font-semibold">
-                                Ep {nextEpisode.episodeNumber} · {formatAirDate(nextEpisode.airDate)}
+                                Ep {nextEpisode.episodeNumber}{" "}
+                                {formatAirDayRelative(nextEpisode.airDate, nextEpisode.airDateTime)}
                             </span>
                         ) : media.year ? (
                             <span>{media.year}</span>
                         ) : null}
+                        {/* Only when there is something on both sides: the schedule
+                            is missing on some cards, and the rating hides itself at 0 */}
+                        {(nextEpisode || media.year) && media.rating > 0 && (
+                            <span className="text-white/30">·</span>
+                        )}
                         <MdlRating rating={media.rating} />
                     </div>
                 </div>
