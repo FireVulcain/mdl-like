@@ -222,7 +222,17 @@ function SpotlightCell({
 
                 {item.bookmarked && <BookmarkBadge className="absolute bottom-2 left-2" />}
                 {item.unlinkedSlug && (
-                    <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    // Reaching for this button calls the promotion off. It only
+                    // appears once the card is hovered, so by the time it is worth
+                    // aiming at, the timer has been running for most of its delay —
+                    // and a promotion would carry the button away mid-gesture.
+                    // Leaving it re-arms nothing: the pointer never left the card,
+                    // so no mouseenter fires, and the promotion stays cancelled
+                    // until the card is entered afresh.
+                    <div
+                        onMouseEnter={onDisarm}
+                        className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
                         <LinkToTmdbButton mdlSlug={item.unlinkedSlug} defaultQuery={item.title} compact />
                     </div>
                 )}
