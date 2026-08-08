@@ -47,7 +47,10 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
 
     if (items.length === 0) return null;
 
-    const progressPercent = (selectedShow.progress / selectedShow.totalEp) * 100;
+    // Clamped: totalEp falls back to 1 when a show's length is unknown, which
+    // would otherwise draw a bar several times its own width.
+    const progressPercent = Math.min(100, (selectedShow.progress / selectedShow.totalEp) * 100);
+    const remaining = selectedShow.totalEp - selectedShow.progress;
 
     return (
         <section
@@ -97,12 +100,12 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             transition={{ duration: 0.4 }}
                             className="max-w-xl space-y-4 md:space-y-6"
                         >
-                            {/* Badge */}
-                            <div className="flex items-center gap-3">
-                                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30">
-                                    <Play className="h-3 w-3 text-blue-400 fill-blue-400" />
-                                    <span className="text-xs font-medium text-blue-300">Continue Watching</span>
-                                </div>
+                            {/* Eyebrow. The same shape every other section on this
+                                page opens with — dot, accent label — instead of a
+                                bordered pill, which nothing else here wears. */}
+                            <div className="flex items-center gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                                <span className="text-xs font-semibold tracking-wide text-sky-400">Continue Watching</span>
                             </div>
 
                             {/* Title */}
@@ -110,41 +113,42 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                 {selectedShow.title}
                             </h2>
 
-                            {/* Progress info */}
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-4 text-sm md:text-base text-gray-300">
-                                    <span>
-                                        Episode {selectedShow.progress} of {selectedShow.totalEp}
-                                    </span>
-                                    <span className="text-gray-600">|</span>
-                                    <span className="text-blue-400">{Math.round(progressPercent)}% complete</span>
-                                </div>
-
-                                {/* Progress bar */}
-                                <div className="relative h-1.5 w-64 md:w-80 bg-white/10 rounded-full overflow-hidden">
+                            {/* Progress, said once. The bar carries the proportion and
+                                the line carries the counts; the percentage was a third
+                                telling of the same fact. The bar also stands in for the
+                                accent rule the section headers draw here — same weight,
+                                same place, but it means something. */}
+                            <div className="space-y-2.5">
+                                <div className="relative h-0.5 w-64 md:w-80 bg-white/10 rounded-full overflow-hidden">
                                     <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: `${progressPercent}%` }}
                                         transition={{ duration: 0.6, ease: "easeOut" }}
-                                        className="absolute inset-y-0 left-0 bg-linear-to-r from-blue-500 to-blue-400 rounded-full"
+                                        className="absolute inset-y-0 left-0 bg-sky-400 rounded-full"
                                     />
                                 </div>
+                                <p className="text-sm text-gray-400">
+                                    Episode {selectedShow.progress} of {selectedShow.totalEp}
+                                    {remaining > 0 && ` · ${remaining} left`}
+                                </p>
                             </div>
 
-                            {/* Action buttons */}
-                            <div className="flex items-center gap-4 pt-2">
+                            {/* One action, and a way out. Two filled buttons side by
+                                side gave equal weight to "keep watching" and "go
+                                somewhere else". */}
+                            <div className="flex items-center gap-6 pt-2">
                                 <Link
                                     href={`/media/${selectedShow.source.toLowerCase()}-${selectedShow.externalId}`}
-                                    className="group flex items-center gap-3 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white font-semibold rounded-xl transition-all"
+                                    className="flex items-center gap-2.5 px-5 py-2.5 bg-white hover:bg-white/90 text-page font-semibold rounded-lg transition-colors"
                                 >
-                                    <Play className="h-5 w-5 fill-current" />
+                                    <Play className="h-4 w-4 fill-current" />
                                     <span>Continue</span>
                                 </Link>
                                 <Link
                                     href="/watchlist"
-                                    className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all border border-white/10"
+                                    className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
                                 >
-                                    <span>View Watchlist</span>
+                                    <span>Watchlist</span>
                                     <ChevronRight className="h-4 w-4" />
                                 </Link>
                             </div>
@@ -186,7 +190,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         onClick={() => handleSelect(actualIndex)}
                                         whileHover={{ scale: 1.03 }}
                                         className={`relative shrink-0 w-50 h-32.5 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
-                                            isSelected ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-page" : "opacity-60 hover:opacity-100"
+                                            isSelected ? "ring-2 ring-sky-400 ring-offset-2 ring-offset-page" : "opacity-60 hover:opacity-100"
                                         }`}
                                     >
                                         <Image unoptimized={true} src={show.backdrop || show.poster} alt={show.title ?? ""} fill className="object-cover" />
@@ -198,7 +202,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                             {isSelected && (
                                                 <div className="mt-1 relative h-0.5 bg-white/20 rounded-full overflow-hidden">
                                                     <div
-                                                        className="absolute inset-y-0 left-0 bg-blue-500 rounded-full"
+                                                        className="absolute inset-y-0 left-0 bg-sky-400 rounded-full"
                                                         style={{ width: `${showProgress}%` }}
                                                     />
                                                 </div>
@@ -209,7 +213,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                         {isSelected && (
                                             <motion.div
                                                 layoutId="selectedIndicator"
-                                                className="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-500"
+                                                className="absolute top-2 right-2 w-2 h-2 rounded-full bg-sky-400"
                                                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                             />
                                         )}
@@ -227,7 +231,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             key={index}
                             onClick={() => handleSelect(index)}
                             className={`transition-all duration-300 rounded-full ${
-                                index === selectedIndex ? "w-6 h-2 bg-blue-500" : "w-2 h-2 bg-white/30 hover:bg-white/50"
+                                index === selectedIndex ? "w-6 h-2 bg-sky-400" : "w-2 h-2 bg-white/30 hover:bg-white/50"
                             }`}
                         />
                     ))}
@@ -242,7 +246,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                         initial={{ width: "0%" }}
                         animate={{ width: "100%" }}
                         transition={{ duration: 5, ease: "linear" }}
-                        className="h-full bg-blue-500/50"
+                        className="h-full bg-sky-400/40"
                     />
                 </div>
             )}

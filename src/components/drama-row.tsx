@@ -16,12 +16,6 @@ export function mdlSlugFromUrl(url: string) {
     return url.replace(/^\//, "");
 }
 
-// Flat surface behind the spotlight/airing cards. Deliberately neutral: the
-// posters carry the colour, and each universe's hue already shows up in the
-// accents (eyebrow, row dot, kicker, ambient glow). Tinting the fill too made
-// the rows read as a patchwork.
-const CARD_SURFACE = "bg-white/5";
-
 type LinkedMap = Map<string, { tmdbExternalId: string; season?: number }>;
 
 // Next-episode info keyed by CachedEpisode.mediaId: the TMDB external id for
@@ -136,10 +130,19 @@ async function getLeadExtras(media: UnifiedMedia): Promise<LeadExtras | null> {
     return { genres, cast, mdlRanking: row.mdlRanking };
 }
 
-// Variant A "spotlight" lead: wide card, sharp poster on a flat surface (MDL
-// rows have no landscape backdrops), title and meta beside it. No fixed
-// height: it stretches to match the poster columns (image + caption) so the
-// row bottom stays aligned.
+// Variant A "spotlight" lead: big poster with the title, meta, synopsis and cast
+// beside it (MDL rows have no landscape backdrops to bleed). No frame around the
+// pair.
+//
+// Unlike the airing card, this composition survives losing its box: the text
+// column runs kicker → title → meta → genres → four lines of synopsis → cast, so
+// it stands nearly as tall as the poster and the two already form a rectangle.
+// There was no void for the frame to hide — only a 640px outline in a fill too
+// faint to see, and a drop shadow whose sole job was to lift the poster back off
+// that fill.
+//
+// No fixed height: it stretches to match the poster columns (image + caption) so
+// the row bottom stays aligned.
 function LeadCard({
     media,
     href,
@@ -162,10 +165,12 @@ function LeadCard({
     return (
         <Link
             href={href}
-            className={`group relative shrink-0 w-85 sm:w-100 md:w-140 lg:w-160 rounded-xl overflow-hidden border border-white/8 hover:border-white/15 transition-colors whitespace-normal ${CARD_SURFACE}`}
+            // Extra right margin, not an outline, to mark where the lead ends in a
+            // row that then runs on into small poster cards.
+            className="group shrink-0 w-85 sm:w-100 md:w-140 lg:w-160 mr-2 md:mr-4 whitespace-normal"
         >
-            <div className="relative h-full flex items-center gap-4 p-4 md:p-5">
-                <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shadow-2xl shadow-black/60 shrink-0 bg-gray-800">
+            <div className="h-full flex items-center gap-4 md:gap-5">
+                <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shrink-0 bg-white/5">
                     {media.poster ? (
                         <Image
                             unoptimized
@@ -180,6 +185,13 @@ function LeadCard({
                             <ImageOff className="h-5 w-5" />
                         </div>
                     )}
+
+                    {bookmarked && <BookmarkBadge className="absolute bottom-2 left-2" />}
+                    {unlinkedSlug && (
+                        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <LinkToTmdbButton mdlSlug={unlinkedSlug} defaultQuery={media.title} compact />
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex-1 min-w-0 space-y-1.5 md:space-y-2">
@@ -192,17 +204,11 @@ function LeadCard({
                         <MdlRating rating={media.rating} />
                         {extras?.mdlRanking ? <span className="text-sky-300/60 font-medium">MDL #{extras.mdlRanking}</span> : null}
                     </div>
+                    {/* A word doesn't need a container. These were fill + border +
+                        full radius around one word, five times over — the same
+                        object that was removed from the year on the radar card. */}
                     {extras && extras.genres.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5">
-                            {extras.genres.map((g) => (
-                                <span
-                                    key={g}
-                                    className="px-2 py-0.5 rounded-full bg-white/8 border border-white/10 text-[10px] font-medium text-white/70"
-                                >
-                                    {g}
-                                </span>
-                            ))}
-                        </div>
+                        <p className="text-[11px] text-white/50">{extras.genres.join(" · ")}</p>
                     )}
                     {media.synopsis && (
                         <p className="hidden md:line-clamp-4 text-xs text-white/50 leading-relaxed">{media.synopsis}</p>
@@ -220,13 +226,13 @@ function LeadCard({
                                             title={c.name}
                                             width={28}
                                             height={28}
-                                            className="h-7 w-7 rounded-full object-cover ring-2 ring-black/60"
+                                            className="h-7 w-7 rounded-full object-cover ring-2 ring-page"
                                         />
                                     ) : (
                                         <span
                                             key={c.name}
                                             title={c.name}
-                                            className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 ring-2 ring-black/60"
+                                            className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 ring-2 ring-page"
                                         >
                                             <UserRound className="h-3.5 w-3.5 text-gray-400" />
                                         </span>
@@ -240,20 +246,20 @@ function LeadCard({
                     )}
                 </div>
             </div>
-
-            {bookmarked && <BookmarkBadge className="absolute top-3 right-3" />}
-            {unlinkedSlug && (
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <LinkToTmdbButton mdlSlug={unlinkedSlug} defaultQuery={media.title} compact />
-                </div>
-            )}
         </Link>
     );
 }
 
-// Variant B "backdrop": landscape card, uncropped poster on the left on the
-// same flat surface as the spotlight lead (cropping MDL's portrait posters
-// into landscape mangles typographic ones).
+// Variant B "backdrop": poster with its text underneath, and no card around it.
+//
+// It used to be a filled, bordered rectangle holding a poster side by side with
+// its text. Removing the frame alone did not work: a tall poster next to two
+// short lines always leaves an L-shaped void, and the frame was the only thing
+// giving that pair a silhouette. No amount of spacing fixes it — the
+// composition has to change. Stacked, the poster's own width measures the text
+// and the two share both vertical edges, so the grouping needs nothing drawn
+// around it. The posters stay smaller than the Top Rated row's, which keeps the
+// two apart without a second visual language.
 function BackdropCard({
     media,
     href,
@@ -268,60 +274,55 @@ function BackdropCard({
     nextEpisode?: { airDate: string; airDateTime?: string | null; episodeNumber: number };
 }) {
     return (
-        <Link
-            href={href}
-            className={`group relative shrink-0 w-60 sm:w-72 md:w-80 h-36 sm:h-40 md:h-44 rounded-xl overflow-hidden border border-white/8 hover:border-white/15 transition-colors whitespace-normal ${CARD_SURFACE}`}
-        >
-            <div className="relative h-full flex items-center gap-3 p-3">
-                <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shadow-xl shadow-black/60 shrink-0 bg-gray-800">
-                    {media.poster ? (
-                        <Image
-                            unoptimized
-                            src={media.poster}
-                            alt={media.title}
-                            fill
-                            sizes="120px"
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                    ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-600">
-                            <ImageOff className="h-4 w-4" />
-                        </div>
-                    )}
-                </div>
-
-                <div className="flex-1 min-w-0 space-y-1.5">
-                    <h4 className="text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
-                        {media.title}
-                    </h4>
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-white/60">
-                        {nextEpisode ? (
-                            // No separator inside this one: unlike a weekday, "in 3d"
-                            // completes the phrase rather than standing as a second
-                            // field, and a bullet mid-sentence broke it in two.
-                            <span className="text-emerald-400 font-semibold">
-                                Ep {nextEpisode.episodeNumber}{" "}
-                                {formatAirDayRelative(nextEpisode.airDate, nextEpisode.airDateTime)}
-                            </span>
-                        ) : media.year ? (
-                            <span>{media.year}</span>
-                        ) : null}
-                        {/* Only when there is something on both sides: the schedule
-                            is missing on some cards, and the rating hides itself at 0 */}
-                        {(nextEpisode || media.year) && media.rating > 0 && (
-                            <span className="text-white/30">·</span>
-                        )}
-                        <MdlRating rating={media.rating} />
+        <Link href={href} className="group shrink-0 w-32 sm:w-36 md:w-40 whitespace-normal">
+            <div className="relative aspect-2/3 w-full rounded-lg overflow-hidden bg-white/5">
+                {media.poster ? (
+                    <Image
+                        unoptimized
+                        src={media.poster}
+                        alt={media.title}
+                        fill
+                        sizes="160px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                        <ImageOff className="h-4 w-4" />
                     </div>
-                </div>
+                )}
+
+                {bookmarked && <BookmarkBadge className="absolute bottom-2 left-2" />}
+                {unlinkedSlug && (
+                    <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <LinkToTmdbButton mdlSlug={unlinkedSlug} defaultQuery={media.title} compact />
+                    </div>
+                )}
             </div>
 
-            {bookmarked && <BookmarkBadge className="absolute top-2 right-2" />}
-            {unlinkedSlug && (
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <LinkToTmdbButton mdlSlug={unlinkedSlug} defaultQuery={media.title} compact />
+            <div className="pt-2 space-y-0.5">
+                <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
+                    {media.title}
+                </h4>
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
+                    {nextEpisode ? (
+                        // No separator inside this one: unlike a weekday, "in 3d"
+                        // completes the phrase rather than standing as a second
+                        // field, and a bullet mid-sentence broke it in two.
+                        <span className="text-emerald-400 font-semibold">
+                            Ep {nextEpisode.episodeNumber}{" "}
+                            {formatAirDayRelative(nextEpisode.airDate, nextEpisode.airDateTime)}
+                        </span>
+                    ) : media.year ? (
+                        <span>{media.year}</span>
+                    ) : null}
+                    {/* Only when there is something on both sides: the schedule
+                        is missing on some cards, and the rating hides itself at 0 */}
+                    {(nextEpisode || media.year) && media.rating > 0 && (
+                        <span className="text-white/30">·</span>
+                    )}
+                    <MdlRating rating={media.rating} />
                 </div>
-            )}
+            </div>
         </Link>
     );
 }
@@ -409,7 +410,12 @@ export async function DramaRow({
             </div>
             <DragScroll>
             <ScrollArea className="w-full whitespace-nowrap -mx-2 md:-mx-4 px-2 md:px-4" viewportStyle={{ overflowY: "hidden" }}>
-                <div className="flex gap-4 md:gap-6 py-3 md:py-4 px-3 md:px-4">
+                {/* No horizontal padding here: the ScrollArea's -mx/px pair above
+                    already provides the room a hover-scaled card needs to grow
+                    into, and adding padding on top of it pushed the first card
+                    out of line with the section title. Vertical padding stays —
+                    it costs no alignment. */}
+                <div className="flex gap-4 md:gap-6 py-3 md:py-4">
                     {showLead && (
                         <LeadCard
                             media={lead}

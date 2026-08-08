@@ -14,16 +14,25 @@ function HeroSkeleton() {
             <div className="absolute inset-0 bg-linear-to-r from-page via-page/80 to-transparent" />
             <div className="relative h-full flex">
                 <div className="flex-1 flex flex-col justify-end pb-16 md:pb-24 pl-[5%] md:pl-[7.5%] space-y-4 md:space-y-6 max-w-xl">
-                    <div className="h-6 w-40 rounded-full bg-blue-500/20 border border-blue-500/30" />
+                    {/* Mirrors the real hero: dot + eyebrow, title, hairline
+                        progress, one button and a text link. It has to be redrawn
+                        whenever that block changes, or the page flashes a layout
+                        that no longer exists. */}
+                    <div className="flex items-center gap-2.5">
+                        <div className="h-1.5 w-1.5 rounded-full bg-sky-400/40" />
+                        <div className="h-3 w-32 rounded bg-sky-400/20" />
+                    </div>
                     <div className="space-y-3">
                         <div className="h-12 md:h-16 w-3/4 rounded-xl bg-white/10" />
                         <div className="h-12 md:h-16 w-1/2 rounded-xl bg-white/10" />
                     </div>
-                    <div className="h-4 w-56 rounded bg-white/10" />
-                    <div className="h-1.5 w-64 md:w-80 rounded-full bg-white/10" />
-                    <div className="flex gap-4 pt-2">
-                        <div className="h-12 w-32 rounded-xl bg-blue-500/30" />
-                        <div className="h-12 w-36 rounded-xl bg-white/10 border border-white/10" />
+                    <div className="space-y-2.5">
+                        <div className="h-0.5 w-64 md:w-80 rounded-full bg-white/10" />
+                        <div className="h-4 w-44 rounded bg-white/10" />
+                    </div>
+                    <div className="flex items-center gap-6 pt-2">
+                        <div className="h-10 w-32 rounded-lg bg-white/20" />
+                        <div className="h-4 w-20 rounded bg-white/10" />
                     </div>
                 </div>
             </div>
@@ -95,7 +104,7 @@ export default async function Home() {
             </Suspense>
 
             {/* Content */}
-            <div className="container py-10 md:py-16 space-y-10 md:space-y-20 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
+            <div className="container py-10 md:py-16 space-y-8 md:space-y-14 m-auto max-w-[95%] md:max-w-[85%] px-2 md:px-0 relative z-10">
                 {sections.filter((s) => s.enabled).map((s) => renderSection(s.id))}
             </div>
         </div>
