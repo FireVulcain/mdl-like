@@ -314,10 +314,15 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                                         <RefreshCw className={`h-3 w-3 ${refreshingShowId === first.mediaId ? "animate-spin" : ""}`} />
                                                                     </button>
                                                                 </div>
+                                                                {/* "S01E23" is a western-TV habit that fits almost nothing
+                                                                    here: MDL files each season as its own entry and Asian
+                                                                    dramas are overwhelmingly single-season, so the season
+                                                                    only earns its place when there is more than one — the
+                                                                    same rule the watchlist badge and the media links use. */}
                                                                 {showEps.map((ep, ei) => (
                                                                     <p key={ei} className="text-gray-400 text-xs">
-                                                                        S{String(ep.seasonNumber).padStart(2, "0")}E
-                                                                        {String(ep.episodeNumber).padStart(2, "0")}
+                                                                        {ep.seasonNumber > 1 ? `S${ep.seasonNumber} · ` : ""}
+                                                                        Episode {ep.episodeNumber}
                                                                         {ep.episodeName ? ` · ${ep.episodeName}` : ""}
                                                                     </p>
                                                                 ))}

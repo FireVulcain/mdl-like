@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { tvmaze } from "@/lib/tvmaze";
 import { tmdb } from "@/lib/tmdb";
@@ -26,40 +27,98 @@ async function withConcurrency<T>(items: T[], concurrency: number, fn: (item: T)
     }
 }
 
+// Keyed by the first three letters, lowercased: the episode list writes
+// "Aug 02, 2026" while other MDL pages spell the month out. Matching on the
+// full name alone silently rejected every date the list returned, which left
+// the fallback below unable to ever produce an episode.
 const MDL_MONTH: Record<string, string> = {
-    January: "01", February: "02", March: "03", April: "04",
-    May: "05", June: "06", July: "07", August: "08",
-    September: "09", October: "10", November: "11", December: "12",
+    jan: "01", feb: "02", mar: "03", apr: "04",
+    may: "05", jun: "06", jul: "07", aug: "08",
+    sep: "09", oct: "10", nov: "11", dec: "12",
 };
 
 function parseMdlAirDate(raw: string | null | undefined): string | null {
     if (!raw) return null;
-    // "May 13, 2025" → "2025-05-13"
+    // "May 13, 2025" / "Aug 02, 2026" → "2025-05-13" / "2026-08-02"
     const m = raw.match(/^(\w+)\s+(\d+),\s+(\d{4})$/);
     if (!m) return null;
-    const month = MDL_MONTH[m[1]];
+    const month = MDL_MONTH[m[1].slice(0, 3).toLowerCase()];
     if (!month) return null;
     return `${m[3]}-${month}-${m[2].padStart(2, "0")}`;
 }
 
+// How long "no source knows this show's episodes" is believed. It has to expire:
+// a drama that has aired but isn't scheduled anywhere yet gets its dates days
+// later, and a permanent sentinel meant the calendar never looked again — the
+// show stayed empty for good, with no way back short of the manual refresh.
+// Same 6h as the next-episode cache, for the same reason.
+const NO_EPISODES_TTL_MS = 6 * 60 * 60 * 1000;
+
+// A show whose last known episode aired within this window is treated as
+// possibly still running, and its schedule is re-read when it looks exhausted.
+// Past it, the show is over as far as the calendar is concerned — without this
+// every finished drama in the watchlist would be re-scraped forever.
+const STILL_RUNNING_DAYS = 21;
+
+// Ceiling on background top-ups per calendar load, so a watchlist full of
+// airing shows can't turn one page view into a scrape storm.
+const STALE_REFRESH_PER_LOAD = 4;
+
 // Negative cache: when no source knows a show's episodes, write a sentinel row
 // so the show counts as cached — otherwise every calendar load re-scrapes it
-// forever (episodeNumber 0 rows are filtered out when reading).
+// (episodeNumber 0 rows are filtered out when reading). Upserted rather than
+// inserted so a fruitless retry pushes the next one out by another TTL instead
+// of leaving an expired sentinel that re-scrapes on every single load.
 async function markNoEpisodes(mediaId: string): Promise<never[]> {
     await prisma.cachedEpisode
-        .createMany({
-            data: [{ mediaId, airDate: "1900-01-01", episodeNumber: 0, seasonNumber: 0 }],
-            skipDuplicates: true,
+        .upsert({
+            where: { mediaId_seasonNumber_episodeNumber: { mediaId, seasonNumber: 0, episodeNumber: 0 } },
+            create: { mediaId, airDate: "1900-01-01", episodeNumber: 0, seasonNumber: 0 },
+            update: { updatedAt: new Date() },
         })
         .catch(() => {});
     return [];
+}
+
+type EpisodeRow = { airDate: string; episodeNumber: number; seasonNumber: number; episodeName?: string };
+
+// Neither source leaves the title blank when a show has no episode titles: MDL
+// fills it with "<Show> Episode 23", TVmaze with a bare "Episode 23". Printed
+// next to "S01E23" under the show's name, that says the same thing three times.
+// Treated as absent, which is what it means.
+function realEpisodeName(name: string | null | undefined): string | undefined {
+    const trimmed = name?.trim();
+    if (!trimmed) return undefined;
+    return /episode\s*\d+$/i.test(trimmed) ? undefined : trimmed;
+}
+
+// MDL's own episode list for a show, empty when we have no slug or it has none.
+// seasonNumber is left to the caller: an MDL entry IS one season, and it always
+// numbers its episodes from 1, so the number alone doesn't say which.
+async function fetchMdlEpisodes(externalId: string): Promise<Omit<EpisodeRow, "seasonNumber">[]> {
+    const mdlRow = await prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: externalId } });
+    if (!mdlRow?.mdlSlug || mdlRow.mdlDisabled) return [];
+
+    const mdlResult = await kuryanaGetEpisodesList(mdlRow.mdlSlug).catch(() => null);
+    if (!mdlResult?.data?.episodes?.length) return [];
+
+    const episodes: Omit<EpisodeRow, "seasonNumber">[] = [];
+    for (const ep of mdlResult.data.episodes) {
+        const airDate = parseMdlAirDate(ep.air_date);
+        if (!airDate) continue;
+        // Extract episode number from link: ".../episode/3" → 3
+        const epNumMatch = ep.link.match(/\/episode\/(\d+)/);
+        if (!epNumMatch) continue;
+        episodes.push({ airDate, episodeNumber: parseInt(epNumMatch[1]), episodeName: realEpisodeName(ep.title) });
+    }
+    return episodes;
 }
 
 async function fetchAndCacheEpisodes(
     mediaId: string,
     externalId: string,
     title: string | null,
-): Promise<{ airDate: string; episodeNumber: number; seasonNumber: number; episodeName?: string }[]> {
+): Promise<EpisodeRow[]> {
     let tvmazeEpisodes: Awaited<ReturnType<typeof tvmaze.getAllEpisodes>> = [];
     try {
         const externalIds = await tmdb.getExternalIds("tv", externalId);
@@ -69,48 +128,32 @@ async function fetchAndCacheEpisodes(
             showName: title,
         });
     } catch {
-        // TMDB/TVmaze lookup failed — fall through to MDL fallback
+        // TMDB/TVmaze lookup failed — MDL alone below
     }
 
-    if (tvmazeEpisodes.length > 0) {
-        await prisma.cachedEpisode.createMany({
-            data: tvmazeEpisodes.map((ep) => ({
-                mediaId,
-                airDate: ep.airDate,
-                episodeNumber: ep.episodeNumber,
-                seasonNumber: ep.seasonNumber,
-                episodeName: ep.name || null,
-            })),
-            skipDuplicates: true,
-        });
-        return tvmazeEpisodes.map((ep) => ({
-            airDate: ep.airDate,
-            episodeNumber: ep.episodeNumber,
-            seasonNumber: ep.seasonNumber,
-            episodeName: ep.name,
-        }));
-    }
+    const episodes: EpisodeRow[] = tvmazeEpisodes.map((ep) => ({
+        airDate: ep.airDate,
+        episodeNumber: ep.episodeNumber,
+        seasonNumber: ep.seasonNumber,
+        episodeName: realEpisodeName(ep.name),
+    }));
 
-    // TVmaze returned nothing — try MDL episodes as fallback
-    const mdlRow = await prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: externalId } });
-    if (!mdlRow?.mdlSlug) return markNoEpisodes(mediaId);
-
-    const mdlResult = await kuryanaGetEpisodesList(mdlRow.mdlSlug);
-    if (!mdlResult?.data?.episodes?.length) return markNoEpisodes(mediaId);
-
-    const episodes: { airDate: string; episodeNumber: number; seasonNumber: number; episodeName?: string }[] = [];
-    for (const ep of mdlResult.data.episodes) {
-        const airDate = parseMdlAirDate(ep.air_date);
-        if (!airDate) continue;
-        // Extract episode number from link: ".../episode/3" → 3
-        const epNumMatch = ep.link.match(/\/episode\/(\d+)/);
-        if (!epNumMatch) continue;
-        episodes.push({
-            airDate,
-            episodeNumber: parseInt(epNumMatch[1]),
-            seasonNumber: 1,
-            episodeName: ep.title,
-        });
+    // TVmaze is the better source where it knows: real season numbers, episode
+    // titles. But on Asian dramas it lags — it stops at whatever has already
+    // aired, days behind MDL, which publishes the whole run in advance. Taking
+    // it alone froze a running show at the episode count of the day it was first
+    // cached, and taking MDL alone would lose the season numbers the calendar
+    // prints. So TVmaze holds what it knows and MDL adds the tail.
+    const tvSeasons = new Set(episodes.map((ep) => ep.seasonNumber));
+    const canAppendMdl = tvSeasons.size <= 1; // see fetchMdlEpisodes: MDL numbers per season
+    if (canAppendMdl) {
+        const season = tvSeasons.values().next().value ?? 1;
+        const highest = episodes.reduce((max, ep) => Math.max(max, ep.episodeNumber), 0);
+        const mdlEpisodes = await fetchMdlEpisodes(externalId);
+        for (const ep of mdlEpisodes) {
+            if (ep.episodeNumber <= highest) continue; // TVmaze already has it, and knows it better
+            episodes.push({ ...ep, seasonNumber: season });
+        }
     }
 
     if (episodes.length === 0) return markNoEpisodes(mediaId);
@@ -166,31 +209,56 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
         cacheByMediaId.get(ep.mediaId)!.push(ep);
     }
 
+    const today = new Date().toISOString().split("T")[0];
+    const recentCutoff = new Date(Date.now() - STILL_RUNNING_DAYS * 86_400_000).toISOString().split("T")[0];
+
     const results: ScheduleEntry[] = [];
     const cacheMisses: typeof uniqueItems = [];
+    const staleShows: typeof uniqueItems = [];
 
     for (const item of uniqueItems) {
         const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
-        const cached = cacheByMediaId.get(mediaId);
+        const cached = cacheByMediaId.get(mediaId) ?? [];
+        const known = cached.filter((ep) => ep.episodeNumber > 0); // drop the sentinel
 
-        if (cached && cached.length > 0) {
-            for (const ep of cached) {
-                if (ep.episodeNumber <= 0) continue; // "no episodes found" sentinel
+        if (known.length > 0) {
+            for (const ep of known) {
                 results.push({
                     title: item.title || "Unknown",
                     poster: item.poster,
                     episodeNumber: ep.episodeNumber,
                     seasonNumber: ep.seasonNumber,
-                    episodeName: ep.episodeName ?? undefined,
+                    // Also filtered on the way out, not just on the way in: rows
+                    // cached before this existed still carry the padded title
+                    episodeName: realEpisodeName(ep.episodeName),
                     airDate: ep.airDate,
                     mediaId,
                     originCountry: item.originCountry || "",
                     status: item.status,
                 });
             }
-        } else {
-            cacheMisses.push(item);
+
+            // A list captured mid-run stops at the episode that existed that day,
+            // and nothing ever went back for the rest. So: everything we hold has
+            // aired, yet the last one aired recently enough that the show is
+            // probably still going — go and look again. A drama that ended years
+            // ago fails the second test and is never re-fetched.
+            const lastAired = known.reduce((max, ep) => (ep.airDate > max ? ep.airDate : max), "");
+            const lastChecked = Math.max(...known.map((ep) => ep.updatedAt.getTime()));
+            const hasFuture = known.some((ep) => ep.airDate >= today);
+            if (!hasFuture && lastAired >= recentCutoff && Date.now() - lastChecked > NO_EPISODES_TTL_MS) {
+                staleShows.push(item);
+            }
+            continue;
         }
+
+        // Nothing but a sentinel, or nothing at all. Retry once it has expired —
+        // an empty cache is a statement about the sources at one moment, not
+        // about the show.
+        const sentinelAge = cached.length > 0
+            ? Date.now() - Math.max(...cached.map((ep) => ep.updatedAt.getTime()))
+            : Infinity;
+        if (sentinelAge > NO_EPISODES_TTL_MS) cacheMisses.push(item);
     }
 
     // Fetch from TVmaze only for cache misses (rare after initial population)
@@ -205,7 +273,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                         poster: item.poster,
                         episodeNumber: ep.episodeNumber,
                         seasonNumber: ep.seasonNumber,
-                        episodeName: ep.episodeName,
+                        episodeName: realEpisodeName(ep.episodeName),
                         airDate: ep.airDate,
                         mediaId,
                         originCountry: item.originCountry || "",
@@ -215,6 +283,26 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
             } catch (error) {
                 console.error(`Failed to get schedule for ${item.title}:`, error);
             }
+        });
+    }
+
+    // Top-ups run AFTER the response: the calendar already has every date we
+    // know, and the missing tail is worth a page load's wait, not a scrape the
+    // user sits through. The rows land in the cache and show up on the next load.
+    if (staleShows.length > 0) {
+        after(async () => {
+            for (const item of staleShows.slice(0, STALE_REFRESH_PER_LOAD)) {
+                try {
+                    await fetchAndCacheEpisodes(
+                        `${item.source.toLowerCase()}-${item.externalId}`,
+                        item.externalId,
+                        item.title,
+                    );
+                } catch {
+                    // best effort — a later visit retries
+                }
+            }
+            revalidatePath("/calendar");
         });
     }
 
