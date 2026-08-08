@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, animate } from "framer-motion";
 import { Bookmark, ImageOff, Star, UserRound } from "lucide-react";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import type { RowExtras } from "@/lib/row-extras";
@@ -26,6 +26,11 @@ export type SpotlightItem = {
 // Long enough that crossing the row on the way somewhere else never triggers it,
 // short enough that a deliberate pause is answered before it feels ignored.
 const PROMOTE_AFTER_MS = 650;
+
+// One curve and one duration for both halves of the move — see the comment where
+// the row is scrolled for why they cannot differ.
+const TRAVEL_S = 0.55;
+const TRAVEL_EASE = [0.32, 0.72, 0, 1] as const;
 
 function BookmarkBadge({ className }: { className: string }) {
     return (
@@ -80,7 +85,7 @@ function SpotlightLead({
                 <motion.div
                     key={item.id}
                     layoutId={`spotlight-poster-${item.id}`}
-                    transition={{ duration, ease: [0.32, 0.72, 0, 1] }}
+                    transition={{ duration, ease: [...TRAVEL_EASE] }}
                     className="relative h-64 sm:h-72 md:h-80 aspect-2/3 rounded-lg overflow-hidden shrink-0 bg-white/5"
                 >
                     {item.poster ? (
@@ -197,7 +202,7 @@ function SpotlightCell({
                 with no distortion to correct. */}
             <motion.div
                 layoutId={`spotlight-poster-${item.id}`}
-                transition={{ duration, ease: [0.32, 0.72, 0, 1] }}
+                transition={{ duration, ease: [...TRAVEL_EASE] }}
                 className="relative aspect-2/3 w-32 sm:w-40 md:w-44 rounded-lg overflow-hidden bg-white/5"
             >
                 {item.poster ? (
@@ -270,8 +275,10 @@ export function SpotlightRow({
     // the same point. Either one restarts the timer and promotes something nobody
     // asked for. Requiring real movement covers both without knowing about either.
     const frozenAt = useRef<{ x: number; y: number } | null>(null);
+    // Set when a promotion is about to commit, read by the layout effect below
+    const scrollPending = useRef(false);
     const reduce = useReducedMotion();
-    const duration = reduce ? 0 : 0.55;
+    const duration = reduce ? 0 : TRAVEL_S;
 
     const disarm = useCallback(() => {
         if (timer.current) window.clearTimeout(timer.current);
@@ -298,24 +305,57 @@ export function SpotlightRow({
                 // mid-drag would swap two cards out from under a moving cursor.
                 if (rootRef.current?.closest("[data-dragging]")) return;
                 frozenAt.current = { ...pointer.current };
+                scrollPending.current = true;
                 setSlots((prev) => {
                     const next = [...prev];
                     [next[0], next[slot]] = [next[slot], next[0]];
                     return next;
                 });
-
-                // The big slot is pinned to the start of the row, so promoting from
-                // deep in the scroll would play the whole animation off-screen and
-                // leave the demoted card as the only thing you see. Bring the row
-                // back so the card you asked for is the one you end up looking at.
-                const viewport = rootRef.current?.closest<HTMLElement>("[data-radix-scroll-area-viewport]");
-                if (viewport && viewport.scrollLeft > 0) {
-                    viewport.scrollTo({ left: 0, behavior: reduce ? "auto" : "smooth" });
-                }
             }, PROMOTE_AFTER_MS);
         },
-        [disarm, reduce],
+        [disarm],
     );
+
+    // The big slot is pinned to the start of the row, so promoting from deep in
+    // the scroll would play the whole animation off-screen and leave the demoted
+    // card as the only thing you see. Bring the row back, so the card you asked
+    // for is the one you end up looking at.
+    //
+    // Two things make this delicate, and both were measured rather than guessed.
+    //
+    // The curve and duration must match the poster's flight exactly. Framer-motion
+    // measures the destination at swap time, with the row still scrolled, so it
+    // aims far off-screen and the scroll is what carries it back. With
+    // scrollTo({behavior:"smooth"}) the two had different durations and easings:
+    // promoting from the far end of a row, the poster overshot by 1225px and spent
+    // 400ms entirely out of view before drifting back in.
+    //
+    // And they must *start* together, which is why this is a layout effect rather
+    // than a line in the timer above. Started from the timer, the scroll begins on
+    // the next frame while the layout animation waits for React to commit — 80ms
+    // in dev — and the poster lurched 181px the wrong way before settling. A
+    // layout effect runs after the children's, so framer-motion has already
+    // measured and started by the time this does.
+    useLayoutEffect(() => {
+        if (!scrollPending.current) return;
+        scrollPending.current = false;
+
+        const viewport = rootRef.current?.closest<HTMLElement>("[data-radix-scroll-area-viewport]");
+        if (!viewport || viewport.scrollLeft <= 0) return;
+
+        if (reduce) {
+            viewport.scrollLeft = 0;
+            return;
+        }
+        const controls = animate(viewport.scrollLeft, 0, {
+            duration: TRAVEL_S,
+            ease: [...TRAVEL_EASE],
+            onUpdate: (v) => {
+                viewport.scrollLeft = v;
+            },
+        });
+        return () => controls.stop();
+    }, [slots, reduce]);
 
     if (items.length === 0) return null;
 
