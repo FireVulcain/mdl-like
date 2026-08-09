@@ -396,25 +396,9 @@
         gap: 1rem;
     }
 
-    .watchlist-stats {
-        width: 100%;
-        gap: 0.5rem !important;
-    }
-
-    .watchlist-stats > div {
-        flex: 1;
-        padding: 0.625rem 0.75rem !important;
-        min-width: 0;
-    }
-
-    .watchlist-stats > div > div:first-child {
-        font-size: 1.25rem !important;
-    }
-
-    .watchlist-stats > div .text-sm {
-        font-size: 0.65rem !important;
-        white-space: nowrap;
-    }
+    /* The four .watchlist-stats overrides that lived here were dead: they sat in
+       a max-width: 767px query while the component they target is hidden below
+       768px. They also padded tiles that no longer exist. */
 
     /* =====================================================
        FILTER BAR - Responsive glass morphism bar

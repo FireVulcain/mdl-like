@@ -966,7 +966,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
             <div className="sticky top-20 z-30 -mx-4 px-4 py-2 filter-row">
                 <div className="relative">
                     {/* Glass background */}
-                    <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-xl rounded-xl border border-white/5" />
+                    <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-xl rounded-lg border border-white/5" />
 
                     <div className="relative flex flex-wrap items-center gap-2 p-2.5">
                         {/* Search */}
@@ -1002,7 +1002,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 {showMobileStatusFilter && (
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowMobileStatusFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allStatuses.map((status) => {
                                                 const config = statusConfig[status as keyof typeof statusConfig];
                                                 const Icon = config?.icon;
@@ -1084,7 +1084,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 {showCountryFilter && (
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowCountryFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allCountries.map((country) => {
                                                 const isSelected = filterCountries.includes(country);
                                                 return (
@@ -1134,7 +1134,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 {showGenreFilter && (
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allGenres.map((genre) => {
                                                 const isSelected = filterGenres.includes(genre);
                                                 return (
@@ -1234,7 +1234,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     {showSortFilter && (
                                         <>
                                             <div className="fixed inset-0 z-10" onClick={() => setShowSortFilter(false)} />
-                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-3 w-56 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1">
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-3 w-56 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1">
                                                 <button
                                                     onClick={() => pick("default")}
                                                     className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${sortBy === "default" ? "bg-violet-500/20 text-violet-400" : "text-gray-500 hover:text-white hover:bg-white/5"}`}
@@ -1299,7 +1299,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     {showYearFilter && (
                                         <>
                                             <div className="fixed inset-0 z-10" onClick={() => setShowYearFilter(false)} />
-                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-36 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-36 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                                 {yearOptions.map((opt) => {
                                                     const isSelected = filterYear === opt.value;
                                                     return (
@@ -1355,7 +1355,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             {showActionsMenu && (
                                 <>
                                     <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
-                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
@@ -1588,7 +1588,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     style={{ animationDelay }}
                                 >
                                     <div
-                                        className="item-card relative overflow-hidden rounded-2xl bg-white/2 cursor-pointer transition-all duration-300 hover:scale-[1.005]"
+                                        className="item-card relative overflow-hidden rounded-lg bg-white/2 cursor-pointer transition-all duration-300 hover:scale-[1.005]"
                                         onClick={() => toggleGroup(groupKey)}
                                     >
                                         <div className="absolute inset-0 -z-10">
@@ -1702,7 +1702,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
                 {filteredItems.length === 0 && (
                     <div className="flex flex-col items-center justify-center py-24 text-center">
-                        <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-4">
+                        <div className="w-16 h-16 rounded-lg bg-white/5 flex items-center justify-center mb-4">
                             <Search className="h-8 w-8 text-gray-600" />
                         </div>
                         <p className="text-lg font-medium text-gray-400">No items found</p>
@@ -2158,11 +2158,15 @@ const ItemCard = memo(function ItemCard({
 
     return (
         <div
-            className={`item-card group relative overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.005] ${
+            className={`item-card group relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-[1.005] ${
                 isChild ? "bg-white/3 border border-white/5" : "bg-white/2"
             }`}
         >
-            {/* Backdrop with gradient overlay */}
+            {/* The show's own artwork, behind its row. This is the one place the
+                pattern earns its keep: unlike the home cards, the image is not
+                repeated beside itself here, and at this opacity it gives each row
+                an identity that helps find a title in a list of hundreds. Kept
+                deliberately after trying the list without it. */}
             <div className="absolute inset-0 -z-10">
                 {(item.backdrop || item.poster) ? (
                     <>
@@ -2348,7 +2352,7 @@ const ItemCard = memo(function ItemCard({
                         <>
                             <div className="fixed inset-0 z-9998" onClick={() => setShowStatusDropdown(false)} />
                             <div
-                                className="fixed z-9999 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
+                                className="fixed z-9999 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
                                 style={{
                                     top: `${dropdownPosition.top}px`,
                                     left: `${dropdownPosition.left}px`,
@@ -2385,9 +2389,9 @@ const ItemCard = memo(function ItemCard({
                 {showCompletion && typeof window !== "undefined" && createPortal(
                     <>
                         <div className="fixed inset-0 z-9998 bg-black/60 backdrop-blur-sm" onClick={() => setShowCompletion(false)} />
-                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-gray-900 border border-white/10 rounded-2xl shadow-2xl shadow-black/60 p-6 animate-in fade-in zoom-in-95 duration-200">
+                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-gray-900 border border-white/10 rounded-lg shadow-2xl shadow-black/60 p-6 animate-in fade-in zoom-in-95 duration-200">
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="h-10 w-10 rounded-xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                                <div className="h-10 w-10 rounded-lg bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center shrink-0">
                                     <CheckCircle className="h-5 w-5 text-emerald-400" />
                                 </div>
                                 <div>
@@ -2433,7 +2437,7 @@ const ItemCard = memo(function ItemCard({
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setShowCompletion(false)}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
                                 >
                                     Skip
                                 </button>
@@ -2454,7 +2458,7 @@ const ItemCard = memo(function ItemCard({
                                             setCompletionSaving(false);
                                         }
                                     }}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
                                 >
                                     {completionSaving ? "Saving…" : "Complete"}
                                 </button>
