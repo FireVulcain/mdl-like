@@ -184,6 +184,38 @@
     }
 }
 
+/* Two-handle range slider (the rating filter on /dramas). The tracks are drawn
+   by the component; these inputs contribute only their thumbs, so the two can be
+   stacked and each handle stays grabbable. */
+.range-thumb {
+    pointer-events: none;
+}
+.range-thumb::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 9999px;
+    background: #fff;
+    cursor: grab;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+.range-thumb::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+.range-thumb::-moz-range-thumb {
+    pointer-events: auto;
+    height: 1rem;
+    width: 1rem;
+    border: 0;
+    border-radius: 9999px;
+    background: #fff;
+    cursor: grab;
+}
+.range-thumb:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px var(--color-sky-400);
+}
+
 /* Content-visibility optimization for long lists (10x faster initial render) */
 .item-card {
     content-visibility: auto;

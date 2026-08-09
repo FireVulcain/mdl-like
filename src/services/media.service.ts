@@ -653,6 +653,7 @@ export const mediaService = {
         year_from,
         year_to,
         rating_min,
+        rating_max,
         tag,
         tag_exclude,
     }: {
@@ -665,6 +666,7 @@ export const mediaService = {
         year_from?: number;
         year_to?: number;
         rating_min?: number;
+        rating_max?: number;
         tag?: number;
         tag_exclude?: number | string;
     }): Promise<{ items: UnifiedMedia[]; hasNextPage: boolean }> {
@@ -693,6 +695,7 @@ export const mediaService = {
                 year_from,
                 year_to,
                 rating_min,
+                rating_max,
                 tag,
                 tag_exclude,
             });

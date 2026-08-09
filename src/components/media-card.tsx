@@ -93,7 +93,7 @@ export function MediaCard({
                     {media.title}
                 </h3>
                 <p className="text-xs text-muted-foreground">
-                    {captionLead ?? media.year} • {media.type}
+                    {captionLead ?? media.year} · {media.type}
                 </p>
             </CardContent>
         </Card>

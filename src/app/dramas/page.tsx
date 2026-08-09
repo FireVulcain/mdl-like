@@ -9,6 +9,7 @@ import { prisma } from "@/lib/prisma";
 import { getWatchlistExternalIds } from "@/actions/user-media";
 import { getExcludedTagsPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
+import { RatingRangeFilter } from "@/components/dramas/rating-range-filter";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 import { PageBackground } from "@/components/page-background";
 
@@ -22,6 +23,7 @@ type SearchParams = Promise<{
     year_from?: string;
     year_to?: string;
     rating_min?: string;
+    rating_max?: string;
     tag?: string;
     tag_name?: string;
     tag_exclude?: string;
@@ -34,17 +36,14 @@ const CATEGORY_CONFIG = {
     // behind it only returns finished dramas, so the label says so
     popular: {
         label: "Completed",
-        bar: "from-blue-500 to-blue-400",
         dot: "bg-blue-400",
     },
     airing: {
         label: "Airing Now",
-        bar: "from-emerald-500 to-emerald-400",
         dot: "bg-emerald-400",
     },
     upcoming: {
         label: "Coming Soon",
-        bar: "from-amber-500 to-amber-400",
         dot: "bg-amber-400",
     },
 } as const;
@@ -115,15 +114,6 @@ const MDL_GENRES = [
     { value: "zombies", label: "Zombies" },
 ];
 
-const RATING_MIN_OPTIONS = [
-    { value: "", label: "Any" },
-    { value: "7", label: "7.0+" },
-    { value: "7.5", label: "7.5+" },
-    { value: "8", label: "8.0+" },
-    { value: "8.5", label: "8.5+" },
-    { value: "9", label: "9.0+" },
-];
-
 const currentYear = new Date().getFullYear();
 const YEAR_OPTIONS = Array.from({ length: currentYear - 1990 + 1 }, (_, i) => currentYear - i);
 
@@ -150,6 +140,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         year_from: rawYearFrom,
         year_to: rawYearTo,
         rating_min: rawRatingMin,
+        rating_max: rawRatingMax,
         tag: rawTag,
         tag_name: rawTagName,
         tag_exclude: rawTagExclude,
@@ -168,6 +159,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const year_from = rawYearFrom ? parseInt(rawYearFrom, 10) : undefined;
     const year_to = rawYearTo ? parseInt(rawYearTo, 10) : undefined;
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
+    const rating_max = rawRatingMax ? parseFloat(rawRatingMax) : undefined;
     const tag = rawTag ? parseInt(rawTag, 10) : undefined;
 
     // Excluded tags: an explicit URL list always wins; otherwise, unless the
@@ -200,6 +192,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         year_from,
         year_to,
         rating_min,
+        rating_max,
         tag,
         tag_exclude: tagExclude,
     });
@@ -252,13 +245,12 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     if (rawYearFrom) baseParams.year_from = rawYearFrom;
     if (rawYearTo) baseParams.year_to = rawYearTo;
     if (rawRatingMin) baseParams.rating_min = rawRatingMin;
+    if (rawRatingMax) baseParams.rating_max = rawRatingMax;
     if (rawTag) { baseParams.tag = rawTag; if (rawTagName) baseParams.tag_name = rawTagName; }
     if (rawTagExclude) { baseParams.tag_exclude = rawTagExclude; if (rawTagExcludeName) baseParams.tag_exclude_name = rawTagExcludeName; }
     // Defaults stay implicit (reapplied server-side), but an explicit opt-out must survive navigation
     if (rawNoDefaults) baseParams.no_defaults = rawNoDefaults;
     baseParams.page = page.toString();
-
-    const catConfig = CATEGORY_CONFIG[category];
 
     // Three-state toggle: neutral → include → exclude → neutral
     function genreToggleUrl(genreValue: string) {
@@ -299,11 +291,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                 {/* Header */}
                 <div className="mb-8">
-                    <div className="flex items-center gap-3 mb-1">
-                        <div className={`w-1 h-7 bg-linear-to-b ${catConfig.bar} rounded-full`} />
-                        <h1 className="font-display text-2xl md:text-3xl font-semibold text-white">Drama Library</h1>
-                    </div>
-                    <p className="text-sm text-gray-400 ml-4">Asian dramas · Powered by MDL</p>
+                    <h1 className="font-display text-3xl font-semibold text-white mb-1">Drama Library</h1>
+                    <p className="text-sm text-gray-400">Asian dramas · Powered by MDL</p>
                 </div>
 
                 {/* Two-column layout */}
@@ -399,7 +388,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     <aside className="w-full lg:w-52 xl:w-75 shrink-0 space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
                         {/* Category */}
                         <div className="space-y-2">
-                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Category</h4>
+                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Category</h4>
                             <div className="space-y-0.5">
                                 {(Object.entries(CATEGORY_CONFIG) as [Category, (typeof CATEGORY_CONFIG)[Category]][]).map(([cat, config]) => (
                                     <Link
@@ -420,7 +409,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                         {/* Country */}
                         <div className="space-y-1.5">
-                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Country</h4>
+                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Country</h4>
                             <details className="group" open>
                                 <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
                                     <span>{COUNTRY_OPTIONS.find((o) => o.value === country)?.label ?? "All"}</span>
@@ -458,7 +447,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                         {/* Sort */}
                         <div className="space-y-2">
-                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Sort by</h4>
+                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Sort by</h4>
                             <div className="space-y-0.5">
                                 {MDL_SORT_OPTIONS.map((opt) => (
                                     <Link
@@ -482,11 +471,11 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         {/* Genre */}
                         <div className="space-y-1.5">
                             <div className="flex items-center justify-between">
-                                <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
+                                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
                                 {(selectedGenres.length > 0 || excludedGenres.length > 0) && (
                                     <Link
                                         href={buildUrl(baseParams, { genre: null, genre_exclude: null, page: "1" })}
-                                        className="text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
+                                        className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
                                     >
                                         Clear ({selectedGenres.length + excludedGenres.length})
                                     </Link>
@@ -548,7 +537,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                         {/* Year range */}
                         <div className="space-y-1.5">
-                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Year</h4>
+                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Year</h4>
                             <div className="flex gap-1.5 items-center">
                                 <details className="group flex-1">
                                     <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
@@ -610,25 +599,16 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                         <div className="h-px bg-white/5" />
 
-                        {/* Min Rating */}
-                        <div className="space-y-2">
-                            <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Min Rating</h4>
-                            <div className="flex flex-wrap gap-1.5">
-                                {RATING_MIN_OPTIONS.map((opt) => (
-                                    <Link
-                                        key={opt.value}
-                                        href={buildUrl(baseParams, { rating_min: opt.value || null, page: "1" })}
-                                        className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
-                                            (rawRatingMin ?? "") === opt.value
-                                                ? "bg-white/15 text-white border border-white/25"
-                                                : "bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white"
-                                        }`}
-                                    >
-                                        {opt.label}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
+                        {/* Rating range. The six fixed "7.0+ / 7.5+ / 8.0+" pills
+                            only ever set a floor; the scraper has always accepted a
+                            ceiling too. The URL is still built here — the client
+                            component just fills in the two values. */}
+                        <RatingRangeFilter
+                            key={`${rawRatingMin ?? ""}-${rawRatingMax ?? ""}`}
+                            buildUrl={buildUrl(baseParams, { rating_min: "__MIN__", rating_max: "__MAX__", page: "1" })}
+                            initialMin={rawRatingMin}
+                            initialMax={rawRatingMax}
+                        />
                     </aside>
                 </div>
             </div>

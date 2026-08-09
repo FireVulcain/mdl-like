@@ -1,6 +1,5 @@
 import { ScheduleData } from "@/components/schedule-data";
 import { Suspense } from "react";
-import { CalendarDays } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -10,22 +9,27 @@ function ScheduleSkeleton() {
     return (
         <div className="min-h-screen bg-linear-to-b ">
             <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
-                {/* Page header skeleton */}
+                {/* Mirrors the real header: the month as the title, the count under
+                    it, bare controls on the right. It has to be redrawn whenever
+                    that header changes — this one still showed an icon in a tinted
+                    square and the word "Calendar", neither of which exists any
+                    more. The title is a shape rather than text: the month is not
+                    known until the data arrives, and printing the wrong word only
+                    to replace it is worse than printing nothing. */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-primary/20">
-                            <CalendarDays className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                            <h1 className="font-display text-2xl font-semibold text-white">Calendar</h1>
-                            <div className="h-4 w-48 mt-1 rounded bg-white/10 animate-pulse" />
-                        </div>
+                    <div className="animate-pulse">
+                        <div className="h-8 w-52 rounded bg-white/10" />
+                        <div className="h-4 w-40 mt-2 rounded bg-white/8" />
                     </div>
-                    <div className="h-9 w-56 rounded-xl bg-white/5 border border-white/10 animate-pulse" />
+                    <div className="flex items-center gap-2 animate-pulse">
+                        <div className="h-9 w-9 rounded-lg bg-white/5" />
+                        <div className="h-5 w-12 rounded bg-white/5" />
+                        <div className="h-9 w-20 rounded-lg bg-white/5" />
+                    </div>
                 </div>
 
                 {/* Calendar grid skeleton */}
-                <div className="rounded-2xl border border-white/10 overflow-hidden animate-pulse">
+                <div className="rounded-lg border border-white/10 overflow-hidden animate-pulse">
                     <div className="grid grid-cols-7 bg-white/4 border-b border-white/10">
                         {DAY_HEADERS.map((day) => (
                             <div key={day} className="py-3 text-center text-xs font-semibold tracking-wider text-gray-400">

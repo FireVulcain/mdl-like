@@ -19,7 +19,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
     return (
         <div className="container py-8 space-y-8 m-auto max-w-[80%]">
-            <h1 className="font-display text-2xl font-semibold">Results for &ldquo;{query}&rdquo;</h1>
+            <h1 className="font-display text-3xl font-semibold">Results for &ldquo;{query}&rdquo;</h1>
 
             {!hasResults ? (
                 <p className="text-muted-foreground">No results found.</p>

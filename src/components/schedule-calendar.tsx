@@ -132,7 +132,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                         is which month you are looking at, so that is the heading,
                         and the count below it follows along. */}
                     <div>
-                        <h1 className="font-display text-2xl font-semibold text-white">
+                        <h1 className="font-display text-3xl font-semibold text-white">
                             {MONTH_NAMES[month]} {year}
                         </h1>
                         <p className="text-sm text-gray-400">
