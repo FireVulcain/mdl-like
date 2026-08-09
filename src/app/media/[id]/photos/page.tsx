@@ -26,7 +26,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
                     </Link>
 
                     <div>
-                        <h1 className="font-display text-3xl font-semibold tracking-tight mb-2 text-white">Photos</h1>
+                        <h1 className="font-display text-3xl font-bold tracking-tight mb-2 text-white">Photos</h1>
                         <div className="flex items-center gap-2 text-gray-400">
                             <span className="font-medium text-white">{media.title}</span>
                             <span>•</span>

@@ -115,7 +115,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                 need 985px and wrap on most screens anyway. Balanced
                                 wrapping for the few that still do, so a title never
                                 breaks to a single orphan word. */}
-                            <h2 className="font-display text-4xl md:text-6xl font-semibold text-white leading-[1.05] tracking-tight text-balance">
+                            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-tight text-balance">
                                 {selectedShow.title}
                             </h2>
 

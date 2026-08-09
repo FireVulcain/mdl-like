@@ -330,7 +330,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     <div className="space-y-8 min-w-0 md:pt-20">
                         <div className="hidden md:block">
-                            <h1 className="font-display text-4xl font-semibold">{displayTitle}</h1>
+                            <h1 className="font-display text-4xl font-bold">{displayTitle}</h1>
                             {secondaryTitle && <p className="mt-1 text-lg text-muted-foreground">{secondaryTitle}</p>}
                             <div className="mt-2 flex flex-wrap gap-2 text-muted-foreground items-center">
                                 <span>{media.year}</span>
@@ -848,7 +848,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Info */}
                 <div className="space-y-8 min-w-0 md:pt-20">
                     <div className="hidden md:block">
-                        <h1 className="font-display text-4xl font-semibold flex items-baseline gap-2">
+                        <h1 className="font-display text-4xl font-bold flex items-baseline gap-2">
                             <span>{displayTitle}</span>
                             {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
                                 <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />

@@ -276,7 +276,7 @@ export default async function EpisodesPage({
 
                 {/* Header */}
                 <div>
-                    <h1 className="font-display text-3xl font-semibold text-white">{media.title}</h1>
+                    <h1 className="font-display text-3xl font-bold text-white">{media.title}</h1>
                     <p className="text-sm text-gray-400 mt-1">
                         {effectiveSeasons.length} season{effectiveSeasons.length !== 1 ? "s" : ""}
                     </p>

@@ -19,7 +19,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
     return (
         <div className="container py-8 space-y-8 m-auto max-w-[80%]">
-            <h1 className="font-display text-3xl font-semibold">Results for &ldquo;{query}&rdquo;</h1>
+            <h1 className="font-display text-3xl font-bold">Results for &ldquo;{query}&rdquo;</h1>
 
             {!hasResults ? (
                 <p className="text-muted-foreground">No results found.</p>
@@ -34,7 +34,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                             <div className="flex items-center gap-3">
                                 <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full" />
                                 <Film className="h-5 w-5 text-blue-400" />
-                                <h2 className="font-display text-lg font-semibold">Movies & Series</h2>
+                                <h2 className="font-display text-lg font-bold">Movies & Series</h2>
                                 <span className="text-sm text-muted-foreground">({media.length})</span>
                                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
                             </div>

@@ -120,7 +120,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
         return (
             <div className="min-h-screen bg-linear-to-b  flex items-center justify-center">
                 <div className="text-center space-y-4">
-                    <h1 className="font-display text-2xl font-semibold text-white">Person not found</h1>
+                    <h1 className="font-display text-2xl font-bold text-white">Person not found</h1>
                     <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
                         Go back home
                     </Link>
@@ -236,7 +236,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         >
                             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
-                            <h3 className="font-display font-semibold text-lg text-white mb-4">Personal Info</h3>
+                            <h3 className="font-display font-bold text-lg text-white mb-4">Personal Info</h3>
 
                             <div className="space-y-4">
                                 <div>
@@ -302,7 +302,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                     <div className="space-y-8 min-w-0 md:pt-6">
                         {/* Name & Title (desktop only) */}
                         <div className="hidden md:block">
-                            <h1 className="font-display text-4xl font-semibold mb-2 text-white">{person.name}</h1>
+                            <h1 className="font-display text-4xl font-bold mb-2 text-white">{person.name}</h1>
                             <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
                                 <Badge variant="outline" className="bg-white/5 text-gray-300 border-white/20">
                                     {person.known_for_department}
@@ -319,7 +319,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {/* Biography */}
                         {person.biography && (
                             <div>
-                                <h3 className="font-display text-lg font-semibold mb-3 text-white">Biography</h3>
+                                <h3 className="font-display text-lg font-bold mb-3 text-white">Biography</h3>
                                 <BiographyExpander text={person.biography} />
                             </div>
                         )}
@@ -332,7 +332,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-pink-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-purple-400" />
-                                    <h3 className="font-display text-lg font-semibold text-white">Series</h3>
+                                    <h3 className="font-display text-lg font-bold text-white">Series</h3>
                                     <span className="text-sm text-gray-400">({series.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>
@@ -356,7 +356,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
                                     <Film className="h-5 w-5 text-blue-400" />
-                                    <h3 className="font-display text-lg font-semibold text-white">Movies</h3>
+                                    <h3 className="font-display text-lg font-bold text-white">Movies</h3>
                                     <span className="text-sm text-gray-400">({movies.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>
@@ -380,7 +380,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-emerald-500 to-teal-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-emerald-400" />
-                                    <h3 className="font-display text-lg font-semibold text-white">TV Shows</h3>
+                                    <h3 className="font-display text-lg font-bold text-white">TV Shows</h3>
                                     <span className="text-sm text-gray-400">({tvShows.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>

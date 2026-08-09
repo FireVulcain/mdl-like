@@ -55,7 +55,7 @@ export function TrendingSection({ items, watchlistIds = [] }: { items: UnifiedMe
                                         than filled so it sits over artwork without hiding it,
                                         and large enough to read as a rank, not a badge. */}
                                     <span
-                                        className="pointer-events-none absolute -bottom-1 left-1.5 text-4xl md:text-6xl font-black leading-none tabular-nums text-white/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
+                                        className="pointer-events-none absolute -bottom-1 left-1.5 text-5xl md:text-6xl font-black leading-none tabular-nums text-white/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
                                         style={{ WebkitTextStroke: "1.5px rgba(0,0,0,0.5)" }}
                                     >
                                         {i + 1}

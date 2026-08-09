@@ -64,7 +64,7 @@ export function SettingsTabs({
             {/* Panel */}
             <div className="min-w-0">
                 <div className="mb-5">
-                    <h2 className="font-display text-lg font-semibold text-white">{activeTab.label}</h2>
+                    <h2 className="font-display text-lg font-bold text-white">{activeTab.label}</h2>
                     <p className="text-xs text-gray-500 mt-0.5">{activeTab.description}</p>
                 </div>
                 <div>{panels[active]}</div>

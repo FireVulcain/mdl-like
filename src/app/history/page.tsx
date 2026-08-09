@@ -30,7 +30,7 @@ export default async function HistoryPage() {
 
             <div className="container py-8 px-4 mx-auto max-w-4xl relative z-10">
                 <div className="mb-8">
-                    <h1 className="font-display text-3xl font-semibold tracking-tight">Activity History</h1>
+                    <h1 className="font-display text-3xl font-bold tracking-tight">Activity History</h1>
                     <p className="text-muted-foreground mt-1">A log of every action tracked on your watchlist</p>
                 </div>
                 <HistoryFeed initialItems={initialData.items} initialNextCursor={initialData.nextCursor} />

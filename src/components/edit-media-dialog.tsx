@@ -250,7 +250,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     </button>
 
                     <div className="absolute bottom-5 left-6 right-6">
-                        <h2 className="font-display text-2xl font-semibold text-white line-clamp-2 drop-shadow-lg">{displayTitle}</h2>
+                        <h2 className="font-display text-2xl font-bold text-white line-clamp-2 drop-shadow-lg">{displayTitle}</h2>
                         <p className="text-sm text-white/60 mt-1">{displayYear}</p>
                     </div>
                 </div>

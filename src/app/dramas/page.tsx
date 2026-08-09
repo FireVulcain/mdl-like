@@ -291,7 +291,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="font-display text-3xl font-semibold text-white mb-1">Drama Library</h1>
+                    <h1 className="font-display text-3xl font-bold text-white mb-1">Drama Library</h1>
                     <p className="text-sm text-gray-400">Asian dramas · Powered by MDL</p>
                 </div>
 

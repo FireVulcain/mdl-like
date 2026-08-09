@@ -443,7 +443,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                     {/* Right: Name + Bio + Filmography */}
                     <div className="space-y-8 min-w-0 md:pt-6">
                         <div className="hidden md:block">
-                            <h1 className="font-display text-4xl font-semibold mb-2 text-white">{data.name}</h1>
+                            <h1 className="font-display text-4xl font-bold mb-2 text-white">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
                                 <span className="text-xs font-medium text-sky-400/70">via MDL</span>
                                 <span className="text-gray-500">•</span>

@@ -43,7 +43,7 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
                 {/* Plain text, bullet separator — the same meta line as the airing
                     cards, rather than the chip the year used to sit in. TBA keeps
                     its amber, as colour rather than as a box. */}
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
                     <span className={item.year === "TBA" ? "text-amber-400 font-medium" : ""}>{item.year}</span>
                     {item.rating > 0 && (
                         <>
@@ -71,7 +71,7 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
                                 <UserRound className="h-2 w-2 text-gray-400" />
                             </span>
                         )}
-                        <span className="text-xs text-violet-300/80 truncate">
+                        <span className="text-[11px] text-violet-300/80 truncate">
                             {actor.name}
                             {item.actors.length > 1 && <span className="text-gray-500"> +{item.actors.length - 1}</span>}
                         </span>

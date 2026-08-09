@@ -121,7 +121,7 @@ export default async function EpisodePage({
                             {d.title} · Episode {epNum}
                             {totalEpisodes > 0 && <span className="text-gray-600"> / {totalEpisodes}</span>}
                         </p>
-                        <h1 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-white leading-tight">
+                        <h1 className="font-display text-3xl md:text-4xl font-black tracking-tight text-white leading-tight">
                             {d.episode_title || `Episode ${epNum}`}
                         </h1>
                         {meta}

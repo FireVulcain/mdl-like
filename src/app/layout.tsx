@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Newsreader, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
@@ -8,17 +8,16 @@ import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { getNotificationPreferences, getMdlProfileUrl } from "@/actions/preferences";
 
-// The interface runs on Instrument Sans. The site was on Geist, which is what
-// create-next-app installs — the most common choice there is.
-const sans = Instrument_Sans({
+// Back on Geist, for both roles. font-display still exists as its own variable
+// and is still what the 54 headings ask for — it simply resolves to the same
+// face as the body for now, so swapping the display face later is one line here
+// rather than a sweep across the app.
+const sans = Geist({
   variable: "--font-sans-family",
   subsets: ["latin"],
 });
 
-// Every title on the site, hero and section headings alike. One display face,
-// not two: a serif that showed up once at the top of the page and nowhere else
-// read as an accident rather than a decision.
-const display = Newsreader({
+const display = Geist({
   variable: "--font-display-family",
   subsets: ["latin"],
 });
