@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Bookmark, ExternalLink, Film, Star, Tv } from "lucide-react";
+import { ArrowLeft, Bookmark, ExternalLink, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { kuryanaGetPerson, kuryanaGetDetails, mdlTitleFromLink, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
@@ -80,7 +80,7 @@ function WorkCard({
 
     const card = (
         <div className="space-y-2">
-            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-linear-to-br from-gray-800 to-gray-900 shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
+            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-white/5 transition-transform hover:scale-105">
                 {poster ? (
                     <Image
                         unoptimized={true}
@@ -118,12 +118,6 @@ function WorkCard({
                     );
                 })()}
 
-                {work.episodes && work.episodes > 0 && (
-                    <div className="absolute bottom-1.5 right-1.5">
-                        <Badge className="bg-purple-500/80 text-xs text-white backdrop-blur-sm">{work.episodes} ep</Badge>
-                    </div>
-                )}
-
                 {inWatchlist && (
                     <div className="absolute bottom-1.5 left-1.5">
                         <Badge className="bg-emerald-500/90 text-xs text-white backdrop-blur-sm px-1.5">
@@ -140,9 +134,14 @@ function WorkCard({
             </div>
 
             <div>
-                <p className="font-semibold text-sm leading-tight text-white group-hover:text-blue-400 transition-colors line-clamp-1">{title}</p>
+                <p className="font-semibold text-sm leading-tight text-white group-hover:text-sky-400 transition-colors line-clamp-1">{title}</p>
                 {character && <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">as {character}</p>}
-                <p className="text-xs text-gray-500 mt-0.5">{year}</p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                    {year}
+                    {work.episodes && work.episodes > 0
+                        ? ` · ${work.episodes} ${work.episodes === 1 ? "episode" : "episodes"}`
+                        : ""}
+                </p>
             </div>
         </div>
     );
@@ -360,7 +359,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                 <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
                     {/* Mobile header: compact photo + name */}
                     <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
-                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10">
+                        <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                             {data.profile ? (
                                 <Image unoptimized src={data.profile} alt={data.name} fill className="object-cover" priority />
                             ) : (
@@ -370,7 +369,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
                             <h1 className="text-base font-bold leading-snug text-white">{data.name}</h1>
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">via MDL</Badge>
+                                <span className="text-xs font-medium text-sky-400/70">via MDL</span>
                                 <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
                             </div>
                             <a
@@ -425,18 +424,15 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                 {alsoKnownAs.length > 0 && (
                                     <div>
                                         <span className="text-gray-400 font-medium block mb-1">Also Known As</span>
-                                        <div className="flex flex-wrap gap-1">
-                                            {alsoKnownAs.slice(0, 6).map((name) => (
-                                                <Badge key={name} variant="secondary" className="text-xs bg-white/10 text-gray-300 border-white/10">
-                                                    {name}
-                                                </Badge>
-                                            ))}
+                                        {/* A list of names, written as one. Every
+                                            other row of this table is plain text;
+                                            only this one was a run of chips. */}
+                                        <p className="text-white">
+                                            {alsoKnownAs.slice(0, 6).join(" · ")}
                                             {alsoKnownAs.length > 6 && (
-                                                <Badge variant="secondary" className="text-xs bg-white/10 text-gray-400 border-white/10">
-                                                    +{alsoKnownAs.length - 6} more
-                                                </Badge>
+                                                <span className="text-gray-500"> +{alsoKnownAs.length - 6} more</span>
                                             )}
-                                        </div>
+                                        </p>
                                     </div>
                                 )}
                             </div>
@@ -449,9 +445,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="hidden md:block">
                             <h1 className="font-display text-4xl font-semibold mb-2 text-white">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
-                                <Badge variant="outline" className="bg-white/5 text-gray-300 border-white/20">
-                                    via MDL
-                                </Badge>
+                                <span className="text-xs font-medium text-sky-400/70">via MDL</span>
                                 <span className="text-gray-500">•</span>
                                 <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
                                 <span className="text-gray-500">•</span>
@@ -474,16 +468,14 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             </div>
                         )}
 
-                        <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                        <div className="h-px bg-white/8" />
 
                         {dramas.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-pink-500 rounded-full" />
-                                    <Tv className="h-5 w-5 text-purple-400" />
                                     <h3 className="font-display text-lg font-semibold text-white">Dramas</h3>
                                     <span className="text-sm text-gray-400">({dramas.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <div className="flex-1 h-px bg-white/8" />
                                 </div>
                                 <div className={grid}>
                                     {dramas.map((work) => (
@@ -505,11 +497,9 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         {movies.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
-                                    <Film className="h-5 w-5 text-blue-400" />
                                     <h3 className="font-display text-lg font-semibold text-white">Movies</h3>
                                     <span className="text-sm text-gray-400">({movies.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <div className="flex-1 h-px bg-white/8" />
                                 </div>
                                 <div className={grid}>
                                     {movies.map((work) => (
@@ -531,11 +521,9 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         {specials.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-linear-to-b from-emerald-500 to-teal-500 rounded-full" />
-                                    <Tv className="h-5 w-5 text-emerald-400" />
                                     <h3 className="font-display text-lg font-semibold text-white">Specials</h3>
                                     <span className="text-sm text-gray-400">({specials.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <div className="flex-1 h-px bg-white/8" />
                                 </div>
                                 <div className={grid}>
                                     {specials.map((work) => (
