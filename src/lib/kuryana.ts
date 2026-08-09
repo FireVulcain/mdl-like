@@ -416,6 +416,33 @@ export async function kuryanaGetPersonThreads(slug: string, page = 1): Promise<M
     return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 0));
 }
 
+export interface KuryanaPersonPhoto {
+    id: string;
+    link: string;
+    /** ~medium size, what the grid shows */
+    image: string;
+    /** full size, what the lightbox opens */
+    image_full: string;
+}
+
+export interface KuryanaPersonPhotosResult {
+    slug_query: string;
+    data: {
+        link: string;
+        title: string;
+        photos: KuryanaPersonPhoto[];
+        pagination: { current_page: number; total_pages: number };
+    };
+    scrape_date: string;
+}
+
+// 28 photos a page, with the page count known up front — so the section can say
+// how many there are without walking every page.
+export async function kuryanaGetPersonPhotos(slug: string, page = 1): Promise<KuryanaPersonPhotosResult | null> {
+    const query = page > 1 ? `?page=${page}` : "";
+    return kuryanaFetch<KuryanaPersonPhotosResult>(`/people/${slug}/photos${query}`, 8000, 0);
+}
+
 export interface KuryanaRecommendation {
     img: string;
     title: string;

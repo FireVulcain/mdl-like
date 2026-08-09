@@ -9,6 +9,8 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
+import { MediaNav, NavSection } from "@/components/media/media-nav";
+import { PersonPhotosSection } from "@/components/people/person-photos-section";
 import { PersonThreadsSection } from "@/components/people/person-threads-section";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
 import { getWatchlistExternalIds, getWatchlistPosters } from "@/actions/user-media";
@@ -348,6 +350,18 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
     const grid = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4";
 
+    // Same jump strip as the media pages. Photos and Comments are streamed in,
+    // so their anchors are rendered by this page rather than by the sections
+    // themselves — the target has to exist before the scrape lands.
+    const navSections: NavSection[] = [
+        ...(bio ? [{ id: "section-biography", label: "Biography" }] : []),
+        ...(dramas.length > 0 ? [{ id: "section-dramas", label: "Dramas" }] : []),
+        ...(movies.length > 0 ? [{ id: "section-movies", label: "Movies" }] : []),
+        ...(specials.length > 0 ? [{ id: "section-specials", label: "Specials" }] : []),
+        { id: "section-photos", label: "Photos" },
+        { id: "section-comments", label: "Comments" },
+    ];
+
     return (
         <div className="min-h-screen bg-linear-to-b ">
             <div className="container py-8 space-y-8 m-auto px-4 md:px-6">
@@ -458,8 +472,10 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             </div>
                         </div>
 
+                        <MediaNav sections={navSections} />
+
                         {bio && (
-                            <div>
+                            <div id="section-biography">
                                 <h3 className="font-display text-lg font-semibold mb-3 text-white">Biography</h3>
                                 <BiographyExpander text={bio} />
                             </div>
@@ -468,7 +484,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="h-px bg-white/8" />
 
                         {dramas.length > 0 && (
-                            <div className="space-y-4">
+                            <div id="section-dramas" className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <h3 className="font-display text-lg font-semibold text-white">Dramas</h3>
                                     <span className="text-sm text-gray-400">({dramas.length})</span>
@@ -492,7 +508,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         )}
 
                         {movies.length > 0 && (
-                            <div className="space-y-4">
+                            <div id="section-movies" className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <h3 className="font-display text-lg font-semibold text-white">Movies</h3>
                                     <span className="text-sm text-gray-400">({movies.length})</span>
@@ -516,7 +532,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         )}
 
                         {specials.length > 0 && (
-                            <div className="space-y-4">
+                            <div id="section-specials" className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <h3 className="font-display text-lg font-semibold text-white">Specials</h3>
                                     <span className="text-sm text-gray-400">({specials.length})</span>
@@ -543,10 +559,20 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             <div className="text-center py-12 text-gray-400">No filmography information available.</div>
                         )}
 
-                        {/* Streamed in so a slow scrape never holds up the filmography */}
-                        <Suspense fallback={null}>
-                            <PersonThreadsSection slug={slug} />
-                        </Suspense>
+                        {/* Both streamed in so a slow scrape never holds up the
+                            filmography. Photos sit after it: someone opens an actor
+                            to see what they have been in, not to browse stills. */}
+                        <div id="section-photos">
+                            <Suspense fallback={null}>
+                                <PersonPhotosSection slug={slug} />
+                            </Suspense>
+                        </div>
+
+                        <div id="section-comments">
+                            <Suspense fallback={null}>
+                                <PersonThreadsSection slug={slug} />
+                            </Suspense>
+                        </div>
                     </div>
                 </div>
             </div>
