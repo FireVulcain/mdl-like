@@ -70,8 +70,15 @@ function SpotlightLead({
 }) {
     const extras = item.extras;
     return (
-        <Link href={item.href} className="group shrink-0 w-85 sm:w-100 md:w-140 lg:w-160 mr-2 md:mr-4 whitespace-normal">
-            <div className="flex items-center gap-4 md:gap-5">
+        // The card is not a link — a link laid underneath it is. An <a> inside an
+        // <a> is invalid and the browser silently unnests it, so the cast faces
+        // could never be links of their own that way. Inverted, the card's link is
+        // a sibling covering the whole box, the content sits above it but lets
+        // clicks fall through, and anything that needs its own destination takes
+        // its events back. No z-index involved: paint order already does it.
+        <div className="group relative shrink-0 w-85 sm:w-100 md:w-140 lg:w-160 mr-2 md:mr-4 whitespace-normal">
+            <Link href={item.href} aria-label={item.title} className="absolute inset-0" />
+            <div className="relative flex items-center gap-4 md:gap-5 pointer-events-none">
                 {/* The key matters as much as the layoutId. Without it this node
                     survives the swap and merely changes which layoutId it claims,
                     so for one commit two nodes claim the same id — the cell being
@@ -105,7 +112,7 @@ function SpotlightLead({
 
                     {item.bookmarked && <BookmarkBadge className="absolute bottom-2 left-2" />}
                     {item.unlinkedSlug && (
-                        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-auto">
                             <LinkToTmdbButton mdlSlug={item.unlinkedSlug} defaultQuery={item.title} compact />
                         </div>
                     )}
@@ -141,29 +148,44 @@ function SpotlightLead({
                         )}
                         {extras && extras.cast.length > 0 && (
                             <div className="hidden md:flex items-center gap-2.5 pt-1">
-                                <div className="flex -space-x-2">
-                                    {extras.cast.map((c) =>
-                                        c.profileImage ? (
+                                {/* Faces take their events back from the card so each
+                                    one can lead to its own actor. The overlap means a
+                                    later avatar covers the previous one's right edge,
+                                    so each is raised over the one before it — the
+                                    visible part of a face is the part you can click. */}
+                                <div className="flex -space-x-2 pointer-events-auto">
+                                    {extras.cast.map((c, i) => {
+                                        const face = c.profileImage ? (
                                             <Image
                                                 unoptimized
-                                                key={c.name}
                                                 src={c.profileImage}
                                                 alt={c.name}
-                                                title={c.name}
                                                 width={28}
                                                 height={28}
-                                                className="h-7 w-7 rounded-full object-cover ring-2 ring-page"
+                                                className="h-7 w-7 rounded-full object-cover ring-2 ring-page transition-transform group-hover/face:scale-110"
                                             />
                                         ) : (
-                                            <span
-                                                key={c.name}
-                                                title={c.name}
-                                                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 ring-2 ring-page"
-                                            >
+                                            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 ring-2 ring-page transition-transform group-hover/face:scale-110">
                                                 <UserRound className="h-3.5 w-3.5 text-gray-400" />
                                             </span>
-                                        ),
-                                    )}
+                                        );
+                                        const style = { zIndex: i };
+                                        return c.href ? (
+                                            <Link
+                                                key={c.name}
+                                                href={c.href}
+                                                title={c.name}
+                                                style={style}
+                                                className="group/face relative rounded-full"
+                                            >
+                                                {face}
+                                            </Link>
+                                        ) : (
+                                            <span key={c.name} title={c.name} style={style} className="relative">
+                                                {face}
+                                            </span>
+                                        );
+                                    })}
                                 </div>
                                 <span className="text-xs text-white/50 truncate">
                                     {extras.cast.map((c) => c.name).join(" · ")}
@@ -173,7 +195,7 @@ function SpotlightLead({
                     </motion.div>
                 </AnimatePresence>
             </div>
-        </Link>
+        </div>
     );
 }
 

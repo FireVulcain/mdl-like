@@ -1,10 +1,11 @@
 import { prisma } from "@/lib/prisma";
+import { mdlPersonHref } from "@/lib/person-links";
 
 // The MDL enrichment the spotlight card shows on top of the list data: genres,
 // the first three faces, and the global rank.
 export type RowExtras = {
     genres: string[];
-    cast: { name: string; profileImage: string | null }[];
+    cast: { name: string; profileImage: string | null; href: string | null }[];
     mdlRanking: number | null;
 };
 
@@ -31,10 +32,17 @@ function shape(r: Raw): RowExtras {
     const genres = Array.isArray(r.genres)
         ? (r.genres as unknown[]).filter((g): g is string => typeof g === "string").slice(0, 3)
         : [];
+    // The href is resolved here rather than in the browser: castJson stores the
+    // slug as "/people/5346-moon-ga-young", and mdlPersonHref already knows the
+    // two shapes MDL sends.
     const cast = Array.isArray(r.cast_top)
-        ? (r.cast_top as { name?: string; profileImage?: string }[])
+        ? (r.cast_top as { name?: string; profileImage?: string; slug?: string }[])
               .filter((m) => m?.name)
-              .map((m) => ({ name: m.name!, profileImage: m.profileImage || null }))
+              .map((m) => ({
+                  name: m.name!,
+                  profileImage: m.profileImage || null,
+                  href: mdlPersonHref(m.slug),
+              }))
         : [];
     return { genres, cast, mdlRanking: r.mdlRanking };
 }
