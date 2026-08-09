@@ -125,34 +125,42 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
             <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
                 {/* Page header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-primary/20">
-                            <CalendarDays className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                            <h1 className="font-display text-2xl font-semibold text-white">Calendar</h1>
-                            <p className="text-sm text-gray-400">
-                                {episodesThisMonth > 0
-                                    ? `${episodesThisMonth} episode${episodesThisMonth !== 1 ? "s" : ""} airing in ${MONTH_NAMES[month]}`
-                                    : `Nothing airing in ${MONTH_NAMES[month]}`}
-                            </p>
-                        </div>
+                    {/* The month is the title. It used to be boxed on the right as
+                        if it were a secondary control, while the heading said
+                        "Calendar" — which the navigation already says, and which
+                        never changes. The one thing on this page that does change
+                        is which month you are looking at, so that is the heading,
+                        and the count below it follows along. */}
+                    <div>
+                        <h1 className="font-display text-2xl font-semibold text-white">
+                            {MONTH_NAMES[month]} {year}
+                        </h1>
+                        <p className="text-sm text-gray-400">
+                            {episodesThisMonth > 0
+                                ? `${episodesThisMonth} episode${episodesThisMonth !== 1 ? "s" : ""} airing`
+                                : "Nothing airing this month"}
+                        </p>
                     </div>
 
                     {/* Controls */}
                     <div className="flex items-center gap-2">
                         {/* Filters menu */}
                         <div className="relative">
+                            {/* This one does have a state worth showing — a filter
+                                is on, or the menu is open — so it keeps a fill when
+                                that is true, and is a bare icon the rest of the
+                                time. */}
                             <button
                                 onClick={() => setShowActionsMenu(!showActionsMenu)}
-                                className={`cursor-pointer h-9 w-9 rounded-lg flex items-center justify-center border transition-colors ${showActionsMenu || asianOnly || !includePlanToWatch ? "bg-primary/20 text-primary border-primary/30" : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"}`}
+                                aria-label="Filters"
+                                className={`cursor-pointer h-9 w-9 rounded-lg flex items-center justify-center transition-colors ${showActionsMenu || asianOnly || !includePlanToWatch ? "bg-primary/20 text-primary" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
                             >
                                 <SlidersHorizontal className="h-4 w-4" />
                             </button>
                             {showActionsMenu && (
                                 <>
                                     <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
-                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
                                         <p className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Region</p>
                                         <button
                                             onClick={() => { setAsianOnly(false); saveCalendarPreferences({ calendarAsianOnly: false }); }}
@@ -190,34 +198,37 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                 </>
                             )}
                         </div>
+                        {/* The label moved into the heading, so what is left here is
+                            two ways to move and one shortcut. They no longer need a
+                            box each: nothing here has an active state to show, which
+                            is the only thing a frame around a control buys. */}
                         <button
                             onClick={goToToday}
-                            className="cursor-pointer px-3 py-1.5 text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors"
+                            className="cursor-pointer px-2 py-1.5 text-sm text-gray-400 hover:text-white transition-colors"
                         >
                             Today
                         </button>
-                        <div className="flex items-center bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+                        <div className="flex items-center">
                             <button
                                 onClick={goToPrev}
-                                className="cursor-pointer p-2.5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+                                aria-label="Previous month"
+                                className="cursor-pointer p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
                             >
-                                <ChevronLeft className="h-4 w-4" />
+                                <ChevronLeft className="h-5 w-5" />
                             </button>
-                            <span className="px-4 text-sm font-semibold text-white w-40 text-center">
-                                {MONTH_NAMES[month]} {year}
-                            </span>
                             <button
                                 onClick={goToNext}
-                                className="cursor-pointer p-2.5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+                                aria-label="Next month"
+                                className="cursor-pointer p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
                             >
-                                <ChevronRight className="h-4 w-4" />
+                                <ChevronRight className="h-5 w-5" />
                             </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Calendar */}
-                <div className="rounded-2xl border border-white/10 overflow-hidden">
+                <div className="rounded-lg border border-white/10 overflow-hidden">
                     {/* Day headers */}
                     <div className="grid grid-cols-7 bg-white/4 border-b border-white/10">
                         {DAY_HEADERS.map((day, i) => (
@@ -281,7 +292,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                         <Tooltip key={gi}>
                                                             <TooltipTrigger asChild>
                                                                 <Link href={`/media/${first.mediaId}?season=${first.seasonNumber}`}>
-                                                                    <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-gray-800 hover:ring-primary/70 hover:scale-110 transition-all bg-gray-800 shrink-0">
+                                                                    <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-page hover:ring-primary/70 hover:scale-110 transition-all bg-gray-800 shrink-0">
                                                                         {first.poster ? (
                                                                             <Image unoptimized={true}
                                                                                 src={first.poster}
