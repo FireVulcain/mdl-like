@@ -47,12 +47,12 @@ export function MdlProfileSetting({ initialUrl }: { initialUrl: string | null })
                     placeholder="https://mydramalist.com/dramalist/yourname"
                     spellCheck={false}
                     autoComplete="off"
-                    className="flex-1 min-w-0 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-gray-600 focus:border-sky-500/50 focus:outline-none"
+                    className="flex-1 min-w-0 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-gray-600 focus:border-blue-500/50 focus:outline-none"
                 />
                 <button
                     type="submit"
                     disabled={isPending || !dirty}
-                    className="shrink-0 rounded-lg border border-sky-500/30 bg-sky-500/15 px-3.5 py-2 text-sm font-medium text-sky-300 transition-colors hover:bg-sky-500/25 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="shrink-0 cursor-pointer rounded-lg bg-blue-500 px-3.5 py-2 text-sm font-semibold text-gray-900 transition-colors hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                     {isPending ? "Saving…" : "Save"}
                 </button>

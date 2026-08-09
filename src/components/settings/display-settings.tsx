@@ -17,7 +17,7 @@ export function DisplaySettings({ initialPrefs }: { initialPrefs: DisplayPrefere
     return (
         <div className="divide-y divide-white/8">
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Title language</h3>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Title language</h3>
                 <div className="flex gap-2">
                     <button
                         onClick={() => {
@@ -53,7 +53,7 @@ export function DisplaySettings({ initialPrefs }: { initialPrefs: DisplayPrefere
             </div>
 
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Spoilers</h3>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Spoilers</h3>
                 <SettingToggle
                     checked={hideSpoilers}
                     onChange={(next) => {

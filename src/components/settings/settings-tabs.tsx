@@ -67,7 +67,7 @@ export function SettingsTabs({
                     <h2 className="font-display text-lg font-semibold text-white">{activeTab.label}</h2>
                     <p className="text-xs text-gray-500 mt-0.5">{activeTab.description}</p>
                 </div>
-                <div className="rounded-2xl bg-white/3 border border-white/8 p-6">{panels[active]}</div>
+                <div>{panels[active]}</div>
             </div>
         </div>
     );

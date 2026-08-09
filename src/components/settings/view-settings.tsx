@@ -38,7 +38,7 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
     return (
         <div className="divide-y divide-white/8">
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Thumbnails</h3>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Thumbnails</h3>
                 <div className="flex gap-2">
                     <button
                         onClick={() => { setThumbnailStyle("poster"); save({ watchlistThumbnailStyle: "poster" }); }}
@@ -66,7 +66,7 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
             </div>
 
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Default sort</h3>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Default sort</h3>
                 <select
                     value={defaultSort}
                     onChange={(e) => { setDefaultSort(e.target.value); save({ watchlistDefaultSort: e.target.value }); }}
@@ -82,7 +82,7 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
             </div>
 
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Default status when adding</h3>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Default status when adding</h3>
                 <div className="flex flex-wrap gap-2">
                     {ADD_STATUS_OPTIONS.map((status) => (
                         <button

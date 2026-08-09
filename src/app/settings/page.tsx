@@ -60,7 +60,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         home: (
             <div className="divide-y divide-white/8">
                 <div className="space-y-2.5 pb-5">
-                    <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Sections</h3>
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Sections</h3>
                     <p className="text-xs text-gray-600">
                         Choose which sections appear on the home page and in what order. Extra drama universes (Japan,
                         Taiwan, Thailand…) are available here too.
@@ -69,7 +69,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
                 </div>
                 <div className="space-y-4 pt-5">
                     <div className="space-y-2">
-                        <h3 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Excluded tags</h3>
+                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Excluded tags</h3>
                         <p className="text-xs text-gray-600">
                             Titles carrying any of these MDL tags are hidden from the Top Rated, Airing Now and Coming
                             Soon rows, and from their &ldquo;See more&rdquo; pages.
