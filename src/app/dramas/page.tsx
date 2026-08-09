@@ -301,7 +301,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-1">
                         <div className={`w-1 h-7 bg-linear-to-b ${catConfig.bar} rounded-full`} />
-                        <h1 className="text-2xl md:text-3xl font-bold text-white">Drama Library</h1>
+                        <h1 className="font-display text-2xl md:text-3xl font-semibold text-white">Drama Library</h1>
                     </div>
                     <p className="text-sm text-gray-400 ml-4">Asian dramas · Powered by MDL</p>
                 </div>

@@ -16,67 +16,48 @@ export const DEFAULT_EXCLUDED_TAGS: ExcludedTag[] = [
 
 export type UniverseConfig = {
     kuryana: KuryanaTopCountry;
-    label: string; // shown in the settings list
-    eyebrow: string;
+    // Section heading, and the same string in the settings section list
     title: string;
-    subtitle: string;
     accent: HomeAccent;
     accentBg: string; // Top Rated row dot
     accentText: string; // spotlight kicker
     airingBg: string; // Airing Now row dot
-    glow: string; // ambient glow position + tint
 };
 
 // One entry per Kuryana-supported country, keyed by the ISO code the /dramas
 // browse page understands (its COUNTRY_MAP shares these keys).
 export const UNIVERSES: Record<string, UniverseConfig> = {
     KR: {
-        kuryana: "korean", label: "K-Drama Universe", eyebrow: "South Korea", title: "K-Drama Universe",
-        subtitle: "Fresh from Seoul · Trending, airing, and upcoming series",
+        kuryana: "korean", title: "K-Drama Universe",
         accent: "sky", accentBg: "bg-sky-400", accentText: "text-sky-400", airingBg: "bg-emerald-400",
-        glow: "right-0 bg-sky-500/6",
     },
     CN: {
-        kuryana: "chinese", label: "C-Drama Universe", eyebrow: "China", title: "C-Drama Universe",
-        subtitle: "Fresh from China · Trending, airing, and upcoming series",
+        kuryana: "chinese", title: "C-Drama Universe",
         accent: "rose", accentBg: "bg-rose-400", accentText: "text-rose-400", airingBg: "bg-violet-400",
-        glow: "left-0 bg-rose-500/6",
     },
     JP: {
-        kuryana: "japanese", label: "J-Drama Universe", eyebrow: "Japan", title: "J-Drama Universe",
-        subtitle: "Fresh from Tokyo · Trending, airing, and upcoming series",
+        kuryana: "japanese", title: "J-Drama Universe",
         accent: "fuchsia", accentBg: "bg-fuchsia-400", accentText: "text-fuchsia-400", airingBg: "bg-emerald-400",
-        glow: "right-0 bg-fuchsia-500/6",
     },
     TW: {
-        kuryana: "taiwanese", label: "TW-Drama Universe", eyebrow: "Taiwan", title: "TW-Drama Universe",
-        subtitle: "Fresh from Taipei · Trending, airing, and upcoming series",
+        kuryana: "taiwanese", title: "TW-Drama Universe",
         accent: "emerald", accentBg: "bg-emerald-400", accentText: "text-emerald-400", airingBg: "bg-violet-400",
-        glow: "left-0 bg-emerald-500/6",
     },
     TH: {
-        kuryana: "thai", label: "Thai Drama Universe", eyebrow: "Thailand", title: "Thai Drama Universe",
-        subtitle: "Fresh from Bangkok · Trending, airing, and upcoming series",
+        kuryana: "thai", title: "Thai Drama Universe",
         accent: "teal", accentBg: "bg-teal-400", accentText: "text-teal-400", airingBg: "bg-violet-400",
-        glow: "right-0 bg-teal-500/6",
     },
     HK: {
-        kuryana: "hongkong", label: "HK-Drama Universe", eyebrow: "Hong Kong", title: "HK-Drama Universe",
-        subtitle: "Fresh from Hong Kong · Trending, airing, and upcoming series",
+        kuryana: "hongkong", title: "HK-Drama Universe",
         accent: "indigo", accentBg: "bg-indigo-400", accentText: "text-indigo-400", airingBg: "bg-emerald-400",
-        glow: "left-0 bg-indigo-500/6",
     },
     PH: {
-        kuryana: "philippine", label: "Filipino Drama Universe", eyebrow: "Philippines", title: "Filipino Drama Universe",
-        subtitle: "Fresh from Manila · Trending, airing, and upcoming series",
+        kuryana: "philippine", title: "Filipino Drama Universe",
         accent: "lime", accentBg: "bg-lime-400", accentText: "text-lime-400", airingBg: "bg-violet-400",
-        glow: "right-0 bg-lime-500/6",
     },
     SG: {
-        kuryana: "singaporean", label: "SG-Drama Universe", eyebrow: "Singapore", title: "SG-Drama Universe",
-        subtitle: "Fresh from Singapore · Trending, airing, and upcoming series",
+        kuryana: "singaporean", title: "SG-Drama Universe",
         accent: "cyan", accentBg: "bg-cyan-400", accentText: "text-cyan-400", airingBg: "bg-emerald-400",
-        glow: "left-0 bg-cyan-500/6",
     },
 };
 
@@ -100,7 +81,7 @@ export const DEFAULT_HOME_SECTIONS: HomeSectionConfig[] = [
 export function homeSectionLabel(id: string): string {
     if (id === "actor-radar") return "From Actors You Watch";
     if (id === "trending") return "Trending Worldwide";
-    if (id.startsWith("drama-")) return UNIVERSES[id.slice(6)]?.label ?? id;
+    if (id.startsWith("drama-")) return UNIVERSES[id.slice(6)]?.title ?? id;
     return id;
 }
 

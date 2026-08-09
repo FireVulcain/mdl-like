@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Newsreader, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
@@ -8,8 +8,18 @@ import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { getNotificationPreferences, getMdlProfileUrl } from "@/actions/preferences";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// The interface runs on Instrument Sans. The site was on Geist, which is what
+// create-next-app installs — the most common choice there is.
+const sans = Instrument_Sans({
+  variable: "--font-sans-family",
+  subsets: ["latin"],
+});
+
+// Every title on the site, hero and section headings alike. One display face,
+// not two: a serif that showed up once at the top of the page and nowhere else
+// read as an accident rather than a decision.
+const display = Newsreader({
+  variable: "--font-display-family",
   subsets: ["latin"],
 });
 
@@ -41,7 +51,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-900 font-sans`}
+        className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-900 font-sans`}
       >
         <Providers>
           <div className="relative flex min-h-screen flex-col">

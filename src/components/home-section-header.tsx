@@ -1,7 +1,15 @@
 import React from "react";
 
-// Unified editorial header for home-page sections: plain-case eyebrow label,
-// big title, a short accent rule. Usable from server and client.
+// Unified header for home-page sections: title, a short accent rule, and an
+// optional slot on the right. Usable from server and client.
+//
+// It used to open with a small coloured label above the title — "South Korea"
+// over "K-Drama Universe", "Worldwide" over "Trending Worldwide", "For You" over
+// "From Actors You Watch". In every case the label was contained in the title's
+// own meaning, and a floating tag above every heading is one of the things that
+// makes a page read as generated. The subtitle went the same way: eight sections
+// carried the same sentence with the city swapped, and none of them said
+// anything the title had not.
 
 export type HomeAccent = "violet" | "sky" | "rose" | "orange" | "fuchsia" | "emerald" | "teal" | "indigo" | "lime" | "cyan";
 
@@ -19,25 +27,21 @@ const ACCENTS: Record<HomeAccent, { text: string; dot: string }> = {
 };
 
 export function HomeSectionHeader({
-    eyebrow,
     title,
-    subtitle,
     accent,
     right,
 }: {
-    eyebrow: string;
     title: string;
-    subtitle?: string;
     accent: HomeAccent;
     right?: React.ReactNode;
 }) {
     const a = ACCENTS[accent];
     return (
         <div className="flex items-end justify-between gap-4 flex-wrap">
-            <div className="space-y-1.5 md:space-y-2 min-w-0">
-                <span className={`block text-xs font-semibold tracking-wide ${a.text}`}>{eyebrow}</span>
-                <h2 className="text-2xl md:text-4xl font-black tracking-tight text-white">{title}</h2>
-                {subtitle && <p className="text-xs md:text-sm text-gray-500">{subtitle}</p>}
+            <div className="min-w-0">
+                {/* Semibold rather than black: a serif this size carries a heading
+                    on its contrast, and the heaviest weights close its counters. */}
+                <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight text-white">{title}</h2>
                 <span className={`block h-0.5 w-11 rounded-full mt-2.5 ${a.dot}`} />
             </div>
             {right}
@@ -47,11 +51,16 @@ export function HomeSectionHeader({
 
 // Sub-row label used inside sections ("Popular Right Now", "Airing Now", …).
 // Takes a raw dot class since rows use their own accent colors.
+//
+// Display face, like the section title above it: the rule across the page is
+// that headings naming a part of it are set in the serif, while everything that
+// is data — show titles, dates, ratings — stays in the sans. Leaving this one
+// level in the sans put a seam in the middle of the hierarchy.
 export function HomeRowLabel({ dotClass, label }: { dotClass: string; label: string }) {
     return (
         <div className="flex items-center gap-2">
             <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
-            <h3 className="text-base font-bold text-gray-200">{label}</h3>
+            <h3 className="font-display text-lg font-semibold text-gray-200">{label}</h3>
         </div>
     );
 }

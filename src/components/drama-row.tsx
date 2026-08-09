@@ -133,7 +133,7 @@ function BackdropCard({
                 <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
                     {media.title}
                 </h4>
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-white/60">
                     {nextEpisode ? (
                         // No separator inside this one: unlike a weekday, "in 3d"
                         // completes the phrase rather than standing as a second

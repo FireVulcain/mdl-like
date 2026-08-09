@@ -32,12 +32,12 @@ export function PageBackground() {
             <div className="absolute inset-0 bg-page" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.45)_0%,transparent_60%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(30,41,59,0.35)_0%,transparent_55%)]" />
-            {/* Left as they were. These two ride on every page, and only the
-                home page — the one stacking a glow per section on top of them —
-                ever dropped tiles, so shrinking them changed the look for
-                nothing. */}
-            <div className="absolute -top-40 -left-40 w-125 h-125 bg-blue-600/15 rounded-full blur-[180px]" />
-            <div className="absolute -bottom-40 -right-40 w-125 h-125 bg-blue-500/12 rounded-full blur-[180px]" />
+            {/* No coloured glow. Two blurred blue ellipses sat here, and one more
+                per home section on top of them — seven soft blue and violet halos
+                on one page, which is the single loudest thing a generated design
+                does. The two radial lifts above stay: they are the page's own
+                grey, and they do a job — without them the bottom of a long page
+                reads as flat black. Colour comes from the artwork now. */}
             <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: GRAIN, backgroundRepeat: "repeat" }} />
         </div>
     );

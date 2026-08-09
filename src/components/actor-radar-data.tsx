@@ -37,13 +37,13 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
             </div>
 
             <div className="pt-1.5 space-y-0.5">
-                <p className="text-xs font-semibold text-white leading-snug line-clamp-2 group-hover:text-violet-300 transition-colors">
+                <p className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-violet-300 transition-colors">
                     {item.title}
                 </p>
                 {/* Plain text, bullet separator — the same meta line as the airing
                     cards, rather than the chip the year used to sit in. TBA keeps
                     its amber, as colour rather than as a box. */}
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-white/60">
                     <span className={item.year === "TBA" ? "text-amber-400 font-medium" : ""}>{item.year}</span>
                     {item.rating > 0 && (
                         <>
@@ -71,7 +71,7 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
                                 <UserRound className="h-2 w-2 text-gray-400" />
                             </span>
                         )}
-                        <span className="text-[10px] text-violet-300/80 truncate">
+                        <span className="text-xs text-violet-300/80 truncate">
                             {actor.name}
                             {item.actors.length > 1 && <span className="text-gray-500"> +{item.actors.length - 1}</span>}
                         </span>
@@ -97,14 +97,12 @@ export async function ActorRadarData() {
     if (!payload || (payload.items.length === 0 && payload.excludedActors.length === 0)) return null;
 
     return (
-        <section className="relative space-y-3 md:space-y-5">
-            {/* Ambient glow anchored to the page, not a box */}
-            <div className="absolute -top-24 left-1/4 w-120 h-120 bg-violet-500/6 rounded-full blur-[160px] -z-10 pointer-events-none hidden md:block" />
-
+        // Same vertical rhythm as the universe sections. It ran tighter for a
+        // while, which made the spacing visibly shift between two adjacent
+        // sections; the section is kept shorter by its smaller cards instead.
+        <section className="relative space-y-6 md:space-y-10">
             <HomeSectionHeader
-                eyebrow="For You"
                 title="From Actors You Watch"
-                subtitle="New and upcoming titles starring your favorites"
                 accent="violet"
                 right={
                     <div className="flex items-center -space-x-2 shrink-0 pb-1">

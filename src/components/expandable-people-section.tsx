@@ -18,7 +18,7 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
             <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full" />
                 <Users className="h-5 w-5 text-purple-400" />
-                <h2 className="text-lg font-semibold">People</h2>
+                <h2 className="font-display text-lg font-semibold">People</h2>
                 <span className="text-sm text-muted-foreground">({people.length})</span>
                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
             </div>

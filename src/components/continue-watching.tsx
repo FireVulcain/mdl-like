@@ -98,13 +98,24 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.4 }}
-                            className="max-w-xl space-y-4 md:space-y-6"
+                            // The title was wrapping at 576px with 1300px free to
+                            // its right, because this cap was sized for the meta
+                            // line rather than for the heading. Widened past the
+                            // large breakpoint only — below it the carousel on the
+                            // right is close enough to collide. Nothing else here
+                            // stretches: the progress bar has a fixed width and the
+                            // rest is content-sized.
+                            className="max-w-xl lg:max-w-4xl space-y-4 md:space-y-6"
                         >
                             {/* No label above the title: a poster, an episode count
                                 and a Continue button already say what this is. */}
 
                             {/* Title */}
-                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+                            {/* 60px, not 72: at 72 the longest titles in the list
+                                need 985px and wrap on most screens anyway. Balanced
+                                wrapping for the few that still do, so a title never
+                                breaks to a single orphan word. */}
+                            <h2 className="font-display text-4xl md:text-6xl font-semibold text-white leading-[1.05] tracking-tight text-balance">
                                 {selectedShow.title}
                             </h2>
 
@@ -134,7 +145,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             <div className="flex items-center gap-6 pt-2">
                                 <Link
                                     href={`/media/${selectedShow.source.toLowerCase()}-${selectedShow.externalId}`}
-                                    className="flex items-center gap-2.5 px-5 py-2.5 bg-white hover:bg-white/90 text-page font-semibold rounded-lg transition-colors"
+                                    className="flex items-center gap-2.5 px-5 py-2.5 bg-white hover:bg-white/90 text-page text-sm font-semibold rounded-lg transition-colors"
                                 >
                                     <Play className="h-4 w-4 fill-current" />
                                     <span>Continue</span>

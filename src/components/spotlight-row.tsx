@@ -129,8 +129,8 @@ function SpotlightLead({
                         transition={{ duration: duration * 0.5 }}
                         className="flex-1 min-w-0 space-y-1.5 md:space-y-2"
                     >
-                        <p className={`text-[11px] font-bold tracking-wide ${kickerClass}`}>{kicker}</p>
-                        <h4 className="text-lg md:text-xl font-extrabold text-white leading-tight line-clamp-3 group-hover:text-sky-200 transition-colors">
+                        <p className={`text-xs font-bold tracking-wide ${kickerClass}`}>{kicker}</p>
+                        <h4 className="text-lg font-extrabold text-white leading-tight line-clamp-3 group-hover:text-sky-200 transition-colors">
                             {item.title}
                         </h4>
                         <div className="flex items-center gap-2.5 text-xs text-white/60">
@@ -141,7 +141,7 @@ function SpotlightLead({
                             ) : null}
                         </div>
                         {extras && extras.genres.length > 0 && (
-                            <p className="text-[11px] text-white/50">{extras.genres.join(" · ")}</p>
+                            <p className="text-xs text-white/50">{extras.genres.join(" · ")}</p>
                         )}
                         {item.synopsis && (
                             <p className="hidden md:line-clamp-4 text-xs text-white/50 leading-relaxed">{item.synopsis}</p>
@@ -264,7 +264,7 @@ function SpotlightCell({
                 <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
                     {item.title}
                 </h4>
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-white/60">
                     {item.premiere ? <span>{item.premiere}</span> : item.year ? <span>{item.year}</span> : null}
                     {(item.premiere || item.year) && item.rating > 0 && <span className="text-white/30">·</span>}
                     <MdlRating rating={item.rating} />

@@ -108,7 +108,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
             <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold tracking-tight text-white">Settings</h1>
+                    <h1 className="font-display text-3xl font-semibold tracking-tight text-white">Settings</h1>
                     <p className="text-gray-500 mt-1">Tune how the app curates things for you</p>
                 </div>
 

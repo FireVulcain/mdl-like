@@ -519,7 +519,7 @@ export function PodiumSection({
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Trophy className="h-4 w-4 text-amber-400" />
-                    <h2 className="text-lg font-semibold text-white">Top 3</h2>
+                    <h2 className="font-display text-lg font-semibold text-white">Top 3</h2>
                 </div>
                 {isOwner && !editMode && (
                     <button

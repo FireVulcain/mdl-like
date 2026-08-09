@@ -89,10 +89,10 @@ export function MediaCard({
                 {overlay}
             </div>
             <CardContent className="p-2">
-                <h3 className="line-clamp-1 font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">
+                <h3 className="line-clamp-1 text-sm font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">
                     {media.title}
                 </h3>
-                <p className="text-base text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                     {captionLead ?? media.year} • {media.type}
                 </p>
             </CardContent>

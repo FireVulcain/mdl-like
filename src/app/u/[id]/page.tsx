@@ -66,7 +66,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
                 {/* Header */}
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-white">
+                    <h1 className="font-display text-3xl font-semibold tracking-tight text-white">
                         {displayName}&apos;s Watchlist
                     </h1>
                     <p className="mt-1 text-gray-400 text-sm">
@@ -132,7 +132,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
                 {/* Watchlist */}
                 <div>
-                    <h2 className="text-lg font-semibold text-white mb-3">Watchlist</h2>
+                    <h2 className="font-display text-lg font-semibold text-white mb-3">Watchlist</h2>
                     {visibleWatchlist.length === 0 ? (
                         <p className="text-gray-500 text-sm">This watchlist is empty.</p>
                     ) : (
