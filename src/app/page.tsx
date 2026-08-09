@@ -14,14 +14,10 @@ function HeroSkeleton() {
             <div className="absolute inset-0 bg-linear-to-r from-page via-page/80 to-transparent" />
             <div className="relative h-full flex">
                 <div className="flex-1 flex flex-col justify-end pb-16 md:pb-24 pl-[5%] md:pl-[7.5%] space-y-4 md:space-y-6 max-w-xl">
-                    {/* Mirrors the real hero: dot + eyebrow, title, hairline
-                        progress, one button and a text link. It has to be redrawn
-                        whenever that block changes, or the page flashes a layout
-                        that no longer exists. */}
-                    <div className="flex items-center gap-2.5">
-                        <div className="h-1.5 w-1.5 rounded-full bg-sky-400/40" />
-                        <div className="h-3 w-32 rounded bg-sky-400/20" />
-                    </div>
+                    {/* Mirrors the real hero: title, hairline progress, one button
+                        and a text link. It has to be redrawn whenever that block
+                        changes, or the page flashes a layout that no longer
+                        exists. */}
                     <div className="space-y-3">
                         <div className="h-12 md:h-16 w-3/4 rounded-xl bg-white/10" />
                         <div className="h-12 md:h-16 w-1/2 rounded-xl bg-white/10" />

@@ -100,13 +100,8 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                             transition={{ duration: 0.4 }}
                             className="max-w-xl space-y-4 md:space-y-6"
                         >
-                            {/* Eyebrow. The same shape every other section on this
-                                page opens with — dot, accent label — instead of a
-                                bordered pill, which nothing else here wears. */}
-                            <div className="flex items-center gap-2.5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
-                                <span className="text-xs font-semibold tracking-wide text-sky-400">Continue Watching</span>
-                            </div>
+                            {/* No label above the title: a poster, an episode count
+                                and a Continue button already say what this is. */}
 
                             {/* Title */}
                             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">

@@ -23,29 +23,19 @@ export function HomeSectionHeader({
     title,
     subtitle,
     accent,
-    live = false,
     right,
 }: {
     eyebrow: string;
     title: string;
     subtitle?: string;
     accent: HomeAccent;
-    live?: boolean;
     right?: React.ReactNode;
 }) {
     const a = ACCENTS[accent];
     return (
         <div className="flex items-end justify-between gap-4 flex-wrap">
             <div className="space-y-1.5 md:space-y-2 min-w-0">
-                <div className="flex items-center gap-2.5">
-                    <span className={`text-xs font-semibold tracking-wide ${a.text}`}>{eyebrow}</span>
-                    {live && (
-                        <span className="flex items-center gap-1.5 ml-1">
-                            <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${a.dot}`} />
-                            <span className={`text-[10px] font-semibold tracking-widest ${a.text}`}>LIVE</span>
-                        </span>
-                    )}
-                </div>
+                <span className={`block text-xs font-semibold tracking-wide ${a.text}`}>{eyebrow}</span>
                 <h2 className="text-2xl md:text-4xl font-black tracking-tight text-white">{title}</h2>
                 {subtitle && <p className="text-xs md:text-sm text-gray-500">{subtitle}</p>}
                 <span className={`block h-0.5 w-11 rounded-full mt-2.5 ${a.dot}`} />
