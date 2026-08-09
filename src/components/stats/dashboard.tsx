@@ -70,6 +70,13 @@ function buildHeatmapGrid(timestamps: string[]) {
 // identity stays where it belongs — the coloured dot beside each header.
 const DATA_MARK = "bg-sky-400";
 
+// Radii on the marks themselves, deliberately outside the page's container
+// vocabulary: a soft cap on the value end of a bar, and barely-eased corners on
+// an 11px heatmap cell. These are chart specs, not chrome around a box, so they
+// do not follow the containers when those change.
+const BAR_CAP = "rounded-t-[4px]";
+const CELL_CAP = "rounded-[2px]";
+
 // Sequential ramp for magnitude: one hue, monotone lightness, brighter as the
 // count grows (the anchor flips on a dark surface).
 //
@@ -95,14 +102,18 @@ function cellColor(count: number) {
 }
 
 // Block header: accent dot + bold label, thin hairline, optional meta on the right
-function BlockHeader({ dotClass, label, meta }: { dotClass: string; label: string; meta?: string }) {
+// One hue for the page, the same one the data wears. Each of the eight blocks
+// used to pick its own — emerald, rose, yellow, fuchsia, violet, blue — and none
+// of them meant anything: Top Genres was not greener than By Country was pink.
+// The charts were unified on DATA_MARK a while back; these headings were missed.
+function BlockHeader({ label, meta }: { label: string; meta?: string }) {
     return (
         <div className="space-y-2.5 mb-5">
             <div className="flex items-baseline justify-between gap-3">
-                <HomeRowLabel dotClass={dotClass} label={label} />
+                <HomeRowLabel dotClass={DATA_MARK} label={label} />
                 {meta && <span className="text-xs text-gray-500">{meta}</span>}
             </div>
-            <div className="h-px w-full bg-linear-to-r from-white/10 to-transparent" />
+            <div className="h-px w-full bg-white/8" />
         </div>
     );
 }
@@ -217,7 +228,6 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Activity heatmap */}
             <div>
                 <BlockHeader
-                    dotClass="bg-emerald-400"
                     label="Activity"
                     meta={`${totalHeatmapActions} action${totalHeatmapActions !== 1 ? "s" : ""} this past year`}
                 />
@@ -251,7 +261,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                             // block + aspect-square, not h-full: a button is inline-block
                                             // with native appearance, so a percentage height doesn't
                                             // resolve against the wrapper the way the old div's did
-                                            className={`block w-full aspect-square rounded-[2px] ring-white/60 group-hover/day:ring-1 ${cellColor(day.count)} ${
+                                            className={`block w-full aspect-square ${CELL_CAP} ring-white/60 group-hover/day:ring-1 ${cellColor(day.count)} ${
                                                 day.count === 0 ? "cursor-default" : "cursor-pointer"
                                             } ${openDay?.date === day.date ? "ring-1 ring-white" : ""}`}
                                         />
@@ -268,7 +278,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     ))}
                 </div>
                 {openDay && (
-                    <div className="mt-4 rounded-xl border border-white/10 bg-white/3 p-4">
+                    <div className="mt-4 rounded-lg border border-white/10 bg-white/3 p-4">
                         <div className="flex items-center justify-between gap-3 mb-3">
                             <span className="text-sm font-semibold text-white">{openDay.label}</span>
                             <div className="flex items-center gap-3 shrink-0">
@@ -304,10 +314,10 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                     alt=""
                                                     width={28}
                                                     height={42}
-                                                    className="h-10.5 w-7 rounded object-cover shrink-0"
+                                                    className="h-10.5 w-7 rounded-md object-cover shrink-0"
                                                 />
                                             ) : (
-                                                <span className="h-10.5 w-7 rounded bg-white/5 shrink-0" />
+                                                <span className="h-10.5 w-7 rounded-md bg-white/5 shrink-0" />
                                             )}
                                             <span
                                                 className={`text-sm min-w-0 flex-1 ${ACTION_COLOR[e.action] ?? "text-gray-300"}`}
@@ -328,7 +338,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                 <div className="flex items-center gap-1.5 mt-3 justify-end">
                     <span className="text-[10px] text-gray-600">Less</span>
                     {HEAT_RAMP.map((c) => (
-                        <div key={c} className={`w-2.5 h-2.5 rounded-[2px] ${c}`} />
+                        <div key={c} className={`w-2.5 h-2.5 ${CELL_CAP} ${c}`} />
                     ))}
                     <span className="text-[10px] text-gray-600">More</span>
                 </div>
@@ -337,7 +347,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Most seen actors */}
             {stats.topActors.length > 0 && (
                 <div>
-                    <BlockHeader dotClass="bg-rose-400" label="Most Seen Actors" />
+                    <BlockHeader label="Most Seen Actors" />
                     {/* The whole tile opens the breakdown rather than the profile: the
                         count alone was a 10px target nested inside the link, and the
                         number is easier to trust when you can see what makes it up.
@@ -386,7 +396,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     </div>
 
                     {openActorData && (
-                        <div className="mt-5 rounded-xl border border-white/10 bg-white/3 p-4">
+                        <div className="mt-5 rounded-lg border border-white/10 bg-white/3 p-4">
                             <div className="flex items-center justify-between gap-3 mb-3">
                                 <span className="text-sm font-semibold text-white">{openActorData.name}</span>
                                 <div className="flex items-center gap-3 shrink-0">
@@ -443,7 +453,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Ratings + Years */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-14">
                 <div>
-                    <BlockHeader dotClass="bg-yellow-400" label="Your Ratings" meta={`${ratedItems} rated`} />
+                    <BlockHeader label="Your Ratings" meta={`${ratedItems} rated`} />
                     <div className="flex items-stretch gap-1.5 h-36 border-b border-white/8">
                         {ratingBars.map(({ rating, count }) => (
                             <Link
@@ -463,7 +473,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     {/* Capped at 24px and centred, so the band's leftover is air.
                                         A bar that fills its slot reads as a thick saturated block. */}
                                     <div
-                                        className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] ${DATA_MARK} transition-opacity group-hover:opacity-80`}
+                                        className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 ${BAR_CAP} ${DATA_MARK} transition-opacity group-hover:opacity-80`}
                                         style={{
                                             height: `${Math.max((count / maxRatingCount) * 100, count > 0 ? 3 : 0)}%`,
                                             opacity: count === 0 ? 0.12 : undefined,
@@ -482,7 +492,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
 
                 {recentYears.length > 0 && (
                     <div>
-                        <BlockHeader dotClass="bg-fuchsia-400" label="By Release Year" />
+                        <BlockHeader label="By Release Year" />
                         <div className="flex items-stretch gap-1 h-36 border-b border-white/8">
                             {recentYears.map(({ year, count }) => (
                                 <Link
@@ -499,7 +509,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     <div className="relative flex-1">
                                         {/* Same 24px cap as Your Ratings — see the note there */}
                                         <div
-                                            className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 rounded-t-[4px] ${DATA_MARK} transition-opacity group-hover:opacity-80`}
+                                            className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 ${BAR_CAP} ${DATA_MARK} transition-opacity group-hover:opacity-80`}
                                             style={{
                                                 height: `${Math.max((count / maxYearCount) * 100, count > 0 ? 3 : 0)}%`,
                                                 opacity: count === 0 ? 0.12 : undefined,
@@ -523,7 +533,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Genres + Countries */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-14">
                 <div>
-                    <BlockHeader dotClass="bg-emerald-400" label="Top Genres" />
+                    <BlockHeader label="Top Genres" />
                     <div className="space-y-3.5">
                         {stats.topGenres.length > 0 ? (
                             stats.topGenres.slice(0, listCount).map((genre) => (
@@ -551,7 +561,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
 
                 {stats.countryBreakdown.length > 0 && (
                     <div>
-                        <BlockHeader dotClass="bg-rose-400" label="By Country" />
+                        <BlockHeader label="By Country" />
                         <div className="space-y-3.5">
                             {stats.countryBreakdown.slice(0, listCount).map(({ country, count }) => (
                                 <div key={country} className="space-y-1.5 px-2 -mx-2 py-1">
@@ -572,7 +582,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Themes */}
             {stats.topThemes.length > 0 && (
                 <div>
-                    <BlockHeader dotClass="bg-violet-400" label="Top Themes" />
+                    <BlockHeader label="Top Themes" />
                     <div className="flex flex-wrap gap-2">
                         {stats.topThemes.map((theme) => {
                             const intensity = theme.count / stats.topThemes[0].count;
@@ -598,7 +608,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             {/* Continue watching */}
             {continueWatching.length > 0 && (
                 <div>
-                    <BlockHeader dotClass="bg-blue-400" label="Continue Watching" />
+                    <BlockHeader label="Continue Watching" />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {continueWatching.slice(0, 6).map((show) => {
                             const progressPercent = (show.progress / show.totalEp) * 100;
