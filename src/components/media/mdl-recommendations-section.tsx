@@ -63,7 +63,7 @@ export async function MdlRecsSection({ tmdbRecs, externalId, season, watchlistId
     if ((!tmdbRecs || tmdbRecs.length === 0) && (!mdlRecs || mdlRecs.length === 0)) {
         return (
             <div>
-                <h3 className="text-lg font-semibold mb-4">Recs</h3>
+                <h3 className="font-display text-lg font-semibold mb-4">Recs</h3>
                 <div className="text-center py-12 text-gray-400">No recommendations available.</div>
             </div>
         );

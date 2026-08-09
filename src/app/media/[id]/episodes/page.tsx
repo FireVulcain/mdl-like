@@ -276,7 +276,7 @@ export default async function EpisodesPage({
 
                 {/* Header */}
                 <div>
-                    <h1 className="text-2xl font-bold text-white">{media.title}</h1>
+                    <h1 className="font-display text-2xl font-semibold text-white">{media.title}</h1>
                     <p className="text-sm text-gray-400 mt-1">
                         {effectiveSeasons.length} season{effectiveSeasons.length !== 1 ? "s" : ""}
                     </p>
@@ -285,7 +285,7 @@ export default async function EpisodesPage({
                 {/* Rating grid — open layout, the colored cells structure themselves */}
                 <div>
                     <div className="flex items-center gap-2 mb-5">
-                        <h2 className="text-lg font-semibold text-white">Episode Ratings</h2>
+                        <h2 className="font-display text-lg font-semibold text-white">Episode Ratings</h2>
                         <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${hasMdlData ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"}`}>
                             via {hasMdlData ? "MDL" : "TMDB"}
                         </span>
@@ -306,11 +306,11 @@ export default async function EpisodesPage({
                 <div>
                     {/* Season header + tabs */}
                     <div className="flex items-center gap-3 mb-5 flex-wrap">
-                        <h2 className="text-lg font-semibold text-white shrink-0">
+                        <h2 className="font-display text-lg font-semibold text-white shrink-0">
                             Season {selectedSeason}
                         </h2>
                         {hasMdlForSelected && (
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
+                            <span className="text-xs font-medium text-sky-400/70">
                                 via MDL
                             </span>
                         )}

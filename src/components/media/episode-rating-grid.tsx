@@ -78,7 +78,7 @@ export function EpisodeRatingGrid({ mediaId, seasons, episodesPerSeason, tmdbGri
                                     s === selectedSeason ? "ring-2 ring-white" : "hover:ring-2 hover:ring-white/50"
                                 }`}
                             >
-                                <span className="absolute top-1 left-1.5 text-[10px] font-semibold opacity-70">S{s}</span>
+                                <span className="absolute top-1 left-1.5 text-xs font-semibold opacity-70">S{s}</span>
                                 <span className="absolute bottom-0.5 right-1.5 text-base font-extrabold tabular-nums">
                                     {avg ? avg.toFixed(1) : "?"}
                                 </span>
@@ -107,7 +107,7 @@ export function EpisodeRatingGrid({ mediaId, seasons, episodesPerSeason, tmdbGri
                                         href={`#ep-${ep}`}
                                         className={`relative w-19 h-12 rounded-md transition-all hover:ring-2 hover:ring-white/50 hover:scale-105 ${ratingCell(rating)}`}
                                     >
-                                        <span className="absolute top-1 left-1.5 text-[10px] font-semibold opacity-70">E{ep}</span>
+                                        <span className="absolute top-1 left-1.5 text-xs font-semibold opacity-70">E{ep}</span>
                                         <span className="absolute bottom-0.5 right-1.5 text-base font-extrabold tabular-nums">
                                             {rating ? rating.toFixed(1) : "?"}
                                         </span>

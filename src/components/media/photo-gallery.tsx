@@ -23,7 +23,7 @@ export function PhotoGallery({ backdrops, posters }: PhotoGalleryProps) {
             {/* Backdrops Section */}
             {backdrops.length > 0 && (
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold text-white">Backdrops</h2>
+                    <h2 className="font-display text-xl font-semibold text-white">Backdrops</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {backdrops.map((src, index) => (
                             <motion.div
@@ -64,7 +64,7 @@ export function PhotoGallery({ backdrops, posters }: PhotoGalleryProps) {
             {/* Posters Section */}
             {posters.length > 0 && (
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold text-white">Posters</h2>
+                    <h2 className="font-display text-xl font-semibold text-white">Posters</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                         {posters.map((src, index) => (
                             <motion.div

@@ -19,7 +19,7 @@ export function EpisodeReviewCard({ review }: { review: KuryanaEpisodeReview }) 
                             // eslint-disable-next-line @next/next/no-img-element
                             <img src={review.author_avatar} alt={review.author} className="size-full object-cover" />
                         ) : (
-                            <span className="text-[10px] font-bold text-gray-500">
+                            <span className="text-xs font-bold text-gray-500">
                                 {review.author.slice(0, 2).toUpperCase()}
                             </span>
                         )}
@@ -46,7 +46,7 @@ export function EpisodeReviewCard({ review }: { review: KuryanaEpisodeReview }) 
                 </div>
 
                 {review.rating > 0 && (
-                    <div className="flex items-center gap-1 shrink-0 px-2 py-1 rounded-lg bg-yellow-400/10 border border-yellow-400/15">
+                    <div className="flex items-center gap-1 shrink-0">
                         <Star className="size-3 fill-yellow-400 text-yellow-400" />
                         <span className="text-sm font-semibold text-yellow-400">{review.rating.toFixed(1)}</span>
                     </div>
@@ -67,7 +67,7 @@ export function EpisodeReviewCard({ review }: { review: KuryanaEpisodeReview }) 
             {isLong && (
                 <button
                     onClick={() => setExpanded((v) => !v)}
-                    className="self-start inline-flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors cursor-pointer"
+                    className="self-start inline-flex items-center gap-1.5 text-xs font-medium text-sky-400 hover:text-sky-300 transition-colors cursor-pointer"
                 >
                     {expanded ? "Show less" : "Read more"}
                     {expanded ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}

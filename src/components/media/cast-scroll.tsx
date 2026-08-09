@@ -25,8 +25,8 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-white">Cast</h3>
-                <Link href={`/media/${mediaId}/cast`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
+                <h3 className="font-display text-lg font-semibold text-white">Cast</h3>
+                <Link href={`/media/${mediaId}/cast`} className="text-sm text-sky-400 hover:text-sky-300 transition-colors font-medium">
                     View all →
                 </Link>
             </div>

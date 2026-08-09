@@ -15,7 +15,7 @@ export function SynopsisBlock({ text }: Props) {
 
     return (
         <div className="prose prose-invert max-w-none">
-            <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
+            <h3 className="font-display text-lg font-semibold mb-2">Synopsis</h3>
             <p
                 className={`leading-relaxed text-muted-foreground whitespace-pre-line ${
                     !expanded && isLong ? "line-clamp-5" : ""
@@ -24,9 +24,12 @@ export function SynopsisBlock({ text }: Props) {
                 {text}
             </p>
             {isLong && (
+                // Text, not a filled capsule. Every other expander on this page —
+                // the episode synopses, the reviews, the comments — is already a
+                // plain coloured toggle; this one was the odd button out.
                 <button
                     onClick={() => setExpanded((v) => !v)}
-                    className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white/60 hover:bg-white/8 hover:text-white/90 hover:border-white/20 transition-all cursor-pointer"
+                    className="mt-2 inline-flex items-center gap-1 text-sm text-sky-400 hover:text-sky-300 transition-colors cursor-pointer"
                 >
                     {expanded ? "Show less" : "Read more"}
                     {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}

@@ -2,7 +2,7 @@ import { getMdlData, getMdlSeasonData } from "@/lib/mdl-data";
 import { MdlCastScroll } from "./mdl-cast-scroll";
 import { CastScroll } from "./cast-scroll";
 import { SynopsisBlock } from "./synopsis-block";
-import Link from "next/link";
+import { MetaLinkList, GENRE_LIST, TAG_LIST } from "./meta-link-list";
 
 // Matches the MDL_GENRES values in /dramas
 const VALID_DRAMA_GENRE_SLUGS = new Set([
@@ -52,43 +52,35 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
 
             {data?.genres && data.genres.length > 0 && (
                 <div className="mt-6">
-                    <h3 className="text-lg font-semibold mb-3">Genres</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {data.genres.map((genre) => {
+                    <h3 className="font-display text-lg font-semibold mb-2">Genres</h3>
+                    <MetaLinkList
+                        {...GENRE_LIST}
+                        items={data.genres.map((genre) => {
                             const slug = genreToSlug(genre);
-                            const pillClass = "px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sm text-sky-300/80 hover:text-sky-200 hover:border-sky-400/30 transition-colors";
                             const countryParam = originCountry ? `&country=${originCountry}` : "";
-                            return VALID_DRAMA_GENRE_SLUGS.has(slug) ? (
-                                <Link
-                                    key={genre}
-                                    href={`/dramas?genre=${slug}${countryParam}`}
-                                    className={pillClass}
-                                >
-                                    {genre}
-                                </Link>
-                            ) : (
-                                <span key={genre} className={pillClass}>{genre}</span>
-                            );
+                            return {
+                                key: genre,
+                                label: genre,
+                                href: VALID_DRAMA_GENRE_SLUGS.has(slug) ? `/dramas?genre=${slug}${countryParam}` : undefined,
+                            };
                         })}
-                    </div>
+                    />
                 </div>
             )}
 
             {data?.tags && data.tags.length > 0 && (
                 <div className="mt-6">
-                    <h3 className="text-lg font-semibold mb-3">Tags</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {data.tags.map((tag) => {
-                            const pillClass = "px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/60 hover:text-white/90 hover:border-white/20 transition-colors";
-                            return tag.id > 0 ? (
-                                <Link key={tag.id} href={`/dramas?tag=${tag.id}&tag_name=${encodeURIComponent(tag.name)}`} className={pillClass}>
-                                    {tag.name}
-                                </Link>
-                            ) : (
-                                <span key={tag.name} className={pillClass}>{tag.name}</span>
-                            );
-                        })}
-                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">Tags</h3>
+                    {/* Dimmer than the genres: there are three times as many, and
+                        they qualify the show rather than classify it. */}
+                    <MetaLinkList
+                        {...TAG_LIST}
+                        items={data.tags.map((tag) => ({
+                            key: String(tag.id > 0 ? tag.id : tag.name),
+                            label: tag.name,
+                            href: tag.id > 0 ? `/dramas?tag=${tag.id}&tag_name=${encodeURIComponent(tag.name)}` : undefined,
+                        }))}
+                    />
                 </div>
             )}
 

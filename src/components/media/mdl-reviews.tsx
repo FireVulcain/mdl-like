@@ -29,7 +29,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
     const subRatings = SUB_RATING_KEYS.filter((k) => review.ratings?.[k] != null);
 
     return (
-        <div className="flex flex-col gap-3 rounded-xl border border-white/5 bg-white/3 p-4 hover:bg-white/[0.04] transition-colors">
+        <div className="flex flex-col gap-3 py-4 transition-colors">
             {/* Reviewer row */}
             <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2.5 min-w-0">
@@ -43,7 +43,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                                 className="size-full object-cover"
                             />
                         ) : (
-                            <span className="text-[10px] font-bold text-gray-500">
+                            <span className="text-xs font-bold text-gray-500">
                                 {review.reviewer.name.slice(0, 2).toUpperCase()}
                             </span>
                         )}
@@ -67,7 +67,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
 
                 {/* Overall rating */}
                 {review.ratings?.overall != null && (
-                    <div className="flex items-center gap-1 shrink-0 px-2 py-1 rounded-lg bg-yellow-400/10 border border-yellow-400/15">
+                    <div className="flex items-center gap-1 shrink-0">
                         <Star className="size-3 fill-yellow-400 text-yellow-400" />
                         <span className="text-sm font-semibold text-yellow-400">
                             {review.ratings.overall.toFixed(1)}
@@ -87,7 +87,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                 {isLong && (
                     <button
                         onClick={() => setExpanded((v) => !v)}
-                        className="flex items-center gap-0.5 text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                        className="cursor-pointer flex items-center gap-0.5 text-xs text-sky-400 hover:text-sky-300 transition-colors"
                     >
                         {expanded ? <>Show less <ChevronUp className="size-3" /></> : <>Show more <ChevronDown className="size-3" /></>}
                     </button>
@@ -100,7 +100,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                     {subRatings.map((key) => (
                         <span
                             key={key}
-                            className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 border border-white/8 text-xs text-gray-400"
+                            className="flex items-center gap-1 text-xs text-gray-400"
                         >
                             <span className="text-gray-500">{key}</span>
                             <span className="font-medium text-white/70">{review.ratings?.[key]!.toFixed(1)}</span>
@@ -159,8 +159,8 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-white">Reviews</h3>
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
+                    <h3 className="font-display text-lg font-semibold text-white">Reviews</h3>
+                    <span className="text-xs font-medium text-sky-400/70">
                         via MDL
                     </span>
                 </div>
@@ -174,7 +174,9 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
                 </a>
             </div>
 
-            <div className="flex flex-col gap-3">
+            {/* A hairline between reviews rather than a box around each: they are
+                a stack of the same thing, and the rule is enough to separate them. */}
+            <div className="flex flex-col divide-y divide-white/6">
                 {displayedReviews.map((review, i) => (
                     <ReviewCard key={i} review={review} />
                 ))}
@@ -183,7 +185,7 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
             {previewLimit && allReviewsHref ? (
                 <a
                     href={allReviewsHref}
-                    className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/5 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors"
                 >
                     View all reviews <ChevronDown className="size-4" />
                 </a>
@@ -191,7 +193,7 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
                 <button
                     onClick={handleLoadMore}
                     disabled={loading}
-                    className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/5 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
                         <><RefreshCw className="size-4 animate-spin" /> Loading…</>

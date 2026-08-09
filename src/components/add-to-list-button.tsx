@@ -54,7 +54,10 @@ export function AddToListButton({ media, userMedia, season, totalEp, className, 
                 <Button
                     variant="ghost"
                     onClick={() => setOpen(true)}
-                    className={`h-10 px-4 gap-2 ${statusCfg.bg} border ${statusCfg.border} rounded-xl ${statusCfg.text} ${statusCfg.hover} transition-all cursor-pointer ${className ?? ""}`}
+                    // Keeps its tint: unlike the two beside it, this colour means
+                    // something — it is the status itself. Only the radius comes
+                    // down to the page's one value.
+                    className={`h-10 px-4 gap-2 ${statusCfg.bg} border ${statusCfg.border} rounded-lg ${statusCfg.text} ${statusCfg.hover} transition-colors cursor-pointer ${className ?? ""}`}
                 >
                     {StatusIcon && <StatusIcon className="h-4 w-4 shrink-0" />}
                     <span>{statusCfg.label}</span>
@@ -67,9 +70,14 @@ export function AddToListButton({ media, userMedia, season, totalEp, className, 
                     )}
                 </Button>
             ) : (
+                // Solid white, no gradient and no drop shadow. A two-stop gradient
+                // fill under a shadow is the stock call-to-action of a generated
+                // page, and the colour was a third blue on a page that already
+                // spends sky on links and a state hue on the button beside it.
+                // Same treatment as the Continue button on the home hero.
                 <Button
                     onClick={() => setOpen(true)}
-                    className={`h-10 px-4 gap-2 bg-linear-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 text-white rounded-xl shadow-lg transition-all cursor-pointer ${className ?? ""}`}
+                    className={`h-10 px-4 gap-2 bg-white text-page hover:bg-white/90 rounded-lg font-semibold transition-colors cursor-pointer ${className ?? ""}`}
                 >
                     <Plus className="h-4 w-4 shrink-0" />
                     <span>Add to Watchlist</span>

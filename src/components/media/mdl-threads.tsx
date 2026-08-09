@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Heart, ChevronDown, RefreshCw, MessageSquare } from "lucide-react";
+import { Heart, ChevronDown, RefreshCw, MessageSquare, Eye } from "lucide-react";
 import { MdlComment } from "@/lib/kuryana";
 import { loadMoreComments, type ThreadKind } from "@/actions/mdl-threads";
 
@@ -83,7 +83,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
         <div className="flex gap-2.5">
             {/* Avatar */}
             <div
-                className={`relative ${nested ? "size-6 text-[9px]" : "size-7 text-[10px]"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-white/5"} flex items-center justify-center font-bold text-white mt-0.5 select-none overflow-hidden`}
+                className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-white/5"} flex items-center justify-center font-bold text-white mt-0.5 select-none overflow-hidden`}
             >
                 {comment.avatar_url ? (
                     <Image src={comment.avatar_url} alt={comment.author} fill className="object-cover" unoptimized={true} />
@@ -100,12 +100,16 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                 </div>
 
                 {comment.spoiler && !revealed ? (
+                    // A dotted underline rather than a box: it reads as text that
+                    // is being withheld, which is what a spoiler gate is, and it
+                    // stops the comment list from sprouting a button per entry.
                     <div className="mt-1.5">
                         <button
                             onClick={() => setRevealed(true)}
-                            className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                            className="cursor-pointer inline-flex items-center gap-1.5 text-sm italic text-gray-500 underline decoration-dotted decoration-gray-600 underline-offset-4 hover:text-gray-300 hover:decoration-gray-400 transition-colors"
                         >
-                            Reveal Spoiler
+                            <Eye className="size-3.5" />
+                            Reveal spoiler
                         </button>
                     </div>
                 ) : (
@@ -114,7 +118,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-0.5 text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                                className="cursor-pointer mt-0.5 text-xs text-sky-400 hover:text-sky-300 transition-colors"
                             >
                                 {expanded ? "Show less" : "Show more"}
                             </button>
@@ -130,7 +134,7 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                         </span>
                     )}
                     {comment.children.length > 0 && (
-                        <button onClick={() => setShowReplies((v) => !v)} className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
+                        <button onClick={() => setShowReplies((v) => !v)} className="cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors">
                             {showReplies ? "Hide replies" : `${comment.children.length} ${comment.children.length === 1 ? "reply" : "replies"}`}
                         </button>
                     )}
@@ -184,16 +188,18 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-white">Comments</h3>
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">via MDL</span>
+                    <h3 className="font-display text-lg font-semibold text-white">Comments</h3>
+                    <span className="text-xs font-medium text-sky-400/70">via MDL</span>
                     <span className="text-xs text-gray-500">{total.toLocaleString()}</span>
                 </div>
                 <MessageSquare className="size-4 text-gray-700" />
             </div>
 
-            <div className="flex flex-col gap-2">
+            {/* Same treatment as the reviews and the episode list: a stack of the
+                same thing, separated by a rule rather than each drawn as a box. */}
+            <div className="flex flex-col divide-y divide-white/6">
                 {tree.map((comment) => (
-                    <div key={comment.id} className="rounded-xl border border-white/5 bg-white/3 p-3.5 hover:bg-white/[0.04] transition-colors">
+                    <div key={comment.id} className="py-3.5">
                         <CommentCard comment={comment} />
                     </div>
                 ))}
@@ -203,7 +209,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
                 <button
                     onClick={handleLoadMore}
                     disabled={loading}
-                    className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/5 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
                         <>

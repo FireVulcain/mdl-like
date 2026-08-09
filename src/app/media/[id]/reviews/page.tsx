@@ -80,7 +80,7 @@ export default async function ReviewsPage({ params }: { params: Promise<{ id: st
                     </Link>
 
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Reviews</h1>
+                        <h1 className="font-display text-3xl font-semibold tracking-tight mb-2 text-white">Reviews</h1>
                         <div className="flex items-center gap-2 text-gray-400">
                             <span className="font-medium text-white">{media.title}</span>
                             <span>•</span>

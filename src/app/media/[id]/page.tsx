@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ExternalLink, Link2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { mediaService } from "@/services/media.service";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -37,6 +36,7 @@ import { getCurrentUserId } from "@/lib/session";
 import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
+import { MetaLinkList, GENRE_LIST, TAG_LIST } from "@/components/media/meta-link-list";
 
 // MDL's next-episode data (exact broadcast time) mapped to the countdown's shape;
 // TVmaze/TMDB data stays as fallback when MDL doesn't know the next episode.
@@ -148,7 +148,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 <div className="container relative -top-20 z-10 md:grid md:gap-8 md:grid-cols-[300px_1fr] m-auto pb-20 px-4 md:px-6">
                     {/* Mobile header: poster + title/metadata/action */}
                     <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
-                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10">
+                        <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                             {displayPoster ? (
                                 <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
                             ) : (
@@ -158,7 +158,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 href={`https://mydramalist.com/${media.externalId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="absolute bottom-1.5 right-1.5 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/10 text-[10px] font-medium text-white/70"
+                                className="absolute bottom-1.5 right-1.5 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/10 text-xs font-medium text-white/70"
                             >
                                 <ExternalLink className="size-2.5" />
                                 MDL
@@ -169,7 +169,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 <h1 className="text-base font-bold leading-snug">{displayTitle}</h1>
                                 {secondaryTitle && <p className="text-xs text-muted-foreground leading-snug">{secondaryTitle}</p>}
                                 <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                    <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{media.originCountry}</Badge>
+                                    <span>{media.originCountry}</span>
                                     <span>{media.year}</span>
                                     <span>•</span>
                                     <span>{media.type === "TV" ? "TV Show" : "Movie"}</span>
@@ -203,7 +203,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     </div>
                     <div className="hidden md:block">
                     <StickySidebar>
-                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
+                        <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                             {displayPoster ? (
                                 <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
                             ) : (
@@ -215,7 +215,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 href={`https://mydramalist.com/${media.externalId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-[11px] font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
+                                className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
                             >
                                 <ExternalLink className="size-3" />
                                 MDL
@@ -262,13 +262,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 <span className="text-gray-400 font-medium">Type</span>
                                 <span className="text-white">{media.type === "TV" ? "TV Show" : "Movie"}</span>
 
+                                {/* The code was printed twice, once plain and once
+                                    in a badge right beside it */}
                                 <span className="text-gray-400 font-medium">Country</span>
-                                <span className="flex items-center gap-2">
-                                    <span className="text-white">{media.originCountry}</span>
-                                    <Badge variant="secondary" className="text-[10px] h-5 bg-white/10 text-gray-300 border-white/10">
-                                        {media.originCountry}
-                                    </Badge>
-                                </span>
+                                <span className="text-white">{media.originCountry}</span>
 
                                 {media.totalEp && (
                                     <>
@@ -333,12 +330,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     <div className="space-y-8 min-w-0 md:pt-20">
                         <div className="hidden md:block">
-                            <h1 className="text-4xl font-bold">{displayTitle}</h1>
+                            <h1 className="font-display text-4xl font-semibold">{displayTitle}</h1>
                             {secondaryTitle && <p className="mt-1 text-lg text-muted-foreground">{secondaryTitle}</p>}
                             <div className="mt-2 flex flex-wrap gap-2 text-muted-foreground items-center">
                                 <span>{media.year}</span>
                                 <span>•</span>
-                                <Badge variant="outline">{media.originCountry}</Badge>
+                                <span>{media.originCountry}</span>
                                 <span>•</span>
                                 <span>{media.type}</span>
                                 {media.totalEp && (
@@ -361,7 +358,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             is the one screen with enough context (synopsis, cast, year)
                             to match the show confidently. */}
                         {linkedHref ? (
-                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-sky-500/20 bg-sky-500/8 px-3 py-2 text-sm">
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                                 <Link2 className="h-4 w-4 shrink-0 text-sky-400" />
                                 <span className="text-gray-300">
                                     This drama is linked to a TMDB entry
@@ -372,7 +369,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </Link>
                             </div>
                         ) : (
-                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-white/10 bg-white/3 px-3 py-2 text-sm">
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                                 <Link2 className="h-4 w-4 shrink-0 text-gray-500" />
                                 <span className="text-gray-400">Not linked to TMDB yet — linking unlocks the full page.</span>
                                 <LinkToTmdbButton mdlSlug={media.externalId} defaultQuery={media.title} />
@@ -408,34 +405,28 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <SynopsisBlock text={media.synopsis || ""} />
                             {media.genres && media.genres.length > 0 && (
                                 <div className="mt-6">
-                                    <h3 className="text-lg font-semibold mb-3">Genres</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {media.genres.map((g) => (
-                                            <a
-                                                key={g}
-                                                href={`/dramas?genre=${encodeURIComponent(g)}`}
-                                                className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sm text-sky-300/80 hover:text-sky-200 hover:border-sky-400/30 transition-colors"
-                                            >
-                                                {g}
-                                            </a>
-                                        ))}
-                                    </div>
+                                    <h3 className="font-display text-lg font-semibold mb-2">Genres</h3>
+                                    <MetaLinkList
+                                        {...GENRE_LIST}
+                                        items={media.genres.map((g) => ({
+                                            key: g,
+                                            label: g,
+                                            href: `/dramas?genre=${encodeURIComponent(g)}`,
+                                        }))}
+                                    />
                                 </div>
                             )}
                             {media.tags && media.tags.length > 0 && (
                                 <div className="mt-6">
-                                    <h3 className="text-lg font-semibold mb-3">Tags</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {media.tags.map((t) => (
-                                            <a
-                                                key={t.id}
-                                                href={`/dramas?tag=${t.id}&tag_name=${encodeURIComponent(t.name)}`}
-                                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/60 hover:text-white/90 hover:border-white/20 transition-colors"
-                                            >
-                                                {t.name}
-                                            </a>
-                                        ))}
-                                    </div>
+                                    <h3 className="font-display text-lg font-semibold mb-2">Tags</h3>
+                                    <MetaLinkList
+                                        {...TAG_LIST}
+                                        items={media.tags.map((t) => ({
+                                            key: String(t.id),
+                                            label: t.name,
+                                            href: `/dramas?tag=${t.id}&tag_name=${encodeURIComponent(t.name)}`,
+                                        }))}
+                                    />
                                 </div>
                             )}
                             <div className="mt-2">
@@ -444,7 +435,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
 
                         {media.type === "TV" && (
-                            <div id="section-episodes">
+                            <div id="section-episodes" className="border-t border-white/8 pt-8">
                                 <Suspense fallback={<EpisodeGuide episodes={[]} season={1} poster={media.poster} />}>
                                     <MdlEpisodeGuideSection
                                         tmdbEpisodes={[]}
@@ -460,7 +451,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         )}
 
-                        <div id="section-reviews">
+                        <div id="section-reviews" className="border-t border-white/8 pt-8">
                             <Suspense fallback={null}>
                                 <MdlReviewsSection
                                     externalId={media.externalId}
@@ -472,7 +463,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         </div>
 
-                        <div id="section-recommendations">
+                        <div id="section-recommendations" className="border-t border-white/8 pt-8">
                             <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
                                 <MdlRecsSection
                                     tmdbRecs={[]}
@@ -484,7 +475,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         </div>
 
-                        <div id="section-comments">
+                        <div id="section-comments" className="border-t border-white/8 pt-8">
                             <Suspense fallback={null}>
                                 <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} mdlSlug={media.externalId} />
                             </Suspense>
@@ -601,10 +592,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             priority
                         />
                         {/* Top gradient for header readability on bright images */}
-                        <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/60 via-black/30 to-transparent" />
-                        {/* Overlay gradient for better text readability */}
-                        <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/60 to-transparent" />
-                        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-gray-900" />
+                        {/* One gradient, not three. A top scrim for the header, a
+                            bottom fade to the page, and a third that repeated the
+                            second's job were stacked here — the same pile the hero
+                            carried. This single stop does both ends. */}
+                        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-gray-900" />
                     </>
                 ) : (
                     <div className="h-full w-full bg-linear-to-br from-gray-800 to-gray-900" />
@@ -614,7 +606,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             <div className="container relative -top-20 z-10 md:grid md:gap-8 md:grid-cols-[300px_1fr] m-auto pb-20 px-4 md:px-6">
                 {/* Mobile header: poster + title/metadata/action */}
                 <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
-                    <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10">
+                    <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                         {displayPoster ? (
                             <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
                         ) : (
@@ -636,7 +628,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </h1>
                             {secondaryTitle && <p className="text-xs text-muted-foreground leading-snug">{secondaryTitle}</p>}
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{media.originCountry}</Badge>
+                                <span>{media.originCountry}</span>
                                 <span>{media.year}</span>
                                 <span>•</span>
                                 <span>{media.type === "TV" ? "TV Show" : "Movie"}</span>
@@ -690,7 +682,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Poster & Actions */}
                 <div className="hidden md:block">
                 <StickySidebar>
-                    <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all">
+                    <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                         {displayPoster ? (
                             <Image
                                 unoptimized={true}
@@ -759,7 +751,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         }}
                     >
                         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-
                         <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
                             <span className="text-gray-400 font-medium">Title</span>
                             <span className="text-white">{media.title}</span>
@@ -768,12 +759,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <span className="text-white">{media.type === "TV" ? "TV Show" : "Movie"}</span>
 
                             <span className="text-gray-400 font-medium">Country</span>
-                            <span className="flex items-center gap-2">
-                                <span className="text-white">{media.originCountry}</span>
-                                <Badge variant="secondary" className="text-[10px] h-5 bg-white/10 text-gray-300 border-white/10">
-                                    {media.originCountry}
-                                </Badge>
-                            </span>
+                            <span className="text-white">{media.originCountry}</span>
 
                             {media.totalEp && (
                                 <>
@@ -817,9 +803,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             {media.contentRating && (
                                 <>
                                     <span className="text-gray-400 font-medium">Rating</span>
-                                    <Badge variant="outline" className="w-fit bg-white/5 text-gray-300 border-white/20">
-                                        {media.contentRating}
-                                    </Badge>
+                                    <span className="text-gray-300">{media.contentRating}</span>
                                 </>
                             )}
 
@@ -864,7 +848,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 {/* Info */}
                 <div className="space-y-8 min-w-0 md:pt-20">
                     <div className="hidden md:block">
-                        <h1 className="text-4xl font-bold flex items-baseline gap-2">
+                        <h1 className="font-display text-4xl font-semibold flex items-baseline gap-2">
                             <span>{displayTitle}</span>
                             {media.type === "TV" && media.seasons && media.seasons.length > 1 && (
                                 <SeasonSelector seasons={media.seasons} selectedSeason={selectedSeason} />
@@ -874,7 +858,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         <div className="mt-2 flex flex-wrap gap-2 text-muted-foreground items-center">
                             <span>{media.year}</span>
                             <span>•</span>
-                            <Badge variant="outline">{media.originCountry}</Badge>
+                            <span>{media.originCountry}</span>
                             <span>•</span>
                             <span>{media.type}</span>
                             {media.type === "TV" && episodeCount && (
@@ -967,7 +951,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             {media.contentRating && (
                                 <>
                                     <span className="text-gray-400">Rating</span>
-                                    <Badge variant="outline" className="w-fit bg-white/5 text-gray-300 border-white/20 text-[10px]">{media.contentRating}</Badge>
+                                    <span className="text-gray-300">{media.contentRating}</span>
                                 </>
                             )}
                         </div>
@@ -1023,7 +1007,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* Episode Guide */}
                     {media.type === "TV" && episodes.length > 0 && (
-                        <div id="section-episodes">
+                        <div id="section-episodes" className="border-t border-white/8 pt-8">
                             {isMdlRelevant ? (
                                 <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} hideSpoilers={displayPrefs.hideSpoilers} />}>
                                     <MdlEpisodeGuideSection
@@ -1043,13 +1027,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     )}
 
                     {/* Photos */}
-                    <div id="section-photos">
+                    <div id="section-photos" className="border-t border-white/8 pt-8">
                         <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
                     </div>
 
                     {/* MDL Reviews */}
                     {isMdlRelevant && (
-                        <div id="section-reviews">
+                        <div id="section-reviews" className="border-t border-white/8 pt-8">
                             <Suspense fallback={null}>
                                 <MdlReviewsSection
                                     externalId={media.externalId}
@@ -1063,7 +1047,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     )}
 
                     {/* Recommendations */}
-                    <div id="section-recommendations">
+                    <div id="section-recommendations" className="border-t border-white/8 pt-8">
                         <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
                             <MdlRecsSection
                                 tmdbRecs={media.recommendations || []}
@@ -1076,7 +1060,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* MDL Comments */}
                     {isMdlRelevant && (
-                        <div id="section-comments">
+                        <div id="section-comments" className="border-t border-white/8 pt-8">
                             <Suspense fallback={null}>
                                 <MdlThreadsSection
                                     externalId={media.externalId}

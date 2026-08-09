@@ -89,12 +89,10 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-white">Cast</h3>
+                    <h3 className="font-display text-lg font-semibold text-white">Cast</h3>
                     <span
-                        className={`px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors ${
-                            source === "mdl"
-                                ? "bg-sky-500/15 text-sky-400 border-sky-500/20"
-                                : "bg-white/5 text-gray-400 border-white/10"
+                        className={`text-xs font-medium transition-colors ${
+                            source === "mdl" ? "text-sky-400/70" : "text-gray-400"
                         }`}
                     >
                         via {source === "mdl" ? "MDL" : "TMDB"}
@@ -121,7 +119,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                             </button>
                         </div>
                     )}
-                    <Link href={`/media/${mediaId}/cast`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
+                    <Link href={`/media/${mediaId}/cast`} className="text-sm text-sky-400 hover:text-sky-300 transition-colors font-medium">
                         View all →
                     </Link>
                 </div>
@@ -191,7 +189,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                         <>
                             <button
                                 onClick={() => setShowSupport((v) => !v)}
-                                className="flex items-center gap-1.5 text-sm text-white/50 hover:text-white/80 transition-colors mb-3"
+                                className="cursor-pointer flex items-center gap-1.5 text-sm text-white/50 hover:text-white/80 transition-colors mb-3"
                             >
                                 {showSupport ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                                 {showSupport ? "Hide" : "Show"} support, guest & cameo cast ({totalSupport})

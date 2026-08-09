@@ -32,15 +32,13 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">Recs</h3>
+                    <h3 className="font-display text-lg font-semibold">Recs</h3>
                     {source === "mdl" && hasMdl ? (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border bg-sky-500/15 text-sky-400 border-sky-500/20">
+                        <span className="text-xs font-medium text-sky-400/70">
                             via MDL
                         </span>
                     ) : (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border transition-colors bg-white/5 text-gray-400 border-white/10">
-                            via TMDB
-                        </span>
+                        <span className="text-xs font-medium text-gray-400">via TMDB</span>
                     )}
                 </div>
                 {hasMdl && tmdbRecs.length > 0 && (
@@ -101,7 +99,7 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
                                         <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
                                             {mdlSlugToRatingMap[slug] != null && mdlSlugToRatingMap[slug] > 0 && (
                                                 <div className="absolute left-1.5 top-1.5 z-10">
-                                                    <Badge className="bg-sky-500/90 text-white text-[10px] px-1.5 shadow-md">
+                                                    <Badge className="bg-sky-500/90 text-white text-xs px-1.5 shadow-md">
                                                         <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
                                                         {mdlSlugToRatingMap[slug].toFixed(1)}
                                                     </Badge>
@@ -139,7 +137,7 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
                                     <div className="relative aspect-2/3 w-full overflow-hidden rounded-md bg-secondary">
                                         {mdlSlugToRatingMap[slug] != null && mdlSlugToRatingMap[slug] > 0 && (
                                             <div className="absolute left-1.5 top-1.5 z-10">
-                                                <Badge className="bg-sky-500/90 text-white text-[10px] px-1.5 shadow-md pointer-events-none">
+                                                <Badge className="bg-sky-500/90 text-white text-xs px-1.5 shadow-md pointer-events-none">
                                                     <Star className="h-2.5 w-2.5 mr-0.5 fill-current" />
                                                     {mdlSlugToRatingMap[slug].toFixed(1)}
                                                 </Badge>

@@ -398,7 +398,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             }}
                         >
                             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-                            <h3 className="font-semibold text-lg text-white mb-4">Personal Info</h3>
+                            <h3 className="font-display font-semibold text-lg text-white mb-4">Personal Info</h3>
 
                             <div className="space-y-4 text-sm">
                                 {details.gender && (
@@ -447,7 +447,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                     {/* Right: Name + Bio + Filmography */}
                     <div className="space-y-8 min-w-0 md:pt-6">
                         <div className="hidden md:block">
-                            <h1 className="text-4xl font-bold mb-2 text-white">{data.name}</h1>
+                            <h1 className="font-display text-4xl font-semibold mb-2 text-white">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
                                 <Badge variant="outline" className="bg-white/5 text-gray-300 border-white/20">
                                     via MDL
@@ -469,7 +469,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
                         {bio && (
                             <div>
-                                <h3 className="text-lg font-semibold mb-3 text-white">Biography</h3>
+                                <h3 className="font-display text-lg font-semibold mb-3 text-white">Biography</h3>
                                 <BiographyExpander text={bio} />
                             </div>
                         )}
@@ -481,7 +481,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-pink-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-purple-400" />
-                                    <h3 className="text-lg font-semibold text-white">Dramas</h3>
+                                    <h3 className="font-display text-lg font-semibold text-white">Dramas</h3>
                                     <span className="text-sm text-gray-400">({dramas.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>
@@ -507,7 +507,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
                                     <Film className="h-5 w-5 text-blue-400" />
-                                    <h3 className="text-lg font-semibold text-white">Movies</h3>
+                                    <h3 className="font-display text-lg font-semibold text-white">Movies</h3>
                                     <span className="text-sm text-gray-400">({movies.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>
@@ -533,7 +533,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-emerald-500 to-teal-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-emerald-400" />
-                                    <h3 className="text-lg font-semibold text-white">Specials</h3>
+                                    <h3 className="font-display text-lg font-semibold text-white">Specials</h3>
                                     <span className="text-sm text-gray-400">({specials.length})</span>
                                     <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                                 </div>

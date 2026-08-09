@@ -29,12 +29,16 @@ export function TrailerButton({ trailer, className }: TrailerButtonProps) {
 
     return (
         <>
+            {/* A text action, not a second filled block. Stacked under the status
+                button at the same height, width and weight, the two read as a pair
+                of equals — but one is what you do with the show and the other is a
+                video you might glance at. The hierarchy is now in the shape. */}
             <button
                 onClick={handleOpen}
-                className={`flex items-center gap-2 h-10 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-gray-300 hover:text-white transition-all cursor-pointer ${className ?? ""}`}
+                className={`flex items-center gap-2 py-2 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer ${className ?? ""}`}
             >
-                <Play className="w-4 h-4 shrink-0 fill-current" />
-                <span className="font-medium">Watch Trailer</span>
+                <Play className="w-3.5 h-3.5 shrink-0 fill-current" />
+                <span>Watch trailer</span>
             </button>
 
             <AnimatePresence>
