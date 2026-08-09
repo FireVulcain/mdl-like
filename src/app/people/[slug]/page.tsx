@@ -369,7 +369,6 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
                             <h1 className="text-base font-bold leading-snug text-white">{data.name}</h1>
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                <span className="text-xs font-medium text-sky-400/70">via MDL</span>
                                 <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
                             </div>
                             <a
@@ -445,10 +444,8 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="hidden md:block">
                             <h1 className="font-display text-4xl font-bold mb-2 text-white">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
-                                <span className="text-xs font-medium text-sky-400/70">via MDL</span>
-                                <span className="text-gray-500">•</span>
                                 <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
-                                <span className="text-gray-500">•</span>
+                                <span className="text-gray-500">·</span>
                                 <a
                                     href={data.link}
                                     target="_blank"
