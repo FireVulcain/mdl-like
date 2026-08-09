@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import type { UnifiedMedia } from "@/services/media.service";
 import type { KuryanaRecommendation } from "@/lib/kuryana";
+import { SourceToggle } from "@/components/media/source-toggle";
 
 interface Props {
     tmdbRecs: UnifiedMedia[];
@@ -31,35 +32,9 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                    <h3 className="font-display text-lg font-semibold">Recs</h3>
-                    {source === "mdl" && hasMdl ? (
-                        <span className="text-xs font-medium text-sky-400/70">
-                            via MDL
-                        </span>
-                    ) : (
-                        <span className="text-xs font-medium text-gray-400">via TMDB</span>
-                    )}
-                </div>
+                <h3 className="font-display text-lg font-semibold">Recs</h3>
                 {hasMdl && tmdbRecs.length > 0 && (
-                    <div className="flex items-center gap-1 bg-white/5 p-1 rounded-lg">
-                        <button
-                            onClick={() => setSource("mdl")}
-                            className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                                source === "mdl" ? "bg-primary/20 text-white border border-primary/30" : "text-gray-400 hover:text-white"
-                            }`}
-                        >
-                            MDL
-                        </button>
-                        <button
-                            onClick={() => setSource("tmdb")}
-                            className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                                source === "tmdb" ? "bg-primary/20 text-white border border-primary/30" : "text-gray-400 hover:text-white"
-                            }`}
-                        >
-                            TMDB
-                        </button>
-                    </div>
+                    <SourceToggle value={source} onChange={setSource} />
                 )}
             </div>
 

@@ -137,9 +137,6 @@ export default async function EpisodePage({
                 <section className="space-y-4">
                     <div className="flex items-center gap-2">
                         <h2 className="font-display text-lg font-semibold text-white">Episode Reviews</h2>
-                        <span className="text-xs font-medium text-sky-400/70">
-                            via MDL
-                        </span>
                         {reviews.length > 0 && (
                             <span className="text-sm text-gray-500">({reviews.length})</span>
                         )}

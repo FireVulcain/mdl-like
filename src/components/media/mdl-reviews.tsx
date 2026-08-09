@@ -158,12 +158,7 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                    <h3 className="font-display text-lg font-semibold text-white">Reviews</h3>
-                    <span className="text-xs font-medium text-sky-400/70">
-                        via MDL
-                    </span>
-                </div>
+                <h3 className="font-display text-lg font-semibold text-white">Reviews</h3>
                 <a
                     href={mdlLink}
                     target="_blank"

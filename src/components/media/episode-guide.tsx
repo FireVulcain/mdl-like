@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Star, Clock, Check } from "lucide-react";
+import { SourceToggle } from "@/components/media/source-toggle";
 
 function isReleased(airDate: string | null | undefined): boolean {
     if (!airDate) return true;
@@ -277,11 +278,6 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
                 <div className="flex items-center gap-2 min-w-0">
                     <h3 className="font-display text-lg font-semibold text-white shrink-0">Episodes</h3>
-                    {mdlEpisodes && (
-                        <span className="whitespace-nowrap shrink-0 text-xs font-medium text-sky-400/70">
-                            via MDL
-                        </span>
-                    )}
                     {mediaId && (
                         <Link
                             href={`/media/${mediaId}/episodes?season=${season}`}
@@ -293,30 +289,13 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
                     {mdlEpisodes && episodes.length > 0 && (
-                        <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5">
-                            <button
-                                onClick={() => {
-                                    setSource("mdl");
-                                    setShowAll(false);
-                                }}
-                                className={`cursor-pointer px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                    source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
-                                }`}
-                            >
-                                MDL
-                            </button>
-                            <button
-                                onClick={() => {
-                                    setSource("tmdb");
-                                    setShowAll(false);
-                                }}
-                                className={`cursor-pointer px-3 py-1 text-xs rounded font-medium transition-colors ${
-                                    source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
-                                }`}
-                            >
-                                TMDB
-                            </button>
-                        </div>
+                        <SourceToggle
+                            value={source}
+                            onChange={(next) => {
+                                setSource(next);
+                                setShowAll(false);
+                            }}
+                        />
                     )}
                     <span className="whitespace-nowrap text-sm text-gray-400">
                         Season {season} · {count} episodes

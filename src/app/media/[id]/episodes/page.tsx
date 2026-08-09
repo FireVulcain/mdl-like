@@ -309,11 +309,6 @@ export default async function EpisodesPage({
                         <h2 className="font-display text-lg font-semibold text-white shrink-0">
                             Season {selectedSeason}
                         </h2>
-                        {hasMdlForSelected && (
-                            <span className="text-xs font-medium text-sky-400/70">
-                                via MDL
-                            </span>
-                        )}
                         {/* Jump to where the user left off — only if they've started but not finished */}
                         {watchedUpTo > 0 && rows.some((r) => r.number === watchedUpTo + 1) && (
                             <ScrollToEpisodeButton episodeNumber={watchedUpTo + 1} label={`Go to Ep ${watchedUpTo + 1}`} />

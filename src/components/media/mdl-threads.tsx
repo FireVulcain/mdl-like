@@ -189,7 +189,6 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <h3 className="font-display text-lg font-semibold text-white">Comments</h3>
-                    <span className="text-xs font-medium text-sky-400/70">via MDL</span>
                     <span className="text-xs text-gray-500">{total.toLocaleString()}</span>
                 </div>
                 <MessageSquare className="size-4 text-gray-700" />

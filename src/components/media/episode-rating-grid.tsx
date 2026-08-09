@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SourceToggle } from "@/components/media/source-toggle";
 
 export type GridRatings = Record<number, Record<number, number>>; // season → episode → rating
 
@@ -57,10 +58,7 @@ export function EpisodeRatingGrid({ mediaId, seasons, episodesPerSeason, tmdbGri
                     ))}
                 </div>
                 {hasMdl && hasTmdb && (
-                    <div className="inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5 shrink-0">
-                        <button onClick={() => setSource("mdl")} className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "mdl" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}>MDL</button>
-                        <button onClick={() => setSource("tmdb")} className={`px-3 py-1 text-xs rounded font-medium transition-colors cursor-pointer ${source === "tmdb" ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"}`}>TMDB</button>
-                    </div>
+                    <SourceToggle value={source} onChange={setSource} className="shrink-0" />
                 )}
             </div>
 
