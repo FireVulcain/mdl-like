@@ -2,6 +2,8 @@
 
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
+import { ActivityAction } from "@/types/activity";
+import { updateUserMedia } from "@/actions/media";
 
 export type PaletteItem = {
     id: string;
@@ -66,3 +68,37 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
             year: item.year,
         }));
 }
+
+/**
+ * Step the last progress change back to where it was.
+ *
+ * The activity log already stores `{ from, to }` on every progress event, so
+ * the previous value is a fact rather than a guess — no separate undo stack.
+ * Only the most recent event is reversible, and only if it still matches the
+ * item's current progress; anything else means something changed since, and
+ * silently rewinding it would be worse than refusing.
+ */
+export async function undoLastProgress(): Promise<{ ok: boolean; message: string }> {
+    const userId = await getCurrentUserId();
+
+    const log = await prisma.activityLog.findFirst({
+        where: { userId, action: ActivityAction.PROGRESS, userMediaId: { not: null }, isBackfill: false },
+        orderBy: { createdAt: "desc" },
+    });
+    if (!log?.userMediaId) return { ok: false, message: "Nothing to undo" };
+
+    const payload = log.payload as { from?: unknown; to?: unknown } | null;
+    const from = typeof payload?.from === "number" ? payload.from : null;
+    const to = typeof payload?.to === "number" ? payload.to : null;
+    if (from === null || to === null) return { ok: false, message: "Nothing to undo" };
+
+    const item = await prisma.userMedia.findFirst({ where: { id: log.userMediaId, userId } });
+    if (!item) return { ok: false, message: "Nothing to undo" };
+    if (item.progress !== to) {
+        return { ok: false, message: `${item.title ?? "That title"} has changed since — undo skipped` };
+    }
+
+    await updateUserMedia(item.id, { progress: from });
+    return { ok: true, message: `${item.title ?? "Progress"} back to episode ${from}` };
+}
+
