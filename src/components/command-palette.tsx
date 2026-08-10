@@ -547,13 +547,21 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 if (row) runRow(row);
             }
         } else if (e.key === "Tab" || (e.key === "ArrowRight" && query.length === 0)) {
-            // → only drills in from an empty field, so it stays a cursor key
-            // while there is text to move through.
-            const row = rows[clampedActive];
-            if (mode.kind === "root" && row?.kind === "media") {
-                e.preventDefault();
-                enterMode({ kind: "item", item: row.item });
+            // Tab always means forward: one level deeper where there is a level,
+            // and the action itself where there is not. Enter does the same
+            // thing — having two keys that both mean "yes" is worth more than
+            // reserving one of them for a distinction nobody asked for.
+            // → is the same key but only from an empty field, so it stays a
+            // cursor key while there is text to move through.
+            e.preventDefault();
+            if (mode.kind === "prompt") {
+                submitPrompt();
+                return;
             }
+            const row = rows[clampedActive];
+            if (!row) return;
+            if (mode.kind === "root" && row.kind === "media") enterMode({ kind: "item", item: row.item });
+            else runRow(row);
         } else if (e.key === "Backspace" && query.length === 0 && mode.kind !== "root") {
             e.preventDefault();
             back();
@@ -733,11 +741,10 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     <span>
                         <kbd className="font-sans text-gray-500">↵</kbd> {mode.kind === "root" ? "open" : "run"}
                     </span>
-                    {mode.kind === "root" ? (
-                        <span>
-                            <kbd className="font-sans text-gray-500">tab</kbd> actions
-                        </span>
-                    ) : (
+                    <span>
+                        <kbd className="font-sans text-gray-500">tab</kbd> {mode.kind === "root" ? "actions" : "forward"}
+                    </span>
+                    {mode.kind !== "root" && (
                         <span>
                             <kbd className="font-sans text-gray-500">esc</kbd> back
                         </span>

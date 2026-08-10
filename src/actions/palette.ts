@@ -11,7 +11,7 @@ export type PaletteItem = {
     poster: string | null;
     href: string;
     season: number;
-    /** null for a title that has never been watched — those are index-only. */
+    /** Last episode actually watched; null means index-only, never watched. */
     watchedAt: string | null;
     status: string;
     progress: number;
@@ -43,13 +43,21 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
             progress: true,
             totalEp: true,
             year: true,
-            lastWatchedAt: true,
         },
-        // Postgres sorts NULLs first on DESC, and 166 of these 267 rows have
-        // never been touched — without `nulls: "last"` the palette's "recently
-        // watched" list was in fact the never-watched ones, in arbitrary order.
-        orderBy: { lastWatchedAt: { sort: "desc", nulls: "last" } },
     });
+
+    // Not `lastWatchedAt`: updateUserMedia bumps that on any status change, so
+    // dropping a show or moving it to Plan to Watch would file it under
+    // "recently watched". Progress events are the only record of actually
+    // watching something. Within a 30-minute session upsertProgressLog merges
+    // into the existing row, so this is the start of the session rather than
+    // the last click — which is the more useful of the two anyway.
+    const watched = await prisma.activityLog.groupBy({
+        by: ["userMediaId"],
+        where: { userId, action: ActivityAction.PROGRESS, userMediaId: { not: null } },
+        _max: { createdAt: true },
+    });
+    const watchedAt = new Map(watched.map((row) => [row.userMediaId, row._max.createdAt]));
 
     return items
         .filter((item) => item.title)
@@ -61,12 +69,15 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
             // watchlist links them — two entries for one show are not duplicates.
             href: `/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`,
             season: item.season,
-            watchedAt: item.lastWatchedAt?.toISOString() ?? null,
+            watchedAt: watchedAt.get(item.id)?.toISOString() ?? null,
             status: item.status,
             progress: item.progress,
             totalEp: item.totalEp,
             year: item.year,
-        }));
+        }))
+        // Most recently watched first, never-watched last. Sorting here rather
+        // than in SQL because the timestamp comes from the second query.
+        .sort((a, b) => (b.watchedAt ?? "").localeCompare(a.watchedAt ?? ""));
 }
 
 /**
