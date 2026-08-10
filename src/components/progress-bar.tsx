@@ -2,22 +2,46 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { PROGRESS_DONE, PROGRESS_START, doneProgress } from '@/lib/progress-events';
+
+// A bar stuck at 90% is worse than no bar: it promises something is coming.
+// Nothing here should take this long, so if it does, finish and get out of the
+// way rather than sit there claiming to work.
+const STUCK_AFTER_MS = 15_000;
 
 export function ProgressBar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [state, setState] = useState<'idle' | 'loading' | 'completing'>('idle');
 
-  // Complete the progress bar when route changes
+  // A route change is just another way of finishing, so it goes through the
+  // same door as an explicit one. Announcing it to an external listener is also
+  // what keeps this an effect rather than a setState in an effect body.
   useEffect(() => {
-    if (state === 'loading') {
-      setState('completing');
-      const timeout = setTimeout(() => {
-        setState('idle');
-      }, 300);
-      return () => clearTimeout(timeout);
-    }
+    doneProgress();
   }, [pathname, searchParams]);
+
+  // Programmatic navigation and server actions announce themselves, since
+  // neither goes through an anchor click.
+  useEffect(() => {
+    const onStart = () => setState('loading');
+    const onDone = () => {
+      setState((current) => (current === 'loading' ? 'completing' : current));
+      setTimeout(() => setState((current) => (current === 'completing' ? 'idle' : current)), 300);
+    };
+    window.addEventListener(PROGRESS_START, onStart);
+    window.addEventListener(PROGRESS_DONE, onDone);
+    return () => {
+      window.removeEventListener(PROGRESS_START, onStart);
+      window.removeEventListener(PROGRESS_DONE, onDone);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (state !== 'loading') return;
+    const timeout = setTimeout(() => setState('idle'), STUCK_AFTER_MS);
+    return () => clearTimeout(timeout);
+  }, [state]);
 
   useEffect(() => {
     const handleAnchorClick = (event: MouseEvent) => {

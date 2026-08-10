@@ -17,6 +17,7 @@ import {
 import { updateUserMedia, deleteUserMedia } from "@/actions/media";
 import { fuzzyScore } from "@/lib/fuzzy";
 import { DEFAULT_PALETTE_SHORTCUTS, matchesChord } from "@/lib/shortcuts";
+import { doneProgress, startProgress } from "@/lib/progress-events";
 import {
     BarChart3,
     Bookmark,
@@ -210,6 +211,10 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             const [path, search = ""] = href.split("?");
             const samePath = path === window.location.pathname;
             const sameSearch = `?${search}` === window.location.search || (!search && !window.location.search);
+            // The palette shuts before the page arrives, so without this the
+            // second or two in between looks like nothing happened at all. The
+            // bar starts itself on anchor clicks and never sees a router.push.
+            if (!samePath || !sameSearch) startProgress();
             if (samePath && !sameSearch) window.location.assign(href);
             else router.push(href);
         },
@@ -225,6 +230,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const commit = useCallback(
         async (item: PaletteItem, patch: Partial<PaletteItem>, run: () => Promise<unknown>, message: string) => {
             setBusy(true);
+            startProgress();
             setItems((prev) => prev?.map((i) => (i.id === item.id ? { ...i, ...patch } : i)) ?? prev);
             try {
                 await run();
@@ -236,6 +242,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 void load();
             } finally {
                 setBusy(false);
+                doneProgress();
             }
         },
         [router, load],
@@ -282,6 +289,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const undo = useCallback(async () => {
         close();
         setBusy(true);
+        startProgress();
         try {
             const result = await undoLastProgress();
             if (result.ok) {
@@ -294,6 +302,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             }
         } finally {
             setBusy(false);
+            doneProgress();
         }
     }, [close, load, router]);
 
