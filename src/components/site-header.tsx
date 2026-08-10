@@ -10,7 +10,7 @@ import { signOut, useSession } from "next-auth/react";
 import { updateAvatar } from "@/actions/avatar";
 import { cn } from "@/lib/utils";
 
-export function SiteHeader({ mdlProfileUrl }: { mdlProfileUrl?: string | null }) {
+export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?: string | null; paletteShortcut?: string | null }) {
     const { data: session } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -186,7 +186,7 @@ export function SiteHeader({ mdlProfileUrl }: { mdlProfileUrl?: string | null })
                     <div className="hidden sm:block w-full max-w-xs group relative">
                         <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
                         <Suspense fallback={<div className="h-10 w-full bg-muted/20 rounded-xl animate-pulse" />}>
-                            <SearchInput />
+                            <SearchInput paletteShortcut={paletteShortcut} />
                         </Suspense>
                     </div>
 

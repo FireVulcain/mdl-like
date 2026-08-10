@@ -6,7 +6,8 @@ import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
 import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
-import { getNotificationPreferences, getMdlProfileUrl } from "@/actions/preferences";
+import { CommandPalette } from "@/components/command-palette";
+import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences } from "@/actions/preferences";
 
 // Back on Geist, for both roles. font-display still exists as its own variable
 // and is still what the 54 headings ask for — it simply resolves to the same
@@ -40,12 +41,13 @@ export default async function RootLayout({
   const skipAuth = process.env.SKIP_AUTH === "true";
   const session = await auth();
   const isAuthenticated = skipAuth || !!session;
-  const [showSyncNotification, mdlProfileUrl] = isAuthenticated
+  const [showSyncNotification, mdlProfileUrl, shortcuts] = isAuthenticated
     ? await Promise.all([
         getNotificationPreferences().then((p) => p.showSyncNotification),
         getMdlProfileUrl(),
+        getShortcutPreferences().then((p) => p.commandPaletteShortcuts),
       ])
-    : [false, null];
+    : [false, null, []];
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -54,7 +56,8 @@ export default async function RootLayout({
       >
         <Providers>
           <div className="relative flex min-h-screen flex-col">
-            {isAuthenticated && <SiteHeader mdlProfileUrl={mdlProfileUrl} />}
+            {isAuthenticated && <SiteHeader mdlProfileUrl={mdlProfileUrl} paletteShortcut={shortcuts[0] ?? null} />}
+            {isAuthenticated && <CommandPalette shortcuts={shortcuts} />}
             <main className={isAuthenticated ? "flex-1 pt-24" : "flex-1"}>{children}</main>
           </div>
           <Toaster

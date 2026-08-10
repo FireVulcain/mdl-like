@@ -4,6 +4,7 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { revalidatePath } from "next/cache";
+import { DEFAULT_PALETTE_SHORTCUTS, parseChord, serializeChord } from "@/lib/shortcuts";
 import { normalizeMdlProfileUrl } from "@/lib/mdl-profile-url";
 import { Prisma } from "@prisma/client";
 import {
@@ -158,6 +159,39 @@ export async function saveDisplayPreferences(prefs: Partial<DisplayPreferences>)
         });
         revalidatePath("/");
         revalidatePath("/calendar");
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
+export type ShortcutPreferences = { commandPaletteShortcuts: string[] };
+
+export async function getShortcutPreferences(): Promise<ShortcutPreferences> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await getPreferencesRow(userId);
+        const stored = prefs?.commandPaletteShortcuts;
+        // A stored empty array means "no shortcut, I use the header badge" and
+        // must survive; only null falls back to the defaults.
+        if (!Array.isArray(stored)) return { commandPaletteShortcuts: DEFAULT_PALETTE_SHORTCUTS };
+        return { commandPaletteShortcuts: stored.filter((c): c is string => typeof c === "string") };
+    } catch {
+        return { commandPaletteShortcuts: DEFAULT_PALETTE_SHORTCUTS };
+    }
+}
+
+export async function saveShortcutPreferences(shortcuts: string[]): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        // Re-serialized server-side so a hand-edited request cannot store a
+        // spelling the matcher would never recognise.
+        const cleaned = [...new Set(shortcuts.map((raw) => parseChord(raw)).filter((c) => c !== null).map(serializeChord))];
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, commandPaletteShortcuts: cleaned },
+            update: { commandPaletteShortcuts: cleaned },
+        });
+        revalidatePath("/", "layout");
     } catch {
         // Silently fail — preference save is non-critical
     }

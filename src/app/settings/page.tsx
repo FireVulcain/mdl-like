@@ -7,6 +7,7 @@ import {
     getProfilePreferences,
     getNotificationPreferences,
     getMdlProfileUrl,
+    getShortcutPreferences,
 } from "@/actions/preferences";
 import { getActorRadar } from "@/actions/actor-radar";
 import { getCurrentUserId } from "@/lib/session";
@@ -15,6 +16,7 @@ import { HomeSectionsSetting } from "@/components/settings/home-sections-setting
 import { CalendarSettings } from "@/components/settings/calendar-settings";
 import { WatchlistViewSettings } from "@/components/settings/view-settings";
 import { DisplaySettings } from "@/components/settings/display-settings";
+import { ShortcutSettings } from "@/components/settings/shortcut-settings";
 import { ProfileSettings } from "@/components/settings/profile-settings";
 import { NotificationSettings } from "@/components/settings/notification-settings";
 import { MdlProfileSetting } from "@/components/settings/mdl-profile-setting";
@@ -25,7 +27,19 @@ import { PageBackground } from "@/components/page-background";
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
-    const [{ tab }, userId, excludedPrefs, calendarPrefs, viewPrefs, homeSections, displayPrefs, profilePrefs, notifPrefs, mdlProfileUrl] =
+    const [
+        { tab },
+        userId,
+        excludedPrefs,
+        calendarPrefs,
+        viewPrefs,
+        homeSections,
+        displayPrefs,
+        profilePrefs,
+        notifPrefs,
+        mdlProfileUrl,
+        shortcutPrefs,
+    ] =
         await Promise.all([
             searchParams,
             getCurrentUserId().catch(() => null),
@@ -37,6 +51,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             getProfilePreferences(),
             getNotificationPreferences(),
             getMdlProfileUrl(),
+            getShortcutPreferences(),
         ]);
 
     let radar: Awaited<ReturnType<typeof getActorRadar>> | null = null;
@@ -52,6 +67,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         { id: "calendar", label: "Calendar", description: "What appears in the airing schedule — also adjustable from the calendar page" },
         ...(radar ? [{ id: "radar", label: "Actor radar", description: "Who feeds the “From Actors You Watch” section" }] : []),
         { id: "display", label: "Display", description: "How titles and episode details are shown across the app" },
+        { id: "shortcuts", label: "Shortcuts", description: "Keys that open the command palette" },
         { id: "profile", label: "Public profile", description: "What visitors can see on your profile page" },
         { id: "notifications", label: "Notifications", description: "In-app banners and reminders" },
     ];
@@ -94,6 +110,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
                 </div>
             </div>
         ),
+        shortcuts: <ShortcutSettings initialShortcuts={shortcutPrefs.commandPaletteShortcuts} />,
         profile: userId ? (
             <ProfileSettings initialPrefs={profilePrefs} profileUserId={userId} />
         ) : (
