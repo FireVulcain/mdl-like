@@ -66,8 +66,7 @@ const MAX_PAGE_ROWS = 4;
 /**
  * Three levels, in the sense the palette is usually built:
  *   root    — search everything
- *   item    — one title's actions, reached with → or Tab, or straight away when
- *             the palette is opened from that title's own page
+ *   item    — one title's actions, reached with → or Tab
  *   prompt  — a value the action still needs (which episode, which score), or a
  *             confirmation for something destructive
  */
@@ -126,10 +125,6 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     // The index is fetched once per session, not per open — a second ⌘K should
     // never show a spinner for a list that has not changed.
     const loadingRef = useRef(false);
-    // Read inside the open handler, which must not re-subscribe on every
-    // navigation just to know where it was opened from.
-    const locationRef = useRef({ pathname, season: searchParams.get("season") });
-    locationRef.current = { pathname, season: searchParams.get("season") };
     const itemsRef = useRef<PaletteItem[] | null>(null);
     itemsRef.current = items;
     const queryRef = useRef("");
@@ -161,33 +156,29 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         }
     }, []);
 
-    /** The watchlist row for the media page currently on screen, if any. */
-    const itemForCurrentPage = useCallback((list: PaletteItem[] | null) => {
-        const { pathname: path, season } = locationRef.current;
-        const match = path.match(/^\/media\/([^/]+)$/);
-        if (!match || !list) return null;
+    /**
+     * The watchlist row for the media page currently on screen, if any.
+     *
+     * It leads the empty list rather than replacing it: opening straight into a
+     * title's actions took away the search without being asked, and the palette
+     * should always start where it says it starts.
+     */
+    const currentItem = useMemo(() => {
+        const match = pathname.match(/^\/media\/([^/]+)$/);
+        if (!match || !items) return null;
+        const season = searchParams.get("season");
         const wanted = season && season !== "1" ? `/media/${match[1]}?season=${season}` : `/media/${match[1]}`;
-        return list.find((item) => item.href === wanted) ?? null;
-    }, []);
+        return items.find((item) => item.href === wanted) ?? null;
+    }, [items, pathname, searchParams]);
 
     const openPalette = useCallback(() => {
         setQuery("");
         setActive(0);
-        // Opened from a title's own page: skip the search nobody needs to type
-        // and land straight on that title's actions.
         historyStack.current = [];
-        const scoped = itemForCurrentPage(itemsRef.current);
-        setMode(scoped ? { kind: "item", item: scoped } : { kind: "root" });
+        setMode({ kind: "root" });
         setOpen(true);
-        void load().then(() => {
-            // The very first open races the index fetch, so the scoping is
-            // retried once it lands — but never on top of something typed in
-            // the meantime.
-            if (scoped || queryRef.current.length > 0) return;
-            const late = itemForCurrentPage(itemsRef.current);
-            if (late) setMode({ kind: "item", item: late });
-        });
-    }, [load, itemForCurrentPage]);
+        void load();
+    }, [load]);
 
     // Ctrl+P is the browser's print dialog and Ctrl+K its address-bar search,
     // and a page is allowed to claim both with preventDefault. What a page
@@ -691,7 +682,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             // for searching, but padding "Recently watched" with titles added
             // and never opened would be a lie.
             const recent: Row[] = media
-                .filter((item) => item.watchedAt !== null)
+                .filter((item) => item.watchedAt !== null && item.id !== currentItem?.id)
                 .slice(0, 5)
                 .map((item) => ({ kind: "media" as const, item, key: item.id, section: null }));
             const pages: Row[] = PAGES.slice(0, MAX_PAGE_ROWS).map((page) => ({
@@ -700,7 +691,12 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 key: page.href,
                 section: null,
             }));
-            return [...withSection(recent, "Recently watched"), ...withSection(pages, "Go to")];
+            const here: Row[] = currentItem ? [{ kind: "media", item: currentItem, key: currentItem.id, section: null }] : [];
+            return [
+                ...withSection(here, "On this page"),
+                ...withSection(recent, "Recently watched"),
+                ...withSection(pages, "Go to"),
+            ];
         }
 
         const scoredMedia = media
@@ -767,7 +763,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .flatMap((g) => withSection(g.rows, g.heading));
 
         return [...ordered, { kind: "search", query: trimmed, key: "search", section: null }];
-    }, [query, items, people, mode, itemActions, personActions, castFor, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
+    }, [query, items, people, currentItem, mode, itemActions, personActions, castFor, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -916,6 +912,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     )}
                     <input
                         ref={inputRef}
+                        name="command-palette"
+                        autoComplete="off"
                         autoFocus
                         value={query}
                         inputMode={mode.kind === "prompt" ? "decimal" : "text"}
