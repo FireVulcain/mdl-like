@@ -5,7 +5,15 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { getPaletteWatchlist, undoLastProgress, type PaletteItem } from "@/actions/palette";
+import {
+    getAiringToday,
+    getPaletteStats,
+    getPaletteWatchlist,
+    undoLastProgress,
+    type PaletteAiringEntry,
+    type PaletteItem,
+    type PaletteStat,
+} from "@/actions/palette";
 import { updateUserMedia, deleteUserMedia } from "@/actions/media";
 import { fuzzyScore } from "@/lib/fuzzy";
 import { DEFAULT_PALETTE_SHORTCUTS, matchesChord } from "@/lib/shortcuts";
@@ -56,8 +64,16 @@ const MAX_PAGE_ROWS = 4;
  *   prompt  — a value the action still needs (which episode, which score), or a
  *             confirmation for something destructive
  */
+/**
+ * The three menus keep the root list short: one row each, none of which appears
+ * until the query asks for it. Ten "Show my …" rows would be the same features
+ * and a worse palette.
+ */
+type MenuId = "list" | "airing" | "stats";
+
 type Mode =
     | { kind: "root" }
+    | { kind: "menu"; menu: MenuId }
     | { kind: "item"; item: PaletteItem }
     | { kind: "status"; item: PaletteItem }
     | { kind: "prompt"; item: PaletteItem; field: "episode" | "score" }
@@ -68,6 +84,8 @@ type Row = { key: string; section: string | null } & (
     | { kind: "page"; page: PageEntry }
     | { kind: "search"; query: string }
     | { kind: "command"; label: string; icon: React.ElementType; keywords: string; danger?: boolean; run: () => void }
+    | { kind: "airing"; entry: PaletteAiringEntry }
+    | { kind: "fact"; label: string }
 );
 
 function progressLabel(item: PaletteItem): string {
@@ -90,6 +108,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const [items, setItems] = useState<PaletteItem[] | null>(null);
     const [active, setActive] = useState(0);
     const [busy, setBusy] = useState(false);
+    const [airing, setAiring] = useState<PaletteAiringEntry[] | null>(null);
+    const [facts, setFacts] = useState<PaletteStat[] | null>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     // The index is fetched once per session, not per open — a second ⌘K should
@@ -180,7 +200,17 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const goTo = useCallback(
         (href: string) => {
             close();
-            router.push(href);
+            // Filter state on /watchlist is seeded from the query string in
+            // useState initialisers, which do not re-run for a component that is
+            // already mounted. So a push from /watchlist to /watchlist?status=…
+            // changes the URL and nothing else. Same path plus a different query
+            // is the one case that needs a real navigation; everything else stays
+            // a client-side push.
+            const [path, search = ""] = href.split("?");
+            const samePath = path === window.location.pathname;
+            const sameSearch = `?${search}` === window.location.search || (!search && !window.location.search);
+            if (samePath && !sameSearch) window.location.assign(href);
+            else router.push(href);
         },
         [close, router],
     );
@@ -277,6 +307,80 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         setActive(next.kind === "confirm" ? 1 : 0);
         inputRef.current?.focus();
     }, []);
+
+    // Both menus fetch on entry rather than on open: the schedule and the stats
+    // are the two most expensive things the app computes, and most palette
+    // visits never ask for either.
+    const openMenu = useCallback(
+        (menu: MenuId) => {
+            enterMode({ kind: "menu", menu });
+            if (menu === "airing" && airing === null) {
+                void getAiringToday(new Date().toLocaleDateString("en-CA"))
+                    .then(setAiring)
+                    .catch(() => setAiring([]));
+            }
+            if (menu === "stats" && facts === null) {
+                void getPaletteStats()
+                    .then(setFacts)
+                    .catch(() => setFacts([]));
+            }
+        },
+        [enterMode, airing, facts],
+    );
+
+    const menuRows = useCallback(
+        (menu: MenuId): Row[] => {
+            if (menu === "list") {
+                return [
+                    ...WATCH_STATUSES.map((status) => ({
+                        kind: "command" as const,
+                        key: `list-${status}`,
+                        section: null,
+                        label: status,
+                        icon: Bookmark,
+                        keywords: `show my ${status} list`,
+                        run: () => goTo(`/watchlist?status=${encodeURIComponent(status)}`),
+                    })),
+                    {
+                        kind: "command" as const,
+                        key: "list-airing",
+                        section: null,
+                        label: "Currently airing",
+                        icon: CalendarDays,
+                        keywords: "airing ongoing running now",
+                        run: () => goTo("/watchlist?airing=1"),
+                    },
+                ];
+            }
+
+            if (menu === "airing") {
+                const rows: Row[] = (airing ?? []).map((entry) => ({ kind: "airing", entry, key: entry.key, section: null }));
+                rows.push({
+                    kind: "command",
+                    key: "airing-calendar",
+                    section: null,
+                    label: "Open the calendar",
+                    icon: CalendarDays,
+                    keywords: "calendar month schedule all",
+                    run: () => goTo("/calendar"),
+                });
+                return rows;
+            }
+
+            const rows: Row[] = (facts ?? []).map((fact) => ({ kind: "fact", label: fact.label, key: fact.key, section: null }));
+            rows.push({
+                kind: "command",
+                key: "stats-page",
+                section: null,
+                label: "Open the stats page",
+                icon: BarChart3,
+                keywords: "stats page charts open all",
+                run: () => goTo("/stats"),
+            });
+            return rows;
+        },
+        [airing, facts, goTo],
+    );
 
     const itemActions = useCallback(
         (item: PaletteItem): Row[] => {
@@ -420,6 +524,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
 
         if (mode.kind === "prompt") return []; // the input is the whole interface
 
+        if (mode.kind === "menu") return filterByQuery(menuRows(mode.menu)).rows;
+
         if (mode.kind === "item") return filterByQuery(itemActions(mode.item)).rows;
 
         if (trimmed.length === 0) {
@@ -458,6 +564,35 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         const commands = filterByQuery([
             {
                 kind: "command",
+                key: "menu-list",
+                section: null,
+                label: "My list…",
+                icon: Bookmark,
+                // Every status is a keyword, so typing "dropped" finds the menu
+                // without the menu having to spell out one row per status.
+                keywords: "show my list watchlist watching completed plan to watch on hold dropped airing filter",
+                run: () => openMenu("list"),
+            },
+            {
+                kind: "command",
+                key: "menu-airing",
+                section: null,
+                label: "What's airing today…",
+                icon: CalendarDays,
+                keywords: "airing today episodes releases schedule calendar tonight new",
+                run: () => openMenu("airing"),
+            },
+            {
+                kind: "command",
+                key: "menu-stats",
+                section: null,
+                label: "My stats…",
+                icon: BarChart3,
+                keywords: "stats how many hours episodes watched average rating genre completion",
+                run: () => openMenu("stats"),
+            },
+            {
+                kind: "command",
                 key: "undo",
                 section: null,
                 label: "Undo last watched episode",
@@ -491,7 +626,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .flatMap((g) => withSection(g.rows, g.heading));
 
         return [...ordered, { kind: "search", query: trimmed, key: "search", section: null }];
-    }, [query, items, mode, itemActions, remove, setStatus, undo, enterMode]);
+    }, [query, items, mode, itemActions, menuRows, openMenu, remove, setStatus, undo, enterMode]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -499,7 +634,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         (row: Row) => {
             if (row.kind === "media") goTo(row.item.href);
             else if (row.kind === "page") goTo(row.page.href);
+            else if (row.kind === "airing") goTo(row.entry.href);
             else if (row.kind === "search") goTo(`/search?q=${encodeURIComponent(row.query)}`);
+            else if (row.kind === "fact") goTo("/stats"); // a number is not a destination; its page is
             else row.run();
         },
         [goTo],
@@ -510,7 +647,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             close();
             return;
         }
-        if (mode.kind === "item") {
+        if (mode.kind === "item" || mode.kind === "menu") {
             enterMode({ kind: "root" });
             return;
         }
@@ -579,7 +716,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         listRef.current?.querySelector('[data-active="true"]')?.scrollIntoView({ block: "nearest" });
     }, [active, rows]);
 
-    const scopedItem = mode.kind === "root" ? null : mode.item;
+    const scopedItem = mode.kind === "root" || mode.kind === "menu" ? null : mode.item;
+    const MENU_TITLES: Record<MenuId, string> = { list: "My list", airing: "Airing today", stats: "My stats" };
+    const crumb = scopedItem ? scopedItem.title : mode.kind === "menu" ? MENU_TITLES[mode.menu] : null;
     const placeholder =
         mode.kind === "prompt"
             ? mode.field === "episode"
@@ -591,7 +730,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 ? "This cannot be undone"
                 : mode.kind === "item"
                   ? "What would you like to do?"
-                  : "Search your watchlist, or jump to a page…";
+                  : mode.kind === "menu"
+                    ? "Filter this list…"
+                    : "Search your watchlist, or jump to a page…";
 
     return (
         <Dialog
@@ -615,13 +756,13 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 <DialogTitle className="sr-only">Command palette</DialogTitle>
 
                 <div className="flex items-center gap-2 px-4 h-12 border-b border-white/8">
-                    {scopedItem ? (
+                    {crumb ? (
                         <button
                             onClick={back}
                             className="shrink-0 flex items-center gap-1.5 max-w-[45%] px-2 py-1 -ml-2 rounded-md bg-white/8 text-xs font-medium text-white hover:bg-white/12 transition-colors cursor-pointer"
                         >
-                            <span className="truncate">{scopedItem.title}</span>
-                            {scopedItem.season > 1 && <span className="text-gray-400">S{scopedItem.season}</span>}
+                            <span className="truncate">{crumb}</span>
+                            {scopedItem && scopedItem.season > 1 && <span className="text-gray-400">S{scopedItem.season}</span>}
                         </button>
                     ) : (
                         <Search className="h-4 w-4 text-gray-500 shrink-0" />
@@ -656,7 +797,17 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         </p>
                     )}
 
-                    {items !== null && rows.length === 0 && mode.kind !== "prompt" && (
+                    {mode.kind === "menu" && mode.menu === "airing" && airing === null && (
+                        <p className="px-4 py-6 text-center text-xs text-gray-500">Checking today&rsquo;s schedule…</p>
+                    )}
+                    {mode.kind === "menu" && mode.menu === "airing" && airing?.length === 0 && (
+                        <p className="px-4 pt-4 pb-2 text-center text-xs text-gray-500">Nothing from your list airs today.</p>
+                    )}
+                    {mode.kind === "menu" && mode.menu === "stats" && facts === null && (
+                        <p className="px-4 py-6 text-center text-xs text-gray-500">Counting…</p>
+                    )}
+
+                    {items !== null && rows.length === 0 && mode.kind !== "prompt" && mode.kind !== "menu" && (
                         <p className="px-4 py-6 text-center text-xs text-gray-500">Nothing matches that.</p>
                     )}
 
@@ -680,7 +831,37 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         isActive ? "bg-white/8" : "hover:bg-white/4"
                                     }`}
                                 >
-                                    {row.kind === "media" ? (
+                                    {row.kind === "airing" ? (
+                                        <>
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                                {row.entry.poster ? (
+                                                    <Image
+                                                        unoptimized
+                                                        src={row.entry.poster}
+                                                        alt=""
+                                                        width={28}
+                                                        height={40}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                        <Tv className="h-3 w-3 text-gray-600" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <span className="flex-1 min-w-0">
+                                                <span className="block text-sm text-white truncate">{row.entry.title}</span>
+                                                <span className="block text-xs text-gray-500 truncate">{row.entry.detail}</span>
+                                            </span>
+                                        </>
+                                    ) : row.kind === "fact" ? (
+                                        <>
+                                            <span className="shrink-0 w-7 h-10 flex items-center justify-center">
+                                                <BarChart3 className="h-4 w-4 text-gray-600" />
+                                            </span>
+                                            <span className="flex-1 min-w-0 text-sm text-gray-300 truncate">{row.label}</span>
+                                        </>
+                                    ) : row.kind === "media" ? (
                                         <>
                                             <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
                                                 {row.item.poster ? (

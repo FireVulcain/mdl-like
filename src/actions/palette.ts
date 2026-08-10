@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { ActivityAction } from "@/types/activity";
 import { updateUserMedia } from "@/actions/media";
+import { getScheduleEntries } from "@/actions/schedule";
+import { getDashboardStats } from "@/actions/stats";
 
 export type PaletteItem = {
     id: string;
@@ -113,3 +115,59 @@ export async function undoLastProgress(): Promise<{ ok: boolean; message: string
     return { ok: true, message: `${item.title ?? "Progress"} back to episode ${from}` };
 }
 
+
+export type PaletteAiringEntry = { key: string; title: string; poster: string | null; href: string; detail: string };
+
+/**
+ * Today's episodes, for the palette's airing menu.
+ *
+ * The date key comes from the client because "today" is a question about the
+ * user's clock, not the server's — a Vercel box in UTC and a viewer in KST
+ * disagree for nine hours a day.
+ */
+export async function getAiringToday(dateKey: string): Promise<PaletteAiringEntry[]> {
+    const entries = await getScheduleEntries();
+    return entries
+        .filter((entry) => entry.airDate === dateKey)
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .map((entry) => ({
+            key: `${entry.mediaId}-${entry.seasonNumber}-${entry.episodeNumber}`,
+            title: entry.title,
+            poster: entry.poster,
+            href: `/media/${entry.mediaId}?season=${entry.seasonNumber}`,
+            detail: entry.episodeName ? `Episode ${entry.episodeNumber} · ${entry.episodeName}` : `Episode ${entry.episodeNumber}`,
+        }));
+}
+
+export type PaletteStat = { key: string; label: string };
+
+/**
+ * The handful of numbers worth answering without leaving the page.
+ *
+ * Built on getDashboardStats rather than a leaner query of its own, so the
+ * palette can never quote a figure the /stats page disagrees with.
+ */
+export async function getPaletteStats(): Promise<PaletteStat[]> {
+    const stats = await getDashboardStats();
+
+    const rated = stats.ratingDistribution.filter((r) => r.rating > 0);
+    const ratedCount = rated.reduce((acc, r) => acc + r.count, 0);
+    const average = ratedCount > 0 ? rated.reduce((acc, r) => acc + r.rating * r.count, 0) / ratedCount : null;
+
+    // Floor, like the stats dashboard and the watchlist header — two surfaces
+    // quoting different totals for the same thing is worse than either being
+    // slightly low. Locale pinned for the same reason: the server's default
+    // would group digits differently from every other number in the app.
+    const hours = Math.floor(stats.watchTimeMinutes / 60);
+    const days = (stats.watchTimeMinutes / (60 * 24)).toFixed(1);
+    const n = (value: number) => value.toLocaleString("en-US");
+
+    return [
+        { key: "titles", label: `${stats.totalMovies + stats.totalTV} titles watched — ${stats.totalTV} series, ${stats.totalMovies} movies` },
+        { key: "episodes", label: `${n(stats.totalEpisodes)} episodes watched` },
+        { key: "time", label: `${n(hours)} hours watched — about ${days} days of your life` },
+        ...(average !== null ? [{ key: "average", label: `Average rating ${average.toFixed(1)} across ${ratedCount} rated titles` }] : []),
+        ...(stats.topGenres[0] ? [{ key: "genre", label: `Most watched genre: ${stats.topGenres[0].name}` }] : []),
+        { key: "completion", label: `${Math.round(stats.completionRate)}% completion of everything started` },
+    ];
+}
