@@ -132,6 +132,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     itemsRef.current = items;
     const queryRef = useRef("");
     queryRef.current = query;
+    // What was typed at each level, so stepping back restores the search that
+    // led here instead of dropping the user at an empty field.
+    const queryStack = useRef<string[]>([]);
 
     const load = useCallback(async () => {
         if (loadingRef.current) return;
@@ -167,6 +170,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         setActive(0);
         // Opened from a title's own page: skip the search nobody needs to type
         // and land straight on that title's actions.
+        queryStack.current = [];
         const scoped = itemForCurrentPage(itemsRef.current);
         setMode(scoped ? { kind: "item", item: scoped } : { kind: "root" });
         setOpen(true);
@@ -208,10 +212,18 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         return () => window.removeEventListener(OPEN_PALETTE_EVENT, onRequest);
     }, [openPalette]);
 
+    const leaveMode = useCallback((parent: Mode) => {
+        setMode(parent);
+        setQuery(queryStack.current.pop() ?? "");
+        setActive(0);
+        inputRef.current?.focus();
+    }, []);
+
     const close = useCallback(() => {
         setOpen(false);
         setMode({ kind: "root" });
         setQuery("");
+        queryStack.current = [];
     }, []);
 
     const goTo = useCallback(
@@ -324,6 +336,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     // Changing level always resets the query and the cursor: the text that found
     // a title is meaningless against a list of verbs.
     const enterMode = useCallback((next: Mode) => {
+        queryStack.current.push(queryRef.current);
         setMode(next);
         setQuery("");
         // Confirmation opens on Cancel. Two keystrokes should not be enough to
@@ -474,7 +487,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 rows.push({
                     kind: "command",
                     key: `person-show-${show.href}`,
-                    section: i === 0 ? `${person.shows.length} ${person.shows.length === 1 ? "show" : "shows"} you've watched together` : null,
+                    // Their filmography intersected with the watchlist — which
+                    // includes Plan to Watch, so "watched" would be wrong too.
+                    section: i === 0 ? `${person.shows.length} ${person.shows.length === 1 ? "show" : "shows"} in your list` : null,
                     label: show.title,
                     icon: Tv,
                     keywords: show.title,
@@ -740,11 +755,11 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             return;
         }
         if (mode.kind === "item" || mode.kind === "menu" || mode.kind === "person") {
-            enterMode({ kind: "root" });
+            leaveMode({ kind: "root" });
             return;
         }
-        enterMode({ kind: "item", item: mode.item });
-    }, [mode, close, enterMode]);
+        leaveMode({ kind: "item", item: mode.item });
+    }, [mode, close, leaveMode]);
 
     const submitPrompt = () => {
         if (mode.kind !== "prompt") return;
@@ -970,8 +985,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                 <span className="block text-sm text-white truncate">{row.person.name}</span>
                                                 <span className="block text-xs text-gray-500 truncate">
                                                     {row.person.shows.length === 1
-                                                        ? "in 1 show you watch"
-                                                        : `in ${row.person.shows.length} shows you watch`}
+                                                        ? "1 show in your list"
+                                                        : `${row.person.shows.length} shows in your list`}
                                                 </span>
                                             </span>
                                         </>
