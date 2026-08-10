@@ -40,6 +40,7 @@ import {
     Trash2,
     Tv,
     User,
+    Users,
 } from "lucide-react";
 
 type PageEntry = { label: string; href: string; icon: React.ElementType; keywords: string };
@@ -82,6 +83,7 @@ type Mode =
     | { kind: "menu"; menu: MenuId }
     | { kind: "item"; item: PaletteItem }
     | { kind: "person"; person: PalettePerson }
+    | { kind: "cast"; item: PaletteItem }
     | { kind: "status"; item: PaletteItem }
     | { kind: "prompt"; item: PaletteItem; field: "episode" | "score" }
     | { kind: "confirm"; item: PaletteItem };
@@ -132,9 +134,12 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     itemsRef.current = items;
     const queryRef = useRef("");
     queryRef.current = query;
-    // What was typed at each level, so stepping back restores the search that
-    // led here instead of dropping the user at an empty field.
-    const queryStack = useRef<string[]>([]);
+    const modeRef = useRef<Mode>(mode);
+    modeRef.current = mode;
+    // Where each level came from and what was typed to get there. A stack rather
+    // than a parent-per-kind mapping because the levels genuinely nest: a show's
+    // cast leads to a person, whose shows lead back to another show.
+    const historyStack = useRef<{ mode: Mode; query: string }[]>([]);
 
     const load = useCallback(async () => {
         if (loadingRef.current) return;
@@ -170,7 +175,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         setActive(0);
         // Opened from a title's own page: skip the search nobody needs to type
         // and land straight on that title's actions.
-        queryStack.current = [];
+        historyStack.current = [];
         const scoped = itemForCurrentPage(itemsRef.current);
         setMode(scoped ? { kind: "item", item: scoped } : { kind: "root" });
         setOpen(true);
@@ -212,18 +217,11 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         return () => window.removeEventListener(OPEN_PALETTE_EVENT, onRequest);
     }, [openPalette]);
 
-    const leaveMode = useCallback((parent: Mode) => {
-        setMode(parent);
-        setQuery(queryStack.current.pop() ?? "");
-        setActive(0);
-        inputRef.current?.focus();
-    }, []);
-
     const close = useCallback(() => {
         setOpen(false);
         setMode({ kind: "root" });
         setQuery("");
-        queryStack.current = [];
+        historyStack.current = [];
     }, []);
 
     const goTo = useCallback(
@@ -336,7 +334,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     // Changing level always resets the query and the cursor: the text that found
     // a title is meaningless against a list of verbs.
     const enterMode = useCallback((next: Mode) => {
-        queryStack.current.push(queryRef.current);
+        historyStack.current.push({ mode: modeRef.current, query: queryRef.current });
         setMode(next);
         setQuery("");
         // Confirmation opens on Cancel. Two keystrokes should not be enough to
@@ -468,6 +466,20 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         [airing, facts, goTo, globalCommands],
     );
 
+    const castFor = useCallback(
+        (item: PaletteItem): PalettePerson[] =>
+            people
+                .filter((person) => person.shows.some((show) => show.externalId === item.externalId))
+                // Billed order, which is why the index carries the position: an
+                // alphabetical cast list puts the lead wherever their name falls.
+                .sort(
+                    (a, b) =>
+                        (a.shows.find((s) => s.externalId === item.externalId)?.order ?? 99) -
+                        (b.shows.find((s) => s.externalId === item.externalId)?.order ?? 99),
+                ),
+        [people],
+    );
+
     const personActions = useCallback(
         (person: PalettePerson): Row[] => {
             const rows: Row[] = [
@@ -551,6 +563,22 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 run: () => enterMode({ kind: "prompt", item, field: "episode" }),
             });
 
+            const cast = castFor(item);
+            if (cast.length > 0) {
+                rows.push({
+                    kind: "command",
+                    key: "cast",
+                    section: null,
+                    // "Main cast", not "cast": the index holds main roles only,
+                    // and offering two names out of twenty under the wider word
+                    // would read as missing data rather than a deliberate cut.
+                    label: `See the main cast (${cast.length})`,
+                    icon: Users,
+                    keywords: "cast actors people starring who is in main role",
+                    run: () => enterMode({ kind: "cast", item }),
+                });
+            }
+
             rows.push({
                 kind: "command",
                 key: "status",
@@ -584,7 +612,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
 
             return rows;
         },
-        [goTo, setProgress, enterMode],
+        [goTo, setProgress, enterMode, castFor],
     );
 
     const rows = useMemo<Row[]>(() => {
@@ -644,6 +672,13 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         if (mode.kind === "prompt") return []; // the input is the whole interface
 
         if (mode.kind === "menu") return filterByQuery(menuRows(mode.menu)).rows;
+
+        if (mode.kind === "cast") {
+            const cast = castFor(mode.item);
+            const rows: Row[] = cast.map((person) => ({ kind: "person", person, key: person.slug, section: null }));
+            if (trimmed.length === 0) return rows;
+            return rows.filter((row) => row.kind === "person" && fuzzyScore(trimmed, row.person.name) !== null);
+        }
 
         if (mode.kind === "person") return filterByQuery(personActions(mode.person)).rows;
 
@@ -732,7 +767,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .flatMap((g) => withSection(g.rows, g.heading));
 
         return [...ordered, { kind: "search", query: trimmed, key: "search", section: null }];
-    }, [query, items, people, mode, itemActions, personActions, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
+    }, [query, items, people, mode, itemActions, personActions, castFor, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -750,16 +785,16 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     );
 
     const back = useCallback(() => {
-        if (mode.kind === "root") {
-            close();
+        const parent = historyStack.current.pop();
+        if (!parent) {
+            close(); // already at the top level
             return;
         }
-        if (mode.kind === "item" || mode.kind === "menu" || mode.kind === "person") {
-            leaveMode({ kind: "root" });
-            return;
-        }
-        leaveMode({ kind: "item", item: mode.item });
-    }, [mode, close, leaveMode]);
+        setMode(parent.mode);
+        setQuery(parent.query);
+        setActive(0);
+        inputRef.current?.focus();
+    }, [close]);
 
     const submitPrompt = () => {
         if (mode.kind !== "prompt") return;
@@ -805,7 +840,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             const row = rows[clampedActive];
             if (!row) return;
             if (mode.kind === "root" && row.kind === "media") enterMode({ kind: "item", item: row.item });
-            else if (mode.kind === "root" && row.kind === "person") enterMode({ kind: "person", person: row.person });
+            else if (row.kind === "person" && (mode.kind === "root" || mode.kind === "cast"))
+                enterMode({ kind: "person", person: row.person });
             else runRow(row);
         } else if (e.key === "Backspace" && query.length === 0 && mode.kind !== "root") {
             e.preventDefault();
@@ -825,6 +861,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     }, [active, rows]);
 
     const scopedItem = mode.kind === "root" || mode.kind === "menu" || mode.kind === "person" ? null : mode.item;
+    const inCast = mode.kind === "cast";
     const MENU_TITLES: Record<MenuId, string> = { list: "My list", airing: "Airing today", stats: "My stats", help: "Help" };
     const crumb = scopedItem ? scopedItem.title : mode.kind === "person" ? mode.person.name : mode.kind === "menu" ? MENU_TITLES[mode.menu] : null;
     const placeholder =
@@ -836,8 +873,10 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
               ? "Pick a status…"
               : mode.kind === "confirm"
                 ? "This cannot be undone"
-                : mode.kind === "item" || mode.kind === "person"
-                  ? "What would you like to do?"
+                : inCast
+                  ? "Filter the main cast…"
+                  : mode.kind === "item" || mode.kind === "person"
+                    ? "What would you like to do?"
                   : mode.kind === "menu"
                     ? "Filter this list…"
                     : "Search your watchlist, or jump to a page…";

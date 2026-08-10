@@ -10,6 +10,8 @@ import { mdlPersonSlug } from "@/lib/person-links";
 
 export type PaletteItem = {
     id: string;
+    /** Seasons share it, which is what lets a season find the show's cast. */
+    externalId: string;
     title: string;
     poster: string | null;
     href: string;
@@ -66,6 +68,7 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
         .filter((item) => item.title)
         .map((item) => ({
             id: item.id,
+            externalId: item.externalId,
             title: item.title!,
             poster: item.poster,
             // Seasons are separate rows with separate pages, exactly as the
@@ -173,7 +176,13 @@ export async function getPaletteStats(): Promise<PaletteStat[]> {
     ];
 }
 
-export type PalettePersonShow = { title: string; href: string };
+export type PalettePersonShow = {
+    externalId: string;
+    title: string;
+    href: string;
+    /** Position in the show's main cast, so a cast list can be billed in order. */
+    order: number;
+};
 export type PalettePerson = { slug: string; name: string; image: string | null; shows: PalettePersonShow[] };
 
 /**
@@ -191,15 +200,16 @@ export async function getPalettePeople(): Promise<PalettePerson[]> {
     const userId = await getCurrentUserId();
 
     const [rows, media] = await Promise.all([
-        prisma.$queryRaw<{ slug: string | null; name: string | null; image: string | null; externalId: string }[]>`
-            select p->>'slug' as slug,
-                   p->>'name' as name,
-                   p->>'profileImage' as image,
-                   c."tmdbExternalId" as "externalId"
+        prisma.$queryRaw<{ slug: string | null; name: string | null; image: string | null; externalId: string; order: number }[]>`
+            select p.value->>'slug' as slug,
+                   p.value->>'name' as name,
+                   p.value->>'profileImage' as image,
+                   c."tmdbExternalId" as "externalId",
+                   p.ordinality::int as "order"
             from "CachedMdlData" c
             join (select distinct "externalId" from "UserMedia" where "userId" = ${userId}) u
               on u."externalId" = c."tmdbExternalId",
-            lateral jsonb_array_elements(coalesce(c."castJson"->'main', '[]'::jsonb)) p
+            lateral jsonb_array_elements(coalesce(c."castJson"->'main', '[]'::jsonb)) with ordinality p(value, ordinality)
         `,
         prisma.userMedia.findMany({
             where: { userId },
@@ -209,10 +219,11 @@ export async function getPalettePeople(): Promise<PalettePerson[]> {
     ]);
 
     // First season wins: one entry per show, linked the way the watchlist links it.
-    const showByExternalId = new Map<string, PalettePersonShow>();
+    const showByExternalId = new Map<string, Omit<PalettePersonShow, "order">>();
     for (const item of media) {
         if (!item.title || showByExternalId.has(item.externalId)) continue;
         showByExternalId.set(item.externalId, {
+            externalId: item.externalId,
             title: item.title,
             href: `/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`,
         });
@@ -225,7 +236,9 @@ export async function getPalettePeople(): Promise<PalettePerson[]> {
 
         const person = bySlug.get(slug) ?? { slug, name: row.name, image: row.image, shows: [] };
         const show = showByExternalId.get(row.externalId);
-        if (show && !person.shows.some((s) => s.href === show.href)) person.shows.push(show);
+        if (show && !person.shows.some((s) => s.externalId === show.externalId)) {
+            person.shows.push({ ...show, order: row.order });
+        }
         bySlug.set(slug, person);
     }
 
