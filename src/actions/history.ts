@@ -4,14 +4,27 @@ import { prisma } from "@/lib/prisma";
 import { ActivityAction } from "@/types/activity";
 import { Prisma } from "@prisma/client";
 import { getCurrentUserId } from "@/lib/session";
+import { fuzzyMatches } from "@/lib/fuzzy";
 
 const PAGE_SIZE = 30;
 
-export async function getActivityLog(cursor?: string, filterActions?: string[]) {
+export async function getActivityLog(cursor?: string, filterActions?: string[], query?: string) {
     const userId = await getCurrentUserId();
     const where: Prisma.ActivityLogWhereInput = { userId };
     if (filterActions && filterActions.length > 0) {
         where.action = { in: filterActions };
+    }
+
+    const search = query?.trim();
+    if (search) {
+        // The fuzzy match runs over the distinct titles this user has logged —
+        // one row per show, not per event — and the feed query then filters on
+        // the winners. Scoring in SQL would mean an extension; scoring on the
+        // client would only ever see the pages already scrolled into view.
+        const titles = await prisma.activityLog.groupBy({ by: ["title"], where: { userId } });
+        const matched = titles.map((t) => t.title).filter((title) => fuzzyMatches(search, title));
+        if (matched.length === 0) return { items: [], nextCursor: null };
+        where.title = { in: matched };
     }
 
     const logs = await prisma.activityLog.findMany({

@@ -6,8 +6,13 @@ import Link from "next/link";
 import { getActivityLog, deleteActivityLog, backfillActivityLog } from "@/actions/history";
 import { ActivityAction } from "@/types/activity";
 import { formatPayloadText } from "@/lib/activity-format";
-import { Plus, Trash2, Play, RefreshCw, Star, FileText, Clock, X, RotateCcw } from "lucide-react";
+import { Plus, Trash2, Play, RefreshCw, Star, FileText, Clock, X, RotateCcw, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+
+// Long enough that a fast typist sends one request per word, short enough that
+// the feed feels like it is keeping up.
+const SEARCH_DEBOUNCE_MS = 250;
 
 // All filterable action types with their display config
 const FILTER_OPTIONS = [
@@ -201,15 +206,20 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [isRegenerating, setIsRegenerating] = useState(false);
     const [filterActions, setFilterActions] = useState<string[]>([]);
+    // `query` is what the input shows, `search` is what the server has been
+    // asked for — they differ for one debounce interval while typing.
+    const [query, setQuery] = useState("");
+    const [search, setSearch] = useState("");
+    const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const loadMoreRef = useRef<HTMLDivElement>(null);
 
-    // Re-fetch from the top whenever filters change
+    // Re-fetch from the top whenever filters or the search change
     useEffect(() => {
         let cancelled = false;
         (async () => {
             setIsLoading(true);
             try {
-                const data = await getActivityLog(undefined, filterActions.length > 0 ? filterActions : undefined);
+                const data = await getActivityLog(undefined, filterActions.length > 0 ? filterActions : undefined, search || undefined);
                 if (!cancelled) {
                     setItems(data.items);
                     setNextCursor(data.nextCursor);
@@ -223,8 +233,23 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
         return () => {
             cancelled = true;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filterActions]);
+    }, [filterActions, search]);
+
+    // Debounced from the change handler rather than an effect, so the input
+    // stays uncontrolled-fast and only the fetch waits.
+    useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
+
+    const handleQueryChange = (value: string) => {
+        setQuery(value);
+        if (debounceRef.current) clearTimeout(debounceRef.current);
+        debounceRef.current = setTimeout(() => setSearch(value.trim()), SEARCH_DEBOUNCE_MS);
+    };
+
+    const clearSearch = () => {
+        if (debounceRef.current) clearTimeout(debounceRef.current);
+        setQuery("");
+        setSearch("");
+    };
 
     const toggleFilter = (action: string) => {
         setFilterActions((prev) => (prev.includes(action) ? prev.filter((a) => a !== action) : [...prev, action]));
@@ -238,7 +263,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
         setIsRegenerating(true);
         try {
             await backfillActivityLog();
-            const data = await getActivityLog(undefined, filterActions.length > 0 ? filterActions : undefined);
+            const data = await getActivityLog(undefined, filterActions.length > 0 ? filterActions : undefined, search || undefined);
             setItems(data.items);
             setNextCursor(data.nextCursor);
         } catch (e) {
@@ -252,7 +277,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
         if (!nextCursor || isLoading) return;
         setIsLoading(true);
         try {
-            const data = await getActivityLog(nextCursor, filterActions.length > 0 ? filterActions : undefined);
+            const data = await getActivityLog(nextCursor, filterActions.length > 0 ? filterActions : undefined, search || undefined);
             setItems((prev) => [...prev, ...data.items]);
             setNextCursor(data.nextCursor);
         } catch (e) {
@@ -260,7 +285,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
         } finally {
             setIsLoading(false);
         }
-    }, [nextCursor, isLoading, filterActions]);
+    }, [nextCursor, isLoading, filterActions, search]);
 
     useEffect(() => {
         const el = loadMoreRef.current;
@@ -277,7 +302,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
 
     const isEmpty = items.length === 0 && !isLoading;
 
-    if (isEmpty && filterActions.length === 0) {
+    if (isEmpty && filterActions.length === 0 && search.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-24 text-center">
                 <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
@@ -290,51 +315,75 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
     }
 
     const groups = groupByDate(items);
-    const showEmptyFiltered = isEmpty && filterActions.length > 0;
+    const showEmptyFiltered = isEmpty && (filterActions.length > 0 || search.length > 0);
 
     return (
         <div className="space-y-6">
-            {/* Filter bar */}
-            <div className="flex items-center justify-between gap-3 flex-wrap">
-                <div className="flex items-center gap-1.5 flex-wrap">
-                    {FILTER_OPTIONS.map((opt) => {
-                        const isActive = filterActions.includes(opt.action);
-                        return (
-                            <button
-                                key={opt.action}
-                                onClick={() => toggleFilter(opt.action)}
-                                className={cn(
-                                    "h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer",
-                                    isActive ? opt.activeClass : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white",
-                                )}
-                            >
-                                {opt.label}
-                            </button>
-                        );
-                    })}
-                    {filterActions.length > 0 && (
+            {/* Search + filter bar */}
+            <div className="space-y-2.5">
+                <div className="relative group">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-primary transition-colors pointer-events-none" />
+                    <Input
+                        value={query}
+                        onChange={(e) => handleQueryChange(e.target.value)}
+                        placeholder="Search your history…"
+                        aria-label="Search your history"
+                        className="w-full h-9 pl-9 pr-9 bg-white/5 border-0 rounded-lg text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:bg-white/8 transition-all"
+                    />
+                    {query.length > 0 && (
                         <button
-                            onClick={() => setFilterActions([])}
-                            className="h-7 px-2 rounded-lg text-xs text-gray-600 hover:text-white transition-colors flex items-center gap-1"
+                            onClick={clearSearch}
+                            aria-label="Clear search"
+                            className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded text-white/30 hover:text-white transition-colors cursor-pointer"
                         >
-                            <X className="h-3 w-3" />
-                            Clear
+                            <X className="h-3.5 w-3.5" />
                         </button>
                     )}
                 </div>
-                <button
-                    onClick={handleRegenerate}
-                    disabled={isRegenerating}
-                    className="flex items-center gap-1.5 text-xs text-white/20 hover:text-white/50 transition-colors disabled:opacity-50 shrink-0"
-                >
-                    <RotateCcw className={cn("h-3 w-3", isRegenerating && "animate-spin")} />
-                    {isRegenerating ? "Regenerating…" : "Regenerate historical data"}
-                </button>
+
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                        {FILTER_OPTIONS.map((opt) => {
+                            const isActive = filterActions.includes(opt.action);
+                            return (
+                                <button
+                                    key={opt.action}
+                                    onClick={() => toggleFilter(opt.action)}
+                                    className={cn(
+                                        "h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer",
+                                        isActive ? opt.activeClass : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white",
+                                    )}
+                                >
+                                    {opt.label}
+                                </button>
+                            );
+                        })}
+                        {filterActions.length > 0 && (
+                            <button
+                                onClick={() => setFilterActions([])}
+                                className="h-7 px-2 rounded-lg text-xs text-gray-600 hover:text-white transition-colors flex items-center gap-1"
+                            >
+                                <X className="h-3 w-3" />
+                                Clear
+                            </button>
+                        )}
+                    </div>
+                    <button
+                        onClick={handleRegenerate}
+                        disabled={isRegenerating}
+                        className="flex items-center gap-1.5 text-xs text-white/20 hover:text-white/50 transition-colors disabled:opacity-50 shrink-0"
+                    >
+                        <RotateCcw className={cn("h-3 w-3", isRegenerating && "animate-spin")} />
+                        {isRegenerating ? "Regenerating…" : "Regenerate historical data"}
+                    </button>
+                </div>
             </div>
 
             {showEmptyFiltered && (
                 <div className="flex flex-col items-center justify-center py-16 text-center">
-                    <p className="text-sm font-medium text-white/40">No activity matches these filters</p>
+                    <p className="text-sm font-medium text-white/40">
+                        {search.length > 0 ? `No activity matches “${search}”` : "No activity matches these filters"}
+                    </p>
                 </div>
             )}
 
