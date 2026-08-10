@@ -8,10 +8,12 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
     getAiringToday,
     getPaletteStats,
+    getPalettePeople,
     getPaletteWatchlist,
     undoLastProgress,
     type PaletteAiringEntry,
     type PaletteItem,
+    type PalettePerson,
     type PaletteStat,
 } from "@/actions/palette";
 import { updateUserMedia, deleteUserMedia } from "@/actions/media";
@@ -37,6 +39,7 @@ import {
     Star,
     Trash2,
     Tv,
+    User,
 } from "lucide-react";
 
 type PageEntry = { label: string; href: string; icon: React.ElementType; keywords: string };
@@ -56,6 +59,7 @@ const WATCH_STATUSES = ["Watching", "Completed", "On Hold", "Dropped", "Plan to 
 export const OPEN_PALETTE_EVENT = "trackr:open-palette";
 
 const MAX_MEDIA_ROWS = 7;
+const MAX_PEOPLE_ROWS = 5;
 const MAX_PAGE_ROWS = 4;
 
 /**
@@ -77,6 +81,7 @@ type Mode =
     | { kind: "root" }
     | { kind: "menu"; menu: MenuId }
     | { kind: "item"; item: PaletteItem }
+    | { kind: "person"; person: PalettePerson }
     | { kind: "status"; item: PaletteItem }
     | { kind: "prompt"; item: PaletteItem; field: "episode" | "score" }
     | { kind: "confirm"; item: PaletteItem };
@@ -87,6 +92,7 @@ type Row = { key: string; section: string | null } & (
     | { kind: "search"; query: string }
     | { kind: "command"; label: string; icon: React.ElementType; keywords: string; danger?: boolean; run: () => void }
     | { kind: "airing"; entry: PaletteAiringEntry }
+    | { kind: "person"; person: PalettePerson }
     | { kind: "fact"; label: string }
 );
 
@@ -108,6 +114,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const [mode, setMode] = useState<Mode>({ kind: "root" });
     const [query, setQuery] = useState("");
     const [items, setItems] = useState<PaletteItem[] | null>(null);
+    const [people, setPeople] = useState<PalettePerson[]>([]);
     const [active, setActive] = useState(0);
     const [busy, setBusy] = useState(false);
     const [airing, setAiring] = useState<PaletteAiringEntry[] | null>(null);
@@ -129,6 +136,14 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const load = useCallback(async () => {
         if (loadingRef.current) return;
         loadingRef.current = true;
+        // Deliberately not awaited together: titles are what the palette is for,
+        // and holding them until the cast index lands would make every open as
+        // slow as the slower of the two. The cast is also allowed to fail on its
+        // own — a palette without actors is still a palette.
+        void getPalettePeople()
+            .then(setPeople)
+            .catch(() => {});
+
         try {
             const fetched = await getPaletteWatchlist();
             itemsRef.current = fetched;
@@ -440,6 +455,37 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         [airing, facts, goTo, globalCommands],
     );
 
+    const personActions = useCallback(
+        (person: PalettePerson): Row[] => {
+            const rows: Row[] = [
+                {
+                    kind: "command",
+                    key: "person-open",
+                    section: null,
+                    label: "Open page",
+                    icon: ChevronRight,
+                    keywords: "open go to page view profile",
+                    run: () => goTo(`/people/${person.slug}`),
+                },
+            ];
+            // The index query already knew these, so the answer to "what have I
+            // watched with them?" is here rather than a scrape away.
+            person.shows.forEach((show, i) => {
+                rows.push({
+                    kind: "command",
+                    key: `person-show-${show.href}`,
+                    section: i === 0 ? `${person.shows.length} ${person.shows.length === 1 ? "show" : "shows"} you've watched together` : null,
+                    label: show.title,
+                    icon: Tv,
+                    keywords: show.title,
+                    run: () => goTo(show.href),
+                });
+            });
+            return rows;
+        },
+        [goTo],
+    );
+
     const itemActions = useCallback(
         (item: PaletteItem): Row[] => {
             const rows: Row[] = [];
@@ -584,6 +630,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
 
         if (mode.kind === "menu") return filterByQuery(menuRows(mode.menu)).rows;
 
+        if (mode.kind === "person") return filterByQuery(personActions(mode.person)).rows;
+
         if (mode.kind === "item") return filterByQuery(itemActions(mode.item)).rows;
 
         if (trimmed.length === 0) {
@@ -614,6 +662,14 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .sort((a, b) => b.score - a.score || a.item.season - b.item.season)
             .slice(0, MAX_MEDIA_ROWS);
 
+        const scoredPeople = people
+            .map((person) => ({ person, score: fuzzyScore(trimmed, person.name) }))
+            .filter((p): p is { person: PalettePerson; score: number } => p.score !== null)
+            // Appearances break ties: someone in five of your shows sits above a
+            // one-off with the same name score.
+            .sort((a, b) => b.score - a.score || b.person.shows.length - a.person.shows.length)
+            .slice(0, MAX_PEOPLE_ROWS);
+
         const scoredPages = PAGES.map((page) => ({ page, score: fuzzyScore(trimmed, `${page.label} ${page.keywords}`) }))
             .filter((p): p is { page: PageEntry; score: number } => p.score !== null)
             .sort((a, b) => b.score - a.score)
@@ -643,6 +699,11 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 heading: "Your watchlist",
             },
             {
+                rows: scoredPeople.map(({ person }) => ({ kind: "person", person, key: person.slug, section: null })),
+                best: scoredPeople[0]?.score ?? -Infinity,
+                heading: "People",
+            },
+            {
                 rows: scoredPages.map(({ page }) => ({ kind: "page", page, key: page.href, section: null })),
                 best: scoredPages[0]?.score ?? -Infinity,
                 heading: "Go to",
@@ -656,7 +717,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .flatMap((g) => withSection(g.rows, g.heading));
 
         return [...ordered, { kind: "search", query: trimmed, key: "search", section: null }];
-    }, [query, items, mode, itemActions, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
+    }, [query, items, people, mode, itemActions, personActions, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -665,6 +726,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             if (row.kind === "media") goTo(row.item.href);
             else if (row.kind === "page") goTo(row.page.href);
             else if (row.kind === "airing") goTo(row.entry.href);
+            else if (row.kind === "person") goTo(`/people/${row.person.slug}`);
             else if (row.kind === "search") goTo(`/search?q=${encodeURIComponent(row.query)}`);
             else if (row.kind === "fact") goTo("/stats"); // a number is not a destination; its page is
             else row.run();
@@ -677,7 +739,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             close();
             return;
         }
-        if (mode.kind === "item" || mode.kind === "menu") {
+        if (mode.kind === "item" || mode.kind === "menu" || mode.kind === "person") {
             enterMode({ kind: "root" });
             return;
         }
@@ -728,6 +790,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             const row = rows[clampedActive];
             if (!row) return;
             if (mode.kind === "root" && row.kind === "media") enterMode({ kind: "item", item: row.item });
+            else if (mode.kind === "root" && row.kind === "person") enterMode({ kind: "person", person: row.person });
             else runRow(row);
         } else if (e.key === "Backspace" && query.length === 0 && mode.kind !== "root") {
             e.preventDefault();
@@ -746,9 +809,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         listRef.current?.querySelector('[data-active="true"]')?.scrollIntoView({ block: "nearest" });
     }, [active, rows]);
 
-    const scopedItem = mode.kind === "root" || mode.kind === "menu" ? null : mode.item;
+    const scopedItem = mode.kind === "root" || mode.kind === "menu" || mode.kind === "person" ? null : mode.item;
     const MENU_TITLES: Record<MenuId, string> = { list: "My list", airing: "Airing today", stats: "My stats", help: "Help" };
-    const crumb = scopedItem ? scopedItem.title : mode.kind === "menu" ? MENU_TITLES[mode.menu] : null;
+    const crumb = scopedItem ? scopedItem.title : mode.kind === "person" ? mode.person.name : mode.kind === "menu" ? MENU_TITLES[mode.menu] : null;
     const placeholder =
         mode.kind === "prompt"
             ? mode.field === "episode"
@@ -758,7 +821,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
               ? "Pick a status…"
               : mode.kind === "confirm"
                 ? "This cannot be undone"
-                : mode.kind === "item"
+                : mode.kind === "item" || mode.kind === "person"
                   ? "What would you like to do?"
                   : mode.kind === "menu"
                     ? "Filter this list…"
@@ -865,7 +928,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         const isActive = i === clampedActive;
                         const RowIcon = row.kind === "page" ? row.page.icon : row.kind === "command" ? row.icon : null;
                         const danger = row.kind === "command" && row.danger;
-                        const hasArtwork = row.kind === "media" || row.kind === "airing";
+                        const hasArtwork = row.kind === "media" || row.kind === "airing" || row.kind === "person";
 
                         return (
                             <div key={row.key}>
@@ -885,7 +948,34 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         hasArtwork ? "py-2" : "py-1.5"
                                     } ${isActive ? "bg-white/8" : "hover:bg-white/4"}`}
                                 >
-                                    {row.kind === "airing" ? (
+                                    {row.kind === "person" ? (
+                                        <>
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                                {row.person.image ? (
+                                                    <Image
+                                                        unoptimized
+                                                        src={row.person.image}
+                                                        alt=""
+                                                        width={28}
+                                                        height={40}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                        <User className="h-3 w-3 text-gray-600" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <span className="flex-1 min-w-0">
+                                                <span className="block text-sm text-white truncate">{row.person.name}</span>
+                                                <span className="block text-xs text-gray-500 truncate">
+                                                    {row.person.shows.length === 1
+                                                        ? "in 1 show you watch"
+                                                        : `in ${row.person.shows.length} shows you watch`}
+                                                </span>
+                                            </span>
+                                        </>
+                                    ) : row.kind === "airing" ? (
                                         <>
                                             <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
                                                 {row.entry.poster ? (
@@ -955,9 +1045,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                     </>
                                                 ) : row.kind === "page" ? (
                                                     row.page.label
-                                                ) : (
+                                                ) : row.kind === "command" ? (
                                                     row.label
-                                                )}
+                                                ) : null}
                                             </span>
                                         </>
                                     )}

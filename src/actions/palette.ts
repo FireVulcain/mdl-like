@@ -6,6 +6,7 @@ import { ActivityAction } from "@/types/activity";
 import { updateUserMedia } from "@/actions/media";
 import { getScheduleEntries } from "@/actions/schedule";
 import { getDashboardStats } from "@/actions/stats";
+import { mdlPersonSlug } from "@/lib/person-links";
 
 export type PaletteItem = {
     id: string;
@@ -170,4 +171,65 @@ export async function getPaletteStats(): Promise<PaletteStat[]> {
         ...(stats.topGenres[0] ? [{ key: "genre", label: `Most watched genre: ${stats.topGenres[0].name}` }] : []),
         { key: "completion", label: `${Math.round(stats.completionRate)}% completion of everything started` },
     ];
+}
+
+export type PalettePersonShow = { title: string; href: string };
+export type PalettePerson = { slug: string; name: string; image: string | null; shows: PalettePersonShow[] };
+
+/**
+ * The actors in the shows you watch, for the palette's local index.
+ *
+ * Main cast only. Adding support roles takes this from 488 people to 2,845 —
+ * every twelfth-billed part across the whole watchlist — which is six times the
+ * payload for names nobody would recognise as being in anything. Main cast is
+ * ~29KB, small enough to sit beside the title index and stay instant.
+ *
+ * The join already knows which of your shows each person is in, so the action
+ * level ("what have I watched with X?") costs nothing extra.
+ */
+export async function getPalettePeople(): Promise<PalettePerson[]> {
+    const userId = await getCurrentUserId();
+
+    const [rows, media] = await Promise.all([
+        prisma.$queryRaw<{ slug: string | null; name: string | null; image: string | null; externalId: string }[]>`
+            select p->>'slug' as slug,
+                   p->>'name' as name,
+                   p->>'profileImage' as image,
+                   c."tmdbExternalId" as "externalId"
+            from "CachedMdlData" c
+            join (select distinct "externalId" from "UserMedia" where "userId" = ${userId}) u
+              on u."externalId" = c."tmdbExternalId",
+            lateral jsonb_array_elements(coalesce(c."castJson"->'main', '[]'::jsonb)) p
+        `,
+        prisma.userMedia.findMany({
+            where: { userId },
+            select: { externalId: true, source: true, season: true, title: true },
+            orderBy: { season: "asc" },
+        }),
+    ]);
+
+    // First season wins: one entry per show, linked the way the watchlist links it.
+    const showByExternalId = new Map<string, PalettePersonShow>();
+    for (const item of media) {
+        if (!item.title || showByExternalId.has(item.externalId)) continue;
+        showByExternalId.set(item.externalId, {
+            title: item.title,
+            href: `/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`,
+        });
+    }
+
+    const bySlug = new Map<string, PalettePerson>();
+    for (const row of rows) {
+        const slug = mdlPersonSlug(row.slug);
+        if (!slug || !row.name) continue;
+
+        const person = bySlug.get(slug) ?? { slug, name: row.name, image: row.image, shows: [] };
+        const show = showByExternalId.get(row.externalId);
+        if (show && !person.shows.some((s) => s.href === show.href)) person.shows.push(show);
+        bySlug.set(slug, person);
+    }
+
+    // Appearances are the ranking the join hands us for free: someone in five of
+    // your shows belongs above a one-off, whatever the fuzzy score says.
+    return [...bySlug.values()].sort((a, b) => b.shows.length - a.shows.length || a.name.localeCompare(b.name));
 }
