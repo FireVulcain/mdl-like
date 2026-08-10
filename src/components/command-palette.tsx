@@ -24,6 +24,7 @@ import {
     ChevronRight,
     Clapperboard,
     CheckCheck,
+    CircleQuestionMark,
     CornerDownLeft,
     History,
     Home,
@@ -69,7 +70,7 @@ const MAX_PAGE_ROWS = 4;
  * until the query asks for it. Ten "Show my …" rows would be the same features
  * and a worse palette.
  */
-type MenuId = "list" | "airing" | "stats";
+type MenuId = "list" | "airing" | "stats" | "help";
 
 type Mode =
     | { kind: "root" }
@@ -328,6 +329,52 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         [enterMode, airing, facts],
     );
 
+    // One definition, used by the root list and by help. Two lists of the same
+    // commands would drift the first time one is added.
+    const globalCommands = useCallback(
+        (): Row[] => [
+            {
+                kind: "command",
+                key: "menu-list",
+                section: null,
+                label: "My list…",
+                icon: Bookmark,
+                // Every status is a keyword, so typing "dropped" finds the menu
+                // without the menu having to spell out one row per status.
+                keywords: "show my list watchlist watching completed plan to watch on hold dropped airing filter",
+                run: () => openMenu("list"),
+            },
+            {
+                kind: "command",
+                key: "menu-airing",
+                section: null,
+                label: "What's airing today…",
+                icon: CalendarDays,
+                keywords: "airing today episodes releases schedule calendar tonight new",
+                run: () => openMenu("airing"),
+            },
+            {
+                kind: "command",
+                key: "menu-stats",
+                section: null,
+                label: "My stats…",
+                icon: BarChart3,
+                keywords: "stats how many hours episodes watched average rating genre completion",
+                run: () => openMenu("stats"),
+            },
+            {
+                kind: "command",
+                key: "undo",
+                section: null,
+                label: "Undo last watched episode",
+                icon: RotateCcw,
+                keywords: "undo revert last watched episode mistake",
+                run: () => void undo(),
+            },
+        ],
+        [openMenu, undo],
+    );
+
     const menuRows = useCallback(
         (menu: MenuId): Row[] => {
             if (menu === "list") {
@@ -352,6 +399,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     },
                 ];
             }
+
+            if (menu === "help") return globalCommands();
 
             if (menu === "airing") {
                 const rows: Row[] = (airing ?? []).map((entry) => ({ kind: "airing", entry, key: entry.key, section: null }));
@@ -379,7 +428,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             });
             return rows;
         },
-        [airing, facts, goTo],
+        [airing, facts, goTo, globalCommands],
     );
 
     const itemActions = useCallback(
@@ -562,43 +611,15 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .slice(0, MAX_PAGE_ROWS);
 
         const commands = filterByQuery([
+            ...globalCommands(),
             {
                 kind: "command",
-                key: "menu-list",
+                key: "menu-help",
                 section: null,
-                label: "My list…",
-                icon: Bookmark,
-                // Every status is a keyword, so typing "dropped" finds the menu
-                // without the menu having to spell out one row per status.
-                keywords: "show my list watchlist watching completed plan to watch on hold dropped airing filter",
-                run: () => openMenu("list"),
-            },
-            {
-                kind: "command",
-                key: "menu-airing",
-                section: null,
-                label: "What's airing today…",
-                icon: CalendarDays,
-                keywords: "airing today episodes releases schedule calendar tonight new",
-                run: () => openMenu("airing"),
-            },
-            {
-                kind: "command",
-                key: "menu-stats",
-                section: null,
-                label: "My stats…",
-                icon: BarChart3,
-                keywords: "stats how many hours episodes watched average rating genre completion",
-                run: () => openMenu("stats"),
-            },
-            {
-                kind: "command",
-                key: "undo",
-                section: null,
-                label: "Undo last watched episode",
-                icon: RotateCcw,
-                keywords: "undo revert last watched episode mistake",
-                run: () => void undo(),
+                label: "Help — everything the palette can do",
+                icon: CircleQuestionMark,
+                keywords: "help commands list what can i do keyboard shortcuts guide",
+                run: () => openMenu("help"),
             },
         ]);
 
@@ -626,7 +647,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .flatMap((g) => withSection(g.rows, g.heading));
 
         return [...ordered, { kind: "search", query: trimmed, key: "search", section: null }];
-    }, [query, items, mode, itemActions, menuRows, openMenu, remove, setStatus, undo, enterMode]);
+    }, [query, items, mode, itemActions, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -717,7 +738,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     }, [active, rows]);
 
     const scopedItem = mode.kind === "root" || mode.kind === "menu" ? null : mode.item;
-    const MENU_TITLES: Record<MenuId, string> = { list: "My list", airing: "Airing today", stats: "My stats" };
+    const MENU_TITLES: Record<MenuId, string> = { list: "My list", airing: "Airing today", stats: "My stats", help: "Help" };
     const crumb = scopedItem ? scopedItem.title : mode.kind === "menu" ? MENU_TITLES[mode.menu] : null;
     const placeholder =
         mode.kind === "prompt"
@@ -773,6 +794,12 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         value={query}
                         inputMode={mode.kind === "prompt" ? "decimal" : "text"}
                         onChange={(e) => {
+                            // "?" is the one character that is a question rather
+                            // than a search term.
+                            if (e.target.value === "?" && mode.kind === "root") {
+                                openMenu("help");
+                                return;
+                            }
                             setQuery(e.target.value);
                             setActive(0);
                         }}
@@ -807,6 +834,20 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         <p className="px-4 py-6 text-center text-xs text-gray-500">Counting…</p>
                     )}
 
+                    {mode.kind === "menu" && mode.menu === "help" && (
+                        <div className="px-4 pb-2 space-y-1 text-xs text-gray-500">
+                            <p>
+                                Type to search your watchlist. <kbd className="font-sans text-gray-400">tab</kbd> or{" "}
+                                <kbd className="font-sans text-gray-400">→</kbd> opens a title&rsquo;s actions,{" "}
+                                <kbd className="font-sans text-gray-400">esc</kbd> goes back a level.
+                            </p>
+                            <p>
+                                On a title: mark the next episode, mark them all, pick a specific one, change status, rate
+                                it, or remove it. Opening the palette from a title&rsquo;s own page starts there.
+                            </p>
+                        </div>
+                    )}
+
                     {items !== null && rows.length === 0 && mode.kind !== "prompt" && mode.kind !== "menu" && (
                         <p className="px-4 py-6 text-center text-xs text-gray-500">Nothing matches that.</p>
                     )}
@@ -815,6 +856,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         const isActive = i === clampedActive;
                         const RowIcon = row.kind === "page" ? row.page.icon : row.kind === "command" ? row.icon : null;
                         const danger = row.kind === "command" && row.danger;
+                        const hasArtwork = row.kind === "media" || row.kind === "airing";
 
                         return (
                             <div key={row.key}>
@@ -827,9 +869,12 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                     data-active={isActive}
                                     onClick={() => runRow(row)}
                                     onMouseMove={() => setActive(i)}
-                                    className={`w-full flex items-center gap-3 px-4 py-2 text-left cursor-pointer transition-colors ${
-                                        isActive ? "bg-white/8" : "hover:bg-white/4"
-                                    }`}
+                                    className={`w-full flex items-center gap-3 px-4 text-left cursor-pointer transition-colors ${
+                                        // Only the two-line rows with artwork need
+                                        // the taller box; a one-line command in a
+                                        // poster-sized slot is mostly air.
+                                        hasArtwork ? "py-2" : "py-1.5"
+                                    } ${isActive ? "bg-white/8" : "hover:bg-white/4"}`}
                                 >
                                     {row.kind === "airing" ? (
                                         <>
@@ -856,7 +901,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         </>
                                     ) : row.kind === "fact" ? (
                                         <>
-                                            <span className="shrink-0 w-7 h-10 flex items-center justify-center">
+                                            <span className="shrink-0 w-7 flex items-center justify-center">
                                                 <BarChart3 className="h-4 w-4 text-gray-600" />
                                             </span>
                                             <span className="flex-1 min-w-0 text-sm text-gray-300 truncate">{row.label}</span>
@@ -886,7 +931,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         </>
                                     ) : (
                                         <>
-                                            <span className="shrink-0 w-7 h-10 flex items-center justify-center">
+                                            <span className="shrink-0 w-7 flex items-center justify-center">
                                                 {RowIcon ? (
                                                     <RowIcon className={`h-4 w-4 ${danger ? "text-rose-400/80" : "text-gray-500"}`} />
                                                 ) : (
@@ -930,6 +975,12 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                             <kbd className="font-sans text-gray-500">esc</kbd> back
                         </span>
                     )}
+                    <button
+                        onClick={() => openMenu("help")}
+                        className="text-gray-600 hover:text-gray-300 transition-colors cursor-pointer"
+                    >
+                        <kbd className="font-sans text-gray-500">?</kbd> help
+                    </button>
                     {mode.kind === "root" && items !== null && items.length > 0 && (
                         <span className="ml-auto">{items.length} titles indexed</span>
                     )}
