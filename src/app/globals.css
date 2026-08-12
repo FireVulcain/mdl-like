@@ -247,9 +247,15 @@
 /* Brief emerald flash when scrolling to an episode card via the pager button */
 /* Marks the episode a jump landed on.
  *
- * Decay only: it starts at full tint and goes to nothing, so there is no moment
- * where something appears. The previous version faded an outline IN at 15% and
- * back out, and that arrival is what read as a blink.
+ * Runs alongside the scroll rather than after it, so the card is already tinted
+ * by the time it arrives in view. Waiting for `scrollend` split the gesture into
+ * two beats — travel, then a separate thing happening — and no easing fixes a
+ * sequencing problem.
+ *
+ * A short ease-in at the very start, because going from nothing to full tint in
+ * a single frame is still an appearance; the earlier version had no fade at all
+ * and that instantaneous jump is exactly what read as abrupt. It is spent during
+ * the scroll, where nobody is looking at the card yet.
  *
  * The tint is a spread box-shadow as well as a background because the card's
  * anchor has no box of its own and the thumbnail above the text is opaque —
@@ -257,10 +263,20 @@
  * extended plate, not a glow.
  */
 @keyframes episode-highlight {
-    0%,
-    35% {
+    0% {
+        background-color: rgb(52 211 153 / 0);
+        box-shadow: 0 0 0 8px rgb(52 211 153 / 0);
+        animation-timing-function: ease-out;
+    }
+    10% {
         background-color: rgb(52 211 153 / 0.16);
         box-shadow: 0 0 0 8px rgb(52 211 153 / 0.16);
+        animation-timing-function: linear;
+    }
+    50% {
+        background-color: rgb(52 211 153 / 0.16);
+        box-shadow: 0 0 0 8px rgb(52 211 153 / 0.16);
+        animation-timing-function: ease-in-out;
     }
     100% {
         background-color: rgb(52 211 153 / 0);
@@ -270,8 +286,10 @@
 
 .episode-highlight {
     border-radius: 0.75rem;
-    /* Held for the first third so it can be read, then a long quiet decay. */
-    animation: episode-highlight 1.4s ease-out;
+    /* 220ms in — spent travelling — then held long enough to outlast any smooth
+       scroll, then a long decay. Linear here: the shape lives in the keyframes,
+       and an animation-level curve would distort the hold along with the rest. */
+    animation: episode-highlight 2.2s linear;
 }
 
 @keyframes pulse {

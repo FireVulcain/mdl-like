@@ -10,26 +10,14 @@ export function ScrollToEpisodeButton({ episodeNumber, label }: { episodeNumber:
         if (!el) return;
         el.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        const highlight = () => {
-            el.classList.remove("episode-highlight");
-            void el.offsetWidth; // force reflow so the animation restarts
-            el.classList.add("episode-highlight");
-            el.addEventListener("animationend", () => el.classList.remove("episode-highlight"), { once: true });
-        };
-
-        // Play the highlight once the smooth scroll settles. `scrollend` is the precise
-        // signal; a timeout backs it up when it doesn't fire (no scroll needed, or
-        // unsupported), and whichever wins cancels the other.
-        let done = false;
-        const run = () => {
-            if (done) return;
-            done = true;
-            window.removeEventListener("scrollend", run);
-            clearTimeout(fallback);
-            highlight();
-        };
-        const fallback = setTimeout(run, 700);
-        window.addEventListener("scrollend", run, { once: true });
+        // Started now, not on `scrollend`. The mark and the travel are one gesture:
+        // the card is already tinted when it comes into view, rather than arriving
+        // and then having something happen to it. Its hold phase outlasts a smooth
+        // scroll, so the mark is still there however far the jump was.
+        el.classList.remove("episode-highlight");
+        void el.offsetWidth; // force reflow so a second click replays it
+        el.classList.add("episode-highlight");
+        el.addEventListener("animationend", () => el.classList.remove("episode-highlight"), { once: true });
     };
     return (
         <button
