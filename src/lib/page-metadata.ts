@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { mediaService } from "@/services/media.service";
-import { mdlTitleFromLink } from "@/lib/kuryana";
+import { fetchTMDB, type TMDBMedia } from "@/lib/tmdb";
+import { kuryanaGetDetails, mdlTitleFromLink } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 /**
@@ -25,14 +25,54 @@ function summarize(text: string | null | undefined, limit = 160): string | undef
 }
 
 /**
+ * Title, year and synopsis, without building the rest.
+ *
+ * getDetails answers this too, but it also maps credits, recommendations,
+ * images, videos and ratings — measured at roughly 60ms of pure CPU to produce
+ * one string. The requests here are byte-identical to the ones the page makes,
+ * so React's per-request memoization returns the same response object and only
+ * the mapping is skipped.
+ */
+async function mediaBasics(id: string): Promise<{ title: string; year: string; synopsis: string } | null> {
+    const dash = id.indexOf("-");
+    const source = id.slice(0, dash);
+    const externalId = id.slice(dash + 1);
+
+    if (source === "mdl") {
+        const details = await kuryanaGetDetails(externalId);
+        const d = details?.data;
+        return d ? { title: d.title, year: d.year || "", synopsis: "" } : null;
+    }
+
+    const params = {
+        append_to_response: "credits,recommendations,images,content_ratings,videos",
+        include_image_language: "en,null",
+    };
+    let details: TMDBMedia;
+    try {
+        details = await fetchTMDB<TMDBMedia>(`/tv/${externalId}`, params);
+    } catch {
+        details = await fetchTMDB<TMDBMedia>(`/movie/${externalId}`, {
+            append_to_response: "credits,recommendations,images,release_dates,videos",
+            include_image_language: "en,null",
+        });
+    }
+    return {
+        title: details.title || details.name || "",
+        year: (details.release_date || details.first_air_date || "").split("-")[0],
+        synopsis: details.overview ?? "",
+    };
+}
+
+/**
  * A media page's title, optionally prefixed for a sub-page: "Cast · Healer".
  *
  * Falls back to the section alone rather than to "Untitled" — a fetch that came
  * back empty is not worth announcing in the tab.
  */
 export async function mediaMetadata(id: string, section?: string): Promise<Metadata> {
-    const media = await mediaService.getDetails(id).catch(() => null);
-    if (!media) return { title: section ?? "Media" };
+    const media = await mediaBasics(id).catch(() => null);
+    if (!media?.title) return { title: section ?? "Media" };
 
     // MDL titles arrive with the year already in them ("Our Happy Days (2026)"),
     // TMDB's do not — appending unconditionally gave "… (2026) (2026)".
