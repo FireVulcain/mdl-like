@@ -37,6 +37,25 @@ function extractMdlId(slug: string): string | null {
     return match ? match[1] : null;
 }
 
+// MDL's category names are singular; only the common ones get a plural worth
+// writing down. Anything else — Producer, Narrator, "Screenwriter & Director" —
+// reads fine as it comes and is shown verbatim rather than guessed at.
+const CATEGORY_LABELS: Record<string, string> = {
+    Drama: "Dramas",
+    Movie: "Movies",
+    "TV Show": "TV Shows",
+    Special: "Specials",
+};
+
+// Acting credits first, in the order the page has always shown them, with the
+// new TV Shows after Movies. Everything else follows alphabetically, so a
+// category nobody anticipated still lands somewhere sensible.
+const CATEGORY_ORDER = ["Drama", "Movie", "TV Show", "Special"];
+function categoryRank(name: string): number {
+    const index = CATEGORY_ORDER.indexOf(name);
+    return index === -1 ? CATEGORY_ORDER.length : index;
+}
+
 function extractFullMdlSlug(link: string): string | null {
     const match = link.match(/mydramalist\.com\/(.+)$/);
     return match ? match[1] : null;
@@ -60,7 +79,7 @@ function WorkCard({
     // The person endpoint returns an empty title.name; fall back to the work's URL
     const title = work.title.name || mdlTitleFromLink(work.title.link);
     const year = typeof work.year === "number" ? work.year : "TBA";
-    const character = work.role.name || null;
+    const character = work.role?.name || null;
 
     const card = (
         <div className="space-y-2">
@@ -187,12 +206,23 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     if (!data) notFound();
     const details = data.details ?? {};
 
-    const dramas = sortWorks(data.works.Drama ?? []);
-    const movies = sortWorks(data.works.Movie ?? []);
-    const specials = sortWorks(data.works.Special ?? []);
+    // Every category MDL returned, not a fixed three. "TV Show" alone is over a
+    // thousand works across the cached people and was invisible; Producer,
+    // Director and Narrator turn up too. The scraper already merges same-named
+    // tables into one key, which is what fixed the split "Drama" columns — this
+    // reads those keys and adds nothing back.
+    const categories = Object.entries(data.works ?? {})
+        .filter((entry): entry is [string, KuryanaWorkItem[]] => Array.isArray(entry[1]) && entry[1].length > 0)
+        .map(([name, works]) => ({
+            name,
+            label: CATEGORY_LABELS[name] ?? name,
+            anchor: `section-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+            works: sortWorks(works),
+        }))
+        .sort((a, b) => categoryRank(a.name) - categoryRank(b.name) || a.name.localeCompare(b.name));
 
     // Batch cross-reference all work items against our CachedMdlData
-    const allWorks = [...dramas, ...movies, ...specials];
+    const allWorks = categories.flatMap((c) => c.works);
     const mdlIds = allWorks.map((w) => extractMdlId(w._slug)).filter(Boolean) as string[];
 
     const [cached, seasonLinkRows, aliasRows] =
@@ -240,24 +270,17 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     const linkedEntries: LinkedEntry[] = [];
     const seenTmdbIds = new Set<string>();
 
-    for (const work of [...dramas, ...specials]) {
-        const id = extractMdlId(work._slug);
-        if (id && mdlToTmdb.has(id)) {
+    for (const category of categories) {
+        for (const work of category.works) {
+            // Crew credits name the format themselves; acting credits are filed
+            // under it. Either way only a movie is a movie on TMDB.
+            const mediaType = (work.type ?? category.name) === "Movie" ? "movie" : "tv";
+            const id = extractMdlId(work._slug);
+            if (!id || !mdlToTmdb.has(id)) continue;
             const tmdbId = mdlToTmdb.get(id)!;
-            if (!seenTmdbIds.has(tmdbId)) {
-                seenTmdbIds.add(tmdbId);
-                linkedEntries.push({ mdlNumericId: id, tmdbExternalId: tmdbId, mediaType: "tv" });
-            }
-        }
-    }
-    for (const work of movies) {
-        const id = extractMdlId(work._slug);
-        if (id && mdlToTmdb.has(id)) {
-            const tmdbId = mdlToTmdb.get(id)!;
-            if (!seenTmdbIds.has(tmdbId)) {
-                seenTmdbIds.add(tmdbId);
-                linkedEntries.push({ mdlNumericId: id, tmdbExternalId: tmdbId, mediaType: "movie" });
-            }
+            if (seenTmdbIds.has(tmdbId)) continue;
+            seenTmdbIds.add(tmdbId);
+            linkedEntries.push({ mdlNumericId: id, tmdbExternalId: tmdbId, mediaType });
         }
     }
 
@@ -342,9 +365,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     // themselves — the target has to exist before the scrape lands.
     const navSections: NavSection[] = [
         ...(bio ? [{ id: "section-biography", label: "Biography" }] : []),
-        ...(dramas.length > 0 ? [{ id: "section-dramas", label: "Dramas" }] : []),
-        ...(movies.length > 0 ? [{ id: "section-movies", label: "Movies" }] : []),
-        ...(specials.length > 0 ? [{ id: "section-specials", label: "Specials" }] : []),
+        ...categories.map((c) => ({ id: c.anchor, label: c.label })),
         { id: "section-photos", label: "Photos" },
         { id: "section-comments", label: "Comments" },
     ];
@@ -370,7 +391,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
                             <h1 className="text-base font-bold leading-snug text-white">{data.name}</h1>
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
+                                <span className="text-gray-400">{allWorks.length} works</span>
                             </div>
                             <a
                                 href={data.link}
@@ -445,7 +466,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <div className="hidden md:block">
                             <h1 className="font-display text-4xl font-bold mb-2 text-white">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
-                                <span className="text-gray-400">{dramas.length + movies.length + specials.length} works</span>
+                                <span className="text-gray-400">{allWorks.length} works</span>
                                 <span className="text-gray-500">·</span>
                                 <a
                                     href={data.link}
@@ -470,15 +491,15 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
                         <div className="h-px bg-white/8" />
 
-                        {dramas.length > 0 && (
-                            <div id="section-dramas" className="space-y-4">
+                        {categories.map((category) => (
+                            <div key={category.name} id={category.anchor} className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <h3 className="font-display text-lg font-semibold text-white">Dramas</h3>
-                                    <span className="text-sm text-gray-400">({dramas.length})</span>
+                                    <h3 className="font-display text-lg font-semibold text-white">{category.label}</h3>
+                                    <span className="text-sm text-gray-400">({category.works.length})</span>
                                     <div className="flex-1 h-px bg-white/8" />
                                 </div>
                                 <div className={grid}>
-                                    {dramas.map((work) => (
+                                    {category.works.map((work) => (
                                         <WorkCard
                                             key={work._slug}
                                             work={work}
@@ -491,55 +512,9 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                     ))}
                                 </div>
                             </div>
-                        )}
+                        ))}
 
-                        {movies.length > 0 && (
-                            <div id="section-movies" className="space-y-4">
-                                <div className="flex items-center gap-3">
-                                    <h3 className="font-display text-lg font-semibold text-white">Movies</h3>
-                                    <span className="text-sm text-gray-400">({movies.length})</span>
-                                    <div className="flex-1 h-px bg-white/8" />
-                                </div>
-                                <div className={grid}>
-                                    {movies.map((work) => (
-                                        <WorkCard
-                                            key={work._slug}
-                                            work={work}
-                                            internalLink={getInternalLink(work)}
-                                            poster={getPoster(work)}
-                                            linkSlug={extractFullMdlSlug(work.title.link)}
-                                            inWatchlist={isInWatchlist(work)}
-                                            mdlRating={getCachedMdlRating(work)}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {specials.length > 0 && (
-                            <div id="section-specials" className="space-y-4">
-                                <div className="flex items-center gap-3">
-                                    <h3 className="font-display text-lg font-semibold text-white">Specials</h3>
-                                    <span className="text-sm text-gray-400">({specials.length})</span>
-                                    <div className="flex-1 h-px bg-white/8" />
-                                </div>
-                                <div className={grid}>
-                                    {specials.map((work) => (
-                                        <WorkCard
-                                            key={work._slug}
-                                            work={work}
-                                            internalLink={getInternalLink(work)}
-                                            poster={getPoster(work)}
-                                            linkSlug={extractFullMdlSlug(work.title.link)}
-                                            inWatchlist={isInWatchlist(work)}
-                                            mdlRating={getCachedMdlRating(work)}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {dramas.length === 0 && movies.length === 0 && specials.length === 0 && (
+                        {categories.length === 0 && (
                             <div className="text-center py-12 text-gray-400">No filmography information available.</div>
                         )}
 

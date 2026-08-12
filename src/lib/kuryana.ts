@@ -176,10 +176,17 @@ export interface KuryanaWorkItem {
         image_full?: string;
     };
     rating: number;
-    role: {
+    /**
+     * Acting credits only. The crew categories a person page can also carry —
+     * Producer, Director, "Screenwriter & Director", Narrator — describe the
+     * work with `type` instead and have no role at all.
+     */
+    role?: {
         name: string | null;
         type: string;
     };
+    /** "Movie", "Drama", "Special"… on crew credits, where `role` is absent. */
+    type?: string;
     episodes?: number;
 }
 
