@@ -157,7 +157,17 @@ function WorkCard({
         );
     }
 
-    return <div className="group">{card}</div>;
+    // Not linked to TMDB, but we have an MDL slug and therefore an /media/mdl-
+    // page for it. Leaving these inert made the Link button the only thing on
+    // the card that did anything, which read as a broken card rather than a
+    // deliberate one. Link still wins the click: its handler already calls
+    // preventDefault and stopImmediatePropagation, which is what lets /dramas
+    // put the same button inside a linked card.
+    return (
+        <Link href={`/media/mdl-${linkSlug}`} className="group block">
+            {card}
+        </Link>
+    );
 }
 
 // Check DB cache first (7-day TTL) — avoids a live Kuryana call on every page visit.
