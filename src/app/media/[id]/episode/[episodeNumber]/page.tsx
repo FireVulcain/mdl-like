@@ -5,6 +5,17 @@ import { ArrowLeft, Star, Calendar, ExternalLink, ChevronLeft, ChevronRight } fr
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisode, kuryanaGetEpisodesList } from "@/lib/kuryana";
 import { EpisodeReviewCard } from "@/components/media/episode-review-card";
+import type { Metadata } from "next";
+import { mediaMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ id: string; episodeNumber: string }>;
+}): Promise<Metadata> {
+    const { id, episodeNumber } = await params;
+    return mediaMetadata(id, `Episode ${episodeNumber}`);
+}
 
 async function getMdlSlug(id: string): Promise<string | null> {
     const dashIdx = id.indexOf("-");

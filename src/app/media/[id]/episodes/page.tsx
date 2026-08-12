@@ -12,6 +12,12 @@ import { tmdb } from "@/lib/tmdb";
 import { getUserMedia } from "@/actions/user-media";
 import { getDisplayPreferences } from "@/actions/preferences";
 import { getCurrentUserId } from "@/lib/session";
+import type { Metadata } from "next";
+import { mediaMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    return mediaMetadata((await params).id, "Episodes");
+}
 
 const SYNOPSIS_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const EMPTY_TTL_MS = 24 * 60 * 60 * 1000;

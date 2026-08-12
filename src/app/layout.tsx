@@ -29,7 +29,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "trackr",
+  // Pages return their bare subject; the template adds the suffix once. Without
+  // it every page would have to remember to append " · trackr" itself.
+  title: { default: "trackr", template: "%s · trackr" },
   description: "Track your movies and TV shows",
 };
 

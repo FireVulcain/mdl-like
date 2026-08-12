@@ -23,6 +23,12 @@ import { MdlProfileSetting } from "@/components/settings/mdl-profile-setting";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
 import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-tabs";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Settings",
+    description: "Tune how the app curates things for you.",
+};
 
 export const dynamic = "force-dynamic";
 

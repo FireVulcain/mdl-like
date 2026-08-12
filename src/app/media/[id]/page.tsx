@@ -37,6 +37,12 @@ import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
 import { MetaLinkList, GENRE_LIST, TAG_LIST } from "@/components/media/meta-link-list";
+import type { Metadata } from "next";
+import { mediaMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    return mediaMetadata((await params).id);
+}
 
 // MDL's next-episode data (exact broadcast time) mapped to the countdown's shape;
 // TVmaze/TMDB data stays as fallback when MDL doesn't know the next episode.

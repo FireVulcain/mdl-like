@@ -16,6 +16,12 @@ import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
 import { getWatchlistExternalIds, getWatchlistPosters } from "@/actions/user-media";
 import { BiographyExpander } from "@/components/media/biography-expander";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
+import type { Metadata } from "next";
+import { mdlPersonMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    return mdlPersonMetadata((await params).slug);
+}
 
 function sortWorks(works: KuryanaWorkItem[]): KuryanaWorkItem[] {
     return [...works].sort((a, b) => {

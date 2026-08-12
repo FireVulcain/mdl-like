@@ -10,6 +10,13 @@ import { CollapsibleSection } from "@/components/collapsible-section";
 import { Star, Clock } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const user = await getPublicUser((await params).id).catch(() => null);
+    if (!user?.name) return { title: "Profile" };
+    return { title: `${user.name}'s profile`, description: `${user.name}'s drama list on trackr.` };
+}
 
 export const dynamic = "force-dynamic";
 

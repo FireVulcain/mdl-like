@@ -7,6 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Loader2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Sign in",
+};
 
 const fadeUp = {
     hidden: { opacity: 0, y: 16 },

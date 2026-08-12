@@ -6,6 +6,12 @@ import { getWatchlistHeaderStats } from "@/actions/stats";
 import { getViewPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "My Watchlist",
+    description: "Everything you are watching, completed, dropped or planning to watch.",
+};
 
 export const dynamic = "force-dynamic";
 

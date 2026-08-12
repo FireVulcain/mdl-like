@@ -1,6 +1,12 @@
 import { getActivityLog, backfillActivityLog } from "@/actions/history";
 import { HistoryFeed } from "@/components/history-feed";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Activity History",
+    description: "A log of every action tracked on your watchlist.",
+};
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

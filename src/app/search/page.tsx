@@ -2,6 +2,12 @@ import { SearchMediaGrid } from "@/components/search-media-grid";
 import { ExpandablePeopleSection } from "@/components/expandable-people-section";
 import { mediaService } from "@/services/media.service";
 import { Film } from "lucide-react";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ q?: string }> }): Promise<Metadata> {
+    const { q } = await searchParams;
+    return { title: q ? `${q} — search` : "Search" };
+}
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
     const { q: query } = await searchParams;

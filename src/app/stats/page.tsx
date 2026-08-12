@@ -1,6 +1,12 @@
 import { getDashboardStats, getContinueWatching, getTopActors } from "@/actions/stats";
 import { StatsDashboard } from "@/components/stats/dashboard";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "My Stats",
+    description: "A breakdown of your watching habits.",
+};
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

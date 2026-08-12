@@ -2,6 +2,12 @@ import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { kuryanaGetPersonPhotos } from "@/lib/kuryana";
 import { PersonPhotoGrid } from "@/components/people/person-photo-grid";
+import type { Metadata } from "next";
+import { mdlPersonMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    return mdlPersonMetadata((await params).slug, "Photos");
+}
 
 export default async function PersonPhotosPage({
     params,

@@ -1,5 +1,11 @@
 import { ScheduleData } from "@/components/schedule-data";
 import { Suspense } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Calendar",
+    description: "When the next episode of everything on your list airs.",
+};
 
 export const dynamic = "force-dynamic";
 

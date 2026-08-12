@@ -12,6 +12,12 @@ import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { RatingRangeFilter } from "@/components/dramas/rating-range-filter";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 import { PageBackground } from "@/components/page-background";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Browse Dramas",
+    description: "Browse and filter dramas by genre, country, year and rating.",
+};
 
 type SearchParams = Promise<{
     category?: string;

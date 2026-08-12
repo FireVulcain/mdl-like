@@ -6,6 +6,12 @@ import { getMdlData } from "@/lib/mdl-data";
 import { kuryanaGetReviews } from "@/lib/kuryana";
 import { MdlReviews } from "@/components/media/mdl-reviews";
 import { Suspense } from "react";
+import type { Metadata } from "next";
+import { mediaMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    return mediaMetadata((await params).id, "Reviews");
+}
 
 function ReviewsSkeleton() {
     return (

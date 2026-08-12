@@ -3,6 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { PhotoGallery } from "@/components/media/photo-gallery";
+import type { Metadata } from "next";
+import { mediaMetadata } from "@/lib/page-metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    return mediaMetadata((await params).id, "Photos");
+}
 
 export default async function PhotosPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
