@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Lets a verification build write somewhere other than .next, so it cannot
+  // disturb a dev server running against the default directory. Unset in normal
+  // use, which leaves the default untouched.
+  ...(process.env.BUILD_DIST_DIR ? { distDir: process.env.BUILD_DIST_DIR } : {}),
   images: {
     remotePatterns: [
       {
