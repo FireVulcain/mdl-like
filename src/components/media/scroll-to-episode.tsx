@@ -10,14 +10,14 @@ export function ScrollToEpisodeButton({ episodeNumber, label }: { episodeNumber:
         if (!el) return;
         el.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        const flash = () => {
-            el.classList.remove("episode-flash");
+        const highlight = () => {
+            el.classList.remove("episode-highlight");
             void el.offsetWidth; // force reflow so the animation restarts
-            el.classList.add("episode-flash");
-            el.addEventListener("animationend", () => el.classList.remove("episode-flash"), { once: true });
+            el.classList.add("episode-highlight");
+            el.addEventListener("animationend", () => el.classList.remove("episode-highlight"), { once: true });
         };
 
-        // Play the flash once the smooth scroll settles. `scrollend` is the precise
+        // Play the highlight once the smooth scroll settles. `scrollend` is the precise
         // signal; a timeout backs it up when it doesn't fire (no scroll needed, or
         // unsupported), and whichever wins cancels the other.
         let done = false;
@@ -26,7 +26,7 @@ export function ScrollToEpisodeButton({ episodeNumber, label }: { episodeNumber:
             done = true;
             window.removeEventListener("scrollend", run);
             clearTimeout(fallback);
-            flash();
+            highlight();
         };
         const fallback = setTimeout(run, 700);
         window.addEventListener("scrollend", run, { once: true });

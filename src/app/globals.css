@@ -245,23 +245,33 @@
 }
 
 /* Brief emerald flash when scrolling to an episode card via the pager button */
-@keyframes episode-flash {
-    0% {
-        outline-color: rgb(52 211 153 / 0);
-    }
-    15% {
-        outline-color: rgb(52 211 153 / 0.9);
+/* Marks the episode a jump landed on.
+ *
+ * Decay only: it starts at full tint and goes to nothing, so there is no moment
+ * where something appears. The previous version faded an outline IN at 15% and
+ * back out, and that arrival is what read as a blink.
+ *
+ * The tint is a spread box-shadow as well as a background because the card's
+ * anchor has no box of its own and the thumbnail above the text is opaque —
+ * background alone would only show under the text. Same colour, no blur: an
+ * extended plate, not a glow.
+ */
+@keyframes episode-highlight {
+    0%,
+    35% {
+        background-color: rgb(52 211 153 / 0.16);
+        box-shadow: 0 0 0 8px rgb(52 211 153 / 0.16);
     }
     100% {
-        outline-color: rgb(52 211 153 / 0);
+        background-color: rgb(52 211 153 / 0);
+        box-shadow: 0 0 0 8px rgb(52 211 153 / 0);
     }
 }
 
-.episode-flash {
-    outline: 2px solid transparent;
-    outline-offset: 4px;
+.episode-highlight {
     border-radius: 0.75rem;
-    animation: episode-flash 1.6s ease-out;
+    /* Held for the first third so it can be read, then a long quiet decay. */
+    animation: episode-highlight 1.4s ease-out;
 }
 
 @keyframes pulse {
