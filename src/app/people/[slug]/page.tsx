@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Bookmark, ExternalLink, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { kuryanaGetPerson, kuryanaGetDetails, mdlTitleFromLink, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
+import { kuryanaGetPerson, mdlTitleFromLink, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
@@ -42,33 +42,10 @@ function extractFullMdlSlug(link: string): string | null {
     return match ? match[1] : null;
 }
 
-// Async server component — streams in the Kuryana poster for unlinked dramas
-async function MdlDramaPoster({ mdlSlug }: { mdlSlug: string }) {
-    const details = await kuryanaGetDetails(mdlSlug);
-    const poster = details?.data?.poster;
-    if (!poster) {
-        return <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>;
-    }
-    return (
-        <Image
-            unoptimized={true}
-            src={poster}
-            alt="poster"
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-        />
-    );
-}
-
-// Max concurrent Kuryana poster fetches — beyond this, unlinked cards show "No Image" statically
-const MAX_KURYANA_POSTER_FETCHES = 12;
-
 function WorkCard({
     work,
     internalLink,
     poster,
-    posterSlug,
     linkSlug,
     inWatchlist,
     mdlRating,
@@ -76,7 +53,6 @@ function WorkCard({
     work: KuryanaWorkItem;
     internalLink: string | null;
     poster: string | null;
-    posterSlug: string | null; // budget-capped: drives the Kuryana poster Suspense
     linkSlug: string | null; // always set: drives the Link button
     inWatchlist: boolean;
     mdlRating?: number | null;
@@ -98,14 +74,6 @@ function WorkCard({
                         className="object-cover"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                     />
-                ) : posterSlug ? (
-                    <Suspense
-                        fallback={
-                            <div className="w-full h-full bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" />
-                        }
-                    >
-                        <MdlDramaPoster mdlSlug={posterSlug} />
-                    </Suspense>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>
                 )}
@@ -173,28 +141,49 @@ function WorkCard({
     return <div className="group">{card}</div>;
 }
 
+// Check DB cache first (7-day TTL) — avoids a live Kuryana call on every page visit.
+// Outside the component on purpose: reading the clock during render is impure, and
+// the React Compiler's lint says so the moment it can see into this file.
+const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+
+/**
+ * Rows cached before the scraper started returning a poster per work have none,
+ * and would keep showing "No Image" until their TTL ran out. Treating that as
+ * stale refetches them once; the check costs nothing and stops mattering as soon
+ * as every row has been refreshed.
+ *
+ * Only conclusive when there are works to look at — a person with an empty
+ * filmography must not be refetched on every view.
+ */
+function missingWorkImages(data: KuryanaPersonResult["data"]): boolean {
+    const works = Object.values(data?.works ?? {}).flat();
+    return works.length > 0 && !works.some((work) => work?.title?.image);
+}
+
+async function loadPerson(slug: string): Promise<KuryanaPersonResult["data"] | null> {
+    const staleAt = new Date(Date.now() - PERSON_CACHE_TTL_MS);
+    const cachedRow = await prisma.cachedKuryanaPerson.findUnique({ where: { slug } });
+    if (cachedRow && cachedRow.cachedAt > staleAt) {
+        const cached = cachedRow.dataJson as KuryanaPersonResult["data"];
+        if (!missingWorkImages(cached)) return cached;
+    }
+
+    const fetched = await kuryanaGetPerson(slug);
+    const data = fetched?.data ?? null;
+    if (data) {
+        await prisma.cachedKuryanaPerson.upsert({
+            where: { slug },
+            create: { slug, dataJson: data as unknown as Prisma.InputJsonValue },
+            update: { dataJson: data as unknown as Prisma.InputJsonValue, cachedAt: new Date() },
+        });
+    }
+    return data;
+}
+
 export default async function MdlPersonPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    // Check DB cache first (7-day TTL) — avoids a live Kuryana call on every page visit
-    const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-    const staleAt = new Date(Date.now() - PERSON_CACHE_TTL_MS);
-    const cachedRow = await prisma.cachedKuryanaPerson.findUnique({ where: { slug } });
-
-    let data: KuryanaPersonResult["data"] | null = null;
-    if (cachedRow && cachedRow.cachedAt > staleAt) {
-        data = cachedRow.dataJson as KuryanaPersonResult["data"];
-    } else {
-        const fetched = await kuryanaGetPerson(slug);
-        data = fetched?.data ?? null;
-        if (data) {
-            await prisma.cachedKuryanaPerson.upsert({
-                where: { slug },
-                create: { slug, dataJson: data as unknown as Prisma.InputJsonValue },
-                update: { dataJson: data as unknown as Prisma.InputJsonValue, cachedAt: new Date() },
-            });
-        }
-    }
+    const data = await loadPerson(slug);
     if (!data) notFound();
     const details = data.details ?? {};
 
@@ -299,8 +288,12 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     });
 
     function getPoster(work: KuryanaWorkItem): string | null {
+        // A linked work prefers the TMDB poster — or the one picked by hand in the
+        // watchlist, which wins over both. Everything else takes MDL's own, which
+        // the person endpoint now returns per work: no second scrape, and no cap
+        // on how many cards can show one.
         const id = extractMdlId(work._slug);
-        return id ? (posterMap.get(id) ?? null) : null;
+        return (id ? posterMap.get(id) : null) ?? work.title.image ?? null;
     }
 
     function getInternalLink(work: KuryanaWorkItem): string | null {
@@ -310,18 +303,6 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
         if (!tmdbId) return null;
         const season = mdlSeasonMap.get(id);
         return season ? `/media/tmdb-${tmdbId}?season=${season}` : `/media/tmdb-${tmdbId}`;
-    }
-
-    // Only give the first MAX_KURYANA_POSTER_FETCHES unlinked works a slug to fetch —
-    // the rest show "No Image" statically so we don't fire dozens of Kuryana calls.
-    let kuryanaPosterBudget = MAX_KURYANA_POSTER_FETCHES;
-    function getMdlSlugForCard(work: KuryanaWorkItem): string | null {
-        const internalLink = getInternalLink(work);
-        if (internalLink) return extractFullMdlSlug(work.title.link); // linked — no Kuryana needed
-        const slug = extractFullMdlSlug(work.title.link);
-        if (!slug || kuryanaPosterBudget <= 0) return null;
-        kuryanaPosterBudget--;
-        return slug;
     }
 
     function isInWatchlist(work: KuryanaWorkItem): boolean {
@@ -503,7 +484,6 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            posterSlug={getMdlSlugForCard(work)}
                                             linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
                                             mdlRating={getCachedMdlRating(work)}
@@ -527,7 +507,6 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            posterSlug={getMdlSlugForCard(work)}
                                             linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
                                             mdlRating={getCachedMdlRating(work)}
@@ -551,7 +530,6 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                             work={work}
                                             internalLink={getInternalLink(work)}
                                             poster={getPoster(work)}
-                                            posterSlug={getMdlSlugForCard(work)}
                                             linkSlug={extractFullMdlSlug(work.title.link)}
                                             inWatchlist={isInWatchlist(work)}
                                             mdlRating={getCachedMdlRating(work)}

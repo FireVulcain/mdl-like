@@ -170,6 +170,10 @@ export interface KuryanaWorkItem {
     title: {
         link: string;
         name: string;
+        /** 300x422 poster, ~38KB. The one to render. */
+        image?: string;
+        /** Same poster at full size — 400KB+, far too heavy for a card. */
+        image_full?: string;
     };
     rating: number;
     role: {
