@@ -20,10 +20,22 @@ const DEBOUNCE_MS = 60_000;
 // Only the details endpoint is called — it carries every volatile field. The
 // cast endpoint is a second request and cast doesn't change, so it stays on the
 // slow cachedAt cycle.
+/**
+ * What moved, so the caller can say so instead of just saying "something did".
+ * Absent when nothing changed.
+ */
+export type MdlLiveChange = { from: number | null; to: number | null };
+export type MdlLiveRefreshResult = {
+    refreshed: boolean;
+    rating?: MdlLiveChange;
+    ranking?: MdlLiveChange;
+    watchers?: MdlLiveChange;
+};
+
 export async function refreshMdlLiveData(
     tmdbExternalId: string,
     season?: number,
-): Promise<{ refreshed: boolean }> {
+): Promise<MdlLiveRefreshResult> {
     try {
         const useSeason = season != null && season > 1;
         const row = useSeason
@@ -64,6 +76,10 @@ export async function refreshMdlLiveData(
         // Only ask the page to re-render when a visible number actually moved
         const changed =
             mdlRating !== row.mdlRating || mdlRanking !== row.mdlRanking || mdlWatchers !== row.mdlWatchers;
+        const moved: Omit<MdlLiveRefreshResult, "refreshed"> = {};
+        if (mdlRating !== row.mdlRating) moved.rating = { from: row.mdlRating, to: mdlRating };
+        if (mdlRanking !== row.mdlRanking) moved.ranking = { from: row.mdlRanking, to: mdlRanking };
+        if (mdlWatchers !== row.mdlWatchers) moved.watchers = { from: row.mdlWatchers, to: mdlWatchers };
 
         // router.refresh() alone was updating the row but not the screen: the new
         // value only showed up on the NEXT full load. The route has to be
@@ -71,7 +87,7 @@ export async function refreshMdlLiveData(
         // the payload rendered before the write.
         if (changed) revalidatePath(`/media/tmdb-${tmdbExternalId}`);
 
-        return { refreshed: changed };
+        return { refreshed: changed, ...moved };
     } catch {
         // A failed scrape must never surface on a page that already rendered fine
         return { refreshed: false };
