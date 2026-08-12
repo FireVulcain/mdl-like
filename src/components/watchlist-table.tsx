@@ -561,10 +561,17 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         return Array.from(genreSet).sort();
     }, [items]);
 
-    // Progress clicks are debounced per item: rapid +/- taps update the UI instantly
-    // but send ONE server write (and one toast) once the clicking settles.
-    const PROGRESS_DEBOUNCE_MS = 800;
-    const progressTimers = useRef(new Map<string, { timer: ReturnType<typeof setTimeout>; value: number; title?: string }>());
+    // A progress click writes immediately. It used to sit behind an 800ms debounce
+    // so that rapid +/- taps became one request, but that delay was paid by every
+    // single click, including the lone one that is the normal case — the row moved
+    // at once and then nothing was actually saved for most of a second.
+    //
+    // Rapid taps are still collapsed, just on the other side: while a write is in
+    // flight for an item, further taps replace a single pending value rather than
+    // queueing up. So one tap costs one request, five fast taps cost two, and the
+    // last value always wins because the writes are never in flight together.
+    type PendingProgress = { value: number; title?: string };
+    const progressWrites = useRef(new Map<string, { pending: PendingProgress | null }>());
 
     const commitProgress = useCallback(
         async (id: string, value: number, title?: string) => {
@@ -586,28 +593,28 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const handleProgress = useCallback(
         (id: string, newProgress: number, title?: string) => {
             setOptimisticItems({ id, progress: newProgress });
-            const pending = progressTimers.current.get(id);
-            if (pending) clearTimeout(pending.timer);
-            const timer = setTimeout(() => {
-                progressTimers.current.delete(id);
-                commitProgress(id, newProgress, title);
-            }, PROGRESS_DEBOUNCE_MS);
-            progressTimers.current.set(id, { timer, value: newProgress, title });
+
+            const active = progressWrites.current.get(id);
+            if (active) {
+                // A write is already out; this becomes the value it goes back for.
+                active.pending = { value: newProgress, title };
+                return;
+            }
+
+            const entry: { pending: PendingProgress | null } = { pending: null };
+            progressWrites.current.set(id, entry);
+            void (async () => {
+                let next: PendingProgress | null = { value: newProgress, title };
+                while (next) {
+                    await commitProgress(id, next.value, next.title);
+                    next = entry.pending;
+                    entry.pending = null;
+                }
+                progressWrites.current.delete(id);
+            })();
         },
         [setOptimisticItems, commitProgress],
     );
-
-    // Flush pending progress writes if the component unmounts mid-debounce
-    useEffect(() => {
-        const timers = progressTimers.current;
-        return () => {
-            for (const [id, pending] of timers) {
-                clearTimeout(pending.timer);
-                updateProgress(id, pending.value).catch((e) => console.error("Failed to flush progress:", e));
-            }
-            timers.clear();
-        };
-    }, []);
 
     const handleStatusChange = useCallback(
         async (id: string, newStatus: string, title?: string) => {
