@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { kuryanaGetDetails, parseMdlWatchers } from "@/lib/kuryana";
 
 /**
@@ -41,11 +42,11 @@ export async function refreshMdlLiveData(
         const row = useSeason
             ? await prisma.mdlSeasonLink.findUnique({
                   where: { tmdbExternalId_season: { tmdbExternalId, season } },
-                  select: { id: true, mdlSlug: true, liveRefreshedAt: true, mdlRating: true, mdlRanking: true, mdlWatchers: true },
+                  select: { id: true, mdlSlug: true, liveRefreshedAt: true, mdlRating: true, mdlRanking: true, mdlWatchers: true, genres: true, tags: true },
               })
             : await prisma.cachedMdlData.findUnique({
                   where: { tmdbExternalId },
-                  select: { id: true, mdlSlug: true, liveRefreshedAt: true, mdlRating: true, mdlRanking: true, mdlWatchers: true, mdlDisabled: true },
+                  select: { id: true, mdlSlug: true, liveRefreshedAt: true, mdlRating: true, mdlRanking: true, mdlWatchers: true, mdlDisabled: true, genres: true, tags: true },
               });
 
         if (!row?.mdlSlug) return { refreshed: false };
@@ -64,9 +65,28 @@ export async function refreshMdlLiveData(
         const mdlWatchers = parseMdlWatchers(d.details?.watchers);
         const aired = d.details?.airs ?? d.details?.aired ?? null;
 
+        // Repairs carried on the back of a request already being made.
+        //
+        // Season links were written without genres at all, and rows cached before
+        // the scraper returned tag ids hold plain strings — which the reader turns
+        // into id 0, and the media page renders an id-less tag as text rather than
+        // a link. Both are visible as a missing Genres section and dead tags.
+        //
+        // This fetch already has the corrected values in hand, so the backfill
+        // costs nothing and each row heals the first time its page is opened.
+        const missingGenres = !Array.isArray(row.genres) || row.genres.length === 0;
+        const legacyTags = Array.isArray(row.tags) && row.tags.some((tag) => typeof tag === "string");
+        const repair =
+            missingGenres || legacyTags
+                ? {
+                      genres: (d.others?.genres ?? []) as unknown as Prisma.InputJsonValue,
+                      tags: (d.others?.tags ?? []) as unknown as Prisma.InputJsonValue,
+                  }
+                : {};
+
         // cachedAt is left alone on purpose — see the schema comment. Touching it
         // would keep pushing the cast/synopsis refresh out of reach.
-        const data = { mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, liveRefreshedAt: new Date() };
+        const data = { mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, liveRefreshedAt: new Date(), ...repair };
         if (useSeason) {
             await prisma.mdlSeasonLink.update({ where: { id: row.id }, data });
         } else {
@@ -75,7 +95,11 @@ export async function refreshMdlLiveData(
 
         // Only ask the page to re-render when a visible number actually moved
         const changed =
-            mdlRating !== row.mdlRating || mdlRanking !== row.mdlRanking || mdlWatchers !== row.mdlWatchers;
+            mdlRating !== row.mdlRating ||
+            mdlRanking !== row.mdlRanking ||
+            mdlWatchers !== row.mdlWatchers ||
+            // A repaired row has new sections to draw, even if no number moved.
+            Object.keys(repair).length > 0;
         const moved: Omit<MdlLiveRefreshResult, "refreshed"> = {};
         if (mdlRating !== row.mdlRating) moved.rating = { from: row.mdlRating, to: mdlRating };
         if (mdlRanking !== row.mdlRanking) moved.ranking = { from: row.mdlRanking, to: mdlRanking };

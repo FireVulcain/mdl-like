@@ -41,6 +41,10 @@ export async function setMdlSeasonSlug(
             const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
             const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
             const tags = details.data.others?.tags ?? [];
+            // Never stored before, so every season row had a null genres column
+            // and the media page, which only renders the section when the list is
+            // non-empty, showed nothing at all.
+            const genres = details.data.others?.genres ?? [];
 
             const cast = castResult?.data?.casts
                 ? {
@@ -68,6 +72,8 @@ export async function setMdlSeasonSlug(
                     mdlWatchers,
                     aired,
                     tags: tags as unknown as Prisma.InputJsonValue,
+                    genres: genres as unknown as Prisma.InputJsonValue,
+                    synopsis: details.data.synopsis ?? null,
                     castJson: cast as unknown as Prisma.InputJsonValue,
                     cachedAt: new Date(),
                 },
