@@ -26,10 +26,11 @@ function describe(result: MdlLiveRefreshResult): string | null {
         parts.push(from != null ? `Rating ${from.toFixed(1)} → ${result.rating.to.toFixed(1)}` : `Rating ${result.rating.to.toFixed(1)}`);
     }
 
-    if (result.ranking?.to != null) {
-        const from = result.ranking.from;
-        parts.push(from != null ? `Rank #${from} → #${result.ranking.to}` : `Rank #${result.ranking.to}`);
-    }
+    // Rank is deliberately not reported. It moves because thousands of other
+    // shows moved, not because this one did — a drift of six places says nothing
+    // about the drama in front of you, and it crowded out the two figures that
+    // do. The refresh still redraws the page when it changes; it just says so
+    // by updating the rank row rather than by announcing it.
 
     if (result.watchers?.to != null) {
         const from = result.watchers.from;
@@ -52,15 +53,23 @@ export function MdlLiveRefresh({ externalId, season }: { externalId: string; sea
     // would otherwise start the whole thing again
     const fired = useRef(false);
 
+    // Whether this component is still on screen. A ref rather than a variable
+    // scoped to one effect run, because StrictMode's mount-cleanup-mount in dev
+    // would set that variable and never unset it: the request had already left,
+    // `fired` stopped the second run from starting another, and the reply landed
+    // to find itself cancelled. The refresh was silently dropped on every dev
+    // page view — visible once there was a toast to miss.
+    const alive = useRef(true);
+
     useEffect(() => {
+        alive.current = true;
         if (fired.current) return;
         fired.current = true;
 
-        let cancelled = false;
         (async () => {
             try {
                 const result = await refreshMdlLiveData(externalId, season);
-                if (!result.refreshed || cancelled) return;
+                if (!result.refreshed || !alive.current) return;
 
                 const summary = describe(result);
                 if (summary) {
@@ -75,7 +84,7 @@ export function MdlLiveRefresh({ externalId, season }: { externalId: string; sea
             }
         })();
         return () => {
-            cancelled = true;
+            alive.current = false;
         };
     }, [externalId, season, router]);
 
