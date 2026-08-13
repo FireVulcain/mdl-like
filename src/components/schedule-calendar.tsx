@@ -6,7 +6,8 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
-import { refreshScheduleCache, refreshSingleShow } from "@/actions/schedule";
+import { getScheduleRefreshTargets, refreshScheduleChunk, refreshSingleShow } from "@/actions/schedule";
+import { toast } from "sonner";
 import { saveCalendarPreferences, type CalendarPreferences } from "@/actions/preferences";
 
 export type { ScheduleEntry };
@@ -55,12 +56,41 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
         }
     };
 
+    // Driven from here in chunks so the count can be reported as it goes. The
+    // menu closes on click, which used to hide the only sign anything was
+    // happening — a toast says it from outside the menu, and says how far along.
+    const REFRESH_CHUNK = 4;
+
     const handleRefresh = async () => {
         setIsRefreshing(true);
         setShowActionsMenu(false);
+        const toastId = toast.loading("Refreshing the schedule…");
+        let refreshed = 0;
         try {
-            await refreshScheduleCache();
+            const targets = await getScheduleRefreshTargets();
+            if (targets.length === 0) {
+                toast.success("Nothing to refresh", { id: toastId, description: "No airing shows on your list." });
+                return;
+            }
+
+            const ids = targets.map((t) => t.mediaId);
+            toast.loading(`Refreshing the schedule… 0/${ids.length}`, { id: toastId });
+
+            for (let i = 0; i < ids.length; i += REFRESH_CHUNK) {
+                const result = await refreshScheduleChunk(ids.slice(i, i + REFRESH_CHUNK));
+                refreshed += result.count;
+                toast.loading(`Refreshing the schedule… ${Math.min(i + REFRESH_CHUNK, ids.length)}/${ids.length}`, { id: toastId });
+            }
+
+            toast.success(`Schedule refreshed for ${refreshed} show${refreshed !== 1 ? "s" : ""}`, { id: toastId });
             window.location.reload();
+        } catch (error) {
+            console.error("Schedule refresh failed:", error);
+            toast.error("Failed to refresh the schedule", {
+                id: toastId,
+                description: refreshed > 0 ? `${refreshed} show${refreshed !== 1 ? "s" : ""} were updated before the error` : undefined,
+            });
+            if (refreshed > 0) window.location.reload();
         } finally {
             setIsRefreshing(false);
         }

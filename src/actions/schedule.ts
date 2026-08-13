@@ -331,7 +331,16 @@ export async function refreshSingleShow(mediaId: string): Promise<void> {
     revalidatePath("/calendar");
 }
 
-export async function refreshScheduleCache(): Promise<void> {
+/**
+ * The shows a full calendar refresh would touch.
+ *
+ * Split out so the client knows the total before starting, which is the whole
+ * difference between a spinner and "12 of 34". The refresh itself then runs in
+ * chunks the caller drives, the same shape the watchlist bulk refreshes use —
+ * one long server action could not report anything on its way through, and on a
+ * large list it also risks the serverless time limit.
+ */
+export async function getScheduleRefreshTargets(): Promise<{ mediaId: string; title: string | null }[]> {
     const userId = await getCurrentUserId();
     const items = await prisma.userMedia.findMany({
         where: {
@@ -340,30 +349,50 @@ export async function refreshScheduleCache(): Promise<void> {
             mediaType: "TV",
             source: "TMDB",
         },
-        select: {
-            externalId: true,
-            source: true,
-            title: true,
-        },
+        select: { externalId: true, source: true, title: true },
     });
 
-    if (items.length === 0) return;
+    const unique = new Map(
+        items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}`, i.title] as const),
+    );
+    return [...unique].map(([mediaId, title]) => ({ mediaId, title }));
+}
 
-    const uniqueItems = [...new Map(items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}`, i])).values()];
+/** One chunk of the refresh above. Returns how many shows it actually re-cached. */
+export async function refreshScheduleChunk(mediaIds: string[]): Promise<{ count: number }> {
+    const userId = await getCurrentUserId();
+    if (mediaIds.length === 0) return { count: 0 };
 
-    // Clear existing cache for these shows
-    const mediaIds = uniqueItems.map((i) => `${i.source.toLowerCase()}-${i.externalId}`);
-    await prisma.cachedEpisode.deleteMany({ where: { mediaId: { in: mediaIds } } });
+    // Re-read the titles rather than trusting the client with them: the caller
+    // only ever hands back ids this user was given.
+    const items = await prisma.userMedia.findMany({
+        where: {
+            userId,
+            mediaType: "TV",
+            source: "TMDB",
+            externalId: { in: mediaIds.map((id) => id.split("-").slice(1).join("-")) },
+        },
+        select: { externalId: true, source: true, title: true },
+    });
 
-    // Re-fetch and re-cache
-    await withConcurrency(uniqueItems, 3, async (item) => {
+    const byMediaId = new Map(items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}`, i]));
+    const targets = mediaIds.map((id) => byMediaId.get(id)).filter((i) => i !== undefined);
+    if (targets.length === 0) return { count: 0 };
+
+    await prisma.cachedEpisode.deleteMany({
+        where: { mediaId: { in: targets.map((i) => `${i.source.toLowerCase()}-${i.externalId}`) } },
+    });
+
+    let count = 0;
+    await withConcurrency(targets, 3, async (item) => {
         try {
-            const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
-            await fetchAndCacheEpisodes(mediaId, item.externalId, item.title);
+            await fetchAndCacheEpisodes(`${item.source.toLowerCase()}-${item.externalId}`, item.externalId, item.title);
+            count++;
         } catch (error) {
             console.error(`Failed to refresh cache for ${item.title}:`, error);
         }
     });
 
     revalidatePath("/calendar");
+    return { count };
 }
