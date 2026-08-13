@@ -62,18 +62,10 @@ export default async function RootLayout({
             {isAuthenticated && <CommandPalette shortcuts={shortcuts} />}
             <main className={isAuthenticated ? "flex-1 pt-24" : "flex-1"}>{children}</main>
           </div>
-          <Toaster
-            position="top-right"
-            theme="dark"
-            richColors
-            toastOptions={{
-              style: {
-                background: "rgba(31, 41, 55, 0.95)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                backdropFilter: "blur(8px)",
-              },
-            }}
-          />
+          {/* Styled from globals.css rather than inline: the rules need per-type
+              selectors for the severity edge, which a style object cannot express.
+              richColors stays off — see the comment there. */}
+          <Toaster position="top-right" theme="dark" toastOptions={{ classNames: { toast: "trackr-toast" } }} />
           {showSyncNotification && <SyncNotification />}
         </Providers>
       </body>

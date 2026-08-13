@@ -658,3 +658,52 @@
         padding: 3rem 1rem !important;
     }
 }
+
+/* Toast chrome.
+ *
+ * The state is carried by a 3px edge, flush to the corner, over a surface that
+ * stays one neutral. A toast lands on top of whatever is on screen — a poster
+ * grid, a backdrop, the calendar — and tinting the whole surface would add a
+ * third colour to a region that already has two. The edge adds a signal without
+ * repainting anything.
+ *
+ * Hues are the app's own vocabulary, not a new palette: emerald means watched,
+ * rose means destructive, sky means MDL, amber means take note.
+ *
+ * Every selector carries sonner's own [data-styled='true'] and then one class
+ * more. Sonner styles its box at (0,2,0) and injects that stylesheet at runtime,
+ * so it lands after this file — matching its specificity would lose the tie on
+ * source order alone, and the toast would silently stay black. richColors is
+ * off in the Toaster for the same reason: it paints per-type surfaces these
+ * rules would only have to fight.
+ */
+[data-sonner-toast][data-styled="true"].trackr-toast {
+    --tone: #38bdf8; /* untyped toast() — the MDL live update is the only one */
+    background: #131a28;
+    border: none;
+    border-left: 3px solid var(--tone);
+    border-radius: 4px 10px 10px 4px;
+    padding: 13px 15px 13px 13px;
+    box-shadow: 0 8px 20px -10px rgb(0 0 0 / 0.6);
+}
+
+[data-sonner-toast][data-styled="true"].trackr-toast[data-type="success"] { --tone: #34d399; }
+[data-sonner-toast][data-styled="true"].trackr-toast[data-type="error"] { --tone: #fb7185; }
+[data-sonner-toast][data-styled="true"].trackr-toast[data-type="warning"] { --tone: #fbbf24; }
+[data-sonner-toast][data-styled="true"].trackr-toast[data-type="loading"],
+[data-sonner-toast][data-styled="true"].trackr-toast[data-type="info"] { --tone: #38bdf8; }
+
+/* The mark repeats the edge, so the state reads whichever the eye lands on
+   first. Sonner's own rule for this sits at (0,3,0), hence the extra class. */
+[data-sonner-toast][data-styled="true"].trackr-toast [data-icon] {
+    color: var(--tone);
+}
+
+[data-sonner-toast][data-styled="true"].trackr-toast [data-title] {
+    color: #e8edf5;
+    font-weight: 560;
+}
+
+[data-sonner-toast][data-styled="true"].trackr-toast [data-description] {
+    color: #9ca3af;
+}

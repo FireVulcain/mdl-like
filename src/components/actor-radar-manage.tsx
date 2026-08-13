@@ -78,7 +78,9 @@ export function ActorRadarManagePanel({
         startTransition(async () => {
             try {
                 await fn();
-                toast(successMsg);
+                // Typed, not plain: the toast's edge now carries the state, and
+                // an untyped one would report a success in the neutral hue.
+                toast.success(successMsg);
                 router.refresh();
             } catch (error) {
                 console.error("Radar action failed:", error);
