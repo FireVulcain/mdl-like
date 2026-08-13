@@ -13,14 +13,28 @@ import { useRef } from "react";
  * own toggle and must be left alone, which is also why the accordions on this
  * page — the ones that expand in place and are open by default — keep using a
  * plain <details>.
+ *
+ * `name` makes a set of them mutually exclusive: opening one closes its
+ * siblings, which is the platform's own accordion behaviour and needs no state
+ * of ours. A browser that does not know the attribute ignores it and simply
+ * lets both stay open, which is where this started.
  */
-export function ClosingDetails({ className, children }: { className?: string; children: React.ReactNode }) {
+export function ClosingDetails({
+    className,
+    name,
+    children,
+}: {
+    className?: string;
+    name?: string;
+    children: React.ReactNode;
+}) {
     const ref = useRef<HTMLDetailsElement>(null);
 
     return (
         <details
             ref={ref}
             className={className}
+            name={name}
             onClick={(e) => {
                 if ((e.target as HTMLElement).closest("a")) ref.current?.removeAttribute("open");
             }}

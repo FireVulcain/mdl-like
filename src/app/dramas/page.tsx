@@ -546,7 +546,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                         <div className="space-y-1.5">
                             <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Year</h4>
                             <div className="flex gap-1.5 items-center">
-                                <ClosingDetails className="group flex-1">
+                                <ClosingDetails name="dramas-year" className="group flex-1">
                                     <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
                                         <span>{rawYearFrom ?? "From"}</span>
                                         <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
@@ -574,7 +574,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                     </div>
                                 </ClosingDetails>
                                 <span className="text-gray-600 text-xs shrink-0">—</span>
-                                <ClosingDetails className="group flex-1">
+                                <ClosingDetails name="dramas-year" className="group flex-1">
                                     <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
                                         <span>{rawYearTo ?? "To"}</span>
                                         <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
