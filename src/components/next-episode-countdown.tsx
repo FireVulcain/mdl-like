@@ -145,9 +145,11 @@ function predictNextEpisode(
 }
 
 
-function calculateTimeLeft(airDate: string, airDateTime?: string | null): TimeLeft | null {
+// Takes `now` rather than reading the clock, so the countdown can be derived
+// during render from a single piece of ticking state instead of being pushed
+// into state of its own.
+function calculateTimeLeft(airDate: string, airDateTime: string | null | undefined, now: Date): TimeLeft | null {
     const airMoment = resolveAirMoment(airDate, airDateTime);
-    const now = new Date();
     const difference = airMoment.getTime() - now.getTime();
 
     if (difference <= 0) {
@@ -198,8 +200,15 @@ export function NextEpisodeCountdown({
     airedRange,
     originCountry,
 }: NextEpisodeCountdownProps) {
-    const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
-    const [mounted, setMounted] = useState(false);
+    /**
+     * The clock, and the only state here.
+     *
+     * Null until the first tick, which is also what keeps the server and the
+     * first client render agreeing: neither has a time yet, so both draw
+     * nothing and there is no mismatch to hydrate around. The separate `mounted`
+     * flag this used to carry was doing the same job a second time.
+     */
+    const [now, setNow] = useState<Date | null>(null);
 
     // Determine episode data: use TMDB data or predict
     const episodeData = useMemo(() => {
@@ -254,29 +263,30 @@ export function NextEpisodeCountdown({
     }, [nextEpisode, currentSeason, totalEpisodes, status, firstAirDate, airedRange, originCountry]);
 
     useEffect(() => {
-        setMounted(true);
-
         if (!episodeData) return;
 
-        // Calculate initial time
-        setTimeLeft(calculateTimeLeft(episodeData.airDate, episodeData.airDateTime));
+        // Both writes happen in callbacks, never in the effect body: setting
+        // state synchronously there is what react-hooks/purity objects to, and
+        // an effect that subscribes to a ticking source is exactly the shape it
+        // asks for. The zero-delay timer is the first tick, so the countdown
+        // does not sit blank for a second waiting on the interval.
+        const first = setTimeout(() => setNow(new Date()), 0);
+        const timer = setInterval(() => setNow(new Date()), 1000);
 
-        // Update every second
-        const timer = setInterval(() => {
-            const newTimeLeft = calculateTimeLeft(episodeData.airDate, episodeData.airDateTime);
-            setTimeLeft(newTimeLeft);
-
-            // Clear interval if countdown is done
-            if (!newTimeLeft) {
-                clearInterval(timer);
-            }
-        }, 1000);
-
-        return () => clearInterval(timer);
+        return () => {
+            clearTimeout(first);
+            clearInterval(timer);
+        };
     }, [episodeData]);
 
-    // Don't render on server, if no episode data, or if episode has already aired
-    if (!mounted || !episodeData || !timeLeft) {
+    // Derived, not stored. The interval only moves the clock forward; what that
+    // means for the display is worked out here, and the countdown stops on its
+    // own once the moment passes.
+    const timeLeft = now && episodeData ? calculateTimeLeft(episodeData.airDate, episodeData.airDateTime, now) : null;
+
+    // Nothing before the first tick, nothing without an episode, nothing once it
+    // has aired — all three read as "no countdown to show".
+    if (!episodeData || !timeLeft) {
         return null;
     }
 
