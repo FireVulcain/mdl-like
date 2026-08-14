@@ -12,9 +12,19 @@ interface PhotoLightboxProps {
     open: boolean;
     onClose: () => void;
     onNavigate: (index: number) => void;
+    /**
+     * Shape of the panel the image is fitted into. Stills are landscape and get
+     * the wide default; a poster is 2:3 and would sit as a narrow strip in the
+     * middle of it, with the panel showing on either side as a slab. "portrait"
+     * sizes the panel to the poster instead, so there is nothing around it.
+     */
+    aspect?: "landscape" | "portrait";
 }
 
-export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate }: PhotoLightboxProps) {
+export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate, aspect = "landscape" }: PhotoLightboxProps) {
+    // Arrows that loop an image back to itself, and a "1 / 1" counter, are
+    // chrome for a navigation that does not exist. A single image gets neither.
+    const multi = images.length > 1;
     const showNext = useCallback(() => {
         onNavigate(currentIndex < images.length - 1 ? currentIndex + 1 : 0);
     }, [currentIndex, images.length, onNavigate]);
@@ -26,21 +36,33 @@ export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate 
     useEffect(() => {
         if (!open) return;
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "ArrowRight") showNext();
-            if (e.key === "ArrowLeft") showPrev();
+            if (multi && e.key === "ArrowRight") showNext();
+            if (multi && e.key === "ArrowLeft") showPrev();
             if (e.key === "Escape") onClose();
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [open, showNext, showPrev, onClose]);
+    }, [open, multi, showNext, showPrev, onClose]);
 
     const src = images[currentIndex];
+
+    // A 2:3 box as tall as the viewport allows, narrowed on phones where height
+    // is the plentiful axis and width is not.
+    const panel =
+        aspect === "portrait"
+            ? { maxWidth: "90vw", width: "min(90vw, calc(86vh * 2 / 3))", height: "86vh" }
+            : { maxWidth: "80vw", width: "80vw", height: "80vh" };
 
     return (
         <Dialog open={open} onOpenChange={() => onClose()}>
             <DialogContent
-                className="p-0 overflow-hidden border-none shadow-none focus:outline-none flex items-center justify-center rounded-none"
-                style={{ maxWidth: "80vw", width: "80vw", height: "80vh" }}
+                className={`p-0 overflow-hidden border-none shadow-none focus:outline-none flex items-center justify-center rounded-none ${
+                    // The portrait panel is cut to the poster, so any fill would
+                    // read as a border around it. The landscape panel keeps the
+                    // backdrop it has always had.
+                    aspect === "portrait" ? "bg-transparent" : ""
+                }`}
+                style={panel}
                 showCloseButton={false}
             >
                 <DialogTitle className="sr-only">Photo Preview</DialogTitle>
@@ -74,23 +96,27 @@ export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate 
                         <X className="w-4 h-4" />
                     </button>
 
-                    <button
-                        onClick={(e) => { e.stopPropagation(); showPrev(); }}
-                        className="absolute left-8 z-50 cursor-pointer p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 duration-300"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </button>
+                    {multi && (
+                        <>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); showPrev(); }}
+                                className="absolute left-8 z-50 cursor-pointer p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 duration-300"
+                            >
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
 
-                    <button
-                        onClick={(e) => { e.stopPropagation(); showNext(); }}
-                        className="absolute right-8 z-50 cursor-pointer p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 duration-300"
-                    >
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); showNext(); }}
+                                className="absolute right-8 z-50 cursor-pointer p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 duration-300"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
 
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm font-medium backdrop-blur-sm">
-                        {currentIndex + 1} / {images.length}
-                    </div>
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm font-medium backdrop-blur-sm">
+                                {currentIndex + 1} / {images.length}
+                            </div>
+                        </>
+                    )}
                 </div>
             </DialogContent>
         </Dialog>

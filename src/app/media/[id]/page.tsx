@@ -29,6 +29,7 @@ import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
 import { MdlRecsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
+import { PosterZoom } from "@/components/media/poster-zoom";
 import { prisma } from "@/lib/prisma";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
 import { WatchProvidersRow } from "@/components/media/watch-providers-row";
@@ -156,7 +157,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
                         <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                             {displayPoster ? (
-                                <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
+                                <PosterZoom src={displayPoster} alt={media.title} />
                             ) : (
                                 <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
                             )}
@@ -211,7 +212,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     <StickySidebar>
                         <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                             {displayPoster ? (
-                                <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
+                                <PosterZoom src={displayPoster} alt={media.title} />
                             ) : (
                                 <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
                                     No Poster
@@ -622,7 +623,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
                     <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                         {displayPoster ? (
-                            <Image unoptimized src={displayPoster} alt={media.title} fill className="object-cover" priority />
+                            <PosterZoom src={displayPoster} alt={media.title} />
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
                         )}
@@ -698,14 +699,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 <StickySidebar>
                     <div className="relative aspect-2/3 overflow-hidden rounded-lg">
                         {displayPoster ? (
-                            <Image
-                                unoptimized={true}
-                                src={displayPoster}
-                                alt={media.title}
-                                fill
-                                className="object-cover"
-                                priority
-                            />
+                            <PosterZoom src={displayPoster} alt={media.title} />
                         ) : (
                             <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
                                 No Poster
