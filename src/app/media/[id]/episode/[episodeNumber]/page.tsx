@@ -108,9 +108,19 @@ export default async function EpisodePage({
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back
                     </Link>
+                    {/* Only the neighbours that exist. This pager names its
+                        destination, and a name it cannot honour is worse than no
+                        button: on episode 1 it offered "Ep 0", and on the last
+                        one an episode past the end. Greying them out did not
+                        help — the number was still there to read.
+
+                        Nothing shifts when one is dropped: the group is anchored
+                        right, so "next" holds its position and "prev" simply is
+                        not there. The pager at the bottom of the page still
+                        marks the boundary, in words rather than in a number. */}
                     <div className="flex items-center gap-4">
-                        <EpisodePagerText href={prevHref} disabled={!hasPrev} direction="prev" label={`Ep ${epNum - 1}`} />
-                        <EpisodePagerText href={nextHref} disabled={!hasNext} direction="next" label={`Ep ${epNum + 1}`} />
+                        {hasPrev && <EpisodePagerText href={prevHref} direction="prev" label={`Ep ${epNum - 1}`} />}
+                        {hasNext && <EpisodePagerText href={nextHref} direction="next" label={`Ep ${epNum + 1}`} />}
                     </div>
                 </div>
 
@@ -175,7 +185,7 @@ export default async function EpisodePage({
 }
 
 // Minimal text link with a chevron — matches the site's "Back" link language
-function EpisodePagerText({ href, disabled, direction, label }: { href: string; disabled: boolean; direction: "prev" | "next"; label: string }) {
+function EpisodePagerText({ href, disabled, direction, label }: { href: string; disabled?: boolean; direction: "prev" | "next"; label: string }) {
     const Icon = direction === "prev" ? ChevronLeft : ChevronRight;
     const content = (
         <>
