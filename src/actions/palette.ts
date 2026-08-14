@@ -7,12 +7,21 @@ import { updateUserMedia } from "@/actions/media";
 import { getScheduleEntries } from "@/actions/schedule";
 import { getDashboardStats } from "@/actions/stats";
 import { mdlPersonSlug } from "@/lib/person-links";
+import { getNativeTitles, prefillNativeTitles } from "@/lib/native-titles";
+import { getDisplayPreferences } from "@/actions/preferences";
 
 export type PaletteItem = {
     id: string;
     /** Seasons share it, which is what lets a season find the show's cast. */
     externalId: string;
+    /** What to show — english or native, per the user's display preference. */
     title: string;
+    /**
+     * The other spelling, when one is known. Searched but never displayed, so
+     * "별들에게" finds a row labelled "Ask the Stars" and vice versa — the palette
+     * should not care which half of a title someone remembers.
+     */
+    altTitle: string | null;
     poster: string | null;
     href: string;
     season: number;
@@ -51,6 +60,47 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
         },
     });
 
+    // Stored titles are always english — they feed TVmaze and MDL matching — so
+    // the native one is resolved separately, exactly as the watchlist does it.
+    const externalIds = [...new Set(items.map((i) => i.externalId))];
+    const [showLinks, seasonLinks, { titleLanguage }] = await Promise.all([
+        prisma.cachedMdlData.findMany({
+            where: { tmdbExternalId: { in: externalIds } },
+            select: { tmdbExternalId: true, mdlSlug: true },
+        }),
+        prisma.mdlSeasonLink.findMany({
+            where: { tmdbExternalId: { in: externalIds } },
+            select: { tmdbExternalId: true, season: true, mdlSlug: true },
+        }),
+        // Alongside, not after: the preference does not depend on the slugs, and
+        // the palette's first open is the one moment that has to feel instant.
+        getDisplayPreferences(),
+    ]);
+
+    const slugByShow = new Map(showLinks.map((r) => [r.tmdbExternalId, r.mdlSlug]));
+    const slugBySeason = new Map(seasonLinks.map((r) => [`${r.tmdbExternalId}-${r.season}`, r.mdlSlug]));
+    const slugFor = (externalId: string, season: number) =>
+        slugBySeason.get(`${externalId}-${season}`) ?? slugByShow.get(externalId) ?? null;
+
+    const slugs = items.map((i) => slugFor(i.externalId, i.season)).filter((s): s is string => s !== null);
+    const nativeBySlug = await getNativeTitles(slugs);
+
+    // Every other caller fills this cache only when the display preference is
+    // native, because that is the only time they draw the title. The palette
+    // matches on it whatever is being displayed, so under an english preference
+    // it was reading a cache nobody was filling — 100 slugs out of 255, frozen.
+    //
+    // Scheduled, not awaited: prefillNativeTitles runs inside after(), so the
+    // scrapes start once this response is already on its way out. Ten per open
+    // at 200ms apart covers the gap over a handful of visits without ever being
+    // something the palette waits for.
+    prefillNativeTitles(
+        slugs.filter((slug) => !nativeBySlug.has(slug)),
+        10,
+    );
+
+    const preferNative = titleLanguage === "native";
+
     // Not `lastWatchedAt`: updateUserMedia bumps that on any status change, so
     // dropping a show or moving it to Plan to Watch would file it under
     // "recently watched". Progress events are the only record of actually
@@ -69,7 +119,16 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
         .map((item) => ({
             id: item.id,
             externalId: item.externalId,
-            title: item.title!,
+            ...(() => {
+                const slug = slugFor(item.externalId, item.season);
+                const native = (slug ? nativeBySlug.get(slug) : null) || null;
+                // Resolved here rather than in the component: the preference is a
+                // server concern, and the client only needs to know what to draw
+                // and what else to match on.
+                return preferNative && native
+                    ? { title: native, altTitle: item.title! }
+                    : { title: item.title!, altTitle: native };
+            })(),
             poster: item.poster,
             // Seasons are separate rows with separate pages, exactly as the
             // watchlist links them — two entries for one show are not duplicates.

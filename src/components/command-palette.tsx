@@ -97,6 +97,21 @@ type Row = { key: string; section: string | null } & (
     | { kind: "fact"; label: string }
 );
 
+/**
+ * Best score across both spellings of a title.
+ *
+ * A row shows one of them and carries the other, so typing 별들에게 finds the row
+ * labelled "Ask the Stars" without the label changing under the query. The
+ * better of the two wins outright rather than being averaged: a title matched
+ * exactly in one script is a match, whatever the other script scores.
+ */
+function titleScore(query: string, item: PaletteItem): number | null {
+    const scores = [fuzzyScore(query, item.title), item.altTitle ? fuzzyScore(query, item.altTitle) : null].filter(
+        (s): s is number => s !== null,
+    );
+    return scores.length > 0 ? Math.max(...scores) : null;
+}
+
 function progressLabel(item: PaletteItem): string {
     const parts: string[] = [];
     if (item.season > 1) parts.push(`S${item.season}`);
@@ -700,7 +715,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         }
 
         const scoredMedia = media
-            .map((item) => ({ item, score: fuzzyScore(trimmed, item.title) }))
+            .map((item) => ({ item, score: titleScore(trimmed, item) }))
             .filter((m): m is { item: PaletteItem; score: number } => m.score !== null)
             // Seasons of one show all score identically, so the tie-break puts
             // them in season order rather than in whatever order they were last
