@@ -59,6 +59,13 @@ export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolea
             <Input
                 ref={inputRef}
                 type="search"
+                // Named and opted out of autofill: Chrome reports an unnamed
+                // form field as an issue, and an anonymous one is a field the
+                // browser's heuristics are free to guess about — offering saved
+                // addresses over a drama search.
+                name="site-search"
+                autoComplete="off"
+                aria-label="Search dramas and movies"
                 placeholder="Search dramas, movies..."
                 className={`pl-10 ${showPaletteBadge ? "pr-24" : ""} h-10 bg-white/5 border-white/5 rounded-xl focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 transition-all placeholder:text-muted-foreground/50`}
                 onChange={(e) => handleSearch(e.target.value)}
