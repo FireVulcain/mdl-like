@@ -3,9 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { UnifiedPerson } from "@/services/media.service";
-import { Users } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
 import { mdlPersonHref, tmdbPersonHref } from "@/lib/person-links";
 
 interface ExpandablePeopleSectionProps {
@@ -16,11 +14,9 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
     return (
         <section className="space-y-3">
             <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full" />
-                <Users className="h-5 w-5 text-purple-400" />
-                <h2 className="font-display text-lg font-semibold">People</h2>
-                <span className="text-sm text-muted-foreground">({people.length})</span>
-                <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                <h2 className="font-display text-lg font-semibold text-white">People</h2>
+                <span className="text-sm text-gray-400">({people.length})</span>
+                <div className="flex-1 h-px bg-white/8" />
             </div>
             <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex gap-4 pt-1 pb-3">
@@ -34,8 +30,7 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                             }
                             className="flex-none w-28 text-center group space-y-2"
                         >
-                            {" "}
-                            <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-purple-500/50 transition-all shadow-lg bg-secondary">
+                            <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-white/20 transition-all bg-white/5">
                                 {person.profileImage ? (
                                     <Image unoptimized={true}
                                         src={person.profileImage}
@@ -48,12 +43,14 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                                 )}
                             </div>
                             <div className="whitespace-normal">
-                                <p className="text-sm font-medium leading-tight text-foreground group-hover:text-purple-400 transition-colors line-clamp-1">
+                                {/* Sky is the app's link colour; purple means a
+                                    recommendation and meant nothing here. */}
+                                <p className="text-sm font-medium leading-tight text-white group-hover:text-sky-400 transition-colors line-clamp-1">
                                     {person.name}
                                 </p>
-                                <Badge variant="secondary" className="mt-1 text-[10px] bg-white/10 text-gray-400 border-white/10">
-                                    {person.knownForDepartment}
-                                </Badge>
+                                {/* A filled chip framed a label that never changes
+                                    state — the frame was the only thing it added. */}
+                                <p className="mt-0.5 text-[11px] text-gray-500">{person.knownForDepartment}</p>
                             </div>
                         </Link>
                     ))}
