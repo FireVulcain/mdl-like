@@ -109,16 +109,27 @@ export function SearchMediaGrid({
 
     return (
         <div className="space-y-4">
-            {/* Controls row */}
+            {/* Controls row.
+
+                Same filter chrome as /history: a flat fill, no border, and a
+                ring only on the one that is on. Every pill used to carry its own
+                border and fill in both states, so the frame marked nothing — it
+                was just a box around each word. The ring now does the work the
+                border was pretending to do.
+
+                Colour follows meaning, as everywhere else: sky is MDL. The
+                country pills had picked up indigo, which means nothing here and
+                nothing anywhere else in the app, so they take the neutral
+                selected treatment "All" already used. */}
             <div className="flex flex-wrap items-center gap-2">
                 {/* MDL toggle */}
                 <button
                     onClick={handleMdlToggle}
                     disabled={mdlLoading}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-colors disabled:opacity-60 ${
+                    className={`inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer disabled:cursor-wait disabled:opacity-60 ${
                         showMdl
-                            ? "bg-sky-500/20 border-sky-500/40 text-sky-300 hover:bg-sky-500/30"
-                            : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white/60"
+                            ? "bg-sky-500/20 text-sky-400 ring-1 ring-sky-500/30"
+                            : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white"
                     }`}
                 >
                     {mdlLoading ? <Loader2 className="size-3 animate-spin" /> : <span className="size-1.5 rounded-full bg-current" />}
@@ -128,13 +139,13 @@ export function SearchMediaGrid({
                 {/* Country pills */}
                 {showCountryFilter && (
                     <>
-                        <div className="w-px h-4 bg-white/10" />
+                        <div className="w-px h-4 bg-white/8" />
                         <button
                             onClick={() => setSelectedCountry(null)}
-                            className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                            className={`h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                                 selectedCountry === null
-                                    ? "bg-white/15 border-white/25 text-white"
-                                    : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white/60"
+                                    ? "bg-white/10 text-white ring-1 ring-white/15"
+                                    : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white"
                             }`}
                         >
                             All
@@ -143,10 +154,10 @@ export function SearchMediaGrid({
                             <button
                                 key={code}
                                 onClick={() => setSelectedCountry(selectedCountry === code ? null : code)}
-                                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                                className={`inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                                     selectedCountry === code
-                                        ? "bg-indigo-500/25 border-indigo-400/40 text-indigo-300"
-                                        : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white/60"
+                                        ? "bg-white/10 text-white ring-1 ring-white/15"
+                                        : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white"
                                 }`}
                             >
                                 {COUNTRY_LABELS[code] ?? code}

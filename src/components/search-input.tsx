@@ -3,11 +3,17 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useRef, useEffect, useTransition } from "react";
+import { useRef, useEffect, useLayoutEffect, useTransition } from "react";
 import { OPEN_PALETTE_EVENT } from "@/components/command-palette";
 import { formatChord } from "@/lib/shortcuts";
 import { Command } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
+
+// The measurement below has to land before the browser paints, or the field
+// shows the guessed padding for a frame and then snaps. useLayoutEffect warns
+// when it runs during SSR, though, and this component is server-rendered, so it
+// steps down to useEffect there — where there is no layout to measure anyway.
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolean; paletteShortcut?: string | null }) {
     const router = useRouter();
@@ -53,6 +59,24 @@ export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolea
     // no room for a badge beside an autofocused field.
     const showPaletteBadge = paletteShortcut !== undefined;
 
+    // The badge overlaps the field, so the text has to be pushed clear of it.
+    // That was a fixed pr-24 — 96px reserved for a badge that measures about 50
+    // with "Ctrl K". The header field is capped at max-w-xs, and this Input
+    // renders at 16px (the base keeps md:text-base, so it never steps down to
+    // 14), which left roughly 184px of the 320 for the placeholder: not quite
+    // enough, so it came out clipped mid-word. A guessed constant cannot be
+    // right anyway — the chord is configurable, and "Ctrl Shift P" is nearly
+    // twice as wide as "Ctrl K" — so measure it instead. Written to the node
+    // rather than through state: it is a measurement feeding back into layout,
+    // and a render pass in between would only show the wrong padding first.
+    const badgeRef = useRef<HTMLButtonElement>(null);
+    useIsomorphicLayoutEffect(() => {
+        const input = inputRef.current;
+        const badge = badgeRef.current;
+        if (!input) return;
+        input.style.paddingRight = badge ? `${badge.offsetWidth + 16}px` : "";
+    }, [paletteShortcut]);
+
     return (
         <div className="relative w-full group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
@@ -66,7 +90,10 @@ export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolea
                 name="site-search"
                 autoComplete="off"
                 aria-label="Search dramas and movies"
-                placeholder="Search dramas, movies..."
+                // No trailing ellipsis. Against the right edge of a field this
+                // narrow it reads as the text having been cut off rather than as
+                // an invitation, which is exactly the thing being fixed.
+                placeholder="Search dramas, movies"
                 className={`pl-10 ${showPaletteBadge ? "pr-24" : ""} h-10 bg-white/5 border-white/5 rounded-xl focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 transition-all placeholder:text-muted-foreground/50`}
                 onChange={(e) => handleSearch(e.target.value)}
                 defaultValue={searchParams.get("q")?.toString()}
@@ -77,6 +104,7 @@ export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolea
                 then the only way in. */}
             {showPaletteBadge && (
                 <button
+                    ref={badgeRef}
                     type="button"
                     onClick={() => window.dispatchEvent(new CustomEvent(OPEN_PALETTE_EVENT))}
                     title="Open the command palette"
