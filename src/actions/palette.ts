@@ -6,7 +6,8 @@ import { ActivityAction } from "@/types/activity";
 import { updateUserMedia } from "@/actions/media";
 import { getScheduleEntries } from "@/actions/schedule";
 import { getDashboardStats } from "@/actions/stats";
-import { mdlPersonSlug } from "@/lib/person-links";
+import { mdlPersonSlug, personHref } from "@/lib/person-links";
+import { mediaService } from "@/services/media.service";
 import { getNativeTitles, prefillNativeTitles } from "@/lib/native-titles";
 import { getDisplayPreferences } from "@/actions/preferences";
 
@@ -304,4 +305,60 @@ export async function getPalettePeople(): Promise<PalettePerson[]> {
     // Appearances are the ranking the join hands us for free: someone in five of
     // your shows belongs above a one-off, whatever the fuzzy score says.
     return [...bySlug.values()].sort((a, b) => b.shows.length - a.shows.length || a.name.localeCompare(b.name));
+}
+
+export type PaletteRemoteItem = {
+    key: string;
+    kind: "media" | "person";
+    title: string;
+    detail: string;
+    image: string | null;
+    href: string;
+};
+
+/** Below this the query is too vague to spend a request on. */
+const REMOTE_MIN_QUERY = 3;
+const REMOTE_MAX_ROWS = 6;
+
+/**
+ * Everything the palette's local index cannot answer: titles and people that
+ * are not in the watchlist.
+ *
+ * Called only when the client has decided it is worth it — three characters,
+ * a pause in typing, and few local hits. The floor is repeated here because a
+ * server action is a public endpoint, and a one-letter query would otherwise
+ * reach both TMDB and the scraper.
+ *
+ * Cost is mostly the scraper: TMDB is free and Next caches each distinct query
+ * for an hour, so a repeated search is a cache read rather than a round trip.
+ */
+export async function searchPaletteRemote(query: string): Promise<PaletteRemoteItem[]> {
+    const trimmed = query.trim();
+    if (trimmed.length < REMOTE_MIN_QUERY) return [];
+
+    const results = await mediaService.search(trimmed).catch(() => null);
+    if (!results) return [];
+
+    const media: PaletteRemoteItem[] = results.media.slice(0, REMOTE_MAX_ROWS).map((item) => ({
+        key: item.id,
+        kind: "media",
+        title: item.title,
+        detail: [item.type === "MOVIE" ? "Movie" : "Series", item.year, item.originCountry].filter(Boolean).join(" · "),
+        image: item.poster,
+        href: `/media/${item.id}`,
+    }));
+
+    // People are already in the same response, so they cost nothing extra. The
+    // local index only knows actors from shows on the list; this is how someone
+    // reaches one they have never watched.
+    const people: PaletteRemoteItem[] = results.people.slice(0, 3).map((person) => ({
+        key: person.id,
+        kind: "person",
+        title: person.name,
+        detail: person.knownForDepartment || "Person",
+        image: person.profileImage,
+        href: personHref({ mdlSlug: person.source === "MDL" ? person.externalId : null, tmdbId: person.externalId }) ?? "#",
+    }));
+
+    return [...media, ...people];
 }

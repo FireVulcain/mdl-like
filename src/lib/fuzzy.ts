@@ -96,6 +96,17 @@ export function fuzzyScore(rawQuery: string, rawTarget: string): number | null {
     return 1_000 + score - Math.min(target.length, 100) / 10;
 }
 
+/**
+ * Above this, a score came from tier one — the query appears verbatim.
+ *
+ * The bands do not overlap: tier one starts at 10,000 and falls by the match's
+ * offset, tier two starts at 1,000 and climbs by bonuses that cannot realistically
+ * add nine thousand. Anything here or above means the text was found as typed,
+ * which is worth knowing when deciding whether a search still needs answering
+ * from somewhere else.
+ */
+export const VERBATIM_MATCH_FLOOR = 5_000;
+
 export function fuzzyMatches(query: string, target: string): boolean {
     return fuzzyScore(query, target) !== null;
 }

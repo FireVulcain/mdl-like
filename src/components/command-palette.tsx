@@ -10,14 +10,16 @@ import {
     getPaletteStats,
     getPalettePeople,
     getPaletteWatchlist,
+    searchPaletteRemote,
     undoLastProgress,
     type PaletteAiringEntry,
     type PaletteItem,
     type PalettePerson,
+    type PaletteRemoteItem,
     type PaletteStat,
 } from "@/actions/palette";
 import { updateUserMedia, deleteUserMedia } from "@/actions/media";
-import { fuzzyScore } from "@/lib/fuzzy";
+import { fuzzyScore, VERBATIM_MATCH_FLOOR } from "@/lib/fuzzy";
 import { DEFAULT_PALETTE_SHORTCUTS, matchesChord } from "@/lib/shortcuts";
 import { doneProgress, startProgress } from "@/lib/progress-events";
 import {
@@ -59,6 +61,14 @@ const WATCH_STATUSES = ["Watching", "Completed", "On Hold", "Dropped", "Plan to 
 
 export const OPEN_PALETTE_EVENT = "trackr:open-palette";
 
+/**
+ * When the local index answers this well, nothing is asked of the network. The
+ * point of searching beyond the watchlist is to find what is not in it.
+ */
+const LOCAL_HITS_BEFORE_REMOTE = 3;
+const REMOTE_MIN_QUERY = 3;
+const REMOTE_DEBOUNCE_MS = 400;
+
 const MAX_MEDIA_ROWS = 7;
 const MAX_PEOPLE_ROWS = 5;
 const MAX_PAGE_ROWS = 4;
@@ -94,6 +104,7 @@ type Row = { key: string; section: string | null } & (
     | { kind: "command"; label: string; icon: React.ElementType; keywords: string; danger?: boolean; run: () => void }
     | { kind: "airing"; entry: PaletteAiringEntry }
     | { kind: "person"; person: PalettePerson }
+    | { kind: "remote"; entry: PaletteRemoteItem }
     | { kind: "fact"; label: string }
 );
 
@@ -134,6 +145,11 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const [active, setActive] = useState(0);
     const [busy, setBusy] = useState(false);
     const [airing, setAiring] = useState<PaletteAiringEntry[] | null>(null);
+    const [remote, setRemote] = useState<{ query: string; items: PaletteRemoteItem[] } | null>(null);
+    const [searchingRemote, setSearchingRemote] = useState(false);
+    // Answers already paid for. Backspacing through a word re-visits queries that
+    // were just asked, and none of them should cost a second request.
+    const remoteCache = useRef(new Map<string, PaletteRemoteItem[]>());
     const [facts, setFacts] = useState<PaletteStat[] | null>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -621,6 +637,58 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         [goTo, setProgress, enterMode, castFor],
     );
 
+    // How well the local index is doing, which is the deciding gate below.
+    const local = useMemo(() => {
+        const trimmed = query.trim();
+        if (trimmed.length === 0 || !items) return { hits: 0, best: -Infinity };
+        let hits = 0;
+        let best = -Infinity;
+        for (const item of items) {
+            const score = titleScore(trimmed, item);
+            if (score === null) continue;
+            hits++;
+            if (score > best) best = score;
+        }
+        return { hits, best };
+    }, [query, items]);
+
+    // The one place the palette reaches past what it already holds.
+    //
+    // Four gates, and all four have to open: the root level, three characters,
+    // a pause in typing, and a local index that came up short. Firing on every
+    // keystroke would put a request on the scraper per letter, and most of them
+    // would be answering a question already answered from memory.
+    useEffect(() => {
+        const trimmed = query.trim();
+        if (mode.kind !== "root" || trimmed.length < REMOTE_MIN_QUERY) return;
+        // Enough local answers, or one that matches the text exactly — typing the
+        // name of a show you already track should not cost a request. The
+        // "Search everywhere" row is still there when the intent was elsewhere.
+        if (local.hits >= LOCAL_HITS_BEFORE_REMOTE || local.best >= VERBATIM_MATCH_FLOOR) return;
+
+        const timer = setTimeout(async () => {
+            const cached = remoteCache.current.get(trimmed);
+            if (cached) {
+                setRemote({ query: trimmed, items: cached });
+                return;
+            }
+            setSearchingRemote(true);
+            try {
+                const found = await searchPaletteRemote(trimmed);
+                remoteCache.current.set(trimmed, found);
+                // Typing carried on while this was in flight: the answer belongs
+                // to a question no longer being asked.
+                if (queryRef.current.trim() === trimmed) setRemote({ query: trimmed, items: found });
+            } catch {
+                // The local results stand on their own
+            } finally {
+                setSearchingRemote(false);
+            }
+        }, REMOTE_DEBOUNCE_MS);
+
+        return () => clearTimeout(timer);
+    }, [query, mode.kind, local]);
+
     const rows = useMemo<Row[]>(() => {
         const trimmed = query.trim();
         const media = items ?? [];
@@ -777,8 +845,20 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .sort((a, b) => b.best - a.best)
             .flatMap((g) => withSection(g.rows, g.heading));
 
-        return [...ordered, { kind: "search", query: trimmed, key: "search", section: null }];
-    }, [query, items, people, currentItem, mode, itemActions, personActions, castFor, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
+        // Always last, never ranked against the rest: what you already track
+        // outranks what you do not, whatever the scores say. Only shown for the
+        // query it was fetched for, so a stale answer never sits under new text.
+        const remoteRows: Row[] =
+            remote?.query === trimmed
+                ? remote.items.map((entry) => ({ kind: "remote" as const, entry, key: `remote-${entry.key}`, section: null }))
+                : [];
+
+        return [
+            ...ordered,
+            ...withSection(remoteRows, "Not in your list"),
+            { kind: "search", query: trimmed, key: "search", section: null },
+        ];
+    }, [query, items, people, currentItem, remote, mode, itemActions, personActions, castFor, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -787,6 +867,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             if (row.kind === "media") goTo(row.item.href);
             else if (row.kind === "page") goTo(row.page.href);
             else if (row.kind === "airing") goTo(row.entry.href);
+            else if (row.kind === "remote") goTo(row.entry.href);
             else if (row.kind === "person") goTo(`/people/${row.person.slug}`);
             else if (row.kind === "search") goTo(`/search?q=${encodeURIComponent(row.query)}`);
             else if (row.kind === "fact") goTo("/stats"); // a number is not a destination; its page is
@@ -947,7 +1028,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         aria-label={placeholder}
                         className="flex-1 min-w-0 bg-transparent text-sm text-white placeholder:text-gray-500 outline-none"
                     />
-                    {busy && <div className="h-3.5 w-3.5 rounded-full border-2 border-white/20 border-t-white/70 animate-spin shrink-0" />}
+                    {(busy || searchingRemote) && (
+                        <div className="h-3.5 w-3.5 rounded-full border-2 border-white/20 border-t-white/70 animate-spin shrink-0" />
+                    )}
                 </div>
 
                 <div ref={listRef} className="max-h-[min(60vh,26rem)] overflow-y-auto py-2">
@@ -995,7 +1078,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         const isActive = i === clampedActive;
                         const RowIcon = row.kind === "page" ? row.page.icon : row.kind === "command" ? row.icon : null;
                         const danger = row.kind === "command" && row.danger;
-                        const hasArtwork = row.kind === "media" || row.kind === "airing" || row.kind === "person";
+                        const hasArtwork =
+                            row.kind === "media" || row.kind === "airing" || row.kind === "person" || row.kind === "remote";
 
                         return (
                             <div key={row.key}>
@@ -1015,7 +1099,34 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         hasArtwork ? "py-2" : "py-1.5"
                                     } ${isActive ? "bg-white/8" : "hover:bg-white/4"}`}
                                 >
-                                    {row.kind === "person" ? (
+                                    {row.kind === "remote" ? (
+                                        <>
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                                {row.entry.image ? (
+                                                    <Image
+                                                        unoptimized
+                                                        src={row.entry.image}
+                                                        alt=""
+                                                        width={28}
+                                                        height={40}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center">
+                                                        {row.entry.kind === "person" ? (
+                                                            <User className="h-3 w-3 text-gray-600" />
+                                                        ) : (
+                                                            <Tv className="h-3 w-3 text-gray-600" />
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <span className="flex-1 min-w-0">
+                                                <span className="block text-sm text-white truncate">{row.entry.title}</span>
+                                                <span className="block text-xs text-gray-500 truncate">{row.entry.detail}</span>
+                                            </span>
+                                        </>
+                                    ) : row.kind === "person" ? (
                                         <>
                                             <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
                                                 {row.person.image ? (
