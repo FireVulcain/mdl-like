@@ -329,6 +329,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <NextEpisodeCountdown
                                 nextEpisode={toCountdownEpisode(mdlNextEpisode, 1) ?? spoilerSafe(media.nextEpisode)}
                                 totalEpisodes={media.totalEp}
+                                airedRange={media.aired}
+                                originCountry={media.originCountry}
                             />
                         )}
                     </StickySidebar>
@@ -539,16 +541,22 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         getCurrentUserId(),
         getWatchlistExternalIds(),
         isMdlRelevant
-            ? prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: media.externalId }, select: { mdlSlug: true, mdlRating: true, mdlDisabled: true } })
+            ? prisma.cachedMdlData.findUnique({
+                  where: { tmdbExternalId: media.externalId },
+                  select: { mdlSlug: true, mdlRating: true, mdlDisabled: true, aired: true },
+              })
             : null,
         isMdlRelevant && selectedSeason > 1
             ? prisma.mdlSeasonLink.findUnique({
                   where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } },
-                  select: { mdlSlug: true, mdlRating: true },
+                  select: { mdlSlug: true, mdlRating: true, aired: true },
               })
             : null,
     ]);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
+    // The season's own range when there is one — a finished season 1 says nothing
+    // about a season 2 still going out.
+    const mdlAiredRange = existingSeasonLink?.aired ?? cached?.aired ?? null;
     const hasMdlRating = !cached?.mdlDisabled && !!(existingSeasonLink?.mdlRating ?? cached?.mdlRating);
     // Blocking a show hides its MDL surface. The poster link needed its own
     // check: with no slug it degrades to an MDL *search* URL, so a blocked show
@@ -846,6 +854,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             totalEpisodes={episodeCount ?? undefined}
                             status={media.status}
                             firstAirDate={media.firstAirDate}
+                            airedRange={mdlAiredRange}
+                            originCountry={media.originCountry}
                         />
                     )}
                 </StickySidebar>

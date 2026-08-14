@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Calendar } from 'lucide-react';
 import { getAirDateTime, resolveAirMoment } from '@/lib/air-moment';
+import { hasFinishedAiring } from '@/lib/format-aired';
 
 interface NextEpisodeData {
     airDate: string;
@@ -27,6 +28,25 @@ interface NextEpisodeCountdownProps {
     totalEpisodes?: number;
     // Show status to determine if we should predict
     status?: string;
+    /**
+     * MDL's broadcast range, e.g. "Aug  2, 2026 - Aug 13, 2026".
+     *
+     * TMDB's status is the wrong thing to gate a prediction on by itself: it
+     * left Genius Girlfriend on "Returning Series" the day after its final
+     * episode, and the predictor happily invented an episode 5 for a show that
+     * had aired all 28. MDL states the end date, and states it on time.
+     */
+    airedRange?: string | null;
+    /**
+     * ISO country. Only KR is predicted from.
+     *
+     * Two episodes a week is a Korean broadcast convention — a pair of nights,
+     * the same two every week — which is why a date can be inferred from the
+     * premiere alone. Chinese platforms release one to two a day, and the count
+     * changes with the day, so the same arithmetic invents a schedule rather
+     * than reading one. Nothing outside KR is guessed at.
+     */
+    originCountry?: string | null;
     // Fallback: show's first air date (used if season air date is missing)
     firstAirDate?: string | null;
 }
@@ -175,13 +195,25 @@ export function NextEpisodeCountdown({
     totalEpisodes,
     status,
     firstAirDate,
+    airedRange,
+    originCountry,
 }: NextEpisodeCountdownProps) {
     const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
     const [mounted, setMounted] = useState(false);
 
     // Determine episode data: use TMDB data or predict
     const episodeData = useMemo(() => {
-        const isOngoing = status === 'Returning Series' || status === 'In Production';
+        // Everything here gates guesses only. A real dated episode from TMDB or
+        // MDL is still trusted below: a source naming an episode outranks any of
+        // this.
+        //
+        // Three ways a prediction can be wrong, and each is checked:
+        // the cadence only holds in Korea; MDL dates the end of a run and TMDB
+        // often does not notice for days; and TMDB's own status has to agree.
+        const isOngoing =
+            originCountry === 'KR' &&
+            !hasFinishedAiring(airedRange) &&
+            (status === 'Returning Series' || status === 'In Production');
         const airDateForPrediction = currentSeason?.airDate || firstAirDate;
 
         // Check if source data is available AND hasn't aired yet
@@ -219,7 +251,7 @@ export function NextEpisodeCountdown({
         }
 
         return null;
-    }, [nextEpisode, currentSeason, totalEpisodes, status, firstAirDate]);
+    }, [nextEpisode, currentSeason, totalEpisodes, status, firstAirDate, airedRange, originCountry]);
 
     useEffect(() => {
         setMounted(true);
@@ -300,7 +332,7 @@ export function NextEpisodeCountdown({
                 {/* Prediction disclaimer */}
                 {episodeData.isPredicted && (
                     <div className="text-[10px] text-gray-500 text-center -mt-2">
-                        * Estimated based on 2 episodes/week schedule
+                        * Estimated from the usual two-episodes-a-week Korean schedule
                     </div>
                 )}
             </div>
