@@ -23,6 +23,12 @@ export type PaletteItem = {
      * should not care which half of a title someone remembers.
      */
     altTitle: string | null;
+    /**
+     * Main-cast character names for this show. Searched, never drawn as the
+     * label — a row found through "Hong Cha Young" is still the row for
+     * Vincenzo, and says underneath which character it matched on.
+     */
+    characters: string[];
     poster: string | null;
     href: string;
     season: number;
@@ -115,6 +121,32 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
     });
     const watchedAt = new Map(watched.map((row) => [row.userMediaId, row._max.createdAt]));
 
+    // Character names, straight out of the cast blob the MDL cache already
+    // holds — no request, and coverage is total: every one of the 2848 stored
+    // main-cast entries carries one. Main roles only, for the same reason the
+    // people index stops there: those are the names anyone remembers, and the
+    // support cast would multiply the index for names nobody searches by.
+    //
+    // Keyed on externalId, so every season of a show shares one cast, which is
+    // what the cast pages do too.
+    const characterRows = await prisma.$queryRaw<{ externalId: string; character: string | null }[]>`
+        select c."tmdbExternalId" as "externalId",
+               p.value->>'characterName' as character
+        from "CachedMdlData" c
+        join (select distinct "externalId" from "UserMedia" where "userId" = ${userId}) u
+          on u."externalId" = c."tmdbExternalId",
+        lateral jsonb_array_elements(coalesce(c."castJson"->'main', '[]'::jsonb)) p(value)
+    `;
+
+    const charactersByShow = new Map<string, string[]>();
+    for (const row of characterRows) {
+        const name = row.character?.trim();
+        if (!name) continue;
+        const list = charactersByShow.get(row.externalId) ?? [];
+        if (!list.includes(name)) list.push(name);
+        charactersByShow.set(row.externalId, list);
+    }
+
     return items
         .filter((item) => item.title)
         .map((item) => ({
@@ -130,6 +162,7 @@ export async function getPaletteWatchlist(): Promise<PaletteItem[]> {
                     ? { title: native, altTitle: item.title! }
                     : { title: item.title!, altTitle: native };
             })(),
+            characters: charactersByShow.get(item.externalId) ?? [],
             poster: item.poster,
             // Seasons are separate rows with separate pages, exactly as the
             // watchlist links them — two entries for one show are not duplicates.
