@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { PhotoLightbox } from "@/components/media/photo-lightbox";
-import type { KuryanaPersonPhoto } from "@/lib/kuryana";
+import type { KuryanaPhoto } from "@/lib/kuryana";
 
 /**
- * MDL person photos, as a grid that opens into the existing lightbox.
+ * MDL photos, as a grid that opens into the existing lightbox.
  *
  * The two sizes the endpoint returns are both used: the grid loads the medium
  * one, the lightbox the full one. Loading full-size files into a 200px cell
@@ -16,7 +16,7 @@ import type { KuryanaPersonPhoto } from "@/lib/kuryana";
  * square-cropped rather than letting each photo set its own height, which would
  * leave a ragged grid.
  */
-export function PersonPhotoGrid({ photos, className = "" }: { photos: KuryanaPersonPhoto[]; className?: string }) {
+export function MdlPhotoGrid({ photos, className = "" }: { photos: KuryanaPhoto[]; className?: string }) {
     const [openAt, setOpenAt] = useState<number | null>(null);
     if (photos.length === 0) return null;
 

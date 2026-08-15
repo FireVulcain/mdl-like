@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { kuryanaGetPersonPhotos } from "@/lib/kuryana";
-import { PersonPhotoGrid } from "@/components/people/person-photo-grid";
+import { MdlPhotoGrid } from "@/components/media/mdl-photo-grid";
 import type { Metadata } from "next";
 import { mdlPersonMetadata } from "@/lib/page-metadata";
 
@@ -63,7 +63,7 @@ export default async function PersonPhotosPage({
                 <div className="h-px bg-white/8" />
 
                 {photos.length > 0 ? (
-                    <PersonPhotoGrid photos={photos} />
+                    <MdlPhotoGrid photos={photos} />
                 ) : (
                     <div className="text-center py-12 text-gray-400">No photos available.</div>
                 )}

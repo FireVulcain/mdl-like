@@ -8,6 +8,7 @@ import { getViewPreferences, getDisplayPreferences } from "@/actions/preferences
 import { AddToListButton } from "@/components/add-to-list-button";
 import { SeasonSelector } from "@/components/season-selector";
 import { PhotosScroll } from "@/components/media/photos-scroll";
+import { MdlPhotosSection } from "@/components/media/mdl-photos-section";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
 import { MdlRankRow } from "@/components/media/mdl-rank-row";
@@ -141,6 +142,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         const navSections: NavSection[] = [
             { id: "section-cast", label: "Cast" },
             ...(media.type === "TV" ? [{ id: "section-episodes", label: "Episodes" }] : []),
+            { id: "section-photos", label: "Photos" },
             { id: "section-reviews", label: "Reviews" },
             { id: "section-recommendations", label: "Recs" },
             { id: "section-comments", label: "Comments" },
@@ -459,6 +461,21 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </Suspense>
                             </div>
                         )}
+
+                        {/* An MDL-native page has no TMDB backdrops, so it had no
+                            photo section at all. MDL has the gallery, so it gets
+                            one — same component, one source. */}
+                        <div id="section-photos" className="border-t border-white/8 pt-8">
+                            <Suspense fallback={null}>
+                                <MdlPhotosSection
+                                    backdrops={[]}
+                                    externalId={media.externalId}
+                                    season={1}
+                                    mediaId={media.id}
+                                    mdlSlug={media.externalId}
+                                />
+                            </Suspense>
+                        </div>
 
                         <div id="section-reviews" className="border-t border-white/8 pt-8">
                             <Suspense fallback={null}>
@@ -972,7 +989,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         const navSections: NavSection[] = [
                             { id: "section-cast", label: "Cast" },
                             ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episodes" }] : []),
-                            ...((media.images?.backdrops?.length ?? 0) > 0 ? [{ id: "section-photos", label: "Photos" }] : []),
+                            // MDL can supply photos where TMDB has no backdrops,
+                            // but that set only resolves after this renders — so
+                            // the entry follows "could have photos" rather than
+                            // "has backdrops", which was hiding the jump on
+                            // titles whose gallery is entirely MDL's.
+                            ...((media.images?.backdrops?.length ?? 0) > 0 || isMdlRelevant
+                                ? [{ id: "section-photos", label: "Photos" }]
+                                : []),
                             ...(isMdlRelevant ? [{ id: "section-reviews", label: "Reviews" }] : []),
                             { id: "section-recommendations", label: "Recs" },
                             ...(isMdlRelevant ? [{ id: "section-comments", label: "Comments" }] : []),
@@ -1036,9 +1060,19 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
                     )}
 
-                    {/* Photos */}
+                    {/* Photos. The TMDB backdrops arrive with the details call
+                        and cost nothing; the MDL set is a scrape, so it streams
+                        in its own boundary and the fallback is the section as it
+                        was before — backdrops, no toggle. */}
                     <div id="section-photos" className="border-t border-white/8 pt-8">
-                        <PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />
+                        <Suspense fallback={<PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />}>
+                            <MdlPhotosSection
+                                backdrops={media.images?.backdrops || []}
+                                externalId={media.externalId}
+                                season={selectedSeason}
+                                mediaId={media.id}
+                            />
+                        </Suspense>
                     </div>
 
                     {/* MDL Reviews */}

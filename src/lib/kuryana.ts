@@ -427,21 +427,23 @@ export async function kuryanaGetPersonThreads(slug: string, page = 1): Promise<M
     return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 0));
 }
 
-export interface KuryanaPersonPhoto {
+// People and titles return the same photo payload from two different paths, so
+// the shape is named for what it is rather than for one of its two callers.
+export interface KuryanaPhoto {
     id: string;
     link: string;
-    /** ~medium size, what the grid shows */
+    /** Always a 450x450 square crop — what the grid shows. */
     image: string;
-    /** full size, what the lightbox opens */
+    /** 900px on the long edge, native ratio — what the lightbox opens. */
     image_full: string;
 }
 
-export interface KuryanaPersonPhotosResult {
+export interface KuryanaPhotosResult {
     slug_query: string;
     data: {
         link: string;
         title: string;
-        photos: KuryanaPersonPhoto[];
+        photos: KuryanaPhoto[];
         pagination: { current_page: number; total_pages: number };
     };
     scrape_date: string;
@@ -449,9 +451,17 @@ export interface KuryanaPersonPhotosResult {
 
 // 28 photos a page, with the page count known up front — so the section can say
 // how many there are without walking every page.
-export async function kuryanaGetPersonPhotos(slug: string, page = 1): Promise<KuryanaPersonPhotosResult | null> {
+export async function kuryanaGetPersonPhotos(slug: string, page = 1): Promise<KuryanaPhotosResult | null> {
     const query = page > 1 ? `?page=${page}` : "";
-    return kuryanaFetch<KuryanaPersonPhotosResult>(`/people/${slug}/photos${query}`, 8000, 0);
+    return kuryanaFetch<KuryanaPhotosResult>(`/people/${slug}/photos${query}`, 8000, 0);
+}
+
+// Same endpoint shape under /id, for a title rather than a person. Unlike the
+// person variant this one caches: a show's gallery is near-static, and this runs
+// on every media page rather than on a page someone navigated to on purpose.
+export async function kuryanaGetMediaPhotos(slug: string, page = 1): Promise<KuryanaPhotosResult | null> {
+    const query = page > 1 ? `?page=${page}` : "";
+    return kuryanaFetch<KuryanaPhotosResult>(`/id/${slug}/photos${query}`, 8000, 3600);
 }
 
 export interface KuryanaRecommendation {

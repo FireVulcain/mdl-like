@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { kuryanaGetPersonPhotos } from "@/lib/kuryana";
-import { PersonPhotoGrid } from "@/components/people/person-photo-grid";
+import { MdlPhotoGrid } from "@/components/media/mdl-photo-grid";
 
 // One row's worth on the page itself. A prolific actor has two hundred photos
 // across seven pages, so the section shows the first few and hands the rest to
@@ -30,7 +30,7 @@ export async function PersonPhotosSection({ slug }: { slug: string }) {
                 )}
             </div>
 
-            <PersonPhotoGrid photos={photos.slice(0, PREVIEW_COUNT)} />
+            <MdlPhotoGrid photos={photos.slice(0, PREVIEW_COUNT)} />
         </div>
     );
 }
