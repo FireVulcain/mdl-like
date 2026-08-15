@@ -19,7 +19,7 @@ import {
     type PaletteStat,
 } from "@/actions/palette";
 import { updateUserMedia, deleteUserMedia } from "@/actions/media";
-import { fuzzyScore, VERBATIM_MATCH_FLOOR } from "@/lib/fuzzy";
+import { fuzzyScore, VERBATIM_MATCH_FLOOR, ANCHORED_MATCH_FLOOR } from "@/lib/fuzzy";
 import { DEFAULT_PALETTE_SHORTCUTS, matchesChord } from "@/lib/shortcuts";
 import { doneProgress, startProgress } from "@/lib/progress-events";
 import {
@@ -143,11 +143,14 @@ function titleScore(query: string, item: PaletteItem): number | null {
  * Measured over the 209 shows in this index, matching them the way titles are
  * matched turned "lee" from 25 shows into 64 and "kim" from 9 into 53 — every
  * three-letter fragment of a Korean name hitting a third of the list. Nobody
- * types three letters meaning a character, so the match has to be verbatim
- * rather than a scattered subsequence, and the query has to be long enough to
- * be a name. At five the noise is gone entirely — lee, kim and park all back to
- * their title-only counts — while "cha young", "su ho" and "hae in" still find
- * their shows. Six would cost "su ho" and buy nothing.
+ * types three letters meaning a character, so the match has to be found in one
+ * piece rather than scattered across the name, and the query has to be long
+ * enough to be a name. At five the noise is gone entirely — lee, kim and park
+ * all back to their title-only counts — while "cha young", "su ho" and "hae in"
+ * still find their shows. Six would cost "su ho" and buy nothing.
+ *
+ * "In one piece" means anchored, not perfect: a name typed with a letter wrong
+ * still counts, which is the whole point of a search you type from memory.
  */
 const CHARACTER_MIN_QUERY = 5;
 
@@ -159,7 +162,7 @@ function matchItem(query: string, item: PaletteItem): { score: number; character
     if (query.trim().length >= CHARACTER_MIN_QUERY) {
         for (const character of item.characters) {
             const score = fuzzyScore(query, character);
-            if (score !== null && score >= VERBATIM_MATCH_FLOOR && score > characterBest) {
+            if (score !== null && score >= ANCHORED_MATCH_FLOOR && score > characterBest) {
                 characterBest = score;
                 bestCharacter = character;
             }
