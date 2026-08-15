@@ -276,7 +276,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     }
 
     // Batch-fetch TMDB posters for linked works (server-side, cached 1h by Next.js)
-    type LinkedEntry = { mdlNumericId: string; tmdbExternalId: string; mediaType: "tv" | "movie" };
+    type LinkedEntry = { mdlNumericId: string; tmdbExternalId: string; mediaType: "tv" | "movie"; hasMdlImage: boolean };
     const linkedEntries: LinkedEntry[] = [];
     const seenTmdbIds = new Set<string>();
 
@@ -290,12 +290,20 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
             const tmdbId = mdlToTmdb.get(id)!;
             if (seenTmdbIds.has(tmdbId)) continue;
             seenTmdbIds.add(tmdbId);
-            linkedEntries.push({ mdlNumericId: id, tmdbExternalId: tmdbId, mediaType });
+            linkedEntries.push({ mdlNumericId: id, tmdbExternalId: tmdbId, mediaType, hasMdlImage: !!work.title?.image });
         }
     }
 
+    // TMDB is the fallback now, not the default, so only the works MDL has no
+    // image for are worth a request. In practice that is none of them: across
+    // the cached filmographies the split is exactly 0% or 100% per person and
+    // never anything between, and it falls on the date the scraper started
+    // sending an image per work. The rows sitting at zero are the ones cached
+    // before that, and missingWorkImages above already refetches them on sight.
+    const needsTmdbPoster = linkedEntries.filter((entry) => !entry.hasMdlImage);
+
     const [tmdbDetails, watchlistExternalIds, pickedPosters] = await Promise.all([
-        Promise.all(linkedEntries.map(({ tmdbExternalId, mediaType }) => tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null))),
+        Promise.all(needsTmdbPoster.map(({ tmdbExternalId, mediaType }) => tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null))),
         getWatchlistExternalIds(),
         getWatchlistPosters(),
     ]);
@@ -308,25 +316,34 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     const pickedByShow = new Map<string, string>();
     for (const p of pickedPosters) if (p.poster && !pickedByShow.has(p.externalId)) pickedByShow.set(p.externalId, p.poster);
 
-    const posterMap = new Map<string, string | null>(); // numericMdlId → poster URL
-    linkedEntries.forEach(({ mdlNumericId, tmdbExternalId }, i) => {
+    const pickedMap = new Map<string, string>(); // numericMdlId → poster chosen by hand
+    for (const { mdlNumericId, tmdbExternalId } of linkedEntries) {
         const season = mdlSeasonMap.get(mdlNumericId);
         const picked =
             (season != null ? pickedBySeason.get(`${tmdbExternalId}-${season}`) : null) ??
             pickedBySeason.get(`${tmdbExternalId}-1`) ??
             pickedByShow.get(tmdbExternalId) ??
             null;
-        const detail = tmdbDetails[i];
-        posterMap.set(mdlNumericId, picked ?? (detail?.poster_path ? TMDB_CONFIG.w342Image(detail.poster_path) : null));
+        if (picked) pickedMap.set(mdlNumericId, picked);
+    }
+
+    const tmdbPosterMap = new Map<string, string>(); // numericMdlId → TMDB poster, fallback only
+    needsTmdbPoster.forEach(({ mdlNumericId }, i) => {
+        const path = tmdbDetails[i]?.poster_path;
+        if (path) tmdbPosterMap.set(mdlNumericId, TMDB_CONFIG.w342Image(path));
     });
 
     function getPoster(work: KuryanaWorkItem): string | null {
-        // A linked work prefers the TMDB poster — or the one picked by hand in the
-        // watchlist, which wins over both. Everything else takes MDL's own, which
-        // the person endpoint now returns per work: no second scrape, and no cap
-        // on how many cards can show one.
+        // MDL's own image first, on a page that is MDL's from top to bottom —
+        // linking a work to TMDB used to change the artwork under it, so the same
+        // filmography looked like two different lists depending on which entries
+        // happened to be linked. TMDB only fills the gaps MDL leaves.
+        //
+        // A poster picked by hand in the watchlist still wins over both: that one
+        // is a decision, not a default.
         const id = extractMdlId(work._slug);
-        return (id ? posterMap.get(id) : null) ?? work.title.image ?? null;
+        if (!id) return work.title.image ?? null;
+        return pickedMap.get(id) ?? work.title.image ?? tmdbPosterMap.get(id) ?? null;
     }
 
     function getInternalLink(work: KuryanaWorkItem): string | null {
