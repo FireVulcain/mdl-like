@@ -23,10 +23,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return mdlPersonMetadata((await params).slug);
 }
 
+/**
+ * Undated first, then newest to oldest.
+ *
+ * A work with no year yet is one MDL has not dated because it has not aired —
+ * so on a list that already runs newest first, it belongs above this year's,
+ * not filed underneath work from twenty years ago. It was sorted last, which
+ * read as "old and unknown" rather than "next".
+ *
+ * The undated test is the same one the card uses to print "TBA", so the two
+ * cannot disagree about which works count as undated.
+ */
 function sortWorks(works: KuryanaWorkItem[]): KuryanaWorkItem[] {
+    const undated = (work: KuryanaWorkItem) => typeof work.year !== "number";
     return [...works].sort((a, b) => {
-        if (a.year === "TBA" && b.year !== "TBA") return 1;
-        if (a.year !== "TBA" && b.year === "TBA") return -1;
+        if (undated(a) !== undated(b)) return undated(a) ? -1 : 1;
         if (typeof a.year === "number" && typeof b.year === "number") return b.year - a.year;
         return 0;
     });
