@@ -977,7 +977,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
                     <div className="relative flex flex-wrap items-center gap-2 p-2.5">
                         {/* Search */}
-                        <div className="w-full md:flex-1 md:min-w-0 relative group">
+                        <div className="w-full md:flex-1 md:min-w-60 relative group">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-blue-500 transition-colors" />
                             <Input
                                 placeholder="Search your collection..."
