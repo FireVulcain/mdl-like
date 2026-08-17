@@ -89,13 +89,54 @@ export async function updateMdlLink(tmdbExternalId: string, newMdlSlug: string) 
     }
 }
 
+// Remove the current MDL association and keep a disabled sentinel so the show
+// is NOT auto-detected again — it stays unlinked until a manual link is set
+// (updateMdlLink re-enables it). Differs from "block": unlink discards the
+// current slug and its cached data, block keeps the slug for a one-click restore.
+export async function unlinkMdl(tmdbExternalId: string) {
+    if (!tmdbExternalId) throw new Error("Missing tmdbExternalId");
+    try {
+        await prisma.cachedMdlData.upsert({
+            where: { tmdbExternalId },
+            create: { tmdbExternalId, mdlSlug: "", mdlDisabled: true },
+            update: {
+                mdlSlug: "",
+                mdlDisabled: true,
+                mdlRating: null,
+                mdlRanking: null,
+                mdlPopularity: null,
+                mdlWatchers: null,
+                aired: null,
+                tags: Prisma.DbNull,
+                genres: Prisma.DbNull,
+                castJson: Prisma.DbNull,
+                directors: Prisma.DbNull,
+                screenwriters: Prisma.DbNull,
+                // Force staleness so a later unblock re-detects instead of
+                // serving this now-empty row from the fresh-cache path.
+                cachedAt: new Date(0),
+            },
+        });
+        revalidatePath(`/media/${tmdbExternalId}`);
+        return { success: true };
+    } catch (e) {
+        console.error("[MDL Unlink Failed]", e);
+        return { success: false, error: "Failed to unlink MDL entry." };
+    }
+}
+
 export async function toggleMdlDisabled(tmdbExternalId: string, disabled: boolean) {
     if (!tmdbExternalId) throw new Error("Missing tmdbExternalId");
     try {
         await prisma.cachedMdlData.upsert({
             where: { tmdbExternalId },
             create: { tmdbExternalId, mdlSlug: "", mdlDisabled: disabled },
-            update: { mdlDisabled: disabled },
+            update: {
+                mdlDisabled: disabled,
+                // Re-enabling means "give me MDL back" — force a fresh re-detect
+                // on the next render (the retained row may be empty or outdated).
+                ...(disabled ? {} : { cachedAt: new Date(0) }),
+            },
         });
         revalidatePath(`/media/${tmdbExternalId}`);
         return { success: true };

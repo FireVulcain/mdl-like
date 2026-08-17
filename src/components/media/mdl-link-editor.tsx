@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { kuryanaSearch, KuryanaSearchResult } from "@/lib/kuryana";
-import { updateMdlLink, toggleMdlDisabled } from "@/actions/mdl-editor";
+import { updateMdlLink, toggleMdlDisabled, unlinkMdl } from "@/actions/mdl-editor";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -31,6 +31,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
     const [isPending, startTransition] = useTransition();
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [isTogglingBlock, setIsTogglingBlock] = useState(false);
+    const [isUnlinking, setIsUnlinking] = useState(false);
 
     async function handleRefresh() {
         if (!mediaId) return;
@@ -65,6 +66,22 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
             }
         } finally {
             setIsTogglingBlock(false);
+        }
+    }
+
+    async function handleUnlink() {
+        setIsUnlinking(true);
+        try {
+            const result = await unlinkMdl(tmdbExternalId);
+            if (result.success) {
+                toast.success("MDL entry unlinked — link one manually to restore it");
+                setOpen(false);
+                router.refresh();
+            } else {
+                toast.error(result.error || "Failed to unlink MDL entry.");
+            }
+        } finally {
+            setIsUnlinking(false);
         }
     }
 
@@ -147,6 +164,17 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                 >
                                     <RefreshCw className={`h-3 w-3 ${isRefreshing ? "animate-spin" : ""}`} />
                                     Refresh cache
+                                </button>
+                            )}
+                            {currentSlug && !isDisabled && (
+                                <button
+                                    onClick={handleUnlink}
+                                    disabled={isUnlinking}
+                                    title="Remove this MDL link (stays unlinked until you link one manually)"
+                                    className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-gray-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors disabled:opacity-40"
+                                >
+                                    <Link2Off className={`h-3 w-3 ${isUnlinking ? "animate-pulse" : ""}`} />
+                                    Unlink
                                 </button>
                             )}
                             <button
