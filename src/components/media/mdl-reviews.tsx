@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Star, ChevronDown, ChevronUp, ExternalLink, RefreshCw } from "lucide-react";
+import Link from "next/link";
+import { Star, ChevronDown, ChevronUp, ExternalLink, RefreshCw, TriangleAlert } from "lucide-react";
 import { KuryanaReview } from "@/lib/kuryana";
 import { loadMoreReviews } from "@/actions/mdl-reviews";
+import { mdlUserFromProfileUrl, mdlUserHref } from "@/lib/mdl-user-link";
 
 const TRUNCATE_LENGTH = 280;
+
+/** Past this a first paragraph is prose, not a heading. */
+const TITLE_MAX_LENGTH = 120;
 
 const SUB_RATING_KEYS = ["Story", "Acting/Cast", "Music", "Rewatch Value"] as const;
 
@@ -17,9 +22,22 @@ function pageFingerprint(reviews: KuryanaReview[]): string {
 function ReviewCard({ review }: { review: KuryanaReview }) {
     const [expanded, setExpanded] = useState(false);
 
-    const parts = review.review ?? [];
-    const title = parts[0] ?? "";
-    const body = parts.slice(1).join("\n\n").trim();
+    // `review` is a list of paragraphs, not a [title, ...body] tuple: MDL gives
+    // some reviews a heading, some a spoiler flag, and some neither. Reading
+    // paragraph 0 as the title regardless turned a single-paragraph review into
+    // an 800-character bold heading that the truncation never touched, because
+    // only the body was ever measured.
+    const parts = (review.review ?? []).map((p) => p.trim()).filter(Boolean);
+
+    const hasSpoilerFlag = parts.length > 0 && /^this review may contain spoilers$/i.test(parts[0]);
+    const rest = hasSpoilerFlag ? parts.slice(1) : parts;
+
+    // A first paragraph is a heading only when something follows it and it is
+    // short enough to read as one.
+    const hasTitle = rest.length > 1 && rest[0].length <= TITLE_MAX_LENGTH;
+    const title = hasTitle ? rest[0] : "";
+    const body = (hasTitle ? rest.slice(1) : rest).join("\n\n").trim();
+
     const isLong = body.length > TRUNCATE_LENGTH;
     const displayBody = isLong && !expanded ? `${body.slice(0, TRUNCATE_LENGTH).trimEnd()}…` : body;
 
@@ -28,35 +46,55 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
 
     const subRatings = SUB_RATING_KEYS.filter((k) => review.ratings?.[k] != null);
 
+    // The byline used to leave the site. It now opens the reviewer's list here,
+    // and only falls back to MDL when the profile link is unreadable.
+    const reviewerId = mdlUserFromProfileUrl(review.reviewer.user_link);
+    const listHref = reviewerId ? mdlUserHref(reviewerId, review.reviewer.name) : null;
+
+    const avatar = review.reviewer.user_image ? (
+        // Plain img — avoids Next.js proxy which 403s on MDL letter-avatars and GIFs
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={review.reviewer.user_image} alt={review.reviewer.name} className="size-full object-cover" />
+    ) : (
+        <span className="text-xs font-bold text-gray-500">{review.reviewer.name.slice(0, 2).toUpperCase()}</span>
+    );
+    const avatarClass =
+        "size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-white/10 bg-gray-800 flex items-center justify-center";
+
     return (
         <div className="flex flex-col gap-3 py-4 transition-colors">
             {/* Reviewer row */}
             <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2.5 min-w-0">
-                    {/* Plain img — avoids Next.js proxy which 403s on MDL letter-avatars and GIFs */}
-                    <div className="size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-white/10 bg-gray-800 flex items-center justify-center">
-                        {review.reviewer.user_image ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                                src={review.reviewer.user_image}
-                                alt={review.reviewer.name}
-                                className="size-full object-cover"
-                            />
-                        ) : (
-                            <span className="text-xs font-bold text-gray-500">
-                                {review.reviewer.name.slice(0, 2).toUpperCase()}
-                            </span>
-                        )}
-                    </div>
-                    <div className="min-w-0">
-                        <a
-                            href={review.reviewer.user_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm font-medium text-white hover:text-blue-400 transition-colors truncate block"
+                    {listHref ? (
+                        <Link
+                            href={listHref}
+                            title={`See ${review.reviewer.name}'s list`}
+                            className={`${avatarClass} hover:ring-2 hover:ring-sky-500/50 transition-all`}
                         >
-                            {review.reviewer.name}
-                        </a>
+                            {avatar}
+                        </Link>
+                    ) : (
+                        <div className={avatarClass}>{avatar}</div>
+                    )}
+                    <div className="min-w-0">
+                        {listHref ? (
+                            <Link
+                                href={listHref}
+                                className="text-sm font-medium text-white hover:text-sky-400 transition-colors truncate block"
+                            >
+                                {review.reviewer.name}
+                            </Link>
+                        ) : (
+                            <a
+                                href={review.reviewer.user_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-white hover:text-blue-400 transition-colors truncate block"
+                            >
+                                {review.reviewer.name}
+                            </a>
+                        )}
                         {helpfulCount != null && (
                             <p className="text-xs text-gray-500 truncate">
                                 {helpfulCount.toLocaleString()} found this helpful
@@ -78,6 +116,12 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
 
             {/* Review body */}
             <div className="space-y-1">
+                {hasSpoilerFlag && (
+                    <p className="flex items-center gap-1.5 text-xs text-rose-400/90">
+                        <TriangleAlert className="size-3 shrink-0" />
+                        May contain spoilers
+                    </p>
+                )}
                 {title && (
                     <p className="text-sm font-semibold text-white leading-snug">{title}</p>
                 )}

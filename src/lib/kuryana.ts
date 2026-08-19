@@ -381,9 +381,12 @@ export interface MdlComment {
     parent_id: number | null;
     depth: number;
     deleted: boolean;
+    /** The key into the `authors` map — a username, or a bare numeric user id. */
     author: string;
     role: string;
     avatar_url?: string;
+    /** What to show. For numeric-keyed authors `author` is the id, not a name. */
+    author_name?: string;
 }
 
 export interface KuryanaThreadAuthor {
@@ -403,14 +406,21 @@ export interface MdlThreadsResult {
     authors?: Record<string, KuryanaThreadAuthor>;
 }
 
-// Avatars arrive in a separate `authors` map keyed independently of the
-// comments, so they are folded in here rather than in every consumer.
+// Avatars and display names arrive in a separate `authors` map keyed
+// independently of the comments, so they are folded in here rather than in
+// every consumer.
+//
+// `comment.author` is that map's key, which MDL gives as a username for some
+// accounts and as a bare numeric id for others — and the id is not a name, so
+// the display name is resolved here too rather than printing "16750552".
 function withAvatars(res: MdlThreadsResult | null): MdlThreadsResult | null {
     if (!res) return null;
     if (res.authors && res.comments) {
         res.comments = res.comments.map((c) => {
-            const authorData = Object.values(res.authors!).find((a) => a.username === c.author || a.display_name === c.author);
-            return { ...c, avatar_url: authorData?.avatar_url };
+            const authorData =
+                res.authors![c.author] ??
+                Object.values(res.authors!).find((a) => a.username === c.author || a.display_name === c.author);
+            return { ...c, avatar_url: authorData?.avatar_url, author_name: authorData?.display_name || c.author };
         });
     }
     return res;
@@ -425,6 +435,46 @@ export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThr
 // already holds.
 export async function kuryanaGetPersonThreads(slug: string, page = 1): Promise<MdlThreadsResult | null> {
     return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 0));
+}
+
+export interface KuryanaDramaListItem {
+    name: string;
+    /** MDL slug, e.g. "36109-ancient-detective" — links straight to /media/mdl-… */
+    id: string;
+    /** "0.0" means the entry is unrated, not rated zero. */
+    score: string;
+    episode_seen: string;
+    episode_total: string;
+}
+
+/**
+ * MDL renders the counts for every section but only the rows for some of them —
+ * a list can legitimately report 360 planned titles and hand over no items.
+ */
+export interface KuryanaDramaListSection {
+    items: KuryanaDramaListItem[];
+    stats: Record<string, string>;
+}
+
+export interface KuryanaDramaListResult {
+    slug_query: string;
+    data: {
+        link: string;
+        list: Record<string, KuryanaDramaListSection>;
+    };
+    scrape_date: string;
+}
+
+/**
+ * Another MDL user's list.
+ *
+ * `user` is whatever the comment carried — MDL accepts both the username and
+ * the numeric id on this path. Scraping a full list is slow and can run to
+ * hundreds of rows, hence the wider timeout; a stranger's list is also about
+ * the most static thing here, so it is cached for an hour.
+ */
+export async function kuryanaGetDramaList(user: string): Promise<KuryanaDramaListResult | null> {
+    return kuryanaFetch<KuryanaDramaListResult>(`/dramalist/${encodeURIComponent(user)}`, 20000, 3600);
 }
 
 // People and titles return the same photo payload from two different paths, so

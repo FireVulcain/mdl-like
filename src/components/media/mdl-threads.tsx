@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Heart, ChevronDown, RefreshCw, MessageSquare, Eye } from "lucide-react";
 import { MdlComment } from "@/lib/kuryana";
 import { loadMoreComments, type ThreadKind } from "@/actions/mdl-threads";
+import { mdlUserHref } from "@/lib/mdl-user-link";
 
 type CommentNode = MdlComment & { children: CommentNode[] };
 
@@ -76,26 +78,37 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
     const isLong = rawText.length > MESSAGE_TRUNCATE;
     const displayText = isLong && !expanded ? `${rawText.slice(0, MESSAGE_TRUNCATE).trimEnd()}…` : rawText;
 
-    const avatarColor = getAuthorColor(comment.author);
-    const initials = comment.author.slice(0, 2).toUpperCase();
+    // `author` is MDL's key for the account — a username for some, a bare id for
+    // others — and only the key works as a link. The name is what to show.
+    const authorName = comment.author_name || comment.author;
+    const avatarColor = getAuthorColor(authorName);
+    const initials = authorName.slice(0, 2).toUpperCase();
+    const listHref = mdlUserHref(comment.author, authorName);
 
     return (
         <div className="flex gap-2.5">
             {/* Avatar */}
-            <div
-                className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-white/5"} flex items-center justify-center font-bold text-white mt-0.5 select-none overflow-hidden`}
+            <Link
+                href={listHref}
+                title={`See ${authorName}'s list`}
+                className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-white/5"} flex items-center justify-center font-bold text-white mt-0.5 select-none overflow-hidden hover:ring-2 hover:ring-sky-500/50 transition-all`}
             >
                 {comment.avatar_url ? (
-                    <Image src={comment.avatar_url} alt={comment.author} fill className="object-cover" unoptimized={true} />
+                    <Image src={comment.avatar_url} alt={authorName} fill className="object-cover" unoptimized={true} />
                 ) : (
                     initials
                 )}
-            </div>
+            </Link>
 
             {/* Content */}
             <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 flex-wrap">
-                    <span className="text-sm font-semibold text-white">{comment.author}</span>
+                    <Link
+                        href={listHref}
+                        className="text-sm font-semibold text-white hover:text-sky-400 transition-colors"
+                    >
+                        {authorName}
+                    </Link>
                     <span className="text-xs text-gray-500">{relativeTime(comment.date_added)}</span>
                 </div>
 
