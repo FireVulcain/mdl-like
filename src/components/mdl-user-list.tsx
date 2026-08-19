@@ -53,14 +53,14 @@ function GroupHeading({ label, count, first }: { label: string; count: number; f
     return (
         <div className={`flex items-center gap-2.5 pb-2.5 ${first ? "" : "pt-10"}`}>
             <span className={`size-1.5 rounded-full ${STATUS_DOT[label] ?? "bg-white/20"}`} />
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400">{label}</h2>
-            <span className="font-mono text-[11px] tabular-nums text-gray-600">{count}</span>
+            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-gray-400">{label}</h2>
+            <span className="font-mono text-xs tabular-nums text-gray-600">{count}</span>
             <span className="flex-1 h-px bg-white/6" />
         </div>
     );
 }
 
-function Row({ entry }: { entry: Entry }) {
+function Row({ entry, href }: { entry: Entry; href: string }) {
     const score = parseFloat(entry.score);
     // "0.0" is MDL for "not rated", not a rating of zero.
     const rated = Number.isFinite(score) && score > 0;
@@ -71,16 +71,18 @@ function Row({ entry }: { entry: Entry }) {
 
     return (
         <Link
-            href={`/media/mdl-${entry.id}`}
+            href={href}
             className="group grid grid-cols-[1fr_auto_auto] items-baseline gap-x-3 sm:gap-x-5 py-2.5 border-b border-white/6 hover:border-white/15 transition-colors"
         >
-            <span className="min-w-0 truncate text-sm text-gray-300 group-hover:text-white transition-colors">
+            <span className="min-w-0 truncate text-base text-gray-300 group-hover:text-white transition-colors">
                 {entry.name}
             </span>
 
             {/* Episodes: what was seen stays lit, the rest of the run recedes —
-                so a half-watched show reads as unfinished without a bar. */}
-            <span className="font-mono text-xs tabular-nums text-right w-16 sm:w-20 shrink-0">
+                so a half-watched show reads as unfinished without a bar.
+                Columns are sized for the worst case the data holds: a 1265/1265
+                run, and a 10.0 score. */}
+            <span className="font-mono text-sm tabular-nums text-right w-20 sm:w-24 shrink-0">
                 {total > 0 ? (
                     <>
                         <span className={partial ? "text-white" : "text-gray-600"}>{seen}</span>
@@ -91,14 +93,21 @@ function Row({ entry }: { entry: Entry }) {
                 )}
             </span>
 
-            <span className={`font-mono text-sm tabular-nums text-right w-9 shrink-0 ${rated ? scoreTone(score) : "text-gray-700"}`}>
+            <span className={`font-mono text-base tabular-nums text-right w-11 shrink-0 ${rated ? scoreTone(score) : "text-gray-700"}`}>
                 {rated ? score.toFixed(1) : "·"}
             </span>
         </Link>
     );
 }
 
-export function MdlUserList({ sections }: { sections: ListSection[] }) {
+export function MdlUserList({
+    sections,
+    hrefBySlug = {},
+}: {
+    sections: ListSection[];
+    /** Titles already linked to a TMDB entry point at our own page instead. */
+    hrefBySlug?: Record<string, string>;
+}) {
     const [active, setActive] = useState<string>(ALL);
     const [query, setQuery] = useState("");
     const [shown, setShown] = useState(PAGE_SIZE);
@@ -177,14 +186,14 @@ export function MdlUserList({ sections }: { sections: ListSection[] }) {
                             <button
                                 key={tab.key}
                                 onClick={() => select(tab.key)}
-                                className={`cursor-pointer group flex items-baseline gap-1.5 text-sm transition-colors ${
+                                className={`cursor-pointer group flex items-baseline gap-1.5 text-base transition-colors ${
                                     isActive ? "text-white" : "text-gray-500 hover:text-gray-300"
                                 }`}
                             >
                                 <span className={isActive ? "border-b border-sky-400 pb-0.5" : "border-b border-transparent pb-0.5"}>
                                     {tab.label}
                                 </span>
-                                <span className="font-mono text-[11px] tabular-nums text-gray-600">{count}</span>
+                                <span className="font-mono text-xs tabular-nums text-gray-600">{count}</span>
                             </button>
                         );
                     })}
@@ -199,7 +208,7 @@ export function MdlUserList({ sections }: { sections: ListSection[] }) {
                             setShown(PAGE_SIZE);
                         }}
                         placeholder="Filter titles…"
-                        className="w-full pl-6 pr-2 py-1.5 bg-transparent border-b border-white/10 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-sky-400/60 transition-colors"
+                        className="w-full pl-6 pr-2 py-1.5 bg-transparent border-b border-white/10 text-base text-white placeholder:text-gray-600 focus:outline-none focus:border-sky-400/60 transition-colors"
                     />
                 </div>
             </div>
@@ -219,7 +228,7 @@ export function MdlUserList({ sections }: { sections: ListSection[] }) {
                                         first={i === 0}
                                     />
                                 )}
-                                <Row entry={entry} />
+                                <Row entry={entry} href={hrefBySlug[entry.id] ?? `/media/mdl-${entry.id}`} />
                             </div>
                         );
                     })}

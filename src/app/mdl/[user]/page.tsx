@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 import { ExternalLink } from "lucide-react";
 import { kuryanaGetDramaList, type KuryanaDramaListSection } from "@/lib/kuryana";
 import { MdlUserList, type ListSection } from "@/components/mdl-user-list";
@@ -63,6 +64,42 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
     const displayName = name?.trim() || user;
     const sections = sortSections(list);
 
+    // Prefer our own TMDB page for anything already linked: it carries the
+    // artwork, cast, episode guide and the watchlist controls, where the
+    // MDL-native page is only what the scraper could reach. Same three tables
+    // and the same precedence the home sections use, so a title does not resolve
+    // one way here and another way there.
+    const slugs = [...new Set(Object.values(list).flatMap((s) => s.items.map((i) => i.id)))];
+    const [showLinks, seasonLinks, aliasLinks] = slugs.length
+        ? await Promise.all([
+              prisma.cachedMdlData.findMany({
+                  where: { mdlSlug: { in: slugs }, mdlDisabled: false },
+                  select: { mdlSlug: true, tmdbExternalId: true },
+              }),
+              prisma.mdlSeasonLink.findMany({
+                  where: { mdlSlug: { in: slugs } },
+                  select: { mdlSlug: true, tmdbExternalId: true, season: true },
+              }),
+              prisma.mdlAlias.findMany({
+                  where: { mdlSlug: { in: slugs } },
+                  select: { mdlSlug: true, tmdbExternalId: true },
+              }),
+          ])
+        : [[], [], []];
+
+    const linkedBySlug = new Map<string, { tmdbExternalId: string; season?: number }>([
+        ...showLinks.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
+        ...seasonLinks.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId, season: r.season }] as const),
+        ...aliasLinks.map((r) => [r.mdlSlug, { tmdbExternalId: r.tmdbExternalId }] as const),
+    ]);
+
+    // Resolved server-side and keyed by slug: the client only needs a href, and
+    // the unlinked ones stay on the MDL-native page.
+    const hrefBySlug: Record<string, string> = {};
+    for (const [slug, link] of linkedBySlug) {
+        hrefBySlug[slug] = `/media/tmdb-${link.tmdbExternalId}${link.season && link.season > 1 ? `?season=${link.season}` : ""}`;
+    }
+
     return (
         <div className="relative min-h-screen overflow-hidden">
             <PageBackground />
@@ -112,7 +149,7 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
                         )}
                     </div>
                 ) : (
-                    <MdlUserList sections={sections} />
+                    <MdlUserList sections={sections} hrefBySlug={hrefBySlug} />
                 )}
             </div>
         </div>
