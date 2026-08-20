@@ -601,10 +601,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const displayPoster = userMedia?.poster ?? currentSeasonData?.poster ?? media.poster;
     const heroBackdrop =
         (userMedia?.backdrop && userMedia.backdrop !== userMedia.poster ? userMedia.backdrop : null) ?? media.backdrop;
-    const watchlistIds = new Set(watchlistExternalIds);
-
-    // Determine update action if userMedia exists
-
     return (
         <div className="min-h-screen bg-linear-to-b -mt-24">
             {/* Renders nothing: re-reads MDL's volatile numbers once the page is
