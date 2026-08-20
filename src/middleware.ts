@@ -20,7 +20,9 @@ export const config = {
          * - favicon.ico (favicon file)
          * - public files (public folder)
          * - api/cron/* (cron jobs use their own auth)
+         * - robots.txt, which has to be reachable without a session or the
+         *   crawlers it exists to turn away never get to read it
          */
-        "/((?!_next/static|_next/image|favicon.ico|api/cron|api/ping|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+        "/((?!_next/static|_next/image|favicon.ico|robots.txt|api/cron|api/ping|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
     ],
 };

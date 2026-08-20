@@ -14,7 +14,10 @@ export const prisma =
     globalForPrisma.prisma ||
     new PrismaClient({
         adapter, // This uses DATABASE_URL via the pool
-        log: ["query"],
+        // Every query, serialised and printed — in production too, where nobody
+        // reads it and each line costs CPU on a plan that bills exactly that.
+        // Kept in development, which is the only place it was ever useful.
+        log: process.env.NODE_ENV === "production" ? ["error"] : ["query"],
     });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
