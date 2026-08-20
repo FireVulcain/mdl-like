@@ -4,7 +4,7 @@ import { unstable_cache, updateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { kuryanaSearch } from "@/lib/kuryana";
-import { computeActorRadar, type ActorRadarPayload } from "@/lib/actor-radar";
+import { computeActorRadar, computeRadarActors, type ActorRadarPayload, type ActorRadarPerson } from "@/lib/actor-radar";
 
 export type { ActorRadarItem, ActorRadarPayload, ActorRadarPerson } from "@/lib/actor-radar";
 
@@ -66,6 +66,24 @@ export async function restoreRadarActor(personSlug: string) {
     await prisma.actorRadarExclusion.deleteMany({ where: { userId, personSlug } });
     updateTag(`actor-radar-${userId}`);
     return { success: true };
+}
+
+/**
+ * The two actor lists the settings panel shows, read straight from the database.
+ *
+ * Deliberately not getActorRadar(): every add or remove invalidates the radar's
+ * tag, so re-reading the full payload right after one meant recomputing what the
+ * day-long cache is there to avoid — a filmography per scanned actor and a
+ * details fetch per recommendation, all to redraw two lists that never needed
+ * either. The home page still goes through the cache; only this panel skips it.
+ */
+export async function getRadarActors(): Promise<{ scannedActors: ActorRadarPerson[]; excludedActors: ActorRadarPerson[] }> {
+    const userId = await getCurrentUserId();
+    const { topActors, excludedActors } = await computeRadarActors(userId);
+    return {
+        scannedActors: topActors.map((a) => ({ slug: a.slug, name: a.name, profileImage: a.profileImage, pinned: a.pinned })),
+        excludedActors,
+    };
 }
 
 export async function getActorRadar(): Promise<ActorRadarPayload> {

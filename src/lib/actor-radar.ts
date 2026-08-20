@@ -74,7 +74,28 @@ async function getPersonWorks(slug: string): Promise<KuryanaPersonResult["data"]
     return data;
 }
 
-export async function computeActorRadar(userId: string): Promise<ActorRadarPayload> {
+/**
+ * The scanned and removed actors, and nothing that needs the network.
+ *
+ * Split out for latency rather than tidiness. The settings panel shows these
+ * two lists and only these, and rebuilding them costs a handful of indexed
+ * queries. Everything after this point — one filmography per scanned actor,
+ * then a details fetch per candidate work — is what the day-long cache exists
+ * for, and what made removing an actor feel like the page had hung.
+ */
+export type RadarActors = {
+    topActors: {
+        slug: string;
+        weight: number;
+        name: string;
+        profileImage: string | null;
+        pinned: boolean;
+    }[];
+    excludedActors: ActorRadarPerson[];
+    watchlistTmdbIds: Set<string>;
+};
+
+export async function computeRadarActors(userId: string): Promise<RadarActors> {
     const [userMedia, podiums, exclusions, pins] = await Promise.all([
         prisma.userMedia.findMany({ where: { userId } }),
         prisma.profilePodium.findMany({ where: { userId }, select: { externalId: true } }),
@@ -88,9 +109,10 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
     }));
     const excludedSlugs = new Set(exclusions.map((e) => e.personSlug));
     const pinnedSlugs = new Set(pins.map((p) => p.personSlug));
-    const empty: ActorRadarPayload = { items: [], scannedActors: [], excludedActors };
 
-    if (userMedia.length === 0 && pins.length === 0) return empty;
+    if (userMedia.length === 0 && pins.length === 0) {
+        return { topActors: [], excludedActors, watchlistTmdbIds: new Set<string>() };
+    }
 
     const externalIds = Array.from(new Set(userMedia.map((m) => m.externalId)));
     const watchlistTmdbIds = new Set(externalIds);
@@ -197,7 +219,15 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
         }));
 
     const topActors = [...pinnedActors, ...autoActors];
+    return { topActors, excludedActors, watchlistTmdbIds };
+}
+
+export async function computeActorRadar(userId: string): Promise<ActorRadarPayload> {
+    const { topActors, excludedActors, watchlistTmdbIds } = await computeRadarActors(userId);
+
+    const empty: ActorRadarPayload = { items: [], scannedActors: [], excludedActors };
     if (topActors.length === 0) return empty;
+
 
     // Fetch filmographies in parallel (7-day cached in DB)
     const personResults = await Promise.allSettled(topActors.map((a) => getPersonWorks(a.slug)));

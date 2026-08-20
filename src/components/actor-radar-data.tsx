@@ -121,7 +121,7 @@ export async function ActorRadarData() {
                             ) : null,
                         )}
                         <Link
-                            href="/settings"
+                            href="/settings?tab=radar"
                             title="Manage actors in Settings"
                             className="h-7 w-7 rounded-full flex items-center justify-center bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white ring-2 ring-page transition-all shrink-0"
                         >

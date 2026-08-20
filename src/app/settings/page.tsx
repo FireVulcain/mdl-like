@@ -9,7 +9,7 @@ import {
     getMdlProfileUrl,
     getShortcutPreferences,
 } from "@/actions/preferences";
-import { getActorRadar } from "@/actions/actor-radar";
+import { getRadarActors } from "@/actions/actor-radar";
 import { getCurrentUserId } from "@/lib/session";
 import { HomeExcludedTagsSetting } from "@/components/settings/home-excluded-tags";
 import { HomeSectionsSetting } from "@/components/settings/home-sections-setting";
@@ -60,9 +60,9 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             getShortcutPreferences(),
         ]);
 
-    let radar: Awaited<ReturnType<typeof getActorRadar>> | null = null;
+    let radar: Awaited<ReturnType<typeof getRadarActors>> | null = null;
     try {
-        radar = await getActorRadar();
+        radar = await getRadarActors();
     } catch {
         // Logged out or radar unavailable — the tab just doesn't render
     }
