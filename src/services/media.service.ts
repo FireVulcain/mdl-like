@@ -2,6 +2,7 @@ import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from 
 import { tvmaze } from "@/lib/tvmaze";
 import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaChineseShow, mdlFullSizeImage} from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 
 export type UnifiedMedia = {
@@ -600,11 +601,56 @@ export const mediaService = {
     // ongoing   = currently airing
     // upcoming  = not yet started
     // excludeTags: comma-separated MDL tag ids from user preferences
+    //
+    // Always paints from CachedMdlTop when a row exists — Kuryana is only hit on
+    // a true first-ever load for that (country, excludeTags) pair. Freshness
+    // after that comes from the client-side live refresh (see
+    // src/actions/mdl-top-refresh.ts), which calls this again with fresh=true
+    // and overwrites the row for next time.
     async getDramasByCountry(
         country: KuryanaTopCountry,
         isoCountry: string,
         excludeTags?: string,
+        fresh = false,
     ): Promise<{ trending: UnifiedMedia[]; airing: UnifiedMedia[]; upcoming: UnifiedMedia[] }> {
+        const transform = (item: KuryanaChineseShow): UnifiedMedia => {
+            const slug = item.url.replace(/^\//, "");
+            return {
+                id: `mdl-${slug}`,
+                externalId: item.id,
+                source: "MDL",
+                type: "TV",
+                title: item.title,
+                nativeTitle: item.original_title || undefined,
+                poster: item.img || null,
+                backdrop: null,
+                year: item.year,
+                originCountry: isoCountry,
+                synopsis: item.synopsis,
+                rating: item.rating,
+                popularity: item.rank,
+                firstAirDate: null,
+            };
+        };
+
+        const cacheKey = { country_excludeTags: { country, excludeTags: excludeTags ?? "" } };
+
+        if (!fresh) {
+            const cached = await prisma.cachedMdlTop.findUnique({ where: cacheKey });
+            if (cached) {
+                const data = cached.dataJson as unknown as {
+                    completed: KuryanaChineseShow[];
+                    ongoing: KuryanaChineseShow[];
+                    upcoming: KuryanaChineseShow[];
+                };
+                return {
+                    trending: (data.completed ?? []).map(transform),
+                    airing: (data.ongoing ?? []).map(transform),
+                    upcoming: (data.upcoming ?? []).map(transform),
+                };
+            }
+        }
+
         try {
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
                 kuryanaGetTop(country, "completed", { tag_exclude: excludeTags }),
@@ -612,30 +658,21 @@ export const mediaService = {
                 kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }),
             ]);
 
-            const transform = (item: KuryanaChineseShow): UnifiedMedia => {
-                const slug = item.url.replace(/^\//, "");
-                return {
-                    id: `mdl-${slug}`,
-                    externalId: item.id,
-                    source: "MDL",
-                    type: "TV",
-                    title: item.title,
-                    nativeTitle: item.original_title || undefined,
-                    poster: item.img || null,
-                    backdrop: null,
-                    year: item.year,
-                    originCountry: isoCountry,
-                    synopsis: item.synopsis,
-                    rating: item.rating,
-                    popularity: item.rank,
-                    firstAirDate: null,
-                };
-            };
+            const completed = completedRes?.data.shows ?? [];
+            const ongoing = ongoingRes?.data.shows ?? [];
+            const upcoming = upcomingRes?.data.shows ?? [];
+            const dataJson = { completed, ongoing, upcoming } as unknown as Prisma.InputJsonValue;
+
+            await prisma.cachedMdlTop.upsert({
+                where: cacheKey,
+                create: { country, excludeTags: excludeTags ?? "", dataJson },
+                update: { dataJson, cachedAt: new Date() },
+            });
 
             return {
-                trending: (completedRes?.data.shows ?? []).map(transform),
-                airing: (ongoingRes?.data.shows ?? []).map(transform),
-                upcoming: (upcomingRes?.data.shows ?? []).map(transform),
+                trending: completed.map(transform),
+                airing: ongoing.map(transform),
+                upcoming: upcoming.map(transform),
             };
         } catch (error) {
             console.error(`Error fetching ${country} dramas`, error);

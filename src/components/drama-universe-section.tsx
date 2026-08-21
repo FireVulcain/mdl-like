@@ -9,6 +9,7 @@ import { getCachedNextEpisodesByMediaId } from "@/lib/next-episode-cache";
 import { prefillNextEpisodes } from "@/lib/next-episode-fetch";
 import { UNIVERSES } from "@/lib/home-preferences";
 import { prisma } from "@/lib/prisma";
+import { UniverseLiveRefresh } from "@/components/universe-live-refresh";
 
 // One configurable "universe" (K-Drama, C-Drama, J-Drama…) — same layout for
 // every country, driven by the UNIVERSES config and user's home sections.
@@ -131,6 +132,7 @@ export async function DramaUniverseSection({ country }: { country: string }) {
 
     return (
         <section className="relative space-y-6 md:space-y-10">
+            <UniverseLiveRefresh title={cfg.title} country={cfg.kuryana} isoCountry={country} excludeTags={excludeParam} />
             <HomeSectionHeader title={cfg.title} accent={cfg.accent} />
 
             <div className="space-y-3 md:space-y-5">

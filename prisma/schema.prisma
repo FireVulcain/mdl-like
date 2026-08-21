@@ -247,6 +247,21 @@ model CachedKuryanaPerson {
   cachedAt DateTime @default(now())
 }
 
+// Home "universe" top lists (completed/ongoing/upcoming) per Kuryana country.
+// The page always paints from here; a client-side live refresh re-scrapes
+// Kuryana afterwards and updates this row for next time — see
+// src/actions/mdl-top-refresh.ts.
+model CachedMdlTop {
+  id              String    @id @default(cuid())
+  country         String // KuryanaTopCountry, e.g. "korean"
+  excludeTags     String    @default("") // normalized tag_exclude param, "" if none
+  dataJson        Json // { completed, ongoing, upcoming: KuryanaChineseShow[] }
+  liveRefreshedAt DateTime?
+  cachedAt        DateTime  @default(now())
+
+  @@unique([country, excludeTags])
+}
+
 model MdlSeasonLink {
   id             String    @id @default(cuid())
   tmdbExternalId String
