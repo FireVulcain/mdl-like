@@ -36,10 +36,16 @@ const MIN_ACTOR_AFFINITY = 0.2;
 const MIN_DISTINCT_SHOWS = 2;
 const MAX_ITEMS = 14;
 const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-// Only ever applies to slugs MDL gave us no poster for — a known poster is kept
-// indefinitely. Long, because a slug that resolved to nothing twice is usually
-// a page that has none rather than a page we caught on a bad day.
-const POSTER_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+// How long a stored poster stands before it is read again. An unreleased drama
+// cycles through placeholder, teaser and final artwork — and renames itself on
+// the way — so it is re-read on roughly every recompute (the radar payload
+// itself is cached a day, so this is about a scrape a day for those few).
+// Anything already aired has settled, and is only worth a look now and then.
+const POSTER_UPCOMING_TTL_MS = 24 * 60 * 60 * 1000;
+const POSTER_SETTLED_TTL_MS = 90 * 24 * 60 * 60 * 1000;
+// Slugs MDL gave us no poster for at all: usually a page that genuinely has
+// none, so retried slowly rather than on every pass.
+const POSTER_RETRY_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
 type CastEntry = { slug?: string; name?: string; profileImage?: string };
 
@@ -79,6 +85,9 @@ async function getPersonWorks(slug: string): Promise<KuryanaPersonResult["data"]
 }
 
 type PosterEntry = { poster: string | null; title: string | null };
+// `upcoming` picks the refresh interval: artwork for a show that hasn't aired
+// is still moving, one that has is done.
+type PosterRequest = { slug: string; upcoming: boolean };
 
 // MDL is scraped one request at a time, so firing every card at once only
 // builds a queue — while each request's 8s timeout runs from the moment it was
@@ -88,28 +97,34 @@ type PosterEntry = { poster: string | null; title: string | null };
 const POSTER_CONCURRENCY = 3;
 
 /**
- * Posters and titles for a batch of MDL slugs, from cache first.
+ * Posters and titles for a batch of MDL entries, from cache first.
  *
- * A poster doesn't change, so a hit is served without touching the network and
- * only genuinely unknown slugs are scraped. Crucially, a failed scrape keeps
- * whatever is already stored: MDL fails in bursts, and the row used to blank
- * out entirely whenever it did.
+ * The cache exists to stop a poster being *lost*, not to stop it being fetched:
+ * MDL fails in bursts and the row used to blank out entirely whenever it did.
+ * So a failed scrape keeps whatever is already stored, and refreshing is safe.
+ *
+ * How often one is refreshed depends on the show. Artwork for an unreleased
+ * drama is provisional — a placeholder becomes a teaser becomes the real poster,
+ * and the working title moves with it — while a show that aired years ago has
+ * settled for good. Hence the two intervals: an upcoming show is re-read on
+ * roughly every recompute, an old one about once a season.
  */
-async function getPosters(slugs: string[]): Promise<Map<string, PosterEntry>> {
-    const unique = [...new Set(slugs)];
-    const staleAt = new Date(Date.now() - POSTER_CACHE_TTL_MS);
+async function getPosters(entries: PosterRequest[]): Promise<Map<string, PosterEntry>> {
+    const byKey = new Map(entries.map((e) => [e.slug, e]));
+    const unique = [...byKey.keys()];
+    const now = Date.now();
 
     const rows = await prisma.cachedMdlPoster.findMany({ where: { slug: { in: unique } } });
     const bySlug = new Map<string, PosterEntry>(rows.map((r) => [r.slug, { poster: r.poster, title: r.title }]));
+    const cachedAt = new Map(rows.map((r) => [r.slug, r.cachedAt.getTime()]));
 
-    // A row with a poster is never refetched on age alone — only rows that have
-    // never resolved to one are retried, and then only once their TTL is up.
-    const cachedAt = new Map(rows.map((r) => [r.slug, r.cachedAt]));
     const misses = unique.filter((slug) => {
-        const entry = bySlug.get(slug);
-        if (entry?.poster) return false;
         const at = cachedAt.get(slug);
-        return !at || at < staleAt;
+        if (at === undefined) return true; // never looked up
+        // A slug that resolved to no poster is usually a page that has none, so
+        // it is retried on the slow interval rather than on every pass.
+        if (!bySlug.get(slug)?.poster) return now - at > POSTER_RETRY_TTL_MS;
+        return now - at > (byKey.get(slug)?.upcoming ? POSTER_UPCOMING_TTL_MS : POSTER_SETTLED_TTL_MS);
     });
     if (misses.length === 0) return bySlug;
 
@@ -126,7 +141,14 @@ async function getPosters(slugs: string[]): Promise<Map<string, PosterEntry>> {
                     failures++;
                     return;
                 }
-                const entry: PosterEntry = { poster: data.poster ?? null, title: data.title ?? null };
+                // A scrape that parsed but came back without a poster does not
+                // clear one we already hold — that reads as a bad parse far more
+                // often than as artwork actually being withdrawn.
+                const previous = bySlug.get(slug);
+                const entry: PosterEntry = {
+                    poster: data.poster ?? previous?.poster ?? null,
+                    title: data.title ?? previous?.title ?? null,
+                };
                 bySlug.set(slug, entry);
                 await prisma.cachedMdlPoster.upsert({
                     where: { slug },
@@ -403,7 +425,14 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
     // Posters + real titles from MDL detail pages, served from our own cache.
     // Person filmographies return an empty title.name, so the details title is
     // the real source; humanized slug is the fallback.
-    const posters = await getPosters(top.map((e) => e.slug));
+    // The current year counts as upcoming here, unlike in the sort above: a show
+    // airing right now is still having its artwork and title revised.
+    const posters = await getPosters(
+        top.map((e) => ({
+            slug: e.slug,
+            upcoming: typeof e.work.year !== "number" || e.work.year >= currentYear,
+        })),
+    );
 
     const radarItems: ActorRadarItem[] = top.map((entry) => {
         const detailsData = posters.get(entry.slug) ?? null;

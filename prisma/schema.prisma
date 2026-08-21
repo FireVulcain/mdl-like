@@ -251,9 +251,12 @@ model CachedKuryanaPerson {
 //
 // The actor radar renders one of these per card and used to scrape them all on
 // every render. MDL is scraped serially and fails in bursts, so a slow spell
-// blanked the whole row at once. A poster does not change, so once one is known
-// it is kept: a failed scrape now falls back to the stored value instead of
-// rendering nothing.
+// blanked the whole row at once. This table exists so a poster is never lost:
+// a failed scrape falls back to the stored value instead of rendering nothing.
+//
+// Rows are still refreshed — an unreleased drama cycles through placeholder,
+// teaser and final artwork, and renames itself along the way. cachedAt drives
+// that, on an interval that depends on whether the show has aired.
 model CachedMdlPoster {
   slug     String   @id
   poster   String?
