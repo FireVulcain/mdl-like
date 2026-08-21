@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Search, Eye, CheckCircle, PauseCircle, Clock, XCircle, HelpCircle } from "lucide-react";
+import { Search, Eye, CheckCircle, PauseCircle, Clock, XCircle, HelpCircle, Star } from "lucide-react";
 import type { KuryanaDramaListItem, KuryanaDramaListSection } from "@/lib/kuryana";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MdlTitlePreview } from "@/components/mdl-title-preview";
@@ -56,7 +56,6 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
     const partial = total > 0 && seen > 0 && seen < total;
 
     return (
-        <MdlTitlePreview slug={entry.id}>
         <Link
             href={href}
             className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
@@ -70,8 +69,14 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
                 />
             )}
 
-            <span className="min-w-0 flex-1 truncate text-sm text-gray-300 group-hover:text-white transition-colors">
-                {entry.name}
+            {/* The card hangs off the title, not the row: a row spans the page,
+                so anchoring to it threw the card against the right edge. */}
+            <span className="min-w-0 flex-1">
+                <MdlTitlePreview slug={entry.id}>
+                    <span className="block w-fit max-w-full truncate text-sm text-gray-300 group-hover:text-white transition-colors">
+                        {entry.name}
+                    </span>
+                </MdlTitlePreview>
             </span>
 
             {/* Sized for the worst case the data holds — a 1265/1265 run beside
@@ -87,11 +92,19 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
                 )}
             </span>
 
-            <span className={`w-10 shrink-0 text-right text-xs font-medium tabular-nums ${rated ? "text-amber-400" : "text-gray-700"}`}>
-                {rated ? score.toFixed(1) : "—"}
+            {/* The same star the watchlist puts beside your own score, so a
+                member's rating reads as a rating and not as another count. */}
+            <span className={`w-14 shrink-0 flex items-center justify-end gap-1 text-xs font-medium tabular-nums ${rated ? "text-amber-400" : "text-gray-700"}`}>
+                {rated ? (
+                    <>
+                        <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                        {score.toFixed(1)}
+                    </>
+                ) : (
+                    "—"
+                )}
             </span>
         </Link>
-        </MdlTitlePreview>
     );
 }
 

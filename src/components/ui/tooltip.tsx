@@ -8,6 +8,10 @@ const TooltipProvider = TooltipPrimitive.Provider;
 const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
+// Opt-in, not baked into TooltipContent: the three tooltips that predate it are
+// plain labels, and an arrow on those would be chrome pointing at nothing.
+const TooltipArrow = TooltipPrimitive.Arrow;
+
 const TooltipContent = React.forwardRef<
     React.ElementRef<typeof TooltipPrimitive.Content>,
     React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
@@ -28,4 +32,4 @@ const TooltipContent = React.forwardRef<
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };
+export { Tooltip, TooltipArrow, TooltipContent, TooltipProvider, TooltipTrigger };

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { getMdlPreview, type MdlPreview } from "@/actions/mdl-preview";
 
 /**
@@ -112,10 +112,14 @@ export function MdlTitlePreview({ slug, children }: { slug: string; children: Re
             <TooltipTrigger asChild>{children}</TooltipTrigger>
             <TooltipContent
                 side="right"
-                align="start"
+                align="center"
+                sideOffset={10}
                 collisionPadding={12}
                 className="w-96 max-w-[calc(100vw-2rem)] rounded-lg border-white/10 bg-gray-900 p-3 text-sm shadow-xl shadow-black/50"
             >
+                {/* MDL draws one too, and it earns its place here: the card is
+                    wide enough to float free of the row it belongs to. */}
+                <TooltipArrow width={12} height={6} className="fill-gray-900" />
                 {data === undefined ? (
                     <div className="flex gap-3">
                         <div className="w-20 h-29 shrink-0 rounded bg-white/5 animate-pulse" />
