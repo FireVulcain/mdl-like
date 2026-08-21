@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, KuryanaDrama } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
@@ -153,6 +154,74 @@ export const getMdlSeasonData = cache(async function getMdlSeasonData(
     }
 });
 
+/**
+ * Re-reads a fiche we already hold, after the response has gone out.
+ *
+ * Reuses the stored slug, which is the whole point: the miss path below has to
+ * identify the drama from its title first — two searches before it can ask for
+ * anything — while a row that already names its slug needs details and cast and
+ * nothing else.
+ *
+ * Nothing here can make the page worse. The reader was served from cache before
+ * this ran, and a failed scrape writes nothing, so the row it was served from
+ * stays exactly as it was.
+ */
+function scheduleMdlRefresh(tmdbExternalId: string, mdlSlug: string) {
+    try {
+        after(async () => {
+            try {
+                const [details, castResult] = await Promise.all([
+                    kuryanaGetDetails(mdlSlug),
+                    kuryanaGetCast(mdlSlug),
+                ]);
+                const d = details?.data;
+                if (!d) return; // keep what we have
+
+                const cast: MdlCast | null = castResult?.data?.casts
+                    ? {
+                          main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
+                          support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
+                          guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
+                          cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
+                      }
+                    : null;
+
+                const ranked = d.details?.ranked;
+                const popularity = d.details?.popularity;
+                const tags: MdlTag[] = (d.others?.tags ?? [])
+                    .map((t) => ({ id: t.id, name: cleanTagName(t.name) }))
+                    .filter((t) => t.name.length > 0);
+
+                await prisma.cachedMdlData.update({
+                    where: { tmdbExternalId },
+                    data: {
+                        mdlRating: d.rating != null ? parseFloat(String(d.rating)) || null : null,
+                        mdlRanking: ranked ? parseInt(ranked.replace("#", "")) : null,
+                        mdlPopularity: popularity ? parseInt(popularity.replace("#", "")) : null,
+                        mdlWatchers: parseMdlWatchers(d.details?.watchers),
+                        aired: d.details?.airs ?? d.details?.aired ?? null,
+                        tags: tags as unknown as Prisma.InputJsonValue,
+                        genres: d.others?.genres ?? [],
+                        directors: d.others?.directors ?? [],
+                        screenwriters: d.others?.screenwriter ?? [],
+                        synopsis: d.synopsis || null,
+                        // Only when the cast call actually answered: overwriting a
+                        // good cast with null because that one request timed out is
+                        // the failure this whole path exists to avoid.
+                        ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
+                        cachedAt: new Date(),
+                    },
+                });
+            } catch (e) {
+                console.error("[MDL] background refresh failed:", mdlSlug, e);
+            }
+        });
+    } catch {
+        // after() needs a request scope. Every caller is a server component, but
+        // a future one might not be, and a missing top-up is not worth a crash.
+    }
+}
+
 // cache() deduplicates calls with identical arguments within a single render pass,
 // so MdlRatingBadge, MdlRankRow and MdlSection can all call this without extra DB/network hits.
 export const getMdlData = cache(async function getMdlData(
@@ -167,124 +236,42 @@ export const getMdlData = cache(async function getMdlData(
 
     if (cached?.mdlDisabled) return null;
 
-    const staleAt = new Date(Date.now() - CACHE_TTL_MS);
-    if (cached && cached.cachedAt > staleAt) {
+    // A row we hold is always served, however old it is, and the top-up happens
+    // behind the reader. Cast, synopsis and genres barely move once a drama has
+    // aired, so blanking the whole MDL section for a re-scrape spent a visible
+    // part of the page on a change that usually was not one — and if the scrape
+    // failed, the reader got TMDB alone despite a perfectly good row on disk.
+    //
+    // The staleness test now decides when to re-read, not whether to show
+    // anything. Same for a row missing a field: it is served as it stands and
+    // filled in for next time, rather than held back until it is whole.
+    if (cached) {
         const cast = parseCastJson(cached.castJson);
         const castIsEmpty = !cast || (cast.main.length === 0 && cast.support.length === 0 && cast.guest.length === 0);
-        // If the stored cast JSON pre-dates cameo support, re-fetch to populate it
+        // Cast JSON written before cameo support carries no cameo key at all
         const castMissingCameo =
-            cached.castJson &&
+            !!cached.castJson &&
             typeof cached.castJson === "object" &&
             !Array.isArray(cached.castJson) &&
             !("cameo" in (cached.castJson as object));
+        const cachedGenres = (cached.genres as string[] | null) ?? null;
 
-        if (!castIsEmpty && !castMissingCameo) {
-            const cachedGenres = (cached.genres as string[] | null) ?? null;
-            if (cached.synopsis !== null && cachedGenres && cachedGenres.length > 0) {
-                // True full hit — everything cached
-                return {
-                    mdlSlug: cached.mdlSlug,
-                    mdlRating: cached.mdlRating,
-                    mdlRanking: cached.mdlRanking,
-                    mdlPopularity: cached.mdlPopularity,
-                    mdlWatchers: cached.mdlWatchers,
-                    aired: cached.aired,
-                    tags: parseTags(cached.tags),
-                    genres: cachedGenres,
-                    cast,
-                    synopsis: cached.synopsis,
-                };
-            }
+        const incomplete = castIsEmpty || castMissingCameo || cached.synopsis === null || !cachedGenres?.length;
+        const stale = cached.cachedAt <= new Date(Date.now() - CACHE_TTL_MS);
+        if (incomplete || stale) scheduleMdlRefresh(tmdbExternalId, cached.mdlSlug);
 
-            // Cast present but synopsis or genres missing — fetch details and backfill
-            try {
-                const details = await kuryanaGetDetails(cached.mdlSlug);
-                const synopsis = cached.synopsis ?? details?.data?.synopsis ?? null;
-                const newGenres = cachedGenres?.length ? cachedGenres : (details?.data?.others?.genres ?? []);
-                try {
-                    await prisma.cachedMdlData.update({
-                        where: { tmdbExternalId },
-                        data: {
-                            ...(synopsis && !cached.synopsis ? { synopsis } : {}),
-                            ...(newGenres.length ? { genres: newGenres as unknown as Prisma.InputJsonValue } : {}),
-                        },
-                    });
-                } catch (e) {
-                    console.error("[MDL] backfill update failed:", e);
-                }
-                return {
-                    mdlSlug: cached.mdlSlug,
-                    mdlRating: cached.mdlRating,
-                    mdlRanking: cached.mdlRanking,
-                    mdlPopularity: cached.mdlPopularity,
-                    mdlWatchers: cached.mdlWatchers,
-                    aired: cached.aired,
-                    tags: parseTags(cached.tags),
-                    genres: newGenres,
-                    cast,
-                    synopsis,
-                };
-            } catch {
-                return {
-                    mdlSlug: cached.mdlSlug,
-                    mdlRating: cached.mdlRating,
-                    mdlRanking: cached.mdlRanking,
-                    mdlPopularity: cached.mdlPopularity,
-                    mdlWatchers: cached.mdlWatchers,
-                    aired: cached.aired,
-                    tags: parseTags(cached.tags),
-                    genres: cachedGenres ?? [],
-                    cast,
-                    synopsis: cached.synopsis ?? null,
-                };
-            }
-        }
-
-        // Partial cache hit — metadata fresh but cast missing
-        try {
-            const castResult = await kuryanaGetCast(cached.mdlSlug);
-            const newCast: MdlCast | null = castResult?.data?.casts
-                ? {
-                      main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                      support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                      guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-                      cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
-                  }
-                : null;
-
-            if (newCast) {
-                await prisma.cachedMdlData.update({
-                    where: { tmdbExternalId },
-                    data: { castJson: newCast as unknown as Prisma.InputJsonValue },
-                });
-            }
-
-            return {
-                mdlSlug: cached.mdlSlug,
-                mdlRating: cached.mdlRating,
-                mdlRanking: cached.mdlRanking,
-                mdlPopularity: cached.mdlPopularity,
-                    mdlWatchers: cached.mdlWatchers,
-                    aired: cached.aired,
-                tags: parseTags(cached.tags),
-                genres: (cached.genres as string[]) ?? [],
-                cast: newCast,
-                synopsis: cached.synopsis ?? null,
-            };
-        } catch {
-            return {
-                mdlSlug: cached.mdlSlug,
-                mdlRating: cached.mdlRating,
-                mdlRanking: cached.mdlRanking,
-                mdlPopularity: cached.mdlPopularity,
-                    mdlWatchers: cached.mdlWatchers,
-                    aired: cached.aired,
-                tags: parseTags(cached.tags),
-                genres: (cached.genres as string[]) ?? [],
-                cast: null,
-                synopsis: cached.synopsis ?? null,
-            };
-        }
+        return {
+            mdlSlug: cached.mdlSlug,
+            mdlRating: cached.mdlRating,
+            mdlRanking: cached.mdlRanking,
+            mdlPopularity: cached.mdlPopularity,
+            mdlWatchers: cached.mdlWatchers,
+            aired: cached.aired,
+            tags: parseTags(cached.tags),
+            genres: cachedGenres ?? [],
+            cast,
+            synopsis: cached.synopsis,
+        };
     }
 
     // Cache miss — search Kuryana with both native + English titles, merge results,
