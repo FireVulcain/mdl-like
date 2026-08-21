@@ -62,7 +62,14 @@ const STILL_RUNNING_DAYS = 21;
 
 // Ceiling on background top-ups per calendar load, so a watchlist full of
 // airing shows can't turn one page view into a scrape storm.
-const STALE_REFRESH_PER_LOAD = 4;
+const BACKGROUND_REFRESH_PER_LOAD = 6;
+
+// Shows never looked up before are the one case still fetched during the
+// render — a drama tracked a minute ago has no cached date to show otherwise.
+// Kept small: past this the rest goes to the background queue and lands on the
+// next load, which is the difference between a page that waits and one that
+// hangs.
+const NEW_SHOW_LOOKUP_PER_LOAD = 4;
 
 // Negative cache: when no source knows a show's episodes, write a sentinel row
 // so the show counts as cached — otherwise every calendar load re-scrapes it
@@ -169,6 +176,13 @@ async function fetchAndCacheEpisodes(
         skipDuplicates: true,
     });
 
+    // skipDuplicates writes nothing for a show we already hold every episode of,
+    // so updatedAt kept the date of the very first fetch. The staleness test
+    // reads that column: a re-read that confirmed the list was complete looked
+    // exactly like one that had never happened, and the show came back stale on
+    // every load thereafter, forever. Stamping it is what records "checked".
+    await prisma.cachedEpisode.updateMany({ where: { mediaId }, data: { updatedAt: new Date() } });
+
     return episodes;
 }
 
@@ -213,7 +227,13 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
     const recentCutoff = new Date(Date.now() - STILL_RUNNING_DAYS * 86_400_000).toISOString().split("T")[0];
 
     const results: ScheduleEntry[] = [];
-    const cacheMisses: typeof uniqueItems = [];
+    // A show we have never looked up: worth a short wait, since it is the only
+    // way a newly tracked drama appears at all.
+    const neverLooked: typeof uniqueItems = [];
+    // A show we looked up and found nothing for, whose sentinel has expired.
+    // Never worth waiting on: it came back empty once and almost always will
+    // again, and these expire in a batch — see the comment on the retry queue.
+    const sentinelRetries: typeof uniqueItems = [];
     const staleShows: typeof uniqueItems = [];
 
     for (const item of uniqueItems) {
@@ -255,15 +275,20 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
         // Nothing but a sentinel, or nothing at all. Retry once it has expired —
         // an empty cache is a statement about the sources at one moment, not
         // about the show.
-        const sentinelAge = cached.length > 0
-            ? Date.now() - Math.max(...cached.map((ep) => ep.updatedAt.getTime()))
-            : Infinity;
-        if (sentinelAge > NO_EPISODES_TTL_MS) cacheMisses.push(item);
+        if (cached.length === 0) {
+            neverLooked.push(item);
+            continue;
+        }
+        const sentinelAge = Date.now() - Math.max(...cached.map((ep) => ep.updatedAt.getTime()));
+        if (sentinelAge > NO_EPISODES_TTL_MS) sentinelRetries.push(item);
     }
 
-    // Fetch from TVmaze only for cache misses (rare after initial population)
-    if (cacheMisses.length > 0) {
-        await withConcurrency(cacheMisses, 3, async (item) => {
+    // Only shows we have never looked up are waited on, and only a few of them:
+    // a newly tracked drama has no other way of appearing. Everything else is
+    // queued below.
+    const lookupNow = neverLooked.slice(0, NEW_SHOW_LOOKUP_PER_LOAD);
+    if (lookupNow.length > 0) {
+        await withConcurrency(lookupNow, 3, async (item) => {
             try {
                 const mediaId = `${item.source.toLowerCase()}-${item.externalId}`;
                 const episodes = await fetchAndCacheEpisodes(mediaId, item.externalId, item.title);
@@ -289,9 +314,24 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
     // Top-ups run AFTER the response: the calendar already has every date we
     // know, and the missing tail is worth a page load's wait, not a scrape the
     // user sits through. The rows land in the cache and show up on the next load.
-    if (staleShows.length > 0) {
+    //
+    // Sentinel retries belong here rather than in the render, and are last in
+    // the queue. They are written in one batch — every show no source could
+    // resolve, stamped in the same instant by whichever load first looked — so
+    // they expire in that same batch six hours later, and the next visitor used
+    // to pay for all of them at once. Each is also the most expensive kind of
+    // lookup there is, since a show nothing can find is one where every source
+    // is tried and every source misses. That is the whole of the "instant for
+    // six hours, then unusable" cycle.
+    const backlog = [
+        ...neverLooked.slice(NEW_SHOW_LOOKUP_PER_LOAD),
+        ...staleShows,
+        ...sentinelRetries,
+    ].slice(0, BACKGROUND_REFRESH_PER_LOAD);
+
+    if (backlog.length > 0) {
         after(async () => {
-            for (const item of staleShows.slice(0, STALE_REFRESH_PER_LOAD)) {
+            for (const item of backlog) {
                 try {
                     await fetchAndCacheEpisodes(
                         `${item.source.toLowerCase()}-${item.externalId}`,
