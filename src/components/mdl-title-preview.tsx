@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { getMdlPreview, type MdlPreview } from "@/actions/mdl-preview";
+import { MetaLinkList, GENRE_LIST } from "@/components/media/meta-link-list";
 
 /**
  * Answers kept for the life of the page, keyed by slug.
@@ -70,8 +71,20 @@ function Body({ data }: { data: MdlPreview }) {
                     <p className="text-xs leading-relaxed text-gray-400 line-clamp-4">{data.synopsis}</p>
                 )}
 
+                {/* The same component and the same destination the media pages
+                    use, so a genre goes to the same place wherever it is read.
+                    Sized down: GENRE_LIST runs a size up because it sits under a
+                    heading, and here it sits under a synopsis. */}
                 {data.genres.length > 0 && (
-                    <p className="text-xs text-sky-300/80 truncate">{data.genres.join(" · ")}</p>
+                    <MetaLinkList
+                        {...GENRE_LIST}
+                        className="text-xs"
+                        items={data.genres.map((g) => ({
+                            key: g,
+                            label: g,
+                            href: `/dramas?genre=${encodeURIComponent(g)}`,
+                        }))}
+                    />
                 )}
             </div>
         </div>
