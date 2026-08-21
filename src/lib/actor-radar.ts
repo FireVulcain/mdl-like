@@ -36,6 +36,10 @@ const MIN_ACTOR_AFFINITY = 0.2;
 const MIN_DISTINCT_SHOWS = 2;
 const MAX_ITEMS = 14;
 const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+// Only ever applies to slugs MDL gave us no poster for — a known poster is kept
+// indefinitely. Long, because a slug that resolved to nothing twice is usually
+// a page that has none rather than a page we caught on a bad day.
+const POSTER_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
 type CastEntry = { slug?: string; name?: string; profileImage?: string };
 
@@ -72,6 +76,71 @@ async function getPersonWorks(slug: string): Promise<KuryanaPersonResult["data"]
         });
     }
     return data;
+}
+
+type PosterEntry = { poster: string | null; title: string | null };
+
+// MDL is scraped one request at a time, so firing every card at once only
+// builds a queue — while each request's 8s timeout runs from the moment it was
+// sent, not from when the scraper gets to it. The ones at the back of the queue
+// time out having never been served. Three at a time keeps the wait a request
+// actually spends inside its own budget.
+const POSTER_CONCURRENCY = 3;
+
+/**
+ * Posters and titles for a batch of MDL slugs, from cache first.
+ *
+ * A poster doesn't change, so a hit is served without touching the network and
+ * only genuinely unknown slugs are scraped. Crucially, a failed scrape keeps
+ * whatever is already stored: MDL fails in bursts, and the row used to blank
+ * out entirely whenever it did.
+ */
+async function getPosters(slugs: string[]): Promise<Map<string, PosterEntry>> {
+    const unique = [...new Set(slugs)];
+    const staleAt = new Date(Date.now() - POSTER_CACHE_TTL_MS);
+
+    const rows = await prisma.cachedMdlPoster.findMany({ where: { slug: { in: unique } } });
+    const bySlug = new Map<string, PosterEntry>(rows.map((r) => [r.slug, { poster: r.poster, title: r.title }]));
+
+    // A row with a poster is never refetched on age alone — only rows that have
+    // never resolved to one are retried, and then only once their TTL is up.
+    const cachedAt = new Map(rows.map((r) => [r.slug, r.cachedAt]));
+    const misses = unique.filter((slug) => {
+        const entry = bySlug.get(slug);
+        if (entry?.poster) return false;
+        const at = cachedAt.get(slug);
+        return !at || at < staleAt;
+    });
+    if (misses.length === 0) return bySlug;
+
+    let failures = 0;
+    for (let i = 0; i < misses.length; i += POSTER_CONCURRENCY) {
+        await Promise.all(
+            misses.slice(i, i + POSTER_CONCURRENCY).map(async (slug) => {
+                const details = await kuryanaGetDetails(slug);
+                const data = details?.data;
+                if (!data) {
+                    // kuryanaFetch swallows timeouts and non-2xx alike and hands
+                    // back null, so a burst of these is the only signal that MDL
+                    // is unwell. Counted rather than logged per slug.
+                    failures++;
+                    return;
+                }
+                const entry: PosterEntry = { poster: data.poster ?? null, title: data.title ?? null };
+                bySlug.set(slug, entry);
+                await prisma.cachedMdlPoster.upsert({
+                    where: { slug },
+                    create: { slug, ...entry },
+                    update: { ...entry, cachedAt: new Date() },
+                });
+            }),
+        );
+    }
+
+    if (failures > 0) {
+        console.warn(`[ActorRadar] ${failures}/${misses.length} MDL poster scrapes failed`);
+    }
+    return bySlug;
 }
 
 /**
@@ -331,14 +400,13 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
         top.push(entry);
     }
 
-    // Posters + real titles via kuryana details (parallel, Next-cached; only for the
-    // final few). Person filmographies return an empty title.name, so the details
-    // title is the real source; humanized slug is the fallback.
-    const posterResults = await Promise.allSettled(top.map((e) => kuryanaGetDetails(e.slug)));
+    // Posters + real titles from MDL detail pages, served from our own cache.
+    // Person filmographies return an empty title.name, so the details title is
+    // the real source; humanized slug is the fallback.
+    const posters = await getPosters(top.map((e) => e.slug));
 
-    const radarItems: ActorRadarItem[] = top.map((entry, idx) => {
-        const details = posterResults[idx];
-        const detailsData = details.status === "fulfilled" ? details.value?.data : null;
+    const radarItems: ActorRadarItem[] = top.map((entry) => {
+        const detailsData = posters.get(entry.slug) ?? null;
         const poster = detailsData?.poster ?? null;
         const link = tmdbByMdlId.get(entry.mdlId) ?? null;
         return {

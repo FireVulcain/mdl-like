@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import type { KuryanaChineseShow, KuryanaTopCountry } from "@/lib/kuryana";
@@ -50,8 +49,15 @@ export async function refreshUniverseTop(
 
         const afterData = after.dataJson as unknown as TopLists;
         const changed = JSON.stringify(before) !== JSON.stringify(afterData);
-        if (changed) revalidatePath("/");
         if (!changed) return { refreshed: false };
+
+        // Deliberately no revalidatePath("/"). The home is force-dynamic, so it
+        // has no route cache to invalidate and router.refresh() re-reads the row
+        // on its own. What revalidatePath did have was a side effect: it purged
+        // every Data Cache entry on this path, the actor radar's day-long
+        // unstable_cache included. That sent the refresh's own re-render off to
+        // re-scrape a filmography per card, and the section it was meant to
+        // update sat unchanged for the ~6s that took.
 
         const changes: UniverseLiveChange[] = (
             [
