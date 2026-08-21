@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Search, Eye, CheckCircle, PauseCircle, Clock, XCircle, HelpCircle } from "lucide-react";
 import type { KuryanaDramaListItem, KuryanaDramaListSection } from "@/lib/kuryana";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { MdlTitlePreview } from "@/components/mdl-title-preview";
 
 export type ListSection = { key: string; label: string; section: KuryanaDramaListSection };
 
@@ -54,6 +56,7 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
     const partial = total > 0 && seen > 0 && seen < total;
 
     return (
+        <MdlTitlePreview slug={entry.id}>
         <Link
             href={href}
             className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
@@ -84,10 +87,11 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
                 )}
             </span>
 
-            <span className={`w-10 shrink-0 text-right text-xs font-medium tabular-nums ${rated ? "text-yellow-400" : "text-gray-700"}`}>
+            <span className={`w-10 shrink-0 text-right text-xs font-medium tabular-nums ${rated ? "text-amber-400" : "text-gray-700"}`}>
                 {rated ? score.toFixed(1) : "—"}
             </span>
         </Link>
+        </MdlTitlePreview>
     );
 }
 
@@ -144,7 +148,11 @@ export function MdlUserList({
     const n = (value: number) => value.toLocaleString("en-US");
     const grouped = active === ALL && !query.trim();
 
+    // skipDelayDuration 0 so every row waits its own delay. Radix otherwise opens
+    // the next tooltip instantly for 300ms after one has shown, which on a list
+    // means a request for every title the pointer crosses on its way down.
     return (
+        <TooltipProvider skipDelayDuration={0}>
         <div className="space-y-6">
             {/* The figures, as a sentence rather than as a scoreboard. They
                 follow the filter, so they describe what is on screen. */}
@@ -254,5 +262,6 @@ export function MdlUserList({
                 </div>
             )}
         </div>
+        </TooltipProvider>
     );
 }
