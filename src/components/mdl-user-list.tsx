@@ -2,22 +2,32 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Search, Eye, CheckCircle, PauseCircle, Clock, XCircle, HelpCircle } from "lucide-react";
 import type { KuryanaDramaListItem, KuryanaDramaListSection } from "@/lib/kuryana";
 
 export type ListSection = { key: string; label: string; section: KuryanaDramaListSection };
 
 const ALL = "__all__";
 
-// Labels are normalised upstream, so one spelling per status reaches here.
-const STATUS_DOT: Record<string, string> = {
-    Watching: "bg-blue-400",
-    Completed: "bg-emerald-400",
-    "On-hold": "bg-amber-400",
-    "Plan to Watch": "bg-slate-400",
-    Dropped: "bg-rose-400",
-    Undecided: "bg-violet-400",
+/**
+ * Status hues, icons included, mirroring STATUS_CONFIG in add-to-list-button.
+ *
+ * Someone else's list uses the same five words this app already colours on every
+ * watchlist row and every media page, so it colours them the same way. Only
+ * "Undecided" is new — MDL has it and the app does not — and it takes the
+ * neutral treatment rather than borrowing a hue that means something else here.
+ */
+const STATUS: Record<string, { icon: React.ElementType; active: string; dot: string }> = {
+    Watching: { icon: Eye, active: "bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30", dot: "bg-blue-400" },
+    Completed: { icon: CheckCircle, active: "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30", dot: "bg-emerald-400" },
+    "On-hold": { icon: PauseCircle, active: "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30", dot: "bg-amber-400" },
+    "Plan to Watch": { icon: Clock, active: "bg-slate-500/20 text-slate-300 ring-1 ring-slate-500/30", dot: "bg-slate-400" },
+    Dropped: { icon: XCircle, active: "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30", dot: "bg-rose-400" },
+    Undecided: { icon: HelpCircle, active: "bg-white/10 text-white ring-1 ring-white/15", dot: "bg-white/40" },
 };
+
+const NEUTRAL_ACTIVE = "bg-white/10 text-white ring-1 ring-white/15";
+const IDLE = "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white";
 
 type Entry = KuryanaDramaListItem & { status: string };
 
@@ -34,33 +44,7 @@ function statTotal(sections: ListSection[], key: string): number {
 
 const PAGE_SIZE = 100;
 
-/**
- * The score column is the spine of the page, so it carries the emphasis: the
- * ones someone rated highest read brightest, and an unrated entry recedes to a
- * rule rather than a zero.
- */
-function scoreTone(value: number): string {
-    if (value >= 9) return "text-sky-300";
-    if (value >= 8) return "text-sky-400/90";
-    if (value >= 6) return "text-gray-300";
-    return "text-gray-500";
-}
-
-// `first` is passed rather than relying on a `first:` variant: each heading is
-// the first child of its own wrapper, so the variant would match every time and
-// collapse the space above every group.
-function GroupHeading({ label, count, first }: { label: string; count: number; first: boolean }) {
-    return (
-        <div className={`flex items-center gap-2.5 pb-2.5 ${first ? "" : "pt-10"}`}>
-            <span className={`size-1.5 rounded-full ${STATUS_DOT[label] ?? "bg-white/20"}`} />
-            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-gray-400">{label}</h2>
-            <span className="font-mono text-xs tabular-nums text-gray-600">{count}</span>
-            <span className="flex-1 h-px bg-white/6" />
-        </div>
-    );
-}
-
-function Row({ entry, href }: { entry: Entry; href: string }) {
+function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStatus: boolean }) {
     const score = parseFloat(entry.score);
     // "0.0" is MDL for "not rated", not a rating of zero.
     const rated = Number.isFinite(score) && score > 0;
@@ -72,29 +56,36 @@ function Row({ entry, href }: { entry: Entry; href: string }) {
     return (
         <Link
             href={href}
-            className="group grid grid-cols-[1fr_auto_auto] items-baseline gap-x-3 sm:gap-x-5 py-2.5 border-b border-white/6 hover:border-white/15 transition-colors"
+            className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
         >
-            <span className="min-w-0 truncate text-base text-gray-300 group-hover:text-white transition-colors">
+            {/* Only when the list is mixed. Filtered to one status, a dot on
+                every row would repeat the filter back at the reader. */}
+            {showStatus && (
+                <span
+                    className={`size-1.5 rounded-full shrink-0 ${STATUS[entry.status]?.dot ?? "bg-white/20"}`}
+                    title={entry.status}
+                />
+            )}
+
+            <span className="min-w-0 flex-1 truncate text-sm text-gray-300 group-hover:text-white transition-colors">
                 {entry.name}
             </span>
 
-            {/* Episodes: what was seen stays lit, the rest of the run recedes —
-                so a half-watched show reads as unfinished without a bar.
-                Columns are sized for the worst case the data holds: a 1265/1265
-                run, and a 10.0 score. */}
-            <span className="font-mono text-sm tabular-nums text-right w-20 sm:w-24 shrink-0">
+            {/* Sized for the worst case the data holds — a 1265/1265 run beside
+                a 10.0 score — so the two columns stay aligned down the page. */}
+            <span className="w-20 shrink-0 text-right text-xs tabular-nums text-gray-500">
                 {total > 0 ? (
                     <>
-                        <span className={partial ? "text-white" : "text-gray-600"}>{seen}</span>
-                        <span className="text-gray-700">/{total}</span>
+                        <span className={partial ? "text-gray-300" : ""}>{seen}</span>
+                        <span className="text-gray-600">/{total}</span>
                     </>
                 ) : (
                     <span className="text-gray-700">—</span>
                 )}
             </span>
 
-            <span className={`font-mono text-base tabular-nums text-right w-11 shrink-0 ${rated ? scoreTone(score) : "text-gray-700"}`}>
-                {rated ? score.toFixed(1) : "·"}
+            <span className={`w-10 shrink-0 text-right text-xs font-medium tabular-nums ${rated ? "text-yellow-400" : "text-gray-700"}`}>
+                {rated ? score.toFixed(1) : "—"}
             </span>
         </Link>
     );
@@ -134,7 +125,6 @@ export function MdlUserList({
 
     const select = (key: string) => {
         setActive(key);
-        setQuery("");
         setShown(PAGE_SIZE);
     };
 
@@ -152,112 +142,117 @@ export function MdlUserList({
 
     const visible = filtered.slice(0, shown);
     const n = (value: number) => value.toLocaleString("en-US");
+    const grouped = active === ALL && !query.trim();
 
     return (
-        <div className="space-y-8">
-            {/* The numbers, set as a statement rather than as chips */}
-            <div className="flex flex-wrap items-end gap-x-10 sm:gap-x-14 gap-y-4">
-                {[
-                    { value: n(titles), label: "titles" },
-                    { value: n(Math.round(episodes)), label: "episodes" },
-                    { value: days.toFixed(1), label: "days of their life" },
-                ].map((stat) => (
-                    <div key={stat.label}>
-                        <p className="font-display text-3xl sm:text-4xl font-bold text-white tabular-nums leading-none">
-                            {stat.value}
-                        </p>
-                        <p className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-gray-500">{stat.label}</p>
+        <div className="space-y-6">
+            {/* The figures, as a sentence rather than as a scoreboard. They
+                follow the filter, so they describe what is on screen. */}
+            <p className="text-sm text-gray-500">
+                <span className="text-gray-300 font-medium tabular-nums">{n(titles)}</span> titles
+                <span className="mx-2 text-gray-700">·</span>
+                <span className="text-gray-300 font-medium tabular-nums">{n(Math.round(episodes))}</span> episodes
+                <span className="mx-2 text-gray-700">·</span>
+                <span className="text-gray-300 font-medium tabular-nums">{days.toFixed(1)}</span> days watched
+            </p>
+
+            {/* Toolbar, same surface the watchlist uses: one panel holding the
+                controls, so the chrome sits around what you operate rather than
+                around what you read. */}
+            <div className="relative">
+                <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-xl rounded-lg border border-white/5" />
+                <div className="relative flex flex-wrap items-center gap-2 p-2.5">
+                    <div className="w-full md:flex-1 md:min-w-52 relative group">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-sky-400 transition-colors" />
+                        <input
+                            value={query}
+                            onChange={(e) => {
+                                setQuery(e.target.value);
+                                setShown(PAGE_SIZE);
+                            }}
+                            placeholder="Filter titles..."
+                            aria-label="Filter titles"
+                            className="w-full h-9 pl-9 pr-4 bg-white/5 rounded-lg text-sm text-white placeholder:text-gray-500 outline-none focus:ring-1 focus:ring-sky-500/50 focus:bg-white/8 transition-all"
+                        />
                     </div>
-                ))}
-            </div>
 
-            <div className="h-px bg-linear-to-r from-sky-500/40 via-white/8 to-transparent" />
-
-            {/* Filters */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 justify-between">
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
-                    {[{ key: ALL, label: "All" }, ...sections.map((s) => ({ key: s.label, label: s.label }))].map((tab) => {
-                        const isActive = tab.key === active;
-                        const count =
-                            tab.key === ALL
-                                ? sections.reduce((sum, s) => sum + titleCount(s.section), 0)
-                                : titleCount(sections.find((s) => s.label === tab.key)!.section);
-                        return (
-                            <button
-                                key={tab.key}
-                                onClick={() => select(tab.key)}
-                                className={`cursor-pointer group flex items-baseline gap-1.5 text-base transition-colors ${
-                                    isActive ? "text-white" : "text-gray-500 hover:text-gray-300"
-                                }`}
-                            >
-                                <span className={isActive ? "border-b border-sky-400 pb-0.5" : "border-b border-transparent pb-0.5"}>
+                    <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto scrollbar-none pb-0.5 md:pb-0">
+                        {[{ key: ALL, label: "All" }, ...sections.map((s) => ({ key: s.label, label: s.label }))].map((tab) => {
+                            const isActive = tab.key === active;
+                            const count =
+                                tab.key === ALL
+                                    ? sections.reduce((sum, s) => sum + titleCount(s.section), 0)
+                                    : titleCount(sections.find((s) => s.label === tab.key)!.section);
+                            const conf = STATUS[tab.label];
+                            const Icon = conf?.icon;
+                            return (
+                                <button
+                                    key={tab.key}
+                                    onClick={() => select(tab.key)}
+                                    className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
+                                        isActive ? (conf?.active ?? NEUTRAL_ACTIVE) : IDLE
+                                    }`}
+                                >
+                                    {Icon && <Icon className="h-3.5 w-3.5" />}
                                     {tab.label}
-                                </span>
-                                <span className="font-mono text-xs tabular-nums text-gray-600">{count}</span>
-                            </button>
-                        );
-                    })}
-                </div>
-
-                <div className="relative w-full sm:w-56">
-                    <Search className="absolute left-0 top-1/2 -translate-y-1/2 size-3.5 text-gray-600" />
-                    <input
-                        value={query}
-                        onChange={(e) => {
-                            setQuery(e.target.value);
-                            setShown(PAGE_SIZE);
-                        }}
-                        placeholder="Filter titles…"
-                        className="w-full pl-6 pr-2 py-1.5 bg-transparent border-b border-white/10 text-base text-white placeholder:text-gray-600 focus:outline-none focus:border-sky-400/60 transition-colors"
-                    />
+                                    <span className="text-xs tabular-nums opacity-60">{count}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
-            {/* The archive. Unfiltered, it stays grouped by status — a heading
-                each time the run changes, rather than a badge on every row. */}
+            {/* The archive. Grouped by status only when nothing is filtered —
+                a search already narrows it, and headings would fragment the few
+                results it leaves. */}
             {visible.length > 0 ? (
-                <div>
+                <div className="-mx-3">
                     {visible.map((entry, i) => {
-                        const startsGroup = active === ALL && entry.status !== visible[i - 1]?.status;
+                        const startsGroup = grouped && entry.status !== visible[i - 1]?.status;
                         return (
                             <div key={`${entry.status}-${entry.id}-${entry.name}`}>
                                 {startsGroup && (
-                                    <GroupHeading
-                                        label={entry.status}
-                                        count={scoped.filter((e) => e.status === entry.status).length}
-                                        first={i === 0}
-                                    />
+                                    <div className={`flex items-center gap-3 px-3 pb-2 ${i === 0 ? "" : "pt-8"}`}>
+                                        <h2 className="font-display text-lg font-semibold text-white">{entry.status}</h2>
+                                        <span className="text-sm text-gray-400">
+                                            ({scoped.filter((e) => e.status === entry.status).length})
+                                        </span>
+                                        <div className="flex-1 h-px bg-white/8" />
+                                    </div>
                                 )}
-                                <Row entry={entry} href={hrefBySlug[entry.id] ?? `/media/mdl-${entry.id}`} />
+                                <Row entry={entry} href={hrefBySlug[entry.id] ?? `/media/mdl-${entry.id}`} showStatus={grouped} />
                             </div>
                         );
                     })}
                 </div>
             ) : (
-                <p className="py-12 text-center text-sm text-gray-600">
-                    {query.trim() ? "No title matches." : "Nothing listed here."}
+                <p className="py-12 text-center text-sm text-gray-500">
+                    {query.trim() ? `No title matches “${query.trim()}”.` : "Nothing listed here."}
                 </p>
             )}
 
-            <div className="flex flex-wrap items-center justify-between gap-3">
-                {shown < filtered.length ? (
-                    <button
-                        onClick={() => setShown((count) => count + PAGE_SIZE)}
-                        className="cursor-pointer text-sm text-gray-400 hover:text-white transition-colors border-b border-white/15 hover:border-white/40 pb-0.5"
-                    >
-                        Show {Math.min(PAGE_SIZE, filtered.length - shown)} more
-                        <span className="font-mono text-[11px] text-gray-600 ml-2">{n(filtered.length - shown)} left</span>
-                    </button>
-                ) : (
-                    <span />
-                )}
+            {(shown < filtered.length || withheld.length > 0) && (
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/8">
+                    {shown < filtered.length ? (
+                        <button
+                            onClick={() => setShown((count) => count + PAGE_SIZE)}
+                            className="h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                        >
+                            Show {Math.min(PAGE_SIZE, filtered.length - shown)} more
+                            <span className="text-xs tabular-nums opacity-60">{n(filtered.length - shown)} left</span>
+                        </button>
+                    ) : (
+                        <span />
+                    )}
 
-                {withheld.length > 0 && (
-                    <p className="text-xs text-gray-600">
-                        MyDramaList doesn&rsquo;t publish the {withheld.join(" or ")} {withheld.length === 1 ? "entry" : "entries"}.
-                    </p>
-                )}
-            </div>
+                    {withheld.length > 0 && (
+                        <p className="text-xs text-gray-600">
+                            MyDramaList doesn&rsquo;t publish the {withheld.join(" or ")} {withheld.length === 1 ? "entry" : "entries"}.
+                        </p>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

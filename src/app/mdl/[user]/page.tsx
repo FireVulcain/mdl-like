@@ -104,26 +104,28 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
         <div className="relative min-h-screen overflow-hidden">
             <PageBackground />
 
-            <div className="container py-10 md:py-14 px-4 mx-auto max-w-4xl relative z-10 space-y-9">
-                <header className="flex items-end justify-between gap-4 flex-wrap">
+            {/* The shell every other page uses, rather than a narrower one of
+                its own: a list of titles is not a different kind of page. */}
+            <div className="container py-8 px-4 m-auto md:max-w-[80%] relative z-10 space-y-6">
+                <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="min-w-0">
-                        <p className="text-xs font-semibold tracking-wide text-sky-400">MyDramaList</p>
-                        <h1 className="font-display text-3xl md:text-4xl font-black tracking-tight text-white mt-1.5 wrap-break-word">
+                        <h1 className="font-display text-3xl font-bold tracking-tight text-white wrap-break-word">
                             {displayName}
                         </h1>
+                        <p className="text-gray-500 mt-1 text-sm">Their list on MyDramaList</p>
                     </div>
                     {result.data.link && (
                         <a
                             href={result.data.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="shrink-0 inline-flex items-center gap-1.5 pb-1 text-xs text-gray-500 hover:text-white transition-colors"
+                            className="shrink-0 h-9 px-3 rounded-lg inline-flex items-center gap-2 text-sm font-medium bg-white/5 text-sky-400 hover:bg-white/8 hover:text-sky-300 transition-all"
                         >
                             <ExternalLink className="size-3.5" />
                             View on MDL
                         </a>
                     )}
-                </header>
+                </div>
 
                 {isEmpty ? (
                     // MDL serves two dramalist layouts and the scraper only reads
@@ -131,9 +133,9 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
                     // it" at least as often as it means "nothing there". Claiming
                     // the list is private would be a confident guess, and wrong
                     // for every account on the newer layout.
-                    <div className="py-16 text-center border-y border-white/8 space-y-3">
-                        <p className="text-sm text-gray-400">This list couldn&rsquo;t be read here.</p>
-                        <p className="text-xs text-gray-600 max-w-sm mx-auto">
+                    <div className="py-16 text-center space-y-3">
+                        <p className="text-sm font-medium text-white/40">This list couldn&rsquo;t be read here.</p>
+                        <p className="text-xs text-white/25 max-w-sm mx-auto">
                             It may be private, empty, or using a list layout we can&rsquo;t parse yet.
                         </p>
                         {result.data.link && (
