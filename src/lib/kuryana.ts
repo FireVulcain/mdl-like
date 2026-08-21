@@ -445,6 +445,22 @@ export interface KuryanaDramaListItem {
     score: string;
     episode_seen: string;
     episode_total: string;
+
+    // MDL renders two dramalist layouts and neither carries everything. Both
+    // answer with all of these keys and leave empty the ones their own layout
+    // has no column for, so nothing here can be assumed present.
+    /** Both layouts. */
+    country: string;
+    /** Both layouts. */
+    year: string;
+    /** Classic layout only — msv2 has no type column. */
+    type: string;
+    /** Classic layout only: MDL's own "Chinese Drama" phrasing. */
+    kind: string;
+    /** msv2 only, already at MDL's thumbnail size. The classic layout shows none. */
+    poster: string;
+    /** msv2 only: MyDramaList's own rating, beside the member's own score. */
+    mdl_score: string;
 }
 
 /**

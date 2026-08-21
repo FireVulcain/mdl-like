@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Search, Eye, CheckCircle, PauseCircle, Clock, XCircle, HelpCircle, Star } from "lucide-react";
 import type { KuryanaDramaListItem, KuryanaDramaListSection } from "@/lib/kuryana";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -46,14 +47,29 @@ function statTotal(sections: ListSection[], key: string): number {
 
 const PAGE_SIZE = 100;
 
-function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStatus: boolean }) {
+function Row({ entry, href, showStatus, showPoster, showMdl }: {
+    entry: Entry;
+    href: string;
+    showStatus: boolean;
+    /** Only msv2 lists carry artwork; a column of gaps is worse than no column. */
+    showPoster: boolean;
+    /** Same for MyDramaList's own rating. */
+    showMdl: boolean;
+}) {
     const score = parseFloat(entry.score);
     // "0.0" is MDL for "not rated", not a rating of zero.
     const rated = Number.isFinite(score) && score > 0;
 
+    const mdl = parseFloat(entry.mdl_score);
+    const hasMdl = Number.isFinite(mdl) && mdl > 0;
+
     const seen = parseInt(entry.episode_seen, 10) || 0;
     const total = parseInt(entry.episode_total, 10) || 0;
     const partial = total > 0 && seen > 0 && seen < total;
+
+    // What MDL prints in its own columns, joined the way it joins them. The two
+    // layouts fill different ones, so this is whatever the list actually has.
+    const meta = [entry.country, entry.year, entry.type].filter(Boolean).join(" · ");
 
     return (
         <Link
@@ -69,6 +85,14 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
                 />
             )}
 
+            {showPoster && (
+                <span className="relative w-7 h-10 shrink-0 overflow-hidden rounded bg-white/5">
+                    {entry.poster && (
+                        <Image unoptimized src={entry.poster} alt="" fill sizes="28px" className="object-cover" />
+                    )}
+                </span>
+            )}
+
             {/* The card hangs off the title, not the row: a row spans the page,
                 so anchoring to it threw the card against the right edge. */}
             <span className="min-w-0 flex-1">
@@ -78,6 +102,11 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
                     </span>
                 </MdlTitlePreview>
             </span>
+
+            {/* Country, year and type, which MDL gives its own columns and we
+                have no room for as columns. Hidden on narrow screens, where the
+                title needs the width more. */}
+            {meta && <span className="hidden md:block shrink-0 text-xs text-gray-500">{meta}</span>}
 
             {/* Sized for the worst case the data holds — a 1265/1265 run beside
                 a 10.0 score — so the two columns stay aligned down the page. */}
@@ -91,6 +120,21 @@ function Row({ entry, href, showStatus }: { entry: Entry; href: string; showStat
                     <span className="text-gray-700">—</span>
                 )}
             </span>
+
+            {/* Sky for MyDramaList's rating, the hue the app uses wherever it
+                quotes them — so it never reads as a second personal score. */}
+            {showMdl && (
+                <span className={`w-14 shrink-0 flex items-center justify-end gap-1 text-xs font-medium tabular-nums ${hasMdl ? "text-sky-400" : "text-gray-700"}`}>
+                    {hasMdl ? (
+                        <>
+                            <Star className="h-3 w-3 fill-sky-400 text-sky-400" />
+                            {mdl.toFixed(1)}
+                        </>
+                    ) : (
+                        "—"
+                    )}
+                </span>
+            )}
 
             {/* The same star the watchlist puts beside your own score, so a
                 member's rating reads as a rating and not as another count. */}
@@ -160,6 +204,13 @@ export function MdlUserList({
     const visible = filtered.slice(0, shown);
     const n = (value: number) => value.toLocaleString("en-US");
     const grouped = active === ALL && !query.trim();
+
+    // Decided for the list, not per row: MDL renders two dramalist layouts and
+    // only the newer one carries artwork and its own rating. Testing each row
+    // would give a column present on some and absent on others, which reads as
+    // broken rather than as unavailable.
+    const showPoster = allEntries.some((e) => e.poster);
+    const showMdl = allEntries.some((e) => parseFloat(e.mdl_score) > 0);
 
     // skipDelayDuration 0 so every row waits its own delay. Radix otherwise opens
     // the next tooltip instantly for 300ms after one has shown, which on a list
@@ -242,7 +293,13 @@ export function MdlUserList({
                                         <div className="flex-1 h-px bg-white/8" />
                                     </div>
                                 )}
-                                <Row entry={entry} href={hrefBySlug[entry.id] ?? `/media/mdl-${entry.id}`} showStatus={grouped} />
+                                <Row
+                                    entry={entry}
+                                    href={hrefBySlug[entry.id] ?? `/media/mdl-${entry.id}`}
+                                    showStatus={grouped}
+                                    showPoster={showPoster}
+                                    showMdl={showMdl}
+                                />
                             </div>
                         );
                     })}

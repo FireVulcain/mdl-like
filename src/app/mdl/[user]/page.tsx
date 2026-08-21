@@ -104,8 +104,9 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
         <div className="relative min-h-screen overflow-hidden">
             <PageBackground />
 
-            {/* The shell every other page uses, rather than a narrower one of
-                its own: a list of titles is not a different kind of page. */}
+            {/* Back to the width every other page takes. It bailed earlier
+                because a row held three things; it now holds what MDL puts in
+                its own columns, and has the width to show them. */}
             <div className="container py-8 px-4 m-auto md:max-w-[80%] relative z-10 space-y-6">
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="min-w-0">
