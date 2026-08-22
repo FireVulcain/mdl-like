@@ -104,10 +104,10 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
         <div className="relative min-h-screen overflow-hidden">
             <PageBackground />
 
-            {/* Back to the width every other page takes. It bailed earlier
-                because a row held three things; it now holds what MDL puts in
-                its own columns, and has the width to show them. */}
-            <div className="container py-8 px-4 m-auto md:max-w-[80%] relative z-10 space-y-6">
+            {/* Capped rather than proportional. The grid pages take 80% and fill
+                it with posters; 80% of a wide monitor is two thousand pixels of
+                row for a name, a date and two numbers. */}
+            <div className="container py-8 px-4 m-auto max-w-6xl relative z-10 space-y-6">
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="min-w-0">
                         <h1 className="font-display text-3xl font-bold tracking-tight text-white wrap-break-word">

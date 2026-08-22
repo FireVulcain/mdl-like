@@ -93,20 +93,21 @@ function Row({ entry, href, showStatus, showPoster, showMdl }: {
                 </span>
             )}
 
-            {/* The card hangs off the title, not the row: a row spans the page,
-                so anchoring to it threw the card against the right edge. */}
-            <span className="min-w-0 flex-1">
+            {/* Title and its description as one block, and the block takes the
+                slack rather than the title alone. Left to grow, the title pushed
+                country, year and type to the far side of the row — a caption
+                sitting a screen away from what it captions. */}
+            <span className="min-w-0 flex-1 flex items-baseline gap-2.5">
+                {/* The card hangs off the title, not the row: a row spans the
+                    page, so anchoring to it threw the card against the edge. */}
                 <MdlTitlePreview slug={entry.id}>
-                    <span className="block w-fit max-w-full truncate text-sm text-gray-300 group-hover:text-white transition-colors">
+                    <span className="block max-w-full truncate text-sm text-gray-300 group-hover:text-white transition-colors">
                         {entry.name}
                     </span>
                 </MdlTitlePreview>
-            </span>
 
-            {/* Country, year and type, which MDL gives its own columns and we
-                have no room for as columns. Hidden on narrow screens, where the
-                title needs the width more. */}
-            {meta && <span className="hidden md:block shrink-0 text-xs text-gray-500">{meta}</span>}
+                {meta && <span className="hidden md:block shrink-0 truncate text-xs text-gray-600">{meta}</span>}
+            </span>
 
             {/* Sized for the worst case the data holds — a 1265/1265 run beside
                 a 10.0 score — so the two columns stay aligned down the page. */}
