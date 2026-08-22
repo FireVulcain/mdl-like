@@ -69,7 +69,13 @@ function Row({ entry, href, showStatus, showPoster, showMdl }: {
 
     // What MDL prints in its own columns, joined the way it joins them. The two
     // layouts fill different ones, so this is whatever the list actually has.
-    const meta = [entry.country, entry.year, entry.type].filter(Boolean).join(" · ");
+    //
+    // "0000" is MDL's sentinel for a title with no announced date, and it turns
+    // up on more than half a planned list. Printed as-is it reads as a year, and
+    // a wrong one. The app already says "TBA" for an undated work on every
+    // filmography, so it says it here too.
+    const year = entry.year === "0000" ? "TBA" : entry.year;
+    const meta = [entry.country, year, entry.type].filter(Boolean).join(" · ");
 
     return (
         <Link
