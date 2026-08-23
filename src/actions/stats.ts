@@ -77,6 +77,23 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
 
     const completionRate = computeCompletionRate(items);
 
+    /**
+     * Everything the user has actually started, which is what the distributions
+     * below describe.
+     *
+     * A planned title is an intention, not a taste — often added on a trailer,
+     * sometimes before a release date exists at all. Counting it under "By
+     * Release Year" or "Top Genres" answers a question nobody asked: not what
+     * someone watches, but what they once meant to.
+     *
+     * "Started" rather than the isWatched rule used further up, which is
+     * Completed-or-Dropped: a show being watched right now says as much about
+     * taste as one finished last year. computeCompletionRate already draws the
+     * line in exactly this place.
+     */
+    const startedItems = items.filter((i) => i.status !== "Plan to Watch");
+    const startedIds = new Set(startedItems.map((i) => i.externalId));
+
     // Genre Breakdown — prefer MDL genres when cached, fall back to TMDB genres
     const mdlGenreRows = await prisma.cachedMdlData.findMany({
         where: { tmdbExternalId: { in: items.map((i) => i.externalId) } },
@@ -89,7 +106,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     );
 
     const genreMap = new Map<string, number>();
-    items.forEach((i) => {
+    startedItems.forEach((i) => {
         const mdlGenres = mdlGenresByExternalId.get(i.externalId);
         if (mdlGenres) {
             mdlGenres.forEach((g) => {
@@ -111,13 +128,14 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     const topGenres = genreData.slice(0, 8).map((g) => ({
         name: g.name,
         count: g.value,
-        percentage: items.length > 0 ? (g.value / items.length) * 100 : 0,
+        percentage: startedItems.length > 0 ? (g.value / startedItems.length) * 100 : 0,
     }));
 
     // Theme Breakdown — MDL tags, counted once per show (CachedMdlData is unique per
     // show, so season rows can't double-count). Tags Json can be legacy string[] or {id, name}[].
     const themeMap = new Map<string, number>();
     for (const row of mdlGenreRows) {
+        if (!startedIds.has(row.tmdbExternalId)) continue;
         if (!Array.isArray(row.tags)) continue;
         const seen = new Set<string>();
         for (const t of row.tags as unknown[]) {
@@ -137,7 +155,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
 
     // Country Breakdown
     const countryMap = new Map<string, number>();
-    items.forEach((i) => {
+    startedItems.forEach((i) => {
         if (i.originCountry) {
             countryMap.set(i.originCountry, (countryMap.get(i.originCountry) || 0) + 1);
         }
@@ -149,7 +167,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
     // Year Breakdown (non-null years, last 25 years, sorted chronologically)
     const currentYear = new Date().getFullYear();
     const yearMap = new Map<number, number>();
-    items.forEach((i) => {
+    startedItems.forEach((i) => {
         if (i.year && i.year >= currentYear - 24 && i.year <= currentYear) {
             yearMap.set(i.year, (yearMap.get(i.year) || 0) + 1);
         }
