@@ -223,6 +223,12 @@ async function loadPerson(slug: string): Promise<KuryanaPersonResult["data"] | n
 export default async function MdlPersonPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
+    // Started before the person is fetched, awaited once the works are known.
+    // Neither depends on the scrape, yet both used to queue behind it — and
+    // behind the link lookups after it — on a page whose first step can be half
+    // a second of scraping.
+    const viewerPromise = Promise.all([getWatchlistExternalIds(), getWatchlistPosters()]);
+
     const data = await loadPerson(slug);
     if (!data) notFound();
     const details = data.details ?? {};
@@ -313,10 +319,9 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     // before that, and missingWorkImages above already refetches them on sight.
     const needsTmdbPoster = linkedEntries.filter((entry) => !entry.hasMdlImage);
 
-    const [tmdbDetails, watchlistExternalIds, pickedPosters] = await Promise.all([
+    const [tmdbDetails, [watchlistExternalIds, pickedPosters]] = await Promise.all([
         Promise.all(needsTmdbPoster.map(({ tmdbExternalId, mediaType }) => tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null))),
-        getWatchlistExternalIds(),
-        getWatchlistPosters(),
+        viewerPromise,
     ]);
     const watchlistIds = new Set(watchlistExternalIds);
 
