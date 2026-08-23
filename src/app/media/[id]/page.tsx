@@ -18,11 +18,11 @@ import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MdlSection } from "@/components/media/mdl-section";
 import { SynopsisBlock } from "@/components/media/synopsis-block";
 import { TrailerButton } from "@/components/trailer-button";
-import { NextEpisodeCountdown } from "@/components/next-episode-countdown";
+import { MdlCountdown } from "@/components/media/mdl-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
 import { MdlEpisodeGuideSection } from "@/components/media/mdl-episode-guide-section";
 import { tmdb, TMDB_CONFIG, TMDBEpisode } from "@/lib/tmdb";
-import { kuryanaGetCast, kuryanaGetNextEpisode, type MdlNextEpisode } from "@/lib/kuryana";
+import { kuryanaGetCast } from "@/lib/kuryana";
 import { MdlCast } from "@/lib/mdl-data";
 import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
 import { Suspense } from "react";
@@ -44,20 +44,6 @@ import { mediaMetadata } from "@/lib/page-metadata";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     return mediaMetadata((await params).id);
-}
-
-// MDL's next-episode data (exact broadcast time) mapped to the countdown's shape;
-// TVmaze/TMDB data stays as fallback when MDL doesn't know the next episode.
-function toCountdownEpisode(mdlNext: MdlNextEpisode | null, season: number) {
-    if (!mdlNext) return null;
-    return {
-        airDate: mdlNext.airDate,
-        airDateTime: mdlNext.airDateTime,
-        episodeNumber: mdlNext.episodeNumber,
-        seasonNumber: season,
-        name: "",
-        seasonEpisodeCount: mdlNext.totalEpisodes ?? undefined,
-    };
 }
 
 export default async function MediaPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ season?: string }> }) {
@@ -114,9 +100,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         const userMedia =
             (await getUserMedia(userId, linkedTmdb?.tmdbExternalId ?? media.externalId, linkedTmdb ? "TMDB" : "MDL", 1)) ??
             (linkedTmdb?.tmdbExternalId ? await getUserMedia(userId, media.externalId, "MDL", 1) : null);
-
-        // MDL knows the exact next-episode broadcast time (cached 1h by the details fetch)
-        const mdlNextEpisode = media.type === "TV" ? await kuryanaGetNextEpisode(media.externalId) : null;
 
         // A poster hand-picked in the watchlist wins over the auto-selected one
         const displayPoster = userMedia?.poster ?? media.poster;
@@ -328,13 +311,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         </div>
 
-                        {media.type === "TV" && (mdlNextEpisode || media.nextEpisode) && (
-                            <NextEpisodeCountdown
-                                nextEpisode={toCountdownEpisode(mdlNextEpisode, 1) ?? spoilerSafe(media.nextEpisode)}
-                                totalEpisodes={media.totalEp}
-                                airedRange={media.aired}
-                                originCountry={media.originCountry}
-                            />
+                        {media.type === "TV" && (
+                            <Suspense fallback={null}>
+                                <MdlCountdown
+                                    slug={media.externalId}
+                                    season={1}
+                                    fallbackEpisode={spoilerSafe(media.nextEpisode)}
+                                    totalEpisodes={media.totalEp}
+                                    airedRange={media.aired}
+                                    originCountry={media.originCountry}
+                                />
+                            </Suspense>
                         )}
                     </StickySidebar>
                     </div>
@@ -519,6 +506,31 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const currentSeasonData = media.seasons?.find((s) => s.seasonNumber === selectedSeason);
     const episodeCount = currentSeasonData?.episodeCount || (selectedSeason === 1 ? media.totalEp : null) || null; // Fallback for movies or missing season data
 
+    // MDL is only relevant for Asian dramas (KR, CN, JP, TW, TH, HK)
+    const MDL_COUNTRIES = new Set(["KR", "CN", "JP", "TW", "TH", "HK", "US"]);
+    const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
+
+    // Started here and awaited below, so these run *during* the season fetch
+    // rather than after it. Nothing in them depends on the episodes, and both
+    // sat on the critical path in sequence — the shorter of the two was simply
+    // being added to the longer.
+    const contextPromise = Promise.all([
+        getCurrentUserId(),
+        getWatchlistExternalIds(),
+        isMdlRelevant
+            ? prisma.cachedMdlData.findUnique({
+                  where: { tmdbExternalId: media.externalId },
+                  select: { mdlSlug: true, mdlRating: true, mdlDisabled: true, aired: true },
+              })
+            : null,
+        isMdlRelevant && selectedSeason > 1
+            ? prisma.mdlSeasonLink.findUnique({
+                  where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } },
+                  select: { mdlSlug: true, mdlRating: true, aired: true },
+              })
+            : null,
+    ]);
+
     // Fetch season episodes (TV only)
     let episodes: {
         id: number;
@@ -550,27 +562,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         }
     }
 
-    // MDL is only relevant for Asian dramas (KR, CN, JP, TW, TH, HK)
-    const MDL_COUNTRIES = new Set(["KR", "CN", "JP", "TW", "TH", "HK", "US"]);
-    const isMdlRelevant = MDL_COUNTRIES.has(media.originCountry);
-
-    // Parallel fetch: userMedia and watchlist IDs — MDL streams in separately via Suspense
-    const [userId, watchlistExternalIds, cached, existingSeasonLink] = await Promise.all([
-        getCurrentUserId(),
-        getWatchlistExternalIds(),
-        isMdlRelevant
-            ? prisma.cachedMdlData.findUnique({
-                  where: { tmdbExternalId: media.externalId },
-                  select: { mdlSlug: true, mdlRating: true, mdlDisabled: true, aired: true },
-              })
-            : null,
-        isMdlRelevant && selectedSeason > 1
-            ? prisma.mdlSeasonLink.findUnique({
-                  where: { tmdbExternalId_season: { tmdbExternalId: media.externalId, season: selectedSeason } },
-                  select: { mdlSlug: true, mdlRating: true, aired: true },
-              })
-            : null,
-    ]);
+    const [userId, watchlistExternalIds, cached, existingSeasonLink] = await contextPromise;
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     // The season's own range when there is one — a finished season 1 says nothing
     // about a season 2 still going out.
@@ -593,7 +585,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const mdlSlugForSeason =
         existingSeasonLink?.mdlSlug ??
         (selectedSeason <= 1 && cached?.mdlSlug && !cached.mdlDisabled ? cached.mdlSlug : null);
-    const mdlNextEpisode = media.type === "TV" && mdlSlugForSeason ? await kuryanaGetNextEpisode(mdlSlugForSeason) : null;
 
     // Images hand-picked in the watchlist win over the auto-selected ones. The row's
     // backdrop only counts when it differs from its poster — addToWatchlist falls back
@@ -855,15 +846,19 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* Next Episode Countdown (for ongoing TV shows) */}
                     {media.type === "TV" && (
-                        <NextEpisodeCountdown
-                            nextEpisode={toCountdownEpisode(mdlNextEpisode, selectedSeason) ?? spoilerSafe(media.nextEpisode)}
-                            currentSeason={currentSeasonData}
-                            totalEpisodes={episodeCount ?? undefined}
-                            status={media.status}
-                            firstAirDate={media.firstAirDate}
-                            airedRange={mdlAiredRange}
-                            originCountry={media.originCountry}
-                        />
+                        <Suspense fallback={null}>
+                            <MdlCountdown
+                                slug={mdlSlugForSeason}
+                                season={selectedSeason}
+                                fallbackEpisode={spoilerSafe(media.nextEpisode)}
+                                currentSeason={currentSeasonData}
+                                totalEpisodes={episodeCount ?? undefined}
+                                status={media.status}
+                                firstAirDate={media.firstAirDate}
+                                airedRange={mdlAiredRange}
+                                originCountry={media.originCountry}
+                            />
+                        </Suspense>
                     )}
                 </StickySidebar>
                 </div>
