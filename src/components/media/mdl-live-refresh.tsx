@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { TrendingUp } from "lucide-react";
 import { refreshMdlLiveData, type MdlLiveRefreshResult } from "@/actions/mdl-live-refresh";
+import { announceMdlLive, type MdlLiveField } from "./mdl-live-value";
 
 /**
  * Renders nothing. Once the page is on screen, it asks the server to re-read
@@ -48,9 +48,9 @@ function describe(result: MdlLiveRefreshResult): string | null {
 }
 
 export function MdlLiveRefresh({ externalId, season }: { externalId: string; season?: number }) {
-    const router = useRouter();
-    // Effects run twice in dev StrictMode, and a re-render from router.refresh()
-    // would otherwise start the whole thing again
+    // One scrape per page view. Effects run twice in dev StrictMode, and this
+    // component now outlives the numbers it corrects rather than replacing the
+    // page that held them, so nothing else stops a second run.
     const fired = useRef(false);
 
     // Whether this component is still on screen. A ref rather than a variable
@@ -78,7 +78,17 @@ export function MdlLiveRefresh({ externalId, season }: { externalId: string; sea
                         icon: <TrendingUp className="h-4 w-4 text-sky-400" />,
                     });
                 }
-                router.refresh();
+                // The figures correct themselves where they are drawn. This used
+                // to call router.refresh(), which rebuilt the entire page — every
+                // Suspense boundary, the cast, the episode guide, the reviews —
+                // to change two digits the action had already handed back. The
+                // toast arrived instantly and the numbers it announced trailed it
+                // by seconds.
+                const values: Partial<Record<MdlLiveField, number>> = {};
+                if (result.rating?.to != null) values.rating = result.rating.to;
+                if (result.ranking?.to != null) values.ranking = result.ranking.to;
+                if (result.watchers?.to != null) values.watchers = result.watchers.to;
+                announceMdlLive({ scope: `${externalId}-${season ?? 1}`, values });
             } catch {
                 // Silent by design: the page is already showing valid cached data
             }
@@ -86,7 +96,7 @@ export function MdlLiveRefresh({ externalId, season }: { externalId: string; sea
         return () => {
             alive.current = false;
         };
-    }, [externalId, season, router]);
+    }, [externalId, season]);
 
     return null;
 }

@@ -1,4 +1,5 @@
 import { getMdlData, getMdlSeasonData } from "@/lib/mdl-data";
+import { MdlLiveValue } from "./mdl-live-value";
 
 interface Props {
     externalId: string;
@@ -19,7 +20,9 @@ export async function MdlRatingBadge({ externalId, title, year, nativeTitle, sea
     return (
         <>
             <span>•</span>
-            <span className="text-sky-400 font-medium">MDL {data.mdlRating.toFixed(1)}</span>
+            <span className="text-sky-400 font-medium">
+                MDL <MdlLiveValue field="rating" initial={data.mdlRating} scope={`${externalId}-${season ?? 1}`} />
+            </span>
         </>
     );
 }
