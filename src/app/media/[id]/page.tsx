@@ -1030,7 +1030,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 {/* Unlinked: /dramas browses MDL, which has nothing
                                     for a show outside the countries it covers. */}
                                 <GenreBlock genres={media.genres ?? []} />
-                                <CastScroll cast={media.cast || []} mediaId={media.id} />
+                                <div className={media.genres?.length ? "mt-10" : undefined}>
+                                    <CastScroll cast={media.cast || []} mediaId={media.id} />
+                                </div>
                             </>
                         )}
                     </div>

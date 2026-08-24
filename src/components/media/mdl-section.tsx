@@ -49,6 +49,12 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
 
     const synopsis = data?.synopsis || tmdbSynopsis;
 
+    // Which genres actually get drawn, MDL's or the TMDB stand-ins. Held here
+    // because the cast below needs to know whether anything sits above it.
+    const mdlGenres = data?.genres ?? [];
+    const shownGenres = mdlGenres.length > 0 ? mdlGenres : (tmdbGenres ?? []);
+    const hasMetaAbove = shownGenres.length > 0 || (data?.tags?.length ?? 0) > 0;
+
     return (
         <>
             <SynopsisBlock text={synopsis} />
@@ -57,18 +63,18 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
                 its TMDB genres stand in, unlinked — /dramas browses MDL, so there
                 is nothing for them to point at. Better than the heading vanishing
                 and the page reading as though its genres were unknown. */}
-            {data?.genres && data.genres.length > 0 ? (
-                <GenreBlock
-                    genres={data.genres}
-                    hrefFor={(genre) => {
-                        const slug = genreToSlug(genre);
-                        const countryParam = originCountry ? `&country=${originCountry}` : "";
-                        return VALID_DRAMA_GENRE_SLUGS.has(slug) ? `/dramas?genre=${slug}${countryParam}` : undefined;
-                    }}
-                />
-            ) : (
-                <GenreBlock genres={tmdbGenres ?? []} />
-            )}
+            <GenreBlock
+                genres={shownGenres}
+                hrefFor={
+                    mdlGenres.length > 0
+                        ? (genre) => {
+                              const slug = genreToSlug(genre);
+                              const countryParam = originCountry ? `&country=${originCountry}` : "";
+                              return VALID_DRAMA_GENRE_SLUGS.has(slug) ? `/dramas?genre=${slug}${countryParam}` : undefined;
+                          }
+                        : undefined
+                }
+            />
 
             {data?.tags && data.tags.length > 0 && (
                 <div className="mt-6">
@@ -86,7 +92,10 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
                 </div>
             )}
 
-            <div className={(data?.tags && data.tags.length > 0) || (data?.genres && data.genres.length > 0) ? "mt-6" : undefined}>
+            {/* The gap used to be keyed on MDL genres and tags alone, so a show
+                falling back to TMDB genres drew them and then put the cast
+                straight underneath with no gap at all. */}
+            <div className={hasMetaAbove ? "mt-10" : undefined}>
                 {data?.cast ? (
                     <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} mediaId={mediaId} />
                 ) : (

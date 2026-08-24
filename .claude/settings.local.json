@@ -56,7 +56,22 @@
       "Bash(npm list:*)",
       "Bash(mkdir -p \"c:/Users/Admin/Desktop/Tout/projets/MDL like/extension/icons\")",
       "Bash(git pull *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(python3 -c ' *)",
+      "Skill(artifact-design)",
+      "Skill(artifact-design:*)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c \"import json,sys; [print\\(t['id'], t['name'], '·', t['category_name']\\) for t in json.load\\(sys.stdin\\)[:8]]\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d['data']['link']\\); [print\\(s['rank'], s['title']\\) for s in d['data']['shows'][:8]]\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(s['rank'], s['title']\\) for s in d['data']['shows'][:8]]\")",
+      "Bash(sed -i '' 's/tag_exclude: LGBTQ_TAG_ID/tag_exclude: HOME_EXCLUDED_TAGS/g' src/services/media.service.ts)",
+      "Bash(sed -i '' 's/Home lists exclude MDL tag 1045 \"LGBTQ+\" \\(niche BL titles crowd the ranks\\)/Home lists exclude some MDL tags \\(see HOME_EXCLUDED_TAGS\\)/' src/services/media.service.ts)",
+      "Bash(python3 -c \"import json,sys; [print\\(t['id'], t['name']\\) for t in json.load\\(sys.stdin\\)[:5]]\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d['data']['link']\\); [print\\(s['rank'], s['title']\\) for s in d['data']['shows'][:6]]\")",
+      "Read(//tmp/**)",
+      "Bash(awk 'NR>=140 && NR<=175 && /=>|function|async/' src/lib/mdl-data.ts)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Admin\\Desktop\\Tout\\projets\\MDL like\\extension"
