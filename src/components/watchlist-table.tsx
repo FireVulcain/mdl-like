@@ -595,25 +595,38 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const allCountries = useMemo(() => {
         return Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean))).sort() as string[];
     }, [items]);
-    // Both vocabularies, because the filter matches on both. Listing only the
-    // TMDB column left every MDL-only genre — Historical, Wuxia, Melodrama —
-    // filterable through a stats deep link but absent from the menu, and put
-    // TMDB's own shapes ("Action & Adventure") in a list of MDL-style names.
-    const allGenres = useMemo(() => {
-        const genreSet = new Set<string>();
+    // Both vocabularies, because the filter matches on both — listing only the
+    // TMDB column left every MDL-only genre (Historical, Wuxia, Melodrama)
+    // filterable through a stats deep link but absent from the menu.
+    //
+    // Grouped rather than merged into one alphabetical run. Where the two agree
+    // on a name they are already one entry, so what is left over is a handful of
+    // TMDB-shaped labels — Action & Adventure, Sci-Fi & Fantasy — sitting among
+    // MDL ones and reading like duplicates of them. They are not: they are the
+    // only handle on the entries MDL has no genres for, so they are kept and
+    // labelled instead of folded into their nearest MDL equivalent, which would
+    // be a guess ("Action & Adventure" is not "Action").
+    const genreSections = useMemo(() => {
+        const mdl = new Set<string>();
+        const tmdb = new Set<string>();
         items.forEach((item) => {
-            if (item.genres) {
-                item.genres.split(",").forEach((g) => {
-                    const trimmed = g.trim();
-                    if (trimmed) genreSet.add(trimmed);
-                });
-            }
+            item.genres
+                ?.split(",")
+                .map((g) => g.trim())
+                .filter(Boolean)
+                .forEach((g) => tmdb.add(g));
             item.mdlGenres?.forEach((g) => {
                 const trimmed = g.trim();
-                if (trimmed) genreSet.add(trimmed);
+                if (trimmed) mdl.add(trimmed);
             });
         });
-        return Array.from(genreSet).sort();
+        const sort = (s: Set<string>) => Array.from(s).sort();
+        return [
+            { label: "MDL", genres: sort(mdl) },
+            // Only the names MDL never uses: a genre both sources spell the same
+            // way belongs above, not repeated here.
+            { label: "TMDB only", genres: sort(tmdb).filter((g) => !mdl.has(g)) },
+        ].filter((s) => s.genres.length > 0);
     }, [items]);
 
     // A progress click writes immediately. It used to sit behind an 800ms debounce
@@ -1197,7 +1210,16 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
                                         <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
-                                            {allGenres.map((genre) => {
+                                            {genreSections.map((section, sectionIndex) => (
+                                                <div key={section.label}>
+                                                    {/* Only worth naming once there is a second group to
+                                                        tell it apart from */}
+                                                    {genreSections.length > 1 && (
+                                                        <div className={`px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-gray-500 ${sectionIndex > 0 ? "pt-3 mt-2 border-t border-white/5" : "pt-1"}`}>
+                                                            {section.label}
+                                                        </div>
+                                                    )}
+                                            {section.genres.map((genre) => {
                                                 const included = filterGenres.includes(genre);
                                                 const excluded = excludeGenres.includes(genre);
                                                 return (
@@ -1221,6 +1243,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                     </button>
                                                 );
                                             })}
+                                                </div>
+                                            ))}
                                         </div>
                                     </>
                                 )}
