@@ -67,6 +67,14 @@ export const REC_WEIGHTS = {
 const PROFILE_RECENCY_HALF_LIFE_MONTHS = 18;
 const INTENT_HALF_LIFE_MONTHS = 6;
 const PODIUM_BOOST = 2.5;
+// Continuing a show you finished, applied to the final score rather than as
+// another facet in the weighted average. As a facet it did nothing: the average
+// only rises if the new component beats the ones already there, so a sequel
+// scored around its own average and the signal cancelled itself out. The
+// anti-repetition penalty below is applied the same way, and for the same
+// reason. Scaled by what the earlier season was worth to you, and mildly
+// negative when it was worth little.
+const SEQUEL_BOOST = 0.18;
 const MDL_GLOBAL_MEAN = 7.4;
 
 type FacetMap = Map<string, number>;
@@ -82,8 +90,14 @@ export type TasteProfile = {
     lengthBuckets: FacetMap; // from completed items only
     meanScore: number;
     watchedCount: number;
-    // Genres+tags of the most recently completed shows, for anti-repetition
-    recentlyCompletedFeatures: Set<string>[];
+    // Genres+tags of the most recently completed shows, for anti-repetition.
+    // Carries the show id so a later season of the very show just finished is
+    // not mistaken for more of the same thing — it is the same thing, which is
+    // the point of watching it.
+    recentlyCompleted: { externalId: string; features: Set<string> }[];
+    // Shows with a completed season: id → the highest one finished and what it
+    // was rated. Lets a sequel be scored on the season that leads into it.
+    completedSeasons: Map<string, { season: number; score: number | null }>;
 };
 
 function monthsSince(date: Date, now: Date): number {
@@ -212,7 +226,22 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
         .filter((i) => i.status === "Completed")
         .toSorted((a, b) => (b.lastWatchedAt ?? b.updatedAt).getTime() - (a.lastWatchedAt ?? a.updatedAt).getTime())
         .slice(0, 2);
-    const recentlyCompletedFeatures = recentCompleted.map((i) => new Set([...i.genres, ...i.tags]));
+    const recentlyCompleted = recentCompleted.map((i) => ({
+        externalId: i.externalId,
+        features: new Set([...i.genres, ...i.tags]),
+    }));
+
+    // Highest completed season per show, and what it scored. Read from the
+    // uncollapsed rows: the collapse above keeps one entry per show, which is
+    // right for taste but loses which season it was.
+    const completedSeasons = new Map<string, { season: number; score: number | null }>();
+    for (const row of watchedRows) {
+        if (row.status !== "Completed") continue;
+        const best = completedSeasons.get(row.externalId);
+        if (!best || row.season > best.season) {
+            completedSeasons.set(row.externalId, { season: row.season, score: row.score });
+        }
+    }
 
     return {
         genres: maxNormalize(genres),
@@ -225,7 +254,8 @@ export function buildTasteProfile(items: RecMediaItem[], now = new Date()): Tast
         lengthBuckets: maxNormalize(lengthBuckets),
         meanScore,
         watchedCount: byShow.size,
-        recentlyCompletedFeatures,
+        recentlyCompleted,
+        completedSeasons,
     };
 }
 
@@ -381,20 +411,50 @@ export function scoreCandidates(profile: TasteProfile, candidates: RecMediaItem[
         const effectiveWeight = Math.max(totalWeight, 0.65);
         let score = (parts.reduce((acc, p) => acc + p.weight * p.value, 0) / effectiveWeight) * 100;
 
-        // Anti-repetition: small penalty if nearly identical to a just-completed show
+        // Anti-repetition: small penalty if nearly identical to a just-completed
+        // show. Skipping the same show is not a refinement but a correction: both
+        // seasons read the one MDL row, keyed by show and never by season, so
+        // their genres and tags are the same object. That scored a perfect
+        // similarity every time and docked the sequel 12% — finishing a season
+        // pushed its continuation down the list.
+        // Continuing a show you finished. Graded by what you made of that season:
+        // the next part of a show you rated 9 is a different proposition from the
+        // next part of one you rated 5 and finished out of stubbornness, which is
+        // why a poorly rated predecessor pushes down rather than up. An unrated
+        // season still counts for something — finishing it is itself the signal.
+        let sequelReason: string | null = null;
+        const earlier = profile.completedSeasons.get(item.externalId);
+        if (earlier && earlier.season < item.season) {
+            const liked =
+                earlier.score === null
+                    ? 0.6
+                    : Math.min(1, Math.max(-0.3, 0.6 + (earlier.score - profile.meanScore) / 2.5));
+            score *= 1 + SEQUEL_BOOST * liked;
+            sequelReason =
+                earlier.score !== null
+                    ? `You rated Season ${earlier.season} ${earlier.score}/10`
+                    : `You finished Season ${earlier.season}`;
+        }
+
         const itemFeatures = new Set([...item.genres, ...item.tags]);
-        for (const recent of profile.recentlyCompletedFeatures) {
-            if (jaccard(itemFeatures, recent) > 0.55) {
+        for (const recent of profile.recentlyCompleted) {
+            if (recent.externalId === item.externalId) continue;
+            if (jaccard(itemFeatures, recent.features) > 0.55) {
                 score *= 0.88;
                 break;
             }
         }
 
-        const reasons = parts
-            .filter((p) => p.reason && p.value > 0)
-            .toSorted((a, b) => b.weight * b.value - a.weight * a.value)
-            .slice(0, 3)
-            .map((p) => p.reason!);
+        // The sequel line leads when there is one: "you finished Season 1" says
+        // more about why this is here than any genre match, and the facet reasons
+        // it displaces are the ones every other pick is showing too.
+        const reasons = [
+            ...(sequelReason ? [sequelReason] : []),
+            ...parts
+                .filter((p) => p.reason && p.value > 0)
+                .toSorted((a, b) => b.weight * b.value - a.weight * a.value)
+                .map((p) => p.reason!),
+        ].slice(0, 3);
 
         results.push({ id: item.id, score: Math.round(Math.max(0, Math.min(100, score))), reasons });
     }
