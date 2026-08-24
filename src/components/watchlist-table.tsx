@@ -23,6 +23,7 @@ import { WhatsNextDialog } from "./whats-next-dialog";
 import {
     Plus,
     Minus,
+    Check,
     Pencil,
     ChevronDown,
     Eye,
@@ -175,6 +176,9 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const [filterStatuses, setFilterStatuses] = useState<string[]>(() => searchParams.get("status")?.split(",").filter(Boolean) ?? []);
     const [filterCountries, setFilterCountries] = useState<string[]>(() => searchParams.get("country")?.split(",").filter(Boolean) ?? []);
     const [filterGenres, setFilterGenres] = useState<string[]>(() => searchParams.get("genre")?.split(",").filter(Boolean) ?? []);
+    // Genres to leave out. Same param name the browse page uses for the same
+    // idea, so a link carrying one reads the same on either page.
+    const [excludeGenres, setExcludeGenres] = useState<string[]>(() => searchParams.get("genre_exclude")?.split(",").filter(Boolean) ?? []);
     const [filterYear, setFilterYear] = useState<string>(() => searchParams.get("year") ?? "All");
     // Theme (MDL tag) filter — no dropdown UI; set via URL deep links (e.g. from /stats)
     const [filterTheme, setFilterTheme] = useState<string>(() => searchParams.get("theme") ?? "");
@@ -419,15 +423,23 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         const result = optimisticItems.filter((item) => {
             if (filterStatuses.length > 0 && !filterStatuses.includes(item.status)) return false;
             if (filterCountries.length > 0 && (!item.originCountry || !filterCountries.includes(item.originCountry))) return false;
-            if (filterGenres.length > 0) {
+            if (filterGenres.length > 0 || excludeGenres.length > 0) {
                 // Match TMDB genres (row column) OR MDL genres — stats deep links use MDL names
                 const itemGenres = [
                     ...(item.genres ? item.genres.split(",").map((g) => g.trim()) : []),
                     ...(item.mdlGenres ?? []),
                 ];
-                if (itemGenres.length === 0) return false;
-                const hasMatchingGenre = filterGenres.some((fg) => itemGenres.includes(fg));
-                if (!hasMatchingGenre) return false;
+                if (filterGenres.length > 0) {
+                    if (itemGenres.length === 0) return false;
+                    const hasMatchingGenre = filterGenres.some((fg) => itemGenres.includes(fg));
+                    if (!hasMatchingGenre) return false;
+                }
+                // A row with no genres at all survives an exclusion: nothing says
+                // it carries the unwanted one, and dropping it would hide entries
+                // for missing data rather than for what they are. That is the
+                // opposite of the include branch above, deliberately — there,
+                // nothing says it carries the wanted one either.
+                if (excludeGenres.some((eg) => itemGenres.includes(eg))) return false;
             }
             if (search) {
                 if (fuseRankMap !== null) {
@@ -513,7 +525,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         }
 
         return result;
-    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, search, filterYear, filterTheme, filterScore, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
+    }, [optimisticItems, filterStatuses, filterCountries, filterGenres, excludeGenres, search, filterYear, filterTheme, filterScore, sortBy, filterAiringOnly, fuse, recInfoById, nextEpisodeMap]);
 
     useEffect(() => {
         setDisplayCount(10);
@@ -531,10 +543,42 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         syncUrl("country", next.join(",") || null);
     };
 
-    const toggleGenre = (genre: string) => {
-        const next = filterGenres.includes(genre) ? filterGenres.filter((g) => g !== genre) : [...filterGenres, genre];
-        setFilterGenres(next);
-        syncUrl("genre", next.join(",") || null);
+    // Three states, same cycle as the browse page: off → keep only → leave out →
+    // off. The second click is the useful one — "everything except this" is
+    // otherwise only reachable by ticking every other genre.
+    const cycleGenre = (genre: string) => {
+        if (filterGenres.includes(genre)) {
+            const nextInclude = filterGenres.filter((g) => g !== genre);
+            const nextExclude = [...excludeGenres, genre];
+            setFilterGenres(nextInclude);
+            setExcludeGenres(nextExclude);
+            syncUrl("genre", nextInclude.join(",") || null);
+            syncUrl("genre_exclude", nextExclude.join(",") || null);
+        } else if (excludeGenres.includes(genre)) {
+            const nextExclude = excludeGenres.filter((g) => g !== genre);
+            setExcludeGenres(nextExclude);
+            syncUrl("genre_exclude", nextExclude.join(",") || null);
+        } else {
+            const nextInclude = [...filterGenres, genre];
+            setFilterGenres(nextInclude);
+            syncUrl("genre", nextInclude.join(",") || null);
+        }
+    };
+
+    // Chips drop a genre outright rather than advancing the cycle: the X on the
+    // chip promises removal, and stepping include → exclude there would leave a
+    // filter still on after clicking what looks like a delete.
+    const clearGenre = (genre: string) => {
+        setFilterGenres((prev) => {
+            const next = prev.filter((g) => g !== genre);
+            syncUrl("genre", next.join(",") || null);
+            return next;
+        });
+        setExcludeGenres((prev) => {
+            const next = prev.filter((g) => g !== genre);
+            syncUrl("genre_exclude", next.join(",") || null);
+            return next;
+        });
     };
 
     const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
@@ -551,12 +595,23 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const allCountries = useMemo(() => {
         return Array.from(new Set(items.map((item) => item.originCountry).filter(Boolean))).sort() as string[];
     }, [items]);
+    // Both vocabularies, because the filter matches on both. Listing only the
+    // TMDB column left every MDL-only genre — Historical, Wuxia, Melodrama —
+    // filterable through a stats deep link but absent from the menu, and put
+    // TMDB's own shapes ("Action & Adventure") in a list of MDL-style names.
     const allGenres = useMemo(() => {
         const genreSet = new Set<string>();
         items.forEach((item) => {
             if (item.genres) {
-                item.genres.split(",").forEach((g) => genreSet.add(g.trim()));
+                item.genres.split(",").forEach((g) => {
+                    const trimmed = g.trim();
+                    if (trimmed) genreSet.add(trimmed);
+                });
             }
+            item.mdlGenres?.forEach((g) => {
+                const trimmed = g.trim();
+                if (trimmed) genreSet.add(trimmed);
+            });
         });
         return Array.from(genreSet).sort();
     }, [items]);
@@ -868,7 +923,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
         });
     };
 
-    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0) + (filterTheme ? 1 : 0) + (filterScore ? 1 : 0);
+    const activeFilterCount = filterStatuses.length + filterCountries.length + filterGenres.length + excludeGenres.length + (filterYear !== "All" ? 1 : 0) + (filterAiringOnly ? 1 : 0) + (filterTheme ? 1 : 0) + (filterScore ? 1 : 0);
 
     const downloadFile = (content: string, filename: string, mimeType: string) => {
         const blob = new Blob([content], { type: mimeType });
@@ -1125,15 +1180,15 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         setShowYearFilter(false);
                                     }}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
-                                        filterGenres.length > 0
+                                        filterGenres.length + excludeGenres.length > 0
                                             ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30"
                                             : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
                                     }`}
                                 >
                                     <span className="">Genre</span>
-                                    {filterGenres.length > 0 && (
+                                    {filterGenres.length + excludeGenres.length > 0 && (
                                         <span className="bg-emerald-500/30 text-emerald-300 text-xs px-1.5 py-0.5 rounded-md">
-                                            {filterGenres.length}
+                                            {filterGenres.length + excludeGenres.length}
                                         </span>
                                     )}
                                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showGenreFilter ? "rotate-180" : ""}`} />
@@ -1143,19 +1198,26 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
                                         <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allGenres.map((genre) => {
-                                                const isSelected = filterGenres.includes(genre);
+                                                const included = filterGenres.includes(genre);
+                                                const excluded = excludeGenres.includes(genre);
                                                 return (
                                                     <button
                                                         key={genre}
-                                                        onClick={() => toggleGenre(genre)}
+                                                        onClick={() => cycleGenre(genre)}
+                                                        title={included ? "Click to exclude" : excluded ? "Click to clear" : "Click to include"}
                                                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
-                                                            isSelected
+                                                            included
                                                                 ? "bg-emerald-500/20 text-emerald-400"
-                                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                                : excluded
+                                                                  ? "bg-red-500/20 text-red-400"
+                                                                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                                                         }`}
                                                     >
-                                                        <span className="flex-1 text-left">{genre}</span>
-                                                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />}
+                                                        <span className={`flex-1 text-left ${excluded ? "line-through decoration-red-400/50" : ""}`}>
+                                                            {genre}
+                                                        </span>
+                                                        {included && <Check className="h-3.5 w-3.5 shrink-0" />}
+                                                        {excluded && <X className="h-3.5 w-3.5 shrink-0" />}
                                                     </button>
                                                 );
                                             })}
@@ -1472,10 +1534,20 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                     {filterGenres.map((genre) => (
                         <button
                             key={genre}
-                            onClick={() => toggleGenre(genre)}
+                            onClick={() => clearGenre(genre)}
                             className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/15 text-emerald-400 hover:opacity-80 transition-all cursor-pointer group"
                         >
                             {genre}
+                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                        </button>
+                    ))}
+                    {excludeGenres.map((genre) => (
+                        <button
+                            key={genre}
+                            onClick={() => clearGenre(genre)}
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-red-500/15 text-red-400 hover:opacity-80 transition-all cursor-pointer group"
+                        >
+                            <span className="line-through decoration-red-400/50">{genre}</span>
                             <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                         </button>
                     ))}
@@ -1526,7 +1598,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                     )}
                     <button
                         onClick={() => {
-                            setFilterStatuses([]); setFilterCountries([]); setFilterGenres([]);
+                            setFilterStatuses([]); setFilterCountries([]); setFilterGenres([]); setExcludeGenres([]);
                             setFilterYear("All"); setFilterAiringOnly(false); setSearch(""); setFilterTheme(""); setFilterScore("");
                             // The URL is fully wiped below, so the sort state must reset too
                             setSortBy("default");
