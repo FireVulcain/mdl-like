@@ -50,6 +50,21 @@ export type TMDBMedia = {
             name: string;
             character: string;
             profile_path: string | null;
+            // Billing order, 0 = top billed. TMDB has no main/supporting flag;
+            // this is the production's own statement of who leads.
+            order: number;
+        }[];
+    };
+    // TV only. `credits` returns just the handful of series regulars TMDB
+    // considers headline — 8 for a show whose full cast runs to 348 — while this
+    // carries everyone, with a role per character played.
+    aggregate_credits?: {
+        cast: {
+            id: number;
+            name: string;
+            profile_path: string | null;
+            order: number;
+            roles: { character: string }[];
         }[];
     };
     recommendations?: {

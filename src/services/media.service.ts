@@ -246,7 +246,7 @@ export const mediaService = {
                 try {
                     // append_to_response for credits, recommendations, images, content_ratings, videos
                     details = await fetchTMDB<TMDBMedia>(`/tv/${externalId}`, {
-                        append_to_response: "credits,recommendations,images,content_ratings,videos",
+                        append_to_response: "credits,aggregate_credits,recommendations,images,content_ratings,videos",
                         include_image_language: "en,null",
                     });
                 } catch (e) {
@@ -368,12 +368,24 @@ export const mediaService = {
                     totalSeasons: details.number_of_seasons,
                     firstAirDate: details.first_air_date || null,
 
-                    cast: details.credits?.cast?.map((actor) => ({
-                        id: actor.id,
-                        name: actor.name,
-                        character: actor.character,
-                        profile: actor.profile_path ? TMDB_CONFIG.w500Image(actor.profile_path) : null,
-                    })),
+                    // aggregate_credits where it exists (TV): `credits` is capped
+                    // at the few regulars TMDB headlines, so the supporting cast
+                    // was not truncated by the UI, it never arrived. Sorted by
+                    // billing so the caller can split the leads off the front —
+                    // order is sparse past the top (0…9, then 500), which is fine
+                    // for ordering and useless as a threshold.
+                    cast: (details.aggregate_credits?.cast ?? details.credits?.cast)
+                        ?.slice()
+                        .sort((a, b) => a.order - b.order)
+                        .map((actor) => ({
+                            id: actor.id,
+                            name: actor.name,
+                            character:
+                                "roles" in actor
+                                    ? (actor.roles ?? []).map((r) => r.character).filter(Boolean).join(" / ")
+                                    : actor.character,
+                            profile: actor.profile_path ? TMDB_CONFIG.w500Image(actor.profile_path) : null,
+                        })),
 
                     // Map Images
                     images: {
