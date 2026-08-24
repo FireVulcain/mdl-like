@@ -39,6 +39,7 @@ import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
 import { MetaLinkList, GENRE_LIST, TAG_LIST } from "@/components/media/meta-link-list";
+import { GenreBlock } from "@/components/media/genre-block";
 import type { Metadata } from "next";
 import { mediaMetadata } from "@/lib/page-metadata";
 
@@ -1020,11 +1021,15 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     season={selectedSeason}
                                     tmdbSynopsis={seasonOverview || media.synopsis || ""}
                                     originCountry={media.originCountry}
+                                    tmdbGenres={media.genres ?? []}
                                 />
                             </Suspense>
                         ) : (
                             <>
                                 <SynopsisBlock text={seasonOverview || media.synopsis || ""} />
+                                {/* Unlinked: /dramas browses MDL, which has nothing
+                                    for a show outside the countries it covers. */}
+                                <GenreBlock genres={media.genres ?? []} />
                                 <CastScroll cast={media.cast || []} mediaId={media.id} />
                             </>
                         )}

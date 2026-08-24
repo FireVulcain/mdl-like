@@ -2,7 +2,8 @@ import { getMdlData, getMdlSeasonData } from "@/lib/mdl-data";
 import { MdlCastScroll } from "./mdl-cast-scroll";
 import { CastScroll } from "./cast-scroll";
 import { SynopsisBlock } from "./synopsis-block";
-import { MetaLinkList, GENRE_LIST, TAG_LIST } from "./meta-link-list";
+import { MetaLinkList, TAG_LIST } from "./meta-link-list";
+import { GenreBlock } from "./genre-block";
 
 // Matches the MDL_GENRES values in /dramas
 const VALID_DRAMA_GENRE_SLUGS = new Set([
@@ -35,11 +36,13 @@ interface Props {
     season?: number;
     tmdbSynopsis: string;
     originCountry?: string;
+    // Fallback for shows MDL has no entry for
+    tmdbGenres?: string[];
 }
 
 // Async server component — streams in MDL synopsis + tags + cast.
 // The Suspense fallback (TMDB synopsis + TMDB cast) shows immediately; this swaps in when Kuryana responds.
-export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId, season, tmdbSynopsis, originCountry }: Props) {
+export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCast, mediaId, season, tmdbSynopsis, originCountry, tmdbGenres }: Props) {
     const data = season && season > 1
         ? (await getMdlSeasonData(externalId, season)) ?? await getMdlData(externalId, title, year, nativeTitle)
         : await getMdlData(externalId, title, year, nativeTitle);
@@ -50,22 +53,21 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
         <>
             <SynopsisBlock text={synopsis} />
 
-            {data?.genres && data.genres.length > 0 && (
-                <div className="mt-6">
-                    <h3 className="font-display text-lg font-semibold mb-2">Genres</h3>
-                    <MetaLinkList
-                        {...GENRE_LIST}
-                        items={data.genres.map((genre) => {
-                            const slug = genreToSlug(genre);
-                            const countryParam = originCountry ? `&country=${originCountry}` : "";
-                            return {
-                                key: genre,
-                                label: genre,
-                                href: VALID_DRAMA_GENRE_SLUGS.has(slug) ? `/dramas?genre=${slug}${countryParam}` : undefined,
-                            };
-                        })}
-                    />
-                </div>
+            {/* MDL genres link into /dramas. Where MDL has no entry for the show
+                its TMDB genres stand in, unlinked — /dramas browses MDL, so there
+                is nothing for them to point at. Better than the heading vanishing
+                and the page reading as though its genres were unknown. */}
+            {data?.genres && data.genres.length > 0 ? (
+                <GenreBlock
+                    genres={data.genres}
+                    hrefFor={(genre) => {
+                        const slug = genreToSlug(genre);
+                        const countryParam = originCountry ? `&country=${originCountry}` : "";
+                        return VALID_DRAMA_GENRE_SLUGS.has(slug) ? `/dramas?genre=${slug}${countryParam}` : undefined;
+                    }}
+                />
+            ) : (
+                <GenreBlock genres={tmdbGenres ?? []} />
             )}
 
             {data?.tags && data.tags.length > 0 && (
