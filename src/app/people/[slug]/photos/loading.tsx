@@ -1,11 +1,18 @@
-/** Square photo cells, six across as the grid has them. */
-import { PageHeading, PosterGrid } from "@/components/skeleton-parts";
+/** Square photo cells, six across as MdlPhotoGrid has them. */
+import { Line } from "@/components/skeleton-parts";
 
 export default function Loading() {
     return (
-        <div className="container py-8 space-y-8 m-auto px-4">
-            <PageHeading width="30%" />
-            <PosterGrid count={24} className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3" />
+        <div className="container py-8 space-y-8 m-auto">
+            <div className="space-y-2">
+                <Line w="30%" h={30} />
+                <Line w={150} h={14} />
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                {Array.from({ length: 24 }, (_, i) => (
+                    <div key={i} className="aspect-square w-full animate-pulse rounded-lg bg-white/5" />
+                ))}
+            </div>
         </div>
     );
 }
