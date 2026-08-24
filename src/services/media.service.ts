@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaChineseShow, mdlFullSizeImage} from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaTopSelection, KuryanaChineseShow, mdlFullSizeImage} from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
@@ -99,8 +99,11 @@ const KURYANA_TYPE_COUNTRY: Record<string, string> = {
 };
 function countryFromKuryanaType(type: string | undefined): string {
     if (!type) return "";
-    const first = type.split(" ")[0].toLowerCase();
-    return KURYANA_TYPE_COUNTRY[first] || "";
+    const lower = type.toLowerCase();
+    // "Hong Kong Drama" is the one nationality MDL spells in two words, so the
+    // first word alone ("hong") matched nothing and the country came back empty.
+    if (lower.startsWith("hong kong")) return "HK";
+    return KURYANA_TYPE_COUNTRY[lower.split(" ")[0]] || "";
 }
 
 export const mediaService = {
@@ -722,7 +725,18 @@ export const mediaService = {
 
         try {
             const status = category === "airing" ? "ongoing" : category === "upcoming" ? "upcoming" : "completed";
-            const kuryanaCountry = COUNTRY_MAP[country] ?? "all";
+
+            // `country` carries one code, several comma-separated, or "all".
+            // Unknown codes are dropped rather than failing the request, and an
+            // empty selection means everything — a browse page that answers
+            // nothing at all reads as broken rather than as filtered.
+            const picked = country
+                .split(",")
+                .map((c) => c.trim())
+                .filter((c) => c && c !== "all")
+                .map((c) => COUNTRY_MAP[c])
+                .filter((c): c is KuryanaTopCountry => !!c && c !== "all");
+            const kuryanaCountry = (picked.length > 0 ? picked.join(",") : "all") as KuryanaTopSelection;
 
             const res = await kuryanaGetTop(kuryanaCountry, status, {
                 page,
@@ -750,7 +764,10 @@ export const mediaService = {
                     poster: item.img || null,
                     backdrop: null,
                     year: item.year,
-                    originCountry: country === "all" ? "" : country,
+                    // Read off the row rather than off the request: a list can
+                    // now span several countries, so the request no longer
+                    // identifies what came back.
+                    originCountry: countryFromKuryanaType(item.type),
                     synopsis: item.synopsis,
                     rating: item.rating,
                     popularity: item.rank,

@@ -158,7 +158,14 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const excludedPrefs = await getExcludedTagsPreferences();
 
     const category: Category = (rawCategory as Category) in CATEGORY_CONFIG ? (rawCategory as Category) : "popular";
+    // Several countries at once, comma-separated — the scraper merges them into
+    // one ranked list. Empty means every country, so "all" is the absence of a
+    // selection rather than an option sitting alongside the others.
     const country = rawCountry ?? "all";
+    const selectedCountries = country
+        .split(",")
+        .map((c) => c.trim())
+        .filter((c) => c && c !== "all");
     const sort = rawSort ?? "top";
     const page = Math.max(1, parseInt(rawPage ?? "1", 10));
     const genre = rawGenre ?? "";
@@ -247,6 +254,15 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
     // Build base params for URL construction (only include active filters)
     const baseParams: Record<string, string> = { category, country, sort };
+
+    // Two names fit the summary line; past that the count reads better than a
+    // truncated list that hides which ones are on.
+    const countryLabel =
+        selectedCountries.length === 0
+            ? "All"
+            : selectedCountries.length <= 2
+              ? selectedCountries.map((c) => COUNTRY_OPTIONS.find((o) => o.value === c)?.label ?? c).join(", ")
+              : `${selectedCountries.length} countries`;
     if (genre) baseParams.genre = genre;
     if (genreExclude) baseParams.genre_exclude = genreExclude;
     if (rawYearFrom) baseParams.year_from = rawYearFrom;
@@ -419,24 +435,38 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Country</h4>
                             <details className="group" open>
                                 <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
-                                    <span>{COUNTRY_OPTIONS.find((o) => o.value === country)?.label ?? "All"}</span>
+                                    <span>{countryLabel}</span>
                                     <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
                                 </summary>
                                 <div className="mt-2 grid grid-cols-2 gap-x-1 gap-y-0.5">
                                     {COUNTRY_OPTIONS.map((opt) => {
-                                        const active = country === opt.value;
+                                        const isAll = opt.value === "all";
+                                        const active = isAll ? selectedCountries.length === 0 : selectedCountries.includes(opt.value);
+                                        // "All" clears rather than toggles; every other box adds or
+                                        // removes itself, and emptying the list lands back on All.
+                                        // Rebuilt in COUNTRY_OPTIONS order so the same selection
+                                        // always produces the same URL, whatever order it was clicked.
+                                        const toggled = active
+                                            ? selectedCountries.filter((c) => c !== opt.value)
+                                            : [...selectedCountries, opt.value];
+                                        const ordered = isAll
+                                            ? []
+                                            : COUNTRY_OPTIONS.filter((o) => o.value !== "all" && toggled.includes(o.value)).map((o) => o.value);
                                         return (
                                             <Link
                                                 key={opt.value}
-                                                href={buildUrl(baseParams, { country: opt.value, page: "1" })}
+                                                href={buildUrl(baseParams, {
+                                                    country: ordered.length > 0 ? ordered.join(",") : "all",
+                                                    page: "1",
+                                                })}
                                                 className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/country hover:bg-white/5"
                                             >
                                                 <div
-                                                    className={`w-3.5 h-3.5 rounded-full shrink-0 border flex items-center justify-center transition-all ${
+                                                    className={`w-3.5 h-3.5 rounded shrink-0 border flex items-center justify-center transition-all ${
                                                         active ? "bg-white/20 border-white/40" : "border-white/20"
                                                     }`}
                                                 >
-                                                    {active && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                                                    {active && <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
                                                 </div>
                                                 <span
                                                     className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/country:text-white"}`}

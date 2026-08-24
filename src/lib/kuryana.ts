@@ -641,8 +641,14 @@ export async function kuryanaSearchTags(q: string): Promise<KuryanaTagResult[]> 
     return res ?? [];
 }
 
+// One country, or several joined by commas — the scraper merges those into a
+// single globally ranked list, which is why the browse page can offer real
+// multi-select instead of firing one request per country and stitching the
+// pages together itself.
+export type KuryanaTopSelection = "all" | KuryanaTopCountry | `${KuryanaTopCountry},${string}`;
+
 export async function kuryanaGetTop(
-    country: "all" | KuryanaTopCountry,
+    country: KuryanaTopSelection,
     status: "ongoing" | "upcoming" | "completed",
     params?: KuryanaTopParams,
 ): Promise<KuryanaChineseTopResult | null> {
