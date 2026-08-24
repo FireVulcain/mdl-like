@@ -695,6 +695,30 @@ export const mediaService = {
         }
     },
 
+    // Cast for the season on screen, in the same shape and order as getDetails
+    // hands over the show-level one. Returns null rather than an empty list when
+    // the season has no credits of its own, so the caller can tell "this season
+    // lists nobody" from "use what you already had".
+    async getSeasonCast(externalId: string, season: number): Promise<UnifiedMedia["cast"] | null> {
+        try {
+            const credits = await tmdb.getSeasonAggregateCredits(externalId, season);
+            const cast = credits?.cast;
+            if (!cast || cast.length === 0) return null;
+            return cast
+                .slice()
+                .sort((a, b) => a.order - b.order)
+                .map((actor) => ({
+                    id: actor.id,
+                    name: actor.name,
+                    character: (actor.roles ?? []).map((r) => r.character).filter(Boolean).join(" / "),
+                    profile: actor.profile_path ? TMDB_CONFIG.w500Image(actor.profile_path) : null,
+                }));
+        } catch {
+            // A season with no credits endpoint is not an error worth a blank page
+            return null;
+        }
+    },
+
     async browseDramasMDL({
         country,
         category = "popular",

@@ -563,6 +563,16 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         }
     }
 
+    // The page shows one season at a time, so the cast should be that season's.
+    // The show-level list is every actor who ever appeared — 348 across five
+    // seasons of Breaking Bad against 67 in its first — which buries the people
+    // actually in the episodes on screen. Falls back to the show-level list for
+    // films, and for seasons TMDB credits nobody for.
+    const displayCast =
+        (media.type === "TV" ? await mediaService.getSeasonCast(media.externalId, selectedSeason) : null) ??
+        media.cast ??
+        [];
+
     const [userId, watchlistExternalIds, cached, existingSeasonLink] = await contextPromise;
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     // The season's own range when there is one — a finished season 1 says nothing
@@ -1007,7 +1017,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                             <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
                                             <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
                                         </div>
-                                        <CastScroll cast={media.cast || []} mediaId={media.id} />
+                                        <CastScroll cast={displayCast} mediaId={media.id} />
                                     </div>
                                 }
                             >
@@ -1016,7 +1026,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     title={media.title}
                                     year={media.year}
                                     nativeTitle={media.nativeTitle}
-                                    tmdbCast={media.cast || []}
+                                    tmdbCast={displayCast}
                                     mediaId={media.id}
                                     season={selectedSeason}
                                     tmdbSynopsis={seasonOverview || media.synopsis || ""}
@@ -1031,7 +1041,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     for a show outside the countries it covers. */}
                                 <GenreBlock genres={media.genres ?? []} />
                                 <div className={media.genres?.length ? "mt-10" : undefined}>
-                                    <CastScroll cast={media.cast || []} mediaId={media.id} />
+                                    <CastScroll cast={displayCast} mediaId={media.id} />
                                 </div>
                             </>
                         )}

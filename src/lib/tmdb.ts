@@ -268,6 +268,14 @@ export const tmdb = {
     getSeasonDetails: (seriesId: string, seasonNumber: number) =>
         fetchTMDB<TMDBSeasonDetails>(`/tv/${seriesId}/season/${seasonNumber}`),
 
+    // Cast for one season rather than the whole run. A long series accumulates
+    // everyone who ever appeared — 348 names on five seasons of Breaking Bad,
+    // against 67 for its first — and the page is showing one season at a time.
+    getSeasonAggregateCredits: (seriesId: string, seasonNumber: number) =>
+        fetchTMDB<NonNullable<TMDBMedia["aggregate_credits"]>>(
+            `/tv/${seriesId}/season/${seasonNumber}/aggregate_credits`,
+        ),
+
     getWatchProviders: (type: "movie" | "tv", id: string) =>
         fetchTMDB<TMDBWatchProviders>(`/${type}/${id}/watch/providers`),
 };
