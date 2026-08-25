@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ChevronDown, RefreshCw, MessageSquare, Eye } from "lucide-react";
@@ -28,6 +28,14 @@ function buildTree(comments: MdlComment[]): CommentNode[] {
     }
 
     return roots;
+}
+
+/**
+ * Every reply under a comment, however deep. The old label counted direct
+ * children only, so a thread announcing "1 reply" could open onto six.
+ */
+function countReplies(node: CommentNode): number {
+    return node.children.reduce((n, child) => n + 1 + countReplies(child), 0);
 }
 
 function relativeTime(dateStr: string): string {
@@ -60,10 +68,21 @@ function stripHtml(str: string): string {
 
 const MESSAGE_TRUNCATE = 280;
 
-function CommentCard({ comment, nested = false }: { comment: CommentNode; nested?: boolean }) {
+function CommentCard({
+    comment,
+    nested = false,
+    collapsed,
+    onToggle,
+}: {
+    comment: CommentNode;
+    nested?: boolean;
+    collapsed: Set<number>;
+    onToggle: (id: number) => void;
+}) {
     const [revealed, setRevealed] = useState(false);
     const [expanded, setExpanded] = useState(false);
-    const [showReplies, setShowReplies] = useState(true);
+    const replyCount = countReplies(comment);
+    const folded = collapsed.has(comment.id);
 
     if (comment.deleted) {
         return (
@@ -146,18 +165,40 @@ function CommentCard({ comment, nested = false }: { comment: CommentNode; nested
                             {comment.likes}
                         </span>
                     )}
-                    {comment.children.length > 0 && (
-                        <button onClick={() => setShowReplies((v) => !v)} className="cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors">
-                            {showReplies ? "Hide replies" : `${comment.children.length} ${comment.children.length === 1 ? "reply" : "replies"}`}
+                    {replyCount > 0 && (
+                        <button
+                            onClick={() => onToggle(comment.id)}
+                            aria-expanded={!folded}
+                            className="cursor-pointer flex items-center gap-1 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                        >
+                            {/* The chevron carries the state, so the label can say
+                                the same thing open or shut. The button keeps its
+                                width and nothing below it shifts on a click. */}
+                            <ChevronDown className={`size-3 transition-transform ${folded ? "-rotate-90" : ""}`} />
+                            {replyCount} {replyCount === 1 ? "reply" : "replies"}
                         </button>
                     )}
                 </div>
 
-                {comment.children.length > 0 && showReplies && (
-                    <div className="mt-2.5 pl-3 border-l border-white/8 space-y-3">
-                        {comment.children.map((child) => (
-                            <CommentCard key={child.id} comment={child} nested />
-                        ))}
+                {comment.children.length > 0 && !folded && (
+                    <div className="mt-2.5 flex">
+                        {/* The rule down the left of a thread is also the way to
+                            shut it — the target a threaded comment list trains
+                            people to reach for. It stays a hairline until the
+                            pointer is on it, so it costs the page nothing. */}
+                        <button
+                            onClick={() => onToggle(comment.id)}
+                            title="Collapse replies"
+                            aria-label="Collapse replies"
+                            className="group/rail relative w-3 shrink-0 cursor-pointer"
+                        >
+                            <span className="absolute inset-y-0 left-0 w-px bg-white/8 transition-colors group-hover/rail:bg-sky-500/60" />
+                        </button>
+                        <div className="min-w-0 flex-1 space-y-3">
+                            {comment.children.map((child) => (
+                                <CommentCard key={child.id} comment={child} nested collapsed={collapsed} onToggle={onToggle} />
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
@@ -180,8 +221,38 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
     const [hasMore, setHasMore] = useState(initialHasMore);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    // Which threads are shut. Held here rather than inside each card so one
+    // control can fold the whole section, and so a thread the reader shut stays
+    // shut when "Load more" re-renders the list around it.
+    const [collapsed, setCollapsed] = useState<Set<number>>(new Set());
 
-    const tree = buildTree(allComments);
+    const tree = useMemo(() => buildTree(allComments), [allComments]);
+
+    // Every comment that has anything under it, at any depth — the set
+    // "Collapse all" writes, and the set it compares against to know its label.
+    const foldableIds = useMemo(() => {
+        const ids: number[] = [];
+        const walk = (nodes: CommentNode[]) => {
+            for (const node of nodes) {
+                if (node.children.length > 0) {
+                    ids.push(node.id);
+                    walk(node.children);
+                }
+            }
+        };
+        walk(tree);
+        return ids;
+    }, [tree]);
+
+    const allFolded = foldableIds.length > 0 && foldableIds.every((id) => collapsed.has(id));
+
+    function toggleFold(id: number) {
+        setCollapsed((prev) => {
+            const next = new Set(prev);
+            if (!next.delete(id)) next.add(id);
+            return next;
+        });
+    }
 
     async function handleLoadMore() {
         setLoading(true);
@@ -204,7 +275,17 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
                     <h3 className="font-display text-lg font-semibold text-white">Comments</h3>
                     <span className="text-xs text-gray-500">{total.toLocaleString()}</span>
                 </div>
-                <MessageSquare className="size-4 text-gray-700" />
+                <div className="flex items-center gap-3">
+                    {foldableIds.length > 0 && (
+                        <button
+                            onClick={() => setCollapsed(allFolded ? new Set() : new Set(foldableIds))}
+                            className="cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                        >
+                            {allFolded ? "Expand all" : "Collapse all"}
+                        </button>
+                    )}
+                    <MessageSquare className="size-4 text-gray-700" />
+                </div>
             </div>
 
             {/* Same treatment as the reviews and the episode list: a stack of the
@@ -212,7 +293,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
             <div className="flex flex-col divide-y divide-white/6">
                 {tree.map((comment) => (
                     <div key={comment.id} className="py-3.5">
-                        <CommentCard comment={comment} />
+                        <CommentCard comment={comment} collapsed={collapsed} onToggle={toggleFold} />
                     </div>
                 ))}
             </div>
