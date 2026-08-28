@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { getMdlData, getMdlSeasonData } from "@/lib/mdl-data";
 import { MdlLiveValue } from "./mdl-live-value";
+import { MdlRatingSparkline } from "./mdl-rating-sparkline";
 
 interface Props {
     externalId: string;
@@ -22,6 +24,12 @@ export async function MdlRatingBadge({ externalId, title, year, nativeTitle, sea
             <span>•</span>
             <span className="text-sky-400 font-medium">
                 MDL <MdlLiveValue field="rating" initial={data.mdlRating} scope={`${externalId}-${season ?? 1}`} />
+                {/* Its own boundary: the history is a second query, and the
+                    number must not wait on it. Falls back to nothing, so a
+                    title with too little history simply never grows one. */}
+                <Suspense fallback={null}>
+                    <MdlRatingSparkline mdlSlug={data.mdlSlug} />
+                </Suspense>
             </span>
         </>
     );
