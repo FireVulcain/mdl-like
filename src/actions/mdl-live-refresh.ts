@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { kuryanaGetDetails, parseMdlWatchers } from "@/lib/kuryana";
+import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
 /**
  * Re-reads the numbers that actually move — rating, rank, popularity, watchers
@@ -92,6 +93,11 @@ export async function refreshMdlLiveData(
         } else {
             await prisma.cachedMdlData.update({ where: { id: row.id }, data });
         }
+
+        // Keep the day's reading alongside the current one. The cell above only
+        // ever holds "now"; this is the only place the old value would otherwise
+        // be dropped, and MDL publishes no history to go back for.
+        await recordMdlRatingPoint(row.mdlSlug, { rating: mdlRating, ranking: mdlRanking, watchers: mdlWatchers });
 
         // Only ask the page to re-render when a visible number actually moved
         const changed =

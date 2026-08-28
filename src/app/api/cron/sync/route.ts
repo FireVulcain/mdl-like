@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
+import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
 // Vercel cron jobs use this header for authentication
 const CRON_SECRET = process.env.CRON_SECRET;
@@ -396,6 +397,10 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                             cachedAt: new Date(),
                         },
                     });
+                    // The same reading, kept as history. The cron is what gives
+                    // a series its regular spine — a page visit only lands a
+                    // point on the days somebody happened to open that page.
+                    await recordMdlRatingPoint(row.mdlSlug, { rating: mdlRating, ranking: mdlRanking, watchers: mdlWatchers });
                     count++;
                 }
             } catch (e) {
@@ -442,6 +447,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                             cachedAt: new Date(),
                         },
                     });
+                    await recordMdlRatingPoint(link.mdlSlug, { rating: mdlRating, ranking: mdlRanking, watchers: mdlWatchers });
                     count++;
                 }
             } catch (e) {

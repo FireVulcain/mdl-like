@@ -233,6 +233,36 @@ model CachedMdlData {
   cachedAt       DateTime @default(now())
 }
 
+// One day's reading of the numbers that move on an MDL entry.
+//
+// MDL publishes only the current value and no history at all, so a day that
+// goes unrecorded is gone for good — which is why this table exists before
+// anything draws from it. It starts empty and fills forwards.
+//
+// Keyed by mdlSlug rather than tmdbExternalId so one table serves both
+// CachedMdlData and MdlSeasonLink: MDL files each season as its own entry with
+// its own slug, and a season's rating is its own series.
+//
+// One row per slug per day, upserted — not one row per change. The live refresh
+// debounces at 60s and mdlWatchers moves constantly, so "on change" would write
+// dozens of rows an hour for anyone holding F5. The last reading of the day
+// wins, which is the right resolution for a number that moves in its third
+// decimal. Days with no row mean nobody looked, not that nothing changed: a
+// chart over this has to step, never interpolate.
+model MdlRatingPoint {
+  mdlSlug  String
+  day      DateTime @db.Date
+  rating   Float?
+  ranking  Int?
+  watchers Int?
+
+  // (slug, day) IS the identity, so it is the primary key rather than a unique
+  // index sitting next to a surrogate cuid. Measured on 5,000 synthetic rows,
+  // the cuid and its index were ~35% of the table's weight on disk — and this
+  // is a row nothing will ever reference by id.
+  @@id([mdlSlug, day])
+}
+
 // Native titles scraped from MDL detail pages (the top lists don't carry them).
 // Filled progressively in the background; "" = checked, no native title found.
 model MdlNativeTitle {
