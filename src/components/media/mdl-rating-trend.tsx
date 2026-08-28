@@ -11,6 +11,15 @@ import { MdlRatingTrendPopover, type TrendPoint } from "./mdl-rating-trend-popov
  * watchlist first since the cron forces those daily. Drawing a chart through
  * three dots would invent a trend; an absent icon says the honest thing, which
  * is that we do not know yet.
+ *
+ * It also renders nothing when the reading never changed, which is the ordinary
+ * case for the back catalogue rather than an edge one. MDL publishes ratings to
+ * a single decimal — measured across 851 cached titles, not one carries a
+ * second — so a 2015 drama sitting on tens of thousands of votes would need a
+ * landslide to move 8.4 to 8.5. A point is stored every day regardless, so
+ * without this guard those titles would grow an icon after five days and open
+ * onto a flat line reading 0.00: a control promising a movement it does not
+ * have. Their rank and audience do keep moving; the rating does not.
  */
 const MIN_POINTS = 5;
 const DAYS = 90;
@@ -26,6 +35,7 @@ export async function MdlRatingTrend({ mdlSlug }: { mdlSlug: string }) {
         .map((p) => ({ day: p.day.toISOString().slice(0, 10), rating: p.rating }));
 
     if (points.length < MIN_POINTS) return null;
+    if (new Set(points.map((p) => p.rating)).size < 2) return null;
 
     return <MdlRatingTrendPopover points={points} />;
 }

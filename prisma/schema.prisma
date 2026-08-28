@@ -246,9 +246,16 @@ model CachedMdlData {
 // One row per slug per day, upserted — not one row per change. The live refresh
 // debounces at 60s and mdlWatchers moves constantly, so "on change" would write
 // dozens of rows an hour for anyone holding F5. The last reading of the day
-// wins, which is the right resolution for a number that moves in its third
-// decimal. Days with no row mean nobody looked, not that nothing changed: a
-// chart over this has to step, never interpolate.
+// wins, which is ample for a number MDL publishes to one decimal — measured
+// across 851 cached titles, not one carries a second. Days with no row mean
+// nobody looked, not that nothing changed: a chart over this has to step,
+// never interpolate.
+//
+// That single decimal is also why the rating alone is not the whole story. It
+// is quantised to 0.1 steps, so a back-catalogue title resting on tens of
+// thousands of votes never moves at all — but its rank shifts as others
+// overtake it, and its audience keeps growing. Hence ranking and watchers
+// sitting here beside the rating rather than being dropped as incidental.
 model MdlRatingPoint {
   mdlSlug  String
   day      DateTime @db.Date
