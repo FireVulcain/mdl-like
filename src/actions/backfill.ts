@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { getCurrentUserId } from "@/lib/session";
 import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
+import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
 
 
@@ -435,6 +436,11 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
                 cachedAt: new Date(),
             },
         });
+        // The watchlist's own refresh button does the cron's job on demand, so
+        // it owes the history the same reading. Missed at first because this
+        // file mostly writes values it has just discovered rather than ones
+        // that moved — this function is the exception.
+        await recordMdlRatingPoint(slug, { rating: mdlRating, ranking: mdlRanking, watchers: mdlWatchers });
         return true;
     }
 
