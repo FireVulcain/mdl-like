@@ -1,6 +1,27 @@
 import { prisma } from "@/lib/prisma";
 
 /**
+ * Which calendar day a reading belongs to.
+ *
+ * Europe/Paris rather than UTC, and rather than the server's own clock. UTC was
+ * the first answer and it was wrong in a way that showed: a rating read at
+ * 01:00 in France is 23:00 the day before in UTC, so it was filed under
+ * yesterday and overwrote yesterday's reading. Naming the zone explicitly keeps
+ * the value stable however the host is configured — which was the only real
+ * virtue UTC had here — while agreeing with the calendar of the person reading
+ * the chart.
+ *
+ * en-CA formats as YYYY-MM-DD, which is then pinned to UTC midnight because the
+ * column is a DATE and the time is discarded on the way in regardless.
+ */
+const DAY_ZONE = "Europe/Paris";
+const dayFormatter = new Intl.DateTimeFormat("en-CA", { timeZone: DAY_ZONE, year: "numeric", month: "2-digit", day: "2-digit" });
+
+function today(): Date {
+    return new Date(`${dayFormatter.format(new Date())}T00:00:00.000Z`);
+}
+
+/**
  * Records one day's reading of an MDL entry's volatile numbers.
  *
  * MDL serves only the current value — there is no archive to fetch and no way
@@ -26,11 +47,7 @@ export async function recordMdlRatingPoint(
     if (values.rating == null && values.ranking == null && values.watchers == null) return;
     if (!mdlSlug) return;
 
-    // Midnight UTC. The column is a DATE, so the time is dropped on the way in
-    // anyway — pinning it here keeps the value the unique index sees stable
-    // whatever the server's local offset happens to be.
-    const day = new Date();
-    day.setUTCHours(0, 0, 0, 0);
+    const day = today();
 
     const point = {
         rating: values.rating ?? null,

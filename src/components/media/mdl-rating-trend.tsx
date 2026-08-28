@@ -21,7 +21,12 @@ import { MdlRatingTrendPopover, type TrendPoint } from "./mdl-rating-trend-popov
  * onto a flat line reading 0.00: a control promising a movement it does not
  * have. Their rank and audience do keep moving; the rating does not.
  */
-const MIN_POINTS = 5;
+// Three, not five. Five was a guess made before the guard below existed; now
+// that a series has to carry two distinct readings to show at all, the real
+// risk — a flat line pretending to be a trend — is already handled, and the
+// threshold was only delaying an honest chart. Three readings that went
+// 8.2, 8.4, 8.5 are a chart worth opening.
+const MIN_POINTS = 3;
 const DAYS = 90;
 
 export async function MdlRatingTrend({ mdlSlug }: { mdlSlug: string }) {
