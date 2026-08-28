@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Info } from "lucide-react";
+import { Minus, TrendingDown, TrendingUp } from "lucide-react";
 
 export type TrendPoint = { day: string; rating: number };
 
@@ -19,7 +19,7 @@ const W = 236;
 const H = 60;
 
 /**
- * The rating's history, behind an (i) beside the rating.
+ * The rating's history, behind a trend icon beside the rating.
  *
  * Nothing lands in the hero line but the icon. That line carries the title's
  * identity — year, country, type, episode count — and a chart wedged into it
@@ -97,6 +97,14 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
     const rounded = Math.round(delta * 100) / 100;
     const sign = rounded > 0 ? "+" : rounded < 0 ? "−" : "";
 
+    // The trigger says "movement over time" rather than the generic "more to
+    // read" an info glyph says, and it leans whichever way the rating went. The
+    // direction costs nothing: the icon has to be some shape regardless, so it
+    // may as well be the right one. Still sky, never green or red — those mean
+    // watched and dropped everywhere else on the site.
+    const TrendIcon = rounded > 0 ? TrendingUp : rounded < 0 ? TrendingDown : Minus;
+    const direction = rounded > 0 ? "up" : rounded < 0 ? "down" : "unchanged";
+
     const onMove = (e: React.PointerEvent<SVGSVGElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const ratio = (e.clientX - rect.left) / rect.width;
@@ -115,10 +123,10 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
                     setOpen(true);
                 }}
                 aria-expanded={open}
-                aria-label="Rating history"
+                aria-label={`Rating history, ${direction} ${Math.abs(rounded).toFixed(2)} over ${points.length} readings`}
                 className="cursor-pointer ml-1 inline-flex items-center text-sky-400/60 transition-colors hover:text-sky-300"
             >
-                <Info className="size-3.5" />
+                <TrendIcon className="size-3.5" />
             </button>
 
             {open && (
