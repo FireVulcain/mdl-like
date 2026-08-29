@@ -39,16 +39,18 @@ export async function themeTransition(apply: () => void, origin?: Element | null
     // it stops short and the last frame lands as a visible jump.
     const toFurthestCorner = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
-    // Three per cent past it. The figure above is already exact — logged from a
-    // real button it reads 1918 against a furthest corner of 1918 — so this
-    // corrects nothing measured. It is here because the two errors are not
-    // symmetrical: falling a pixel short leaves a sliver of the old theme that
-    // vanishes in a single frame when the layers are torn down, while
-    // overshooting only means the circle finishes covering the window slightly
-    // before the animation ends. It also puts the sweep beyond the reach of any
-    // disagreement between the coordinates read here and the space the
-    // pseudo-element is laid out in — a scrollbar, a zoom level.
-    const radius = toFurthestCorner * 1.03;
+    // A fifth past it, which is far more than coverage needs — the figure above
+    // is already exact, logged from a real button at 1918 against a furthest
+    // corner of 1918. The overshoot is what sets the pace: with this curve the
+    // circle has covered the window by about 30% of the duration, so what the
+    // eye follows is a quick sweep and the rest of the animation is the clip
+    // growing past the edges with nothing left to reveal.
+    //
+    // Tuned by eye against the duration below; the two only make sense together.
+    // Falling short is the one thing to avoid — a sliver of the old theme
+    // standing at the end vanishes in a single frame when the layers are torn
+    // down, which is the snap. Overshooting has no such edge.
+    const radius = toFurthestCorner * 1.2;
 
     // Suspends every element's own colour transition for the length of the
     // sweep. Measured mid-wipe without it: 671 concurrent animations, 667 of
@@ -71,7 +73,10 @@ export async function themeTransition(apply: () => void, origin?: Element | null
     document.documentElement.animate(
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
         {
-            duration: 560,
+            // Set against the overshoot above rather than on its own: the
+            // visible part of the sweep is the first ~30% of this, so 750 buys
+            // roughly 225ms of circle and lets the tail run out unseen.
+            duration: 750,
             // Decelerating, not ease-in-out, because what the eye follows is the
             // area being uncovered and area grows as the square of the radius.
             // A radius easing symmetrically therefore reveals far more ground in
