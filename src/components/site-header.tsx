@@ -94,10 +94,10 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                 className={cn(
                     "relative container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
                     scrolled
-                        ? "bg-panel/80 backdrop-blur-xl border border-line-strong shadow-2xl shadow-black/20 h-14"
+                        ? "bg-[var(--header-scrolled)] backdrop-blur-xl border border-line-strong shadow-2xl shadow-black/20 h-14"
                         : hasHeroBackdrop
-                          ? "bg-panel/40 backdrop-blur-md border border-line-strong"
-                          : "bg-panel/50 backdrop-blur-md border border-line-soft shadow-2xl shadow-black/20",
+                          ? "bg-[var(--header-over-hero)] backdrop-blur-md border border-line-strong"
+                          : "bg-[var(--header-idle)] backdrop-blur-md border border-line-soft shadow-2xl shadow-black/20",
                 )}
             >
                 {/* Mobile inline search bar — absolute so it doesn't affect flex layout */}

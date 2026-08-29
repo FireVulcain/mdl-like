@@ -70,7 +70,7 @@ export default async function EpisodePage({
     const nextHref = `/media/${id}/episode/${epNum + 1}`;
 
     const meta = (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-gray-400">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-fg-muted">
             {d.air_date && (
                 <div className="flex items-center gap-1.5">
                     <Calendar className="size-3.5" />
@@ -88,7 +88,7 @@ export default async function EpisodePage({
                 href={d.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-white transition-colors"
+                className="flex items-center gap-1 hover:text-fg transition-colors"
             >
                 <ExternalLink className="size-3.5" />
                 MDL
@@ -133,38 +133,38 @@ export default async function EpisodePage({
                             alt={d.title}
                             width={340}
                             height={340}
-                            className="w-full sm:w-72 md:w-80 h-auto shrink-0 rounded-2xl bg-gray-900 shadow-2xl shadow-black/40 ring-1 ring-white/10"
+                            className="w-full sm:w-72 md:w-80 h-auto shrink-0 rounded-2xl bg-panel shadow-2xl shadow-black/40 ring-1 ring-line-strong"
                             priority
                         />
                     )}
                     <div className="space-y-3 min-w-0 flex-1">
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-fg-muted">
                             {d.title} · Episode {epNum}
-                            {totalEpisodes > 0 && <span className="text-gray-600"> / {totalEpisodes}</span>}
+                            {totalEpisodes > 0 && <span className="text-fg-faint"> / {totalEpisodes}</span>}
                         </p>
-                        <h1 className="font-display text-3xl md:text-4xl font-black tracking-tight text-white leading-tight">
+                        <h1 className="font-display text-3xl md:text-4xl font-black tracking-tight text-fg leading-tight">
                             {d.episode_title || `Episode ${epNum}`}
                         </h1>
                         {meta}
                         {d.synopsis && (
-                            <p className="text-sm md:text-base text-gray-300 leading-relaxed pt-1">{d.synopsis}</p>
+                            <p className="text-sm md:text-base text-fg-soft leading-relaxed pt-1">{d.synopsis}</p>
                         )}
                     </div>
                 </div>
 
-                <div className="h-px bg-linear-to-r from-transparent via-white/15 to-transparent" />
+                <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
                 {/* Reviews */}
                 <section className="space-y-4">
                     <div className="flex items-center gap-2">
-                        <h2 className="font-display text-lg font-semibold text-white">Episode Reviews</h2>
+                        <h2 className="font-display text-lg font-semibold text-fg">Episode Reviews</h2>
                         {reviews.length > 0 && (
-                            <span className="text-sm text-gray-500">({reviews.length})</span>
+                            <span className="text-sm text-fg-dim">({reviews.length})</span>
                         )}
                     </div>
 
                     {reviews.length === 0 ? (
-                        <p className="text-sm text-gray-500 py-4">No reviews yet for this episode.</p>
+                        <p className="text-sm text-fg-dim py-4">No reviews yet for this episode.</p>
                     ) : (
                         <div className="grid gap-3 md:grid-cols-2">
                             {reviews.map((review) => (
@@ -196,7 +196,7 @@ function EpisodePagerText({ href, disabled, direction, label }: { href: string; 
     );
     const base = "inline-flex items-center gap-1 text-sm font-medium transition-colors";
     if (disabled) {
-        return <span className={`${base} text-gray-600 cursor-not-allowed`}>{content}</span>;
+        return <span className={`${base} text-fg-faint cursor-not-allowed`}>{content}</span>;
     }
     return <Link href={href} className={`${base} text-blue-400 hover:text-blue-300`}>{content}</Link>;
 }

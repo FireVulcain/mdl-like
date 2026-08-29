@@ -87,8 +87,8 @@ function CommentCard({
     if (comment.deleted) {
         return (
             <div className="flex gap-2.5">
-                <div className={`${nested ? "size-6" : "size-7"} shrink-0 rounded-full bg-white/5`} />
-                <p className="text-xs text-gray-600 italic pt-1.5">[Comment removed]</p>
+                <div className={`${nested ? "size-6" : "size-7"} shrink-0 rounded-full bg-surface-2`} />
+                <p className="text-xs text-fg-faint italic pt-1.5">[Comment removed]</p>
             </div>
         );
     }
@@ -110,7 +110,7 @@ function CommentCard({
             <Link
                 href={listHref}
                 title={`See ${authorName}'s list`}
-                className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-white/5"} flex items-center justify-center font-bold text-white mt-0.5 select-none overflow-hidden hover:ring-2 hover:ring-sky-500/50 transition-all`}
+                className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-surface-2"} flex items-center justify-center font-bold text-fg mt-0.5 select-none overflow-hidden hover:ring-2 hover:ring-sky-500/50 transition-all`}
             >
                 {comment.avatar_url ? (
                     <Image src={comment.avatar_url} alt={authorName} fill className="object-cover" unoptimized={true} />
@@ -124,11 +124,11 @@ function CommentCard({
                 <div className="flex items-baseline gap-2 flex-wrap">
                     <Link
                         href={listHref}
-                        className="text-sm font-semibold text-white hover:text-sky-400 transition-colors"
+                        className="text-sm font-semibold text-fg hover:text-sky-400 transition-colors"
                     >
                         {authorName}
                     </Link>
-                    <span className="text-xs text-gray-500">{relativeTime(comment.date_added)}</span>
+                    <span className="text-xs text-fg-dim">{relativeTime(comment.date_added)}</span>
                 </div>
 
                 {comment.spoiler && !revealed ? (
@@ -138,7 +138,7 @@ function CommentCard({
                     <div className="mt-1.5">
                         <button
                             onClick={() => setRevealed(true)}
-                            className="cursor-pointer inline-flex items-center gap-1.5 text-sm italic text-gray-500 underline decoration-dotted decoration-gray-600 underline-offset-4 hover:text-gray-300 hover:decoration-gray-400 transition-colors"
+                            className="cursor-pointer inline-flex items-center gap-1.5 text-sm italic text-fg-dim underline decoration-dotted decoration-gray-600 underline-offset-4 hover:text-fg-soft hover:decoration-gray-400 transition-colors"
                         >
                             <Eye className="size-3.5" />
                             Reveal spoiler
@@ -146,7 +146,7 @@ function CommentCard({
                     </div>
                 ) : (
                     <div className="mt-1">
-                        <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line wrap-break-word">{displayText}</p>
+                        <p className="text-sm text-fg-soft leading-relaxed whitespace-pre-line wrap-break-word">{displayText}</p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
@@ -160,7 +160,7 @@ function CommentCard({
 
                 <div className="flex items-center gap-3 mt-1.5">
                     {comment.likes > 0 && (
-                        <span className="flex items-center gap-1 text-xs text-gray-500">
+                        <span className="flex items-center gap-1 text-xs text-fg-dim">
                             <Heart className="size-3" />
                             {comment.likes}
                         </span>
@@ -169,7 +169,7 @@ function CommentCard({
                         <button
                             onClick={() => onToggle(comment.id)}
                             aria-expanded={!folded}
-                            className="cursor-pointer flex items-center gap-1 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                            className="cursor-pointer flex items-center gap-1 text-xs text-fg-dim hover:text-fg-soft transition-colors"
                         >
                             {/* The chevron carries the state, so the label can say
                                 the same thing open or shut. The button keeps its
@@ -272,25 +272,25 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
         <div>
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                    <h3 className="font-display text-lg font-semibold text-white">Comments</h3>
-                    <span className="text-xs text-gray-500">{total.toLocaleString()}</span>
+                    <h3 className="font-display text-lg font-semibold text-fg">Comments</h3>
+                    <span className="text-xs text-fg-dim">{total.toLocaleString()}</span>
                 </div>
                 <div className="flex items-center gap-3">
                     {foldableIds.length > 0 && (
                         <button
                             onClick={() => setCollapsed(allFolded ? new Set() : new Set(foldableIds))}
-                            className="cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                            className="cursor-pointer text-xs text-fg-dim hover:text-fg-soft transition-colors"
                         >
                             {allFolded ? "Expand all" : "Collapse all"}
                         </button>
                     )}
-                    <MessageSquare className="size-4 text-gray-700" />
+                    <MessageSquare className="size-4 text-fg-faint" />
                 </div>
             </div>
 
             {/* Same treatment as the reviews and the episode list: a stack of the
                 same thing, separated by a rule rather than each drawn as a box. */}
-            <div className="flex flex-col divide-y divide-white/6">
+            <div className="flex flex-col divide-y divide-line">
                 {tree.map((comment) => (
                     <div key={comment.id} className="py-3.5">
                         <CommentCard comment={comment} collapsed={collapsed} onToggle={toggleFold} />
@@ -302,7 +302,7 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
                 <button
                     onClick={handleLoadMore}
                     disabled={loading}
-                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-fg-muted hover:text-fg transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
                         <>

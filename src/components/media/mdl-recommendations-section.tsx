@@ -64,7 +64,7 @@ export async function MdlRecsSection({ tmdbRecs, externalId, season, watchlistId
         return (
             <div>
                 <h3 className="font-display text-lg font-semibold mb-4">Recs</h3>
-                <div className="text-center py-12 text-gray-400">No recommendations available.</div>
+                <div className="text-center py-12 text-fg-muted">No recommendations available.</div>
             </div>
         );
     }

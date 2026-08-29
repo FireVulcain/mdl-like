@@ -24,13 +24,13 @@ export function SourceToggle({
     className?: string;
 }) {
     return (
-        <div className={`inline-flex rounded-lg border border-white/10 bg-white/5 p-0.5 gap-0.5 ${className}`}>
+        <div className={`inline-flex rounded-lg border border-line-strong bg-surface-2 p-0.5 gap-0.5 ${className}`}>
             {(["mdl", "tmdb"] as const).map((s) => (
                 <button
                     key={s}
                     onClick={() => onChange(s)}
                     className={`cursor-pointer px-3 py-1 text-xs rounded font-medium transition-colors ${
-                        value === s ? "bg-white text-gray-900" : "text-gray-400 hover:text-white"
+                        value === s ? "bg-white text-gray-900" : "text-fg-muted hover:text-fg"
                     }`}
                 >
                     {s === "mdl" ? "MDL" : "TMDB"}

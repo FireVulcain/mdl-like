@@ -129,7 +129,7 @@ export function SearchMediaGrid({
                     className={`inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer disabled:cursor-wait disabled:opacity-60 ${
                         showMdl
                             ? "bg-sky-500/20 text-sky-400 ring-1 ring-sky-500/30"
-                            : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white"
+                            : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
                     }`}
                 >
                     {mdlLoading ? <Loader2 className="size-3 animate-spin" /> : <span className="size-1.5 rounded-full bg-current" />}
@@ -139,13 +139,13 @@ export function SearchMediaGrid({
                 {/* Country pills */}
                 {showCountryFilter && (
                     <>
-                        <div className="w-px h-4 bg-white/8" />
+                        <div className="w-px h-4 bg-surface-3" />
                         <button
                             onClick={() => setSelectedCountry(null)}
                             className={`h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                                 selectedCountry === null
-                                    ? "bg-white/10 text-white ring-1 ring-white/15"
-                                    : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white"
+                                    ? "bg-surface-4 text-fg ring-1 ring-line-strong"
+                                    : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
                             }`}
                         >
                             All
@@ -156,8 +156,8 @@ export function SearchMediaGrid({
                                 onClick={() => setSelectedCountry(selectedCountry === code ? null : code)}
                                 className={`inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                                     selectedCountry === code
-                                        ? "bg-white/10 text-white ring-1 ring-white/15"
-                                        : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white"
+                                        ? "bg-surface-4 text-fg ring-1 ring-line-strong"
+                                        : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
                                 }`}
                             >
                                 {COUNTRY_LABELS[code] ?? code}
@@ -174,13 +174,13 @@ export function SearchMediaGrid({
                     <MediaCard key={item.id} media={item} showSourceBadge />
                 ))}
                 {filtered.length === 0 && (
-                    <p className="col-span-full text-sm text-gray-500">No results for this country.</p>
+                    <p className="col-span-full text-sm text-fg-dim">No results for this country.</p>
                 )}
             </div>
 
             {/* Infinite scroll sentinel */}
             <div ref={sentinelRef} className="flex justify-center py-4">
-                {loadingMore && <Loader2 className="h-5 w-5 animate-spin text-gray-500" />}
+                {loadingMore && <Loader2 className="h-5 w-5 animate-spin text-fg-dim" />}
             </div>
         </div>
     );

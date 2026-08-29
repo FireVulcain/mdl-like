@@ -10,7 +10,7 @@ export default function Loading() {
             </div>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                 {Array.from({ length: 24 }, (_, i) => (
-                    <div key={i} className="aspect-square w-full animate-pulse rounded-lg bg-white/5" />
+                    <div key={i} className="aspect-square w-full animate-pulse rounded-lg bg-surface-2" />
                 ))}
             </div>
         </div>

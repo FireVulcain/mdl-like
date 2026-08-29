@@ -135,12 +135,12 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
 
             {open && (
                 <div
-                    className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-white/10 bg-gray-900 p-3 shadow-xl shadow-black/50"
+                    className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-line-strong bg-panel p-3 shadow-xl shadow-black/50"
                     onMouseEnter={show}
                     onMouseLeave={hide}
                 >
                     <div className="flex items-baseline justify-between gap-2">
-                        <span className="text-[11px] font-medium text-gray-400">MDL rating</span>
+                        <span className="text-[11px] font-medium text-fg-muted">MDL rating</span>
                         <span className="text-xs font-semibold tabular-nums text-sky-400">
                             {sign}
                             {Math.abs(rounded).toFixed(1)}
@@ -165,7 +165,7 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
                         />
                         {active && hover != null && (
                             <g>
-                                <line x1={x(hover)} y1={0} x2={x(hover)} y2={H} stroke="currentColor" strokeWidth={1} className="text-white/15" />
+                                <line x1={x(hover)} y1={0} x2={x(hover)} y2={H} stroke="currentColor" strokeWidth={1} className="text-fg-faint" />
                                 <circle cx={x(hover)} cy={y(active.rating)} r={2.5} className="fill-sky-300" />
                             </g>
                         )}
@@ -174,11 +174,11 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
                     {/* The scale, which the chart cannot show on its own: it is
                         normalised to its own range, so a dramatic-looking slope
                         might be a single tenth or a whole point. */}
-                    <div className="mt-2 flex items-baseline justify-between gap-2 text-[11px] text-gray-500">
+                    <div className="mt-2 flex items-baseline justify-between gap-2 text-[11px] text-fg-dim">
                         <span className="tabular-nums">
                             {active ? (
                                 <>
-                                    <span className="text-gray-300">{formatDay(active.day)}</span>{" "}
+                                    <span className="text-fg-soft">{formatDay(active.day)}</span>{" "}
                                     <span className="text-sky-400">{active.rating.toFixed(1)}</span>
                                 </>
                             ) : (
@@ -192,7 +192,7 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
                         </span>
                     </div>
 
-                    <p className="mt-1.5 text-[10px] leading-snug text-gray-600">
+                    <p className="mt-1.5 text-[10px] leading-snug text-fg-faint">
                         {points.length} readings. A missing day is a day nobody looked, not a day it held.
                     </p>
                 </div>

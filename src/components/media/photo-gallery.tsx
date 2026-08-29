@@ -23,13 +23,13 @@ export function PhotoGallery({ backdrops, posters }: PhotoGalleryProps) {
             {/* Backdrops Section */}
             {backdrops.length > 0 && (
                 <div className="space-y-4">
-                    <h2 className="font-display text-xl font-semibold text-white">Backdrops</h2>
+                    <h2 className="font-display text-xl font-semibold text-fg">Backdrops</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {backdrops.map((src, index) => (
                             <motion.div
                                 key={`backdrop-${index}`}
                                 layoutId={`image-${src}`}
-                                className="relative aspect-video w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg group cursor-pointer ring-2 ring-white/10 hover:ring-white/20 transition-all"
+                                className="relative aspect-video w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg group cursor-pointer ring-2 ring-line-strong hover:ring-line-strong transition-all"
                                 onClick={() => setLightboxIndex(index)}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -64,13 +64,13 @@ export function PhotoGallery({ backdrops, posters }: PhotoGalleryProps) {
             {/* Posters Section */}
             {posters.length > 0 && (
                 <div className="space-y-4">
-                    <h2 className="font-display text-xl font-semibold text-white">Posters</h2>
+                    <h2 className="font-display text-xl font-semibold text-fg">Posters</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                         {posters.map((src, index) => (
                             <motion.div
                                 key={`poster-${index}`}
                                 layoutId={`image-${src}`}
-                                className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg group cursor-pointer ring-2 ring-white/10 hover:ring-white/20 transition-all"
+                                className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg group cursor-pointer ring-2 ring-line-strong hover:ring-line-strong transition-all"
                                 onClick={() => setLightboxIndex(backdrops.length + index)}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}

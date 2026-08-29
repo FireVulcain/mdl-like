@@ -128,7 +128,7 @@ function MediaPicker({
             <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/8 transition-all text-left"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg bg-surface-2 border border-line-strong hover:border-line-strong hover:bg-surface-3 transition-all text-left"
             >
                 {value ? (
                     <>
@@ -137,9 +137,9 @@ function MediaPicker({
                                 <Image unoptimized src={value.poster} alt="" fill className="object-cover" sizes="24px" />
                             </div>
                         ) : (
-                            <div className="h-9 w-6 shrink-0 rounded bg-white/10" />
+                            <div className="h-9 w-6 shrink-0 rounded bg-surface-4" />
                         )}
-                        <span className="flex-1 text-sm text-white truncate">{value.title}</span>
+                        <span className="flex-1 text-sm text-fg truncate">{value.title}</span>
                         {selectedFull?.score != null && selectedFull.score > 0 && (
                             <span className="shrink-0 text-xs font-semibold text-amber-400 bg-amber-400/10 px-1.5 py-0.5 rounded-md">
                                 {selectedFull.score}/10
@@ -148,15 +148,15 @@ function MediaPicker({
                         <button
                             type="button"
                             onClick={(e) => { e.stopPropagation(); onChange(null); }}
-                            className="shrink-0 text-gray-500 hover:text-gray-300 transition-colors"
+                            className="shrink-0 text-fg-dim hover:text-fg-soft transition-colors"
                         >
                             <X className="h-3.5 w-3.5" />
                         </button>
                     </>
                 ) : (
                     <>
-                        <span className="flex-1 text-sm text-gray-500">{placeholder}</span>
-                        <ChevronDown className="h-4 w-4 text-gray-500 shrink-0" />
+                        <span className="flex-1 text-sm text-fg-dim">{placeholder}</span>
+                        <ChevronDown className="h-4 w-4 text-fg-dim shrink-0" />
                     </>
                 )}
             </button>
@@ -168,23 +168,23 @@ function MediaPicker({
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -6, scale: 0.97 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute z-50 top-full mt-1 left-0 right-0 rounded-xl bg-[#1a1a2e] border border-white/10 shadow-2xl overflow-hidden"
+                        className="absolute z-50 top-full mt-1 left-0 right-0 rounded-xl bg-[#1a1a2e] border border-line-strong shadow-2xl overflow-hidden"
                     >
-                        <div className="p-2 border-b border-white/8">
-                            <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-white/5">
-                                <Search className="h-3.5 w-3.5 text-gray-500 shrink-0" />
+                        <div className="p-2 border-b border-line">
+                            <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-surface-2">
+                                <Search className="h-3.5 w-3.5 text-fg-dim shrink-0" />
                                 <input
                                     autoFocus
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     placeholder="Search..."
-                                    className="flex-1 bg-transparent text-sm text-white placeholder-gray-500 outline-none"
+                                    className="flex-1 bg-transparent text-sm text-fg placeholder-gray-500 outline-none"
                                 />
                             </div>
                         </div>
                         <div className="overflow-y-auto max-h-52">
                             {filtered.length === 0 && (
-                                <p className="text-center text-xs text-gray-500 py-4">No results</p>
+                                <p className="text-center text-xs text-fg-dim py-4">No results</p>
                             )}
                             {filtered.map((item) => {
                                 const key = `${item.source}-${item.externalId}`;
@@ -195,18 +195,18 @@ function MediaPicker({
                                         type="button"
                                         disabled={disabled}
                                         onClick={() => { onChange(item); setOpen(false); setSearch(""); }}
-                                        className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-white/6 disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-left"
+                                        className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-surface-2 disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-left"
                                     >
                                         {item.poster ? (
                                             <div className="relative h-9 w-6 shrink-0 rounded overflow-hidden">
                                                 <Image unoptimized src={item.poster} alt="" fill className="object-cover" sizes="24px" />
                                             </div>
                                         ) : (
-                                            <div className="h-9 w-6 shrink-0 rounded bg-white/10" />
+                                            <div className="h-9 w-6 shrink-0 rounded bg-surface-4" />
                                         )}
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-sm text-white truncate">{item.title ?? "Untitled"}</p>
-                                            {item.year && <p className="text-xs text-gray-500">{item.year}</p>}
+                                            <p className="text-sm text-fg truncate">{item.title ?? "Untitled"}</p>
+                                            {item.year && <p className="text-xs text-fg-dim">{item.year}</p>}
                                         </div>
                                         {item.score != null && item.score > 0 && (
                                             <span className="shrink-0 text-xs font-semibold text-amber-400">
@@ -247,7 +247,7 @@ function LeadCard({ entry }: { entry: PodiumEntry }) {
                 <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
 
                 <div className="relative h-full flex items-center gap-4 p-4 md:p-5">
-                    <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shadow-2xl shadow-black/60 shrink-0 bg-gray-800">
+                    <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shadow-2xl shadow-black/60 shrink-0 bg-surface-3">
                         {entry.poster ? (
                             <Image
                                 unoptimized
@@ -258,7 +258,7 @@ function LeadCard({ entry }: { entry: PodiumEntry }) {
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                         ) : (
-                            <div className="absolute inset-0 flex items-center justify-center text-gray-600 text-xs text-center px-1">
+                            <div className="absolute inset-0 flex items-center justify-center text-white/50 text-xs text-center px-1">
                                 {entry.title}
                             </div>
                         )}
@@ -269,10 +269,10 @@ function LeadCard({ entry }: { entry: PodiumEntry }) {
                             <Crown className="h-3.5 w-3.5" />
                             #1
                         </p>
-                        <h4 className="text-lg md:text-xl font-extrabold text-white leading-tight line-clamp-3 group-hover:text-amber-200 transition-colors">
+                        <h4 className="text-lg md:text-xl font-extrabold text-fg leading-tight line-clamp-3 group-hover:text-amber-200 transition-colors">
                             {entry.title}
                         </h4>
-                        {entry.year && <p className="text-xs text-white/60">{entry.year}</p>}
+                        {entry.year && <p className="text-xs text-fg-muted">{entry.year}</p>}
                     </div>
                 </div>
             </Link>
@@ -292,7 +292,7 @@ function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; del
         >
             <Link
                 href={mediaHref}
-                className="group relative block h-28 md:h-full rounded-xl overflow-hidden border border-white/8 hover:border-white/20 transition-colors"
+                className="group relative block h-28 md:h-full rounded-xl overflow-hidden border border-line hover:border-line-strong transition-colors"
             >
                 {entry.poster && (
                     <Image unoptimized src={entry.poster} alt="" fill className="object-cover scale-110 blur-2xl opacity-45" />
@@ -300,7 +300,7 @@ function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; del
                 <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-black/15" />
 
                 <div className="relative h-full flex items-center gap-3 p-3">
-                    <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shadow-xl shadow-black/60 shrink-0 bg-gray-800">
+                    <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shadow-xl shadow-black/60 shrink-0 bg-surface-3">
                         {entry.poster ? (
                             <Image
                                 unoptimized
@@ -311,7 +311,7 @@ function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; del
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                         ) : (
-                            <div className="absolute inset-0 flex items-center justify-center text-gray-600 text-[10px] text-center px-1">
+                            <div className="absolute inset-0 flex items-center justify-center text-white/50 text-[10px] text-center px-1">
                                 {entry.title}
                             </div>
                         )}
@@ -319,10 +319,10 @@ function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; del
 
                     <div className="flex-1 min-w-0 space-y-0.5">
                         <p className={`text-[10.5px] font-extrabold ${cfg.textColor}`}>#{rank}</p>
-                        <h4 className="text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-white/80 transition-colors">
+                        <h4 className="text-sm font-bold text-fg leading-snug line-clamp-2 group-hover:text-fg-soft transition-colors">
                             {entry.title}
                         </h4>
-                        {entry.year && <p className="text-[11px] text-white/50">{entry.year}</p>}
+                        {entry.year && <p className="text-[11px] text-fg-dim">{entry.year}</p>}
                     </div>
                 </div>
             </Link>
@@ -395,30 +395,30 @@ function PodiumEditor({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.25 }}
-            className="rounded-2xl bg-white/4 border border-white/10 p-5 space-y-4"
+            className="rounded-2xl bg-surface-2 border border-line-strong p-5 space-y-4"
         >
             <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-white">Edit your Top 3 Podium</h3>
-                <button onClick={onClose} className="text-gray-500 hover:text-gray-300 transition-colors">
+                <h3 className="text-sm font-semibold text-fg">Edit your Top 3 Podium</h3>
+                <button onClick={onClose} className="text-fg-dim hover:text-fg-soft transition-colors">
                     <X className="h-4 w-4" />
                 </button>
             </div>
 
             {/* Category tabs */}
-            <div className="flex gap-1 p-1 rounded-xl bg-white/4 border border-white/8 w-fit">
+            <div className="flex gap-1 p-1 rounded-xl bg-surface-2 border border-line w-fit">
                 {CATEGORIES.map(({ key, label }) => (
                     <button
                         key={key}
                         type="button"
                         onClick={() => setActiveTab(key)}
                         className={`cursor-pointer relative px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors ${
-                            activeTab === key ? "text-white" : "text-gray-400 hover:text-gray-200"
+                            activeTab === key ? "text-fg" : "text-fg-muted hover:text-fg-soft"
                         }`}
                     >
                         {activeTab === key && (
                             <motion.div
                                 layoutId="editor-tab-bg"
-                                className="absolute inset-0 rounded-lg bg-white/12"
+                                className="absolute inset-0 rounded-lg bg-surface-4"
                                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             />
                         )}
@@ -469,7 +469,7 @@ function PodiumEditor({
                 <button
                     type="button"
                     onClick={onClose}
-                    className="py-2 px-4 rounded-xl bg-white/6 hover:bg-white/10 text-gray-300 text-sm transition-colors"
+                    className="py-2 px-4 rounded-xl bg-surface-2 hover:bg-surface-4 text-fg-soft text-sm transition-colors"
                 >
                     Cancel
                 </button>
@@ -519,12 +519,12 @@ export function PodiumSection({
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Trophy className="h-4 w-4 text-amber-400" />
-                    <h2 className="font-display text-lg font-semibold text-white">Top 3</h2>
+                    <h2 className="font-display text-lg font-semibold text-fg">Top 3</h2>
                 </div>
                 {isOwner && !editMode && (
                     <button
                         onClick={() => setEditMode(true)}
-                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors px-2.5 py-1.5 rounded-lg hover:bg-white/8"
+                        className="flex items-center gap-1.5 text-xs text-fg-muted hover:text-fg transition-colors px-2.5 py-1.5 rounded-lg hover:bg-surface-3"
                     >
                         <Pencil className="h-3.5 w-3.5" />
                         Edit
@@ -548,12 +548,12 @@ export function PodiumSection({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center gap-3 py-10 rounded-2xl border border-dashed border-white/10 text-center"
+                        className="flex flex-col items-center gap-3 py-10 rounded-2xl border border-dashed border-line-strong text-center"
                     >
-                        <Trophy className="h-8 w-8 text-gray-600" />
+                        <Trophy className="h-8 w-8 text-fg-faint" />
                         <div>
-                            <p className="text-sm text-gray-400 font-medium">No podium yet</p>
-                            <p className="text-xs text-gray-600 mt-0.5">Showcase your all-time favorites</p>
+                            <p className="text-sm text-fg-muted font-medium">No podium yet</p>
+                            <p className="text-xs text-fg-faint mt-0.5">Showcase your all-time favorites</p>
                         </div>
                         <button
                             onClick={() => setEditMode(true)}
@@ -573,7 +573,7 @@ export function PodiumSection({
                         {/* Tabs */}
                         {tabsToShow.length > 1 && (
                             <div className="flex gap-1">
-                                <div className="flex gap-1 p-1 rounded-xl bg-white/4 border border-white/8">
+                                <div className="flex gap-1 p-1 rounded-xl bg-surface-2 border border-line">
                                     {tabsToShow.map(({ key, label }) => {
                                         const completed = podiums[key].length === 3;
                                         return (
@@ -583,22 +583,22 @@ export function PodiumSection({
                                                 disabled={!completed && !isOwner}
                                                 className={`cursor-pointer relative px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors ${
                                                     safeActiveTab === key
-                                                        ? "text-white"
+                                                        ? "text-fg"
                                                         : completed || isOwner
-                                                        ? "text-gray-400 hover:text-gray-200"
-                                                        : "text-gray-600 cursor-not-allowed"
+                                                        ? "text-fg-muted hover:text-fg-soft"
+                                                        : "text-fg-faint cursor-not-allowed"
                                                 }`}
                                             >
                                                 {safeActiveTab === key && (
                                                     <motion.div
                                                         layoutId="podium-tab-bg"
-                                                        className="absolute inset-0 rounded-lg bg-white/12"
+                                                        className="absolute inset-0 rounded-lg bg-surface-4"
                                                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                     />
                                                 )}
                                                 <span className="relative">{label}</span>
                                                 {!completed && isOwner && (
-                                                    <span className="relative ml-1 text-[9px] text-gray-600">empty</span>
+                                                    <span className="relative ml-1 text-[9px] text-fg-faint">empty</span>
                                                 )}
                                             </button>
                                         );
@@ -619,7 +619,7 @@ export function PodiumSection({
                                 {podiums[safeActiveTab].length === 3 ? (
                                     <PodiumDisplay entries={podiums[safeActiveTab]} />
                                 ) : (
-                                    <div className="flex items-center justify-center py-12 text-gray-600 text-sm">
+                                    <div className="flex items-center justify-center py-12 text-fg-faint text-sm">
                                         Podium incomplete — click Edit to fill it in.
                                     </div>
                                 )}

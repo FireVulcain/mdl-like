@@ -36,7 +36,7 @@ function BookmarkBadge({ className }: { className: string }) {
     return (
         <div className={className}>
             <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                <Bookmark className="h-3.5 w-3.5 text-fg fill-current" />
             </span>
         </div>
     );
@@ -93,7 +93,7 @@ function SpotlightLead({
                     key={item.id}
                     layoutId={`spotlight-poster-${item.id}`}
                     transition={{ duration, ease: [...TRAVEL_EASE] }}
-                    className="relative h-64 sm:h-72 md:h-80 aspect-2/3 rounded-lg overflow-hidden shrink-0 bg-white/5"
+                    className="relative h-64 sm:h-72 md:h-80 aspect-2/3 rounded-lg overflow-hidden shrink-0 bg-surface-2"
                 >
                     {item.poster ? (
                         <Image
@@ -105,7 +105,7 @@ function SpotlightLead({
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                        <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                             <ImageOff className="h-5 w-5" />
                         </div>
                     )}
@@ -130,10 +130,10 @@ function SpotlightLead({
                         className="flex-1 min-w-0 space-y-1.5 md:space-y-2"
                     >
                         <p className={`text-[11px] font-bold tracking-wide ${kickerClass}`}>{kicker}</p>
-                        <h4 className="text-lg md:text-xl font-extrabold text-white leading-tight line-clamp-3 group-hover:text-sky-200 transition-colors">
+                        <h4 className="text-lg md:text-xl font-extrabold text-fg leading-tight line-clamp-3 group-hover:text-sky-200 transition-colors">
                             {item.title}
                         </h4>
-                        <div className="flex items-center gap-2.5 text-xs text-white/60">
+                        <div className="flex items-center gap-2.5 text-xs text-fg-muted">
                             {item.premiere ? <span>{item.premiere}</span> : item.year ? <span>{item.year}</span> : null}
                             <MdlRating rating={item.rating} />
                             {extras?.mdlRanking ? (
@@ -141,10 +141,10 @@ function SpotlightLead({
                             ) : null}
                         </div>
                         {extras && extras.genres.length > 0 && (
-                            <p className="text-[11px] text-white/50">{extras.genres.join(" · ")}</p>
+                            <p className="text-[11px] text-fg-dim">{extras.genres.join(" · ")}</p>
                         )}
                         {item.synopsis && (
-                            <p className="hidden md:line-clamp-4 text-xs text-white/50 leading-relaxed">{item.synopsis}</p>
+                            <p className="hidden md:line-clamp-4 text-xs text-fg-dim leading-relaxed">{item.synopsis}</p>
                         )}
                         {extras && extras.cast.length > 0 && (
                             <div className="hidden md:flex items-center gap-2.5 pt-1">
@@ -165,8 +165,8 @@ function SpotlightLead({
                                                 className="h-7 w-7 rounded-full object-cover ring-2 ring-page transition-transform group-hover/face:scale-110"
                                             />
                                         ) : (
-                                            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 ring-2 ring-page transition-transform group-hover/face:scale-110">
-                                                <UserRound className="h-3.5 w-3.5 text-gray-400" />
+                                            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-surface-4 ring-2 ring-page transition-transform group-hover/face:scale-110">
+                                                <UserRound className="h-3.5 w-3.5 text-fg-muted" />
                                             </span>
                                         );
                                         const style = { zIndex: i };
@@ -187,7 +187,7 @@ function SpotlightLead({
                                         );
                                     })}
                                 </div>
-                                <span className="text-xs text-white/50 truncate">
+                                <span className="text-xs text-fg-dim truncate">
                                     {extras.cast.map((c) => c.name).join(" · ")}
                                 </span>
                             </div>
@@ -225,7 +225,7 @@ function SpotlightCell({
             <motion.div
                 layoutId={`spotlight-poster-${item.id}`}
                 transition={{ duration, ease: [...TRAVEL_EASE] }}
-                className="relative aspect-2/3 w-32 sm:w-40 md:w-44 rounded-lg overflow-hidden bg-white/5"
+                className="relative aspect-2/3 w-32 sm:w-40 md:w-44 rounded-lg overflow-hidden bg-surface-2"
             >
                 {item.poster ? (
                     <Image
@@ -237,7 +237,7 @@ function SpotlightCell({
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                    <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                         <ImageOff className="h-4 w-4" />
                     </div>
                 )}
@@ -261,12 +261,12 @@ function SpotlightCell({
             </motion.div>
 
             <div className="pt-2 space-y-0.5">
-                <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
+                <h4 className="text-sm font-semibold text-fg leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
                     {item.title}
                 </h4>
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-fg-muted">
                     {item.premiere ? <span>{item.premiere}</span> : item.year ? <span>{item.year}</span> : null}
-                    {(item.premiere || item.year) && item.rating > 0 && <span className="text-white/30">·</span>}
+                    {(item.premiere || item.year) && item.rating > 0 && <span className="text-fg-faint">·</span>}
                     <MdlRating rating={item.rating} />
                 </div>
             </div>

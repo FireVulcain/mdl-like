@@ -16,22 +16,22 @@ export default function Loading() {
                 {/* Month as the title, the count under it, bare controls right */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="animate-pulse">
-                        <div className="h-8 w-52 rounded bg-white/10" />
-                        <div className="h-4 w-40 mt-2 rounded bg-white/8" />
+                        <div className="h-8 w-52 rounded bg-surface-4" />
+                        <div className="h-4 w-40 mt-2 rounded bg-surface-3" />
                     </div>
                     <div className="flex items-center gap-2 animate-pulse">
-                        <div className="h-9 w-9 rounded-lg bg-white/5" />
-                        <div className="h-5 w-12 rounded bg-white/5" />
-                        <div className="h-9 w-20 rounded-lg bg-white/5" />
+                        <div className="h-9 w-9 rounded-lg bg-surface-2" />
+                        <div className="h-5 w-12 rounded bg-surface-2" />
+                        <div className="h-9 w-20 rounded-lg bg-surface-2" />
                     </div>
                 </div>
 
                 {/* The day names are real text: they are the same seven words
                     whatever month loads, so printing them costs no correction. */}
-                <div className="rounded-lg border border-white/10 overflow-hidden animate-pulse">
-                    <div className="grid grid-cols-7 bg-white/4 border-b border-white/10">
+                <div className="rounded-lg border border-line-strong overflow-hidden animate-pulse">
+                    <div className="grid grid-cols-7 bg-surface-2 border-b border-line-strong">
                         {DAY_HEADERS.map((day) => (
-                            <div key={day} className="py-3 text-center text-xs font-semibold tracking-wider text-gray-400">
+                            <div key={day} className="py-3 text-center text-xs font-semibold tracking-wider text-fg-muted">
                                 {day}
                             </div>
                         ))}
@@ -40,7 +40,7 @@ export default function Loading() {
                         {Array.from({ length: 35 }).map((_, i) => (
                             <div
                                 key={i}
-                                className={["min-h-28 p-2", i < 28 ? "border-b border-white/5" : "", i % 7 !== 6 ? "border-r border-white/5" : ""]
+                                className={["min-h-28 p-2", i < 28 ? "border-b border-line-soft" : "", i % 7 !== 6 ? "border-r border-line-soft" : ""]
                                     .filter(Boolean)
                                     .join(" ")}
                             />

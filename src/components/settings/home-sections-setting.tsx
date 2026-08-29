@@ -39,7 +39,7 @@ export function HomeSectionsSetting({ initialSections }: { initialSections: Home
     };
 
     return (
-        <div className="rounded-lg border border-white/10 divide-y divide-white/5">
+        <div className="rounded-lg border border-line-strong divide-y divide-line-soft">
             {sections.map((section, index) => (
                 <div key={section.id} className="flex items-center gap-3 px-3 py-2">
                     <div className="flex flex-col shrink-0">
@@ -47,7 +47,7 @@ export function HomeSectionsSetting({ initialSections }: { initialSections: Home
                             onClick={() => move(index, -1)}
                             disabled={index === 0}
                             aria-label="Move up"
-                            className="cursor-pointer text-gray-500 hover:text-white transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+                            className="cursor-pointer text-fg-dim hover:text-fg transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
                         >
                             <ChevronUp className="h-3.5 w-3.5" />
                         </button>
@@ -55,13 +55,13 @@ export function HomeSectionsSetting({ initialSections }: { initialSections: Home
                             onClick={() => move(index, 1)}
                             disabled={index === sections.length - 1}
                             aria-label="Move down"
-                            className="cursor-pointer text-gray-500 hover:text-white transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+                            className="cursor-pointer text-fg-dim hover:text-fg transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
                         >
                             <ChevronDown className="h-3.5 w-3.5" />
                         </button>
                     </div>
 
-                    <span className={`flex-1 min-w-0 truncate text-sm ${section.enabled ? "text-gray-200" : "text-gray-500"}`}>
+                    <span className={`flex-1 min-w-0 truncate text-sm ${section.enabled ? "text-fg-soft" : "text-fg-dim"}`}>
                         {homeSectionLabel(section.id)}
                     </span>
 

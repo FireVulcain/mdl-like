@@ -100,6 +100,7 @@
     --color-line: var(--line);
     --color-line-strong: var(--line-strong);
     --color-panel: var(--panel);
+    --color-app: var(--app-bg);
 
     /* The site's meanings, which survive the theme change: emerald is watched,
        blue is watching, amber is on hold and also the viewer's own score, sky is
@@ -163,10 +164,52 @@
        it covers, so it stops the page rather than tinting it. */
     --panel: #111827;
 
+    /* The <body>'s own ground, which is NOT --page-bg. Pages that draw
+       PageBackground paint #101219 over this; those that do not — /media among
+       them — show it directly, and it was gray-900 for the site's whole life.
+       Migrating the body onto --page-bg darkened exactly those pages, which was
+       a change nobody asked for. */
+    --app-bg: #111827;
+
+    /* The floating header, in its three states. Named per theme rather than
+       written as opacity modifiers on --panel, because the two themes do not
+       need the same amount of veil: a dark film over a bright still already
+       separates white type from it, while white at the same opacity leaves dark
+       type sitting in the picture. The light values are therefore much more
+       opaque — over a hero backdrop especially, which is where it broke. */
+    /* The tinted chips — /stats' themes, and anything built the same way. The
+       tint is mixed from this base at a computed alpha, so the base has to
+       change with the theme: a sky-400 wash reads on a dark ground and vanishes
+       on a light one. The ink follows it in the opposite direction. */
+    --chip-rgb: 56 189 248;
+    --chip-ink: #e0f2fe;
+    --chip-ink-soft: rgb(186 230 253 / 0.7);
+
+    --header-scrolled: rgb(17 24 39 / 0.8);
+    --header-over-hero: rgb(0 0 0 / 0.4);
+    --header-idle: rgb(17 24 39 / 0.5);
+
     /* The two radial lifts in PageBackground. Without them the bottom of a long
        page falls back to the bare canvas and reads as flat black. */
     --page-lift-top: rgb(30 41 59 / 0.45);
     --page-lift-bottom: rgb(30 41 59 / 0.35);
+
+    /* Translucent panel, for the blocks that float over artwork and let it show
+       through. Distinct from --panel, which stops the page entirely. */
+    --panel-soft: rgb(17 24 39 / 0.6);
+
+    /* The floating panels' shadow. The inset highlight along the top is a
+       dark-theme bevel — a lit edge only reads as one against something dark —
+       so the light theme drops it and leans on a wider, far softer cast. */
+    --panel-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2), inset 0 1px 0 0 rgb(255 255 255 / 0.1);
+
+    /* The veils laid over a hero image so type can be read on it. Three
+       strengths rather than opacity modifiers on one colour, because the two
+       themes do not need the same amount: a dark veil deepens a photograph,
+       a light one bleaches it, and bleaching shows far sooner. */
+    --scrim-strong: #101219;
+    --scrim-mid: rgb(16 18 25 / 0.8);
+    --scrim-soft: rgb(16 18 25 / 0.3);
 
     --c-mdl: #38bdf8;
     --c-watched: #34d399;
@@ -205,10 +248,78 @@
 
     --panel: #ffffff;
 
+    /* One ground in the light theme: there is no reason for the body and the
+       canvas to differ, and the seam the difference used to hide is not there. */
+    --app-bg: #f4f6f9;
+
+    /* The accent palette, re-pointed for a light ground.
+       ---------------------------------------------------------------------
+       The site writes accents as raw Tailwind shades — text-sky-400 appears 64
+       times, and 612 of these exist in all. They are tuned to glow against a
+       dark page and they fail outright on a light one: sky-400 measures 1.8:1
+       on this canvas, emerald-400 1.9, amber-400 1.7, against the 4.5 that text
+       needs to be read.
+
+       Tailwind v4 emits every palette colour as a variable and utilities
+       reference it — .text-sky-400 resolves to var(--color-sky-400) — so
+       redefining the variable here re-points all 612 at once, without a single
+       component being edited and without any of them changing meaning.
+
+       The 300s land darker than the 400s, which inverts their relationship on
+       purpose: on a dark ground the lighter shade carries more emphasis, and on
+       a light one that role belongs to the darker. Amber and yellow drop
+       further than the rest because they are the palest hues at any given step
+       and would still be unreadable at 600. */
+    --color-sky-400: #0284c7;
+    --color-sky-300: #0369a1;
+    --color-blue-400: #2563eb;
+    --color-blue-300: #1d4ed8;
+    --color-emerald-400: #059669;
+    --color-emerald-300: #047857;
+    --color-rose-400: #e11d48;
+    --color-rose-300: #be123c;
+    --color-violet-400: #7c3aed;
+    --color-violet-300: #6d28d9;
+    --color-amber-400: #b45309;
+    --color-amber-300: #92400e;
+    --color-yellow-400: #a16207;
+    --color-yellow-300: #854d0e;
+    --color-slate-400: #475569;
+    --color-slate-300: #334155;
+
+    /* The 100s and 200s are ink on a tinted chip, and the palest of the lot.
+       They have to travel furthest: sky-200 on a light chip is barely a mark. */
+    --color-sky-200: #075985;
+    --color-sky-100: #0c4a6e;
+    --color-amber-200: #78350f;
+
+    --chip-rgb: 2 132 199;
+    --chip-ink: #0c4a6e;
+    --chip-ink-soft: rgb(12 74 110 / 0.7);
+
+    --header-scrolled: rgb(255 255 255 / 0.92);
+    --header-over-hero: rgb(255 255 255 / 0.86);
+    --header-idle: rgb(255 255 255 / 0.9);
+
     /* Lifts toward white here rather than toward slate: depth on a light ground
        comes from light, not from more grey. */
-    --page-lift-top: rgb(255 255 255 / 0.75);
-    --page-lift-bottom: rgb(255 255 255 / 0.55);
+    /* Softened from 0.75. On a light ground the lift is already close to the
+       canvas, so most of what it did was wash out whatever sat under it. */
+    --page-lift-top: rgb(255 255 255 / 0.5);
+    --page-lift-bottom: rgb(255 255 255 / 0.35);
+
+    --panel-soft: rgb(255 255 255 / 0.72);
+
+    /* A tenth of the dark theme's weight. Black at 30% under a white card is a
+       bruise, not a shadow. */
+    --panel-shadow: 0 1px 2px 0 rgb(15 20 30 / 0.04), 0 6px 16px -4px rgb(15 20 30 / 0.08);
+
+    /* Well below their dark counterparts. Dark type on a bleached photograph
+       reads at far less veil than light type on a darkened one — the same
+       0.8 that merely deepens an image here erases it. */
+    --scrim-strong: rgb(244 246 249 / 0.9);
+    --scrim-mid: rgb(244 246 249 / 0.42);
+    --scrim-soft: rgb(244 246 249 / 0.12);
 
     /* Two steps darker across the board. The -400 shades are tuned to glow on a
        dark ground and go chalky on a light one; the meanings do not move. */

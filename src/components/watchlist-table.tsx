@@ -1962,7 +1962,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             <Button
                                 onClick={() => handleRefreshMedia(Array.from(tmdbRefreshSelectedIds))}
                                 disabled={isRefreshingMedia || tmdbRefreshSelectedIds.size === 0}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-fg"
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                             >
                                 Start Refresh
                             </Button>
@@ -2079,7 +2079,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             <Button
                                 onClick={() => handleRefreshMdlRatings(Array.from(mdlRefreshSelectedIds))}
                                 disabled={isRefreshingMdl || mdlRefreshSelectedIds.size === 0}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-fg"
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                             >
                                 Start Refresh
                             </Button>
@@ -2197,7 +2197,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             <Button
                                 onClick={() => handleClearEpisodeCache(Array.from(epCacheSelectedIds))}
                                 disabled={isClearingEpCache || epCacheSelectedIds.size === 0}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-fg"
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
                             >
                                 Clear Cache
                             </Button>
@@ -2561,7 +2561,7 @@ const ItemCard = memo(function ItemCard({
                                             setCompletionSaving(false);
                                         }
                                     }}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-fg bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
                                 >
                                     {completionSaving ? "Saving…" : "Complete"}
                                 </button>

@@ -19,7 +19,7 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
 
     return (
         <Link href={href} className="group shrink-0 w-28 sm:w-32 md:w-36 whitespace-normal">
-            <div className="relative aspect-2/3 w-full rounded-md overflow-hidden bg-white/5">
+            <div className="relative aspect-2/3 w-full rounded-md overflow-hidden bg-surface-2">
                 {item.poster ? (
                     <Image
                         unoptimized
@@ -30,24 +30,24 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                    <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                         <ImageOff className="h-4 w-4" />
                     </div>
                 )}
             </div>
 
             <div className="pt-1.5 space-y-0.5">
-                <p className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-violet-300 transition-colors">
+                <p className="text-sm font-semibold text-fg leading-snug line-clamp-2 group-hover:text-violet-300 transition-colors">
                     {item.title}
                 </p>
                 {/* Plain text, bullet separator — the same meta line as the airing
                     cards, rather than the chip the year used to sit in. TBA keeps
                     its amber, as colour rather than as a box. */}
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-fg-muted">
                     <span className={item.year === "TBA" ? "text-amber-400 font-medium" : ""}>{item.year}</span>
                     {item.rating > 0 && (
                         <>
-                            <span className="text-white/30">·</span>
+                            <span className="text-fg-faint">·</span>
                             <span className="flex items-center gap-0.5 text-sky-400 font-semibold">
                                 <Star className="h-2.5 w-2.5 fill-current" />
                                 {item.rating.toFixed(1)}
@@ -67,13 +67,13 @@ function RadarCard({ item }: { item: ActorRadarItem }) {
                                 className="h-3.5 w-3.5 rounded-full object-cover shrink-0"
                             />
                         ) : (
-                            <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-white/10 shrink-0">
-                                <UserRound className="h-2 w-2 text-gray-400" />
+                            <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-surface-4 shrink-0">
+                                <UserRound className="h-2 w-2 text-fg-muted" />
                             </span>
                         )}
                         <span className="text-[11px] text-violet-300/80 truncate">
                             {actor.name}
-                            {item.actors.length > 1 && <span className="text-gray-500"> +{item.actors.length - 1}</span>}
+                            {item.actors.length > 1 && <span className="text-fg-dim"> +{item.actors.length - 1}</span>}
                         </span>
                     </div>
                 )}
@@ -123,7 +123,7 @@ export async function ActorRadarData() {
                         <Link
                             href="/settings?tab=radar"
                             title="Manage actors in Settings"
-                            className="h-7 w-7 rounded-full flex items-center justify-center bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white ring-2 ring-page transition-all shrink-0"
+                            className="h-7 w-7 rounded-full flex items-center justify-center bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg ring-2 ring-page transition-all shrink-0"
                         >
                             <Settings2 className="h-3.5 w-3.5" />
                         </Link>
@@ -132,7 +132,7 @@ export async function ActorRadarData() {
             />
 
             {payload.items.length === 0 ? (
-                <p className="text-sm text-gray-500 py-4">
+                <p className="text-sm text-fg-dim py-4">
                     Nothing on the radar — restore removed actors in{" "}
                     <Link href="/settings" className="text-violet-400 hover:text-violet-300 transition-colors">
                         Settings

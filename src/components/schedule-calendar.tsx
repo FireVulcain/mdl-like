@@ -162,10 +162,10 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                         is which month you are looking at, so that is the heading,
                         and the count below it follows along. */}
                     <div>
-                        <h1 className="font-display text-3xl font-bold text-white">
+                        <h1 className="font-display text-3xl font-bold text-fg">
                             {MONTH_NAMES[month]} {year}
                         </h1>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-fg-muted">
                             {episodesThisMonth > 0
                                 ? `${episodesThisMonth} episode${episodesThisMonth !== 1 ? "s" : ""} airing`
                                 : "Nothing airing this month"}
@@ -183,43 +183,43 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                             <button
                                 onClick={() => setShowActionsMenu(!showActionsMenu)}
                                 aria-label="Filters"
-                                className={`cursor-pointer h-9 w-9 rounded-lg flex items-center justify-center transition-colors ${showActionsMenu || asianOnly || !includePlanToWatch ? "bg-primary/20 text-primary" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
+                                className={`cursor-pointer h-9 w-9 rounded-lg flex items-center justify-center transition-colors ${showActionsMenu || asianOnly || !includePlanToWatch ? "bg-primary/20 text-primary" : "text-fg-muted hover:bg-surface-2 hover:text-fg"}`}
                             >
                                 <SlidersHorizontal className="h-4 w-4" />
                             </button>
                             {showActionsMenu && (
                                 <>
                                     <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
-                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
-                                        <p className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Region</p>
+                                    <div className="absolute top-full mt-2 right-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <p className="px-3 py-1.5 text-xs font-semibold text-fg-dim uppercase tracking-wider">Region</p>
                                         <button
                                             onClick={() => { setAsianOnly(false); saveCalendarPreferences({ calendarAsianOnly: false }); }}
-                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors"
+                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-fg-soft hover:bg-surface-3 hover:text-fg transition-colors"
                                         >
                                             All shows
                                             {!asianOnly && <Check className="h-3.5 w-3.5 text-primary" />}
                                         </button>
                                         <button
                                             onClick={() => { setAsianOnly(true); saveCalendarPreferences({ calendarAsianOnly: true }); }}
-                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors"
+                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-fg-soft hover:bg-surface-3 hover:text-fg transition-colors"
                                         >
                                             Asian shows only
                                             {asianOnly && <Check className="h-3.5 w-3.5 text-primary" />}
                                         </button>
-                                        <div className="my-1.5 border-t border-white/10" />
-                                        <p className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Show</p>
+                                        <div className="my-1.5 border-t border-line-strong" />
+                                        <p className="px-3 py-1.5 text-xs font-semibold text-fg-dim uppercase tracking-wider">Show</p>
                                         <button
                                             onClick={() => { const next = !includePlanToWatch; setIncludePlanToWatch(next); saveCalendarPreferences({ calendarIncludePlanToWatch: next }); }}
-                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors"
+                                            className="cursor-pointer w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm text-fg-soft hover:bg-surface-3 hover:text-fg transition-colors"
                                         >
                                             Plan to Watch
                                             {includePlanToWatch && <Check className="h-3.5 w-3.5 text-primary" />}
                                         </button>
-                                        <div className="my-1.5 border-t border-white/10" />
+                                        <div className="my-1.5 border-t border-line-strong" />
                                         <button
                                             onClick={handleRefresh}
                                             disabled={isRefreshing}
-                                            className="cursor-pointer w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-colors disabled:opacity-50"
+                                            className="cursor-pointer w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-fg-soft hover:bg-surface-3 hover:text-fg transition-colors disabled:opacity-50"
                                         >
                                             <RefreshCw className={`h-4 w-4 text-blue-400 ${isRefreshing ? "animate-spin" : ""}`} />
                                             {isRefreshing ? "Refreshing..." : "Refresh schedule"}
@@ -234,7 +234,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                             is the only thing a frame around a control buys. */}
                         <button
                             onClick={goToToday}
-                            className="cursor-pointer px-2 py-1.5 text-sm text-gray-400 hover:text-white transition-colors"
+                            className="cursor-pointer px-2 py-1.5 text-sm text-fg-muted hover:text-fg transition-colors"
                         >
                             Today
                         </button>
@@ -242,14 +242,14 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                             <button
                                 onClick={goToPrev}
                                 aria-label="Previous month"
-                                className="cursor-pointer p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+                                className="cursor-pointer p-2 rounded-lg text-fg-muted hover:text-fg hover:bg-surface-2 transition-colors"
                             >
                                 <ChevronLeft className="h-5 w-5" />
                             </button>
                             <button
                                 onClick={goToNext}
                                 aria-label="Next month"
-                                className="cursor-pointer p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+                                className="cursor-pointer p-2 rounded-lg text-fg-muted hover:text-fg hover:bg-surface-2 transition-colors"
                             >
                                 <ChevronRight className="h-5 w-5" />
                             </button>
@@ -258,13 +258,13 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                 </div>
 
                 {/* Calendar */}
-                <div className="rounded-lg border border-white/10 overflow-hidden">
+                <div className="rounded-lg border border-line-strong overflow-hidden">
                     {/* Day headers */}
-                    <div className="grid grid-cols-7 bg-white/4 border-b border-white/10">
+                    <div className="grid grid-cols-7 bg-surface-2 border-b border-line-strong">
                         {DAY_HEADERS.map((day, i) => (
                             <div
                                 key={day}
-                                className={`py-3 text-center text-xs font-semibold tracking-wider ${i >= 5 ? "text-gray-500" : "text-gray-400"}`}
+                                className={`py-3 text-center text-xs font-semibold tracking-wider ${i >= 5 ? "text-fg-dim" : "text-fg-muted"}`}
                             >
                                 {day}
                             </div>
@@ -291,11 +291,11 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                         key={i}
                                         className={[
                                             "min-h-28 p-2 flex flex-col gap-1.5 transition-colors",
-                                            !isLastRow ? "border-b border-white/5" : "",
-                                            !isLastCol ? "border-r border-white/5" : "",
+                                            !isLastRow ? "border-b border-line-soft" : "",
+                                            !isLastCol ? "border-r border-line-soft" : "",
                                             !cell.current ? "opacity-20" : "",
                                             cell.current && isPast && !isToday ? "opacity-50" : "",
-                                            cell.current && isWeekend && !isHighlighted ? "bg-white/1.5" : "",
+                                            cell.current && isWeekend && !isHighlighted ? "bg-surface-1.5" : "",
                                             cell.current && isToday && !isHighlighted ? "bg-primary/5" : "",
                                             cell.current && isHighlighted ? "bg-amber-500/10 ring-1 ring-inset ring-amber-500/30" : "",
                                         ]
@@ -306,7 +306,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                         <div className="flex justify-center">
                                             <span
                                                 className={`text-sm font-semibold w-7 h-7 flex items-center justify-center rounded-full ${
-                                                    isToday ? "text-primary" : cell.current ? "text-gray-300" : "text-gray-600"
+                                                    isToday ? "text-primary" : cell.current ? "text-fg-soft" : "text-fg-faint"
                                                 }`}
                                             >
                                                 {cell.day}
@@ -322,7 +322,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                         <Tooltip key={gi}>
                                                             <TooltipTrigger asChild>
                                                                 <Link href={`/media/${first.mediaId}?season=${first.seasonNumber}`}>
-                                                                    <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-page hover:ring-primary/70 hover:scale-110 transition-all bg-gray-800 shrink-0">
+                                                                    <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-page hover:ring-primary/70 hover:scale-110 transition-all bg-surface-3 shrink-0">
                                                                         {first.poster ? (
                                                                             <Image unoptimized={true}
                                                                                 src={first.poster}
@@ -332,7 +332,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                                                 className="object-cover object-top"
                                                                             />
                                                                         ) : (
-                                                                            <div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-gray-400">
+                                                                            <div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-fg-muted">
                                                                                 {first.title.slice(0, 2).toUpperCase()}
                                                                             </div>
                                                                         )}
@@ -349,7 +349,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                                             handleRefreshShow(first.mediaId);
                                                                         }}
                                                                         disabled={refreshingShowId === first.mediaId}
-                                                                        className="cursor-pointer text-gray-400 hover:text-white transition-colors disabled:opacity-50 shrink-0"
+                                                                        className="cursor-pointer text-fg-muted hover:text-fg transition-colors disabled:opacity-50 shrink-0"
                                                                         title="Refresh this show"
                                                                     >
                                                                         <RefreshCw className={`h-3 w-3 ${refreshingShowId === first.mediaId ? "animate-spin" : ""}`} />
@@ -361,7 +361,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                                     only earns its place when there is more than one — the
                                                                     same rule the watchlist badge and the media links use. */}
                                                                 {showEps.map((ep, ei) => (
-                                                                    <p key={ei} className="text-gray-400 text-xs">
+                                                                    <p key={ei} className="text-fg-muted text-xs">
                                                                         {ep.seasonNumber > 1 ? `S${ep.seasonNumber} · ` : ""}
                                                                         Episode {ep.episodeNumber}
                                                                         {ep.episodeName ? ` · ${ep.episodeName}` : ""}
@@ -372,7 +372,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                     );
                                                 })}
                                                 {dayGroups.length > 4 && (
-                                                    <div className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[10px] font-bold text-gray-300 shrink-0">
+                                                    <div className="w-8 h-8 rounded-full bg-surface-4 border border-line-strong flex items-center justify-center text-[10px] font-bold text-fg-soft shrink-0">
                                                         +{dayGroups.length - 4}
                                                     </div>
                                                 )}
@@ -386,7 +386,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                 </div>
 
                 {/* Legend */}
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <div className="flex items-center gap-4 text-xs text-fg-dim">
                     <div className="flex items-center gap-2">
                         <span className="w-5 h-5 rounded bg-primary/5 flex items-center justify-center text-primary font-semibold text-[10px]">
                             7
@@ -400,7 +400,7 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                 </div>
 
                 {filteredEntries.length === 0 && (
-                    <div className="text-center py-16 text-gray-500">
+                    <div className="text-center py-16 text-fg-dim">
                         <CalendarDays className="h-12 w-12 mx-auto mb-3 opacity-30" />
                         <p className="font-medium">No upcoming episodes</p>
                         <p className="text-sm mt-1">Add shows to your watchlist to see their schedule here</p>

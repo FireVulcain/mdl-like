@@ -56,10 +56,10 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img src={review.reviewer.user_image} alt={review.reviewer.name} className="size-full object-cover" />
     ) : (
-        <span className="text-xs font-bold text-gray-500">{review.reviewer.name.slice(0, 2).toUpperCase()}</span>
+        <span className="text-xs font-bold text-fg-dim">{review.reviewer.name.slice(0, 2).toUpperCase()}</span>
     );
     const avatarClass =
-        "size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-white/10 bg-gray-800 flex items-center justify-center";
+        "size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-line-strong bg-surface-3 flex items-center justify-center";
 
     return (
         <div className="flex flex-col gap-3 py-4 transition-colors">
@@ -81,7 +81,7 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                         {listHref ? (
                             <Link
                                 href={listHref}
-                                className="text-sm font-medium text-white hover:text-sky-400 transition-colors truncate block"
+                                className="text-sm font-medium text-fg hover:text-sky-400 transition-colors truncate block"
                             >
                                 {review.reviewer.name}
                             </Link>
@@ -90,13 +90,13 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                                 href={review.reviewer.user_link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-sm font-medium text-white hover:text-blue-400 transition-colors truncate block"
+                                className="text-sm font-medium text-fg hover:text-blue-400 transition-colors truncate block"
                             >
                                 {review.reviewer.name}
                             </a>
                         )}
                         {helpfulCount != null && (
-                            <p className="text-xs text-gray-500 truncate">
+                            <p className="text-xs text-fg-dim truncate">
                                 {helpfulCount.toLocaleString()} found this helpful
                             </p>
                         )}
@@ -123,10 +123,10 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                     </p>
                 )}
                 {title && (
-                    <p className="text-sm font-semibold text-white leading-snug">{title}</p>
+                    <p className="text-sm font-semibold text-fg leading-snug">{title}</p>
                 )}
                 {body && (
-                    <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">{displayBody}</p>
+                    <p className="text-sm text-fg-soft leading-relaxed whitespace-pre-line">{displayBody}</p>
                 )}
                 {isLong && (
                     <button
@@ -144,10 +144,10 @@ function ReviewCard({ review }: { review: KuryanaReview }) {
                     {subRatings.map((key) => (
                         <span
                             key={key}
-                            className="flex items-center gap-1 text-xs text-gray-400"
+                            className="flex items-center gap-1 text-xs text-fg-muted"
                         >
-                            <span className="text-gray-500">{key}</span>
-                            <span className="font-medium text-white/70">{review.ratings?.[key]!.toFixed(1)}</span>
+                            <span className="text-fg-dim">{key}</span>
+                            <span className="font-medium text-fg-muted">{review.ratings?.[key]!.toFixed(1)}</span>
                         </span>
                     ))}
                 </div>
@@ -202,12 +202,12 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-white">Reviews</h3>
+                <h3 className="font-display text-lg font-semibold text-fg">Reviews</h3>
                 <a
                     href={mdlLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors"
+                    className="flex items-center gap-1 text-xs text-fg-muted hover:text-fg transition-colors"
                 >
                     All reviews <ExternalLink className="size-3" />
                 </a>
@@ -215,7 +215,7 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
 
             {/* A hairline between reviews rather than a box around each: they are
                 a stack of the same thing, and the rule is enough to separate them. */}
-            <div className="flex flex-col divide-y divide-white/6">
+            <div className="flex flex-col divide-y divide-line">
                 {displayedReviews.map((review, i) => (
                     <ReviewCard key={i} review={review} />
                 ))}
@@ -224,7 +224,7 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
             {previewLimit && allReviewsHref ? (
                 <a
                     href={allReviewsHref}
-                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors"
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-fg-muted hover:text-fg transition-colors"
                 >
                     View all reviews <ChevronDown className="size-4" />
                 </a>
@@ -232,7 +232,7 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
                 <button
                     onClick={handleLoadMore}
                     disabled={loading}
-                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-fg-muted hover:text-fg transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
                         <><RefreshCw className="size-4 animate-spin" /> Loading…</>

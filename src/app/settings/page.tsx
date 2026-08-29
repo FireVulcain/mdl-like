@@ -80,10 +80,10 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
     const panels: Record<string, React.ReactNode> = {
         home: (
-            <div className="divide-y divide-white/8">
+            <div className="divide-y divide-line">
                 <div className="space-y-2.5 pb-5">
-                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Sections</h3>
-                    <p className="text-xs text-gray-600">
+                    <h3 className="text-xs font-bold text-fg-dim uppercase tracking-wider">Sections</h3>
+                    <p className="text-xs text-fg-faint">
                         Choose which sections appear on the home page and in what order. Extra drama universes (Japan,
                         Taiwan, Thailand…) are available here too.
                     </p>
@@ -91,8 +91,8 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
                 </div>
                 <div className="space-y-4 pt-5">
                     <div className="space-y-2">
-                        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Excluded tags</h3>
-                        <p className="text-xs text-gray-600">
+                        <h3 className="text-xs font-bold text-fg-dim uppercase tracking-wider">Excluded tags</h3>
+                        <p className="text-xs text-fg-faint">
                             Titles carrying any of these MDL tags are hidden from the Top Rated, Airing Now and Coming
                             Soon rows, and from their &ldquo;See more&rdquo; pages.
                         </p>
@@ -107,7 +107,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             ? { radar: <ActorRadarManagePanel scannedActors={radar.scannedActors} excludedActors={radar.excludedActors} /> }
             : {}),
         display: (
-            <div className="divide-y divide-white/8">
+            <div className="divide-y divide-line">
                 <div className="pb-5">
                     <DisplaySettings initialPrefs={displayPrefs} />
                 </div>
@@ -120,7 +120,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         profile: userId ? (
             <ProfileSettings initialPrefs={profilePrefs} profileUserId={userId} />
         ) : (
-            <p className="text-sm text-gray-500">Sign in to manage your public profile.</p>
+            <p className="text-sm text-fg-dim">Sign in to manage your public profile.</p>
         ),
         notifications: <NotificationSettings initialPrefs={notifPrefs} />,
     };
@@ -131,8 +131,8 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
             <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
                 <div className="mb-8">
-                    <h1 className="font-display text-3xl font-bold tracking-tight text-white">Settings</h1>
-                    <p className="text-gray-500 mt-1">Tune how the app curates things for you</p>
+                    <h1 className="font-display text-3xl font-bold tracking-tight text-fg">Settings</h1>
+                    <p className="text-fg-dim mt-1">Tune how the app curates things for you</p>
                 </div>
 
                 <SettingsTabs tabs={tabs} panels={panels} initialTab={tab} />

@@ -105,27 +105,27 @@ export function HomeExcludedTagsSetting({
                         </button>
                     </span>
                 ))}
-                {tags.length === 0 && <p className="text-sm text-gray-500 py-1">No tags excluded — all titles show up.</p>}
+                {tags.length === 0 && <p className="text-sm text-fg-dim py-1">No tags excluded — all titles show up.</p>}
             </div>
 
             <div className="relative max-w-sm" ref={containerRef}>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 focus-within:border-white/25 focus-within:bg-white/8 transition-all">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-line-strong bg-surface-2 focus-within:border-line-strong focus-within:bg-surface-3 transition-all">
                     {loading ? (
-                        <Loader2 className="h-4 w-4 text-gray-500 shrink-0 animate-spin" />
+                        <Loader2 className="h-4 w-4 text-fg-dim shrink-0 animate-spin" />
                     ) : (
-                        <Search className="h-4 w-4 text-gray-500 shrink-0" />
+                        <Search className="h-4 w-4 text-fg-dim shrink-0" />
                     )}
                     <input
                         type="text"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Search a tag to exclude…"
-                        className="bg-transparent text-sm text-gray-300 placeholder-gray-600 outline-none w-full"
+                        className="bg-transparent text-sm text-fg-soft placeholder-gray-600 outline-none w-full"
                     />
                     {query && (
                         <button
                             onClick={() => { setQuery(""); setOpen(false); }}
-                            className="text-gray-600 hover:text-gray-400 transition-colors shrink-0 cursor-pointer"
+                            className="text-fg-faint hover:text-fg-muted transition-colors shrink-0 cursor-pointer"
                         >
                             <X className="h-3.5 w-3.5" />
                         </button>
@@ -133,16 +133,16 @@ export function HomeExcludedTagsSetting({
                 </div>
 
                 {open && results.length > 0 && (
-                    <div className="absolute z-30 mt-1 w-full bg-gray-800 border border-white/10 rounded-lg shadow-xl max-h-56 overflow-y-auto">
+                    <div className="absolute z-30 mt-1 w-full bg-surface-3 border border-line-strong rounded-lg shadow-xl max-h-56 overflow-y-auto">
                         {results.map((tag) => (
                             <button
                                 key={tag.id}
                                 onClick={() => addTag(tag)}
                                 disabled={tags.some((t) => t.id === tag.id)}
-                                className="w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-white/8 hover:text-white transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                                className="w-full text-left px-3 py-2 text-sm text-fg-soft hover:bg-surface-3 hover:text-fg transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                             >
                                 <span className="capitalize">{tag.name}</span>
-                                {tag.description && <span className="block text-xs text-gray-500 line-clamp-1">{tag.description}</span>}
+                                {tag.description && <span className="block text-xs text-fg-dim line-clamp-1">{tag.description}</span>}
                             </button>
                         ))}
                     </div>
@@ -160,9 +160,9 @@ export function HomeExcludedTagsSetting({
                         }`}
                     />
                 </span>
-                <span className="text-sm text-gray-300 group-hover:text-white transition-colors text-left">
+                <span className="text-sm text-fg-soft group-hover:text-fg transition-colors text-left">
                     Also apply on the Dramas browse page
-                    <span className="block text-xs text-gray-600">
+                    <span className="block text-xs text-fg-faint">
                         Applied as default filters — you can lift them for a visit from the filter panel there.
                     </span>
                 </span>
@@ -178,7 +178,7 @@ export function HomeExcludedTagsSetting({
                 </button>
                 <button
                     onClick={() => update(DEFAULT_EXCLUDED_TAGS)}
-                    className="cursor-pointer flex items-center gap-1.5 h-9 px-4 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+                    className="cursor-pointer flex items-center gap-1.5 h-9 px-4 rounded-lg text-sm text-fg-muted hover:text-fg hover:bg-surface-2 transition-all"
                 >
                     <RotateCcw className="h-3.5 w-3.5" />
                     Reset to defaults

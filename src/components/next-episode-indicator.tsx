@@ -183,7 +183,7 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
             // line's, so it cannot drift from "Country · Year" the way an
             // explicit lighter grey did — brighter text reads as bigger, and
             // over a long string like "Ep 7 in 4d 17h" it took over the line.
-            className="inline-flex items-center gap-1.5 text-[13px] transition-colors md:rounded md:border md:border-white/10 md:bg-white/10 md:px-2 md:py-0.5 md:text-xs md:text-gray-300 md:hover:border-white/20 md:hover:bg-white/20"
+            className="inline-flex items-center gap-1.5 text-[13px] transition-colors md:rounded md:border md:border-line-strong md:bg-surface-4 md:px-2 md:py-0.5 md:text-xs md:text-fg-soft md:hover:border-line-strong md:hover:bg-surface-4"
         >
             {isAiring && (
                 <span className="relative flex h-1.5 w-1.5 shrink-0">
@@ -191,7 +191,7 @@ export function NextEpisodeIndicator({ nextEpisode, totalEpisodes, status, seaso
                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
                 </span>
             )}
-            <span className="tabular-nums md:font-medium md:text-white">
+            <span className="tabular-nums md:font-medium md:text-fg">
                 Ep {episodeData.episodeNumber} {formatted.useIn ? "in " : ""}
                 {formatted.text}
             </span>

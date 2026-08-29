@@ -18,8 +18,8 @@ export async function PersonPhotosSection({ slug }: { slug: string }) {
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-3">
-                <h3 className="font-display text-lg font-semibold text-white">Photos</h3>
-                <div className="flex-1 h-px bg-white/8" />
+                <h3 className="font-display text-lg font-semibold text-fg">Photos</h3>
+                <div className="flex-1 h-px bg-surface-3" />
                 {hasMore && (
                     <Link
                         href={`/people/${slug}/photos`}

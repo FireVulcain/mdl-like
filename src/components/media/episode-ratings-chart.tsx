@@ -13,9 +13,9 @@ function ChartTooltip({ active, payload }: { active?: boolean; payload?: { paylo
     if (!active || !payload?.length) return null;
     const d = payload[0].payload;
     return (
-        <div className="bg-gray-900 border border-white/10 rounded-lg px-3 py-2 text-sm shadow-xl">
-            <p className="text-gray-400 text-xs mb-0.5">Episode {d.ep}</p>
-            <p className="text-white font-medium truncate max-w-44">{d.title}</p>
+        <div className="bg-panel border border-line-strong rounded-lg px-3 py-2 text-sm shadow-xl">
+            <p className="text-fg-muted text-xs mb-0.5">Episode {d.ep}</p>
+            <p className="text-fg font-medium truncate max-w-44">{d.title}</p>
             <p className="text-yellow-400 font-semibold mt-0.5">{d.rating.toFixed(1)}</p>
         </div>
     );

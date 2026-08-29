@@ -27,7 +27,7 @@ export function MdlPhotoGrid({ photos, className = "" }: { photos: KuryanaPhoto[
                     <button
                         key={photo.id}
                         onClick={() => setOpenAt(i)}
-                        className="cursor-pointer group relative aspect-square overflow-hidden rounded-lg bg-white/5"
+                        className="cursor-pointer group relative aspect-square overflow-hidden rounded-lg bg-surface-2"
                     >
                         <Image
                             unoptimized

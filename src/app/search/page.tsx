@@ -20,11 +20,11 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         return (
             <div className={shell}>
                 <div className="flex flex-col items-center justify-center py-24 text-center">
-                    <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                        <Search className="h-8 w-8 text-white/30" />
+                    <div className="h-16 w-16 rounded-2xl bg-surface-2 border border-line-strong flex items-center justify-center mb-4">
+                        <Search className="h-8 w-8 text-fg-faint" />
                     </div>
-                    <p className="text-lg font-semibold text-white/60">Search dramas, movies and people</p>
-                    <p className="text-sm text-white/30 mt-1">Use the field above, or press Ctrl K from anywhere.</p>
+                    <p className="text-lg font-semibold text-fg-muted">Search dramas, movies and people</p>
+                    <p className="text-sm text-fg-faint mt-1">Use the field above, or press Ctrl K from anywhere.</p>
                 </div>
             </div>
         );
@@ -41,16 +41,16 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
     return (
         <div className={`${shell} space-y-8`}>
             <div>
-                <h1 className="font-display text-3xl font-bold tracking-tight text-white">
+                <h1 className="font-display text-3xl font-bold tracking-tight text-fg">
                     Results for &ldquo;{query}&rdquo;
                 </h1>
-                {found.length > 0 && <p className="text-gray-500 mt-1">{found.join(" · ")}</p>}
+                {found.length > 0 && <p className="text-fg-dim mt-1">{found.join(" · ")}</p>}
             </div>
 
             {!hasResults ? (
                 <div className="flex flex-col items-center justify-center py-20 text-center">
-                    <p className="text-sm font-medium text-white/40">Nothing matches &ldquo;{query}&rdquo;</p>
-                    <p className="text-xs text-white/25 mt-1">Try fewer words, or the original title.</p>
+                    <p className="text-sm font-medium text-fg-dim">Nothing matches &ldquo;{query}&rdquo;</p>
+                    <p className="text-xs text-fg-faint mt-1">Try fewer words, or the original title.</p>
                 </div>
             ) : (
                 <>
@@ -63,9 +63,9 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                                 bar and an icon that said nothing the word
                                 "Movies & Series" did not. */}
                             <div className="flex items-center gap-3">
-                                <h2 className="font-display text-lg font-semibold text-white">Movies &amp; Series</h2>
-                                <span className="text-sm text-gray-400">({media.length})</span>
-                                <div className="flex-1 h-px bg-white/8" />
+                                <h2 className="font-display text-lg font-semibold text-fg">Movies &amp; Series</h2>
+                                <span className="text-sm text-fg-muted">({media.length})</span>
+                                <div className="flex-1 h-px bg-surface-3" />
                             </div>
                             <SearchMediaGrid key={query} media={media} query={query} totalPages={totalPages} />
                         </section>

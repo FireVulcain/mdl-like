@@ -50,7 +50,7 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
                                     watchlistSet.has(item.externalId) ? (
                                         <div className="absolute bottom-2 left-2">
                                             <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                <Bookmark className="h-3.5 w-3.5 text-fg fill-current" />
                                             </span>
                                         </div>
                                     ) : null
@@ -59,7 +59,7 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-12 text-gray-400">No recommendations available via TMDB.</div>
+                    <div className="text-center py-12 text-fg-muted">No recommendations available via TMDB.</div>
                 )
             ) : (
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6">
@@ -83,7 +83,7 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
                                             {watchlistSet.has(tmdbId) && (
                                                 <div className="absolute bottom-2 left-2 z-10">
                                                     <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                        <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                        <Bookmark className="h-3.5 w-3.5 text-fg fill-current" />
                                                     </span>
                                                 </div>
                                             )}

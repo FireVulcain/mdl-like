@@ -35,7 +35,7 @@ export function TrailerButton({ trailer, className }: TrailerButtonProps) {
                 video you might glance at. The hierarchy is now in the shape. */}
             <button
                 onClick={handleOpen}
-                className={`flex items-center gap-2 py-2 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer ${className ?? ""}`}
+                className={`flex items-center gap-2 py-2 text-sm text-fg-muted hover:text-fg transition-colors cursor-pointer ${className ?? ""}`}
             >
                 <Play className="w-3.5 h-3.5 shrink-0 fill-current" />
                 <span>Watch trailer</span>
@@ -66,13 +66,13 @@ export function TrailerButton({ trailer, className }: TrailerButtonProps) {
                             {/* Close button */}
                             <button
                                 onClick={handleClose}
-                                className="absolute -top-12 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+                                className="absolute -top-12 right-0 p-2 rounded-full bg-surface-4 hover:bg-surface-4 transition-colors cursor-pointer"
                             >
-                                <X className="w-6 h-6 text-white" />
+                                <X className="w-6 h-6 text-fg" />
                             </button>
 
                             {/* Video container */}
-                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl ring-1 ring-white/10">
+                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl ring-1 ring-white/20">
                                 {showVideo && (
                                     <iframe
                                         src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`}
@@ -85,7 +85,7 @@ export function TrailerButton({ trailer, className }: TrailerButtonProps) {
                             </div>
 
                             {/* Title */}
-                            <p className="mt-4 text-center text-white/60 text-sm">{trailer.name}</p>
+                            <p className="mt-4 text-center text-fg-muted text-sm">{trailer.name}</p>
                         </motion.div>
                     </motion.div>
                 )}

@@ -49,13 +49,13 @@ export async function MdlRatingChartSection({ mdlSlug }: { mdlSlug: string }) {
         <div>
             <div className="mb-4 flex items-baseline justify-between gap-3">
                 <div className="flex items-baseline gap-2">
-                    <h3 className="font-display text-lg font-semibold text-white">Rating history</h3>
+                    <h3 className="font-display text-lg font-semibold text-fg">Rating history</h3>
                     <span className="text-xs tabular-nums text-sky-400">
                         {sign}
                         {Math.abs(delta).toFixed(1)}
                     </span>
                 </div>
-                <span className="text-[11px] text-gray-500">
+                <span className="text-[11px] text-fg-dim">
                     {rated.length} readings
                     {withWatchers > 1 ? " · audience shaded" : ""}
                 </span>
@@ -67,7 +67,7 @@ export async function MdlRatingChartSection({ mdlSlug }: { mdlSlug: string }) {
                 its own. The cron forces the watchlist through daily and takes
                 everything else at six days or older, so the dots cluster where
                 someone was paying attention. */}
-            <p className="mt-2 text-[11px] leading-snug text-gray-600">
+            <p className="mt-2 text-[11px] leading-snug text-fg-faint">
                 Each dot is a day the rating was read. Between two dots the line holds the last known value — a gap is a stretch nobody looked, not a
                 stretch nothing happened.
             </p>

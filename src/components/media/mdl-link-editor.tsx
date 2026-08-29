@@ -143,24 +143,24 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                         "flex shrink-0 h-6 items-center gap-1.5 px-2 py-1 rounded transition-colors",
                         isDisabled
                             ? "bg-red-500/10 hover:bg-red-500/20 text-red-400/70 hover:text-red-400"
-                            : "bg-white/3 hover:bg-white/10 text-white/40 hover:text-white"
+                            : "bg-surface-1 hover:bg-surface-4 text-fg-dim hover:text-fg"
                     )}
                     title={isDisabled ? "MDL blocked — click to manage" : "Edit MDL Link"}
                 >
                     {isDisabled ? <Link2Off className="h-3 w-3" /> : <Link2 className="h-3 w-3" />}
                 </button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
+            <DialogContent className="max-w-2xl bg-panel border-line-strong">
                 <DialogHeader>
                     <div className="flex items-center justify-between gap-2 pr-8">
-                        <DialogTitle className="text-white">Link MDL Entry</DialogTitle>
+                        <DialogTitle className="text-fg">Link MDL Entry</DialogTitle>
                         <div className="flex items-center gap-1">
                             {mediaId && (
                                 <button
                                     onClick={handleRefresh}
                                     disabled={isRefreshing}
                                     title="Refresh MDL cache"
-                                    className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-40"
+                                    className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-fg-muted hover:text-fg hover:bg-surface-4 transition-colors disabled:opacity-40"
                                 >
                                     <RefreshCw className={`h-3 w-3 ${isRefreshing ? "animate-spin" : ""}`} />
                                     Refresh cache
@@ -171,7 +171,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                     onClick={handleUnlink}
                                     disabled={isUnlinking}
                                     title="Remove this MDL link (stays unlinked until you link one manually)"
-                                    className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-gray-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors disabled:opacity-40"
+                                    className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-fg-muted hover:text-amber-400 hover:bg-amber-500/10 transition-colors disabled:opacity-40"
                                 >
                                     <Link2Off className={`h-3 w-3 ${isUnlinking ? "animate-pulse" : ""}`} />
                                     Unlink
@@ -184,8 +184,8 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                 className={cn(
                                     "flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors disabled:opacity-40",
                                     isDisabled
-                                        ? "text-red-400 hover:text-white hover:bg-red-500/20"
-                                        : "text-gray-400 hover:text-red-400 hover:bg-red-500/10"
+                                        ? "text-red-400 hover:text-fg hover:bg-red-500/20"
+                                        : "text-fg-muted hover:text-red-400 hover:bg-red-500/10"
                                 )}
                             >
                                 <Ban className="h-3 w-3" />
@@ -193,17 +193,17 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                             </button>
                         </div>
                     </div>
-                    <DialogDescription className="text-gray-400">Search and select the correct MDL entry for this TMDB show.</DialogDescription>
+                    <DialogDescription className="text-fg-muted">Search and select the correct MDL entry for this TMDB show.</DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-4">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fg-muted" />
                         <Input
                             placeholder="Type an english or native title..."
                             value={query}
                             onChange={handleSearch}
-                            className="pl-9 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-sky-500/50"
+                            className="pl-9 bg-surface-2 border-line-strong text-fg placeholder:text-fg-dim focus:border-sky-500/50"
                             autoFocus
                         />
                     </div>
@@ -214,7 +214,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                 <Loader2 className="h-6 w-6 text-sky-400 animate-spin" />
                             </div>
                         ) : results.length === 0 ? (
-                            <div className="flex items-center justify-center h-48 text-gray-500 text-sm">
+                            <div className="flex items-center justify-center h-48 text-fg-dim text-sm">
                                 {query.trim().length >= 2 ? "No results found." : "Start typing to search…"}
                             </div>
                         ) : (
@@ -229,11 +229,11 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                             disabled={isPending || isCurrent}
                                             className="cursor-pointer group text-left space-y-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
+                                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong group-hover:ring-sky-500/50 transition-all bg-surface-3">
                                                 {item.thumb ? (
                                                     <Image src={item.thumb} alt={item.title} fill unoptimized={true} className="object-cover" />
                                                 ) : (
-                                                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
+                                                    <div className="w-full h-full flex items-center justify-center text-xs text-fg-dim">
                                                         No Image
                                                     </div>
                                                 )}
@@ -253,10 +253,10 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                                                 )}
                                             </div>
                                             <div>
-                                                <p className="text-xs font-medium text-white group-hover:text-sky-400 transition-colors line-clamp-2 leading-tight">
+                                                <p className="text-xs font-medium text-fg group-hover:text-sky-400 transition-colors line-clamp-2 leading-tight">
                                                     {item.title}
                                                 </p>
-                                                <p className="text-[10px] text-gray-500 mt-0.5 capitalize">{item.type || mediaType}</p>
+                                                <p className="text-[10px] text-fg-dim mt-0.5 capitalize">{item.type || mediaType}</p>
                                             </div>
                                         </button>
                                     );

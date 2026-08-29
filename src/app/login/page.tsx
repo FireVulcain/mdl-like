@@ -86,7 +86,7 @@ export default function LoginPage() {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="bg-gray-900/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden"
+                    className="bg-panel/60 backdrop-blur-xl border border-line-strong rounded-2xl shadow-2xl shadow-black/40 overflow-hidden"
                 >
                     {/* Top accent line */}
                     <div className="h-px bg-linear-to-r from-transparent via-blue-500/50 to-transparent" />
@@ -94,10 +94,10 @@ export default function LoginPage() {
                     <div className="px-8 pt-8 pb-8">
                         {/* Brand */}
                         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="show" className="mb-8">
-                            <span className="font-black text-3xl tracking-tight text-white">
+                            <span className="font-black text-3xl tracking-tight text-fg">
                                 track<span className="text-primary">r</span>
                             </span>
-                            <p className="text-sm text-gray-500 mt-1">Sign in to your account</p>
+                            <p className="text-sm text-fg-dim mt-1">Sign in to your account</p>
                         </motion.div>
 
                         {/* Form */}
@@ -114,7 +114,7 @@ export default function LoginPage() {
                             )}
 
                             <motion.div custom={1} variants={fadeUp} initial="hidden" animate="show" className="space-y-1.5">
-                                <label htmlFor="email" className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <label htmlFor="email" className="text-xs font-medium text-fg-dim uppercase tracking-wider">
                                     Email
                                 </label>
                                 <Input
@@ -123,13 +123,13 @@ export default function LoginPage() {
                                     placeholder="you@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="h-10 bg-white/5 border-white/8 text-white placeholder:text-gray-600 focus-visible:border-blue-500/50 focus-visible:ring-0 focus-visible:bg-white/8 transition-colors rounded-xl"
+                                    className="h-10 bg-surface-2 border-line text-fg placeholder:text-fg-faint focus-visible:border-blue-500/50 focus-visible:ring-0 focus-visible:bg-surface-3 transition-colors rounded-xl"
                                     required
                                 />
                             </motion.div>
 
                             <motion.div custom={2} variants={fadeUp} initial="hidden" animate="show" className="space-y-1.5">
-                                <label htmlFor="password" className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <label htmlFor="password" className="text-xs font-medium text-fg-dim uppercase tracking-wider">
                                     Password
                                 </label>
                                 <Input
@@ -138,7 +138,7 @@ export default function LoginPage() {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="h-10 bg-white/5 border-white/8 text-white placeholder:text-gray-600 focus-visible:border-blue-500/50 focus-visible:ring-0 focus-visible:bg-white/8 transition-colors rounded-xl"
+                                    className="h-10 bg-surface-2 border-line text-fg placeholder:text-fg-faint focus-visible:border-blue-500/50 focus-visible:ring-0 focus-visible:bg-surface-3 transition-colors rounded-xl"
                                     required
                                 />
                             </motion.div>
@@ -147,7 +147,7 @@ export default function LoginPage() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full h-10 rounded-xl bg-linear-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 text-white text-sm font-semibold transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                                    className="w-full h-10 rounded-xl bg-linear-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 text-fg text-sm font-semibold transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     {isLoading ? (
                                         <>

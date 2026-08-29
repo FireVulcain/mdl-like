@@ -94,7 +94,7 @@ export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolea
                 // narrow it reads as the text having been cut off rather than as
                 // an invitation, which is exactly the thing being fixed.
                 placeholder="Search dramas, movies"
-                className={`pl-10 ${showPaletteBadge ? "pr-24" : ""} h-10 bg-white/5 border-white/5 rounded-xl focus-visible:bg-white/10 focus-visible:ring-1 focus-visible:ring-primary/50 transition-all placeholder:text-muted-foreground/50`}
+                className={`pl-10 ${showPaletteBadge ? "pr-24" : ""} h-10 bg-surface-2 border-line-soft rounded-xl focus-visible:bg-surface-4 focus-visible:ring-1 focus-visible:ring-primary/50 transition-all placeholder:text-muted-foreground/50`}
                 onChange={(e) => handleSearch(e.target.value)}
                 defaultValue={searchParams.get("q")?.toString()}
             />
@@ -109,7 +109,7 @@ export function SearchInput({ autoFocus, paletteShortcut }: { autoFocus?: boolea
                     onClick={() => window.dispatchEvent(new CustomEvent(OPEN_PALETTE_EVENT))}
                     title="Open the command palette"
                     aria-label="Open the command palette"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded-md bg-white/5 text-[11px] font-medium text-muted-foreground/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer whitespace-nowrap flex items-center"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded-md bg-surface-2 text-[11px] font-medium text-muted-foreground/70 hover:text-fg hover:bg-surface-4 transition-colors cursor-pointer whitespace-nowrap flex items-center"
                 >
                     {paletteShortcut ? formatChord(paletteShortcut).replace(/ \+ /g, " ") : <Command className="h-3 w-3" />}
                 </button>

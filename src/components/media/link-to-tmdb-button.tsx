@@ -160,7 +160,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                 <button
                     onClick={handleOpen}
                     title="Link to TMDB"
-                    className="cursor-pointer flex items-center justify-center h-6 w-6 rounded-md bg-black/60 backdrop-blur-sm text-white/60 hover:text-sky-400 hover:bg-sky-500/20 transition-all"
+                    className="cursor-pointer flex items-center justify-center h-6 w-6 rounded-md bg-black/60 backdrop-blur-sm text-white/70 hover:text-[#38bdf8] hover:bg-sky-500/20 transition-all"
                 >
                     <Link2 className="h-3.5 w-3.5" />
                 </button>
@@ -168,7 +168,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                 <button
                     onClick={handleOpen}
                     title="Link to TMDB"
-                    className="cursor-pointer shrink-0 flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium text-white/40 hover:text-sky-400 hover:bg-sky-500/10 border border-transparent hover:border-sky-500/20 transition-all"
+                    className="cursor-pointer shrink-0 flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium text-fg-dim hover:text-sky-400 hover:bg-sky-500/10 border border-transparent hover:border-sky-500/20 transition-all"
                 >
                     <Link2 className="h-3 w-3" />
                     Link
@@ -177,9 +177,9 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
 
             <div onClick={(e) => e.stopPropagation()}>
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
+                <DialogContent className="max-w-2xl bg-panel border-line-strong">
                     <DialogHeader>
-                        <DialogTitle className="text-white">
+                        <DialogTitle className="text-fg">
                             Link &ldquo;{defaultQuery}&rdquo; to TMDB
                         </DialogTitle>
                     </DialogHeader>
@@ -189,8 +189,8 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                             <div className="h-12 w-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
                                 <Check className="h-6 w-6 text-emerald-400" />
                             </div>
-                            <p className="text-white font-medium">Linked successfully!</p>
-                            <p className="text-sm text-gray-400 text-center">
+                            <p className="text-fg font-medium">Linked successfully!</p>
+                            <p className="text-sm text-fg-muted text-center">
                                 MDL data has been fetched and cached. This drama now links to your internal page.
                             </p>
                             <Link
@@ -203,20 +203,20 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                         </div>
                     ) : step === "already-linked" && pendingResult ? (
                         <div className="space-y-4">
-                            <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-surface-2 border border-line-strong">
                                 {pendingResult.poster && (
                                     <div className="relative w-10 shrink-0 aspect-2/3 rounded overflow-hidden">
                                         <Image unoptimized src={pendingResult.poster} alt={pendingResult.title} fill className="object-cover" />
                                     </div>
                                 )}
                                 <div>
-                                    <p className="text-sm font-medium text-white">{linkedTitle ?? pendingResult.title}</p>
+                                    <p className="text-sm font-medium text-fg">{linkedTitle ?? pendingResult.title}</p>
                                     <p className="text-xs text-amber-400 mt-0.5">Already linked to another MDL entry</p>
                                 </div>
                             </div>
 
-                            <p className="text-sm text-gray-300">
-                                How does <span className="text-white font-medium">&ldquo;{defaultQuery}&rdquo;</span> relate to this show?
+                            <p className="text-sm text-fg-soft">
+                                How does <span className="text-fg font-medium">&ldquo;{defaultQuery}&rdquo;</span> relate to this show?
                             </p>
 
                             {error && <p className="text-sm text-red-400">{error}</p>}
@@ -228,7 +228,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                     className="flex flex-col items-start px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-left hover:bg-emerald-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <span className="text-sm font-medium text-emerald-400">Same show — different part</span>
-                                    <span className="text-xs text-gray-400 mt-0.5">e.g. Part 1 &amp; Part 2 split for broadcast. Both link to the same page.</span>
+                                    <span className="text-xs text-fg-muted mt-0.5">e.g. Part 1 &amp; Part 2 split for broadcast. Both link to the same page.</span>
                                 </button>
                                 <button
                                     onClick={() => { setStep("season"); setError(null); }}
@@ -236,7 +236,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                     className="flex flex-col items-start px-4 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-left hover:bg-sky-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <span className="text-sm font-medium text-sky-400">Different season</span>
-                                    <span className="text-xs text-gray-400 mt-0.5">
+                                    <span className="text-xs text-fg-muted mt-0.5">
                                         {availableSeasons.length > 0 ? "Genuinely a new season on TMDB." : "No additional seasons available on TMDB."}
                                     </span>
                                 </button>
@@ -244,7 +244,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
 
                             <button
                                 onClick={() => { setStep("search"); setError(null); }}
-                                className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                                className="flex items-center gap-1 text-sm text-fg-dim hover:text-fg-soft transition-colors"
                             >
                                 <ChevronLeft className="h-4 w-4" />
                                 Back to search
@@ -253,7 +253,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                     ) : step === "season" && pendingResult ? (
                         <div className="space-y-5">
                             {/* Show card summary */}
-                            <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-surface-2 border border-line-strong">
                                 {pendingResult.poster && (
                                     <div className="relative w-10 shrink-0 aspect-2/3 rounded overflow-hidden">
                                         <Image
@@ -266,7 +266,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                     </div>
                                 )}
                                 <div>
-                                    <p className="text-sm font-medium text-white">{pendingResult.title}</p>
+                                    <p className="text-sm font-medium text-fg">{pendingResult.title}</p>
                                     <p className="text-xs text-amber-400 mt-0.5">
                                         Already linked — Season 1 is taken
                                     </p>
@@ -274,25 +274,25 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                             </div>
 
                             <div className="space-y-2">
-                                <p className="text-sm text-gray-300">
+                                <p className="text-sm text-fg-soft">
                                     Which season does{" "}
-                                    <span className="text-white font-medium">&ldquo;{defaultQuery}&rdquo;</span>{" "}
+                                    <span className="text-fg font-medium">&ldquo;{defaultQuery}&rdquo;</span>{" "}
                                     correspond to?
                                 </p>
                                 {availableSeasons.length > 0 ? (
                                     <select
                                         value={selectedSeason}
                                         onChange={(e) => setSelectedSeason(Number(e.target.value))}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500/50"
+                                        className="w-full bg-surface-2 border border-line-strong rounded-lg px-3 py-2 text-sm text-fg focus:outline-none focus:border-sky-500/50"
                                     >
                                         {availableSeasons.map((s) => (
-                                            <option key={s.number} value={s.number} className="bg-gray-900">
+                                            <option key={s.number} value={s.number} className="bg-panel">
                                                 {s.name || `Season ${s.number}`}
                                             </option>
                                         ))}
                                     </select>
                                 ) : (
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-fg-dim">
                                         No additional seasons found on TMDB for this show.
                                     </p>
                                 )}
@@ -303,7 +303,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => { setStep("search"); setError(null); }}
-                                    className="flex items-center gap-1 px-4 py-2 rounded-xl border border-white/10 text-gray-400 text-sm hover:text-white transition-colors"
+                                    className="flex items-center gap-1 px-4 py-2 rounded-xl border border-line-strong text-fg-muted text-sm hover:text-fg transition-colors"
                                 >
                                     <ChevronLeft className="h-4 w-4" />
                                     Back
@@ -325,12 +325,12 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                         /* Search step */
                         <div className="space-y-4">
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fg-muted" />
                                 <Input
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     placeholder="Search TMDB…"
-                                    className="pl-9 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-sky-500/50"
+                                    className="pl-9 bg-surface-2 border-line-strong text-fg placeholder:text-fg-dim focus:border-sky-500/50"
                                     autoFocus
                                 />
                             </div>
@@ -343,7 +343,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                         <Loader2 className="h-6 w-6 text-sky-400 animate-spin" />
                                     </div>
                                 ) : results.length === 0 ? (
-                                    <div className="flex items-center justify-center h-48 text-gray-500 text-sm">
+                                    <div className="flex items-center justify-center h-48 text-fg-dim text-sm">
                                         {query.trim() ? "No results found." : "Start typing to search…"}
                                     </div>
                                 ) : (
@@ -355,7 +355,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                                 disabled={isPending || checkingLink}
                                                 className="cursor-pointer group text-left space-y-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
-                                                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
+                                                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong group-hover:ring-sky-500/50 transition-all bg-surface-3">
                                                     {result.poster ? (
                                                         <Image
                                                             unoptimized={true}
@@ -365,7 +365,7 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                                             className="object-cover"
                                                         />
                                                     ) : (
-                                                        <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
+                                                        <div className="w-full h-full flex items-center justify-center text-xs text-fg-dim">
                                                             No Image
                                                         </div>
                                                     )}
@@ -386,10 +386,10 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="text-xs font-medium text-white group-hover:text-sky-400 transition-colors line-clamp-2 leading-tight">
+                                                    <p className="text-xs font-medium text-fg group-hover:text-sky-400 transition-colors line-clamp-2 leading-tight">
                                                         {result.title}
                                                     </p>
-                                                    <p className="text-[10px] text-gray-500 mt-0.5">
+                                                    <p className="text-[10px] text-fg-dim mt-0.5">
                                                         {result.year} · {result.type}
                                                     </p>
                                                 </div>

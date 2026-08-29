@@ -24,7 +24,7 @@ export async function MdlRankRow({ externalId, title, year, nativeTitle, season 
         <>
             {data.mdlRanking && (
                 <>
-                    <span className="text-gray-400 font-medium">MDL Rank</span>
+                    <span className="text-fg-muted font-medium">MDL Rank</span>
                     <span className="text-sky-400 font-medium">
                         <MdlLiveValue field="ranking" initial={data.mdlRanking} scope={scope} />
                     </span>
@@ -32,8 +32,8 @@ export async function MdlRankRow({ externalId, title, year, nativeTitle, season 
             )}
             {data.mdlWatchers ? (
                 <>
-                    <span className="text-gray-400 font-medium">Watchers</span>
-                    <span className="text-white">
+                    <span className="text-fg-muted font-medium">Watchers</span>
+                    <span className="text-fg">
                         <MdlLiveValue field="watchers" initial={data.mdlWatchers} scope={scope} />
                     </span>
                 </>

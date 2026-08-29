@@ -27,7 +27,7 @@ const TIERS = [
     { label: "Garbage", min: 0, cell: "bg-purple-600 text-white", dot: "bg-purple-600" },
 ] as const;
 
-const UNRATED_CELL = "bg-gray-500/25 text-gray-400";
+const UNRATED_CELL = "bg-gray-500/25 text-fg-muted";
 
 function ratingCell(rating: number | null | undefined): string {
     if (!rating || rating <= 0) return UNRATED_CELL;
@@ -51,7 +51,7 @@ export function EpisodeRatingGrid({ mediaId, seasons, episodesPerSeason, tmdbGri
             <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
                     {TIERS.map((t) => (
-                        <span key={t.label} className="flex items-center gap-1.5 text-xs text-gray-400">
+                        <span key={t.label} className="flex items-center gap-1.5 text-xs text-fg-muted">
                             <span className={`inline-block w-2.5 h-2.5 rounded-full ${t.dot}`} />
                             {t.label}
                         </span>
@@ -92,9 +92,9 @@ export function EpisodeRatingGrid({ mediaId, seasons, episodesPerSeason, tmdbGri
                 const avg = avgs[s];
                 return (
                     <div>
-                        <h3 className="text-base font-bold text-white">
+                        <h3 className="text-base font-bold text-fg">
                             Season {s}
-                            {avg ? <span className="ml-2 text-sm font-normal text-gray-400">(avg {avg.toFixed(1)})</span> : null}
+                            {avg ? <span className="ml-2 text-sm font-normal text-fg-muted">(avg {avg.toFixed(1)})</span> : null}
                         </h3>
                         <div className="flex flex-wrap gap-1.5 mt-2.5">
                             {Array.from({ length: count }, (_, i) => i + 1).map((ep) => {

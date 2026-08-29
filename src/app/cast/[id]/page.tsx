@@ -120,7 +120,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
         return (
             <div className="min-h-screen bg-linear-to-b  flex items-center justify-center">
                 <div className="text-center space-y-4">
-                    <h1 className="font-display text-2xl font-bold text-white">Person not found</h1>
+                    <h1 className="font-display text-2xl font-bold text-fg">Person not found</h1>
                     <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
                         Go back home
                     </Link>
@@ -161,7 +161,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                 <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
                     {/* Mobile header: compact photo + name */}
                     <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
-                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
+                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-line-strong bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
                             {person.profile_path ? (
                                 <Image
                                     unoptimized={true}
@@ -180,14 +180,14 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                     }}
                                 />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-gray-400 bg-linear-to-br from-gray-800 to-gray-900 text-xs">No Image</div>
+                                <div className="w-full h-full flex items-center justify-center text-fg-muted bg-linear-to-br from-surface-3 to-surface-2 text-xs">No Image</div>
                             )}
                         </div>
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
-                            <h1 className="text-base font-bold leading-snug text-white">{person.name}</h1>
+                            <h1 className="text-base font-bold leading-snug text-fg">{person.name}</h1>
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-white/10 text-gray-300 border-white/10">{person.known_for_department}</Badge>
-                                {credits && <span className="text-gray-400">{credits.cast.length} credits</span>}
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-surface-4 text-fg-soft border-line-strong">{person.known_for_department}</Badge>
+                                {credits && <span className="text-fg-muted">{credits.cast.length} credits</span>}
                             </div>
                         </div>
                     </div>
@@ -195,7 +195,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                     {/* Desktop sidebar: Profile Image + Personal Info */}
                     <div className="hidden md:block">
                     <StickySidebar>
-                        <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-white/10 hover:ring-white/20 transition-all bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
+                        <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-line-strong hover:ring-line-strong transition-all bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
                             {person.profile_path ? (
                                 <Image
                                     unoptimized={true}
@@ -218,7 +218,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                     }}
                                 />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-gray-400 bg-linear-to-br from-gray-800 to-gray-900">
+                                <div className="w-full h-full flex items-center justify-center text-fg-muted bg-linear-to-br from-surface-3 to-surface-2">
                                     No Image
                                 </div>
                             )}
@@ -226,33 +226,32 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                         {/* Personal Info Card */}
                         <div
-                            className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
+                            className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
                             style={{
-                                background: "rgba(17, 24, 39, 0.6)",
+                                background: "var(--panel-soft)",
                                 backdropFilter: "blur(20px)",
-                                boxShadow:
-                                    "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                                boxShadow: "var(--panel-shadow)",
                             }}
                         >
-                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
-                            <h3 className="font-display font-bold text-lg text-white mb-4">Personal Info</h3>
+                            <h3 className="font-display font-bold text-lg text-fg mb-4">Personal Info</h3>
 
                             <div className="space-y-4">
                                 <div>
-                                    <span className="text-gray-400 text-sm font-medium block mb-1">Known For</span>
-                                    <span className="text-white">{person.known_for_department}</span>
+                                    <span className="text-fg-muted text-sm font-medium block mb-1">Known For</span>
+                                    <span className="text-fg">{person.known_for_department}</span>
                                 </div>
 
                                 <div>
-                                    <span className="text-gray-400 text-sm font-medium block mb-1">Gender</span>
-                                    <span className="text-white">{getGenderLabel(person.gender)}</span>
+                                    <span className="text-fg-muted text-sm font-medium block mb-1">Gender</span>
+                                    <span className="text-fg">{getGenderLabel(person.gender)}</span>
                                 </div>
 
                                 {person.birthday && (
                                     <div>
-                                        <span className="text-gray-400 text-sm font-medium block mb-1">Birthday</span>
-                                        <span className="text-white">
+                                        <span className="text-fg-muted text-sm font-medium block mb-1">Birthday</span>
+                                        <span className="text-fg">
                                             {formatDate(person.birthday)}
                                             {age !== null && !person.deathday && ` (${age})`}
                                         </span>
@@ -261,8 +260,8 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 {person.deathday && (
                                     <div>
-                                        <span className="text-gray-400 text-sm font-medium block mb-1">Died</span>
-                                        <span className="text-white">
+                                        <span className="text-fg-muted text-sm font-medium block mb-1">Died</span>
+                                        <span className="text-fg">
                                             {formatDate(person.deathday)}
                                             {age !== null && ` (${age})`}
                                         </span>
@@ -271,22 +270,22 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
 
                                 {person.place_of_birth && (
                                     <div>
-                                        <span className="text-gray-400 text-sm font-medium block mb-1">Place of Birth</span>
-                                        <span className="text-white">{person.place_of_birth}</span>
+                                        <span className="text-fg-muted text-sm font-medium block mb-1">Place of Birth</span>
+                                        <span className="text-fg">{person.place_of_birth}</span>
                                     </div>
                                 )}
 
                                 {person.also_known_as && person.also_known_as.length > 0 && (
                                     <div>
-                                        <span className="text-gray-400 text-sm font-medium block mb-1">Also Known As</span>
+                                        <span className="text-fg-muted text-sm font-medium block mb-1">Also Known As</span>
                                         <div className="flex flex-wrap gap-1">
                                             {person.also_known_as.slice(0, 5).map((name, index) => (
-                                                <Badge key={index} variant="secondary" className="text-xs bg-white/10 text-gray-300 border-white/10">
+                                                <Badge key={index} variant="secondary" className="text-xs bg-surface-4 text-fg-soft border-line-strong">
                                                     {name}
                                                 </Badge>
                                             ))}
                                             {person.also_known_as.length > 5 && (
-                                                <Badge variant="secondary" className="text-xs bg-white/10 text-gray-400 border-white/10">
+                                                <Badge variant="secondary" className="text-xs bg-surface-4 text-fg-muted border-line-strong">
                                                     +{person.also_known_as.length - 5} more
                                                 </Badge>
                                             )}
@@ -302,15 +301,15 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                     <div className="space-y-8 min-w-0 md:pt-6">
                         {/* Name & Title (desktop only) */}
                         <div className="hidden md:block">
-                            <h1 className="font-display text-4xl font-bold mb-2 text-white">{person.name}</h1>
+                            <h1 className="font-display text-4xl font-bold mb-2 text-fg">{person.name}</h1>
                             <div className="flex flex-wrap gap-2 text-muted-foreground items-center">
-                                <Badge variant="outline" className="bg-white/5 text-gray-300 border-white/20">
+                                <Badge variant="outline" className="bg-surface-2 text-fg-soft border-line-strong">
                                     {person.known_for_department}
                                 </Badge>
                                 {credits && (
                                     <>
-                                        <span className="text-gray-500">•</span>
-                                        <span className="text-gray-400">{credits.cast.length} Credits</span>
+                                        <span className="text-fg-dim">•</span>
+                                        <span className="text-fg-muted">{credits.cast.length} Credits</span>
                                     </>
                                 )}
                             </div>
@@ -319,12 +318,12 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {/* Biography */}
                         {person.biography && (
                             <div>
-                                <h3 className="font-display text-lg font-bold mb-3 text-white">Biography</h3>
+                                <h3 className="font-display text-lg font-bold mb-3 text-fg">Biography</h3>
                                 <BiographyExpander text={person.biography} />
                             </div>
                         )}
 
-                        <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                        <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
                         {/* Series Section (Scripted TV) */}
                         {series.length > 0 && (
@@ -332,9 +331,9 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-pink-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-purple-400" />
-                                    <h3 className="font-display text-lg font-bold text-white">Series</h3>
-                                    <span className="text-sm text-gray-400">({series.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <h3 className="font-display text-lg font-bold text-fg">Series</h3>
+                                    <span className="text-sm text-fg-muted">({series.length})</span>
+                                    <div className="flex-1 h-px bg-linear-to-r from-surface-4 to-transparent" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -356,9 +355,9 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
                                     <Film className="h-5 w-5 text-blue-400" />
-                                    <h3 className="font-display text-lg font-bold text-white">Movies</h3>
-                                    <span className="text-sm text-gray-400">({movies.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <h3 className="font-display text-lg font-bold text-fg">Movies</h3>
+                                    <span className="text-sm text-fg-muted">({movies.length})</span>
+                                    <div className="flex-1 h-px bg-linear-to-r from-surface-4 to-transparent" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -380,9 +379,9 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                                 <div className="flex items-center gap-3">
                                     <div className="w-1 h-6 bg-linear-to-b from-emerald-500 to-teal-500 rounded-full" />
                                     <Tv className="h-5 w-5 text-emerald-400" />
-                                    <h3 className="font-display text-lg font-bold text-white">TV Shows</h3>
-                                    <span className="text-sm text-gray-400">({tvShows.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
+                                    <h3 className="font-display text-lg font-bold text-fg">TV Shows</h3>
+                                    <span className="text-sm text-fg-muted">({tvShows.length})</span>
+                                    <div className="flex-1 h-px bg-linear-to-r from-surface-4 to-transparent" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -398,7 +397,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         )}
 
                         {movies.length === 0 && tvShows.length === 0 && series.length === 0 && (
-                            <div className="text-center py-12 text-gray-400">No filmography information available.</div>
+                            <div className="text-center py-12 text-fg-muted">No filmography information available.</div>
                         )}
                     </div>
                 </div>
@@ -434,7 +433,7 @@ function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
     return (
         <Link href={`/media/${mediaId}`} className="group block">
             <div className="space-y-2">
-                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
+                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-line-strong hover:ring-line-strong transition-all hover:scale-105">
                     {credit.poster_path ? (
                         <Image
                             unoptimized={true}
@@ -457,7 +456,7 @@ function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
                             }}
                         />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center text-xs text-gray-400 bg-linear-to-br from-gray-800 to-gray-900">
+                        <div className="w-full h-full flex items-center justify-center text-xs text-fg-muted bg-linear-to-br from-surface-3 to-surface-2">
                             No Image
                         </div>
                     )}
@@ -509,11 +508,11 @@ function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
                 </div>
 
                 <div>
-                    <div className="font-semibold text-sm leading-tight text-white group-hover:text-blue-400 transition-colors line-clamp-1">
+                    <div className="font-semibold text-sm leading-tight text-fg group-hover:text-blue-400 transition-colors line-clamp-1">
                         {title}
                     </div>
-                    {credit.character && <div className="text-xs text-gray-400 leading-tight mt-0.5 line-clamp-1">as {credit.character}</div>}
-                    {year && <div className="text-xs text-gray-500 mt-0.5">{year}</div>}
+                    {credit.character && <div className="text-xs text-fg-muted leading-tight mt-0.5 line-clamp-1">as {credit.character}</div>}
+                    {year && <div className="text-xs text-fg-dim mt-0.5">{year}</div>}
                 </div>
             </div>
         </Link>

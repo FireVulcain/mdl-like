@@ -69,21 +69,21 @@ export function ShortcutSettings({ initialShortcuts }: { initialShortcuts: strin
         shortcuts.length === DEFAULT_PALETTE_SHORTCUTS.length && shortcuts.every((c, i) => c === DEFAULT_PALETTE_SHORTCUTS[i]);
 
     return (
-        <div className="divide-y divide-white/8">
+        <div className="divide-y divide-line">
             <div className="space-y-3 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Command palette</h3>
+                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Command palette</h3>
 
                 <div className="flex flex-wrap items-center gap-2">
                     {shortcuts.map((chord) => (
                         <span
                             key={chord}
-                            className="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-lg bg-white/5 text-sm font-medium text-white"
+                            className="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-lg bg-surface-2 text-sm font-medium text-fg"
                         >
                             {formatChord(chord)}
                             <button
                                 onClick={() => void persist(shortcuts.filter((c) => c !== chord))}
                                 aria-label={`Remove ${formatChord(chord)}`}
-                                className="p-0.5 rounded text-gray-500 hover:text-rose-400 transition-colors cursor-pointer"
+                                className="p-0.5 rounded text-fg-dim hover:text-rose-400 transition-colors cursor-pointer"
                             >
                                 <X className="h-3.5 w-3.5" />
                             </button>
@@ -101,7 +101,7 @@ export function ShortcutSettings({ initialShortcuts }: { initialShortcuts: strin
                         className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                             recording
                                 ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30"
-                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                         }`}
                     >
                         {recording ? (
@@ -117,7 +117,7 @@ export function ShortcutSettings({ initialShortcuts }: { initialShortcuts: strin
                     {!isDefault && (
                         <button
                             onClick={() => void persist(DEFAULT_PALETTE_SHORTCUTS)}
-                            className="inline-flex items-center gap-1.5 h-8 px-2 rounded-lg text-xs text-gray-600 hover:text-white transition-colors cursor-pointer"
+                            className="inline-flex items-center gap-1.5 h-8 px-2 rounded-lg text-xs text-fg-faint hover:text-fg transition-colors cursor-pointer"
                         >
                             <RotateCcw className="h-3 w-3" />
                             Reset
@@ -128,19 +128,19 @@ export function ShortcutSettings({ initialShortcuts }: { initialShortcuts: strin
                 {problem && <p className="text-xs text-amber-400/80">{problem}</p>}
 
                 {shortcuts.length === 0 && (
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-fg-faint">
                         No shortcut set — the palette still opens from the button inside the header search field.
                     </p>
                 )}
 
                 {shortcuts.some(isFirefoxOnly) && (
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-fg-faint">
                         Firefox opens a private window on Ctrl + Shift + P before the page sees it, so that one only works
                         in Chrome and Edge. The other shortcuts in this list still do.
                     </p>
                 )}
 
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-fg-faint">
                     Opens a search over your watchlist and a jump list for every page. Shortcuts taken from the browser —
                     Ctrl + P for printing, Ctrl + K for the address bar — are claimed back; ones the browser reserves for
                     itself, like Ctrl + T, cannot be and are refused here.

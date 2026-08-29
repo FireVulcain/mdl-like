@@ -16,14 +16,14 @@ export function CalendarSettings({ initialPrefs }: { initialPrefs: CalendarPrefe
     };
 
     return (
-        <div className="divide-y divide-white/8">
+        <div className="divide-y divide-line">
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Region</h3>
+                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Region</h3>
                 <div className="flex gap-2">
                     <button
                         onClick={() => { setAsianOnly(false); save({ calendarAsianOnly: false }); }}
                         className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                            !asianOnly ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30" : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                            !asianOnly ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30" : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                         }`}
                     >
                         All shows
@@ -31,7 +31,7 @@ export function CalendarSettings({ initialPrefs }: { initialPrefs: CalendarPrefe
                     <button
                         onClick={() => { setAsianOnly(true); save({ calendarAsianOnly: true }); }}
                         className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                            asianOnly ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30" : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                            asianOnly ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30" : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                         }`}
                     >
                         Asian shows only
@@ -40,7 +40,7 @@ export function CalendarSettings({ initialPrefs }: { initialPrefs: CalendarPrefe
             </div>
 
             <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Statuses</h3>
+                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Statuses</h3>
                 <button
                     onClick={() => {
                         const next = !includePlanToWatch;
@@ -60,11 +60,11 @@ export function CalendarSettings({ initialPrefs }: { initialPrefs: CalendarPrefe
                             }`}
                         />
                     </span>
-                    <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                    <span className="text-sm text-fg-soft group-hover:text-fg transition-colors">
                         Include &ldquo;Plan to Watch&rdquo; shows
                     </span>
                 </button>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-fg-faint">
                     When off, the calendar only shows episodes from shows you are currently watching.
                 </p>
             </div>

@@ -77,7 +77,7 @@ export function AddToListButton({ media, userMedia, season, totalEp, className, 
                 // Same treatment as the Continue button on the home hero.
                 <Button
                     onClick={() => setOpen(true)}
-                    className={`h-10 px-4 gap-2 bg-white text-page hover:bg-white/90 rounded-lg font-semibold transition-colors cursor-pointer ${className ?? ""}`}
+                    className={`h-10 px-4 gap-2 bg-fg text-page hover:bg-fg/90 rounded-lg font-semibold transition-colors cursor-pointer ${className ?? ""}`}
                 >
                     <Plus className="h-4 w-4 shrink-0" />
                     <span>Add to Watchlist</span>

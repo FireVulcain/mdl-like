@@ -94,7 +94,7 @@ function WorkCard({
 
     const card = (
         <div className="space-y-2">
-            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-white/5 transition-transform hover:scale-105">
+            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-surface-2 transition-transform hover:scale-105">
                 {poster ? (
                     <Image
                         unoptimized={true}
@@ -105,7 +105,7 @@ function WorkCard({
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>
+                    <div className="w-full h-full flex items-center justify-center text-xs text-fg-muted">No Image</div>
                 )}
 
                 {/* Both values are MDL ratings — our cached one when the work is linked,
@@ -140,9 +140,9 @@ function WorkCard({
             </div>
 
             <div>
-                <p className="font-semibold text-sm leading-tight text-white group-hover:text-sky-400 transition-colors line-clamp-1">{title}</p>
-                {character && <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">as {character}</p>}
-                <p className="text-xs text-gray-500 mt-0.5">
+                <p className="font-semibold text-sm leading-tight text-fg group-hover:text-sky-400 transition-colors line-clamp-1">{title}</p>
+                {character && <p className="text-xs text-fg-muted mt-0.5 line-clamp-1">as {character}</p>}
+                <p className="text-xs text-fg-dim mt-0.5">
                     {year}
                     {work.episodes && work.episodes > 0
                         ? ` · ${work.episodes} ${work.episodes === 1 ? "episode" : "episodes"}`
@@ -428,19 +428,19 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             {data.profile ? (
                                 <Image unoptimized src={data.profile} alt={data.name} fill className="object-cover" priority />
                             ) : (
-                                <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Image</div>
+                                <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted text-xs">No Image</div>
                             )}
                         </div>
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
-                            <h1 className="text-base font-bold leading-snug text-white">{data.name}</h1>
+                            <h1 className="text-base font-bold leading-snug text-fg">{data.name}</h1>
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
-                                <span className="text-gray-400">{allWorks.length} works</span>
+                                <span className="text-fg-muted">{allWorks.length} works</span>
                             </div>
                             <a
                                 href={data.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors"
+                                className="inline-flex items-center gap-1 text-xs text-fg-muted hover:text-fg transition-colors"
                             >
                                 View on MDL
                                 <ExternalLink className="h-3 w-3" />
@@ -453,27 +453,27 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         <MdlPersonImage src={data.profile ?? ""} alt={data.name} />
 
                         <div
-                            className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
+                            className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
                             style={{
-                                background: "rgba(17, 24, 39, 0.6)",
+                                background: "var(--panel-soft)",
                                 backdropFilter: "blur(20px)",
-                                boxShadow: "0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2), inset 0 1px 0 0 rgba(255,255,255,0.1)",
+                                boxShadow: "var(--panel-shadow)",
                             }}
                         >
-                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-                            <h3 className="font-display font-semibold text-lg text-white mb-4">Personal Info</h3>
+                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+                            <h3 className="font-display font-semibold text-lg text-fg mb-4">Personal Info</h3>
 
                             <div className="space-y-4 text-sm">
                                 {details.gender && (
                                     <div>
-                                        <span className="text-gray-400 font-medium block mb-1">Gender</span>
-                                        <span className="text-white">{details.gender}</span>
+                                        <span className="text-fg-muted font-medium block mb-1">Gender</span>
+                                        <span className="text-fg">{details.gender}</span>
                                     </div>
                                 )}
                                 {details.born && (
                                     <div>
-                                        <span className="text-gray-400 font-medium block mb-1">Born</span>
-                                        <span className="text-white">
+                                        <span className="text-fg-muted font-medium block mb-1">Born</span>
+                                        <span className="text-fg">
                                             {details.born}
                                             {details.age && ` (age ${details.age})`}
                                         </span>
@@ -481,20 +481,20 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                 )}
                                 {details.nationality && (
                                     <div>
-                                        <span className="text-gray-400 font-medium block mb-1">Nationality</span>
-                                        <span className="text-white">{details.nationality}</span>
+                                        <span className="text-fg-muted font-medium block mb-1">Nationality</span>
+                                        <span className="text-fg">{details.nationality}</span>
                                     </div>
                                 )}
                                 {alsoKnownAs.length > 0 && (
                                     <div>
-                                        <span className="text-gray-400 font-medium block mb-1">Also Known As</span>
+                                        <span className="text-fg-muted font-medium block mb-1">Also Known As</span>
                                         {/* A list of names, written as one. Every
                                             other row of this table is plain text;
                                             only this one was a run of chips. */}
-                                        <p className="text-white">
+                                        <p className="text-fg">
                                             {alsoKnownAs.slice(0, 6).join(" · ")}
                                             {alsoKnownAs.length > 6 && (
-                                                <span className="text-gray-500"> +{alsoKnownAs.length - 6} more</span>
+                                                <span className="text-fg-dim"> +{alsoKnownAs.length - 6} more</span>
                                             )}
                                         </p>
                                     </div>
@@ -507,15 +507,15 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                     {/* Right: Name + Bio + Filmography */}
                     <div className="space-y-8 min-w-0 md:pt-6">
                         <div className="hidden md:block">
-                            <h1 className="font-display text-4xl font-bold mb-2 text-white">{data.name}</h1>
+                            <h1 className="font-display text-4xl font-bold mb-2 text-fg">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
-                                <span className="text-gray-400">{allWorks.length} works</span>
-                                <span className="text-gray-500">·</span>
+                                <span className="text-fg-muted">{allWorks.length} works</span>
+                                <span className="text-fg-dim">·</span>
                                 <a
                                     href={data.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
+                                    className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors"
                                 >
                                     View on MDL
                                     <ExternalLink className="h-3 w-3" />
@@ -527,19 +527,19 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
 
                         {bio && (
                             <div id="section-biography">
-                                <h3 className="font-display text-lg font-semibold mb-3 text-white">Biography</h3>
+                                <h3 className="font-display text-lg font-semibold mb-3 text-fg">Biography</h3>
                                 <BiographyExpander text={bio} />
                             </div>
                         )}
 
-                        <div className="h-px bg-white/8" />
+                        <div className="h-px bg-surface-3" />
 
                         {categories.map((category) => (
                             <div key={category.name} id={category.anchor} className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <h3 className="font-display text-lg font-semibold text-white">{category.label}</h3>
-                                    <span className="text-sm text-gray-400">({category.works.length})</span>
-                                    <div className="flex-1 h-px bg-white/8" />
+                                    <h3 className="font-display text-lg font-semibold text-fg">{category.label}</h3>
+                                    <span className="text-sm text-fg-muted">({category.works.length})</span>
+                                    <div className="flex-1 h-px bg-surface-3" />
                                 </div>
                                 <div className={grid}>
                                     {category.works.map((work) => (
@@ -558,7 +558,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         ))}
 
                         {categories.length === 0 && (
-                            <div className="text-center py-12 text-gray-400">No filmography information available.</div>
+                            <div className="text-center py-12 text-fg-muted">No filmography information available.</div>
                         )}
 
                         {/* Both streamed in so a slow scrape never holds up the

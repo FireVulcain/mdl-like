@@ -38,8 +38,8 @@ export function WatchlistStats({ stats }: WatchlistStatsProps) {
         <div className="hidden md:flex items-baseline gap-8 watchlist-stats">
             {figures.map((f) => (
                 <div key={f.label}>
-                    <div className="text-xl font-bold text-white tabular-nums leading-tight">{f.value}</div>
-                    <div className="text-xs text-gray-500">{f.label}</div>
+                    <div className="text-xl font-bold text-fg tabular-nums leading-tight">{f.value}</div>
+                    <div className="text-xs text-fg-dim">{f.label}</div>
                 </div>
             ))}
         </div>

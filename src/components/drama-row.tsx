@@ -63,7 +63,7 @@ function BookmarkBadge({ className }: { className: string }) {
     return (
         <div className={className}>
             <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                <Bookmark className="h-3.5 w-3.5 text-fg fill-current" />
             </span>
         </div>
     );
@@ -105,7 +105,7 @@ function BackdropCard({
 }) {
     return (
         <Link href={href} className="group shrink-0 w-32 sm:w-36 md:w-40 whitespace-normal">
-            <div className="relative aspect-2/3 w-full rounded-lg overflow-hidden bg-white/5">
+            <div className="relative aspect-2/3 w-full rounded-lg overflow-hidden bg-surface-2">
                 {media.poster ? (
                     <Image
                         unoptimized
@@ -116,7 +116,7 @@ function BackdropCard({
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                    <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                         <ImageOff className="h-4 w-4" />
                     </div>
                 )}
@@ -130,10 +130,10 @@ function BackdropCard({
             </div>
 
             <div className="pt-2 space-y-0.5">
-                <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
+                <h4 className="text-sm font-semibold text-fg leading-snug line-clamp-2 group-hover:text-sky-200 transition-colors">
                     {media.title}
                 </h4>
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-white/60">
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px] text-fg-muted">
                     {nextEpisode ? (
                         // No separator inside this one: unlike a weekday, "in 3d"
                         // completes the phrase rather than standing as a second
@@ -148,7 +148,7 @@ function BackdropCard({
                     {/* Only when there is something on both sides: the schedule
                         is missing on some cards, and the rating hides itself at 0 */}
                     {(nextEpisode || media.year) && media.rating > 0 && (
-                        <span className="text-white/30">·</span>
+                        <span className="text-fg-faint">·</span>
                     )}
                     <MdlRating rating={media.rating} />
                 </div>
@@ -226,10 +226,10 @@ export async function DramaRow({
         <div className="space-y-2 md:space-y-3">
             <div className="flex items-center gap-3">
                 <HomeRowLabel dotClass={accentClass} label={label} />
-                <div className="flex-1 h-px bg-linear-to-r from-white/8 to-transparent" />
+                <div className="flex-1 h-px bg-linear-to-r from-surface-3 to-transparent" />
                 <Link
                     href={seeMoreHref}
-                    className="flex items-center gap-0.5 text-xs text-gray-500 hover:text-white transition-colors shrink-0"
+                    className="flex items-center gap-0.5 text-xs text-fg-dim hover:text-fg transition-colors shrink-0"
                 >
                     See more <ChevronRight className="h-3.5 w-3.5" />
                 </Link>

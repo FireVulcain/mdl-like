@@ -11,7 +11,7 @@ interface Props {
 }
 
 const LINK_CLASS =
-    "absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors";
+    "absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/20 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors";
 
 // Async server component — streams in a direct MDL link once the slug is resolved.
 // getMdlData uses React cache(), so this is free if MdlSection already fetched the data.

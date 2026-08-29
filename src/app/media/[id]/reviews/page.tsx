@@ -17,19 +17,19 @@ function ReviewsSkeleton() {
     return (
         <div className="flex flex-col gap-3">
             {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="rounded-xl border border-white/5 bg-white/3 p-4 space-y-3 animate-pulse">
+                <div key={i} className="rounded-xl border border-line-soft bg-surface-1 p-4 space-y-3 animate-pulse">
                     <div className="flex items-center gap-2.5">
-                        <div className="size-8 rounded-full bg-white/10 shrink-0" />
+                        <div className="size-8 rounded-full bg-surface-4 shrink-0" />
                         <div className="space-y-1.5 flex-1">
-                            <div className="h-3.5 w-28 rounded bg-white/10" />
-                            <div className="h-3 w-20 rounded bg-white/5" />
+                            <div className="h-3.5 w-28 rounded bg-surface-4" />
+                            <div className="h-3 w-20 rounded bg-surface-2" />
                         </div>
                         <div className="h-6 w-12 rounded-lg bg-yellow-400/10 shrink-0" />
                     </div>
                     <div className="space-y-2">
-                        <div className="h-3 w-full rounded bg-white/8" />
-                        <div className="h-3 w-4/5 rounded bg-white/8" />
-                        <div className="h-3 w-3/5 rounded bg-white/5" />
+                        <div className="h-3 w-full rounded bg-surface-3" />
+                        <div className="h-3 w-4/5 rounded bg-surface-3" />
+                        <div className="h-3 w-3/5 rounded bg-surface-2" />
                     </div>
                 </div>
             ))}
@@ -46,7 +46,7 @@ async function ReviewsData({ externalId, title, year, nativeTitle, mdlLink: fall
 }) {
     const mdlData = await getMdlData(externalId, title, year, nativeTitle);
     if (!mdlData?.mdlSlug) {
-        return <div className="text-center py-12 text-gray-400">No MDL data found for this title.</div>;
+        return <div className="text-center py-12 text-fg-muted">No MDL data found for this title.</div>;
     }
 
     const result = await kuryanaGetReviews(mdlData.mdlSlug);
@@ -54,7 +54,7 @@ async function ReviewsData({ externalId, title, year, nativeTitle, mdlLink: fall
     const mdlLink = result?.data?.link ?? fallbackMdlLink;
 
     if (reviews.length === 0) {
-        return <div className="text-center py-12 text-gray-400">No reviews available.</div>;
+        return <div className="text-center py-12 text-fg-muted">No reviews available.</div>;
     }
 
     return <MdlReviews initialReviews={reviews} mdlSlug={mdlData.mdlSlug} mdlLink={mdlLink} />;
@@ -86,16 +86,16 @@ export default async function ReviewsPage({ params }: { params: Promise<{ id: st
                     </Link>
 
                     <div>
-                        <h1 className="font-display text-3xl font-bold tracking-tight mb-2 text-white">Reviews</h1>
-                        <div className="flex items-center gap-2 text-gray-400">
-                            <span className="font-medium text-white">{media.title}</span>
+                        <h1 className="font-display text-3xl font-bold tracking-tight mb-2 text-fg">Reviews</h1>
+                        <div className="flex items-center gap-2 text-fg-muted">
+                            <span className="font-medium text-fg">{media.title}</span>
                             <span>•</span>
                             <span>{media.year}</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
                 {/* Reviews — streams in after MDL + Kuryana resolve */}
                 <Suspense fallback={<ReviewsSkeleton />}>

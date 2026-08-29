@@ -11,15 +11,15 @@ export function EpisodeReviewCard({ review }: { review: KuryanaEpisodeReview }) 
     const isLong = review.body.length > COLLAPSE_THRESHOLD || review.body.split("\n").length > 6;
 
     return (
-        <div className="flex flex-col gap-3 rounded-xl border border-white/5 bg-white/3 p-4">
+        <div className="flex flex-col gap-3 rounded-xl border border-line-soft bg-surface-1 p-4">
             <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-white/10 bg-gray-800 flex items-center justify-center">
+                    <div className="size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-line-strong bg-surface-3 flex items-center justify-center">
                         {review.author_avatar ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img src={review.author_avatar} alt={review.author} className="size-full object-cover" />
                         ) : (
-                            <span className="text-xs font-bold text-gray-500">
+                            <span className="text-xs font-bold text-fg-dim">
                                 {review.author.slice(0, 2).toUpperCase()}
                             </span>
                         )}
@@ -29,11 +29,11 @@ export function EpisodeReviewCard({ review }: { review: KuryanaEpisodeReview }) 
                             href={review.author_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm font-medium text-white hover:text-blue-400 transition-colors truncate block"
+                            className="text-sm font-medium text-fg hover:text-blue-400 transition-colors truncate block"
                         >
                             {review.author}
                         </a>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-xs text-fg-dim">
                             <span>{review.date}</span>
                             {review.helpful_count > 0 && (
                                 <>
@@ -55,10 +55,10 @@ export function EpisodeReviewCard({ review }: { review: KuryanaEpisodeReview }) 
 
             <div className="space-y-1">
                 {review.headline && (
-                    <p className="text-sm font-semibold text-white leading-snug">{review.headline}</p>
+                    <p className="text-sm font-semibold text-fg leading-snug">{review.headline}</p>
                 )}
                 {review.body && (
-                    <p className={`text-sm text-gray-300 leading-relaxed whitespace-pre-line ${!expanded && isLong ? "line-clamp-6" : ""}`}>
+                    <p className={`text-sm text-fg-soft leading-relaxed whitespace-pre-line ${!expanded && isLong ? "line-clamp-6" : ""}`}>
                         {review.body}
                     </p>
                 )}

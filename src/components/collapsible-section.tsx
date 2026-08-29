@@ -24,9 +24,9 @@ export function CollapsibleSection({
                 className="flex items-center gap-2 mb-3 group cursor-pointer"
             >
                 {icon}
-                <h2 className="font-display text-lg font-semibold text-white">{title}</h2>
+                <h2 className="font-display text-lg font-semibold text-fg">{title}</h2>
                 <ChevronDown
-                    className={`h-4 w-4 text-gray-500 group-hover:text-gray-300 transition-all duration-200 ${
+                    className={`h-4 w-4 text-fg-dim group-hover:text-fg-soft transition-all duration-200 ${
                         open ? "rotate-0" : "-rotate-90"
                     }`}
                 />

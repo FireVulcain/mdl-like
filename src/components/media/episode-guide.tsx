@@ -54,7 +54,7 @@ function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | n
     return (
         <div className="group flex gap-4 py-3 transition-colors">
             {/* Episode still */}
-            <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
+            <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-surface-3 shadow-md ring-1 ring-line-strong">
                 {ep.still || poster ? (
                     <Image unoptimized={true}
                         src={ep.still ?? poster!}
@@ -69,7 +69,7 @@ function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | n
                     />
                 ) : (
                     <div className="flex h-full w-full items-center justify-center">
-                        <span className="text-xs text-gray-500">No image</span>
+                        <span className="text-xs text-fg-dim">No image</span>
                     </div>
                 )}
                 <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-xs font-semibold text-white backdrop-blur-sm">
@@ -85,10 +85,10 @@ function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | n
             {/* Episode info */}
             <div className="flex-1 min-w-0 flex flex-col gap-1">
                 <div className="flex items-start justify-between gap-2">
-                    <h4 className="font-medium text-white leading-snug truncate" title={ep.name}>
+                    <h4 className="font-medium text-fg leading-snug truncate" title={ep.name}>
                         {ep.name}
                     </h4>
-                    <div className="flex items-center gap-2 flex-none text-xs text-gray-400">
+                    <div className="flex items-center gap-2 flex-none text-xs text-fg-muted">
                         {ep.rating > 0 && isReleased(ep.airDate) && (
                             <span className="flex items-center gap-0.5 text-yellow-400/90">
                                 <Star className="size-3 fill-current" />
@@ -104,11 +104,11 @@ function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | n
                     </div>
                 </div>
 
-                {formattedDate && <span className="text-xs text-gray-500">{formattedDate}</span>}
+                {formattedDate && <span className="text-xs text-fg-dim">{formattedDate}</span>}
 
                 {hasOverview && (
                     <div className="mt-0.5">
-                        <p className="text-sm text-gray-400 leading-relaxed">
+                        <p className="text-sm text-fg-muted leading-relaxed">
                             {isLong && !expanded ? `${ep.overview.slice(0, 150).trimEnd()}…` : ep.overview}
                         </p>
                         {isLong && (
@@ -147,7 +147,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
         <div className="flex gap-4 py-3 transition-colors">
             {/* Episode still — clicking navigates to episode page */}
             {episodeHref ? (
-                <Link href={episodeHref} className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10 shrink-0">
+                <Link href={episodeHref} className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-surface-3 shadow-md ring-1 ring-line-strong shrink-0">
                     {ep.image || poster ? (
                         <Image unoptimized={true}
                             src={ep.image ?? poster!}
@@ -162,7 +162,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                         />
                     ) : (
                         <div className="flex h-full w-full items-center justify-center">
-                            <span className="text-xs text-gray-500">No image</span>
+                            <span className="text-xs text-fg-dim">No image</span>
                         </div>
                     )}
                     <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-xs font-semibold text-white backdrop-blur-sm">
@@ -175,7 +175,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                     )}
                 </Link>
             ) : (
-                <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-gray-800 shadow-md ring-1 ring-white/10">
+                <div className="relative flex-none w-24 h-13.5 sm:w-36 sm:h-20.25 overflow-hidden rounded-lg bg-surface-3 shadow-md ring-1 ring-line-strong">
                     {ep.image || poster ? (
                         <Image unoptimized={true}
                             src={ep.image ?? poster!}
@@ -190,7 +190,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                         />
                     ) : (
                         <div className="flex h-full w-full items-center justify-center">
-                            <span className="text-xs text-gray-500">No image</span>
+                            <span className="text-xs text-fg-dim">No image</span>
                         </div>
                     )}
                     <span className="absolute bottom-1.5 left-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-xs font-semibold text-white backdrop-blur-sm">
@@ -212,7 +212,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                             {ep.title}
                         </Link>
                     ) : (
-                        <h4 className="font-medium text-white leading-snug truncate" title={ep.title}>
+                        <h4 className="font-medium text-fg leading-snug truncate" title={ep.title}>
                             {ep.title}
                         </h4>
                     )}
@@ -224,11 +224,11 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                     )}
                 </div>
 
-                {formattedDate && <span className="text-xs text-gray-500">{formattedDate}</span>}
+                {formattedDate && <span className="text-xs text-fg-dim">{formattedDate}</span>}
 
                 {hasSynopsis && (
                     <div className="mt-0.5">
-                        <p className={`text-sm text-gray-400 leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>{ep.synopsis}</p>
+                        <p className={`text-sm text-fg-muted leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>{ep.synopsis}</p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
@@ -277,7 +277,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
         <div>
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
                 <div className="flex items-center gap-2 min-w-0">
-                    <h3 className="font-display text-lg font-semibold text-white shrink-0">Episodes</h3>
+                    <h3 className="font-display text-lg font-semibold text-fg shrink-0">Episodes</h3>
                     {mediaId && (
                         <Link
                             href={`/media/${mediaId}/episodes?season=${season}`}
@@ -297,7 +297,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
                             }}
                         />
                     )}
-                    <span className="whitespace-nowrap text-sm text-gray-400">
+                    <span className="whitespace-nowrap text-sm text-fg-muted">
                         Season {season} · {count} episodes
                     </span>
                 </div>
@@ -305,7 +305,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
 
             {/* List with fade overlay when collapsed */}
             <div className="relative">
-                <div className="flex flex-col divide-y divide-white/6">
+                <div className="flex flex-col divide-y divide-line">
                     {source === "mdl" && activeEpisodes
                         ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)
                         : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)}
@@ -313,14 +313,14 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
 
                 {/* Fade gradient — only when collapsed and there are more episodes */}
                 {needsToggle && !showAll && (
-                    <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-gray-900 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-panel to-transparent pointer-events-none" />
                 )}
             </div>
 
             {needsToggle && (
                 <button
                     onClick={() => setShowAll((v) => !v)}
-                    className="cursor-pointer mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-gray-400 hover:text-white transition-colors"
+                    className="cursor-pointer mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-fg-muted hover:text-fg transition-colors"
                 >
                     {showAll ? (
                         <>

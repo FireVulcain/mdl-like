@@ -29,7 +29,7 @@ function ActorCard({ actor }: { actor: MdlCastMember }) {
 
     const inner = (
         <div className="space-y-2 group cursor-pointer">
-            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
+            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                 {actor.profileImage ? (
                     <Image
                         unoptimized={true}
@@ -52,16 +52,16 @@ function ActorCard({ actor }: { actor: MdlCastMember }) {
                         }}
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400 p-1 text-center bg-linear-to-br from-gray-800 to-gray-900">
+                    <div className="w-full h-full flex items-center justify-center text-xs text-fg-muted p-1 text-center bg-linear-to-br from-surface-3 to-surface-2">
                         No Image
                     </div>
                 )}
             </div>
             <div>
-                <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors leading-snug">
+                <div className="text-sm font-medium text-fg group-hover:text-blue-400 transition-colors leading-snug">
                     {actor.name}
                 </div>
-                <div className="text-xs text-gray-400 leading-snug mt-0.5">
+                <div className="text-xs text-fg-muted leading-snug mt-0.5">
                     {actor.characterName}
                 </div>
             </div>
@@ -89,7 +89,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-white">Cast</h3>
+                <h3 className="font-display text-lg font-semibold text-fg">Cast</h3>
                 <div className="flex items-center gap-3">
                     {tmdbCast.length > 0 && (
                         <SourceToggle value={source} onChange={setSource} />
@@ -105,7 +105,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                 <div className={CAST_GRID}>
                     {tmdbCast.slice(0, 12).map((actor) => (
                         <Link key={actor.id} href={tmdbPersonHref(actor.id)} className="space-y-2 group">
-                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
+                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
                                 {actor.profile ? (
                                     <Image
                                         unoptimized={true}
@@ -128,16 +128,16 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                         }}
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400 p-1 text-center bg-linear-to-br from-gray-800 to-gray-900">
+                                    <div className="w-full h-full flex items-center justify-center text-xs text-fg-muted p-1 text-center bg-linear-to-br from-surface-3 to-surface-2">
                                         No Image
                                     </div>
                                 )}
                             </div>
                             <div>
-                                <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors leading-snug">
+                                <div className="text-sm font-medium text-fg group-hover:text-blue-400 transition-colors leading-snug">
                                     {actor.name}
                                 </div>
-                                <div className="text-xs text-gray-400 leading-snug mt-0.5">
+                                <div className="text-xs text-fg-muted leading-snug mt-0.5">
                                     {actor.character}
                                 </div>
                             </div>
@@ -151,7 +151,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                 <>
                     {main.length > 0 && (
                         <>
-                            <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Main Role</p>
+                            <p className="text-xs font-semibold text-fg-dim uppercase tracking-wider mb-3">Main Role</p>
                             <div className={`${CAST_GRID} mb-6`}>
                                 {main.map((actor) => (
                                     <ActorCard key={actor.slug} actor={actor} />
@@ -164,7 +164,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                         <>
                             <button
                                 onClick={() => setShowSupport((v) => !v)}
-                                className="cursor-pointer flex items-center gap-1.5 text-sm text-white/50 hover:text-white/80 transition-colors mb-3"
+                                className="cursor-pointer flex items-center gap-1.5 text-sm text-fg-dim hover:text-fg-soft transition-colors mb-3"
                             >
                                 {showSupport ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                                 {showSupport ? "Hide" : "Show"} support, guest & cameo cast ({totalSupport})
@@ -174,7 +174,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                 <>
                                     {support.length > 0 && (
                                         <>
-                                            <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Support Role</p>
+                                            <p className="text-xs font-semibold text-fg-dim uppercase tracking-wider mb-3">Support Role</p>
                                             <div className={`${CAST_GRID} mb-6`}>
                                                 {support.map((actor) => (
                                                     <ActorCard key={actor.slug} actor={actor} />
@@ -184,7 +184,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                     )}
                                     {guest.length > 0 && (
                                         <>
-                                            <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Guest Role</p>
+                                            <p className="text-xs font-semibold text-fg-dim uppercase tracking-wider mb-3">Guest Role</p>
                                             <div className={`${CAST_GRID} mb-6`}>
                                                 {guest.map((actor) => (
                                                     <ActorCard key={actor.slug} actor={actor} />
@@ -194,7 +194,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                                     )}
                                     {cameo.length > 0 && (
                                         <>
-                                            <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Cameo</p>
+                                            <p className="text-xs font-semibold text-fg-dim uppercase tracking-wider mb-3">Cameo</p>
                                             <div className={CAST_GRID}>
                                                 {cameo.map((actor) => (
                                                     <ActorCard key={actor.slug} actor={actor} />

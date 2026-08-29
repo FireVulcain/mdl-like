@@ -37,7 +37,7 @@ export function MdlRefetchButton({ tmdbExternalId, mediaId }: MdlRefetchButtonPr
             onClick={handleRefetch}
             disabled={loading}
             title="Refresh MDL cache"
-            className="text-gray-600 hover:text-gray-400 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="text-fg-faint hover:text-fg-muted transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
             <RefreshCw className={`size-3 ${loading ? "animate-spin" : ""}`} />
         </button>

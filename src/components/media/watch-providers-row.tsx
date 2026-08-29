@@ -50,7 +50,7 @@ export async function WatchProvidersRow({ type, id }: { type: "movie" | "tv"; id
 
     return (
         <>
-            <span className="text-gray-400 font-medium self-center">Watch</span>
+            <span className="text-fg-muted font-medium self-center">Watch</span>
             <div className="flex flex-wrap gap-1.5 items-center">
                 {unique.slice(0, 6).map((p) => (
                     <a
@@ -71,7 +71,7 @@ export async function WatchProvidersRow({ type, id }: { type: "movie" | "tv"; id
                         />
                     </a>
                 ))}
-                {!isStreaming && <span className="text-xs text-gray-500">Buy / Rent</span>}
+                {!isStreaming && <span className="text-xs text-fg-dim">Buy / Rent</span>}
             </div>
         </>
     );

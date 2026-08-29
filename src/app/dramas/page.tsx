@@ -307,15 +307,15 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
             <div className="container py-6 md:py-10 max-w-[95%] md:max-w-[90%] mx-auto px-2 md:px-0 relative z-10">
                 {/* Breadcrumb */}
-                <Link href="/" className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white mb-6 transition-colors">
+                <Link href="/" className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg mb-6 transition-colors">
                     <ChevronLeft className="h-4 w-4" />
                     Back to Home
                 </Link>
 
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="font-display text-3xl font-bold text-white mb-1">Drama Library</h1>
-                    <p className="text-sm text-gray-400">Asian dramas · Powered by MDL</p>
+                    <h1 className="font-display text-3xl font-bold text-fg mb-1">Drama Library</h1>
+                    <p className="text-sm text-fg-muted">Asian dramas · Powered by MDL</p>
                 </div>
 
                 {/* Two-column layout */}
@@ -324,13 +324,13 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     <main className="flex-1 min-w-0 w-full">
                         {/* Results meta */}
                         <div className="flex items-center justify-between mb-5">
-                            <p className="text-sm text-gray-400">
-                                Page <span className="text-white font-medium">{page}</span> · MDL data
+                            <p className="text-sm text-fg-muted">
+                                Page <span className="text-fg font-medium">{page}</span> · MDL data
                             </p>
                             {hasActiveFilters && (
                                 <Link
                                     href={buildUrl({ category, country, sort }, { page: "1" })}
-                                    className="text-xs text-gray-500 hover:text-white transition-colors"
+                                    className="text-xs text-fg-dim hover:text-fg transition-colors"
                                 >
                                     Clear filters
                                 </Link>
@@ -372,7 +372,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                 })}
                             </div>
                         ) : (
-                            <div className="text-center py-24 text-gray-500">No shows found for the selected filters.</div>
+                            <div className="text-center py-24 text-fg-dim">No shows found for the selected filters.</div>
                         )}
 
                         {/* Pagination — prev/next (total pages unknown from MDL API) */}
@@ -381,23 +381,23 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                 <Link
                                     href={buildUrl(baseParams, { page: Math.max(1, page - 1).toString() })}
                                     aria-disabled={page <= 1}
-                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-line-strong ${
                                         page <= 1
-                                            ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
-                                            : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                            ? "opacity-30 pointer-events-none bg-surface-1 text-fg-dim"
+                                            : "bg-surface-2 text-fg-soft hover:bg-surface-4 hover:text-fg"
                                     }`}
                                 >
                                     <ChevronLeft className="h-4 w-4" />
                                     Prev
                                 </Link>
-                                <span className="text-sm text-gray-500">Page {page}</span>
+                                <span className="text-sm text-fg-dim">Page {page}</span>
                                 <Link
                                     href={buildUrl(baseParams, { page: (page + 1).toString() })}
                                     aria-disabled={!hasNextPage}
-                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-line-strong ${
                                         !hasNextPage
-                                            ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
-                                            : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                            ? "opacity-30 pointer-events-none bg-surface-1 text-fg-dim"
+                                            : "bg-surface-2 text-fg-soft hover:bg-surface-4 hover:text-fg"
                                     }`}
                                 >
                                     Next
@@ -408,33 +408,33 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     </main>
 
                     {/* Right: Filters sidebar */}
-                    <aside className="w-full lg:w-52 xl:w-75 shrink-0 space-y-5 bg-white/2 backdrop-blur-sm p-4 rounded-xl border border-white/5">
+                    <aside className="w-full lg:w-52 xl:w-75 shrink-0 space-y-5 bg-surface-1 backdrop-blur-sm p-4 rounded-xl border border-line-soft">
                         {/* Category */}
                         <div className="space-y-2">
-                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Category</h4>
+                            <h4 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Category</h4>
                             <div className="space-y-0.5">
                                 {(Object.entries(CATEGORY_CONFIG) as [Category, (typeof CATEGORY_CONFIG)[Category]][]).map(([cat, config]) => (
                                     <Link
                                         key={cat}
                                         href={buildUrl(baseParams, { category: cat, page: "1" })}
                                         className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all ${
-                                            category === cat ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                            category === cat ? "bg-surface-3 text-fg" : "text-fg-muted hover:text-fg hover:bg-surface-2"
                                         }`}
                                     >
-                                        <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${category === cat ? config.dot : "bg-white/20"}`} />
+                                        <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${category === cat ? config.dot : "bg-surface-4"}`} />
                                         {config.label}
                                     </Link>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="h-px bg-white/5" />
+                        <div className="h-px bg-surface-2" />
 
                         {/* Country */}
                         <div className="space-y-1.5">
-                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Country</h4>
+                            <h4 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Country</h4>
                             <details className="group" open>
-                                <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                                <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-fg-soft hover:text-fg hover:bg-surface-2 transition-all">
                                     <span>{countryLabel}</span>
                                     <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform group-open:rotate-180" />
                                 </summary>
@@ -459,17 +459,17 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                     country: ordered.length > 0 ? ordered.join(",") : "all",
                                                     page: "1",
                                                 })}
-                                                className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/country hover:bg-white/5"
+                                                className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/country hover:bg-surface-2"
                                             >
                                                 <div
                                                     className={`w-3.5 h-3.5 rounded shrink-0 border flex items-center justify-center transition-all ${
-                                                        active ? "bg-white/20 border-white/40" : "border-white/20"
+                                                        active ? "bg-surface-4 border-line-strong" : "border-line-strong"
                                                     }`}
                                                 >
-                                                    {active && <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
+                                                    {active && <Check className="h-2.5 w-2.5 text-fg" strokeWidth={3} />}
                                                 </div>
                                                 <span
-                                                    className={`truncate ${active ? "text-white" : "text-gray-400 group-hover/country:text-white"}`}
+                                                    className={`truncate ${active ? "text-fg" : "text-fg-muted group-hover/country:text-fg"}`}
                                                 >
                                                     {opt.label}
                                                 </span>
@@ -480,22 +480,22 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             </details>
                         </div>
 
-                        <div className="h-px bg-white/5" />
+                        <div className="h-px bg-surface-2" />
 
                         {/* Sort */}
                         <div className="space-y-2">
-                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Sort by</h4>
+                            <h4 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Sort by</h4>
                             <div className="space-y-0.5">
                                 {MDL_SORT_OPTIONS.map((opt) => (
                                     <Link
                                         key={opt.value}
                                         href={buildUrl(baseParams, { sort: opt.value, page: "1" })}
                                         className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all ${
-                                            mdlSort === opt.value ? "bg-white/8 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                            mdlSort === opt.value ? "bg-surface-3 text-fg" : "text-fg-muted hover:text-fg hover:bg-surface-2"
                                         }`}
                                     >
                                         <div
-                                            className={`w-1.5 h-1.5 rounded-full shrink-0 ${mdlSort === opt.value ? "bg-white/70" : "bg-white/20"}`}
+                                            className={`w-1.5 h-1.5 rounded-full shrink-0 ${mdlSort === opt.value ? "bg-fg/70" : "bg-surface-4"}`}
                                         />
                                         {opt.label}
                                     </Link>
@@ -503,23 +503,23 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             </div>
                         </div>
 
-                        <div className="h-px bg-white/5" />
+                        <div className="h-px bg-surface-2" />
 
                         {/* Genre */}
                         <div className="space-y-1.5">
                             <div className="flex items-center justify-between">
-                                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Genre</h4>
+                                <h4 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Genre</h4>
                                 {(selectedGenres.length > 0 || excludedGenres.length > 0) && (
                                     <Link
                                         href={buildUrl(baseParams, { genre: null, genre_exclude: null, page: "1" })}
-                                        className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                                        className="text-xs text-fg-dim hover:text-fg-soft transition-colors"
                                     >
                                         Clear ({selectedGenres.length + excludedGenres.length})
                                     </Link>
                                 )}
                             </div>
                             <details className="group" open={selectedGenres.length > 0 || excludedGenres.length > 0}>
-                                <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                                <summary className="flex items-center justify-between px-3 py-2 rounded-lg text-sm cursor-pointer list-none select-none text-fg-soft hover:text-fg hover:bg-surface-2 transition-all">
                                     <span>
                                         {selectedGenres.length === 0 && excludedGenres.length === 0
                                             ? "Any"
@@ -536,17 +536,17 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 key={g.value}
                                                 href={genreToggleUrl(g.value)}
                                                 title={included ? "Click to exclude" : excluded ? "Click to clear" : "Click to include"}
-                                                className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/genre hover:bg-white/5"
+                                                className="flex items-center gap-1.5 px-1.5 py-1 rounded text-xs transition-all group/genre hover:bg-surface-2"
                                             >
                                                 <div className={`w-3.5 h-3.5 rounded shrink-0 border flex items-center justify-center transition-all ${
                                                     included ? "bg-emerald-500/30 border-emerald-500/60" :
                                                     excluded ? "bg-red-500/30 border-red-500/60" :
-                                                    "border-white/20"
+                                                    "border-line-strong"
                                                 }`}>
                                                     {included && <Check className="h-2.5 w-2.5 text-emerald-400" />}
                                                     {excluded && <X className="h-2.5 w-2.5 text-red-400" />}
                                                 </div>
-                                                <span className={`truncate ${included ? "text-emerald-400" : excluded ? "text-red-400" : "text-gray-400 group-hover/genre:text-white"}`}>
+                                                <span className={`truncate ${included ? "text-emerald-400" : excluded ? "text-red-400" : "text-fg-muted group-hover/genre:text-fg"}`}>
                                                     {g.label}
                                                 </span>
                                             </Link>
@@ -556,7 +556,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             </details>
                         </div>
 
-                        <div className="h-px bg-white/5" />
+                        <div className="h-px bg-surface-2" />
 
                         {/* Tags */}
                         <Suspense fallback={null}>
@@ -570,21 +570,21 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             />
                         </Suspense>
 
-                        <div className="h-px bg-white/5" />
+                        <div className="h-px bg-surface-2" />
 
                         {/* Year range */}
                         <div className="space-y-1.5">
-                            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Year</h4>
+                            <h4 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Year</h4>
                             <div className="flex gap-1.5 items-center">
                                 <ClosingDetails name="dramas-year" className="group flex-1">
-                                    <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
+                                    <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-fg-soft hover:text-fg hover:bg-surface-2 transition-all border border-line-strong">
                                         <span>{rawYearFrom ?? "From"}</span>
                                         <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
                                     </summary>
-                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-white/10 rounded-lg shadow-xl max-h-48 overflow-y-auto">
+                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-line-strong rounded-lg shadow-xl max-h-48 overflow-y-auto">
                                         <Link
                                             href={buildUrl(baseParams, { year_from: null, page: "1" })}
-                                            className={`block px-3 py-1.5 text-xs transition-all ${!rawYearFrom ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                                            className={`block px-3 py-1.5 text-xs transition-all ${!rawYearFrom ? "text-fg bg-surface-3" : "text-fg-muted hover:text-fg hover:bg-surface-2"}`}
                                         >
                                             Any
                                         </Link>
@@ -594,8 +594,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 href={buildUrl(baseParams, { year_from: y.toString(), page: "1" })}
                                                 className={`block px-3 py-1.5 text-xs transition-all ${
                                                     rawYearFrom === y.toString()
-                                                        ? "text-white bg-white/8"
-                                                        : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                        ? "text-fg bg-surface-3"
+                                                        : "text-fg-muted hover:text-fg hover:bg-surface-2"
                                                 }`}
                                             >
                                                 {y}
@@ -603,16 +603,16 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                         ))}
                                     </div>
                                 </ClosingDetails>
-                                <span className="text-gray-600 text-xs shrink-0">—</span>
+                                <span className="text-fg-faint text-xs shrink-0">—</span>
                                 <ClosingDetails name="dramas-year" className="group flex-1">
-                                    <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-gray-300 hover:text-white hover:bg-white/5 transition-all border border-white/10">
+                                    <summary className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer list-none select-none text-fg-soft hover:text-fg hover:bg-surface-2 transition-all border border-line-strong">
                                         <span>{rawYearTo ?? "To"}</span>
                                         <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
                                     </summary>
-                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-white/10 rounded-lg shadow-xl max-h-48 overflow-y-auto">
+                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-line-strong rounded-lg shadow-xl max-h-48 overflow-y-auto">
                                         <Link
                                             href={buildUrl(baseParams, { year_to: null, page: "1" })}
-                                            className={`block px-3 py-1.5 text-xs transition-all ${!rawYearTo ? "text-white bg-white/8" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
+                                            className={`block px-3 py-1.5 text-xs transition-all ${!rawYearTo ? "text-fg bg-surface-3" : "text-fg-muted hover:text-fg hover:bg-surface-2"}`}
                                         >
                                             Any
                                         </Link>
@@ -622,8 +622,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                                 href={buildUrl(baseParams, { year_to: y.toString(), page: "1" })}
                                                 className={`block px-3 py-1.5 text-xs transition-all ${
                                                     rawYearTo === y.toString()
-                                                        ? "text-white bg-white/8"
-                                                        : "text-gray-400 hover:text-white hover:bg-white/5"
+                                                        ? "text-fg bg-surface-3"
+                                                        : "text-fg-muted hover:text-fg hover:bg-surface-2"
                                                 }`}
                                             >
                                                 {y}
@@ -634,7 +634,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             </div>
                         </div>
 
-                        <div className="h-px bg-white/5" />
+                        <div className="h-px bg-surface-2" />
 
                         {/* Rating range. The six fixed "7.0+ / 7.5+ / 8.0+" pills
                             only ever set a floor; the scraper has always accepted a

@@ -54,7 +54,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-page text-fg font-sans`}
+        className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-app text-fg font-sans`}
       >
         <Providers>
           <div className="relative flex min-h-screen flex-col">

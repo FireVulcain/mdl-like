@@ -26,11 +26,11 @@ const STATUS: Record<string, { icon: React.ElementType; active: string; dot: str
     "On-hold": { icon: PauseCircle, active: "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30", dot: "bg-amber-400" },
     "Plan to Watch": { icon: Clock, active: "bg-slate-500/20 text-slate-300 ring-1 ring-slate-500/30", dot: "bg-slate-400" },
     Dropped: { icon: XCircle, active: "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30", dot: "bg-rose-400" },
-    Undecided: { icon: HelpCircle, active: "bg-white/10 text-white ring-1 ring-white/15", dot: "bg-white/40" },
+    Undecided: { icon: HelpCircle, active: "bg-surface-4 text-fg ring-1 ring-line-strong", dot: "bg-fg/40" },
 };
 
-const NEUTRAL_ACTIVE = "bg-white/10 text-white ring-1 ring-white/15";
-const IDLE = "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white";
+const NEUTRAL_ACTIVE = "bg-surface-4 text-fg ring-1 ring-line-strong";
+const IDLE = "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg";
 
 type Entry = KuryanaDramaListItem & { status: string };
 
@@ -80,19 +80,19 @@ function Row({ entry, href, showStatus, showPoster, showMdl }: {
     return (
         <Link
             href={href}
-            className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors"
+            className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-2 transition-colors"
         >
             {/* Only when the list is mixed. Filtered to one status, a dot on
                 every row would repeat the filter back at the reader. */}
             {showStatus && (
                 <span
-                    className={`size-1.5 rounded-full shrink-0 ${STATUS[entry.status]?.dot ?? "bg-white/20"}`}
+                    className={`size-1.5 rounded-full shrink-0 ${STATUS[entry.status]?.dot ?? "bg-surface-4"}`}
                     title={entry.status}
                 />
             )}
 
             {showPoster && (
-                <span className="relative w-7 h-10 shrink-0 overflow-hidden rounded bg-white/5">
+                <span className="relative w-7 h-10 shrink-0 overflow-hidden rounded bg-surface-2">
                     {entry.poster && (
                         <Image unoptimized src={entry.poster} alt="" fill sizes="28px" className="object-cover" />
                     )}
@@ -107,31 +107,31 @@ function Row({ entry, href, showStatus, showPoster, showMdl }: {
                 {/* The card hangs off the title, not the row: a row spans the
                     page, so anchoring to it threw the card against the edge. */}
                 <MdlTitlePreview slug={entry.id}>
-                    <span className="block max-w-full truncate text-sm text-gray-300 group-hover:text-white transition-colors">
+                    <span className="block max-w-full truncate text-sm text-fg-soft group-hover:text-fg transition-colors">
                         {entry.name}
                     </span>
                 </MdlTitlePreview>
 
-                {meta && <span className="hidden md:block shrink-0 truncate text-xs text-gray-600">{meta}</span>}
+                {meta && <span className="hidden md:block shrink-0 truncate text-xs text-fg-faint">{meta}</span>}
             </span>
 
             {/* Sized for the worst case the data holds — a 1265/1265 run beside
                 a 10.0 score — so the two columns stay aligned down the page. */}
-            <span className="w-20 shrink-0 text-right text-xs tabular-nums text-gray-500">
+            <span className="w-20 shrink-0 text-right text-xs tabular-nums text-fg-dim">
                 {total > 0 ? (
                     <>
-                        <span className={partial ? "text-gray-300" : ""}>{seen}</span>
-                        <span className="text-gray-600">/{total}</span>
+                        <span className={partial ? "text-fg-soft" : ""}>{seen}</span>
+                        <span className="text-fg-faint">/{total}</span>
                     </>
                 ) : (
-                    <span className="text-gray-700">—</span>
+                    <span className="text-fg-faint">—</span>
                 )}
             </span>
 
             {/* Sky for MyDramaList's rating, the hue the app uses wherever it
                 quotes them — so it never reads as a second personal score. */}
             {showMdl && (
-                <span className={`w-14 shrink-0 flex items-center justify-end gap-1 text-xs font-medium tabular-nums ${hasMdl ? "text-sky-400" : "text-gray-700"}`}>
+                <span className={`w-14 shrink-0 flex items-center justify-end gap-1 text-xs font-medium tabular-nums ${hasMdl ? "text-sky-400" : "text-fg-faint"}`}>
                     {hasMdl ? (
                         <>
                             <Star className="h-3 w-3 fill-sky-400 text-sky-400" />
@@ -145,7 +145,7 @@ function Row({ entry, href, showStatus, showPoster, showMdl }: {
 
             {/* The same star the watchlist puts beside your own score, so a
                 member's rating reads as a rating and not as another count. */}
-            <span className={`w-14 shrink-0 flex items-center justify-end gap-1 text-xs font-medium tabular-nums ${rated ? "text-amber-400" : "text-gray-700"}`}>
+            <span className={`w-14 shrink-0 flex items-center justify-end gap-1 text-xs font-medium tabular-nums ${rated ? "text-amber-400" : "text-fg-faint"}`}>
                 {rated ? (
                     <>
                         <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
@@ -227,22 +227,22 @@ export function MdlUserList({
         <div className="space-y-6">
             {/* The figures, as a sentence rather than as a scoreboard. They
                 follow the filter, so they describe what is on screen. */}
-            <p className="text-sm text-gray-500">
-                <span className="text-gray-300 font-medium tabular-nums">{n(titles)}</span> titles
-                <span className="mx-2 text-gray-700">·</span>
-                <span className="text-gray-300 font-medium tabular-nums">{n(Math.round(episodes))}</span> episodes
-                <span className="mx-2 text-gray-700">·</span>
-                <span className="text-gray-300 font-medium tabular-nums">{days.toFixed(1)}</span> days watched
+            <p className="text-sm text-fg-dim">
+                <span className="text-fg-soft font-medium tabular-nums">{n(titles)}</span> titles
+                <span className="mx-2 text-fg-faint">·</span>
+                <span className="text-fg-soft font-medium tabular-nums">{n(Math.round(episodes))}</span> episodes
+                <span className="mx-2 text-fg-faint">·</span>
+                <span className="text-fg-soft font-medium tabular-nums">{days.toFixed(1)}</span> days watched
             </p>
 
             {/* Toolbar, same surface the watchlist uses: one panel holding the
                 controls, so the chrome sits around what you operate rather than
                 around what you read. */}
             <div className="relative">
-                <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-xl rounded-lg border border-white/5" />
+                <div className="absolute inset-0 bg-panel/80 backdrop-blur-xl rounded-lg border border-line-soft" />
                 <div className="relative flex flex-wrap items-center gap-2 p-2.5">
                     <div className="w-full md:flex-1 md:min-w-52 relative group">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-sky-400 transition-colors" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fg-dim group-focus-within:text-sky-400 transition-colors" />
                         <input
                             value={query}
                             onChange={(e) => {
@@ -251,7 +251,7 @@ export function MdlUserList({
                             }}
                             placeholder="Filter titles..."
                             aria-label="Filter titles"
-                            className="w-full h-9 pl-9 pr-4 bg-white/5 rounded-lg text-sm text-white placeholder:text-gray-500 outline-none focus:ring-1 focus:ring-sky-500/50 focus:bg-white/8 transition-all"
+                            className="w-full h-9 pl-9 pr-4 bg-surface-2 rounded-lg text-sm text-fg placeholder:text-fg-dim outline-none focus:ring-1 focus:ring-sky-500/50 focus:bg-surface-3 transition-all"
                         />
                     </div>
 
@@ -293,11 +293,11 @@ export function MdlUserList({
                             <div key={`${entry.status}-${entry.id}-${entry.name}`}>
                                 {startsGroup && (
                                     <div className={`flex items-center gap-3 px-3 pb-2 ${i === 0 ? "" : "pt-8"}`}>
-                                        <h2 className="font-display text-lg font-semibold text-white">{entry.status}</h2>
-                                        <span className="text-sm text-gray-400">
+                                        <h2 className="font-display text-lg font-semibold text-fg">{entry.status}</h2>
+                                        <span className="text-sm text-fg-muted">
                                             ({scoped.filter((e) => e.status === entry.status).length})
                                         </span>
-                                        <div className="flex-1 h-px bg-white/8" />
+                                        <div className="flex-1 h-px bg-surface-3" />
                                     </div>
                                 )}
                                 <Row
@@ -312,17 +312,17 @@ export function MdlUserList({
                     })}
                 </div>
             ) : (
-                <p className="py-12 text-center text-sm text-gray-500">
+                <p className="py-12 text-center text-sm text-fg-dim">
                     {query.trim() ? `No title matches “${query.trim()}”.` : "Nothing listed here."}
                 </p>
             )}
 
             {(shown < filtered.length || withheld.length > 0) && (
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/8">
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-line">
                     {shown < filtered.length ? (
                         <button
                             onClick={() => setShown((count) => count + PAGE_SIZE)}
-                            className="h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                            className="h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                         >
                             Show {Math.min(PAGE_SIZE, filtered.length - shown)} more
                             <span className="text-xs tabular-nums opacity-60">{n(filtered.length - shown)} left</span>
@@ -332,7 +332,7 @@ export function MdlUserList({
                     )}
 
                     {withheld.length > 0 && (
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-fg-faint">
                             MyDramaList doesn&rsquo;t publish the {withheld.join(" or ")} {withheld.length === 1 ? "entry" : "entries"}.
                         </p>
                     )}

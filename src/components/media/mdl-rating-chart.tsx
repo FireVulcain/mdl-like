@@ -212,7 +212,7 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
 
                 {active && (
                     <g>
-                        <line x1={activeX} y1={PAD.t} x2={activeX} y2={PAD.t + PLOT_H} stroke="currentColor" strokeWidth={1} className="text-white/20" />
+                        <line x1={activeX} y1={PAD.t} x2={activeX} y2={PAD.t + PLOT_H} stroke="currentColor" strokeWidth={1} className="text-fg-faint" />
                         {active.rating != null && <circle cx={activeX} cy={yRating(active.rating)} r={4} className="fill-sky-200" />}
                         <g transform={`translate(${readoutRight ? activeX - 96 : activeX + 8}, ${PAD.t + 4})`}>
                             <rect width={88} height={active.watchers != null ? 38 : 26} rx={4} className="fill-gray-950/90 stroke-white/10" strokeWidth={1} />

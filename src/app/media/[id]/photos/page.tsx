@@ -79,9 +79,9 @@ export default async function PhotosPage({
                     </Link>
 
                     <div>
-                        <h1 className="font-display text-3xl font-bold tracking-tight mb-2 text-white">Photos</h1>
-                        <div className="flex items-center gap-2 text-gray-400">
-                            <span className="font-medium text-white">{media.title}</span>
+                        <h1 className="font-display text-3xl font-bold tracking-tight mb-2 text-fg">Photos</h1>
+                        <div className="flex items-center gap-2 text-fg-muted">
+                            <span className="font-medium text-fg">{media.title}</span>
                             <span>•</span>
                             <span>{media.year}</span>
                             {wantsMdl && totalPages > 1 && (
@@ -96,14 +96,14 @@ export default async function PhotosPage({
                     </div>
                 </div>
 
-                <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
                 {wantsMdl ? (
                     <>
                         {mdlPhotos.length > 0 ? (
                             <MdlPhotoGrid photos={mdlPhotos} />
                         ) : (
-                            <div className="text-center py-12 text-gray-400">No photos available on MyDramaList.</div>
+                            <div className="text-center py-12 text-fg-muted">No photos available on MyDramaList.</div>
                         )}
 
                         {totalPages > 1 && (
@@ -111,25 +111,25 @@ export default async function PhotosPage({
                                 <Link
                                     href={pageHref(currentPage - 1)}
                                     aria-disabled={currentPage <= 1}
-                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-line-strong ${
                                         currentPage <= 1
-                                            ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
-                                            : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                            ? "opacity-30 pointer-events-none bg-surface-1 text-fg-dim"
+                                            : "bg-surface-2 text-fg-soft hover:bg-surface-4 hover:text-fg"
                                     }`}
                                 >
                                     <ChevronLeft className="h-4 w-4" />
                                     Prev
                                 </Link>
-                                <span className="text-sm text-gray-500">
+                                <span className="text-sm text-fg-dim">
                                     Page {currentPage} of {totalPages}
                                 </span>
                                 <Link
                                     href={pageHref(currentPage + 1)}
                                     aria-disabled={currentPage >= totalPages}
-                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-white/10 ${
+                                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all border border-line-strong ${
                                         currentPage >= totalPages
-                                            ? "opacity-30 pointer-events-none bg-white/3 text-gray-500"
-                                            : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
+                                            ? "opacity-30 pointer-events-none bg-surface-1 text-fg-dim"
+                                            : "bg-surface-2 text-fg-soft hover:bg-surface-4 hover:text-fg"
                                     }`}
                                 >
                                     Next
@@ -141,7 +141,7 @@ export default async function PhotosPage({
                 ) : (
                     <>
                         <PhotoGallery backdrops={media.images?.backdrops || []} posters={media.images?.posters || []} />
-                        {!hasBackdrops && !hasPosters && <div className="text-center py-12 text-gray-400">No photos available.</div>}
+                        {!hasBackdrops && !hasPosters && <div className="text-center py-12 text-fg-muted">No photos available.</div>}
                     </>
                 )}
             </div>

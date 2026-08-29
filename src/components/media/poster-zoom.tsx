@@ -31,7 +31,7 @@ export function PosterZoom({ src, alt, sizes }: { src: string; alt: string; size
                 className="group absolute inset-0 cursor-pointer focus:outline-none"
             >
                 <span className="absolute inset-0 bg-black/30 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" />
-                <span className="absolute top-2 left-2 flex items-center justify-center p-1.5 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-white/80 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                <span className="absolute top-2 left-2 flex items-center justify-center p-1.5 rounded-lg bg-black/60 backdrop-blur-sm border border-white/20 text-white/80 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                     <Expand className="size-3.5" />
                 </span>
             </button>

@@ -29,8 +29,8 @@ export default function Loading() {
                 does not resize when it fills. */}
             <div className="space-y-2">
                 {Array.from({ length: 10 }, (_, i) => (
-                    <div key={i} className="flex items-center gap-3 rounded-lg bg-white/3 p-2">
-                        <div className="h-20 w-14 shrink-0 animate-pulse rounded-lg bg-white/5" />
+                    <div key={i} className="flex items-center gap-3 rounded-lg bg-surface-1 p-2">
+                        <div className="h-20 w-14 shrink-0 animate-pulse rounded-lg bg-surface-2" />
                         <div className="min-w-0 flex-1 space-y-2">
                             <Line w="45%" h={15} />
                             <Line w="28%" h={11} />

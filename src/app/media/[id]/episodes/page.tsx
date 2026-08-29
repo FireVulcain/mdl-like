@@ -282,8 +282,8 @@ export default async function EpisodesPage({
 
                 {/* Header */}
                 <div>
-                    <h1 className="font-display text-3xl font-bold text-white">{media.title}</h1>
-                    <p className="text-sm text-gray-400 mt-1">
+                    <h1 className="font-display text-3xl font-bold text-fg">{media.title}</h1>
+                    <p className="text-sm text-fg-muted mt-1">
                         {effectiveSeasons.length} season{effectiveSeasons.length !== 1 ? "s" : ""}
                     </p>
                 </div>
@@ -291,8 +291,8 @@ export default async function EpisodesPage({
                 {/* Rating grid — open layout, the colored cells structure themselves */}
                 <div>
                     <div className="flex items-center gap-2 mb-5">
-                        <h2 className="font-display text-lg font-semibold text-white">Episode Ratings</h2>
-                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${hasMdlData ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-white/5 text-gray-400 border-white/10"}`}>
+                        <h2 className="font-display text-lg font-semibold text-fg">Episode Ratings</h2>
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${hasMdlData ? "bg-sky-500/15 text-sky-400 border-sky-500/20" : "bg-surface-2 text-fg-muted border-line-strong"}`}>
                             via {hasMdlData ? "MDL" : "TMDB"}
                         </span>
                     </div>
@@ -312,7 +312,7 @@ export default async function EpisodesPage({
                 <div>
                     {/* Season header + tabs */}
                     <div className="flex items-center gap-3 mb-5 flex-wrap">
-                        <h2 className="font-display text-lg font-semibold text-white shrink-0">
+                        <h2 className="font-display text-lg font-semibold text-fg shrink-0">
                             Season {selectedSeason}
                         </h2>
                         {/* Jump to where the user left off — only if they've started but not finished */}
@@ -327,8 +327,8 @@ export default async function EpisodesPage({
                                         href={`/media/${id}/episodes?season=${s}`}
                                         className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors ${
                                             s === selectedSeason
-                                                ? "bg-white/15 text-white"
-                                                : "text-gray-400 hover:text-white hover:bg-white/10"
+                                                ? "bg-surface-4 text-fg"
+                                                : "text-fg-muted hover:text-fg hover:bg-surface-4"
                                         }`}
                                     >
                                         S{s}
@@ -346,7 +346,7 @@ export default async function EpisodesPage({
                                 const inner = (
                                     <>
                                         {/* Thumbnail */}
-                                        <div className={`relative aspect-video rounded-xl overflow-hidden bg-gray-800 ring-1 transition-all ${watched ? "ring-emerald-500/40" : "ring-white/8 group-hover:ring-white/20"}`}>
+                                        <div className={`relative aspect-video rounded-xl overflow-hidden bg-surface-3 ring-1 transition-all ${watched ? "ring-emerald-500/40" : "ring-line group-hover:ring-line-strong"}`}>
                                             {ep.image ? (
                                                 <Image
                                                     unoptimized
@@ -359,7 +359,7 @@ export default async function EpisodesPage({
                                                 />
                                             ) : (
                                                 <div className="flex h-full w-full items-center justify-center">
-                                                    <span className="text-[10px] text-gray-600">No image</span>
+                                                    <span className="text-[10px] text-fg-faint">No image</span>
                                                 </div>
                                             )}
                                             {/* Dark overlay marks an episode as already watched; fades on hover */}
@@ -382,23 +382,23 @@ export default async function EpisodesPage({
                                             )}
                                             {watched && (
                                                 <span className="absolute top-1.5 right-1.5 flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500 shadow-lg shadow-black/40">
-                                                    <Check className="size-3 text-white" strokeWidth={3} />
+                                                    <Check className="size-3 text-fg" strokeWidth={3} />
                                                 </span>
                                             )}
                                         </div>
 
                                         {/* Caption */}
                                         <div className="mt-2">
-                                            <p className={`text-sm font-semibold leading-snug line-clamp-2 transition-colors ${watched ? "text-white" : "text-gray-300"} group-hover:text-blue-300`}>
-                                                <span className="text-gray-500 font-medium">Ep {ep.number}</span>
+                                            <p className={`text-sm font-semibold leading-snug line-clamp-2 transition-colors ${watched ? "text-fg" : "text-fg-soft"} group-hover:text-blue-300`}>
+                                                <span className="text-fg-dim font-medium">Ep {ep.number}</span>
                                                 {ep.title !== `Episode ${ep.number}` && (
                                                     <>
-                                                        <span className="text-gray-600 font-normal"> · </span>
+                                                        <span className="text-fg-faint font-normal"> · </span>
                                                         {ep.title}
                                                     </>
                                                 )}
                                             </p>
-                                            <div className="flex items-center gap-2 mt-1 text-[11px] text-gray-500">
+                                            <div className="flex items-center gap-2 mt-1 text-[11px] text-fg-dim">
                                                 {ep.airDate && (
                                                     <span className="flex items-center gap-1">
                                                         <Calendar className="size-3 shrink-0" />
@@ -436,7 +436,7 @@ export default async function EpisodesPage({
                             })}
                         </div>
                     ) : (
-                        <p className="text-sm text-gray-500">No episode data available for this season.</p>
+                        <p className="text-sm text-fg-dim">No episode data available for this season.</p>
                     )}
                 </div>
             </div>

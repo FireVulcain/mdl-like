@@ -10,7 +10,7 @@ export default function Loading() {
                 <SectionHeading width={120} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {Array.from({ length: 6 }, (_, i) => (
-                        <div key={i} className="aspect-video w-full animate-pulse rounded-lg bg-white/5" />
+                        <div key={i} className="aspect-video w-full animate-pulse rounded-lg bg-surface-2" />
                     ))}
                 </div>
             </div>
@@ -19,7 +19,7 @@ export default function Loading() {
                 <SectionHeading width={110} />
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {Array.from({ length: 12 }, (_, i) => (
-                        <div key={i} className="aspect-2/3 w-full animate-pulse rounded-lg bg-white/5" />
+                        <div key={i} className="aspect-2/3 w-full animate-pulse rounded-lg bg-surface-2" />
                     ))}
                 </div>
             </div>

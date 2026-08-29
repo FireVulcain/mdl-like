@@ -144,12 +144,12 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
     return (
         <div
             className={cn(
-                "flex items-start gap-3 py-3 px-4 hover:bg-white/3 transition-all group",
+                "flex items-start gap-3 py-3 px-4 hover:bg-surface-1 transition-all group",
                 deleting && "opacity-0 scale-95 pointer-events-none",
             )}
         >
             {/* Poster */}
-            <div className="shrink-0 w-8 h-12 rounded-md overflow-hidden bg-white/5 border border-white/10">
+            <div className="shrink-0 w-8 h-12 rounded-md overflow-hidden bg-surface-2 border border-line-strong">
                 {item.poster ? (
                     <Image unoptimized={true} src={item.poster} alt={item.title} width={32} height={48} className="w-full h-full object-cover" />
                 ) : (
@@ -160,7 +160,7 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
             </div>
 
             {/* Icon badge */}
-            <div className={cn("shrink-0 mt-0.5 p-1.5 rounded-lg bg-white/5 border border-white/10", config.color)}>
+            <div className={cn("shrink-0 mt-0.5 p-1.5 rounded-lg bg-surface-2 border border-line-strong", config.color)}>
                 <Icon className="h-3.5 w-3.5" />
             </div>
 
@@ -171,12 +171,12 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
                     dangerouslySetInnerHTML={{
                         __html: text.replace(
                             /<b>(.*?)<\/b>/g,
-                            `<a href="${href}" class="font-semibold text-white hover:text-primary transition-colors">$1</a>`,
+                            `<a href="${href}" class="font-semibold text-fg hover:text-primary transition-colors">$1</a>`,
                         ),
                     }}
                 />
                 {item.isBackfill && (
-                    <span className="inline-flex items-center gap-1 mt-0.5 text-xs text-white/25">
+                    <span className="inline-flex items-center gap-1 mt-0.5 text-xs text-fg-faint">
                         <Clock className="h-2.5 w-2.5" />
                         historical
                     </span>
@@ -185,12 +185,12 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
 
             {/* Timestamp + delete */}
             <div className="shrink-0 flex items-center gap-1.5 mt-0.5">
-                <span className="text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                <span className="text-xs text-fg-faint group-hover:text-fg-dim transition-colors">
                     {formatRelativeTime(new Date(item.createdAt))}
                 </span>
                 <button
                     onClick={handleDelete}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded text-white/30 hover:text-rose-400 hover:bg-rose-400/10"
+                    className="opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded text-fg-faint hover:text-rose-400 hover:bg-rose-400/10"
                     aria-label="Delete entry"
                 >
                     <X className="h-3.5 w-3.5" />
@@ -305,11 +305,11 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
     if (isEmpty && filterActions.length === 0 && search.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-24 text-center">
-                <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                    <Clock className="h-8 w-8 text-white/30" />
+                <div className="h-16 w-16 rounded-2xl bg-surface-2 border border-line-strong flex items-center justify-center mb-4">
+                    <Clock className="h-8 w-8 text-fg-faint" />
                 </div>
-                <p className="text-lg font-semibold text-white/60">No activity yet</p>
-                <p className="text-sm text-white/30 mt-1">Your actions will appear here as you use the app.</p>
+                <p className="text-lg font-semibold text-fg-muted">No activity yet</p>
+                <p className="text-sm text-fg-faint mt-1">Your actions will appear here as you use the app.</p>
             </div>
         );
     }
@@ -322,19 +322,19 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
             {/* Search + filter bar */}
             <div className="space-y-2.5">
                 <div className="relative group">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-primary transition-colors pointer-events-none" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fg-dim group-focus-within:text-primary transition-colors pointer-events-none" />
                     <Input
                         value={query}
                         onChange={(e) => handleQueryChange(e.target.value)}
                         placeholder="Search your history…"
                         aria-label="Search your history"
-                        className="w-full h-9 pl-9 pr-9 bg-white/5 border-0 rounded-lg text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:bg-white/8 transition-all"
+                        className="w-full h-9 pl-9 pr-9 bg-surface-2 border-0 rounded-lg text-sm text-fg placeholder:text-fg-dim focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:bg-surface-3 transition-all"
                     />
                     {query.length > 0 && (
                         <button
                             onClick={clearSearch}
                             aria-label="Clear search"
-                            className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded text-white/30 hover:text-white transition-colors cursor-pointer"
+                            className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded text-fg-faint hover:text-fg transition-colors cursor-pointer"
                         >
                             <X className="h-3.5 w-3.5" />
                         </button>
@@ -351,7 +351,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                                     onClick={() => toggleFilter(opt.action)}
                                     className={cn(
                                         "h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer",
-                                        isActive ? opt.activeClass : "bg-white/5 text-gray-500 hover:bg-white/8 hover:text-white",
+                                        isActive ? opt.activeClass : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg",
                                     )}
                                 >
                                     {opt.label}
@@ -361,7 +361,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                         {filterActions.length > 0 && (
                             <button
                                 onClick={() => setFilterActions([])}
-                                className="h-7 px-2 rounded-lg text-xs text-gray-600 hover:text-white transition-colors flex items-center gap-1"
+                                className="h-7 px-2 rounded-lg text-xs text-fg-faint hover:text-fg transition-colors flex items-center gap-1"
                             >
                                 <X className="h-3 w-3" />
                                 Clear
@@ -371,7 +371,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                     <button
                         onClick={handleRegenerate}
                         disabled={isRegenerating}
-                        className="flex items-center gap-1.5 text-xs text-white/20 hover:text-white/50 transition-colors disabled:opacity-50 shrink-0"
+                        className="flex items-center gap-1.5 text-xs text-fg-faint hover:text-fg-dim transition-colors disabled:opacity-50 shrink-0"
                     >
                         <RotateCcw className={cn("h-3 w-3", isRegenerating && "animate-spin")} />
                         {isRegenerating ? "Regenerating…" : "Regenerate historical data"}
@@ -381,7 +381,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
 
             {showEmptyFiltered && (
                 <div className="flex flex-col items-center justify-center py-16 text-center">
-                    <p className="text-sm font-medium text-white/40">
+                    <p className="text-sm font-medium text-fg-dim">
                         {search.length > 0 ? `No activity matches “${search}”` : "No activity matches these filters"}
                     </p>
                 </div>
@@ -390,9 +390,9 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
             {groups.map(([label, groupItems]) => (
                 <div key={label}>
                     <div className="flex items-center gap-3 mb-2 px-4">
-                        <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">{label}</span>
-                        <div className="flex-1 h-px bg-white/5" />
-                        <span className="text-xs text-white/25">{groupItems.length}</span>
+                        <span className="text-xs font-semibold text-fg-dim uppercase tracking-wider">{label}</span>
+                        <div className="flex-1 h-px bg-surface-2" />
+                        <span className="text-xs text-fg-faint">{groupItems.length}</span>
                     </div>
                     <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] divide-y divide-white/[0.04] overflow-hidden">
                         {groupItems.map((item) => (
@@ -412,7 +412,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
             )}
 
             {!nextCursor && items.length > 0 && (
-                <p className="text-center text-xs text-white/20 pb-8">You&apos;ve reached the beginning of your history</p>
+                <p className="text-center text-xs text-fg-faint pb-8">You&apos;ve reached the beginning of your history</p>
             )}
         </div>
     );

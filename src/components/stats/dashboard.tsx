@@ -90,7 +90,7 @@ const CELL_CAP = "rounded-[2px]";
 //
 // Slot 0 is the empty day: a track, not a data step, so it stays recessive on
 // purpose — filled cells are supposed to be what you see.
-const HEAT_RAMP = ["bg-white/5", "bg-[#03567f]", "bg-[#0075b4]", "bg-[#00a5ef]", "bg-[#00bcfe]"];
+const HEAT_RAMP = ["bg-surface-2", "bg-[#03567f]", "bg-[#0075b4]", "bg-[#00a5ef]", "bg-[#00bcfe]"];
 
 function cellColor(count: number) {
     if (count < 0) return "bg-transparent";
@@ -111,9 +111,9 @@ function BlockHeader({ label, meta }: { label: string; meta?: string }) {
         <div className="space-y-2.5 mb-5">
             <div className="flex items-baseline justify-between gap-3">
                 <HomeRowLabel dotClass={DATA_MARK} label={label} />
-                {meta && <span className="text-xs text-gray-500">{meta}</span>}
+                {meta && <span className="text-xs text-fg-dim">{meta}</span>}
             </div>
-            <div className="h-px w-full bg-white/8" />
+            <div className="h-px w-full bg-surface-3" />
         </div>
     );
 }
@@ -215,12 +215,12 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                         sub: "of everything started",
                     },
                 ] as const).map(({ label, value, sub }, i) => (
-                    <div key={label} className={`min-w-0 ${i > 0 ? "lg:border-l lg:border-white/8 lg:pl-8" : ""}`}>
-                        <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">{label}</p>
+                    <div key={label} className={`min-w-0 ${i > 0 ? "lg:border-l lg:border-line lg:pl-8" : ""}`}>
+                        <p className="text-[11px] font-semibold uppercase tracking-wider text-fg-dim">{label}</p>
                         {/* No tabular-nums here — Counter turns it on only while it
                             counts, and a large settled figure wants proportional digits */}
-                        <p className="text-3xl md:text-4xl font-black tracking-tight text-white mt-1.5">{value}</p>
-                        <p className="text-xs text-gray-500 mt-1">{sub}</p>
+                        <p className="text-3xl md:text-4xl font-black tracking-tight text-fg mt-1.5">{value}</p>
+                        <p className="text-xs text-fg-dim mt-1">{sub}</p>
                     </div>
                 ))}
             </div>
@@ -237,7 +237,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                         return (
                             <div key={wi} className="flex-1 relative">
                                 {ml && (
-                                    <span className="absolute text-[10px] text-gray-500 whitespace-nowrap" style={{ left: 0 }}>
+                                    <span className="absolute text-[10px] text-fg-dim whitespace-nowrap" style={{ left: 0 }}>
                                         {ml.label}
                                     </span>
                                 )}
@@ -265,11 +265,11 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                 day.count === 0 ? "cursor-default" : "cursor-pointer"
                                             } ${openDay?.date === day.date ? "ring-1 ring-white" : ""}`}
                                         />
-                                        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-20 hidden group-hover/day:block whitespace-nowrap rounded-md border border-white/10 bg-gray-900 px-2 py-1 text-[11px] shadow-lg shadow-black/50">
-                                            <span className="font-semibold text-white tabular-nums">
+                                        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-20 hidden group-hover/day:block whitespace-nowrap rounded-md border border-line-strong bg-panel px-2 py-1 text-[11px] shadow-lg shadow-black/50">
+                                            <span className="font-semibold text-fg tabular-nums">
                                                 {day.count} action{day.count !== 1 ? "s" : ""}
                                             </span>
-                                            <span className="text-gray-400"> · {day.label}</span>
+                                            <span className="text-fg-muted"> · {day.label}</span>
                                         </span>
                                     </div>
                                 ),
@@ -278,9 +278,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     ))}
                 </div>
                 {openDay && (
-                    <div className="mt-4 rounded-lg border border-white/10 bg-white/3 p-4">
+                    <div className="mt-4 rounded-lg border border-line-strong bg-surface-1 p-4">
                         <div className="flex items-center justify-between gap-3 mb-3">
-                            <span className="text-sm font-semibold text-white">{openDay.label}</span>
+                            <span className="text-sm font-semibold text-fg">{openDay.label}</span>
                             <div className="flex items-center gap-3 shrink-0">
                                 <Link href="/history" className="text-xs text-sky-400 hover:text-sky-300 transition-colors">
                                     View all history
@@ -289,23 +289,23 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     type="button"
                                     onClick={() => setOpenDay(null)}
                                     aria-label="Close"
-                                    className="text-gray-500 hover:text-white transition-colors"
+                                    className="text-fg-dim hover:text-fg transition-colors"
                                 >
                                     <X className="h-4 w-4" />
                                 </button>
                             </div>
                         </div>
                         {loadingDay && !dayCache[openDay.date] ? (
-                            <p className="text-sm text-gray-500">Loading…</p>
+                            <p className="text-sm text-fg-dim">Loading…</p>
                         ) : (dayCache[openDay.date]?.length ?? 0) === 0 ? (
-                            <p className="text-sm text-gray-500">No activity on this day.</p>
+                            <p className="text-sm text-fg-dim">No activity on this day.</p>
                         ) : (
                             <ul className="space-y-2">
                                 {dayCache[openDay.date].map((e) => (
                                     <li key={e.id}>
                                         <Link
                                             href={mediaHref(e.source, e.externalId)}
-                                            className="flex items-center gap-3 rounded-lg px-2 py-1.5 -mx-2 hover:bg-white/5 transition-colors"
+                                            className="flex items-center gap-3 rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface-2 transition-colors"
                                         >
                                             {e.poster ? (
                                                 <Image
@@ -317,15 +317,15 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                     className="h-10.5 w-7 rounded-md object-cover shrink-0"
                                                 />
                                             ) : (
-                                                <span className="h-10.5 w-7 rounded-md bg-white/5 shrink-0" />
+                                                <span className="h-10.5 w-7 rounded-md bg-surface-2 shrink-0" />
                                             )}
                                             <span
-                                                className={`text-sm min-w-0 flex-1 ${ACTION_COLOR[e.action] ?? "text-gray-300"}`}
+                                                className={`text-sm min-w-0 flex-1 ${ACTION_COLOR[e.action] ?? "text-fg-soft"}`}
                                                 dangerouslySetInnerHTML={{
                                                     __html: formatPayloadText(e.action, e.payload, e.title),
                                                 }}
                                             />
-                                            <span className="text-xs text-gray-500 tabular-nums shrink-0">
+                                            <span className="text-xs text-fg-dim tabular-nums shrink-0">
                                                 {new Date(e.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
                                             </span>
                                         </Link>
@@ -336,11 +336,11 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     </div>
                 )}
                 <div className="flex items-center gap-1.5 mt-3 justify-end">
-                    <span className="text-[10px] text-gray-600">Less</span>
+                    <span className="text-[10px] text-fg-faint">Less</span>
                     {HEAT_RAMP.map((c) => (
                         <div key={c} className={`w-2.5 h-2.5 ${CELL_CAP} ${c}`} />
                     ))}
-                    <span className="text-[10px] text-gray-600">More</span>
+                    <span className="text-[10px] text-fg-faint">More</span>
                 </div>
             </div>
 
@@ -364,8 +364,8 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     className="group flex flex-col items-center gap-2 text-center cursor-pointer"
                                 >
                                     <div
-                                        className={`relative w-14 h-14 rounded-full overflow-hidden bg-white/5 ring-2 transition-all ${
-                                            open ? "ring-sky-400" : "ring-white/10 group-hover:ring-sky-400/50"
+                                        className={`relative w-14 h-14 rounded-full overflow-hidden bg-surface-2 ring-2 transition-all ${
+                                            open ? "ring-sky-400" : "ring-line-strong group-hover:ring-sky-400/50"
                                         }`}
                                     >
                                         {actor.profileImage ? (
@@ -377,16 +377,16 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                                             />
                                         ) : (
-                                            <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                            <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                                                 <Users className="h-5 w-5" />
                                             </div>
                                         )}
                                     </div>
                                     <div>
-                                        <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-sky-300" : "text-white group-hover:text-sky-300"}`}>
+                                        <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-sky-300" : "text-fg group-hover:text-sky-300"}`}>
                                             {actor.name}
                                         </p>
-                                        <p className="text-xs text-gray-500">
+                                        <p className="text-xs text-fg-dim">
                                             {actor.count} show{actor.count !== 1 ? "s" : ""}
                                         </p>
                                     </div>
@@ -396,9 +396,9 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     </div>
 
                     {openActorData && (
-                        <div className="mt-5 rounded-lg border border-white/10 bg-white/3 p-4">
+                        <div className="mt-5 rounded-lg border border-line-strong bg-surface-1 p-4">
                             <div className="flex items-center justify-between gap-3 mb-3">
-                                <span className="text-sm font-semibold text-white">{openActorData.name}</span>
+                                <span className="text-sm font-semibold text-fg">{openActorData.name}</span>
                                 <div className="flex items-center gap-3 shrink-0">
                                     <Link
                                         href={mdlPersonHref(openActorData.slug) ?? "#"}
@@ -410,7 +410,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         type="button"
                                         onClick={() => setOpenActor(null)}
                                         aria-label="Close"
-                                        className="text-gray-500 hover:text-white transition-colors"
+                                        className="text-fg-dim hover:text-fg transition-colors"
                                     >
                                         <X className="h-4 w-4" />
                                     </button>
@@ -420,7 +420,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 {openActorData.shows.map((s) => (
                                     <li key={s.href + s.title} className="w-20">
                                         <Link href={s.href} className="group/show block">
-                                            <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-white/5 ring-1 ring-white/10 group-hover/show:ring-sky-400/50 transition-all">
+                                            <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-surface-2 ring-1 ring-line-strong group-hover/show:ring-sky-400/50 transition-all">
                                                 {s.poster ? (
                                                     <Image
                                                         unoptimized
@@ -431,16 +431,16 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                                         className="object-cover group-hover/show:scale-105 transition-transform duration-300"
                                                     />
                                                 ) : (
-                                                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                                    <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                                                         <ImageOff className="h-4 w-4" />
                                                     </div>
                                                 )}
                                             </div>
-                                            <p className="mt-1.5 text-[11px] leading-snug text-gray-400 line-clamp-2 group-hover/show:text-white transition-colors">
+                                            <p className="mt-1.5 text-[11px] leading-snug text-fg-muted line-clamp-2 group-hover/show:text-fg transition-colors">
                                                 {s.title}
                                             </p>
                                             {/* The year is what the list is ordered by, so it earns its place */}
-                                            {s.year && <p className="text-[10px] text-gray-600 tabular-nums">{s.year}</p>}
+                                            {s.year && <p className="text-[10px] text-fg-faint tabular-nums">{s.year}</p>}
                                         </Link>
                                     </li>
                                 ))}
@@ -454,7 +454,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-14">
                 <div>
                     <BlockHeader label="Your Ratings" meta={`${ratedItems} rated`} />
-                    <div className="flex items-stretch gap-1.5 h-36 border-b border-white/8">
+                    <div className="flex items-stretch gap-1.5 h-36 border-b border-line">
                         {ratingBars.map(({ rating, count }) => (
                             <Link
                                 key={rating}
@@ -465,7 +465,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                             >
                                 {/* Fixed label slot, outside the plot area — otherwise the labelled
                                     bar gets squeezed and renders shorter than shorter neighbours */}
-                                <div className="h-4 text-center text-[11px] leading-4 text-gray-400 tabular-nums">
+                                <div className="h-4 text-center text-[11px] leading-4 text-fg-muted tabular-nums">
                                     <span className="group-hover:hidden">{count === maxRatingCount && count > 0 ? count : ""}</span>
                                     <span className="hidden group-hover:inline">{count}</span>
                                 </div>
@@ -485,7 +485,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                     </div>
                     <div className="flex gap-1.5 mt-1.5">
                         {ratingBars.map(({ rating }) => (
-                            <span key={rating} className="flex-1 text-center text-[10px] text-gray-500 tabular-nums">{rating}</span>
+                            <span key={rating} className="flex-1 text-center text-[10px] text-fg-dim tabular-nums">{rating}</span>
                         ))}
                     </div>
                 </div>
@@ -493,7 +493,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                 {recentYears.length > 0 && (
                     <div>
                         <BlockHeader label="By Release Year" />
-                        <div className="flex items-stretch gap-1 h-36 border-b border-white/8">
+                        <div className="flex items-stretch gap-1 h-36 border-b border-line">
                             {recentYears.map(({ year, count }) => (
                                 <Link
                                     key={year}
@@ -502,7 +502,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     className={`flex-1 flex flex-col group ${count === 0 ? "pointer-events-none" : ""}`}
                                     title={`${count} title${count !== 1 ? "s" : ""} from ${year}`}
                                 >
-                                    <div className="h-4 text-center text-[11px] leading-4 text-gray-400 tabular-nums">
+                                    <div className="h-4 text-center text-[11px] leading-4 text-fg-muted tabular-nums">
                                         <span className="group-hover:hidden">{count === maxYearCount && count > 0 ? count : ""}</span>
                                         <span className="hidden group-hover:inline">{count}</span>
                                     </div>
@@ -521,7 +521,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                         </div>
                         <div className="flex gap-1 mt-1.5">
                             {recentYears.map(({ year }) => (
-                                <span key={year} className="flex-1 text-center text-[10px] text-gray-500 tabular-nums">
+                                <span key={year} className="flex-1 text-center text-[10px] text-fg-dim tabular-nums">
                                     {String(year).slice(2)}
                                 </span>
                             ))}
@@ -540,21 +540,21 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 <Link
                                     key={genre.name}
                                     href={`/watchlist?genre=${encodeURIComponent(genre.name)}`}
-                                    className="block space-y-1.5 group -mx-2 px-2 py-1 rounded-lg hover:bg-white/5 transition-colors"
+                                    className="block space-y-1.5 group -mx-2 px-2 py-1 rounded-lg hover:bg-surface-2 transition-colors"
                                 >
                                     <div className="flex justify-between items-baseline text-sm">
-                                        <span className="font-medium text-white group-hover:text-sky-300 transition-colors">
+                                        <span className="font-medium text-fg group-hover:text-sky-300 transition-colors">
                                             {genre.name}
                                         </span>
-                                        <span className="text-xs text-gray-500 tabular-nums">{genre.count}</span>
+                                        <span className="text-xs text-fg-dim tabular-nums">{genre.count}</span>
                                     </div>
-                                    <div className="relative h-1 w-full bg-white/6 rounded-full overflow-hidden">
+                                    <div className="relative h-1 w-full bg-surface-2 rounded-full overflow-hidden">
                                         <div className={`h-full rounded-full ${DATA_MARK}`} style={{ width: `${genre.percentage}%` }} />
                                     </div>
                                 </Link>
                             ))
                         ) : (
-                            <p className="text-sm text-gray-500 py-8">No genre data yet</p>
+                            <p className="text-sm text-fg-dim py-8">No genre data yet</p>
                         )}
                     </div>
                 </div>
@@ -566,10 +566,10 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                             {stats.countryBreakdown.slice(0, listCount).map(({ country, count }) => (
                                 <div key={country} className="space-y-1.5 px-2 -mx-2 py-1">
                                     <div className="flex justify-between items-baseline text-sm">
-                                        <span className="font-medium text-white">{COUNTRY_LABELS[country] ?? country}</span>
-                                        <span className="text-xs text-gray-500 tabular-nums">{count}</span>
+                                        <span className="font-medium text-fg">{COUNTRY_LABELS[country] ?? country}</span>
+                                        <span className="text-xs text-fg-dim tabular-nums">{count}</span>
                                     </div>
-                                    <div className="relative h-1 w-full bg-white/6 rounded-full overflow-hidden">
+                                    <div className="relative h-1 w-full bg-surface-2 rounded-full overflow-hidden">
                                         <div className={`h-full rounded-full ${DATA_MARK}`} style={{ width: `${(count / maxCountry) * 100}%` }} />
                                     </div>
                                 </div>
@@ -590,14 +590,14 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 <Link
                                     key={theme.name}
                                     href={`/watchlist?theme=${encodeURIComponent(theme.name)}`}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-sky-100 border hover:brightness-135 transition-all"
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-[var(--chip-ink)] border hover:brightness-135 transition-all"
                                     style={{
-                                        backgroundColor: `rgba(56, 189, 248, ${0.08 + intensity * 0.22})`,
-                                        borderColor: `rgba(56, 189, 248, ${0.15 + intensity * 0.35})`,
+                                        backgroundColor: `rgb(var(--chip-rgb) / ${0.08 + intensity * 0.22})`,
+                                        borderColor: `rgb(var(--chip-rgb) / ${0.15 + intensity * 0.35})`,
                                     }}
                                 >
                                     {theme.name}
-                                    <span className="text-xs text-sky-200/70">{theme.count}</span>
+                                    <span className="text-xs text-[var(--chip-ink-soft)]">{theme.count}</span>
                                 </Link>
                             );
                         })}
@@ -628,7 +628,7 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                         <div className="absolute bottom-0 left-0 right-0 p-3">
                                             <p className="text-white font-semibold text-sm mb-2 line-clamp-1">{show.title}</p>
                                             <div className="space-y-1">
-                                                <div className="flex justify-between text-xs text-gray-300">
+                                                <div className="flex justify-between text-xs text-white/80">
                                                     <span>Ep {show.progress} / {show.totalEp}</span>
                                                     <span>{Math.round(progressPercent)}%</span>
                                                 </div>

@@ -91,7 +91,7 @@ export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate,
 
                     <button
                         onClick={(e) => { e.stopPropagation(); onClose(); }}
-                        className="absolute top-6 right-8 z-50 cursor-pointer p-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20"
+                        className="absolute top-6 right-8 z-50 cursor-pointer p-1.5 rounded-full bg-surface-4 text-fg hover:bg-surface-4 transition-colors backdrop-blur-md border border-line-strong"
                     >
                         <X className="w-4 h-4" />
                     </button>
@@ -100,14 +100,14 @@ export function PhotoLightbox({ images, currentIndex, open, onClose, onNavigate,
                         <>
                             <button
                                 onClick={(e) => { e.stopPropagation(); showPrev(); }}
-                                className="absolute left-8 z-50 cursor-pointer p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 duration-300"
+                                className="absolute left-8 z-50 cursor-pointer p-2 rounded-full bg-surface-4 text-fg hover:bg-surface-4 transition-colors backdrop-blur-md border border-line-strong opacity-0 group-hover:opacity-100 duration-300"
                             >
                                 <ChevronLeft className="w-5 h-5" />
                             </button>
 
                             <button
                                 onClick={(e) => { e.stopPropagation(); showNext(); }}
-                                className="absolute right-8 z-50 cursor-pointer p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 duration-300"
+                                className="absolute right-8 z-50 cursor-pointer p-2 rounded-full bg-surface-4 text-fg hover:bg-surface-4 transition-colors backdrop-blur-md border border-line-strong opacity-0 group-hover:opacity-100 duration-300"
                             >
                                 <ChevronRight className="w-5 h-5" />
                             </button>

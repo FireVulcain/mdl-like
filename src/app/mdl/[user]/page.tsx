@@ -110,17 +110,17 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
             <div className="container py-8 px-4 m-auto max-w-6xl relative z-10 space-y-6">
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="min-w-0">
-                        <h1 className="font-display text-3xl font-bold tracking-tight text-white wrap-break-word">
+                        <h1 className="font-display text-3xl font-bold tracking-tight text-fg wrap-break-word">
                             {displayName}
                         </h1>
-                        <p className="text-gray-500 mt-1 text-sm">Their list on MyDramaList</p>
+                        <p className="text-fg-dim mt-1 text-sm">Their list on MyDramaList</p>
                     </div>
                     {result.data.link && (
                         <a
                             href={result.data.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="shrink-0 h-9 px-3 rounded-lg inline-flex items-center gap-2 text-sm font-medium bg-white/5 text-sky-400 hover:bg-white/8 hover:text-sky-300 transition-all"
+                            className="shrink-0 h-9 px-3 rounded-lg inline-flex items-center gap-2 text-sm font-medium bg-surface-2 text-sky-400 hover:bg-surface-3 hover:text-sky-300 transition-all"
                         >
                             <ExternalLink className="size-3.5" />
                             View on MDL
@@ -135,8 +135,8 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
                     // the list is private would be a confident guess, and wrong
                     // for every account on the newer layout.
                     <div className="py-16 text-center space-y-3">
-                        <p className="text-sm font-medium text-white/40">This list couldn&rsquo;t be read here.</p>
-                        <p className="text-xs text-white/25 max-w-sm mx-auto">
+                        <p className="text-sm font-medium text-fg-dim">This list couldn&rsquo;t be read here.</p>
+                        <p className="text-xs text-fg-faint max-w-sm mx-auto">
                             It may be private, empty, or using a list layout we can&rsquo;t parse yet.
                         </p>
                         {result.data.link && (

@@ -14,9 +14,9 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
     return (
         <section className="space-y-3">
             <div className="flex items-center gap-3">
-                <h2 className="font-display text-lg font-semibold text-white">People</h2>
-                <span className="text-sm text-gray-400">({people.length})</span>
-                <div className="flex-1 h-px bg-white/8" />
+                <h2 className="font-display text-lg font-semibold text-fg">People</h2>
+                <span className="text-sm text-fg-muted">({people.length})</span>
+                <div className="flex-1 h-px bg-surface-3" />
             </div>
             <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex gap-4 pt-1 pb-3">
@@ -30,7 +30,7 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                             }
                             className="flex-none w-28 text-center group space-y-2"
                         >
-                            <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-white/20 transition-all bg-white/5">
+                            <div className="relative w-20 h-20 mx-auto overflow-hidden rounded-full ring-2 ring-line-strong group-hover:ring-line-strong transition-all bg-surface-2">
                                 {person.profileImage ? (
                                     <Image unoptimized={true}
                                         src={person.profileImage}
@@ -45,12 +45,12 @@ export function ExpandablePeopleSection({ people }: ExpandablePeopleSectionProps
                             <div className="whitespace-normal">
                                 {/* Sky is the app's link colour; purple means a
                                     recommendation and meant nothing here. */}
-                                <p className="text-sm font-medium leading-tight text-white group-hover:text-sky-400 transition-colors line-clamp-1">
+                                <p className="text-sm font-medium leading-tight text-fg group-hover:text-sky-400 transition-colors line-clamp-1">
                                     {person.name}
                                 </p>
                                 {/* A filled chip framed a label that never changes
                                     state — the frame was the only thing it added. */}
-                                <p className="mt-0.5 text-[11px] text-gray-500">{person.knownForDepartment}</p>
+                                <p className="mt-0.5 text-[11px] text-fg-dim">{person.knownForDepartment}</p>
                             </div>
                         </Link>
                     ))}

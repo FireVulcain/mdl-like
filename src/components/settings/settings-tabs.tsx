@@ -50,7 +50,7 @@ export function SettingsTabs({
                                 key={tab.id}
                                 onClick={() => select(tab.id)}
                                 className={`cursor-pointer flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                                    isActive ? "bg-white/10 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                                    isActive ? "bg-surface-4 text-fg" : "text-fg-muted hover:text-fg hover:bg-surface-2"
                                 }`}
                             >
                                 {Icon && <Icon className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-400" : ""}`} />}
@@ -64,8 +64,8 @@ export function SettingsTabs({
             {/* Panel */}
             <div className="min-w-0">
                 <div className="mb-5">
-                    <h2 className="font-display text-lg font-bold text-white">{activeTab.label}</h2>
-                    <p className="text-xs text-gray-500 mt-0.5">{activeTab.description}</p>
+                    <h2 className="font-display text-lg font-bold text-fg">{activeTab.label}</h2>
+                    <p className="text-xs text-fg-dim mt-0.5">{activeTab.description}</p>
                 </div>
                 <div>{panels[active]}</div>
             </div>

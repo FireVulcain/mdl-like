@@ -12,11 +12,11 @@
  */
 
 export function Line({ w = "100%", h = 12 }: { w?: string | number; h?: number }) {
-    return <div className="animate-pulse rounded bg-white/5" style={{ width: w, height: h }} />;
+    return <div className="animate-pulse rounded bg-surface-2" style={{ width: w, height: h }} />;
 }
 
 export function Block({ className = "" }: { className?: string }) {
-    return <div className={`animate-pulse rounded-lg bg-white/5 ${className}`} />;
+    return <div className={`animate-pulse rounded-lg bg-surface-2 ${className}`} />;
 }
 
 /** Title and subtitle, the header nearly every page opens with. */
@@ -37,7 +37,7 @@ export function Pills({ count = 4 }: { count?: number }) {
     return (
         <div className="flex flex-wrap gap-2">
             {Array.from({ length: count }, (_, i) => (
-                <div key={i} className="h-9 animate-pulse rounded-lg bg-white/5" style={{ width: widths[i % widths.length] }} />
+                <div key={i} className="h-9 animate-pulse rounded-lg bg-surface-2" style={{ width: widths[i % widths.length] }} />
             ))}
         </div>
     );
@@ -47,7 +47,7 @@ export function Pills({ count = 4 }: { count?: number }) {
 export function PosterCard() {
     return (
         <div className="space-y-2">
-            <div className="aspect-2/3 w-full animate-pulse rounded-lg bg-white/5" />
+            <div className="aspect-2/3 w-full animate-pulse rounded-lg bg-surface-2" />
             <Line w="85%" />
             <Line w="50%" h={10} />
         </div>
@@ -100,7 +100,7 @@ export function SectionHeading({ width = 180 }: { width?: number }) {
     return (
         <div className="flex items-center gap-3">
             <Line w={width} h={20} />
-            <div className="h-px flex-1 bg-white/8" />
+            <div className="h-px flex-1 bg-surface-3" />
         </div>
     );
 }

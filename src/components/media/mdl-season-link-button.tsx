@@ -85,9 +85,9 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
             </button>
 
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="max-w-2xl bg-gray-900 border-white/10">
+                <DialogContent className="max-w-2xl bg-panel border-line-strong">
                     <DialogHeader>
-                        <DialogTitle className="text-white">Link Season {season} to MDL</DialogTitle>
+                        <DialogTitle className="text-fg">Link Season {season} to MDL</DialogTitle>
                     </DialogHeader>
 
                     {linked ? (
@@ -95,20 +95,20 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                             <div className="h-12 w-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
                                 <Check className="h-6 w-6 text-emerald-400" />
                             </div>
-                            <p className="text-white font-medium">Linked successfully!</p>
-                            <p className="text-sm text-gray-400 text-center">
+                            <p className="text-fg font-medium">Linked successfully!</p>
+                            <p className="text-sm text-fg-muted text-center">
                                 Season {season} is now linked to &ldquo;{linked}&rdquo; on MDL.
                             </p>
                         </div>
                     ) : (
                         <div className="space-y-4">
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fg-muted" />
                                 <Input
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     placeholder="Search MDL…"
-                                    className="pl-9 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-sky-500/50"
+                                    className="pl-9 bg-surface-2 border-line-strong text-fg placeholder:text-fg-dim focus:border-sky-500/50"
                                     autoFocus
                                 />
                             </div>
@@ -121,7 +121,7 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                                         <Loader2 className="h-6 w-6 text-sky-400 animate-spin" />
                                     </div>
                                 ) : results.length === 0 ? (
-                                    <div className="flex items-center justify-center h-48 text-gray-500 text-sm">
+                                    <div className="flex items-center justify-center h-48 text-fg-dim text-sm">
                                         {query.trim() ? "No results found." : "Start typing to search…"}
                                     </div>
                                 ) : (
@@ -133,11 +133,11 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                                                 disabled={isPending}
                                                 className="cursor-pointer group text-left space-y-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
-                                                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-white/10 group-hover:ring-sky-500/50 transition-all bg-gray-800">
+                                                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong group-hover:ring-sky-500/50 transition-all bg-surface-3">
                                                     {drama.thumb ? (
                                                         <Image unoptimized={true} src={drama.thumb} alt={drama.title} fill className="object-cover" />
                                                     ) : (
-                                                        <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
+                                                        <div className="w-full h-full flex items-center justify-center text-xs text-fg-dim">
                                                             No Image
                                                         </div>
                                                     )}
@@ -150,10 +150,10 @@ export function MdlSeasonLinkButton({ tmdbExternalId, season, mediaId, title }: 
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="text-xs font-medium text-white group-hover:text-sky-400 transition-colors line-clamp-2 leading-tight">
+                                                    <p className="text-xs font-medium text-fg group-hover:text-sky-400 transition-colors line-clamp-2 leading-tight">
                                                         {drama.title}
                                                     </p>
-                                                    <p className="text-[10px] text-gray-500 mt-0.5">
+                                                    <p className="text-[10px] text-fg-dim mt-0.5">
                                                         {drama.year} · {drama.type}
                                                     </p>
                                                 </div>

@@ -32,8 +32,8 @@ export function MdlProfileSetting({ initialUrl }: { initialUrl: string | null })
     return (
         <form onSubmit={submit} className="space-y-2.5">
             <div>
-                <p className="text-sm font-medium text-white">MyDramaList profile</p>
-                <p className="text-xs text-gray-500 mt-0.5">
+                <p className="text-sm font-medium text-fg">MyDramaList profile</p>
+                <p className="text-xs text-fg-dim mt-0.5">
                     Adds an MDL shortcut to the header. Leave it empty to hide the link. Paste your profile
                     URL, or just your username.
                 </p>
@@ -47,7 +47,7 @@ export function MdlProfileSetting({ initialUrl }: { initialUrl: string | null })
                     placeholder="https://mydramalist.com/dramalist/yourname"
                     spellCheck={false}
                     autoComplete="off"
-                    className="flex-1 min-w-0 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-gray-600 focus:border-blue-500/50 focus:outline-none"
+                    className="flex-1 min-w-0 rounded-lg border border-line-strong bg-surface-2 px-3 py-2 text-sm text-fg placeholder:text-fg-faint focus:border-blue-500/50 focus:outline-none"
                 />
                 <button
                     type="submit"

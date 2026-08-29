@@ -41,7 +41,7 @@ export function HomeSectionHeader({
             <div className="min-w-0">
                 {/* Semibold rather than black: a serif this size carries a heading
                     on its contrast, and the heaviest weights close its counters. */}
-                <h2 className="font-display text-2xl md:text-4xl font-black tracking-tight text-white">{title}</h2>
+                <h2 className="font-display text-2xl md:text-4xl font-black tracking-tight text-fg">{title}</h2>
                 <span className={`block h-0.5 w-11 rounded-full mt-2.5 ${a.dot}`} />
             </div>
             {right}
@@ -60,7 +60,7 @@ export function HomeRowLabel({ dotClass, label }: { dotClass: string; label: str
     return (
         <div className="flex items-center gap-2">
             <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
-            <h3 className="font-display text-base font-bold text-gray-200">{label}</h3>
+            <h3 className="font-display text-base font-bold text-fg-soft">{label}</h3>
         </div>
     );
 }

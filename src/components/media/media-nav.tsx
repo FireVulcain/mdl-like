@@ -21,12 +21,12 @@ export function MediaNav({ sections }: { sections: NavSection[] }) {
         // items and separates them from the content below, which is what the
         // enclosing box was doing — except a box also detached the strip from the
         // section it introduces.
-        <nav className="flex items-center gap-5 overflow-x-auto scrollbar-none border-b border-white/8 pb-2.5">
+        <nav className="flex items-center gap-5 overflow-x-auto scrollbar-none border-b border-line pb-2.5">
             {sections.map(({ id, label }) => (
                 <button
                     key={id}
                     onClick={() => handleClick(id)}
-                    className="shrink-0 text-sm font-medium text-gray-400 hover:text-white transition-colors whitespace-nowrap cursor-pointer"
+                    className="shrink-0 text-sm font-medium text-fg-muted hover:text-fg transition-colors whitespace-nowrap cursor-pointer"
                 >
                     {label}
                 </button>

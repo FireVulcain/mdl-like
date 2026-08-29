@@ -73,10 +73,10 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
                 {/* Header */}
                 <div>
-                    <h1 className="font-display text-3xl font-bold tracking-tight text-white">
+                    <h1 className="font-display text-3xl font-bold tracking-tight text-fg">
                         {displayName}&apos;s Watchlist
                     </h1>
-                    <p className="mt-1 text-gray-400 text-sm">
+                    <p className="mt-1 text-fg-muted text-sm">
                         {stats.totalShows} show{stats.totalShows !== 1 ? "s" : ""} ·{" "}
                         {stats.totalMovies} movie{stats.totalMovies !== 1 ? "s" : ""} ·{" "}
                         {formatWatchTime(stats.watchTimeMinutes)} watched
@@ -87,27 +87,27 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 {totalItems > 0 && (
                     <div className="flex flex-wrap gap-3">
                         {showAvgScore && stats.avgScore != null && (
-                            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/8">
+                            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-2 border border-line">
                                 <Star className="h-4 w-4 text-amber-400 fill-amber-400 shrink-0" />
                                 <div>
-                                    <p className="text-xs text-gray-400 leading-none">Avg score</p>
-                                    <p className="text-white font-semibold text-sm">{stats.avgScore.toFixed(1)}</p>
+                                    <p className="text-xs text-fg-muted leading-none">Avg score</p>
+                                    <p className="text-fg font-semibold text-sm">{stats.avgScore.toFixed(1)}</p>
                                 </div>
                             </div>
                         )}
                         {Object.entries(stats.statusBreakdown)
                             .sort((a, b) => b[1] - a[1])
                             .map(([status, count]) => (
-                                <div key={status} className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/8">
-                                    <p className="text-xs text-gray-400 leading-none">{status}</p>
-                                    <p className="text-white font-semibold text-sm">{count}</p>
+                                <div key={status} className="px-4 py-2.5 rounded-xl bg-surface-2 border border-line">
+                                    <p className="text-xs text-fg-muted leading-none">{status}</p>
+                                    <p className="text-fg font-semibold text-sm">{count}</p>
                                 </div>
                             ))}
                         {stats.topGenres.length > 0 && (
-                            <div className="flex flex-wrap items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/8">
-                                <span className="text-xs text-gray-400 mr-1">Top genres:</span>
+                            <div className="flex flex-wrap items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-2 border border-line">
+                                <span className="text-xs text-fg-muted mr-1">Top genres:</span>
                                 {stats.topGenres.map((g) => (
-                                    <span key={g.name} className="text-xs px-2 py-0.5 rounded-md bg-white/8 text-gray-300">
+                                    <span key={g.name} className="text-xs px-2 py-0.5 rounded-md bg-surface-3 text-fg-soft">
                                         {g.name}
                                     </span>
                                 ))}
@@ -130,7 +130,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 {showActivity && activity.length > 0 && (
                     <CollapsibleSection
                         title="Recent Activity"
-                        icon={<Clock className="h-4 w-4 text-gray-400" />}
+                        icon={<Clock className="h-4 w-4 text-fg-muted" />}
                         defaultOpen={false}
                     >
                         <PublicActivityFeed items={activity} />
@@ -139,9 +139,9 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
                 {/* Watchlist */}
                 <div>
-                    <h2 className="font-display text-lg font-bold text-white mb-3">Watchlist</h2>
+                    <h2 className="font-display text-lg font-bold text-fg mb-3">Watchlist</h2>
                     {visibleWatchlist.length === 0 ? (
-                        <p className="text-gray-500 text-sm">This watchlist is empty.</p>
+                        <p className="text-fg-dim text-sm">This watchlist is empty.</p>
                     ) : (
                         <WatchlistTable items={visibleWatchlist} readOnly />
                     )}

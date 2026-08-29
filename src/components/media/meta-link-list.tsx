@@ -17,7 +17,7 @@ export type MetaItem = { key: string; label: string; href?: string };
  */
 export function MetaLinkList({
     items,
-    className = "text-sm text-white/60",
+    className = "text-sm text-fg-muted",
     linkClassName = "text-sky-300 hover:text-sky-200",
 }: {
     items: MetaItem[];
@@ -30,7 +30,7 @@ export function MetaLinkList({
             {items.map((item, i) => (
                 <React.Fragment key={item.key}>
                     {i > 0 && (
-                        <span aria-hidden className="text-white/20">
+                        <span aria-hidden className="text-fg-faint">
                             ·
                         </span>
                     )}

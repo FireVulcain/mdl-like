@@ -48,7 +48,7 @@ export function SeasonSelector({ seasons, selectedSeason }: SeasonSelectorProps)
       <button
         onClick={() => setOpen((o) => !o)}
         disabled={isPending}
-        className="inline-flex items-center gap-1 text-3xl font-bold text-gray-400 hover:text-gray-200 transition-colors disabled:opacity-60 disabled:cursor-wait"
+        className="inline-flex items-center gap-1 text-3xl font-bold text-fg-muted hover:text-fg-soft transition-colors disabled:opacity-60 disabled:cursor-wait"
       >
         {isPending ? (
           <Loader2 className="h-5 w-5 animate-spin" />
@@ -61,14 +61,14 @@ export function SeasonSelector({ seasons, selectedSeason }: SeasonSelectorProps)
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-2 z-50 min-w-[160px] rounded-lg border border-white/12 bg-gray-900/95 shadow-2xl backdrop-blur-sm overflow-hidden">
+        <div className="absolute top-full left-0 mt-2 z-50 min-w-[160px] rounded-lg border border-line-strong bg-panel/95 shadow-2xl backdrop-blur-sm overflow-hidden">
           {seasons.map((season) => {
             const isSelected = season.seasonNumber === selectedSeason;
             return (
               <button
                 key={season.seasonNumber}
                 onClick={() => handleSelect(season.seasonNumber)}
-                className={`flex items-center justify-between gap-3 w-full px-3 py-2 text-sm text-left whitespace-nowrap transition-colors ${isSelected ? "bg-white/8 text-white" : "text-gray-300 hover:bg-white/6 hover:text-white"}`}
+                className={`flex items-center justify-between gap-3 w-full px-3 py-2 text-sm text-left whitespace-nowrap transition-colors ${isSelected ? "bg-surface-3 text-fg" : "text-fg-soft hover:bg-surface-2 hover:text-fg"}`}
               >
                 <span>{season.name}</span>
                 {isSelected && <Check className="h-3 w-3 text-sky-400 shrink-0" />}

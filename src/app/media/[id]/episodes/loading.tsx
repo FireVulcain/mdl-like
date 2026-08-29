@@ -25,7 +25,7 @@ export default function Loading() {
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
                         {[0, 1, 2, 3].map((i) => (
                             <div key={i} className="flex items-center gap-1.5">
-                                <div className="size-2.5 animate-pulse rounded-full bg-white/5" />
+                                <div className="size-2.5 animate-pulse rounded-full bg-surface-2" />
                                 <Line w={52} h={11} />
                             </div>
                         ))}
@@ -35,7 +35,7 @@ export default function Loading() {
 
                 <div className="flex flex-wrap gap-1.5">
                     {Array.from({ length: 8 }, (_, i) => (
-                        <div key={i} className="h-12 w-19 animate-pulse rounded-md bg-white/5" />
+                        <div key={i} className="h-12 w-19 animate-pulse rounded-md bg-surface-2" />
                     ))}
                 </div>
 
@@ -43,7 +43,7 @@ export default function Loading() {
                     <Line w={200} h={17} />
                     <div className="flex flex-wrap gap-1.5">
                         {Array.from({ length: 16 }, (_, i) => (
-                            <div key={i} className="h-12 w-19 animate-pulse rounded-md bg-white/5" />
+                            <div key={i} className="h-12 w-19 animate-pulse rounded-md bg-surface-2" />
                         ))}
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export default function Loading() {
                     <Line w={110} h={20} />
                     <div className="ml-auto flex gap-1">
                         {[0, 1, 2].map((i) => (
-                            <div key={i} className="h-7 w-10 animate-pulse rounded-lg bg-white/5" />
+                            <div key={i} className="h-7 w-10 animate-pulse rounded-lg bg-surface-2" />
                         ))}
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export default function Loading() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-6">
                     {Array.from({ length: 9 }, (_, i) => (
                         <div key={i} className="space-y-2">
-                            <div className="aspect-video w-full animate-pulse rounded-lg bg-white/5" />
+                            <div className="aspect-video w-full animate-pulse rounded-lg bg-surface-2" />
                             <Line w="80%" h={13} />
                             <Line w="45%" h={10} />
                         </div>

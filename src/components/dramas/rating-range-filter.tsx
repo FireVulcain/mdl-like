@@ -68,8 +68,8 @@ export function RatingRangeFilter({
     return (
         <div className="space-y-3">
             <div className="flex items-baseline justify-between">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Rating</h4>
-                <span className={`text-xs tabular-nums ${isDefault ? "text-gray-600" : "text-white"}`}>
+                <h4 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Rating</h4>
+                <span className={`text-xs tabular-nums ${isDefault ? "text-fg-faint" : "text-fg"}`}>
                     {isDefault ? "Any" : `${min.toFixed(1)} – ${max.toFixed(1)}`}
                 </span>
             </div>
@@ -78,7 +78,7 @@ export function RatingRangeFilter({
                 thumb takes pointer events, so whichever handle is under the
                 cursor is the one that moves. */}
             <div className="relative h-5">
-                <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-white/10" />
+                <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-surface-4" />
                 <div
                     className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-sky-400"
                     style={{ left: `${pct(min)}%`, right: `${100 - pct(max)}%` }}
@@ -109,7 +109,7 @@ export function RatingRangeFilter({
                 />
             </div>
 
-            <div className="flex justify-between text-xs text-gray-600 tabular-nums">
+            <div className="flex justify-between text-xs text-fg-faint tabular-nums">
                 <span>{MIN}</span>
                 <span>{MAX}</span>
             </div>

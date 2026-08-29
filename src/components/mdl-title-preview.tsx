@@ -21,7 +21,7 @@ const answers = new Map<string, MdlPreview | null>();
 const OPEN_DELAY_MS = 400;
 
 function Line({ label }: { label: string }) {
-    return <div className="h-2.5 rounded bg-white/8 animate-pulse" style={{ width: label }} />;
+    return <div className="h-2.5 rounded bg-surface-3 animate-pulse" style={{ width: label }} />;
 }
 
 function Body({ data }: { data: MdlPreview }) {
@@ -34,18 +34,18 @@ function Body({ data }: { data: MdlPreview }) {
                     alt=""
                     width={80}
                     height={116}
-                    className="w-20 h-29 shrink-0 rounded object-cover bg-white/5"
+                    className="w-20 h-29 shrink-0 rounded object-cover bg-surface-2"
                 />
             )}
 
             <div className="min-w-0 flex-1 space-y-2">
                 <div>
-                    <p className="text-sm font-semibold text-white leading-snug">
+                    <p className="text-sm font-semibold text-fg leading-snug">
                         {data.title}
-                        {data.year && <span className="ml-1.5 font-normal text-gray-500">{data.year}</span>}
+                        {data.year && <span className="ml-1.5 font-normal text-fg-dim">{data.year}</span>}
                     </p>
                     {(data.nativeTitle || data.kind) && (
-                        <p className="text-xs text-gray-500 mt-0.5 truncate">
+                        <p className="text-xs text-fg-dim mt-0.5 truncate">
                             {[data.nativeTitle, data.kind].filter(Boolean).join(" · ")}
                         </p>
                     )}
@@ -62,13 +62,13 @@ function Body({ data }: { data: MdlPreview }) {
                                 {data.rating.toFixed(1)}
                             </span>
                         )}
-                        {data.ranked && <span className="text-gray-500">{data.ranked}</span>}
-                        {data.episodes && <span className="text-gray-500">{data.episodes} ep</span>}
+                        {data.ranked && <span className="text-fg-dim">{data.ranked}</span>}
+                        {data.episodes && <span className="text-fg-dim">{data.episodes} ep</span>}
                     </div>
                 )}
 
                 {data.synopsis && (
-                    <p className="text-xs leading-relaxed text-gray-400 line-clamp-4">{data.synopsis}</p>
+                    <p className="text-xs leading-relaxed text-fg-muted line-clamp-4">{data.synopsis}</p>
                 )}
 
                 {/* The same component and the same destination the media pages
@@ -128,14 +128,14 @@ export function MdlTitlePreview({ slug, children }: { slug: string; children: Re
                 align="center"
                 sideOffset={10}
                 collisionPadding={12}
-                className="w-96 max-w-[calc(100vw-2rem)] rounded-lg border-white/10 bg-gray-900 p-3 text-sm shadow-xl shadow-black/50"
+                className="w-96 max-w-[calc(100vw-2rem)] rounded-lg border-line-strong bg-panel p-3 text-sm shadow-xl shadow-black/50"
             >
                 {/* MDL draws one too, and it earns its place here: the card is
                     wide enough to float free of the row it belongs to. */}
                 <TooltipArrow width={12} height={6} className="fill-gray-900" />
                 {data === undefined ? (
                     <div className="flex gap-3">
-                        <div className="w-20 h-29 shrink-0 rounded bg-white/5 animate-pulse" />
+                        <div className="w-20 h-29 shrink-0 rounded bg-surface-2 animate-pulse" />
                         <div className="flex-1 space-y-2 pt-1">
                             <Line label="70%" />
                             <Line label="40%" />
@@ -145,7 +145,7 @@ export function MdlTitlePreview({ slug, children }: { slug: string; children: Re
                         </div>
                     </div>
                 ) : data === null ? (
-                    <p className="text-xs text-gray-500">MyDramaList didn&rsquo;t answer for this title.</p>
+                    <p className="text-xs text-fg-dim">MyDramaList didn&rsquo;t answer for this title.</p>
                 ) : (
                     <Body data={data} />
                 )}

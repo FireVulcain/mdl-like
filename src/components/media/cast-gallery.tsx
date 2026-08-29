@@ -17,14 +17,14 @@ interface CastGalleryProps {
 
 export function CastGallery({ cast }: CastGalleryProps) {
     if (!cast || cast.length === 0) {
-        return <div className="text-center py-12 text-gray-400">No cast information available.</div>;
+        return <div className="text-center py-12 text-fg-muted">No cast information available.</div>;
     }
 
     return (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {cast.map((actor) => (
                 <Link key={actor.id} href={tmdbPersonHref(actor.id)} className="space-y-3 group block">
-                    <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-white/10 hover:ring-white/20 transition-all hover:scale-105">
+                    <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-line-strong hover:ring-line-strong transition-all hover:scale-105">
                         {actor.profile ? (
                             <Image unoptimized={true}
                                 src={actor.profile}
@@ -45,14 +45,14 @@ export function CastGallery({ cast }: CastGalleryProps) {
                                 }}
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center text-xs text-gray-400 bg-linear-to-br from-gray-800 to-gray-900">
+                            <div className="w-full h-full flex items-center justify-center text-xs text-fg-muted bg-linear-to-br from-surface-3 to-surface-2">
                                 No Image
                             </div>
                         )}
                     </div>
                     <div>
-                        <div className="font-semibold leading-tight text-white group-hover:text-blue-400 transition-colors">{actor.name}</div>
-                        <div className="text-sm text-gray-400 leading-tight mt-1">{actor.character}</div>
+                        <div className="font-semibold leading-tight text-fg group-hover:text-blue-400 transition-colors">{actor.name}</div>
+                        <div className="text-sm text-fg-muted leading-tight mt-1">{actor.character}</div>
                     </div>
                 </Link>
             ))}

@@ -136,7 +136,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         return (
             <div className="min-h-screen bg-linear-to-b -mt-24">
                 <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
-                    <div className="h-full w-full bg-linear-to-br from-gray-800 to-gray-900" />
+                    <div className="h-full w-full bg-linear-to-br from-surface-3 to-surface-2" />
                 </div>
 
                 <div className="container relative -top-20 z-10 md:grid md:gap-8 md:grid-cols-[300px_1fr] m-auto pb-20 px-4 md:px-6">
@@ -146,13 +146,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             {displayPoster ? (
                                 <PosterZoom src={displayPoster} alt={media.title} />
                             ) : (
-                                <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
+                                <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted text-xs">No Poster</div>
                             )}
                             <a
                                 href={`https://mydramalist.com/${media.externalId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="absolute bottom-1.5 right-1.5 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/10 text-xs font-medium text-white/70"
+                                className="absolute bottom-1.5 right-1.5 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/20 text-xs font-medium text-white/70"
                             >
                                 <ExternalLink className="size-2.5" />
                                 MDL
@@ -201,7 +201,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             {displayPoster ? (
                                 <PosterZoom src={displayPoster} alt={media.title} />
                             ) : (
-                                <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
+                                <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted">
                                     No Poster
                                 </div>
                             )}
@@ -209,7 +209,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 href={`https://mydramalist.com/${media.externalId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
+                                className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/20 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
                             >
                                 <ExternalLink className="size-3" />
                                 MDL
@@ -240,74 +240,73 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         />
 
                         <div
-                            className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
+                            className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
                             style={{
-                                background: "rgba(17, 24, 39, 0.6)",
+                                background: "var(--panel-soft)",
                                 backdropFilter: "blur(20px)",
-                                boxShadow:
-                                    "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                                boxShadow: "var(--panel-shadow)",
                             }}
                         >
-                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
                             <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
-                                <span className="text-gray-400 font-medium">Title</span>
-                                <span className="text-white">{media.title}</span>
+                                <span className="text-fg-muted font-medium">Title</span>
+                                <span className="text-fg">{media.title}</span>
 
-                                <span className="text-gray-400 font-medium">Type</span>
-                                <span className="text-white">{media.type === "TV" ? "TV Show" : "Movie"}</span>
+                                <span className="text-fg-muted font-medium">Type</span>
+                                <span className="text-fg">{media.type === "TV" ? "TV Show" : "Movie"}</span>
 
                                 {/* The code was printed twice, once plain and once
                                     in a badge right beside it */}
-                                <span className="text-gray-400 font-medium">Country</span>
-                                <span className="text-white">{media.originCountry}</span>
+                                <span className="text-fg-muted font-medium">Country</span>
+                                <span className="text-fg">{media.originCountry}</span>
 
                                 {media.totalEp && (
                                     <>
-                                        <span className="text-gray-400 font-medium">Episodes</span>
-                                        <span className="text-white">{media.totalEp}</span>
+                                        <span className="text-fg-muted font-medium">Episodes</span>
+                                        <span className="text-fg">{media.totalEp}</span>
                                     </>
                                 )}
 
                                 {media.aired && (
                                     <>
-                                        <span className="text-gray-400 font-medium">Aired</span>
-                                        <span className="text-white">{media.aired}</span>
+                                        <span className="text-fg-muted font-medium">Aired</span>
+                                        <span className="text-fg">{media.aired}</span>
                                     </>
                                 )}
 
                                 {media.network && (
                                     <>
-                                        <span className="text-gray-400 font-medium">Network</span>
-                                        <span className="text-white">{media.network}</span>
+                                        <span className="text-fg-muted font-medium">Network</span>
+                                        <span className="text-fg">{media.network}</span>
                                     </>
                                 )}
 
                                 {media.duration && (
                                     <>
-                                        <span className="text-gray-400 font-medium">Duration</span>
-                                        <span className="text-white">{media.duration}</span>
+                                        <span className="text-fg-muted font-medium">Duration</span>
+                                        <span className="text-fg">{media.duration}</span>
                                     </>
                                 )}
 
                                 {media.rating > 0 && (
                                     <>
-                                        <span className="text-gray-400 font-medium">MDL Score</span>
+                                        <span className="text-fg-muted font-medium">MDL Score</span>
                                         <span className="text-sky-400 font-medium">MDL {media.rating.toFixed(1)}</span>
                                     </>
                                 )}
 
                                 {media.mdlRanking && (
                                     <>
-                                        <span className="text-gray-400 font-medium">MDL Rank</span>
+                                        <span className="text-fg-muted font-medium">MDL Rank</span>
                                         <span className="text-sky-400 font-medium">{media.mdlRanking}</span>
                                     </>
                                 )}
 
                                 {media.mdlWatchers ? (
                                     <>
-                                        <span className="text-gray-400 font-medium">Watchers</span>
+                                        <span className="text-fg-muted font-medium">Watchers</span>
                                         {/* Explicit locale: the server's own would group with spaces */}
-                                        <span className="text-white">{media.mdlWatchers.toLocaleString("en-US")}</span>
+                                        <span className="text-fg">{media.mdlWatchers.toLocaleString("en-US")}</span>
                                     </>
                                 ) : null}
                             </div>
@@ -360,7 +359,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {linkedHref ? (
                             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                                 <Link2 className="h-4 w-4 shrink-0 text-sky-400" />
-                                <span className="text-gray-300">
+                                <span className="text-fg-soft">
                                     This drama is linked to a TMDB entry
                                     {linkedSeason && linkedSeason > 1 ? ` (season ${linkedSeason})` : ""}.
                                 </span>
@@ -370,8 +369,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         ) : (
                             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-                                <Link2 className="h-4 w-4 shrink-0 text-gray-500" />
-                                <span className="text-gray-400">Not linked to TMDB yet — linking unlocks the full page.</span>
+                                <Link2 className="h-4 w-4 shrink-0 text-fg-dim" />
+                                <span className="text-fg-muted">Not linked to TMDB yet — linking unlocks the full page.</span>
                                 <LinkToTmdbButton mdlSlug={media.externalId} defaultQuery={media.title} />
                             </div>
                         )}
@@ -380,20 +379,20 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <div className="md:hidden grid grid-cols-[80px_1fr] gap-x-4 gap-y-1.5 text-sm">
                                 {media.aired && (
                                     <>
-                                        <span className="text-gray-400">Aired</span>
-                                        <span className="text-white">{media.aired}</span>
+                                        <span className="text-fg-muted">Aired</span>
+                                        <span className="text-fg">{media.aired}</span>
                                     </>
                                 )}
                                 {media.network && (
                                     <>
-                                        <span className="text-gray-400">Network</span>
-                                        <span className="text-white">{media.network}</span>
+                                        <span className="text-fg-muted">Network</span>
+                                        <span className="text-fg">{media.network}</span>
                                     </>
                                 )}
                                 {media.duration && (
                                     <>
-                                        <span className="text-gray-400">Duration</span>
-                                        <span className="text-white">{media.duration}</span>
+                                        <span className="text-fg-muted">Duration</span>
+                                        <span className="text-fg">{media.duration}</span>
                                     </>
                                 )}
                             </div>
@@ -435,7 +434,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
 
                         {media.type === "TV" && (
-                            <div id="section-episodes" className="border-t border-white/8 pt-8">
+                            <div id="section-episodes" className="border-t border-line pt-8">
                                 <Suspense fallback={<EpisodeGuide episodes={[]} season={1} poster={media.poster} />}>
                                     <MdlEpisodeGuideSection
                                         tmdbEpisodes={[]}
@@ -454,13 +453,13 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {/* An MDL-native page has no TMDB backdrops, so it had no
                             photo section at all. MDL has the gallery, so it gets
                             one — same component, one source. */}
-                        <div id="section-rating" className="border-t border-white/8 pt-8 empty:hidden">
+                        <div id="section-rating" className="border-t border-line pt-8 empty:hidden">
                             <Suspense fallback={null}>
                                 <MdlRatingChartSection mdlSlug={media.externalId} />
                             </Suspense>
                         </div>
 
-                        <div id="section-photos" className="border-t border-white/8 pt-8">
+                        <div id="section-photos" className="border-t border-line pt-8">
                             <Suspense fallback={null}>
                                 <MdlPhotosSection
                                     backdrops={[]}
@@ -472,7 +471,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         </div>
 
-                        <div id="section-reviews" className="border-t border-white/8 pt-8">
+                        <div id="section-reviews" className="border-t border-line pt-8">
                             <Suspense fallback={null}>
                                 <MdlReviewsSection
                                     externalId={media.externalId}
@@ -484,8 +483,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         </div>
 
-                        <div id="section-recommendations" className="border-t border-white/8 pt-8">
-                            <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
+                        <div id="section-recommendations" className="border-t border-line pt-8">
+                            <Suspense fallback={<div className="h-6 w-40 rounded bg-surface-2 animate-pulse mb-4" />}>
                                 <MdlRecsSection
                                     tmdbRecs={[]}
                                     externalId={media.externalId}
@@ -496,7 +495,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                         </div>
 
-                        <div id="section-comments" className="border-t border-white/8 pt-8">
+                        <div id="section-comments" className="border-t border-line pt-8">
                             <Suspense fallback={null}>
                                 <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} mdlSlug={media.externalId} />
                             </Suspense>
@@ -633,10 +632,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             bottom fade to the page, and a third that repeated the
                             second's job were stacked here — the same pile the hero
                             carried. This single stop does both ends. */}
-                        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-gray-900" />
+                        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-app" />
                     </>
                 ) : (
-                    <div className="h-full w-full bg-linear-to-br from-gray-800 to-gray-900" />
+                    <div className="h-full w-full bg-linear-to-br from-surface-3 to-surface-2" />
                 )}
             </div>
 
@@ -647,7 +646,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {displayPoster ? (
                             <PosterZoom src={displayPoster} alt={media.title} />
                         ) : (
-                            <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-xs">No Poster</div>
+                            <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted text-xs">No Poster</div>
                         )}
                         {showMdlPosterLink && (
                             <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
@@ -723,7 +722,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {displayPoster ? (
                             <PosterZoom src={displayPoster} alt={media.title} />
                         ) : (
-                            <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400">
+                            <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted">
                                 No Poster
                             </div>
                         )}
@@ -772,37 +771,36 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {media.trailer && <TrailerButton trailer={media.trailer} className="w-full justify-center" />}
 
                     <div
-                        className="relative overflow-hidden rounded-xl border border-white/10 p-6 shadow-lg space-y-3"
+                        className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
                         style={{
-                            background: "rgba(17, 24, 39, 0.6)",
+                            background: "var(--panel-soft)",
                             backdropFilter: "blur(20px)",
-                            boxShadow:
-                                "0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+                            boxShadow: "var(--panel-shadow)",
                         }}
                     >
-                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
                         <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
-                            <span className="text-gray-400 font-medium">Title</span>
-                            <span className="text-white">{media.title}</span>
+                            <span className="text-fg-muted font-medium">Title</span>
+                            <span className="text-fg">{media.title}</span>
 
-                            <span className="text-gray-400 font-medium">Type</span>
-                            <span className="text-white">{media.type === "TV" ? "TV Show" : "Movie"}</span>
+                            <span className="text-fg-muted font-medium">Type</span>
+                            <span className="text-fg">{media.type === "TV" ? "TV Show" : "Movie"}</span>
 
-                            <span className="text-gray-400 font-medium">Country</span>
-                            <span className="text-white">{media.originCountry}</span>
+                            <span className="text-fg-muted font-medium">Country</span>
+                            <span className="text-fg">{media.originCountry}</span>
 
                             {media.totalEp && (
                                 <>
-                                    <span className="text-gray-400 font-medium">Episodes</span>
-                                    <span className="text-white">{media.totalEp}</span>
+                                    <span className="text-fg-muted font-medium">Episodes</span>
+                                    <span className="text-fg">{media.totalEp}</span>
                                 </>
                             )}
 
                             <Suspense
                                 fallback={
                                     <>
-                                        <span className="text-gray-400 font-medium">Aired</span>
-                                        <span className="text-white">{media.aired}</span>
+                                        <span className="text-fg-muted font-medium">Aired</span>
+                                        <span className="text-fg">{media.aired}</span>
                                     </>
                                 }
                             >
@@ -818,22 +816,22 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                             {media.network && (
                                 <>
-                                    <span className="text-gray-400 font-medium">Network</span>
-                                    <span className="text-white">{media.network}</span>
+                                    <span className="text-fg-muted font-medium">Network</span>
+                                    <span className="text-fg">{media.network}</span>
                                 </>
                             )}
 
                             {media.duration && (
                                 <>
-                                    <span className="text-gray-400 font-medium">Duration</span>
-                                    <span className="text-white">{media.duration}</span>
+                                    <span className="text-fg-muted font-medium">Duration</span>
+                                    <span className="text-fg">{media.duration}</span>
                                 </>
                             )}
 
                             {media.contentRating && (
                                 <>
-                                    <span className="text-gray-400 font-medium">Rating</span>
-                                    <span className="text-gray-300">{media.contentRating}</span>
+                                    <span className="text-fg-muted font-medium">Rating</span>
+                                    <span className="text-fg-soft">{media.contentRating}</span>
                                 </>
                             )}
 
@@ -841,7 +839,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 <Suspense
                                     fallback={
                                         <>
-                                            <span className="text-gray-400 font-medium">MDL Rank</span>
+                                            <span className="text-fg-muted font-medium">MDL Rank</span>
                                             <span className="inline-block h-4 w-10 rounded bg-sky-500/20 animate-pulse" />
                                         </>
                                     }
@@ -958,8 +956,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <Suspense
                                 fallback={
                                     <>
-                                        <span className="text-gray-400">Aired</span>
-                                        <span className="text-white">{media.aired}</span>
+                                        <span className="text-fg-muted">Aired</span>
+                                        <span className="text-fg">{media.aired}</span>
                                     </>
                                 }
                             >
@@ -974,20 +972,20 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                             {media.network && (
                                 <>
-                                    <span className="text-gray-400">Network</span>
-                                    <span className="text-white">{media.network}</span>
+                                    <span className="text-fg-muted">Network</span>
+                                    <span className="text-fg">{media.network}</span>
                                 </>
                             )}
                             {media.duration && (
                                 <>
-                                    <span className="text-gray-400">Duration</span>
-                                    <span className="text-white">{media.duration}</span>
+                                    <span className="text-fg-muted">Duration</span>
+                                    <span className="text-fg">{media.duration}</span>
                                 </>
                             )}
                             {media.contentRating && (
                                 <>
-                                    <span className="text-gray-400">Rating</span>
-                                    <span className="text-gray-300">{media.contentRating}</span>
+                                    <span className="text-fg-muted">Rating</span>
+                                    <span className="text-fg-soft">{media.contentRating}</span>
                                 </>
                             )}
                         </div>
@@ -1056,7 +1054,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* Episode Guide */}
                     {media.type === "TV" && episodes.length > 0 && (
-                        <div id="section-episodes" className="border-t border-white/8 pt-8">
+                        <div id="section-episodes" className="border-t border-line pt-8">
                             {isMdlRelevant ? (
                                 <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} hideSpoilers={displayPrefs.hideSpoilers} />}>
                                     <MdlEpisodeGuideSection
@@ -1080,14 +1078,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         in its own boundary and the fallback is the section as it
                         was before — backdrops, no toggle. */}
                     {mdlSlugForSeason && (
-                        <div id="section-rating" className="border-t border-white/8 pt-8 empty:hidden">
+                        <div id="section-rating" className="border-t border-line pt-8 empty:hidden">
                             <Suspense fallback={null}>
                                 <MdlRatingChartSection mdlSlug={mdlSlugForSeason} />
                             </Suspense>
                         </div>
                     )}
 
-                    <div id="section-photos" className="border-t border-white/8 pt-8">
+                    <div id="section-photos" className="border-t border-line pt-8">
                         <Suspense fallback={<PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />}>
                             <MdlPhotosSection
                                 backdrops={media.images?.backdrops || []}
@@ -1100,7 +1098,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* MDL Reviews */}
                     {isMdlRelevant && (
-                        <div id="section-reviews" className="border-t border-white/8 pt-8">
+                        <div id="section-reviews" className="border-t border-line pt-8">
                             <Suspense fallback={null}>
                                 <MdlReviewsSection
                                     externalId={media.externalId}
@@ -1114,8 +1112,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     )}
 
                     {/* Recommendations */}
-                    <div id="section-recommendations" className="border-t border-white/8 pt-8">
-                        <Suspense fallback={<div className="h-6 w-40 rounded bg-white/5 animate-pulse mb-4" />}>
+                    <div id="section-recommendations" className="border-t border-line pt-8">
+                        <Suspense fallback={<div className="h-6 w-40 rounded bg-surface-2 animate-pulse mb-4" />}>
                             <MdlRecsSection
                                 tmdbRecs={media.recommendations || []}
                                 externalId={media.externalId}
@@ -1127,7 +1125,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* MDL Comments */}
                     {isMdlRelevant && (
-                        <div id="section-comments" className="border-t border-white/8 pt-8">
+                        <div id="section-comments" className="border-t border-line pt-8">
                             <Suspense fallback={null}>
                                 <MdlThreadsSection
                                     externalId={media.externalId}

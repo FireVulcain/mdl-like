@@ -20,7 +20,7 @@ export function BiographyExpander({ text }: { text: string }) {
             <div className={`relative overflow-hidden ${expanded || !overflows ? "" : "max-h-18"}`}>
                 <p ref={pRef} className="leading-relaxed text-muted-foreground whitespace-pre-line">{text}</p>
                 {!expanded && overflows && (
-                    <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-gray-900 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-panel to-transparent pointer-events-none" />
                 )}
             </div>
 

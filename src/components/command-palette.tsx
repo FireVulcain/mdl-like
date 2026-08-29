@@ -1047,21 +1047,21 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         back();
                     }
                 }}
-                className="top-[12%] translate-y-0 p-0 gap-0 sm:max-w-xl bg-gray-900 border-white/10 overflow-hidden"
+                className="top-[12%] translate-y-0 p-0 gap-0 sm:max-w-xl bg-panel border-line-strong overflow-hidden"
             >
                 <DialogTitle className="sr-only">Command palette</DialogTitle>
 
-                <div className="flex items-center gap-2 px-4 h-12 border-b border-white/8">
+                <div className="flex items-center gap-2 px-4 h-12 border-b border-line">
                     {crumb ? (
                         <button
                             onClick={back}
-                            className="shrink-0 flex items-center gap-1.5 max-w-[45%] px-2 py-1 -ml-2 rounded-md bg-white/8 text-xs font-medium text-white hover:bg-white/12 transition-colors cursor-pointer"
+                            className="shrink-0 flex items-center gap-1.5 max-w-[45%] px-2 py-1 -ml-2 rounded-md bg-surface-3 text-xs font-medium text-fg hover:bg-surface-4 transition-colors cursor-pointer"
                         >
                             <span className="truncate">{crumb}</span>
-                            {scopedItem && scopedItem.season > 1 && <span className="text-gray-400">S{scopedItem.season}</span>}
+                            {scopedItem && scopedItem.season > 1 && <span className="text-fg-muted">S{scopedItem.season}</span>}
                         </button>
                     ) : (
-                        <Search className="h-4 w-4 text-gray-500 shrink-0" />
+                        <Search className="h-4 w-4 text-fg-dim shrink-0" />
                     )}
                     <input
                         ref={inputRef}
@@ -1083,20 +1083,20 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         onKeyDown={onInputKeyDown}
                         placeholder={placeholder}
                         aria-label={placeholder}
-                        className="flex-1 min-w-0 bg-transparent text-sm text-white placeholder:text-gray-500 outline-none"
+                        className="flex-1 min-w-0 bg-transparent text-sm text-fg placeholder:text-fg-dim outline-none"
                     />
                     {(busy || searchingRemote) && (
-                        <div className="h-3.5 w-3.5 rounded-full border-2 border-white/20 border-t-white/70 animate-spin shrink-0" />
+                        <div className="h-3.5 w-3.5 rounded-full border-2 border-line-strong border-t-white/70 animate-spin shrink-0" />
                     )}
                 </div>
 
                 <div ref={listRef} className="max-h-[min(60vh,26rem)] overflow-y-auto py-2">
                     {items === null && mode.kind === "root" && (
-                        <p className="px-4 py-6 text-center text-xs text-gray-500">Loading your watchlist…</p>
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Loading your watchlist…</p>
                     )}
 
                     {mode.kind === "prompt" && (
-                        <p className="px-4 py-6 text-center text-xs text-gray-500">
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">
                             {mode.field === "episode"
                                 ? `Currently at ${mode.item.progress}${mode.item.totalEp ? ` of ${mode.item.totalEp}` : ""}. Type a number and press Enter.`
                                 : "Type a score from 1 to 10 — decimals allowed — and press Enter."}
@@ -1104,21 +1104,21 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     )}
 
                     {mode.kind === "menu" && mode.menu === "airing" && airing === null && (
-                        <p className="px-4 py-6 text-center text-xs text-gray-500">Checking today&rsquo;s schedule…</p>
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Checking today&rsquo;s schedule…</p>
                     )}
                     {mode.kind === "menu" && mode.menu === "airing" && airing?.length === 0 && (
-                        <p className="px-4 pt-4 pb-2 text-center text-xs text-gray-500">Nothing from your list airs today.</p>
+                        <p className="px-4 pt-4 pb-2 text-center text-xs text-fg-dim">Nothing from your list airs today.</p>
                     )}
                     {mode.kind === "menu" && mode.menu === "stats" && facts === null && (
-                        <p className="px-4 py-6 text-center text-xs text-gray-500">Counting…</p>
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Counting…</p>
                     )}
 
                     {mode.kind === "menu" && mode.menu === "help" && (
-                        <div className="px-4 pb-2 space-y-1 text-xs text-gray-500">
+                        <div className="px-4 pb-2 space-y-1 text-xs text-fg-dim">
                             <p>
-                                Type to search your watchlist. <kbd className="font-sans text-gray-400">tab</kbd> or{" "}
-                                <kbd className="font-sans text-gray-400">→</kbd> opens a title&rsquo;s actions,{" "}
-                                <kbd className="font-sans text-gray-400">esc</kbd> goes back a level.
+                                Type to search your watchlist. <kbd className="font-sans text-fg-muted">tab</kbd> or{" "}
+                                <kbd className="font-sans text-fg-muted">→</kbd> opens a title&rsquo;s actions,{" "}
+                                <kbd className="font-sans text-fg-muted">esc</kbd> goes back a level.
                             </p>
                             <p>
                                 On a title: mark the next episode, mark them all, pick a specific one, change status, rate
@@ -1128,7 +1128,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     )}
 
                     {items !== null && rows.length === 0 && mode.kind !== "prompt" && mode.kind !== "menu" && (
-                        <p className="px-4 py-6 text-center text-xs text-gray-500">Nothing matches that.</p>
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Nothing matches that.</p>
                     )}
 
                     {rows.map((row, i) => {
@@ -1141,7 +1141,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         return (
                             <div key={row.key}>
                                 {row.section && (
-                                    <p className="px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-600">
+                                    <p className="px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-fg-faint">
                                         {row.section}
                                     </p>
                                 )}
@@ -1154,11 +1154,11 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         // the taller box; a one-line command in a
                                         // poster-sized slot is mostly air.
                                         hasArtwork ? "py-2" : "py-1.5"
-                                    } ${isActive ? "bg-white/8" : "hover:bg-white/4"}`}
+                                    } ${isActive ? "bg-surface-3" : "hover:bg-surface-2"}`}
                                 >
                                     {row.kind === "remote" ? (
                                         <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
                                                 {row.entry.image ? (
                                                     <Image
                                                         unoptimized
@@ -1171,21 +1171,21 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center">
                                                         {row.entry.kind === "person" ? (
-                                                            <User className="h-3 w-3 text-gray-600" />
+                                                            <User className="h-3 w-3 text-fg-faint" />
                                                         ) : (
-                                                            <Tv className="h-3 w-3 text-gray-600" />
+                                                            <Tv className="h-3 w-3 text-fg-faint" />
                                                         )}
                                                     </div>
                                                 )}
                                             </div>
                                             <span className="flex-1 min-w-0">
-                                                <span className="block text-sm text-white truncate">{row.entry.title}</span>
-                                                <span className="block text-xs text-gray-500 truncate">{row.entry.detail}</span>
+                                                <span className="block text-sm text-fg truncate">{row.entry.title}</span>
+                                                <span className="block text-xs text-fg-dim truncate">{row.entry.detail}</span>
                                             </span>
                                         </>
                                     ) : row.kind === "person" ? (
                                         <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
                                                 {row.person.image ? (
                                                     <Image
                                                         unoptimized
@@ -1197,13 +1197,13 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center">
-                                                        <User className="h-3 w-3 text-gray-600" />
+                                                        <User className="h-3 w-3 text-fg-faint" />
                                                     </div>
                                                 )}
                                             </div>
                                             <span className="flex-1 min-w-0">
-                                                <span className="block text-sm text-white truncate">{row.person.name}</span>
-                                                <span className="block text-xs text-gray-500 truncate">
+                                                <span className="block text-sm text-fg truncate">{row.person.name}</span>
+                                                <span className="block text-xs text-fg-dim truncate">
                                                     {row.person.shows.length === 1
                                                         ? "1 show in your list"
                                                         : `${row.person.shows.length} shows in your list`}
@@ -1212,7 +1212,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         </>
                                     ) : row.kind === "airing" ? (
                                         <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
                                                 {row.entry.poster ? (
                                                     <Image
                                                         unoptimized
@@ -1224,25 +1224,25 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center">
-                                                        <Tv className="h-3 w-3 text-gray-600" />
+                                                        <Tv className="h-3 w-3 text-fg-faint" />
                                                     </div>
                                                 )}
                                             </div>
                                             <span className="flex-1 min-w-0">
-                                                <span className="block text-sm text-white truncate">{row.entry.title}</span>
-                                                <span className="block text-xs text-gray-500 truncate">{row.entry.detail}</span>
+                                                <span className="block text-sm text-fg truncate">{row.entry.title}</span>
+                                                <span className="block text-xs text-fg-dim truncate">{row.entry.detail}</span>
                                             </span>
                                         </>
                                     ) : row.kind === "fact" ? (
                                         <>
                                             <span className="shrink-0 w-7 flex items-center justify-center">
-                                                <BarChart3 className="h-4 w-4 text-gray-600" />
+                                                <BarChart3 className="h-4 w-4 text-fg-faint" />
                                             </span>
-                                            <span className="flex-1 min-w-0 text-sm text-gray-300 truncate">{row.label}</span>
+                                            <span className="flex-1 min-w-0 text-sm text-fg-soft truncate">{row.label}</span>
                                         </>
                                     ) : row.kind === "media" ? (
                                         <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-white/5">
+                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
                                                 {row.item.poster ? (
                                                     <Image
                                                         unoptimized
@@ -1254,13 +1254,13 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center">
-                                                        <Tv className="h-3 w-3 text-gray-600" />
+                                                        <Tv className="h-3 w-3 text-fg-faint" />
                                                     </div>
                                                 )}
                                             </div>
                                             <span className="flex-1 min-w-0">
-                                                <span className="block text-sm text-white truncate">{row.item.title}</span>
-                                                <span className="block text-xs text-gray-500 truncate">
+                                                <span className="block text-sm text-fg truncate">{row.item.title}</span>
+                                                <span className="block text-xs text-fg-dim truncate">
                                                     {/* Why this row is here, when the title
                                                         is not what was typed. */}
                                                     {row.character && (
@@ -1274,15 +1274,15 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         <>
                                             <span className="shrink-0 w-7 flex items-center justify-center">
                                                 {RowIcon ? (
-                                                    <RowIcon className={`h-4 w-4 ${danger ? "text-rose-400/80" : "text-gray-500"}`} />
+                                                    <RowIcon className={`h-4 w-4 ${danger ? "text-rose-400/80" : "text-fg-dim"}`} />
                                                 ) : (
-                                                    <Search className="h-4 w-4 text-gray-500" />
+                                                    <Search className="h-4 w-4 text-fg-dim" />
                                                 )}
                                             </span>
-                                            <span className={`flex-1 min-w-0 text-sm truncate ${danger ? "text-rose-300" : "text-white"}`}>
+                                            <span className={`flex-1 min-w-0 text-sm truncate ${danger ? "text-rose-300" : "text-fg"}`}>
                                                 {row.kind === "search" ? (
                                                     <>
-                                                        <span className="text-gray-400">Search everywhere for </span>
+                                                        <span className="text-fg-muted">Search everywhere for </span>
                                                         {row.query}
                                                     </>
                                                 ) : row.kind === "page" ? (
@@ -1294,33 +1294,33 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         </>
                                     )}
 
-                                    {isActive && <CornerDownLeft className="h-3.5 w-3.5 text-gray-500 shrink-0" />}
+                                    {isActive && <CornerDownLeft className="h-3.5 w-3.5 text-fg-dim shrink-0" />}
                                 </button>
                             </div>
                         );
                     })}
                 </div>
 
-                <div className="flex items-center gap-4 px-4 h-9 border-t border-white/8 text-[11px] text-gray-600">
+                <div className="flex items-center gap-4 px-4 h-9 border-t border-line text-[11px] text-fg-faint">
                     <span>
-                        <kbd className="font-sans text-gray-500">↑↓</kbd> navigate
+                        <kbd className="font-sans text-fg-dim">↑↓</kbd> navigate
                     </span>
                     <span>
-                        <kbd className="font-sans text-gray-500">↵</kbd> {mode.kind === "root" ? "open" : "run"}
+                        <kbd className="font-sans text-fg-dim">↵</kbd> {mode.kind === "root" ? "open" : "run"}
                     </span>
                     <span>
-                        <kbd className="font-sans text-gray-500">tab</kbd> {mode.kind === "root" ? "actions" : "forward"}
+                        <kbd className="font-sans text-fg-dim">tab</kbd> {mode.kind === "root" ? "actions" : "forward"}
                     </span>
                     {mode.kind !== "root" && (
                         <span>
-                            <kbd className="font-sans text-gray-500">esc</kbd> back
+                            <kbd className="font-sans text-fg-dim">esc</kbd> back
                         </span>
                     )}
                     <button
                         onClick={() => openMenu("help")}
-                        className="text-gray-600 hover:text-gray-300 transition-colors cursor-pointer"
+                        className="text-fg-faint hover:text-fg-soft transition-colors cursor-pointer"
                     >
-                        <kbd className="font-sans text-gray-500">?</kbd> help
+                        <kbd className="font-sans text-fg-dim">?</kbd> help
                     </button>
                     {mode.kind === "root" && items !== null && items.length > 0 && (
                         <span className="ml-auto">{items.length} titles indexed</span>

@@ -181,10 +181,10 @@ function formatAirDate(airDate: string, airDateTime?: string | null): string {
 function CountdownUnit({ value, label }: { value: number; label: string }) {
     return (
         <div className="flex flex-col items-center">
-            <div className="text-2xl md:text-3xl font-bold text-white tabular-nums">
+            <div className="text-2xl md:text-3xl font-bold text-fg tabular-nums">
                 {value.toString().padStart(2, '0')}
             </div>
-            <div className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider">
+            <div className="text-[10px] md:text-xs text-fg-muted uppercase tracking-wider">
                 {label}
             </div>
         </div>
@@ -298,16 +298,15 @@ export function NextEpisodeCountdown({
 
     return (
         <div
-            className="relative overflow-hidden rounded-xl border border-white/10 p-5 shadow-lg"
+            className="relative overflow-hidden rounded-xl border border-line-strong p-5 shadow-lg"
             style={{
-                background: 'rgba(17, 24, 39, 0.6)',
+                background: 'var(--panel-soft)',
                 backdropFilter: 'blur(20px)',
-                boxShadow:
-                    '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+                boxShadow: "var(--panel-shadow)",
             }}
         >
             {/* Top highlight */}
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
             <div className="flex flex-col gap-4">
                 {/* Header with Calendar Icon and Episode Info */}
@@ -316,10 +315,10 @@ export function NextEpisodeCountdown({
                         <Calendar className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
-                        <div className="text-sm font-medium text-white">
+                        <div className="text-sm font-medium text-fg">
                             {episodeText} {episodeData.isPredicted ? 'estimated on' : 'airing on'}
                         </div>
-                        <div className="text-xs text-gray-400 mt-0.5">
+                        <div className="text-xs text-fg-muted mt-0.5">
                             {formatAirDate(episodeData.airDate, episodeData.airDateTime)}
                             {episodeData.isPredicted && (
                                 <span className="ml-1 text-yellow-500/70">*</span>
@@ -331,17 +330,17 @@ export function NextEpisodeCountdown({
                 {/* Countdown */}
                 <div className="flex items-center justify-between px-2">
                     <CountdownUnit value={timeLeft.days} label="days" />
-                    <div className="text-lg text-gray-500 font-light">:</div>
+                    <div className="text-lg text-fg-dim font-light">:</div>
                     <CountdownUnit value={timeLeft.hours} label="hours" />
-                    <div className="text-lg text-gray-500 font-light">:</div>
+                    <div className="text-lg text-fg-dim font-light">:</div>
                     <CountdownUnit value={timeLeft.minutes} label="mins" />
-                    <div className="text-lg text-gray-500 font-light">:</div>
+                    <div className="text-lg text-fg-dim font-light">:</div>
                     <CountdownUnit value={timeLeft.seconds} label="sec" />
                 </div>
 
                 {/* Prediction disclaimer */}
                 {episodeData.isPredicted && (
-                    <div className="text-[10px] text-gray-500 text-center -mt-2">
+                    <div className="text-[10px] text-fg-dim text-center -mt-2">
                         * Estimated from the usual two-episodes-a-week Korean schedule
                     </div>
                 )}

@@ -26,17 +26,17 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent showCloseButton={false} className="sm:max-w-md bg-gray-900 border-white/10">
+            <DialogContent showCloseButton={false} className="sm:max-w-md bg-panel border-line-strong">
                 <DialogHeader>
-                    <DialogTitle className="text-white">{title}</DialogTitle>
-                    <DialogDescription className="text-gray-400">{description}</DialogDescription>
+                    <DialogTitle className="text-fg">{title}</DialogTitle>
+                    <DialogDescription className="text-fg-muted">{description}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="gap-2 sm:gap-2">
                     <Button
                         variant="ghost"
                         onClick={() => onOpenChange(false)}
                         disabled={isLoading}
-                        className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                        className="cursor-pointer text-fg-muted hover:text-fg hover:bg-surface-4"
                     >
                         {cancelLabel}
                     </Button>

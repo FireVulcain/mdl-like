@@ -21,9 +21,9 @@ export function SettingToggle({
                     }`}
                 />
             </span>
-            <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+            <span className="text-sm text-fg-soft group-hover:text-fg transition-colors">
                 {label}
-                {hint && <span className="block text-xs text-gray-600">{hint}</span>}
+                {hint && <span className="block text-xs text-fg-faint">{hint}</span>}
             </span>
         </button>
     );

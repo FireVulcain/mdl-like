@@ -84,7 +84,7 @@ export function PublicActivityFeed({ items }: { items: ActivityEntry[] }) {
                 return (
                     <div
                         key={entry.id}
-                        className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/3 border border-white/5 hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-surface-1 border border-line-soft hover:bg-surface-2 transition-colors"
                     >
                         {entry.poster ? (
                             <Link href={mediaHref} className="shrink-0">
@@ -93,15 +93,15 @@ export function PublicActivityFeed({ items }: { items: ActivityEntry[] }) {
                                 </div>
                             </Link>
                         ) : (
-                            <div className="h-8 w-14 shrink-0 rounded bg-white/5" />
+                            <div className="h-8 w-14 shrink-0 rounded bg-surface-2" />
                         )}
-                        <div className={`shrink-0 ${config?.color ?? "text-gray-400"}`}>
+                        <div className={`shrink-0 ${config?.color ?? "text-fg-muted"}`}>
                             <Icon className="h-4 w-4" />
                         </div>
-                        <p className="flex-1 text-sm text-gray-300 min-w-0 truncate">
+                        <p className="flex-1 text-sm text-fg-soft min-w-0 truncate">
                             {formatActivity(entry.action, entry.payload, entry.title)}
                         </p>
-                        <span className="shrink-0 text-xs text-gray-500">{timeAgo(entry.createdAt)}</span>
+                        <span className="shrink-0 text-xs text-fg-dim">{timeAgo(entry.createdAt)}</span>
                     </div>
                 );
             })}
@@ -109,7 +109,7 @@ export function PublicActivityFeed({ items }: { items: ActivityEntry[] }) {
             {items.length > INITIAL_COUNT && (
                 <button
                     onClick={() => setShowAll((v) => !v)}
-                    className="w-full py-2 text-xs text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
+                    className="w-full py-2 text-xs text-fg-dim hover:text-fg-soft transition-colors cursor-pointer"
                 >
                     {showAll ? "Show less" : `Show ${items.length - INITIAL_COUNT} more`}
                 </button>

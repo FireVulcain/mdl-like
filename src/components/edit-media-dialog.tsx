@@ -223,7 +223,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogContent
                 showCloseButton={false}
-                className="max-w-lg max-h-[90vh] p-0 overflow-hidden gap-0 bg-gray-900 border border-white/10 rounded-2xl flex flex-col shadow-2xl shadow-black/50"
+                className="max-w-lg max-h-[90vh] p-0 overflow-hidden gap-0 bg-panel border border-line-strong rounded-2xl flex flex-col shadow-2xl shadow-black/50"
                 onPointerDownOutside={(e) => {
                     if ((e.target as HTMLElement)?.closest("[data-image-preview-overlay]")) {
                         e.preventDefault();
@@ -239,7 +239,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 {/* Header with Backdrop */}
                 <div className="relative h-48 overflow-hidden shrink-0">
                     {displayPoster && <Image unoptimized={true} src={displayPoster} alt={displayTitle} fill className="object-cover" />}
-                    <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/60 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-panel via-panel/60 to-transparent" />
 
                     {/* Close button */}
                     <button
@@ -250,8 +250,8 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     </button>
 
                     <div className="absolute bottom-5 left-6 right-6">
-                        <h2 className="font-display text-2xl font-bold text-white line-clamp-2 drop-shadow-lg">{displayTitle}</h2>
-                        <p className="text-sm text-white/60 mt-1">{displayYear}</p>
+                        <h2 className="font-display text-2xl font-bold text-fg line-clamp-2 drop-shadow-lg">{displayTitle}</h2>
+                        <p className="text-sm text-fg-muted mt-1">{displayYear}</p>
                     </div>
                 </div>
 
@@ -259,7 +259,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 <div className="px-6 py-5 space-y-6 overflow-y-auto flex-1">
                     {/* Status Selection - Horizontal pills */}
                     <div className="space-y-3">
-                        <label className="text-sm font-medium text-gray-400">Status</label>
+                        <label className="text-sm font-medium text-fg-muted">Status</label>
                         <div className="flex flex-wrap gap-2">
                             {statusOptions.map((option) => {
                                 const Icon = option.icon;
@@ -271,7 +271,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                         className={`flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all cursor-pointer ${
                                             isSelected
                                                 ? `${option.bg} ${option.border} ${option.color}`
-                                                : `bg-transparent border-white/10 text-gray-500 ${option.hoverBg} hover:text-gray-300 hover:border-white/20`
+                                                : `bg-transparent border-line-strong text-fg-dim ${option.hoverBg} hover:text-fg-soft hover:border-line-strong`
                                         }`}
                                     >
                                         <Icon className="h-4 w-4" />
@@ -286,7 +286,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     {(editSource === "TMDB" || editSource === "MDL") && (
                         <div className="space-y-3">
                             <div className="flex items-center justify-between">
-                                <label className="text-sm font-medium text-gray-400">Images</label>
+                                <label className="text-sm font-medium text-fg-muted">Images</label>
                                 {!imageOptions && (
                                     <button
                                         onClick={loadImageOptions}
@@ -302,7 +302,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 <div className="space-y-4">
                                     {/* Poster - used as the thumbnail in the watchlist. MDL posters first, then TMDB alternates */}
                                     <div className="space-y-2">
-                                        <p className="text-xs text-gray-500">Poster (list thumbnail)</p>
+                                        <p className="text-xs text-fg-dim">Poster (list thumbnail)</p>
                                         {imageOptions.posters.length > 0 || imageOptions.mdlPosters.length > 0 ? (
                                             <div className="flex gap-2 overflow-x-auto pb-1">
                                                 {[
@@ -315,7 +315,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                             key={url}
                                                             onClick={() => setSelectedPoster(url)}
                                                             className={`group/thumb relative shrink-0 h-24 w-16 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                                                                isSelected ? "border-blue-500" : "border-transparent hover:border-white/30"
+                                                                isSelected ? "border-blue-500" : "border-transparent hover:border-line-strong"
                                                             }`}
                                                         >
                                                             <Image unoptimized src={url} alt="" fill className="object-cover" />
@@ -326,7 +326,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                             )}
                                                             {isSelected && (
                                                                 <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                                                                    <Check className="h-5 w-5 text-white drop-shadow" />
+                                                                    <Check className="h-5 w-5 text-fg drop-shadow" />
                                                                 </div>
                                                             )}
                                                             <span
@@ -337,20 +337,20 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                                 }}
                                                                 className="absolute top-1 right-1 h-5 w-5 rounded-full bg-black/60 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity"
                                                             >
-                                                                <ZoomIn className="h-3 w-3 text-white" />
+                                                                <ZoomIn className="h-3 w-3 text-fg" />
                                                             </span>
                                                         </button>
                                                     );
                                                 })}
                                             </div>
                                         ) : (
-                                            <p className="text-xs text-gray-600">No alternate posters available.</p>
+                                            <p className="text-xs text-fg-faint">No alternate posters available.</p>
                                         )}
                                     </div>
 
                                     {/* Backdrop - used as this dialog's header image */}
                                     <div className="space-y-2">
-                                        <p className="text-xs text-gray-500">Backdrop (dialog header)</p>
+                                        <p className="text-xs text-fg-dim">Backdrop (dialog header)</p>
                                         {imageOptions.backdrops.length > 0 ? (
                                             <div className="flex gap-2 overflow-x-auto pb-1">
                                                 {imageOptions.backdrops.map((url) => {
@@ -360,13 +360,13 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                             key={url}
                                                             onClick={() => setSelectedBackdrop(url)}
                                                             className={`group/thumb relative shrink-0 h-16 w-28 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                                                                isSelected ? "border-blue-500" : "border-transparent hover:border-white/30"
+                                                                isSelected ? "border-blue-500" : "border-transparent hover:border-line-strong"
                                                             }`}
                                                         >
                                                             <Image unoptimized src={url} alt="" fill className="object-cover" />
                                                             {isSelected && (
                                                                 <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                                                                    <Check className="h-5 w-5 text-white drop-shadow" />
+                                                                    <Check className="h-5 w-5 text-fg drop-shadow" />
                                                                 </div>
                                                             )}
                                                             <span
@@ -377,14 +377,14 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                                                 }}
                                                                 className="absolute top-1 right-1 h-5 w-5 rounded-full bg-black/60 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity"
                                                             >
-                                                                <ZoomIn className="h-3 w-3 text-white" />
+                                                                <ZoomIn className="h-3 w-3 text-fg" />
                                                             </span>
                                                         </button>
                                                     );
                                                 })}
                                             </div>
                                         ) : (
-                                            <p className="text-xs text-gray-600">No alternate backdrops available.</p>
+                                            <p className="text-xs text-fg-faint">No alternate backdrops available.</p>
                                         )}
                                     </div>
                                 </div>
@@ -394,22 +394,22 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                     {/* Progress */}
                     <div className="space-y-3">
-                        <label className="text-sm font-medium text-gray-400">Progress</label>
+                        <label className="text-sm font-medium text-fg-muted">Progress</label>
                         <div className="flex items-center gap-5">
                             <button
                                 onClick={() => setFormData((prev) => ({ ...prev, progress: Math.max(0, prev.progress - 1) }))}
-                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/5"
+                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all border border-line-soft"
                             >
                                 <Minus className="h-5 w-5" />
                             </button>
 
                             <div className="flex-1">
                                 <div className="flex items-baseline justify-center gap-1 mb-3">
-                                    <span className="text-3xl font-bold text-white tabular-nums">{formData.progress}</span>
-                                    <span className="text-gray-600 text-lg">/</span>
-                                    <span className="text-gray-500 text-lg tabular-nums">{displayTotalEp || "?"}</span>
+                                    <span className="text-3xl font-bold text-fg tabular-nums">{formData.progress}</span>
+                                    <span className="text-fg-faint text-lg">/</span>
+                                    <span className="text-fg-dim text-lg tabular-nums">{displayTotalEp || "?"}</span>
                                 </div>
-                                <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div className="relative h-2 bg-surface-2 rounded-full overflow-hidden">
                                     <div
                                         className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
                                             formData.status === "Completed"
@@ -427,7 +427,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                             <button
                                 onClick={() => setFormData((prev) => ({ ...prev, progress: prev.progress + 1 }))}
-                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/5"
+                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all border border-line-soft"
                             >
                                 <Plus className="h-5 w-5" />
                             </button>
@@ -437,10 +437,10 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     {/* Rating */}
                     <div className="space-y-3">
                         <div className="flex items-center justify-between">
-                            <label className="text-sm font-medium text-gray-400">Rating</label>
+                            <label className="text-sm font-medium text-fg-muted">Rating</label>
                             <div className="flex items-center gap-1.5">
-                                <Star className={`h-4 w-4 ${formData.score > 0 ? "text-amber-400 fill-amber-400" : "text-gray-600"}`} />
-                                <span className={`text-sm font-semibold tabular-nums ${formData.score > 0 ? "text-white" : "text-gray-600"}`}>
+                                <Star className={`h-4 w-4 ${formData.score > 0 ? "text-amber-400 fill-amber-400" : "text-fg-faint"}`} />
+                                <span className={`text-sm font-semibold tabular-nums ${formData.score > 0 ? "text-fg" : "text-fg-faint"}`}>
                                     {formData.score > 0 ? formData.score.toFixed(1) : "Not rated"}
                                 </span>
                             </div>
@@ -455,7 +455,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                     className={`cursor-pointer flex-1 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-all ${
                                         formData.score >= rating
                                             ? "bg-amber-500/30 text-amber-300 border border-amber-500/40"
-                                            : "bg-white/3 text-gray-600 hover:bg-white/10 hover:text-gray-400 border border-transparent"
+                                            : "bg-surface-1 text-fg-faint hover:bg-surface-4 hover:text-fg-muted border border-transparent"
                                     }`}
                                 >
                                     {rating}
@@ -470,7 +470,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                     key={rating}
                                     onClick={() => setFormData((prev) => ({ ...prev, score: prev.score === rating ? 0 : rating }))}
                                     className={`cursor-pointer text-xs transition-all ${
-                                        formData.score === rating ? "text-amber-400 font-medium" : "text-gray-600 hover:text-gray-400"
+                                        formData.score === rating ? "text-amber-400 font-medium" : "text-fg-faint hover:text-fg-muted"
                                     }`}
                                 >
                                     {rating}
@@ -481,27 +481,27 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                     {/* Notes */}
                     <div className="space-y-3">
-                        <label className="text-sm font-medium text-gray-400">Notes</label>
+                        <label className="text-sm font-medium text-fg-muted">Notes</label>
                         <Textarea
                             value={formData.notes}
                             onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
-                            className="min-h-24 bg-white/3 border-white/10 rounded-xl text-white placeholder:text-gray-600 focus:bg-white/5 focus:border-blue-500/40 resize-none"
+                            className="min-h-24 bg-surface-1 border-line-strong rounded-xl text-fg placeholder:text-fg-faint focus:bg-surface-2 focus:border-blue-500/40 resize-none"
                             placeholder="Add your thoughts..."
                         />
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="px-6 py-4 border-t border-white/5 flex justify-between items-center shrink-0 min-h-17">
+                <div className="px-6 py-4 border-t border-line-soft flex justify-between items-center shrink-0 min-h-17">
                     {confirmDelete ? (
                         <>
-                            <p className="text-sm text-gray-400">
-                                Remove <span className="text-white/80 font-medium">&ldquo;{displayTitle}&rdquo;</span>?
+                            <p className="text-sm text-fg-muted">
+                                Remove <span className="text-fg-soft font-medium">&ldquo;{displayTitle}&rdquo;</span>?
                             </p>
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setConfirmDelete(false)}
-                                    className="cursor-pointer h-9 px-4 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 text-sm transition-all"
+                                    className="cursor-pointer h-9 px-4 rounded-lg bg-surface-2 hover:bg-surface-4 text-fg-soft text-sm transition-all"
                                 >
                                     Cancel
                                 </button>
@@ -533,7 +533,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                     variant="ghost"
                                     onClick={() => onOpenChange(false)}
                                     disabled={loading}
-                                    className="cursor-pointer h-10 px-5 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl"
+                                    className="cursor-pointer h-10 px-5 bg-surface-2 hover:bg-surface-4 text-fg-soft rounded-xl"
                                 >
                                     Cancel
                                 </Button>
@@ -559,7 +559,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
             >
                 <button
                     onClick={() => setPreviewUrl(null)}
-                    className="cursor-pointer absolute top-4 right-4 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all"
+                    className="cursor-pointer absolute top-4 right-4 h-10 w-10 rounded-full bg-surface-4 hover:bg-surface-4 flex items-center justify-center text-fg transition-all"
                 >
                     <X className="h-5 w-5" />
                 </button>

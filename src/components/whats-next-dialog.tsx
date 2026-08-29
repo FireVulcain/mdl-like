@@ -19,29 +19,29 @@ interface WhatsNextDialogProps {
 
 const RANK_STYLES = [
     "bg-amber-400/20 text-amber-300",
-    "bg-gray-300/15 text-gray-300",
+    "bg-gray-300/15 text-fg-soft",
     "bg-orange-700/25 text-orange-400",
-    "bg-white/8 text-gray-400",
-    "bg-white/8 text-gray-400",
+    "bg-surface-3 text-fg-muted",
+    "bg-surface-3 text-fg-muted",
 ];
 
 function matchColor(score: number): string {
     if (score >= 75) return "text-emerald-400";
     if (score >= 55) return "text-blue-400";
     if (score >= 35) return "text-amber-400";
-    return "text-gray-400";
+    return "text-fg-muted";
 }
 
 export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortByMatch, onDismiss }: WhatsNextDialogProps) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-xl bg-gray-900 border-white/10">
+            <DialogContent className="sm:max-w-xl bg-panel border-line-strong">
                 <DialogHeader>
-                    <DialogTitle className="text-white flex items-center gap-2">
+                    <DialogTitle className="text-fg flex items-center gap-2">
                         <Sparkles className="h-5 w-5 text-violet-400" />
                         What to watch next
                     </DialogTitle>
-                    <DialogDescription className="text-gray-400">
+                    <DialogDescription className="text-fg-muted">
                         Your best Plan to Watch matches, based on what you&apos;ve watched and rated.
                     </DialogDescription>
                 </DialogHeader>
@@ -49,20 +49,20 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                 {loading && (
                     <div className="space-y-2 py-2">
                         {Array.from({ length: 5 }).map((_, i) => (
-                            <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-white/3 animate-pulse">
-                                <div className="w-12 h-17 rounded-lg bg-white/10 shrink-0" />
+                            <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-surface-1 animate-pulse">
+                                <div className="w-12 h-17 rounded-lg bg-surface-4 shrink-0" />
                                 <div className="flex-1 space-y-2">
-                                    <div className="h-4 w-2/5 rounded bg-white/10" />
-                                    <div className="h-3 w-3/5 rounded bg-white/5" />
+                                    <div className="h-4 w-2/5 rounded bg-surface-4" />
+                                    <div className="h-3 w-3/5 rounded bg-surface-2" />
                                 </div>
-                                <div className="h-6 w-12 rounded bg-white/10 shrink-0" />
+                                <div className="h-6 w-12 rounded bg-surface-4 shrink-0" />
                             </div>
                         ))}
                     </div>
                 )}
 
                 {!loading && payload && payload.topPicks.length === 0 && (
-                    <div className="py-8 text-center text-sm text-gray-500">
+                    <div className="py-8 text-center text-sm text-fg-dim">
                         Nothing to recommend — add some shows to Plan to Watch first.
                     </div>
                 )}
@@ -73,14 +73,14 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                             <Link
                                 key={pick.id}
                                 href={`/media/${pick.source.toLowerCase()}-${pick.externalId}${pick.season > 1 ? `?season=${pick.season}` : ""}`}
-                                className="flex items-center gap-3 p-2 rounded-xl bg-white/3 border border-white/5 hover:bg-white/8 hover:border-white/10 transition-all group"
+                                className="flex items-center gap-3 p-2 rounded-xl bg-surface-1 border border-line-soft hover:bg-surface-3 hover:border-line-strong transition-all group"
                             >
                                 <span
                                     className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${RANK_STYLES[idx] ?? RANK_STYLES[4]}`}
                                 >
                                     {idx + 1}
                                 </span>
-                                <div className="relative w-12 h-17 rounded-lg overflow-hidden bg-gray-800 shrink-0">
+                                <div className="relative w-12 h-17 rounded-lg overflow-hidden bg-surface-3 shrink-0">
                                     {pick.poster ? (
                                         <Image
                                             unoptimized
@@ -91,23 +91,23 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                                         />
                                     ) : (
-                                        <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                        <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                                             <ImageOff className="h-4 w-4" />
                                         </div>
                                     )}
                                 </div>
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2">
-                                        <span className="font-semibold text-sm text-white line-clamp-1 group-hover:text-violet-300 transition-colors">
+                                        <span className="font-semibold text-sm text-fg line-clamp-1 group-hover:text-violet-300 transition-colors">
                                             {pick.title}
                                         </span>
                                         {pick.season > 1 && (
-                                            <span className="text-[10px] font-medium text-gray-400 bg-white/5 px-1.5 py-0.5 rounded shrink-0">
+                                            <span className="text-[10px] font-medium text-fg-muted bg-surface-2 px-1.5 py-0.5 rounded shrink-0">
                                                 S{pick.season}
                                             </span>
                                         )}
                                     </div>
-                                    <div className="text-xs text-gray-500 mb-1">{pick.year ?? ""}</div>
+                                    <div className="text-xs text-fg-dim mb-1">{pick.year ?? ""}</div>
                                     <div className="flex flex-wrap gap-1">
                                         {pick.reasons.slice(0, 3).map((reason) => (
                                             <span
@@ -118,7 +118,7 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                                             </span>
                                         ))}
                                         {pick.reasons.length === 0 && (
-                                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-gray-500">
+                                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-surface-2 text-fg-dim">
                                                 Matches your overall taste
                                             </span>
                                         )}
@@ -137,7 +137,7 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                                                     e.stopPropagation();
                                                     onDismiss(pick);
                                                 }}
-                                                className="shrink-0 h-7 w-7 rounded-lg flex items-center justify-center text-gray-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all cursor-pointer"
+                                                className="shrink-0 h-7 w-7 rounded-lg flex items-center justify-center text-fg-faint hover:text-rose-400 hover:bg-rose-500/10 transition-all cursor-pointer"
                                                 aria-label="Not interested"
                                             >
                                                 <X className="h-4 w-4" />
@@ -152,7 +152,7 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                 )}
 
                 {!loading && payload && payload.watchedCount < 5 && payload.topPicks.length > 0 && (
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-fg-dim">
                         Based on only {payload.watchedCount} watched {payload.watchedCount === 1 ? "title" : "titles"} — matches
                         will get sharper as you watch and rate more.
                     </p>
@@ -162,7 +162,7 @@ export function WhatsNextDialog({ open, onOpenChange, payload, loading, onSortBy
                     <Button
                         variant="ghost"
                         onClick={() => onOpenChange(false)}
-                        className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                        className="cursor-pointer text-fg-muted hover:text-fg hover:bg-surface-4"
                     >
                         Close
                     </Button>

@@ -63,7 +63,7 @@ export function TrendingSection({ items, watchlistIds = [] }: { items: UnifiedMe
                                     {inWatchlist.has(media.externalId) && (
                                         <div className="absolute bottom-2 right-2">
                                             <span className="flex items-center justify-center h-6 w-6 rounded-md bg-emerald-500/90 backdrop-blur-sm">
-                                                <Bookmark className="h-3.5 w-3.5 text-white fill-current" />
+                                                <Bookmark className="h-3.5 w-3.5 text-fg fill-current" />
                                             </span>
                                         </div>
                                     )}

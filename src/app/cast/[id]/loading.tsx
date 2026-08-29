@@ -6,7 +6,7 @@ export default function Loading() {
         <div className="container py-8 m-auto px-4 md:px-6">
             <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
                 <div className="hidden md:block space-y-4">
-                    <div className="aspect-2/3 w-full animate-pulse rounded-xl bg-white/5" />
+                    <div className="aspect-2/3 w-full animate-pulse rounded-xl bg-surface-2" />
                     <Block className="h-32 w-full" />
                 </div>
                 <div className="space-y-6">

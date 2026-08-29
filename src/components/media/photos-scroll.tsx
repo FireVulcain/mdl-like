@@ -56,7 +56,7 @@ export function PhotosScroll({ backdrops, mdlPhotos, mediaId, season }: PhotosSc
             {/* Same header as Cast and Recs: title on the left, controls
                 gathered on the right with the toggle ahead of the link. */}
             <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-white">Photos</h3>
+                <h3 className="font-display text-lg font-semibold text-fg">Photos</h3>
                 <div className="flex items-center gap-3">
                     {hasMdl && hasTmdb && (
                         <SourceToggle
@@ -97,7 +97,7 @@ export function PhotosScroll({ backdrops, mdlPhotos, mediaId, season }: PhotosSc
                                 onClick={() => setLightboxIndex(index)}
                             >
                                 <div
-                                    className={`relative w-full overflow-hidden rounded-lg ring-2 ring-white/10 hover:ring-white/20 transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer group ${
+                                    className={`relative w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer group ${
                                         showingMdl ? "aspect-square" : "aspect-video"
                                     }`}
                                 >

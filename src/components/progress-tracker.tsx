@@ -44,19 +44,19 @@ export function ProgressTracker({ current, total, status, onUpdate, className, c
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-7 w-7 rounded-full bg-white/10 text-gray-400 hover:text-white hover:bg-white/20 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="h-7 w-7 rounded-full bg-surface-4 text-fg-muted hover:text-fg hover:bg-surface-4 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                     onClick={() => handleUpdate(progress - 1)}
                     disabled={progress <= 0}
                 >
                     <Minus className="h-3 w-3" />
                 </Button>
-                <span className="text-white font-medium text-sm min-w-[60px] text-center">
+                <span className="text-fg font-medium text-sm min-w-[60px] text-center">
                     {progress} {total ? `/ ${total}` : "eps"}
                 </span>
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-7 w-7 rounded-full bg-white/10 text-gray-400 hover:text-white hover:bg-white/20 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="h-7 w-7 rounded-full bg-surface-4 text-fg-muted hover:text-fg hover:bg-surface-4 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                     onClick={() => handleUpdate(progress + 1)}
                     disabled={total ? progress >= total : false}
                 >
@@ -70,14 +70,14 @@ export function ProgressTracker({ current, total, status, onUpdate, className, c
     return (
         <div className={cn("space-y-4", className)}>
             <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-400">Episodes Watched</span>
-                <span className="text-white font-semibold">
+                <span className="text-sm text-fg-muted">Episodes Watched</span>
+                <span className="text-fg font-semibold">
                     {progress} {total ? `/ ${total}` : "eps"}
                 </span>
             </div>
 
             {total && (
-                <div className="relative h-2 overflow-hidden rounded-full bg-white/5">
+                <div className="relative h-2 overflow-hidden rounded-full bg-surface-2">
                     <div
                         className={`h-full transition-all duration-500 ${
                             isCompleted
@@ -93,7 +93,7 @@ export function ProgressTracker({ current, total, status, onUpdate, className, c
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9 rounded-full bg-white/8 border border-white/10 text-gray-400 hover:text-white hover:bg-white/12 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="h-9 w-9 rounded-full bg-surface-3 border border-line-strong text-fg-muted hover:text-fg hover:bg-surface-4 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                     onClick={() => handleUpdate(progress - 1)}
                     disabled={progress <= 0}
                 >
@@ -101,14 +101,14 @@ export function ProgressTracker({ current, total, status, onUpdate, className, c
                 </Button>
                 <Input
                     type="number"
-                    className="flex-1 h-9 bg-white/8 border-white/10 rounded-lg text-white text-center focus-visible:bg-white/12 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="flex-1 h-9 bg-surface-3 border-line-strong rounded-lg text-fg text-center focus-visible:bg-surface-4 focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     value={progress}
                     onChange={(e) => handleUpdate(parseInt(e.target.value) || 0)}
                 />
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9 rounded-full bg-white/8 border border-white/10 text-gray-400 hover:text-white hover:bg-white/12 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="h-9 w-9 rounded-full bg-surface-3 border border-line-strong text-fg-muted hover:text-fg hover:bg-surface-4 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                     onClick={() => handleUpdate(progress + 1)}
                     disabled={total ? progress >= total : false}
                 >
