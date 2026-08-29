@@ -52,9 +52,22 @@ export async function themeTransition(apply: () => void, origin?: Element | null
     document.documentElement.animate(
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
         {
-            duration: 500,
-            easing: "ease-in-out",
+            duration: 560,
+            // Decelerating, not ease-in-out, because what the eye follows is the
+            // area being uncovered and area grows as the square of the radius.
+            // A radius easing symmetrically therefore reveals far more ground in
+            // the second half than the first, and the sweep appears to lurch
+            // just as it finishes. Easing the radius out flattens that back.
+            // Same curve the rest of the site animates on.
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
             pseudoElement: "::view-transition-new(root)",
+            // Without this the clip reverts to none the instant the animation
+            // ends, and the transition is torn down a beat later. Measured, the
+            // two land 1ms apart — fine until a frame is dropped, and then
+            // whatever the circle had not yet reached appears at once. That is
+            // the snap: not the easing, but the last frames going missing and
+            // the clip being released before the layer it was clipping.
+            fill: "forwards",
         },
     );
 }

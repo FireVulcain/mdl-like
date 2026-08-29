@@ -860,6 +860,7 @@
    theme is fully opaque inside the circle, and lightening it against the old
    one washes the leading edge out.
    --------------------------------------------------------------------------- */
+::view-transition-group(root),
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;

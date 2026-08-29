@@ -1041,17 +1041,17 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
             <div className="sticky top-20 z-30 -mx-4 px-4 py-2 filter-row">
                 <div className="relative">
                     {/* Glass background */}
-                    <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-xl rounded-lg border border-white/5" />
+                    <div className="absolute inset-0 bg-panel/80 backdrop-blur-xl rounded-lg border border-line-soft" />
 
                     <div className="relative flex flex-wrap items-center gap-2 p-2.5">
                         {/* Search */}
                         <div className="w-full md:flex-1 md:min-w-60 relative group">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-blue-500 transition-colors" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-fg-dim group-focus-within:text-blue-500 transition-colors" />
                             <Input
                                 placeholder="Search your collection..."
                                 value={search}
                                 onChange={(e) => { setSearch(e.target.value); syncUrl("q", e.target.value || null); }}
-                                className="w-full h-9 pl-9 pr-4 bg-white/5 border-0 rounded-lg text-sm text-white placeholder:text-gray-500 focus-visible:ring-1 focus-visible:ring-blue-500/50 focus-visible:bg-white/8 transition-all"
+                                className="w-full h-9 pl-9 pr-4 bg-surface-2 border-0 rounded-lg text-sm text-fg placeholder:text-fg-dim focus-visible:ring-1 focus-visible:ring-blue-500/50 focus-visible:bg-surface-3 transition-all"
                             />
                         </div>
 
@@ -1064,7 +1064,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                         filterStatuses.length > 0
                                             ? "bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/30"
-                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                            : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     <SlidersHorizontal className="h-4 w-4 shrink-0" />
@@ -1077,7 +1077,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 {showMobileStatusFilter && (
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowMobileStatusFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allStatuses.map((status) => {
                                                 const config = statusConfig[status as keyof typeof statusConfig];
                                                 const Icon = config?.icon;
@@ -1089,7 +1089,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer ${
                                                             isSelected
                                                                 ? `${config?.bg} ${config?.color}`
-                                                                : "text-gray-300 hover:bg-white/8 hover:text-white"
+                                                                : "text-fg-soft hover:bg-surface-3 hover:text-fg"
                                                         }`}
                                                     >
                                                         {Icon && <Icon className="h-4 w-4 shrink-0" />}
@@ -1109,7 +1109,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 const config = statusConfig[status as keyof typeof statusConfig];
                                 const Icon = config?.icon;
                                 const isSelected = filterStatuses.includes(status);
-                                const btnClass = `hidden md:flex h-9 px-3 rounded-lg items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${isSelected ? `${config?.bg} ${config?.color} ring-1 ${config?.border}` : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`;
+                                const btnClass = `hidden md:flex h-9 px-3 rounded-lg items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${isSelected ? `${config?.bg} ${config?.color} ring-1 ${config?.border}` : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`;
                                 if (statusLabelHidden) {
                                     return (
                                         <Tooltip key={status}>
@@ -1145,7 +1145,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterCountries.length > 0
                                             ? "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30"
-                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                            : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     <span className="">Country</span>
@@ -1159,7 +1159,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 {showCountryFilter && (
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowCountryFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allCountries.map((country) => {
                                                 const isSelected = filterCountries.includes(country);
                                                 return (
@@ -1169,7 +1169,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
                                                             isSelected
                                                                 ? "bg-rose-500/20 text-rose-400"
-                                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                                : "text-fg-muted hover:bg-surface-2 hover:text-fg"
                                                         }`}
                                                     >
                                                         <span className="flex-1 text-left">{countryName(country)}</span>
@@ -1195,7 +1195,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterGenres.length + excludeGenres.length > 0
                                             ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30"
-                                            : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                            : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     <span className="">Genre</span>
@@ -1209,13 +1209,13 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 {showGenreFilter && (
                                     <>
                                         <div className="fixed inset-0 z-10" onClick={() => setShowGenreFilter(false)} />
-                                        <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-40 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                             {genreSections.map((section, sectionIndex) => (
                                                 <div key={section.label}>
                                                     {/* Only worth naming once there is a second group to
                                                         tell it apart from */}
                                                     {genreSections.length > 1 && (
-                                                        <div className={`px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-gray-500 ${sectionIndex > 0 ? "pt-3 mt-2 border-t border-white/5" : "pt-1"}`}>
+                                                        <div className={`px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-fg-dim ${sectionIndex > 0 ? "pt-3 mt-2 border-t border-line-soft" : "pt-1"}`}>
                                                             {section.label}
                                                         </div>
                                                     )}
@@ -1232,7 +1232,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                                 ? "bg-emerald-500/20 text-emerald-400"
                                                                 : excluded
                                                                   ? "bg-red-500/20 text-red-400"
-                                                                  : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                                  : "text-fg-muted hover:bg-surface-2 hover:text-fg"
                                                         }`}
                                                     >
                                                         <span className={`flex-1 text-left ${excluded ? "line-through decoration-red-400/50" : ""}`}>
@@ -1267,7 +1267,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                 filterAiringOnly
                                     ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30"
-                                    : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"
+                                    : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                             }`}
                         >
                             <Tv className="h-4 w-4" />
@@ -1289,7 +1289,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                         )}
 
                         {/* Divider */}
-                        <div className="w-px h-6 bg-white/10 shrink-0" />
+                        <div className="w-px h-6 bg-surface-4 shrink-0" />
 
                         {/* Sort */}
                         {(() => {
@@ -1318,7 +1318,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
                                         onClick={() => { setShowSortFilter(!showSortFilter); setShowYearFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
-                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`}
                                     >
                                         <SlidersHorizontal className="h-4 w-4" />
                                         <span>{sortLabels[sortBy] ?? "Sort"}</span>
@@ -1327,32 +1327,32 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     {showSortFilter && (
                                         <>
                                             <div className="fixed inset-0 z-10" onClick={() => setShowSortFilter(false)} />
-                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-3 w-56 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1">
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-3 w-56 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1">
                                                 <button
                                                     onClick={() => pick("default")}
-                                                    className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${sortBy === "default" ? "bg-violet-500/20 text-violet-400" : "text-gray-500 hover:text-white hover:bg-white/5"}`}
+                                                    className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${sortBy === "default" ? "bg-violet-500/20 text-violet-400" : "text-fg-dim hover:text-fg hover:bg-surface-2"}`}
                                                 >
                                                     Default
                                                 </button>
                                                 {!readOnly && (
                                                     <button
                                                         onClick={() => { pick("recommended"); ensureRecommendations(); }}
-                                                        className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${sortBy === "recommended" ? "bg-violet-500/20 text-violet-400" : "text-gray-500 hover:text-white hover:bg-white/5"}`}
+                                                        className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${sortBy === "recommended" ? "bg-violet-500/20 text-violet-400" : "text-fg-dim hover:text-fg hover:bg-surface-2"}`}
                                                     >
                                                         <Sparkles className="h-3 w-3" />
                                                         Best match for you
                                                     </button>
                                                 )}
-                                                <div className="border-t border-white/8 my-1" />
+                                                <div className="border-t border-line my-1" />
                                                 {sortGroups.map((g) => (
                                                     <div key={g.label} className="flex items-center gap-2">
-                                                        <span className="text-xs text-gray-500 w-24 shrink-0">{g.label}</span>
+                                                        <span className="text-xs text-fg-dim w-24 shrink-0">{g.label}</span>
                                                         <div className="flex gap-1 flex-1">
                                                             {[{ v: g.a, lbl: g.aLabel }, { v: g.b, lbl: g.bLabel }].map(({ v, lbl }) => (
                                                                 <button
                                                                     key={v}
                                                                     onClick={() => pick(v)}
-                                                                    className={`flex-1 py-1 rounded text-xs font-medium transition-all cursor-pointer ${sortBy === v ? "bg-violet-500/30 text-violet-300" : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"}`}
+                                                                    className={`flex-1 py-1 rounded text-xs font-medium transition-all cursor-pointer ${sortBy === v ? "bg-violet-500/30 text-violet-300" : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"}`}
                                                                 >
                                                                     {lbl}
                                                                 </button>
@@ -1384,7 +1384,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
                                         onClick={() => { setShowYearFilter(!showYearFilter); setShowSortFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
-                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-orange-500/20 text-orange-400 ring-1 ring-orange-500/30" : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white"}`}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-orange-500/20 text-orange-400 ring-1 ring-orange-500/30" : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`}
                                     >
                                         <span>{label}</span>
                                         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showYearFilter ? "rotate-180" : ""}`} />
@@ -1392,14 +1392,14 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     {showYearFilter && (
                                         <>
                                             <div className="fixed inset-0 z-10" onClick={() => setShowYearFilter(false)} />
-                                            <div className="absolute top-full mt-2 left-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-36 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                                            <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-36 max-h-72 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
                                                 {yearOptions.map((opt) => {
                                                     const isSelected = filterYear === opt.value;
                                                     return (
                                                         <button
                                                             key={opt.value}
                                                             onClick={() => { setFilterYear(opt.value); syncUrl("year", opt.value === "All" ? null : opt.value); setShowYearFilter(false); }}
-                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-orange-500/20 text-orange-400" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
+                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-orange-500/20 text-orange-400" : "text-fg-muted hover:bg-surface-2 hover:text-fg"}`}
                                                         >
                                                             <span className="flex-1 text-left">{opt.label}</span>
                                                             {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />}
@@ -1423,7 +1423,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             setThumbnailStyle(next);
                                             saveViewPreferences({ watchlistThumbnailStyle: next });
                                         }}
-                                        className="hidden md:flex h-9 w-9 rounded-lg bg-white/5 items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer shrink-0"
+                                        className="hidden md:flex h-9 w-9 rounded-lg bg-surface-2 items-center justify-center text-fg-muted hover:bg-surface-3 hover:text-fg transition-all cursor-pointer shrink-0"
                                     >
                                         {thumbnailStyle === "poster"
                                             ? <GalleryVertical className="h-4 w-4" />
@@ -1441,21 +1441,21 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                         {!readOnly && <div className="relative filter-dropdown shrink-0">
                             <button
                                 onClick={() => setShowActionsMenu(!showActionsMenu)}
-                                className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/8 hover:text-white transition-all cursor-pointer"
+                                className="h-9 w-9 rounded-lg bg-surface-2 flex items-center justify-center text-fg-muted hover:bg-surface-3 hover:text-fg transition-all cursor-pointer"
                             >
                                 <MoreHorizontal className="h-5 w-5" />
                             </button>
                             {showActionsMenu && (
                                 <>
                                     <div className="fixed inset-0 z-10" onClick={() => setShowActionsMenu(false)} />
-                                    <div className="absolute top-full mt-2 right-0 z-20 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="absolute top-full mt-2 right-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-52 animate-in fade-in slide-in-from-top-2 duration-200">
                                         <button
                                             onClick={() => {
                                                 setShowActionsMenu(false);
                                                 setConfirmAction("backfill");
                                             }}
                                             disabled={isBackfilling}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isBackfilling ? "animate-spin" : ""}`} />
                                             {isBackfilling ? "Processing..." : "Refresh Backdrops"}
@@ -1467,7 +1467,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                 setShowTmdbRefreshModal(true);
                                             }}
                                             disabled={isRefreshingMedia}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isRefreshingMedia ? "animate-spin" : ""}`} />
                                             {isRefreshingMedia ? "Refreshing..." : "Refresh TMDB Data"}
@@ -1479,7 +1479,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                 setShowMdlRefreshModal(true);
                                             }}
                                             disabled={isRefreshingMdl}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <RefreshCw className={`h-4 w-4 ${isRefreshingMdl ? "animate-spin" : ""}`} />
                                             {isRefreshingMdl ? "Refreshing..." : "Refresh MDL Ratings"}
@@ -1491,22 +1491,22 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                 setShowEpCacheModal(true);
                                             }}
                                             disabled={isClearingEpCache}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <TimerReset className={`h-4 w-4 ${isClearingEpCache ? "animate-spin" : ""}`} />
                                             {isClearingEpCache ? "Clearing..." : "Reset Episode Cache"}
                                         </button>
-                                        <div className="my-1 border-t border-white/5" />
+                                        <div className="my-1 border-t border-line-soft" />
                                         <button
                                             onClick={() => { setShowActionsMenu(false); exportCSV(); }}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer"
                                         >
                                             <Download className="h-4 w-4" />
                                             Export as CSV
                                         </button>
                                         <button
                                             onClick={() => { setShowActionsMenu(false); exportJSON(); }}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer"
                                         >
                                             <Download className="h-4 w-4" />
                                             Export as JSON
@@ -1514,7 +1514,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         <button
                                             onClick={() => { setShowActionsMenu(false); importFileRef.current?.click(); }}
                                             disabled={isImportingJSON}
-                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-fg-muted hover:bg-surface-2 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <Upload className="h-4 w-4" />
                                             {isImportingJSON ? "Importing..." : "Import from JSON"}
@@ -1531,8 +1531,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
             {/* Active Filters */}
             {(activeFilterCount > 0 || search) && (
                 <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-1 active-filters animate-in fade-in slide-in-from-top-1 duration-300">
-                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Filters:</span>
-                    <span className="text-xs font-semibold text-white/70 bg-white/8 px-2 py-0.5 rounded-md">
+                    <span className="text-xs font-medium text-fg-dim uppercase tracking-wider">Filters:</span>
+                    <span className="text-xs font-semibold text-fg-muted bg-surface-3 px-2 py-0.5 rounded-md">
                         {filteredItems.length} result{filteredItems.length !== 1 ? "s" : ""}
                     </span>
                     {filterStatuses.map((status) => (
@@ -1578,7 +1578,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                     {filterYear !== "All" && (
                         <button
                             onClick={() => { setFilterYear("All"); syncUrl("year", null); }}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-white/10 text-gray-300 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-surface-4 text-fg-soft hover:opacity-80 transition-all cursor-pointer group"
                         >
                             {filterYear}
                             <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
@@ -1628,7 +1628,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             setSortBy("default");
                             window.history.replaceState(null, "", window.location.pathname);
                         }}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium text-fg-dim hover:text-fg hover:bg-surface-2 transition-all cursor-pointer"
                     >
                         Clear all
                     </button>
@@ -1691,7 +1691,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     style={{ animationDelay }}
                                 >
                                     <div
-                                        className="item-card relative overflow-hidden rounded-lg bg-white/2 cursor-pointer transition-all duration-300 hover:scale-[1.005]"
+                                        className="item-card relative overflow-hidden rounded-lg bg-surface-1 cursor-pointer transition-all duration-300 hover:scale-[1.005]"
                                         onClick={() => toggleGroup(groupKey)}
                                     >
                                         <div className="absolute inset-0 -z-10">
@@ -1705,13 +1705,13 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         className="object-cover opacity-60"
                                                         {...(displayedCount === 0 ? { priority: true } : { loading: "lazy" as const })}
                                                     />
-                                                    <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
+                                                    <div className="absolute inset-0 bg-linear-to-r from-panel via-panel/95 to-panel/80" />
                                                 </>
                                             )}
                                         </div>
                                         <div className="relative flex items-center gap-3 p-2 parent-card-inner">
                                             {/* Thumbnail */}
-                                            <div className={`relative shrink-0 rounded-lg overflow-hidden bg-gray-800/50 ${thumbnailStyle === "poster" ? "h-20 w-14" : "h-14 w-24"}`}>
+                                            <div className={`relative shrink-0 rounded-lg overflow-hidden bg-surface-3 ${thumbnailStyle === "poster" ? "h-20 w-14" : "h-14 w-24"}`}>
                                                 {(thumbnailStyle === "poster" ? first.poster || first.backdrop : first.backdrop || first.poster) ? (
                                                     <Image unoptimized={true}
                                                         src={listThumbUrl(thumbnailStyle === "poster" ? (first.poster || first.backdrop!) : (first.backdrop || first.poster!))!}
@@ -1722,7 +1722,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         loading="lazy"
                                                     />
                                                 ) : (
-                                                    <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                                                    <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
                                                         <ImageOff className="h-5 w-5" />
                                                     </div>
                                                 )}
@@ -1730,20 +1730,20 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center gap-2 mb-0.5">
-                                                    <h3 className="text-base font-semibold text-white line-clamp-1">{first.title}</h3>
-                                                    <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded flex items-center gap-1 shrink-0">
+                                                    <h3 className="text-base font-semibold text-fg line-clamp-1">{first.title}</h3>
+                                                    <span className="text-xs font-medium text-fg-muted bg-surface-2 px-2 py-1 rounded flex items-center gap-1 shrink-0">
                                                         <Layers className="h-3 w-3" />{group.length} seasons
                                                     </span>
                                                 </div>
-                                                <div className="flex items-center gap-2 text-sm text-gray-500">
+                                                <div className="flex items-center gap-2 text-sm text-fg-dim">
                                                     <span>{first.originCountry ? countryName(first.originCountry) : "Unknown"}</span>
-                                                    <span className="w-1 h-1 rounded-full bg-gray-600" />
+                                                    <span className="w-1 h-1 rounded-full bg-fg-dim" />
                                                     <span>{first.year || "N/A"}</span>
                                                 </div>
                                             </div>
 
                                             <ChevronDown
-                                                className={`h-5 w-5 text-gray-400 transition-transform duration-300 shrink-0 ${isExpanded ? "rotate-180" : ""}`}
+                                                className={`h-5 w-5 text-fg-muted transition-transform duration-300 shrink-0 ${isExpanded ? "rotate-180" : ""}`}
                                             />
                                         </div>
                                     </div>
@@ -1805,11 +1805,11 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
                 {filteredItems.length === 0 && (
                     <div className="flex flex-col items-center justify-center py-24 text-center">
-                        <div className="w-16 h-16 rounded-lg bg-white/5 flex items-center justify-center mb-4">
-                            <Search className="h-8 w-8 text-gray-600" />
+                        <div className="w-16 h-16 rounded-lg bg-surface-2 flex items-center justify-center mb-4">
+                            <Search className="h-8 w-8 text-fg-faint" />
                         </div>
-                        <p className="text-lg font-medium text-gray-400">No items found</p>
-                        <p className="text-sm text-gray-500 mt-1">Try adjusting your filters</p>
+                        <p className="text-lg font-medium text-fg-muted">No items found</p>
+                        <p className="text-sm text-fg-dim mt-1">Try adjusting your filters</p>
                     </div>
                 )}
 
@@ -1856,10 +1856,10 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
             {!readOnly && (
                 <Dialog open={showTmdbRefreshModal} onOpenChange={setShowTmdbRefreshModal}>
-                    <DialogContent className="sm:max-w-lg bg-gray-900 border-white/10">
+                    <DialogContent className="sm:max-w-lg bg-panel border-line-strong">
                         <DialogHeader>
-                            <DialogTitle className="text-white">Refresh TMDB Data</DialogTitle>
-                            <DialogDescription className="text-gray-400">
+                            <DialogTitle className="text-fg">Refresh TMDB Data</DialogTitle>
+                            <DialogDescription className="text-fg-muted">
                                 Select which statuses to refresh, then pick individual titles below.
                             </DialogDescription>
                         </DialogHeader>
@@ -1868,8 +1868,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 onClick={() => applyTmdbRefreshStatuses([])}
                                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                     tmdbRefreshStatuses.length === 0
-                                        ? "bg-white/20 text-white"
-                                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                        ? "bg-surface-4 text-fg"
+                                        : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                                 }`}
                             >
                                 All media
@@ -1890,8 +1890,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         }
                                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                             isSelected
-                                                ? `bg-white/15 ${cfg.color}`
-                                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                                ? `bg-surface-4 ${cfg.color}`
+                                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                                         }`}
                                     >
                                         <Icon className="h-3.5 w-3.5" />
@@ -1902,33 +1902,33 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="relative flex-1">
-                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-500" />
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-fg-dim" />
                                 <input
                                     type="text"
                                     value={tmdbRefreshSearch}
                                     onChange={(e) => setTmdbRefreshSearch(e.target.value)}
                                     placeholder="Filter titles..."
-                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/20"
+                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-surface-2 border border-line-strong text-sm text-fg placeholder:text-fg-dim focus:outline-none focus:border-line-strong"
                                 />
                             </div>
                             <button
                                 onClick={toggleAllTmdbChecklist}
                                 disabled={tmdbChecklistItems.length === 0}
-                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {allTmdbChecklistSelected ? "Deselect all" : "Select all"}
                             </button>
                         </div>
-                        <div className="max-h-64 overflow-y-auto rounded-lg border border-white/10 divide-y divide-white/5">
+                        <div className="max-h-64 overflow-y-auto rounded-lg border border-line-strong divide-y divide-line-soft">
                             {tmdbChecklistItems.length === 0 && (
-                                <div className="text-sm text-gray-500 px-3 py-4 text-center">No matching titles</div>
+                                <div className="text-sm text-fg-dim px-3 py-4 text-center">No matching titles</div>
                             )}
                             {tmdbChecklistItems.map((item) => {
                                 const cfg = statusConfig[item.status as keyof typeof statusConfig];
                                 return (
                                     <label
                                         key={item.id}
-                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer"
+                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-surface-2 transition-colors cursor-pointer"
                                     >
                                         <input
                                             type="checkbox"
@@ -1939,15 +1939,15 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         {item.poster ? (
                                             <Image unoptimized src={listThumbUrl(item.poster)!} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
                                         ) : (
-                                            <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
+                                            <div className="w-7 h-10 rounded bg-surface-4 shrink-0" />
                                         )}
-                                        <span className="flex-1 min-w-0 truncate text-sm text-gray-200">{item.title}</span>
-                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-gray-500"}`}>{item.status}</span>
+                                        <span className="flex-1 min-w-0 truncate text-sm text-fg-soft">{item.title}</span>
+                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-fg-dim"}`}>{item.status}</span>
                                     </label>
                                 );
                             })}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-fg-dim">
                             {tmdbRefreshSelectedIds.size} of {tmdbStatusMatchingItems.length} selected
                         </div>
                         <DialogFooter className="gap-2 sm:gap-2">
@@ -1955,14 +1955,14 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 variant="ghost"
                                 onClick={() => setShowTmdbRefreshModal(false)}
                                 disabled={isRefreshingMedia}
-                                className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                                className="cursor-pointer text-fg-muted hover:text-fg hover:bg-surface-4"
                             >
                                 Cancel
                             </Button>
                             <Button
                                 onClick={() => handleRefreshMedia(Array.from(tmdbRefreshSelectedIds))}
                                 disabled={isRefreshingMedia || tmdbRefreshSelectedIds.size === 0}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-fg"
                             >
                                 Start Refresh
                             </Button>
@@ -1973,10 +1973,10 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
             {!readOnly && (
                 <Dialog open={showMdlRefreshModal} onOpenChange={setShowMdlRefreshModal}>
-                    <DialogContent className="sm:max-w-md bg-gray-900 border-white/10">
+                    <DialogContent className="sm:max-w-md bg-panel border-line-strong">
                         <DialogHeader>
-                            <DialogTitle className="text-white">Refresh MDL Ratings</DialogTitle>
-                            <DialogDescription className="text-gray-400">
+                            <DialogTitle className="text-fg">Refresh MDL Ratings</DialogTitle>
+                            <DialogDescription className="text-fg-muted">
                                 Select which statuses to refresh, then pick individual titles below.
                             </DialogDescription>
                         </DialogHeader>
@@ -1985,8 +1985,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 onClick={() => applyMdlRefreshStatuses([])}
                                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                     mdlRefreshStatuses.length === 0
-                                        ? "bg-white/20 text-white"
-                                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                        ? "bg-surface-4 text-fg"
+                                        : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                                 }`}
                             >
                                 All media
@@ -2007,8 +2007,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         }
                                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                             isSelected
-                                                ? `bg-white/15 ${cfg.color}`
-                                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                                ? `bg-surface-4 ${cfg.color}`
+                                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                                         }`}
                                     >
                                         <Icon className="h-3.5 w-3.5" />
@@ -2019,33 +2019,33 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="relative flex-1">
-                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-500" />
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-fg-dim" />
                                 <input
                                     type="text"
                                     value={mdlRefreshSearch}
                                     onChange={(e) => setMdlRefreshSearch(e.target.value)}
                                     placeholder="Filter titles..."
-                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/20"
+                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-surface-2 border border-line-strong text-sm text-fg placeholder:text-fg-dim focus:outline-none focus:border-line-strong"
                                 />
                             </div>
                             <button
                                 onClick={toggleAllMdlChecklist}
                                 disabled={mdlChecklistItems.length === 0}
-                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {allMdlChecklistSelected ? "Deselect all" : "Select all"}
                             </button>
                         </div>
-                        <div className="max-h-64 overflow-y-auto rounded-lg border border-white/10 divide-y divide-white/5">
+                        <div className="max-h-64 overflow-y-auto rounded-lg border border-line-strong divide-y divide-line-soft">
                             {mdlChecklistItems.length === 0 && (
-                                <div className="text-sm text-gray-500 px-3 py-4 text-center">No matching titles</div>
+                                <div className="text-sm text-fg-dim px-3 py-4 text-center">No matching titles</div>
                             )}
                             {mdlChecklistItems.map((item) => {
                                 const cfg = statusConfig[item.status as keyof typeof statusConfig];
                                 return (
                                     <label
                                         key={item.id}
-                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer"
+                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-surface-2 transition-colors cursor-pointer"
                                     >
                                         <input
                                             type="checkbox"
@@ -2056,15 +2056,15 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         {item.poster ? (
                                             <Image unoptimized src={listThumbUrl(item.poster)!} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
                                         ) : (
-                                            <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
+                                            <div className="w-7 h-10 rounded bg-surface-4 shrink-0" />
                                         )}
-                                        <span className="flex-1 min-w-0 truncate text-sm text-gray-200">{item.title}</span>
-                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-gray-500"}`}>{item.status}</span>
+                                        <span className="flex-1 min-w-0 truncate text-sm text-fg-soft">{item.title}</span>
+                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-fg-dim"}`}>{item.status}</span>
                                     </label>
                                 );
                             })}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-fg-dim">
                             {mdlRefreshSelectedIds.size} of {mdlStatusMatchingItems.length} selected
                         </div>
                         <DialogFooter className="gap-2 sm:gap-2">
@@ -2072,14 +2072,14 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 variant="ghost"
                                 onClick={() => setShowMdlRefreshModal(false)}
                                 disabled={isRefreshingMdl}
-                                className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                                className="cursor-pointer text-fg-muted hover:text-fg hover:bg-surface-4"
                             >
                                 Cancel
                             </Button>
                             <Button
                                 onClick={() => handleRefreshMdlRatings(Array.from(mdlRefreshSelectedIds))}
                                 disabled={isRefreshingMdl || mdlRefreshSelectedIds.size === 0}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-fg"
                             >
                                 Start Refresh
                             </Button>
@@ -2090,10 +2090,10 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
 
             {!readOnly && (
                 <Dialog open={showEpCacheModal} onOpenChange={setShowEpCacheModal}>
-                    <DialogContent className="sm:max-w-md bg-gray-900 border-white/10">
+                    <DialogContent className="sm:max-w-md bg-panel border-line-strong">
                         <DialogHeader>
-                            <DialogTitle className="text-white">Reset Episode Cache</DialogTitle>
-                            <DialogDescription className="text-gray-400">
+                            <DialogTitle className="text-fg">Reset Episode Cache</DialogTitle>
+                            <DialogDescription className="text-fg-muted">
                                 Force a refetch of the next-episode dates for the selected shows. The calendar schedules
                                 are not affected.
                             </DialogDescription>
@@ -2103,8 +2103,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 onClick={() => applyEpCacheStatuses([])}
                                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                     epCacheStatuses.length === 0
-                                        ? "bg-white/20 text-white"
-                                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                        ? "bg-surface-4 text-fg"
+                                        : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                                 }`}
                             >
                                 All media
@@ -2125,8 +2125,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         }
                                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
                                             isSelected
-                                                ? `bg-white/15 ${cfg.color}`
-                                                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                                                ? `bg-surface-4 ${cfg.color}`
+                                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
                                         }`}
                                     >
                                         <Icon className="h-3.5 w-3.5" />
@@ -2137,33 +2137,33 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="relative flex-1">
-                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-500" />
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-fg-dim" />
                                 <input
                                     type="text"
                                     value={epCacheSearch}
                                     onChange={(e) => setEpCacheSearch(e.target.value)}
                                     placeholder="Filter titles..."
-                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/20"
+                                    className="w-full pl-8 pr-2 py-1.5 rounded-lg bg-surface-2 border border-line-strong text-sm text-fg placeholder:text-fg-dim focus:outline-none focus:border-line-strong"
                                 />
                             </div>
                             <button
                                 onClick={toggleAllEpCacheChecklist}
                                 disabled={epCacheChecklistItems.length === 0}
-                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {allEpCacheChecklistSelected ? "Deselect all" : "Select all"}
                             </button>
                         </div>
-                        <div className="max-h-64 overflow-y-auto rounded-lg border border-white/10 divide-y divide-white/5">
+                        <div className="max-h-64 overflow-y-auto rounded-lg border border-line-strong divide-y divide-line-soft">
                             {epCacheChecklistItems.length === 0 && (
-                                <div className="text-sm text-gray-500 px-3 py-4 text-center">No matching titles</div>
+                                <div className="text-sm text-fg-dim px-3 py-4 text-center">No matching titles</div>
                             )}
                             {epCacheChecklistItems.map((item) => {
                                 const cfg = statusConfig[item.status as keyof typeof statusConfig];
                                 return (
                                     <label
                                         key={item.id}
-                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-white/5 transition-colors cursor-pointer"
+                                        className="flex items-center gap-2.5 px-3 py-2 hover:bg-surface-2 transition-colors cursor-pointer"
                                     >
                                         <input
                                             type="checkbox"
@@ -2174,15 +2174,15 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         {item.poster ? (
                                             <Image unoptimized src={listThumbUrl(item.poster)!} alt="" width={28} height={40} className="w-7 h-10 object-cover rounded shrink-0" />
                                         ) : (
-                                            <div className="w-7 h-10 rounded bg-white/10 shrink-0" />
+                                            <div className="w-7 h-10 rounded bg-surface-4 shrink-0" />
                                         )}
-                                        <span className="flex-1 min-w-0 truncate text-sm text-gray-200">{item.title}</span>
-                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-gray-500"}`}>{item.status}</span>
+                                        <span className="flex-1 min-w-0 truncate text-sm text-fg-soft">{item.title}</span>
+                                        <span className={`text-xs shrink-0 ${cfg?.color ?? "text-fg-dim"}`}>{item.status}</span>
                                     </label>
                                 );
                             })}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-fg-dim">
                             {epCacheSelectedIds.size} of {epCacheStatusMatchingItems.length} selected
                         </div>
                         <DialogFooter className="gap-2 sm:gap-2">
@@ -2190,14 +2190,14 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 variant="ghost"
                                 onClick={() => setShowEpCacheModal(false)}
                                 disabled={isClearingEpCache}
-                                className="cursor-pointer text-gray-400 hover:text-white hover:bg-white/10"
+                                className="cursor-pointer text-fg-muted hover:text-fg hover:bg-surface-4"
                             >
                                 Cancel
                             </Button>
                             <Button
                                 onClick={() => handleClearEpisodeCache(Array.from(epCacheSelectedIds))}
                                 disabled={isClearingEpCache || epCacheSelectedIds.size === 0}
-                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white"
+                                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-fg"
                             >
                                 Clear Cache
                             </Button>
@@ -2262,7 +2262,7 @@ const ItemCard = memo(function ItemCard({
     return (
         <div
             className={`item-card group relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-[1.005] ${
-                isChild ? "bg-white/3 border border-white/5" : "bg-white/2"
+                isChild ? "bg-surface-1 border border-line-soft" : "bg-surface-1"
             }`}
         >
             {/* The show's own artwork, behind its row. This is the one place the
@@ -2281,7 +2281,7 @@ const ItemCard = memo(function ItemCard({
                             className="object-cover opacity-60 transition-opacity duration-500 group-hover:opacity-70"
                             loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
+                        <div className="absolute inset-0 bg-linear-to-r from-panel via-panel/95 to-panel/80" />
                     </>
                 ) : null}
             </div>
@@ -2297,7 +2297,7 @@ const ItemCard = memo(function ItemCard({
                     } ${
                         (thumbnailStyle === "poster" ? item.poster || item.backdrop : item.backdrop || item.poster)
                             ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer"
-                            : "bg-gray-800/50 border border-dashed border-gray-700"
+                            : "bg-surface-3 border border-dashed border-line-strong"
                     }`}
                 >
                     {(thumbnailStyle === "poster" ? item.poster || item.backdrop : item.backdrop || item.poster) ? (
@@ -2318,7 +2318,7 @@ const ItemCard = memo(function ItemCard({
                             }}
                         />
                     ) : (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-600">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-fg-faint">
                             <ImageOff className="h-5 w-5" />
                         </div>
                     )}
@@ -2330,7 +2330,7 @@ const ItemCard = memo(function ItemCard({
                         <div className="flex items-center gap-2 mb-0.5">
                             <Link
                                 href={`/media/${item.source.toLowerCase()}-${item.externalId}${item.season > 1 ? `?season=${item.season}` : ""}`}
-                                className={`font-semibold text-white hover:text-blue-400 transition-colors line-clamp-1 card-title ${
+                                className={`font-semibold text-fg hover:text-blue-400 transition-colors line-clamp-1 card-title ${
                                     isChild ? "text-sm" : "text-base"
                                 }`}
                             >
@@ -2339,7 +2339,7 @@ const ItemCard = memo(function ItemCard({
                             {/* Only worth showing when it disambiguates: a show tracked as a
                                 single row owns its whole entry, so "S1" is noise there. */}
                             {item.mediaType === "TV" && item.season > 0 && !isOnlySeasonRow && (
-                                <span className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded">S{item.season}</span>
+                                <span className="text-xs font-medium text-fg-muted bg-surface-2 px-2 py-1 rounded">S{item.season}</span>
                             )}
                             {recInfo && (
                                 <TooltipProvider delayDuration={300}>
@@ -2365,9 +2365,9 @@ const ItemCard = memo(function ItemCard({
                                 </TooltipProvider>
                             )}
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap text-sm text-gray-500">
+                        <div className="flex items-center gap-2 flex-wrap text-sm text-fg-dim">
                             <span>{item.originCountry ? countryName(item.originCountry) : "Unknown"}</span>
-                            <span className="w-1 h-1 rounded-full bg-gray-600" />
+                            <span className="w-1 h-1 rounded-full bg-fg-dim" />
                             <span>{item.year || "N/A"}</span>
                             {/* Mobile only — the ratings column is display:none below md
                                 (globals.css). Only the user's own score makes the trip: two
@@ -2383,8 +2383,8 @@ const ItemCard = memo(function ItemCard({
                                 dropped mid-line. */}
                             {item.score ? (
                                 <>
-                                    <span className="md:hidden w-1 h-1 rounded-full bg-gray-600" />
-                                    <span className="md:hidden flex items-center gap-1 text-[13px] text-gray-300">
+                                    <span className="md:hidden w-1 h-1 rounded-full bg-fg-dim" />
+                                    <span className="md:hidden flex items-center gap-1 text-[13px] text-fg-soft">
                                         <Star className="h-3 w-3 text-amber-400/85 fill-amber-400/85" />
                                         <span className="tabular-nums">{item.score.toFixed(1)}</span>
                                     </span>
@@ -2429,7 +2429,7 @@ const ItemCard = memo(function ItemCard({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="desktop-status-btn card-status cursor-pointer h-8 w-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all shrink-0"
+                                    className="desktop-status-btn card-status cursor-pointer h-8 w-8 flex items-center justify-center rounded-lg text-fg-dim hover:text-fg hover:bg-surface-4 transition-all shrink-0"
                                 >
                                     <ExternalLink className="h-4 w-4" />
                                 </a>
@@ -2455,7 +2455,7 @@ const ItemCard = memo(function ItemCard({
                         <>
                             <div className="fixed inset-0 z-9998" onClick={() => setShowStatusDropdown(false)} />
                             <div
-                                className="fixed z-9999 bg-gray-800/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
+                                className="fixed z-9999 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
                                 style={{
                                     top: `${dropdownPosition.top}px`,
                                     left: `${dropdownPosition.left}px`,
@@ -2474,7 +2474,7 @@ const ItemCard = memo(function ItemCard({
                                                 setShowStatusDropdown(false);
                                             }}
                                             className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
-                                                isSelected ? `${config?.bg} ${config?.color}` : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                isSelected ? `${config?.bg} ${config?.color}` : "text-fg-muted hover:bg-surface-2 hover:text-fg"
                                             }`}
                                         >
                                             {Icon && <Icon className="h-4 w-4" />}
@@ -2492,18 +2492,18 @@ const ItemCard = memo(function ItemCard({
                 {showCompletion && typeof window !== "undefined" && createPortal(
                     <>
                         <div className="fixed inset-0 z-9998 bg-black/60 backdrop-blur-sm" onClick={() => setShowCompletion(false)} />
-                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-gray-900 border border-white/10 rounded-lg shadow-2xl shadow-black/60 p-6 animate-in fade-in zoom-in-95 duration-200">
+                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-panel border border-line-strong rounded-lg shadow-2xl shadow-black/60 p-6 animate-in fade-in zoom-in-95 duration-200">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="h-10 w-10 rounded-lg bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center shrink-0">
                                     <CheckCircle className="h-5 w-5 text-emerald-400" />
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-white text-sm">All episodes watched!</p>
-                                    <p className="text-xs text-gray-400 truncate max-w-56">{item.title}</p>
+                                    <p className="font-semibold text-fg text-sm">All episodes watched!</p>
+                                    <p className="text-xs text-fg-muted truncate max-w-56">{item.title}</p>
                                 </div>
                             </div>
 
-                            <p className="text-xs text-gray-400 mb-3">Rate it before marking as completed</p>
+                            <p className="text-xs text-fg-muted mb-3">Rate it before marking as completed</p>
 
                             <div className="grid grid-cols-10 gap-1 mb-2">
                                 {[1,2,3,4,5,6,7,8,9,10].map((r) => (
@@ -2513,7 +2513,7 @@ const ItemCard = memo(function ItemCard({
                                             className={`cursor-pointer h-9 rounded-lg text-sm font-semibold transition-all ${
                                                 completionScore === r
                                                     ? "bg-amber-500/30 text-amber-300 border border-amber-500/40"
-                                                    : "bg-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300 border border-transparent"
+                                                    : "bg-surface-2 text-fg-dim hover:bg-surface-4 hover:text-fg-soft border border-transparent"
                                             }`}
                                         >
                                             {r}
@@ -2524,7 +2524,7 @@ const ItemCard = memo(function ItemCard({
                                                 className={`cursor-pointer h-5 rounded text-[10px] font-medium transition-all ${
                                                     completionScore === r + 0.5
                                                         ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                                                        : "text-gray-600 hover:text-gray-300 border border-transparent hover:bg-white/5"
+                                                        : "text-fg-faint hover:text-fg-soft border border-transparent hover:bg-surface-2"
                                                 }`}
                                             >
                                                 .5
@@ -2533,14 +2533,14 @@ const ItemCard = memo(function ItemCard({
                                     </div>
                                 ))}
                             </div>
-                            <p className="text-center text-xs text-gray-500 mb-5 h-4">
+                            <p className="text-center text-xs text-fg-dim mb-5 h-4">
                                 {completionScore > 0 ? `${completionScore}/10` : "No rating"}
                             </p>
 
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setShowCompletion(false)}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-medium text-fg-muted hover:text-fg bg-surface-2 hover:bg-surface-4 border border-line-strong transition-colors"
                                 >
                                     Skip
                                 </button>
@@ -2561,7 +2561,7 @@ const ItemCard = memo(function ItemCard({
                                             setCompletionSaving(false);
                                         }
                                     }}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
+                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-fg bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
                                 >
                                     {completionSaving ? "Saving…" : "Complete"}
                                 </button>
@@ -2580,15 +2580,15 @@ const ItemCard = memo(function ItemCard({
                                     e.stopPropagation();
                                     handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
                                 }}
-                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
+                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all"
                             >
                                 <Minus className="h-3.5 w-3.5" />
                             </button>
                         )}
                         <div className="flex-1 text-center text-sm">
-                            <span className="font-semibold text-white tabular-nums">{item.progress}</span>
-                            <span className="text-gray-600 mx-0.5">/</span>
-                            <span className="text-gray-500 tabular-nums">{item.totalEp || "?"}</span>
+                            <span className="font-semibold text-fg tabular-nums">{item.progress}</span>
+                            <span className="text-fg-faint mx-0.5">/</span>
+                            <span className="text-fg-dim tabular-nums">{item.totalEp || "?"}</span>
                         </div>
                         {!readOnly && (
                             <button
@@ -2601,13 +2601,13 @@ const ItemCard = memo(function ItemCard({
                                         setShowCompletion(true);
                                     }
                                 }}
-                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
+                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all"
                             >
                                 <Plus className="h-3.5 w-3.5" />
                             </button>
                         )}
                     </div>
-                    <div className="relative h-1 bg-white/5 rounded-full overflow-hidden progress-bar">
+                    <div className="relative h-1 bg-surface-2 rounded-full overflow-hidden progress-bar">
                         <div
                             className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ${
                                 item.status === "Completed"
@@ -2628,14 +2628,14 @@ const ItemCard = memo(function ItemCard({
                     {item.score ? (
                         <div className="flex items-center gap-1">
                             <Star className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
-                            <span className="text-white font-semibold text-sm tabular-nums">{item.score.toFixed(1)}</span>
+                            <span className="text-fg font-semibold text-sm tabular-nums">{item.score.toFixed(1)}</span>
                         </div>
                     ) : (
-                        <span className="text-gray-600 text-xs">--</span>
+                        <span className="text-fg-faint text-xs">--</span>
                     )}
                     {item.mdlRating ? (
                         <div className="flex items-center gap-1">
-                            <span className="text-xs text-gray-400">MDL</span>
+                            <span className="text-xs text-fg-muted">MDL</span>
                             <span className="text-blue-400 text-xs tabular-nums">{item.mdlRating.toFixed(1)}</span>
                         </div>
                     ) : null}
@@ -2650,7 +2650,7 @@ const ItemCard = memo(function ItemCard({
                             e.stopPropagation();
                             openEdit(item);
                         }}
-                        className="cursor-pointer card-edit-btn h-8 w-8 rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all"
+                        className="cursor-pointer card-edit-btn h-8 w-8 rounded-lg text-fg-dim hover:text-fg hover:bg-surface-4 transition-all"
                     >
                         <Pencil className="h-4 w-4" />
                     </Button>
