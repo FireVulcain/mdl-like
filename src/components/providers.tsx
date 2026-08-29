@@ -18,7 +18,16 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        {/* Still attribute="class". Tailwind's dark variant is defined as
+              &:is(.dark *) and seventeen shadcn primitives rely on it, so
+              moving to a data attribute would have quietly unstyled all of
+              them. The theme tokens key on :root.light to match.
+
+              enableSystem is off, which is a change: it was on while there was
+              no light theme to resolve to, and would now hand a light-desktop
+              visitor a theme they never asked this site for. The dark is this
+              site's identity; the toggle is the way out of it. */}
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
           <Suspense fallback={null}>
             <ProgressBar />

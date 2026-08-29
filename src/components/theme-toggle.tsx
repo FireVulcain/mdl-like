@@ -1,44 +1,45 @@
 "use client";
 
-import { useRef, useSyncExternalStore } from "react";
+import { useRef } from "react";
+import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import { getThemeServerSnapshot, getThemeSnapshot, subscribeTheme, switchTheme, type Theme } from "@/lib/theme";
+import { themeTransition } from "@/lib/theme";
 
 /**
  * The theme switch.
  *
- * Reads the theme off the document rather than holding its own copy: the
- * pre-paint script has already written it before React exists, so any state
- * here could only disagree with what the reader is looking at.
+ * State belongs to next-themes, which owned the theme before this button
+ * existed: it writes the class, remembers the choice, and applies it before the
+ * first paint. This adds the circle and nothing else.
  *
- * The server can never know the choice — it lives in localStorage — so the
- * first render says dark, matching what was sent, and the real value arrives
- * one render later. Only this icon settles a frame late; the page itself was
- * styled correctly before it ever painted.
+ * Which icon shows is decided in CSS, by the same class next-themes writes,
+ * rather than by asking React what the theme is. The usual `mounted` guard
+ * renders the wrong icon for one frame after hydration — the server cannot know
+ * a choice kept in localStorage — whereas a variant is right on the first
+ * paint, before React has run at all.
  */
 export function ThemeToggle() {
-    const theme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getThemeServerSnapshot);
+    const { resolvedTheme, setTheme } = useTheme();
     const buttonRef = useRef<HTMLButtonElement>(null);
-
-    const next: Theme = theme === "dark" ? "light" : "dark";
 
     return (
         <button
             ref={buttonRef}
             type="button"
-            onClick={() => void switchTheme(next, buttonRef.current)}
-            aria-label={`Switch to ${next} theme`}
-            title={`Switch to ${next} theme`}
+            // Read at click time, which is always after hydration, so no guard
+            // is needed for the behaviour either.
+            onClick={() => {
+                const next = resolvedTheme === "light" ? "dark" : "light";
+                void themeTransition(() => setTheme(next), buttonRef.current);
+            }}
+            aria-label="Toggle theme"
+            title="Toggle theme"
             className="cursor-pointer relative inline-flex size-10 shrink-0 items-center justify-center rounded-xl text-fg-muted transition-colors hover:bg-surface-2 hover:text-fg"
         >
             {/* Both mounted and cross-faded rather than swapped, so the icon does
                 not pop out and back in while the circle is still sweeping. */}
-            <Sun
-                className={`absolute size-4 transition-all duration-300 ${theme === "light" ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0"}`}
-            />
-            <Moon
-                className={`absolute size-4 transition-all duration-300 ${theme === "dark" ? "rotate-0 scale-100 opacity-100" : "rotate-90 scale-0 opacity-0"}`}
-            />
+            <Sun className="absolute size-4 -rotate-90 scale-0 opacity-0 transition-all duration-300 light:rotate-0 light:scale-100 light:opacity-100" />
+            <Moon className="absolute size-4 rotate-0 scale-100 opacity-100 transition-all duration-300 light:rotate-90 light:scale-0 light:opacity-0" />
         </button>
     );
 }

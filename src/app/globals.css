@@ -29,6 +29,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* The counterpart, so a component can style its light state without asking
+   React what the theme is. Anything that depends on `mounted` renders wrong for
+   one frame after hydration; a variant is correct on the very first paint. */
+@custom-variant light (&:is(.light *));
+
 @keyframes shimmer-sweep {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(250%); }
@@ -127,10 +132,13 @@
    life and a failed script should leave it dark rather than flash a white page
    at somebody at night.
 
-   Light is an explicit opt-in under [data-theme="light"]. It is not driven by
-   prefers-color-scheme: the dark is this site's identity, not a default to be
-   talked out of by an operating system setting. The toggle is the only way in,
-   and the choice is remembered per device.
+   Light is an explicit opt-in under .light, the class next-themes writes. It is
+   not driven by prefers-color-scheme: the dark is this site's identity, not a
+   default to be talked out of by an operating system setting. The toggle is the
+   only way in, and the choice is remembered per device.
+
+   Keyed on the class rather than a data attribute because Tailwind's dark
+   variant is &:is(.dark *) here, and seventeen shadcn primitives depend on it.
    --------------------------------------------------------------------------- */
 :root {
     --fg: #ffffff;
@@ -170,7 +178,7 @@
     --c-tmdb: #facc15;
 }
 
-:root[data-theme="light"] {
+:root.light {
     /* Not pure white. A #fff ground under this much sky and amber glares, and
        every surface built from a low-alpha ink needs somewhere to sit. */
     --page-bg: #f4f6f9;
