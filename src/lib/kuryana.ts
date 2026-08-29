@@ -568,6 +568,16 @@ export interface KuryanaChineseTopResult {
     data: {
         link: string;
         shows: KuryanaChineseShow[];
+        /**
+         * Added to the scraper on 2026-08-29. Optional because a deploy can put
+         * an older scraper behind a newer app for a few minutes, and a caller
+         * that assumed it would then walk one page and believe it had them all.
+         */
+        pagination?: {
+            current_page: number;
+            total_pages: number;
+            has_next: boolean;
+        };
     };
     scrape_date: string;
 }

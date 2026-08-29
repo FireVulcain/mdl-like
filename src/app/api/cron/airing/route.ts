@@ -4,10 +4,12 @@ import { recordAiringRatings } from "@/lib/cron/airing-ratings";
 
 const CRON_SECRET = process.env.CRON_SECRET;
 
-// Two requests and a handful of upserts. Nothing here needs the five minutes
-// /api/cron/sync reserves, and saying so keeps a stuck scrape from holding a
-// worker for that long.
-export const maxDuration = 60;
+// Sixty was right when this was two list calls. It now also opens each airing
+// title's own page for its watchers and rank — about twenty-four requests at a
+// 500ms spacing, so roughly twenty seconds today, and more as an airing season
+// fills out. Matched to the Coolify task's own timeout rather than left at a
+// number a busy season would quietly cross.
+export const maxDuration = 300;
 export const dynamic = "force-dynamic";
 
 /**

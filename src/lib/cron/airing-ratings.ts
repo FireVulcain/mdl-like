@@ -1,11 +1,14 @@
-import { kuryanaGetTop, type KuryanaTopSelection } from "@/lib/kuryana";
+import { kuryanaGetTop, kuryanaGetDetails, parseMdlWatchers, type KuryanaTopSelection } from "@/lib/kuryana";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
 export type AiringRatingsResult = {
     task: "record-airing-ratings";
     success: boolean;
+    /** Titles that got a point today. */
     count?: number;
-    countries?: number;
+    /** How many of those carried watchers and rank, not just a rating. */
+    detailed?: number;
+    pages?: number;
     error?: string;
     duration: number;
 };
@@ -13,13 +16,23 @@ export type AiringRatingsResult = {
 /**
  * Two countries, deliberately, and not whichever ones happen to be cached.
  *
- * Every country here is another daily request against a site that blocks us
- * when pushed, so the number is chosen rather than inherited from the home
- * page's settings. Korean and Chinese are where the watching actually happens.
- * Widening this is one line, and the price of each is known: korean returns
- * about twenty shows with thirteen rated, chinese ten with five.
+ * Every country here is another set of daily requests against a site that
+ * blocks us when pushed, so the number is chosen rather than inherited from the
+ * home page's settings. Korean and Chinese are where the watching actually
+ * happens. Widening this is one line, and the price of each is known: korean
+ * airs about twenty-seven shows across two pages, chinese ten across one.
  */
 const AIRING_COUNTRIES: KuryanaTopSelection[] = ["korean", "chinese"];
+
+/**
+ * A ceiling on top of the scraper's own page count.
+ *
+ * total_pages is trusted for how far to walk, but not blindly: a parser fooled
+ * by a layout change could report a number with no bound behind it, and this
+ * job would then spend its morning walking empty pages at MDL. Five is far
+ * above any real airing season.
+ */
+const MAX_PAGES = 5;
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -33,45 +46,97 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  * their ratings genuinely move — the back catalogue's cannot, MDL publishing a
  * single decimal and those titles resting on tens of thousands of votes.
  *
- * The lists are already scraped for the home page, but reading them out of
- * CachedMdlTop would be wrong: that cache only refreshes when somebody opens
- * the home page, so a stale figure would go in under today's date and a stored
- * day would stop meaning "we looked" — the one promise the table makes.
+ * Two passes, because the two endpoints know different things.
  *
- * Rating only. The list's `rank` is MDL's popularity rank — media.service maps
- * it to `popularity` and the values run into the tens of thousands — while our
- * `ranking` column holds the rating rank from `details.ranked`. Filing one
- * under the other would quietly corrupt every rank series we have.
+ * The lists find the titles. They are already scraped for the home page, but
+ * reading them out of CachedMdlTop would be wrong: that cache only refreshes
+ * when somebody opens the home page, so a stale figure would go in under
+ * today's date and a stored day would stop meaning "we looked" — the one
+ * promise the table makes.
+ *
+ * The detail page then supplies the numbers, and it is watchers that make that
+ * second call worth its cost — the list does not carry them at all, and without
+ * them this population would have a rating and nothing to read it against.
+ *
+ * Note for anyone tempted to skip the detail call and take the list's `rank`
+ * instead: it would in fact be correct. Checked against the pages themselves,
+ * the list's rank is `details.ranked` exactly — 3718 and 3610 on both sides —
+ * and the detail page's separate `popularity` is a different number entirely
+ * (2262, 2297). `media.service.ts` maps that rank onto `UnifiedMedia.popularity`,
+ * which is a mislabelling, and believing it is what sent an earlier version of
+ * this file recording ratings alone. The second call stays for the watchers.
+ *
+ * A failed detail call falls back to the list's rating rather than losing the
+ * day. A thinner reading is worth more than a hole.
  */
 export async function recordAiringRatings(): Promise<AiringRatingsResult> {
     const started = Date.now();
 
     try {
-        const seen = new Set<string>();
-        let count = 0;
+        // slug -> the rating the list gave, kept as the fallback below.
+        const found = new Map<string, number>();
+        let pages = 0;
 
         for (const country of AIRING_COUNTRIES) {
-            try {
-                const res = await kuryanaGetTop(country, "ongoing", { sort: "popular" });
-                for (const show of res?.data.shows ?? []) {
-                    const slug = show.url?.replace(/^\//, "");
-                    // A show that has just begun has no rating yet — too few
-                    // votes for MDL to publish one. Storing the zero it comes
-                    // back as would invent a reading of nought out of ten.
-                    if (!slug || seen.has(slug) || !show.rating) continue;
-                    seen.add(slug);
-                    await recordMdlRatingPoint(slug, { rating: show.rating });
-                    count++;
+            let totalPages = 1;
+
+            for (let page = 1; page <= Math.min(totalPages, MAX_PAGES); page++) {
+                try {
+                    const res = await kuryanaGetTop(country, "ongoing", { sort: "popular", page });
+                    pages++;
+
+                    // Read on the first page and then held: asking each page how
+                    // many there are lets a single odd response cut the walk short.
+                    if (page === 1) totalPages = res?.data.pagination?.total_pages ?? 1;
+
+                    for (const show of res?.data.shows ?? []) {
+                        const slug = show.url?.replace(/^\//, "");
+                        // A show that has just begun has no rating yet — too few
+                        // votes for MDL to publish one. The zero it comes back
+                        // as is an absence, not a reading of nought out of ten.
+                        if (!slug || !show.rating || found.has(slug)) continue;
+                        found.set(slug, show.rating);
+                    }
+                } catch (e) {
+                    // One page failing must not cost the rest of the country.
+                    console.error(`[Cron airing] List failed ${country} p${page}:`, e);
                 }
+
+                await delay(500);
+            }
+        }
+
+        let count = 0;
+        let detailed = 0;
+
+        for (const [slug, listRating] of found) {
+            try {
+                const details = await kuryanaGetDetails(slug, true);
+                const d = details?.data;
+
+                if (d) {
+                    const rating = d.rating != null ? parseFloat(String(d.rating)) || null : null;
+                    const ranked = d.details?.ranked;
+                    await recordMdlRatingPoint(slug, {
+                        rating: rating ?? listRating,
+                        ranking: ranked ? parseInt(ranked.replace("#", "")) : null,
+                        watchers: parseMdlWatchers(d.details?.watchers),
+                    });
+                    detailed++;
+                } else {
+                    await recordMdlRatingPoint(slug, { rating: listRating });
+                }
+                count++;
             } catch (e) {
-                // One country failing must not cost the others theirs.
-                console.error(`[Cron airing] Failed ${country}:`, e);
+                console.error(`[Cron airing] Detail failed ${slug}:`, e);
+                await recordMdlRatingPoint(slug, { rating: listRating });
+                count++;
             }
 
             await delay(500);
         }
 
-        return { task: "record-airing-ratings", success: true, count, countries: AIRING_COUNTRIES.length, duration: Date.now() - started };
+        return { task: "record-airing-ratings", success: true, count, detailed, pages, duration: Date.now() - started };
     } catch (error) {
         return {
             task: "record-airing-ratings",
