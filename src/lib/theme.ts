@@ -37,7 +37,18 @@ export async function themeTransition(apply: () => void, origin?: Element | null
     // the larger horizontal and vertical distances. `circle(100%)` is measured
     // against the element's own box rather than the distance to its corners, so
     // it stops short and the last frame lands as a visible jump.
-    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+    const toFurthestCorner = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+    // Three per cent past it. The figure above is already exact — logged from a
+    // real button it reads 1918 against a furthest corner of 1918 — so this
+    // corrects nothing measured. It is here because the two errors are not
+    // symmetrical: falling a pixel short leaves a sliver of the old theme that
+    // vanishes in a single frame when the layers are torn down, while
+    // overshooting only means the circle finishes covering the window slightly
+    // before the animation ends. It also puts the sweep beyond the reach of any
+    // disagreement between the coordinates read here and the space the
+    // pseudo-element is laid out in — a scrollbar, a zoom level.
+    const radius = toFurthestCorner * 1.03;
 
     // Suspends every element's own colour transition for the length of the
     // sweep. Measured mid-wipe without it: 671 concurrent animations, 667 of
