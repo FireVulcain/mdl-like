@@ -75,6 +75,41 @@
     --color-popover: var(--popover);
     --color-card-foreground: var(--card-foreground);
     --color-card: var(--card);
+    /* Semantic colour, the layer the whole site should be written against.
+       The names are roles, not values: what the thing IS, so that a theme can
+       change what it looks like without every file being consulted. Each maps
+       one-to-one onto the vocabulary the site already used by hand — text-white
+       became text-fg, bg-white/5 became bg-surface-2, border-white/8 became
+       border-line — which is why the migration is mechanical rather than a
+       redesign. */
+    --color-fg: var(--fg);
+    --color-fg-soft: var(--fg-soft);
+    --color-fg-muted: var(--fg-muted);
+    --color-fg-dim: var(--fg-dim);
+    --color-fg-faint: var(--fg-faint);
+    --color-surface-1: var(--surface-1);
+    --color-surface-2: var(--surface-2);
+    --color-surface-3: var(--surface-3);
+    --color-surface-4: var(--surface-4);
+    --color-line-soft: var(--line-soft);
+    --color-line: var(--line);
+    --color-line-strong: var(--line-strong);
+    --color-panel: var(--panel);
+
+    /* The site's meanings, which survive the theme change: emerald is watched,
+       blue is watching, amber is on hold and also the viewer's own score, sky is
+       MDL, violet is a recommendation, yellow is TMDB. They are tokens because
+       the -400 shades that read well on a dark ground are washed out on a light
+       one and have to darken, without any of them changing what they mean. */
+    --color-mdl: var(--c-mdl);
+    --color-watched: var(--c-watched);
+    --color-watching: var(--c-watching);
+    --color-planned: var(--c-planned);
+    --color-dropped: var(--c-dropped);
+    --color-onhold: var(--c-onhold);
+    --color-rec: var(--c-rec);
+    --color-tmdb: var(--c-tmdb);
+
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
@@ -82,6 +117,101 @@
     --radius-2xl: calc(var(--radius) + 8px);
     --radius-3xl: calc(var(--radius) + 12px);
     --radius-4xl: calc(var(--radius) + 16px);
+}
+
+/* ---------------------------------------------------------------------------
+   Themes.
+
+   Dark lives on bare :root, so it is what renders when nothing has run — no
+   attribute, no JavaScript, no stored choice. The site was dark for its whole
+   life and a failed script should leave it dark rather than flash a white page
+   at somebody at night.
+
+   Light is an explicit opt-in under [data-theme="light"]. It is not driven by
+   prefers-color-scheme: the dark is this site's identity, not a default to be
+   talked out of by an operating system setting. The toggle is the only way in,
+   and the choice is remembered per device.
+   --------------------------------------------------------------------------- */
+:root {
+    --fg: #ffffff;
+    --fg-soft: #d1d5db;
+    --fg-muted: #9ca3af;
+    --fg-dim: #6b7280;
+    --fg-faint: #4b5563;
+
+    /* Surfaces are white at a low alpha rather than opaque greys, which is what
+       lets a card sit over the page's radial lifts and the poster art behind it
+       without cutting a flat rectangle out of them. */
+    --surface-1: rgb(255 255 255 / 0.03);
+    --surface-2: rgb(255 255 255 / 0.05);
+    --surface-3: rgb(255 255 255 / 0.08);
+    --surface-4: rgb(255 255 255 / 0.10);
+
+    --line-soft: rgb(255 255 255 / 0.05);
+    --line: rgb(255 255 255 / 0.08);
+    --line-strong: rgb(255 255 255 / 0.10);
+
+    /* Opaque, unlike the surfaces: a popover has to be readable over whatever
+       it covers, so it stops the page rather than tinting it. */
+    --panel: #111827;
+
+    /* The two radial lifts in PageBackground. Without them the bottom of a long
+       page falls back to the bare canvas and reads as flat black. */
+    --page-lift-top: rgb(30 41 59 / 0.45);
+    --page-lift-bottom: rgb(30 41 59 / 0.35);
+
+    --c-mdl: #38bdf8;
+    --c-watched: #34d399;
+    --c-watching: #60a5fa;
+    --c-planned: #94a3b8;
+    --c-dropped: #fb7185;
+    --c-onhold: #fbbf24;
+    --c-rec: #a78bfa;
+    --c-tmdb: #facc15;
+}
+
+:root[data-theme="light"] {
+    /* Not pure white. A #fff ground under this much sky and amber glares, and
+       every surface built from a low-alpha ink needs somewhere to sit. */
+    --page-bg: #f4f6f9;
+
+    /* The same near-black as the dark canvas rather than a neutral grey, so the
+       two themes read as one site seen under different light. */
+    --fg: #0f141e;
+    --fg-soft: #303a4d;
+    --fg-muted: #5b6577;
+    --fg-dim: #7d8695;
+    --fg-faint: #a0a8b5;
+
+    --surface-1: rgb(15 20 30 / 0.03);
+    --surface-2: rgb(15 20 30 / 0.05);
+    --surface-3: rgb(15 20 30 / 0.075);
+    --surface-4: rgb(15 20 30 / 0.10);
+
+    /* Carried a little heavier than their dark counterparts. A hairline is
+       judged by how it reads, not by its alpha, and ink at 8% on a near-white
+       ground disappears where white at 8% on near-black still separates. */
+    --line-soft: rgb(15 20 30 / 0.07);
+    --line: rgb(15 20 30 / 0.10);
+    --line-strong: rgb(15 20 30 / 0.14);
+
+    --panel: #ffffff;
+
+    /* Lifts toward white here rather than toward slate: depth on a light ground
+       comes from light, not from more grey. */
+    --page-lift-top: rgb(255 255 255 / 0.75);
+    --page-lift-bottom: rgb(255 255 255 / 0.55);
+
+    /* Two steps darker across the board. The -400 shades are tuned to glow on a
+       dark ground and go chalky on a light one; the meanings do not move. */
+    --c-mdl: #0284c7;
+    --c-watched: #059669;
+    --c-watching: #2563eb;
+    --c-planned: #64748b;
+    --c-dropped: #e11d48;
+    --c-onhold: #b45309;
+    --c-rec: #7c3aed;
+    --c-tmdb: #a16207;
 }
 
 :root {
@@ -706,4 +836,34 @@
 
 [data-sonner-toast][data-styled="true"].trackr-toast [data-description] {
     color: #9ca3af;
+}
+
+/* ---------------------------------------------------------------------------
+   Theme switch: a circle opening from the button that was pressed.
+
+   The browser's default cross-fade is replaced rather than tuned, so `animation:
+   none` here and the real motion driven from JavaScript — see src/lib/theme.ts.
+   Doing it there rather than in a stylesheet means the animation exists only
+   while a theme is actually being switched, instead of applying to every view
+   transition the app might ever start.
+
+   mix-blend-mode has to be normal: the default `plus-lighter` is built for a
+   cross-fade, where both layers are partly transparent at once. Here the new
+   theme is fully opaque inside the circle, and lightening it against the old
+   one washes the leading edge out.
+   --------------------------------------------------------------------------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+/* The outgoing theme must sit *under* the incoming one: the circle is drawn on
+   ::view-transition-new, so the new theme has to be the layer being revealed. */
+::view-transition-old(root) {
+    z-index: 0;
+}
+
+::view-transition-new(root) {
+    z-index: 1;
 }

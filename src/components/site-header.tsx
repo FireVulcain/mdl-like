@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchInput } from "@/components/search-input";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ExternalLink, Menu, X, Clock, Bookmark, LogOut, User2, BarChart3, Camera, Loader2, Search, Settings } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { updateAvatar } from "@/actions/avatar";
@@ -93,10 +94,10 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                 className={cn(
                     "relative container mx-auto flex h-16 items-center justify-between gap-4 px-6 rounded-2xl transition-all duration-500",
                     scrolled
-                        ? "bg-gray-900/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20 h-14"
+                        ? "bg-panel/80 backdrop-blur-xl border border-line-strong shadow-2xl shadow-black/20 h-14"
                         : hasHeroBackdrop
-                          ? "bg-black/40 backdrop-blur-md border border-white/10"
-                          : "bg-gray-900/50 backdrop-blur-md border border-white/5 shadow-2xl shadow-black/20",
+                          ? "bg-panel/40 backdrop-blur-md border border-line-strong"
+                          : "bg-panel/50 backdrop-blur-md border border-line-soft shadow-2xl shadow-black/20",
                 )}
             >
                 {/* Mobile inline search bar — absolute so it doesn't affect flex layout */}
@@ -122,13 +123,13 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                             </motion.div>
                             <motion.button
                                 onClick={() => setMobileSearchOpen(false)}
-                                className="cursor-pointer shrink-0 p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                                className="cursor-pointer shrink-0 p-2 rounded-xl bg-surface-2 border border-line-strong hover:bg-surface-4 transition-colors"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.1, delay: 0.1 }}
                             >
-                                <X className="h-5 w-5 text-white" />
+                                <X className="h-5 w-5 text-fg" />
                             </motion.button>
                         </motion.div>
                     )}
@@ -139,13 +140,13 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                     href="/"
                     className={cn("group shrink-0 transition-opacity duration-100", mobileSearchOpen ? "opacity-0 pointer-events-none" : "opacity-100")}
                 >
-                    <span className="font-black text-2xl tracking-tight text-white transition-all group-hover:opacity-80">
+                    <span className="font-black text-2xl tracking-tight text-fg transition-all group-hover:opacity-80">
                         track<span className="text-primary">r</span>
                     </span>
                 </Link>
 
                 {/* Navigation */}
-                <nav className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-xl">
+                <nav className="hidden md:flex items-center gap-1 bg-surface-2 p-1 rounded-xl">
                     {navItems.map((item) => {
                         const isActive = pathname === (item.activePath ?? item.href);
                         return (
@@ -154,7 +155,7 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                 href={item.href}
                                 className={cn(
                                     "relative px-4 py-1.5 text-sm font-semibold transition-colors rounded-lg",
-                                    isActive ? "text-white" : "text-muted-foreground hover:text-white",
+                                    isActive ? "text-fg" : "text-muted-foreground hover:text-fg",
                                 )}
                             >
                                 {isActive && (
@@ -173,7 +174,7 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                             href={mdlProfileUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-white transition-colors rounded-lg"
+                            className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-fg transition-colors rounded-lg"
                         >
                             MDL
                             <ExternalLink className="h-3 w-3" />
@@ -190,13 +191,20 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                         </Suspense>
                     </div>
 
+                    {/* Between search and the profile: a setting, so it belongs
+                        with the other controls rather than buried in the menu —
+                        and near enough to the edge that the circle it opens
+                        sweeps across the whole page rather than out of the
+                        middle of it. */}
+                    <ThemeToggle />
+
                     {/* Profile dropdown */}
                     <div ref={profileRef} className="relative hidden sm:block">
                         <div
                             onClick={() => setProfileOpen((o) => !o)}
                             className={cn(
                                 "flex h-10 w-10 rounded-xl bg-linear-to-br from-primary/20 to-purple-600/20 border p-0.5 cursor-pointer transition-all overflow-hidden",
-                                profileOpen ? "border-primary/60 shadow-lg shadow-primary/10" : "border-white/10 hover:border-primary/50",
+                                profileOpen ? "border-primary/60 shadow-lg shadow-primary/10" : "border-line-strong hover:border-primary/50",
                             )}
                         >
                             <div className="h-full w-full rounded-[10px] bg-background flex items-center justify-center overflow-hidden">
@@ -215,12 +223,12 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, y: 6, scale: 0.97 }}
                                     transition={{ duration: 0.15, ease: "easeOut" }}
-                                    className="absolute right-0 top-full mt-2 w-48 bg-gray-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden z-50"
+                                    className="absolute right-0 top-full mt-2 w-48 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-2xl shadow-2xl shadow-black/40 overflow-hidden z-50"
                                 >
                                     {/* Account header */}
-                                    <div className="flex items-center gap-3 px-4 py-3 border-b border-white/6">
+                                    <div className="flex items-center gap-3 px-4 py-3 border-b border-line">
                                         <div className="relative h-8 w-8 shrink-0">
-                                            <div className="h-8 w-8 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 overflow-hidden">
+                                            <div className="h-8 w-8 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-line-strong p-0.5 overflow-hidden">
                                                 <div className="h-full w-full rounded-md bg-background flex items-center justify-center overflow-hidden">
                                                     {avatarSrc && !avatarError ? (
                                                         <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" onError={() => setAvatarError(true)} />
@@ -235,15 +243,15 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                                 title="Upload avatar"
                                             >
                                                 {avatarUploading ? (
-                                                    <Loader2 className="h-2.5 w-2.5 text-white animate-spin" />
+                                                    <Loader2 className="h-2.5 w-2.5 text-fg animate-spin" />
                                                 ) : (
-                                                    <Camera className="h-2.5 w-2.5 text-white" />
+                                                    <Camera className="h-2.5 w-2.5 text-fg" />
                                                 )}
                                             </button>
                                         </div>
                                         <div className="min-w-0">
-                                            <p className="text-sm font-semibold text-white truncate">My Account</p>
-                                            <p className="text-xs text-white/40 truncate">Personal</p>
+                                            <p className="text-sm font-semibold text-fg truncate">My Account</p>
+                                            <p className="text-xs text-fg-dim truncate">Personal</p>
                                         </div>
                                     </div>
 
@@ -256,8 +264,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                                 className={cn(
                                                     "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                                                     pathname === `/u/${session.user.id}`
-                                                        ? "bg-primary/15 text-white"
-                                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                                        ? "bg-primary/15 text-fg"
+                                                        : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                                 )}
                                             >
                                                 <User2 className="h-4 w-4 shrink-0" />
@@ -270,8 +278,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                             className={cn(
                                                 "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                                                 pathname === "/watchlist"
-                                                    ? "bg-primary/15 text-white"
-                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                                    ? "bg-primary/15 text-fg"
+                                                    : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                             )}
                                         >
                                             <Bookmark className="h-4 w-4 shrink-0" />
@@ -283,8 +291,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                             className={cn(
                                                 "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                                                 pathname === "/history"
-                                                    ? "bg-primary/15 text-white"
-                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                                    ? "bg-primary/15 text-fg"
+                                                    : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                             )}
                                         >
                                             <Clock className="h-4 w-4 shrink-0" />
@@ -296,8 +304,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                             className={cn(
                                                 "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                                                 pathname === "/stats"
-                                                    ? "bg-primary/15 text-white"
-                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                                    ? "bg-primary/15 text-fg"
+                                                    : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                             )}
                                         >
                                             <BarChart3 className="h-4 w-4 shrink-0" />
@@ -309,17 +317,17 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                             className={cn(
                                                 "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                                                 pathname === "/settings"
-                                                    ? "bg-primary/15 text-white"
-                                                    : "text-white/60 hover:text-white hover:bg-white/5",
+                                                    ? "bg-primary/15 text-fg"
+                                                    : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                             )}
                                         >
                                             <Settings className="h-4 w-4 shrink-0" />
                                             Settings
                                         </Link>
-                                        <div className="my-1 border-t border-white/6" />
+                                        <div className="my-1 border-t border-line" />
                                         <button
                                             onClick={() => { setProfileOpen(false); signOut({ callbackUrl: "/login" }); }}
-                                            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-white/60 hover:text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer"
+                                            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-fg-muted hover:text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer"
                                         >
                                             <LogOut className="h-4 w-4 shrink-0" />
                                             Sign out
@@ -333,19 +341,19 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                     {/* Mobile Search Button */}
                     <button
                         onClick={() => setMobileSearchOpen(true)}
-                        className="cursor-pointer md:hidden p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                        className="cursor-pointer md:hidden p-2 rounded-xl bg-surface-2 border border-line-strong hover:bg-surface-4 transition-colors"
                         aria-label="Search"
                     >
-                        <Search className="h-5 w-5 text-white" />
+                        <Search className="h-5 w-5 text-fg" />
                     </button>
 
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="cursor-pointer md:hidden p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                        className="cursor-pointer md:hidden p-2 rounded-xl bg-surface-2 border border-line-strong hover:bg-surface-4 transition-colors"
                         aria-label="Toggle menu"
                     >
-                        {mobileMenuOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
+                        {mobileMenuOpen ? <X className="h-5 w-5 text-fg" /> : <Menu className="h-5 w-5 text-fg" />}
                     </button>
                 </div>
             </div>
@@ -358,7 +366,7 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                     exit={{ opacity: 0, y: -10 }}
                     className="container mx-auto mt-2 px-4"
                 >
-                    <div className="bg-gray-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl shadow-black/40">
+                    <div className="bg-panel/95 backdrop-blur-xl border border-line-strong rounded-2xl p-4 shadow-2xl shadow-black/40">
                         {/* Mobile Navigation */}
                         <nav className="flex flex-col gap-1">
                             {navItems.map((item) => {
@@ -371,8 +379,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                         className={cn(
                                             "px-4 py-3 text-sm font-semibold transition-colors rounded-xl",
                                             isActive
-                                                ? "bg-primary/20 border border-primary/30 text-white"
-                                                : "text-muted-foreground hover:text-white hover:bg-white/5",
+                                                ? "bg-primary/20 border border-primary/30 text-fg"
+                                                : "text-muted-foreground hover:text-fg hover:bg-surface-2",
                                         )}
                                     >
                                         {item.name}
@@ -384,7 +392,7 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                     href={mdlProfileUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-1.5 px-4 py-3 text-sm font-semibold text-muted-foreground hover:text-white hover:bg-white/5 transition-colors rounded-xl"
+                                    className="flex items-center gap-1.5 px-4 py-3 text-sm font-semibold text-muted-foreground hover:text-fg hover:bg-surface-2 transition-colors rounded-xl"
                                 >
                                     MDL
                                     <ExternalLink className="h-3 w-3" />
@@ -393,9 +401,9 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                         </nav>
 
                         {/* Mobile Profile */}
-                        <div className="mt-4 pt-4 border-t border-white/10 sm:hidden">
+                        <div className="mt-4 pt-4 border-t border-line-strong sm:hidden">
                             <div className="flex items-center gap-3 px-4 py-2 mb-1">
-                                <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-white/10 p-0.5 overflow-hidden">
+                                <div className="h-8 w-8 shrink-0 rounded-lg bg-linear-to-br from-primary/20 to-purple-600/20 border border-line-strong p-0.5 overflow-hidden">
                                     <div className="h-full w-full rounded-md bg-background flex items-center justify-center overflow-hidden">
                                         {avatarSrc && !avatarError ? (
                                             <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" onError={() => setAvatarError(true)} />
@@ -404,7 +412,7 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                         )}
                                     </div>
                                 </div>
-                                <span className="text-sm font-semibold text-white">My Account</span>
+                                <span className="text-sm font-semibold text-fg">My Account</span>
                             </div>
                             {session?.user?.id && (
                                 <Link
@@ -413,8 +421,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                     className={cn(
                                         "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
                                         pathname === `/u/${session.user.id}`
-                                            ? "bg-primary/15 border border-primary/20 text-white"
-                                            : "text-white/60 hover:text-white hover:bg-white/5",
+                                            ? "bg-primary/15 border border-primary/20 text-fg"
+                                            : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                     )}
                                 >
                                     <User2 className="h-4 w-4 shrink-0" />
@@ -427,8 +435,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                 className={cn(
                                     "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
                                     pathname === "/watchlist"
-                                        ? "bg-primary/15 border border-primary/20 text-white"
-                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                        ? "bg-primary/15 border border-primary/20 text-fg"
+                                        : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                 )}
                             >
                                 <Bookmark className="h-4 w-4 shrink-0" />
@@ -440,8 +448,8 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                 className={cn(
                                     "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
                                     pathname === "/history"
-                                        ? "bg-primary/15 border border-primary/20 text-white"
-                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                        ? "bg-primary/15 border border-primary/20 text-fg"
+                                        : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                 )}
                             >
                                 <Clock className="h-4 w-4 shrink-0" />
@@ -453,17 +461,17 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                 className={cn(
                                     "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
                                     pathname === "/stats"
-                                        ? "bg-primary/15 border border-primary/20 text-white"
-                                        : "text-white/60 hover:text-white hover:bg-white/5",
+                                        ? "bg-primary/15 border border-primary/20 text-fg"
+                                        : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                 )}
                             >
                                 <BarChart3 className="h-4 w-4 shrink-0" />
                                 Stats
                             </Link>
-                            <div className="my-1 border-t border-white/10" />
+                            <div className="my-1 border-t border-line-strong" />
                             <button
                                 onClick={() => { setMobileMenuOpen(false); signOut({ callbackUrl: "/login" }); }}
-                                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-white/60 hover:text-red-400 hover:bg-red-500/10 transition-colors rounded-xl cursor-pointer"
+                                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-fg-muted hover:text-red-400 hover:bg-red-500/10 transition-colors rounded-xl cursor-pointer"
                             >
                                 <LogOut className="h-4 w-4 shrink-0" />
                                 Sign out

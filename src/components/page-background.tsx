@@ -30,8 +30,11 @@ export function PageBackground() {
     return (
         <div className="fixed inset-0 -z-10 pointer-events-none">
             <div className="absolute inset-0 bg-page" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(30,41,59,0.45)_0%,transparent_60%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(30,41,59,0.35)_0%,transparent_55%)]" />
+            {/* The two lifts read their colour from the theme now: slate on the
+                dark canvas, white on the light one. Depth on a light ground
+                comes from light, not from more grey. */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--page-lift-top)_0%,transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,var(--page-lift-bottom)_0%,transparent_55%)]" />
             {/* No coloured glow. Two blurred blue ellipses sat here, and one more
                 per home section on top of them — seven soft blue and violet halos
                 on one page, which is the single loudest thing a generated design

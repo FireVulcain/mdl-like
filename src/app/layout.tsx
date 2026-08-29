@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { CommandPalette } from "@/components/command-palette";
 import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences } from "@/actions/preferences";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 // Back on Geist, for both roles. font-display still exists as its own variable
 // and is still what the 54 headings ask for — it simply resolves to the same
@@ -53,8 +54,14 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Before the first paint, and deliberately not a component or an
+            effect: React has not run yet, and anything later would paint the
+            dark default and then snap to light. See src/lib/theme.ts. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body
-        className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-900 font-sans`}
+        className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-page text-fg font-sans`}
       >
         <Providers>
           <div className="relative flex min-h-screen flex-col">

@@ -45,7 +45,7 @@ export function MediaCard({
                         sizes={sizes}
                     />
                 ) : (
-                    <div className="flex h-full items-center justify-center bg-linear-to-br from-gray-800 to-gray-900 text-gray-400 text-sm">
+                    <div className="flex h-full items-center justify-center bg-surface-3 text-fg-dim text-sm">
                         No Poster
                     </div>
                 )}
