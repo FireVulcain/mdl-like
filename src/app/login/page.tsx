@@ -16,6 +16,35 @@ const fadeUp = {
     }),
 };
 
+/**
+ * Where to land once the form is through.
+ *
+ * Read from window at submit time rather than through useSearchParams, which
+ * would force this page behind a Suspense boundary for no gain — the value is
+ * only ever wanted inside a click handler, on the client.
+ *
+ * Anything that is not a path on this very origin collapses to "/". The
+ * parameter travels in a URL anyone can hand out, so accepting it unchecked is
+ * an open redirect: a link to our own login page that drops the visitor,
+ * freshly authenticated and trusting, on somebody else's site. Resolving
+ * against our origin settles the protocol-relative form too — "//evil.com"
+ * parses with an origin of its own and fails the comparison.
+ */
+function landingAfterLogin(): string {
+    if (typeof window === "undefined") return "/";
+    const raw = new URLSearchParams(window.location.search).get("callbackUrl");
+    if (!raw) return "/";
+    try {
+        const url = new URL(raw, window.location.origin);
+        if (url.origin !== window.location.origin) return "/";
+        // Sending them back to the form they have just cleared would loop.
+        if (url.pathname === "/login") return "/";
+        return url.pathname + url.search + url.hash;
+    } catch {
+        return "/";
+    }
+}
+
 export default function LoginPage() {
     const router = useRouter();
     const [email, setEmail] = useState("");
@@ -39,7 +68,7 @@ export default function LoginPage() {
                 setError("Invalid email or password");
                 setIsLoading(false);
             } else {
-                router.push("/");
+                router.push(landingAfterLogin());
                 router.refresh();
             }
         } catch {

@@ -23,9 +23,18 @@ export const authConfig: NextAuthConfig = {
         return true;
       }
 
-      // Redirect to login if not authenticated
+      // Redirect to login if not authenticated, carrying where they were
+      // headed. Returning false alone loses it: a bookmarked media page sends
+      // you to the login form and then, once through, to the home page — the
+      // one place you were not asking for.
       if (!isLoggedIn && !isLoginPage) {
-        return false; // This will redirect to signIn page
+        const target = nextUrl.pathname + nextUrl.search;
+        const login = new URL("/login", nextUrl);
+        // Not worth carrying when it is where they would land anyway.
+        if (target !== "/") {
+          login.searchParams.set("callbackUrl", target);
+        }
+        return Response.redirect(login);
       }
 
       // Redirect to home if already logged in and trying to access login
