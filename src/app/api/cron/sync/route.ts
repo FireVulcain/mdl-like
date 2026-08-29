@@ -329,26 +329,28 @@ function normalizeCast(members: KuryanaCastMember[]) {
  * recorded day would stop meaning "we looked". This fetches its own, which
  * costs one request per country.
  *
+ * Two countries, deliberately, and not whichever ones happen to be cached:
+ * every country added is another daily request against a site that blocks us
+ * when pushed. Korean and Chinese are where the watching actually happens here.
+ * Widening this is a one-line change, and the cost of each line is known —
+ * korean returns twenty shows with thirteen rated, chinese ten with five.
+ *
  * Rating only. The list's `rank` is MDL's popularity rank — the app maps it to
  * `popularity`, and the values run into the tens of thousands — while our
  * `ranking` column holds the rating rank from `details.ranked`. Filing one
  * under the other would quietly corrupt every rank series we have.
  */
+const AIRING_COUNTRIES: KuryanaTopSelection[] = ["korean", "chinese"];
+
 async function runRecordAiringRatings(cronStart: number): Promise<TaskResult> {
     const taskStart = Date.now();
     const BUDGET_MS = 285_000;
 
     try {
-        // Exactly the lists the app actually shows, so nothing is scraped for a
-        // country nobody here looks at. "all" is the union, and covers the case
-        // where no per-country row exists yet.
-        const rows = await prisma.cachedMdlTop.findMany({ select: { country: true }, distinct: ["country"] });
-        const countries: KuryanaTopSelection[] = rows.length > 0 ? (rows.map((r) => r.country) as KuryanaTopSelection[]) : ["all"];
-
         const seen = new Set<string>();
         let count = 0;
 
-        for (const country of countries) {
+        for (const country of AIRING_COUNTRIES) {
             if (Date.now() - cronStart > BUDGET_MS) break;
 
             try {
