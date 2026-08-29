@@ -28,6 +28,7 @@ import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
 import { Suspense } from "react";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
+import { MdlRatingChartSection } from "@/components/media/mdl-rating-chart-section";
 import { MdlRecsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { PosterZoom } from "@/components/media/poster-zoom";
@@ -453,6 +454,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         {/* An MDL-native page has no TMDB backdrops, so it had no
                             photo section at all. MDL has the gallery, so it gets
                             one — same component, one source. */}
+                        <div id="section-rating" className="border-t border-white/8 pt-8 empty:hidden">
+                            <Suspense fallback={null}>
+                                <MdlRatingChartSection mdlSlug={media.externalId} />
+                            </Suspense>
+                        </div>
+
                         <div id="section-photos" className="border-t border-white/8 pt-8">
                             <Suspense fallback={null}>
                                 <MdlPhotosSection
@@ -1072,6 +1079,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         and cost nothing; the MDL set is a scrape, so it streams
                         in its own boundary and the fallback is the section as it
                         was before — backdrops, no toggle. */}
+                    {mdlSlugForSeason && (
+                        <div id="section-rating" className="border-t border-white/8 pt-8 empty:hidden">
+                            <Suspense fallback={null}>
+                                <MdlRatingChartSection mdlSlug={mdlSlugForSeason} />
+                            </Suspense>
+                        </div>
+                    )}
+
                     <div id="section-photos" className="border-t border-white/8 pt-8">
                         <Suspense fallback={<PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />}>
                             <MdlPhotosSection
