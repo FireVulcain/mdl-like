@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
-import { kuryanaGetDetails, kuryanaGetCast, kuryanaGetTop, parseMdlWatchers, KuryanaCastMember, type KuryanaTopSelection } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
@@ -49,20 +49,12 @@ export async function GET(request: NextRequest) {
 
         await delay(2000);
 
-        // Task 3: One rating reading for every currently-airing drama, so the
-        // history is not confined to what somebody here happens to watch.
+        // Task 3: Refresh stale MDL ratings (shows approaching their 7-day cache TTL)
         //
-        // Ahead of the watchlist refresh on purpose. That one is greedy by
-        // design — it works down its queue until 270s of the 300s budget are
-        // gone — so anything behind it would only run on days it happened to
-        // finish early, which for a growing watchlist means never. This costs
-        // one request per country and is over in seconds.
-        const airingRatings = await runRecordAiringRatings(startTime);
-        results.push(airingRatings);
-
-        await delay(2000);
-
-        // Task 4: Refresh stale MDL ratings (shows approaching their 7-day cache TTL)
+        // The airing-ratings reading used to sit in front of this one, to keep
+        // this task's appetite from starving it. It now has its own route and
+        // its own Coolify schedule, which is the better answer: neither job can
+        // cost the other its day.
         const mdlResult = await runRefreshMdlRatings(startTime);
         results.push(mdlResult);
 
@@ -340,49 +332,6 @@ function normalizeCast(members: KuryanaCastMember[]) {
  * `ranking` column holds the rating rank from `details.ranked`. Filing one
  * under the other would quietly corrupt every rank series we have.
  */
-const AIRING_COUNTRIES: KuryanaTopSelection[] = ["korean", "chinese"];
-
-async function runRecordAiringRatings(cronStart: number): Promise<TaskResult> {
-    const taskStart = Date.now();
-    const BUDGET_MS = 285_000;
-
-    try {
-        const seen = new Set<string>();
-        let count = 0;
-
-        for (const country of AIRING_COUNTRIES) {
-            if (Date.now() - cronStart > BUDGET_MS) break;
-
-            try {
-                const res = await kuryanaGetTop(country, "ongoing", { sort: "popular" });
-                for (const show of res?.data.shows ?? []) {
-                    const slug = show.url?.replace(/^\//, "");
-                    // A show that has just begun has no rating yet — too few
-                    // votes for MDL to publish one. Storing the zero it comes
-                    // back as would invent a reading of nought out of ten.
-                    if (!slug || seen.has(slug) || !show.rating) continue;
-                    seen.add(slug);
-                    await recordMdlRatingPoint(slug, { rating: show.rating });
-                    count++;
-                }
-            } catch (e) {
-                console.error(`[Cron airing] Failed ${country}:`, e);
-            }
-
-            await delay(500);
-        }
-
-        return { task: "record-airing-ratings", success: true, count, duration: Date.now() - taskStart };
-    } catch (error) {
-        return {
-            task: "record-airing-ratings",
-            success: false,
-            error: error instanceof Error ? error.message : "Unknown error",
-            duration: Date.now() - taskStart,
-        };
-    }
-}
-
 // Refresh MDL ratings in two passes:
 //   1. Priority: "Watching" + "Plan to Watch" shows — always refreshed regardless of cache age
 //   2. Stale: remaining watchlist shows with cache ≥6 days old
