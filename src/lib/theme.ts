@@ -39,13 +39,21 @@ export async function themeTransition(apply: () => void, origin?: Element | null
     // it stops short and the last frame lands as a visible jump.
     const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
+    // Suspends every element's own colour transition for the length of the
+    // sweep. Measured mid-wipe without it: 671 concurrent animations, 667 of
+    // them CSSTransitions fired by the theme class change. With it: five.
+    document.documentElement.classList.add("theme-wiping");
+    const done = () => document.documentElement.classList.remove("theme-wiping");
+
     const transition = document.startViewTransition(apply);
+    void transition.finished.catch(() => {}).then(done);
 
     try {
         await transition.ready;
     } catch {
         // A transition can be abandoned — a second click, a navigation. The
         // theme is applied by then, so there is nothing to repair.
+        done();
         return;
     }
 

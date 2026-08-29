@@ -972,6 +972,24 @@
    one washes the leading edge out.
    --------------------------------------------------------------------------- */
 ::view-transition-group(root),
+/* Nothing may transition its own colours while the wipe is sweeping.
+   ---------------------------------------------------------------------------
+   Flipping the theme class re-computes the colour of every element on screen,
+   and 449 of them carry transition-colors or transition-all — so each one
+   starts its own animation, hundreds at once, exactly while the compositor is
+   trying to hold 60fps for the circle. Measured mid-wipe, getAnimations()
+   returned over four hundred CSSTransitions.
+
+   next-themes has disableTransitionOnChange and it is switched on, but it
+   guards its own DOM write; ours happens inside startViewTransition's callback,
+   where that guard has already been lifted. So the suppression is done here,
+   for the length of the transition and no longer. */
+html.theme-wiping *,
+html.theme-wiping *::before,
+html.theme-wiping *::after {
+    transition: none !important;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;
