@@ -94,7 +94,11 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
     }
 
     const delta = values[values.length - 1] - values[0];
-    const rounded = Math.round(delta * 100) / 100;
+    // Rounded to a tenth, like the values it is derived from. MDL publishes one
+    // decimal, so a hundredths place here would only ever print a zero that
+    // cannot carry information — and float subtraction would occasionally
+    // print it wrong (8.5 - 8.2 is 0.30000000000000027).
+    const rounded = Math.round(delta * 10) / 10;
     const sign = rounded > 0 ? "+" : rounded < 0 ? "−" : "";
 
     // The trigger says "movement over time" rather than the generic "more to
@@ -123,7 +127,7 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
                     setOpen(true);
                 }}
                 aria-expanded={open}
-                aria-label={`Rating history, ${direction} ${Math.abs(rounded).toFixed(2)} over ${points.length} readings`}
+                aria-label={`Rating history, ${direction} ${Math.abs(rounded).toFixed(1)} over ${points.length} readings`}
                 className="cursor-pointer ml-1 inline-flex items-center text-sky-400/60 transition-colors hover:text-sky-300"
             >
                 <TrendIcon className="size-3.5" />
@@ -139,7 +143,7 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
                         <span className="text-[11px] font-medium text-gray-400">MDL rating</span>
                         <span className="text-xs font-semibold tabular-nums text-sky-400">
                             {sign}
-                            {Math.abs(rounded).toFixed(2)}
+                            {Math.abs(rounded).toFixed(1)}
                         </span>
                     </div>
 
@@ -169,22 +173,22 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
 
                     {/* The scale, which the chart cannot show on its own: it is
                         normalised to its own range, so a dramatic-looking slope
-                        might be six hundredths or a whole point. */}
+                        might be a single tenth or a whole point. */}
                     <div className="mt-2 flex items-baseline justify-between gap-2 text-[11px] text-gray-500">
                         <span className="tabular-nums">
                             {active ? (
                                 <>
                                     <span className="text-gray-300">{formatDay(active.day)}</span>{" "}
-                                    <span className="text-sky-400">{active.rating.toFixed(2)}</span>
+                                    <span className="text-sky-400">{active.rating.toFixed(1)}</span>
                                 </>
                             ) : (
                                 `${formatDay(points[0].day)} → ${formatDay(points[points.length - 1].day)}`
                             )}
                         </span>
                         <span className="tabular-nums">
-                            {lo.toFixed(2)}
+                            {lo.toFixed(1)}
                             {"–"}
-                            {hi.toFixed(2)}
+                            {hi.toFixed(1)}
                         </span>
                     </div>
 
