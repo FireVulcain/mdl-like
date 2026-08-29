@@ -10,6 +10,29 @@ const PAD = { l: 34, r: 46, t: 12, b: 24 };
 const PLOT_W = VB_W - PAD.l - PAD.r;
 const PLOT_H = VB_H - PAD.t - PAD.b;
 
+/**
+ * When a rating stops moving, the chart stops giving its flat run full width.
+ *
+ * A title that wobbled for three days and has held the same figure ever since
+ * would otherwise draw that wobble into one per cent of the plot and spend the
+ * remaining ninety-nine on a horizontal line. The history is still worth
+ * showing — it just has to be shown at a size where it can be read.
+ *
+ * So the axis breaks: the period where something happened keeps most of the
+ * width, and the flat run that follows is compressed into a stub after a
+ * visible gap. A broken axis has to be signposted or it simply lies about time,
+ * hence the gap, the slashes drawn in it, and the label saying how long the
+ * compressed stretch actually is.
+ *
+ * Only worth doing when the tail genuinely dominates — below these two
+ * thresholds the chart is legible as it stands and a break would be noise.
+ */
+const TAIL_MIN_DAYS = 14;
+const TAIL_MIN_SHARE = 0.55;
+
+const ACTIVE_SHARE = 0.78;
+const GAP_SHARE = 0.06;
+
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 // From the string parts, never through Date: "2026-08-12" parsed as a Date is
@@ -93,7 +116,29 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
         const lastDay = Math.max(...days);
         const daySpan = lastDay - firstDay || 1;
 
-        const xOf = (iso: string) => PAD.l + ((dayNumber(iso) - firstDay) / daySpan) * PLOT_W;
+        // Where the rating last changed. Everything after it is one long run of
+        // the same figure, and that run is what the break compresses.
+        let tailStart = rated.length - 1;
+        if (rated.length > 1) {
+            const finalRating = rated[rated.length - 1].rating;
+            while (tailStart > 0 && rated[tailStart - 1].rating === finalRating) tailStart--;
+        }
+        const breakDay = rated.length ? dayNumber(rated[tailStart].day) : firstDay;
+        const tailDays = lastDay - breakDay;
+        const broken = rated.length > 1 && tailDays >= TAIL_MIN_DAYS && tailDays / daySpan >= TAIL_MIN_SHARE;
+
+        const activeW = broken ? PLOT_W * ACTIVE_SHARE : PLOT_W;
+        const gapW = broken ? PLOT_W * GAP_SHARE : 0;
+        const stubW = broken ? PLOT_W - activeW - gapW : 0;
+        const activeSpan = broken ? breakDay - firstDay || 1 : daySpan;
+
+        // Piecewise: real time on the left, compressed time after the break.
+        const xOf = (iso: string) => {
+            const d = dayNumber(iso);
+            if (!broken) return PAD.l + ((d - firstDay) / daySpan) * PLOT_W;
+            if (d <= breakDay) return PAD.l + ((d - firstDay) / activeSpan) * activeW;
+            return PAD.l + activeW + gapW + ((d - breakDay) / (tailDays || 1)) * stubW;
+        };
 
         const rating = scaleFor(
             rated.map((p) => p.rating),
@@ -113,26 +158,55 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
             return d;
         };
 
-        const ratingPath = stepPath(rated.map((p) => ({ iso: p.day, v: p.rating })), yRating);
-        const watchersPath = audience ? stepPath(watched.map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
+        // Split at the break so nothing is drawn across the gap — a line
+        // spanning it would undo the very thing the gap is there to say.
+        const beforeBreak = <T extends { day: string }>(list: T[]) => (broken ? list.filter((p) => dayNumber(p.day) <= breakDay) : list);
+        const afterBreak = <T extends { day: string }>(list: T[]) => (broken ? list.filter((p) => dayNumber(p.day) >= breakDay) : []);
+
+        const ratingPath = stepPath(beforeBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
+        const ratingTailPath = stepPath(afterBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
+        const watchersPath = audience ? stepPath(beforeBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
+        const watchersTailPath = audience ? stepPath(afterBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
         // Closed back along the baseline so the audience reads as ground under
         // the rating rather than as a second line competing with it.
-        const watchersArea =
-            audience && watched.length > 1
-                ? `${watchersPath} L ${xOf(watched[watched.length - 1].day).toFixed(2)} ${(PAD.t + PLOT_H).toFixed(2)} L ${xOf(watched[0].day).toFixed(2)} ${(PAD.t + PLOT_H).toFixed(2)} Z`
+        const closeArea = (path: string, list: { day: string }[]) =>
+            path && list.length > 1
+                ? `${path} L ${xOf(list[list.length - 1].day).toFixed(2)} ${(PAD.t + PLOT_H).toFixed(2)} L ${xOf(list[0].day).toFixed(2)} ${(PAD.t + PLOT_H).toFixed(2)} Z`
                 : "";
+        const watchersArea = audience ? closeArea(watchersPath, beforeBreak(watched)) : "";
+        const watchersTailArea = audience ? closeArea(watchersTailPath, afterBreak(watched)) : "";
 
         // Three date labels at most: the ends always, the middle only when the
         // span is wide enough that it is not crowding one of them.
-        const xLabels =
-            daySpan > 6
-                ? [points[0], points[Math.floor((points.length - 1) / 2)], points[points.length - 1]]
-                : [points[0], points[points.length - 1]];
+        const xLabels = broken
+            ? [points[0], rated[tailStart], points[points.length - 1]]
+            : daySpan > 6
+              ? [points[0], points[Math.floor((points.length - 1) / 2)], points[points.length - 1]]
+              : [points[0], points[points.length - 1]];
 
-        return { rated, watched, xOf, rating, yRating, audience, yWatchers, ratingPath, watchersArea, xLabels };
+        return {
+            rated,
+            watched,
+            xOf,
+            rating,
+            yRating,
+            audience,
+            yWatchers,
+            ratingPath,
+            ratingTailPath,
+            watchersArea,
+            watchersTailArea,
+            xLabels,
+            broken,
+            tailDays,
+            breakX: PAD.l + activeW,
+            stubX: PAD.l + activeW + gapW,
+            beforeBreak,
+        };
     }, [points]);
 
-    const { rated, xOf, rating, yRating, audience, yWatchers, ratingPath, watchersArea, xLabels } = geometry;
+    const { rated, xOf, rating, yRating, audience, yWatchers, ratingPath, ratingTailPath, watchersArea, watchersTailArea, xLabels, broken, tailDays, breakX, stubX, beforeBreak } =
+        geometry;
 
     const onMove = (e: React.PointerEvent<SVGSVGElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -180,6 +254,7 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
                 {audience && watchersArea && (
                     <>
                         <path d={watchersArea} className="fill-sky-500/8" />
+                        {watchersTailArea && <path d={watchersTailArea} className="fill-sky-500/8" />}
                         {[audience.ticks[0], audience.ticks[audience.ticks.length - 1]].map((t) => (
                             <text key={t} x={PAD.l + PLOT_W + 8} y={yWatchers(t) + 3.5} textAnchor="start" className="fill-sky-500/40 text-[10px] tabular-nums">
                                 {compact(t)}
@@ -203,12 +278,45 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
 
                 {/* The rating itself */}
                 <path d={ratingPath} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-sky-400" />
+                {ratingTailPath && (
+                    <path d={ratingTailPath} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-sky-400/60" />
+                )}
+
+                {/* The break, marked on the axis rather than across the plot.
+                    This was two full-height slashes through the middle of the
+                    chart, and the first person to see it asked what the grey
+                    bars were — a mark that has to be explained is not marking
+                    anything, it is just two more lines in the way. A zigzag
+                    sitting on the baseline is the conventional figure and it
+                    leaves the data alone; the label above the stub is what
+                    actually carries the meaning. */}
+                {broken && (
+                    <g>
+                        <path
+                            d={`M ${breakX - 1} ${PAD.t + PLOT_H} l 4 -4 l 3 8 l 3 -8 l 3 8 l 3 -4`}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={1.25}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-fg-dim"
+                        />
+                        <text x={(breakX + stubX) / 2 + 4} y={PAD.t - 2} textAnchor="middle" className="fill-fg-dim text-[9px]">
+                            {tailDays}d flat
+                        </text>
+                    </g>
+                )}
 
                 {/* One dot per actual reading — where the line is carried
-                    forward and where it was genuinely observed. */}
-                {rated.map((p) => (
+                    forward and where it was genuinely observed. Only the active
+                    side gets them: a year of identical readings compressed into
+                    a stub would be a smear of dots saying nothing. */}
+                {beforeBreak(rated).map((p) => (
                     <circle key={p.day} cx={xOf(p.day)} cy={yRating(p.rating)} r={2.5} className="fill-sky-300" />
                 ))}
+                {broken && rated.length > 0 && (
+                    <circle cx={xOf(rated[rated.length - 1].day)} cy={yRating(rated[rated.length - 1].rating)} r={2.5} className="fill-sky-300/70" />
+                )}
 
                 {active && (
                     <g>
