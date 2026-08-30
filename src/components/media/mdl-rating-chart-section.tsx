@@ -68,8 +68,8 @@ export async function MdlRatingChartSection({ mdlSlug }: { mdlSlug: string }) {
                 everything else at six days or older, so the dots cluster where
                 someone was paying attention. */}
             <p className="mt-2 text-[11px] leading-snug text-fg-faint">
-                Each dot is a day the rating was read. Between two dots the line holds the last known value — a gap is a stretch nobody looked, not a
-                stretch nothing happened.
+                A dot marks a day the rating moved; between two of them the line holds the value it held. The audience slopes instead, because a
+                counter that only rises must have passed through everything in between.
             </p>
         </div>
     );

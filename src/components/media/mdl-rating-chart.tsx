@@ -149,6 +149,21 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
         const audience = watched.length > 1 ? scaleFor(watched.map((p) => p.watchers), [100, 250, 500, 1000, 2500, 5000, 10_000, 25_000, 50_000, 100_000]) : null;
         const yWatchers = (v: number) => (audience ? PAD.t + PLOT_H - ((v - audience.lo) / (audience.hi - audience.lo)) * PLOT_H : 0);
 
+        // Two shapes, because the two series know different things about the
+        // days between their readings.
+        //
+        // A rating steps. It can rise and fall, so between 8.2 on Monday and
+        // 8.4 the next Monday it may well have gone through 8.0 — a straight
+        // line would assert a climb that never happened, and the only honest
+        // claim is that the last figure held until we looked again.
+        //
+        // The audience slopes. It is a counter that only ever goes up, so
+        // between 11,000 and 12,400 we know for certain it passed through every
+        // figure in between, in order. Here the step is the lie: it draws six
+        // flat days and then fourteen hundred people arriving in one afternoon.
+        // This matters most where readings are sparsest, which is exactly where
+        // watchers are — measured at 2.1 readings per title against 9.8
+        // ratings, because only a title's own detail page carries the audience.
         const stepPath = (list: { iso: string; v: number }[], y: (v: number) => number) => {
             if (list.length === 0) return "";
             let d = `M ${xOf(list[0].iso).toFixed(2)} ${y(list[0].v).toFixed(2)}`;
@@ -158,6 +173,11 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
             return d;
         };
 
+        const slopePath = (list: { iso: string; v: number }[], y: (v: number) => number) => {
+            if (list.length === 0) return "";
+            return list.map((p, i) => `${i === 0 ? "M" : "L"} ${xOf(p.iso).toFixed(2)} ${y(p.v).toFixed(2)}`).join(" ");
+        };
+
         // Split at the break so nothing is drawn across the gap — a line
         // spanning it would undo the very thing the gap is there to say.
         const beforeBreak = <T extends { day: string }>(list: T[]) => (broken ? list.filter((p) => dayNumber(p.day) <= breakDay) : list);
@@ -165,8 +185,8 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
 
         const ratingPath = stepPath(beforeBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
         const ratingTailPath = stepPath(afterBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
-        const watchersPath = audience ? stepPath(beforeBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
-        const watchersTailPath = audience ? stepPath(afterBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
+        const watchersPath = audience ? slopePath(beforeBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
+        const watchersTailPath = audience ? slopePath(afterBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
         // Closed back along the baseline so the audience reads as ground under
         // the rating rather than as a second line competing with it.
         const closeArea = (path: string, list: { day: string }[]) =>
@@ -184,8 +204,24 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
               ? [points[0], points[Math.floor((points.length - 1) / 2)], points[points.length - 1]]
               : [points[0], points[points.length - 1]];
 
+        // A dot where the rating changed, plus both ends — not one per reading.
+        //
+        // The dots used to mark every day we looked, which was worth saying
+        // while readings were scarce. They are not scarce any more: MDL's
+        // statistics page backfills a fortnight at a time, so six months of
+        // history is a hundred and eighty readings and a hundred and eighty
+        // dots four pixels apart, a wall of them along every plateau. And a
+        // plateau is exactly where the dots say least — the value did not move,
+        // and repeating that daily crowds out the moments it did.
+        //
+        // On a sparse series almost every reading is a change, so this barely
+        // alters those. The count of readings stays in the section's header,
+        // which is where "how often did we look" belongs.
+        const dots = rated.filter((p, i) => i === 0 || i === rated.length - 1 || p.rating !== rated[i - 1].rating);
+
         return {
             rated,
+            dots,
             watched,
             xOf,
             rating,
@@ -205,7 +241,7 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
         };
     }, [points]);
 
-    const { rated, xOf, rating, yRating, audience, yWatchers, ratingPath, ratingTailPath, watchersArea, watchersTailArea, xLabels, broken, tailDays, breakX, stubX, beforeBreak } =
+    const { rated, dots, xOf, rating, yRating, audience, yWatchers, ratingPath, ratingTailPath, watchersArea, watchersTailArea, xLabels, broken, tailDays, breakX, stubX, beforeBreak } =
         geometry;
 
     const onMove = (e: React.PointerEvent<SVGSVGElement>) => {
@@ -307,11 +343,10 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
                     </g>
                 )}
 
-                {/* One dot per actual reading — where the line is carried
-                    forward and where it was genuinely observed. Only the active
-                    side gets them: a year of identical readings compressed into
-                    a stub would be a smear of dots saying nothing. */}
-                {beforeBreak(rated).map((p) => (
+                {/* A dot where the rating moved, and at both ends. Only the
+                    active side gets them: a year of identical readings
+                    compressed into a stub would be a smear saying nothing. */}
+                {beforeBreak(dots).map((p) => (
                     <circle key={p.day} cx={xOf(p.day)} cy={yRating(p.rating)} r={2.5} className="fill-sky-300" />
                 ))}
                 {broken && rated.length > 0 && (
