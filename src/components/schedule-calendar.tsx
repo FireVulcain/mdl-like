@@ -318,21 +318,28 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                             <div className="flex flex-wrap gap-1 mt-0.5 justify-center">
                                                 {dayGroups.slice(0, 4).map((showEps, gi) => {
                                                     const first = showEps[0];
+                                                    // Plan-to-watch shows are optional viewing the user
+                                                    // has only earmarked — when they are mixed in with
+                                                    // what's actually being watched the day fills up
+                                                    // fast, so they sit back: greyed and dimmed, with
+                                                    // a dashed ring in place of the solid page-coloured
+                                                    // one.
+                                                    const isPlanToWatch = first.status === "Plan to Watch";
                                                     return (
                                                         <Tooltip key={gi}>
                                                             <TooltipTrigger asChild>
                                                                 <Link href={`/media/${first.mediaId}?season=${first.seasonNumber}`}>
-                                                                    <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-page hover:ring-primary/70 hover:scale-110 transition-all bg-surface-3 shrink-0">
+                                                                    <div className={`relative w-8 h-8 rounded-full overflow-hidden ring-2 hover:ring-primary/70 hover:scale-110 transition-all bg-surface-3 shrink-0 ${isPlanToWatch ? "ring-transparent outline-2 outline-dashed outline-offset-1 outline-fg-dim/60" : "ring-page"}`}>
                                                                         {first.poster ? (
                                                                             <Image unoptimized={true}
                                                                                 src={first.poster}
                                                                                 alt={first.title}
                                                                                 fill
                                                                                 sizes="32px"
-                                                                                className="object-cover object-top"
+                                                                                className={`object-cover object-top ${isPlanToWatch ? "opacity-45 grayscale" : ""}`}
                                                                             />
                                                                         ) : (
-                                                                            <div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-fg-muted">
+                                                                            <div className={`w-full h-full flex items-center justify-center text-[10px] font-bold text-fg-muted ${isPlanToWatch ? "opacity-45" : ""}`}>
                                                                                 {first.title.slice(0, 2).toUpperCase()}
                                                                             </div>
                                                                         )}
@@ -341,7 +348,12 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                             </TooltipTrigger>
                                                             <TooltipContent side="top">
                                                                 <div className="flex items-center justify-between gap-3 mb-1">
-                                                                    <p className="font-semibold">{first.title}</p>
+                                                                    <p className="font-semibold">
+                                                                        {first.title}
+                                                                        {isPlanToWatch && (
+                                                                            <span className="ml-2 font-normal text-fg-dim text-xs">Plan to Watch</span>
+                                                                        )}
+                                                                    </p>
                                                                     <button
                                                                         onClick={(e) => {
                                                                             e.preventDefault();
@@ -397,6 +409,12 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                         <span className="w-5 h-5 rounded bg-amber-500/10 ring-1 ring-inset ring-amber-500/30" />
                         <span>Linked date</span>
                     </div>
+                    {includePlanToWatch && (
+                        <div className="flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full bg-surface-3 opacity-45 outline-2 outline-dashed outline-offset-1 outline-fg-dim/60" />
+                            <span>Plan to Watch</span>
+                        </div>
+                    )}
                 </div>
 
                 {filteredEntries.length === 0 && (
