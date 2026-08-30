@@ -164,6 +164,27 @@ export async function kuryanaGetNextEpisode(slug: string): Promise<MdlNextEpisod
     return { airDate, airDateTime, episodeNumber, totalEpisodes };
 }
 
+export interface KuryanaRatingsResult {
+    slug_query: string;
+    data: {
+        link: string;
+        title: string;
+        /**
+         * MDL's own daily series from the statistics page — thirteen days, and
+         * the only window onto the past that exists anywhere. `date` is a bare
+         * "Aug 18" with no year, and `rating` is 0 for days before the title had
+         * enough votes to be scored, which is an absence rather than a nought.
+         */
+        overall_ratings: { date: string; rating: number }[];
+    };
+    scrape_date: string;
+}
+
+/** Never cached: its whole value is being the freshest view of the last 13 days. */
+export async function kuryanaGetRatings(slug: string): Promise<KuryanaRatingsResult | null> {
+    return kuryanaFetch<KuryanaRatingsResult>(`/id/${slug}/ratings`, 8000, 0);
+}
+
 export interface KuryanaWorkItem {
     _slug: string; // e.g. "mdl-687393"
     year: number | string; // number or "TBA"

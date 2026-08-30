@@ -1,5 +1,5 @@
-import { kuryanaGetTop, kuryanaGetDetails, parseMdlWatchers, type KuryanaTopSelection } from "@/lib/kuryana";
-import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
+import { kuryanaGetTop, kuryanaGetDetails, kuryanaGetRatings, parseMdlWatchers, type KuryanaTopSelection } from "@/lib/kuryana";
+import { backfillMdlRatings, recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
 export type AiringRatingsResult = {
     task: "record-airing-ratings";
@@ -8,6 +8,8 @@ export type AiringRatingsResult = {
     count?: number;
     /** How many of those carried watchers and rank, not just a rating. */
     detailed?: number;
+    /** Past days filled in from MDL's own statistics page. */
+    backfilled?: number;
     pages?: number;
     error?: string;
     duration: number;
@@ -68,6 +70,16 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  *
  * A failed detail call falls back to the list's rating rather than losing the
  * day. A thinner reading is worth more than a hole.
+ *
+ * A third call then fills the past. MDL's statistics page publishes its own
+ * daily rating for the last thirteen days, which is the only view of a history
+ * we did not observe ourselves — one request backfills a fortnight. Calling it
+ * every day rather than once also keeps that fortnight complete however many
+ * days this job missed, so the recent history repairs itself.
+ *
+ * It writes the rating column and nothing else: the page carries no watchers
+ * and no rank, and storing those as null would erase what the detail call had
+ * just recorded.
  */
 export async function recordAiringRatings(): Promise<AiringRatingsResult> {
     const started = Date.now();
@@ -108,6 +120,7 @@ export async function recordAiringRatings(): Promise<AiringRatingsResult> {
 
         let count = 0;
         let detailed = 0;
+        let backfilled = 0;
 
         for (const [slug, listRating] of found) {
             try {
@@ -134,9 +147,21 @@ export async function recordAiringRatings(): Promise<AiringRatingsResult> {
             }
 
             await delay(500);
+
+            // The past, after the present. Deliberately its own try: a failure
+            // here must not lose the reading just taken above.
+            try {
+                const stats = await kuryanaGetRatings(slug);
+                const series = stats?.data?.overall_ratings ?? [];
+                if (series.length) backfilled += await backfillMdlRatings(slug, series);
+            } catch (e) {
+                console.error(`[Cron airing] Ratings failed ${slug}:`, e);
+            }
+
+            await delay(500);
         }
 
-        return { task: "record-airing-ratings", success: true, count, detailed, pages, duration: Date.now() - started };
+        return { task: "record-airing-ratings", success: true, count, detailed, backfilled, pages, duration: Date.now() - started };
     } catch (error) {
         return {
             task: "record-airing-ratings",

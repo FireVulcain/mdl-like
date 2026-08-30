@@ -17,7 +17,7 @@ import { prisma } from "@/lib/prisma";
 const DAY_ZONE = "Europe/Paris";
 const dayFormatter = new Intl.DateTimeFormat("en-CA", { timeZone: DAY_ZONE, year: "numeric", month: "2-digit", day: "2-digit" });
 
-function today(): Date {
+function today0(): Date {
     return new Date(`${dayFormatter.format(new Date())}T00:00:00.000Z`);
 }
 
@@ -47,7 +47,7 @@ export async function recordMdlRatingPoint(
     if (values.rating == null && values.ranking == null && values.watchers == null) return;
     if (!mdlSlug) return;
 
-    const day = today();
+    const day = today0();
 
     const point = {
         rating: values.rating ?? null,
@@ -64,6 +64,73 @@ export async function recordMdlRatingPoint(
     } catch {
         // Deliberately silent — see above.
     }
+}
+
+const STATS_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/**
+ * "Aug 18" into a day, with the year worked out.
+ *
+ * MDL's statistics page prints no year, and the window only ever looks
+ * backwards — so a date that would land in the future belongs to last year.
+ * That case appears for about a fortnight every January and never otherwise,
+ * which is exactly the kind of bug that sleeps for eleven months.
+ */
+function resolveStatsDay(labelText: string, today: Date): Date | null {
+    const m = /^([A-Za-z]{3})\s+(\d{1,2})$/.exec(labelText.trim());
+    if (!m) return null;
+    const month = STATS_MONTHS.indexOf(m[1]);
+    const dayOfMonth = Number(m[2]);
+    if (month < 0 || !Number.isFinite(dayOfMonth)) return null;
+
+    const year = today.getUTCFullYear();
+    const candidate = new Date(Date.UTC(year, month, dayOfMonth));
+    if (candidate.getTime() > today.getTime() + 2 * 86_400_000) {
+        return new Date(Date.UTC(year - 1, month, dayOfMonth));
+    }
+    return candidate;
+}
+
+/**
+ * Fills the last thirteen days from MDL's own statistics page.
+ *
+ * This is the only source of a past we did not observe ourselves, so it is
+ * worth more than it costs: one request per title backfills a fortnight, and
+ * calling it daily keeps that fortnight complete however many days our own cron
+ * missed. The history repairs itself.
+ *
+ * **Only the rating column is written.** recordMdlRatingPoint sets all three at
+ * once, which is right when it has all three in hand and destructive here —
+ * this endpoint carries no watchers and no rank, and an upsert of those as null
+ * would erase readings the detail call had just made.
+ *
+ * A rating of 0 is skipped: it means the title had too few votes to be scored
+ * that day, not that it scored nothing.
+ */
+export async function backfillMdlRatings(mdlSlug: string, entries: { date: string; rating: number }[]): Promise<number> {
+    if (!mdlSlug || entries.length === 0) return 0;
+
+    const today = today0();
+    let written = 0;
+
+    for (const entry of entries) {
+        if (!entry?.rating) continue;
+        const day = resolveStatsDay(entry.date, today);
+        if (!day) continue;
+
+        try {
+            await prisma.mdlRatingPoint.upsert({
+                where: { mdlSlug_day: { mdlSlug, day } },
+                create: { mdlSlug, day, rating: entry.rating },
+                update: { rating: entry.rating },
+            });
+            written++;
+        } catch {
+            // One day failing must not cost the other twelve.
+        }
+    }
+
+    return written;
 }
 
 export type MdlRatingPoint = {
