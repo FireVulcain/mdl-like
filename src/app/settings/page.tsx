@@ -22,6 +22,8 @@ import { NotificationSettings } from "@/components/settings/notification-setting
 import { MdlProfileSetting } from "@/components/settings/mdl-profile-setting";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
 import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-tabs";
+import { CronStatusPanel } from "@/components/settings/cron-status";
+import { getCronStatus } from "@/actions/cron-status";
 import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
@@ -45,6 +47,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         notifPrefs,
         mdlProfileUrl,
         shortcutPrefs,
+        cronJobs,
     ] =
         await Promise.all([
             searchParams,
@@ -58,6 +61,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             getNotificationPreferences(),
             getMdlProfileUrl(),
             getShortcutPreferences(),
+            getCronStatus(),
         ]);
 
     let radar: Awaited<ReturnType<typeof getRadarActors>> | null = null;
@@ -76,6 +80,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         { id: "shortcuts", label: "Shortcuts", description: "Keys that open the command palette" },
         { id: "profile", label: "Public profile", description: "What visitors can see on your profile page" },
         { id: "notifications", label: "Notifications", description: "In-app banners and reminders" },
+        { id: "jobs", label: "Background jobs", description: "The three scheduled runs that keep MDL figures and rating history current" },
     ];
 
     const panels: Record<string, React.ReactNode> = {
@@ -99,6 +104,15 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
                     </div>
                     <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
                 </div>
+            </div>
+        ),
+        jobs: (
+            <div className="space-y-3">
+                <p className="text-xs text-fg-faint leading-snug">
+                    Three schedules, deliberately separate so one cannot starve or hide another. They are configured in Coolify; nothing here starts
+                    them — this only reports what they last wrote.
+                </p>
+                <CronStatusPanel jobs={cronJobs} />
             </div>
         ),
         watchlist: <WatchlistViewSettings initialPrefs={viewPrefs} />,
