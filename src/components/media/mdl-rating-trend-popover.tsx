@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Minus, TrendingDown, TrendingUp } from "lucide-react";
+import { smoothPath } from "@/lib/smooth-path";
 
 export type TrendPoint = { day: string; rating: number };
 
@@ -85,13 +86,11 @@ export function MdlRatingTrendPopover({ points }: { points: TrendPoint[] }) {
     const x = (i: number) => (i / (points.length - 1)) * W;
     const y = (v: number) => (span === 0 ? H / 2 : H - ((v - lo) / span) * H);
 
-    // Stepped, never sloped. A day with no row means nobody looked, not that the
-    // value drifted evenly across the gap — a diagonal over three empty weeks
-    // draws a movement no one observed.
-    let path = `M 0 ${y(values[0]).toFixed(2)}`;
-    for (let i = 1; i < points.length; i++) {
-        path += ` L ${x(i).toFixed(2)} ${y(values[i - 1]).toFixed(2)} L ${x(i).toFixed(2)} ${y(values[i]).toFixed(2)}`;
-    }
+    // Curved rather than stepped. At this size the staircase read as noise —
+    // the eye is here for a direction, not for the exact day a tenth moved, and
+    // the shape is the only thing 56 pixels can carry anyway. Monotone
+    // interpolation, so the curve never bulges past a reading it did not have.
+    const path = smoothPath(values.map((v, i) => ({ x: x(i), y: y(v) })));
 
     const delta = values[values.length - 1] - values[0];
     // Rounded to a tenth, like the values it is derived from. MDL publishes one

@@ -63,13 +63,11 @@ export async function MdlRatingChartSection({ mdlSlug }: { mdlSlug: string }) {
 
             <MdlRatingChart points={points} />
 
-            {/* The sampling is uneven by design and the chart cannot say so on
-                its own. The cron forces the watchlist through daily and takes
-                everything else at six days or older, so the dots cluster where
-                someone was paying attention. */}
+            {/* The line is now a curve, so it is the dots that carry the
+                measurement and the caption has to say which is which. */}
             <p className="mt-2 text-[11px] leading-snug text-fg-faint">
-                A dot marks a day the rating moved; between two of them the line holds the value it held. The audience slopes instead, because a
-                counter that only rises must have passed through everything in between.
+                A dot marks a day the rating moved. The line curves between them and never turns where the readings did not, so every rise and fall
+                you can see was measured — only the exact path between two dots is drawn rather than known.
             </p>
         </div>
     );

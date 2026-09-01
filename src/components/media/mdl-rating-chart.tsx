@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { smoothPath } from "@/lib/smooth-path";
 
 export type ChartPoint = { day: string; rating: number | null; watchers: number | null };
 
@@ -149,44 +150,33 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
         const audience = watched.length > 1 ? scaleFor(watched.map((p) => p.watchers), [100, 250, 500, 1000, 2500, 5000, 10_000, 25_000, 50_000, 100_000]) : null;
         const yWatchers = (v: number) => (audience ? PAD.t + PLOT_H - ((v - audience.lo) / (audience.hi - audience.lo)) * PLOT_H : 0);
 
-        // Two shapes, because the two series know different things about the
-        // days between their readings.
+        // Both series curve now, through the same monotone interpolation.
         //
-        // A rating steps. It can rise and fall, so between 8.2 on Monday and
-        // 8.4 the next Monday it may well have gone through 8.0 — a straight
-        // line would assert a climb that never happened, and the only honest
-        // claim is that the last figure held until we looked again.
+        // The audience was already sloped and this only softens it: a counter
+        // that rises passes through everything in between, so a curve claims
+        // nothing a straight line did not.
         //
-        // The audience slopes. It is a counter that only ever goes up, so
-        // between 11,000 and 12,400 we know for certain it passed through every
-        // figure in between, in order. Here the step is the lie: it draws six
-        // flat days and then fourteen hundred people arriving in one afternoon.
-        // This matters most where readings are sparsest, which is exactly where
-        // watchers are — measured at 2.1 readings per title against 9.8
-        // ratings, because only a title's own detail page carries the audience.
-        const stepPath = (list: { iso: string; v: number }[], y: (v: number) => number) => {
-            if (list.length === 0) return "";
-            let d = `M ${xOf(list[0].iso).toFixed(2)} ${y(list[0].v).toFixed(2)}`;
-            for (let i = 1; i < list.length; i++) {
-                d += ` L ${xOf(list[i].iso).toFixed(2)} ${y(list[i - 1].v).toFixed(2)} L ${xOf(list[i].iso).toFixed(2)} ${y(list[i].v).toFixed(2)}`;
-            }
-            return d;
-        };
-
-        const slopePath = (list: { iso: string; v: number }[], y: (v: number) => number) => {
-            if (list.length === 0) return "";
-            return list.map((p, i) => `${i === 0 ? "M" : "L"} ${xOf(p.iso).toFixed(2)} ${y(p.v).toFixed(2)}`).join(" ");
-        };
+        // The rating used to step, on the argument that it can rise and fall
+        // and the honest claim is that the last figure held until we looked
+        // again. That argument stands; the staircase was simply unreadable once
+        // six months of daily readings arrived — a hundred and eighty risers
+        // four pixels apart. What the curve costs is the values between the
+        // readings: it passes through 8.27, and MDL publishes tenths. What
+        // monotone interpolation buys back is that it invents no peak and no
+        // trough — every turn on the drawn line was measured, and the dots mark
+        // the days it actually moved.
+        const curveOf = (list: { iso: string; v: number }[], y: (v: number) => number) =>
+            smoothPath(list.map((p) => ({ x: xOf(p.iso), y: y(p.v) })));
 
         // Split at the break so nothing is drawn across the gap — a line
         // spanning it would undo the very thing the gap is there to say.
         const beforeBreak = <T extends { day: string }>(list: T[]) => (broken ? list.filter((p) => dayNumber(p.day) <= breakDay) : list);
         const afterBreak = <T extends { day: string }>(list: T[]) => (broken ? list.filter((p) => dayNumber(p.day) >= breakDay) : []);
 
-        const ratingPath = stepPath(beforeBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
-        const ratingTailPath = stepPath(afterBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
-        const watchersPath = audience ? slopePath(beforeBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
-        const watchersTailPath = audience ? slopePath(afterBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
+        const ratingPath = curveOf(beforeBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
+        const ratingTailPath = curveOf(afterBreak(rated).map((p) => ({ iso: p.day, v: p.rating })), yRating);
+        const watchersPath = audience ? curveOf(beforeBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
+        const watchersTailPath = audience ? curveOf(afterBreak(watched).map((p) => ({ iso: p.day, v: p.watchers })), yWatchers) : "";
         // Closed back along the baseline so the audience reads as ground under
         // the rating rather than as a second line competing with it.
         const closeArea = (path: string, list: { day: string }[]) =>
