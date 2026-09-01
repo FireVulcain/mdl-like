@@ -126,7 +126,12 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
         }
         const breakDay = rated.length ? dayNumber(rated[tailStart].day) : firstDay;
         const tailDays = lastDay - breakDay;
-        const broken = rated.length > 1 && tailDays >= TAIL_MIN_DAYS && tailDays / daySpan >= TAIL_MIN_SHARE;
+        // tailStart > 0 is the condition that was missing: a break exists to
+        // give the active period room, so there has to be one. A series that
+        // never moved sends tailStart back to the first reading, and breaking
+        // there leaves nothing on the left — a lone dot, then the whole history
+        // squeezed into the stub, and the audience gone with it.
+        const broken = tailStart > 0 && tailDays >= TAIL_MIN_DAYS && tailDays / daySpan >= TAIL_MIN_SHARE;
 
         const activeW = broken ? PLOT_W * ACTIVE_SHARE : PLOT_W;
         const gapW = broken ? PLOT_W * GAP_SHARE : 0;
@@ -277,9 +282,12 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
                 ))}
 
                 {/* The audience, as ground */}
-                {audience && watchersArea && (
+                {/* Either side is enough. Gating the whole block on the
+                    active-side area meant a break landing early took the tail's
+                    area down with it, and the audience vanished entirely. */}
+                {audience && (watchersArea || watchersTailArea) && (
                     <>
-                        <path d={watchersArea} className="fill-sky-500/8" />
+                        {watchersArea && <path d={watchersArea} className="fill-sky-500/8" />}
                         {watchersTailArea && <path d={watchersTailArea} className="fill-sky-500/8" />}
                         {[audience.ticks[0], audience.ticks[audience.ticks.length - 1]].map((t) => (
                             <text key={t} x={PAD.l + PLOT_W + 8} y={yWatchers(t) + 3.5} textAnchor="start" className="fill-sky-500/40 text-[10px] tabular-nums">
