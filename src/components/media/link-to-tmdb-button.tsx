@@ -4,7 +4,7 @@ import { useState, useEffect, useTransition, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Link2, Search, Check, Loader2, Star, ChevronLeft } from "lucide-react";
+import { Link2, Search, Check, Loader2, Star, ChevronLeft, Languages } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -27,10 +27,21 @@ interface Props {
 
 type DialogStep = "search" | "already-linked" | "season" | "success";
 
+// English fallback: drop trailing "Season 2" / "Part 2" markers so the bare show title is searched.
+function toEnglishQuery(title: string): string {
+    return title.replace(/\s+(Season|Part|시즌|파트)\s*\d+\s*$/i, "").trim();
+}
+
 export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = false }: Props) {
     const [open, setOpen] = useState(false);
     const [step, setStep] = useState<DialogStep>("search");
     const [query, setQuery] = useState(defaultQuery);
+
+    // Native vs. English search. MDL's native title (e.g. "환혼") usually gives far better
+    // TMDB matches, but not always — this toggle lets the user flip back to the English title.
+    const englishTitle = toEnglishQuery(defaultQuery);
+    const [nativeTitle, setNativeTitle] = useState<string | null>(null);
+    const [lang, setLang] = useState<"native" | "english">("english");
     const [results, setResults] = useState<TmdbSearchResult[]>([]);
     const [searching, setSearching] = useState(false);
     const [linked, setLinked] = useState<string | null>(null);
@@ -70,7 +81,10 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
         (async () => {
             try {
                 const native = await getMdlNativeTitle(mdlSlug);
-                const q = native ?? defaultQuery.replace(/\s+(Season|Part|시즌|파트)\s*\d+\s*$/i, "").trim();
+                setNativeTitle(native);
+                const useLang = native ? "native" : "english";
+                setLang(useLang);
+                const q = useLang === "native" && native ? native : englishTitle;
                 setQuery(q);
                 const res = await searchTmdbDramas(q);
                 setResults(res);
@@ -82,6 +96,13 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
             }
         })();
     }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    function toggleLang() {
+        const next = lang === "native" ? "english" : "native";
+        setLang(next);
+        // Setting the query fires the debounced search effect below.
+        setQuery(next === "native" && nativeTitle ? nativeTitle : englishTitle);
+    }
 
     function handleOpen(e: React.MouseEvent) {
         e.preventDefault();
@@ -330,9 +351,24 @@ export function LinkToTmdbButton({ mdlSlug, defaultQuery, onLinked, compact = fa
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     placeholder="Search TMDB…"
-                                    className="pl-9 bg-surface-2 border-line-strong text-fg placeholder:text-fg-dim focus:border-sky-500/50"
+                                    className={`pl-9 ${nativeTitle ? "pr-24" : ""} bg-surface-2 border-line-strong text-fg placeholder:text-fg-dim focus:border-sky-500/50`}
                                     autoFocus
                                 />
+                                {nativeTitle && (
+                                    <button
+                                        type="button"
+                                        onClick={toggleLang}
+                                        title={
+                                            lang === "native"
+                                                ? "Searching with the native title — switch to English"
+                                                : "Searching with the English title — switch to native"
+                                        }
+                                        className="cursor-pointer absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium text-fg-dim hover:text-sky-400 bg-surface-3 hover:bg-sky-500/10 border border-line-strong hover:border-sky-500/20 transition-all"
+                                    >
+                                        <Languages className="h-3 w-3" />
+                                        {lang === "native" ? "Native" : "English"}
+                                    </button>
+                                )}
                             </div>
 
                             {error && <p className="text-sm text-red-400">{error}</p>}
