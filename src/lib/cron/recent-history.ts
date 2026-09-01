@@ -15,15 +15,23 @@ export type RecentHistoryResult = {
 };
 
 /**
- * How recently a title has to have finished to be worth a daily reading.
+ * How recently a title has to have finished to be worth a daily reading, or
+ * null to take every completed title regardless of age.
  *
- * Measured across the 165 completed titles in this watchlist: 10 ended within
- * three months, 26 within the year, and 115 more than a year ago. The old ones
- * gain a few dozen watchers a month — a daily reading would write 365 nearly
- * identical points a year for a curve four points could draw. A year is the
- * line where a series stops being alive.
+ * **Currently null — a deliberate experiment, and 365 is the value to restore.**
+ * The argument for the limit still stands and is worth keeping to hand:
+ * measured across the 165 completed titles in this watchlist, 10 ended within
+ * three months, 26 within the year and 115 more than a year ago. Those 115 gain
+ * a few dozen watchers a month, so a daily reading writes 365 nearly identical
+ * points a year for a curve four points could draw — and it triples the daily
+ * request count against a site that blocks us when pushed.
+ *
+ * What the experiment is for: an audience curve on the old back catalogue is
+ * currently two points, and two points are not a curve however they are drawn.
+ * Whether a denser one turns out to be worth looking at is a question only a
+ * few weeks of real data can answer.
  */
-const RECENT_DAYS = 365;
+const RECENT_DAYS: number | null = null;
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -37,11 +45,8 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  * title against 2.1 watchers readings, and 186 titles with exactly two. Two
  * points are not a curve however they are drawn.
  *
- * Deliberately not every completed title. The ones that ended years ago gain a
- * fraction of a per cent a week, and taking all 172 would have meant 172 daily
- * requests against a site that blocks us when pushed — for a line that would
- * look the same either way. Restricting it to the last year cuts that to about
- * thirty-six.
+ * It is currently taking every completed title, on trial — see RECENT_DAYS,
+ * which carries the case for the limit and the value to put back.
  *
  * A title whose aired range cannot be read is kept rather than dropped. MDL
  * writes something else entirely for films and irregular broadcasts, and one
@@ -74,9 +79,13 @@ export async function recordRecentlyFinished(): Promise<RecentHistoryResult> {
             }),
         ]);
 
-        const cutoff = Date.now() - RECENT_DAYS * 86_400_000;
+        const cutoff = RECENT_DAYS === null ? 0 : Date.now() - RECENT_DAYS * 86_400_000;
         const slugs = new Set<string>();
         for (const row of [...shows, ...seasons]) {
+            if (RECENT_DAYS === null) {
+                slugs.add(row.mdlSlug);
+                continue;
+            }
             const end = airedEndDate(row.aired);
             // No readable end date means keep it — see the note above.
             if (end === null || end.getTime() >= cutoff) slugs.add(row.mdlSlug);

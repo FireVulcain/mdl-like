@@ -34,10 +34,6 @@ export async function MdlRatingChartSection({ mdlSlug }: { mdlSlug: string }) {
 
     const rated = points.filter((p) => p.rating != null);
     if (rated.length < 2) return null;
-    // A flat series is not a history worth a section. The back catalogue sits
-    // here: MDL publishes one decimal, so a title on tens of thousands of votes
-    // never moves, and a straight line under a heading reads as a bug.
-    if (new Set(rated.map((p) => p.rating)).size < 2) return null;
 
     const first = rated[0].rating as number;
     const last = rated[rated.length - 1].rating as number;
