@@ -634,7 +634,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                         <span>{rawYearFrom ?? "From"}</span>
                                         <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
                                     </summary>
-                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-line-strong rounded-lg shadow-xl max-h-48 overflow-y-auto">
+                                    <div className="absolute z-20 mt-1 w-28 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/40 max-h-48 overflow-y-auto">
                                         <Link
                                             href={buildUrl(baseParams, { year_from: null, page: "1" })}
                                             className={`block px-3 py-1.5 text-xs transition-all ${!rawYearFrom ? "text-fg bg-surface-3" : "text-fg-muted hover:text-fg hover:bg-surface-2"}`}
@@ -662,7 +662,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                         <span>{rawYearTo ?? "To"}</span>
                                         <ChevronDown className="h-3 w-3 shrink-0 transition-transform group-open:rotate-180" />
                                     </summary>
-                                    <div className="absolute z-20 mt-1 w-28 bg-[#1a1a2e] border border-line-strong rounded-lg shadow-xl max-h-48 overflow-y-auto">
+                                    <div className="absolute z-20 mt-1 w-28 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/40 max-h-48 overflow-y-auto">
                                         <Link
                                             href={buildUrl(baseParams, { year_to: null, page: "1" })}
                                             className={`block px-3 py-1.5 text-xs transition-all ${!rawYearTo ? "text-fg bg-surface-3" : "text-fg-muted hover:text-fg hover:bg-surface-2"}`}

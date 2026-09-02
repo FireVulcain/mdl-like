@@ -240,7 +240,7 @@ export function TagSearchFilter({
 
                 {/* Dropdown */}
                 {open && results.length > 0 && (
-                    <div className="absolute z-30 mt-1 w-full bg-[#1a1a2e] border border-line-strong rounded-lg shadow-xl max-h-52 overflow-y-auto">
+                    <div className="absolute z-30 mt-1 w-full bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/40 max-h-52 overflow-y-auto">
                         {results.map((tag) => (
                             <div key={tag.id} className="flex items-stretch border-b border-line-soft last:border-0">
                                 <button
@@ -262,7 +262,7 @@ export function TagSearchFilter({
                 )}
 
                 {open && !loading && results.length === 0 && query.length >= 2 && (
-                    <div className="absolute z-30 mt-1 w-full bg-[#1a1a2e] border border-line-strong rounded-lg shadow-xl px-3 py-2 text-xs text-fg-dim">
+                    <div className="absolute z-30 mt-1 w-full bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/40 px-3 py-2 text-xs text-fg-dim">
                         No tags found
                     </div>
                 )}

@@ -168,7 +168,7 @@ function MediaPicker({
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -6, scale: 0.97 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute z-50 top-full mt-1 left-0 right-0 rounded-xl bg-[#1a1a2e] border border-line-strong shadow-2xl overflow-hidden"
+                        className="absolute z-50 top-full mt-1 left-0 right-0 rounded-xl bg-panel/95 backdrop-blur-xl border border-line-strong shadow-2xl shadow-black/40 overflow-hidden"
                     >
                         <div className="p-2 border-b border-line">
                             <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-surface-2">

@@ -1,10 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { saveHomeExcludedTags } from "@/actions/preferences";
 import { DEFAULT_EXCLUDED_TAGS, type ExcludedTag } from "@/lib/home-preferences";
 import { Search, X, Loader2, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
+
+// Tallest the results panel is allowed to be, and the gap it keeps from the
+// field and from the fixed header it must not slide under.
+const PANEL_MAX = 224;
+const PANEL_GAP = 8;
+const HEADER_HEIGHT = 96;
 
 interface TagResult {
     id: number;
@@ -28,6 +34,10 @@ export function HomeExcludedTagsSetting({
     const [saving, setSaving] = useState(false);
     const [dirty, setDirty] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    // Which side the results open on, and how tall they may get. The field sits
+    // near the bottom of a long settings page, where a panel that always drops
+    // downwards runs off the viewport and hides its own last rows.
+    const [panel, setPanel] = useState<{ up: boolean; maxHeight: number }>({ up: false, maxHeight: PANEL_MAX });
 
     // Debounced tag search (same endpoint as the /dramas filter panel)
     useEffect(() => {
@@ -51,6 +61,34 @@ export function HomeExcludedTagsSetting({
         }, 300);
         return () => clearTimeout(timer);
     }, [query]);
+
+    // Measured after the panel is in the tree but before the browser paints, so
+    // it never shows in the wrong place for a frame.
+    useLayoutEffect(() => {
+        if (!open || results.length === 0) return;
+        const measure = () => {
+            const el = containerRef.current;
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            const below = window.innerHeight - rect.bottom - PANEL_GAP;
+            const above = rect.top - HEADER_HEIGHT - PANEL_GAP;
+            // Downwards unless the room up there is both sufficient and better —
+            // a panel that flips for a few pixels of gain is more surprising than
+            // one that is a little short.
+            const up = below < PANEL_MAX && above > below;
+            setPanel({ up, maxHeight: Math.min(PANEL_MAX, Math.max(120, up ? above : below)) });
+        };
+        measure();
+        // Scrolling with the panel open moves the field but not the decision,
+        // and a panel left pointing the wrong way is worse than one that never
+        // flipped. Passive: this only reads geometry.
+        window.addEventListener("scroll", measure, { passive: true });
+        window.addEventListener("resize", measure);
+        return () => {
+            window.removeEventListener("scroll", measure);
+            window.removeEventListener("resize", measure);
+        };
+    }, [open, results.length]);
 
     useEffect(() => {
         function onClickOutside(e: MouseEvent) {
@@ -133,7 +171,12 @@ export function HomeExcludedTagsSetting({
                 </div>
 
                 {open && results.length > 0 && (
-                    <div className="absolute z-30 mt-1 w-full bg-surface-3 border border-line-strong rounded-lg shadow-xl max-h-56 overflow-y-auto">
+                    <div
+                        className={`absolute z-30 w-full bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/40 overflow-y-auto ${
+                            panel.up ? "bottom-full mb-1" : "mt-1"
+                        }`}
+                        style={{ maxHeight: panel.maxHeight }}
+                    >
                         {results.map((tag) => (
                             <button
                                 key={tag.id}
