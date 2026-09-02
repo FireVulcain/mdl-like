@@ -104,104 +104,111 @@ function CommentCard({
     const initials = authorName.slice(0, 2).toUpperCase();
     const listHref = mdlUserHref(comment.author, authorName);
 
+    const hasReplies = comment.children.length > 0 && !folded;
+
     return (
-        <div className="flex gap-2.5">
-            {/* Avatar */}
-            <Link
-                href={listHref}
-                title={`See ${authorName}'s list`}
-                className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-surface-2"} flex items-center justify-center font-bold text-fg mt-0.5 select-none overflow-hidden hover:ring-2 hover:ring-sky-500/50 transition-all`}
-            >
-                {comment.avatar_url ? (
-                    <Image src={comment.avatar_url} alt={authorName} fill className="object-cover" unoptimized={true} />
-                ) : (
-                    initials
-                )}
-            </Link>
+        <div className="relative">
+            {hasReplies && (
+                // The rule down the left of a thread is also the way to shut it —
+                // the target a threaded comment list trains people to reach for.
+                // It starts just under the profile photo and runs the length of
+                // the thread, staying a hairline until the pointer is on it.
+                <button
+                    onClick={() => onToggle(comment.id)}
+                    title="Collapse replies"
+                    aria-label="Collapse replies"
+                    className={`group/rail absolute left-0 bottom-0 ${nested ? "top-7" : "top-8"} w-4 cursor-pointer`}
+                >
+                    <span className={`absolute inset-y-0 ${nested ? "left-2.75" : "left-3.25"} w-px bg-white/8 transition-colors group-hover/rail:bg-sky-500/60`} />
+                </button>
+            )}
 
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-                <div className="flex items-baseline gap-2 flex-wrap">
-                    <Link
-                        href={listHref}
-                        className="text-sm font-semibold text-fg hover:text-sky-400 transition-colors"
-                    >
-                        {authorName}
-                    </Link>
-                    <span className="text-xs text-fg-dim">{relativeTime(comment.date_added)}</span>
-                </div>
+            <div className="flex gap-2.5">
+                {/* Avatar */}
+                <Link
+                    href={listHref}
+                    title={`See ${authorName}'s list`}
+                    className={`relative ${nested ? "size-6 text-xs" : "size-7 text-xs"} shrink-0 rounded-full ${!comment.avatar_url ? avatarColor + "/80" : "bg-surface-2"} flex items-center justify-center font-bold text-fg mt-0.5 select-none overflow-hidden hover:ring-2 hover:ring-sky-500/50 transition-all`}
+                >
+                    {comment.avatar_url ? (
+                        <Image src={comment.avatar_url} alt={authorName} fill className="object-cover" unoptimized={true} />
+                    ) : (
+                        initials
+                    )}
+                </Link>
 
-                {comment.spoiler && !revealed ? (
-                    // A dotted underline rather than a box: it reads as text that
-                    // is being withheld, which is what a spoiler gate is, and it
-                    // stops the comment list from sprouting a button per entry.
-                    <div className="mt-1.5">
-                        <button
-                            onClick={() => setRevealed(true)}
-                            className="cursor-pointer inline-flex items-center gap-1.5 text-sm italic text-fg-dim underline decoration-dotted decoration-gray-600 underline-offset-4 hover:text-fg-soft hover:decoration-gray-400 transition-colors"
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                        <Link
+                            href={listHref}
+                            className="text-sm font-semibold text-fg hover:text-sky-400 transition-colors"
                         >
-                            <Eye className="size-3.5" />
-                            Reveal spoiler
-                        </button>
+                            {authorName}
+                        </Link>
+                        <span className="text-xs text-fg-dim">{relativeTime(comment.date_added)}</span>
                     </div>
-                ) : (
-                    <div className="mt-1">
-                        <p className="text-sm text-fg-soft leading-relaxed whitespace-pre-line wrap-break-word">{displayText}</p>
-                        {isLong && (
+
+                    {comment.spoiler && !revealed ? (
+                        // A dotted underline rather than a box: it reads as text that
+                        // is being withheld, which is what a spoiler gate is, and it
+                        // stops the comment list from sprouting a button per entry.
+                        <div className="mt-1.5">
                             <button
-                                onClick={() => setExpanded((v) => !v)}
-                                className="cursor-pointer mt-0.5 text-xs text-sky-400 hover:text-sky-300 transition-colors"
+                                onClick={() => setRevealed(true)}
+                                className="cursor-pointer inline-flex items-center gap-1.5 text-sm italic text-fg-dim underline decoration-dotted decoration-gray-600 underline-offset-4 hover:text-fg-soft hover:decoration-gray-400 transition-colors"
                             >
-                                {expanded ? "Show less" : "Show more"}
+                                <Eye className="size-3.5" />
+                                Reveal spoiler
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="mt-1">
+                            <p className="text-sm text-fg-soft leading-relaxed whitespace-pre-line wrap-break-word">{displayText}</p>
+                            {isLong && (
+                                <button
+                                    onClick={() => setExpanded((v) => !v)}
+                                    className="cursor-pointer mt-0.5 text-xs text-sky-400 hover:text-sky-300 transition-colors"
+                                >
+                                    {expanded ? "Show less" : "Show more"}
+                                </button>
+                            )}
+                        </div>
+                    )}
+
+                    <div className="flex items-center gap-3 mt-1.5">
+                        {comment.likes > 0 && (
+                            <span className="flex items-center gap-1 text-xs text-fg-dim">
+                                <Heart className="size-3" />
+                                {comment.likes}
+                            </span>
+                        )}
+                        {replyCount > 0 && (
+                            <button
+                                onClick={() => onToggle(comment.id)}
+                                aria-expanded={!folded}
+                                className="cursor-pointer flex items-center gap-1 text-xs text-fg-dim hover:text-fg-soft transition-colors"
+                            >
+                                {/* The chevron carries the state, so the label can say
+                                    the same thing open or shut. The button keeps its
+                                    width and nothing below it shifts on a click. */}
+                                <ChevronDown className={`size-3 transition-transform ${folded ? "-rotate-90" : ""}`} />
+                                {replyCount} {replyCount === 1 ? "reply" : "replies"}
                             </button>
                         )}
                     </div>
-                )}
-
-                <div className="flex items-center gap-3 mt-1.5">
-                    {comment.likes > 0 && (
-                        <span className="flex items-center gap-1 text-xs text-fg-dim">
-                            <Heart className="size-3" />
-                            {comment.likes}
-                        </span>
-                    )}
-                    {replyCount > 0 && (
-                        <button
-                            onClick={() => onToggle(comment.id)}
-                            aria-expanded={!folded}
-                            className="cursor-pointer flex items-center gap-1 text-xs text-fg-dim hover:text-fg-soft transition-colors"
-                        >
-                            {/* The chevron carries the state, so the label can say
-                                the same thing open or shut. The button keeps its
-                                width and nothing below it shifts on a click. */}
-                            <ChevronDown className={`size-3 transition-transform ${folded ? "-rotate-90" : ""}`} />
-                            {replyCount} {replyCount === 1 ? "reply" : "replies"}
-                        </button>
-                    )}
                 </div>
-
-                {comment.children.length > 0 && !folded && (
-                    <div className="mt-2.5 flex">
-                        {/* The rule down the left of a thread is also the way to
-                            shut it — the target a threaded comment list trains
-                            people to reach for. It stays a hairline until the
-                            pointer is on it, so it costs the page nothing. */}
-                        <button
-                            onClick={() => onToggle(comment.id)}
-                            title="Collapse replies"
-                            aria-label="Collapse replies"
-                            className="group/rail relative w-3 shrink-0 cursor-pointer"
-                        >
-                            <span className="absolute inset-y-0 left-0 w-px bg-white/8 transition-colors group-hover/rail:bg-sky-500/60" />
-                        </button>
-                        <div className="min-w-0 flex-1 space-y-3">
-                            {comment.children.map((child) => (
-                                <CommentCard key={child.id} comment={child} nested collapsed={collapsed} onToggle={onToggle} />
-                            ))}
-                        </div>
-                    </div>
-                )}
             </div>
+
+            {hasReplies && (
+                // Indented to line the replies' avatars up with the heart/reply
+                // row of the comment above: avatar width + the flex gap.
+                <div className={`mt-2.5 space-y-3 ${nested ? "pl-8.5" : "pl-9.5"}`}>
+                    {comment.children.map((child) => (
+                        <CommentCard key={child.id} comment={child} nested collapsed={collapsed} onToggle={onToggle} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
