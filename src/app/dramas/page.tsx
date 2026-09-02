@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
-import { Bookmark, Check, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bookmark, Check, X, ChevronDown, ChevronLeft, ChevronRight, LayoutGrid, Rows3 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaCard } from "@/components/media-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
@@ -12,6 +12,7 @@ import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { RatingRangeFilter } from "@/components/dramas/rating-range-filter";
 import { ClosingDetails } from "@/components/dramas/closing-details";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
+import { DramaListItem } from "@/components/dramas/drama-list-item";
 import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
@@ -36,6 +37,7 @@ type SearchParams = Promise<{
     tag_exclude?: string;
     tag_exclude_name?: string;
     no_defaults?: string;
+    view?: string;
 }>;
 
 const CATEGORY_CONFIG = {
@@ -68,6 +70,15 @@ const COUNTRY_OPTIONS = [
     { value: "PH", label: "Philippine" },
     { value: "SG", label: "Singaporean" },
 ];
+
+// What one MDL page holds — the same number browseDramasMDL uses to decide
+// whether another page follows.
+const PAGE_SIZE = 20;
+
+const VIEW_OPTIONS = [
+    { value: "grid", label: "Grid", icon: LayoutGrid },
+    { value: "list", label: "List", icon: Rows3 },
+] as const;
 
 const MDL_SORT_OPTIONS = [
     { value: "top", label: "Top Rated" },
@@ -153,6 +164,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
         tag_exclude: rawTagExclude,
         tag_exclude_name: rawTagExcludeName,
         no_defaults: rawNoDefaults,
+        view: rawView,
     } = await searchParams;
 
     const excludedPrefs = await getExcludedTagsPreferences();
@@ -175,6 +187,8 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
     const rating_max = rawRatingMax ? parseFloat(rawRatingMax) : undefined;
     const tag = rawTag ? parseInt(rawTag, 10) : undefined;
+    // Poster grid stays the default; "list" is the MDL-shaped reading view.
+    const view = rawView === "list" ? "list" : "grid";
 
     // Excluded tags: an explicit URL list always wins; otherwise, unless the
     // user lifted them for this visit (no_defaults=1), the Settings exclusions
@@ -273,6 +287,9 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     if (rawTagExclude) { baseParams.tag_exclude = rawTagExclude; if (rawTagExcludeName) baseParams.tag_exclude_name = rawTagExcludeName; }
     // Defaults stay implicit (reapplied server-side), but an explicit opt-out must survive navigation
     if (rawNoDefaults) baseParams.no_defaults = rawNoDefaults;
+    // The grid is the default, so only the other view needs saying in the URL —
+    // and it has to ride along with every filter link to survive a click.
+    if (view === "list") baseParams.view = "list";
     baseParams.page = page.toString();
 
     // Three-state toggle: neutral → include → exclude → neutral
@@ -323,22 +340,74 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                     {/* Left: Grid + Pagination */}
                     <main className="flex-1 min-w-0 w-full">
                         {/* Results meta */}
-                        <div className="flex items-center justify-between mb-5">
+                        <div className="flex items-center justify-between gap-3 mb-5">
                             <p className="text-sm text-fg-muted">
                                 Page <span className="text-fg font-medium">{page}</span> · MDL data
                             </p>
-                            {hasActiveFilters && (
-                                <Link
-                                    href={buildUrl({ category, country, sort }, { page: "1" })}
-                                    className="text-xs text-fg-dim hover:text-fg transition-colors"
-                                >
-                                    Clear filters
-                                </Link>
-                            )}
+                            <div className="flex items-center gap-3">
+                                {hasActiveFilters && (
+                                    <Link
+                                        href={buildUrl({ category, country, sort, ...(view === "list" ? { view: "list" } : {}) }, { page: "1" })}
+                                        className="text-xs text-fg-dim hover:text-fg transition-colors"
+                                    >
+                                        Clear filters
+                                    </Link>
+                                )}
+                                {/* View switch. Both halves stay visible rather than
+                                    one button that swaps meaning, so the current
+                                    view is readable without clicking it. */}
+                                <div className="flex items-center rounded-lg border border-line-strong bg-surface-1 p-0.5">
+                                    {VIEW_OPTIONS.map((opt) => {
+                                        const active = view === opt.value;
+                                        const Icon = opt.icon;
+                                        return (
+                                            <Link
+                                                key={opt.value}
+                                                href={buildUrl(baseParams, { view: opt.value === "grid" ? null : opt.value })}
+                                                aria-label={opt.label}
+                                                title={opt.label}
+                                                aria-current={active ? "true" : undefined}
+                                                className={`flex items-center gap-1.5 rounded-md px-2 py-1 text-xs transition-all ${
+                                                    active ? "bg-surface-3 text-fg" : "text-fg-dim hover:text-fg hover:bg-surface-2"
+                                                }`}
+                                            >
+                                                <Icon className="h-3.5 w-3.5" />
+                                                <span className="hidden sm:inline">{opt.label}</span>
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </div>
 
                         {/* Grid */}
                         {items.length > 0 ? (
+                            view === "list" ? (
+                            <div className="flex flex-col gap-3">
+                                {items.map((media, index) => {
+                                    const slug = media.id.replace(/^mdl-/, "");
+                                    const entry = linkedBySlug.get(slug);
+                                    const tmdbExternalId = entry?.tmdbExternalId;
+                                    const href = tmdbExternalId
+                                        ? `/media/tmdb-${tmdbExternalId}${entry?.season ? `?season=${entry.season}` : ""}`
+                                        : `/media/mdl-${slug}`;
+                                    return (
+                                        <DramaListItem
+                                            key={media.id}
+                                            media={media}
+                                            href={href}
+                                            // Position in the list being read, the way MDL
+                                            // numbers its own. The row's own `popularity`
+                                            // is MDL's site-wide rank, which under a
+                                            // filter counts in jumps and reads as noise.
+                                            rank={(page - 1) * PAGE_SIZE + index + 1}
+                                            inWatchlist={!!tmdbExternalId && watchlistIds.has(tmdbExternalId)}
+                                            unlinkedSlug={tmdbExternalId ? undefined : slug}
+                                        />
+                                    );
+                                })}
+                            </div>
+                            ) : (
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4 md:gap-5">
                                 {items.map((media) => {
                                     const slug = media.id.replace(/^mdl-/, "");
@@ -371,6 +440,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                                     );
                                 })}
                             </div>
+                            )
                         ) : (
                             <div className="text-center py-24 text-fg-dim">No shows found for the selected filters.</div>
                         )}

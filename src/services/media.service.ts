@@ -61,6 +61,9 @@ export type UnifiedMedia = {
     firstAirDate?: string | null; // Raw first air date (YYYY-MM-DD)
     mdlRanking?: string; // e.g. "#39230"
     mdlWatchers?: number; // MDL-native pages only; TMDB pages read it from the cache via MdlRankRow
+    // MDL's own wording for the kind of show ("Korean Drama", "Japanese Special").
+    // Kept verbatim next to the country code, which only says where it is from.
+    mdlTypeLabel?: string;
 };
 
 export type UnifiedPerson = {
@@ -804,6 +807,8 @@ export const mediaService = {
                     // now span several countries, so the request no longer
                     // identifies what came back.
                     originCountry: countryFromKuryanaType(item.type),
+                    mdlTypeLabel: item.type || undefined,
+                    totalEp: item.episodes || undefined,
                     synopsis: item.synopsis,
                     rating: item.rating,
                     popularity: item.rank,
