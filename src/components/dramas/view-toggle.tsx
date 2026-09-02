@@ -26,7 +26,13 @@ export function DramasViewToggle({ view, hrefFor }: { view: DramasView; hrefFor:
                     <Link
                         key={opt.value}
                         href={hrefFor[opt.value]}
-                        onClick={() => { void saveDramasView(opt.value); }}
+                        onClick={() => {
+                            // The skeleton for the next /dramas visit reads this
+                            // off <html>. The layout only renders on a full load,
+                            // so the click has to carry it in between.
+                            document.documentElement.dataset.dramasView = opt.value;
+                            void saveDramasView(opt.value);
+                        }}
                         aria-label={opt.label}
                         title={opt.label}
                         aria-current={active ? "true" : undefined}

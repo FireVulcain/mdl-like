@@ -7,7 +7,7 @@ import { auth } from "@/lib/auth";
 import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { CommandPalette } from "@/components/command-palette";
-import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences, getThemePreference } from "@/actions/preferences";
+import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences, getThemePreference, getViewPreferences } from "@/actions/preferences";
 
 // Back on Geist, for both roles. font-display still exists as its own variable
 // and is still what the 54 headings ask for — it simply resolves to the same
@@ -43,17 +43,18 @@ export default async function RootLayout({
   const skipAuth = process.env.SKIP_AUTH === "true";
   const session = await auth();
   const isAuthenticated = skipAuth || !!session;
-  const [showSyncNotification, mdlProfileUrl, shortcuts, theme] = isAuthenticated
+  const [showSyncNotification, mdlProfileUrl, shortcuts, theme, dramasView] = isAuthenticated
     ? await Promise.all([
         getNotificationPreferences().then((p) => p.showSyncNotification),
         getMdlProfileUrl(),
         getShortcutPreferences().then((p) => p.commandPaletteShortcuts),
         getThemePreference(),
+        getViewPreferences().then((p) => p.dramasView),
       ])
-    : [false, null, [], "dark" as const];
+    : [false, null, [], "dark" as const, "grid" as const];
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-dramas-view={dramasView} suppressHydrationWarning>
       <body
         className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-app text-fg font-sans`}
       >
