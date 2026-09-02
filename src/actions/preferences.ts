@@ -87,16 +87,20 @@ export async function saveHomeExcludedTags(tags: ExcludedTag[], applyToBrowse?: 
     revalidatePath("/dramas");
 }
 
+export type DramasView = "grid" | "list";
+
 export type ViewPreferences = {
     watchlistThumbnailStyle: "poster" | "backdrop";
     watchlistDefaultSort: string;
     defaultAddStatus: string;
+    dramasView: DramasView;
 };
 
 const VIEW_DEFAULTS: ViewPreferences = {
     watchlistThumbnailStyle: "poster",
     watchlistDefaultSort: "default",
     defaultAddStatus: "Watching",
+    dramasView: "grid",
 };
 
 export async function getViewPreferences(): Promise<ViewPreferences> {
@@ -108,6 +112,7 @@ export async function getViewPreferences(): Promise<ViewPreferences> {
             watchlistThumbnailStyle: prefs.watchlistThumbnailStyle === "backdrop" ? "backdrop" : "poster",
             watchlistDefaultSort: prefs.watchlistDefaultSort,
             defaultAddStatus: prefs.defaultAddStatus,
+            dramasView: prefs.dramasView === "list" ? "list" : "grid",
         };
     } catch {
         return VIEW_DEFAULTS;
@@ -123,6 +128,54 @@ export async function saveViewPreferences(prefs: Partial<ViewPreferences>): Prom
             update: prefs,
         });
         revalidatePath("/watchlist");
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
+// The /dramas view switch. Its own writer rather than a saveViewPreferences
+// call: that one revalidates /watchlist, and this save happens *during* a
+// navigation to /dramas that already renders the chosen view — so it must not
+// invalidate the page it is being made from.
+export async function saveDramasView(view: DramasView): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        const dramasView: DramasView = view === "list" ? "list" : "grid";
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, dramasView },
+            update: { dramasView },
+        });
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
+export type ThemePreference = "dark" | "light";
+
+// next-themes still owns the live switch: it writes the class before the first
+// paint from localStorage, which no server read can beat. This row is what a
+// browser that has never been here falls back to, so the choice follows the
+// account rather than the device.
+export async function getThemePreference(): Promise<ThemePreference> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await getPreferencesRow(userId);
+        return prefs?.theme === "light" ? "light" : "dark";
+    } catch {
+        return "dark";
+    }
+}
+
+export async function saveThemePreference(theme: ThemePreference): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        const value: ThemePreference = theme === "light" ? "light" : "dark";
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, theme: value },
+            update: { theme: value },
+        });
     } catch {
         // Silently fail — preference save is non-critical
     }

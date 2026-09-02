@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { themeTransition } from "@/lib/theme";
+import { saveThemePreference } from "@/actions/preferences";
 
 /**
  * The theme switch.
@@ -31,6 +32,9 @@ export function ThemeToggle() {
             onClick={() => {
                 const next = resolvedTheme === "light" ? "dark" : "light";
                 void themeTransition(() => setTheme(next), buttonRef.current);
+                // Not awaited: next-themes has already painted, and this copy
+                // only decides what a browser with no stored choice opens with.
+                void saveThemePreference(next);
             }}
             aria-label="Toggle theme"
             title="Toggle theme"

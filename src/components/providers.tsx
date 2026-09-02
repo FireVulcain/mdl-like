@@ -6,7 +6,16 @@ import { useState, Suspense } from 'react';
 import { ThemeProvider } from "next-themes";
 import { ProgressBar } from '@/components/progress-bar';
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  initialTheme = "dark",
+}: {
+  children: React.ReactNode;
+  // The account's saved theme. Only used where the browser has no stored
+  // choice of its own — next-themes' own script still wins on a return visit,
+  // which is what keeps the switch instant.
+  initialTheme?: "dark" | "light";
+}) {
   const [queryClient] = useState(() => new QueryClient({
     defaultOptions: {
       queries: {
@@ -27,7 +36,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
               no light theme to resolve to, and would now hand a light-desktop
               visitor a theme they never asked this site for. The dark is this
               site's identity; the toggle is the way out of it. */}
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <ThemeProvider attribute="class" defaultTheme={initialTheme} enableSystem={false} disableTransitionOnChange>
           {children}
           <Suspense fallback={null}>
             <ProgressBar />

@@ -7,7 +7,7 @@ import { auth } from "@/lib/auth";
 import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { CommandPalette } from "@/components/command-palette";
-import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences } from "@/actions/preferences";
+import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences, getThemePreference } from "@/actions/preferences";
 
 // Back on Geist, for both roles. font-display still exists as its own variable
 // and is still what the 54 headings ask for — it simply resolves to the same
@@ -43,20 +43,21 @@ export default async function RootLayout({
   const skipAuth = process.env.SKIP_AUTH === "true";
   const session = await auth();
   const isAuthenticated = skipAuth || !!session;
-  const [showSyncNotification, mdlProfileUrl, shortcuts] = isAuthenticated
+  const [showSyncNotification, mdlProfileUrl, shortcuts, theme] = isAuthenticated
     ? await Promise.all([
         getNotificationPreferences().then((p) => p.showSyncNotification),
         getMdlProfileUrl(),
         getShortcutPreferences().then((p) => p.commandPaletteShortcuts),
+        getThemePreference(),
       ])
-    : [false, null, []];
+    : [false, null, [], "dark" as const];
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-app text-fg font-sans`}
       >
-        <Providers>
+        <Providers initialTheme={theme}>
           <div className="relative flex min-h-screen flex-col">
             {isAuthenticated && <SiteHeader mdlProfileUrl={mdlProfileUrl} paletteShortcut={shortcuts[0] ?? null} />}
             {isAuthenticated && <CommandPalette shortcuts={shortcuts} />}

@@ -127,6 +127,13 @@ model UserPreferences {
   commandPaletteShortcuts    Json?
   // Personal MyDramaList profile. Empty/null hides the MDL link in the header.
   mdlProfileUrl              String?
+  // /dramas browse layout: "grid" posters or "list" MDL-style rows.
+  // A ?view= param still wins for the session.
+  dramasView                 String  @default("grid")
+  // "dark" | "light". next-themes keeps owning the switch and the pre-paint
+  // class; this is the copy that makes the choice follow the account to a
+  // browser whose localStorage has never seen this site.
+  theme                      String  @default("dark")
   user                       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

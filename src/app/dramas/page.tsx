@@ -1,18 +1,19 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
-import { Bookmark, Check, X, ChevronDown, ChevronLeft, ChevronRight, LayoutGrid, Rows3 } from "lucide-react";
+import { Bookmark, Check, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaCard } from "@/components/media-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { mediaService, UnifiedMedia } from "@/services/media.service";
 import { prisma } from "@/lib/prisma";
 import { getWatchlistExternalIds } from "@/actions/user-media";
-import { getExcludedTagsPreferences, getDisplayPreferences } from "@/actions/preferences";
+import { getExcludedTagsPreferences, getDisplayPreferences, getViewPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { RatingRangeFilter } from "@/components/dramas/rating-range-filter";
 import { ClosingDetails } from "@/components/dramas/closing-details";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 import { DramaListItem } from "@/components/dramas/drama-list-item";
+import { DramasViewToggle } from "@/components/dramas/view-toggle";
 import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
@@ -74,11 +75,6 @@ const COUNTRY_OPTIONS = [
 // What one MDL page holds — the same number browseDramasMDL uses to decide
 // whether another page follows.
 const PAGE_SIZE = 20;
-
-const VIEW_OPTIONS = [
-    { value: "grid", label: "Grid", icon: LayoutGrid },
-    { value: "list", label: "List", icon: Rows3 },
-] as const;
 
 const MDL_SORT_OPTIONS = [
     { value: "top", label: "Top Rated" },
@@ -187,8 +183,11 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     const rating_min = rawRatingMin ? parseFloat(rawRatingMin) : undefined;
     const rating_max = rawRatingMax ? parseFloat(rawRatingMax) : undefined;
     const tag = rawTag ? parseInt(rawTag, 10) : undefined;
-    // Poster grid stays the default; "list" is the MDL-shaped reading view.
-    const view = rawView === "list" ? "list" : "grid";
+    // "list" is the MDL-shaped reading view. A ?view= param wins for the visit;
+    // without one, the saved preference decides, so the switch survives leaving
+    // the page rather than only riding on the URL.
+    const view: "grid" | "list" =
+        rawView === "list" || rawView === "grid" ? rawView : (await getViewPreferences()).dramasView;
 
     // Excluded tags: an explicit URL list always wins; otherwise, unless the
     // user lifted them for this visit (no_defaults=1), the Settings exclusions
@@ -287,9 +286,10 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     if (rawTagExclude) { baseParams.tag_exclude = rawTagExclude; if (rawTagExcludeName) baseParams.tag_exclude_name = rawTagExcludeName; }
     // Defaults stay implicit (reapplied server-side), but an explicit opt-out must survive navigation
     if (rawNoDefaults) baseParams.no_defaults = rawNoDefaults;
-    // The grid is the default, so only the other view needs saying in the URL —
-    // and it has to ride along with every filter link to survive a click.
-    if (view === "list") baseParams.view = "list";
+    // Written out even when it matches the saved default: every filter link is
+    // built from these params, and an implicit view would flip mid-session if
+    // the preference changed in another tab.
+    baseParams.view = view;
     baseParams.page = page.toString();
 
     // Three-state toggle: neutral → include → exclude → neutral
@@ -347,36 +347,19 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
                             <div className="flex items-center gap-3">
                                 {hasActiveFilters && (
                                     <Link
-                                        href={buildUrl({ category, country, sort, ...(view === "list" ? { view: "list" } : {}) }, { page: "1" })}
+                                        href={buildUrl({ category, country, sort, view }, { page: "1" })}
                                         className="text-xs text-fg-dim hover:text-fg transition-colors"
                                     >
                                         Clear filters
                                     </Link>
                                 )}
-                                {/* View switch. Both halves stay visible rather than
-                                    one button that swaps meaning, so the current
-                                    view is readable without clicking it. */}
-                                <div className="flex items-center rounded-lg border border-line-strong bg-surface-1 p-0.5">
-                                    {VIEW_OPTIONS.map((opt) => {
-                                        const active = view === opt.value;
-                                        const Icon = opt.icon;
-                                        return (
-                                            <Link
-                                                key={opt.value}
-                                                href={buildUrl(baseParams, { view: opt.value === "grid" ? null : opt.value })}
-                                                aria-label={opt.label}
-                                                title={opt.label}
-                                                aria-current={active ? "true" : undefined}
-                                                className={`flex items-center gap-1.5 rounded-md px-2 py-1 text-xs transition-all ${
-                                                    active ? "bg-surface-3 text-fg" : "text-fg-dim hover:text-fg hover:bg-surface-2"
-                                                }`}
-                                            >
-                                                <Icon className="h-3.5 w-3.5" />
-                                                <span className="hidden sm:inline">{opt.label}</span>
-                                            </Link>
-                                        );
-                                    })}
-                                </div>
+                                <DramasViewToggle
+                                    view={view}
+                                    hrefFor={{
+                                        grid: buildUrl(baseParams, { view: "grid" }),
+                                        list: buildUrl(baseParams, { view: "list" }),
+                                    }}
+                                />
                             </div>
                         </div>
 
