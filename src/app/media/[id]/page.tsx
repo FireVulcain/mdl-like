@@ -16,6 +16,7 @@ import { MdlAiredRow } from "@/components/media/mdl-aired-row";
 import { MdlLiveRefresh } from "@/components/media/mdl-live-refresh";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MdlSection } from "@/components/media/mdl-section";
+import { MdlRelatedContent } from "@/components/media/mdl-related-content";
 import { SynopsisBlock } from "@/components/media/synopsis-block";
 import { TrailerButton } from "@/components/trailer-button";
 import { MdlCountdown } from "@/components/media/mdl-countdown";
@@ -402,6 +403,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                         <div id="section-cast" className="space-y-4">
                             <SynopsisBlock text={media.synopsis || ""} />
+                            <Suspense fallback={null}>
+                                <MdlRelatedContent mdlSlug={media.externalId} />
+                            </Suspense>
                             {media.genres && media.genres.length > 0 && (
                                 <div className="mt-6">
                                     <h3 className="font-display text-lg font-semibold mb-2">Genres</h3>

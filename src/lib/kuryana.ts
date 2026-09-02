@@ -67,6 +67,10 @@ export interface KuryanaDetails {
             directors: string[];
             screenwriter: string[];
             tags: { id: number; name: string }[];
+            // MDL's "Related Content" block: prequels, spin-offs, compilations.
+            // `link` points at mydramalist.com and is never followed — `id` is
+            // the slug, which is what resolves to a page on this site.
+            related_content?: { name: string; id: string; link: string; note: string }[];
         };
     };
     scrape_date: string;

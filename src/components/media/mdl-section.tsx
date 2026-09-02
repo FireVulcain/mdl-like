@@ -4,6 +4,8 @@ import { CastScroll } from "./cast-scroll";
 import { SynopsisBlock } from "./synopsis-block";
 import { MetaLinkList, TAG_LIST } from "./meta-link-list";
 import { GenreBlock } from "./genre-block";
+import { MdlRelatedContent } from "./mdl-related-content";
+import { Suspense } from "react";
 
 // Matches the MDL_GENRES values in /dramas
 const VALID_DRAMA_GENRE_SLUGS = new Set([
@@ -58,6 +60,14 @@ export async function MdlSection({ externalId, title, year, nativeTitle, tmdbCas
     return (
         <>
             <SynopsisBlock text={synopsis} />
+
+            {/* Its own boundary: one more MDL round trip, and the genres and
+                cast below have no reason to wait for it. */}
+            {data?.mdlSlug && (
+                <Suspense fallback={null}>
+                    <MdlRelatedContent mdlSlug={data.mdlSlug} />
+                </Suspense>
+            )}
 
             {/* MDL genres link into /dramas. Where MDL has no entry for the show
                 its TMDB genres stand in, unlinked — /dramas browses MDL, so there
