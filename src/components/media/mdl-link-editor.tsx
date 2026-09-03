@@ -8,8 +8,9 @@ import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { kuryanaSearch, KuryanaSearchResult } from "@/lib/kuryana";
+import type { KuryanaDrama } from "@/lib/kuryana";
 import { updateMdlLink, toggleMdlDisabled, unlinkMdl } from "@/actions/mdl-editor";
+import { searchMdlDramas } from "@/actions/mdl-season";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +27,7 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState(defaultQuery || "");
-    const [results, setResults] = useState<KuryanaSearchResult["results"]["dramas"]>([]);
+    const [results, setResults] = useState<KuryanaDrama[]>([]);
     const [isSearching, setIsSearching] = useState(false);
     const [isPending, startTransition] = useTransition();
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -94,14 +95,10 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
 
         try {
             setIsSearching(true);
-            const res = await kuryanaSearch(q);
-            // Only show dramas/movies (not people)
-            if (res && res.results && res.results.dramas) {
-                setResults(res.results.dramas);
-            } else {
-                setResults([]);
-            }
-        } catch (e) {
+            // Goes through a server action — the scraper has no CORS headers, so
+            // the browser can't call it directly.
+            setResults(await searchMdlDramas(q));
+        } catch {
             toast.error("Failed to search MDL.");
         } finally {
             setIsSearching(false);
@@ -219,8 +216,8 @@ export function MdlLinkEditor({ tmdbExternalId, mediaType, currentSlug, defaultQ
                             </div>
                         ) : (
                             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 max-h-100 overflow-y-auto pr-1">
-                                {results.map((item: any) => {
-                                    const isCurrent = currentSlug && item.slug.includes(currentSlug);
+                                {results.map((item) => {
+                                    const isCurrent = !!currentSlug && item.slug.includes(currentSlug);
 
                                     return (
                                         <button

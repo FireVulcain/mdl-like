@@ -1,4 +1,4 @@
-const BASE_URL = process.env.KURYANA_URL ?? "https://mdl-scrapper-jade.vercel.app";
+const BASE_URL = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 
 export interface KuryanaDrama {
     slug: string;
@@ -443,8 +443,7 @@ function withAvatars(res: MdlThreadsResult | null): MdlThreadsResult | null {
     if (res.authors && res.comments) {
         res.comments = res.comments.map((c) => {
             const authorData =
-                res.authors![c.author] ??
-                Object.values(res.authors!).find((a) => a.username === c.author || a.display_name === c.author);
+                res.authors![c.author] ?? Object.values(res.authors!).find((a) => a.username === c.author || a.display_name === c.author);
             return { ...c, avatar_url: authorData?.avatar_url, author_name: authorData?.display_name || c.author };
         });
     }
@@ -626,37 +625,26 @@ export async function kuryanaGetKoreanTop(
 }
 
 // Combined KR+CN endpoint — no country filter needed
-export async function kuryanaGetAllTop(
-    page = 1,
-    sort?: string,
-): Promise<KuryanaChineseTopResult | null> {
+export async function kuryanaGetAllTop(page = 1, sort?: string): Promise<KuryanaChineseTopResult | null> {
     const q = sort ? `&sort=${sort}` : "";
     return kuryanaFetch<KuryanaChineseTopResult>(`/top?page=${page}${q}`, 8000, 0);
 }
 
 // ─── Unified browse endpoint ────────────────────────────────────────────────
 
-export type KuryanaTopCountry =
-    | "korean"
-    | "japanese"
-    | "chinese"
-    | "taiwanese"
-    | "hongkong"
-    | "thai"
-    | "philippine"
-    | "singaporean";
+export type KuryanaTopCountry = "korean" | "japanese" | "chinese" | "taiwanese" | "hongkong" | "thai" | "philippine" | "singaporean";
 
 export interface KuryanaTopParams {
     page?: number;
     sort?: string;
-    genre?: string;         // comma-separated MDL genre names to include (e.g. "romance,drama")
+    genre?: string; // comma-separated MDL genre names to include (e.g. "romance,drama")
     genre_exclude?: string; // comma-separated MDL genre names to exclude
     year_from?: number;
     year_to?: number;
     rating_min?: number;
     rating_max?: number;
-    tag?: number;                    // MDL tag ID to include (e.g. 370 for "Revenge")
-    tag_exclude?: number | string;   // MDL tag ID(s) to exclude — comma-separated for several (e.g. "1045,14549")
+    tag?: number; // MDL tag ID to include (e.g. 370 for "Revenge")
+    tag_exclude?: number | string; // MDL tag ID(s) to exclude — comma-separated for several (e.g. "1045,14549")
 }
 
 export interface KuryanaTagResult {
