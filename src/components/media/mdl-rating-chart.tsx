@@ -67,13 +67,39 @@ function niceStep(span: number, candidates: number[]): number {
 
 type Scale = { lo: number; hi: number; step: number; ticks: number[] };
 
-function scaleFor(values: number[], candidates: number[], padByStep = true): Scale {
+/**
+ * @param headroom Leave air above and below the data rather than fitting the
+ * domain to it exactly.
+ *
+ * Without it a series that only ever read 8.0 and 8.1 gets the domain [8.0,
+ * 8.1], so its two values land on the top and bottom edges of the frame and a
+ * single tenth is drawn as a cliff from ceiling to floor. The axis was labelled,
+ * which is what made that honest — but honest and legible are different things,
+ * and a line traced along the border of its own plot reads as a fault.
+ *
+ * The padding is a quarter of the data's span, floored at one whole tick and
+ * always a multiple of one. Quantising it is the point: pad by a raw 0.3 and the
+ * domain lands wherever it lands, and the axis grows labels like 7.73 for a
+ * source that publishes tenths. A quarter-span keeps the shape — a series that
+ * genuinely swings a full point still fills the plot — while the floor is what
+ * rescues the flat ones, which are the whole problem.
+ */
+function scaleFor(values: number[], candidates: number[], headroom = false): Scale {
     const min = Math.min(...values);
     const max = Math.max(...values);
+    const flat = min === max;
     const span = max - min || candidates[0];
     const step = niceStep(span, candidates);
-    const lo = Math.floor(min / step) * step - (padByStep && min === max ? step : 0);
-    const hi = Math.ceil(max / step) * step + (padByStep && min === max ? step : 0);
+    // A flat series is padded whatever the caller asked for: with hi === lo
+    // every point divides by zero and the line renders as NaN.
+    const pad = headroom ? Math.max(Math.ceil((span * 0.25) / step), 1) * step : flat ? step : 0;
+    // Nudged before rounding, because the division does not land clean: 8.2
+    // minus 0.1 over 0.1 is 80.99999999999999, and floor takes that to 80 — the
+    // domain loses a whole tick and the padding comes out lopsided. The same
+    // drift the ticks below are rebuilt by multiplication to avoid.
+    const EPS = 1e-9;
+    const lo = Math.floor((min - pad) / step + EPS) * step;
+    const hi = Math.ceil((max + pad) / step - EPS) * step;
     const ticks: number[] = [];
     // Rebuilt by multiplication rather than accumulated by addition: repeatedly
     // adding 0.1 drifts, and an axis labelled 8.299999999999999 is a bug on
@@ -100,10 +126,12 @@ function scaleFor(values: number[], candidates: number[], padByStep = true): Sca
  * step alone hides: a long flat run is not a stable rating, it is a stretch
  * where nobody asked.
  *
- * The rating's axis is tight around its own range, which magnifies a movement
+ * The rating's axis is close around its own range, which magnifies a movement
  * of a tenth into a visible climb. That is honest here, unlike in the badge,
  * precisely because the ticks are labelled — the reader can see the whole
- * chart spans 0.3 and judge accordingly.
+ * chart spans 0.3 and judge accordingly. Close, but no longer flush: it keeps
+ * a tick of air above and below so the line is never traced along the frame.
+ * See `scaleFor`.
  */
 export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
     const [hover, setHover] = useState<number | null>(null);
@@ -146,9 +174,13 @@ export function MdlRatingChart({ points }: { points: ChartPoint[] }) {
             return PAD.l + activeW + gapW + ((d - breakDay) / (tailDays || 1)) * stubW;
         };
 
+        // Headroom on the rating only. The audience is an area closed to the
+        // baseline, and lifting its floor off the bottom of the plot would leave
+        // the ground it is meant to be floating.
         const rating = scaleFor(
             rated.map((p) => p.rating),
             [0.1, 0.2, 0.5, 1, 2],
+            true,
         );
         const yRating = (v: number) => PAD.t + PLOT_H - ((v - rating.lo) / (rating.hi - rating.lo)) * PLOT_H;
 
