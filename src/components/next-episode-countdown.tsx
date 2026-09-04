@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { Calendar } from 'lucide-react';
+import Link from 'next/link';
+import { Calendar, CalendarRange } from 'lucide-react';
 import { getAirDateTime, resolveAirMoment } from '@/lib/air-moment';
 import { hasFinishedAiring } from '@/lib/format-aired';
 
@@ -49,6 +50,16 @@ interface NextEpisodeCountdownProps {
     originCountry?: string | null;
     // Fallback: show's first air date (used if season air date is missing)
     firstAirDate?: string | null;
+    /**
+     * The calendar, already narrowed to this show.
+     *
+     * Sits inside this card rather than beside it on the page so it inherits
+     * the card's gate: no countdown means nothing left to air, and a link to a
+     * schedule that has run out is a link to an empty grid. Undefined for a
+     * show that is not on the list, which is the other way the calendar can
+     * have nothing to say about it.
+     */
+    calendarHref?: string;
 }
 
 interface TimeLeft {
@@ -199,6 +210,7 @@ export function NextEpisodeCountdown({
     firstAirDate,
     airedRange,
     originCountry,
+    calendarHref,
 }: NextEpisodeCountdownProps) {
     /**
      * The clock, and the only state here.
@@ -343,6 +355,16 @@ export function NextEpisodeCountdown({
                     <div className="text-[10px] text-fg-dim text-center -mt-2">
                         * Estimated from the usual two-episodes-a-week Korean schedule
                     </div>
+                )}
+
+                {calendarHref && (
+                    <Link
+                        href={calendarHref}
+                        className="flex items-center justify-center gap-1.5 border-t border-line-soft pt-3 text-xs text-fg-muted transition-colors hover:text-fg"
+                    >
+                        <CalendarRange className="h-3.5 w-3.5" />
+                        See the full schedule
+                    </Link>
                 )}
             </div>
         </div>

@@ -59,12 +59,15 @@ function ScheduleSkeleton() {
     );
 }
 
-export default async function SchedulePage({ searchParams }: { searchParams: Promise<{ date?: string }> }) {
-    const { date } = await searchParams;
+export default async function SchedulePage({ searchParams }: { searchParams: Promise<{ date?: string; show?: string }> }) {
+    const { date, show } = await searchParams;
 
     return (
-        <Suspense fallback={<ScheduleSkeleton />}>
-            <ScheduleData initialDate={date} />
+        // `show` is part of the key so following the link from a second show's
+        // page rebuilds the calendar rather than reusing the first one's state —
+        // the filter and the month it opens on are both seeded from this prop.
+        <Suspense key={show ?? "all"} fallback={<ScheduleSkeleton />}>
+            <ScheduleData initialDate={date} initialShow={show} />
         </Suspense>
     );
 }

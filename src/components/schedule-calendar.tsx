@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter, X } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { getScheduleRefreshTargets, refreshScheduleChunk, refreshSingleShow } from "@/actions/schedule";
@@ -20,8 +20,20 @@ function toDateStr(year: number, month: number, day: number) {
     return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
-export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entries: ScheduleEntry[]; initialDate?: string; initialPrefs?: CalendarPreferences }) {
+export function ScheduleCalendar({
+    entries,
+    initialDate,
+    initialShow,
+    initialPrefs,
+}: {
+    entries: ScheduleEntry[];
+    initialDate?: string;
+    /** A `mediaId` from `?show=` — the media page links here already narrowed. */
+    initialShow?: string;
+    initialPrefs?: CalendarPreferences;
+}) {
     const today = new Date();
+    const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
 
     // Parse "YYYY-MM-DD" param — derive initial month and highlighted date
     const parseInitial = () => {
@@ -29,6 +41,20 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
             const [y, m] = initialDate.split("-").map(Number);
             if (!isNaN(y) && m >= 1 && m <= 12) return { y, m: m - 1 };
         }
+
+        // A show was named but no date. Landing on the current month would show
+        // an empty grid for anything airing later, which is the opposite of what
+        // following a link to one show's schedule is for — so open on the month
+        // of its next episode, or of its last one if the run is over.
+        if (initialShow) {
+            const mine = entries.filter((e) => e.mediaId === initialShow).sort((a, b) => (a.airDate < b.airDate ? -1 : 1));
+            const anchor = mine.find((e) => e.airDate >= todayStr) ?? mine[mine.length - 1];
+            if (anchor) {
+                const [y, m] = anchor.airDate.split("-").map(Number);
+                if (!isNaN(y) && m >= 1 && m <= 12) return { y, m: m - 1 };
+            }
+        }
+
         return { y: today.getFullYear(), m: today.getMonth() };
     };
     const initial = parseInitial();
@@ -40,11 +66,40 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [refreshingShowId, setRefreshingShowId] = useState<string | null>(null);
+    // Narrowing to one show. Held as state rather than read from the URL on
+    // every render because every entry is already here — filtering is a local
+    // operation, and a round trip to the server would only re-fetch what the
+    // page is holding.
+    const [showFilter, setShowFilter] = useState<string | null>(initialShow ?? null);
+
+    // Taken from the unfiltered set: the filter itself has to keep naming the
+    // show even on a month where it has nothing.
+    const filteredShow = showFilter ? entries.find((e) => e.mediaId === showFilter) : undefined;
+
+    // The URL is kept in step by hand rather than through the router: the page
+    // is force-dynamic, so a replace() would re-run the whole schedule query to
+    // change a query string the client has already acted on.
+    const writeShowParam = (mediaId: string | null) => {
+        if (typeof window === "undefined") return;
+        const url = new URL(window.location.href);
+        if (mediaId) url.searchParams.set("show", mediaId);
+        else url.searchParams.delete("show");
+        window.history.replaceState({}, "", url);
+    };
+
+    const applyShowFilter = (mediaId: string | null) => {
+        setShowFilter(mediaId);
+        writeShowParam(mediaId);
+    };
 
     const ASIAN_COUNTRIES = ["KR", "CN", "JP", "TW", "TH", "HK"];
     const filteredEntries = entries
-        .filter((e) => !asianOnly || ASIAN_COUNTRIES.includes(e.originCountry))
-        .filter((e) => includePlanToWatch || e.status !== "Plan to Watch");
+        .filter((e) => !showFilter || e.mediaId === showFilter)
+        // The region and plan-to-watch filters are about thinning a crowded
+        // month. One show is not a crowd, and letting them hide the very show
+        // just asked for would read as the link being broken.
+        .filter((e) => showFilter || !asianOnly || ASIAN_COUNTRIES.includes(e.originCountry))
+        .filter((e) => showFilter || includePlanToWatch || e.status !== "Plan to Watch");
 
     const handleRefreshShow = async (mediaId: string) => {
         setRefreshingShowId(mediaId);
@@ -146,7 +201,6 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
         cells.push({ day: d, month: m, year: y, current: false });
     }
 
-    const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
     const thisMonthPrefix = `${year}-${String(month + 1).padStart(2, "0")}`;
     const episodesThisMonth = filteredEntries.filter((e) => e.airDate.startsWith(thisMonthPrefix)).length;
 
@@ -257,6 +311,40 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                     </div>
                 </div>
 
+                {/* The active show filter, when there is one. Stated as a bar
+                    rather than a chip tucked in the header: arriving here from a
+                    show's page means the grid is deliberately near-empty, and
+                    that needs saying somewhere the eye lands before it reads the
+                    emptiness as a bug. */}
+                {showFilter && (
+                    <div className="flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2">
+                        {filteredShow?.poster ? (
+                            <div className="relative h-9 w-6.5 shrink-0 overflow-hidden rounded bg-surface-3">
+                                <Image unoptimized={true} src={filteredShow.poster} alt="" fill sizes="26px" className="object-cover" />
+                            </div>
+                        ) : (
+                            <Filter className="h-4 w-4 shrink-0 text-primary" />
+                        )}
+                        <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm font-medium text-fg">
+                                {filteredShow?.title ?? "This show"}
+                            </p>
+                            <p className="text-xs text-fg-muted">
+                                {filteredShow
+                                    ? "Showing this show only"
+                                    : "Not on your list — nothing to show here yet"}
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => applyShowFilter(null)}
+                            className="cursor-pointer flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg"
+                        >
+                            <X className="h-3.5 w-3.5" />
+                            Show all
+                        </button>
+                    </div>
+                )}
+
                 {/* Calendar */}
                 <div className="rounded-lg border border-line-strong overflow-hidden">
                     {/* Day headers */}
@@ -354,18 +442,37 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                                                                             <span className="ml-2 font-normal text-fg-dim text-xs">Plan to Watch</span>
                                                                         )}
                                                                     </p>
-                                                                    <button
-                                                                        onClick={(e) => {
-                                                                            e.preventDefault();
-                                                                            e.stopPropagation();
-                                                                            handleRefreshShow(first.mediaId);
-                                                                        }}
-                                                                        disabled={refreshingShowId === first.mediaId}
-                                                                        className="cursor-pointer text-fg-muted hover:text-fg transition-colors disabled:opacity-50 shrink-0"
-                                                                        title="Refresh this show"
-                                                                    >
-                                                                        <RefreshCw className={`h-3 w-3 ${refreshingShowId === first.mediaId ? "animate-spin" : ""}`} />
-                                                                    </button>
+                                                                    <div className="flex shrink-0 items-center gap-2">
+                                                                        {/* The other half of the filter: the
+                                                                            media page links in already narrowed,
+                                                                            and this is how you narrow from
+                                                                            inside a busy month. */}
+                                                                        {!showFilter && (
+                                                                            <button
+                                                                                onClick={(e) => {
+                                                                                    e.preventDefault();
+                                                                                    e.stopPropagation();
+                                                                                    applyShowFilter(first.mediaId);
+                                                                                }}
+                                                                                className="cursor-pointer text-fg-muted hover:text-fg transition-colors"
+                                                                                title="Show only this"
+                                                                            >
+                                                                                <Filter className="h-3 w-3" />
+                                                                            </button>
+                                                                        )}
+                                                                        <button
+                                                                            onClick={(e) => {
+                                                                                e.preventDefault();
+                                                                                e.stopPropagation();
+                                                                                handleRefreshShow(first.mediaId);
+                                                                            }}
+                                                                            disabled={refreshingShowId === first.mediaId}
+                                                                            className="cursor-pointer text-fg-muted hover:text-fg transition-colors disabled:opacity-50"
+                                                                            title="Refresh this show"
+                                                                        >
+                                                                            <RefreshCw className={`h-3 w-3 ${refreshingShowId === first.mediaId ? "animate-spin" : ""}`} />
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                                 {/* "S01E23" is a western-TV habit that fits almost nothing
                                                                     here: MDL files each season as its own entry and Asian
@@ -420,8 +527,24 @@ export function ScheduleCalendar({ entries, initialDate, initialPrefs }: { entri
                 {filteredEntries.length === 0 && (
                     <div className="text-center py-16 text-fg-dim">
                         <CalendarDays className="h-12 w-12 mx-auto mb-3 opacity-30" />
-                        <p className="font-medium">No upcoming episodes</p>
-                        <p className="text-sm mt-1">Add shows to your watchlist to see their schedule here</p>
+                        {showFilter ? (
+                            // The generic "add shows to your watchlist" is wrong
+                            // here twice over: the reader arrived from a show's
+                            // own page, and the calendar is built from tracked
+                            // shows, so the thing to say is which of those two
+                            // did not hold.
+                            <>
+                                <p className="font-medium">No dated episodes for this show</p>
+                                <p className="text-sm mt-1">
+                                    The calendar only covers shows on your list, and only once a source has dated them.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="font-medium">No upcoming episodes</p>
+                                <p className="text-sm mt-1">Add shows to your watchlist to see their schedule here</p>
+                            </>
+                        )}
                     </div>
                 )}
             </div>

@@ -4,7 +4,7 @@ import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { prisma } from "@/lib/prisma";
 import { ScheduleCalendar } from "@/components/schedule-calendar";
 
-export async function ScheduleData({ initialDate }: { initialDate?: string }) {
+export async function ScheduleData({ initialDate, initialShow }: { initialDate?: string; initialShow?: string }) {
     const [entries, prefs, displayPrefs] = await Promise.all([
         getScheduleEntries(),
         getCalendarPreferences(),
@@ -31,5 +31,5 @@ export async function ScheduleData({ initialDate }: { initialDate?: string }) {
         });
     }
 
-    return <ScheduleCalendar entries={safeEntries} initialDate={initialDate} initialPrefs={prefs} />;
+    return <ScheduleCalendar entries={safeEntries} initialDate={initialDate} initialShow={initialShow} initialPrefs={prefs} />;
 }
