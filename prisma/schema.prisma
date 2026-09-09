@@ -130,6 +130,10 @@ model UserPreferences {
   // /dramas browse layout: "grid" posters or "list" MDL-style rows.
   // A ?view= param still wins for the session.
   dramasView                 String  @default("grid")
+  // /search results layout: "grid" posters or "list" MDL-style rows. Kept apart
+  // from dramasView — browsing a catalogue and reading a result set are two
+  // different habits, and sharing one row would flip both at once.
+  searchView                 String  @default("grid")
   // "dark" | "light". next-themes keeps owning the switch and the pre-paint
   // class; this is the copy that makes the choice follow the account to a
   // browser whose localStorage has never seen this site.

@@ -67,6 +67,28 @@ export function PosterGrid({ count = 12, className = "grid grid-cols-2 sm:grid-c
 }
 
 /** A horizontal rail, as the home page and the media page use. */
+/** The list view's row: poster, then the title, meta, stars and synopsis beside it. */
+export function MediaRows({ count = 6 }: { count?: number }) {
+    return (
+        <div className="flex flex-col gap-3">
+            {Array.from({ length: count }, (_, i) => (
+                <div key={i} className="flex gap-3 md:gap-4 rounded-xl border border-line-soft bg-surface-1 p-3 md:p-4">
+                    <div className="aspect-2/3 w-20 sm:w-24 md:w-28 shrink-0 animate-pulse rounded-lg bg-surface-2" />
+                    <div className="min-w-0 flex-1 space-y-2.5 pt-1">
+                        <Line w="38%" h={18} />
+                        <Line w="24%" h={12} />
+                        <Line w={110} h={14} />
+                        <div className="space-y-1.5 pt-1">
+                            <Line w="100%" h={10} />
+                            <Line w="72%" h={10} />
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
 export function PosterRail({ count = 6 }: { count?: number }) {
     return (
         <div className="flex gap-4 overflow-hidden">

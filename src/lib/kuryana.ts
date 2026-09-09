@@ -8,8 +8,13 @@ export interface KuryanaDrama {
     ranking: string;
     type: string;
     year: number;
-    series: string;
+    // MDL's own wording for the length: "8 episodes" for a series, false for a
+    // film. It is the only episode count the search endpoint carries.
+    series: string | false;
     rating?: number;
+    // Truncated the way MDL's own results page truncates it — a couple of
+    // sentences ending in an ellipsis, which is all a list row shows anyway.
+    synopsis?: string;
 }
 
 export interface KuryanaSearchResult {

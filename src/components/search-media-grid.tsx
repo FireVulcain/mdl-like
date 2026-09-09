@@ -3,7 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import { Loader2 } from "lucide-react";
 import { MediaCard } from "@/components/media-card";
+import { DramaListItem } from "@/components/dramas/drama-list-item";
+import { ViewToggleButtons } from "@/components/view-toggle";
 import { fetchMdlSearchResults, fetchMoreMedia } from "@/app/search/actions";
+import { saveSearchView, type DramasView } from "@/actions/preferences";
 import type { UnifiedMedia } from "@/services/media.service";
 
 const COUNTRY_LABELS: Record<string, string> = {
@@ -27,12 +30,18 @@ export function SearchMediaGrid({
     media,
     query,
     totalPages,
+    initialView = "grid",
 }: {
     media: UnifiedMedia[];
     query: string;
     totalPages: number;
+    initialView?: DramasView;
 }) {
     const [allMedia, setAllMedia] = useState(media);
+    // Unlike /dramas, the switch is state rather than a link: the results here
+    // are accumulated by infinite scroll and topped up with MDL hits, and a
+    // navigation would throw all of that away to re-render the same titles.
+    const [view, setView] = useState<DramasView>(initialView);
     const [showMdl, setShowMdl] = useState(false);
     const [mdlResults, setMdlResults] = useState<UnifiedMedia[]>([]);
     const [mdlLoading, setMdlLoading] = useState(false);
@@ -77,6 +86,13 @@ export function SearchMediaGrid({
         return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    function handleViewChange(next: DramasView) {
+        setView(next);
+        // Decides what the next search opens with; nothing on screen waits for it.
+        document.documentElement.dataset.searchView = next;
+        void saveSearchView(next);
+    }
 
     async function handleMdlToggle() {
         if (!showMdl && mdlResults.length === 0) {
@@ -166,17 +182,29 @@ export function SearchMediaGrid({
                         ))}
                     </>
                 )}
+
+                {/* Held to the far edge, the way /dramas holds it opposite the
+                    results meta — it switches the shape of the list rather than
+                    filtering it, so it does not belong among the pills. */}
+                <ViewToggleButtons view={view} onChange={handleViewChange} className="ml-auto" />
             </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                {filtered.map((item) => (
-                    <MediaCard key={item.id} media={item} showSourceBadge />
-                ))}
-                {filtered.length === 0 && (
-                    <p className="col-span-full text-sm text-fg-dim">No results for this country.</p>
-                )}
-            </div>
+            {/* Results */}
+            {filtered.length === 0 ? (
+                <p className="text-sm text-fg-dim">No results for this country.</p>
+            ) : view === "list" ? (
+                <div className="flex flex-col gap-3">
+                    {filtered.map((item) => (
+                        <DramaListItem key={item.id} media={item} href={`/media/${item.id}`} showSourceBadge />
+                    ))}
+                </div>
+            ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                    {filtered.map((item) => (
+                        <MediaCard key={item.id} media={item} mdlRating={item.mdlRating} showSourceBadge />
+                    ))}
+                </div>
+            )}
 
             {/* Infinite scroll sentinel */}
             <div ref={sentinelRef} className="flex justify-center py-4">

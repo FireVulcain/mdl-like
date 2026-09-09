@@ -1,6 +1,8 @@
 import { SearchMediaGrid } from "@/components/search-media-grid";
 import { ExpandablePeopleSection } from "@/components/expandable-people-section";
 import { mediaService } from "@/services/media.service";
+import { getSearchView } from "@/actions/preferences";
+import { enrichMediaRows } from "@/lib/media-rows";
 import { Search } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -30,7 +32,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         );
     }
 
-    const { media, people, totalPages } = await mediaService.search(query);
+    const [{ media: rawMedia, people, totalPages }, searchView] = await Promise.all([
+        mediaService.search(query),
+        getSearchView(),
+    ]);
+    // Hand-picked posters and cached MDL scores, both from the DB — see the
+    // helper for why neither costs a request.
+    const media = await enrichMediaRows(rawMedia);
     const hasResults = media.length > 0 || people.length > 0;
 
     const found = [
@@ -67,7 +75,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                                 <span className="text-sm text-fg-muted">({media.length})</span>
                                 <div className="flex-1 h-px bg-surface-3" />
                             </div>
-                            <SearchMediaGrid key={query} media={media} query={query} totalPages={totalPages} />
+                            <SearchMediaGrid
+                                key={query}
+                                media={media}
+                                query={query}
+                                totalPages={totalPages}
+                                initialView={searchView}
+                            />
                         </section>
                     )}
                 </>

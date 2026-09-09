@@ -151,6 +151,33 @@ export async function saveDramasView(view: DramasView): Promise<void> {
     }
 }
 
+// The /search view switch. It flips in place rather than navigating, so this
+// only records what the *next* search opens with; nothing on screen waits for
+// it and no path is revalidated.
+export async function getSearchView(): Promise<DramasView> {
+    try {
+        const userId = await getCurrentUserId();
+        const prefs = await getPreferencesRow(userId);
+        return prefs?.searchView === "list" ? "list" : "grid";
+    } catch {
+        return "grid";
+    }
+}
+
+export async function saveSearchView(view: DramasView): Promise<void> {
+    try {
+        const userId = await getCurrentUserId();
+        const searchView: DramasView = view === "list" ? "list" : "grid";
+        await prisma.userPreferences.upsert({
+            where: { userId },
+            create: { userId, searchView },
+            update: { searchView },
+        });
+    } catch {
+        // Silently fail — preference save is non-critical
+    }
+}
+
 export type ThemePreference = "dark" | "light";
 
 // next-themes still owns the live switch: it writes the class before the first

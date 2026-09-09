@@ -39,12 +39,16 @@ export function DramaListItem({
     rank,
     inWatchlist,
     unlinkedSlug,
+    showSourceBadge = false,
 }: {
     media: UnifiedMedia;
     href: string;
     rank?: number;
     inWatchlist?: boolean;
     unlinkedSlug?: string;
+    // /search mixes sources in one list, so a row has to say where it came
+    // from. On /dramas everything is MDL and the badge would be noise.
+    showSourceBadge?: boolean;
 }) {
     const meta = [media.mdlTypeLabel, media.year].filter(Boolean).join(" - ");
     const episodes = media.totalEp ? `${media.totalEp} episode${media.totalEp > 1 ? "s" : ""}` : null;
@@ -83,6 +87,11 @@ export function DramaListItem({
                             >
                                 {media.title}
                             </Link>
+                            {showSourceBadge && media.source === "MDL" && (
+                                <span className="rounded bg-sky-500/80 px-1.5 py-0 text-[10px] font-bold text-white">
+                                    MDL
+                                </span>
+                            )}
                             {unlinkedSlug && (
                                 <span className="opacity-0 transition-opacity group-hover:opacity-100">
                                     <LinkToTmdbButton mdlSlug={unlinkedSlug} defaultQuery={media.title} compact />
@@ -93,10 +102,41 @@ export function DramaListItem({
                             {meta}
                             {episodes && (meta ? `, ${episodes}` : episodes)}
                         </p>
-                        {media.rating > 0 && (
-                            <div className="mt-1.5 flex items-center gap-2">
-                                <StarBar rating={media.rating} />
-                                <span className="text-sm font-semibold text-fg">{media.rating.toFixed(1)}</span>
+                        {(media.rating > 0 || (media.mdlRating ?? 0) > 0) && (
+                            /* Two scores from two sites, so they read as two
+                               things: the stars and their number are one group,
+                               the MDL pill another, and the gap between the
+                               groups is wider than the gap inside either. Set
+                               flat beside each other they scanned as one run of
+                               numbers about the same thing. */
+                            <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                                {media.rating > 0 && (
+                                    <span className="inline-flex items-center gap-1.5">
+                                        <StarBar rating={media.rating} />
+                                        <span className="text-sm font-semibold tabular-nums text-fg">
+                                            {media.rating.toFixed(1)}
+                                        </span>
+                                    </span>
+                                )}
+                                {/* Named rather than starred. A second star icon
+                                    beside the first invited a size comparison it
+                                    could never win, and sky alone only says
+                                    "MDL" to someone who already knows. The
+                                    number keeps the size of the one it sits
+                                    next to; only the label shrinks.
+
+                                    An MDL row never gets this — its own stars
+                                    are already MDL's. */}
+                                {media.source !== "MDL" && (media.mdlRating ?? 0) > 0 && (
+                                    <span className="inline-flex items-baseline gap-1 rounded-md bg-sky-500/15 px-1.5 py-0.5 ring-1 ring-sky-500/25">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400/80">
+                                            MDL
+                                        </span>
+                                        <span className="text-sm font-semibold tabular-nums text-sky-300">
+                                            {media.mdlRating!.toFixed(1)}
+                                        </span>
+                                    </span>
+                                )}
                             </div>
                         )}
                     </div>

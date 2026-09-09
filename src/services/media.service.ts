@@ -18,6 +18,9 @@ export type UnifiedMedia = {
     originCountry: string; // 'US', 'KR', 'JP', etc.
     synopsis: string;
     rating: number;
+    // MDL's own score, on a row whose `rating` comes from somewhere else. Only
+    // ever filled from what is already cached — see lib/media-rows.ts.
+    mdlRating?: number;
     popularity?: number;
     status?: string; // For TV shows: "Returning Series", "Ended", etc.
     totalEp?: number;
@@ -107,6 +110,14 @@ function countryFromKuryanaType(type: string | undefined): string {
     // first word alone ("hong") matched nothing and the country came back empty.
     if (lower.startsWith("hong kong")) return "HK";
     return KURYANA_TYPE_COUNTRY[lower.split(" ")[0]] || "";
+}
+
+// MDL words the length rather than counting it: "8 episodes" on a series,
+// false on a film.
+function episodeCountFromSeries(series: string | false | undefined): number | undefined {
+    if (!series) return undefined;
+    const n = parseInt(series);
+    return Number.isFinite(n) && n > 0 ? n : undefined;
 }
 
 export const mediaService = {
@@ -230,7 +241,9 @@ export const mediaService = {
             backdrop: null,
             year: drama.year?.toString() || "",
             originCountry: countryFromKuryanaType(drama.type),
-            synopsis: "",
+            mdlTypeLabel: drama.type || undefined,
+            totalEp: episodeCountFromSeries(drama.series),
+            synopsis: drama.synopsis ?? "",
             rating: drama.rating ?? 0,
             popularity: parseInt(drama.ranking) || 0,
         }));
