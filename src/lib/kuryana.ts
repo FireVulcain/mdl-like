@@ -455,15 +455,24 @@ function withAvatars(res: MdlThreadsResult | null): MdlThreadsResult | null {
     return res;
 }
 
+// Five minutes rather than none.
+//
+// Uncached, this scraped MDL on every render of the page it sits at the bottom
+// of — including every season switch, which held the response stream open for
+// over a second to re-read comments nobody had asked to see again. A comment
+// thread that is five minutes old does not read as stale; a switch that waits
+// on one does.
 export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
-    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, 8000, 0));
+    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, 8000, 300));
 }
 
 // Same payload shape as a drama's threads, different path. The endpoint takes
 // either the bare id or the full slug; the full slug is what the person page
 // already holds.
+// Same window as a drama's threads above, and for the same reason — this one
+// sits at the bottom of a page whose own scrape is already the slow part.
 export async function kuryanaGetPersonThreads(slug: string, page = 1): Promise<MdlThreadsResult | null> {
-    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 0));
+    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 300));
 }
 
 export interface KuryanaDramaListItem {
