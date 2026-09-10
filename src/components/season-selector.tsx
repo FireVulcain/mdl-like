@@ -37,9 +37,13 @@ export function SeasonSelector({ seasons, selectedSeason }: SeasonSelectorProps)
     setOpen(false);
     const params = new URLSearchParams(window.location.search);
     params.set("season", seasonNumber.toString());
+    // push alone. A dynamic page's RSC payload is never reused across a
+    // navigation, so the refresh that used to follow was a second full server
+    // render of the season just fetched — and on a cold cache both renders
+    // raced, so neither could serve the other's TMDB calls and the switch paid
+    // for the season twice.
     startTransition(() => {
       router.push(`?${params.toString()}`);
-      router.refresh();
     });
   };
 

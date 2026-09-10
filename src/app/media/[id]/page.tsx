@@ -564,34 +564,39 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         rating: number;
     }[] = [];
     let seasonOverview: string | null = null;
-    if (media.type === "TV") {
-        try {
-            const seasonData = await tmdb.getSeasonDetails(media.externalId, selectedSeason);
-            seasonOverview = seasonData.overview || null;
-            episodes = (seasonData.episodes || []).map((ep: TMDBEpisode) => ({
-                id: ep.id,
-                number: ep.episode_number,
-                name: ep.name,
-                overview: ep.overview,
-                airDate: ep.air_date,
-                still: ep.still_path ? TMDB_CONFIG.w300Still(ep.still_path) : null,
-                runtime: ep.runtime,
-                rating: ep.vote_average,
-            }));
-        } catch {
-            // Episodes unavailable — render guide without them
-        }
+
+    // The season's episodes and the season's cast, together.
+    //
+    // They were fetched one after the other, and neither needs the other: every
+    // season switch paid one TMDB round trip, then a second, before the shell
+    // could render. Both are cached for an hour, which is why a season already
+    // opened comes back fast — this is about the first time.
+    //
+    // On the cast: the page shows one season at a time, so the cast should be
+    // that season's. The show-level list is every actor who ever appeared — 348
+    // across five seasons of Breaking Bad against 67 in its first — which
+    // buries the people actually in the episodes on screen. It falls back to
+    // the show-level list for films, and for seasons TMDB credits nobody for.
+    const [seasonData, seasonCast] = await Promise.all([
+        media.type === "TV" ? tmdb.getSeasonDetails(media.externalId, selectedSeason).catch(() => null) : null,
+        media.type === "TV" ? mediaService.getSeasonCast(media.externalId, selectedSeason) : null,
+    ]);
+
+    if (seasonData) {
+        seasonOverview = seasonData.overview || null;
+        episodes = (seasonData.episodes || []).map((ep: TMDBEpisode) => ({
+            id: ep.id,
+            number: ep.episode_number,
+            name: ep.name,
+            overview: ep.overview,
+            airDate: ep.air_date,
+            still: ep.still_path ? TMDB_CONFIG.w300Still(ep.still_path) : null,
+            runtime: ep.runtime,
+            rating: ep.vote_average,
+        }));
     }
 
-    // The page shows one season at a time, so the cast should be that season's.
-    // The show-level list is every actor who ever appeared — 348 across five
-    // seasons of Breaking Bad against 67 in its first — which buries the people
-    // actually in the episodes on screen. Falls back to the show-level list for
-    // films, and for seasons TMDB credits nobody for.
-    const displayCast =
-        (media.type === "TV" ? await mediaService.getSeasonCast(media.externalId, selectedSeason) : null) ??
-        media.cast ??
-        [];
+    const displayCast = seasonCast ?? media.cast ?? [];
 
     const [userId, watchlistExternalIds, cached, existingSeasonLink] = await contextPromise;
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
