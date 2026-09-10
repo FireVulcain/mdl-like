@@ -13,7 +13,7 @@ import { MediaNav, NavSection } from "@/components/media/media-nav";
 import { PersonPhotosSection } from "@/components/people/person-photos-section";
 import { PersonThreadsSection } from "@/components/people/person-threads-section";
 import { tmdb, TMDB_CONFIG } from "@/lib/tmdb";
-import { getWatchlistExternalIds, getWatchlistPosters } from "@/actions/user-media";
+import { getWatchlistSeasonKeys, getWatchlistPosters } from "@/actions/user-media";
 import { BiographyExpander } from "@/components/media/biography-expander";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
 import type { Metadata } from "next";
@@ -227,7 +227,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     // Neither depends on the scrape, yet both used to queue behind it — and
     // behind the link lookups after it — on a page whose first step can be half
     // a second of scraping.
-    const viewerPromise = Promise.all([getWatchlistExternalIds(), getWatchlistPosters()]);
+    const viewerPromise = Promise.all([getWatchlistSeasonKeys(), getWatchlistPosters()]);
 
     const data = await loadPerson(slug);
     if (!data) notFound();
@@ -319,11 +319,22 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     // before that, and missingWorkImages above already refetches them on sight.
     const needsTmdbPoster = linkedEntries.filter((entry) => !entry.hasMdlImage);
 
-    const [tmdbDetails, [watchlistExternalIds, pickedPosters]] = await Promise.all([
+    const [tmdbDetails, [watchlistKeys, pickedPosters]] = await Promise.all([
         Promise.all(needsTmdbPoster.map(({ tmdbExternalId, mediaType }) => tmdb.getDetails(mediaType, tmdbExternalId).catch(() => null))),
         viewerPromise,
     ]);
-    const watchlistIds = new Set(watchlistExternalIds);
+
+    // Tracked entries, kept at the precision a filmography needs. A row added
+    // from a show's own MDL page is keyed by that entry's id; everything else
+    // by the TMDB id *and* the season, since three seasons of one show all
+    // carry the same TMDB id and only the season tells them apart.
+    const trackedSeasons = new Set<string>();
+    const trackedMdlIds = new Set<string>();
+    for (const key of watchlistKeys) {
+        const [source, externalId, season] = key.split(":");
+        if (source === "MDL") trackedMdlIds.add(externalId.split("-")[0]);
+        else trackedSeasons.add(`${externalId}-${season}`);
+    }
 
     // A poster chosen in the watchlist wins over TMDB's, the same rule the media
     // page applies. Keyed by season first, since a show tracked as several
@@ -374,8 +385,14 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     function isInWatchlist(work: KuryanaWorkItem): boolean {
         const id = extractMdlId(work._slug);
         if (!id) return false;
+        if (trackedMdlIds.has(id)) return true;
         const tmdbId = mdlToTmdb.get(id);
-        return tmdbId ? watchlistIds.has(tmdbId) : false;
+        if (!tmdbId) return false;
+        // Season links carry their own number; a show-level link and an alias
+        // both stand for season 1. Asking the TMDB id alone put the bookmark on
+        // every season of a show tracked for one of them.
+        const season = mdlSeasonMap.get(id) ?? 1;
+        return trackedSeasons.has(`${tmdbId}-${season}`);
     }
 
     function getCachedMdlRating(work: KuryanaWorkItem): number | null {

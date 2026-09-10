@@ -40,6 +40,26 @@ export const getWatchlistPosters = cache(async (): Promise<{ externalId: string;
   });
 });
 
+/**
+ * Watchlist membership at season precision.
+ *
+ * getWatchlistExternalIds answers "is this show tracked at all", which is the
+ * wrong question anywhere seasons are listed side by side: MDL files each
+ * season as its own entry, and they all resolve to the same TMDB id, so a show
+ * tracked for season 1 marked seasons 2 and 3 as tracked too.
+ *
+ * Returned as strings rather than a Map or a Set: this module is "use server",
+ * so the value crosses a serialization boundary. Callers split them back.
+ */
+export const getWatchlistSeasonKeys = cache(async (): Promise<string[]> => {
+  const userId = await getCurrentUserId();
+  const rows = await prisma.userMedia.findMany({
+    where: { userId },
+    select: { externalId: true, source: true, season: true },
+  });
+  return rows.map((r) => `${r.source}:${r.externalId}:${r.season}`);
+});
+
 export const getWatchlistExternalIds = cache(async (): Promise<string[]> => {
   const userId = await getCurrentUserId();
   const items = await prisma.userMedia.findMany({
