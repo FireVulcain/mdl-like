@@ -290,11 +290,16 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         return () => window.removeEventListener(OPEN_PALETTE_EVENT, onRequest);
     }, [openPalette]);
 
+    // Closing only closes. The reset belongs to opening, and openPalette already
+    // does it — every way in goes through there, since onOpenChange below only
+    // ever handles the closing direction.
+    //
+    // Clearing here meant the emptied root menu rendered *inside* the dialog
+    // while it was still on screen: DialogContent animates out over 200ms, so
+    // pressing Enter on a result replaced it with "Recently watched" and let
+    // that fade away instead of the thing that had just been chosen.
     const close = useCallback(() => {
         setOpen(false);
-        setMode({ kind: "root" });
-        setQuery("");
-        historyStack.current = [];
     }, []);
 
     const goTo = useCallback(
