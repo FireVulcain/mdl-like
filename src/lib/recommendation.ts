@@ -7,6 +7,8 @@
 //
 // Every scoring component returns (points, reason) so recommendations stay explainable.
 
+import { hasFinishedAiring } from "@/lib/format-aired";
+
 export type RecMediaItem = {
     id: string;
     externalId: string;
@@ -23,6 +25,10 @@ export type RecMediaItem = {
     totalEp: number | null;
     tmdbRating: number | null;
     airingStatus: string | null;
+    // MDL's broadcast range for this row's own season. TMDB's status above is
+    // show-level and says "Returning Series" between seasons and for weeks
+    // after a finale; this is what knows the season is over.
+    aired: string | null;
     lastWatchedAt: Date | null;
     updatedAt: Date;
     // Enrichment from CachedMdlData (show-level)
@@ -360,7 +366,10 @@ export function scoreCandidates(profile: TasteProfile, candidates: RecMediaItem[
         {
             let value = item.mdlPopularity ? 1 / (1 + item.mdlPopularity / 1500) : 0.3;
             let reason: string | undefined;
-            if (item.airingStatus === "Returning Series") {
+            // TMDB's word, unless MDL has written the season's end date and it
+            // has passed. A Shop for Killers sat on "Currently airing" a month
+            // after its finale on TMDB's status alone.
+            if (item.airingStatus === "Returning Series" && !hasFinishedAiring(item.aired)) {
                 value = Math.min(1, value + 0.3);
                 reason = "Currently airing";
             } else if (item.mdlPopularity && item.mdlPopularity <= 250) {

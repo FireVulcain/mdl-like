@@ -241,6 +241,7 @@ export async function computeRadarActors(userId: string): Promise<RadarActors> {
             totalEp: m.totalEp,
             tmdbRating: m.tmdbRating,
             airingStatus: m.airingStatus,
+            aired: null,
             lastWatchedAt: m.lastWatchedAt,
             updatedAt: m.updatedAt,
             genres: [],

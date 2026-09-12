@@ -77,7 +77,7 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
     const dismissedKeys = new Set(feedback.map((f) => `${f.externalId}-${f.season}`));
     const ptwRows = userMedia.filter((m) => m.status === "Plan to Watch");
 
-    const [mdlRows, addLogs] = await Promise.all([
+    const [mdlRows, seasonRows, addLogs] = await Promise.all([
         prisma.cachedMdlData.findMany({
             where: { tmdbExternalId: { in: externalIds } },
             select: {
@@ -89,7 +89,15 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
                 castJson: true,
                 directors: true,
                 screenwriters: true,
+                aired: true,
             },
+        }),
+        // MDL files each season as its own entry, so a row tracked as season 2+
+        // has a rating, cast and tags of its own. CachedMdlData is show-level —
+        // read alone, it put season 1's numbers on a season 2 card.
+        prisma.mdlSeasonLink.findMany({
+            where: { tmdbExternalId: { in: externalIds }, season: { gt: 1 } },
+            select: { tmdbExternalId: true, season: true, mdlRating: true, mdlPopularity: true, tags: true, genres: true, castJson: true, aired: true },
         }),
         // When each Plan to Watch row was added — recent adds signal current interest
         prisma.activityLog.findMany({
@@ -104,6 +112,7 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
     ]);
 
     const mdlByExternalId = new Map(mdlRows.map((r) => [r.tmdbExternalId, r]));
+    const mdlBySeason = new Map(seasonRows.map((r) => [`${r.tmdbExternalId}-${r.season}`, r]));
     const addedAtByMediaId = new Map<string, Date>();
     for (const log of addLogs) {
         if (log.userMediaId && !addedAtByMediaId.has(log.userMediaId)) {
@@ -113,7 +122,11 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
 
     const toRecItem = (m: (typeof userMedia)[number]): RecMediaItem => {
         const mdl = mdlByExternalId.get(m.externalId);
-        const cast = parseCast(mdl?.castJson ?? null);
+        // The season's own entry where there is one, the show's otherwise. A
+        // season link that has not been scraped yet holds nulls, and each
+        // field falls through to the show-level value on its own.
+        const seasonMdl = m.season > 1 ? mdlBySeason.get(`${m.externalId}-${m.season}`) : undefined;
+        const cast = parseCast(seasonMdl?.castJson ?? mdl?.castJson ?? null);
         return {
             id: m.id,
             externalId: m.externalId,
@@ -130,16 +143,20 @@ export async function getRecommendations(): Promise<RecommendationsPayload> {
             totalEp: m.totalEp,
             tmdbRating: m.tmdbRating,
             airingStatus: m.airingStatus,
+            // Unlike genres or cast, a range must not fall through to the
+            // show's: season 1's finished run says nothing about a season 2
+            // that has no link yet. Unknown stays unknown.
+            aired: m.season > 1 ? (seasonMdl?.aired ?? null) : (mdl?.aired ?? null),
             lastWatchedAt: m.lastWatchedAt,
             updatedAt: m.updatedAt,
-            genres: parseGenres(mdl?.genres ?? null, m.genres),
-            tags: parseTagNames(mdl?.tags ?? null),
+            genres: parseGenres(seasonMdl?.genres ?? mdl?.genres ?? null, m.genres),
+            tags: parseTagNames(seasonMdl?.tags ?? mdl?.tags ?? null),
             mainCast: cast.main.filter((c) => c.slug).map((c) => ({ slug: c.slug!, name: c.name ?? c.slug! })),
             supportCast: cast.support.filter((c) => c.slug).map((c) => ({ slug: c.slug!, name: c.name ?? c.slug! })),
             directors: parseNameList(mdl?.directors),
             screenwriters: parseNameList(mdl?.screenwriters),
-            mdlRating: mdl?.mdlRating ?? m.mdlRating,
-            mdlPopularity: mdl?.mdlPopularity ?? null,
+            mdlRating: seasonMdl?.mdlRating ?? mdl?.mdlRating ?? m.mdlRating,
+            mdlPopularity: seasonMdl?.mdlPopularity ?? mdl?.mdlPopularity ?? null,
             isPodium: podiumIds.has(m.externalId),
             addedAt: addedAtByMediaId.get(m.id) ?? null,
             isDismissed: m.status === "Plan to Watch" && dismissedKeys.has(`${m.externalId}-${m.season}`),
