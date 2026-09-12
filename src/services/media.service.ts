@@ -1,6 +1,6 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
 import { tvmaze } from "@/lib/tvmaze";
-import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaTopSelection, KuryanaChineseShow, mdlFullSizeImage} from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaTopSelection, KuryanaChineseShow, KuryanaChineseTopResult, mdlFullSizeImage} from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
@@ -665,22 +665,18 @@ export const mediaService = {
         };
 
         const cacheKey = { country_excludeTags: { country, excludeTags: excludeTags ?? "" } };
+        type TopLists = { completed: KuryanaChineseShow[]; ongoing: KuryanaChineseShow[]; upcoming: KuryanaChineseShow[] };
+        const fromLists = (data: TopLists) => ({
+            trending: (data.completed ?? []).map(transform),
+            airing: (data.ongoing ?? []).map(transform),
+            upcoming: (data.upcoming ?? []).map(transform),
+        });
 
-        if (!fresh) {
-            const cached = await prisma.cachedMdlTop.findUnique({ where: cacheKey });
-            if (cached) {
-                const data = cached.dataJson as unknown as {
-                    completed: KuryanaChineseShow[];
-                    ongoing: KuryanaChineseShow[];
-                    upcoming: KuryanaChineseShow[];
-                };
-                return {
-                    trending: (data.completed ?? []).map(transform),
-                    airing: (data.ongoing ?? []).map(transform),
-                    upcoming: (data.upcoming ?? []).map(transform),
-                };
-            }
-        }
+        // Read even on a fresh call: the row is what a list that comes back
+        // empty falls back to.
+        const cached = await prisma.cachedMdlTop.findUnique({ where: cacheKey });
+        const previous = cached ? (cached.dataJson as unknown as TopLists) : null;
+        if (!fresh && previous) return fromLists(previous);
 
         try {
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
@@ -689,25 +685,38 @@ export const mediaService = {
                 kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }),
             ]);
 
-            const completed = completedRes?.data.shows ?? [];
-            const ongoing = ongoingRes?.data.shows ?? [];
-            const upcoming = upcomingRes?.data.shows ?? [];
-            const dataJson = { completed, ongoing, upcoming } as unknown as Prisma.InputJsonValue;
-
-            await prisma.cachedMdlTop.upsert({
-                where: cacheKey,
-                create: { country, excludeTags: excludeTags ?? "", dataJson },
-                update: { dataJson, cachedAt: new Date() },
-            });
-
-            return {
-                trending: completed.map(transform),
-                airing: ongoing.map(transform),
-                upcoming: upcoming.map(transform),
+            // A list that came back empty keeps what the row already held.
+            //
+            // kuryanaGetTop answers null on a failed or timed-out scrape, and
+            // MDL fails in bursts — so "nothing" here nearly always means "not
+            // this time", not "there are no airing Korean dramas". Writing the
+            // empty list through blanked the section on the home page for every
+            // reader until the next scrape happened to succeed.
+            const keep = (res: KuryanaChineseTopResult | null, prev: KuryanaChineseShow[] | undefined) => {
+                const shows = res?.data.shows ?? [];
+                return shows.length > 0 ? shows : (prev ?? []);
             };
+            const completed = keep(completedRes, previous?.completed);
+            const ongoing = keep(ongoingRes, previous?.ongoing);
+            const upcoming = keep(upcomingRes, previous?.upcoming);
+            const lists: TopLists = { completed, ongoing, upcoming };
+
+            // Nothing at all came back and there is a row to stand on: a scrape
+            // that returned nothing did not happen, so its date is not written.
+            const nothingCame = [completedRes, ongoingRes, upcomingRes].every((r) => !(r?.data.shows?.length));
+            if (!(nothingCame && previous)) {
+                const dataJson = lists as unknown as Prisma.InputJsonValue;
+                await prisma.cachedMdlTop.upsert({
+                    where: cacheKey,
+                    create: { country, excludeTags: excludeTags ?? "", dataJson },
+                    update: { dataJson, cachedAt: new Date() },
+                });
+            }
+
+            return fromLists(lists);
         } catch (error) {
             console.error(`Error fetching ${country} dramas`, error);
-            return { trending: [], airing: [], upcoming: [] };
+            return previous ? fromLists(previous) : { trending: [], airing: [], upcoming: [] };
         }
     },
 
