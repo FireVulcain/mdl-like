@@ -228,6 +228,26 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
     const [hasMore, setHasMore] = useState(initialHasMore);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+
+    // The first page as the server last sent it. Props arrive again whenever
+    // the page's server tree re-renders — and the live refresh does exactly that
+    // on any view whose MDL numbers moved, which on a page left alone for a
+    // while is every view. `total` is read straight off its prop and moved with
+    // it; the comments were seeded into state once and never looked at again,
+    // so the count climbed above a list that stayed where it was.
+    //
+    // Merged rather than replaced: pages the reader already loaded past the
+    // first stay, with the fresh first page in front of them. A comment present
+    // in both is taken from the newer copy. (One a moderator removed since
+    // would linger until reload — rare enough not to be worth tracking pages.)
+    const [seed, setSeed] = useState(initialComments);
+    if (seed !== initialComments) {
+        setSeed(initialComments);
+        setAllComments((prev) => {
+            const fresh = new Set(initialComments.map((c) => c.id));
+            return [...initialComments, ...prev.filter((c) => !fresh.has(c.id))];
+        });
+    }
     // Which threads are shut. Held here rather than inside each card so one
     // control can fold the whole section, and so a thread the reader shut stays
     // shut when "Load more" re-renders the list around it.
