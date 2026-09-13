@@ -1,0 +1,500 @@
+{
+  "version": 1,
+  "mdlSlug": "794790-married-woman-killer",
+  "title": "A Bona Fide Killer",
+  "native": "유부녀 킬러",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (105 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (1.7k chars)",
+    "en.wikipedia Cast (0.7k chars — one entry filed under the wrong name)"
+  ],
+  "main": [
+    "bona",
+    "taeseong"
+  ],
+  "people": [
+    {
+      "id": "bona",
+      "name": "Yoo Bo Na / Kingfisher",
+      "actor": "Kong Hyo Jin",
+      "image": "https://i.mydramalist.com/4k0oZm.jpg",
+      "group": "Leads",
+      "inCast": true
+    },
+    {
+      "id": "taeseong",
+      "name": "Kwon Tae Seong",
+      "actor": "Jung Jun Won",
+      "image": "https://i.mydramalist.com/LwjK4B_5m.jpg",
+      "group": "Leads",
+      "inCast": true
+    },
+    {
+      "id": "dongjin",
+      "name": "Lee Dong Jin",
+      "actor": "Lee Sang Yi",
+      "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
+      "group": "Police",
+      "inCast": true
+    },
+    {
+      "id": "seonghun",
+      "name": "Beom Seong Hun",
+      "actor": "Choi Woo Sung",
+      "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
+      "group": "Police",
+      "inCast": true
+    },
+    {
+      "id": "seulgi",
+      "name": "Seul Gi / Sergei Volansky",
+      "actor": "Shin Hyun Soo",
+      "image": "https://i.mydramalist.com/zB1K27_5m.jpg",
+      "group": "Others",
+      "inCast": true
+    },
+    {
+      "id": "bongpal",
+      "name": "Kim Bong Pal",
+      "actor": "Sung Dong Il",
+      "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "yunok",
+      "name": "Bae Yun Ok",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "yeonggap",
+      "name": "Ko Yeong Gap",
+      "actor": "Heo Jae Ho",
+      "image": "https://i.mydramalist.com/Rng7z_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "taemin",
+      "name": "Bong Tae Min",
+      "actor": "Kim Nam Hee",
+      "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "yeongdo",
+      "name": "Ki Yeong Do",
+      "actor": "Moo Jin Sung",
+      "image": "https://i.mydramalist.com/VXdnpE_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "hyeonnam",
+      "name": "O Hyeon Nam",
+      "actor": "Ha Yul Ri",
+      "image": "https://i.mydramalist.com/x4YL6X_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "yesul",
+      "name": "Yang Ye Sul",
+      "actor": "Kim Ga Hee",
+      "image": "https://i.mydramalist.com/RRgl6_5m.jpg",
+      "group": "Sales Team 3",
+      "inCast": true
+    },
+    {
+      "id": "haena",
+      "name": "Koo Hae Na",
+      "actor": "Han Chae Rin",
+      "image": "https://i.mydramalist.com/DkBAZy_5m.jpg",
+      "group": "Newsroom",
+      "inCast": true
+    },
+    {
+      "id": "gukjin",
+      "name": "Na Guk Jin",
+      "actor": "Choi Duk Moon",
+      "image": "https://i.mydramalist.com/YYj5lK_5m.jpg",
+      "group": "Newsroom",
+      "inCast": true
+    },
+    {
+      "id": "seonja",
+      "name": "Ok Seon Ja",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "Tae Seong's family",
+      "inCast": true
+    },
+    {
+      "id": "sunil",
+      "name": "Kwon Sun Il",
+      "actor": "Lee Seon Hee",
+      "image": "https://i.mydramalist.com/w2NXYm.jpg",
+      "group": "Tae Seong's family",
+      "inCast": true
+    },
+    {
+      "id": "duri",
+      "name": "Kwon Du Ri",
+      "actor": "Kim Yun Jeong",
+      "image": "https://i.mydramalist.com/3oABDD_5m.jpg",
+      "group": "Tae Seong's family",
+      "inCast": true
+    },
+    {
+      "id": "sea",
+      "name": "Kwon Se A",
+      "actor": "Lee Eun Saem",
+      "image": "https://i.mydramalist.com/eWngY_5m.jpg",
+      "group": "Tae Seong's family",
+      "inCast": true
+    },
+    {
+      "id": "yul",
+      "name": "Kwon Yul",
+      "actor": "Hwang Bom I",
+      "image": null,
+      "group": "Tae Seong's family",
+      "inCast": false,
+      "note": "The daughter — named on ko.wikipedia, absent from MDL's cast"
+    }
+  ],
+  "links": [
+    {
+      "from": "bona",
+      "to": "taeseong",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "태성의 아내 / 보나의 남편 — juggling family life with her husband and daughter",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bona",
+      "to": "yul",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "보나와 태성의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseong",
+      "to": "yul",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "보나와 태성의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseong",
+      "to": "bona",
+      "type": "rivalry",
+      "label": "investigative journalist closing in on Kingfisher — not knowing it is her",
+      "short": "closing in on her",
+      "evidence": "her investigative journalist husband Kwon Tae Seong unknowingly inches closer to discovering Kingfisher's true identity",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongjin",
+      "to": "bona",
+      "type": "rivalry",
+      "label": "the detective hunting Kingfisher",
+      "short": "hunts Kingfisher",
+      "evidence": "determined detective Lee Dong Jin relentlessly pursues the elusive vigilante",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongjin",
+      "to": "taeseong",
+      "type": "friend",
+      "label": "best friends",
+      "short": "best friends",
+      "evidence": "태성의 둘도 없는 친구이자, 늘 범죄 검거율 상위를 달리는 에이스 형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonghun",
+      "to": "dongjin",
+      "type": "work",
+      "label": "same violent-crimes squad",
+      "short": "same squad",
+      "evidence": "남부서 형사과 강력1팀 (both entries)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonghun",
+      "to": "sea",
+      "type": "friend",
+      "label": "Se A's friend",
+      "short": "friends",
+      "evidence": "[Police officer / Se A's friend] / 세아의 친구",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bongpal",
+      "to": "bona",
+      "type": "work",
+      "label": "team leader and loyal ally — fakes accidental deaths",
+      "short": "loyal ally",
+      "evidence": "With the help of her loyal ally Kim Bong Pal / 팀장 / 사고사 위장 전문",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunok",
+      "to": "bongpal",
+      "type": "work",
+      "label": "his predecessor as team leader — now a florist",
+      "short": "predecessor",
+      "evidence": "전 영업3팀 팀장 / 현 꽃집 주인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonggap",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — medical-malpractice specialist, a real surgeon",
+      "short": "medical malpractice",
+      "evidence": "과장 / 의료사고 전문 — 별명이 아니라 진짜 의사다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taemin",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — weapons",
+      "short": "weapons",
+      "evidence": "과장 / 무기 전문",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongdo",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — hacker",
+      "short": "hacker",
+      "evidence": "대리 / 천재 해커",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonnam",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — poisoning, new hire",
+      "short": "poisoning",
+      "evidence": "신입사원 / 독살 전문",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yesul",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — admin",
+      "short": "admin",
+      "evidence": "대리 / 행정 사무 담당",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haena",
+      "to": "taeseong",
+      "type": "work",
+      "label": "junior reporter",
+      "short": "his junior",
+      "evidence": "신입 기자/태성의 후배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gukjin",
+      "to": "taeseong",
+      "type": "work",
+      "label": "his editor — nags, but on his side",
+      "short": "his editor",
+      "evidence": "국장… 내심은 같은 기자로서 태성의 진심을 잘 알아주는 속 깊은 직장 상사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonja",
+      "to": "taeseong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "태성의 모친 (보나의 시어머니)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonja",
+      "to": "bona",
+      "type": "family",
+      "label": "mother-in-law",
+      "short": "mother-in-law",
+      "evidence": "[Bo Na's mother-in-law]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunil",
+      "to": "taeseong",
+      "type": "family",
+      "label": "eldest sister",
+      "short": "eldest sister",
+      "evidence": "태성의 큰누나 (보나의 첫째 시누이)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duri",
+      "to": "taeseong",
+      "type": "family",
+      "label": "second sister",
+      "short": "second sister",
+      "evidence": "태성의 둘째 누나 (보나의 둘째 시누이)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sea",
+      "to": "taeseong",
+      "type": "family",
+      "label": "youngest sister",
+      "short": "youngest sister",
+      "evidence": "태성의 막내 여동생 (보나의 막내 시누이)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seulgi",
+      "to": "bona",
+      "type": "bond",
+      "label": "protects her — a killer and former Russian mercenary",
+      "short": "protects her",
+      "evidence": "A killer and former Russian mercenary who protects Bo-na. (en.wikipedia files this line under Kwon Tae-seong, which the synopsis and ko.wikipedia both contradict; the description fits Seul Gi / Sergei Volansky)",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "bona",
+      "taeseong",
+      "dongjin",
+      "seonghun",
+      "seulgi",
+      "bongpal",
+      "yunok",
+      "yeonggap",
+      "taemin",
+      "yeongdo",
+      "hyeonnam",
+      "yesul",
+      "haena",
+      "gukjin",
+      "seonja",
+      "sunil",
+      "duri",
+      "sea",
+      "yul"
+    ],
+    "blocks": {
+      "Police": [
+        0,
+        0
+      ],
+      "Newsroom": [
+        2,
+        0
+      ],
+      "Others": [
+        0,
+        1
+      ],
+      "Tae Seong's family": [
+        2,
+        1
+      ],
+      "Sales Team 3": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "bona",
+      "taeseong"
+    ]
+  }
+}

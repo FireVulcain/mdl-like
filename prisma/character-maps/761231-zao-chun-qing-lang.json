@@ -1,0 +1,658 @@
+{
+  "version": 1,
+  "mdlSlug": "761231-zao-chun-qing-lang",
+  "title": "The Early Spring",
+  "native": "早春晴朗",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (31 roles, 2 main — no relationship notes in brackets)",
+    "MDL synopsis",
+    "zh.wikipedia 演员 (1.8k chars)",
+    "en.wikipedia Cast (2.1k chars)"
+  ],
+  "main": [
+    "luannian",
+    "zhitao"
+  ],
+  "people": [
+    {
+      "id": "luannian",
+      "name": "Luan Nian / Luke",
+      "actor": "Jing Bo Ran",
+      "image": "https://i.mydramalist.com/JB8jgJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true
+    },
+    {
+      "id": "zhitao",
+      "name": "Shang Zhi Tao / Flora",
+      "actor": "Sun Qian",
+      "image": "https://i.mydramalist.com/YYZAkW_5m.jpg",
+      "group": "Leads",
+      "inCast": true
+    },
+    {
+      "id": "suyun",
+      "name": "Liang Su Yun",
+      "actor": "Zheng Wei Li",
+      "image": "https://i.mydramalist.com/6VR7P_5m.jpg",
+      "group": "Luan Nian's family",
+      "inCast": true
+    },
+    {
+      "id": "siyuan",
+      "name": "Luan Si Yuan",
+      "actor": "Xiao Han",
+      "image": "https://i.mydramalist.com/WQq2lm.jpg",
+      "group": "Luan Nian's family",
+      "inCast": true
+    },
+    {
+      "id": "zangyao",
+      "name": "Zang Yao",
+      "actor": "Cristy Guo",
+      "image": "https://i.mydramalist.com/QwnD4_5m.jpg",
+      "group": "Luan Nian's circle",
+      "inCast": true
+    },
+    {
+      "id": "zhangxin",
+      "name": "Zhang Xin",
+      "actor": "Mu Rui Ni",
+      "image": "https://i.mydramalist.com/YYDZEP_5m.jpg",
+      "group": "Luan Nian's circle",
+      "inCast": true
+    },
+    {
+      "id": "tanmian",
+      "name": "Tan Mian",
+      "actor": "Zhao Zhen Yu",
+      "image": "https://i.mydramalist.com/v1vDX_5m.jpg",
+      "group": "Luan Nian's circle",
+      "inCast": true
+    },
+    {
+      "id": "kuannian",
+      "name": "Chen Kuan Nian",
+      "actor": "Qu Gao Wei",
+      "image": "https://i.mydramalist.com/yWv70N_5m.jpg",
+      "group": "Luan Nian's circle",
+      "inCast": true
+    },
+    {
+      "id": "qihuan",
+      "name": "Song Qi Huan",
+      "actor": "Pang Han Chen",
+      "image": "https://i.mydramalist.com/NdEqKJ_5m.jpg",
+      "group": "Luan Nian's circle",
+      "inCast": true
+    },
+    {
+      "id": "yuanzhu",
+      "name": "Sun Yuan Zhu",
+      "actor": "Liu Xiao Bei",
+      "image": "https://i.mydramalist.com/g0dJoO_5m.jpg",
+      "group": "Zhi Tao's home",
+      "inCast": true,
+      "note": "Depressed under family and work pressure; takes his own life at the office (zh.wikipedia)"
+    },
+    {
+      "id": "sunyu",
+      "name": "Sun Yu",
+      "actor": "Qi Tian Qing",
+      "image": "https://i.mydramalist.com/w5KjJ_5m.jpg",
+      "group": "Zhi Tao's home",
+      "inCast": true
+    },
+    {
+      "id": "zhanglei",
+      "name": "Zhang Lei",
+      "actor": "Zhang You",
+      "image": "https://i.mydramalist.com/Kp61Pn_5m.jpg",
+      "group": "Zhi Tao's home",
+      "inCast": true
+    },
+    {
+      "id": "dazhai",
+      "name": "Da Zhai",
+      "actor": "Zhao Qian",
+      "image": "https://i.mydramalist.com/BeYPR_5m.jpg",
+      "group": "Zhi Tao's family",
+      "inCast": true
+    },
+    {
+      "id": "laoshang",
+      "name": "Lao Shang",
+      "actor": "Lin Peng",
+      "image": "https://i.mydramalist.com/b3Ab7x_5m.jpg",
+      "group": "Zhi Tao's family",
+      "inCast": true,
+      "note": "MDL Guest Role: Lao Shang"
+    },
+    {
+      "id": "lumi",
+      "name": "Lu Mi",
+      "actor": "Zhang Ye Zi",
+      "image": "https://i.mydramalist.com/rE2Ppm.jpg",
+      "group": "Lingmei, the agency",
+      "inCast": true
+    },
+    {
+      "id": "will",
+      "name": "Will",
+      "actor": "Liu Chang",
+      "image": "https://i.mydramalist.com/jQqVjw_5m.jpg",
+      "group": "Lingmei, the agency",
+      "inCast": true,
+      "note": "MDL spells the role 'Wiinl'"
+    },
+    {
+      "id": "tracy",
+      "name": "Liang Xin / Tracy",
+      "actor": "Peng Yang",
+      "image": "https://i.mydramalist.com/eYjwvn_5m.jpg",
+      "group": "Lingmei, the agency",
+      "inCast": true
+    },
+    {
+      "id": "kitty",
+      "name": "Kitty",
+      "actor": "Ning Xin",
+      "image": "https://i.mydramalist.com/eYldKW_5m.jpg",
+      "group": "Lingmei, the agency",
+      "inCast": true
+    },
+    {
+      "id": "xingyi",
+      "name": "Xing Yi",
+      "actor": "Zhu Jia Qi",
+      "image": "https://i.mydramalist.com/qvg05_5m.jpg",
+      "group": "Lingmei, the agency",
+      "inCast": true
+    },
+    {
+      "id": "alex",
+      "name": "Alex",
+      "actor": "Li Chuan",
+      "image": "https://i.mydramalist.com/WENVp_5m.jpg",
+      "group": "Rivals",
+      "inCast": true
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "actor": "Dong Mu Sha",
+      "image": "https://i.mydramalist.com/q3LXQ_5m.jpg",
+      "group": "Rivals",
+      "inCast": true,
+      "note": "MDL spells the role 'Ony'"
+    },
+    {
+      "id": "duanni",
+      "name": "Du An Ni",
+      "actor": "Liu Yong Xi",
+      "image": "https://i.mydramalist.com/B8w25_5m.jpg",
+      "group": "Rivals",
+      "inCast": true
+    },
+    {
+      "id": "tianran",
+      "name": "Li Tian Ran",
+      "actor": "Wen Xiang Ji",
+      "image": "https://i.mydramalist.com/mOwAW2_5m.jpg",
+      "group": "Rivals",
+      "inCast": true
+    },
+    {
+      "id": "yaobei",
+      "name": "Yao Bei",
+      "actor": "Vicky Wang",
+      "image": "https://i.mydramalist.com/2gXydm.jpg",
+      "group": "Others",
+      "inCast": true
+    },
+    {
+      "id": "longzhentian",
+      "name": "Long Zhen Tian",
+      "actor": "Stuart Forbes",
+      "image": "https://i.mydramalist.com/x4w2w3_5m.jpg",
+      "group": "Others",
+      "inCast": true
+    },
+    {
+      "id": "zhaozhou",
+      "name": "Xin Zhao Zhou",
+      "actor": "Sean Zheng",
+      "image": "https://i.mydramalist.com/nOo5y8_5m.jpg",
+      "group": "Others",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "luannian",
+      "to": "zhitao",
+      "type": "work",
+      "label": "her boss — tells her to quit on day one",
+      "short": "her boss",
+      "evidence": "On her very first day, her sharp-tongued boss, Luan Nian, tells her to quit.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "luannian",
+      "to": "zhitao",
+      "type": "romance",
+      "label": "lovers for six years, then she leaves without a word",
+      "short": "lovers, six years",
+      "evidence": "she falls for Luan Nian—but after six years together, a series of misunderstandings forces her to leave without a word",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zangyao",
+      "to": "luannian",
+      "type": "romance",
+      "label": "childhood friend — loves him, he sees family",
+      "short": "unrequited",
+      "evidence": "栾念青梅竹馬，藏不住對欒念的喜歡，奈何欒念視為朋友及家人的存在。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhangxin",
+      "to": "luannian",
+      "type": "romance",
+      "label": "ex-girlfriend who will not accept the breakup",
+      "short": "ex-girlfriend",
+      "evidence": "Luan Nian's ex-girlfriend, who struggles to accept their breakup and relentlessly pursues him.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tanmian",
+      "to": "luannian",
+      "type": "friend",
+      "label": "former subordinate — now his love mentor",
+      "short": "love mentor",
+      "evidence": "欒念曾經創立廣告公司的下屬，私廚餐廳老闆兼欒念的愛情導師。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kuannian",
+      "to": "luannian",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "欒念好友。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "qihuan",
+      "to": "luannian",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "欒念好友。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suyun",
+      "to": "luannian",
+      "type": "family",
+      "label": "mother — a doctor",
+      "short": "mother",
+      "evidence": "欒念媽媽，是位醫生。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "siyuan",
+      "to": "luannian",
+      "type": "family",
+      "label": "elder cousin",
+      "short": "cousin",
+      "evidence": "欒念堂姐。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuanzhu",
+      "to": "zhitao",
+      "type": "friend",
+      "label": "roommate",
+      "short": "roommate",
+      "evidence": "Shang Zhitao's roommate, an introverted autonomous-driving technology researcher.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuanzhu",
+      "to": "zhitao",
+      "type": "romance",
+      "label": "quietly in love with her",
+      "short": "secretly loves her",
+      "evidence": "不敢正視孫雨的感情，默默注視著尚之桃。",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunyu",
+      "to": "zhitao",
+      "type": "friend",
+      "label": "best friend and housemate",
+      "short": "best friend, housemate",
+      "evidence": "尚之桃的闺蜜兼室友，相親公司的活動規劃及場佈人員。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sunyu",
+      "to": "yuanzhu",
+      "type": "romance",
+      "label": "secretly loves him — and knows he loves Zhi Tao",
+      "short": "secretly loves him",
+      "evidence": "默默愛慕著孫遠翥，也一直知道孫遠翥喜歡尚之桃。",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhanglei",
+      "to": "zhitao",
+      "type": "work",
+      "label": "landlord — cooks for the house",
+      "short": "landlord",
+      "evidence": "尚之桃的房東，廚藝很好，時不時都去租屋處給尚之桃等人下廚吃。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dazhai",
+      "to": "zhitao",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "尚之桃媽媽。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "laoshang",
+      "to": "zhitao",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "尚之桃爸爸。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lumi",
+      "to": "zhitao",
+      "type": "work",
+      "label": "workplace mentor — treats her like a little sister",
+      "short": "her mentor",
+      "evidence": "尚之桃的职场导师… 佩服尚之桃的耐心與勇氣，視她為妹妹一般照顧。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lumi",
+      "to": "luannian",
+      "type": "work",
+      "label": "his subordinate",
+      "short": "his subordinate",
+      "evidence": "栾念的下属，嘴跟欒念一樣毒舌",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "will",
+      "to": "lumi",
+      "type": "romance",
+      "label": "has feelings for her",
+      "short": "has feelings for her",
+      "evidence": "市场部负责人，喜欢卢米。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tracy",
+      "to": "zhitao",
+      "type": "work",
+      "label": "the HR manager who hired her against the odds",
+      "short": "hired her",
+      "evidence": "Human Resources Manager, who overcomes strong internal opposition to hire Shang Zhitao.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kitty",
+      "to": "zhitao",
+      "type": "friend",
+      "label": "colleague — hostile at first",
+      "short": "colleague",
+      "evidence": "本來對尚之桃很反感，最後對她鼓起勇氣說出Dony對她騷擾的事。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kitty",
+      "to": "dony",
+      "type": "rivalry",
+      "label": "exposes his harassment",
+      "short": "exposes his harassment",
+      "evidence": "最後對她鼓起勇氣說出Dony對她騷擾的事。",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xingyi",
+      "to": "zhitao",
+      "type": "work",
+      "label": "her subordinate — everyone tries to pair them",
+      "short": "her subordinate",
+      "evidence": "尚之桃的下屬，一直被眾人與尚之桃湊合。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "alex",
+      "to": "luannian",
+      "type": "rivalry",
+      "label": "business rival",
+      "short": "rivals",
+      "evidence": "Director of the second division and a major business rival to Luan Nian.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dony",
+      "to": "luannian",
+      "type": "rivalry",
+      "label": "betrayed him to launch a rival agency",
+      "short": "betrayed him",
+      "evidence": "The new business unit General Manager overseeing new media, who previously betrayed Luan Nian to launch a rival agency.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duanni",
+      "to": "alex",
+      "type": "work",
+      "label": "leaves to join Alex's new agency",
+      "short": "joins his agency",
+      "evidence": "Luan Nian's former colleague, who leaves to join Alex at his new agency.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tianran",
+      "to": "alex",
+      "type": "work",
+      "label": "loyal follower",
+      "short": "loyal follower",
+      "evidence": "Alex's former colleague and loyal follower.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yaobei",
+      "to": "zhitao",
+      "type": "friend",
+      "label": "her senior",
+      "short": "her senior",
+      "evidence": "尚之桃的學姐。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "longzhentian",
+      "to": "zhitao",
+      "type": "work",
+      "label": "her French and English tutor",
+      "short": "her tutor",
+      "evidence": "尚之桃法語、英語的家教老師",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "luannian",
+      "to": "longzhentian",
+      "type": "rivalry",
+      "label": "mistakes him for a rival in love",
+      "short": "mistaken rival",
+      "evidence": "被欒念誤認為是情敵。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhaozhou",
+      "to": "zhitao",
+      "type": "romance",
+      "label": "ex-boyfriend",
+      "short": "ex-boyfriend",
+      "evidence": "尚之桃前男友。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "luannian",
+      "zhitao",
+      "suyun",
+      "siyuan",
+      "zangyao",
+      "zhangxin",
+      "tanmian",
+      "yuanzhu",
+      "sunyu",
+      "dazhai",
+      "lumi",
+      "alex",
+      "dony",
+      "zhaozhou"
+    ],
+    "blocks": {
+      "Luan Nian's family": [
+        2,
+        0
+      ],
+      "Luan Nian's circle": [
+        2,
+        1
+      ],
+      "Zhi Tao's home": [
+        0,
+        1
+      ],
+      "Zhi Tao's family": [
+        0,
+        0
+      ],
+      "Lingmei, the agency": [
+        1,
+        2
+      ],
+      "Rivals": [
+        2,
+        2
+      ],
+      "Others": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "luannian",
+      "zhitao"
+    ]
+  }
+}

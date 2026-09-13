@@ -1,0 +1,765 @@
+{
+  "version": 1,
+  "mdlSlug": "52939-can-this-person-be-translated",
+  "title": "Alchemy of Souls",
+  "native": "환혼",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (26 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (9.5k chars)"
+  ],
+  "main": [
+    "uk",
+    "mudeok"
+  ],
+  "people": [
+    {
+      "id": "uk",
+      "name": "Jang Uk",
+      "actor": "Lee Jae Wook",
+      "image": "https://i.mydramalist.com/KpJXVJ_5m.jpg",
+      "group": "Jang family",
+      "inCast": true
+    },
+    {
+      "id": "mudeok",
+      "name": "Mu Deok",
+      "actor": "Jung So Min",
+      "image": "https://i.mydramalist.com/mON8QP_5m.jpg",
+      "group": "Jang family",
+      "inCast": true
+    },
+    {
+      "id": "naksu",
+      "name": "Naksu / Cho Yeong",
+      "actor": "Go Youn Jung",
+      "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "group": "Naksu",
+      "inCast": true
+    },
+    {
+      "id": "chochung",
+      "name": "Cho Chung",
+      "actor": "Yoon Seo Hyun",
+      "image": "https://i.mydramalist.com/e3PDnm.jpg",
+      "group": "Naksu",
+      "inCast": true,
+      "note": "MDL Guest Role: Jo Choong"
+    },
+    {
+      "id": "janggang",
+      "name": "Jang Gang",
+      "actor": "Joo Sang Wook",
+      "image": "https://i.mydramalist.com/NdqP4o_5m.jpg",
+      "group": "Jang family",
+      "inCast": true,
+      "note": "MDL Guest Role: Jang Gang [Jang Uk's father] (Ep. 1-2)"
+    },
+    {
+      "id": "dohwa",
+      "name": "Lady Do Hwa",
+      "actor": "Bae Gang Hee",
+      "image": "https://i.mydramalist.com/epd1e_5m.jpg",
+      "group": "Jang family",
+      "inCast": true,
+      "note": "MDL Guest Role: Do Hwa [Jang Uk's mother] (Ep. 1)"
+    },
+    {
+      "id": "doju",
+      "name": "Kim Do Ju",
+      "actor": "Oh Na Ra",
+      "image": "https://i.mydramalist.com/nOZJmL_5m.jpg",
+      "group": "Jang family",
+      "inCast": true
+    },
+    {
+      "id": "yul",
+      "name": "Seo Yul",
+      "actor": "Hwang Min Hyun",
+      "image": "https://i.mydramalist.com/l0DnYv_5m.jpg",
+      "group": "Seo family",
+      "inCast": true
+    },
+    {
+      "id": "parkjin",
+      "name": "Park Jin",
+      "actor": "Yoo Joon Sang",
+      "image": "https://i.mydramalist.com/ZN4EY_5m.jpg",
+      "group": "Songrim",
+      "inCast": true
+    },
+    {
+      "id": "danggu",
+      "name": "Park Dang Gu",
+      "actor": "Yoo In Soo",
+      "image": "https://i.mydramalist.com/81XqdK_5m.jpg",
+      "group": "Songrim",
+      "inCast": true
+    },
+    {
+      "id": "sangho",
+      "name": "Sang Ho",
+      "actor": "Lee Ha Yul",
+      "image": "https://i.mydramalist.com/enkVqm.jpg",
+      "group": "Songrim",
+      "inCast": true
+    },
+    {
+      "id": "heoyeom",
+      "name": "Heo Yeom",
+      "actor": "Lee Do Kyung",
+      "image": "https://i.mydramalist.com/QPEvg_5m.jpg",
+      "group": "Sejukwon",
+      "inCast": true
+    },
+    {
+      "id": "yoonok",
+      "name": "Heo Yoon Ok",
+      "actor": "Hong Seo Hee",
+      "image": "https://i.mydramalist.com/4n1jY_5m.jpg",
+      "group": "Sejukwon",
+      "inCast": true
+    },
+    {
+      "id": "soonyi",
+      "name": "Soon Yi",
+      "actor": "Jung Ji Ahn",
+      "image": "https://i.mydramalist.com/4EEy1_5m.jpg",
+      "group": "Sejukwon",
+      "inCast": true
+    },
+    {
+      "id": "jinmu",
+      "name": "Jin Mu",
+      "actor": "Jo Jae Yun",
+      "image": "https://i.mydramalist.com/0d5kY_5m.jpg",
+      "group": "Cheonbugwan",
+      "inCast": true
+    },
+    {
+      "id": "kiljoo",
+      "name": "Kil Joo",
+      "actor": "Choi Ji Ho",
+      "image": "https://i.mydramalist.com/E5p7zm.jpg",
+      "group": "Cheonbugwan",
+      "inCast": true
+    },
+    {
+      "id": "yeomsoo",
+      "name": "Yeom Soo",
+      "actor": "Cha Yong Hak",
+      "image": "https://i.mydramalist.com/XLABd_5m.jpg",
+      "group": "Cheonbugwan",
+      "inCast": true
+    },
+    {
+      "id": "hokyung",
+      "name": "Jin Ho Kyung",
+      "actor": "Park Eun Hye",
+      "image": "https://i.mydramalist.com/E36Yb_5m.jpg",
+      "group": "Jinyowon",
+      "inCast": true
+    },
+    {
+      "id": "wootak",
+      "name": "Jin Woo Tak",
+      "actor": "Joo Seok Tae",
+      "image": "https://i.mydramalist.com/JB6gNy_5m.jpg",
+      "group": "Jinyowon",
+      "inCast": true
+    },
+    {
+      "id": "choyeon",
+      "name": "Jin Cho Yeon",
+      "actor": "A Rin",
+      "image": "https://i.mydramalist.com/Wo6WR_5m.jpg",
+      "group": "Jinyowon",
+      "inCast": true
+    },
+    {
+      "id": "gowon",
+      "name": "Go Won (Crown Prince)",
+      "actor": "Shin Seung Ho",
+      "image": "https://i.mydramalist.com/WPjN7l_5m.jpg",
+      "group": "Royal court",
+      "inCast": true
+    },
+    {
+      "id": "gosoon",
+      "name": "Go Soon (King)",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "group": "Royal court",
+      "inCast": true
+    },
+    {
+      "id": "hasun",
+      "name": "Seo Ha Sun (Queen)",
+      "actor": "Kang Kyung Hun",
+      "image": "https://i.mydramalist.com/wzN2A_5m.jpg",
+      "group": "Royal court",
+      "inCast": true
+    },
+    {
+      "id": "shamanchoi",
+      "name": "Shaman Choi",
+      "actor": "Shim So Young",
+      "image": "https://i.mydramalist.com/QzBrg_5m.jpg",
+      "group": "Royal court",
+      "inCast": true,
+      "note": "MDL Guest Role: Shaman Choi (Ep. 16)"
+    },
+    {
+      "id": "teacherlee",
+      "name": "Teacher Lee",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Others",
+      "inCast": true
+    },
+    {
+      "id": "soyi",
+      "name": "So Yi",
+      "actor": "Seo Hye Won",
+      "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
+      "group": "Others",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "naksu",
+      "to": "mudeok",
+      "type": "bond",
+      "label": "Naksu's soul is trapped in Mu Deok's body",
+      "short": "her soul, this body",
+      "evidence": "Naksu, an elite assassin, finds her soul trapped in the weak body of Mu Deok",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mudeok",
+      "to": "uk",
+      "type": "work",
+      "label": "his servant — and secret master",
+      "short": "servant & master",
+      "evidence": "욱의 시종이자 비밀 스승이 된다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uk",
+      "to": "mudeok",
+      "type": "romance",
+      "label": "lovers",
+      "short": "lovers",
+      "evidence": "무덕이의 정인 / 욱의 정인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hokyung",
+      "to": "mudeok",
+      "type": "family",
+      "label": "her lost eldest daughter, Jin Bu Yeon",
+      "short": "lost daughter",
+      "evidence": "호경의 친딸",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wootak",
+      "to": "mudeok",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "부연과 초연의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mudeok",
+      "to": "choyeon",
+      "type": "family",
+      "label": "elder sister",
+      "short": "elder sister",
+      "evidence": "초연의 언니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "janggang",
+      "to": "uk",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Jang Uk's father] / 욱의 아버지, 도화의 남편. 천부관 관주.",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dohwa",
+      "to": "uk",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "욱의 어머니, 장강의 아내.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "janggang",
+      "to": "dohwa",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "욱의 아버지, 도화의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "doju",
+      "to": "uk",
+      "type": "bond",
+      "label": "runs the Jang household — soft only on Uk",
+      "short": "his guardian",
+      "evidence": "장씨 집안의 대소사를 책임지는 실세이자 호탕한 여장부… 장욱 앞에서만 유독 약해진다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doju",
+      "to": "parkjin",
+      "type": "romance",
+      "label": "between friendship and love",
+      "short": "almost lovers",
+      "evidence": "송림 총수 박진과 티격태격 하며 우정과 연정 사이를 오간다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "parkjin",
+      "to": "danggu",
+      "type": "family",
+      "label": "uncle — Dang Gu is Songrim's heir",
+      "short": "uncle",
+      "evidence": "박진의 조카",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "danggu",
+      "to": "choyeon",
+      "type": "romance",
+      "label": "lovers",
+      "short": "lovers",
+      "evidence": "초연의 정인이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangho",
+      "to": "parkjin",
+      "type": "work",
+      "label": "right-hand man",
+      "short": "right-hand man",
+      "evidence": "박진의 심복, 충직하고 정직하다 못해 고지식하다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yul",
+      "to": "naksu",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "율의 첫사랑이고",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uk",
+      "to": "yul",
+      "type": "friend",
+      "label": "friends — Jeongjingak",
+      "short": "friends — Jeongjingak",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "uk",
+      "to": "danggu",
+      "type": "friend",
+      "label": "friends — Jeongjingak",
+      "short": "friends — Jeongjingak",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yul",
+      "to": "danggu",
+      "type": "friend",
+      "label": "friends — Jeongjingak",
+      "short": "friends — Jeongjingak",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hasun",
+      "to": "yul",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "서율의 고모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hasun",
+      "to": "gosoon",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "고순의 아내 / 하선의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hasun",
+      "to": "gowon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "고원의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gosoon",
+      "to": "gowon",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "고순과 하선의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shamanchoi",
+      "to": "hasun",
+      "type": "bond",
+      "label": "souls swapped — the Queen is the shaman Choi",
+      "short": "souls swapped",
+      "evidence": "당골네 최 씨의 혼이 환혼되어 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinmu",
+      "to": "hokyung",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "진요원 원장인 진호경의 이복동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinmu",
+      "to": "gowon",
+      "type": "work",
+      "label": "the Crown Prince's magic teacher",
+      "short": "his teacher",
+      "evidence": "세자의 술법 수행을 이끈 스승으로 왕실과 돈독한 사이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmu",
+      "to": "hasun",
+      "type": "work",
+      "label": "her shadow — she is the true Miltan leader",
+      "short": "her shadow",
+      "evidence": "밀단의 진짜 단주인 서하선의 그림자를 자처하며",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kiljoo",
+      "to": "jinmu",
+      "type": "work",
+      "label": "henchman",
+      "short": "henchman",
+      "evidence": "진무의 수하, 진무를 따르지만 두려워하고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeomsoo",
+      "to": "jinmu",
+      "type": "work",
+      "label": "henchman",
+      "short": "henchman",
+      "evidence": "진무의 수하, 눈치와 행동이 빠르고 욕심이 많다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmu",
+      "to": "soyi",
+      "type": "work",
+      "label": "recruits her to pose as Ho Kyung's lost daughter",
+      "short": "recruits her",
+      "evidence": "진무에게 발탁되어… 진무와 손을 잡고 진호경의 가짜 딸 행세를 하고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soyi",
+      "to": "mudeok",
+      "type": "friend",
+      "label": "once helped by Mu Deok in Sari village",
+      "short": "once helped by her",
+      "evidence": "도망 다니던 중 사리촌에서 무덕이에게 도움을 받은 인연이 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hokyung",
+      "to": "wootak",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "호경의 남편, 진씨집안에 데릴사위로 들어오며",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hokyung",
+      "to": "choyeon",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "우탁과 호경의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wootak",
+      "to": "choyeon",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "우탁과 호경의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heoyeom",
+      "to": "yoonok",
+      "type": "family",
+      "label": "granddaughter",
+      "short": "granddaughter",
+      "evidence": "허염의 손녀딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoonok",
+      "to": "uk",
+      "type": "romance",
+      "label": "one-sided crush",
+      "short": "one-sided crush",
+      "evidence": "장욱을 짝사랑하고있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heoyeom",
+      "to": "yul",
+      "type": "family",
+      "label": "collateral kin of the Seo family",
+      "short": "distant kin",
+      "evidence": "서씨 집안의 방계혈족이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "soonyi",
+      "to": "yoonok",
+      "type": "work",
+      "label": "maid",
+      "short": "maid",
+      "evidence": "윤옥의 시종",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "teacherlee",
+      "to": "doju",
+      "type": "romance",
+      "label": "loved her — stood aside for Park Jin",
+      "short": "loved her, stood aside",
+      "evidence": "김도주를 좋아했지만 송림의 유준상에게 김도주를 돌려주었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gowon",
+      "to": "mudeok",
+      "type": "bond",
+      "label": "she alone sees through him",
+      "short": "sees through him",
+      "evidence": "심술궂고 인간적인 면모를 무덕이에게만 간파 당한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chochung",
+      "to": "naksu",
+      "type": "family",
+      "label": "father — Cheonbugwan mage",
+      "short": "father",
+      "evidence": "낙수의 친부, 천부관 수성직 술사",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "uk",
+      "mudeok",
+      "naksu",
+      "janggang",
+      "doju",
+      "yul",
+      "danggu",
+      "parkjin",
+      "choyeon",
+      "hokyung",
+      "jinmu",
+      "gowon",
+      "hasun",
+      "gosoon"
+    ],
+    "blocks": {
+      "Jang family": [
+        1,
+        2
+      ],
+      "Naksu": [
+        2,
+        1
+      ],
+      "Seo family": [
+        2,
+        0
+      ],
+      "Songrim": [
+        0,
+        2
+      ],
+      "Jinyowon": [
+        0,
+        0
+      ],
+      "Cheonbugwan": [
+        1,
+        0
+      ],
+      "Royal court": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "uk",
+      "mudeok"
+    ]
+  }
+}

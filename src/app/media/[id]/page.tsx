@@ -40,6 +40,8 @@ import { WatchProvidersRow } from "@/components/media/watch-providers-row";
 import { getCurrentUserId } from "@/lib/session";
 import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
+import { CharacterMapSection } from "@/components/media/character-map-section";
+import { getCharacterMap } from "@/lib/character-map-store";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
 import { MetaLinkList, GENRE_LIST, TAG_LIST } from "@/components/media/meta-link-list";
 import { GenreBlock } from "@/components/media/genre-block";
@@ -78,7 +80,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
         // consults: the show-level cache, a season link (S2+), or an alias
         // (Part 1 / Part 2 split). Reading only the first made season- and
         // alias-linked entries look unlinked on their own page.
-        const [userId, watchlistExternalIds, castResult, showLink, seasonLink, aliasLink] = await Promise.all([
+        const [userId, watchlistExternalIds, castResult, showLink, seasonLink, aliasLink, characterMap] = await Promise.all([
             getCurrentUserId(),
             getWatchlistExternalIds(),
             kuryanaGetCast(media.externalId),
@@ -94,6 +96,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                 where: { mdlSlug: media.externalId },
                 select: { tmdbExternalId: true },
             }),
+            getCharacterMap(media.externalId),
         ]);
         const linkedTmdb = showLink ?? seasonLink ?? aliasLink;
         const linkedSeason = seasonLink?.season;
@@ -128,6 +131,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
         const navSections: NavSection[] = [
             { id: "section-cast", label: "Cast" },
+            ...(characterMap ? [{ id: "section-relationships", label: "Relationships" }] : []),
             ...(media.type === "TV" ? [{ id: "section-episodes", label: "Episodes" }] : []),
             { id: "section-photos", label: "Photos" },
             { id: "section-reviews", label: "Reviews" },
@@ -448,6 +452,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         </div>
 
+                        {characterMap && (
+                            <div id="section-relationships" className="border-t border-line pt-8">
+                                <CharacterMapSection map={characterMap} href={`/media/${media.id}/relationships`} hideSpoilers={displayPrefs.hideSpoilers} />
+                            </div>
+                        )}
+
                         {media.type === "TV" && (
                             <div id="section-episodes" className="border-t border-line pt-8">
                                 <Suspense fallback={<EpisodeGuide episodes={[]} season={1} poster={media.poster} />}>
@@ -600,6 +610,12 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     const displayCast = seasonCast ?? media.cast ?? [];
 
     const [userId, watchlistExternalIds, cached, existingSeasonLink] = await contextPromise;
+    // The chart belongs to the MDL entry, so it follows the season the way
+    // the rating and the aired range do: the season link's slug for S2+, the
+    // show-level slug for S1. One indexed read; null means no section.
+    const characterMap = await getCharacterMap(
+        existingSeasonLink?.mdlSlug ?? (selectedSeason <= 1 && cached?.mdlSlug && !cached.mdlDisabled ? cached.mdlSlug : null),
+    );
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     // The season's own range when there is one — a finished season 1 says nothing
     // about a season 2 still going out.
@@ -1067,6 +1083,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                     {(() => {
                         const navSections: NavSection[] = [
                             { id: "section-cast", label: "Cast" },
+                            ...(characterMap ? [{ id: "section-relationships", label: "Relationships" }] : []),
                             ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episodes" }] : []),
                             // MDL can supply photos where TMDB has no backdrops,
                             // but that set only resolves after this renders — so
@@ -1123,6 +1140,16 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </>
                         )}
                     </div>
+
+                    {characterMap && (
+                        <div id="section-relationships" className="border-t border-line pt-8">
+                            <CharacterMapSection
+                                map={characterMap}
+                                href={`/media/${media.id}/relationships${selectedSeason > 1 ? `?season=${selectedSeason}` : ""}`}
+                                hideSpoilers={displayPrefs.hideSpoilers}
+                            />
+                        </div>
+                    )}
 
                     {/* Episode Guide */}
                     {media.type === "TV" && episodes.length > 0 && (

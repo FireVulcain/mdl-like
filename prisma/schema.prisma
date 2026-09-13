@@ -292,6 +292,23 @@ model MdlNativeTitle {
   createdAt   DateTime @default(now())
 }
 
+// A drama's character relationship chart (인물관계도), keyed by the MDL entry
+// it belongs to — MDL files each season on its own, so a season link's slug
+// gets its own row.
+//
+// dataJson is the whole chart: people (from the MDL cast, plus the odd one
+// the text names and MDL does not carry), links with the sentence each was
+// read from, and the compact cut the page draws. `source` says who read the
+// text: "session" for the ones written by hand alongside the extraction trial,
+// "model" once an API call does it.
+model CharacterMap {
+  mdlSlug   String   @id
+  dataJson  Json
+  source    String   @default("session")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model CachedKuryanaPerson {
   slug     String   @id
   dataJson Json

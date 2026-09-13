@@ -1,0 +1,729 @@
+{
+  "version": 1,
+  "mdlSlug": "28674-joy-of-life",
+  "title": "Joy of Life",
+  "native": "庆余年",
+  "year": 2019,
+  "country": "CN",
+  "sources": [
+    "MDL cast (46 roles, 4 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演员列表 (9 rows)",
+    "en.wikipedia Cast (9.3k chars)"
+  ],
+  "main": [
+    "fanxian",
+    "waner",
+    "emperor",
+    "chen"
+  ],
+  "people": [
+    {
+      "id": "fanxian",
+      "name": "Fan Xian",
+      "actor": "Zhang Ruo Yun",
+      "image": "https://i.mydramalist.com/b3XA3w_5m.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "waner",
+      "name": "Lin Wan Er",
+      "actor": "Li Qin",
+      "image": "https://i.mydramalist.com/Dk7p2r_5m.jpg",
+      "group": "Lin household",
+      "inCast": true
+    },
+    {
+      "id": "emperor",
+      "name": "Emperor of Qing",
+      "actor": "Chen Dao Ming",
+      "image": "https://i.mydramalist.com/eEvy8m.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "chen",
+      "name": "Chen Ping Ping",
+      "actor": "Wu Gang",
+      "image": "https://i.mydramalist.com/l0k36L_5m.jpg",
+      "group": "Inspection Bureau",
+      "inCast": true
+    },
+    {
+      "id": "yunrui",
+      "name": "Li Yun Rui",
+      "actor": "Li Xiao Ran",
+      "image": "https://i.mydramalist.com/Qmj7gm.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "rufu",
+      "name": "Lin Ru Fu",
+      "actor": "Yu Yang",
+      "image": "https://i.mydramalist.com/O8LjlQ_5m.jpg",
+      "group": "Lin household",
+      "inCast": true
+    },
+    {
+      "id": "dabao",
+      "name": "Lin Da Bao",
+      "actor": "Dong Ke Fei",
+      "image": "https://i.mydramalist.com/l0enOE_5m.jpg",
+      "group": "Lin household",
+      "inCast": true
+    },
+    {
+      "id": "ruoruo",
+      "name": "Fan Ruo Ruo",
+      "actor": "Song Yi",
+      "image": "https://i.mydramalist.com/nOQ1b4_5m.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "fanjian",
+      "name": "Fan Jian",
+      "actor": "Gao Shu Guang",
+      "image": "https://i.mydramalist.com/JB0rjY_5m.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "sizhe",
+      "name": "Fan Si Zhe",
+      "actor": "Kevin Guo",
+      "image": "https://i.mydramalist.com/AB6wwZ_5m.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "ruyu",
+      "name": "Liu Ru Yu",
+      "actor": "Karina Zhao",
+      "image": "https://i.mydramalist.com/kVmbdm.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "grandma",
+      "name": "Madam Fan (grandmother)",
+      "actor": "Cao Cui Fen",
+      "image": "https://i.mydramalist.com/2wObrP_5m.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "qingmei",
+      "name": "Ye Qing Mei",
+      "actor": "Yuan Quan",
+      "image": "https://i.mydramalist.com/Eplrlm.jpg",
+      "group": "Fan household",
+      "inCast": true,
+      "note": "MDL Guest Role: Professor Ye / Ye Qing Mei"
+    },
+    {
+      "id": "wuzhu",
+      "name": "Wu Zhu",
+      "actor": "Tong Meng Shi",
+      "image": "https://i.mydramalist.com/XDPyq_5m.jpg",
+      "group": "Fan household",
+      "inCast": true
+    },
+    {
+      "id": "feijie",
+      "name": "Fei Jie",
+      "actor": "Liu Hua",
+      "image": "https://i.mydramalist.com/w3bPA_5m.jpg",
+      "group": "Inspection Bureau",
+      "inCast": true
+    },
+    {
+      "id": "wang",
+      "name": "Wang Qi Nian",
+      "actor": "Tian Yu",
+      "image": "https://i.mydramalist.com/0wRjJe_5m.jpg",
+      "group": "Inspection Bureau",
+      "inCast": true
+    },
+    {
+      "id": "bingyun",
+      "name": "Yan Bing Yun",
+      "actor": "Xiao Zhan",
+      "image": "https://i.mydramalist.com/VX3Ddv_5m.jpg",
+      "group": "Inspection Bureau",
+      "inCast": true
+    },
+    {
+      "id": "ruohai",
+      "name": "Yan Ruo Hai",
+      "actor": "Li Qiang",
+      "image": "https://i.mydramalist.com/73R5bR_5m.jpg",
+      "group": "Inspection Bureau",
+      "inCast": true
+    },
+    {
+      "id": "silili",
+      "name": "Si Li Li",
+      "actor": "Li Chun",
+      "image": "https://i.mydramalist.com/Z80BvO_5m.jpg",
+      "group": "Northern Qi",
+      "inCast": true
+    },
+    {
+      "id": "chengqian",
+      "name": "Li Cheng Qian (Crown Prince)",
+      "actor": "Zhang Hao Wei",
+      "image": "https://i.mydramalist.com/731YgD_5m.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "chengze",
+      "name": "Li Cheng Ze (2nd Prince)",
+      "actor": "Liu Duan Duan",
+      "image": "https://i.mydramalist.com/KpYkJq_5m.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "shu",
+      "name": "Noble Consort Shu",
+      "actor": "Lin Jing",
+      "image": "https://i.mydramalist.com/YYW6oP_5m.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "dowager",
+      "name": "Empress Dowager",
+      "actor": "Zheng Yu Zhi",
+      "image": "https://i.mydramalist.com/Bm27qm.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "hongcheng",
+      "name": "Li Hong Cheng",
+      "actor": "Liu Run Nan",
+      "image": "https://i.mydramalist.com/Nd6vyo_5m.jpg",
+      "group": "Imperial palace",
+      "inCast": true
+    },
+    {
+      "id": "gongdian",
+      "name": "Gong Dian",
+      "actor": "Cui Peng",
+      "image": "https://i.mydramalist.com/81VEWD_5m.jpg",
+      "group": "Court",
+      "inCast": true
+    },
+    {
+      "id": "hou",
+      "name": "Eunuch Hou",
+      "actor": "Cui Zhi Gang",
+      "image": "https://i.mydramalist.com/yWvDjk_5m.jpg",
+      "group": "Court",
+      "inCast": true
+    },
+    {
+      "id": "sixiang",
+      "name": "Hong Si Xiang",
+      "actor": "Du Yu Ming",
+      "image": "https://i.mydramalist.com/Bdqy25_5m.jpg",
+      "group": "Court",
+      "inCast": true
+    },
+    {
+      "id": "xiaoyi",
+      "name": "Yan Xiao Yi",
+      "actor": "Li Zi Feng",
+      "image": "https://i.mydramalist.com/dXZe0_5m.jpg",
+      "group": "Court",
+      "inCast": true
+    },
+    {
+      "id": "xiebian",
+      "name": "Xie Bi An",
+      "actor": "Zhao Zhen Ting",
+      "image": "https://i.mydramalist.com/JB6D0J_5m.jpg",
+      "group": "Court",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "fanxian",
+      "to": "waner",
+      "type": "romance",
+      "label": "engaged, in love",
+      "short": "engaged",
+      "evidence": "與范閑有婚約 / he falls in love with Lin Wan Er, the woman the emperor has chosen to be his wife",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "emperor",
+      "to": "fanxian",
+      "type": "family",
+      "label": "biological father — illegitimate son",
+      "short": "real father",
+      "evidence": "慶帝和葉輕眉的兒子（私生子）",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qingmei",
+      "to": "fanxian",
+      "type": "family",
+      "label": "birth mother, killed before the story",
+      "short": "birth mother",
+      "evidence": "Raised by his grandmother after his mother, inventor Ye Qing Mei, was killed",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "emperor",
+      "to": "qingmei",
+      "type": "romance",
+      "label": "former lovers",
+      "short": "former lovers",
+      "evidence": "Fan Xian's birth mother, and former lover of the emperor.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fanjian",
+      "to": "fanxian",
+      "type": "family",
+      "label": "adoptive father",
+      "short": "adoptive father",
+      "evidence": "Fan Jian's adopted son",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "grandma",
+      "to": "fanxian",
+      "type": "family",
+      "label": "grandmother — raised him in Danzhou",
+      "short": "grandmother",
+      "evidence": "由范家祖母（慶帝奶娘）在澹州撫養長大",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "grandma",
+      "to": "fanjian",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Fan Jian's mother. Fan Xian's (adoptive) grandmother.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wuzhu",
+      "to": "fanxian",
+      "type": "work",
+      "label": "guardian & martial-arts teacher (his mother's bodyguard)",
+      "short": "guardian, teacher",
+      "evidence": "learns martial arts and poison techniques under her bodyguard, the blind Wu Zhu",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "feijie",
+      "to": "fanxian",
+      "type": "work",
+      "label": "first teacher — poisons",
+      "short": "first teacher",
+      "evidence": "Fan Xian's first teacher. Master of poisons and medicine.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruoruo",
+      "to": "fanxian",
+      "type": "family",
+      "label": "adoptive sister (no blood relation)",
+      "short": "adoptive sister",
+      "evidence": "表面身份是范閑的同父異母妹妹，家中唯一的嫡女，不過與范閑無血緣關係",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fanjian",
+      "to": "ruoruo",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "Fan Jian's daughter, Fan Xian's adoptive younger sister",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fanjian",
+      "to": "sizhe",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "Fan Jian's son with Liu Ruyu.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruyu",
+      "to": "sizhe",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Fan Jian's second wife and Fan Sizhe's mother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fanjian",
+      "to": "ruyu",
+      "type": "romance",
+      "label": "married — second wife",
+      "short": "married",
+      "evidence": "Fan Jian's second wife and Fan Sizhe's mother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "rufu",
+      "to": "waner",
+      "type": "family",
+      "label": "father — illegitimate daughter",
+      "short": "father",
+      "evidence": "林相和李雲睿的女兒（私生女）",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunrui",
+      "to": "waner",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Wan Er's mother] / 林婉兒生母",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dabao",
+      "to": "waner",
+      "type": "family",
+      "label": "elder brother",
+      "short": "elder brother",
+      "evidence": "[Wan Er's elder brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yunrui",
+      "to": "emperor",
+      "type": "family",
+      "label": "sister — no blood relation",
+      "short": "sister",
+      "evidence": "慶帝無血緣關係之妹（原著為胞妹）",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yunrui",
+      "to": "fanxian",
+      "type": "rivalry",
+      "label": "opposes him — holds the Royal Treasury his marriage would inherit",
+      "short": "opposes him",
+      "evidence": "She controls the Royal Treasury which will be passed on to whoever marries Lin Wan'er.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dowager",
+      "to": "emperor",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Mother of the Emperor, Elder Princess Li Yunrui, and Prince of Jing.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dowager",
+      "to": "yunrui",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Mother of the Emperor, Elder Princess Li Yunrui, and Prince of Jing.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "emperor",
+      "to": "chengqian",
+      "type": "family",
+      "label": "son — Crown Prince",
+      "short": "son",
+      "evidence": "Crown Prince of Qing and the third eldest prince of Qing by birth order.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "emperor",
+      "to": "chengze",
+      "type": "family",
+      "label": "son — 2nd Prince",
+      "short": "son",
+      "evidence": "The second prince of Qing. Born by Noble Consort Shu.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shu",
+      "to": "chengze",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Cheng Ze's mother] / The mother of the second prince.",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hongcheng",
+      "to": "chengze",
+      "type": "friend",
+      "label": "cousin and close friend",
+      "short": "cousin, close friend",
+      "evidence": "Close friend and cousin of the second prince.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chengqian",
+      "to": "chengze",
+      "type": "rivalry",
+      "label": "rival heirs",
+      "short": "rival heirs",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "chen",
+      "to": "fanxian",
+      "type": "work",
+      "label": "Bureau head — Fan Xian serves as his vice-head",
+      "short": "his chief",
+      "evidence": "另一個身份為南慶監察院的提司（副院長）",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wang",
+      "to": "fanxian",
+      "type": "work",
+      "label": "faithful servant",
+      "short": "faithful servant",
+      "evidence": "He later becomes Fan Xian's faithful servant.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruohai",
+      "to": "bingyun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Bing Yun's father] / Yan Ruohai's son.",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bingyun",
+      "to": "fanxian",
+      "type": "work",
+      "label": "fellow Bureau member — spymaster in Northern Qi",
+      "short": "fellow Bureau agent",
+      "evidence": "He is dispatched as the spymaster in Northern Qi.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "silili",
+      "to": "fanxian",
+      "type": "bond",
+      "label": "Northern Qi spy — later returns home with his help",
+      "short": "spy he later helps",
+      "evidence": "來自北齊的間諜… 後在范閑的幫助下回到北齊，現成為北齊皇帝的貴妃",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gongdian",
+      "to": "emperor",
+      "type": "work",
+      "label": "bodyguard",
+      "short": "bodyguard",
+      "evidence": "[Emperor's bodyguard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hou",
+      "to": "emperor",
+      "type": "work",
+      "label": "head eunuch",
+      "short": "head eunuch",
+      "evidence": "[Emperor's attendant] / The emperor's head eunuch",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sixiang",
+      "to": "dowager",
+      "type": "work",
+      "label": "head eunuch",
+      "short": "head eunuch",
+      "evidence": "[Empress Dowager's eunuch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaoyi",
+      "to": "yunrui",
+      "type": "work",
+      "label": "loyal to her — she raised him from a hunter",
+      "short": "loyal to her",
+      "evidence": "He was saved and promoted from a hunter by Eldest Princess Yunrui, and he is loyal to her.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiebian",
+      "to": "chengze",
+      "type": "work",
+      "label": "bodyguard",
+      "short": "bodyguard",
+      "evidence": "[2nd prince's bodyguard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "fanxian",
+      "waner",
+      "emperor",
+      "qingmei",
+      "fanjian",
+      "ruoruo",
+      "grandma",
+      "wuzhu",
+      "chen",
+      "rufu",
+      "yunrui",
+      "chengqian",
+      "chengze",
+      "dowager"
+    ],
+    "blocks": {
+      "Fan household": [
+        0,
+        1
+      ],
+      "Lin household": [
+        2,
+        1
+      ],
+      "Imperial palace": [
+        1,
+        0
+      ],
+      "Inspection Bureau": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "fanxian",
+      "waner"
+    ]
+  }
+}

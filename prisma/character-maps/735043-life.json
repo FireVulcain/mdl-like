@@ -1,0 +1,549 @@
+{
+  "version": 1,
+  "mdlSlug": "735043-life",
+  "title": "When Life Gives You Tangerines",
+  "native": "폭싹 속았수다",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (20 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (3.3k chars)"
+  ],
+  "main": [
+    "aesun",
+    "gwansik"
+  ],
+  "people": [
+    {
+      "id": "aesun",
+      "name": "O Ae Sun",
+      "actor": "IU",
+      "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
+      "group": "Ae Sun & Gwan Sik",
+      "inCast": true
+    },
+    {
+      "id": "gwansik",
+      "name": "Yang Gwan Sik",
+      "actor": "Park Bo Gum",
+      "image": "https://i.mydramalist.com/ABWwYZ_5m.jpg",
+      "group": "Ae Sun & Gwan Sik",
+      "inCast": true
+    },
+    {
+      "id": "geummyeong",
+      "name": "Yang Geum Myeong",
+      "actor": "IU",
+      "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
+      "group": "Children",
+      "inCast": true,
+      "note": "Same actress as Ae Sun — MDL lists IU for both roles"
+    },
+    {
+      "id": "eunmyeong",
+      "name": "Yang Eun Myeong",
+      "actor": "Kang You Seok",
+      "image": "https://i.mydramalist.com/ABQEA3_5m.jpg",
+      "group": "Children",
+      "inCast": true
+    },
+    {
+      "id": "dongmyeong",
+      "name": "Yang Dong Myeong",
+      "actor": "Shin Sae Byeok",
+      "image": null,
+      "group": "Children",
+      "inCast": false
+    },
+    {
+      "id": "chunok",
+      "name": "Kim Chun Ok",
+      "actor": "Na Moon Hee",
+      "image": "https://i.mydramalist.com/Wxl53_5m.jpg",
+      "group": "Ae Sun's family",
+      "inCast": true
+    },
+    {
+      "id": "gwangrye",
+      "name": "Jeon Gwang Rye",
+      "actor": "Yeom Hye Ran",
+      "image": "https://i.mydramalist.com/VX2AVJ_5m.jpg",
+      "group": "Ae Sun's family",
+      "inCast": true
+    },
+    {
+      "id": "hanmu",
+      "name": "O Han Mu",
+      "actor": "Jung Hae Kyun",
+      "image": "https://i.mydramalist.com/QJ5A7Q_5m.jpg",
+      "group": "Ae Sun's family",
+      "inCast": true
+    },
+    {
+      "id": "yisuk",
+      "name": "Hyun Yi Suk",
+      "actor": "Oh Yeon Jae",
+      "image": "https://i.mydramalist.com/ABegPq_5m.jpg",
+      "group": "Ae Sun's family",
+      "inCast": true
+    },
+    {
+      "id": "byeongcheol",
+      "name": "Yeom Byeong Cheol",
+      "actor": "Oh Jung Se",
+      "image": "https://i.mydramalist.com/VXDoEJ_5m.jpg",
+      "group": "Ae Sun's family",
+      "inCast": true,
+      "note": "MDL Guest Role: Yeom Byeong Chul [Ae Sun's stepfather] (Ep. 1, 2, 6)"
+    },
+    {
+      "id": "makcheon",
+      "name": "Park Mak Cheon",
+      "actor": "Kim Yong Rim",
+      "image": "https://i.mydramalist.com/2Ed3d_5m.jpg",
+      "group": "Gwan Sik's family",
+      "inCast": true
+    },
+    {
+      "id": "gyeok",
+      "name": "Kwon Gye Ok",
+      "actor": "Oh Min Ae",
+      "image": "https://i.mydramalist.com/r7Kz2_5m.jpg",
+      "group": "Gwan Sik's family",
+      "inCast": true
+    },
+    {
+      "id": "sambo",
+      "name": "Yang Sam Bo",
+      "actor": "Yoo Byung Hoon",
+      "image": "https://i.mydramalist.com/x2Nejm.jpg",
+      "group": "Gwan Sik's family",
+      "inCast": true,
+      "note": "MDL Guest Role: Yang Sam Bo [Gwan Sik's father]"
+    },
+    {
+      "id": "sanggil",
+      "name": "Bu Sang Gil",
+      "actor": "Choi Dae Hoon",
+      "image": "https://i.mydramalist.com/X85nqm.jpg",
+      "group": "Sang Gil's family",
+      "inCast": true
+    },
+    {
+      "id": "yeongran",
+      "name": "Park Yeong Ran",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "group": "Sang Gil's family",
+      "inCast": true
+    },
+    {
+      "id": "hyeonsuk",
+      "name": "Bu Hyeon Suk",
+      "actor": "Lee Soo Kyung",
+      "image": "https://i.mydramalist.com/Wll2P_5m.jpg",
+      "group": "Sang Gil's family",
+      "inCast": true
+    },
+    {
+      "id": "misuk",
+      "name": "Mi Suk",
+      "actor": "Lee Mi Do",
+      "image": "https://i.mydramalist.com/zBJBEJ_5m.jpg",
+      "group": "Sang Gil's family",
+      "inCast": true,
+      "note": "MDL Guest Role: Mi Suk (Ep. 5, 7, 14)"
+    },
+    {
+      "id": "yeongbeom",
+      "name": "Park Yeong Beom",
+      "actor": "Lee Jun Young",
+      "image": "https://i.mydramalist.com/v2yzZ_5m.jpg",
+      "group": "Geum Myeong's circle",
+      "inCast": true
+    },
+    {
+      "id": "chungseop",
+      "name": "Park Chung Seop",
+      "actor": "Kim Seon Ho",
+      "image": "https://i.mydramalist.com/mOE622_5m.jpg",
+      "group": "Geum Myeong's circle",
+      "inCast": true,
+      "note": "MDL Guest Role: Park Cheong Seop [Artist] (Ep. 9-16)"
+    },
+    {
+      "id": "chungsu",
+      "name": "Park Chung Su",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "Haenyeo",
+      "inCast": true
+    },
+    {
+      "id": "yangim",
+      "name": "Choi Yang Im",
+      "actor": "Lee Soo Mi",
+      "image": "https://i.mydramalist.com/BdmxrV_5m.jpg",
+      "group": "Haenyeo",
+      "inCast": true
+    },
+    {
+      "id": "gyeongja",
+      "name": "Hong Gyeong Ja",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "Haenyeo",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "aesun",
+      "to": "gwansik",
+      "type": "romance",
+      "label": "husband & wife",
+      "short": "married",
+      "evidence": "오로지 애순이만 사랑하고 존중하는 묵언의 전사 / 관식과 애순의 딸, 첫째",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "aesun",
+      "to": "geummyeong",
+      "type": "family",
+      "label": "daughter, eldest (b. 1968)",
+      "short": "daughter",
+      "evidence": "관식과 애순의 딸, 첫째. 1968년생.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwansik",
+      "to": "geummyeong",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "관식과 애순의 딸, 첫째. 1968년생.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aesun",
+      "to": "eunmyeong",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Ae Sun and Gwan Sik's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwansik",
+      "to": "eunmyeong",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Ae Sun and Gwan Sik's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aesun",
+      "to": "dongmyeong",
+      "type": "family",
+      "label": "second son — dies aged 3 (1978)",
+      "short": "son",
+      "evidence": "관식과 애순의 차남, 셋째. 1974년생. 1978년 8월 18일, 태풍 치던 날에 사고로 3살 나이에 사망한다.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chunok",
+      "to": "aesun",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Ae Sun's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangrye",
+      "to": "aesun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ae Sun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanmu",
+      "to": "aesun",
+      "type": "family",
+      "label": "uncle — brother of her late father",
+      "short": "uncle",
+      "evidence": "일찌기 유명을 달리한 광례의 전 남편 오한규의 동생. 애순의 작은아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yisuk",
+      "to": "aesun",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "[Ae Sun's aunt]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeongcheol",
+      "to": "aesun",
+      "type": "family",
+      "label": "stepfather",
+      "short": "stepfather",
+      "evidence": "[Ae Sun's stepfather] / 애순의 새 아버지이자 광례의 재혼한 남편",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangrye",
+      "to": "byeongcheol",
+      "type": "romance",
+      "label": "remarried",
+      "short": "remarried",
+      "evidence": "애순의 새 아버지이자 광례의 재혼한 남편 (1회~2회, 6회)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "makcheon",
+      "to": "gwansik",
+      "type": "family",
+      "label": "grandmother — village shaman",
+      "short": "grandmother",
+      "evidence": "관식의 할머니이자 마을의 무당",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeok",
+      "to": "gwansik",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Gwan Sik's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sambo",
+      "to": "gwansik",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Gwan Sik's father] / 관식의 아버지",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungsu",
+      "to": "gwangrye",
+      "type": "friend",
+      "label": "haenyeo friend",
+      "short": "haenyeo friend",
+      "evidence": "[Gwang Rye's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yangim",
+      "to": "gwangrye",
+      "type": "friend",
+      "label": "haenyeo friend",
+      "short": "haenyeo friend",
+      "evidence": "[Gwang Rye's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongja",
+      "to": "gwangrye",
+      "type": "friend",
+      "label": "haenyeo friend",
+      "short": "haenyeo friend",
+      "evidence": "[Gwang Rye's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanggil",
+      "to": "aesun",
+      "type": "rivalry",
+      "label": "arranged match; later beats her to village chief",
+      "short": "arranged match",
+      "evidence": "애순의 맞선남, 도동리 부계장 (78년 계장 선거에서 계장이 되고 애순이 부계장이 된다.)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggil",
+      "to": "yeongran",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Sang Gil and Yeong Ran's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanggil",
+      "to": "hyeonsuk",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "[Sang Gil and Yeong Ran's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongran",
+      "to": "hyeonsuk",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "상길과 영란의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggil",
+      "to": "misuk",
+      "type": "romance",
+      "label": "mistress",
+      "short": "mistress",
+      "evidence": "78년 풍기문란 단속에서 걸린 사교댄스 여인, 상길의 내연녀",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongbeom",
+      "to": "geummyeong",
+      "type": "romance",
+      "label": "boyfriend",
+      "short": "boyfriend",
+      "evidence": "[Geum Myeong's boyfriend] / 금명의 남자친구, 차관집 장남",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chungseop",
+      "to": "geummyeong",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "극장 간판 그림을 그리는 화가, 일명 깐느 극장 지하실 피카소, 금명의 남편 (9회, 11회~16회)",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "aesun",
+      "gwansik",
+      "geummyeong",
+      "eunmyeong",
+      "chunok",
+      "gwangrye",
+      "hanmu",
+      "makcheon",
+      "gyeok",
+      "sambo",
+      "sanggil",
+      "yeongbeom",
+      "chungseop"
+    ],
+    "blocks": {
+      "Ae Sun & Gwan Sik": [
+        1,
+        1
+      ],
+      "Ae Sun's family": [
+        0,
+        0
+      ],
+      "Gwan Sik's family": [
+        2,
+        0
+      ],
+      "Children": [
+        1,
+        2
+      ],
+      "Sang Gil's family": [
+        0,
+        2
+      ],
+      "Geum Myeong's circle": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "aesun",
+      "gwansik"
+    ]
+  }
+}

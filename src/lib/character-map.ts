@@ -1,0 +1,262 @@
+// Types and geometry only — no server imports, since the chart component is
+// a client component and pulls this in. The DB read lives in
+// character-map-store.ts.
+
+/**
+ * A drama's character relationship chart — 인물관계도 — as stored in
+ * CharacterMap.dataJson. Read from the MDL cast list and the drama's
+ * Wikipedia character section; every link keeps the sentence it came from.
+ */
+export type LinkType = "family" | "romance" | "rivalry" | "work" | "friend" | "bond";
+
+export type MapPerson = {
+    id: string;
+    name: string;
+    actor: string;
+    image: string | null;
+    group: string;
+    /** false for someone the text names but MDL's cast does not carry */
+    inCast: boolean;
+    note?: string;
+};
+
+export type MapLink = {
+    from: string;
+    to: string;
+    type: LinkType;
+    /** the full reading, for the detail line */
+    label: string;
+    /** a word or two, for the chart */
+    short: string;
+    /** the sentence it was read from, null when inferred */
+    evidence: string | null;
+    source: string | null;
+    /** a twist the story keeps for later — hidden under hideSpoilers */
+    reveal: boolean;
+    /** no sentence backs it; drawn faded */
+    inferred: boolean;
+    directed: boolean;
+};
+
+export type CharacterMapData = {
+    version: 1;
+    mdlSlug: string;
+    title: string;
+    sources: string[];
+    /** the leads — drawn in the middle */
+    main: string[];
+    people: MapPerson[];
+    links: MapLink[];
+    /** the cut the page draws: which people, and where each household sits on a 3x3 grid */
+    compact: { people: string[]; blocks: Record<string, [number, number]>; center?: string[] };
+};
+
+/* ------------------------------------------------------------------ layout */
+
+export const PORTRAIT_R = 28;
+
+export type LaidOutPerson = MapPerson & { x: number; y: number; lead: boolean; captions: Caption[] };
+export type Caption = { text: string; type: LinkType; reveal: boolean; linkIndex: number };
+export type LaidOutLink = MapLink & {
+    index: number;
+    x1: number; y1: number; x2: number; y2: number;
+    /** control point of the quadratic, when several links share a pair */
+    cx: number; cy: number;
+    /** where its label sits, if it carries one on the line */
+    lx: number; ly: number;
+    onLine: boolean;
+};
+export type Block = { name: string; x: number; y: number; w: number; h: number };
+export type Layout = { width: number; height: number; people: LaidOutPerson[]; links: LaidOutLink[]; blocks: Block[] };
+
+export type LayoutOptions = {
+    /** the narrowest the chart will be; it grows past this when the households need it */
+    width: number;
+    /** every person the chart knows, not just the compact cut */
+    everyone?: boolean;
+    /** link types to draw; all of them when absent */
+    types?: Set<LinkType>;
+    /** draw links no sentence backs (faded) */
+    inferred?: boolean;
+    /** draw people the text names but MDL's cast does not carry */
+    ghosts?: boolean;
+    /** links to leave out entirely (hidden reveals, say) */
+    hideLink?: (l: MapLink) => boolean;
+};
+
+/**
+ * The chart: the leads in the middle, households in blocks to their left and
+ * right, above and below, straight links between them. No simulation — a
+ * chart that is read, not explored, and that draws the same way every time.
+ * The canvas takes the size the households need; a wide one scrolls.
+ *
+ * A link between a lead and someone else is not written on the line; it
+ * becomes a caption under that someone ("mother · Ae Sun"). Only lead↔lead
+ * and outer↔outer links keep a label on the line. That is what keeps the
+ * middle of the chart — where a dozen links converge — free of text.
+ */
+export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layout {
+    const keep = new Set(opts.everyone ? map.people.map((p) => p.id) : map.compact.people);
+    const center = new Set(map.compact.center ?? map.main.slice(0, 2));
+
+    const people: LaidOutPerson[] = map.people
+        .filter((p) => keep.has(p.id) && ((opts.ghosts ?? true) || p.inCast))
+        .map((p) => ({ ...p, x: 0, y: 0, lead: center.has(p.id), captions: [] }));
+    const byId = new Map(people.map((p) => [p.id, p]));
+
+    const links = map.links
+        .map((l, index) => ({ l, index }))
+        .filter(({ l }) => byId.has(l.from) && byId.has(l.to) && !(opts.hideLink?.(l) ?? false))
+        .filter(({ l }) => !opts.types || opts.types.has(l.type))
+        .filter(({ l }) => (opts.inferred ?? false) || !l.inferred);
+
+    // Where each link's words go. Only a link between the two leads keeps a
+    // label on its line; every other link is written under a face — under the
+    // outer end for a link to a lead, under the `from` end otherwise. Text on
+    // a short line lands on whatever face is nearest, and that was the case
+    // for every collision left.
+    const spoke = (l: MapLink) => center.has(l.from) !== center.has(l.to);
+    const onLine = (l: MapLink) => center.has(l.from) && center.has(l.to);
+    const firstName = (p: MapPerson) => {
+        const words = p.name.split(" / ")[0].replace(/ \(.*\)$/, "").split(" ");
+        return (words.length >= 3 ? words.slice(1) : words).join(" ");
+    };
+    for (const { l, index } of links) {
+        if (onLine(l)) continue;
+        const a = byId.get(l.from)!, b = byId.get(l.to)!;
+        const carrier = spoke(l) ? (center.has(l.from) ? b : a) : a;
+        const other = carrier === a ? b : a;
+        carrier.captions.push({ text: `${l.short} · ${firstName(other)}`, type: l.type, reveal: l.reveal, linkIndex: index });
+    }
+
+    // Households, each sized to what it holds: as many faces across as its
+    // count suggests, a pitch wide enough for its widest caption, a line
+    // taller for every caption past two. A block is never smaller than its
+    // text, which is what let text from one block run into the next.
+    const groups = new Map<string, LaidOutPerson[]>();
+    for (const p of people) {
+        const g = p.lead ? "__center" : p.group;
+        if (!groups.has(g)) groups.set(g, []);
+        groups.get(g)!.push(p);
+    }
+    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, p.actor.length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
+    type Shape = { name: string; members: LaidOutPerson[]; perRow: number; rows: number; dx: number; dy: number; w: number; h: number; x: number; y: number };
+    const shapes = new Map<string, Shape>();
+    for (const [g, members] of groups) {
+        const n = members.length;
+        const slot = map.compact.blocks[g];
+        const side = g !== "__center" && slot !== undefined && slot[0] !== 1;
+        const perRow = g === "__center" ? n : n <= 2 ? (side ? 1 : n) : n === 4 ? 2 : n >= 10 ? 5 : n >= 7 ? 4 : 3;
+        const rows = Math.ceil(n / perRow);
+        const dx = g === "__center" ? 210 : Math.max(150, Math.max(...members.map(textWidth)) + 16);
+        const dy = 124 + 12 * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
+        shapes.set(g, { name: g, members, perRow, rows, dx, dy, w: perRow * dx + 12, h: rows * dy + 44, x: 0, y: 0 });
+    }
+
+    // Four regions around the leads instead of a grid of cells: the left and
+    // right columns stack their households, the top and bottom bands lay
+    // theirs side by side, and the chart takes whatever size that comes to.
+    // A household keeps the side its grid cell pointed at; one with no cell
+    // goes to whichever column is shorter.
+    const centerShape = shapes.get("__center");
+    const region = { left: [] as Shape[], right: [] as Shape[], top: [] as Shape[], bottom: [] as Shape[] };
+    const ordered = [...shapes.values()].filter((sh) => sh.name !== "__center").sort((a, b) => {
+        const sa = map.compact.blocks[a.name] ?? [9, 9], sb = map.compact.blocks[b.name] ?? [9, 9];
+        return sa[1] - sb[1] || sa[0] - sb[0];
+    });
+    const GAP = 28, PAD = 24;
+    const colHeight = (col: Shape[]) => col.reduce((t, sh) => t + sh.h, 0) + Math.max(0, col.length - 1) * GAP;
+    for (const sh of ordered) {
+        const slot = map.compact.blocks[sh.name];
+        if (slot && slot[0] === 0) region.left.push(sh);
+        else if (slot && slot[0] === 2) region.right.push(sh);
+        else if (slot && slot[1] === 0) region.top.push(sh);
+        else if (slot && slot[1] === 2) region.bottom.push(sh);
+        else (colHeight(region.left) <= colHeight(region.right) ? region.left : region.right).push(sh);
+    }
+    const bandWidth = (band: Shape[]) => band.reduce((t, sh) => t + sh.w, 0) + Math.max(0, band.length - 1) * GAP;
+    const colWidth = (col: Shape[]) => Math.max(0, ...col.map((sh) => sh.w));
+    const bandHeight = (band: Shape[]) => Math.max(0, ...band.map((sh) => sh.h));
+
+    // Three columns, each centred on the canvas's vertical middle: the side
+    // columns stack their households; the middle column stacks the top band,
+    // the leads and the bottom band, tight against each other — so a tall
+    // side column never pushes the bottom band away from the leads.
+    const leftW = colWidth(region.left), rightW = colWidth(region.right);
+    const centerW = centerShape?.w ?? 0, centerH = centerShape?.h ?? 0;
+    const topW = bandWidth(region.top), bottomW = bandWidth(region.bottom);
+    const topH = bandHeight(region.top), bottomH = bandHeight(region.bottom);
+    const midColW = Math.max(centerW, topW, bottomW);
+    const midColH = topH + (topH ? GAP : 0) + centerH + (bottomH ? GAP : 0) + bottomH;
+    const leftH = colHeight(region.left), rightH = colHeight(region.right);
+    const contentW = leftW + (leftW ? GAP : 0) + midColW + (rightW ? GAP : 0) + rightW;
+    const width = Math.max(opts.width, contentW + 2 * PAD);
+    const height = Math.round(Math.max(leftH, rightH, midColH, 320) + 2 * PAD);
+    const contentLeft = (width - contentW) / 2;
+
+    const placeColumn = (col: Shape[], x0: number, w: number) => {
+        let y = (height - colHeight(col)) / 2;
+        for (const sh of col) { sh.x = x0 + (w - sh.w) / 2; sh.y = y; y += sh.h + GAP; }
+    };
+    placeColumn(region.left, contentLeft, leftW);
+    placeColumn(region.right, contentLeft + contentW - rightW, rightW);
+
+    const midX = contentLeft + leftW + (leftW ? GAP : 0);
+    let y = (height - midColH) / 2;
+    let x = midX + (midColW - topW) / 2;
+    for (const sh of region.top) { sh.x = x; sh.y = y + (topH - sh.h) / 2; x += sh.w + GAP; }
+    y += topH + (topH ? GAP : 0);
+    if (centerShape) { centerShape.x = midX + (midColW - centerW) / 2; centerShape.y = y; }
+    y += centerH + (bottomH ? GAP : 0);
+    x = midX + (midColW - bottomW) / 2;
+    for (const sh of region.bottom) { sh.x = x; sh.y = y + (bottomH - sh.h) / 2; x += sh.w + GAP; }
+
+    const blocks: Block[] = [];
+    for (const sh of shapes.values()) {
+        const { members, perRow, rows, dx, dy } = sh;
+        const cx = sh.x + sh.w / 2, cy = sh.y + 16 + (rows * dy) / 2;
+        members.forEach((p, i) => {
+            const row = Math.floor(i / perRow), col = i % perRow;
+            const inRow = Math.min(perRow, members.length - row * perRow);
+            p.x = cx + (col - (inRow - 1) / 2) * dx;
+            p.y = cy + (row - (rows - 1) / 2) * dy;
+        });
+        if (sh.name !== "__center") blocks.push({ name: sh.name, x: sh.x, y: sh.y, w: sh.w, h: sh.h });
+    }
+
+    // Several links between one pair fan out as arcs; several links into one
+    // face stagger where each label sits along its line.
+    const pairCount = new Map<string, number>();
+    const pairIdx = new Map<number, number>();
+    const atNode = new Map<string, number>();
+    const tOf = new Map<number, number>();
+    for (const { l, index } of links) {
+        const k = [l.from, l.to].sort().join("|");
+        pairIdx.set(index, pairCount.get(k) ?? 0);
+        pairCount.set(k, (pairCount.get(k) ?? 0) + 1);
+        const i = atNode.get(l.to) ?? 0;
+        atNode.set(l.to, i + 1);
+        tOf.set(index, [0.5, 0.36, 0.64, 0.28, 0.72, 0.2, 0.8][i % 7]);
+    }
+
+
+    const laid: LaidOutLink[] = links.map(({ l, index }) => {
+        const a = byId.get(l.from)!, b = byId.get(l.to)!;
+        const k = [l.from, l.to].sort().join("|");
+        const n = pairCount.get(k)!, i = pairIdx.get(index)!;
+        const bend = n > 1 ? (i - (n - 1) / 2) * 34 : 0;
+        const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
+        const cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2, cy = (a.y + b.y) / 2 + (dx / len) * bend * 2;
+        const t = tOf.get(index)!;
+        const px = (1 - t) * (1 - t) * a.x + 2 * (1 - t) * t * cx + t * t * b.x;
+        const py = (1 - t) * (1 - t) * a.y + 2 * (1 - t) * t * cy + t * t * b.y;
+        return { ...l, index, x1: a.x, y1: a.y, x2: b.x, y2: b.y, cx, cy, lx: px + (-dy / len) * 7, ly: py + (dx / len) * 7 - 4, onLine: onLine(l) };
+    });
+
+    return { width, height, people, links: laid, blocks };
+}
+
+export function linkPath(l: LaidOutLink): string {
+    const straight = Math.abs(l.cx - (l.x1 + l.x2) / 2) < 0.01 && Math.abs(l.cy - (l.y1 + l.y2) / 2) < 0.01;
+    return straight ? `M${l.x1},${l.y1}L${l.x2},${l.y2}` : `M${l.x1},${l.y1}Q${l.cx},${l.cy} ${l.x2},${l.y2}`;
+}
