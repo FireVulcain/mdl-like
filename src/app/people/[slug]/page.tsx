@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Bookmark, ExternalLink, Star } from "lucide-react";
+import { ArrowLeft, Bookmark, ExternalLink, Star, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { kuryanaGetPerson, mdlTitleFromLink, KuryanaWorkItem, KuryanaPersonResult } from "@/lib/kuryana";
-import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { mdlTitleFromLink, KuryanaWorkItem } from "@/lib/kuryana";
+import { loadPersonWorks, extractMdlId, extractFullMdlSlug, sortWorks } from "@/lib/person-works";
+import { resolveWorkLinks } from "@/lib/mdl-work-links";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
@@ -23,30 +23,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return mdlPersonMetadata((await params).slug);
 }
 
-/**
- * Undated first, then newest to oldest.
- *
- * A work with no year yet is one MDL has not dated because it has not aired —
- * so on a list that already runs newest first, it belongs above this year's,
- * not filed underneath work from twenty years ago. It was sorted last, which
- * read as "old and unknown" rather than "next".
- *
- * The undated test is the same one the card uses to print "TBA", so the two
- * cannot disagree about which works count as undated.
- */
-function sortWorks(works: KuryanaWorkItem[]): KuryanaWorkItem[] {
-    const undated = (work: KuryanaWorkItem) => typeof work.year !== "number";
-    return [...works].sort((a, b) => {
-        if (undated(a) !== undated(b)) return undated(a) ? -1 : 1;
-        if (typeof a.year === "number" && typeof b.year === "number") return b.year - a.year;
-        return 0;
-    });
-}
-
-function extractMdlId(slug: string): string | null {
-    const match = slug.match(/^mdl-(\d+)$/);
-    return match ? match[1] : null;
-}
 
 // MDL's category names are singular; only the common ones get a plural worth
 // writing down. Anything else — Producer, Narrator, "Screenwriter & Director" —
@@ -65,11 +41,6 @@ const CATEGORY_ORDER = ["Drama", "Movie", "TV Show", "Special"];
 function categoryRank(name: string): number {
     const index = CATEGORY_ORDER.indexOf(name);
     return index === -1 ? CATEGORY_ORDER.length : index;
-}
-
-function extractFullMdlSlug(link: string): string | null {
-    const match = link.match(/mydramalist\.com\/(.+)$/);
-    return match ? match[1] : null;
 }
 
 function WorkCard({
@@ -181,44 +152,6 @@ function WorkCard({
     );
 }
 
-// Check DB cache first (7-day TTL) — avoids a live Kuryana call on every page visit.
-// Outside the component on purpose: reading the clock during render is impure, and
-// the React Compiler's lint says so the moment it can see into this file.
-const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-
-/**
- * Rows cached before the scraper started returning a poster per work have none,
- * and would keep showing "No Image" until their TTL ran out. Treating that as
- * stale refetches them once; the check costs nothing and stops mattering as soon
- * as every row has been refreshed.
- *
- * Only conclusive when there are works to look at — a person with an empty
- * filmography must not be refetched on every view.
- */
-function missingWorkImages(data: KuryanaPersonResult["data"]): boolean {
-    const works = Object.values(data?.works ?? {}).flat();
-    return works.length > 0 && !works.some((work) => work?.title?.image);
-}
-
-async function loadPerson(slug: string): Promise<KuryanaPersonResult["data"] | null> {
-    const staleAt = new Date(Date.now() - PERSON_CACHE_TTL_MS);
-    const cachedRow = await prisma.cachedKuryanaPerson.findUnique({ where: { slug } });
-    if (cachedRow && cachedRow.cachedAt > staleAt) {
-        const cached = cachedRow.dataJson as KuryanaPersonResult["data"];
-        if (!missingWorkImages(cached)) return cached;
-    }
-
-    const fetched = await kuryanaGetPerson(slug);
-    const data = fetched?.data ?? null;
-    if (data) {
-        await prisma.cachedKuryanaPerson.upsert({
-            where: { slug },
-            create: { slug, dataJson: data as unknown as Prisma.InputJsonValue },
-            update: { dataJson: data as unknown as Prisma.InputJsonValue, cachedAt: new Date() },
-        });
-    }
-    return data;
-}
 
 export default async function MdlPersonPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -229,7 +162,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     // a second of scraping.
     const viewerPromise = Promise.all([getWatchlistSeasonKeys(), getWatchlistPosters()]);
 
-    const data = await loadPerson(slug);
+    const data = await loadPersonWorks(slug);
     if (!data) notFound();
     const details = data.details ?? {};
 
@@ -252,45 +185,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
     const allWorks = categories.flatMap((c) => c.works);
     const mdlIds = allWorks.map((w) => extractMdlId(w._slug)).filter(Boolean) as string[];
 
-    const [cached, seasonLinkRows, aliasRows] =
-        mdlIds.length > 0
-            ? await Promise.all([
-                  prisma.cachedMdlData.findMany({
-                      where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
-                      select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true },
-                  }),
-                  prisma.mdlSeasonLink.findMany({
-                      where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
-                      select: { mdlSlug: true, tmdbExternalId: true, mdlRating: true, season: true },
-                  }),
-                  prisma.mdlAlias.findMany({
-                      where: { OR: mdlIds.map((id) => ({ mdlSlug: { startsWith: `${id}-` } })) },
-                      select: { mdlSlug: true, tmdbExternalId: true },
-                  }),
-              ])
-            : [[], [], []];
-
-    const mdlToTmdb = new Map<string, string>(); // numericMdlId → tmdbExternalId
-    const mdlSeasonMap = new Map<string, number>(); // numericMdlId → season number (season links only)
-    const mdlRatingMap = new Map<string, number>(); // numericMdlId → mdlRating
-    for (const item of cached) {
-        const numericId = item.mdlSlug.split("-")[0];
-        mdlToTmdb.set(numericId, item.tmdbExternalId);
-        if (item.mdlRating != null) mdlRatingMap.set(numericId, item.mdlRating);
-    }
-    for (const item of seasonLinkRows) {
-        const numericId = item.mdlSlug.split("-")[0];
-        if (!mdlToTmdb.has(numericId)) mdlToTmdb.set(numericId, item.tmdbExternalId);
-        mdlSeasonMap.set(numericId, item.season);
-        if (item.mdlRating != null && !mdlRatingMap.has(numericId)) mdlRatingMap.set(numericId, item.mdlRating);
-    }
-    const aliasNumericIds = new Set<string>();
-    for (const item of aliasRows) {
-        const numericId = item.mdlSlug.split("-")[0];
-        if (!mdlToTmdb.has(numericId)) mdlToTmdb.set(numericId, item.tmdbExternalId);
-        aliasNumericIds.add(numericId);
-        // aliases have no season param — they link directly to the main show page
-    }
+    const { mdlToTmdb, mdlSeasonMap, mdlRatingMap, aliasNumericIds } = await resolveWorkLinks(mdlIds);
 
     // Batch-fetch TMDB posters for linked works (server-side, cached 1h by Next.js)
     type LinkedEntry = { mdlNumericId: string; tmdbExternalId: string; mediaType: "tv" | "movie"; hasMdlImage: boolean };
@@ -537,6 +432,17 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                                     View on MDL
                                     <ExternalLink className="h-3 w-3" />
                                 </a>
+                                <span className="text-fg-dim">·</span>
+                                {/* Opens the co-star lookup with this person in the
+                                    first slot: the question is nearly always asked
+                                    from a fiche, so half the input is already known. */}
+                                <Link
+                                    href={`/people/together?a=${encodeURIComponent(slug)}`}
+                                    className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors"
+                                >
+                                    <Users className="h-3 w-3" />
+                                    Worked with…
+                                </Link>
                             </div>
                         </div>
 

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { kuryanaGetPerson, kuryanaGetDetails, mdlTitleFromLink, type KuryanaWorkItem, type KuryanaPersonResult } from "@/lib/kuryana";
+import { kuryanaGetDetails, mdlTitleFromLink, type KuryanaWorkItem } from "@/lib/kuryana";
+import { loadPersonWorks } from "@/lib/person-works";
 import { buildTasteProfile, type RecMediaItem } from "@/lib/recommendation";
 import type { Prisma } from "@prisma/client";
 
@@ -35,7 +36,6 @@ const MIN_ACTOR_AFFINITY = 0.2;
 // the full cast of a single beloved show isn't a list of favorites.
 const MIN_DISTINCT_SHOWS = 2;
 const MAX_ITEMS = 14;
-const PERSON_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 // How long a stored poster stands before it is read again. An unreleased drama
 // cycles through placeholder, teaser and final artwork — and renames itself on
 // the way — so it is re-read on roughly every recompute (the radar payload
@@ -65,24 +65,6 @@ function extractFullMdlSlug(link: string): string | null {
     return match ? match[1] : null;
 }
 
-// Person filmography with the same 7-day DB cache the /people page uses
-async function getPersonWorks(slug: string): Promise<KuryanaPersonResult["data"] | null> {
-    const staleAt = new Date(Date.now() - PERSON_CACHE_TTL_MS);
-    const cachedRow = await prisma.cachedKuryanaPerson.findUnique({ where: { slug } });
-    if (cachedRow && cachedRow.cachedAt > staleAt) {
-        return cachedRow.dataJson as KuryanaPersonResult["data"];
-    }
-    const fetched = await kuryanaGetPerson(slug);
-    const data = fetched?.data ?? null;
-    if (data) {
-        await prisma.cachedKuryanaPerson.upsert({
-            where: { slug },
-            create: { slug, dataJson: data as unknown as Prisma.InputJsonValue },
-            update: { dataJson: data as unknown as Prisma.InputJsonValue, cachedAt: new Date() },
-        });
-    }
-    return data;
-}
 
 type PosterEntry = { poster: string | null; title: string | null };
 // `upcoming` picks the refresh interval: artwork for a show that hasn't aired
@@ -322,7 +304,7 @@ export async function computeActorRadar(userId: string): Promise<ActorRadarPaylo
 
 
     // Fetch filmographies in parallel (7-day cached in DB)
-    const personResults = await Promise.allSettled(topActors.map((a) => getPersonWorks(a.slug)));
+    const personResults = await Promise.allSettled(topActors.map((a) => loadPersonWorks(a.slug)));
 
     const currentYear = new Date().getFullYear();
     type PoolEntry = {

@@ -477,6 +477,15 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             },
             {
                 kind: "command",
+                key: "together",
+                section: null,
+                label: "Worked with…",
+                icon: Users,
+                keywords: "worked with together co-star costar shared credits compare two people pair actors",
+                run: () => goTo("/people/together"),
+            },
+            {
+                kind: "command",
                 key: "undo",
                 section: null,
                 label: "Undo last watched episode",
@@ -485,7 +494,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 run: () => void undo(),
             },
         ],
-        [openMenu, undo],
+        [openMenu, undo, goTo],
     );
 
     const menuRows = useCallback(
@@ -569,6 +578,15 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     icon: ChevronRight,
                     keywords: "open go to page view profile",
                     run: () => goTo(`/people/${person.slug}`),
+                },
+                {
+                    kind: "command",
+                    key: "person-together",
+                    section: null,
+                    label: "Worked with…",
+                    icon: Users,
+                    keywords: "worked with together co-star costar shared credits compare pair",
+                    run: () => goTo(`/people/together?a=${encodeURIComponent(person.slug)}`),
                 },
             ];
             // The index query already knew these, so the answer to "what have I
