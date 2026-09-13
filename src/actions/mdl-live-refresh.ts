@@ -65,6 +65,7 @@ export async function refreshMdlLiveData(
         const mdlPopularity = d.details?.popularity ? parseInt(d.details.popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(d.details?.watchers);
         const aired = d.details?.airs ?? d.details?.aired ?? null;
+        const duration = d.details?.duration || null;
 
         // Repairs carried on the back of a request already being made.
         //
@@ -87,7 +88,7 @@ export async function refreshMdlLiveData(
 
         // cachedAt is left alone on purpose — see the schema comment. Touching it
         // would keep pushing the cast/synopsis refresh out of reach.
-        const data = { mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, liveRefreshedAt: new Date(), ...repair };
+        const data = { mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, duration, liveRefreshedAt: new Date(), ...repair };
         if (useSeason) {
             await prisma.mdlSeasonLink.update({ where: { id: row.id }, data });
         } else {

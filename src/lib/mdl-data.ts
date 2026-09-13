@@ -33,6 +33,7 @@ export interface MdlData {
     // MDL's broadcast range for this exact entry — per-season, unlike TMDB's
     // show-level first/last_air_date
     aired: string | null;
+    duration: string | null;
     tags: MdlTag[];
     genres: string[];
     cast: MdlCast | null;
@@ -144,6 +145,7 @@ export const getMdlSeasonData = cache(async function getMdlSeasonData(
             mdlPopularity: row.mdlPopularity,
             mdlWatchers: row.mdlWatchers,
             aired: row.aired,
+            duration: row.duration ?? null,
             tags: parseTags(row.tags),
             genres: (row.genres as string[]) ?? [],
             cast,
@@ -200,6 +202,7 @@ function scheduleMdlRefresh(tmdbExternalId: string, mdlSlug: string) {
                         mdlPopularity: popularity ? parseInt(popularity.replace("#", "")) : null,
                         mdlWatchers: parseMdlWatchers(d.details?.watchers),
                         aired: d.details?.airs ?? d.details?.aired ?? null,
+                        duration: d.details?.duration || null,
                         tags: tags as unknown as Prisma.InputJsonValue,
                         genres: d.others?.genres ?? [],
                         directors: d.others?.directors ?? [],
@@ -267,6 +270,7 @@ export const getMdlData = cache(async function getMdlData(
             mdlPopularity: cached.mdlPopularity,
             mdlWatchers: cached.mdlWatchers,
             aired: cached.aired,
+            duration: cached.duration,
             tags: parseTags(cached.tags),
             genres: cachedGenres ?? [],
             cast,
@@ -318,6 +322,7 @@ export const getMdlData = cache(async function getMdlData(
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
         const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+        const duration = details.data.details?.duration || null;
         const tags: MdlTag[] = (details.data.others?.tags ?? []).map((t) => ({ id: t.id, name: cleanTagName(t.name) })).filter((t) => t.name.length > 0);
         const genres = details.data.others?.genres ?? [];
         const directors = details.data.others?.directors ?? [];
@@ -343,6 +348,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity,
                 mdlWatchers,
                 aired,
+                duration,
                 tags: tags as unknown as Prisma.InputJsonValue,
                 genres,
                 castJson: cast as unknown as Prisma.InputJsonValue,
@@ -357,6 +363,7 @@ export const getMdlData = cache(async function getMdlData(
                 mdlPopularity,
                 mdlWatchers,
                 aired,
+                duration,
                 tags: tags as unknown as Prisma.InputJsonValue,
                 genres,
                 castJson: cast as unknown as Prisma.InputJsonValue,
@@ -367,7 +374,7 @@ export const getMdlData = cache(async function getMdlData(
             },
         });
 
-        return { mdlSlug: match.slug, mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, tags, genres, cast, synopsis };
+        return { mdlSlug: match.slug, mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, duration, tags, genres, cast, synopsis };
     } catch (e) {
         console.error("[MDL] Failed to fetch MDL data for:", title, e);
         return null;

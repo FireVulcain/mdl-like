@@ -13,6 +13,7 @@ import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
 import { MdlRankRow } from "@/components/media/mdl-rank-row";
 import { MdlAiredRow } from "@/components/media/mdl-aired-row";
+import { MdlDurationRow } from "@/components/media/mdl-duration-row";
 import { MdlLiveRefresh } from "@/components/media/mdl-live-refresh";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MdlSection } from "@/components/media/mdl-section";
@@ -840,11 +841,36 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </>
                             )}
 
-                            {media.duration && (
-                                <>
-                                    <span className="text-fg-muted font-medium">Duration</span>
-                                    <span className="text-fg">{media.duration}</span>
-                                </>
+                            {/* TMDB's runtime when it has one; MDL's otherwise. The
+                                fallback keeps TMDB's figure on screen while MDL's
+                                row streams in, so a page that has one never blinks. */}
+                            {isMdlRelevant ? (
+                                <Suspense
+                                    fallback={
+                                        media.duration ? (
+                                            <>
+                                                <span className="text-fg-muted font-medium">Duration</span>
+                                                <span className="text-fg">{media.duration}</span>
+                                            </>
+                                        ) : null
+                                    }
+                                >
+                                    <MdlDurationRow
+                                        externalId={media.externalId}
+                                        title={media.title}
+                                        year={media.year}
+                                        nativeTitle={media.nativeTitle}
+                                        season={selectedSeason}
+                                        fallback={media.duration}
+                                    />
+                                </Suspense>
+                            ) : (
+                                media.duration && (
+                                    <>
+                                        <span className="text-fg-muted font-medium">Duration</span>
+                                        <span className="text-fg">{media.duration}</span>
+                                    </>
+                                )
                             )}
 
                             {media.contentRating && (
@@ -1000,11 +1026,33 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     <span className="text-fg">{media.network}</span>
                                 </>
                             )}
-                            {media.duration && (
-                                <>
-                                    <span className="text-fg-muted">Duration</span>
-                                    <span className="text-fg">{media.duration}</span>
-                                </>
+                            {isMdlRelevant ? (
+                                <Suspense
+                                    fallback={
+                                        media.duration ? (
+                                            <>
+                                                <span className="text-fg-muted">Duration</span>
+                                                <span className="text-fg">{media.duration}</span>
+                                            </>
+                                        ) : null
+                                    }
+                                >
+                                    <MdlDurationRow
+                                        externalId={media.externalId}
+                                        title={media.title}
+                                        year={media.year}
+                                        nativeTitle={media.nativeTitle}
+                                        season={selectedSeason}
+                                        fallback={media.duration}
+                                    />
+                                </Suspense>
+                            ) : (
+                                media.duration && (
+                                    <>
+                                        <span className="text-fg-muted">Duration</span>
+                                        <span className="text-fg">{media.duration}</span>
+                                    </>
+                                )
                             )}
                             {media.contentRating && (
                                 <>

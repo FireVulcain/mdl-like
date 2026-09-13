@@ -124,6 +124,7 @@ export async function createMdlSeasonLink(
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details?.data?.details?.watchers);
         const aired = details?.data?.details?.airs ?? details?.data?.details?.aired ?? null;
+        const duration = details?.data?.details?.duration || null;
         const tags = details?.data?.others?.tags ?? [];
 
         const cast: MdlCast | null = castResult?.data?.casts
@@ -146,6 +147,7 @@ export async function createMdlSeasonLink(
                 mdlPopularity,
                 mdlWatchers,
                 aired,
+                duration,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 cachedAt: new Date(),
@@ -157,6 +159,7 @@ export async function createMdlSeasonLink(
                 mdlPopularity,
                 mdlWatchers,
                 aired,
+                duration,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 cachedAt: new Date(),
@@ -186,6 +189,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details?.data?.details?.watchers);
         const aired = details?.data?.details?.airs ?? details?.data?.details?.aired ?? null;
+        const duration = details?.data?.details?.duration || null;
         const tags = details?.data?.others?.tags ?? [];
         const directors = details?.data?.others?.directors ?? [];
         const screenwriters = details?.data?.others?.screenwriter ?? [];
@@ -209,6 +213,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
                 mdlPopularity,
                 mdlWatchers,
                 aired,
+                duration,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 directors,
@@ -221,6 +226,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
                 mdlPopularity,
                 mdlWatchers,
                 aired,
+                duration,
                 tags,
                 castJson: cast as unknown as Prisma.InputJsonValue,
                 directors,

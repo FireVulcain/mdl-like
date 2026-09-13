@@ -401,6 +401,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
                     const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+                    const duration = details.data.details?.duration || null;
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];
                     const directors = details.data.others?.directors ?? [];
@@ -421,6 +422,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                             mdlPopularity,
                             mdlWatchers,
                             aired,
+                            duration,
                             tags,
                             ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                             ...(cast ? { castJson: cast as unknown as Prisma.InputJsonValue } : {}),
@@ -468,13 +470,14 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
                     const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+                    const duration = details.data.details?.duration || null;
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];
 
                     await prisma.mdlSeasonLink.update({
                         where: { tmdbExternalId_season: { tmdbExternalId: link.tmdbExternalId, season: link.season } },
                         data: {
-                            mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, tags,
+                            mdlRating, mdlRanking, mdlPopularity, mdlWatchers, aired, duration, tags,
                             ...(genres.length ? { genres: genres as unknown as Prisma.InputJsonValue } : {}),
                             cachedAt: new Date(),
                         },

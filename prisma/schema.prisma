@@ -236,6 +236,9 @@ model CachedMdlData {
   // MDL files each season as its own entry, so it is the only per-season
   // source we have: TMDB's first/last_air_date are show-level.
   aired          String?
+  // MDL's own running time, e.g. "1 hr. 10 min." — the fallback for the
+  // Duration row, since TMDB leaves episode_run_time empty on most dramas.
+  duration       String?
   synopsis       String?
   // Last light refresh of the volatile numbers (rating, rank, watchers).
   // Deliberately separate from cachedAt: bumping that one would keep pushing
@@ -343,6 +346,7 @@ model MdlSeasonLink {
   // MDL files each season as its own entry, so it is the only per-season
   // source we have: TMDB's first/last_air_date are show-level.
   aired          String?
+  duration       String?
   synopsis       String?
   // Last light refresh of the volatile numbers (rating, rank, watchers).
   // Deliberately separate from cachedAt: bumping that one would keep pushing
