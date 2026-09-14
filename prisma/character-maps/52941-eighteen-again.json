@@ -2,6 +2,7 @@
   "version": 1,
   "mdlSlug": "52941-eighteen-again",
   "title": "18 Again",
+  "asianwiki": "18 Again (Korean Drama)",
   "native": "18 어게인",
   "year": 2020,
   "country": "KR",
@@ -27,10 +28,12 @@
         {
           "name": "Yoon Sang Hyun",
           "image": "https://i.mydramalist.com/VXPgnQ_5m.jpg",
-          "era": "adult"
+          "era": "adult",
+          "still": "https://asianwiki.com/images/c/cc/18_Again-KD-Yoon_Sang-Hyun.jpg"
         }
       ],
-      "note": "Thirty-seven, fired and about to be divorced — then eighteen again, enrolled beside his own children"
+      "note": "Thirty-seven, fired and about to be divorced — then eighteen again, enrolled beside his own children",
+      "still": "https://asianwiki.com/images/d/d4/18_Again-KD-Lee_Do-Hyun.jpg"
     },
     {
       "id": "dajeong",
@@ -43,10 +46,12 @@
         {
           "name": "Han So Eun",
           "image": "https://i.mydramalist.com/EPXN5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/6/6e/18_Again-Han_So_Eun.jpg"
         }
       ],
-      "note": "Rookie announcer at 37"
+      "note": "Rookie announcer at 37",
+      "still": "https://asianwiki.com/images/6/67/18_Again-KD-Kim_Ha-Neul.jpg"
     },
     {
       "id": "sia",
@@ -55,7 +60,8 @@
       "image": "https://i.mydramalist.com/l0Ne7L_5m.jpg",
       "group": "The twins",
       "inCast": true,
-      "note": "Si U's twin sister"
+      "note": "Si U's twin sister",
+      "still": "https://asianwiki.com/images/1/1e/18_Again-KD-Roh_Jeong-Eui.jpg"
     },
     {
       "id": "siu",
@@ -64,7 +70,8 @@
       "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
       "group": "The twins",
       "inCast": true,
-      "note": "Si A's twin brother"
+      "note": "Si A's twin brother",
+      "still": "https://asianwiki.com/images/0/06/18_Again-KD-Ryeo-Un.jpg"
     },
     {
       "id": "jihun",
@@ -73,7 +80,8 @@
       "image": "https://i.mydramalist.com/xzdP0_5m.jpg",
       "group": "Around Da Jeong",
       "inCast": true,
-      "note": "Pitcher for the Seum Wolves; raises his niece"
+      "note": "Pitcher for the Seum Wolves; raises his niece",
+      "still": "https://asianwiki.com/images/f/f6/18_Again-KD-Wi_Ha-Joon.jpg"
     },
     {
       "id": "ilgwon",
@@ -81,7 +89,8 @@
       "actor": "Lee Ki Woo",
       "image": "https://i.mydramalist.com/AB8PDX_5m.jpg",
       "group": "Around Da Jeong",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/8c/18_Again-KD-Lee_Ki-Woo.jpg"
     },
     {
       "id": "deokjin",
@@ -94,10 +103,12 @@
         {
           "name": "Hwang Dae Ki",
           "image": "https://i.mydramalist.com/6ZAZp_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/8/82/18_Again-Hwang_Dae_Ki.jpg"
         }
       ],
-      "note": "Runs Go Go Play; poses as U Yeong's father"
+      "note": "Runs Go Go Play; poses as U Yeong's father",
+      "still": "https://asianwiki.com/images/1/1c/18_Again-KD-Kim_Gang-Hyun.jpg"
     },
     {
       "id": "aerin",
@@ -106,7 +117,8 @@
       "image": "https://i.mydramalist.com/zBJBEJ_5m.jpg",
       "group": "Around Da Jeong",
       "inCast": true,
-      "note": "Divorce lawyer"
+      "note": "Divorce lawyer",
+      "still": "https://asianwiki.com/images/f/f2/18_Again-KD-Lee_Mi-Do.jpg"
     },
     {
       "id": "haein",
@@ -115,7 +127,8 @@
       "image": "https://i.mydramalist.com/XNLkd_5m.jpg",
       "group": "Serim High",
       "inCast": true,
-      "note": "Homeroom teacher of 2-7; gamer"
+      "note": "Homeroom teacher of 2-7; gamer",
+      "still": "https://asianwiki.com/images/d/d5/18_Again-KD-Kim_Yoo-Ri.jpg"
     },
     {
       "id": "jiho",
@@ -124,7 +137,8 @@
       "image": "https://i.mydramalist.com/JB43kd_5m.jpg",
       "group": "Serim High",
       "inCast": true,
-      "note": "Class president of 2-7"
+      "note": "Class president of 2-7",
+      "still": "https://asianwiki.com/images/6/65/18_Again-Choi_Bo-Min.jpg"
     },
     {
       "id": "jaseong",
@@ -133,7 +147,8 @@
       "image": "https://i.mydramalist.com/Lwr2A3_5m.jpg",
       "group": "Serim High",
       "inCast": true,
-      "note": "Captain of the basketball team"
+      "note": "Captain of the basketball team",
+      "still": "https://asianwiki.com/images/5/52/18_Again-KD-Hwang_In-Yeop.jpg"
     },
     {
       "id": "bobae",
@@ -141,7 +156,8 @@
       "actor": "Oh So Hyun",
       "image": "https://i.mydramalist.com/dA7Jgm.jpg",
       "group": "Serim High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b2/18_Again-Oh_So_Hyun1.jpg"
     },
     {
       "id": "somi",
@@ -149,7 +165,8 @@
       "actor": "Lee Eun Jae",
       "image": "https://i.mydramalist.com/d0Yq1d_5m.jpg",
       "group": "Serim High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4e/18_Again-KD-Lee_Eun-Jae.jpg"
     },
     {
       "id": "yeongseon",
@@ -157,7 +174,8 @@
       "actor": "Ryu Da In",
       "image": "https://i.mydramalist.com/Bd76J5_5m.jpg",
       "group": "Serim High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/04/18_Again-KD-Ryu_Da-Bin.jpg"
     },
     {
       "id": "sanghwi",
@@ -166,7 +184,8 @@
       "image": "https://i.mydramalist.com/1g5nQm.jpg",
       "group": "JBC",
       "inCast": true,
-      "note": "Head of announcers"
+      "note": "Head of announcers",
+      "still": "https://asianwiki.com/images/f/f2/18_Again-KD-Ahn_Nae-Sang.jpg"
     },
     {
       "id": "unggi",
@@ -175,7 +194,8 @@
       "image": "https://i.mydramalist.com/4j7er_5m.jpg",
       "group": "JBC",
       "inCast": true,
-      "note": "Team leader"
+      "note": "Team leader",
+      "still": "https://asianwiki.com/images/a/aa/18_Again-KD-Jang_Hyuk-Jin.jpg"
     },
     {
       "id": "yumi",
@@ -184,7 +204,8 @@
       "image": "https://i.mydramalist.com/g0R3LP_5m.jpg",
       "group": "JBC",
       "inCast": true,
-      "note": "Rookie announcer"
+      "note": "Rookie announcer",
+      "still": "https://asianwiki.com/images/9/92/18_Again-KD-Kim_Yoon-Hye.jpg"
     },
     {
       "id": "jayeong",
@@ -193,7 +214,8 @@
       "image": "https://i.mydramalist.com/6LOkpm.jpg",
       "group": "JBC",
       "inCast": true,
-      "note": "Rookie announcer"
+      "note": "Rookie announcer",
+      "still": "https://asianwiki.com/images/6/6f/18_Again-KD-Ko_Eun-Min.jpg"
     },
     {
       "id": "gitae",
@@ -202,7 +224,8 @@
       "image": "https://i.mydramalist.com/0K6eY_5m.jpg",
       "group": "JBC",
       "inCast": true,
-      "note": "Rookie announcer"
+      "note": "Rookie announcer",
+      "still": "https://asianwiki.com/images/4/4c/18_Again-KD-Yang_Dae-Hyeok.jpg"
     },
     {
       "id": "inja",
@@ -210,7 +233,8 @@
       "actor": "Kim Mi Kyung",
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
       "group": "The parents",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/95/18_Again-Kim_Mi-Kyung.jpg"
     },
     {
       "id": "juman",
@@ -218,7 +242,8 @@
       "actor": "Lee Byung Joon",
       "image": "https://i.mydramalist.com/1gyLQm.jpg",
       "group": "The parents",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/ed/18_Again-KD-Lee_Byung-Joon.jpg"
     }
   ],
   "links": [
