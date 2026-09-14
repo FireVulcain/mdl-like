@@ -278,21 +278,18 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         if (sh.name !== "__center") blocks.push({ name: sh.name, x: sh.x, y: sh.y, w: sh.w, h: sh.h });
     }
 
-    // Several links between one pair fan out as arcs; several links into one
-    // face stagger where each label sits along its line.
+    // Several links between one pair fan out as arcs.
     const pairCount = new Map<string, number>();
     const pairIdx = new Map<number, number>();
-    const atNode = new Map<string, number>();
-    const tOf = new Map<number, number>();
     for (const { l, index } of links) {
         const k = [l.from, l.to].sort().join("|");
         pairIdx.set(index, pairCount.get(k) ?? 0);
         pairCount.set(k, (pairCount.get(k) ?? 0) + 1);
-        const i = atNode.get(l.to) ?? 0;
-        atNode.set(l.to, i + 1);
-        tOf.set(index, [0.5, 0.36, 0.64, 0.28, 0.72, 0.2, 0.8][i % 7]);
     }
 
+    // How far above the row a lead↔lead link rises when a third lead sits
+    // between its ends: enough for its line and its word to clear that face.
+    const OVER = PORTRAIT_R + 28;
 
     const laid: LaidOutLink[] = links.map(({ l, index }) => {
         const a = byId.get(l.from)!, b = byId.get(l.to)!;
@@ -303,11 +300,18 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         // A→B and one B→A took the same side and their arcs lay on each other.
         const bend = n > 1 ? (i - (n - 1) / 2) * 34 * (l.from < l.to ? 1 : -1) : 0;
         const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
-        const cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2, cy = (a.y + b.y) / 2 + (dx / len) * bend * 2;
-        const t = tOf.get(index)!;
-        const px = (1 - t) * (1 - t) * a.x + 2 * (1 - t) * t * cx + t * t * b.x;
-        const py = (1 - t) * (1 - t) * a.y + 2 * (1 - t) * t * cy + t * t * b.y;
-        return { ...l, index, x1: a.x, y1: a.y, x2: b.x, y2: b.y, cx, cy, lx: px, ly: py, onLine: onLine(l) };
+        // Three or more leads sit in one row, so a link between the outer two
+        // runs straight through the middle face — and its word lands on it.
+        // That one arcs over the row instead. Only leads: the households'
+        // faces are never between two ends of a link on a straight line.
+        const over = a.lead && b.lead && people.some((p) => p.lead && p !== a && p !== b && Math.abs(p.y - a.y) < 1 && (p.x - a.x) * (p.x - b.x) < 0);
+        const cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2;
+        const cy = (a.y + b.y) / 2 + (dx / len) * bend * 2 - (over ? OVER * 2 : 0);
+        // The word sits at the line's middle: a straight line's midpoint, or an
+        // arc's apex — between two faces on the compact chart, that is the one
+        // spot with no face under it.
+        const lx = (a.x + 2 * cx + b.x) / 4, ly = (a.y + 2 * cy + b.y) / 4;
+        return { ...l, index, x1: a.x, y1: a.y, x2: b.x, y2: b.y, cx, cy, lx, ly, onLine: onLine(l) };
     });
 
     return { width, height, people, links: laid, blocks };
