@@ -35,11 +35,19 @@ const pill = (on: boolean, tone = "") =>
         on ? `bg-surface-4 text-fg ring-1 ring-line-strong ${tone}` : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
     }`;
 
-function Face({ person }: { person: { image: string | null; name: string; inCast: boolean } | null }) {
+// Two sizes: the small one rides inside a line of text, the large one matches
+// the portrait the chart draws (2 × PORTRAIT_R). A face in the panel is what
+// the reader came down here to look at, so it should never be the smaller of
+// the two pictures of the same person on screen.
+function Face({ person, size = "sm" }: { person: { image: string | null; name: string; inCast: boolean } | null; size?: "sm" | "lg" }) {
     if (!person) return null;
+    const px = size === "lg" ? 2 * PORTRAIT_R : 32;
     return (
-        <span className={`relative h-8 w-8 shrink-0 overflow-hidden rounded-full bg-surface-2 ${person.inCast ? "" : "border border-dashed border-fg-dim"}`}>
-            {person.image && <Image unoptimized src={person.image} alt="" fill sizes="32px" className="object-cover" />}
+        <span
+            className={`relative shrink-0 overflow-hidden rounded-full bg-surface-2 ${person.inCast ? "" : "border border-dashed border-fg-dim"}`}
+            style={{ width: px, height: px }}
+        >
+            {person.image && <Image unoptimized src={person.image} alt="" fill sizes={`${px}px`} className="object-cover" />}
         </span>
     );
 }
@@ -470,30 +478,30 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                 </div>
             ) : selectedPerson ? (
                 <div className="rounded-xl border border-line-soft bg-surface-1 px-4 py-3 text-sm">
-                    <div className="flex items-center gap-2.5">
-                        <Face person={selectedPerson} />
-                        <span className="font-semibold text-fg">{selectedPerson.name}</span>
-                        <span className="font-mono text-[11px] text-fg-dim">{selectedPerson.actor}</span>
+                    {/* The person, and the same character at another age: one row of
+                        portraits at the size the chart draws them, each with the actor
+                        and which stretch of the life they cover. The faces are what the
+                        reader came down here for — the chart above can only afford one. */}
+                    <div className="flex items-start gap-x-5 gap-y-3">
+                        <div className="flex flex-wrap items-start gap-x-5 gap-y-3">
+                            <span className="flex flex-col items-center gap-1.5 text-center">
+                                <Face person={selectedPerson} size="lg" />
+                                <span className="font-semibold text-fg">{selectedPerson.name}</span>
+                                <span className="font-mono text-[11px] text-fg-dim">{selectedPerson.actor}</span>
+                            </span>
+                            {(selectedPerson.alsoPlayedBy ?? []).map((a) => (
+                                <span key={`${a.name}-${a.era ?? ""}`} className="flex flex-col items-center gap-1.5 text-center">
+                                    <Face person={{ image: a.image ?? null, name: a.name, inCast: true }} size="lg" />
+                                    <span className="text-xs text-fg-soft">{a.era ? ERA_LABEL[a.era] : "also played by"}</span>
+                                    <span className="font-mono text-[11px] text-fg-dim">{a.name}</span>
+                                </span>
+                            ))}
+                        </div>
                         <span className="ml-auto text-xs text-fg-dim">
                             {personLinks.length} link{personLinks.length === 1 ? "" : "s"}
                         </span>
                     </div>
-                    {/* The same character at another age. The chart draws one portrait and
-                        names one actor; here there is room for the others' faces, which is
-                        what makes "the father is also Choi Won Young" land. */}
-                    {selectedPerson.alsoPlayedBy && selectedPerson.alsoPlayedBy.length > 0 && (
-                        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
-                            <span className="text-xs text-fg-dim">Also played by</span>
-                            {selectedPerson.alsoPlayedBy.map((a) => (
-                                <span key={`${a.name}-${a.era ?? ""}`} className="inline-flex items-center gap-2">
-                                    <Face person={{ image: a.image ?? null, name: a.name, inCast: true }} />
-                                    <span className="font-mono text-[11px] text-fg-soft">{a.name}</span>
-                                    {a.era && <span className="text-xs text-fg-dim">{ERA_LABEL[a.era]}</span>}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-                    {selectedPerson.note && <p className="mt-1 text-xs text-fg-dim">{selectedPerson.note}</p>}
+                    {selectedPerson.note && <p className="mt-2 text-xs text-fg-dim">{selectedPerson.note}</p>}
                     {personLinks.length > 0 && (
                         <ul className="mt-2 divide-y divide-line-soft">
                             {personLinks.map((l) => {
