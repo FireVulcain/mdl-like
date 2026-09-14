@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { mediaService } from "@/services/media.service";
 import { mediaMetadata } from "@/lib/page-metadata";
 import { getDisplayPreferences } from "@/actions/preferences";
-import { getCharacterMap, resolveMdlSlug } from "@/lib/character-map-store";
+import { getCharacterMap, isCompleted, resolveMdlSlug } from "@/lib/character-map-store";
 import { CharacterMap } from "@/components/media/character-map";
 
 type Params = Promise<{ id: string }>;
@@ -28,7 +28,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
     const [{ id }, { season }] = await Promise.all([params, searchParams]);
     const selectedSeason = season ? parseInt(season) || 1 : 1;
 
-    const [media, slug, displayPrefs] = await Promise.all([mediaService.getDetails(id), resolveMdlSlug(id, selectedSeason), getDisplayPreferences()]);
+    const [media, slug, displayPrefs, completed] = await Promise.all([mediaService.getDetails(id), resolveMdlSlug(id, selectedSeason), getDisplayPreferences(), isCompleted(id, selectedSeason)]);
     if (!media) notFound();
     const map = await getCharacterMap(slug);
     if (!map) notFound();
@@ -61,7 +61,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
 
                 <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
-                <CharacterMap map={map} hideSpoilers={displayPrefs.hideSpoilers} />
+                <CharacterMap map={map} hideSpoilers={displayPrefs.hideSpoilers} completed={completed} />
             </div>
         </div>
     );

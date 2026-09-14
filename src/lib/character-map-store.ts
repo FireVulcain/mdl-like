@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { prisma } from "@/lib/prisma";
+import { getCurrentUserId } from "@/lib/session";
 import type { CharacterMapData, MapLink, MapPerson } from "@/lib/character-map";
 
 /** The chart stored for an MDL entry, or null. Cached per request. */
@@ -35,6 +36,39 @@ export const resolveMdlSlug = cache(async (id: string, season: number): Promise<
         return cached && !cached.mdlDisabled ? cached.mdlSlug : null;
     } catch {
         return null;
+    }
+});
+
+/**
+ * Whether the reader has finished this media, by the watchlist. A finished
+ * show gets the chart with everything open — inferred links and reveals —
+ * since there is nothing left to spoil; anything else opens guarded. An MDL
+ * page also checks the TMDB entry it is linked to, and the other way round,
+ * the way the media page finds its watchlist row.
+ */
+export const isCompleted = cache(async (id: string, season: number): Promise<boolean> => {
+    let userId: string;
+    try {
+        userId = await getCurrentUserId();
+    } catch {
+        return false;
+    }
+    const source = id.startsWith("mdl-") ? "MDL" : id.startsWith("tmdb-") ? "TMDB" : null;
+    if (!source) return false;
+    const externalId = id.slice(source === "MDL" ? 4 : 5);
+    const keys: { externalId: string; source: string }[] = [{ externalId, source }];
+    try {
+        if (source === "MDL") {
+            const linked = await prisma.cachedMdlData.findFirst({ where: { mdlSlug: externalId }, select: { tmdbExternalId: true } });
+            if (linked) keys.push({ externalId: linked.tmdbExternalId, source: "TMDB" });
+        } else {
+            const cached = await prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: externalId }, select: { mdlSlug: true } });
+            if (cached) keys.push({ externalId: cached.mdlSlug, source: "MDL" });
+        }
+        const row = await prisma.userMedia.findFirst({ where: { userId, season, OR: keys }, select: { status: true } });
+        return row?.status === "Completed";
+    } catch {
+        return false;
     }
 });
 

@@ -75,11 +75,14 @@ const alsoLine = (p: MapPerson) => {
  * (reveals follow the hideSpoilers preference to start with), the links no
  * sentence backs, and the people MDL's cast does not carry.
  */
-export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hideSpoilers: boolean }) {
+export function CharacterMap({ map, hideSpoilers, completed = false }: { map: CharacterMapData; hideSpoilers: boolean; completed?: boolean }) {
     const [everyone, setEveryone] = useState(true);
     const [types, setTypes] = useState<Set<LinkType>>(() => new Set(TYPES));
-    const [reveals, setReveals] = useState(!hideSpoilers);
-    const [inferred, setInferred] = useState(false);
+    // A show the reader has finished opens with everything on the table: the
+    // reveals, and the links no sentence backs — which are mostly what the
+    // story is known to do. Anything else keeps them behind their toggles.
+    const [reveals, setReveals] = useState(completed || !hideSpoilers);
+    const [inferred, setInferred] = useState(completed);
     const [ghosts, setGhosts] = useState(true);
     const [labels, setLabels] = useState(true);
     // What the panel under the chart is about: one link, or one person and
