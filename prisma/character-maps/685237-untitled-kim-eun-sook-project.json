@@ -1,0 +1,866 @@
+{
+  "version": 1,
+  "mdlSlug": "685237-untitled-kim-eun-sook-project",
+  "title": "The Glory",
+  "native": "더 글로리",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (82 roles, 6 main)",
+    "MDL synopsis (Soompi)",
+    "ko.wikipedia 등장인물 (4k chars)",
+    "en.wikipedia Cast (not used — ko is fuller)"
+  ],
+  "main": [
+    "dongeun",
+    "yeojeong",
+    "yeonjin",
+    "hyeonnam",
+    "jaejun",
+    "doyeong"
+  ],
+  "people": [
+    {
+      "id": "dongeun",
+      "name": "Moon Dong Eun",
+      "actor": "Song Hye Kyo",
+      "image": "https://i.mydramalist.com/KpY8K8_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Ji So",
+          "image": "https://i.mydramalist.com/2wmKLV_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "Homeroom teacher of class 1-2 at Semyeong Elementary — by design"
+    },
+    {
+      "id": "yeonjin",
+      "name": "Park Yeon Jin",
+      "actor": "Im Ji Yeon",
+      "image": "https://i.mydramalist.com/5vL620_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Shin Ye Eun",
+          "image": "https://i.mydramalist.com/mORYq3_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "TV weather presenter; led the group"
+    },
+    {
+      "id": "yeojeong",
+      "name": "Joo Yeo Jung",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
+      "group": "Dong Eun's side",
+      "inCast": true,
+      "note": "Plastic surgeon; teaches her Go"
+    },
+    {
+      "id": "hyeonnam",
+      "name": "Kang Hyun Nam",
+      "actor": "Yeom Hye Ran",
+      "image": "https://i.mydramalist.com/VX2AVJ_5m.jpg",
+      "group": "Dong Eun's side",
+      "inCast": true,
+      "note": "Housekeeper at the Semyeong foundation chairman's house"
+    },
+    {
+      "id": "seona",
+      "name": "Lee Seon Ah",
+      "actor": "Choi Soo In",
+      "image": "https://i.mydramalist.com/xOkmX_5m.jpg",
+      "group": "Dong Eun's side",
+      "inCast": true
+    },
+    {
+      "id": "seokjae",
+      "name": "Lee Seok Jae",
+      "actor": "Ryu Seong Hyeon",
+      "image": "https://i.mydramalist.com/YYBZLe_5m.jpg",
+      "group": "Dong Eun's side",
+      "inCast": true,
+      "note": "Gambler and alcoholic"
+    },
+    {
+      "id": "jaejun",
+      "name": "Jeon Jae Jun",
+      "actor": "Park Sung Hoon",
+      "image": "https://i.mydramalist.com/mONo42_5m.jpg",
+      "group": "The group",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Song Byeong Geun",
+          "image": "https://i.mydramalist.com/eD40Q_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "Colour-blind heir to a country club"
+    },
+    {
+      "id": "sara",
+      "name": "Lee Sa Ra",
+      "actor": "Kim Hi Eo Ra",
+      "image": "https://i.mydramalist.com/E57ml0_5m.jpg",
+      "group": "The group",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Bae Gang Hee",
+          "image": "https://i.mydramalist.com/epd1e_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "Abstract painter; addict"
+    },
+    {
+      "id": "hyejeong",
+      "name": "Choi Hye Jeong",
+      "actor": "Cha Joo Young",
+      "image": "https://i.mydramalist.com/DkLWKy_5m.jpg",
+      "group": "The group",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Song Ji Woo",
+          "image": "https://i.mydramalist.com/BdwYZq_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "Flight attendant; parents run a laundromat"
+    },
+    {
+      "id": "myeongoh",
+      "name": "Son Myeong Oh",
+      "actor": "Kim Gun Woo",
+      "image": "https://i.mydramalist.com/Xd3dXd_5m.jpg",
+      "group": "The group",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Seo Woo Hyeok",
+          "image": "https://i.mydramalist.com/1wKL8d_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "The lowest of the group"
+    },
+    {
+      "id": "doyeong",
+      "name": "Ha Do Young",
+      "actor": "Jung Sung Il",
+      "image": "https://i.mydramalist.com/l0mxVx_5m.jpg",
+      "group": "Yeon Jin's house",
+      "inCast": true,
+      "note": "CEO of Jaepyeong Construction"
+    },
+    {
+      "id": "yesol",
+      "name": "Ha Ye Sol",
+      "actor": "Oh Ji Yul",
+      "image": "https://i.mydramalist.com/03nK6_5m.jpg",
+      "group": "Yeon Jin's house",
+      "inCast": true,
+      "note": "In class 1-2; colour-blind"
+    },
+    {
+      "id": "yeongae",
+      "name": "Hong Yeong Ae",
+      "actor": "Son Ji Na",
+      "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
+      "group": "Yeon Jin's house",
+      "inCast": true,
+      "note": "Yeon Jin's mother; puts her faith in a shaman. MDL lists the role unnamed"
+    },
+    {
+      "id": "yeongjun",
+      "name": "Shin Yeong Jun",
+      "actor": "Lee Hae Young",
+      "image": "https://i.mydramalist.com/YYRbdz_5m.jpg",
+      "group": "Yeon Jin's house",
+      "inCast": true,
+      "note": "Senior superintendent general"
+    },
+    {
+      "id": "gyeongran",
+      "name": "Kim Gyeong Ran",
+      "actor": "Ahn So Yo",
+      "image": "https://i.mydramalist.com/kA7vkj_5m.jpg",
+      "group": "Sunghan High",
+      "inCast": true,
+      "note": "Clerk at Jae Jun's boutique"
+    },
+    {
+      "id": "sohui",
+      "name": "Yoon So Hee",
+      "actor": "Lee So E",
+      "image": "https://i.mydramalist.com/x4Alpz_5m.jpg",
+      "group": "Sunghan High",
+      "inCast": true,
+      "note": "Their victim before Dong Eun"
+    },
+    {
+      "id": "jongmun",
+      "name": "Kim Jong Moon",
+      "actor": "Park Yoon Hee",
+      "image": "https://i.mydramalist.com/Rv24E_5m.jpg",
+      "group": "Sunghan High",
+      "inCast": true,
+      "note": "Her homeroom teacher then"
+    },
+    {
+      "id": "jeongmi",
+      "name": "Ahn Jeong Mi",
+      "actor": "Jeon Soo Ah",
+      "image": "https://i.mydramalist.com/4KlyQ_5m.jpg",
+      "group": "Sunghan High",
+      "inCast": true,
+      "note": "School nurse"
+    },
+    {
+      "id": "suhan",
+      "name": "Kim Soo Han",
+      "actor": "Kang Gil Woo",
+      "image": "https://i.mydramalist.com/QlW06_5m.jpg",
+      "group": "Sunghan High",
+      "inCast": true,
+      "note": "Her senior at Euicheon University of Education"
+    },
+    {
+      "id": "mihee",
+      "name": "Jeong Mi Hee",
+      "actor": "Park Ji Ah",
+      "image": "https://i.mydramalist.com/dWdzb_5m.jpg",
+      "group": "Dong Eun's past",
+      "inCast": true,
+      "note": "Worked at a barber shop; drinks"
+    },
+    {
+      "id": "landlord",
+      "name": "The landlady",
+      "actor": "Son Sook",
+      "image": "https://i.mydramalist.com/e313Wm.jpg",
+      "group": "Dong Eun's past",
+      "inCast": true,
+      "note": "Owner of Eden Villa and Semyeong Real Estate"
+    },
+    {
+      "id": "sangim",
+      "name": "Park Sang Im",
+      "actor": "Kim Jung Young",
+      "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
+      "group": "Yeo Jung's family",
+      "inCast": true,
+      "note": "Director of Seoul Joo General Hospital"
+    },
+    {
+      "id": "sunghak",
+      "name": "Joo Sung Hak",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "group": "Yeo Jung's family",
+      "inCast": true,
+      "note": "Was the hospital's director"
+    },
+    {
+      "id": "yeongcheon",
+      "name": "Kang Yeong Cheon",
+      "actor": "Lee Moo Saeng",
+      "image": "https://i.mydramalist.com/xnAqE_5m.jpg",
+      "group": "Yeo Jung's family",
+      "inCast": true,
+      "note": "Prisoner No. 3724"
+    },
+    {
+      "id": "gilseong",
+      "name": "Lee Gil Seong",
+      "actor": "Lee Byung Joon",
+      "image": "https://i.mydramalist.com/1gyLQm.jpg",
+      "group": "The parents",
+      "inCast": true,
+      "note": "Pastor"
+    },
+    {
+      "id": "saramother",
+      "name": "Sa Ra's mother",
+      "actor": "Kim Seon Hwa",
+      "image": "https://i.mydramalist.com/Xb03xm.jpg",
+      "group": "The parents",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "doyeongmother",
+      "name": "Do Yeong's mother",
+      "actor": "Oh Min Ae",
+      "image": "https://i.mydramalist.com/r7Kz2_5m.jpg",
+      "group": "The parents",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "jeongho",
+      "name": "Chu Jeong Ho",
+      "actor": "Heo Dong Won",
+      "image": "https://i.mydramalist.com/0gk2O_5m.jpg",
+      "group": "Semyeong Elementary",
+      "inCast": true,
+      "note": "Teacher who photographs the girls"
+    },
+    {
+      "id": "shintae",
+      "name": "Kim Shin Tae",
+      "actor": "Park Sang Jong",
+      "image": "https://i.mydramalist.com/r460g_5m.jpg",
+      "group": "Semyeong Elementary",
+      "inCast": true,
+      "note": "Chairman of the foundation"
+    }
+  ],
+  "links": [
+    {
+      "from": "dongeun",
+      "to": "yeonjin",
+      "type": "rivalry",
+      "label": "the girl she tortured, now her daughter's teacher",
+      "short": "her revenge",
+      "evidence": "그녀는 고등학교 시절 동은이를 괴롭히고 신체적으로 학대하는 비행 청소년 그룹을 이끌었다 / the former victim becomes her homeroom teacher and starts her thorough revenge",
+      "source": "ko.wikipedia · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeojeong",
+      "to": "dongeun",
+      "type": "romance",
+      "label": "the surgeon who teaches her Go, and becomes her executioner",
+      "short": "her executioner",
+      "evidence": "그는 동은이에게 바둑을 가르친다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonnam",
+      "to": "dongeun",
+      "type": "work",
+      "label": "spies for her — the price is her husband",
+      "short": "her informant",
+      "evidence": "그녀는 남편을 죽이는 대가로 그녀의 사기꾼이 되어 동은의 복수를 돕는다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seona",
+      "to": "hyeonnam",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "현남의 딸은 어머니를 따라 아버지의 신체적 학대에 시달린다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokjae",
+      "to": "hyeonnam",
+      "type": "romance",
+      "label": "husband who beats her and the girl",
+      "short": "husband",
+      "evidence": "[Kang Hyun Nam's husband] / 딸과 아내를 학대한 현남 남편",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaejun",
+      "to": "yeonjin",
+      "type": "friend",
+      "label": "in the group; her lover",
+      "short": "the group",
+      "evidence": "그는 동은이를 끊임없이 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaejun",
+      "to": "yeonjin",
+      "type": "romance",
+      "label": "the father of her child",
+      "short": "her lover",
+      "evidence": "연진과 도영의 딸 친부는 재준",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sara",
+      "to": "yeonjin",
+      "type": "friend",
+      "label": "in the group",
+      "short": "the group",
+      "evidence": "그녀는 지속적으로 동은을 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyejeong",
+      "to": "yeonjin",
+      "type": "friend",
+      "label": "in the group — at the bottom with Myeong Oh",
+      "short": "the group",
+      "evidence": "끊임없이 동은을 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myeongoh",
+      "to": "jaejun",
+      "type": "work",
+      "label": "his errand boy",
+      "short": "errand boy",
+      "evidence": "재준의 심부름꾼과 사라의 마약상으로 일한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongoh",
+      "to": "sara",
+      "type": "work",
+      "label": "her dealer",
+      "short": "her dealer",
+      "evidence": "사라의 마약상으로 일한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongoh",
+      "to": "dongeun",
+      "type": "rivalry",
+      "label": "in the group",
+      "short": "abused her",
+      "evidence": "그는 동은이를 끊임없이 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaejun",
+      "to": "dongeun",
+      "type": "rivalry",
+      "label": "in the group",
+      "short": "abused her",
+      "evidence": "동은이를 끊임없이 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sara",
+      "to": "dongeun",
+      "type": "rivalry",
+      "label": "in the group",
+      "short": "abused her",
+      "evidence": "지속적으로 동은을 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyejeong",
+      "to": "dongeun",
+      "type": "rivalry",
+      "label": "in the group",
+      "short": "abused her",
+      "evidence": "끊임없이 동은을 학대하는 그룹의 일원이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doyeong",
+      "to": "yeonjin",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "연진의 남편이자 재평건설 대표이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "doyeong",
+      "to": "dongeun",
+      "type": "bond",
+      "label": "walks into the trap she set for his household",
+      "short": "her Pandora's box",
+      "evidence": "그는 오랫동안 계획된 동은의 덫에 걸려 가족의 행복을 위협하는 판도라의 상자와 마주치게 된다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonjin",
+      "to": "yesol",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "연진과 도영의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doyeong",
+      "to": "yesol",
+      "type": "family",
+      "label": "raises her as his",
+      "short": "father",
+      "evidence": "연진과 도영의 딸 친부는 재준",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaejun",
+      "to": "yesol",
+      "type": "family",
+      "label": "her real father — colour-blind, like him",
+      "short": "birth father",
+      "evidence": "연진과 도영의 딸 친부는 재준. 그녀는 색맹이다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongeun",
+      "to": "yesol",
+      "type": "work",
+      "label": "her homeroom teacher",
+      "short": "her teacher",
+      "evidence": "그녀는 세명초등학교 1-2반에 다닌다 / 세명초등학교 1-2반 담임선생님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongae",
+      "to": "yeonjin",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Park Yeon Jin's mother] / 연진의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongjun",
+      "to": "yeongae",
+      "type": "friend",
+      "label": "her middle-school classmate",
+      "short": "old classmate",
+      "evidence": "영애의 중학교 동창으로 경찰청 차장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongjun",
+      "to": "yeonjin",
+      "type": "work",
+      "label": "buried her crimes",
+      "short": "covers for her",
+      "evidence": "그와 그의 부하들은 연진의 범죄를 은폐하고 사건을 조작함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongran",
+      "to": "jaejun",
+      "type": "work",
+      "label": "clerk at his boutique — their next victim after Dong Eun",
+      "short": "clerk",
+      "evidence": "재준이 운영하는 부티크의 점원. 동은이 학교를 그만둔 후 연진이 속한 그룹에 의해 지속적인 괴롭힘의 대상이",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sohui",
+      "to": "yeonjin",
+      "type": "rivalry",
+      "label": "their victim before Dong Eun — later killed",
+      "short": "killed",
+      "evidence": "동은이 이전에 연진이 속한 그룹으로부터 지속적인 괴롭힘과 학대의 대상이었던 성한고 학생… 결국 살해당함",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongmun",
+      "to": "dongeun",
+      "type": "rivalry",
+      "label": "her homeroom teacher, bribed by their parents",
+      "short": "took bribes",
+      "evidence": "동은의 전 성한고등학교 담임 선생님. 그들의 부모로부터 뇌물을 받고 동은을 학대했다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongmi",
+      "to": "dongeun",
+      "type": "friend",
+      "label": "the one adult at school on her side",
+      "short": "on her side",
+      "evidence": "성한고등학교 양호선생. 그녀는 학교에서 동은을 위하는 유일한 인물이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhan",
+      "to": "jongmun",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "종문의 아들이기도 한 동은의 선배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhan",
+      "to": "dongeun",
+      "type": "work",
+      "label": "her senior at teachers' college",
+      "short": "her senior",
+      "evidence": "[Moon Dong Eun's senior at Euicheon University of Education]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mihee",
+      "to": "dongeun",
+      "type": "family",
+      "label": "mother — took the bribe and abandoned her",
+      "short": "mother",
+      "evidence": "[Moon Dong Eun's mother] / 그녀는 뇌물을 받고 딸을 버렸다",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "landlord",
+      "to": "dongeun",
+      "type": "work",
+      "label": "her landlady at Eden Villa",
+      "short": "landlady",
+      "evidence": "동은이 살던 세명 에덴빌라의 한 부동산 사무실 매니저 겸 소유주",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangim",
+      "to": "yeojeong",
+      "type": "family",
+      "label": "mother — now director of the hospital",
+      "short": "mother",
+      "evidence": "[Joo Yeo Jung's mother] / 여정의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunghak",
+      "to": "yeojeong",
+      "type": "family",
+      "label": "father — murdered by a patient",
+      "short": "father",
+      "evidence": "[Yeo Jeong's father] / 여정의 아버지… 영천에 의해 살해되었다",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongcheon",
+      "to": "sunghak",
+      "type": "rivalry",
+      "label": "the patient who killed him",
+      "short": "killed him",
+      "evidence": "여정의 아버지를 살해한 환자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gilseong",
+      "to": "sara",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Lee Sa Ra's father] / 목사이자 사라의 아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "saramother",
+      "to": "sara",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Lee Sa Ra's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doyeongmother",
+      "to": "doyeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ha Do Yeong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongho",
+      "to": "dongeun",
+      "type": "work",
+      "label": "colleague at Semyeong — the one she exposes",
+      "short": "colleague",
+      "evidence": "세명초등학교 교사 - 아동성애자로 여자아이들의 속옷 사진을 찍는 변태교사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shintae",
+      "to": "jeongho",
+      "type": "work",
+      "label": "chairman of the school",
+      "short": "chairman",
+      "evidence": "[Semyeong Elementary School chairman]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dongeun",
+      "yeonjin",
+      "yeojeong",
+      "hyeonnam",
+      "seona",
+      "seokjae",
+      "jaejun",
+      "sara",
+      "hyejeong",
+      "myeongoh",
+      "doyeong",
+      "yesol",
+      "yeongae",
+      "yeongjun",
+      "gyeongran",
+      "sohui",
+      "jongmun",
+      "jeongmi",
+      "suhan",
+      "mihee",
+      "landlord",
+      "sangim",
+      "sunghak",
+      "yeongcheon"
+    ],
+    "blocks": {
+      "Dong Eun's side": [
+        0,
+        0
+      ],
+      "Dong Eun's past": [
+        0,
+        2
+      ],
+      "The group": [
+        2,
+        0
+      ],
+      "Yeon Jin's house": [
+        2,
+        2
+      ],
+      "Sunghan High": [
+        1,
+        0
+      ],
+      "Yeo Jung's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "dongeun",
+      "yeonjin"
+    ]
+  }
+}
