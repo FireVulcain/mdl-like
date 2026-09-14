@@ -1,0 +1,351 @@
+{
+  "version": 1,
+  "mdlSlug": "11314-train-to-busan",
+  "title": "Train to Busan",
+  "asianwiki": "Train To Busan",
+  "native": "부산행",
+  "year": 2016,
+  "country": "KR",
+  "sources": [
+    "MDL cast (27 roles, 7 main)",
+    "MDL synopsis",
+    "ko.wikipedia 부산행 (names only)",
+    "en.wikipedia Train to Busan"
+  ],
+  "main": [
+    "seoku",
+    "suan",
+    "sanghwa",
+    "sungkyung",
+    "yongsuk",
+    "yongguk",
+    "jinhee"
+  ],
+  "people": [
+    {
+      "id": "seoku",
+      "name": "Seo Seok U",
+      "actor": "Gong Yoo",
+      "image": "https://i.mydramalist.com/DkWj1D_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Workaholic fund manager",
+      "still": "https://asianwiki.com/images/4/47/Train_to_Busan-Gong_Yoo.jpg"
+    },
+    {
+      "id": "suan",
+      "name": "Seo Soo Ahn",
+      "actor": "Kim Soo An",
+      "image": "https://i.mydramalist.com/VXOPP0_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "On her way to her mother in Busan",
+      "still": "https://asianwiki.com/images/8/87/Train_to_Busan-Kim_Soo-Ahn.jpg"
+    },
+    {
+      "id": "seokumother",
+      "name": "Seok U's mother",
+      "actor": "Lee Ju Sil",
+      "image": null,
+      "group": "Seok U's family",
+      "inCast": false
+    },
+    {
+      "id": "sanghwa",
+      "name": "Yoon Sang Hwa",
+      "actor": "Ma Dong Seok",
+      "image": "https://i.mydramalist.com/pekDn_5m.jpg",
+      "group": "Sang Hwa & Sung Kyung",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5c/Train_to_Busan-Ma_Dong-Seok-2.jpg"
+    },
+    {
+      "id": "sungkyung",
+      "name": "Sung Kyung",
+      "actor": "Jung Yu Mi",
+      "image": "https://i.mydramalist.com/pRQxE_5m.jpg",
+      "group": "Sang Hwa & Sung Kyung",
+      "inCast": true,
+      "note": "Pregnant",
+      "still": "https://asianwiki.com/images/6/6b/Train_to_Busan-Jung_Yu-Mi.jpg"
+    },
+    {
+      "id": "yongguk",
+      "name": "Min Young Guk",
+      "actor": "Choi Woo Shik",
+      "image": "https://i.mydramalist.com/xWAE0_5m.jpg",
+      "group": "Yong Guk & Jin Hee",
+      "inCast": true,
+      "note": "High school baseball player",
+      "still": "https://asianwiki.com/images/3/3c/Train_to_Busan-Choi_Woo-Sik-2.jpg"
+    },
+    {
+      "id": "jinhee",
+      "name": "Kim Jin Hee",
+      "actor": "Ahn So Hee",
+      "image": "https://i.mydramalist.com/QYwD2_5m.jpg",
+      "group": "Yong Guk & Jin Hee",
+      "inCast": true,
+      "note": "Cheerleader",
+      "still": "https://asianwiki.com/images/9/9e/Train_to_Busan-Ahn_So-Hee.jpg"
+    },
+    {
+      "id": "ingil",
+      "name": "In Gil",
+      "actor": "Ye Soo Jung",
+      "image": "https://i.mydramalist.com/eEPQem.jpg",
+      "group": "The sisters",
+      "inCast": true
+    },
+    {
+      "id": "jonggil",
+      "name": "Jong Gil",
+      "actor": "Park Myung Shin",
+      "image": "https://i.mydramalist.com/g0jd1O_5m.jpg",
+      "group": "The sisters",
+      "inCast": true
+    },
+    {
+      "id": "yongsuk",
+      "name": "Yong Suk",
+      "actor": "Kim Eui Sung",
+      "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
+      "group": "Also aboard",
+      "inCast": true,
+      "note": "High-ranking executive",
+      "still": "https://asianwiki.com/images/d/d6/Train_to_Busan-Kim_Eui-Sung.jpg"
+    },
+    {
+      "id": "homeless",
+      "name": "Homeless man",
+      "actor": "Choi Gwi Hwa",
+      "image": "https://i.mydramalist.com/E84Rlm.jpg",
+      "group": "Also aboard",
+      "inCast": true
+    },
+    {
+      "id": "captain",
+      "name": "The captain",
+      "actor": "Jung Suk Yong",
+      "image": "https://i.mydramalist.com/j2rBOm.jpg",
+      "group": "KTX crew",
+      "inCast": true,
+      "note": "KTX driver"
+    },
+    {
+      "id": "gicheol",
+      "name": "Gi Cheol",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "KTX crew",
+      "inCast": true,
+      "note": "Train attendant",
+      "still": "https://asianwiki.com/images/e/e1/Train_to_Busan-Jang_Hyuk-Jin.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "seoku",
+      "to": "suan",
+      "type": "family",
+      "label": "father, estranged; taking her to her mother in Busan",
+      "short": "father",
+      "evidence": "Seok Woo, his estranged daughter Soo An, and other passengers become trapped on a KTX train / Kim Su-an, Seok-woo's daughter",
+      "source": "MDL synopsis; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokumother",
+      "to": "seoku",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "이주실 : 석우 모 역 / Lee Joo-shil as Seok-woo's mother and Su-an's grandmother",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokumother",
+      "to": "suan",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "Lee Joo-shil as Seok-woo's mother and Su-an's grandmother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghwa",
+      "to": "sungkyung",
+      "type": "family",
+      "label": "married; she is pregnant",
+      "short": "married",
+      "evidence": "Jung Yu-mi as Seong-kyeong, Sang-hwa's pregnant wife / Ma Dong-seok as Sang-hwa, Seong-kyeong's husband",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanghwa",
+      "to": "seoku",
+      "type": "bond",
+      "label": "fellow passenger, fighting beside him car after car",
+      "short": "fights beside him",
+      "evidence": "Seok Woo, his estranged daughter Soo An, and other passengers become trapped on a KTX train",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sungkyung",
+      "to": "suan",
+      "type": "bond",
+      "label": "keeps the girl close through the cars",
+      "short": "keeps her close",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yongguk",
+      "to": "jinhee",
+      "type": "romance",
+      "label": "his cheerleader girlfriend",
+      "short": "girlfriend",
+      "evidence": "Sohee as Jin-hee, Yong-guk's cheerleader girlfriend",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongguk",
+      "to": "seoku",
+      "type": "bond",
+      "label": "fellow passenger in the fight through the cars",
+      "short": "fights beside him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ingil",
+      "to": "jonggil",
+      "type": "family",
+      "label": "elder sister",
+      "short": "elder sister",
+      "evidence": "Ye Soo-jung as In-gil, Jong-gil's older sister",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongsuk",
+      "to": "seoku",
+      "type": "rivalry",
+      "label": "the executive who turns the safe car against them",
+      "short": "against them",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "homeless",
+      "to": "suan",
+      "type": "bond",
+      "label": "the stowaway who ends up at the girl's side",
+      "short": "at her side",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "captain",
+      "to": "seoku",
+      "type": "work",
+      "label": "drives the train they are trapped on",
+      "short": "the driver",
+      "evidence": "[Captain] / as the KTX driver",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gicheol",
+      "to": "captain",
+      "type": "work",
+      "label": "train attendant",
+      "short": "attendant",
+      "evidence": "Jang Hyuk-jin as Ki-chul, a train attendant",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seoku",
+      "suan",
+      "seokumother",
+      "sanghwa",
+      "sungkyung",
+      "yongguk",
+      "jinhee",
+      "ingil",
+      "jonggil",
+      "yongsuk",
+      "homeless",
+      "captain",
+      "gicheol"
+    ],
+    "blocks": {
+      "Sang Hwa & Sung Kyung": [
+        0,
+        0
+      ],
+      "Yong Guk & Jin Hee": [
+        0,
+        2
+      ],
+      "The sisters": [
+        2,
+        0
+      ],
+      "Also aboard": [
+        2,
+        2
+      ],
+      "Seok U's family": [
+        1,
+        0
+      ],
+      "KTX crew": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seoku",
+      "suan"
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "mdlSlug": "38787-alone",
+  "title": "#Alive",
+  "native": "#살아있다",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (5 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia (nothing found)",
+    "en.wikipedia Alive (2020 film)"
+  ],
+  "main": [
+    "joonwoo",
+    "yubin"
+  ],
+  "people": [
+    {
+      "id": "joonwoo",
+      "name": "Oh Joon Woo",
+      "actor": "Yoo Ah In",
+      "image": "https://i.mydramalist.com/2WKrw_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Gamer, alone in the family flat when the outbreak hits",
+      "still": "https://asianwiki.com/images/d/d7/Alive-KM-Yoo_Ah-In.jpg"
+    },
+    {
+      "id": "yubin",
+      "name": "Kim Yu Bin",
+      "actor": "Park Shin Hye",
+      "image": "https://i.mydramalist.com/Q3Nz7_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The tenant across the courtyard, with a hand axe and a booby-trapped door",
+      "still": "https://asianwiki.com/images/5/55/Alive-KM-Park_Shin-Hye.jpg"
+    },
+    {
+      "id": "maskedman",
+      "name": "The masked man",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "The building",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f7/Alive-KM-Jeon_Bae-Su.jpg"
+    },
+    {
+      "id": "sangchul",
+      "name": "Lee Sang Chul",
+      "actor": "Lee Hyun Wook",
+      "image": "https://i.mydramalist.com/4Aq5K_5m.jpg",
+      "group": "The building",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cd/Alive-KM-Lee_Hyun-Wook.jpg"
+    },
+    {
+      "id": "policewoman",
+      "name": "The policewoman",
+      "actor": "Oh Hye Won",
+      "image": "https://i.mydramalist.com/ZeB48_5m.jpg",
+      "group": "The building",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yubin",
+      "to": "joonwoo",
+      "type": "bond",
+      "label": "the neighbour across the way who helps him survive",
+      "short": "survives with him",
+      "evidence": "Jun Woo and Yu Bin struggle to survive in an isolated apartment complex / a female tenant of Joon-woo's apartment building who helps him survive.",
+      "source": "MDL synopsis; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "maskedman",
+      "to": "joonwoo",
+      "type": "rivalry",
+      "label": "saves the two of them — to feed them to his zombified wife",
+      "short": "false saviour",
+      "evidence": "a masked man who saves Joon-woo and Yoo-bin but wants to feed them to his zombified wife.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangchul",
+      "to": "joonwoo",
+      "type": "rivalry",
+      "label": "the infected tenant he lets in",
+      "short": "let in, infected",
+      "evidence": "Lee Sang-chul, the infected tenant whom Joon-woo lets in.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "policewoman",
+      "to": "joonwoo",
+      "type": "bond",
+      "label": "the officer in the courtyard, turned by the infected",
+      "short": "turned",
+      "evidence": "the policewoman who is turned into a zombie by the infected.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "joonwoo",
+      "yubin",
+      "maskedman",
+      "sangchul",
+      "policewoman"
+    ],
+    "blocks": {
+      "The building": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "joonwoo",
+      "yubin"
+    ]
+  }
+}

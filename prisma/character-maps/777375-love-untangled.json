@@ -1,0 +1,351 @@
+{
+  "version": 1,
+  "mdlSlug": "777375-love-untangled",
+  "title": "Love Untangled",
+  "native": "고백의 역사",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 고백의 역사 (names only)",
+    "en.wikipedia Love Untangled (names only) — two of the leads' ties are inferred"
+  ],
+  "main": [
+    "yunseok",
+    "seri",
+    "hyeon",
+    "seongrae",
+    "injeong"
+  ],
+  "people": [
+    {
+      "id": "seri",
+      "name": "Park Se Ri",
+      "actor": "Shin Eun Soo",
+      "image": "https://i.mydramalist.com/b3o64e_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Nineteen, in 1998, with hopelessly frizzy hair and a confession to make",
+      "still": "https://asianwiki.com/images/3/35/Love_Untangled-Shin_Eun-Soo-01.jpeg"
+    },
+    {
+      "id": "yunseok",
+      "name": "Han Yun Seok",
+      "actor": "Gong Myoung",
+      "image": "https://i.mydramalist.com/NdLRwA_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Transfer student from Seoul",
+      "still": "https://asianwiki.com/images/c/ca/Love_Untangled-Gong_Myung01.jpeg"
+    },
+    {
+      "id": "hyeon",
+      "name": "Kim Hyeon",
+      "actor": "Cha Woo Min",
+      "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
+      "group": "Operation Love",
+      "inCast": true,
+      "note": "The school's most popular boy",
+      "still": "https://asianwiki.com/images/0/01/Love_Untangled-Cha_Woo_Min.jpeg"
+    },
+    {
+      "id": "seongrae",
+      "name": "Baek Seong Rae",
+      "actor": "Youn Sang Hyun",
+      "image": "https://i.mydramalist.com/w4O7J_5m.jpg",
+      "group": "Operation Love",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/2c/Love_Untangled-Yoon_Sang-Hyeon01.jpeg"
+    },
+    {
+      "id": "injeong",
+      "name": "Ko In Jeong",
+      "actor": "Kang Mi Na",
+      "image": "https://i.mydramalist.com/3onw7e_5m.jpg",
+      "group": "Operation Love",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c7/Love_Untangled-Kang_Mi_Na.jpeg"
+    },
+    {
+      "id": "solji",
+      "name": "Ma Sol Ji",
+      "actor": "Choi Gyu Ri",
+      "image": "https://i.mydramalist.com/E5rWgm_5m.jpg",
+      "group": "Operation Love",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a6/Love_Untangled-Choi_Gyu-Ri01.jpeg"
+    },
+    {
+      "id": "hayeong",
+      "name": "Bang Ha Yeong",
+      "actor": "Lee So E",
+      "image": "https://i.mydramalist.com/x4Alpz_5m.jpg",
+      "group": "Operation Love",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/ea/Love_Untangled-Lee_So_E.jpeg"
+    },
+    {
+      "id": "daul",
+      "name": "Jung Da Ul",
+      "actor": "Son Hee Rim",
+      "image": "https://i.mydramalist.com/73Jroj_5m.jpg",
+      "group": "Operation Love",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f4/Love_Untangled-Son_Hee-Rim.jpeg"
+    },
+    {
+      "id": "hongil",
+      "name": "Park Hong Il",
+      "actor": "Ryu Seung Soo",
+      "image": "https://i.mydramalist.com/BDeR7_5m.jpg",
+      "group": "Se Ri's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/db/Love_Untangled-Ryu_Seung-Soo1.jpeg"
+    },
+    {
+      "id": "bokhui",
+      "name": "Bok Hui",
+      "actor": "Kim Ji Young",
+      "image": "https://i.mydramalist.com/YYq3Oo_5m.jpg",
+      "group": "Se Ri's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/06/Love_Untangled-Kim_Ji-Young.jpeg"
+    },
+    {
+      "id": "hyeri",
+      "name": "Park Hye Ri",
+      "actor": "Lee Da Eun",
+      "image": "https://i.mydramalist.com/W87bD_5m.jpg",
+      "group": "Se Ri's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/03/Love_Untangled-Lee_Da-Eun.jpeg"
+    },
+    {
+      "id": "jangmi",
+      "name": "Baek Jang Mi",
+      "actor": "Hong Eun Hee",
+      "image": "https://i.mydramalist.com/RBPzNY_5m.jpg",
+      "group": "Yun Seok's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/7d/Love_Untangled-Hong_Eun-Hee1.jpeg"
+    },
+    {
+      "id": "sangcheol",
+      "name": "Hwang Sang Cheol",
+      "actor": "Chun Myung Woo",
+      "image": "https://i.mydramalist.com/vXWmmX_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Class leader",
+      "still": "https://asianwiki.com/images/e/e0/Love_Untangled-Chun_Myung-Woo.jpeg"
+    },
+    {
+      "id": "teacher",
+      "name": "Homeroom teacher",
+      "actor": "Jo Bok Rae",
+      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a3/Love_Untangled-Jo_Bok-Rae1.jpeg"
+    }
+  ],
+  "links": [
+    {
+      "from": "yunseok",
+      "to": "seri",
+      "type": "romance",
+      "label": "the transfer student she recruits for Operation Love — and gets entangled with instead",
+      "short": "entangled",
+      "evidence": "all while getting entangled with transfer student Han Yun Seok. / Se Ri collaborates with her friends to team up with Han Yun Seok, a new transfer student from Seoul.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seri",
+      "to": "hyeon",
+      "type": "romance",
+      "label": "the boy she means to confess to",
+      "short": "her crush",
+      "evidence": "To carry out \"Operation Love\" so she can confess her feelings to the school's most popular boy, Kim Hyeon.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "solji",
+      "to": "seri",
+      "type": "friend",
+      "label": "friend, in on Operation Love",
+      "short": "friend",
+      "evidence": "[Se Ri's friend] / Se Ri collaborates with her friends",
+      "source": "MDL cast; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hayeong",
+      "to": "seri",
+      "type": "friend",
+      "label": "friend, in on Operation Love",
+      "short": "friend",
+      "evidence": "[Se Ri's friend] / Se Ri collaborates with her friends",
+      "source": "MDL cast; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daul",
+      "to": "seri",
+      "type": "friend",
+      "label": "friend, in on Operation Love",
+      "short": "friend",
+      "evidence": "[Se Ri's friend] / Se Ri collaborates with her friends",
+      "source": "MDL cast; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seongrae",
+      "to": "seri",
+      "type": "friend",
+      "label": "classmate, in on Operation Love",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "injeong",
+      "to": "seri",
+      "type": "friend",
+      "label": "classmate, in on Operation Love",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hongil",
+      "to": "seri",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Se Ri's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bokhui",
+      "to": "seri",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Se Ri's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeri",
+      "to": "seri",
+      "type": "family",
+      "label": "sister",
+      "short": "sister",
+      "evidence": "[Se Ri's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangmi",
+      "to": "yunseok",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Yun Seok's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangcheol",
+      "to": "seri",
+      "type": "work",
+      "label": "class leader",
+      "short": "class leader",
+      "evidence": "[Class leader]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "teacher",
+      "to": "seri",
+      "type": "work",
+      "label": "homeroom teacher",
+      "short": "homeroom",
+      "evidence": "[Homeroom teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seri",
+      "yunseok",
+      "hyeon",
+      "seongrae",
+      "injeong",
+      "solji",
+      "hayeong",
+      "daul",
+      "hongil",
+      "bokhui",
+      "hyeri",
+      "jangmi",
+      "sangcheol",
+      "teacher"
+    ],
+    "blocks": {
+      "Se Ri's family": [
+        0,
+        0
+      ],
+      "School": [
+        0,
+        2
+      ],
+      "Yun Seok's family": [
+        2,
+        0
+      ],
+      "Operation Love": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seri",
+      "yunseok"
+    ]
+  }
+}

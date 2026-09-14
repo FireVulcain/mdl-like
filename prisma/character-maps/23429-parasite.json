@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "mdlSlug": "23429-parasite",
+  "title": "Parasite",
+  "asianwiki": "Parasite (Korean Movie)",
+  "native": "기생충",
+  "year": 2019,
+  "country": "KR",
+  "sources": [
+    "MDL cast (12 roles, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 기생충 (영화) 등장인물",
+    "en.wikipedia Parasite (2019 film)"
+  ],
+  "main": [
+    "gitaek",
+    "dongik",
+    "yungyo",
+    "giwoo",
+    "gijung",
+    "chungsook"
+  ],
+  "people": [
+    {
+      "id": "gitaek",
+      "name": "Kim Gi Taek",
+      "actor": "Song Kang Ho",
+      "image": "https://i.mydramalist.com/RZ60Em.jpg",
+      "group": "The Kims",
+      "inCast": true,
+      "note": "Head of the all-unemployed family in the semi-basement",
+      "still": "https://asianwiki.com/images/e/e1/Parasite-Song_Kang-HoCP.jpg"
+    },
+    {
+      "id": "dongik",
+      "name": "Park Dong Ik",
+      "actor": "Lee Sun Kyun",
+      "image": "https://i.mydramalist.com/81XQBd_5m.jpg",
+      "group": "The Parks",
+      "inCast": true,
+      "note": "Young CEO of a global IT firm, in the house on the hill",
+      "still": "https://asianwiki.com/images/5/5c/Parasite-_Lee_Sun-KyunCP.jpg"
+    },
+    {
+      "id": "chungsook",
+      "name": "Park Chung Sook",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "group": "The Kims",
+      "inCast": true,
+      "note": "Once a hammer thrower",
+      "still": "https://asianwiki.com/images/b/bf/Parasite-Jang_Hye-JinCP.jpg"
+    },
+    {
+      "id": "giwoo",
+      "name": "Kim Gi Woo / \"Kevin\"",
+      "actor": "Choi Woo Shik",
+      "image": "https://i.mydramalist.com/xWAE0_5m.jpg",
+      "group": "The Kims",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/2c/Parasite-Choi_Woo-Sik.jpg"
+    },
+    {
+      "id": "gijung",
+      "name": "Kim Gi Jung / \"Jessica\"",
+      "actor": "Park So Dam",
+      "image": "https://i.mydramalist.com/yWkAA3_5m.jpg",
+      "group": "The Kims",
+      "inCast": true,
+      "note": "Charismatic and cunning; slips into the rich world most easily",
+      "still": "https://asianwiki.com/images/1/18/Parasite-Park_So-DamCP.jpg"
+    },
+    {
+      "id": "yungyo",
+      "name": "Choi Yun Gyo",
+      "actor": "Cho Yeo Jung",
+      "image": "https://i.mydramalist.com/AB6gxZ_5m.jpg",
+      "group": "The Parks",
+      "inCast": true,
+      "note": "Sweet, naïve, wholly given to the children's education",
+      "still": "https://asianwiki.com/images/e/ef/Parasite-Cho_Yeo-JeongCP.jpg"
+    },
+    {
+      "id": "dahye",
+      "name": "Park Da Hye",
+      "actor": "Jung Ji So",
+      "image": "https://i.mydramalist.com/2wmKLV_5m.jpg",
+      "group": "The Parks",
+      "inCast": true,
+      "note": "Second-year high schooler",
+      "still": "https://asianwiki.com/images/4/40/Parasite-Jung_Ji-SoCP.jpg"
+    },
+    {
+      "id": "dasong",
+      "name": "Park Da Song",
+      "actor": "Jung Hyun Joon",
+      "image": "https://i.mydramalist.com/PxQq0Z_5m.jpg",
+      "group": "The Parks",
+      "inCast": true,
+      "note": "Ten; obsessed with playing Indian, and once saw a ghost in the house",
+      "still": "https://asianwiki.com/images/4/40/Parasite-Jeong_Hyun-JunCP.jpg"
+    },
+    {
+      "id": "mungwang",
+      "name": "Guk Mun Gwang",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
+      "group": "Below stairs",
+      "inCast": true,
+      "note": "Knows the house better than its owners; allergic to peaches",
+      "still": "https://asianwiki.com/images/c/cc/Parasite-Lee_Jung-Eun.jpg"
+    },
+    {
+      "id": "geunse",
+      "name": "Oh Geun Se",
+      "actor": "Park Myung Hoon",
+      "image": "https://i.mydramalist.com/yWdk84_5m.jpg",
+      "group": "Below stairs",
+      "inCast": true
+    },
+    {
+      "id": "minhyuk",
+      "name": "Min Hyuk",
+      "actor": "Park Seo Jun",
+      "image": "https://i.mydramalist.com/b3m53E_5m.jpg",
+      "group": "Below stairs",
+      "inCast": true,
+      "note": "Off to study abroad",
+      "still": "https://asianwiki.com/images/8/86/Parasite-Park_Seo-Joon.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "gitaek",
+      "to": "dongik",
+      "type": "work",
+      "label": "becomes his chauffeur",
+      "short": "his driver",
+      "evidence": "the Kim family patriarch who is hired as Park Dong-ik's chauffeur",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungsook",
+      "to": "gitaek",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "충숙 역 - 기택의 아내, 과거 해머 던지기 선수였으며 힘이 세다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giwoo",
+      "to": "gitaek",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "김기우 역 - 기택네 아들.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gijung",
+      "to": "gitaek",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "김기정 역 - 기택네 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yungyo",
+      "to": "dongik",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "연교 역 - 박 사장의 아내.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dahye",
+      "to": "dongik",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "박다혜 역 - 사춘기 고2 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dasong",
+      "to": "dongik",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "박다송 역 - 인디언 놀이에 푹 빠져 있는 엉뚱하고 산만한 10살 아들.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giwoo",
+      "to": "dahye",
+      "type": "work",
+      "label": "her English tutor, 'Kevin'",
+      "short": "her tutor",
+      "evidence": "백수로 지내다 다혜의 영어 과외선생이 된다. / the Kims' son who is hired as Da-hye's ESOL tutor",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giwoo",
+      "to": "yungyo",
+      "type": "work",
+      "label": "plays on her naïveté to bring in the whole family",
+      "short": "uses her",
+      "evidence": "Yun Gyo, the lady of the Park's house, accepts Gi Woo as a tutor for her daughter, and he uses Yun Gyo's naiveness as a chance to employ his other family members.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gijung",
+      "to": "dasong",
+      "type": "work",
+      "label": "his art therapist, 'Jessica'",
+      "short": "art tutor",
+      "evidence": "다송의 미술 과외 선생님. / the Kims' daughter who is hired as Da-song's art therapist",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungsook",
+      "to": "yungyo",
+      "type": "work",
+      "label": "becomes the Parks' housekeeper",
+      "short": "housekeeper",
+      "evidence": "the Kim family matriarch who is hired as the Parks' housekeeper",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mungwang",
+      "to": "dongik",
+      "type": "work",
+      "label": "housekeeper since before the Parks moved in — pushed out by the Kims",
+      "short": "old housekeeper",
+      "evidence": "박 사장네 집 집사 겸 가사 도우미. 박 사장 가족이 입주하기 전부터 가정부로 일하여 집에 대해서 박사장 가족보다 잘 알고 있다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunse",
+      "to": "mungwang",
+      "type": "family",
+      "label": "husband — hidden in the bunker under the house",
+      "short": "hidden husband",
+      "evidence": "오근세 역 - 문광의 남편.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minhyuk",
+      "to": "giwoo",
+      "type": "friend",
+      "label": "the friend who hands him the tutoring job on his way abroad",
+      "short": "friend",
+      "evidence": "his friend Min Hyuk tells him that he is leaving to study abroad and that he should replace him as the tutor of a rich family / [Da Hye's former tutor]",
+      "source": "MDL synopsis; MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "gitaek",
+      "dongik",
+      "chungsook",
+      "giwoo",
+      "gijung",
+      "yungyo",
+      "dahye",
+      "dasong",
+      "mungwang",
+      "geunse",
+      "minhyuk"
+    ],
+    "blocks": {
+      "The Kims": [
+        0,
+        0
+      ],
+      "The Parks": [
+        2,
+        0
+      ],
+      "Below stairs": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "gitaek",
+      "dongik"
+    ]
+  }
+}

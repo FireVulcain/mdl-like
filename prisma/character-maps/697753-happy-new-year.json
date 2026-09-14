@@ -1,0 +1,465 @@
+{
+  "version": 1,
+  "mdlSlug": "697753-happy-new-year",
+  "title": "A Year-End Medley",
+  "native": "해피 뉴 이어",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (34 roles, 14 main)",
+    "MDL synopsis",
+    "ko.wikipedia (nothing found)",
+    "en.wikipedia A Year-End Medley"
+  ],
+  "main": [
+    "sojin",
+    "yongjin",
+    "jaeyong",
+    "suyeon",
+    "iyeong",
+    "katherine",
+    "sanggyu",
+    "seunghyo",
+    "gang",
+    "sanghun",
+    "yeongju",
+    "jinho",
+    "sejik",
+    "ayeong"
+  ],
+  "people": [
+    {
+      "id": "sojin",
+      "name": "Park So Jin",
+      "actor": "Han Ji Min",
+      "image": "https://i.mydramalist.com/0w0gK7_5m.jpg",
+      "group": "Hotel Emros",
+      "inCast": true,
+      "note": "Hotel manager — poised at work, unsure of herself elsewhere",
+      "still": "https://asianwiki.com/images/3/3d/A_Year_End_Medley-Han_Ji-Min.jpg"
+    },
+    {
+      "id": "yongjin",
+      "name": "Kim Yong Jin",
+      "actor": "Lee Dong Wook",
+      "image": "https://i.mydramalist.com/jQQJvv_5m.jpg",
+      "group": "Hotel Emros",
+      "inCast": true,
+      "note": "The young CEO, obsessed with even numbers",
+      "still": "https://asianwiki.com/images/3/3a/A_Year_End_Medley-Lee_Dong-Wook.jpg"
+    },
+    {
+      "id": "managingdirector",
+      "name": "Managing director",
+      "actor": "Lee Joong Ok",
+      "image": "https://i.mydramalist.com/j4n3ym.jpg",
+      "group": "Hotel Emros",
+      "inCast": true
+    },
+    {
+      "id": "yongjinfather",
+      "name": "Yong Jin's father",
+      "actor": "Shin Sung Il",
+      "image": "https://i.mydramalist.com/xKJQ3m.jpg",
+      "group": "Hotel Emros",
+      "inCast": true
+    },
+    {
+      "id": "maidmanager",
+      "name": "Maid team manager",
+      "actor": "Baek Eun Hye",
+      "image": "https://i.mydramalist.com/4k7yZm.jpg",
+      "group": "Hotel Emros",
+      "inCast": true
+    },
+    {
+      "id": "jaeyong",
+      "name": "Kang Jae Yong",
+      "actor": "Kang Ha Neul",
+      "image": "https://i.mydramalist.com/nOZ8J6_5m.jpg",
+      "group": "Room 1739",
+      "inCast": true,
+      "note": "Five years preparing the civil-service exam, and failed it",
+      "still": "https://asianwiki.com/images/b/ba/A_Year_End_Medley-Kang_Ha_Neul.jpg"
+    },
+    {
+      "id": "suyeon",
+      "name": "Mo Su Yeon",
+      "actor": "Lim Yoon A",
+      "image": "https://i.mydramalist.com/l0drLv_5m.jpg",
+      "group": "Room 1739",
+      "inCast": true,
+      "note": "Hotel staff",
+      "still": "https://asianwiki.com/images/6/63/A_Year_End_Medley-Lim_Yoon-A.jpg"
+    },
+    {
+      "id": "iyeong",
+      "name": "Baek I Yeong",
+      "actor": "Won Jin A",
+      "image": "https://i.mydramalist.com/735P6y_5m.jpg",
+      "group": "Baek I Yeong",
+      "inCast": true,
+      "note": "New room attendant, her musical-actress dream set aside",
+      "still": "https://asianwiki.com/images/9/94/A_Year_End_Medley-Won_Jin-A.jpg"
+    },
+    {
+      "id": "iyeongmother",
+      "name": "I Yeong's mother",
+      "actor": "Choi Soo Min",
+      "image": "https://i.mydramalist.com/vX5Q8p_5m.jpg",
+      "group": "Baek I Yeong",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1d/A_Year_End_Medley-Choi_Soo-Min.jpg"
+    },
+    {
+      "id": "katherine",
+      "name": "Katherine",
+      "actor": "Lee Hye Young",
+      "image": "https://i.mydramalist.com/YY1wqQ_5m.jpg",
+      "group": "Katherine & Sang Gyu",
+      "inCast": true,
+      "note": "Businesswoman back in Korea for her daughter's wedding",
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Eugene",
+          "image": "https://i.mydramalist.com/O8PXDk_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/e2/A_Year_End_Medley-Lee_Hye_Young.jpg"
+    },
+    {
+      "id": "sanggyu",
+      "name": "Kang Sang Gyu",
+      "actor": "Jung Jin Young",
+      "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
+      "group": "Katherine & Sang Gyu",
+      "inCast": true,
+      "note": "Doorman",
+      "still": "https://asianwiki.com/images/a/a1/A_Year_End_Medley-Jung_Jin-Young.jpg"
+    },
+    {
+      "id": "seunghyo",
+      "name": "Son Seung Hyo",
+      "actor": "Kim Young Kwang",
+      "image": "https://i.mydramalist.com/QwnLg_5m.jpg",
+      "group": "The radio",
+      "inCast": true,
+      "note": "Radio producer",
+      "still": "https://asianwiki.com/images/8/8f/A_Year_End_Medley-Kim_Young-Kwang.jpg"
+    },
+    {
+      "id": "gang",
+      "name": "Lee Gang",
+      "actor": "Seo Kang Jun",
+      "image": "https://i.mydramalist.com/l0d8zE_5m.jpg",
+      "group": "The radio",
+      "inCast": true,
+      "note": "Singer-songwriter and radio DJ",
+      "still": "https://asianwiki.com/images/a/ab/A_Year_End_Medley-Seo_Kang-Joon.jpg"
+    },
+    {
+      "id": "sanghun",
+      "name": "Sang Hun",
+      "actor": "Lee Kwang Soo",
+      "image": "https://i.mydramalist.com/PxZzbX_5m.jpg",
+      "group": "The radio",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f6/A_Year_End_Medley-Lee_Kwang-Soo.jpg"
+    },
+    {
+      "id": "yeongju",
+      "name": "Kim Yeong Ju",
+      "actor": "Go Sung Hee",
+      "image": "https://i.mydramalist.com/dBm8g_5m.jpg",
+      "group": "The radio",
+      "inCast": true,
+      "note": "Jazz pianist",
+      "still": "https://asianwiki.com/images/7/72/A_Year_End_Medley-Ko_Sung_Hee.jpg"
+    },
+    {
+      "id": "jinho",
+      "name": "Lee Jin Ho",
+      "actor": "Lee Jin Wook",
+      "image": "https://i.mydramalist.com/JBDzLj_5m.jpg",
+      "group": "Lounge regulars",
+      "inCast": true,
+      "note": "Plastic surgeon",
+      "still": "https://asianwiki.com/images/6/65/A_Year_End_Medley-Lee_Jin-Uk.jpg"
+    },
+    {
+      "id": "fortuneteller",
+      "name": "The fortune-teller",
+      "actor": "Lee Kyu Hyung",
+      "image": "https://i.mydramalist.com/d0VLe5_5m.jpg",
+      "group": "Lounge regulars",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/83/A_Year_End_Medley-Lee_Kyu-Hyung.jpg"
+    },
+    {
+      "id": "sejik",
+      "name": "Park Se Jik",
+      "actor": "Cho Jun Young",
+      "image": "https://i.mydramalist.com/O8mzE3_5m.jpg",
+      "group": "Se Jik & A Yeong",
+      "inCast": true,
+      "note": "High school swimmer",
+      "still": "https://asianwiki.com/images/8/8d/A_Year_End_Medley-Jo_Joon-Young.jpg"
+    },
+    {
+      "id": "ayeong",
+      "name": "Im A Yeong",
+      "actor": "Won Ji An",
+      "image": "https://i.mydramalist.com/VX6xkE_5m.jpg",
+      "group": "Se Jik & A Yeong",
+      "inCast": true,
+      "note": "Figure skater",
+      "still": "https://asianwiki.com/images/9/96/A_Year_End_Medley-Won_Ji-An.jpg"
+    },
+    {
+      "id": "cheolmin",
+      "name": "Lee Cheol Min",
+      "actor": "Kim Su Gyeom",
+      "image": "https://i.mydramalist.com/JBvjlX_5m.jpg",
+      "group": "Se Jik & A Yeong",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/47/A_Year_End_Medley-Kim_Su-Gyeom.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "yongjin",
+      "to": "sojin",
+      "type": "work",
+      "label": "the hotel's CEO, to its manager",
+      "short": "her CEO",
+      "evidence": "Han Ji-min as Park So-jin, hotel Emross manager / Lee Dong-wook as Kim Yong-jin, CEO of hotel Emross",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongjin",
+      "to": "sojin",
+      "type": "romance",
+      "label": "the even-numbers man and the manager who doubts herself, circling each other",
+      "short": "circling",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "managingdirector",
+      "to": "yongjin",
+      "type": "work",
+      "label": "managing director of the hotel",
+      "short": "managing director",
+      "evidence": "[Managing director of Hotel Emros]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongjinfather",
+      "to": "yongjin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yong Jin's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maidmanager",
+      "to": "iyeong",
+      "type": "work",
+      "label": "manager of the maid team she joins",
+      "short": "her manager",
+      "evidence": "[Hotel manager of the Hotel Emros maid team] / a musical actress who works as a hotel room maid",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyeon",
+      "to": "jaeyong",
+      "type": "work",
+      "label": "his wake-up caller in room 1739",
+      "short": "wake-up call",
+      "evidence": "hotel staff who is also the wake up caller for Jae Yong / a guest of hotel Emross who is staying in room 1739",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "iyeongmother",
+      "to": "iyeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Baek I Yeong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "katherine",
+      "to": "sanggyu",
+      "type": "romance",
+      "label": "her first love, now the doorman of the hotel she checks into",
+      "short": "first love",
+      "evidence": "Jung Jin-young as Kang Sang-gyu, doorman at hotel Emross and Catherine's first love",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gang",
+      "to": "sanghun",
+      "type": "work",
+      "label": "the manager who stuck with him through the hard years",
+      "short": "his manager",
+      "evidence": "manager of an unknown artist who becomes a hit as a singer and popular DJ / A determined artist and his manager persevered through hard times",
+      "source": "en.wikipedia; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gang",
+      "to": "seunghyo",
+      "type": "work",
+      "label": "the DJ on his radio",
+      "short": "his DJ",
+      "evidence": "Kim Young-kwang as Seung Hyo, a radio producer / Seo Kang-joon as Lee Kang, a singer-songwriter and radio DJ",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunghyo",
+      "to": "yeongju",
+      "type": "romance",
+      "label": "engaged; darting around the hotel planning the wedding",
+      "short": "engaged",
+      "evidence": "The familiar radio announcer and his jazz pianist fiancée are darting around as they organize their wedding. / Ko Sung-hee as Young Joo, a jazz pianist",
+      "source": "MDL synopsis; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinho",
+      "to": "sojin",
+      "type": "work",
+      "label": "the Saturday regular in her lounge, waiting for a fated love",
+      "short": "Saturday regular",
+      "evidence": "A plastic surgeon is known to sit in the lounge every Saturday, possibly awaiting his fateful love.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fortuneteller",
+      "to": "sojin",
+      "type": "work",
+      "label": "runs his business out of her hotel",
+      "short": "squatting seer",
+      "evidence": "The fortune-teller who likes to use the hotel as his place of business.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sejik",
+      "to": "ayeong",
+      "type": "romance",
+      "label": "the swimmer's secret crush on the skater — returned, it turns out",
+      "short": "crush",
+      "evidence": "a high school swimmer who has a secret crush on Lim Ah-yeong / Two students, a swimmer and a skater, realize that they do indeed like each other.",
+      "source": "en.wikipedia; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "cheolmin",
+      "to": "sejik",
+      "type": "friend",
+      "label": "close friend",
+      "short": "close friend",
+      "evidence": "[Se Jik's friend] / a high school student and close friend of Park Se-jik",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "sojin",
+      "yongjin",
+      "managingdirector",
+      "yongjinfather",
+      "maidmanager",
+      "jaeyong",
+      "suyeon",
+      "iyeong",
+      "iyeongmother",
+      "katherine",
+      "sanggyu",
+      "seunghyo",
+      "gang",
+      "sanghun",
+      "yeongju",
+      "jinho",
+      "fortuneteller",
+      "sejik",
+      "ayeong",
+      "cheolmin"
+    ],
+    "blocks": {
+      "Hotel Emros": [
+        1,
+        0
+      ],
+      "Room 1739": [
+        0,
+        0
+      ],
+      "Baek I Yeong": [
+        0,
+        2
+      ],
+      "Katherine & Sang Gyu": [
+        2,
+        0
+      ],
+      "The radio": [
+        2,
+        2
+      ],
+      "Se Jik & A Yeong": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sojin",
+      "yongjin"
+    ]
+  }
+}
