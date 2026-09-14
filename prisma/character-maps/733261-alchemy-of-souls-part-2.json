@@ -1,0 +1,712 @@
+{
+  "version": 1,
+  "mdlSlug": "733261-alchemy-of-souls-part-2",
+  "title": "Alchemy of Souls Part 2: Light and Shadow",
+  "native": "환혼: 빛과 그림자",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (69 roles, 2 main)",
+    "MDL synopsis (Netflix)",
+    "ko.wikipedia 환혼 등장인물 (season 2 notes, 6k chars)",
+    "en.wikipedia Cast (not used — ko is fuller)"
+  ],
+  "main": [
+    "uk",
+    "naksu"
+  ],
+  "people": [
+    {
+      "id": "uk",
+      "name": "Jang Uk",
+      "actor": "Lee Jae Wook",
+      "image": "https://i.mydramalist.com/KpJXVJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Back from death; three years on, a hunter of soul-shifters, the ice stone in his body"
+    },
+    {
+      "id": "naksu",
+      "name": "Naksu / Cho Yeong / Jin Bu Yeon",
+      "actor": "Go Youn Jung",
+      "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Gu Yu Jung",
+          "image": "https://i.mydramalist.com/XLyWX_5m.jpg",
+          "era": "young"
+        },
+        {
+          "name": "Yun Hae Bin",
+          "image": "https://i.mydramalist.com/28RVd_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "The assassin's soul, now in the body of Jinyowon's lost daughter, with no memory"
+    },
+    {
+      "id": "doju",
+      "name": "Kim Do Ju",
+      "actor": "Oh Na Ra",
+      "image": "https://i.mydramalist.com/nOZJmL_5m.jpg",
+      "group": "Jang household",
+      "inCast": true,
+      "note": "Runs the Jang house"
+    },
+    {
+      "id": "parkjin",
+      "name": "Park Jin",
+      "actor": "Yoo Joon Sang",
+      "image": "https://i.mydramalist.com/ZN4EY_5m.jpg",
+      "group": "Songrim",
+      "inCast": true,
+      "note": "Former head of Songrim; retired to the countryside"
+    },
+    {
+      "id": "danggu",
+      "name": "Park Dang Gu",
+      "actor": "Yoo In Soo",
+      "image": "https://i.mydramalist.com/81XqdK_5m.jpg",
+      "group": "Songrim",
+      "inCast": true,
+      "note": "Head of Songrim after his uncle"
+    },
+    {
+      "id": "sangho",
+      "name": "Sang Ho",
+      "actor": "Lee Ha Yul",
+      "image": "https://i.mydramalist.com/enkVqm.jpg",
+      "group": "Songrim",
+      "inCast": true,
+      "note": "Park Jin's confidant"
+    },
+    {
+      "id": "heoyeom",
+      "name": "Heo Yeom",
+      "actor": "Lee Do Kyung",
+      "image": "https://i.mydramalist.com/QPEvg_5m.jpg",
+      "group": "Sejukwon",
+      "inCast": true,
+      "note": "Director of Sejukwon; a branch of the Seo clan"
+    },
+    {
+      "id": "yoonok",
+      "name": "Heo Yoon Ok",
+      "actor": "Hong Seo Hee",
+      "image": "https://i.mydramalist.com/4n1jY_5m.jpg",
+      "group": "Sejukwon",
+      "inCast": true,
+      "note": "Healer"
+    },
+    {
+      "id": "soonyi",
+      "name": "Soon Yi",
+      "actor": "Jung Ji Ahn",
+      "image": "https://i.mydramalist.com/4EEy1_5m.jpg",
+      "group": "Sejukwon",
+      "inCast": true
+    },
+    {
+      "id": "euiwon",
+      "name": "Seo Eui Won",
+      "actor": "Kim Yong Jin",
+      "image": "https://i.mydramalist.com/2DJmwm.jpg",
+      "group": "Sejukwon",
+      "inCast": true,
+      "note": "Senior physician"
+    },
+    {
+      "id": "yul",
+      "name": "Seo Yul",
+      "actor": "Hwang Min Hyun",
+      "image": "https://i.mydramalist.com/l0DnYv_5m.jpg",
+      "group": "Seo family",
+      "inCast": true,
+      "note": "The Seo clan's prodigy; near death in episode 6"
+    },
+    {
+      "id": "yuno",
+      "name": "Seo Yun O",
+      "actor": "Do Sang Woo",
+      "image": "https://i.mydramalist.com/BwgA5m.jpg",
+      "group": "Seo family",
+      "inCast": true
+    },
+    {
+      "id": "hokyung",
+      "name": "Jin Ho Kyung",
+      "actor": "Park Eun Hye",
+      "image": "https://i.mydramalist.com/E36Yb_5m.jpg",
+      "group": "Jinyowon",
+      "inCast": true,
+      "note": "Head of Jinyowon"
+    },
+    {
+      "id": "choyeon",
+      "name": "Jin Cho Yeon",
+      "actor": "A Rin",
+      "image": "https://i.mydramalist.com/Wo6WR_5m.jpg",
+      "group": "Jinyowon",
+      "inCast": true,
+      "note": "Youngest daughter of the Jin clan"
+    },
+    {
+      "id": "jinmu",
+      "name": "Jin Mu",
+      "actor": "Jo Jae Yun",
+      "image": "https://i.mydramalist.com/0d5kY_5m.jpg",
+      "group": "Cheonbugwan",
+      "inCast": true,
+      "note": "Deputy head of Cheonbugwan; wants the kingdom"
+    },
+    {
+      "id": "yeomsoo",
+      "name": "Yeom Soo",
+      "actor": "Cha Yong Hak",
+      "image": "https://i.mydramalist.com/XLABd_5m.jpg",
+      "group": "Cheonbugwan",
+      "inCast": true,
+      "note": "Jin Mu's man"
+    },
+    {
+      "id": "soyi",
+      "name": "So Yi",
+      "actor": "Seo Hye Won",
+      "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
+      "group": "Cheonbugwan",
+      "inCast": true,
+      "note": "Drifting swindler; the new head of the secret society"
+    },
+    {
+      "id": "gowon",
+      "name": "Go Won",
+      "actor": "Shin Seung Ho",
+      "image": "https://i.mydramalist.com/WPjN7l_5m.jpg",
+      "group": "Royal court",
+      "inCast": true,
+      "note": "Crown prince"
+    },
+    {
+      "id": "gosoon",
+      "name": "Go Soon",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "group": "Royal court",
+      "inCast": true,
+      "note": "King"
+    },
+    {
+      "id": "hasun",
+      "name": "Seo Ha Sun",
+      "actor": "Shim So Young",
+      "image": "https://i.mydramalist.com/QzBrg_5m.jpg",
+      "group": "Royal court",
+      "inCast": true,
+      "note": "The queen — or the shaman's soul in her body. Played in Part 2 by the actress who was Shaman Choi"
+    },
+    {
+      "id": "teacherlee",
+      "name": "Teacher Lee",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Others",
+      "inCast": true,
+      "note": "The mage in hemp; brought Bu Yeon back"
+    },
+    {
+      "id": "joowol",
+      "name": "Joo Wol",
+      "actor": "Park So Jin",
+      "image": "https://i.mydramalist.com/rjekZ_5m.jpg",
+      "group": "Others",
+      "inCast": true,
+      "note": "Owner of Chwiseonru"
+    },
+    {
+      "id": "chabeom",
+      "name": "Cha Beom",
+      "actor": "Lee Ji Hoo",
+      "image": "https://i.mydramalist.com/265Ld_5m.jpg",
+      "group": "Others",
+      "inCast": true,
+      "note": "Student at Jeongjingak"
+    }
+  ],
+  "links": [
+    {
+      "from": "naksu",
+      "to": "uk",
+      "type": "romance",
+      "label": "the woman who came to him from her prison; his wife, his old lover without memory",
+      "short": "married",
+      "evidence": "a young woman, a prisoner in her own home, seeks his help to reclaim her freedom / 욱의 정인",
+      "source": "MDL synopsis · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "uk",
+      "to": "naksu",
+      "type": "rivalry",
+      "label": "the soul-shifter hunter, and the soul he once lost",
+      "short": "hunts soul-shifters",
+      "evidence": "Jang Uk becomes a hunter of the soul-shifters",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "naksu",
+      "to": "hokyung",
+      "type": "family",
+      "label": "wears the body of her lost first daughter",
+      "short": "in her daughter's body",
+      "evidence": "어릴 적 잃어버린 장녀에 대한 애틋함 / 시즌 2에서 기억을 잃은 낙부연으로 활동하고있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "naksu",
+      "to": "choyeon",
+      "type": "family",
+      "label": "her older sister, by the body",
+      "short": "sister",
+      "evidence": "부연의 여동생",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yul",
+      "to": "naksu",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "율의 첫사랑이고 / 비밀스런 소녀에 대한 순애보를 간직하고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yul",
+      "to": "uk",
+      "type": "friend",
+      "label": "friends since Jeongjingak",
+      "short": "friend",
+      "evidence": "어려서부터 정진각에서 유학 중이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "doju",
+      "to": "uk",
+      "type": "family",
+      "label": "raised him; the Jang house's mistress",
+      "short": "raised him",
+      "evidence": "장씨 집안의 대소사를 책임지는 실세… 장욱 앞에서만 유독 약해진다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doju",
+      "to": "parkjin",
+      "type": "romance",
+      "label": "between friendship and love, for years",
+      "short": "almost lovers",
+      "evidence": "송림 총수 박진과 티격태격 하며 우정과 연정 사이를 오간다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "teacherlee",
+      "to": "doju",
+      "type": "romance",
+      "label": "liked her; gave her up to Park Jin",
+      "short": "gave her up",
+      "evidence": "김도주를 좋아했지만 송림의 유준상에게 김도주를 돌려주었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "teacherlee",
+      "to": "naksu",
+      "type": "bond",
+      "label": "brought her back to life",
+      "short": "saved her",
+      "evidence": "시즌 2에서 낙부연을 살렸다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "danggu",
+      "to": "parkjin",
+      "type": "family",
+      "label": "nephew; succeeded him as head of Songrim",
+      "short": "nephew, heir",
+      "evidence": "박진의 조카… 유준상에 이어 송림의 총수가 되었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "danggu",
+      "to": "uk",
+      "type": "friend",
+      "label": "friends",
+      "short": "friend",
+      "evidence": "송림의 후계자 / 무덕이의 제자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "danggu",
+      "to": "choyeon",
+      "type": "romance",
+      "label": "lovers",
+      "short": "lovers",
+      "evidence": "초연의 정인이다 / 당구의 정인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangho",
+      "to": "parkjin",
+      "type": "work",
+      "label": "confidant",
+      "short": "confidant",
+      "evidence": "박진의 심복",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heoyeom",
+      "to": "yoonok",
+      "type": "family",
+      "label": "granddaughter",
+      "short": "granddaughter",
+      "evidence": "허염의 손녀딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoonok",
+      "to": "uk",
+      "type": "romance",
+      "label": "in love with him, unreturned",
+      "short": "loves him",
+      "evidence": "장욱을 짝사랑하고있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soonyi",
+      "to": "yoonok",
+      "type": "work",
+      "label": "her servant",
+      "short": "servant",
+      "evidence": "윤옥의 시종",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "euiwon",
+      "to": "heoyeom",
+      "type": "work",
+      "label": "senior physician at Sejukwon",
+      "short": "physician",
+      "evidence": "세죽원의 상급 의원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heoyeom",
+      "to": "yul",
+      "type": "family",
+      "label": "a branch of the Seo clan, standing in for it in the capital",
+      "short": "kin",
+      "evidence": "서씨 집안의 방계혈족이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuno",
+      "to": "yul",
+      "type": "family",
+      "label": "uncle",
+      "short": "uncle",
+      "evidence": "[Yul's uncle]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hokyung",
+      "to": "choyeon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "부연과 초연의어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmu",
+      "to": "hokyung",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "진요원 원장인 진호경의 이복동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmu",
+      "to": "soyi",
+      "type": "work",
+      "label": "passes her off as Ho Kyung's lost daughter",
+      "short": "his fake daughter",
+      "evidence": "진무와 손을 잡고 진호경의 가짜 딸 행세를 하고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmu",
+      "to": "gowon",
+      "type": "work",
+      "label": "the crown prince's teacher in sorcery",
+      "short": "his teacher",
+      "evidence": "세자의 술법 수행을 이끈 스승으로 왕실과 돈독한 사이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmu",
+      "to": "hasun",
+      "type": "work",
+      "label": "the shadow of the secret society's real head",
+      "short": "her shadow",
+      "evidence": "밀단의 진짜 단주인 서하선의 그림자를 자처하며",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeomsoo",
+      "to": "jinmu",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": "진무의 수하, 눈치와 행동이 빠르고 욕심이 많다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soyi",
+      "to": "naksu",
+      "type": "friend",
+      "label": "the swindler she once helped in Sari village",
+      "short": "helped her once",
+      "evidence": "도망 다니던 중 사리촌에서 무덕이에게 도움을 받은 인연이 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gowon",
+      "to": "gosoon",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "고순과 하선의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hasun",
+      "to": "gowon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "고원의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gosoon",
+      "to": "hasun",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "하선의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hasun",
+      "to": "yul",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "서율의 고모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gowon",
+      "to": "uk",
+      "type": "rivalry",
+      "label": "the prince and the mage — rivals since the first season",
+      "short": "rival",
+      "evidence": "옹졸한 심술쟁이 왕자님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "joowol",
+      "to": "uk",
+      "type": "work",
+      "label": "owner of Chwiseonru, where everyone meets",
+      "short": "hostess",
+      "evidence": "취선루의 주인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chabeom",
+      "to": "uk",
+      "type": "work",
+      "label": "a student at Jeongjingak",
+      "short": "student",
+      "evidence": "정진각에서 수행하고 있는 명문가 집안 자제들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "uk",
+      "naksu",
+      "doju",
+      "parkjin",
+      "danggu",
+      "sangho",
+      "heoyeom",
+      "yoonok",
+      "soonyi",
+      "euiwon",
+      "yul",
+      "yuno",
+      "hokyung",
+      "choyeon",
+      "jinmu",
+      "yeomsoo",
+      "soyi",
+      "gowon",
+      "gosoon",
+      "hasun",
+      "teacherlee",
+      "joowol",
+      "chabeom"
+    ],
+    "blocks": {
+      "Jang household": [
+        0,
+        0
+      ],
+      "Songrim": [
+        0,
+        1
+      ],
+      "Sejukwon": [
+        0,
+        2
+      ],
+      "Seo family": [
+        2,
+        0
+      ],
+      "Jinyowon": [
+        2,
+        1
+      ],
+      "Royal court": [
+        2,
+        2
+      ],
+      "Cheonbugwan": [
+        1,
+        0
+      ],
+      "Others": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "uk",
+      "naksu"
+    ]
+  }
+}
