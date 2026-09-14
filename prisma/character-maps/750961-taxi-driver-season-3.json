@@ -242,48 +242,48 @@
       "from": "seongcheol",
       "to": "dogi",
       "type": "work",
-      "label": "his boss",
+      "label": "his boss — Rainbow Taxi's owner",
       "short": "his boss",
-      "evidence": "Jang Seong Cheol / Kim Do Gi",
-      "source": "MDL cast",
+      "evidence": "'무지개 운수'의 대표, 범죄 피해자 지원센터 '파랑새 재단' 대표",
+      "source": "ko.wikipedia (모범택시 2)",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
       "from": "goeun",
       "to": "dogi",
       "type": "work",
-      "label": "his hacker",
+      "label": "the screens behind the wheel",
       "short": "his hacker",
-      "evidence": "An Go Eun",
-      "source": "MDL cast",
+      "evidence": "자칭 IT 전문가, 타칭 해커",
+      "source": "ko.wikipedia (모범택시 2)",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
       "from": "gyeonggu",
       "to": "dogi",
       "type": "work",
-      "label": "his mechanic",
+      "label": "backs him up once the taxi is out",
       "short": "his mechanic",
-      "evidence": "Choi Gyeong Gu",
-      "source": "MDL cast",
+      "evidence": "모범택시 운행이 시작되면 도기를 백업한다",
+      "source": "ko.wikipedia (모범택시 2)",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
       "from": "jineon",
       "to": "dogi",
       "type": "work",
-      "label": "his mechanic",
+      "label": "everything mechanical",
       "short": "his mechanic",
-      "evidence": "Park Jin Eon",
-      "source": "MDL cast",
+      "evidence": "'무지개 운수' 정비실 엔지니어",
+      "source": "ko.wikipedia (모범택시 2)",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -295,7 +295,7 @@
       "evidence": "{Neko Money Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -331,7 +331,7 @@
       "evidence": "{Noblesse Motors Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -355,7 +355,7 @@
       "evidence": "{Park Dong Su Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -388,10 +388,10 @@
       "type": "friend",
       "label": "the old prosecutor, on their side now",
       "short": "old friend",
-      "evidence": "{Park Dong Su Case}",
+      "evidence": "[Seong Cheol's friend] (season 2 cast)",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": false
     },
     {
@@ -403,7 +403,7 @@
       "evidence": "{Lee Ro Mi Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -412,10 +412,10 @@
       "type": "rivalry",
       "label": "the agency that used her",
       "short": "her agency",
-      "evidence": "{Lee Ro Mi Case}",
+      "evidence": "{Lee Ro Mi Case} [Yellow Star HQ manager]",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -427,7 +427,7 @@
       "evidence": "{Park Da Som Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -436,10 +436,10 @@
       "type": "rivalry",
       "label": "the ring that defrauded her",
       "short": "defrauded her",
-      "evidence": "{Park Da Som Case}",
+      "evidence": "{Park Da Som Case} [2nd hand trading fraud ring leader]",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -448,10 +448,10 @@
       "type": "rivalry",
       "label": "Samheung Island — the mercenary",
       "short": "the island",
-      "evidence": "{Samheung Island Case}",
+      "evidence": "{Samheung Island Case} [Former mercenary]",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -463,7 +463,7 @@
       "evidence": "{Samheung Island Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -475,7 +475,7 @@
       "evidence": "{Samheung Island Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -487,7 +487,7 @@
       "evidence": "{Samheung Island Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -499,7 +499,7 @@
       "evidence": "{Yoo Seon A Case}",
       "source": "MDL cast",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {

@@ -27,7 +27,8 @@
       "image": "https://i.mydramalist.com/wJ3Jzg_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Transferred to Eunjang after Class 1; decided never to fight again"
+      "note": "Transferred to Eunjang after Class 1; decided never to fight again",
+      "still": "https://asianwiki.com/images/f/fd/Weak_Hero_Class_2-Park_Ji-Hoon.jpg"
     },
     {
       "id": "humin",
@@ -36,7 +37,8 @@
       "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "'Baku' — strength and a sense of justice"
+      "note": "'Baku' — strength and a sense of justice",
+      "still": "https://asianwiki.com/images/2/29/Weak_Hero_Class_2-Ryeo_Un.jpg"
     },
     {
       "id": "juntae",
@@ -45,7 +47,8 @@
       "image": "https://i.mydramalist.com/vXN682_5m.jpg",
       "group": "Eunjang",
       "inCast": true,
-      "note": "Small, loud, the first to talk to Si Eun"
+      "note": "Small, loud, the first to talk to Si Eun",
+      "still": "https://asianwiki.com/images/5/5b/Weak_Hero_Class_2-Choi_Min-Young1.jpg"
     },
     {
       "id": "hyeontak",
@@ -54,7 +57,8 @@
       "image": "https://i.mydramalist.com/yWK7rd_5m.jpg",
       "group": "Eunjang",
       "inCast": true,
-      "note": "Fights with heart, not skill"
+      "note": "Fights with heart, not skill",
+      "still": "https://asianwiki.com/images/4/4f/Weak_Hero_Class_2-Lee_Min-Jae.jpg"
     },
     {
       "id": "hyoman",
@@ -63,7 +67,8 @@
       "image": "https://i.mydramalist.com/XbbZZm.jpg",
       "group": "Eunjang",
       "inCast": true,
-      "note": "Hu Min's follower"
+      "note": "Hu Min's follower",
+      "still": "https://asianwiki.com/images/d/d9/Weak_Hero_Class_2-Yoo_Su-Bin1.jpg"
     },
     {
       "id": "baekjin",
@@ -72,7 +77,8 @@
       "image": "https://i.mydramalist.com/RB3vjz_5m.jpg",
       "group": "The Union",
       "inCast": true,
-      "note": "Head of the Union — Hu Min's oldest friend, once"
+      "note": "Head of the Union — Hu Min's oldest friend, once",
+      "still": "https://asianwiki.com/images/1/18/Weak_Hero_Class_2-Bae_Na-Ra.jpg"
     },
     {
       "id": "seongje",
@@ -81,7 +87,8 @@
       "image": "https://i.mydramalist.com/v2yzZ_5m.jpg",
       "group": "The Union",
       "inCast": true,
-      "note": "'Wolf' — the Union's enforcer, who fights for the joy of it"
+      "note": "'Wolf' — the Union's enforcer, who fights for the joy of it",
+      "still": "https://asianwiki.com/images/4/45/Weak_Hero_Class_2-Lee_Jun-Young1.jpg"
     },
     {
       "id": "seongmok",
@@ -89,7 +96,8 @@
       "actor": "Oh Gi Gwang",
       "image": "https://i.mydramalist.com/dQLRD_5m.jpg",
       "group": "The Union",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d1/Weak_Hero_Class_2-Yoon_Jong-Bin.jpg"
     },
     {
       "id": "dongha",
@@ -97,7 +105,8 @@
       "actor": "Lee Myeong Ro",
       "image": "https://i.mydramalist.com/l0AW7v_5m.jpg",
       "group": "The Union",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f6/Weak_Hero_Class_2-Lee_Myeong-Ro.jpg"
     },
     {
       "id": "gorilla",
@@ -106,7 +115,8 @@
       "image": "https://i.mydramalist.com/nO8022_5m.jpg",
       "group": "The Union",
       "inCast": true,
-      "note": "Picked out by Baek Jin for the Union"
+      "note": "Picked out by Baek Jin for the Union",
+      "still": "https://asianwiki.com/images/8/84/Weak_Hero_Class_2-Son_Bo-Seung.jpg"
     },
     {
       "id": "yaechan",
@@ -114,7 +124,8 @@
       "actor": "Yoon Hyun Sik",
       "image": "https://i.mydramalist.com/Z80yrq_5m.jpg",
       "group": "The Union",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3b/Weak_Hero_Class_2-Yoon_Hyun-Sik.jpg"
     },
     {
       "id": "changhee",
@@ -123,7 +134,8 @@
       "image": null,
       "group": "The Union",
       "inCast": false,
-      "note": "Gangster with a bowling alley; Baek Jin launders his money"
+      "note": "Gangster with a bowling alley; Baek Jin launders his money",
+      "still": "https://asianwiki.com/images/c/c7/Weak_Hero_Class_2-Cho_Jung_Seok.jpg"
     },
     {
       "id": "gyujin",
@@ -140,7 +152,8 @@
       "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
       "group": "Class 1",
       "inCast": true,
-      "note": "In a coma since Class 1"
+      "note": "In a coma since Class 1",
+      "still": "https://asianwiki.com/images/8/86/Weak_Hero_Class_2-Choi_Hyun_Wook.jpg"
     },
     {
       "id": "beomseok",
@@ -149,7 +162,8 @@
       "image": "https://i.mydramalist.com/O82gkY_5m.jpg",
       "group": "Class 1",
       "inCast": true,
-      "note": "The friend who betrayed him"
+      "note": "The friend who betrayed him",
+      "still": "https://asianwiki.com/images/1/19/Weak_Hero_Class_2-Hong_Kyung.jpg"
     },
     {
       "id": "teacher",
@@ -158,7 +172,8 @@
       "image": "https://i.mydramalist.com/RrpBxm.jpg",
       "group": "Eunjang",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/a/af/Weak_Hero_Class_2-Lim_Ho-Jun.jpg"
     }
   ],
   "links": [
