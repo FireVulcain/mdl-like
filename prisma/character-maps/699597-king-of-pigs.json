@@ -1,0 +1,696 @@
+{
+  "version": 1,
+  "mdlSlug": "699597-king-of-pigs",
+  "title": "The King of Pigs",
+  "asianwiki": "The King of Pigs (Korean Drama)",
+  "native": "돼지의 왕",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (74 roles, 3 main) — for most classmates MDL carries only the young actor",
+    "MDL synopsis",
+    "ko.wikipedia 돼지의 왕 (드라마) 등장인물",
+    "en.wikipedia The King of Pigs (TV series)"
+  ],
+  "main": [
+    "gyeongmin",
+    "jongsuk",
+    "jinah"
+  ],
+  "people": [
+    {
+      "id": "gyeongmin",
+      "name": "Hwang Kyung Min / Nam Gi Cheol",
+      "actor": "Kim Dong Wook",
+      "image": "https://i.mydramalist.com/0wKYq4_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Never forgot the school violence of twenty years ago; a taxi-company boss under another name",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Chan Yoo",
+          "image": "https://i.mydramalist.com/Xvgwqm.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/cd/The_King_of_Pigs-Lee_Chan-Yoo.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/6/66/The_King_Of_Pigs-KD-Kim_Dong-Wook.jpg"
+    },
+    {
+      "id": "jongsuk",
+      "name": "Jung Jong Suk",
+      "actor": "Kim Sung Kyu",
+      "image": "https://i.mydramalist.com/yWDewn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Detective, Seoul metropolitan investigation unit",
+      "alsoPlayedBy": [
+        {
+          "name": "Sim Hyun Seo",
+          "image": "https://i.mydramalist.com/JB7YmX_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/7/74/The_King_of_Pigs-KD-Shim_Hyun_Seo.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/1/1e/The_King_Of_Pigs-KD-Kim_Sung-Kyu.jpg"
+    },
+    {
+      "id": "jinah",
+      "name": "Kang Jin Ah",
+      "actor": "Chae Jung An",
+      "image": "https://i.mydramalist.com/E0VP5_5m.jpg",
+      "group": "Seodong police",
+      "inCast": true,
+      "note": "Detective, Violent Crimes Team 2; principled, obsessive",
+      "still": "https://asianwiki.com/images/d/d6/The_King_Of_Pigs-KD-Chae_Jung-An.jpg"
+    },
+    {
+      "id": "jaeho",
+      "name": "Kim Jae Ho",
+      "actor": "Kim Hyun Jun",
+      "image": "https://i.mydramalist.com/RoyqE_5m.jpg",
+      "group": "Seodong police",
+      "inCast": true,
+      "note": "Team leader",
+      "still": "https://asianwiki.com/images/4/4c/The_King_of_Pigs-KD-Kim_Hyeon-Jun.jpg"
+    },
+    {
+      "id": "haesoo",
+      "name": "Jin Hae Soo",
+      "actor": "Jung Eui Jae",
+      "image": "https://i.mydramalist.com/wJx53k_5m.jpg",
+      "group": "Seodong police",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/70/The_King_of_Pigs-Jung_Eui-Jae.jpg"
+    },
+    {
+      "id": "minseok",
+      "name": "Kim Min Seok",
+      "actor": "Kim Min Shik",
+      "image": "https://i.mydramalist.com/O52Akm.jpg",
+      "group": "Seodong police",
+      "inCast": true,
+      "note": "The youngest",
+      "still": "https://asianwiki.com/images/4/44/The_King_of_Pigs-KD-Kim_Min-Sik.jpg"
+    },
+    {
+      "id": "doshik",
+      "name": "Oh Do Shik",
+      "actor": "Seo Jae Kyu",
+      "image": "https://i.mydramalist.com/BbzE1m.jpg",
+      "group": "Seodong police",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/70/The_King_of_Pigs-Seo_Jae-Kyu.jpg"
+    },
+    {
+      "id": "dongjin",
+      "name": "Seo Dong Jin",
+      "actor": "Lee Tae Geom",
+      "image": "https://i.mydramalist.com/00LL6m.jpg",
+      "group": "Metropolitan investigation unit",
+      "inCast": true,
+      "note": "Captain, Team 1",
+      "still": "https://asianwiki.com/images/2/27/The_King_of_Pigs-KD-Lee_Tae-Gum.jpg"
+    },
+    {
+      "id": "deokwoo",
+      "name": "Nam Deok Woo",
+      "actor": "Ahn Doo Ho",
+      "image": "https://i.mydramalist.com/vKpvX_5m.jpg",
+      "group": "Metropolitan investigation unit",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6b/The_King_of_Pigs-KD-An_Doo-Ho.jpg"
+    },
+    {
+      "id": "pildoo",
+      "name": "Jo Pil Doo",
+      "actor": "Ji Chan",
+      "image": "https://i.mydramalist.com/p0ZpVm.jpg",
+      "group": "Metropolitan investigation unit",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/01/The_King_of_Pigs-KD-Ji_Chan.jpg"
+    },
+    {
+      "id": "manjae",
+      "name": "Du Man Jae",
+      "actor": "Park Jin",
+      "image": "https://i.mydramalist.com/5oQbwm.jpg",
+      "group": "Metropolitan investigation unit",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d9/The_King_of_Pigs-KD-Park_Jin.jpg"
+    },
+    {
+      "id": "seongjin",
+      "name": "Park Sung Jin",
+      "actor": "Hwang Man Ik",
+      "image": "https://i.mydramalist.com/r0vYmm.jpg",
+      "group": "Around Kyung Min",
+      "inCast": true,
+      "note": "Depot manager at Sinseok Transport; once a violent-crimes chief",
+      "still": "https://asianwiki.com/images/5/5d/The_King_of_Pigs-Hwang_Man_Ik.jpg"
+    },
+    {
+      "id": "minjoo",
+      "name": "Park Min Joo",
+      "actor": "Han Soo Yeon",
+      "image": "https://i.mydramalist.com/kA0v5d_5m.jpg",
+      "group": "Around Kyung Min",
+      "inCast": true,
+      "note": "Ep. 1",
+      "still": "https://asianwiki.com/images/3/3b/The_King_of_Pigs-Han_Soo-Yeon.jpg"
+    },
+    {
+      "id": "hyeonjung",
+      "name": "Kim Hyeon Jung",
+      "actor": "Yang So Min",
+      "image": "https://i.mydramalist.com/WNOQ3m.jpg",
+      "group": "Around Kyung Min",
+      "inCast": true,
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/d/dc/The_King_of_Pigs-Yang_So-Min.jpg"
+    },
+    {
+      "id": "gyeongminmother",
+      "name": "Kim Sun Hui",
+      "actor": "Lee Ji Ha",
+      "image": "https://i.mydramalist.com/EDgKmm.jpg",
+      "group": "Around Kyung Min",
+      "inCast": true,
+      "note": "MDL lists her only as Gyeong Min's mother",
+      "still": "https://asianwiki.com/images/0/05/The_King_of_Pigs-Lee_Ji-Ha.jpg"
+    },
+    {
+      "id": "gyeongminfather",
+      "name": "Kyung Min's father",
+      "actor": "Ryu Seong Hyeon",
+      "image": "https://i.mydramalist.com/YYBZLe_5m.jpg",
+      "group": "Around Kyung Min",
+      "inCast": true,
+      "note": "Runs a hostess bar",
+      "still": "https://asianwiki.com/images/a/a3/The_King_of_Pigs-Ryoo_Sung-Hyun.jpg"
+    },
+    {
+      "id": "seokki",
+      "name": "Choi Seok Ki",
+      "actor": "Lee Kyung Young",
+      "image": "https://i.mydramalist.com/j6Zl8_5m.jpg",
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "Their homeroom teacher then; principal now",
+      "still": "https://asianwiki.com/images/8/8c/The_King_of_Pigs-Lee_Kyoung-Young.jpg"
+    },
+    {
+      "id": "chul",
+      "name": "Kim Chul",
+      "actor": "Choi Hyun Jin",
+      "image": "https://i.mydramalist.com/WPNrnW_5m.jpg",
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "The king of pigs",
+      "still": "https://asianwiki.com/images/e/ee/The_King_of_Pigs-Choi_Hyun-Jin1.jpg"
+    },
+    {
+      "id": "kangmin",
+      "name": "Kang Min",
+      "actor": "Oh Min Suk",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "Class president then; a surgeon now. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Seong Hyun",
+          "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/c6/The_King_of_Pigs-Moon_Sung-Hyun1.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/ef/The_King_of_Pigs-KD-Oh_Min-Suk.jpg"
+    },
+    {
+      "id": "junghee",
+      "name": "Ahn Jung Hee",
+      "actor": "Choi Kwang Je",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "Runs a garage now. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Song Seung Hwan",
+          "image": "https://i.mydramalist.com/ZqwBJ_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/cb/The_King_of_Pigs-Song_Seung-Hwan.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/4/4c/The_King_of_Pigs-Choi_Kwang-Je.jpg"
+    },
+    {
+      "id": "sungkyu",
+      "name": "Choi Sung Kyu",
+      "actor": "Kim Min Seok",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "Pharmaceutical employee now. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Jang Dae Ung",
+          "image": "https://i.mydramalist.com/BE4KR_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/b/bd/The_King_of_Pigs-KD-Jang_Dae-Woong.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/0/0b/The_King_of_Pigs-KD-Kim_Min-Seok.jpg"
+    },
+    {
+      "id": "kiwon",
+      "name": "Lee Ki Won",
+      "actor": "Kang Jung Woo",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "Bank clerk now. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Wan Kyu",
+          "image": "https://i.mydramalist.com/jpdLv_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/a/aa/The_King_of_Pigs-KD-Kim_Wan-Kyu.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/5/50/The_King_of_Pigs-KD-Kang_Jung-Woo.jpg"
+    },
+    {
+      "id": "jongbin",
+      "name": "Kim Jong Bin",
+      "actor": "Jo Wan Ki",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "A third-year then; a newspaper reporter now. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Hyeon Bin",
+          "image": "https://i.mydramalist.com/XEn6J_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/0/0e/The_King_of_Pigs-Kim_Hyun-Bin.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/cb/The_King_of_Pigs-Jo_Wan-Ki.jpg"
+    },
+    {
+      "id": "chanyoung",
+      "name": "Park Chan Young",
+      "actor": "Bae Yoo Ram",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "'Dog Park'. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Kang Jee Seok",
+          "image": "https://i.mydramalist.com/eY3DyW_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/8/8d/The_King_of_Pigs-Kang_Jee-Seok.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/f/f9/The_King_of_Pigs-Bae_Yoo_Ram.jpg"
+    },
+    {
+      "id": "jaeu",
+      "name": "Park Jae U",
+      "actor": "Kim Ju Kyung",
+      "image": null,
+      "group": "Sinseok Middle School",
+      "inCast": true,
+      "note": "Warehouse worker now. MDL carries only the young actor",
+      "alsoPlayedBy": [
+        {
+          "name": "Eun Ye Jun",
+          "image": "https://i.mydramalist.com/em4xp_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/cf/The_King_of_Pigs-Eun_Ye-Jun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/0/0e/The_King_of_Pigs-Kim_Ju-Kyung.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "gyeongmin",
+      "to": "jongsuk",
+      "type": "friend",
+      "label": "school friends, brought back together by a message after twenty years",
+      "short": "old friend",
+      "evidence": "Two friends, Kyung Min and Detective Jong Suk, reconnect after receiving a message from a friend they haven't heard from in 20 years.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongmin",
+      "to": "jongsuk",
+      "type": "rivalry",
+      "label": "the murders Jong Suk chases are his — under the name Nam Gi Cheol",
+      "short": "the killer",
+      "evidence": "who lives without forgetting the memories of school violence 20 years ago, now in the guise of a taxi cooperation ceo. / soon after, a series of mysterious murders begin",
+      "source": "en.wikipedia; MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chul",
+      "to": "gyeongmin",
+      "type": "bond",
+      "label": "the friend not heard from in twenty years, whose message starts it all",
+      "short": "the message",
+      "evidence": "reconnect after receiving a message from a friend they haven't heard from in 20 years",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chul",
+      "to": "jongsuk",
+      "type": "bond",
+      "label": "the friend not heard from in twenty years, whose message starts it all",
+      "short": "the message",
+      "evidence": "reconnect after receiving a message from a friend they haven't heard from in 20 years",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinah",
+      "to": "jongsuk",
+      "type": "work",
+      "label": "Seodong detective on the same murders",
+      "short": "same case",
+      "evidence": "서울서동경찰서 강력2팀 형사 / a charismatic detective who is a strong-willed principle dist and is obsessed with cases.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaeho",
+      "to": "jinah",
+      "type": "work",
+      "label": "leader of her team",
+      "short": "team leader",
+      "evidence": "[Seodong Police Station Head] / 서울서동경찰서 강력2팀장",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haesoo",
+      "to": "jinah",
+      "type": "work",
+      "label": "on her team",
+      "short": "her team",
+      "evidence": "[Detective of Seodong Police Station] / 서울서동경찰서 강력2팀 형사",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minseok",
+      "to": "jinah",
+      "type": "work",
+      "label": "youngest on her team",
+      "short": "her team",
+      "evidence": "[Detective of Seodong Police Station] / the youngest member of the Seodong Police Station's first strong team.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doshik",
+      "to": "jinah",
+      "type": "work",
+      "label": "on her team",
+      "short": "her team",
+      "evidence": "[Detective of Seodong Police Station] / 서울서동경찰서 강력2팀 형사",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongjin",
+      "to": "jongsuk",
+      "type": "work",
+      "label": "his team leader",
+      "short": "team leader",
+      "evidence": "[Captain, SMPA; Jong Suk's team leader] / Gwangsudae's team leader.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokwoo",
+      "to": "jongsuk",
+      "type": "work",
+      "label": "colleague on Team 1",
+      "short": "colleague",
+      "evidence": "[Detective; Violent Crime Unit Team 1] / 서울경찰청 광역수사대 강력1팀 형사",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "pildoo",
+      "to": "jongsuk",
+      "type": "work",
+      "label": "colleague on Team 1",
+      "short": "colleague",
+      "evidence": "[Detective; Violent Crime Unit Team 1] / Cho Pil-doo, Jong-seok's colleague.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "manjae",
+      "to": "jongsuk",
+      "type": "work",
+      "label": "colleague who helps him crack the case",
+      "short": "colleague",
+      "evidence": "[Detective; Violent Crime Unit Team 1] / a police detective who helps Jong-seok uncover the case.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seongjin",
+      "to": "gyeongmin",
+      "type": "work",
+      "label": "his helper — an ex-violent-crimes chief running the Sinseok Transport depot",
+      "short": "his helper",
+      "evidence": "[Director; Shin Seok Transportation] / 신석운수 관리소장, 전직 강력계 반장, 황경민의 조력자",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minjoo",
+      "to": "gyeongmin",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Kyung Min's wife] / 황경민의 아내",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjung",
+      "to": "minjoo",
+      "type": "friend",
+      "label": "her friend, a psychiatrist",
+      "short": "friend",
+      "evidence": "[Min Joo's friend / Psychiatrist] / an acquaintance of Hwang Kyung-min's wife and the director of neuropsychiatry.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongminmother",
+      "to": "gyeongmin",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Gyeong Min's mother] / 김선희 역 - 황경민의 어머니",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongminfather",
+      "to": "gyeongmin",
+      "type": "family",
+      "label": "abusive father, who ran a hostess bar",
+      "short": "father",
+      "evidence": "[Kyung Min's father] / Gyeong-min's abusive father. / 단란주점 운영",
+      "source": "MDL cast; en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokki",
+      "to": "gyeongmin",
+      "type": "rivalry",
+      "label": "the homeroom teacher who took money and let the bullying run; principal now",
+      "short": "looked away",
+      "evidence": "[Sin Seok High School principal] / a corrupt teacher who loves money and tolerates school bullying. / 담임선생님, 신석중학교 교장",
+      "source": "MDL cast; en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungkyu",
+      "to": "gyeongmin",
+      "type": "rivalry",
+      "label": "one of the students who brutalised him",
+      "short": "bullied him",
+      "evidence": "one of the students who brutally commit school violence against Hwang Kyung-min.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kangmin",
+      "to": "gyeongmin",
+      "type": "rivalry",
+      "label": "class president, and head of the pack that brutalised him",
+      "short": "bullied him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "junghee",
+      "to": "gyeongmin",
+      "type": "rivalry",
+      "label": "one of the pack that brutalised him",
+      "short": "bullied him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kiwon",
+      "to": "gyeongmin",
+      "type": "friend",
+      "label": "classmate at Sinseok",
+      "short": "classmate",
+      "evidence": "신석중학교 관련인물: 강정우 : 이기원 역 (아역 : 김완규) - 은행 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jongbin",
+      "to": "kangmin",
+      "type": "work",
+      "label": "the third-year senior above the pack",
+      "short": "the senior",
+      "evidence": "3학년 선배, 동진일보 사회부 기자 / an 11th grader senior and Jong-bin's aide.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chanyoung",
+      "to": "jongsuk",
+      "type": "friend",
+      "label": "classmate, 'Dog Park'",
+      "short": "classmate",
+      "evidence": "박찬영 역 (아역 : 강지석) - 전기공학과 전공, '도그박'",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaeu",
+      "to": "jongsuk",
+      "type": "friend",
+      "label": "his deskmate",
+      "short": "deskmate",
+      "evidence": "박재우 역 (아역 : 은예준) - 정종석의 짝꿍, JM물류창고 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "gyeongmin",
+      "jongsuk",
+      "jinah",
+      "jaeho",
+      "haesoo",
+      "minseok",
+      "doshik",
+      "seongjin",
+      "minjoo",
+      "hyeonjung",
+      "gyeongminmother",
+      "gyeongminfather",
+      "seokki",
+      "chul",
+      "kangmin",
+      "junghee",
+      "sungkyu",
+      "kiwon",
+      "jongbin",
+      "chanyoung",
+      "jaeu"
+    ],
+    "blocks": {
+      "Around Kyung Min": [
+        0,
+        0
+      ],
+      "Seodong police": [
+        2,
+        0
+      ],
+      "Sinseok Middle School": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "gyeongmin",
+      "jongsuk"
+    ]
+  }
+}

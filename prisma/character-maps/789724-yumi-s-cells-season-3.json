@@ -1,0 +1,333 @@
+{
+  "version": 1,
+  "mdlSlug": "789724-yumi-s-cells-season-3",
+  "title": "Yumi's Cells Season 3",
+  "asianwiki": "Yumi's Cells S3",
+  "native": "유미의 세포들 시즌3",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 유미의 세포들 3 (names only)",
+    "en.wikipedia (nothing found) — the cameos from earlier seasons are inferred"
+  ],
+  "main": [
+    "yumi",
+    "sunrok"
+  ],
+  "people": [
+    {
+      "id": "yumi",
+      "name": "Kim Yu Mi",
+      "actor": "Kim Go Eun",
+      "image": "https://i.mydramalist.com/O8JWKL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Star romance novelist whose cells have all gone to sleep",
+      "still": "https://asianwiki.com/images/e/ee/Yumis_Cells_3-Kim_Go-Eun1.jpg"
+    },
+    {
+      "id": "sunrok",
+      "name": "Sin Sun Rok",
+      "actor": "Kim Jae Won",
+      "image": "https://i.mydramalist.com/DkVjpn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Editor in his twenties at Julie Publishing; facts, logic, boundaries",
+      "still": "https://asianwiki.com/images/7/72/Yumis_Cells_S3-Kim_Jae-Won.jpg"
+    },
+    {
+      "id": "daeyong",
+      "name": "An Dae Yong",
+      "actor": "Jeon Seok Ho",
+      "image": "https://i.mydramalist.com/YYj5OB_5m.jpg",
+      "group": "Julie Publishing",
+      "inCast": true,
+      "note": "Editor-in-chief",
+      "still": "https://asianwiki.com/images/b/b7/Yumis_Cells_S3-Jun_Suk-Ho.jpg"
+    },
+    {
+      "id": "juho",
+      "name": "Kim Ju Ho",
+      "actor": "Choi Daniel",
+      "image": "https://i.mydramalist.com/nOnz1L_5m.jpg",
+      "group": "Julie Publishing",
+      "inCast": true,
+      "note": "The house's headline writer",
+      "still": "https://asianwiki.com/images/d/d2/Yumis_Cells-Daniel_Choi.jpg"
+    },
+    {
+      "id": "ida",
+      "name": "Kang I Da",
+      "actor": "Mi Ram",
+      "image": "https://i.mydramalist.com/JBe8oY_5m.jpg",
+      "group": "Julie Publishing",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3d/Yumis_Cells_S3-Mi-Ram.jpg"
+    },
+    {
+      "id": "nahui",
+      "name": "Baek Na Hui",
+      "actor": "Cho Hye Jung",
+      "image": "https://i.mydramalist.com/jONov_5m.jpg",
+      "group": "Yu Mi's work",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c2/Yumis_Cells_S3-Cho_Hye-Jung.jpg"
+    },
+    {
+      "id": "suhye",
+      "name": "Jang Su Hye",
+      "actor": "Park Se In",
+      "image": "https://i.mydramalist.com/Pnd35m.jpg",
+      "group": "Yu Mi's work",
+      "inCast": true,
+      "note": "PD",
+      "still": "https://asianwiki.com/images/5/55/Yumis_Cells_S3-Park_Se-In.jpg"
+    },
+    {
+      "id": "yunpd",
+      "name": "Yun PD",
+      "actor": "Hwang Chan Sung",
+      "image": "https://i.mydramalist.com/nOQ408_5m.jpg",
+      "group": "Yu Mi's work",
+      "inCast": true,
+      "note": "Ep. 1"
+    },
+    {
+      "id": "mansik",
+      "name": "Kim Man Sik",
+      "actor": "Sung Ji Ru",
+      "image": "https://i.mydramalist.com/jb8Yb_5m.jpg",
+      "group": "Yu Mi's family",
+      "inCast": true,
+      "note": "Ep. 1, 8",
+      "still": "https://asianwiki.com/images/0/0c/Yumis_Cells_S3-Sung_Ji-Ru.jpg"
+    },
+    {
+      "id": "yeongsim",
+      "name": "Hwang Yeong Sim",
+      "actor": "Yun Yu Sun",
+      "image": "https://i.mydramalist.com/BDbjb_5m.jpg",
+      "group": "Yu Mi's family",
+      "inCast": true,
+      "note": "Ep. 8",
+      "still": "https://asianwiki.com/images/b/b8/Yumis_Cells_S3-Yun_Yoo-Sun.jpg"
+    },
+    {
+      "id": "ruby",
+      "name": "Lee Ruby",
+      "actor": "Lee Yoo Bi",
+      "image": "https://i.mydramalist.com/XkqZO_5m.jpg",
+      "group": "From past seasons",
+      "inCast": true,
+      "note": "Ep. 1–2",
+      "still": "https://asianwiki.com/images/c/c8/Yumis_Cells_S3-Lee_Yoo-Bi.jpg"
+    },
+    {
+      "id": "ung",
+      "name": "Koo Ung",
+      "actor": "Ahn Bo Hyun",
+      "image": "https://i.mydramalist.com/zB1vld_5m.jpg",
+      "group": "From past seasons",
+      "inCast": true,
+      "note": "Ep. 8",
+      "still": "https://asianwiki.com/images/b/be/Yumis_Cells_S3-Ahn_Bo-Hyun01.jpg"
+    },
+    {
+      "id": "babi",
+      "name": "Yoo Ba Bi",
+      "actor": "Park Jin Young",
+      "image": "https://i.mydramalist.com/LwL5q3_5m.jpg",
+      "group": "From past seasons",
+      "inCast": true,
+      "note": "Ep. 8",
+      "still": "https://asianwiki.com/images/f/f4/Yumis_Cells_S3-Jin_Young.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "sunrok",
+      "to": "yumi",
+      "type": "romance",
+      "label": "the younger editor who wakes her cells; he draws a line, and falls anyway",
+      "short": "lovers",
+      "evidence": "Facing this younger man, Yu Mi discovers a new kind of love — unexpected, disarming, and deeply stirring. / But as Yu Mi starts to invade his world, he draws a line—only to find himself slowly, irresistibly, falling for her.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeyong",
+      "to": "sunrok",
+      "type": "work",
+      "label": "his editor-in-chief at Julie",
+      "short": "his chief",
+      "evidence": "[Julie Literature editor-in-chief] / Sin Sun Rok, an editor in his 20s at Julie Publishing",
+      "source": "MDL cast; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juho",
+      "to": "yumi",
+      "type": "work",
+      "label": "Julie's headline writer, alongside her",
+      "short": "fellow writer",
+      "evidence": "[Julie Literature representative writer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ida",
+      "to": "daeyong",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Dae Yong's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nahui",
+      "to": "yumi",
+      "type": "work",
+      "label": "her assistant writer",
+      "short": "assistant",
+      "evidence": "[Yu Mi's assistant writer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhye",
+      "to": "yumi",
+      "type": "work",
+      "label": "the PD she answers to",
+      "short": "her PD",
+      "evidence": "[PD / Yu Mi's superior]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunpd",
+      "to": "yumi",
+      "type": "work",
+      "label": "her manager",
+      "short": "manager",
+      "evidence": "[Yu Mi's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mansik",
+      "to": "yumi",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yu Mi's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsim",
+      "to": "yumi",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Yu Mi's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruby",
+      "to": "yumi",
+      "type": "friend",
+      "label": "old colleague from her office days",
+      "short": "old colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ung",
+      "to": "yumi",
+      "type": "romance",
+      "label": "the first love, from season one",
+      "short": "first love",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "babi",
+      "to": "yumi",
+      "type": "romance",
+      "label": "the second love, from season two",
+      "short": "second love",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yumi",
+      "sunrok",
+      "daeyong",
+      "juho",
+      "ida",
+      "nahui",
+      "suhye",
+      "yunpd",
+      "mansik",
+      "yeongsim",
+      "ruby",
+      "ung",
+      "babi"
+    ],
+    "blocks": {
+      "Yu Mi's family": [
+        0,
+        0
+      ],
+      "Yu Mi's work": [
+        0,
+        2
+      ],
+      "Julie Publishing": [
+        2,
+        0
+      ],
+      "From past seasons": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "yumi",
+      "sunrok"
+    ]
+  }
+}

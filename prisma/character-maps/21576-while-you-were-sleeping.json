@@ -1,0 +1,694 @@
+{
+  "version": 1,
+  "mdlSlug": "21576-while-you-were-sleeping",
+  "title": "While You Were Sleeping",
+  "asianwiki": "While You Were Sleeping (2017)",
+  "native": "당신이 잠든 사이에",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (65 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 당신이 잠든 사이에 (2017년 드라마) 등장인물",
+    "en.wikipedia While You Were Sleeping (2017 TV series)"
+  ],
+  "main": [
+    "hongju",
+    "jaechan",
+    "yubeom",
+    "utak"
+  ],
+  "people": [
+    {
+      "id": "hongju",
+      "name": "Nam Hong Ju",
+      "actor": "Bae Suzy",
+      "image": "https://i.mydramalist.com/3oVYod_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "SBC field reporter who sees the future in her dreams; 'Bamtori' as a tomboy",
+      "alsoPlayedBy": [
+        {
+          "name": "Shin Yi Joon",
+          "image": "https://i.mydramalist.com/qO7yPm.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/7/79/While_You_Were_Sleeping_%282017%29-Bae_Suzy.jpg"
+    },
+    {
+      "id": "jaechan",
+      "name": "Jung Jae Chan",
+      "actor": "Lee Jong Suk",
+      "image": "https://i.mydramalist.com/NdXbQv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rookie prosecutor, Criminal Division 3",
+      "alsoPlayedBy": [
+        {
+          "name": "Nam Da Reum",
+          "image": "https://i.mydramalist.com/E5QVml_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/eb/While_You_Were_Sleeping_%282017%29-Lee_Jong-Suk.jpg"
+    },
+    {
+      "id": "yubeom",
+      "name": "Lee Yu Beom",
+      "actor": "Lee Sang Yeob",
+      "image": "https://i.mydramalist.com/Kpong0_5m.jpg",
+      "group": "Haekwang law firm",
+      "inCast": true,
+      "note": "Prosecutor turned lawyer, who fabricates whatever wins",
+      "alsoPlayedBy": [
+        {
+          "name": "Yeo Hoe Hyun",
+          "image": "https://i.mydramalist.com/2JBkE_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/8/83/While_You_Were_Sleeping_%282017%29-Lee_Sang-Yeob.jpg"
+    },
+    {
+      "id": "utak",
+      "name": "Han U Tak",
+      "actor": "Jung Hae In",
+      "image": "https://i.mydramalist.com/PxZeJ0_5m.jpg",
+      "group": "Sanggu substation",
+      "inCast": true,
+      "note": "Model police officer hiding his colour-blindness",
+      "still": "https://asianwiki.com/images/4/48/While_You_Were_Sleeping_%282017%29-Jung_Hae-In.jpg"
+    },
+    {
+      "id": "gyeonghan",
+      "name": "O Gyeong Han",
+      "actor": "Lee Yu Jun",
+      "image": "https://i.mydramalist.com/73Bl0b_5m.jpg",
+      "group": "Sanggu substation",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f9/While_You_Were_Sleeping_%282017%29-Lee_Yoo-Joon.jpg"
+    },
+    {
+      "id": "yeojung",
+      "name": "Cha Yeo Jung",
+      "actor": "Pyo Ye Jin",
+      "image": "https://i.mydramalist.com/4epr0d_5m.jpg",
+      "group": "Sanggu substation",
+      "inCast": true
+    },
+    {
+      "id": "munsun",
+      "name": "Yun Mun Sun",
+      "actor": "Hwang Young Hee",
+      "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
+      "group": "Hong Ju's family",
+      "inCast": true,
+      "note": "Runs the samgyeopsal restaurant",
+      "still": "https://asianwiki.com/images/5/55/While_You_Were_Sleeping_%282017%29-Hwang_Young-Hee.jpg"
+    },
+    {
+      "id": "chuldu",
+      "name": "Nam Chul Du",
+      "actor": "Choi Won Young",
+      "image": "https://i.mydramalist.com/QBrn6_5m.jpg",
+      "group": "Hong Ju's family",
+      "inCast": true,
+      "note": "Bus driver; dead"
+    },
+    {
+      "id": "seungwon",
+      "name": "Jung Seung Won",
+      "actor": "Shin Jae Ha",
+      "image": "https://i.mydramalist.com/eYVXkY_5m.jpg",
+      "group": "Jae Chan's family",
+      "inCast": true,
+      "note": "Nineteen",
+      "alsoPlayedBy": [
+        {
+          "name": "Ko Woo Rim",
+          "image": "https://i.mydramalist.com/2LB0R_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/2/23/While_You_Were_Sleeping_%282017%29-Shin_Jae-Ha.jpg"
+    },
+    {
+      "id": "ilseung",
+      "name": "Jung Il Seung",
+      "actor": "Jang Hyun Sung",
+      "image": "https://i.mydramalist.com/1LJLdm.jpg",
+      "group": "Jae Chan's family",
+      "inCast": true,
+      "note": "Police chief; dead"
+    },
+    {
+      "id": "jaechanmother",
+      "name": "Jae Chan's mother",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
+      "group": "Jae Chan's family",
+      "inCast": true,
+      "note": "Ep. 5–6"
+    },
+    {
+      "id": "suyun",
+      "name": "Park Su Yun",
+      "actor": "Kim So Hyun",
+      "image": "https://i.mydramalist.com/VX8D3Q_5m.jpg",
+      "group": "Around Seung Won",
+      "inCast": true,
+      "note": "Pianist; ep. 2–8"
+    },
+    {
+      "id": "daegu",
+      "name": "Myung Dae Gu",
+      "actor": "Lee Do Gyeom",
+      "image": "https://i.mydramalist.com/RJwERm.jpg",
+      "group": "Around Seung Won",
+      "inCast": true
+    },
+    {
+      "id": "damdong",
+      "name": "Choi Dam Dong",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "note": "Veteran investigator, once a police officer",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Jae Kyoon",
+          "image": "https://i.mydramalist.com/l0oRme_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/e6/While_You_Were_Sleeping_%282017%29-Kim_Won-Hae.jpg"
+    },
+    {
+      "id": "hyangmi",
+      "name": "Moon Hyang Mi",
+      "actor": "Park Jin Joo",
+      "image": "https://i.mydramalist.com/5vV3xY_5m.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "note": "Clerk",
+      "still": "https://asianwiki.com/images/f/f9/While_You_Were_Sleeping_%282017%29-Park_Jin-Joo.jpg"
+    },
+    {
+      "id": "daeyoung",
+      "name": "Park Dae Young",
+      "actor": "Lee Ki Young",
+      "image": "https://i.mydramalist.com/Qlpw2_5m.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "note": "Chief prosecutor",
+      "still": "https://asianwiki.com/images/7/7d/While_You_Were_Sleeping_%282017%29-Lee_Ki-Young.jpg"
+    },
+    {
+      "id": "huimin",
+      "name": "Sin Hui Min",
+      "actor": "Go Sung Hee",
+      "image": "https://i.mydramalist.com/dBm8g_5m.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "note": "Prosecutor",
+      "still": "https://asianwiki.com/images/0/0a/While_You_Were_Sleeping_%282017%29-Ko_Sung-Hee.jpg"
+    },
+    {
+      "id": "ujoo",
+      "name": "Son Woo Joo",
+      "actor": "Bae Hae Seon",
+      "image": "https://i.mydramalist.com/EDX8Qm.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "note": "Senior prosecutor; a single mother, her son Chan Ho played by Ko Woo Rim",
+      "still": "https://asianwiki.com/images/b/b3/While_You_Were_Sleeping_%282017%29-Bae_Hye-Sun.jpg"
+    },
+    {
+      "id": "jigwang",
+      "name": "Lee Ji Gwang",
+      "actor": "Min Sung Wook",
+      "image": "https://i.mydramalist.com/4V651_5m.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "note": "Senior prosecutor; the landlord's son",
+      "still": "https://asianwiki.com/images/0/08/While_You_Were_Sleeping_%282017%29-Min_Sung-Wook.jpg"
+    },
+    {
+      "id": "jeonghui",
+      "name": "Min Jeong Hui",
+      "actor": "Son San",
+      "image": "https://i.mydramalist.com/wzJ5p_5m.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/93/While_You_Were_Sleeping_%282017%29-Son_San.jpg"
+    },
+    {
+      "id": "pilsuk",
+      "name": "Ko Pil Suk",
+      "actor": "Lee Bong Ryun",
+      "image": "https://i.mydramalist.com/en0DEm.jpg",
+      "group": "Criminal Division 3",
+      "inCast": true
+    },
+    {
+      "id": "duhyeon",
+      "name": "Bong Du Hyeon",
+      "actor": "Oh Eui Shik",
+      "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
+      "group": "SBC",
+      "inCast": true,
+      "note": "Reporter"
+    }
+  ],
+  "links": [
+    {
+      "from": "jaechan",
+      "to": "hongju",
+      "type": "romance",
+      "label": "new neighbours who begin sharing dreams of the future, and fall in love",
+      "short": "lovers",
+      "evidence": "An unusual dream involving Hong Ju, ruthless attorney Lee Yu Beom, and a life-saving intervention leads Jae Chan to realize their destinies are intertwined, as they begin sharing dreams / She later in the series falls in love with Jae-chan and begins dating him.",
+      "source": "MDL synopsis; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hongju",
+      "to": "jaechan",
+      "type": "bond",
+      "label": "'Bamtori' — the 'boy' who pulled him from the lake and passed him her dreams, the day of their fathers' joint funeral",
+      "short": "Bamtori",
+      "evidence": "without knowing or recognising that she was \"Bamtori\", his childhood acquaintance who also lost her father to the runaway soldier / By saving Jae-chan from drowning, she had inadvertently made Jae-chan acquire the same ability that she has.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yubeom",
+      "to": "hongju",
+      "type": "romance",
+      "label": "her boyfriend from a blind date, until the night of the accident",
+      "short": "ex-boyfriend",
+      "evidence": "He was Hong-joo's boyfriend because of a blind date. However, they broke up after Jae-chan saved her from the accident that night.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yubeom",
+      "to": "jaechan",
+      "type": "rivalry",
+      "label": "his teenage tutor, who left him at a motorcycle crash; now the lawyer fabricating evidence across from him",
+      "short": "old tutor, foe",
+      "evidence": "Yoo-beom was Jae-chan's private tutor when Jae-chan was in his adolescence. […] he leaves Jae-chan behind to fend for himself, an incident which made Jae-chan dislike him. / As a lawyer, he works in Haekwang Law Firm […] fabricating evidence or manipulating testimonies",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "utak",
+      "to": "hongju",
+      "type": "romance",
+      "label": "grows fond of her, and keeps it to himself",
+      "short": "hidden feelings",
+      "evidence": "Woo-tak began having an affection for Hong-joo, although he kept his feelings concealed, sensing that Hong-joo and Jae-chan are developing feelings for each other.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "utak",
+      "to": "jaechan",
+      "type": "bond",
+      "label": "saved by him from the crash he was fated to die in; caught the dreams from him",
+      "short": "saved by him",
+      "evidence": "Thanks to Jae-chan, who intercepted Hong-joo's car which Yoo-beom was driving, he was saved from his supposed death and acquired from him the ability to see future events through dreams.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonghan",
+      "to": "utak",
+      "type": "work",
+      "label": "senior at the substation, who noticed his colour-blindness and kept it quiet",
+      "short": "his senior",
+      "evidence": "상구지구대 경위. 우탁의 선배 / he sensed that Woo-tak had color blindness but kept the secret to himself to prevent Woo-tak from getting discharged",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeojung",
+      "to": "utak",
+      "type": "romance",
+      "label": "fellow officer with a crush on him",
+      "short": "crush",
+      "evidence": "한우탁을 짝사랑하는 여경찰 / Police officer who has a crush on Han Woo-tak",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "munsun",
+      "to": "hongju",
+      "type": "family",
+      "label": "widowed mother, who runs the samgyeopsal restaurant",
+      "short": "mother",
+      "evidence": "[Hong Ju's mother] / resides with her widowed mother who runs a small restaurant",
+      "source": "MDL cast; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "munsun",
+      "to": "jaechan",
+      "type": "bond",
+      "label": "becomes a mother figure to him, U Tak and Seung Won",
+      "short": "mother figure",
+      "evidence": "she became a caring motherly figure to Jae-chan, Woo-tak and Seung-won.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chuldu",
+      "to": "hongju",
+      "type": "family",
+      "label": "father, a bus driver killed by the runaway soldier",
+      "short": "late father",
+      "evidence": "[Hong Ju's father] / Hong-joo's deceased father; a bus driver who was killed by the runaway soldier who also killed Jung Il-seung",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chuldu",
+      "to": "munsun",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "Hong-joo's widowed mother and the late Nam Chul-doo's wife",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ilseung",
+      "to": "jaechan",
+      "type": "family",
+      "label": "father, a police chief killed by the runaway soldier",
+      "short": "late father",
+      "evidence": "[Jae Chan's father] / Jae-chan's deceased father; the former police chief officer of Il-yoo Police Station before he was killed by the runaway soldier",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chuldu",
+      "to": "ilseung",
+      "type": "bond",
+      "label": "killed the same day by the same deserter; mourned in the same funeral hall",
+      "short": "same killer",
+      "evidence": "She first met Jae-chan when both their fathers' funerals were jointly conducted on the same date in the same funeral hall.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaechanmother",
+      "to": "jaechan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jae Chan's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungwon",
+      "to": "jaechan",
+      "type": "family",
+      "label": "younger brother",
+      "short": "younger brother",
+      "evidence": "Jae-chan's 19-year-old younger brother / 재찬 동생",
+      "source": "en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyun",
+      "to": "seungwon",
+      "type": "romance",
+      "label": "girlfriend, a young pianist under an abusive father",
+      "short": "girlfriend",
+      "evidence": "[Seung Won's friend] / a young pianist who suffers from her father Jun-mo's abusiveness; Seung-won's girlfriend",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daegu",
+      "to": "seungwon",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "[Seung Won's classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daegu",
+      "to": "yubeom",
+      "type": "rivalry",
+      "label": "hates him — his father, a doctor, was wrongly convicted of the IV-drip murders on Yu Beom's evidence",
+      "short": "hates him",
+      "evidence": "son of Myung Yi-suk, a doctor who was falsely accused as the culprit of an intravenous drip serial killing […] he harboured a strong sense of hatred towards Yoo-beom ever since",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "damdong",
+      "to": "jaechan",
+      "type": "work",
+      "label": "veteran investigator in his office, quietly steering him",
+      "short": "investigator",
+      "evidence": "[Investigator] / 재찬 사무실의 베테랑 수사관 / He began supporting the unknowing Jae-chan in his investigations and gives him helpful advice.",
+      "source": "MDL cast; ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "damdong",
+      "to": "jaechan",
+      "type": "bond",
+      "label": "brother of the deserter who killed both fathers; the man the two children pulled from the lake",
+      "short": "the deserter's brother",
+      "evidence": "Choi Dam-dong was the older brother of Choi wook-hyun, the runaway soldier who killed Dam-dong's chief and Jae-chan father […] Before he completely drowns, Jae-chan and Hong-joo save him",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "damdong",
+      "to": "yubeom",
+      "type": "work",
+      "label": "once worked for him, blind to his frauds",
+      "short": "once his man",
+      "evidence": "He once worked for ex-prosecutor Yoo-beom, though he was unaware of Yoo-beom's fraudulent schemes until when he began working for Jae-chan.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyangmi",
+      "to": "jaechan",
+      "type": "work",
+      "label": "clerk in his office",
+      "short": "his clerk",
+      "evidence": "재찬 사무실의 실무관 / Jae-chan's assisting officer",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeyoung",
+      "to": "jaechan",
+      "type": "work",
+      "label": "chief of Criminal Division 3",
+      "short": "chief",
+      "evidence": "부장검사 / Chief of the Prosecution Officer Division 3",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huimin",
+      "to": "jaechan",
+      "type": "work",
+      "label": "college classmate, a rank above him in the division",
+      "short": "colleague",
+      "evidence": "Prosecutor Shin was Jae-chan's colleague when they were in college, but she holds a higher position than Jae-chan in the prosecution office",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jigwang",
+      "to": "jaechan",
+      "type": "work",
+      "label": "senior prosecutor who covers for him and lends him his car",
+      "short": "senior",
+      "evidence": "A senior prosecutor who became close to and supportive of Jae-chan. He is willing to cover up for Jae-chan and to let him borrow his personal things, even his own car.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jigwang",
+      "to": "ujoo",
+      "type": "romance",
+      "label": "secretly dating; married in the end",
+      "short": "secret couple",
+      "evidence": "He began to secretly date fellow prosecutor Son Woo-joo. / She became close to Prosecutor Lee and ended up being married to him.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ujoo",
+      "to": "jaechan",
+      "type": "work",
+      "label": "senior prosecutor in the division",
+      "short": "senior",
+      "evidence": "수석검사 / Another senior prosecutor",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghui",
+      "to": "daeyoung",
+      "type": "work",
+      "label": "the chief's secretary",
+      "short": "secretary",
+      "evidence": "[Dae Yeong's secretary] / 부장검사실의 실무관",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilsuk",
+      "to": "huimin",
+      "type": "work",
+      "label": "her paralegal",
+      "short": "paralegal",
+      "evidence": "[Hui Min's paralegal] / 희민의 실무관",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duhyeon",
+      "to": "hongju",
+      "type": "work",
+      "label": "her senior at SBC",
+      "short": "senior reporter",
+      "evidence": "sbc 기자(홍주 사수) / SBC reporter; Hong-joo's senior",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hongju",
+      "jaechan",
+      "yubeom",
+      "utak",
+      "gyeonghan",
+      "yeojung",
+      "munsun",
+      "chuldu",
+      "seungwon",
+      "ilseung",
+      "jaechanmother",
+      "suyun",
+      "daegu",
+      "damdong",
+      "hyangmi",
+      "daeyoung",
+      "huimin",
+      "ujoo",
+      "jigwang",
+      "jeonghui",
+      "pilsuk"
+    ],
+    "blocks": {
+      "Hong Ju's family": [
+        0,
+        0
+      ],
+      "Sanggu substation": [
+        0,
+        2
+      ],
+      "Jae Chan's family": [
+        2,
+        0
+      ],
+      "Around Seung Won": [
+        2,
+        2
+      ],
+      "Haekwang law firm": [
+        1,
+        0
+      ],
+      "Criminal Division 3": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "hongju",
+      "jaechan"
+    ]
+  }
+}

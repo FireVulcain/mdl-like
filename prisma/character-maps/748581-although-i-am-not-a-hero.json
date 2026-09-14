@@ -1,0 +1,383 @@
+{
+  "version": 1,
+  "mdlSlug": "748581-although-i-am-not-a-hero",
+  "title": "The Atypical Family",
+  "native": "히어로는 아닙니다만",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (65 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 히어로는 아닙니다만 등장인물",
+    "en.wikipedia The Atypical Family"
+  ],
+  "main": [
+    "gwiju",
+    "dahae"
+  ],
+  "people": [
+    {
+      "id": "gwiju",
+      "name": "Bok Gwi Ju",
+      "actor": "Jang Ki Yong",
+      "image": "https://i.mydramalist.com/eYgEOW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Can go back in time, but only to happy moments — and has none left",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Si On",
+          "image": "https://i.mydramalist.com/b3krjE_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/e/e0/The_Atypical_Family-Lee_Si-On.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/6/6c/The_Atypical_Family-Jang_Ki_Yong01.jpg"
+    },
+    {
+      "id": "dahae",
+      "name": "Do Da Hae",
+      "actor": "Chun Woo Hee",
+      "image": "https://i.mydramalist.com/Z8BNPY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The mysterious woman who moves in with the Boks",
+      "alsoPlayedBy": [
+        {
+          "name": "Im Ha El",
+          "image": "https://i.mydramalist.com/QJY3dQ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/e9/The_Atypical_Family-Chun_Woo_Hee.jpg"
+    },
+    {
+      "id": "manheum",
+      "name": "Bok Man Heum",
+      "actor": "Go Doo Shim",
+      "image": "https://i.mydramalist.com/RJnePm.jpg",
+      "group": "The Bok family",
+      "inCast": true,
+      "note": "Head of the Bok family; prophetic dreams, if only she could sleep",
+      "still": "https://asianwiki.com/images/0/08/The_Atypical_Family-Ko_Du_Shim.jpg"
+    },
+    {
+      "id": "donghui",
+      "name": "Bok Dong Hui",
+      "actor": "Claudia Kim",
+      "image": "https://i.mydramalist.com/EV3A7_5m.jpg",
+      "group": "The Bok family",
+      "inCast": true,
+      "note": "Could fly, until her weight kept her down",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Ji Woo",
+          "image": "https://i.mydramalist.com/E57RbW_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/9/9a/The_Atypical_Family-Lee_Ji-Woo.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/9/99/The_Atypical_Family-Soo_Hyun01.jpg"
+    },
+    {
+      "id": "ina",
+      "name": "Bok I Na",
+      "actor": "Park So Yi",
+      "image": "https://i.mydramalist.com/mOKWj1_5m.jpg",
+      "group": "The Bok family",
+      "inCast": true,
+      "note": "Thirteen; her power has yet to show",
+      "alsoPlayedBy": [
+        {
+          "name": "Gi So Yoo",
+          "image": "https://i.mydramalist.com/QJNnQA_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/1/1e/The_Atypical_Family-Ki_So-Yu.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/8/84/The_Atypical_Family-Park_So-Yi0-1.jpg"
+    },
+    {
+      "id": "sungu",
+      "name": "Um Sun Gu",
+      "actor": "Oh Man Seok",
+      "image": "https://i.mydramalist.com/BE5AV_5m.jpg",
+      "group": "The Bok family",
+      "inCast": true,
+      "note": "The one Bok without a power",
+      "still": "https://asianwiki.com/images/9/93/The_Atypical_Family-Oh_Man-Seok-01.jpg"
+    },
+    {
+      "id": "seyeon",
+      "name": "Lee Se Yeon",
+      "actor": "Jung Min Ah",
+      "image": "https://i.mydramalist.com/B1ey6_5m.jpg",
+      "group": "The Bok family",
+      "inCast": true,
+      "note": "Dead; ep. 1–3",
+      "still": "https://asianwiki.com/images/a/af/The_Atypical_Family-Jung_Min_A.jpg"
+    },
+    {
+      "id": "ilhong",
+      "name": "Baek Il Hong",
+      "actor": "Kim Geum Soon",
+      "image": "https://i.mydramalist.com/RNoEP_5m.jpg",
+      "group": "Da Hae's 'family'",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e7/The_Atypical_Family-Kim_Keum-Soon1.jpg"
+    },
+    {
+      "id": "grace",
+      "name": "Grace Kang",
+      "actor": "Ryu Abel",
+      "image": "https://i.mydramalist.com/WPJN7O_5m.jpg",
+      "group": "Da Hae's 'family'",
+      "inCast": true,
+      "note": "No English, exotic figure",
+      "still": "https://asianwiki.com/images/3/30/The_Atypical_Family-Ryu-Abel.jpg"
+    },
+    {
+      "id": "hyeongtae",
+      "name": "No Hyeong Tae",
+      "actor": "Choi Kwang Rok",
+      "image": "https://i.mydramalist.com/EEYbb_5m.jpg",
+      "group": "Da Hae's 'family'",
+      "inCast": true,
+      "note": "Looks like a violent criminal, feels like a poet"
+    },
+    {
+      "id": "junu",
+      "name": "Han Jun U",
+      "actor": "Moon Woo Jin",
+      "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+      "group": "I Na's school",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c1/The_Atypical_Family-Moon_Woo-Jin.jpg"
+    },
+    {
+      "id": "hyerim",
+      "name": "Ko Hye Rim",
+      "actor": "Kim Su In",
+      "image": "https://i.mydramalist.com/PxLwo8_5m.jpg",
+      "group": "I Na's school",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cc/The_Atypical_Family-Kim_Soo_In.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "dahae",
+      "to": "gwiju",
+      "type": "romance",
+      "label": "moves in with the family and sparks the change that brings him back",
+      "short": "lovers",
+      "evidence": "When Do Da Hae enters their lives, she begins living with them and sparks a change. / A mysterious woman, who is interested in Bok Gwi-ju and his family.",
+      "source": "MDL synopsis; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dahae",
+      "to": "gwiju",
+      "type": "rivalry",
+      "label": "sent in to marry into the Bok money — a con, at first",
+      "short": "a con, at first",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "manheum",
+      "to": "gwiju",
+      "type": "family",
+      "label": "mother; the power in the house, whose insomnia keeps her prophetic dreams away",
+      "short": "mother",
+      "evidence": "[Gwi Ju's mother] / 귀주의 모친, 복씨 가문의 실세. 능력은 예지몽. 근데 통 잠을 못 주무신다.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghui",
+      "to": "gwiju",
+      "type": "family",
+      "label": "elder sister, grounded by her weight",
+      "short": "elder sister",
+      "evidence": "[Gwi Ju's sister] / 귀주의 누나, 비만 때문에 하늘을 날지 못하는 비행능력의 소유자.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ina",
+      "to": "gwiju",
+      "type": "family",
+      "label": "daughter, thirteen, cut off from family and class alike",
+      "short": "daughter",
+      "evidence": "[Gwi Ju's daughter] / A thirteen year old girl, she remains isolated from both her family and her classmates at school.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manheum",
+      "to": "ina",
+      "type": "family",
+      "label": "grandmother, fretting that the family power has not shown in her",
+      "short": "grandmother",
+      "evidence": "복씨 집안 대대로 유전되는 초능력이 중학생이 되도록 나타날 기미가 없어 할머니를 애태운다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungu",
+      "to": "gwiju",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Gwi Ju's father] / Man-heum's husband and father of Gwi-ju and Dong-hee.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungu",
+      "to": "manheum",
+      "type": "family",
+      "label": "married at twenty, an orphan taken in as son-in-law; the only one without a power",
+      "short": "married",
+      "evidence": "천애고아 출신으로 어려서 데릴사위로 들어와 스물에 복씨 집안 외동딸 복만흠과 결혼식을 올렸다. / He is the only member in the Bok family without any superpower.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seyeon",
+      "to": "gwiju",
+      "type": "family",
+      "label": "wife, whose death took his power with her",
+      "short": "late wife",
+      "evidence": "[Gwi Ju's wife] / he has lost his ability after the death of his wife, as he struggles with depression",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilhong",
+      "to": "dahae",
+      "type": "family",
+      "label": "'mother' — took her in when she had nowhere to go, and made her family",
+      "short": "'mother'",
+      "evidence": "[Da Hae's mother] / 다해의 엄마(?), 오갈 데 없는 다해를 거둬주고 가족이 되어주었다.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "grace",
+      "to": "dahae",
+      "type": "family",
+      "label": "'younger sister'",
+      "short": "'sister'",
+      "evidence": "[Da Hae's sister] / 다해의 여동생(?)",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongtae",
+      "to": "dahae",
+      "type": "family",
+      "label": "'uncle'",
+      "short": "'uncle'",
+      "evidence": "[Da Hae's uncle] / 다해의 삼촌(?)",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilhong",
+      "to": "sungu",
+      "type": "rivalry",
+      "label": "hires a con couple to swindle him",
+      "short": "swindles him",
+      "evidence": "박 사장 역 - 엄순구를 속여 돈을 뜯어내기 위해 백일홍의 사주를 받은 사기꾼",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junu",
+      "to": "ina",
+      "type": "friend",
+      "label": "classmate and friend",
+      "short": "friend",
+      "evidence": "[I Na's classmate] / Han Jun-woo. Bok In-a's friend.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyerim",
+      "to": "ina",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "[I Na's classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "gwiju",
+      "dahae",
+      "manheum",
+      "donghui",
+      "ina",
+      "sungu",
+      "seyeon",
+      "ilhong",
+      "grace",
+      "hyeongtae",
+      "junu",
+      "hyerim"
+    ],
+    "blocks": {
+      "The Bok family": [
+        0,
+        0
+      ],
+      "Da Hae's 'family'": [
+        2,
+        0
+      ],
+      "I Na's school": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "gwiju",
+      "dahae"
+    ]
+  }
+}

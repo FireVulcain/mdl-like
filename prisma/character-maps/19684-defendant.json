@@ -1,0 +1,768 @@
+{
+  "version": 1,
+  "mdlSlug": "19684-defendant",
+  "title": "Defendant",
+  "asianwiki": "Defendant (Korean Drama)",
+  "native": "피고인",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (55 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 피고인 (드라마) 등장인물",
+    "en.wikipedia Innocent Defendant"
+  ],
+  "main": [
+    "jeongu",
+    "minho",
+    "eunhye",
+    "junhyeok",
+    "yeonhui"
+  ],
+  "people": [
+    {
+      "id": "jeongu",
+      "name": "Park Jeong U",
+      "actor": "Ji Sung",
+      "image": "https://i.mydramalist.com/E55lEp_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Star prosecutor who wakes up on death row with no memory of why",
+      "still": "https://asianwiki.com/images/a/a2/Defendant-Ji_Sung.jpg"
+    },
+    {
+      "id": "minho",
+      "name": "Cha Min Ho",
+      "actor": "Uhm Ki Joon",
+      "image": "https://i.mydramalist.com/QJdxBY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Second son of Chamyung Group, vice-president. Uhm Ki Joon also plays his twin Seon Ho",
+      "still": "https://asianwiki.com/images/9/90/Defendant-Uhm_Ki-Joon-Cha_Min-Ho.jpg"
+    },
+    {
+      "id": "seonho",
+      "name": "Cha Seon Ho",
+      "actor": "Uhm Ki Joon",
+      "image": "https://i.mydramalist.com/QJdxBY_5m.jpg",
+      "group": "The Cha family",
+      "inCast": true,
+      "note": "Eldest son and president of Chamyung Group. Uhm Ki Joon also plays his twin Min Ho",
+      "still": "https://asianwiki.com/images/9/90/Defendant-Uhm_Ki-Joon-Cha_Min-Ho.jpg"
+    },
+    {
+      "id": "yeonhui",
+      "name": "Na Yun Hui",
+      "actor": "Uhm Hyun Kyung",
+      "image": "https://i.mydramalist.com/rDQLj_5m.jpg",
+      "group": "The Cha family",
+      "inCast": true,
+      "note": "Daughter of a bankrupt chaebol, burning to succeed",
+      "still": "https://asianwiki.com/images/d/dc/Defendant-Uhm_Hyun_Kyung.jpg"
+    },
+    {
+      "id": "eunsu",
+      "name": "Cha Eun Su",
+      "actor": "Seo In Sung",
+      "image": "https://i.mydramalist.com/QA80W_5m.jpg",
+      "group": "The Cha family",
+      "inCast": true
+    },
+    {
+      "id": "yeongun",
+      "name": "Cha Yeong Un",
+      "actor": "Jang Gwang",
+      "image": "https://i.mydramalist.com/WP5KLX_5m.jpg",
+      "group": "The Cha family",
+      "inCast": true,
+      "note": "Chairman of Chamyung Group",
+      "still": "https://asianwiki.com/images/7/73/Defendant_%28Korean_Drama%29-Jang_Gwang.jpg"
+    },
+    {
+      "id": "geumja",
+      "name": "Myung Geum Ja",
+      "actor": "Ye Soo Jung",
+      "image": "https://i.mydramalist.com/eEPQem.jpg",
+      "group": "The Cha family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a7/Defendant_%28Korean_Drama%29-Ye_Soo-Jung.jpg"
+    },
+    {
+      "id": "seonghun",
+      "name": "Kim Seong Hun",
+      "actor": "Kim Kyung Nam",
+      "image": "https://i.mydramalist.com/qY2jQQ_5m.jpg",
+      "group": "The Cha family",
+      "inCast": true,
+      "note": "Executive secretary",
+      "still": "https://asianwiki.com/images/c/c5/Defendant_%28Korean_Drama%29-Kim_Kyung-Nam.jpg"
+    },
+    {
+      "id": "kimseok",
+      "name": "Kim Seok",
+      "actor": "Oh Seung Hoon",
+      "image": "https://i.mydramalist.com/O874Kg_5m.jpg",
+      "group": "Min Ho's men",
+      "inCast": true
+    },
+    {
+      "id": "jisu",
+      "name": "Yun Ji Su",
+      "actor": "Son Yeo Eun",
+      "image": "https://i.mydramalist.com/RBPLbP_5m.jpg",
+      "group": "Jeong U's family",
+      "inCast": true,
+      "note": "Murdered",
+      "still": "https://asianwiki.com/images/d/d7/Defendant_%28Korean_Drama%29-Son_Yeo-Eun.jpg"
+    },
+    {
+      "id": "hayeon",
+      "name": "Park Ha Yun",
+      "actor": "Shin Rin Ah",
+      "image": "https://i.mydramalist.com/2YX3O_5m.jpg",
+      "group": "Jeong U's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/ea/Defendant_%28Korean_Drama%29-Shin_Rin-Ah.jpg"
+    },
+    {
+      "id": "taesu",
+      "name": "Yun Dae Su",
+      "actor": "Kang Tae Sung",
+      "image": "https://i.mydramalist.com/Pw705m.jpg",
+      "group": "Jeong U's family",
+      "inCast": true,
+      "note": "Prison officer at Woljeong",
+      "still": "https://asianwiki.com/images/e/e3/Defendant_%28Korean_Drama%29-Kang_Sung-Min.jpg"
+    },
+    {
+      "id": "jeonghui",
+      "name": "O Jeong Hui",
+      "actor": "Seong Byung Sook",
+      "image": "https://i.mydramalist.com/5v8XOe_5m.jpg",
+      "group": "Jeong U's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/db/Defendant_%28Korean_Drama%29-Sung_Byoung-Sook.jpg"
+    },
+    {
+      "id": "eunhye",
+      "name": "Seo Eun Hye",
+      "actor": "Kwon Yu Ri",
+      "image": "https://i.mydramalist.com/oQZVAE_5m.jpg",
+      "group": "Seo Eun Hye",
+      "inCast": true,
+      "note": "Defence lawyer who loses every case",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Yu Ri",
+          "image": "https://i.mydramalist.com/rNzdj2_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/3/37/Defendant-Kwon_Yuri.jpg"
+    },
+    {
+      "id": "eunhyeaunt",
+      "name": "Eun Hye's aunt",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "Seo Eun Hye",
+      "inCast": true,
+      "note": "MDL labels her Eun Hye's mother; both wikis say aunt, and her mother is dead"
+    },
+    {
+      "id": "eunhyefather",
+      "name": "Seo Sin Mok",
+      "actor": "Lee Hwa Ryong",
+      "image": "https://i.mydramalist.com/jXbdbm.jpg",
+      "group": "Seo Eun Hye",
+      "inCast": true,
+      "note": "MDL lists him only as Seo Eun Hye's father"
+    },
+    {
+      "id": "junhyeok",
+      "name": "Kang Jun Hyeok",
+      "actor": "Oh Chang Seok",
+      "image": "https://i.mydramalist.com/q7xjB_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/8c/Defendant-Oh_Chang-Suk.jpg"
+    },
+    {
+      "id": "daehong",
+      "name": "Choi Tae Hong",
+      "actor": "Park Ho San",
+      "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c4/Defendant_%28Korean_Drama%29-Park_Ho-San.jpg"
+    },
+    {
+      "id": "dongyun",
+      "name": "Ko Dong Yun",
+      "actor": "Lee Shin Sung",
+      "image": "https://i.mydramalist.com/x2KeEm.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/47/Defendant_%28Korean_Drama%29-Lee_Sin-Seong.jpg"
+    },
+    {
+      "id": "mingyeong",
+      "name": "Yeo Min Gyeong",
+      "actor": "Han Ji Woo",
+      "image": "https://i.mydramalist.com/1qpqRm.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/81/Defendant_%28Korean_Drama%29-Han_Ji-Woo.jpg"
+    },
+    {
+      "id": "mungchi",
+      "name": "Cheon Pil Jae / Mung Chi",
+      "actor": "Oh Dae Hwan",
+      "image": "https://i.mydramalist.com/jKznr_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e5/Defendant_%28Korean_Drama%29-Oh_Dae-Hwan.jpg"
+    },
+    {
+      "id": "seonggyu",
+      "name": "Lee Seong Gyu",
+      "actor": "Kim Min Seok",
+      "image": "https://i.mydramalist.com/0LVrK_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "note": "In for assault; the cell's mood-maker",
+      "still": "https://asianwiki.com/images/1/15/Defendant_%28Korean_Drama%29-Kim_Min-Suk.jpg"
+    },
+    {
+      "id": "cheolsik",
+      "name": "Sin Cheol Sik",
+      "actor": "Jo Jae Yun",
+      "image": "https://i.mydramalist.com/0d5kY_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "note": "Life for murder",
+      "still": "https://asianwiki.com/images/2/20/Defendant_%28Korean_Drama%29-Jo_Jae-Yun.jpg"
+    },
+    {
+      "id": "hansang",
+      "name": "Han Sang Uk / Mi Ryang",
+      "actor": "Woo Hyun",
+      "image": "https://i.mydramalist.com/EEq45_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "note": "Former doctor, twenty years inside",
+      "still": "https://asianwiki.com/images/2/2d/Defendant_%28Korean_Drama%29-Woo_Hyeon.jpg"
+    },
+    {
+      "id": "byeongju",
+      "name": "Woo Byeong Ju / \"Rockfish\"",
+      "actor": "Jo Jae Ryong",
+      "image": "https://i.mydramalist.com/wNry1_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/64/Defendant_%28Korean_Drama%29-Jo_Jae-Ryong.jpg"
+    },
+    {
+      "id": "bangjang",
+      "name": "Bang Jang",
+      "actor": "Yoon Yong Hyun",
+      "image": "https://i.mydramalist.com/qbOb0m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "note": "Cell chief",
+      "still": "https://asianwiki.com/images/4/43/Defendant_%28Korean_Drama%29-Yun_Yong-Hyeon.jpg"
+    },
+    {
+      "id": "gyucheol",
+      "name": "Kim Gyu Cheol",
+      "actor": "Son Kwang Eop",
+      "image": "https://i.mydramalist.com/112m7_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "note": "Warden",
+      "still": "https://asianwiki.com/images/5/58/Defendant_%28Korean_Drama%29-Son_Kwang-Eop.jpg"
+    },
+    {
+      "id": "gwangtae",
+      "name": "Park Gwang Tae",
+      "actor": "Kim Seung Hoon",
+      "image": "https://i.mydramalist.com/WW7AW_5m.jpg",
+      "group": "Woljeong prison",
+      "inCast": true,
+      "note": "Security chief",
+      "still": "https://asianwiki.com/images/0/0e/Defendant_%28Korean_Drama%29-Kim_Seung-Hoon.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "minho",
+      "to": "jeongu",
+      "type": "rivalry",
+      "label": "the man who put him on death row — killed his wife and framed him",
+      "short": "framed him",
+      "evidence": "정우의 아내이자 하연의 엄마, 차민호에게 살해당한 피해자 / One day, he wakes up and finds himself a convict on death row.",
+      "source": "ko.wikipedia; MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "seonho",
+      "type": "family",
+      "label": "identical twins — Seon Ho the elder, the president; Min Ho the younger, the neglected one",
+      "short": "twin brother",
+      "evidence": "민호의 일란성 쌍둥이 형 / Cha Min-ho is the Vice President of Chamyung Group and the younger brother of Cha Sun-ho. He is neglected and abused by his father.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minho",
+      "to": "seonho",
+      "type": "rivalry",
+      "label": "kills him, and lives on under his name",
+      "short": "took his life, and name",
+      "evidence": "민호에 의해 민호의 신분으로 사망",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonhui",
+      "to": "seonho",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "선호의 아내이자 민호의 첫사랑 / Sun-ho's wife",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonhui",
+      "to": "minho",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "선호의 아내이자 민호의 첫사랑, 은수의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunsu",
+      "to": "yeonhui",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "은수의 엄마 / Cha Eun-soo, Yeon-hee's son.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunsu",
+      "to": "minho",
+      "type": "family",
+      "label": "his son by blood — not Seon Ho's",
+      "short": "his real son",
+      "evidence": "차은수 역 - 민호와 연희의 친아들",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongun",
+      "to": "minho",
+      "type": "family",
+      "label": "father, who neglected and abused him",
+      "short": "father",
+      "evidence": "He is neglected and abused by his father. / 차명그룹 […] 영운의 아내이자 선호와 민호의 어머니",
+      "source": "en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongun",
+      "to": "seonho",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "영운의 아내이자 선호와 민호의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumja",
+      "to": "minho",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "영운의 아내이자 선호와 민호의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumja",
+      "to": "yeongun",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "영운의 아내이자 선호와 민호의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonghun",
+      "to": "seonho",
+      "type": "work",
+      "label": "his executive secretary",
+      "short": "secretary",
+      "evidence": "선호의 수행비서 / Executive Secretary",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kimseok",
+      "to": "minho",
+      "type": "work",
+      "label": "henchman; helped with the killings and the orders to kill",
+      "short": "henchman",
+      "evidence": "차민호의 살인 및 살인교사를 도운 공범 / Kim Seok, Cha Min-ho's henchman.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jisu",
+      "to": "jeongu",
+      "type": "family",
+      "label": "wife, murdered",
+      "short": "late wife",
+      "evidence": "정우의 아내이자 하연의 엄마 / Yoon Ji-soo, Jung-woo's wife.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayeon",
+      "to": "jeongu",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "정우와 지수의 딸 / Park Ha-yeon, Jung-woo's daughter.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesu",
+      "to": "jeongu",
+      "type": "family",
+      "label": "brother-in-law, and a guard at the prison holding him",
+      "short": "brother-in-law",
+      "evidence": "정우의 처남이자 지수의 남동생, 하연의 외삼촌, 월정교도소 소속 교도관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesu",
+      "to": "jisu",
+      "type": "family",
+      "label": "younger brother",
+      "short": "younger brother",
+      "evidence": "정우의 처남이자 지수의 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghui",
+      "to": "jeongu",
+      "type": "family",
+      "label": "mother-in-law",
+      "short": "mother-in-law",
+      "evidence": "지수와 태수의 어머니이자 정우의 장모, 하연의 외할머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhye",
+      "to": "jeongu",
+      "type": "work",
+      "label": "the lawyer who loses every case — and takes his",
+      "short": "his lawyer",
+      "evidence": "A defense lawyer who strives to be eloquent and rational, but loses in court every single time. She takes up Jung-woo's case.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhyeaunt",
+      "to": "eunhye",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "서은혜의 이모 역 / Eun-hye's aunt",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhyefather",
+      "to": "eunhye",
+      "type": "family",
+      "label": "father, on death row, framed for killing her mother",
+      "short": "father",
+      "evidence": "[Seo Eun Hye's father] / 서은혜의 아버지, 아내를 죽였다는 누명을 쓰고 교도소에 수감중인 사형수",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junhyeok",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "best friend and fellow prosecutor",
+      "short": "best friend",
+      "evidence": "Jung-woo's best friend and fellow Prosecutor at the Seoul Central District Prosecutor's Office.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daehong",
+      "to": "jeongu",
+      "type": "work",
+      "label": "prosecutor at the same office",
+      "short": "colleague",
+      "evidence": "검찰: 박호산 : 최대홍 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongyun",
+      "to": "jeongu",
+      "type": "work",
+      "label": "prosecutor at the same office",
+      "short": "colleague",
+      "evidence": "[Prosecutor] / 검찰: 이신성 : 고동윤 역",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mingyeong",
+      "to": "jeongu",
+      "type": "work",
+      "label": "prosecutor at the same office",
+      "short": "colleague",
+      "evidence": "[Prosecutor] / 검찰: 한지우 : 여민경 역",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mungchi",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "cellmate, his helper inside",
+      "short": "his helper",
+      "evidence": "[Cellmate] / Jung-woo's helper.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonggyu",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "cellmate who looks after him; later killed on Min Ho's orders",
+      "short": "cellmate",
+      "evidence": "The prison's quick-witted mood maker, who helps take care of Jung-woo. / 차민호의 살인교사 피해자",
+      "source": "en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "seonggyu",
+      "type": "rivalry",
+      "label": "has him killed",
+      "short": "has him killed",
+      "evidence": "이성규 역 † - 차민호의 살인교사 피해자",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolsik",
+      "to": "jeongu",
+      "type": "rivalry",
+      "label": "cellmate Jeong U once put away for killing his boss — wrongly, it turns out",
+      "short": "he jailed him",
+      "evidence": "He was jailed by Jung-woo for killing his boss, later to be revealed that he was falsely accused of the crime.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hansang",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "cellmate; a doctor once, twenty years inside",
+      "short": "cellmate",
+      "evidence": "[Cellmate] / A former doctor, he had been imprisoned for 20 years by the time he became Jung-woo's cell-mate.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeongju",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "cellmate",
+      "short": "cellmate",
+      "evidence": "[Cellmate] / Jung-woo's jail-mate.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bangjang",
+      "to": "jeongu",
+      "type": "work",
+      "label": "chief of his cell",
+      "short": "cell chief",
+      "evidence": "[Cellmate] / 감방 식구들: 윤용현 : 방장 역",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyucheol",
+      "to": "jeongu",
+      "type": "work",
+      "label": "warden of Woljeong prison",
+      "short": "warden",
+      "evidence": "손광업 : 김규철 교도소장 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangtae",
+      "to": "gyucheol",
+      "type": "work",
+      "label": "his security chief",
+      "short": "security chief",
+      "evidence": "김승훈 : 박관태 보안과장 역 / Prison Security Chief",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jeongu",
+      "minho",
+      "seonho",
+      "yeonhui",
+      "eunsu",
+      "yeongun",
+      "geumja",
+      "seonghun",
+      "kimseok",
+      "jisu",
+      "hayeon",
+      "taesu",
+      "jeonghui",
+      "eunhye",
+      "eunhyeaunt",
+      "eunhyefather",
+      "junhyeok",
+      "daehong",
+      "dongyun",
+      "mingyeong",
+      "mungchi",
+      "seonggyu",
+      "cheolsik",
+      "hansang",
+      "byeongju",
+      "bangjang",
+      "gyucheol",
+      "gwangtae"
+    ],
+    "blocks": {
+      "Jeong U's family": [
+        0,
+        0
+      ],
+      "Seo Eun Hye": [
+        0,
+        2
+      ],
+      "The Cha family": [
+        2,
+        0
+      ],
+      "Min Ho's men": [
+        2,
+        2
+      ],
+      "Prosecutors": [
+        1,
+        0
+      ],
+      "Woljeong prison": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jeongu",
+      "minho"
+    ]
+  }
+}

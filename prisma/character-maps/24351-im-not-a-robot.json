@@ -1,0 +1,564 @@
+{
+  "version": 1,
+  "mdlSlug": "24351-im-not-a-robot",
+  "title": "I'm Not a Robot",
+  "native": "로봇이 아니야",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (46 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 로봇이 아니야 등장인물",
+    "en.wikipedia I'm Not a Robot"
+  ],
+  "main": [
+    "minkyu",
+    "jiah",
+    "baekgyun"
+  ],
+  "people": [
+    {
+      "id": "minkyu",
+      "name": "Kim Min Kyu",
+      "actor": "Yoo Seung Ho",
+      "image": "https://i.mydramalist.com/YYjQvB_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Largest shareholder of KM Financial, allergic to human touch",
+      "alsoPlayedBy": [
+        {
+          "name": "Gil Jung Woo",
+          "image": "https://i.mydramalist.com/R4l7P_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/3/35/Im_Not_A_Robot-Yoo_Seung-Ho.jpg"
+    },
+    {
+      "id": "jiah",
+      "name": "Jo Ji Ah / Aji-3",
+      "actor": "Chae Soo Bin",
+      "image": "https://i.mydramalist.com/JBXVnw_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Struggling inventor and personal shopper — and the face of the robot Aji-3",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Yu Ri",
+          "image": "https://i.mydramalist.com/rNzdj2_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/ec/Im_Not_A_Robot-Chae_Soo-Bi-Jo_Ji-A.jpg"
+    },
+    {
+      "id": "baekgyun",
+      "name": "Hong Baek Gyun",
+      "actor": "Uhm Ki Joon",
+      "image": "https://i.mydramalist.com/QJdxBY_5m.jpg",
+      "group": "Santa Maria team",
+      "inCast": true,
+      "note": "World-renowned roboticist, inventor of Aji-3",
+      "still": "https://asianwiki.com/images/7/77/Im_Not_A_Robot-Uhm_Ki-Joon.jpg"
+    },
+    {
+      "id": "pi",
+      "name": "Pi / Angela",
+      "actor": "Park Se Wan",
+      "image": "https://i.mydramalist.com/Bdr5V5_5m.jpg",
+      "group": "Santa Maria team",
+      "inCast": true,
+      "note": "Chief researcher, fusion technology",
+      "still": "https://asianwiki.com/images/d/da/Im_Not_A_Robot-Park_Se-Wan.jpg"
+    },
+    {
+      "id": "hoktal",
+      "name": "Hoktal",
+      "actor": "Song Jae Ryong",
+      "image": "https://i.mydramalist.com/XED1p_5m.jpg",
+      "group": "Santa Maria team",
+      "inCast": true,
+      "note": "Chief researcher, hardware",
+      "still": "https://asianwiki.com/images/b/be/Im_Not_A_Robot-Song_Jae-Ryong.jpg"
+    },
+    {
+      "id": "ssanip",
+      "name": "Ssanip / Eddie",
+      "actor": "Go Geon Han",
+      "image": "https://i.mydramalist.com/yWnejk_5m.jpg",
+      "group": "Santa Maria team",
+      "inCast": true,
+      "note": "Chief researcher, AI software",
+      "still": "https://asianwiki.com/images/7/7f/Im_Not_A_Robot-Kim_Min-Kyu.jpg"
+    },
+    {
+      "id": "yoochul",
+      "name": "Hwang Yoo Chul",
+      "actor": "Kang Ki Young",
+      "image": "https://i.mydramalist.com/EeKV5_5m.jpg",
+      "group": "KM Financial",
+      "inCast": true,
+      "note": "CEO of KM Financial",
+      "alsoPlayedBy": [
+        {
+          "name": "Ko Woo Rim",
+          "image": "https://i.mydramalist.com/2LB0R_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/7/74/Im_Not_A_Robot-Kang_Ki-Young.jpg"
+    },
+    {
+      "id": "riel",
+      "name": "Ye Ri El",
+      "actor": "Hwang Seung Eon",
+      "image": "https://i.mydramalist.com/b3jkPL_5m.jpg",
+      "group": "KM Financial",
+      "inCast": true,
+      "note": "Natural-born lady",
+      "alsoPlayedBy": [
+        {
+          "name": "Kwon Soo Jung",
+          "image": "https://i.mydramalist.com/7Q15ym.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/8/85/Im_Not_A_Robot-Hwang_Seung-Un.jpg"
+    },
+    {
+      "id": "dowon",
+      "name": "Hwang Do Won",
+      "actor": "Son Byung Ho",
+      "image": "https://i.mydramalist.com/BDbpl_5m.jpg",
+      "group": "KM Financial",
+      "inCast": true,
+      "note": "Chairman of KM Financial",
+      "still": "https://asianwiki.com/images/6/61/I_Am_Not_a_Robot-Son_Byung-Ho.jpg"
+    },
+    {
+      "id": "sungtae",
+      "name": "Ye Sung Tae",
+      "actor": "Lee Byung Joon",
+      "image": "https://i.mydramalist.com/1gyLQm.jpg",
+      "group": "KM Financial",
+      "inCast": true,
+      "note": "One of KM's founders",
+      "still": "https://asianwiki.com/images/4/4e/I_Am_Not_a_Robot-Lee_Byung-Joon.jpg"
+    },
+    {
+      "id": "yoon",
+      "name": "Executive Director Yoon",
+      "actor": "Lee Hae Young",
+      "image": "https://i.mydramalist.com/YYRbdz_5m.jpg",
+      "group": "KM Financial",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/80/I_Am_Not_a_Robot-Lee_Hae-Young_%281970%29.jpg"
+    },
+    {
+      "id": "doctoroh",
+      "name": "Doctor Oh",
+      "actor": "Um Hyo Sup",
+      "image": "https://i.mydramalist.com/jov5z_5m.jpg",
+      "group": "Around Min Kyu",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/51/I_Am_Not_a_Robot-Eom_Hyo-Seop.jpg"
+    },
+    {
+      "id": "butlersung",
+      "name": "Butler Sung",
+      "actor": "Kim Ha Kyun",
+      "image": "https://i.mydramalist.com/XeLegm.jpg",
+      "group": "Around Min Kyu",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6b/I_Am_Not_a_Robot-Kim_Ha-Kyun.jpg"
+    },
+    {
+      "id": "myunghoon",
+      "name": "Kim Myung Hoon",
+      "actor": "Shin Dong Hoon",
+      "image": "https://i.mydramalist.com/xwDnj_5m.jpg",
+      "group": "Around Min Kyu",
+      "inCast": true,
+      "note": "Dead; ep. 7"
+    },
+    {
+      "id": "jinbae",
+      "name": "Jo Jin Bae",
+      "actor": "Seo Dong Won",
+      "image": "https://i.mydramalist.com/XOvEx_5m.jpg",
+      "group": "Ji Ah's family",
+      "inCast": true,
+      "note": "Research team leader at KM Financial",
+      "still": "https://asianwiki.com/images/9/93/I_Am_Not_a_Robot-Seo_Dong-Won.jpg"
+    },
+    {
+      "id": "hongju",
+      "name": "Hong Joo",
+      "actor": "Yoon So Mi",
+      "image": "https://i.mydramalist.com/63RqOm.jpg",
+      "group": "Ji Ah's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c3/I_Am_Not_a_Robot-Yoon_So-Mi.jpg"
+    },
+    {
+      "id": "dongyeon",
+      "name": "Jo Dong Yeon",
+      "actor": "Lee Han Seo",
+      "image": "https://i.mydramalist.com/X8wldm.jpg",
+      "group": "Ji Ah's family",
+      "inCast": true,
+      "note": "Eight",
+      "still": "https://asianwiki.com/images/4/4b/Im_Not_A_Robot-Lee_Han-Seo.jpg"
+    },
+    {
+      "id": "sunhye",
+      "name": "Hwang Sun Hye",
+      "actor": "Lee Min Ji",
+      "image": "https://i.mydramalist.com/qO0d0m.jpg",
+      "group": "Ji Ah's family",
+      "inCast": true,
+      "note": "Café owner, fortune-teller, expert on romance",
+      "still": "https://asianwiki.com/images/6/6c/I_Am_Not_a_Robot-Lee_Min-Ji.jpg"
+    },
+    {
+      "id": "miami",
+      "name": "Miami",
+      "actor": "Kim Ki Doo",
+      "image": "https://i.mydramalist.com/WAbpO_5m.jpg",
+      "group": "Hired thieves",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/22/Im_Not_A_Robot-Kim_Ki-Doo1.jpg"
+    },
+    {
+      "id": "alps",
+      "name": "Alps",
+      "actor": "Choi Dong Goo",
+      "image": "https://i.mydramalist.com/QJXW6Y_5m.jpg",
+      "group": "Hired thieves",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/7e/Im_Not_A_Robot-Choi_Dong-Goo1.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "minkyu",
+      "to": "jiah",
+      "type": "romance",
+      "label": "falls for her as the robot — the one touch his allergy allows",
+      "short": "loves 'Aji-3'",
+      "evidence": "But, Aji-3 becomes the closest thing that the lonely Min Kyu has to real contact with another person. / He develops feelings for Ji-ah as the robot and falls in love with her.",
+      "source": "MDL synopsis; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "baekgyun",
+      "to": "jiah",
+      "type": "romance",
+      "label": "ex-boyfriend, with zero empathy; built the robot in her image, then begs her to play it",
+      "short": "ex-boyfriend",
+      "evidence": "He modeled Aji-3 after his ex-girlfriend, Jo Ji Ah […] Hong Baek Gyun begs Jo Ji Ah to take the place of Aji-3 and pretend to be the robot / 조지아의 공감제로 전 남친",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "baekgyun",
+      "to": "minkyu",
+      "type": "work",
+      "label": "needs his funding for Aji-3, and hides that the robot is a woman",
+      "short": "his investor",
+      "evidence": "He becomes interested in a robotic project named Aji-3 created by the Santa Maria robotic team. The team is headed by Hong Baek Gyun […] so they can get funding from Kim Min Kyu.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pi",
+      "to": "baekgyun",
+      "type": "work",
+      "label": "chief researcher on his Santa Maria team, fusion technology",
+      "short": "his team",
+      "evidence": "[Baek Gyun's colleague] / 해외파 천재 수석연구원. 융합기술 연구",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hoktal",
+      "to": "baekgyun",
+      "type": "work",
+      "label": "chief researcher on his team, the walking and control engines",
+      "short": "his team",
+      "evidence": "[Baek Gyun's colleague] / 국내파 천재 수석연구원. 보행 엔진과 조작 엔진 등 하드웨어 담당",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ssanip",
+      "to": "baekgyun",
+      "type": "work",
+      "label": "chief researcher on his team, sensors and neural nets",
+      "short": "his team",
+      "evidence": "[Baek Gyun's colleague] / 국내파 천재 수석연구원. 인공지능과 관련된 각종 센서와 신경망 등 소프트웨어 담당",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoochul",
+      "to": "minkyu",
+      "type": "rivalry",
+      "label": "childhood best friend who betrayed him after his parents' death; now CEO, and his rival for Ri El",
+      "short": "friend turned rival",
+      "evidence": "[Min Kyu's friend] / Min-kyu's childhood best friend who betrayed him after Min-kyu's parents' death and, having become the CEO of the company, is now his rival both in business and for the hand of Ri-el.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "riel",
+      "to": "minkyu",
+      "type": "romance",
+      "label": "childhood friend and first love; she means to marry him, at first",
+      "short": "first love",
+      "evidence": "[Min Kyu's childhood friend] / Min-kyu's childhood friend and first love. Yoo-chul is in love with her but at first she wants to marry Min-kyu. / 민규의 첫사랑",
+      "source": "MDL cast; en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yoochul",
+      "to": "riel",
+      "type": "romance",
+      "label": "in love with her",
+      "short": "loves her",
+      "evidence": "Yoo-chul is in love with her but at first she wants to marry Min-kyu.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dowon",
+      "to": "yoochul",
+      "type": "family",
+      "label": "father; chairman of KM Financial",
+      "short": "father",
+      "evidence": "[Yoo Chul's father] / Yoo-chul's father and the president of the company.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dowon",
+      "to": "minkyu",
+      "type": "work",
+      "label": "his late father's business partner, on the board",
+      "short": "father's partner",
+      "evidence": "KM금융 회장. 민규 아버지와 동업자. 이사회 중 1명",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungtae",
+      "to": "riel",
+      "type": "family",
+      "label": "father; one of KM's founders",
+      "short": "father",
+      "evidence": "[Ri El's father] / Ri-el's father and one of the founders of the company.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoon",
+      "to": "dowon",
+      "type": "work",
+      "label": "KM's managing director, his right hand",
+      "short": "his right hand",
+      "evidence": "KM그룹 전무. 황도원의 수족",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doctoroh",
+      "to": "minkyu",
+      "type": "work",
+      "label": "his doctor for fifteen years; the only one who knew of the allergy",
+      "short": "his doctor",
+      "evidence": "Min-kyu's doctor. Having cared for him for fifteen years, he is initially the only other person aware of his condition.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "butlersung",
+      "to": "minkyu",
+      "type": "work",
+      "label": "his butler",
+      "short": "butler",
+      "evidence": "[Min Kyu's butler] / 민규의 집사",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myunghoon",
+      "to": "minkyu",
+      "type": "family",
+      "label": "father, dead",
+      "short": "late father",
+      "evidence": "[Min Kyu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinbae",
+      "to": "jiah",
+      "type": "family",
+      "label": "elder brother; research team leader at KM Financial",
+      "short": "elder brother",
+      "evidence": "[Ji Ah's brother] / Ji-ah's older brother who is the research team leader of KM Financial.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hongju",
+      "to": "jinbae",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Jin Bae's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hongju",
+      "to": "jiah",
+      "type": "friend",
+      "label": "high school friend, now her sister-in-law",
+      "short": "school friend",
+      "evidence": "지아의 여고동창친구. 진배의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongyeon",
+      "to": "jinbae",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "[Jin Bae's daughter] / Jin-bae and Hong-ju's child.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunhye",
+      "to": "jiah",
+      "type": "friend",
+      "label": "best friend; runs a café, reads fortunes and romances",
+      "short": "best friend",
+      "evidence": "[Ji Ah's best friend] / Ji-ah's friend who is a cafe owner and is a fortune-teller and an expert on romance.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "miami",
+      "to": "alps",
+      "type": "work",
+      "label": "hired thieves, a pair",
+      "short": "partner",
+      "evidence": "[Hired thief] / [Hired Thief]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "miami",
+      "to": "jiah",
+      "type": "rivalry",
+      "label": "hired thieves after the robot",
+      "short": "after Aji-3",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "minkyu",
+      "jiah",
+      "baekgyun",
+      "pi",
+      "hoktal",
+      "ssanip",
+      "yoochul",
+      "riel",
+      "dowon",
+      "sungtae",
+      "yoon",
+      "doctoroh",
+      "butlersung",
+      "myunghoon",
+      "jinbae",
+      "hongju",
+      "dongyeon",
+      "sunhye"
+    ],
+    "blocks": {
+      "Santa Maria team": [
+        0,
+        0
+      ],
+      "Ji Ah's family": [
+        0,
+        2
+      ],
+      "KM Financial": [
+        2,
+        0
+      ],
+      "Around Min Kyu": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "minkyu",
+      "jiah"
+    ]
+  }
+}

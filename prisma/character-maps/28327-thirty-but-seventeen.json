@@ -1,0 +1,534 @@
+{
+  "version": 1,
+  "mdlSlug": "28327-thirty-but-seventeen",
+  "title": "Still 17",
+  "asianwiki": "Thirty But Seventeen",
+  "native": "서른이지만 열일곱입니다",
+  "year": 2018,
+  "country": "KR",
+  "sources": [
+    "MDL cast (31 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 서른이지만 열일곱입니다 등장인물",
+    "en.wikipedia Still 17"
+  ],
+  "main": [
+    "seori",
+    "woojin",
+    "chan",
+    "jennifer"
+  ],
+  "people": [
+    {
+      "id": "seori",
+      "name": "Woo Seo Ri",
+      "actor": "Shin Hae Sun",
+      "image": "https://i.mydramalist.com/O8J8kk_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Violin prodigy; seventeen in her head, thirty in the mirror, after thirteen years in a coma",
+      "alsoPlayedBy": [
+        {
+          "name": "Park Si Eun",
+          "image": "https://i.mydramalist.com/g0jkLd_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/c7/Still_17-Park_Si-Eun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/5/50/Still_17-Shin_Hye-Sun.jpg"
+    },
+    {
+      "id": "woojin",
+      "name": "Gong Woo Jin",
+      "actor": "Yang Se Jong",
+      "image": "https://i.mydramalist.com/73LgDn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Stage designer who keeps everyone at arm's length since a trauma thirteen years ago",
+      "alsoPlayedBy": [
+        {
+          "name": "Yoon Chan Young",
+          "image": "https://i.mydramalist.com/zBDKYW_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/db/Still_17-Yoon_Chan-Young.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/a/a5/Still_17-Yang_Se-Jong.jpg"
+    },
+    {
+      "id": "chan",
+      "name": "Yoo Chan",
+      "actor": "Ahn Hyo Seop",
+      "image": "https://i.mydramalist.com/2wk2NP_5m.jpg",
+      "group": "Woo Jin's household",
+      "inCast": true,
+      "note": "Captain of Taesan High's rowing club",
+      "still": "https://asianwiki.com/images/2/25/Still_17-Ahn_Hyo-Seop.jpg"
+    },
+    {
+      "id": "jennifer",
+      "name": "Jennifer / Hwang Mi Jung",
+      "actor": "Ye Ji Won",
+      "image": "https://i.mydramalist.com/73lwkb_5m.jpg",
+      "group": "Woo Jin's household",
+      "inCast": true,
+      "note": "The housekeeper — well-read, martial-arts trained, always in the same clothes",
+      "still": "https://asianwiki.com/images/2/27/Still_17-Ye_Ji-Won.jpg"
+    },
+    {
+      "id": "hyeonjeong",
+      "name": "Gong Hyeon Jeong",
+      "actor": "Lee Ah Hyun",
+      "image": "https://i.mydramalist.com/6jwbP_5m.jpg",
+      "group": "Woo Jin's household",
+      "inCast": true,
+      "note": "Surgeon",
+      "still": "https://asianwiki.com/images/9/95/Still_17-Lee_Ah-Hyun.jpg"
+    },
+    {
+      "id": "yonghwan",
+      "name": "Gong Yong Hwan",
+      "actor": "Im Byung Ki",
+      "image": "https://i.mydramalist.com/rm8e7m.jpg",
+      "group": "Woo Jin's household",
+      "inCast": true
+    },
+    {
+      "id": "heesoo",
+      "name": "Kang Hee Soo",
+      "actor": "Jung Eugene",
+      "image": "https://i.mydramalist.com/O8PXDk_5m.jpg",
+      "group": "Around Woo Jin",
+      "inCast": true,
+      "note": "Runs Chaeum, the stage-design studio",
+      "still": "https://asianwiki.com/images/2/2d/Still_17-Jung_Eugene.jpg"
+    },
+    {
+      "id": "jinhyun",
+      "name": "Jin Hyun",
+      "actor": "Ahn Seung Gyun",
+      "image": "https://i.mydramalist.com/10xkbm.jpg",
+      "group": "Around Woo Jin",
+      "inCast": true,
+      "note": "Youngest at Chaeum",
+      "still": "https://asianwiki.com/images/4/4a/Still_17-Ahn_Seung-Kyoon_%281994%29.jpg"
+    },
+    {
+      "id": "joongseon",
+      "name": "Yoo Joong Seon",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "group": "Around Woo Jin",
+      "inCast": true,
+      "note": "Psychologist"
+    },
+    {
+      "id": "taerin",
+      "name": "Kim Tae Rin",
+      "actor": "Wang Ji Won",
+      "image": "https://i.mydramalist.com/1Kwjb_5m.jpg",
+      "group": "Around Seo Ri",
+      "inCast": true,
+      "note": "Violinist and music director",
+      "still": "https://asianwiki.com/images/3/3a/Still_17-Wang_Ji-Won.jpg"
+    },
+    {
+      "id": "hyungtae",
+      "name": "Kim Hyung Tae",
+      "actor": "Yoon Sun Woo",
+      "image": "https://i.mydramalist.com/0evrk_5m.jpg",
+      "group": "Around Seo Ri",
+      "inCast": true,
+      "note": "Neurology resident",
+      "still": "https://asianwiki.com/images/f/f0/Still_17-Lee_Seung-Yoon_Sun-Woo.jpg"
+    },
+    {
+      "id": "sumi",
+      "name": "No Su Mi",
+      "actor": "Lee Seo Yeon",
+      "image": "https://i.mydramalist.com/wwoJYm.jpg",
+      "group": "Around Seo Ri",
+      "inCast": true,
+      "note": "Died in the accident",
+      "still": "https://asianwiki.com/images/1/19/Still_17-Lee_Seo-Yeon_%28actress%29.jpg"
+    },
+    {
+      "id": "myunghwan",
+      "name": "Shim Myung Hwan",
+      "actor": "Park Jong Hoon",
+      "image": "https://i.mydramalist.com/QP0jY_5m.jpg",
+      "group": "Around Seo Ri",
+      "inCast": true,
+      "note": "Conductor and renowned violinist"
+    },
+    {
+      "id": "hyungyu",
+      "name": "Kim Hyun Kyu",
+      "actor": "Lee Seung Jun",
+      "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
+      "group": "Seo Ri's family",
+      "inCast": true,
+      "note": "Whereabouts unknown",
+      "still": "https://asianwiki.com/images/2/2c/Still_17-Lee_Seung-Joon_%281973%29.jpg"
+    },
+    {
+      "id": "mihyun",
+      "name": "Kook Mi Hyun",
+      "actor": "Sim Yi Young",
+      "image": "https://i.mydramalist.com/6Pl6j_5m.jpg",
+      "group": "Seo Ri's family",
+      "inCast": true,
+      "note": "Whereabouts unknown",
+      "still": "https://asianwiki.com/images/b/be/Still_17-Shim_Yi-Young1.jpg"
+    },
+    {
+      "id": "deoksu",
+      "name": "Han Duk Soo",
+      "actor": "Jo Hyun Sik",
+      "image": "https://i.mydramalist.com/KpvoAJ_5m.jpg",
+      "group": "Taesan High",
+      "inCast": true,
+      "note": "Rowing club",
+      "still": "https://asianwiki.com/images/4/49/Still_17-Jo_Hyun-Sik.jpg"
+    },
+    {
+      "id": "haebeom",
+      "name": "Dong Hae Beom",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
+      "group": "Taesan High",
+      "inCast": true,
+      "note": "Rowing club",
+      "still": "https://asianwiki.com/images/e/e6/Still_17-Lee_Do-Hyun.jpg"
+    },
+    {
+      "id": "rian",
+      "name": "Lee Ri An",
+      "actor": "Jo Yoo Jung",
+      "image": "https://i.mydramalist.com/RBPpeP_5m.jpg",
+      "group": "Taesan High",
+      "inCast": true,
+      "note": "Third year",
+      "still": "https://asianwiki.com/images/a/a7/Still_17-Jo_Yoo-Jung1.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "woojin",
+      "to": "seori",
+      "type": "romance",
+      "label": "two lives paused at seventeen; they fall for each other, neither knowing who the other once was",
+      "short": "lovers",
+      "evidence": "She later develops feelings for Woo-jin unaware of their past. / He later develops feelings for Seo-ri unaware of who in the past she actually was for him. / 서리의 남편.",
+      "source": "en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "woojin",
+      "to": "seori",
+      "type": "bond",
+      "label": "the girl he fell for at seventeen under a borrowed name tag, and blames himself for losing in the accident",
+      "short": "'Su Mi'",
+      "evidence": "When he was younger, he had a crush on a girl who he learned was named No Soo-mi because of the uniform name tag not knowing that it was borrowed. On the day of their first interaction, she was involved in an accident which resulted in several deaths. Woo-jin blames himself for what happened to her",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chan",
+      "to": "woojin",
+      "type": "family",
+      "label": "nephew, and his protector",
+      "short": "nephew",
+      "evidence": "Woo-jin's nephew and protector. / 우진의 조카",
+      "source": "en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chan",
+      "to": "seori",
+      "type": "romance",
+      "label": "falls for her, and in time lets it go",
+      "short": "falls for her",
+      "evidence": "He falls for Seo-ri after knowing of her history but lets go of those feelings with time.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jennifer",
+      "to": "woojin",
+      "type": "work",
+      "label": "housekeeper of the house he shares with his nephew",
+      "short": "housekeeper",
+      "evidence": "[Mysterious housekeeper] / She is also the housekeeper of the house where Gong Woo-jin and his nephew reside.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jennifer",
+      "to": "seori",
+      "type": "bond",
+      "label": "her husband died in the same accident, thirteen years ago",
+      "short": "same accident",
+      "evidence": "She harbors a secret that indirectly ties her with the accident 13 years ago. / Jennifer's late husband who died in the accident 13 years ago.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "woojin",
+      "type": "family",
+      "label": "elder sister",
+      "short": "elder sister",
+      "evidence": "[U Jin's sister] / 우진의 누나, 찬의 어머니, 외과의사",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "chan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Woo-jin's sister and Yoo Chan's mother. A surgeon.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonghwan",
+      "to": "woojin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Gong Woo Jin's father] / 영환의 아들",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonghwan",
+      "to": "chan",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "현정의 아들, 영환의 손자, 우진의 조카",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heesoo",
+      "to": "woojin",
+      "type": "work",
+      "label": "head of Chaeum, his studio; a talented designer herself",
+      "short": "his boss",
+      "evidence": "[Woo Jin's boss] / 무대디자인 회사 채움 대표 / A talented stage designer. Woo-jin's colleague.",
+      "source": "MDL cast; ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinhyun",
+      "to": "woojin",
+      "type": "work",
+      "label": "the youngest at Chaeum",
+      "short": "junior",
+      "evidence": "[Design staff] / 채움 막내 직원",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joongseon",
+      "to": "woojin",
+      "type": "work",
+      "label": "his psychologist",
+      "short": "his doctor",
+      "evidence": "[Psychologist] / Kim Min-sang as Woo-jin's physician",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taerin",
+      "to": "seori",
+      "type": "rivalry",
+      "label": "her biggest rival on the violin",
+      "short": "rival",
+      "evidence": "A talented violinist and music director. Seo-ri's biggest competitor.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyungtae",
+      "to": "seori",
+      "type": "romance",
+      "label": "childhood friend with a crush on her; the only one who knows where her relatives went",
+      "short": "old crush",
+      "evidence": "Seo-ri's childhood friend who has had a crush on her and is the only one who knows her relatives' whereabouts.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sumi",
+      "to": "seori",
+      "type": "friend",
+      "label": "best friend, who lent her the uniform and died in the accident",
+      "short": "best friend",
+      "evidence": "[Seo Ri's best friend] / Seo-ri's best friend. She died in the accident. She lent her school uniform to Seo-ri",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myunghwan",
+      "to": "seori",
+      "type": "work",
+      "label": "the violinist who helps her play again",
+      "short": "her mentor",
+      "evidence": "심명환 역 - 우서리 재기를 돕는 바이올리니스트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyungyu",
+      "to": "seori",
+      "type": "family",
+      "label": "uncle and legal guardian, who vanished — and sold the house",
+      "short": "uncle",
+      "evidence": "[Seo Ri's uncle] / He became her legal guardian after her parents passed away. / She has been looking for her uncle and aunt who did not come to visit her and even sold their house",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mihyun",
+      "to": "seori",
+      "type": "family",
+      "label": "aunt, who vanished",
+      "short": "aunt",
+      "evidence": "[Seo Ri's aunt] / Hyun-gyu's wife and Seo-ri's aunt.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyungyu",
+      "to": "mihyun",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "Hyun-gyu's wife and Seo-ri's aunt.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "deoksu",
+      "to": "chan",
+      "type": "friend",
+      "label": "best friend, on the rowing club",
+      "short": "best friend",
+      "evidence": "찬의 절친한 친구, 태산고 조정부 부원 / Yoo Chan's best friend.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haebeom",
+      "to": "chan",
+      "type": "friend",
+      "label": "best friend, on the rowing club",
+      "short": "best friend",
+      "evidence": "[Chan's friend] / Yoo Chan's best friend.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "rian",
+      "to": "chan",
+      "type": "romance",
+      "label": "has a crush on him",
+      "short": "crush",
+      "evidence": "[Taesan High, crush on Chan] / Yoo Chan's friend who has a crush on him.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seori",
+      "woojin",
+      "chan",
+      "jennifer",
+      "hyeonjeong",
+      "yonghwan",
+      "taerin",
+      "hyungtae",
+      "sumi",
+      "myunghwan",
+      "hyungyu",
+      "mihyun",
+      "deoksu",
+      "haebeom",
+      "rian"
+    ],
+    "blocks": {
+      "Around Seo Ri": [
+        0,
+        0
+      ],
+      "Seo Ri's family": [
+        0,
+        2
+      ],
+      "Woo Jin's household": [
+        2,
+        0
+      ],
+      "Taesan High": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "seori",
+      "woojin"
+    ]
+  }
+}

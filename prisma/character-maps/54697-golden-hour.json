@@ -1,0 +1,388 @@
+{
+  "version": 1,
+  "mdlSlug": "54697-golden-hour",
+  "title": "The Trauma Code: Heroes on Call",
+  "native": "중증외상센터",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (57 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 중증외상센터 (드라마) (names and departments only — several links inferred)",
+    "en.wikipedia The Trauma Code: Heroes on Call (cast list shifted — sentences used where unambiguous)"
+  ],
+  "main": [
+    "baek",
+    "jaewon",
+    "jangmi",
+    "yurim",
+    "gyeongwon"
+  ],
+  "people": [
+    {
+      "id": "baek",
+      "name": "Baek Gang Hyeok",
+      "actor": "Ju Ji Hoon",
+      "image": "https://i.mydramalist.com/qJVnB_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Genius trauma surgeon back from war zones; runs the severe trauma centre like a bulldozer",
+      "still": "https://asianwiki.com/images/9/9c/The_Trauma_Code-Ju_Ji-Hoon.jpg"
+    },
+    {
+      "id": "jaewon",
+      "name": "Yang Jae Won",
+      "actor": "Choo Young Woo",
+      "image": "https://i.mydramalist.com/l0Qm8J_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Proctology surgeon turned trauma fellow",
+      "still": "https://asianwiki.com/images/1/13/The_Trauma_Code-Choo_Yeong-Woo.jpg"
+    },
+    {
+      "id": "jangmi",
+      "name": "Cheon Jang Mi",
+      "actor": "Ha Young",
+      "image": "https://i.mydramalist.com/ABmJOP_5m.jpg",
+      "group": "Trauma team",
+      "inCast": true,
+      "note": "Trauma nurse",
+      "still": "https://asianwiki.com/images/e/e3/The_Trauma_Code-Ha-Young.jpg"
+    },
+    {
+      "id": "gyeongwon",
+      "name": "Park Gyeong Won",
+      "actor": "Jung Jae Kwang",
+      "image": "https://i.mydramalist.com/mO1opk_5m.jpg",
+      "group": "Trauma team",
+      "inCast": true,
+      "note": "Anaesthesiology resident",
+      "still": "https://asianwiki.com/images/a/a6/The_Trauma_Code-Jeong_Jae_Kwang.jpg"
+    },
+    {
+      "id": "seongyun",
+      "name": "Kim Seong Yun",
+      "actor": "Jang Sung Yoon",
+      "image": "https://i.mydramalist.com/NdEmYA_5m.jpg",
+      "group": "Trauma team",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/da/The_Trauma_Code-HOC-Jang_Sung_Yoon.jpg"
+    },
+    {
+      "id": "yurim",
+      "name": "Han Yu Rim",
+      "actor": "Yoon Kyung Ho",
+      "image": "https://i.mydramalist.com/WK0oR_5m.jpg",
+      "group": "Hepatobiliary surgery",
+      "inCast": true,
+      "note": "Professor",
+      "still": "https://asianwiki.com/images/4/4c/The_Trauma_Code-HOC-Yoon_Kyung-Ho.jpg"
+    },
+    {
+      "id": "yunjeong",
+      "name": "Hong Yun Jeong",
+      "actor": "Kim Yun Jeong",
+      "image": "https://i.mydramalist.com/3oABDD_5m.jpg",
+      "group": "Hepatobiliary surgery",
+      "inCast": true,
+      "note": "Fellow",
+      "still": "https://asianwiki.com/images/c/c0/The_Trauma_Code-HOC-Kim_Youn-Jeong.jpg"
+    },
+    {
+      "id": "jiyeong",
+      "name": "Han Ji Yeong",
+      "actor": "Park Jeong Yun",
+      "image": "https://i.mydramalist.com/vp13D_5m.jpg",
+      "group": "Hepatobiliary surgery",
+      "inCast": true,
+      "note": "Ep. 4–6",
+      "still": "https://asianwiki.com/images/d/df/The_Trauma_Code-HOC-Park_Jeong-Yun.jpg"
+    },
+    {
+      "id": "joeun",
+      "name": "Choi Jo Eun",
+      "actor": "Kim Eui Sung",
+      "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
+      "group": "Hospital leadership",
+      "inCast": true,
+      "note": "Hospital director",
+      "still": "https://asianwiki.com/images/8/83/The_Trauma_Code-HOC-Kim_Eui-Sung.jpg"
+    },
+    {
+      "id": "jaehun",
+      "name": "Hong Jae Hun",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Hospital leadership",
+      "inCast": true,
+      "note": "Director of planning and coordination",
+      "still": "https://asianwiki.com/images/3/3a/The_Trauma_Code-HOC-Kim_Won-Hae.jpg"
+    },
+    {
+      "id": "seonu",
+      "name": "Hwang Seon U",
+      "actor": "Kim Choong Gil",
+      "image": "https://i.mydramalist.com/6E5j2_5m.jpg",
+      "group": "Other departments",
+      "inCast": true,
+      "note": "Anaesthesiologist, nicknamed 'Bamtol'",
+      "still": "https://asianwiki.com/images/1/15/The_Trauma_Code-HOC-Kim_Choong_Gil.jpg"
+    },
+    {
+      "id": "minho",
+      "name": "Im Min Ho",
+      "actor": "Kim Byung Chul",
+      "image": "https://i.mydramalist.com/EN8L0_5m.jpg",
+      "group": "Other departments",
+      "inCast": true,
+      "note": "Head of emergency medicine",
+      "still": "https://asianwiki.com/images/5/5b/The_Trauma_Code-HOC-Kim_Byung-Cheol.jpg"
+    },
+    {
+      "id": "myeonghui",
+      "name": "Kang Myeong Hui",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
+      "group": "Outside the hospital",
+      "inCast": true,
+      "note": "Minister of Health and Welfare",
+      "still": "https://asianwiki.com/images/a/a6/The_Trauma_Code-HOC-Kim_Sun_Young.jpg"
+    },
+    {
+      "id": "jungheon",
+      "name": "An Jung Heon",
+      "actor": "Hong Woo Jin",
+      "image": "https://i.mydramalist.com/3oAqqW_5m.jpg",
+      "group": "Outside the hospital",
+      "inCast": true,
+      "note": "Rescue team leader",
+      "still": "https://asianwiki.com/images/c/c9/The_Trauma_Code-HOC-Hong_Woo-Jin.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "baek",
+      "to": "jaewon",
+      "type": "work",
+      "label": "takes the proctology surgeon as his first pupil",
+      "short": "his first pupil",
+      "evidence": "Yang Jae Won, a former proctology surgeon who becomes Baek Gang Hyeok's first pupil",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangmi",
+      "to": "baek",
+      "type": "work",
+      "label": "the team's nurse",
+      "short": "team nurse",
+      "evidence": "The team includes Yang Jae Won […], nurse Cheon Jang Mi, and anesthesiologist resident Park Gyeong Won.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongwon",
+      "to": "baek",
+      "type": "work",
+      "label": "the team's anaesthesiology resident",
+      "short": "team anaesthetist",
+      "evidence": "The team includes Yang Jae Won […], nurse Cheon Jang Mi, and anesthesiologist resident Park Gyeong Won.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongyun",
+      "to": "baek",
+      "type": "work",
+      "label": "on the trauma centre staff",
+      "short": "trauma centre",
+      "evidence": "중증외상센터: 김윤정 : 홍윤정 역 / 장성윤 : 김성윤 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yurim",
+      "to": "jaewon",
+      "type": "work",
+      "label": "his professor in hepatobiliary surgery, before the trauma centre took him",
+      "short": "old professor",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yurim",
+      "to": "baek",
+      "type": "rivalry",
+      "label": "the professor who fights the trauma centre, then ends up operating beside it",
+      "short": "reluctant ally",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yunjeong",
+      "to": "jaewon",
+      "type": "work",
+      "label": "hepatobiliary fellow, with him since their resident years",
+      "short": "old colleague",
+      "evidence": "A fellow at Hepatobiliary and Pancreatic Department who has been with Jae-won since their resident years.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiyeong",
+      "to": "yurim",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "[Yu Rim's daughter] / Han Yu-rim's daughter.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joeun",
+      "to": "baek",
+      "type": "work",
+      "label": "hospital director, counting the cost of every patient the centre saves",
+      "short": "director",
+      "evidence": "Director of Hankuk National University Hospital. / His confident, bulldozer-like personality clashes with the hospital's financial struggles as the team saves more patients.",
+      "source": "en.wikipedia; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehun",
+      "to": "baek",
+      "type": "work",
+      "label": "director of planning, holding the purse strings",
+      "short": "planning director",
+      "evidence": "Director of Planning and Coordination of Hankuk National University Hospital.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehun",
+      "to": "joeun",
+      "type": "work",
+      "label": "his planning director",
+      "short": "his planner",
+      "evidence": "수뇌부: 김의성 : 최조은 역 / 김원해 : 홍재훈 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonu",
+      "to": "gyeongwon",
+      "type": "work",
+      "label": "anaesthesiologist in his department",
+      "short": "his department",
+      "evidence": "[Anesthesiologist] / 마취통증의학과: 김충길 : 황선우 역",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "baek",
+      "type": "work",
+      "label": "head of emergency medicine, next door to the trauma centre",
+      "short": "emergency head",
+      "evidence": "[Emergency medicine department's head]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeonghui",
+      "to": "baek",
+      "type": "work",
+      "label": "Minister of Health, whose backing the centre needs",
+      "short": "the minister",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungheon",
+      "to": "baek",
+      "type": "work",
+      "label": "leads the rescue team that flies with him",
+      "short": "rescue leader",
+      "evidence": "[Rescue team's leader]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "baek",
+      "jaewon",
+      "jangmi",
+      "gyeongwon",
+      "seongyun",
+      "yurim",
+      "yunjeong",
+      "jiyeong",
+      "joeun",
+      "jaehun",
+      "seonu",
+      "minho",
+      "myeonghui",
+      "jungheon"
+    ],
+    "blocks": {
+      "Trauma team": [
+        0,
+        0
+      ],
+      "Other departments": [
+        0,
+        2
+      ],
+      "Hospital leadership": [
+        2,
+        0
+      ],
+      "Hepatobiliary surgery": [
+        2,
+        2
+      ],
+      "Outside the hospital": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "baek",
+      "jaewon"
+    ]
+  }
+}
