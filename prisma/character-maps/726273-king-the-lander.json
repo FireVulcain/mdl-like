@@ -1,0 +1,624 @@
+{
+  "version": 1,
+  "mdlSlug": "726273-king-the-lander",
+  "title": "King the Land",
+  "native": "킹더랜드",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (96 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 킹더랜드 등장인물",
+    "en.wikipedia King the Land (cast list shifted — two lines used where the sentence is unambiguous)"
+  ],
+  "main": [
+    "won",
+    "sarang"
+  ],
+  "people": [
+    {
+      "id": "won",
+      "name": "Koo Won",
+      "actor": "Lee Jun Ho",
+      "image": "https://i.mydramalist.com/jQjpmd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Heir and new head manager of King Hotel; despises fake smiles",
+      "alsoPlayedBy": [
+        {
+          "name": "Han Ji An",
+          "image": "https://i.mydramalist.com/NdKP4Y_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/c4/King_the_Land-Han_Ji_An.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/ec/King_The_Land-Lee_Joon-Ho.jpg"
+    },
+    {
+      "id": "sarang",
+      "name": "Cheon Sa Rang",
+      "actor": "Lim Yoon A",
+      "image": "https://i.mydramalist.com/l0drLv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Star hotelier at King Hotel; the smile queen who is tired of smiling",
+      "still": "https://asianwiki.com/images/b/b0/King_The_Land-Lim_Yoon_A.jpg"
+    },
+    {
+      "id": "hwaran",
+      "name": "Koo Hwa Ran",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/XdAY7q_5m.jpg",
+      "group": "The Koo family",
+      "inCast": true,
+      "note": "Managing director of King Hotel, King Air and Alanga at once",
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Min Joo",
+          "image": "https://i.mydramalist.com/WpELR_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/a/a9/King_the_Land-Jung_Min-Joo.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/c7/King_the_Land-Kim_Sun_Young.jpg"
+    },
+    {
+      "id": "ilhoon",
+      "name": "Koo Il Hoon",
+      "actor": "Son Byung Ho",
+      "image": "https://i.mydramalist.com/BDbpl_5m.jpg",
+      "group": "The Koo family",
+      "inCast": true,
+      "note": "Chairman of King Group",
+      "still": "https://asianwiki.com/images/c/cd/King_The_Land-Son_Byung_Ho.jpg"
+    },
+    {
+      "id": "miso",
+      "name": "Han Mi So",
+      "actor": "Nam Gi Ae",
+      "image": null,
+      "group": "The Koo family",
+      "inCast": false,
+      "note": "MDL carries only her younger self; the adult role is not in its cast",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee A Joo",
+          "image": "https://i.mydramalist.com/QJdo0v_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "still": "https://asianwiki.com/images/4/4b/King_The_Land-Nam_Gi-Ae.jpg"
+    },
+    {
+      "id": "seonghun",
+      "name": "Yun Seong Hun",
+      "actor": "Jung Won Jo",
+      "image": "https://i.mydramalist.com/p0b5Em.jpg",
+      "group": "The Koo family",
+      "inCast": true,
+      "note": "Professor; ep. 5, 12, 15",
+      "still": "https://asianwiki.com/images/8/8b/King_the_Land-Jung_Won-Jo.jpg"
+    },
+    {
+      "id": "jihu",
+      "name": "Yun Ji Hu",
+      "actor": "Kim Dong Ha",
+      "image": "https://i.mydramalist.com/E5Poem_5m.jpg",
+      "group": "The Koo family",
+      "inCast": true,
+      "note": "Ep. 12–16",
+      "still": "https://asianwiki.com/images/7/7e/King_the_Land-Kim_Dong-Ha.jpg"
+    },
+    {
+      "id": "sangsik",
+      "name": "No Sang Sik",
+      "actor": "Ahn Se Ha",
+      "image": "https://i.mydramalist.com/XODjZ_5m.jpg",
+      "group": "Won's secretary",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6d/King_the_Land-An_Se_Ha.jpg"
+    },
+    {
+      "id": "pyeonghwa",
+      "name": "O Pyeong Hwa",
+      "actor": "Go Won Hee",
+      "image": "https://i.mydramalist.com/LwV7wL_5m.jpg",
+      "group": "King Air",
+      "inCast": true,
+      "note": "Flight attendant with everything but guile",
+      "still": "https://asianwiki.com/images/a/ac/King_The_Land-Go_Won_Hee.jpg"
+    },
+    {
+      "id": "roun",
+      "name": "Lee Ro Un",
+      "actor": "Kim Jae Won",
+      "image": "https://i.mydramalist.com/DkVjpn_5m.jpg",
+      "group": "King Air",
+      "inCast": true,
+      "note": "Flight attendant",
+      "still": "https://asianwiki.com/images/1/15/King_The_Land-Kim_Jae-Won1.jpg"
+    },
+    {
+      "id": "daeul",
+      "name": "Kang Da Eul",
+      "actor": "Kim Ga Eun",
+      "image": "https://i.mydramalist.com/pdgEpy_5m.jpg",
+      "group": "Da Eul's family",
+      "inCast": true,
+      "note": "Sales queen of Alanga, the duty-free store; superwoman",
+      "still": "https://asianwiki.com/images/1/17/King_the_Land-Kim_Ga_Eun.jpg"
+    },
+    {
+      "id": "chungjae",
+      "name": "Seo Chung Jae",
+      "actor": "Choi Tae Hwan",
+      "image": "https://i.mydramalist.com/kRO1O_5m.jpg",
+      "group": "Da Eul's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/96/King_The_Land-Choi_Tae-Hwan1.jpg"
+    },
+    {
+      "id": "chorong",
+      "name": "Seo Cho Rong",
+      "actor": "Lee Ye Ju",
+      "image": "https://i.mydramalist.com/73bJOe_5m.jpg",
+      "group": "Da Eul's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c4/King_the_Land-Lee_Ye-Joo.jpg"
+    },
+    {
+      "id": "sunhui",
+      "name": "Cha Sun Hui",
+      "actor": "Kim Young Ok",
+      "image": "https://i.mydramalist.com/5vYdBB_5m.jpg",
+      "group": "Around Sa Rang",
+      "inCast": true,
+      "note": "A grandmother with style",
+      "still": "https://asianwiki.com/images/c/cc/King_the_Land-Kim_Young_Ok.jpg"
+    },
+    {
+      "id": "yunam",
+      "name": "Kong Yu Nam",
+      "actor": "Ahn Woo Yeon",
+      "image": "https://i.mydramalist.com/JB4Nyp_5m.jpg",
+      "group": "Around Sa Rang",
+      "inCast": true,
+      "note": "Ep. 1–5",
+      "still": "https://asianwiki.com/images/a/ae/King_the_Land-An_Woo-Yeon1.jpg"
+    },
+    {
+      "id": "sumi",
+      "name": "Kim Su Mi",
+      "actor": "Gong Ye Ji",
+      "image": "https://i.mydramalist.com/YANoQm.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "note": "King Hotel manager",
+      "still": "https://asianwiki.com/images/1/17/King_the_Land-Kong_Ye_Ji.jpg"
+    },
+    {
+      "id": "minseo",
+      "name": "Jeon Min Seo",
+      "actor": "Kim Jung Min",
+      "image": "https://i.mydramalist.com/RBePn6_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "note": "Manager of King the Land, the VVIP lounge",
+      "still": "https://asianwiki.com/images/8/87/King_The_Land-Kim_Jung_Min.jpg"
+    },
+    {
+      "id": "hana",
+      "name": "Lee Ha Na",
+      "actor": "Choi Ji Hyun",
+      "image": "https://i.mydramalist.com/1wOj77_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/04/King_The_Land-Choi_Ji-Hyeon1.jpg"
+    },
+    {
+      "id": "duri",
+      "name": "Du Ri",
+      "actor": "Kim Na Young",
+      "image": "https://i.mydramalist.com/PxozeX_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/ad/King_the_Land-Kim_Chae-Yoon.jpg"
+    },
+    {
+      "id": "seho",
+      "name": "Se Ho",
+      "actor": "Lee Ho Suk",
+      "image": "https://i.mydramalist.com/x4K3BE_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f2/King_The_Land-Lee_Ho-Suk.jpg"
+    },
+    {
+      "id": "mone",
+      "name": "Song Mo Ne",
+      "actor": "Cha Seo Hyun",
+      "image": "https://i.mydramalist.com/WP5B5O_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/26/King_The_Land-Cha_Seo_Hyun.jpg"
+    },
+    {
+      "id": "daseok",
+      "name": "Da Seok",
+      "actor": "Kim Ho Yeon",
+      "image": "https://i.mydramalist.com/Bdjwp1_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/56/King_the_Land-Kim_Ho-Yeon.jpg"
+    },
+    {
+      "id": "rahui",
+      "name": "Do Ra Hui",
+      "actor": "Lee Ji Hye",
+      "image": "https://i.mydramalist.com/WPnYRW_5m.jpg",
+      "group": "King Group staff",
+      "inCast": true,
+      "note": "Alanga supervisor",
+      "still": "https://asianwiki.com/images/9/98/King_The_Land-Lee_Ji_Hye.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "won",
+      "to": "sarang",
+      "type": "romance",
+      "label": "he despises fake smiles and is captivated by her real one; they fall for each other",
+      "short": "lovers",
+      "evidence": "Heir Koo Won, known for his brilliance and charm, despises fake smiles but is captivated by Cheon Sa Rang's genuine one. / 천사랑을 좋아한다. […] 구원이 좋아하는 사람.",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hwaran",
+      "to": "won",
+      "type": "family",
+      "label": "older half-sister",
+      "short": "half-sister",
+      "evidence": "[Won's older sister] / 구원의 누나. / Gu Won's older half-sister and the eldest daughter of King Group.",
+      "source": "MDL cast; ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwaran",
+      "to": "won",
+      "type": "rivalry",
+      "label": "the inheritance battle over King Group",
+      "short": "inheritance war",
+      "evidence": "Koo Won is thrown into an inheritance battle at King of the Land, an exclusive lounge owned by The King Group.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ilhoon",
+      "to": "won",
+      "type": "family",
+      "label": "father; chairman of King Group",
+      "short": "father",
+      "evidence": "[Won's father] / 킹그룹 회장. 구화란과 구원의 아버지.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilhoon",
+      "to": "hwaran",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "킹그룹 회장. 구화란과 구원의 아버지.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miso",
+      "to": "won",
+      "type": "family",
+      "label": "mother, missing since his childhood",
+      "short": "missing mother",
+      "evidence": "한미소 역 - 구원의 어머니. 행방불명 상태.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonghun",
+      "to": "hwaran",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Hwa Ran's husband] / 구화란의 남편이자 구원의 매형.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jihu",
+      "to": "hwaran",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Hwa Ran's son] / 구화란의 아들이자 구원의 조카.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihu",
+      "to": "won",
+      "type": "family",
+      "label": "nephew",
+      "short": "nephew",
+      "evidence": "윤교수의 처남이자 윤지후의 삼촌.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangsik",
+      "to": "won",
+      "type": "work",
+      "label": "his secretary, more friend than secretary",
+      "short": "secretary",
+      "evidence": "구원의 친구 같은 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pyeonghwa",
+      "to": "sarang",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "강다을과 천사랑의 친구. / Sa-rang's best friend who is a flight attendant of King Air.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeul",
+      "to": "sarang",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "오평화와 천사랑의 친구. / Sa-rang's best friend and a working mother",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "pyeonghwa",
+      "to": "daeul",
+      "type": "friend",
+      "label": "best friends",
+      "short": "best friend",
+      "evidence": "강다을과 천사랑의 친구.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "roun",
+      "to": "pyeonghwa",
+      "type": "romance",
+      "label": "junior who respects her as a senior — and likes her",
+      "short": "likes her",
+      "evidence": "킹에어 승무원. 오평화를 선배로서 존경하고 좋아하는 후배.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungjae",
+      "to": "daeul",
+      "type": "family",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "[Da Eul's husband] / 서충재의 아내",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chorong",
+      "to": "daeul",
+      "type": "family",
+      "label": "only daughter",
+      "short": "daughter",
+      "evidence": "[Da Eul's daughter] / 강다을의 하나 뿐인 딸",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunhui",
+      "to": "sarang",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Sa Rang's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunam",
+      "to": "sarang",
+      "type": "romance",
+      "label": "boyfriend at the start",
+      "short": "first boyfriend",
+      "evidence": "[Sa Rang's boyfriend] / 천사랑의 남자친구 (1~5회)",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sumi",
+      "to": "sarang",
+      "type": "rivalry",
+      "label": "hotel manager who took a dislike to her, for her talent and her status",
+      "short": "dislikes her",
+      "evidence": "[King Hotel manager] / The manager of King Hotel. She took a disliking to Sa-rang because of her talents and her status.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minseo",
+      "to": "sarang",
+      "type": "work",
+      "label": "manager of King the Land, the lounge she joins",
+      "short": "lounge manager",
+      "evidence": "[King the Land manager] / 킹호텔 VVIP라운지 킹더랜드의 지배인.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hana",
+      "to": "sarang",
+      "type": "work",
+      "label": "senior at King the Land",
+      "short": "senior",
+      "evidence": "[King the Land team member] / 킹더랜드 팀원. 천사랑의 킹더랜드 선배.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duri",
+      "to": "sarang",
+      "type": "work",
+      "label": "senior at King the Land",
+      "short": "senior",
+      "evidence": "[King the Land team member] / 킹더랜드 팀원. 천사랑의 킹더랜드 선배.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seho",
+      "to": "sarang",
+      "type": "work",
+      "label": "senior at King the Land",
+      "short": "senior",
+      "evidence": "[King the Land team member] / 킹더랜드 팀원. 천사랑의 킹더랜드 선배.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mone",
+      "to": "sarang",
+      "type": "work",
+      "label": "senior at King the Land",
+      "short": "senior",
+      "evidence": "[King the Land team member] / 킹더랜드 팀원. 천사랑의 킹더랜드 선배.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daseok",
+      "to": "sarang",
+      "type": "work",
+      "label": "senior at King the Land",
+      "short": "senior",
+      "evidence": "[King the Land team member] / 킹더랜드 팀원. 천사랑의 킹더랜드 선배.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rahui",
+      "to": "daeul",
+      "type": "work",
+      "label": "her supervisor at Alanga",
+      "short": "supervisor",
+      "evidence": "[Alanga supervisor] / 킹패션 알랑가 슈퍼바이저",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "won",
+      "sarang",
+      "hwaran",
+      "ilhoon",
+      "miso",
+      "seonghun",
+      "jihu",
+      "sangsik",
+      "pyeonghwa",
+      "roun",
+      "daeul",
+      "chungjae",
+      "chorong",
+      "sunhui",
+      "yunam"
+    ],
+    "blocks": {
+      "Around Sa Rang": [
+        0,
+        0
+      ],
+      "King Air": [
+        0,
+        2
+      ],
+      "The Koo family": [
+        2,
+        0
+      ],
+      "Won's secretary": [
+        2,
+        2
+      ],
+      "Da Eul's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "won",
+      "sarang"
+    ]
+  }
+}

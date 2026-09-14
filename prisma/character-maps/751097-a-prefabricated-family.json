@@ -1,0 +1,670 @@
+{
+  "version": 1,
+  "mdlSlug": "751097-a-prefabricated-family",
+  "title": "Family by Choice",
+  "native": "조립식 가족",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (51 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 조립식 가족 등장인물",
+    "en.wikipedia Family by Choice (cast list shifted by one — sentences used, names not)"
+  ],
+  "main": [
+    "sanha",
+    "juwon",
+    "haejun"
+  ],
+  "people": [
+    {
+      "id": "sanha",
+      "name": "Kim San Ha",
+      "actor": "Hwang In Youp",
+      "image": "https://i.mydramalist.com/Lwr2A3_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Orthopaedics resident at Myeongju University Hospital",
+      "alsoPlayedBy": [
+        {
+          "name": "Shin Seo Woo",
+          "image": "https://i.mydramalist.com/Dk44jo_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/f/f1/Family_By_Choice-Shin_Seo-Woo.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/d/d6/Family_By_Choice-Hwang_In-Yeop.jpg"
+    },
+    {
+      "id": "juwon",
+      "name": "Yun Ju Won",
+      "actor": "Jung Chae Yeon",
+      "image": "https://i.mydramalist.com/e3AQem.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Runs Daldal Bakery",
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Eun Seo",
+          "image": "https://i.mydramalist.com/nOrkvW_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/1/19/Family_By_Choice-Oh_Eun-Seo.jpg"
+        },
+        {
+          "name": "Seo Eun Sol",
+          "image": "https://i.mydramalist.com/Zj03O_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/0/0d/Family_By_Choice-Seo_Eun-Sol.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/8/8a/Family_By_Choice-Jung_Chae_Yeon.jpg"
+    },
+    {
+      "id": "haejun",
+      "name": "Kang Hae Jun",
+      "actor": "Bae Hyun Sung",
+      "image": "https://i.mydramalist.com/qrmg8_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former basketball player",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Jae Yoon",
+          "image": "https://i.mydramalist.com/1w35Rb_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/b/b4/Family_By_Choice-Choi_Jae-Yoon1.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/cc/Family_By_Choice-Bae_Hyun_Sung.jpg"
+    },
+    {
+      "id": "jeongjae",
+      "name": "Yun Jeong Jae",
+      "actor": "Choi Won Young",
+      "image": "https://i.mydramalist.com/QBrn6_5m.jpg",
+      "group": "Ju Won's family",
+      "inCast": true,
+      "note": "Runs the Yun family kalguksu restaurant",
+      "still": "https://asianwiki.com/images/3/3d/Family_By_Choice-Choi_Won_Young.jpg"
+    },
+    {
+      "id": "daeuk",
+      "name": "Kim Dae Uk",
+      "actor": "Choi Mu Sung",
+      "image": "https://i.mydramalist.com/NdnJwe_5m.jpg",
+      "group": "San Ha's family",
+      "inCast": true,
+      "note": "Police officer at the Gangpo substation",
+      "still": "https://asianwiki.com/images/f/f5/Family_By_Choice-Choi_Moo-Sung.jpg"
+    },
+    {
+      "id": "jeonghui",
+      "name": "Kwon Jeong Hui",
+      "actor": "Kim Hye Eun",
+      "image": "https://i.mydramalist.com/Z8vj8q_5m.jpg",
+      "group": "San Ha's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/19/Family_By_Choice-Kim_Hye-Eun1.jpg"
+    },
+    {
+      "id": "sojeong",
+      "name": "Kim So Jeong",
+      "actor": "Cha Jun Hui",
+      "image": "https://i.mydramalist.com/73ZjLn_5m.jpg",
+      "group": "San Ha's family",
+      "inCast": true,
+      "note": "Dead"
+    },
+    {
+      "id": "sohui",
+      "name": "Jung So Hui",
+      "actor": "Yang Hyeon Seo",
+      "image": "https://i.mydramalist.com/b3kwox_5m.jpg",
+      "group": "San Ha's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Min Chae",
+          "image": "https://i.mydramalist.com/x4E1rN_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/b/ba/Family_By_Choice-Kim_Min-Chae.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/d/dc/Family_By_Choice-Yang_Hyun-Seo.jpg"
+    },
+    {
+      "id": "seohyeon",
+      "name": "Kang Seo Hyeon",
+      "actor": "Baek Eun Hye",
+      "image": "https://i.mydramalist.com/4k7yZm.jpg",
+      "group": "Hae Jun's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/db/Family_By_Choice-Baek_Eun_Hye1.jpeg"
+    },
+    {
+      "id": "dongu",
+      "name": "Yang Dong Gu",
+      "actor": "Lee Jong Hyuk",
+      "image": "https://i.mydramalist.com/dv6NKm.jpg",
+      "group": "Hae Jun's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e0/Family_by_Choice-Lee_Jong-Hyuk1.jpg"
+    },
+    {
+      "id": "ihyeon",
+      "name": "Kang I Hyeon",
+      "actor": "Min Ji A",
+      "image": "https://i.mydramalist.com/N7XnAm.jpg",
+      "group": "Hae Jun's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f9/Family_By_Choice-Min_Ji_A1.jpg"
+    },
+    {
+      "id": "dal",
+      "name": "Park Dal",
+      "actor": "Suh Jie Hye",
+      "image": "https://i.mydramalist.com/XEdgpm.jpg",
+      "group": "Haedong High friends",
+      "inCast": true,
+      "note": "Lawyer",
+      "still": "https://asianwiki.com/images/4/4f/Family_By_Choice-Seo_Ji_Hye.jpg"
+    },
+    {
+      "id": "junho",
+      "name": "Lee Jun Ho",
+      "actor": "Youn Sang Hyun",
+      "image": "https://i.mydramalist.com/w4O7J_5m.jpg",
+      "group": "Haedong High friends",
+      "inCast": true,
+      "note": "Intern at Myeongju University Hospital",
+      "still": "https://asianwiki.com/images/0/02/Family_By_Choice-Yoon_Sang-Hyeon.jpg"
+    },
+    {
+      "id": "huiju",
+      "name": "Do Hui Ju",
+      "actor": "Ha Seo Yoon",
+      "image": "https://i.mydramalist.com/jQX6jb_5m.jpg",
+      "group": "Haedong High friends",
+      "inCast": true,
+      "note": "Resident at Myeongju University Hospital",
+      "still": "https://asianwiki.com/images/f/fd/Family_By_Choice-Ha_Seo-Yoon1.jpg"
+    },
+    {
+      "id": "jaeeun",
+      "name": "Kang Jae Eun",
+      "actor": "Baek Yae In",
+      "image": "https://i.mydramalist.com/g0RmZr_5m.jpg",
+      "group": "Haedong High friends",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/be/Family_By_Choice-Baek_Yae_In1.jpg"
+    },
+    {
+      "id": "seokhun",
+      "name": "Yun Seok Hun",
+      "actor": "Yun U",
+      "image": "https://i.mydramalist.com/LwqdJb_5m.jpg",
+      "group": "Haedong High friends",
+      "inCast": true,
+      "note": "PE teacher",
+      "still": "https://asianwiki.com/images/a/a4/Family_By_Choice-Yun-Woo.jpg"
+    },
+    {
+      "id": "yeosanim",
+      "name": "Yeo Sa Nim",
+      "actor": "Seong Byung Sook",
+      "image": "https://i.mydramalist.com/5v8XOe_5m.jpg",
+      "group": "Haedong people",
+      "inCast": true,
+      "note": "Haedong villager",
+      "still": "https://asianwiki.com/images/c/cd/Family_By_Choice-Sung_Byoung_Sook.jpg"
+    },
+    {
+      "id": "dalmother",
+      "name": "Dal's mother",
+      "actor": "So Hee Jung",
+      "image": "https://i.mydramalist.com/wN30n_5m.jpg",
+      "group": "Haedong people",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/66/Family_By_Choice-So_Hee_Jung.jpg"
+    },
+    {
+      "id": "gyeongi",
+      "name": "Kim Gyeong I",
+      "actor": "Choi Chan Ho",
+      "image": "https://i.mydramalist.com/QmoY7m.jpg",
+      "group": "Haedong people",
+      "inCast": true,
+      "note": "Police lieutenant",
+      "still": "https://asianwiki.com/images/8/85/Family_By_Choice-Choi_Chan_Ho1.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "sanha",
+      "to": "juwon",
+      "type": "romance",
+      "label": "raised as siblings; a couple in the end",
+      "short": "lovers",
+      "evidence": "unexpected romantic feelings in the present / 주원의 연인. […] 산하의 연인.",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanha",
+      "to": "haejun",
+      "type": "bond",
+      "label": "brought up in the same household, brothers in all but blood",
+      "short": "chosen brother",
+      "evidence": "three young individuals brought together under one unconventional household, where love and care mean more than blood",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haejun",
+      "to": "juwon",
+      "type": "bond",
+      "label": "brought up in the same household, siblings in all but blood",
+      "short": "chosen sibling",
+      "evidence": "three young individuals brought together under one unconventional household, where love and care mean more than blood",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongjae",
+      "to": "juwon",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ju Won's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongjae",
+      "to": "haejun",
+      "type": "family",
+      "label": "raises him like his own son",
+      "short": "like a father",
+      "evidence": "He works hard to ensure they have everything they need and especially cares for Hae-jun like his own son.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongjae",
+      "to": "sanha",
+      "type": "family",
+      "label": "raises him alongside his own daughter",
+      "short": "like a father",
+      "evidence": "He works hard to ensure they have everything they need",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeuk",
+      "to": "sanha",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[San Ha's father] / 산하와 죽은 소정의 아버지.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghui",
+      "to": "sanha",
+      "type": "family",
+      "label": "mother, who resents him after a misfortune",
+      "short": "mother",
+      "evidence": "[San Ha's mother] / She hates her son due to an unexpected misfortune.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeuk",
+      "to": "jeonghui",
+      "type": "family",
+      "label": "divorced",
+      "short": "divorced",
+      "evidence": "정희의 전남편. […] 대욱의 전처.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sojeong",
+      "to": "sanha",
+      "type": "family",
+      "label": "younger sister, dead",
+      "short": "late sister",
+      "evidence": "[San Ha's sister] / 죽은 소정의 오빠.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sojeong",
+      "to": "daeuk",
+      "type": "family",
+      "label": "daughter, dead",
+      "short": "late daughter",
+      "evidence": "산하와 죽은 소정의 아버지.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sojeong",
+      "to": "jeonghui",
+      "type": "family",
+      "label": "daughter, dead",
+      "short": "late daughter",
+      "evidence": "산하와 죽은 소정의 친어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sohui",
+      "to": "sanha",
+      "type": "family",
+      "label": "half-sister, born of their mother's second marriage",
+      "short": "half-sister",
+      "evidence": "[San Ha's half-sister] / 산하의 의붓여동생, 정희가 재혼한 남편 사이에서 낳은 딸.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghui",
+      "to": "sohui",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "소희의 어머니.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seohyeon",
+      "to": "haejun",
+      "type": "family",
+      "label": "mother; raised him alone and gave him her surname",
+      "short": "mother",
+      "evidence": "[Hae Jun's mother] / She raises her son and gives him her last name in place of his irresponsible father, who left them both.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongu",
+      "to": "haejun",
+      "type": "family",
+      "label": "birth father, who left them",
+      "short": "father",
+      "evidence": "[Hae Jun's father] / 강해준의 친부.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seohyeon",
+      "to": "dongu",
+      "type": "family",
+      "label": "divorced",
+      "short": "divorced",
+      "evidence": "동구의 전처.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ihyeon",
+      "to": "haejun",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "[Hae Jun's aunt]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ihyeon",
+      "to": "seohyeon",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "서현의 동생, 해준의 이모.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dal",
+      "to": "juwon",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "[Ju Won's best friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dal",
+      "to": "haejun",
+      "type": "romance",
+      "label": "falls in love with him",
+      "short": "loves him",
+      "evidence": "While she endures each day suffocatingly, she falls in love with Hae-jun.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dalmother",
+      "to": "dal",
+      "type": "family",
+      "label": "mother, whose expectations rule her life",
+      "short": "mother",
+      "evidence": "[Park Dal's mother] / has lived her entire life according to her mother's expectations",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junho",
+      "to": "juwon",
+      "type": "friend",
+      "label": "high school classmate",
+      "short": "classmate",
+      "evidence": "명주대 병원 인턴, 주원의 고등학교 동창.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junho",
+      "to": "sanha",
+      "type": "work",
+      "label": "intern at the hospital where he is a resident",
+      "short": "his intern",
+      "evidence": "명주대 병원 정형외과 레지던트 / 명주대 병원 인턴",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiju",
+      "to": "haejun",
+      "type": "romance",
+      "label": "ex-girlfriend",
+      "short": "ex-girlfriend",
+      "evidence": "해준의 전 여친, 명주대 병원 레지던트.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiju",
+      "to": "sanha",
+      "type": "work",
+      "label": "fellow resident at Myeongju University Hospital",
+      "short": "fellow resident",
+      "evidence": "[Myeongju University Hospital's resident] / 명주대 병원 정형외과 레지던트",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaeeun",
+      "to": "juwon",
+      "type": "friend",
+      "label": "classmate and friend",
+      "short": "friend",
+      "evidence": "재은과 달의 친구. / 주원과 달의 동창",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaeeun",
+      "to": "dal",
+      "type": "friend",
+      "label": "classmate and friend",
+      "short": "friend",
+      "evidence": "주원과 달의 동창, 석훈의 아내.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokhun",
+      "to": "jaeeun",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Jae Eun's husband]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokhun",
+      "to": "haejun",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "체육 교사, 해준의 친구.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeosanim",
+      "to": "jeongjae",
+      "type": "friend",
+      "label": "helped him find a home and a shop when he arrived with Ju Won",
+      "short": "helped settle",
+      "evidence": "정재가 주원을 데리고 집 구하고 가게 구할 때부터 이래저래 도와줬다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongi",
+      "to": "daeuk",
+      "type": "work",
+      "label": "his subordinate at the police substation",
+      "short": "subordinate",
+      "evidence": "대욱의 파출소 부하직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sanha",
+      "juwon",
+      "haejun",
+      "jeongjae",
+      "daeuk",
+      "jeonghui",
+      "sojeong",
+      "sohui",
+      "seohyeon",
+      "dongu",
+      "ihyeon",
+      "dal",
+      "junho",
+      "huiju",
+      "jaeeun",
+      "seokhun"
+    ],
+    "blocks": {
+      "San Ha's family": [
+        0,
+        0
+      ],
+      "Hae Jun's family": [
+        2,
+        0
+      ],
+      "Ju Won's family": [
+        1,
+        0
+      ],
+      "Haedong High friends": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sanha",
+      "juwon",
+      "haejun"
+    ]
+  }
+}

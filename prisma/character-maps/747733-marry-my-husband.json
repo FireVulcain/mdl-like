@@ -1,0 +1,687 @@
+{
+  "version": 1,
+  "mdlSlug": "747733-marry-my-husband",
+  "title": "Marry My Husband",
+  "native": "내 남편과 결혼해줘",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (68 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 내 남편과 결혼해줘 등장인물",
+    "en.wikipedia Marry My Husband (cast list misaligned — one line used)"
+  ],
+  "main": [
+    "jiwon",
+    "jihyeok",
+    "minhwan",
+    "sumin",
+    "eunho"
+  ],
+  "people": [
+    {
+      "id": "jiwon",
+      "name": "Kang Ji Won",
+      "actor": "Park Min Young",
+      "image": "https://i.mydramalist.com/yWxKQR_5m.jpg",
+      "group": "Ji Won & Ji Hyeok",
+      "inCast": true,
+      "note": "Marketing Team 1; dies at 31 and wakes up ten years earlier",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ah Hyun",
+          "image": "https://i.mydramalist.com/rNmKyg_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/f/fa/Marry_My_Husband-Kim_Ah-Hyun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/f/f9/Marry_My_Husband-Park_Min-Young.jpg"
+    },
+    {
+      "id": "jihyeok",
+      "name": "Yoo Ji Hyeok",
+      "actor": "Na In Woo",
+      "image": "https://i.mydramalist.com/kdwOO_5m.jpg",
+      "group": "Ji Won & Ji Hyeok",
+      "inCast": true,
+      "note": "General manager of U&K Food marketing",
+      "still": "https://asianwiki.com/images/a/a8/Marry_My_Husband-Na_In-Woo.jpg"
+    },
+    {
+      "id": "minhwan",
+      "name": "Park Min Hwan",
+      "actor": "Lee Yi Kyung",
+      "image": "https://i.mydramalist.com/5v7nrV_5m.jpg",
+      "group": "Min Hwan & Su Min",
+      "inCast": true,
+      "note": "Marketing Team 1",
+      "still": "https://asianwiki.com/images/b/bf/Marry_My_Husband-Lee_Yi_Kyung.jpg"
+    },
+    {
+      "id": "sumin",
+      "name": "Jung Su Min",
+      "actor": "Song Ha Yoon",
+      "image": "https://i.mydramalist.com/5v6LvB_5m.jpg",
+      "group": "Min Hwan & Su Min",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Eom Seo Hyun",
+          "image": "https://i.mydramalist.com/dXAEK_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/3/39/Marry_My_Husband-Uhm_Seo-Hyun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/e4/Marry_My_Husband-Song_Ha_Yoon1.jpg"
+    },
+    {
+      "id": "eunho",
+      "name": "Baek Eun Ho",
+      "actor": "Lee Gi Kwang",
+      "image": "https://i.mydramalist.com/wJVmrb_5m.jpg",
+      "group": "High school friends",
+      "inCast": true,
+      "note": "Chef",
+      "still": "https://asianwiki.com/images/5/56/Marry_My_Husband-Lee_Gi-Kwang.jpg"
+    },
+    {
+      "id": "yeji",
+      "name": "Ha Ye Ji",
+      "actor": "Bae Geu Rin",
+      "image": "https://i.mydramalist.com/pdnNgE_5m.jpg",
+      "group": "High school friends",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/51/Marry_My_Husband-Bae_Geu-Rin.jpg"
+    },
+    {
+      "id": "huiyeon",
+      "name": "Yoo Hui Yeon",
+      "actor": "Choi Gyu Ri",
+      "image": "https://i.mydramalist.com/E5rWgm_5m.jpg",
+      "group": "Ji Hyeok's family",
+      "inCast": true,
+      "note": "Marketing Team 1 staff",
+      "still": "https://asianwiki.com/images/1/15/Marry_My_Husband-Choi_Gyu-Ri01.jpg"
+    },
+    {
+      "id": "hanil",
+      "name": "Yoo Han Il",
+      "actor": "Moon Sung Keun",
+      "image": "https://i.mydramalist.com/oQDZ4k_5m.jpg",
+      "group": "Ji Hyeok's family",
+      "inCast": true,
+      "note": "U&K Group chairman",
+      "still": "https://asianwiki.com/images/e/ec/Marry_My_Husband-Moon_Sung_Geun.jpg"
+    },
+    {
+      "id": "jaok",
+      "name": "Kim Ja Ok",
+      "actor": "Jung Kyung Soon",
+      "image": "https://i.mydramalist.com/BWyEq_5m.jpg",
+      "group": "Min Hwan's side",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c1/Marry_My_Husband-Jung_Kyung-Soon1.jpg"
+    },
+    {
+      "id": "minhwanfather",
+      "name": "Park Cheol Jung",
+      "actor": "Kim Byung Soon",
+      "image": "https://i.mydramalist.com/XOglO_5m.jpg",
+      "group": "Min Hwan's side",
+      "inCast": true,
+      "note": "MDL lists him only as Min Hwan's father",
+      "still": "https://asianwiki.com/images/6/62/Marry_My_Husband-Kim_Byung-Soon.jpg"
+    },
+    {
+      "id": "sangjong",
+      "name": "Yoo Sang Jong",
+      "actor": "Kang Sang Jun",
+      "image": "https://i.mydramalist.com/qY8Pgz_5m.jpg",
+      "group": "Min Hwan's side",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/52/Marry_My_Husband-Kang_Sang-Joon.jpg"
+    },
+    {
+      "id": "hyunmo",
+      "name": "Kang Hyun Mo",
+      "actor": "Jung Suk Yong",
+      "image": "https://i.mydramalist.com/j2rBOm.jpg",
+      "group": "Ji Won's family",
+      "inCast": true,
+      "note": "Truck driver",
+      "still": "https://asianwiki.com/images/d/d5/Marry_My_Husband-Jung_Suk-Yong1.jpg"
+    },
+    {
+      "id": "huisuk",
+      "name": "Bae Hui Suk",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/02kxr_5m.jpg",
+      "group": "Ji Won's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f4/Marry_My_Husband-Lee_Jung_Eun.jpg"
+    },
+    {
+      "id": "mansik",
+      "name": "Jung Man Sik",
+      "actor": "Moon Jung Dae",
+      "image": "https://i.mydramalist.com/4XbKY_5m.jpg",
+      "group": "Su Min's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b5/Marry_My_Husband-Moon_Jung-Dae.jpg"
+    },
+    {
+      "id": "suminmother",
+      "name": "Lee Myeong Ja",
+      "actor": "Kim Hyun",
+      "image": "https://i.mydramalist.com/5v7BVY_5m.jpg",
+      "group": "Su Min's family",
+      "inCast": true,
+      "note": "MDL lists her only as Su Min's mother",
+      "still": "https://asianwiki.com/images/e/e5/Marry_My_Husband-Kim-Hyun.jpg"
+    },
+    {
+      "id": "juran",
+      "name": "Yang Ju Ran",
+      "actor": "Gong Min Jung",
+      "image": "https://i.mydramalist.com/ZWm3j_5m.jpg",
+      "group": "Marketing Team 1",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/25/Marry_My_Husband-Gong_Min_Jung.jpg"
+    },
+    {
+      "id": "gyeonguk",
+      "name": "Kim Gyeong Uk",
+      "actor": "Kim Joong Hee",
+      "image": "https://i.mydramalist.com/YYzlDo_5m.jpg",
+      "group": "Marketing Team 1",
+      "inCast": true,
+      "note": "Section manager",
+      "still": "https://asianwiki.com/images/6/6d/Marry_My_Husband-Kim_Joong_Hee1.jpg"
+    },
+    {
+      "id": "jaewon",
+      "name": "Lee Jae Won",
+      "actor": "Jang Jae Ho",
+      "image": "https://i.mydramalist.com/wzO8Y_5m.jpg",
+      "group": "Ju Ran's family",
+      "inCast": true,
+      "note": "Unemployed",
+      "still": "https://asianwiki.com/images/d/dd/Marry_My_Husband-Jang_Jae_Ho1.jpg"
+    },
+    {
+      "id": "yeonji",
+      "name": "Lee Yeon Ji",
+      "actor": "Oh Eun Seo",
+      "image": "https://i.mydramalist.com/nOrkvW_5m.jpg",
+      "group": "Ju Ran's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/9f/Marry_My_Husband-Oh_Eun-Seo.jpg"
+    },
+    {
+      "id": "seokjun",
+      "name": "Lee Seok Jun",
+      "actor": "Ha Do Kwon",
+      "image": "https://i.mydramalist.com/O87y5k_5m.jpg",
+      "group": "Around Ji Hyeok",
+      "inCast": true,
+      "note": "Head of U&K strategic planning",
+      "still": "https://asianwiki.com/images/2/21/Marry_My_Husband-Ha_Do_Kwon.jpg"
+    },
+    {
+      "id": "dongseok",
+      "name": "Cho Dong Seok",
+      "actor": "Cho Jin Se",
+      "image": "https://i.mydramalist.com/WPNAxR_5m.jpg",
+      "group": "Around Ji Hyeok",
+      "inCast": true,
+      "note": "Runs the chicken shop",
+      "still": "https://asianwiki.com/images/e/e8/Marry_My_Husband-Jo_Jin-Se.jpg"
+    },
+    {
+      "id": "sinu",
+      "name": "Kim Sin U",
+      "actor": "Moon Soo Young",
+      "image": "https://i.mydramalist.com/qbpy5m.jpg",
+      "group": "Around Ji Hyeok",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/68/Marry_My_Husband-Kim_Shin-Woo.jpg"
+    },
+    {
+      "id": "yura",
+      "name": "O Yu Ra",
+      "actor": "Bo A",
+      "image": "https://i.mydramalist.com/kAO4xv_5m.jpg",
+      "group": "Around Ji Hyeok",
+      "inCast": true,
+      "note": "Vice-president of Cloud Air; ep. 11–16",
+      "still": "https://asianwiki.com/images/b/b2/Marry_My_Husband-Boa.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "jihyeok",
+      "to": "jiwon",
+      "type": "romance",
+      "label": "secretly in love with her, hiding a truth; in the end her husband",
+      "short": "loves her",
+      "evidence": "Yoo Ji Hyeok, her colleague, secretly harbors feelings for Ji Won and conceals a hidden truth. / 지혁의 아내.",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minhwan",
+      "to": "jiwon",
+      "type": "romance",
+      "label": "her husband in the first life — kills her; her fiancé, to be handed on, in the second",
+      "short": "first-life husband",
+      "evidence": "Kang Ji Won's marriage to Park Min Hwan is strained due to his selfishness, unemployment, and a domineering mother. […] A confrontation leads to her tragic death at Min Hwan's hands.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sumin",
+      "to": "jiwon",
+      "type": "rivalry",
+      "label": "close friend who takes her husband — so Ji Won plots to make her marry him",
+      "short": "false friend",
+      "evidence": "she discovers her husband's affair with her close friend, Jung Soo Min. […] Determined to change her fate, she plots to make Soo Min marry him instead.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minhwan",
+      "to": "sumin",
+      "type": "romance",
+      "label": "affair behind Ji Won's back; her husband in the second life",
+      "short": "affair, then married",
+      "evidence": "she discovers her husband's affair with her close friend, Jung Soo Min. / 지원의 전 남편, 수민의 남편.",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sumin",
+      "to": "minhwan",
+      "type": "rivalry",
+      "label": "his death is her doing",
+      "short": "his death",
+      "evidence": "아내 수민으로 인해 사망.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunho",
+      "to": "jiwon",
+      "type": "friend",
+      "label": "high school classmate",
+      "short": "classmate",
+      "evidence": "은호&예지&수민의 고등학교 동창.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeji",
+      "to": "jiwon",
+      "type": "rivalry",
+      "label": "bullied her all through high school, egged on by Su Min; tries to make amends once she knows",
+      "short": "school bully",
+      "evidence": "정수민에게 넘어가 고등학교 3년 내내 강지원을 괴롭힌 장본인이지만 모든 사실을 알게 되고 어떻게든 자신의 만행을 갚아주려고 노력한다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeji",
+      "to": "sumin",
+      "type": "friend",
+      "label": "high school classmate, taken in by her",
+      "short": "taken in",
+      "evidence": "지원, 수민, 은호의 고등학교 동창. 드세지만 단순해서 속기도 잘 속는다. 정수민에게 넘어가",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiyeon",
+      "to": "jihyeok",
+      "type": "family",
+      "label": "half-sister, born to his father's second wife",
+      "short": "half-sister",
+      "evidence": "지혁의 이복여동생, 한일의 손녀. […] 지혁의 부친이 재혼하였다. 그러니 지혁의 새엄마가 낳은 딸.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanil",
+      "to": "jihyeok",
+      "type": "family",
+      "label": "grandfather; chairman of U&K Group",
+      "short": "grandfather",
+      "evidence": "지혁과 희연의 할아버지. U&K그룹 회장.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanil",
+      "to": "huiyeon",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "지혁과 희연의 할아버지. U&K그룹 회장.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiyeon",
+      "to": "jiwon",
+      "type": "friend",
+      "label": "colleague on Marketing Team 1; her sister-in-law in the end",
+      "short": "colleague",
+      "evidence": "지원의 직장 동료. 지원의 시누이.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaok",
+      "to": "minhwan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "민환의 어머니.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaok",
+      "to": "jiwon",
+      "type": "family",
+      "label": "domineering mother-in-law in the first life",
+      "short": "mother-in-law",
+      "evidence": "a domineering mother / 지원의 전 시어머니.",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minhwanfather",
+      "to": "minhwan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Min Hwan's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangjong",
+      "to": "minhwan",
+      "type": "friend",
+      "label": "Min Hwan's friend",
+      "short": "friend",
+      "evidence": "Min-hwan's friend.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyunmo",
+      "to": "jiwon",
+      "type": "family",
+      "label": "father, a truck driver; dead before the story",
+      "short": "father",
+      "evidence": "지원의 아버지. 화물차 기사, 민환의 장인.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huisuk",
+      "to": "jiwon",
+      "type": "family",
+      "label": "birth mother, who left",
+      "short": "mother",
+      "evidence": "[Ji Won's mother] / 지원의 친모.(12회)",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mansik",
+      "to": "sumin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Su Min's dad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suminmother",
+      "to": "sumin",
+      "type": "family",
+      "label": "birth mother",
+      "short": "mother",
+      "evidence": "[Su Min's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juran",
+      "to": "jiwon",
+      "type": "friend",
+      "label": "colleague on Marketing Team 1",
+      "short": "colleague",
+      "evidence": "U&K푸드 마케팅 1팀 대리. 부모님의 사랑을 듬뿍 받고 큰 순한 사람",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeonguk",
+      "to": "jiwon",
+      "type": "work",
+      "label": "section manager of Marketing Team 1, her boss",
+      "short": "her manager",
+      "evidence": "U&K푸드 마케팅 1팀 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaewon",
+      "to": "juran",
+      "type": "family",
+      "label": "husband who married her for her parents' money and lives off her; divorced over his affair",
+      "short": "husband",
+      "evidence": "주란의 전 남편이자 연지의 아빠, 큰 갈빗집을 하고 있는 주란 부모의 재력을 보고 주란과 결혼했다. […] 불륜으로 주란과 이혼한다.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonji",
+      "to": "juran",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "재원, 주란의 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonji",
+      "to": "jaewon",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "재원, 주란의 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokjun",
+      "to": "jihyeok",
+      "type": "work",
+      "label": "head of U&K strategic planning, at his side",
+      "short": "right hand",
+      "evidence": "U&K그룹 전략기획실장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongseok",
+      "to": "jihyeok",
+      "type": "friend",
+      "label": "like a younger brother — met in the university club",
+      "short": "like a brother",
+      "evidence": "한국대 동아리 '체육볶음'에서 만난 지혁의 가족같은 동생.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sinu",
+      "to": "jihyeok",
+      "type": "friend",
+      "label": "junior from the university club",
+      "short": "club junior",
+      "evidence": "지혁의 '체육볶음' 후배이자 동석의 치킨집 동업자.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sinu",
+      "to": "dongseok",
+      "type": "work",
+      "label": "co-founded the chicken shop",
+      "short": "partners",
+      "evidence": "치킨집 '날 튀겨봐요' 공동창업.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yura",
+      "to": "jihyeok",
+      "type": "romance",
+      "label": "ex-fiancée",
+      "short": "ex-fiancée",
+      "evidence": "클라우드 항공사 부사장. 지혁의 전 약혼녀.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yura",
+      "to": "jiwon",
+      "type": "rivalry",
+      "label": "sets out to get rid of her",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jiwon",
+      "jihyeok",
+      "minhwan",
+      "sumin",
+      "eunho",
+      "yeji",
+      "huiyeon",
+      "hanil",
+      "jaok",
+      "minhwanfather",
+      "sangjong",
+      "hyunmo",
+      "huisuk",
+      "juran",
+      "gyeonguk",
+      "seokjun",
+      "dongseok",
+      "sinu",
+      "yura"
+    ],
+    "blocks": {
+      "Min Hwan & Su Min": [
+        0,
+        0
+      ],
+      "Min Hwan's side": [
+        0,
+        2
+      ],
+      "Ji Hyeok's family": [
+        2,
+        0
+      ],
+      "Around Ji Hyeok": [
+        2,
+        2
+      ],
+      "Ji Won's family": [
+        1,
+        0
+      ],
+      "High school friends": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jiwon",
+      "jihyeok"
+    ]
+  }
+}

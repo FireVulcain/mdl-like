@@ -1,0 +1,928 @@
+{
+  "version": 1,
+  "mdlSlug": "62085-a-wonderful-rumor",
+  "title": "The Uncanny Counter",
+  "native": "경이로운 소문",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (127 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 경이로운 소문 (드라마) 등장인물",
+    "en.wikipedia The Uncanny Counter (season 1 entries)"
+  ],
+  "main": [
+    "mun",
+    "motak",
+    "hana",
+    "maeok",
+    "jangmul"
+  ],
+  "people": [
+    {
+      "id": "motak",
+      "name": "Ga Mo Tak",
+      "actor": "Yoo Joon Sang",
+      "image": "https://i.mydramalist.com/ZN4EY_5m.jpg",
+      "group": "The Counters",
+      "inCast": true,
+      "note": "Assistant cook; ex-detective who lost his memory in a fall seven years ago. Strength",
+      "still": "https://asianwiki.com/images/0/02/The_Uncanny_Counter-Yu_Jun-Sang.jpg"
+    },
+    {
+      "id": "mun",
+      "name": "So Mun",
+      "actor": "Cho Byeong Kyu",
+      "image": "https://i.mydramalist.com/QJl0pY_5m.jpg",
+      "group": "The Counters",
+      "inCast": true,
+      "note": "18, the newest Counter; part-timer at Eonni's Noodles",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Geon U",
+          "image": "https://i.mydramalist.com/x4vNjr_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/0/06/The_Uncanny_Encounter-Kim_Geon_U.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/0/0a/The_Uncanny_Counter-Joe_Byeong-Gyu.jpg"
+    },
+    {
+      "id": "hana",
+      "name": "Do Ha Na",
+      "actor": "Kim Se Jeong",
+      "image": "https://i.mydramalist.com/vrmWX_5m.jpg",
+      "group": "The Counters",
+      "inCast": true,
+      "note": "Server; senses spirits from afar and reads memories by touch",
+      "still": "https://asianwiki.com/images/e/e2/The_Uncanny_Counter-Kim_Se-Jeong.jpg"
+    },
+    {
+      "id": "maeok",
+      "name": "Chu Mae Ok",
+      "actor": "Yeom Hye Ran",
+      "image": "https://i.mydramalist.com/VX2AVJ_5m.jpg",
+      "group": "Eonni's Noodles",
+      "inCast": true,
+      "note": "The chef; healing",
+      "still": "https://asianwiki.com/images/5/54/The_Uncanny_Counter-Yum_Hye-Ran.jpg"
+    },
+    {
+      "id": "jangmul",
+      "name": "Choi Jang Mul",
+      "actor": "Ahn Suk Hwan",
+      "image": "https://i.mydramalist.com/jQ0g1w_5m.jpg",
+      "group": "Eonni's Noodles",
+      "inCast": true,
+      "note": "First Counter in Korea, retired; chairman of Jangmul Retail",
+      "still": "https://asianwiki.com/images/e/e1/The_Uncanny_Counter-Ahn_Suk-Hwan.jpg"
+    },
+    {
+      "id": "wigen",
+      "name": "Wi Gen",
+      "actor": "Moon Sook",
+      "image": "https://i.mydramalist.com/Qy8Nv_5m.jpg",
+      "group": "Yung",
+      "inCast": true,
+      "note": "Leader of Yung",
+      "still": "https://asianwiki.com/images/0/00/The_Uncanny_Counter-Moon-Sook.jpg"
+    },
+    {
+      "id": "giran",
+      "name": "Kim Gi Ran",
+      "actor": "Kim So Ra",
+      "image": "https://i.mydramalist.com/kdREv_5m.jpg",
+      "group": "Yung",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/02/The_Uncanny_Counter-Kim_So-Ra.jpg"
+    },
+    {
+      "id": "usik",
+      "name": "U Sik",
+      "actor": "Eun Ye Jun",
+      "image": "https://i.mydramalist.com/em4xp_5m.jpg",
+      "group": "Yung",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/47/The_Uncanny_Counter-Eun_Ye-Jun.jpg"
+    },
+    {
+      "id": "suho",
+      "name": "Kwon Su Ho",
+      "actor": "Lee Chan Hyeong",
+      "image": "https://i.mydramalist.com/Dkjv5q_5m.jpg",
+      "group": "Yung",
+      "inCast": true,
+      "note": "Keeps Yung's record of deaths",
+      "still": "https://asianwiki.com/images/4/45/The_Uncanny_Counter-Lee_Chan-Hyeong.jpg"
+    },
+    {
+      "id": "seokgu",
+      "name": "Ha Seok Gu",
+      "actor": "Yoon Joo Sang",
+      "image": "https://i.mydramalist.com/oQ4dxm.jpg",
+      "group": "Mun's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5d/The_Uncanny_Counter-Yun_Ju-Sang.jpg"
+    },
+    {
+      "id": "chunok",
+      "name": "Jang Chun Ok",
+      "actor": "Lee Ju Sil",
+      "image": "https://i.mydramalist.com/zBDVAe_5m.jpg",
+      "group": "Mun's family",
+      "inCast": true,
+      "note": "Dementia since losing her daughter and son-in-law",
+      "still": "https://asianwiki.com/images/c/ce/The_Uncanny_Counter-Lee_Joo-Sil.jpg"
+    },
+    {
+      "id": "sogwon",
+      "name": "So Gwon",
+      "actor": "Jeon Seok Ho",
+      "image": "https://i.mydramalist.com/YYj5OB_5m.jpg",
+      "group": "Mun's family",
+      "inCast": true,
+      "note": "Police officer; dead seven years",
+      "still": "https://asianwiki.com/images/f/f3/The_Uncanny_Counter-Jun_Suk_Ho1.jpg"
+    },
+    {
+      "id": "munyeong",
+      "name": "Ha Mun Yeong",
+      "actor": "Son Yeo Eun",
+      "image": "https://i.mydramalist.com/RBPLbP_5m.jpg",
+      "group": "Mun's family",
+      "inCast": true,
+      "note": "Police officer; dead seven years",
+      "still": "https://asianwiki.com/images/f/f4/The_Uncanny_Encounter-Son_Yeo_Eun.jpg"
+    },
+    {
+      "id": "hayeong",
+      "name": "Do Ha Yeong",
+      "actor": "Song Ji Woo",
+      "image": "https://i.mydramalist.com/YYW0ve_5m.jpg",
+      "group": "Ha Na's family",
+      "inCast": true,
+      "note": "Dead",
+      "still": "https://asianwiki.com/images/9/93/The_Uncanny_Counter-Song_Ji_Woo.jpg"
+    },
+    {
+      "id": "hanamother",
+      "name": "Ha Na's mother",
+      "actor": "Song Kyung Hwa",
+      "image": "https://i.mydramalist.com/eb1kq_5m.jpg",
+      "group": "Ha Na's family",
+      "inCast": true,
+      "note": "Dead",
+      "still": "https://asianwiki.com/images/c/c7/The_Uncanny_Counter-Song_Kyung_Hwa.jpg"
+    },
+    {
+      "id": "hanafather",
+      "name": "Ha Na's father",
+      "actor": "Park Sang Hyuk",
+      "image": "https://i.mydramalist.com/nvWl4m.jpg",
+      "group": "Ha Na's family",
+      "inCast": true,
+      "note": "Dead",
+      "still": "https://asianwiki.com/images/8/88/The_Uncanny_Counter-Park_Sang-Hyuk.jpg"
+    },
+    {
+      "id": "ungmin",
+      "name": "Kim Ung Min",
+      "actor": "Kim Eun Soo",
+      "image": "https://i.mydramalist.com/BE58R_5m.jpg",
+      "group": "Mun's school",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5f/The_Uncanny_Counter-Kim_Eun_Soo.jpg"
+    },
+    {
+      "id": "juyeon",
+      "name": "Im Ju Yeon",
+      "actor": "Lee Ji Won",
+      "image": "https://i.mydramalist.com/2wQ152_5m.jpg",
+      "group": "Mun's school",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/9a/The_Uncanny_Counter-Lee_Ji-Won.jpg"
+    },
+    {
+      "id": "hyeoku",
+      "name": "Sin Hyeok U",
+      "actor": "Jung Won Chang",
+      "image": "https://i.mydramalist.com/BElY5_5m.jpg",
+      "group": "Mun's school",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3f/The_Uncanny_Counter-Jung_Won-Chang.jpg"
+    },
+    {
+      "id": "cheonjung",
+      "name": "Cheon Jung",
+      "actor": "Kim Yong Han",
+      "image": "https://i.mydramalist.com/prlgV_5m.jpg",
+      "group": "Mun's school",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/00/The_Uncanny_Encounter-Kim_Yong_Han.jpg"
+    },
+    {
+      "id": "jeongyeong",
+      "name": "Kim Jeong Yeong",
+      "actor": "Choi Yoon Young",
+      "image": "https://i.mydramalist.com/1p6O6m.jpg",
+      "group": "Jungjin police",
+      "inCast": true,
+      "note": "Violent crimes inspector",
+      "still": "https://asianwiki.com/images/3/38/The_Uncanny_Counter-Choi_Yoon-Young.jpg"
+    },
+    {
+      "id": "hanul",
+      "name": "Kang Han Ul",
+      "actor": "Lee Kyung Min",
+      "image": "https://i.mydramalist.com/QgBy6_5m.jpg",
+      "group": "Jungjin police",
+      "inCast": true,
+      "note": "Rookie",
+      "still": "https://asianwiki.com/images/4/47/The_Uncanny_Counter-Lee_Gyeong-Min.jpg"
+    },
+    {
+      "id": "suryong",
+      "name": "Choi Su Ryong",
+      "actor": "Son Kang Gook",
+      "image": "https://i.mydramalist.com/2zmeE_5m.jpg",
+      "group": "Jungjin police",
+      "inCast": true,
+      "note": "Police chief",
+      "still": "https://asianwiki.com/images/a/a1/The_Uncanny_Counter-_Son_Kang_Kuk.jpg"
+    },
+    {
+      "id": "myeonghwi",
+      "name": "Sin Myeong Hwi",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "group": "City hall & Taesin",
+      "inCast": true,
+      "note": "Mayor of Jungjin, behind the redevelopment project",
+      "still": "https://asianwiki.com/images/d/db/The_Uncanny_Counter-Choi_Kwang_Il.jpg"
+    },
+    {
+      "id": "hyegyeong",
+      "name": "Jang Hye Gyeong",
+      "actor": "Kim Jung Jin",
+      "image": "https://i.mydramalist.com/PxLrWR_5m.jpg",
+      "group": "City hall & Taesin",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/64/The_Uncanny_Counter-Kim_Jung-Jin.jpg"
+    },
+    {
+      "id": "taesin",
+      "name": "Cho Tae Sin",
+      "actor": "Lee Do Yeop",
+      "image": "https://i.mydramalist.com/l060wE_5m.jpg",
+      "group": "City hall & Taesin",
+      "inCast": true,
+      "note": "Chairman of Taesin Group",
+      "still": "https://asianwiki.com/images/b/bd/The_Uncanny_Counter-Lee_Do_Yub.jpg"
+    },
+    {
+      "id": "hanggyu",
+      "name": "No Hang Gyu",
+      "actor": "Kim Seung Hoon",
+      "image": "https://i.mydramalist.com/WW7AW_5m.jpg",
+      "group": "City hall & Taesin",
+      "inCast": true,
+      "note": "Taesin executive",
+      "still": "https://asianwiki.com/images/9/9f/The_Uncanny_Counter-Kim_Seung-Hoon.jpg"
+    },
+    {
+      "id": "changgyu",
+      "name": "No Chang Gyu",
+      "actor": "Jeon Jin Oh",
+      "image": "https://i.mydramalist.com/1e3EK_5m.jpg",
+      "group": "City hall & Taesin",
+      "inCast": true,
+      "note": "Thug",
+      "still": "https://asianwiki.com/images/4/43/The_Uncanny_Counter-Jeon_Jin-Oh.jpg"
+    },
+    {
+      "id": "jaecheol",
+      "name": "Lim Jae Cheol",
+      "actor": "Cha Shi Won",
+      "image": "https://i.mydramalist.com/2ORlPm.jpg",
+      "group": "City hall & Taesin",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f0/The_Uncanny_Encounter-Cha_Si_Won.jpg"
+    },
+    {
+      "id": "chungsin",
+      "name": "Ji Chung Sin",
+      "actor": "Lee Hong Nae",
+      "image": "https://i.mydramalist.com/JBdxdX_5m.jpg",
+      "group": "Evil spirits",
+      "inCast": true,
+      "note": "Junkyard worker carrying a level-3 evil spirit",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Yoon Woo",
+          "image": "https://i.mydramalist.com/2XkXW_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/3/35/The_Uncanny_Counter-Choi_Yoon-Woo.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/6/6d/The_Uncanny_Encounter-Lee_Hong_Nae.jpg"
+    },
+    {
+      "id": "sangpil",
+      "name": "Bae Sang Pil",
+      "actor": "Kwon Hyuk",
+      "image": "https://i.mydramalist.com/X65lJ_5m.jpg",
+      "group": "Evil spirits",
+      "inCast": true,
+      "note": "Boss of Baekjo Motors; Taesin's dirty work",
+      "still": "https://asianwiki.com/images/6/6d/The_Uncanny_Counter-Kwon_Hyuk.jpg"
+    },
+    {
+      "id": "hyanghui",
+      "name": "Baek Hyang Hui",
+      "actor": "Ok Ja Yeon",
+      "image": "https://i.mydramalist.com/x5W0z_5m.jpg",
+      "group": "Evil spirits",
+      "inCast": true,
+      "note": "Marries rich men to kill them",
+      "still": "https://asianwiki.com/images/c/c1/The_Uncanny_Counter-Ok_Ja-Yeon.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "motak",
+      "to": "mun",
+      "type": "work",
+      "label": "his mentor among the Counters",
+      "short": "mentor",
+      "evidence": "Ga Mo Tak, a former police officer with incredible strength and memory loss, serves as So Mun's mentor.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hana",
+      "to": "mun",
+      "type": "work",
+      "label": "teams up with him to hunt the spirits; reads his memory, which she hates done to her",
+      "short": "partner",
+      "evidence": "Do Ha Na can sense evil spirits and read memories through touch, teaming up with So Mun to eliminate them. / 누군가가 자신의 기억을 읽는것을 싫어한다. 그러나 소문에 의해 읽혔다.",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "maeok",
+      "to": "mun",
+      "type": "bond",
+      "label": "a mother figure; heals his leg",
+      "short": "mother figure",
+      "evidence": "she serves as the team's advisor and a mother figure to Mun. / 지팡이를 짚고 다니지만 추매옥이 고쳐준다.",
+      "source": "en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maeok",
+      "to": "motak",
+      "type": "friend",
+      "label": "coma mates, Counters since the same day",
+      "short": "coma mates",
+      "evidence": "모탁과 코마 동기이자 카운터 동기, 언니네 국수 주방장이다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "maeok",
+      "to": "hana",
+      "type": "work",
+      "label": "the team's emotional pillar; chef to her server",
+      "short": "team",
+      "evidence": "Chu Mae Ok, the restaurant's chef, is the emotional pillar of the group",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangmul",
+      "to": "mun",
+      "type": "work",
+      "label": "bankrolls the Counters; the legend among them",
+      "short": "bankrolls them",
+      "evidence": "Choi Jang Mul, the oldest Counter, manages the group's finances and is a legendary figure among them. / 카운터들의 물주",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangmul",
+      "to": "maeok",
+      "type": "romance",
+      "label": "sweet on her",
+      "short": "sweet on her",
+      "evidence": "추매옥을 좋아한다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wigen",
+      "to": "mun",
+      "type": "bond",
+      "label": "his Yung partner — the leader of Yung, who could possess him without a coma",
+      "short": "Yung partner",
+      "evidence": "[So Mun's other world partner] / 소문의 저승 파트너, 융의 관리자.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giran",
+      "to": "motak",
+      "type": "bond",
+      "label": "his Yung partner, angered by his rule-breaking",
+      "short": "Yung partner",
+      "evidence": "[Mo Tak's other world partner] / Gi-ran is an upright spirit who is greatly angered by Mo-tak and his fellow Counters' occasional rule-breaking.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "usik",
+      "to": "hana",
+      "type": "bond",
+      "label": "her Yung partner, a boy in looks only",
+      "short": "Yung partner",
+      "evidence": "[Ha Na's other world partner] / Woo-sik appears to be a young boy but he is mature in his mindset and personality.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suho",
+      "to": "maeok",
+      "type": "family",
+      "label": "her Yung partner — her son, in life",
+      "short": "her son",
+      "evidence": "[Mae Ok's other world partner] / 추매옥의 저승 파트너이다. 생전엔 추매옥의 아들이었다.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokgu",
+      "to": "mun",
+      "type": "family",
+      "label": "maternal grandfather, who raises him",
+      "short": "grandfather",
+      "evidence": "[So Mun's grandfather] / 소문의 외할아버지, 춘옥의 남편",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chunok",
+      "to": "mun",
+      "type": "family",
+      "label": "maternal grandmother, who mostly no longer knows him",
+      "short": "grandmother",
+      "evidence": "소문의 외할머니, 석구의 아내, 사고로 자신의 딸과 사위를 잃어버려서 그 충격에 치매를 앓고 있음.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokgu",
+      "to": "chunok",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "춘옥의 남편 / 석구의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sogwon",
+      "to": "mun",
+      "type": "family",
+      "label": "father, a police officer, killed in the 'accident' seven years ago",
+      "short": "late father",
+      "evidence": "[So Mun's father] / Mun's father and a police officer who was an acquaintance of Mo-tak",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "munyeong",
+      "to": "mun",
+      "type": "family",
+      "label": "mother, a police officer, killed in the 'accident' seven years ago",
+      "short": "late mother",
+      "evidence": "[So Mun's mother] / Mun's mother and a police officer.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sogwon",
+      "to": "motak",
+      "type": "work",
+      "label": "fellow officer; they investigated the mayor's corruption together",
+      "short": "old partner",
+      "evidence": "a police officer who was an acquaintance of Mo-tak, who investigated Mayor Shin's corruption together.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hayeong",
+      "to": "hana",
+      "type": "family",
+      "label": "younger sister, dead with the rest of the family",
+      "short": "late sister",
+      "evidence": "[Do Ha Na's sister] / The sole survivor after she and her family were poisoned",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanamother",
+      "to": "hana",
+      "type": "family",
+      "label": "mother, dead",
+      "short": "late mother",
+      "evidence": "[Ha Na's mother] / The sole survivor after she and her family were poisoned",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanafather",
+      "to": "hana",
+      "type": "family",
+      "label": "father, dead",
+      "short": "late father",
+      "evidence": "[Ha Na's father] / The sole survivor after she and her family were poisoned",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ungmin",
+      "to": "mun",
+      "type": "friend",
+      "label": "childhood best friend, bullied behind his back",
+      "short": "best friend",
+      "evidence": "[So Mun's best friend] / Without Mun's knowing, Woong-min is constantly being bullied by Hyuk-woo and his henchmen.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juyeon",
+      "to": "mun",
+      "type": "friend",
+      "label": "childhood best friend, who kept the bullying from him",
+      "short": "best friend",
+      "evidence": "[So Mun's best friend] / Joo-yeon kept the truth from Mun that Woong-min is being bullied by Hyuk-woo.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeoku",
+      "to": "ungmin",
+      "type": "rivalry",
+      "label": "bullies him, untouchable as the mayor's son",
+      "short": "bully",
+      "evidence": "As the mayor's son, Hyuk-woo receives preferential treatment from the school faculty who let him get away with his bullying.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheonjung",
+      "to": "hyeoku",
+      "type": "friend",
+      "label": "one of his gang",
+      "short": "his gang",
+      "evidence": "[Hyeok U's friend] / 신혁우 일당 중 하나.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongyeong",
+      "to": "motak",
+      "type": "romance",
+      "label": "his fiancée before he lost his memory",
+      "short": "old fiancée",
+      "evidence": "강력계 경위, 과거 모탁의 연인. / Mo-tak's former fiancé.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongyeong",
+      "to": "sogwon",
+      "type": "work",
+      "label": "handled the case of his and his wife's deaths",
+      "short": "their case",
+      "evidence": "She was in charge of the case of the death of Mun's parents.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanul",
+      "to": "jeongyeong",
+      "type": "work",
+      "label": "her junior and partner",
+      "short": "her partner",
+      "evidence": "Jeong-yeong's junior and partner.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suryong",
+      "to": "jeongyeong",
+      "type": "rivalry",
+      "label": "her chief — and her killer",
+      "short": "her killer",
+      "evidence": "최수룡(중진경찰서장)에게 살해 당했다.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suryong",
+      "to": "myeonghwi",
+      "type": "work",
+      "label": "police chief in the mayor's pocket",
+      "short": "in his pocket",
+      "evidence": "The police chief of Jungjin Police Station, easily influenced by Shin Myung-hwi for his own selfish interest.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeonghwi",
+      "to": "hyeoku",
+      "type": "family",
+      "label": "father, feared and distant",
+      "short": "father",
+      "evidence": "[Mayor's son] / His behavior however, stems from fearing his father and estranged relationship with him.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyegyeong",
+      "to": "myeonghwi",
+      "type": "work",
+      "label": "his secretary, obedient not by choice; hid the proof of Yeong Nim's murder for her own career",
+      "short": "secretary",
+      "evidence": "중진시장 수행 비서이자 김영님의 오랜 친구로 김영님의 살해 현장을 증거로 찍어 남겨두고 있었으나 자신의 출세를 위해 은폐한 위선자.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesin",
+      "to": "myeonghwi",
+      "type": "work",
+      "label": "Taesin runs the mayor's redevelopment project — a front for something darker",
+      "short": "redevelopment",
+      "evidence": "CEO of Taeshin Group, the company in charge of Jungjin's major redevelopment project that acts as a façade for a sinister motive.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hanggyu",
+      "to": "taesin",
+      "type": "work",
+      "label": "Taesin director, risen on the chairman's and the mayor's influence",
+      "short": "director",
+      "evidence": "A criminal who used Cho Tae-shin and Shin Myung-hwi's influence to fly through the ranks of Taeshin Group.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changgyu",
+      "to": "hanggyu",
+      "type": "family",
+      "label": "younger brother",
+      "short": "younger brother",
+      "evidence": "[Thug / Hang Gyu's brother] / 노항규의 동생.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changgyu",
+      "to": "motak",
+      "type": "rivalry",
+      "label": "led the mob that cornered him seven years ago",
+      "short": "cornered him",
+      "evidence": "A gangster who led the mob that cornered Mo-tak seven years ago",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeonghwi",
+      "to": "changgyu",
+      "type": "rivalry",
+      "label": "kills him",
+      "short": "kills him",
+      "evidence": "노창규 역 (†)- 노항규의 동생. 신명휘에게 살해 당했다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaecheol",
+      "to": "changgyu",
+      "type": "work",
+      "label": "his aide; the only one who still remembers Mo Tak",
+      "short": "his aide",
+      "evidence": "[Chang Gyu's aide] / 창규의 부하다. […] 유일하게 가모탁을 기억하고 있어서",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungsin",
+      "to": "mun",
+      "type": "rivalry",
+      "label": "the level-3 evil spirit the Counters hunt",
+      "short": "the evil spirit",
+      "evidence": "[Evil spirit host] / A human possessed by a Level 3 evil spirit (akgwi). / 지청신을 잡고 엄마.아빠를 다시 만난다.",
+      "source": "MDL cast; en.wikipedia; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungsin",
+      "to": "myeonghwi",
+      "type": "work",
+      "label": "the mayor's hitman, hired through his adoptive father",
+      "short": "his hitman",
+      "evidence": "Chung-sin works in a junkyard and is frequently hired as a hitman by Mayor Shin through his adoptive father.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungsin",
+      "to": "myeonghwi",
+      "type": "bond",
+      "label": "the spirit in him moves into the mayor",
+      "short": "spirit moves in",
+      "evidence": "중진시 재선 시장, 혁우의 아버지, 지청신이 옮겨간 숙주.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangpil",
+      "to": "chungsin",
+      "type": "family",
+      "label": "adoptive father, abusive, who made him a criminal",
+      "short": "adoptive father",
+      "evidence": "[Chung Sin's father] / both of his father figures were extremely abusive towards Chung-sin during childhood […] honing him into a criminal servant for their own dirty deeds.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangpil",
+      "to": "taesin",
+      "type": "work",
+      "label": "does Taesin's killings, threats and snooping",
+      "short": "dirty work",
+      "evidence": "백조모터스의 사장으로 태신건설이 지시하는 살인청부, 협박, 정보조사 등의 일을 수행하고 있다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyanghui",
+      "to": "hana",
+      "type": "rivalry",
+      "label": "level-3 evil spirit host the Counters hunt; marries rich men to kill them",
+      "short": "the evil spirit",
+      "evidence": "[Evil spirit host] / A human possessed by a Level 3 evil spirit. Hyang-hui is inclined to marrying rich men in order to murder them and steal their money.",
+      "source": "MDL cast; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "motak",
+      "mun",
+      "hana",
+      "maeok",
+      "jangmul",
+      "wigen",
+      "giran",
+      "usik",
+      "suho",
+      "seokgu",
+      "chunok",
+      "sogwon",
+      "munyeong",
+      "jeongyeong",
+      "hanul",
+      "suryong",
+      "myeonghwi",
+      "hyegyeong",
+      "taesin",
+      "hanggyu",
+      "changgyu",
+      "jaecheol",
+      "chungsin",
+      "sangpil",
+      "hyanghui"
+    ],
+    "blocks": {
+      "Eonni's Noodles": [
+        1,
+        0
+      ],
+      "Yung": [
+        1,
+        2
+      ],
+      "Mun's family": [
+        0,
+        0
+      ],
+      "Jungjin police": [
+        0,
+        2
+      ],
+      "City hall & Taesin": [
+        2,
+        0
+      ],
+      "Evil spirits": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "mun",
+      "motak",
+      "hana"
+    ]
+  }
+}

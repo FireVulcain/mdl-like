@@ -1,0 +1,943 @@
+{
+  "version": 1,
+  "mdlSlug": "743267-welcome-to-samdalri",
+  "title": "Welcome to Samdal-ri",
+  "native": "웰컴투 삼달리",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (127 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 웰컴투 삼달리 등장인물 (hashtag character cards)",
+    "en.wikipedia Welcome to Samdal-ri (cast list shifted — sentences used where ko agrees)"
+  ],
+  "main": [
+    "yongpil",
+    "samdal"
+  ],
+  "people": [
+    {
+      "id": "yongpil",
+      "name": "Cho Yong Pil",
+      "actor": "Ji Chang Wook",
+      "image": "https://i.mydramalist.com/ZyyEJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Forecaster at the Jeju weather office; the stubborn one",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Seung Hoon",
+          "image": "https://i.mydramalist.com/jQAkr8_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/7/72/Welcome_to_Samdal-ri-Choi_Seung_Hoon.jpg"
+        },
+        {
+          "name": "Song Min Jae",
+          "image": "https://i.mydramalist.com/p0EgBm.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/5/5a/Welcome_to_Samdalri-Song_Min_Jae.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/cf/Welcome_to_Samdalri-Ji_Chang_Wook.jpg"
+    },
+    {
+      "id": "samdal",
+      "name": "Cho Sam Dal / Cho Eun Hye",
+      "actor": "Shin Hae Sun",
+      "image": "https://i.mydramalist.com/O8J8kk_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Top fashion photographer in Seoul as Cho Eun Hye; back home as Sam Dal",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Joo Yeon",
+          "image": "https://i.mydramalist.com/jQX7KO_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/6/66/Welcome_to_Samdal-ri-Lee_Joo_Yeon.jpg"
+        },
+        {
+          "name": "Lee Seol A",
+          "image": "https://i.mydramalist.com/QZpWW_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/e/e5/Welcome_to_Samdalri-Lee_Seol-A1.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/a/a5/Welcome_to_Samdal-ri-Shin_Hae_Sun1.jpg"
+    },
+    {
+      "id": "mija",
+      "name": "Ko Mi Ja",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Sam Dal's family",
+      "inCast": true,
+      "note": "Head of the Samdal-ri haenyeo",
+      "alsoPlayedBy": [
+        {
+          "name": "Chung Ye Jin",
+          "image": "https://i.mydramalist.com/1wEdp6_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/b/b6/Welcome_to_Samdalri-Chung_Ye-Jin1.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/0/06/Welcome_to_Samdal-ri-Kim_Mi-Kyung1.jpg"
+    },
+    {
+      "id": "pansik",
+      "name": "Cho Pan Sik",
+      "actor": "Seo Hyun Chul",
+      "image": "https://i.mydramalist.com/E5lJoz_5m.jpg",
+      "group": "Sam Dal's family",
+      "inCast": true,
+      "note": "Bus driver, Jeju born and bred",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Suk Hyeong",
+          "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/5/5f/Welcome_To_Samdal-ri-Lee_Suk-Hyeong.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/0/08/Welcome_to_Samdalri-Seo_Hyun_Chul.jpg"
+    },
+    {
+      "id": "jindal",
+      "name": "Cho Jin Dal",
+      "actor": "Shin Dong Mi",
+      "image": "https://i.mydramalist.com/RQlbY_5m.jpg",
+      "group": "Sam Dal's family",
+      "inCast": true,
+      "note": "Eldest; former flight attendant and chaebol daughter-in-law",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ah Hyun",
+          "image": "https://i.mydramalist.com/rNmKyg_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/2/22/Welcome_to_Samdalri-Kim_Ah-Hyun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/3/3a/Welcome_to_Samdalri-Shin_Dong-Mi1.jpg"
+    },
+    {
+      "id": "haedal",
+      "name": "Cho Hae Dal",
+      "actor": "Kang Mi Na",
+      "image": "https://i.mydramalist.com/3onw7e_5m.jpg",
+      "group": "Sam Dal's family",
+      "inCast": true,
+      "note": "Youngest; a widow, not a single mother",
+      "alsoPlayedBy": [
+        {
+          "name": "Park Seol Ha",
+          "image": "https://i.mydramalist.com/qBXnK_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/b/ba/Welcome_to_Samdalri-Park_Seol_Ha.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/e/e8/Welcome_to_Samdal-ri-Kang_Mi-Na01.jpg"
+    },
+    {
+      "id": "hayul",
+      "name": "Cha Ha Yul",
+      "actor": "Kim Do Eun",
+      "image": "https://i.mydramalist.com/1wzw35_5m.jpg",
+      "group": "Sam Dal's family",
+      "inCast": true,
+      "note": "Nine going on ninety",
+      "still": "https://asianwiki.com/images/c/c8/Welcome_to_Samdalri-Kim_Do-Eun.jpg"
+    },
+    {
+      "id": "sangtae",
+      "name": "Cho Sang Tae",
+      "actor": "Yoo Oh Sung",
+      "image": "https://i.mydramalist.com/qwng0m.jpg",
+      "group": "Yong Pil's family",
+      "inCast": true,
+      "note": "Adviser at the township office",
+      "alsoPlayedBy": [
+        {
+          "name": "Yoo Hee Je",
+          "image": "https://i.mydramalist.com/68B42m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/d8/Welcome_To_Samdal-ri-Yoo_Hee-Je.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/5/5c/Welcome_to_Samdal-ri-Yu_Oh-Seong01.jpg"
+    },
+    {
+      "id": "bumija",
+      "name": "Bu Mi Ja",
+      "actor": "Jung Yu Mi",
+      "image": "https://i.mydramalist.com/b36vJE_5m.jpg",
+      "group": "Yong Pil's family",
+      "inCast": true,
+      "note": "Haenyeo, dead when Yong Pil was small; ep. 8–9",
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Woo Ri",
+          "image": "https://i.mydramalist.com/BdqvRA_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/8/83/Welcome_to_Samdalri-Oh_Woo-Ri.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/9/9c/Welcome_to_Samdalri-Jung_Yoo_Mi.jpg"
+    },
+    {
+      "id": "geumok",
+      "name": "Yang Geum Ok",
+      "actor": "Kim Ja Young",
+      "image": "https://i.mydramalist.com/6o63Om.jpg",
+      "group": "Yong Pil's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/15/Welcome_to_Samdal-ri-Kim_Ja-Young1.jpg"
+    },
+    {
+      "id": "daechun",
+      "name": "Bu Dae Chun",
+      "actor": "Yoo Soon Woong",
+      "image": "https://i.mydramalist.com/ddQz5m.jpg",
+      "group": "Yong Pil's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1d/Welcome_to_Samdal-ri-Yoo_Soon-Woong.jpg"
+    },
+    {
+      "id": "sangdo",
+      "name": "Bu Sang Do",
+      "actor": "Kang Young Seok",
+      "image": "https://i.mydramalist.com/pdK1db_5m.jpg",
+      "group": "The Eagle Five",
+      "inCast": true,
+      "note": "Son of the Sangdo restaurant; village nouveau riche",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Soo Hyun",
+          "image": "https://i.mydramalist.com/vzqpp_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Shin Jae Won",
+          "image": "https://i.mydramalist.com/kAJBlr_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/d/d3/Welcome_to_Samdal-ri-Shin_Jae-Won.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/4/46/Welcome_To_Samdalri-Kang_Young-Seok.jpg"
+    },
+    {
+      "id": "gyeongtae",
+      "name": "Wang Gyeong Tae",
+      "actor": "Lee Jae Won",
+      "image": "https://i.mydramalist.com/By7eb_5m.jpg",
+      "group": "The Eagle Five",
+      "inCast": true,
+      "note": "Weather office guard; too-much-talker, single for 38 years",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Ju Young",
+          "image": "https://i.mydramalist.com/d0ylk0_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/2/2e/Welcome_to_Samdal-ri-Lee_Joo_Young1.jpg"
+        },
+        {
+          "name": "Kim Te I",
+          "image": "https://i.mydramalist.com/Xd47nw_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/1/17/Welcome_to_Samdalri-Kim_Te-I.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/d/da/Welcome_to_Samdal-ri-Lee_Jae_Won1.jpg"
+    },
+    {
+      "id": "eunu",
+      "name": "Cha Eun U",
+      "actor": "Bae Myung Jin",
+      "image": "https://i.mydramalist.com/q6XEK_5m.jpg",
+      "group": "The Eagle Five",
+      "inCast": true,
+      "note": "Weather office observer; the only married one",
+      "alsoPlayedBy": [
+        {
+          "name": "Seo Jang Hyun",
+          "image": "https://i.mydramalist.com/ZoeYjm.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Kim Min Joon",
+          "image": "https://i.mydramalist.com/Nd62mA_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "still": "https://asianwiki.com/images/9/92/Welcome_To_Samdalri-Bae_Myung_Jin.jpg"
+    },
+    {
+      "id": "daeyeong",
+      "name": "Jeon Dae Yeong",
+      "actor": "Yang Kyung Won",
+      "image": "https://i.mydramalist.com/pOO1Vm.jpg",
+      "group": "Around the sisters",
+      "inCast": true,
+      "note": "CEO of AS Group; old money",
+      "still": "https://asianwiki.com/images/4/47/Welcome_to_Samdalri-Yang_Kyung-Won.jpg"
+    },
+    {
+      "id": "cheoljong",
+      "name": "Ko Cheol Jong",
+      "actor": "Kang Gil Woo",
+      "image": "https://i.mydramalist.com/QlW06_5m.jpg",
+      "group": "Around the sisters",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5a/Welcome_to_Samdal-ri-Kang_Gil_Woo.jpg"
+    },
+    {
+      "id": "jichan",
+      "name": "Kong Ji Chan",
+      "actor": "Kim Min Chul",
+      "image": "https://i.mydramalist.com/jQAevb_5m.jpg",
+      "group": "Around the sisters",
+      "inCast": true,
+      "note": "Runs the dolphin protection centre",
+      "still": "https://asianwiki.com/images/0/05/Welcome_to_Samdal-ri-Kim_Min_Chul.jpg"
+    },
+    {
+      "id": "geumsul",
+      "name": "O Geum Sul",
+      "actor": "Baek Hyeon Ju",
+      "image": "https://i.mydramalist.com/73583b_5m.jpg",
+      "group": "Samdal-ri",
+      "inCast": true,
+      "note": "Haenyeo; runs the Lucky convenience store",
+      "still": "https://asianwiki.com/images/0/0c/Welcome_to_Samdal-ri-Baek_Hyun_Joo.jpg"
+    },
+    {
+      "id": "buja",
+      "name": "Yang Bu Ja",
+      "actor": "Kim Mi Hwa",
+      "image": "https://i.mydramalist.com/wJK7rb_5m.jpg",
+      "group": "Samdal-ri",
+      "inCast": true,
+      "note": "Haenyeo",
+      "still": "https://asianwiki.com/images/a/ae/Welcome_to_Samdal-ri-Kim_Mi-Hwa01.jpg"
+    },
+    {
+      "id": "hyeja",
+      "name": "Jeon Hye Ja",
+      "actor": "Yun Jin Seong",
+      "image": "https://i.mydramalist.com/03n8O_5m.jpg",
+      "group": "Samdal-ri",
+      "inCast": true,
+      "note": "Haenyeo; runs the Sangdo restaurant",
+      "still": "https://asianwiki.com/images/3/3f/Welcome_to_Samdal-ri-Yoon_Jin-Sung1.jpg"
+    },
+    {
+      "id": "daesung",
+      "name": "Bu Dae Sung",
+      "actor": "Kim Hak Seon",
+      "image": "https://i.mydramalist.com/Bz1V6_5m.jpg",
+      "group": "Samdal-ri",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cf/Welcome_to_Samdal-ri-Kim_Hak-Sun1.jpg"
+    },
+    {
+      "id": "mansu",
+      "name": "Kim Man Su",
+      "actor": "Sazal Kim",
+      "image": "https://i.mydramalist.com/po4QD_5m.jpg",
+      "group": "Samdal-ri",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4d/Welcome_to_Samdal-ri-Sazal-Mahamud.jpg"
+    },
+    {
+      "id": "seokgyu",
+      "name": "Han Seok Kyu",
+      "actor": "Lee Tae Hyung",
+      "image": "https://i.mydramalist.com/pV5Lr_5m.jpg",
+      "group": "Jeju weather office",
+      "inCast": true,
+      "note": "Forecasting section chief",
+      "still": "https://asianwiki.com/images/f/fc/Welcome_to_Samdalri-Lee_Tae-Hyung.jpg"
+    },
+    {
+      "id": "baekho",
+      "name": "Kang Baek Ho",
+      "actor": "Kim Hyun Mok",
+      "image": "https://i.mydramalist.com/pXQ68_5m.jpg",
+      "group": "Jeju weather office",
+      "inCast": true,
+      "note": "Forecaster",
+      "still": "https://asianwiki.com/images/f/f1/Welcome_to_Samdalri-Kim_Hyun_Mok.jpg"
+    },
+    {
+      "id": "eunju",
+      "name": "Bang Eun Ju",
+      "actor": "Cho Yun Seo",
+      "image": "https://i.mydramalist.com/nOYlYQ_5m.jpg",
+      "group": "Seoul",
+      "inCast": true,
+      "note": "First assistant, four years in",
+      "still": "https://asianwiki.com/images/9/94/Welcome_to_Samdal-ri-Jo_Yun-Seo01.jpg"
+    },
+    {
+      "id": "chungi",
+      "name": "Cheon Chun Gi",
+      "actor": "Han Eun Seong",
+      "image": "https://i.mydramalist.com/rNeKpE_5m.jpg",
+      "group": "Seoul",
+      "inCast": true,
+      "note": "Editor at Magazine X",
+      "still": "https://asianwiki.com/images/0/02/Welcome_to_Samdal-ri-Han_Eun-Sung01.jpg"
+    },
+    {
+      "id": "eunbi",
+      "name": "Ko Eun Bi",
+      "actor": "Kim Ah Young",
+      "image": "https://i.mydramalist.com/QJnB5W_5m.jpg",
+      "group": "Seoul",
+      "inCast": true,
+      "note": "Second assistant, three years in",
+      "still": "https://asianwiki.com/images/d/d8/Welcome_To_Samdalri-Kim_A-Young1.jpg"
+    },
+    {
+      "id": "jieun",
+      "name": "Yang Ji Eun",
+      "actor": "Lee Do Hye",
+      "image": "https://i.mydramalist.com/Pxjqmz_5m.jpg",
+      "group": "Seoul",
+      "inCast": true,
+      "note": "Youngest assistant, first year",
+      "still": "https://asianwiki.com/images/2/21/Welcome_to_Samdal-ri-Lee_Do_Hye1.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "yongpil",
+      "to": "samdal",
+      "type": "romance",
+      "label": "joined at the hip as children, driven apart by an incident; the old affection comes rushing back",
+      "short": "old flames",
+      "evidence": "Although Cho Yong Pil and Cho Sam Dal used to be joined at the hip when they were younger, the once inseparable friends are no longer in contact with one another due to an incident that drove them apart. When Cho Sam Dal returns to Samdalri, however, they find that the longtime affection they once had for one another comes rushing back.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mija",
+      "to": "samdal",
+      "type": "family",
+      "label": "mother; leads the Samdal-ri haenyeo",
+      "short": "mother",
+      "evidence": "세 자매의 엄마, 삼달리 해녀들을 이끄는 해녀 회장이다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pansik",
+      "to": "samdal",
+      "type": "family",
+      "label": "father, a bus driver",
+      "short": "father",
+      "evidence": "#세자매_아빠 #오늘도_돌고도는_버스기사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pansik",
+      "to": "mija",
+      "type": "family",
+      "label": "married",
+      "short": "married",
+      "evidence": "판식의 아내. / 미자의 남편.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jindal",
+      "to": "samdal",
+      "type": "family",
+      "label": "eldest sister",
+      "short": "elder sister",
+      "evidence": "#세자매_첫째 […] 판식과 미자의 첫째 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haedal",
+      "to": "samdal",
+      "type": "family",
+      "label": "youngest sister",
+      "short": "younger sister",
+      "evidence": "#세자매_막둥이 […] 판식과 미자의 막내딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayul",
+      "to": "haedal",
+      "type": "family",
+      "label": "daughter — more like a big sister to her mother",
+      "short": "daughter",
+      "evidence": "#엄마해달보다_언니같은딸 […] 막둥이 해달의 딸, 세 자매의 조카다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayul",
+      "to": "mija",
+      "type": "family",
+      "label": "granddaughter",
+      "short": "granddaughter",
+      "evidence": "하율의 외할머니. / 판식과 미자의 외손녀.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangtae",
+      "to": "yongpil",
+      "type": "family",
+      "label": "father, more friend than father",
+      "short": "father",
+      "evidence": "#친구_같은_아빠 […] 용필의 아빠이자 죽은 부미자의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bumija",
+      "to": "yongpil",
+      "type": "family",
+      "label": "mother, a haenyeo lost to the sea on a wrong forecast when he was small",
+      "short": "late mother",
+      "evidence": "[Yong Pil's mother] / After losing his mother—who worked as a haenyeo—at a young age due to a mistaken weather report",
+      "source": "MDL cast; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangtae",
+      "to": "bumija",
+      "type": "family",
+      "label": "married; a romantic who never got over her",
+      "short": "married",
+      "evidence": "#부미자_밖에_모르는_바보 #로맨티스트 […] 죽은 부미자의 남편 / 상태의 아내.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "geumok",
+      "to": "yongpil",
+      "type": "family",
+      "label": "maternal grandmother",
+      "short": "grandmother",
+      "evidence": "[Yong Pil's grandmother] / 부미자의 어머니 / 용필의 외할머니.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daechun",
+      "to": "yongpil",
+      "type": "family",
+      "label": "maternal grandfather",
+      "short": "grandfather",
+      "evidence": "[Yong Pil's grandfather] / 부미자의 아버지 / 용필의 외할아버지.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumok",
+      "to": "bumija",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "부미자의 어머니 / 용필의 외할머니. 조용필의 외가, 부미자의 엄마다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daechun",
+      "to": "bumija",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "부미자의 아버지 / 용필의 외할아버지. 조용필의 외가, 부미자의 아빠다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bumija",
+      "to": "mija",
+      "type": "friend",
+      "label": "haenyeo partners, the closest of friends",
+      "short": "diving partner",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sangtae",
+      "to": "mija",
+      "type": "rivalry",
+      "label": "holds her responsible for his wife's death, and stands between the two families",
+      "short": "old grudge",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sangdo",
+      "to": "samdal",
+      "type": "romance",
+      "label": "first love; a long, devoted, one-sided crush",
+      "short": "loves her",
+      "evidence": "#첫사랑삼달 #지고지순_짝사랑남 / He has had a crush on Sam-dal for a long time.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangdo",
+      "to": "yongpil",
+      "type": "friend",
+      "label": "the Eagle Five — its moneybags",
+      "short": "Eagle Five",
+      "evidence": "#독수리오형제_자금줄 / Sam-dal and Yong-pil's best friend who is a symbol of wealth in the village.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongtae",
+      "to": "yongpil",
+      "type": "friend",
+      "label": "the Eagle Five — its too-much-talker; also the weather office's guard",
+      "short": "Eagle Five",
+      "evidence": "제주기상청 경비 겸 엄마가 운영하는 럭키편의점 알바생으로 독수리 오형제 중 '투머치토커'로 활약 중이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongtae",
+      "to": "samdal",
+      "type": "friend",
+      "label": "the Eagle Five",
+      "short": "Eagle Five",
+      "evidence": "Sam-dal and Yong-pil's best friend who is a security guard at Jeju Island's Meteorological Administration.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunu",
+      "to": "yongpil",
+      "type": "friend",
+      "label": "the Eagle Five — its only married man; also the office's observer",
+      "short": "Eagle Five",
+      "evidence": "제주 기상청의 관측관이자 독수리 오형제에서 '유일한 유부남'을 맡고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunu",
+      "to": "samdal",
+      "type": "friend",
+      "label": "the Eagle Five",
+      "short": "Eagle Five",
+      "evidence": "#독수리오형제_수장 (삼달) / 독수리 오형제에서 '유일한 유부남'을 맡고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeyeong",
+      "to": "jindal",
+      "type": "romance",
+      "label": "ex-husband; she was his first love, and he still does whatever she says",
+      "short": "ex-husband",
+      "evidence": "#첫사랑진달과_이혼 #진달명령어_100% 수행 […] 진달의 전남편이자 뼛속부터 재벌 금수저, AS그룹의 대표다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheoljong",
+      "to": "daeyeong",
+      "type": "work",
+      "label": "his secretary at AS Group",
+      "short": "secretary",
+      "evidence": "AS그룹 전대영의 수행비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jichan",
+      "to": "haedal",
+      "type": "romance",
+      "label": "the dolphin man who catches her eye",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "geumsul",
+      "to": "gyeongtae",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "#왕경태_엄마 […] 독수리오형제 왕경태의 엄마로 삼달리 럭키편의점 CEO 겸 해녀다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "buja",
+      "to": "eunu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "#차은우_엄마 […] 독수리 오형제 차은우의 엄마로 삼달리 해녀다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeja",
+      "to": "sangdo",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "#부상도_엄마 […] 독수리 오형제 부상도의 엄마로 상도네명가 CEO 겸 해녀다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daesung",
+      "to": "sangdo",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "부대성 역 - 부상도의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumsul",
+      "to": "mija",
+      "type": "work",
+      "label": "haenyeo under her lead",
+      "short": "haenyeo",
+      "evidence": "#삼달리_해녀 / 삼달리 해녀들을 이끄는 해녀 회장이다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "buja",
+      "to": "mija",
+      "type": "work",
+      "label": "haenyeo under her lead",
+      "short": "haenyeo",
+      "evidence": "#삼달리_해녀 / 삼달리 해녀들을 이끄는 해녀 회장이다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeja",
+      "to": "mija",
+      "type": "work",
+      "label": "haenyeo under her lead",
+      "short": "haenyeo",
+      "evidence": "#삼달리_해녀 / 삼달리 해녀들을 이끄는 해녀 회장이다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mansu",
+      "to": "geumsul",
+      "type": "work",
+      "label": "part-timer at her Lucky convenience store",
+      "short": "shop hand",
+      "evidence": "삼달리 럭키편의점 알바생 / 럭키편의점_CEO",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokgyu",
+      "to": "yongpil",
+      "type": "work",
+      "label": "section chief of forecasting, the boss he argues with",
+      "short": "his chief",
+      "evidence": "제주 기상청 예보과 과장 / earns him a reputation at work as a stubborn troublemaker who isn't afraid to argue with his boss",
+      "source": "ko.wikipedia; MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "baekho",
+      "to": "yongpil",
+      "type": "work",
+      "label": "fellow forecaster",
+      "short": "colleague",
+      "evidence": "제주 기상청 예보과 예보관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunju",
+      "to": "samdal",
+      "type": "rivalry",
+      "label": "first assistant who copies her, then stabs her in the back",
+      "short": "backstabber",
+      "evidence": "#조은혜_따라쟁이 #프로퇴사러 #뒤통수치기전문. 4년차 조은혜의 퍼스트 어시스턴트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungi",
+      "to": "samdal",
+      "type": "romance",
+      "label": "ex-boyfriend, a cheating editor at Magazine X",
+      "short": "cheating ex",
+      "evidence": "#찌질한_바람둥이 […] 삼달의 전 남자친구이자 매거진X 편집자다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunbi",
+      "to": "samdal",
+      "type": "work",
+      "label": "second assistant, loyal to the end",
+      "short": "loyal assistant",
+      "evidence": "#3MOON스튜디오_최장수어시 #조은혜_충성심_만렙 […] 3년차 조은혜의 세컨드 어시스턴트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jieun",
+      "to": "samdal",
+      "type": "work",
+      "label": "youngest assistant, who dreams of becoming her",
+      "short": "junior assistant",
+      "evidence": "#1년차_햇병아리_어시 #내꿈은_조은혜!. 1년차 조은혜의 막내 어시스턴트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yongpil",
+      "samdal",
+      "mija",
+      "pansik",
+      "jindal",
+      "haedal",
+      "hayul",
+      "sangtae",
+      "bumija",
+      "geumok",
+      "daechun",
+      "sangdo",
+      "gyeongtae",
+      "eunu",
+      "daeyeong",
+      "cheoljong",
+      "jichan",
+      "eunju",
+      "chungi",
+      "eunbi",
+      "jieun"
+    ],
+    "blocks": {
+      "Sam Dal's family": [
+        0,
+        0
+      ],
+      "Around the sisters": [
+        0,
+        2
+      ],
+      "Yong Pil's family": [
+        2,
+        0
+      ],
+      "Seoul": [
+        2,
+        2
+      ],
+      "The Eagle Five": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "yongpil",
+      "samdal"
+    ]
+  }
+}

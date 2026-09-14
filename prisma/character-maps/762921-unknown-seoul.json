@@ -1,0 +1,718 @@
+{
+  "version": 1,
+  "mdlSlug": "762921-unknown-seoul",
+  "title": "Our Unwritten Seoul",
+  "native": "미지의 서울",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (93 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 미지의 서울 등장인물",
+    "en.wikipedia (nothing found)"
+  ],
+  "main": [
+    "miji",
+    "mirae",
+    "hosu",
+    "sejin"
+  ],
+  "people": [
+    {
+      "id": "miji",
+      "name": "Yoo Mi Ji",
+      "actor": "Park Bo Young",
+      "image": "https://i.mydramalist.com/l0AEjv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The younger twin; a sprinter who retired hurt, now a day labourer. Park Bo Young also plays Mi Rae",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Jae In",
+          "image": "https://i.mydramalist.com/1wd6r6_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/f/f4/Our_Unwritten_Seoul-YMJ-Lee_Jae-In.jpeg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/c3/Our_Unwritten_Seoul-YMJ-Park_Bo-Young.jpg"
+    },
+    {
+      "id": "mirae",
+      "name": "Yoo Mi Rae",
+      "actor": "Park Bo Young",
+      "image": "https://i.mydramalist.com/l0AEjv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The elder twin; senior on a public corporation's planning team, a heart patient as a child. Park Bo Young also plays Mi Ji",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Jae In",
+          "image": "https://i.mydramalist.com/1wd6r6_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/f/f4/Our_Unwritten_Seoul-YMJ-Lee_Jae-In.jpeg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/c3/Our_Unwritten_Seoul-YMJ-Park_Bo-Young.jpg"
+    },
+    {
+      "id": "hosu",
+      "name": "Lee Ho Su",
+      "actor": "Park Jin Young",
+      "image": "https://i.mydramalist.com/LwL5q3_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Lawyer at a big firm, living with the aftermath of a teenage accident",
+      "alsoPlayedBy": [
+        {
+          "name": "Park Yoon Ho",
+          "image": "https://i.mydramalist.com/YYVLQK_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/d/da/Our_Unwritten_Seoul-Park_Yoon_Ho.jpeg"
+        },
+        {
+          "name": "Kang Ye Chan",
+          "image": "https://i.mydramalist.com/3ogePV_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/a/a2/Our_Unwritten_Seoul-Kang_Ye-Chan.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/a/a2/Our_Unwritten_Seoul-Jin_Young.jpg"
+    },
+    {
+      "id": "sejin",
+      "name": "Han Se Jin",
+      "actor": "Ryu Kyung Soo",
+      "image": "https://i.mydramalist.com/1gDPbm.jpg",
+      "group": "Changhwa Farm",
+      "inCast": true,
+      "note": "Owner of Changhwa Farm, formerly a fund CIO",
+      "still": "https://asianwiki.com/images/1/1e/Our_Unwritten_Seoul-Ryu_Kyung-Soo.jpg"
+    },
+    {
+      "id": "sejingranddad",
+      "name": "Se Jin's grandfather",
+      "actor": "Yang Jae Sung",
+      "image": "https://i.mydramalist.com/RDZeV_5m.jpg",
+      "group": "Changhwa Farm",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4b/Our_Unwritten_Seoul-Yang_Jae-Seong.jpeg"
+    },
+    {
+      "id": "okhui",
+      "name": "Kim Ok Hui",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "The twins' family",
+      "inCast": true,
+      "note": "Primary school cafeteria cook",
+      "still": "https://asianwiki.com/images/f/fe/Our_Unwritten_Seoul-Jang_Young-Nam.jpg"
+    },
+    {
+      "id": "wolsun",
+      "name": "Kang Wol Sun",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "The twins' family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f0/Our_Unwritten_Seoul-Cha_Mi_Kyung.jpeg"
+    },
+    {
+      "id": "twinsfather",
+      "name": "The twins' father",
+      "actor": "Nam Yoon Ho",
+      "image": "https://i.mydramalist.com/BbJllm.jpg",
+      "group": "The twins' family",
+      "inCast": true,
+      "note": "Ep. 1 and 8; Nam Yoon Ho also plays team leader Park Sang Yeong",
+      "still": "https://asianwiki.com/images/b/b2/Our_Unwritten_Seoul-Nam_Yun-Ho.jpeg"
+    },
+    {
+      "id": "bunhong",
+      "name": "Yeom Bun Hong",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
+      "group": "Ho Su's family",
+      "inCast": true,
+      "note": "Primary school vice-principal",
+      "still": "https://asianwiki.com/images/8/8e/Our_Unwritten_Seoul-Kim_Sun-Young01.jpeg"
+    },
+    {
+      "id": "hosufather",
+      "name": "Ho Su's father",
+      "actor": "Kim Joo Heon",
+      "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
+      "group": "Ho Su's family",
+      "inCast": true,
+      "note": "Ep. 5, 8, 11",
+      "still": "https://asianwiki.com/images/0/09/Our_Unwritten_Seoul-Kim_Joo-Hun1.jpg"
+    },
+    {
+      "id": "rosa",
+      "name": "Kim Ro Sa",
+      "actor": "Won Mi Kyung",
+      "image": "https://i.mydramalist.com/wKVVkm.jpg",
+      "group": "Rosa's restaurant",
+      "inCast": true,
+      "note": "Thirty years of chicken-offal soup; once the poet Hyeon Sang Wol, and a secret scholarship donor",
+      "alsoPlayedBy": [
+        {
+          "name": "Park Hwan Hui",
+          "image": "https://i.mydramalist.com/g0rKOX_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/5/5c/Our_Unwritten_Seoul-Park_Hwan-Hee.jpg"
+        },
+        {
+          "name": "Kim Tae Yeon",
+          "image": "https://i.mydramalist.com/Bd1dqb_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/d/df/Our_Unwritten_Seoul-Kim_Tae-Yeon1.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/4/46/Our_Unwritten_Seoul-Won_Mi_Kyung.jpg"
+    },
+    {
+      "id": "chunggu",
+      "name": "Lee Chung Gu",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Wongeun law firm",
+      "inCast": true,
+      "note": "Managing partner of Wongeun",
+      "still": "https://asianwiki.com/images/4/44/Our_Unwritten_Seoul-Lim_Chul-Soo.jpg"
+    },
+    {
+      "id": "yeonghun",
+      "name": "Yeong Hun",
+      "actor": "Ryu Sung Rok",
+      "image": "https://i.mydramalist.com/z7eKym.jpg",
+      "group": "Wongeun law firm",
+      "inCast": true,
+      "note": "Lawyer",
+      "still": "https://asianwiki.com/images/b/bf/Our_Unwritten_Seoul-Ryu_Sung-Rok.jpeg"
+    },
+    {
+      "id": "gyeonggu",
+      "name": "Song Gyeong Gu",
+      "actor": "Moon Dong Hyeok",
+      "image": "https://i.mydramalist.com/ABm4QZ_5m.jpg",
+      "group": "High school friends",
+      "inCast": true,
+      "note": "Deputy manager, and only son, of Gyeonggu Mart",
+      "alsoPlayedBy": [
+        {
+          "name": "Song Seung Hwan",
+          "image": "https://i.mydramalist.com/ZqwBJ_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/4/4c/Our_Unwritten_Seoul-Song_Seung-Hwan.jpeg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/9/9b/Our_Unwritten_Seoul-Moon_Dong-Hyeok.jpg"
+    },
+    {
+      "id": "jiyun",
+      "name": "Park Ji Yun",
+      "actor": "Yoo Yu Jin",
+      "image": "https://i.mydramalist.com/l0r6mL_5m.jpg",
+      "group": "High school friends",
+      "inCast": true,
+      "note": "Works at J Card",
+      "alsoPlayedBy": [
+        {
+          "name": "Eun Da Ha",
+          "image": "https://i.mydramalist.com/3oNA0A_5m.jpg",
+          "era": "teen",
+          "still": "https://asianwiki.com/images/5/5b/Our_Unwritten_Seoul-Eun-Da-Ha.jpeg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/8/8a/Our_Unwritten_Seoul-Yoo_Yu_Jin.jpg"
+    },
+    {
+      "id": "taegwan",
+      "name": "Choi Tae Gwan",
+      "actor": "Jung Seung Kil",
+      "image": "https://i.mydramalist.com/g075LO_5m.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "note": "Director, planning and coordination bureau",
+      "still": "https://asianwiki.com/images/c/c2/Our_Unwritten_Seoul-Jung_Seung_Gil.jpg"
+    },
+    {
+      "id": "gyeongmin",
+      "name": "Sin Gyeong Min",
+      "actor": "Lee Si Hoon",
+      "image": "https://i.mydramalist.com/lyZQNm.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "note": "Planning and strategy team leader",
+      "still": "https://asianwiki.com/images/8/80/Our_Unwritten_Seoul-Lee_Si_Hun.jpg"
+    },
+    {
+      "id": "mijeong",
+      "name": "An Mi Jeong",
+      "actor": "Go Ae Ri",
+      "image": "https://i.mydramalist.com/7gXVLm.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "note": "Chief on the team",
+      "still": "https://asianwiki.com/images/4/46/Our_Unwritten_Seoul-Go_Ae-Ri1.jpg"
+    },
+    {
+      "id": "yunho",
+      "name": "Hwang Yun Ho",
+      "actor": "Yang Dae Hyuk",
+      "image": "https://i.mydramalist.com/0K6eY_5m.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/98/Our_Unwritten_Seoul-Yang_Dae-Hyeok.jpg"
+    },
+    {
+      "id": "hyogyeong",
+      "name": "Lee Hyo Gyeong",
+      "actor": "Shim So Young",
+      "image": "https://i.mydramalist.com/RBPLeo_5m.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/86/Our_Unwritten_Seoul-Sim_So_Young.jpg"
+    },
+    {
+      "id": "taei",
+      "name": "Kim Tae I",
+      "actor": "Hong Sung Won",
+      "image": "https://i.mydramalist.com/rNOkRg_5m.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "note": "Data analyst",
+      "still": "https://asianwiki.com/images/6/6e/Our_Unwritten_Seoul-Hong_Sung_Won.jpg"
+    },
+    {
+      "id": "suyeon",
+      "name": "Kim Su Yeon",
+      "actor": "Park Ye Young",
+      "image": "https://i.mydramalist.com/vw2YX_5m.jpg",
+      "group": "Mi Rae's office",
+      "inCast": true,
+      "note": "Ep. 1, 9, 11–12",
+      "still": "https://asianwiki.com/images/8/87/Our_Unwritten_Seoul-Park_Ye-Young1.jpeg"
+    },
+    {
+      "id": "myeonggap",
+      "name": "Cho Myeong Gap",
+      "actor": "Jung Eun Pyo",
+      "image": "https://i.mydramalist.com/pm18b_5m.jpg",
+      "group": "Duson-ri village",
+      "inCast": true,
+      "note": "Youth Association president, at 68",
+      "still": "https://asianwiki.com/images/1/18/Our_Unwritten_Seoul-Jung_Eun-Pyo1.jpg"
+    },
+    {
+      "id": "ilnam",
+      "name": "Kong Il Nam",
+      "actor": "Kim Kyung Duk",
+      "image": "https://i.mydramalist.com/XOZxX_5m.jpg",
+      "group": "Duson-ri village",
+      "inCast": true,
+      "note": "Runs the seedling market",
+      "still": "https://asianwiki.com/images/f/fb/Our_Unwritten_Seoul-Kim_Kyung-Duk1.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "mirae",
+      "to": "miji",
+      "type": "family",
+      "label": "identical twins — Mi Rae the elder — who swap lives",
+      "short": "twin sister",
+      "evidence": "Twin sisters Yoo Mi Ji and Yoo Mi Rae differ in everything except their faces. […] embark on a bold charade, switching lives for some undisclosed reason.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hosu",
+      "to": "miji",
+      "type": "romance",
+      "label": "high school classmate; her lover",
+      "short": "lovers",
+      "evidence": "미지•미래의 고교 동창. […] 미지의 연인. / 호수의 연인.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hosu",
+      "to": "mirae",
+      "type": "friend",
+      "label": "high school classmate",
+      "short": "classmate",
+      "evidence": "대형 로펌 변호사, 미지•미래의 고교 동창.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sejin",
+      "to": "mirae",
+      "type": "bond",
+      "label": "takes her on at the farm, where she lives as Mi Ji; they grow close",
+      "short": "farm, and more",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sejingranddad",
+      "to": "sejin",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[Se Jin's granddad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okhui",
+      "to": "miji",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Mi Ji and Mi Rae's mother] / 미지•미래의 어머니.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okhui",
+      "to": "mirae",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Mi Ji and Mi Rae's mother] / 미지•미래의 어머니.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wolsun",
+      "to": "miji",
+      "type": "family",
+      "label": "grandmother — the only one who tells the twins apart at a glance",
+      "short": "grandmother",
+      "evidence": "[Mi Ji and Mi Rae's grandmother] / 친엄마도 잘 구별 못 하는 일란성 쌍둥이 자매를 한눈에 구분하는 유일한 사람.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wolsun",
+      "to": "mirae",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Mi Ji and Mi Rae's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wolsun",
+      "to": "okhui",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "미지•미래의 어머니. 월순의 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "twinsfather",
+      "to": "miji",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Mi Ji and Mi Rae's dad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "twinsfather",
+      "to": "mirae",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Mi Ji and Mi Rae's dad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bunhong",
+      "to": "hosu",
+      "type": "family",
+      "label": "the mother who raised him — his stepmother",
+      "short": "stepmother",
+      "evidence": "[Ho Su's mother] / 초등학교 교감, 호수의 새어머니. / 분홍의 의붓아들.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hosufather",
+      "to": "hosu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ho Su's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rosa",
+      "to": "miji",
+      "type": "work",
+      "label": "takes her on at the restaurant",
+      "short": "her boss",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "rosa",
+      "to": "hosu",
+      "type": "work",
+      "label": "her lawyer, against the developers",
+      "short": "her lawyer",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "chunggu",
+      "to": "hosu",
+      "type": "work",
+      "label": "senior at the firm; managing partner of Wongeun",
+      "short": "his senior",
+      "evidence": "[Ho Su's senior] / 법무법인 원근 대표 변호사, 호수의 선배.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghun",
+      "to": "hosu",
+      "type": "work",
+      "label": "fellow lawyer at the firm",
+      "short": "colleague",
+      "evidence": "호수의 동료 변호사 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeonggu",
+      "to": "miji",
+      "type": "romance",
+      "label": "ex-boyfriend, now her closest friend",
+      "short": "ex, now friend",
+      "evidence": "[Mi Ji's ex-boyfriend] / 미지의 전 남친, 현 절친.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiyun",
+      "to": "miji",
+      "type": "friend",
+      "label": "inseparable through three years of high school",
+      "short": "best friend",
+      "evidence": "[Mi Ji and Mi Rae's friend] / 고등학교 3년 내내 미지, 미래와 붙어 다녔던 단짝 친구.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiyun",
+      "to": "mirae",
+      "type": "friend",
+      "label": "inseparable through three years of high school",
+      "short": "best friend",
+      "evidence": "[Mi Ji and Mi Rae's friend] / 고등학교 3년 내내 미지, 미래와 붙어 다녔던 단짝 친구.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongmin",
+      "to": "mirae",
+      "type": "work",
+      "label": "leader of her planning and strategy team",
+      "short": "team leader",
+      "evidence": "[Team leader] / 한국금융관리공사 기획전략팀 팀장",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taegwan",
+      "to": "mirae",
+      "type": "work",
+      "label": "director of the bureau above her team",
+      "short": "director",
+      "evidence": "[Director] / 한국금융관리공사 기획조정국 국장",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mijeong",
+      "to": "mirae",
+      "type": "work",
+      "label": "chief on her team",
+      "short": "team chief",
+      "evidence": "한국금융관리공사 기획전략팀 수석",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunho",
+      "to": "mirae",
+      "type": "work",
+      "label": "fellow senior on the team",
+      "short": "teammate",
+      "evidence": "[Planning and strategy team senior] / 한국금융관리공사 기획전략팀 선임",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyogyeong",
+      "to": "mirae",
+      "type": "work",
+      "label": "fellow senior on the team",
+      "short": "teammate",
+      "evidence": "[Planning and strategy team senior] / 한국금융관리공사 기획전략팀 선임",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taei",
+      "to": "mirae",
+      "type": "work",
+      "label": "data analyst hired onto her team",
+      "short": "new analyst",
+      "evidence": "[Data analyst] / 금융관리공사 기획전략팀에 채용된 데이터분석가",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyeon",
+      "to": "mirae",
+      "type": "work",
+      "label": "her former direct senior on the team",
+      "short": "former senior",
+      "evidence": "[Former senior manager] / 과거 미래의 맞선임",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilnam",
+      "to": "myeonggap",
+      "type": "work",
+      "label": "secretary and doer of the Youth Association he presides",
+      "short": "secretary",
+      "evidence": "'두손리 청년회'의 간사이자, 행동대장. / 두손리 청년회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "miji",
+      "mirae",
+      "hosu",
+      "sejin",
+      "sejingranddad",
+      "okhui",
+      "wolsun",
+      "twinsfather",
+      "bunhong",
+      "hosufather",
+      "rosa",
+      "chunggu",
+      "yeonghun",
+      "gyeonggu",
+      "jiyun"
+    ],
+    "blocks": {
+      "The twins' family": [
+        0,
+        0
+      ],
+      "High school friends": [
+        0,
+        2
+      ],
+      "Ho Su's family": [
+        2,
+        0
+      ],
+      "Wongeun law firm": [
+        2,
+        2
+      ],
+      "Rosa's restaurant": [
+        1,
+        0
+      ],
+      "Changhwa Farm": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "miji",
+      "mirae",
+      "hosu"
+    ]
+  }
+}

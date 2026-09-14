@@ -1,0 +1,562 @@
+{
+  "version": 1,
+  "mdlSlug": "695963-tomorrow",
+  "title": "Tomorrow",
+  "asianwiki": "Tomorrow (Korean Drama)",
+  "native": "내일",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (155 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 내일 (2022년 드라마) 등장인물",
+    "en.wikipedia Tomorrow (South Korean TV series)"
+  ],
+  "main": [
+    "ryeon",
+    "junung",
+    "junggil",
+    "ryunggu"
+  ],
+  "people": [
+    {
+      "id": "ryeon",
+      "name": "Koo Ryeon",
+      "actor": "Kim Hee Sun",
+      "image": "https://i.mydramalist.com/vpjJg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Grim reaper back from hell; leader of Jumadeung's crisis management team",
+      "alsoPlayedBy": [
+        {
+          "name": "Gal So Won",
+          "image": "https://i.mydramalist.com/603qDg_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/25/Tomorrow-KD-Kal_So-Won.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/b/b8/Tomorrow-Kim_Hee-Seon.jpg"
+    },
+    {
+      "id": "junung",
+      "name": "Choi Jun Ung",
+      "actor": "Ro Woon",
+      "image": "https://i.mydramalist.com/2wDww2_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Job seeker in a coma, half human half spirit; six-month contract at Jumadeung",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ra On",
+          "image": "https://i.mydramalist.com/pP06r_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/f/f9/Tomorrow-Kim_Ra-On.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/c3/Tomorrow-Ro_Woon.jpg"
+    },
+    {
+      "id": "junggil",
+      "name": "Park Jung Gil",
+      "actor": "Lee Soo Hyuk",
+      "image": "https://i.mydramalist.com/k6VbO_5m.jpg",
+      "group": "Escort management team",
+      "inCast": true,
+      "note": "Leader of the escort management team; by the book, and hard on suicides",
+      "alsoPlayedBy": [
+        {
+          "name": "Park Soo Oh",
+          "image": "https://i.mydramalist.com/b3yD7V_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/27/Tomorrow-KD-Park_Sang-Hoon.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/d/d5/Tomorrow-Lee_Soo-Hyuk.jpg"
+    },
+    {
+      "id": "ryunggu",
+      "name": "Im Ryung Gu",
+      "actor": "Yun Ji On",
+      "image": "https://i.mydramalist.com/qpyJQ_5m.jpg",
+      "group": "Crisis management team",
+      "inCast": true,
+      "note": "Assistant manager; the team's one rule-follower, off at eight sharp",
+      "alsoPlayedBy": [
+        {
+          "name": "Seo Yun Hyuk",
+          "image": "https://i.mydramalist.com/pgkyD_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/b/b4/Tomorrow-KD-Seo_Yoon-Hyuk.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/4/45/Tomorrow-Yun_Ji-On.jpg"
+    },
+    {
+      "id": "jade",
+      "name": "Jade Emperor",
+      "actor": "Kim Hae Sook",
+      "image": "https://i.mydramalist.com/Z8gXdk_5m.jpg",
+      "group": "Jade Emperor",
+      "inCast": true,
+      "note": "Chairwoman of Jumadeung, the underworld monopoly",
+      "still": "https://asianwiki.com/images/f/f6/Tomorrow-Kim_Hae-Sook.jpg"
+    },
+    {
+      "id": "jaehui",
+      "name": "Jang Jae Hui",
+      "actor": "Kim Nu Ri",
+      "image": "https://i.mydramalist.com/EpbNpm.jpg",
+      "group": "Escort management team",
+      "inCast": true,
+      "note": "Jumadeung's rumour mill",
+      "still": "https://asianwiki.com/images/6/6b/Tomorrow-KD-Kim_Nu-Ri.jpg"
+    },
+    {
+      "id": "suin",
+      "name": "Jeon Su In",
+      "actor": "Moon Seo Yoon",
+      "image": "https://i.mydramalist.com/p58KE_5m.jpg",
+      "group": "Escort management team",
+      "inCast": true,
+      "note": "Died young; learned love from novels",
+      "still": "https://asianwiki.com/images/d/d4/Tomorrow-KD-Moon_Seo_Yoon.jpg"
+    },
+    {
+      "id": "jangghyeon",
+      "name": "Maeng Jang Hyeon",
+      "actor": "Jung Dong Geun",
+      "image": "https://i.mydramalist.com/6zXQK_5m.jpg",
+      "group": "Jumadeung team leaders",
+      "inCast": true,
+      "note": "Sales team",
+      "still": "https://asianwiki.com/images/b/b5/Tomorrow-KD-Jung_Dong-Geun.jpg"
+    },
+    {
+      "id": "gukheon",
+      "name": "Bang Guk Heon",
+      "actor": "Yoon Jong Won",
+      "image": "https://i.mydramalist.com/eY8l5W_5m.jpg",
+      "group": "Jumadeung team leaders",
+      "inCast": true,
+      "note": "Spirit management",
+      "still": "https://asianwiki.com/images/9/93/Tomorrow-KD-Yoon_Jong-Won.jpg"
+    },
+    {
+      "id": "yonghui",
+      "name": "Cho Yong Hui",
+      "actor": "Kim Seo A",
+      "image": "https://i.mydramalist.com/vrRjD_5m.jpg",
+      "group": "Jumadeung team leaders",
+      "inCast": true,
+      "note": "Registry management",
+      "still": "https://asianwiki.com/images/1/10/Tomorrow-KD-Kim_Seo-A.jpg"
+    },
+    {
+      "id": "hwaja",
+      "name": "Ji Hwa Ja",
+      "actor": "Park Yoo Mil",
+      "image": "https://i.mydramalist.com/73bdVb_5m.jpg",
+      "group": "Jumadeung team leaders",
+      "inCast": true,
+      "note": "Video management",
+      "still": "https://asianwiki.com/images/e/e1/Tomorrow-KD-Park_Yoo-Mil.jpg"
+    },
+    {
+      "id": "jeongim",
+      "name": "Lee Jeong Im",
+      "actor": "Yun Yu Sun",
+      "image": "https://i.mydramalist.com/BDbjb_5m.jpg",
+      "group": "Around Jun Ung",
+      "inCast": true,
+      "note": "MDL lists her only as Jun Ung's mother",
+      "still": "https://asianwiki.com/images/7/74/Tomorrow-KD-Yun_Yoo_Sun.jpg"
+    },
+    {
+      "id": "junungfather",
+      "name": "Jun Ung's father",
+      "actor": "Kwon Hyuk",
+      "image": "https://i.mydramalist.com/X65lJ_5m.jpg",
+      "group": "Around Jun Ung",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/78/Tomorrow-KD-Kwon_Hyuk.jpg"
+    },
+    {
+      "id": "minyeong",
+      "name": "Choi Min Yeong",
+      "actor": "Kim Seo Yeon",
+      "image": "https://i.mydramalist.com/kqB6v_5m.jpg",
+      "group": "Around Jun Ung",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/10/Tomorrow-KD-Kim_Seo-Yeon.jpg"
+    },
+    {
+      "id": "jaesu",
+      "name": "Namgoong Jae Su",
+      "actor": "Ryu Sung Rok",
+      "image": "https://i.mydramalist.com/z7eKym.jpg",
+      "group": "Around Jun Ung",
+      "inCast": true,
+      "note": "Studying for the police exam; ep. 3–4",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ji Hoon",
+          "image": "https://i.mydramalist.com/wJKn38_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/a/ae/Tomorrow-KD-Kim_Ji-Hoon.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/f/f1/Tomorrow-KD-Ryu_Sung-Rok.jpg"
+    },
+    {
+      "id": "yuhwa",
+      "name": "Lim Yu Hwa",
+      "actor": "Min Ji A",
+      "image": "https://i.mydramalist.com/N7XnAm.jpg",
+      "group": "Past lives",
+      "inCast": true,
+      "note": "A mother who lost her newborn; ep. 11–12",
+      "still": "https://asianwiki.com/images/4/47/Tomorrow-KD-Min_Ji-A.jpg"
+    },
+    {
+      "id": "junggilmother",
+      "name": "Jung Gil's mother",
+      "actor": "Jung Jae Eun",
+      "image": "https://i.mydramalist.com/jbJwr_5m.jpg",
+      "group": "Past lives",
+      "inCast": true,
+      "note": "Ep. 14–15",
+      "still": "https://asianwiki.com/images/9/9b/Tomorrow-KD-Jeong_Jae-Eun.jpg"
+    },
+    {
+      "id": "ryeonfather",
+      "name": "Ryeon's father",
+      "actor": "Ha Dong Joon",
+      "image": "https://i.mydramalist.com/xno0w_5m.jpg",
+      "group": "Past lives",
+      "inCast": true,
+      "note": "Ep. 14",
+      "still": "https://asianwiki.com/images/4/43/Tomorrow-KD-Ha_Dong-Joon.jpg"
+    },
+    {
+      "id": "gopdan",
+      "name": "Gop Dan / Ryu Cho Hui",
+      "actor": "Kim Si Eun",
+      "image": "https://i.mydramalist.com/jJeor_5m.jpg",
+      "group": "Past lives",
+      "inCast": true,
+      "note": "An idol singer today; ep. 14–16",
+      "still": "https://asianwiki.com/images/7/70/Tomorrow-KD-Kim_Si-Eun.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "ryeon",
+      "to": "junung",
+      "type": "work",
+      "label": "her team's mistake threw his soul out of his body; she hires him for six months, until he wakes",
+      "short": "her new hire",
+      "evidence": "After Jun Ung ends up in a coma and becomes half-human and half-spirit, he is employed by a company of grim reapers as the newest member of the crisis management team. / 위기관리팀의 실수로 살아있는 인간 몸에서 튀어나온 영혼",
+      "source": "MDL synopsis; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ryunggu",
+      "to": "junung",
+      "type": "work",
+      "label": "assistant manager over the clumsy newcomer",
+      "short": "his senior",
+      "evidence": "주마등 위기관리팀 대리. / 시작부터 서툴고 눈치 없고 철없는 신입, 최준웅.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ryunggu",
+      "to": "ryeon",
+      "type": "work",
+      "label": "the one rule-follower on her team, bickering with her every time a rule bends",
+      "short": "bickers with her",
+      "evidence": "위관팀의 특성상 주마등의 규칙을 어기게 되는 상황이 자주 생기지만 그때마다 늘 련과 부딪치며 티격태격한다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junggil",
+      "to": "ryeon",
+      "type": "rivalry",
+      "label": "escort team leader who clashes with her crisis team at every turn — suicide, to him, is selfish murder",
+      "short": "clashes with her",
+      "evidence": "자살은 스스로 목숨을 끊은 이기적인 살인이라고 주장하는 강경파로 죽고 싶은 사람들을 구하려는 위관팀과 사사건건 부딪친다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junggil",
+      "to": "ryeon",
+      "type": "family",
+      "label": "her husband, in their past life",
+      "short": "past-life husband",
+      "evidence": "Park Joong-Gil's wife in her past life. / Koo Ryeon's husband in his previous life.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jade",
+      "to": "ryeon",
+      "type": "work",
+      "label": "brought her out of hell to lead the crisis team, promising her what she wants",
+      "short": "her chairwoman",
+      "evidence": "400년 동안, 살려달라 한마디 뱉지 않았던 그녀에게 옥황은 주마등에서 일하면 구련이 원하는 것을 들어주겠노라 제안했다. / 지옥에서 구련을 데려와 팀장으로 앉힌다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jade",
+      "to": "junggil",
+      "type": "work",
+      "label": "chairwoman of Jumadeung, whose policies no reaper questions",
+      "short": "chairwoman",
+      "evidence": "주마등 그 어떤 저승사자도 옥황의 경영과 정책에 토를 달지 못한다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehui",
+      "to": "junggil",
+      "type": "work",
+      "label": "elite of his team; admires him, and hates the crisis team on his behalf",
+      "short": "admires him",
+      "evidence": "인도팀 팀장 중길은 그녀의 선망이자 존경의 대상으로 항상 그와 부딪치는 위관팀에 대한 적개심이 뚜렷하다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suin",
+      "to": "junggil",
+      "type": "work",
+      "label": "member of his escort team",
+      "short": "his team",
+      "evidence": "혼령관리 본부 소속 '인도 관리팀'의 팀원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangghyeon",
+      "to": "jade",
+      "type": "work",
+      "label": "sales team leader under her",
+      "short": "team leader",
+      "evidence": "'주마등' 영업팀 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gukheon",
+      "to": "jade",
+      "type": "work",
+      "label": "spirit management team leader under her",
+      "short": "team leader",
+      "evidence": "'주마등' 혼령 관리팀 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonghui",
+      "to": "jade",
+      "type": "work",
+      "label": "registry team leader under her",
+      "short": "team leader",
+      "evidence": "[\"Jumadeung\" management team leader] / '주마등' 명부 관리팀 팀장",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwaja",
+      "to": "jade",
+      "type": "work",
+      "label": "video management team leader under her",
+      "short": "team leader",
+      "evidence": "'주마등' 영상 관리팀 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongim",
+      "to": "junung",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jun Ung's mother] / 준웅과 민영의 어머니",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junungfather",
+      "to": "junung",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Jun Ung's father] / 준웅과 민영의 아버지, 정임의 남편.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minyeong",
+      "to": "junung",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "준웅의 여동생, 정임의 딸.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesu",
+      "to": "junung",
+      "type": "friend",
+      "label": "close friend",
+      "short": "close friend",
+      "evidence": "준웅의 친구, 경찰공시생 / Joon-woong's close friend.",
+      "source": "ko.wikipedia; en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuhwa",
+      "to": "ryunggu",
+      "type": "family",
+      "label": "his mother, in her past life",
+      "short": "past-life mother",
+      "evidence": "[Ryung Gu's mother] / 죽은 꿀벌이의 어머니, 전생의 륭구의 어머니.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junggilmother",
+      "to": "junggil",
+      "type": "family",
+      "label": "mother, in his past life",
+      "short": "mother",
+      "evidence": "중길의 어머니 역 - 련의 시어머니, 중길의 어머니.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junggilmother",
+      "to": "ryeon",
+      "type": "family",
+      "label": "mother-in-law, in her past life",
+      "short": "mother-in-law",
+      "evidence": "[Ryeon's mother-in-law] / 련의 시어머니, 중길의 어머니.",
+      "source": "MDL cast; ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ryeonfather",
+      "to": "ryeon",
+      "type": "family",
+      "label": "father, in her past life",
+      "short": "father",
+      "evidence": "[Ryeon's father]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gopdan",
+      "to": "ryeon",
+      "type": "work",
+      "label": "her maid in her past life; an idol singer today",
+      "short": "past-life maid",
+      "evidence": "유초이/곱단 역 - 전생의 련의 몸종, 아이돌 가수.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "ryeon",
+      "junung",
+      "junggil",
+      "ryunggu",
+      "jade",
+      "jaehui",
+      "suin",
+      "jeongim",
+      "junungfather",
+      "minyeong",
+      "jaesu",
+      "yuhwa",
+      "junggilmother",
+      "ryeonfather",
+      "gopdan"
+    ],
+    "blocks": {
+      "Escort management team": [
+        0,
+        0
+      ],
+      "Around Jun Ung": [
+        0,
+        2
+      ],
+      "Jade Emperor": [
+        1,
+        0
+      ],
+      "Crisis management team": [
+        1,
+        2
+      ],
+      "Past lives": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "ryeon",
+      "junung"
+    ]
+  }
+}
