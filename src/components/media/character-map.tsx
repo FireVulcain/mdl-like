@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Crosshair, Minus, Plus } from "lucide-react";
-import { actorLine, ERA_LABEL, layoutCompact, linkPath, portrait, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType, type MapActor, type MapPerson } from "@/lib/character-map";
+import { actorLine, ERA_LABEL, layoutCompact, linkPath, portrait, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType } from "@/lib/character-map";
 
 // Colour follows meaning, the way it does across the app: family is the quiet
 // one, romance rose, rivalry amber; teal for work and loyalty, lime for
@@ -18,6 +18,34 @@ const TYPE_CLASS: Record<LinkType, string> = {
 };
 const TYPES: LinkType[] = ["family", "romance", "rivalry", "work", "friend", "bond"];
 const TYPE_LABEL: Record<LinkType, string> = { family: "Family", romance: "Romance", rivalry: "Rivalry", work: "Work", friend: "Friends", bond: "Bond" };
+
+// A relationship's words go on a chip, the way a broadcaster's chart tags its
+// lines: an opaque ground, a hairline border with a hint of the line's colour,
+// and quiet text. The colour stays on the line, not the words, or a busy
+// chart reads as confetti. The width is estimated the way the layout
+// estimates its own; on narrow glyphs the chip runs a touch wide. The ground
+// has to be an opaque token: the surfaces are white at 3% and would let the
+// line straight through.
+const GROUND = "var(--color-panel)";
+const CHIP_H = 18, CHIP_PAD = 8, CHIP_FONT = 10.5, CHIP_CHAR = 5.9;
+const chipWidth = (text: string) => text.length * CHIP_CHAR + 2 * CHIP_PAD;
+function Tag({ x, y, anchor = "middle", text, lit, className, style, onClick, onHover }: {
+    x: number; y: number; anchor?: "start" | "middle" | "end"; text: string;
+    /** its line is under the pointer: the border takes the full colour */
+    lit?: boolean;
+    className: string; style?: React.CSSProperties; onClick?: React.MouseEventHandler<SVGGElement>; onHover?: (on: boolean) => void;
+}) {
+    const w = chipWidth(text);
+    const left = anchor === "start" ? x - CHIP_PAD : anchor === "end" ? x - w + CHIP_PAD : x - w / 2;
+    return (
+        <g className={className} style={style} onClick={onClick} onMouseEnter={onHover && (() => onHover(true))} onMouseLeave={onHover && (() => onHover(false))}>
+            <rect x={left} y={y - CHIP_H / 2} width={w} height={CHIP_H} rx={CHIP_H / 2} fill={GROUND} stroke="currentColor" strokeOpacity={lit ? 1 : 0.4} style={{ transition: "stroke-opacity .15s" }} />
+            <text x={x} y={y} dy={CHIP_FONT * 0.36} textAnchor={anchor} className={`${lit ? "fill-fg" : "fill-fg-soft"} font-medium`} style={{ fontSize: CHIP_FONT }}>
+                {text.charAt(0).toUpperCase() + text.slice(1)}
+            </text>
+        </g>
+    );
+}
 
 // A source sentence is quoted only when the reader can read it. The Korean
 // and Chinese ones are what the link was read from, but to someone who reads
@@ -53,15 +81,6 @@ function Face({ person, size = "sm" }: { person: { image: string | null; still?:
     );
 }
 
-// The other actors of a character, as one line of prose — for the tooltip,
-// which is a native SVG <title> and so can hold nothing but text.
-const alsoLine = (p: MapPerson) => {
-    const others = p.alsoPlayedBy ?? [];
-    if (others.length === 0) return "";
-    const say = (a: MapActor) => (a.era ? `${a.name} (${ERA_LABEL[a.era]})` : a.name);
-    return `\nAlso played by ${others.map(say).join(", ")}`;
-};
-
 /**
  * The relationship chart, on its own page.
  *
@@ -93,6 +112,9 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
     const pickLink = (index: number) => setSelected((s) => (s?.kind === "link" && s.index === index ? null : { kind: "link", index }));
     const pickPerson = (id: string) => setSelected((s) => (s?.kind === "person" && s.id === id ? null : { kind: "person", id }));
     const [hover, setHover] = useState<string | null>(null);
+    // The link under the pointer, from its line or its chip: it thickens and
+    // takes a soft glow, so the reader knows which one a click would open.
+    const [hoverLink, setHoverLink] = useState<number | null>(null);
 
     // The chart is looked at through a fixed window and dragged around, not
     // scrolled: it opens on the whole thing, and a reader who wants a corner
@@ -202,8 +224,10 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
         const keep = new Set(everyone ? map.people.map((p) => p.id) : map.compact.people);
         const inCut = map.links.filter((l) => keep.has(l.from) && keep.has(l.to));
         return {
-            reveals: inCut.filter((l) => l.reveal && !l.inferred).length,
-            inferred: inCut.filter((l) => l.inferred).length,
+            // Each toggle counts the links it alone decides: a reveal that is
+            // also inferred is the reveals toggle's (see layoutCompact).
+            reveals: inCut.filter((l) => l.reveal).length,
+            inferred: inCut.filter((l) => l.inferred && !l.reveal).length,
             ghosts: map.people.filter((p) => keep.has(p.id) && !p.inCast).length,
             byType: Object.fromEntries(TYPES.map((t) => [t, inCut.filter((l) => l.type === t && !l.inferred).length])) as Record<LinkType, number>,
         };
@@ -220,14 +244,22 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
         }
         return s;
     }, [focus, layout]);
+    const linkOf = useMemo(() => new Map(layout.links.map((l) => [l.index, l])), [layout]);
     const linkTouches = (l: LaidOutLink, id: string | null) => !!id && (l.from === id || l.to === id);
+    // A link picked by a click narrows the chart the way a hovered face does:
+    // the rest of the lines and faces step back, its two ends and its own
+    // words stay, and it keeps the glow it had under the pointer. Thickening
+    // alone was too little to find again on a busy chart.
+    const picked = !focus && selected?.kind === "link" ? (linkOf.get(selected.index) ?? null) : null;
+    const linkFaded = (l: LaidOutLink) => (near ? !linkTouches(l, focus) : picked ? l.index !== picked.index : false);
+    const faceFaded = (id: string) => (near ? !near.has(id) : picked ? !linkTouches(picked, id) : false);
 
     // A caption belongs to one link, and under a focus it only speaks if that
     // link touches the face being read. Hovering I Chan leaves "father · I Chan"
     // under Eun Ho and takes away "older brother · Eun Gyeol", which is about
     // somebody else — the same cut the dimming already makes on the lines.
-    const linkOf = useMemo(() => new Map(layout.links.map((l) => [l.index, l])), [layout]);
     const captionSpeaks = (linkIndex: number) => {
+        if (picked) return linkIndex === picked.index;
         if (!focus) return true;
         const l = linkOf.get(linkIndex);
         return !l || linkTouches(l, focus);
@@ -243,8 +275,7 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
     const selectedLink = selected?.kind === "link" ? map.links[selected.index] : null;
     const selectedPerson = selected?.kind === "person" ? (byId.get(selected.id) ?? null) : null;
     const personLinks = selectedPerson ? layout.links.filter((l) => l.from === selectedPerson.id || l.to === selectedPerson.id) : [];
-    const halo = "var(--color-surface-1)";
-    const textStroke = { paintOrder: "stroke" as const, stroke: halo, strokeWidth: 3, strokeLinejoin: "round" as const };
+        const textStroke = { paintOrder: "stroke" as const, stroke: GROUND, strokeWidth: 3, strokeLinejoin: "round" as const };
 
     return (
         <div className="space-y-3">
@@ -333,35 +364,42 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
 
                     {/* Links, under the faces */}
                     {layout.links.map((l) => {
-                        const faded = near ? !linkTouches(l, focus) : false;
+                        const faded = linkFaded(l);
                         const active = (selected?.kind === "link" && selected.index === l.index) || (selected?.kind === "person" && linkTouches(l, selected.id));
+                        const lit = hoverLink === l.index || picked?.index === l.index;
                         return (
                             <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : l.inferred ? 0.4 : 1, transition: "opacity .15s" }}>
+                                <path d={linkPath(l)} fill="none" stroke="currentColor" strokeWidth={12} strokeLinecap="round" strokeOpacity={picked?.index === l.index ? 0.3 : lit ? 0.18 : 0} style={{ transition: "stroke-opacity .15s" }} />
                                 <path
                                     d={linkPath(l)}
                                     fill="none"
                                     stroke="currentColor"
-                                    strokeWidth={active ? 3.5 : 2}
+                                    strokeWidth={active ? 3.5 : lit ? 3 : 2}
                                     strokeLinecap="round"
                                     strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined}
                                     markerEnd={l.directed ? `url(#cm-arrow-${l.type})` : undefined}
+                                    style={{ transition: "stroke-width .15s" }}
                                 />
-                                <path d={linkPath(l)} fill="none" stroke="transparent" strokeWidth={14} className="cursor-pointer" onClick={unlessDragged(() => pickLink(l.index))} />
-                                {l.onLine && labels && (
-                                    <text x={l.lx} y={l.ly} textAnchor="middle" className="pointer-events-none fill-fg-soft text-[10px] font-medium" style={textStroke}>
-                                        {l.short}
-                                    </text>
-                                )}
+                                <path
+                                    d={linkPath(l)}
+                                    fill="none"
+                                    stroke="transparent"
+                                    strokeWidth={14}
+                                    className="cursor-pointer"
+                                    onClick={unlessDragged(() => pickLink(l.index))}
+                                    onMouseEnter={() => setHoverLink(l.index)}
+                                    onMouseLeave={() => setHoverLink((v) => (v === l.index ? null : v))}
+                                />
                             </g>
                         );
                     })}
 
                     {/* Faces */}
                     {layout.people.map((p) => {
-                        const faded = near ? !near.has(p.id) : false;
+                        const faded = faceFaded(p.id);
                         // Text is centred under the face unless that would run it off the
                         // frame's edge; then it hangs from the face's near side instead.
-                        const widest = Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
+                        const widest = Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => chipWidth(c.text)));
                         const anchor = p.x - widest / 2 < 8 ? "start" : p.x + widest / 2 > layout.width - 8 ? "end" : "middle";
                         const tx = anchor === "start" ? -R : anchor === "end" ? R : 0;
                         return (
@@ -377,7 +415,6 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
                                 onClick={unlessDragged(() => pickPerson(p.id))}
                                 className="cursor-pointer"
                             >
-                                <title>{`${p.name} — ${p.actor}${alsoLine(p)}${p.note ? `\n${p.note}` : ""}${p.inCast ? "" : "\n(not in MDL's cast)"}`}</title>
                                 <circle
                                     r={R}
                                     className={p.lead ? "fill-surface-2 stroke-sky-400" : p.inCast ? "fill-surface-2 stroke-line-strong" : "fill-surface-1 stroke-fg-dim"}
@@ -401,26 +438,47 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
                                     p.captions.map((c, i) => {
                                         const speaks = captionSpeaks(c.linkIndex);
                                         return (
-                                            <text
+                                            <Tag
                                                 key={i}
                                                 x={tx}
-                                                dy={R + 41 + i * 12}
-                                                textAnchor={anchor}
-                                                className={`cursor-pointer text-[10.5px] font-medium ${TYPE_CLASS[c.type]} ${c.reveal ? "italic" : ""}`}
-                                                fill="currentColor"
+                                                y={R + 42 + i * (CHIP_H + 4)}
+                                                anchor={anchor}
+                                                text={c.text}
+                                                lit={hoverLink === c.linkIndex || picked?.index === c.linkIndex}
+                                                className={`cursor-pointer ${TYPE_CLASS[c.type]} ${c.reveal ? "italic" : ""}`}
                                                 // The lines keep their places while some go quiet:
                                                 // captions that slid up to close a gap would make
                                                 // the whole chart twitch under the pointer.
-                                                style={{ ...textStroke, opacity: speaks ? 1 : 0, transition: "opacity .15s", pointerEvents: speaks ? undefined : "none" }}
+                                                style={{ opacity: speaks ? 1 : 0, transition: "opacity .15s", pointerEvents: speaks ? undefined : "none" }}
                                                 onClick={unlessDragged(() => pickLink(c.linkIndex))}
-                                            >
-                                                {c.text}
-                                            </text>
+                                                onHover={(on) => setHoverLink((v) => (on ? c.linkIndex : v === c.linkIndex ? null : v))}
+                                            />
                                         );
                                     })}
                             </g>
                         );
                     })}
+
+                    {/* The words between the leads, last so nothing draws over them */}
+                    {labels &&
+                        layout.links
+                            .filter((l) => l.onLine)
+                            .map((l) => {
+                                const faded = linkFaded(l);
+                                return (
+                                    <Tag
+                                        key={l.index}
+                                        x={l.lx}
+                                        y={l.ly}
+                                        text={l.short}
+                                        lit={hoverLink === l.index || picked?.index === l.index}
+                                        className={`cursor-pointer ${TYPE_CLASS[l.type]} ${l.reveal ? "italic" : ""}`}
+                                        style={{ opacity: faded ? 0.08 : l.inferred ? 0.4 : 1, transition: "opacity .15s", pointerEvents: faded ? "none" : undefined }}
+                                        onClick={unlessDragged(() => pickLink(l.index))}
+                                        onHover={(on) => setHoverLink((v) => (on ? l.index : v === l.index ? null : v))}
+                                    />
+                                );
+                            })}
                 </svg>
                 <div className="absolute bottom-3 right-3 flex flex-col overflow-hidden rounded-lg border border-line-strong bg-surface-2/90 backdrop-blur-sm">
                     {(

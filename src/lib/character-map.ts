@@ -110,7 +110,7 @@ export type LaidOutLink = MapLink & {
     x1: number; y1: number; x2: number; y2: number;
     /** control point of the quadratic, when several links share a pair */
     cx: number; cy: number;
-    /** where its label sits, if it carries one on the line */
+    /** where its label sits, if it carries one: on the line, which goes under it */
     lx: number; ly: number;
     onLine: boolean;
 };
@@ -124,7 +124,7 @@ export type LayoutOptions = {
     everyone?: boolean;
     /** link types to draw; all of them when absent */
     types?: Set<LinkType>;
-    /** draw links no sentence backs (faded) */
+    /** draw links no sentence backs (faded); a reveal answers to hideLink instead */
     inferred?: boolean;
     /** draw people the text names but MDL's cast does not carry */
     ghosts?: boolean;
@@ -156,7 +156,11 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         .map((l, index) => ({ l, index }))
         .filter(({ l }) => byId.has(l.from) && byId.has(l.to) && !(opts.hideLink?.(l) ?? false))
         .filter(({ l }) => !opts.types || opts.types.has(l.type))
-        .filter(({ l }) => (opts.inferred ?? false) || !l.inferred);
+        // A link that is both a reveal and inferred is a reveal first: the
+        // spoiler gate decides it alone, or a reader who opened the reveals
+        // would still be missing one, and one who opened the inferred links
+        // could not see it at all when the reveals had nothing else to count.
+        .filter(({ l }) => (opts.inferred ?? false) || !l.inferred || l.reveal);
 
     // Where each link's words go. Only a link between the two leads keeps a
     // label on its line; every other link is written under a face — under the
@@ -187,7 +191,7 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         if (!groups.has(g)) groups.set(g, []);
         groups.get(g)!.push(p);
     }
-    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
+    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => c.text.length * 5.9 + 16));
     type Shape = { name: string; members: LaidOutPerson[]; perRow: number; rows: number; dx: number; dy: number; w: number; h: number; x: number; y: number };
     const shapes = new Map<string, Shape>();
     for (const [g, members] of groups) {
@@ -197,7 +201,9 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         const perRow = g === "__center" ? n : n <= 2 ? (side ? 1 : n) : n === 4 ? 2 : n >= 10 ? 5 : n >= 7 ? 4 : 3;
         const rows = Math.ceil(n / perRow);
         const dx = g === "__center" ? 210 : Math.max(150, Math.max(...members.map(textWidth)) + 16);
-        const dy = 124 + 12 * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
+        // Room for two chips under every face (the chart's component draws them 22
+        // apart), and one more row for each caption past that.
+        const dy = 138 + 22 * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
         shapes.set(g, { name: g, members, perRow, rows, dx, dy, w: perRow * dx + 12, h: rows * dy + 44, x: 0, y: 0 });
     }
 
@@ -292,13 +298,16 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         const a = byId.get(l.from)!, b = byId.get(l.to)!;
         const k = [l.from, l.to].sort().join("|");
         const n = pairCount.get(k)!, i = pairIdx.get(index)!;
-        const bend = n > 1 ? (i - (n - 1) / 2) * 34 : 0;
+        // Bent as seen from the pair's first face, whichever end the link is
+        // written from: measured along each link's own direction, one written
+        // A→B and one B→A took the same side and their arcs lay on each other.
+        const bend = n > 1 ? (i - (n - 1) / 2) * 34 * (l.from < l.to ? 1 : -1) : 0;
         const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
         const cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2, cy = (a.y + b.y) / 2 + (dx / len) * bend * 2;
         const t = tOf.get(index)!;
         const px = (1 - t) * (1 - t) * a.x + 2 * (1 - t) * t * cx + t * t * b.x;
         const py = (1 - t) * (1 - t) * a.y + 2 * (1 - t) * t * cy + t * t * b.y;
-        return { ...l, index, x1: a.x, y1: a.y, x2: b.x, y2: b.y, cx, cy, lx: px + (-dy / len) * 7, ly: py + (dx / len) * 7 - 4, onLine: onLine(l) };
+        return { ...l, index, x1: a.x, y1: a.y, x2: b.x, y2: b.y, cx, cy, lx: px, ly: py, onLine: onLine(l) };
     });
 
     return { width, height, people, links: laid, blocks };
