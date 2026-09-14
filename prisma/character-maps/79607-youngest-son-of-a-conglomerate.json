@@ -1,0 +1,782 @@
+{
+  "version": 1,
+  "mdlSlug": "79607-youngest-son-of-a-conglomerate",
+  "title": "Reborn Rich",
+  "native": "재벌집 막내아들",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (109 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 재벌집 막내아들의 등장인물 (households, 10k chars)",
+    "en.wikipedia Cast (several entries run into one another)"
+  ],
+  "main": [
+    "dojun",
+    "yangcheol",
+    "minyoung"
+  ],
+  "people": [
+    {
+      "id": "dojun",
+      "name": "Jin Do Jun / Yoon Hyun Woo",
+      "actor": "Song Joong Ki",
+      "image": "https://i.mydramalist.com/1kymd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Kang Hoon",
+          "image": "https://i.mydramalist.com/JB6qYX_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Soonyang's murdered fixer, awake again in 1987 as the chairman's youngest grandson"
+    },
+    {
+      "id": "yangcheol",
+      "name": "Jin Yang Cheol",
+      "actor": "Lee Sung Min",
+      "image": "https://i.mydramalist.com/d78nD_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Founder and chairman of Soonyang Group — greed, suspicion, and a change of heart"
+    },
+    {
+      "id": "minyoung",
+      "name": "Seo Min Young",
+      "actor": "Shin Hyun Been",
+      "image": "https://i.mydramalist.com/1n4K3_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "note": "'Soonyang's Grim Reaper' at the anti-corruption division"
+    },
+    {
+      "id": "pilok",
+      "name": "Lee Pil Ok",
+      "actor": "Kim Hyun",
+      "image": "https://i.mydramalist.com/5v7BVY_5m.jpg",
+      "group": "Soonyang headquarters",
+      "inCast": true,
+      "note": "The chairman's wife; sure the heir must be a son of hers"
+    },
+    {
+      "id": "hangjae",
+      "name": "Lee Hyang Jae",
+      "actor": "Jung Hee Tae",
+      "image": "https://i.mydramalist.com/735b3r_5m.jpg",
+      "group": "Soonyang headquarters",
+      "inCast": true,
+      "note": "Chief of the secretariat — the chairman's right hand"
+    },
+    {
+      "id": "insuk",
+      "name": "Ha In Suk",
+      "actor": "Park Ji Hoon",
+      "image": "https://i.mydramalist.com/XKLxXm.jpg",
+      "group": "Soonyang headquarters",
+      "inCast": true,
+      "note": "Do Jun's driver"
+    },
+    {
+      "id": "youngki",
+      "name": "Jin Young Ki",
+      "actor": "Yoon Je Moon",
+      "image": "https://i.mydramalist.com/0dq7Y_5m.jpg",
+      "group": "Young Ki's family",
+      "inCast": true,
+      "note": "Eldest son; vice chairman, never trusted by his father"
+    },
+    {
+      "id": "jungrae",
+      "name": "Son Jung Rae",
+      "actor": "Kim Jung Nan",
+      "image": "https://i.mydramalist.com/4jLAk_5m.jpg",
+      "group": "Young Ki's family",
+      "inCast": true,
+      "note": "Only daughter of a Myeongdong moneylender"
+    },
+    {
+      "id": "sungjoon",
+      "name": "Jin Sung Joon",
+      "actor": "Kim Nam Hee",
+      "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "group": "Young Ki's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Seong Hyun",
+          "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Eldest grandson — Soonyang was always his, he thought"
+    },
+    {
+      "id": "hyunmin",
+      "name": "Mo Hyun Min",
+      "actor": "Park Ji Hyun",
+      "image": "https://i.mydramalist.com/AB8PvP_5m.jpg",
+      "group": "Young Ki's family",
+      "inCast": true,
+      "note": "Only daughter of the owner of Hyunsung Ilbo"
+    },
+    {
+      "id": "juryun",
+      "name": "Kim Ju Ryun",
+      "actor": "Heo Jung Do",
+      "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
+      "group": "Young Ki's family",
+      "inCast": true,
+      "note": "Secretariat; chose to be Young Ki's man"
+    },
+    {
+      "id": "donggi",
+      "name": "Jin Dong Gi",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Dong Gi's family",
+      "inCast": true,
+      "note": "Second son; president of Soonyang Fire Insurance"
+    },
+    {
+      "id": "jina",
+      "name": "Yoo Ji Na",
+      "actor": "Seo Jae Hee",
+      "image": "https://i.mydramalist.com/06YzE_5m.jpg",
+      "group": "Dong Gi's family",
+      "inCast": true,
+      "note": "Youngest daughter of a former finance minister"
+    },
+    {
+      "id": "yejun",
+      "name": "Jin Ye Jun",
+      "actor": "Jo Hye Joo",
+      "image": "https://i.mydramalist.com/YYnnxK_5m.jpg",
+      "group": "Dong Gi's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kang Ji Woo",
+          "image": "https://i.mydramalist.com/XozoZ_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "CEO of SY Apparel — 'Korea's Paris Hilton'"
+    },
+    {
+      "id": "sangmoo",
+      "name": "Baek Sang Moo",
+      "actor": "Kang Gil Woo",
+      "image": "https://i.mydramalist.com/QlW06_5m.jpg",
+      "group": "Dong Gi's family",
+      "inCast": true,
+      "note": "Managing director; ko.wikipedia names him Baek Dong Min"
+    },
+    {
+      "id": "hwayoung",
+      "name": "Jin Hwa Young",
+      "actor": "Kim Shin Rock",
+      "image": "https://i.mydramalist.com/oQzmpO_5m.jpg",
+      "group": "Hwa Young's family",
+      "inCast": true,
+      "note": "Only daughter; head of Soonyang Department Store"
+    },
+    {
+      "id": "changje",
+      "name": "Choi Chang Je",
+      "actor": "Kim Do Hyun",
+      "image": "https://i.mydramalist.com/Nd5Edn_5m.jpg",
+      "group": "Hwa Young's family",
+      "inCast": true,
+      "note": "Prosecutor, then mayor of Seoul — the family's one son-in-law from nothing"
+    },
+    {
+      "id": "yungi",
+      "name": "Jin Yun Gi",
+      "actor": "Kim Young Jae",
+      "image": "https://i.mydramalist.com/Z3VeYm.jpg",
+      "group": "Yun Gi's family",
+      "inCast": true,
+      "note": "Born outside the marriage; runs a film company and wants nothing of Soonyang"
+    },
+    {
+      "id": "haein",
+      "name": "Lee Hae In",
+      "actor": "Jung Hye Young",
+      "image": "https://i.mydramalist.com/l0nvkb_5m.jpg",
+      "group": "Yun Gi's family",
+      "inCast": true,
+      "note": "Once a top star"
+    },
+    {
+      "id": "hyungjoon",
+      "name": "Jin Hyung Joon",
+      "actor": "Kang Gi Doong",
+      "image": "https://i.mydramalist.com/YYZ8yd_5m.jpg",
+      "group": "Yun Gi's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Cha Sung Je",
+          "image": "https://i.mydramalist.com/QB8yA_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Runs an entertainment agency; no interest in the succession"
+    },
+    {
+      "id": "sehyun",
+      "name": "Oh Se Hyun / Mason Oh",
+      "actor": "Park Hyuk Kwon",
+      "image": "https://i.mydramalist.com/w6pZY_5m.jpg",
+      "group": "Miracle Investment",
+      "inCast": true,
+      "note": "Investor whose bible is the Bible"
+    },
+    {
+      "id": "rachel",
+      "name": "Rachel",
+      "actor": "Tiffany Young",
+      "image": "https://i.mydramalist.com/18mnK_5m.jpg",
+      "group": "Miracle Investment",
+      "inCast": true,
+      "note": "Analyst; Korean-American"
+    },
+    {
+      "id": "dongsu",
+      "name": "Yoon Dong Su",
+      "actor": "Lee Kyu Hoe",
+      "image": "https://i.mydramalist.com/Qb7QA_5m.jpg",
+      "group": "Hyun Woo's family",
+      "inCast": true
+    },
+    {
+      "id": "kyunghee",
+      "name": "Han Kyung Hee",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Hyun Woo's family",
+      "inCast": true,
+      "note": "Died in 1998, at the Ajin Motors protest"
+    }
+  ],
+  "links": [
+    {
+      "from": "dojun",
+      "to": "yangcheol",
+      "type": "family",
+      "label": "grandson — the one who takes after him",
+      "short": "grandson",
+      "evidence": "진양철 회장의 막내 손자 / 막내손자가 자신을 닮았다는 걸- 승부근성, 결단력, 가차 없는 냉혹함까지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dojun",
+      "to": "yangcheol",
+      "type": "rivalry",
+      "label": "means to take the empire from the family that killed him",
+      "short": "wants his empire",
+      "evidence": "plots to use his new identity to formulate a hostile takeover of the group – and punish the people who killed him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dojun",
+      "to": "minyoung",
+      "type": "romance",
+      "label": "her fiancé — met at twenty, reunited as prosecutor and informant",
+      "short": "engaged",
+      "evidence": "서민영의 예비 남편 / 검사와 제보자로 재회한 둘은 드디어 연인으로 발전한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minyoung",
+      "to": "yangcheol",
+      "type": "rivalry",
+      "label": "the prosecutor who never lets go of Soonyang",
+      "short": "hunts Soonyang",
+      "evidence": "순양을 집요하게 추적하는 순양의 저승사자 / a dogged public prosecutor named Seo Min Young, nicknamed 'Soonyang Group Grim Reaper'",
+      "source": "ko.wikipedia · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilok",
+      "to": "yangcheol",
+      "type": "romance",
+      "label": "wife — co-founder of the empire",
+      "short": "married",
+      "evidence": "진양철의 처 / Jin Yang-chul's wife",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "pilok",
+      "to": "dojun",
+      "type": "rivalry",
+      "label": "behind the attempt on his life and her husband's",
+      "short": "tried to kill him",
+      "evidence": "진양철,진도준 살인미수 사건 범인, 영국으로 도피",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hangjae",
+      "to": "yangcheol",
+      "type": "work",
+      "label": "his right-hand man since the beginning",
+      "short": "right hand",
+      "evidence": "진양철의 가신이자 복심 / Jin Yang-chul's right-hand man",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "insuk",
+      "to": "dojun",
+      "type": "work",
+      "label": "his driver — reporting everything to Dong Gi",
+      "short": "driver, spy",
+      "evidence": "진도준의 대리기사/진동기의 수하 : 진도준의 일거수일투족을 감시해 누군가에게 은밀히 보고하는 그다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "insuk",
+      "to": "donggi",
+      "type": "work",
+      "label": "the man he really serves",
+      "short": "his real master",
+      "evidence": "진동기의 수하",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngki",
+      "to": "yangcheol",
+      "type": "family",
+      "label": "eldest son, vice chairman",
+      "short": "eldest son",
+      "evidence": "진양철의 장남 / 순양그룹 부회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngki",
+      "to": "dojun",
+      "type": "rivalry",
+      "label": "had the truck sent that killed him in 2004",
+      "short": "had him killed",
+      "evidence": "도준이 사건 진범 / 2004년 진영기가 사주한 트럭에 의해 사망",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungrae",
+      "to": "youngki",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "진영기의 아내 / Jin Young-ki's wife",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sungjoon",
+      "to": "youngki",
+      "type": "family",
+      "label": "eldest son — the eldest grandson of Soonyang",
+      "short": "son",
+      "evidence": "진영기의 장남 / Jin Young-ki's son. Eldest grandchild of the Soonyang family",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungjoon",
+      "to": "dojun",
+      "type": "rivalry",
+      "label": "the heir apparent against the favoured youngest",
+      "short": "rival heir",
+      "evidence": "순양은 처음부터 내 것이었고, 내 것을 그 누구에게도 뺏기지 않겠다는 것. 특히 진도준에게는 절대",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sungjoon",
+      "to": "dojun",
+      "type": "rivalry",
+      "label": "helped his father with the killing",
+      "short": "abetted his death",
+      "evidence": "도준이 사건 협조. 현재는 기결수",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunmin",
+      "to": "sungjoon",
+      "type": "romance",
+      "label": "married him — after Do Jun turned her down; divorced in 2022",
+      "short": "married, divorced",
+      "evidence": "진성준의 전 아내 / 처음으로 거절이라는 걸 당하고 만다. 진도준에게. 후에 2022년 공식적 진성준과 이혼",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyunmin",
+      "to": "dojun",
+      "type": "romance",
+      "label": "set her sights on him first; he refused",
+      "short": "refused her",
+      "evidence": "장손 진성준이 아닌 막내 진도준에게 맘이 향했다… 처음으로 거절이라는 걸 당하고 만다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juryun",
+      "to": "youngki",
+      "type": "work",
+      "label": "secretary who bet on Young Ki's era coming",
+      "short": "secretary",
+      "evidence": "진영기의 김주련이 되기로 결심한다 / Jin Young-ki's secretary",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donggi",
+      "to": "yangcheol",
+      "type": "family",
+      "label": "second son",
+      "short": "second son",
+      "evidence": "진양철의 차남 / 순양화재보험 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donggi",
+      "to": "youngki",
+      "type": "rivalry",
+      "label": "waits for a chance to pull his brother down",
+      "short": "wants his seat",
+      "evidence": "무능한 형을 끌어 내리고 왕좌에 오를 기회를 호시탐탐 노리는데",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jina",
+      "to": "donggi",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "진동기의 아내 / Jin Dong-ki's wife",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yejun",
+      "to": "donggi",
+      "type": "family",
+      "label": "daughter — the only granddaughter",
+      "short": "daughter",
+      "evidence": "진동기의 딸 / Only granddaughter of the Soonyang family",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yejun",
+      "to": "dojun",
+      "type": "rivalry",
+      "label": "helps her father go for the throne",
+      "short": "rival",
+      "evidence": "진동기를 도와 순양의 왕좌를 노린다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangmoo",
+      "to": "donggi",
+      "type": "work",
+      "label": "loyal strategist",
+      "short": "strategist",
+      "evidence": "진동기의 충직한 전략가 / Jin Dong-ki's loyal strategist",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwayoung",
+      "to": "yangcheol",
+      "type": "family",
+      "label": "only daughter — his favourite, and never the heir",
+      "short": "daughter",
+      "evidence": "진양철의 고명딸 / 순양백화점 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changje",
+      "to": "hwayoung",
+      "type": "romance",
+      "label": "husband — a poor prosecutor who married in",
+      "short": "husband",
+      "evidence": "진화영의 남편 / A prosecutor with a poor family background",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dojun",
+      "to": "changje",
+      "type": "work",
+      "label": "made him mayor of Seoul",
+      "short": "made him mayor",
+      "evidence": "그런 그에게 시장이 될 기회가 주어진다. 진도준의 도움으로",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dojun",
+      "to": "hwayoung",
+      "type": "work",
+      "label": "helped her — into her own downfall",
+      "short": "helped, then sank her",
+      "evidence": "자신의 능력을 아버지에게 인정받기 위해 진도준의 도움까지 받는데- 그것이 그녀를 나락으로 떨어트리는 길임을",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yungi",
+      "to": "yangcheol",
+      "type": "family",
+      "label": "son born outside the marriage — the third son",
+      "short": "third son",
+      "evidence": "진양철의 혼외차남 / Third son and the youngest and fourth child",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yungi",
+      "to": "dojun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "진도준의 부 / Jin Do-jun's father",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haein",
+      "to": "dojun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "진도준의 모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haein",
+      "to": "yungi",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "진윤기의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyungjoon",
+      "to": "dojun",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "진윤기의 장남, 진도준의 형 / Jin Do-jun's older brother",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sehyun",
+      "to": "dojun",
+      "type": "work",
+      "label": "his partner — Miracle Investment, against Soonyang",
+      "short": "partner",
+      "evidence": "진도준의 조력자이자 파트너 / Jin Do-jun's business partner",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "rachel",
+      "to": "sehyun",
+      "type": "work",
+      "label": "his right hand at Miracle",
+      "short": "right hand",
+      "evidence": "오세현의 오른팔, 재미교포 출신",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rachel",
+      "to": "dojun",
+      "type": "work",
+      "label": "helper",
+      "short": "helper",
+      "evidence": "진도준의 조력자 / 미라클 애널리스트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongsu",
+      "to": "dojun",
+      "type": "family",
+      "label": "Hyun Woo's father",
+      "short": "father",
+      "evidence": "[Hyun Woo's father] / 윤현우의 부친",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kyunghee",
+      "to": "dojun",
+      "type": "family",
+      "label": "Hyun Woo's mother",
+      "short": "mother",
+      "evidence": "[Hyun Woo's mother] / 윤현우의 모친",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dojun",
+      "yangcheol",
+      "minyoung",
+      "pilok",
+      "hangjae",
+      "insuk",
+      "youngki",
+      "jungrae",
+      "sungjoon",
+      "hyunmin",
+      "juryun",
+      "donggi",
+      "jina",
+      "yejun",
+      "sangmoo",
+      "hwayoung",
+      "changje",
+      "yungi",
+      "haein",
+      "hyungjoon",
+      "sehyun",
+      "rachel"
+    ],
+    "blocks": {
+      "Young Ki's family": [
+        0,
+        0
+      ],
+      "Dong Gi's family": [
+        0,
+        1
+      ],
+      "Hwa Young's family": [
+        0,
+        2
+      ],
+      "Yun Gi's family": [
+        2,
+        0
+      ],
+      "Miracle Investment": [
+        2,
+        1
+      ],
+      "Prosecutors": [
+        2,
+        2
+      ],
+      "Soonyang headquarters": [
+        1,
+        0
+      ]
+    },
+    "center": [
+      "dojun",
+      "yangcheol"
+    ]
+  }
+}

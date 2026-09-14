@@ -75,7 +75,13 @@ async function wikipedia(lang: string, title: string | undefined, query: string)
     const r = (await api({ action: "parse", page, prop: "wikitext" })) as { parse?: { wikitext?: { "*": string } } } | null;
     const wikitext = r?.parse?.wikitext?.["*"];
     if (!wikitext) return null;
-    const section = characterSection(wikitext, ["등장 인물", "등장인물", "演員列表", "演员列表", "演員", "演员", "角色", "Cast", "Cast and characters"]);
+    // A big drama gets its own characters article ("재벌집 막내아들의 등장인물",
+    // "List of X characters"): every level-2 heading there is a household, so
+    // the article is the section.
+    const wholeArticle = /등장인물$|^List of .* characters$|角色列表$/.test(page);
+    const section = wholeArticle
+        ? wikitext.slice(wikitext.search(/^==[^=]/m))
+        : characterSection(wikitext, ["등장 인물", "등장인물", "演員列表", "演员列表", "演員", "演员", "角色", "Cast", "Cast and characters"]);
     return section ? { title: page, text: cleanWikitext(section) } : { title: page, text: "(no character section found — headings: " + [...wikitext.matchAll(/^==([^=].*?)==/gm)].map((x) => x[1].trim()).join(", ") + ")" };
 }
 
