@@ -489,10 +489,15 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                                 <span className="font-semibold text-fg">{selectedPerson.name}</span>
                                 <span className="font-mono text-[11px] text-fg-dim">{selectedPerson.actor}</span>
                             </span>
+                            {/* The words that turn a row of strangers into one character:
+                                without them the second portrait reads as another person. */}
+                            {selectedPerson.alsoPlayedBy && selectedPerson.alsoPlayedBy.length > 0 && (
+                                <span className="self-center text-xs text-fg-dim">Also played by</span>
+                            )}
                             {(selectedPerson.alsoPlayedBy ?? []).map((a) => (
                                 <span key={`${a.name}-${a.era ?? ""}`} className="flex flex-col items-center gap-1.5 text-center">
                                     <Face person={{ image: a.image ?? null, name: a.name, inCast: true }} size="lg" />
-                                    <span className="text-xs text-fg-soft">{a.era ? ERA_LABEL[a.era] : "also played by"}</span>
+                                    {a.era && <span className="text-xs text-fg-soft">{ERA_LABEL[a.era]}</span>}
                                     <span className="font-mono text-[11px] text-fg-dim">{a.name}</span>
                                 </span>
                             ))}
