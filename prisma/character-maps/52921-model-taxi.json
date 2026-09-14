@@ -1,0 +1,493 @@
+{
+  "version": 1,
+  "mdlSlug": "52921-model-taxi",
+  "title": "Taxi Driver",
+  "native": "모범택시",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (125 roles, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (5k chars)",
+    "en.wikipedia (wrong article — the 2017 film)"
+  ],
+  "main": [
+    "dogi",
+    "hana",
+    "seongcheol",
+    "goeun",
+    "gyeonggu",
+    "jineon"
+  ],
+  "people": [
+    {
+      "id": "dogi",
+      "name": "Kim Do Gi",
+      "actor": "Lee Je Hoon",
+      "image": "https://i.mydramalist.com/nOQKbL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former special-forces officer; Rainbow Taxi's driver"
+    },
+    {
+      "id": "hana",
+      "name": "Kang Ha Na",
+      "actor": "Esom",
+      "image": "https://i.mydramalist.com/18ED5_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Prosecutor at Seoul Northern District"
+    },
+    {
+      "id": "seongcheol",
+      "name": "Jang Seong Cheol",
+      "actor": "Kim Eui Sung",
+      "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Runs Rainbow Taxi and the Bluebird foundation for crime victims"
+    },
+    {
+      "id": "goeun",
+      "name": "An Go Eun",
+      "actor": "Pyo Ye Jin",
+      "image": "https://i.mydramalist.com/4epr0d_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Accounts — and the hacker"
+    },
+    {
+      "id": "gyeonggu",
+      "name": "Choi Gyeong Gu",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Engineer; former carmaker's researcher"
+    },
+    {
+      "id": "jineon",
+      "name": "Park Jin Eon",
+      "actor": "Bae Yoo Ram",
+      "image": "https://i.mydramalist.com/jJ7Pw_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Engineer; former aircraft mechanic"
+    },
+    {
+      "id": "jinu",
+      "name": "Cho Jin U",
+      "actor": "Yoo Seung Mok",
+      "image": "https://i.mydramalist.com/Lw5eBB_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "note": "Deputy chief prosecutor"
+    },
+    {
+      "id": "minho",
+      "name": "Wang Min Ho",
+      "actor": "Lee Yu Jun",
+      "image": "https://i.mydramalist.com/73Bl0b_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "note": "Investigator in Ha Na's office; former ssireum wrestler"
+    },
+    {
+      "id": "seongmi",
+      "name": "Baek Seong Mi",
+      "actor": "Cha Ji Yeon",
+      "image": "https://i.mydramalist.com/WPJdOp_5m.jpg",
+      "group": "Nakwon Credit",
+      "inCast": true,
+      "note": "Chairwoman of Nakwon Credit — the 'godmother' of underground finance"
+    },
+    {
+      "id": "seoktae",
+      "name": "Koo Seok Tae / Goo Yeong Tae",
+      "actor": "Lee Ho Chul",
+      "image": "https://i.mydramalist.com/b3YOBN_5m.jpg",
+      "group": "Nakwon Credit",
+      "inCast": true,
+      "note": "Her secretary — and his twin, the managing director of Nakwon Healthcare"
+    },
+    {
+      "id": "gyeongmi",
+      "name": "Baek Gyeong Mi",
+      "actor": "Ryu Hyun Kyung",
+      "image": "https://i.mydramalist.com/mOLv6P_5m.jpg",
+      "group": "Nakwon Credit",
+      "inCast": true
+    },
+    {
+      "id": "maria",
+      "name": "Kang Maria",
+      "actor": "Joe In",
+      "image": "https://i.mydramalist.com/6BDJj_5m.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "First client — enslaved at a salted-fish factory"
+    },
+    {
+      "id": "juchan",
+      "name": "Park Ju Chan",
+      "actor": "Tae Hang Ho",
+      "image": "https://i.mydramalist.com/pV1QB_5m.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "Owner of the factory"
+    },
+    {
+      "id": "jeongeun",
+      "name": "An Jeong Eun",
+      "actor": "Ryu Yi Jae",
+      "image": "https://i.mydramalist.com/dNrw5_5m.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "Go Eun's sister; took her own life"
+    },
+    {
+      "id": "yangjin",
+      "name": "Park Yang Jin",
+      "actor": "Baek Hyun Jin",
+      "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "Chairman of U Data, the web-hard company"
+    },
+    {
+      "id": "bokja",
+      "name": "Lim Bok Ja",
+      "actor": "Shim So Young",
+      "image": "https://i.mydramalist.com/QzBrg_5m.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "'Madame Lim', the voice-phishing boss"
+    },
+    {
+      "id": "cheoljin",
+      "name": "Kim Cheol Jin",
+      "actor": "Jeon Seok Chan",
+      "image": "https://i.mydramalist.com/ZvqZWm.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "Last client — twenty years in prison for a murder he did not commit"
+    },
+    {
+      "id": "gyujeong",
+      "name": "Nam Gyu Jeong",
+      "actor": "Kim Kang Il",
+      "image": "https://i.mydramalist.com/wwovgm.jpg",
+      "group": "The clients",
+      "inCast": true,
+      "note": "Serial killer, with no motive"
+    },
+    {
+      "id": "dongpil",
+      "name": "Park Dong Pil",
+      "actor": "Heo Jung Do",
+      "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "note": "Violent-crimes team leader, Jongam police"
+    }
+  ],
+  "links": [
+    {
+      "from": "dogi",
+      "to": "hana",
+      "type": "rivalry",
+      "label": "the prosecutor on Rainbow Taxi's trail",
+      "short": "investigates him",
+      "evidence": "he faces prosecutor Ha Na, who investigates Rainbow Taxi's lawless methods",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hana",
+      "to": "dogi",
+      "type": "romance",
+      "label": "torn between the law and the man",
+      "short": "drawn to him",
+      "evidence": "Torn between revenge and the pursuit of justice",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongcheol",
+      "to": "dogi",
+      "type": "work",
+      "label": "recruited him after his mother's murder",
+      "short": "his boss",
+      "evidence": "He joins Rainbow Taxi, a secret organization that delivers revenge to victims the law couldn't protect",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "goeun",
+      "to": "dogi",
+      "type": "work",
+      "label": "runs the screens behind him",
+      "short": "his hacker",
+      "evidence": "'무지개 운수'의 경리과 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonggu",
+      "to": "dogi",
+      "type": "work",
+      "label": "builds his cars",
+      "short": "his mechanic",
+      "evidence": "'무지개 운수' 정비실 엔지니어",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jineon",
+      "to": "dogi",
+      "type": "work",
+      "label": "builds his cars",
+      "short": "his mechanic",
+      "evidence": "'무지개 운수' 정비실 엔지니어 / 한국의 맥가이버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonggu",
+      "to": "jineon",
+      "type": "friend",
+      "label": "the two engineers",
+      "short": "partners",
+      "evidence": "정비실 엔지니어",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinu",
+      "to": "hana",
+      "type": "work",
+      "label": "her supervisor, who wants no surprises",
+      "short": "supervisor",
+      "evidence": "[Chief prosecutor / Ha Na's supervisor] / 서울북부검찰청 차장검사",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "hana",
+      "type": "work",
+      "label": "her investigator; dies on the case",
+      "short": "investigator",
+      "evidence": "[Investigator] / 강하나 검사실 대표 수사관",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongmi",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "the money behind Rainbow Taxi's revenge",
+      "short": "funds them",
+      "evidence": "지하금융계의 큰손이자 '대모'로 불린다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongmi",
+      "to": "dogi",
+      "type": "rivalry",
+      "label": "turns on Rainbow Taxi",
+      "short": "turns on him",
+      "evidence": "낙원신용정보 회장",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seoktae",
+      "to": "seongmi",
+      "type": "work",
+      "label": "her secretary, with a fighter's hands",
+      "short": "secretary",
+      "evidence": "[Chairman Baek's personal assistant] / 김도기와 2번이나 싸웠다",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongmi",
+      "to": "seongmi",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "[Seong Mi's younger sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maria",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "the first client",
+      "short": "1st client",
+      "evidence": "1번째 의뢰인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juchan",
+      "to": "maria",
+      "type": "rivalry",
+      "label": "worked and beat her at the factory",
+      "short": "abused her",
+      "evidence": "강마리아에게 노동 착취와 심한 학대를 함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongeun",
+      "to": "goeun",
+      "type": "family",
+      "label": "older sister, driven to suicide",
+      "short": "older sister",
+      "evidence": "[Go Eun's sister] / 안고은의 언니… 자살했다",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yangjin",
+      "to": "jeongeun",
+      "type": "rivalry",
+      "label": "the web-hard chairman whose site spread the video",
+      "short": "the web-hard",
+      "evidence": "국내 최대 웹하드 업체인 유데이터 회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "bokja",
+      "to": "dogi",
+      "type": "rivalry",
+      "label": "the voice-phishing ring he takes down",
+      "short": "a target",
+      "evidence": "보이스피싱 조직책 보스",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheoljin",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "the last client — framed for the Dangsan murder",
+      "short": "last client",
+      "evidence": "마지막 의뢰인. 당산동 여중생 살인사건의 유력 용의자로 누명을 쓰고 20년 복역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyujeong",
+      "to": "dogi",
+      "type": "rivalry",
+      "label": "the serial killer — his mother's death, and the first job",
+      "short": "killed his mother",
+      "evidence": "의도도 목적도 없이 사람들을 살해한 희대의 연쇄 살인마 / after his mother is murdered by a serial killer",
+      "source": "ko.wikipedia · MDL synopsis",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dongpil",
+      "to": "hana",
+      "type": "work",
+      "label": "the detective on the Wolgok case",
+      "short": "detective",
+      "evidence": "월곡동 사건 사건담당 형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dogi",
+      "hana",
+      "seongcheol",
+      "goeun",
+      "gyeonggu",
+      "jineon",
+      "jinu",
+      "minho",
+      "seongmi",
+      "seoktae",
+      "gyeongmi",
+      "maria",
+      "juchan",
+      "jeongeun",
+      "yangjin",
+      "bokja",
+      "cheoljin",
+      "gyujeong",
+      "dongpil"
+    ],
+    "blocks": {
+      "Rainbow Taxi": [
+        0,
+        0
+      ],
+      "Prosecutors": [
+        2,
+        0
+      ],
+      "Nakwon Credit": [
+        2,
+        2
+      ],
+      "The clients": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "dogi",
+      "hana"
+    ]
+  }
+}

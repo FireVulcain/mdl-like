@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "mdlSlug": "752799-study-group",
+  "title": "Study Group",
+  "native": "스터디그룹",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (73 roles, 7 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only, no sentences — many links inferred)",
+    "en.wikipedia (nothing found)"
+  ],
+  "main": [
+    "gamin",
+    "hangyeong",
+    "hanul",
+    "sehyeon",
+    "jiu",
+    "huiwon",
+    "jun"
+  ],
+  "people": [
+    {
+      "id": "gamin",
+      "name": "Yun Ga Min",
+      "actor": "Hwang Min Hyun",
+      "image": "https://i.mydramalist.com/l0DnYv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Wants college; can only fight"
+    },
+    {
+      "id": "hangyeong",
+      "name": "Lee Han Gyeong",
+      "actor": "Han Ji Eun",
+      "image": "https://i.mydramalist.com/rNO717_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Temporary teacher with a secret; tutored him in middle school"
+    },
+    {
+      "id": "hanul",
+      "name": "Pi Han Ul",
+      "actor": "Cha Woo Min",
+      "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
+      "group": "The study group",
+      "inCast": true,
+      "note": "The strongest at Yusung"
+    },
+    {
+      "id": "sehyeon",
+      "name": "Kim Se Hyeon",
+      "actor": "Lee Jong Hyun",
+      "image": "https://i.mydramalist.com/DkJZ8z_5m.jpg",
+      "group": "The study group",
+      "inCast": true
+    },
+    {
+      "id": "jiu",
+      "name": "Lee Ji U",
+      "actor": "Shin Su Hyun",
+      "image": "https://i.mydramalist.com/xOWkN_5m.jpg",
+      "group": "The study group",
+      "inCast": true
+    },
+    {
+      "id": "huiwon",
+      "name": "Choi Hui Won",
+      "actor": "Yoon Sang Jung",
+      "image": "https://i.mydramalist.com/dLzbb_5m.jpg",
+      "group": "The study group",
+      "inCast": true
+    },
+    {
+      "id": "jun",
+      "name": "Lee Jun",
+      "actor": "Gong Do Yu",
+      "image": "https://i.mydramalist.com/YYlA8z_5m.jpg",
+      "group": "The study group",
+      "inCast": true
+    },
+    {
+      "id": "hyeonu",
+      "name": "Lee Hyeon U",
+      "actor": "Park Yoon Ho",
+      "image": "https://i.mydramalist.com/YYVLQK_5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true,
+      "note": "First year"
+    },
+    {
+      "id": "geonyeop",
+      "name": "Park Geon Yeop",
+      "actor": "Hong Min Gi",
+      "image": "https://i.mydramalist.com/Lwqzoy_5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true,
+      "note": "First year"
+    },
+    {
+      "id": "suncheol",
+      "name": "Kim Sun Cheol",
+      "actor": "Ju Yeon U",
+      "image": "https://i.mydramalist.com/XVBoZ_5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true
+    },
+    {
+      "id": "taeo",
+      "name": "Kang Tae O",
+      "actor": "Seo Min Je",
+      "image": "https://i.mydramalist.com/l0N34x_5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true
+    },
+    {
+      "id": "gyujin",
+      "name": "Kim Gyu Jin",
+      "actor": "Jin Woo Jin",
+      "image": "https://i.mydramalist.com/E2Py5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true,
+      "note": "Disciplinary committee"
+    },
+    {
+      "id": "no173",
+      "name": "No. 173",
+      "actor": "Kim Hwi Gyu",
+      "image": "https://i.mydramalist.com/pd864b_5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true,
+      "note": "173rd in the school's ranking"
+    },
+    {
+      "id": "viceprincipal",
+      "name": "Vice-principal",
+      "actor": "Jung Jae Sung",
+      "image": "https://i.mydramalist.com/zBDbxO_5m.jpg",
+      "group": "Yusung Tech",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "dean",
+      "name": "Dean of students",
+      "actor": "Ri Min",
+      "image": "https://i.mydramalist.com/nE60xm.jpg",
+      "group": "Yusung Tech",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "yeonbaek",
+      "name": "Pi Yeon Baek",
+      "actor": "Lee Jung Hyuk",
+      "image": "https://i.mydramalist.com/VQAovm.jpg",
+      "group": "Yeonbaek gang",
+      "inCast": true,
+      "note": "The gang's boss"
+    },
+    {
+      "id": "minhwan",
+      "name": "Ma Min Hwan",
+      "actor": "Baek Seo Hoo",
+      "image": "https://i.mydramalist.com/nOZANQ_5m.jpg",
+      "group": "Yeonbaek gang",
+      "inCast": true
+    },
+    {
+      "id": "anti",
+      "name": "Anti",
+      "actor": "Lim Ji Sub",
+      "image": "https://i.mydramalist.com/rvxp2_5m.jpg",
+      "group": "Yeonbaek gang",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Jun Hyuk",
+          "image": "https://i.mydramalist.com/e7ZlE_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Cho Yi An",
+          "image": "https://i.mydramalist.com/eegmY_5m.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "jangho",
+      "name": "O Jang Ho",
+      "actor": "Kim Min",
+      "image": "https://i.mydramalist.com/QJ5mZ6_5m.jpg",
+      "group": "Yeonbaek gang",
+      "inCast": true,
+      "note": "The gang's scout"
+    },
+    {
+      "id": "mihyeon",
+      "name": "Jeon Mi Hyeon",
+      "actor": "Kim Young Ah",
+      "image": "https://i.mydramalist.com/B16pz_5m.jpg",
+      "group": "Ga Min's family",
+      "inCast": true,
+      "note": "Director of the Korean Taekwondo Association"
+    },
+    {
+      "id": "taeman",
+      "name": "Na Tae Man",
+      "actor": "Shim Yoon Bo",
+      "image": "https://i.mydramalist.com/dJ6XK_5m.jpg",
+      "group": "Duncheon police",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "sehyeonfather",
+      "name": "Se Hyeon's father",
+      "actor": "Kim Young Woong",
+      "image": "https://i.mydramalist.com/603mjO_5m.jpg",
+      "group": "The study group",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    }
+  ],
+  "links": [
+    {
+      "from": "hangyeong",
+      "to": "gamin",
+      "type": "work",
+      "label": "tutored him in middle school; back as his teacher, with a secret",
+      "short": "his teacher",
+      "evidence": "His teacher, Lee Han Gyeong, who tutored him while he was a middle school student, returns as a temporary teacher with a secret",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gamin",
+      "to": "hanul",
+      "type": "friend",
+      "label": "in the study group",
+      "short": "study group",
+      "evidence": "He forms a study group but is forced to use his fighting skills to protect his friends from bullies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gamin",
+      "to": "sehyeon",
+      "type": "friend",
+      "label": "in the study group",
+      "short": "study group",
+      "evidence": "He forms a study group but is forced to use his fighting skills to protect his friends from bullies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gamin",
+      "to": "jiu",
+      "type": "friend",
+      "label": "in the study group",
+      "short": "study group",
+      "evidence": "He forms a study group but is forced to use his fighting skills to protect his friends from bullies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gamin",
+      "to": "huiwon",
+      "type": "friend",
+      "label": "in the study group",
+      "short": "study group",
+      "evidence": "He forms a study group but is forced to use his fighting skills to protect his friends from bullies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gamin",
+      "to": "jun",
+      "type": "friend",
+      "label": "in the study group",
+      "short": "study group",
+      "evidence": "He forms a study group but is forced to use his fighting skills to protect his friends from bullies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hanul",
+      "to": "gamin",
+      "type": "rivalry",
+      "label": "the school's strongest, before he joins",
+      "short": "rival, then friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeonbaek",
+      "to": "hanul",
+      "type": "family",
+      "label": "father — the gang boss",
+      "short": "father",
+      "evidence": "피연백 / 피한울",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeonu",
+      "to": "jiu",
+      "type": "family",
+      "label": "twin",
+      "short": "twin",
+      "evidence": "[Ji U's twin / 1st year student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mihyeon",
+      "to": "gamin",
+      "type": "family",
+      "label": "mother — head of the Taekwondo association",
+      "short": "mother",
+      "evidence": "[Ga Min's mother / Director of Korean Taekwondo Association] / 가민 모",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sehyeonfather",
+      "to": "sehyeon",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Se Hyeon's father] / 세현 부",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minhwan",
+      "to": "gamin",
+      "type": "rivalry",
+      "label": "the gang's recruit at school",
+      "short": "the gang at school",
+      "evidence": "[Yeonbaek Gang]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minhwan",
+      "to": "yeonbaek",
+      "type": "work",
+      "label": "in the gang",
+      "short": "in the gang",
+      "evidence": "[Yeonbaek Gang] / 연백파",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anti",
+      "to": "yeonbaek",
+      "type": "work",
+      "label": "in the gang",
+      "short": "in the gang",
+      "evidence": "연백파",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangho",
+      "to": "yeonbaek",
+      "type": "work",
+      "label": "scouts students for the gang",
+      "short": "scout",
+      "evidence": "[Yeonbaek Gang] / 스카우터",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anti",
+      "to": "gamin",
+      "type": "rivalry",
+      "label": "the fight the season builds to",
+      "short": "his opponent",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "suncheol",
+      "to": "gamin",
+      "type": "rivalry",
+      "label": "a bully, then a recruit",
+      "short": "bully",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taeo",
+      "to": "gamin",
+      "type": "rivalry",
+      "label": "bully",
+      "short": "bully",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyujin",
+      "to": "gamin",
+      "type": "work",
+      "label": "sits on the disciplinary committee",
+      "short": "disciplinary",
+      "evidence": "[Disciplinary Committee member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "no173",
+      "to": "gamin",
+      "type": "rivalry",
+      "label": "ranked 173rd; the first he beats",
+      "short": "ranked 173",
+      "evidence": "서열 173위",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "viceprincipal",
+      "to": "hangyeong",
+      "type": "work",
+      "label": "the vice-principal over her",
+      "short": "vice-principal",
+      "evidence": "[Vice-principal] / 교감",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dean",
+      "to": "gamin",
+      "type": "work",
+      "label": "dean of students",
+      "short": "dean",
+      "evidence": "[Dean of students] / 학생부장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeman",
+      "to": "yeonbaek",
+      "type": "rivalry",
+      "label": "the detective on the gang",
+      "short": "on the gang",
+      "evidence": "[Detective] / 둔천경찰서",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geonyeop",
+      "to": "hyeonu",
+      "type": "friend",
+      "label": "first-years together",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "gamin",
+      "hangyeong",
+      "hanul",
+      "sehyeon",
+      "jiu",
+      "huiwon",
+      "jun",
+      "hyeonu",
+      "geonyeop",
+      "suncheol",
+      "taeo",
+      "gyujin",
+      "no173",
+      "viceprincipal",
+      "dean",
+      "yeonbaek",
+      "minhwan",
+      "anti",
+      "jangho",
+      "mihyeon",
+      "taeman",
+      "sehyeonfather"
+    ],
+    "blocks": {
+      "The study group": [
+        0,
+        0
+      ],
+      "Ga Min's family": [
+        0,
+        2
+      ],
+      "Yusung Tech": [
+        2,
+        0
+      ],
+      "Duncheon police": [
+        2,
+        2
+      ],
+      "Yeonbaek gang": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "gamin",
+      "hangyeong"
+    ]
+  }
+}

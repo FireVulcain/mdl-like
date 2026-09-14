@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "mdlSlug": "702267-weak-hero",
+  "title": "Weak Hero Class 1",
+  "native": "약한영웅 Class 1",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (47 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia (no character section)",
+    "en.wikipedia Cast (covers both classes; entries run into one another — used for three lines)"
+  ],
+  "main": [
+    "sieun",
+    "suho",
+    "beomseok",
+    "yeongbin"
+  ],
+  "people": [
+    {
+      "id": "sieun",
+      "name": "Yeon Si Eun",
+      "actor": "Park Ji Hoon",
+      "image": "https://i.mydramalist.com/wJ3Jzg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Top of the school; fights with physics and his wits"
+    },
+    {
+      "id": "suho",
+      "name": "An Su Ho",
+      "actor": "Choi Hyun Wook",
+      "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "'Baku' — strength and a sense of justice"
+    },
+    {
+      "id": "beomseok",
+      "name": "O Beom Seok",
+      "actor": "Hong Kyung",
+      "image": "https://i.mydramalist.com/O82gkY_5m.jpg",
+      "group": "Class 1",
+      "inCast": true,
+      "note": "The transfer student who wants to belong"
+    },
+    {
+      "id": "yeongbin",
+      "name": "Jeon Yeong Bin",
+      "actor": "Kim Su Gyeom",
+      "image": "https://i.mydramalist.com/JBvjlX_5m.jpg",
+      "group": "Class 1",
+      "inCast": true,
+      "note": "The classroom's first bully"
+    },
+    {
+      "id": "yeongi",
+      "name": "Yeong I",
+      "actor": "Lee Yeon",
+      "image": "https://i.mydramalist.com/WWq0O_5m.jpg",
+      "group": "Class 1",
+      "inCast": true,
+      "note": "The girl from the PC room"
+    },
+    {
+      "id": "seokdae",
+      "name": "Jeon Seok Dae",
+      "actor": "Shin Seung Ho",
+      "image": "https://i.mydramalist.com/WPjN7l_5m.jpg",
+      "group": "The bullies",
+      "inCast": true,
+      "note": "Second in the math contest; sadistic about it"
+    },
+    {
+      "id": "taehun",
+      "name": "Han Tae Hun",
+      "actor": "Hwang Sung Bin",
+      "image": "https://i.mydramalist.com/2L3LE_5m.jpg",
+      "group": "The bullies",
+      "inCast": true,
+      "note": "Runs the gang Seok Dae brings in"
+    },
+    {
+      "id": "uyeong",
+      "name": "Kang U Yeong",
+      "actor": "Cha Woo Min",
+      "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
+      "group": "The bullies",
+      "inCast": true,
+      "note": "MMA fighter with a grudge"
+    },
+    {
+      "id": "jeongchan",
+      "name": "Lee Jeong Chan",
+      "actor": "Yoon Jung Hoon",
+      "image": "https://i.mydramalist.com/jo35B_5m.jpg",
+      "group": "The bullies",
+      "inCast": true
+    },
+    {
+      "id": "sieunmother",
+      "name": "Si Eun's mother",
+      "actor": "Gong Hyun Joo",
+      "image": "https://i.mydramalist.com/ebpDE_5m.jpg",
+      "group": "Si Eun's family",
+      "inCast": true,
+      "note": "Online math lecturer, rarely home; MDL lists the role unnamed"
+    },
+    {
+      "id": "sieunfather",
+      "name": "Si Eun's father",
+      "actor": "Kim Sung Kyun",
+      "image": "https://i.mydramalist.com/ABLNZZ_5m.jpg",
+      "group": "Si Eun's family",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "jinwon",
+      "name": "O Jin Won",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Beom Seok's family",
+      "inCast": true,
+      "note": "A politician; adopted Beom Seok"
+    },
+    {
+      "id": "aide",
+      "name": "O Jin Won's aide",
+      "actor": "Oh Dong Min",
+      "image": "https://i.mydramalist.com/Rq5lg_5m.jpg",
+      "group": "Beom Seok's family",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "teacher",
+      "name": "Homeroom teacher",
+      "actor": "Yeom Ji Young",
+      "image": "https://i.mydramalist.com/B1Oyz_5m.jpg",
+      "group": "Eunjang High",
+      "inCast": true,
+      "note": "Grade 1 class 6; MDL lists the role unnamed"
+    }
+  ],
+  "links": [
+    {
+      "from": "suho",
+      "to": "sieun",
+      "type": "friend",
+      "label": "the outsider's first ally",
+      "short": "his ally",
+      "evidence": "He becomes one of Si-eun's main allies from Eunjang in the fight against school violence",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "beomseok",
+      "to": "sieun",
+      "type": "friend",
+      "label": "the transfer student the two take in",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "beomseok",
+      "to": "suho",
+      "type": "friend",
+      "label": "friends, for a while",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "beomseok",
+      "to": "sieun",
+      "type": "rivalry",
+      "label": "turns on them — sells Su Ho out to Seok Dae",
+      "short": "betrays them",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongbin",
+      "to": "sieun",
+      "type": "rivalry",
+      "label": "the bully he beats first, by thinking",
+      "short": "bullies him",
+      "evidence": "he fights against the violence that takes place inside and outside of his school",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongbin",
+      "to": "beomseok",
+      "type": "rivalry",
+      "label": "bullied him before Si Eun stepped in",
+      "short": "bullied him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seokdae",
+      "to": "sieun",
+      "type": "rivalry",
+      "label": "targets him after losing the math contest",
+      "short": "targets him",
+      "evidence": "A sadistic bully who targets Si-eun after he comes in second after him in a math competition",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokdae",
+      "to": "suho",
+      "type": "rivalry",
+      "label": "the fight that puts Su Ho in a coma",
+      "short": "puts him in a coma",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taehun",
+      "to": "seokdae",
+      "type": "work",
+      "label": "the gang he brings in",
+      "short": "his gang",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "uyeong",
+      "to": "suho",
+      "type": "rivalry",
+      "label": "lost to him in middle school; wants it back",
+      "short": "grudge",
+      "evidence": "A young MMA fighter who holds a grudge against Su-ho after losing a match against him in middle school",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongchan",
+      "to": "seokdae",
+      "type": "work",
+      "label": "runs with him",
+      "short": "his crony",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sieunmother",
+      "to": "sieun",
+      "type": "family",
+      "label": "mother — he falls asleep to her lectures",
+      "short": "mother",
+      "evidence": "[Yeon Si Eun's mother] / A math lecturer that rarely spends time with her son due to her busy schedule",
+      "source": "MDL cast · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sieunfather",
+      "to": "sieun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yeon Si Eun's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinwon",
+      "to": "beomseok",
+      "type": "family",
+      "label": "father — a politician who took him in, and hits him",
+      "short": "father",
+      "evidence": "[Beom Seok's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aide",
+      "to": "jinwon",
+      "type": "work",
+      "label": "his aide",
+      "short": "aide",
+      "evidence": "[O Jin Won's aide]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "teacher",
+      "to": "sieun",
+      "type": "work",
+      "label": "homeroom teacher",
+      "short": "homeroom teacher",
+      "evidence": "[Grade 1 Class 6 homeroom teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongi",
+      "to": "suho",
+      "type": "friend",
+      "label": "the girl at the PC room, his friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "sieun",
+      "suho",
+      "beomseok",
+      "yeongbin",
+      "yeongi",
+      "seokdae",
+      "taehun",
+      "uyeong",
+      "jeongchan",
+      "sieunmother",
+      "sieunfather",
+      "jinwon",
+      "aide",
+      "teacher"
+    ],
+    "blocks": {
+      "Si Eun's family": [
+        0,
+        0
+      ],
+      "Class 1": [
+        0,
+        2
+      ],
+      "The bullies": [
+        2,
+        0
+      ],
+      "Beom Seok's family": [
+        2,
+        2
+      ],
+      "Eunjang High": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sieun",
+      "suho"
+    ]
+  }
+}

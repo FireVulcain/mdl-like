@@ -1,0 +1,596 @@
+{
+  "version": 1,
+  "mdlSlug": "49865-psycho-but-it-s-okay",
+  "title": "It's Okay to Not Be Okay",
+  "native": "사이코지만 괜찮아",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (68 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (3k chars)",
+    "en.wikipedia Cast (not used)"
+  ],
+  "main": [
+    "gangtae",
+    "munyoung",
+    "sangtae"
+  ],
+  "people": [
+    {
+      "id": "gangtae",
+      "name": "Moon Gang Tae",
+      "actor": "Kim Soo Hyun",
+      "image": "https://i.mydramalist.com/rNgNLN_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Woo Jin",
+          "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Caregiver on the psychiatric ward"
+    },
+    {
+      "id": "munyoung",
+      "name": "Ko Mun Young",
+      "actor": "Seo Yea Ji",
+      "image": "https://i.mydramalist.com/PxLjrL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Su In",
+          "image": "https://i.mydramalist.com/PxLwo8_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Children's author; antisocial personality"
+    },
+    {
+      "id": "sangtae",
+      "name": "Moon Sang Tae",
+      "actor": "Oh Jung Se",
+      "image": "https://i.mydramalist.com/VXDoEJ_5m.jpg",
+      "group": "The brothers",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Kyu Sung",
+          "image": "https://i.mydramalist.com/BE5kb_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Autistic; illustrator; afraid of butterflies"
+    },
+    {
+      "id": "mom",
+      "name": "Gang Tae and Sang Tae's mother",
+      "actor": "Choi Hee Jin",
+      "image": "https://i.mydramalist.com/6jVxj_5m.jpg",
+      "group": "The brothers",
+      "inCast": true,
+      "note": "Murdered; MDL lists the role unnamed"
+    },
+    {
+      "id": "jaesu",
+      "name": "Jo Jae Soo",
+      "actor": "Kang Gi Doong",
+      "image": "https://i.mydramalist.com/YYZ8yd_5m.jpg",
+      "group": "The brothers",
+      "inCast": true,
+      "note": "Gang Tae's only friend; runs a chicken place"
+    },
+    {
+      "id": "juri",
+      "name": "Nam Ju Ri",
+      "actor": "Park Gyu Young",
+      "image": "https://i.mydramalist.com/oQBr6N_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Seo Kyung",
+          "image": "https://i.mydramalist.com/xQD5jm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Psychiatric nurse, seven years in"
+    },
+    {
+      "id": "haengja",
+      "name": "Park Haeng Ja",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "note": "Head nurse"
+    },
+    {
+      "id": "jiwang",
+      "name": "Oh Ji Wang",
+      "actor": "Kim Chang Wan",
+      "image": "https://i.mydramalist.com/6xQPg_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "note": "Director of OK Psychiatric Hospital"
+    },
+    {
+      "id": "sundeok",
+      "name": "Kang Sun Deok",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "note": "Head cook"
+    },
+    {
+      "id": "seonbyul",
+      "name": "Seon Byul",
+      "actor": "Jang Gyu Ri",
+      "image": "https://i.mydramalist.com/kA7r7w_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "note": "Nurse, three years in"
+    },
+    {
+      "id": "minseok",
+      "name": "Kwon Min Seok",
+      "actor": "Seo Joon",
+      "image": "https://i.mydramalist.com/E3zm5_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "chayong",
+      "name": "Oh Cha Yong",
+      "actor": "Choi Woo Sung",
+      "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
+      "group": "OK Hospital staff",
+      "inCast": true,
+      "note": "Caregiver"
+    },
+    {
+      "id": "daehwan",
+      "name": "Go Dae Hwan",
+      "actor": "Lee Eol",
+      "image": "https://i.mydramalist.com/r58x7_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "Famous architect; organic dementia"
+    },
+    {
+      "id": "pilong",
+      "name": "Kan Pil Ong",
+      "actor": "Kim Ki Cheon",
+      "image": "https://i.mydramalist.com/YY1OAK_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "PTSD; 'Gandhi'"
+    },
+    {
+      "id": "jungtae",
+      "name": "Joo Jung Tae",
+      "actor": "Jung Jae Kwang",
+      "image": "https://i.mydramalist.com/mO1opk_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "Alcohol dependence"
+    },
+    {
+      "id": "ahreum",
+      "name": "Lee Ah Reum",
+      "actor": "Ji Hye Won",
+      "image": "https://i.mydramalist.com/E5Nr7W_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "Depression"
+    },
+    {
+      "id": "okran",
+      "name": "Park Ok Ran",
+      "actor": "Kang Ji Eun",
+      "image": "https://i.mydramalist.com/ejdLW_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "Borderline personality; once a stage actress; a fan of Do Hui Jae's books"
+    },
+    {
+      "id": "sunhae",
+      "name": "Yoo Sun Hae",
+      "actor": "Joo In Young",
+      "image": "https://i.mydramalist.com/Kpy5zq_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Go Do Yeon",
+          "image": "https://i.mydramalist.com/2LB0W_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Dissociative identity; raised by a shaman"
+    },
+    {
+      "id": "sangin",
+      "name": "Lee Sang In",
+      "actor": "Kim Joo Heon",
+      "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
+      "group": "Sangsangyisang",
+      "inCast": true,
+      "note": "CEO of the children's publisher"
+    },
+    {
+      "id": "seungjae",
+      "name": "Yoo Seung Jae",
+      "actor": "Park Jin Joo",
+      "image": "https://i.mydramalist.com/5vV3xY_5m.jpg",
+      "group": "Sangsangyisang",
+      "inCast": true,
+      "note": "Art director, really his assistant"
+    }
+  ],
+  "links": [
+    {
+      "from": "gangtae",
+      "to": "munyoung",
+      "type": "romance",
+      "label": "the caregiver and the author",
+      "short": "in love",
+      "evidence": "문영의 연인 / 강태의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangtae",
+      "to": "gangtae",
+      "type": "family",
+      "label": "older brother, whom he has looked after all his life",
+      "short": "older brother",
+      "evidence": "상태의 동생 / 강태의 형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mom",
+      "to": "gangtae",
+      "type": "family",
+      "label": "mother — murdered",
+      "short": "mother",
+      "evidence": "[Gang Tae and Sang Tae's mom]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mom",
+      "to": "sangtae",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Gang Tae and Sang Tae's mom]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haengja",
+      "to": "mom",
+      "type": "rivalry",
+      "label": "the one who killed her",
+      "short": "killed her",
+      "evidence": "강태와상태의 어머니를 죽인진범이다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haengja",
+      "to": "munyoung",
+      "type": "family",
+      "label": "her birth mother, Do Hui Jae, living under another name",
+      "short": "birth mother",
+      "evidence": "박행자/도희재 역 - 괜찮은 정신병원 수간호사. 문영의 생모",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daehwan",
+      "to": "munyoung",
+      "type": "family",
+      "label": "father — a patient on the ward",
+      "short": "father",
+      "evidence": "[Moon Young's father] / 문영의 아버지, 건축문화인상을 수차례 수상한 유명 건축가",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okran",
+      "to": "haengja",
+      "type": "bond",
+      "label": "the fan who carries Do Hui Jae's voice",
+      "short": "her fan",
+      "evidence": "도희재 작가의 시리즈 광팬",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesu",
+      "to": "gangtae",
+      "type": "friend",
+      "label": "his only friend",
+      "short": "only friend",
+      "evidence": "[Gang Tae's friend] / 강태의 유일한 친구",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juri",
+      "to": "gangtae",
+      "type": "work",
+      "label": "co-worker — and in love with him, unreturned",
+      "short": "co-worker",
+      "evidence": "[Gang Tae's co-worker] / 정신보건 간호사",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juri",
+      "to": "gangtae",
+      "type": "romance",
+      "label": "loves him, unreturned",
+      "short": "loves him",
+      "evidence": "남주리 (30세) 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sundeok",
+      "to": "juri",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ju Ri's mother] / 주리의 어머니, 조리장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sundeok",
+      "to": "gangtae",
+      "type": "work",
+      "label": "feeds the brothers like a mother",
+      "short": "takes them in",
+      "evidence": "주리의 어머니, 조리장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiwang",
+      "to": "gangtae",
+      "type": "work",
+      "label": "the director",
+      "short": "director",
+      "evidence": "[OK Psychiatric Hospital's director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiwang",
+      "to": "chayong",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "오지왕 子 / 오차용 父",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haengja",
+      "to": "juri",
+      "type": "work",
+      "label": "head nurse over her",
+      "short": "head nurse",
+      "evidence": "괜찮은 정신병원 수간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonbyul",
+      "to": "juri",
+      "type": "friend",
+      "label": "best friend on the ward",
+      "short": "best friend",
+      "evidence": "주리의 단짝",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minseok",
+      "to": "jiwang",
+      "type": "work",
+      "label": "psychiatrist under him",
+      "short": "psychiatrist",
+      "evidence": "괜찮은 정신병원 정신과 전문의",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chayong",
+      "to": "gangtae",
+      "type": "work",
+      "label": "fellow caregiver",
+      "short": "colleague",
+      "evidence": "정신병동 보호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangin",
+      "to": "munyoung",
+      "type": "work",
+      "label": "her publisher",
+      "short": "her publisher",
+      "evidence": "[Sangsangyisang Publishing Company's CEO] / 아동문학 출판사 대표",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjae",
+      "to": "sangin",
+      "type": "work",
+      "label": "his assistant in all but title",
+      "short": "assistant",
+      "evidence": "입사는 아트디렉터로 했는데, 하는 일은 상인의 개인비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangin",
+      "to": "juri",
+      "type": "romance",
+      "label": "the publisher and the nurse",
+      "short": "courts her",
+      "evidence": "이상인 (38세) / 남주리 (30세)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sunhae",
+      "to": "jiwang",
+      "type": "work",
+      "label": "diagnosed by him at the shaman's",
+      "short": "his patient",
+      "evidence": "어느날 점을 보러 온 오원장에 의해 '해리성 인격장애' 진단을 받는다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilong",
+      "to": "gangtae",
+      "type": "work",
+      "label": "patient",
+      "short": "patient",
+      "evidence": "[Patient]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungtae",
+      "to": "gangtae",
+      "type": "work",
+      "label": "patient",
+      "short": "patient",
+      "evidence": "[Patient]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ahreum",
+      "to": "gangtae",
+      "type": "work",
+      "label": "patient",
+      "short": "patient",
+      "evidence": "[Patient]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "gangtae",
+      "munyoung",
+      "sangtae",
+      "mom",
+      "jaesu",
+      "juri",
+      "haengja",
+      "jiwang",
+      "sundeok",
+      "seonbyul",
+      "minseok",
+      "chayong",
+      "daehwan",
+      "pilong",
+      "jungtae",
+      "ahreum",
+      "okran",
+      "sunhae",
+      "sangin",
+      "seungjae"
+    ],
+    "blocks": {
+      "The brothers": [
+        0,
+        0
+      ],
+      "Patients": [
+        0,
+        2
+      ],
+      "OK Hospital staff": [
+        2,
+        0
+      ],
+      "Sangsangyisang": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "gangtae",
+      "munyoung"
+    ]
+  }
+}

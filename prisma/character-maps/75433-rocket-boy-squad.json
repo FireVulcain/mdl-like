@@ -1,0 +1,568 @@
+{
+  "version": 1,
+  "mdlSlug": "75433-rocket-boy-squad",
+  "title": "Racket Boys",
+  "native": "라켓소년단",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (161 roles, 9 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (one line each)",
+    "en.wikipedia Cast (2k chars)"
+  ],
+  "main": [
+    "haekang",
+    "seyoon",
+    "hyunjong",
+    "youngja",
+    "yoondam",
+    "uchan",
+    "yongtae",
+    "insol",
+    "hansol"
+  ],
+  "people": [
+    {
+      "id": "haekang",
+      "name": "Yoon Hae Kang",
+      "actor": "Tang Jun Sang",
+      "image": "https://i.mydramalist.com/AB2jwg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Tae Yul",
+          "image": "https://i.mydramalist.com/4NO6w_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Baseball boy from the city; picks up the racket again in Haenam"
+    },
+    {
+      "id": "seyoon",
+      "name": "Han Se Yoon",
+      "actor": "Lee Jae In",
+      "image": "https://i.mydramalist.com/1wd6r6_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Shin Rin Ah",
+          "image": "https://i.mydramalist.com/2YX3O_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Wants to be the youngest on the national team"
+    },
+    {
+      "id": "hyunjong",
+      "name": "Yoon Hyun Jong",
+      "actor": "Kim Sang Kyung",
+      "image": "https://i.mydramalist.com/ZdZAq_5m.jpg",
+      "group": "Hae Kang's family",
+      "inCast": true,
+      "note": "Former top player; coaches the boys' team to make ends meet"
+    },
+    {
+      "id": "youngja",
+      "name": "Ra Young Ja",
+      "actor": "Oh Na Ra",
+      "image": "https://i.mydramalist.com/nOZJmL_5m.jpg",
+      "group": "Hae Kang's family",
+      "inCast": true,
+      "note": "A living legend — 'Ranos', by the book; coaches the girls"
+    },
+    {
+      "id": "haein",
+      "name": "Yoon Hae In",
+      "actor": "Ahn Se Bin",
+      "image": "https://i.mydramalist.com/oQ4J0E_5m.jpg",
+      "group": "Hae Kang's family",
+      "inCast": true,
+      "note": "Feisty like her mother; asthma"
+    },
+    {
+      "id": "yoondam",
+      "name": "Bang Yoon Dam",
+      "actor": "Son Sang Yeon",
+      "image": "https://i.mydramalist.com/VXxRRx_5m.jpg",
+      "group": "Haenam Seo boys",
+      "inCast": true,
+      "note": "Captain and ace; wants 100,000 followers"
+    },
+    {
+      "id": "uchan",
+      "name": "Na U Chan",
+      "actor": "Choi Hyun Wook",
+      "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
+      "group": "Haenam Seo boys",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Ja Hun",
+          "image": "https://i.mydramalist.com/w3lXJ_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Hip-hop king and peacemaker"
+    },
+    {
+      "id": "yongtae",
+      "name": "Lee Yong Tae",
+      "actor": "Kim Kang Hoon",
+      "image": "https://i.mydramalist.com/JB6qYX_5m.jpg",
+      "group": "Haenam Seo boys",
+      "inCast": true,
+      "note": "The youngest; talks too much; a Lee Yong Dae fan"
+    },
+    {
+      "id": "insol",
+      "name": "Jung In Sol",
+      "actor": "Kim Min Ki",
+      "image": "https://i.mydramalist.com/g0bBDn_5m.jpg",
+      "group": "Haenam Seo boys",
+      "inCast": true,
+      "note": "Class president who wants to play"
+    },
+    {
+      "id": "bae",
+      "name": "Head Coach Bae",
+      "actor": "Shin Jung Keun",
+      "image": "https://i.mydramalist.com/wJm6xJ_5m.jpg",
+      "group": "Haenam Seo boys",
+      "inCast": true,
+      "note": "'White Wolf' — PE teacher and head coach"
+    },
+    {
+      "id": "hansol",
+      "name": "Lee Han Sol",
+      "actor": "Lee Ji Won",
+      "image": "https://i.mydramalist.com/2wQ152_5m.jpg",
+      "group": "Haenam Jeil girls",
+      "inCast": true,
+      "note": "Falls in love easily"
+    },
+    {
+      "id": "yijang",
+      "name": "Hong Yi Jang",
+      "actor": "Woo Hyun",
+      "image": "https://i.mydramalist.com/EEq45_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Village head"
+    },
+    {
+      "id": "jeomduk",
+      "name": "Ki Jeom Duk",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "The grandmother next door"
+    },
+    {
+      "id": "grandfather",
+      "name": "Ki Jeom Duk's husband",
+      "actor": "Shin Chul Jin",
+      "image": "https://i.mydramalist.com/doLBzm.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "philja",
+      "name": "Shin Phil Ja",
+      "actor": "Park Hyo Ju",
+      "image": "https://i.mydramalist.com/4eyZjw_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Half of the couple who left the city"
+    },
+    {
+      "id": "taeho",
+      "name": "Kim Tae Ho",
+      "actor": "Jeong Min Sung",
+      "image": "https://i.mydramalist.com/RRnBx_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Timid and caring"
+    },
+    {
+      "id": "songhee",
+      "name": "Shin Song Hee",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Self-appointed guardian of the village"
+    },
+    {
+      "id": "fang",
+      "name": "Coach Fang",
+      "actor": "Ahn Nae Sang",
+      "image": "https://i.mydramalist.com/1g5nQm.jpg",
+      "group": "Badminton",
+      "inCast": true,
+      "note": "National team coach"
+    },
+    {
+      "id": "chan",
+      "name": "Park Chan",
+      "actor": "Yoon Hyun Soo",
+      "image": "https://i.mydramalist.com/jQWdrJ_5m.jpg",
+      "group": "Badminton",
+      "inCast": true,
+      "note": "Player from another school"
+    },
+    {
+      "id": "sanwoo",
+      "name": "Noh San Woo",
+      "actor": "Ahn Sang Woo",
+      "image": "https://i.mydramalist.com/RQDz6_5m.jpg",
+      "group": "Badminton",
+      "inCast": true,
+      "note": "Runs the badminton shop"
+    }
+  ],
+  "links": [
+    {
+      "from": "haekang",
+      "to": "seyoon",
+      "type": "romance",
+      "label": "the two prodigies, side by side since childhood",
+      "short": "in love",
+      "evidence": "An ex-badminton prodigy… / A badminton player who dreams of becoming the youngest member of the national team",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyunjong",
+      "to": "haekang",
+      "type": "family",
+      "label": "father — and now his coach",
+      "short": "father",
+      "evidence": "Father of Hae-kang, and a badminton coach",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngja",
+      "to": "haekang",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Mother of Yoon Hae-kang and Yoon Hae-in",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunjong",
+      "to": "youngja",
+      "type": "romance",
+      "label": "married — the legend and the sloucher",
+      "short": "married",
+      "evidence": "Father of Hae-kang / Mother of Yoon Hae-kang",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haein",
+      "to": "haekang",
+      "type": "family",
+      "label": "little sister",
+      "short": "little sister",
+      "evidence": "[Hae Kang's sister] / 윤해강의 여동생",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngja",
+      "to": "seyoon",
+      "type": "work",
+      "label": "coaches her at Haenam Jeil",
+      "short": "her coach",
+      "evidence": "a junior high school coach / 해남 제일여중",
+      "source": "en.wikipedia · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunjong",
+      "to": "yoondam",
+      "type": "work",
+      "label": "coaches the boys",
+      "short": "coach",
+      "evidence": "He seizes the opportunity to coach a middle school team… consisting of just three players: Bang Yoon Dam, Na U Chan, and Lee Yong Tae",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunjong",
+      "to": "uchan",
+      "type": "work",
+      "label": "coaches the boys",
+      "short": "coach",
+      "evidence": "consisting of just three players: Bang Yoon Dam, Na U Chan, and Lee Yong Tae",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunjong",
+      "to": "yongtae",
+      "type": "work",
+      "label": "coaches the boys",
+      "short": "coach",
+      "evidence": "consisting of just three players: Bang Yoon Dam, Na U Chan, and Lee Yong Tae",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoondam",
+      "to": "haekang",
+      "type": "friend",
+      "label": "captain and new recruit; teammates",
+      "short": "teammate",
+      "evidence": "The captain of the badminton club and their ace player",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "uchan",
+      "to": "haekang",
+      "type": "friend",
+      "label": "teammates",
+      "short": "teammate",
+      "evidence": "A mediator who mediates conflicts",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongtae",
+      "to": "haekang",
+      "type": "friend",
+      "label": "teammates",
+      "short": "teammate",
+      "evidence": "The youngest member of the badminton club",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "insol",
+      "to": "haekang",
+      "type": "friend",
+      "label": "classmate who wants in",
+      "short": "classmate",
+      "evidence": "Classmate of Hae-kang, Yoon-dam and Woo-chan… yearns to play badminton with his new friends",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bae",
+      "to": "hyunjong",
+      "type": "work",
+      "label": "head coach, over the new one",
+      "short": "head coach",
+      "evidence": "A PET at Haenam Seo Middle School, and a badminton coach also known as 'White Wolf'",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hansol",
+      "to": "yoondam",
+      "type": "romance",
+      "label": "has a crush on him",
+      "short": "crush on him",
+      "evidence": "She has a crush on Bang Yoon-Dam",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hansol",
+      "to": "seyoon",
+      "type": "friend",
+      "label": "teammates at Haenam Jeil",
+      "short": "teammate",
+      "evidence": "해남 제일여중",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chan",
+      "to": "seyoon",
+      "type": "romance",
+      "label": "has a crush on her",
+      "short": "crush on her",
+      "evidence": "A badminton player that has a crush on Se-yoon",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fang",
+      "to": "seyoon",
+      "type": "work",
+      "label": "the national team coach watching her",
+      "short": "national coach",
+      "evidence": "[National team coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sanwoo",
+      "to": "hyunjong",
+      "type": "work",
+      "label": "the badminton shop",
+      "short": "shop owner",
+      "evidence": "A badminton store owner",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yijang",
+      "to": "hyunjong",
+      "type": "friend",
+      "label": "the village head who takes the family in",
+      "short": "village head",
+      "evidence": "[Village head] / The head of the village",
+      "source": "MDL cast · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeomduk",
+      "to": "grandfather",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Ki Jeom Duk's husband] / 노 부부",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeomduk",
+      "to": "haein",
+      "type": "friend",
+      "label": "the grandmother next door",
+      "short": "next door",
+      "evidence": "노 부부 역 - 할머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "philja",
+      "to": "taeho",
+      "type": "romance",
+      "label": "married ten years; left the city for Haenam",
+      "short": "married",
+      "evidence": "[Phil Ja's husband] / a typical urban couple who have been married for 10 years",
+      "source": "MDL cast · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "songhee",
+      "to": "yijang",
+      "type": "rivalry",
+      "label": "the village's scold against its head",
+      "short": "scolds him",
+      "evidence": "'마을 지킴이'를 자처하는 모두까기 까칠녀",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "haekang",
+      "seyoon",
+      "hyunjong",
+      "youngja",
+      "haein",
+      "yoondam",
+      "uchan",
+      "yongtae",
+      "insol",
+      "bae",
+      "hansol",
+      "yijang",
+      "jeomduk",
+      "grandfather",
+      "philja",
+      "taeho",
+      "songhee",
+      "fang",
+      "chan",
+      "sanwoo"
+    ],
+    "blocks": {
+      "Hae Kang's family": [
+        0,
+        0
+      ],
+      "The village": [
+        0,
+        2
+      ],
+      "Haenam Seo boys": [
+        2,
+        0
+      ],
+      "Haenam Jeil girls": [
+        2,
+        2
+      ],
+      "Badminton": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "haekang",
+      "seyoon"
+    ]
+  }
+}
