@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "mdlSlug": "52941-eighteen-again",
+  "title": "18 Again",
+  "native": "18 어게인",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (109 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (1.5k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "daeyeong",
+    "dajeong"
+  ],
+  "people": [
+    {
+      "id": "daeyeong",
+      "name": "Hong Dae Yeong / Ko U Yeong",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Yoon Sang Hyun",
+          "image": "https://i.mydramalist.com/VXPgnQ_5m.jpg",
+          "era": "adult"
+        }
+      ],
+      "note": "Thirty-seven, fired and about to be divorced — then eighteen again, enrolled beside his own children"
+    },
+    {
+      "id": "dajeong",
+      "name": "Jung Da Jeong",
+      "actor": "Kim Ha Neul",
+      "image": "https://i.mydramalist.com/JBy2yd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Han So Eun",
+          "image": "https://i.mydramalist.com/EPXN5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Rookie announcer at 37"
+    },
+    {
+      "id": "sia",
+      "name": "Hong Si A",
+      "actor": "Roh Jeong Eui",
+      "image": "https://i.mydramalist.com/l0Ne7L_5m.jpg",
+      "group": "The twins",
+      "inCast": true,
+      "note": "Si U's twin sister"
+    },
+    {
+      "id": "siu",
+      "name": "Hong Si U",
+      "actor": "Ryeo Un",
+      "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
+      "group": "The twins",
+      "inCast": true,
+      "note": "Si A's twin brother"
+    },
+    {
+      "id": "jihun",
+      "name": "Ye Ji Hun",
+      "actor": "Wi Ha Joon",
+      "image": "https://i.mydramalist.com/xzdP0_5m.jpg",
+      "group": "Around Da Jeong",
+      "inCast": true,
+      "note": "Pitcher for the Seum Wolves; raises his niece"
+    },
+    {
+      "id": "ilgwon",
+      "name": "Choi Il Gwon",
+      "actor": "Lee Ki Woo",
+      "image": "https://i.mydramalist.com/AB8PDX_5m.jpg",
+      "group": "Around Da Jeong",
+      "inCast": true
+    },
+    {
+      "id": "deokjin",
+      "name": "Ko Deok Jin",
+      "actor": "Kim Kang Hyun",
+      "image": "https://i.mydramalist.com/wzV2b_5m.jpg",
+      "group": "Around Dae Yeong",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Hwang Dae Ki",
+          "image": "https://i.mydramalist.com/6ZAZp_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Runs Go Go Play; poses as U Yeong's father"
+    },
+    {
+      "id": "aerin",
+      "name": "Chu Ae Rin",
+      "actor": "Lee Mi Do",
+      "image": "https://i.mydramalist.com/zBJBEJ_5m.jpg",
+      "group": "Around Da Jeong",
+      "inCast": true,
+      "note": "Divorce lawyer"
+    },
+    {
+      "id": "haein",
+      "name": "Ok Hae In",
+      "actor": "Kim Yoo Ri",
+      "image": "https://i.mydramalist.com/XNLkd_5m.jpg",
+      "group": "Serim High",
+      "inCast": true,
+      "note": "Homeroom teacher of 2-7; gamer"
+    },
+    {
+      "id": "jiho",
+      "name": "Seo Ji Ho",
+      "actor": "Choi Bo Min",
+      "image": "https://i.mydramalist.com/JB43kd_5m.jpg",
+      "group": "Serim High",
+      "inCast": true,
+      "note": "Class president of 2-7"
+    },
+    {
+      "id": "jaseong",
+      "name": "Koo Ja Seong",
+      "actor": "Hwang In Youp",
+      "image": "https://i.mydramalist.com/Lwr2A3_5m.jpg",
+      "group": "Serim High",
+      "inCast": true,
+      "note": "Captain of the basketball team"
+    },
+    {
+      "id": "bobae",
+      "name": "Jeon Bo Bae",
+      "actor": "Oh So Hyun",
+      "image": "https://i.mydramalist.com/dA7Jgm.jpg",
+      "group": "Serim High",
+      "inCast": true
+    },
+    {
+      "id": "somi",
+      "name": "Um So Mi",
+      "actor": "Lee Eun Jae",
+      "image": "https://i.mydramalist.com/d0Yq1d_5m.jpg",
+      "group": "Serim High",
+      "inCast": true
+    },
+    {
+      "id": "yeongseon",
+      "name": "Hwang Yeong Seon",
+      "actor": "Ryu Da In",
+      "image": "https://i.mydramalist.com/Bd76J5_5m.jpg",
+      "group": "Serim High",
+      "inCast": true
+    },
+    {
+      "id": "sanghwi",
+      "name": "Moon Sang Hwi",
+      "actor": "Ahn Nae Sang",
+      "image": "https://i.mydramalist.com/1g5nQm.jpg",
+      "group": "JBC",
+      "inCast": true,
+      "note": "Head of announcers"
+    },
+    {
+      "id": "unggi",
+      "name": "Heo Ung Gi",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "JBC",
+      "inCast": true,
+      "note": "Team leader"
+    },
+    {
+      "id": "yumi",
+      "name": "Kwon Yu Mi",
+      "actor": "Kim Yoon Hye",
+      "image": "https://i.mydramalist.com/g0R3LP_5m.jpg",
+      "group": "JBC",
+      "inCast": true,
+      "note": "Rookie announcer"
+    },
+    {
+      "id": "jayeong",
+      "name": "Im Ja Yeong",
+      "actor": "Go Eun Min",
+      "image": "https://i.mydramalist.com/6LOkpm.jpg",
+      "group": "JBC",
+      "inCast": true,
+      "note": "Rookie announcer"
+    },
+    {
+      "id": "gitae",
+      "name": "Nam Gi Tae",
+      "actor": "Yang Dae Hyuk",
+      "image": "https://i.mydramalist.com/0K6eY_5m.jpg",
+      "group": "JBC",
+      "inCast": true,
+      "note": "Rookie announcer"
+    },
+    {
+      "id": "inja",
+      "name": "Yeo In Ja",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "The parents",
+      "inCast": true
+    },
+    {
+      "id": "juman",
+      "name": "Hong Ju Man",
+      "actor": "Lee Byung Joon",
+      "image": "https://i.mydramalist.com/1gyLQm.jpg",
+      "group": "The parents",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "daeyeong",
+      "to": "dajeong",
+      "type": "romance",
+      "label": "married nineteen years; she filed for divorce",
+      "short": "married, divorcing",
+      "evidence": "Jung Da Jeong and Hong Dae Yeong have been married for almost two decades… she files for divorce / 다정의 남편",
+      "source": "MDL synopsis · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeyeong",
+      "to": "sia",
+      "type": "family",
+      "label": "father — in her class, as U Yeong",
+      "short": "father",
+      "evidence": "대영과 다정의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeyeong",
+      "to": "siu",
+      "type": "family",
+      "label": "father — in his class, as U Yeong",
+      "short": "father",
+      "evidence": "대영과 다정의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dajeong",
+      "to": "sia",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "대영과 다정의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dajeong",
+      "to": "siu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "대영과 다정의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sia",
+      "to": "siu",
+      "type": "family",
+      "label": "twins",
+      "short": "twins",
+      "evidence": "시우의 쌍둥이 누나 / 시아의 쌍둥이 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiho",
+      "to": "sia",
+      "type": "romance",
+      "label": "childhood friend and boyfriend",
+      "short": "boyfriend",
+      "evidence": "시아의 소꿉친구이자 남자친구 / 지호의 여자친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "somi",
+      "to": "siu",
+      "type": "romance",
+      "label": "girlfriend",
+      "short": "girlfriend",
+      "evidence": "시우의 여자친구 / 소미의 남자친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaseong",
+      "to": "daeyeong",
+      "type": "rivalry",
+      "label": "the basketball captain against the new kid",
+      "short": "rival",
+      "evidence": "세림고 농구부 주장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiho",
+      "to": "daeyeong",
+      "type": "friend",
+      "label": "class president, friend to 'U Yeong'",
+      "short": "classmate",
+      "evidence": "세림고 모범생, 2학년 7반 반장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "haein",
+      "to": "daeyeong",
+      "type": "work",
+      "label": "homeroom teacher of 2-7",
+      "short": "homeroom teacher",
+      "evidence": "2학년 7반 담임선생님, 게임 덕후",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokjin",
+      "to": "daeyeong",
+      "type": "friend",
+      "label": "his best friend — poses as U Yeong's father",
+      "short": "'father'",
+      "evidence": "고고플레이 대표, 우영의 가짜아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihun",
+      "to": "dajeong",
+      "type": "romance",
+      "label": "the pitcher who courts her",
+      "short": "courts her",
+      "evidence": "세움 울브즈 소속 야구 투수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ilgwon",
+      "to": "dajeong",
+      "type": "romance",
+      "label": "another suitor",
+      "short": "suitor",
+      "evidence": "이기우 : 최일권 역",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "aerin",
+      "to": "dajeong",
+      "type": "friend",
+      "label": "her friend, and her divorce lawyer",
+      "short": "her lawyer",
+      "evidence": "이혼 전문 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghwi",
+      "to": "dajeong",
+      "type": "work",
+      "label": "head of the announcers' bureau",
+      "short": "her director",
+      "evidence": "국장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "unggi",
+      "to": "dajeong",
+      "type": "work",
+      "label": "team leader",
+      "short": "team leader",
+      "evidence": "팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yumi",
+      "to": "dajeong",
+      "type": "work",
+      "label": "fellow rookie",
+      "short": "fellow rookie",
+      "evidence": "신입 아나운서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jayeong",
+      "to": "dajeong",
+      "type": "work",
+      "label": "fellow rookie",
+      "short": "fellow rookie",
+      "evidence": "신입 아나운서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gitae",
+      "to": "dajeong",
+      "type": "work",
+      "label": "fellow rookie",
+      "short": "fellow rookie",
+      "evidence": "신입 아나운서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "inja",
+      "to": "dajeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "다정의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juman",
+      "to": "daeyeong",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "대영의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bobae",
+      "to": "sia",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "2학년 7반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeongseon",
+      "to": "sia",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "2학년 7반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "daeyeong",
+      "dajeong",
+      "sia",
+      "siu",
+      "jihun",
+      "ilgwon",
+      "deokjin",
+      "aerin",
+      "haein",
+      "jiho",
+      "jaseong",
+      "bobae",
+      "somi",
+      "yeongseon",
+      "sanghwi",
+      "unggi",
+      "yumi",
+      "jayeong",
+      "gitae",
+      "inja",
+      "juman"
+    ],
+    "blocks": {
+      "The twins": [
+        1,
+        2
+      ],
+      "Serim High": [
+        0,
+        0
+      ],
+      "Around Dae Yeong": [
+        0,
+        2
+      ],
+      "JBC": [
+        2,
+        0
+      ],
+      "Around Da Jeong": [
+        2,
+        2
+      ],
+      "The parents": [
+        1,
+        0
+      ]
+    },
+    "center": [
+      "daeyeong",
+      "dajeong"
+    ]
+  }
+}

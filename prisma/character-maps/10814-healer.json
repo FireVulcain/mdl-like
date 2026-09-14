@@ -1,0 +1,620 @@
+{
+  "version": 1,
+  "mdlSlug": "10814-healer",
+  "title": "Healer",
+  "native": "힐러",
+  "year": 2014,
+  "country": "KR",
+  "sources": [
+    "MDL cast (54 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (3k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "jeonghu",
+    "yeongsin",
+    "munho"
+  ],
+  "people": [
+    {
+      "id": "jeonghu",
+      "name": "Seo Jeong Hu / Healer",
+      "actor": "Ji Chang Wook",
+      "image": "https://i.mydramalist.com/ZyyEJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The best night courier in the trade — anything but murder"
+    },
+    {
+      "id": "yeongsin",
+      "name": "Chae Yeong Sin / O Ji An",
+      "actor": "Park Min Young",
+      "image": "https://i.mydramalist.com/yWxKQR_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Gu Gun Min",
+          "image": "https://i.mydramalist.com/jgm1d_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Reporter at the tabloid Someday News"
+    },
+    {
+      "id": "munho",
+      "name": "Kim Mun Ho",
+      "actor": "Yoo Ji Tae",
+      "image": "https://i.mydramalist.com/eeyxe_5m.jpg",
+      "group": "ABS",
+      "inCast": true,
+      "note": "Star reporter at ABS; the press baron's younger brother"
+    },
+    {
+      "id": "minja",
+      "name": "Cho Min Ja",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Healer's side",
+      "inCast": true,
+      "note": "Former cybercrime police; now the hacker behind Healer"
+    },
+    {
+      "id": "daeyong",
+      "name": "Kang Dae Yong",
+      "actor": "Tae Mi",
+      "image": "https://i.mydramalist.com/vXeZLW_5m.jpg",
+      "group": "Healer's side",
+      "inCast": true,
+      "note": "Jeong Hu's aide"
+    },
+    {
+      "id": "yeongjae",
+      "name": "Ki Yeong Jae",
+      "actor": "Oh Gwang Rok",
+      "image": "https://i.mydramalist.com/EQvjb_5m.jpg",
+      "group": "Healer's side",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Dong Goo",
+          "image": "https://i.mydramalist.com/QJXW6Y_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "The pirate radio's bodyguard, once; Jeong Hu's teacher"
+    },
+    {
+      "id": "junseok",
+      "name": "Seo Jun Seok",
+      "actor": "Ji Il Joo",
+      "image": "https://i.mydramalist.com/6qLYd_5m.jpg",
+      "group": "Healer's side",
+      "inCast": true,
+      "note": "The pirate radio's engineer; MDL spells him Seo Jeon Seok"
+    },
+    {
+      "id": "chisu",
+      "name": "Chae Chi Su",
+      "actor": "Park Sang Myeon",
+      "image": "https://i.mydramalist.com/EZDBp_5m.jpg",
+      "group": "Someday News",
+      "inCast": true,
+      "note": "Criminal lawyer and barista"
+    },
+    {
+      "id": "cheolmin",
+      "name": "Cheol Min",
+      "actor": "Woo Hyun",
+      "image": "https://i.mydramalist.com/EEq45_5m.jpg",
+      "group": "Someday News",
+      "inCast": true,
+      "note": "Waiter at Café Evergreen; three convictions"
+    },
+    {
+      "id": "byeongse",
+      "name": "Jang Byeong Se",
+      "actor": "Park Won Sang",
+      "image": "https://i.mydramalist.com/DkJoJq_5m.jpg",
+      "group": "Someday News",
+      "inCast": true,
+      "note": "Editor at Someday News"
+    },
+    {
+      "id": "yeo",
+      "name": "Reporter Yeo",
+      "actor": "Choi Seung Kyung",
+      "image": "https://i.mydramalist.com/2w4EE2_5m.jpg",
+      "group": "Someday News",
+      "inCast": true
+    },
+    {
+      "id": "seonjae",
+      "name": "No Seon Jae",
+      "actor": "Kim Jin Hee",
+      "image": "https://i.mydramalist.com/NdQWRm.jpg",
+      "group": "Someday News",
+      "inCast": true
+    },
+    {
+      "id": "munsik",
+      "name": "Kim Mun Sik",
+      "actor": "Park Sang Won",
+      "image": "https://i.mydramalist.com/81VLgm_5m.jpg",
+      "group": "Jeil Newspaper",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Son Seung Won",
+          "image": "https://i.mydramalist.com/e5V3E_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "President of Jeil Newspaper"
+    },
+    {
+      "id": "myeonghui",
+      "name": "Choi Myeong Hui",
+      "actor": "Do Ji Won",
+      "image": "https://i.mydramalist.com/vy1j2m.jpg",
+      "group": "Jeil Newspaper",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Hye In",
+          "image": "https://i.mydramalist.com/60rXoX_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "The pirate radio's host, once; lost her daughter Ji An"
+    },
+    {
+      "id": "gilhan",
+      "name": "O Gil Han",
+      "actor": "Oh Jong Hyuk",
+      "image": "https://i.mydramalist.com/mOrJgQ_5m.jpg",
+      "group": "Jeil Newspaper",
+      "inCast": true,
+      "note": "The pirate radio's host and producer"
+    },
+    {
+      "id": "taewon",
+      "name": "O Tae Won",
+      "actor": "Jung Kyu Soo",
+      "image": "https://i.mydramalist.com/2Rl2w_5m.jpg",
+      "group": "Jeil Newspaper",
+      "inCast": true,
+      "note": "Mun Sik's secretary — the Elder's errand man"
+    },
+    {
+      "id": "elder",
+      "name": "Park Jeong Dae / The Elder",
+      "actor": "Choi Jong Won",
+      "image": "https://i.mydramalist.com/xxVpq_5m.jpg",
+      "group": "Jeil Newspaper",
+      "inCast": true
+    },
+    {
+      "id": "minjae",
+      "name": "Kang Min Jae",
+      "actor": "Woo Hee Jin",
+      "image": "https://i.mydramalist.com/d04pWD_5m.jpg",
+      "group": "ABS",
+      "inCast": true,
+      "note": "Head of news at ABS; joined with Mun Ho"
+    },
+    {
+      "id": "jongsu",
+      "name": "Lee Jong Su",
+      "actor": "Jang Sung Bum",
+      "image": "https://i.mydramalist.com/44njkm.jpg",
+      "group": "ABS",
+      "inCast": true,
+      "note": "The junior Mun Ho rates"
+    },
+    {
+      "id": "sangsu",
+      "name": "Bae Sang Su",
+      "actor": "Park Sang Wook",
+      "image": "https://i.mydramalist.com/VKrKzm.jpg",
+      "group": "Double S Guard",
+      "inCast": true,
+      "note": "CEO of Double S Guard — the major league of couriers"
+    },
+    {
+      "id": "yoyo",
+      "name": "Yo Yo",
+      "actor": "Hong Seung Jin",
+      "image": "https://i.mydramalist.com/RjJZom.jpg",
+      "group": "Double S Guard",
+      "inCast": true,
+      "note": "Double S's enforcer"
+    },
+    {
+      "id": "dongwon",
+      "name": "Yun Dong Won",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Double S Guard",
+      "inCast": true,
+      "note": "Cybercrime squad leader; Min Ja's junior"
+    },
+    {
+      "id": "jaeguk",
+      "name": "Hwang Jae Guk",
+      "actor": "Jung Hae Kyun",
+      "image": "https://i.mydramalist.com/QJ5A7Q_5m.jpg",
+      "group": "Double S Guard",
+      "inCast": true,
+      "note": "President of Empire Entertainment"
+    }
+  ],
+  "links": [
+    {
+      "from": "jeonghu",
+      "to": "yeongsin",
+      "type": "romance",
+      "label": "his latest job leads him to her — and stays",
+      "short": "in love",
+      "evidence": "His latest job leads him to the second-rate tabloid writer Chae Yeong Sin",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeonghu",
+      "to": "yeongsin",
+      "type": "work",
+      "label": "poses as a rookie reporter beside her",
+      "short": "her 'colleague'",
+      "evidence": "인터넷 신문사 썸데이 뉴스기자",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "munho",
+      "to": "yeongsin",
+      "type": "work",
+      "label": "the star reporter who takes her under his wing — knowing who she is",
+      "short": "her mentor",
+      "evidence": "상위 1퍼센트의 스타기자(ABS 방송국)면서 거대 언론사 사주의 친동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minja",
+      "to": "jeonghu",
+      "type": "work",
+      "label": "the hacker he works with",
+      "short": "his hacker",
+      "evidence": "[Hacker] / 과거 사이버 수사과 경찰이었고 현재 초일류 해커로써 힐러와 동업",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeyong",
+      "to": "jeonghu",
+      "type": "work",
+      "label": "aide",
+      "short": "aide",
+      "evidence": "[Jeong Hu's aide] / 정후의 부하같은 존재",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongjae",
+      "to": "jeonghu",
+      "type": "work",
+      "label": "his teacher — the pirate radio's guard",
+      "short": "his teacher",
+      "evidence": "[Jeong Hu's teacher] / 과거 해적방송의 호위 역",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junseok",
+      "to": "jeonghu",
+      "type": "family",
+      "label": "father — the pirate radio's engineer, dead",
+      "short": "father",
+      "evidence": "[Jeong Hu's father] / 서정후의 아버지로 과거 해적방송의 엔지니어 역할",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chisu",
+      "to": "yeongsin",
+      "type": "family",
+      "label": "adoptive father",
+      "short": "adoptive father",
+      "evidence": "[Yeong Sin's adoptive father] / 영신의 양아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolmin",
+      "to": "chisu",
+      "type": "friend",
+      "label": "his friend, the café's waiter",
+      "short": "friend",
+      "evidence": "[Chi Su's friend] / 까페 에버그린의 종업원",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "byeongse",
+      "to": "yeongsin",
+      "type": "work",
+      "label": "her editor",
+      "short": "her boss",
+      "evidence": "[Yeong Sin's boss] / 썸데이뉴스 취재팀 편집장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeo",
+      "to": "yeongsin",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "[Yeong Sin's colleague]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonjae",
+      "to": "yeongsin",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "[Yeong Sin's colleague / Reporter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "munsik",
+      "to": "munho",
+      "type": "family",
+      "label": "older brother — the press baron",
+      "short": "older brother",
+      "evidence": "[Mun Ho's older brother] / 김문호의 형. 메이저 언론사 ‘제일신문’의 사장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeonghui",
+      "to": "munsik",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Mun Sik's wife] / 문식의 아내",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myeonghui",
+      "to": "yeongsin",
+      "type": "family",
+      "label": "the daughter she lost — Ji An",
+      "short": "her lost daughter",
+      "evidence": "과거 해적방송의 진행자였던 길한과 결혼, 딸 지안을 잃음",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gilhan",
+      "to": "yeongsin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ji An's father]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gilhan",
+      "to": "myeonghui",
+      "type": "romance",
+      "label": "her first husband, the radio's host",
+      "short": "first husband",
+      "evidence": "과거 해적방송의 진행자였던 길한과 결혼",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "munsik",
+      "to": "gilhan",
+      "type": "rivalry",
+      "label": "what happened to the pirate radio's crew",
+      "short": "the past",
+      "evidence": "과거 해적방송의 진행자 겸 프로듀서",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taewon",
+      "to": "munsik",
+      "type": "work",
+      "label": "secretary, and the Elder's errand man",
+      "short": "secretary",
+      "evidence": "[Mun Sik's assistant] / 김문식의 비서 오태원. 김문식 혹은 어르신의 전용 심부름꾼",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "elder",
+      "to": "munsik",
+      "type": "work",
+      "label": "the Elder — above him",
+      "short": "his master",
+      "evidence": "[Mun Sik's boss] / 김문식의 어르신",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minjae",
+      "to": "munho",
+      "type": "work",
+      "label": "his boss at ABS; joined together",
+      "short": "his boss",
+      "evidence": "[Mun Ho's boss] / 문호와 입사동기인 공중파 ABS 방송국 보도부 부장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongsu",
+      "to": "munho",
+      "type": "work",
+      "label": "the junior he rates",
+      "short": "his junior",
+      "evidence": "[Mun Ho's assistant] / 문호가 인정해주는 실력 있는 후배기자",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangsu",
+      "to": "jeonghu",
+      "type": "rivalry",
+      "label": "the rival courier outfit",
+      "short": "rival",
+      "evidence": "[Double S Guard's CEO] / 심부름꾼계의 메이저급인 더블에스가드 대표",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoyo",
+      "to": "sangsu",
+      "type": "work",
+      "label": "enforcer",
+      "short": "enforcer",
+      "evidence": "[Double S Guard thug] / 더블에스가드의 행동대장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongwon",
+      "to": "minja",
+      "type": "work",
+      "label": "her junior from the cybercrime squad, now hunting Healer",
+      "short": "her junior",
+      "evidence": "[Cybercrime detective] / 조민자의 후배이자 사이버 수사대 반장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeguk",
+      "to": "yeongsin",
+      "type": "work",
+      "label": "the entertainment boss she reports on",
+      "short": "her story",
+      "evidence": "[Empire Entertainment's president]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jeonghu",
+      "yeongsin",
+      "munho",
+      "minja",
+      "daeyong",
+      "yeongjae",
+      "junseok",
+      "chisu",
+      "cheolmin",
+      "byeongse",
+      "yeo",
+      "seonjae",
+      "munsik",
+      "myeonghui",
+      "gilhan",
+      "taewon",
+      "elder",
+      "minjae",
+      "jongsu",
+      "sangsu",
+      "yoyo",
+      "dongwon",
+      "jaeguk"
+    ],
+    "blocks": {
+      "Healer's side": [
+        0,
+        0
+      ],
+      "Double S Guard": [
+        0,
+        2
+      ],
+      "Jeil Newspaper": [
+        2,
+        0
+      ],
+      "ABS": [
+        2,
+        2
+      ],
+      "Someday News": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jeonghu",
+      "yeongsin"
+    ]
+  }
+}

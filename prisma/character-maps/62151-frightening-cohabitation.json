@@ -1,0 +1,401 @@
+{
+  "version": 1,
+  "mdlSlug": "62151-frightening-cohabitation",
+  "title": "My Roommate Is a Gumiho",
+  "native": "간 떨어지는 동거",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (56 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (1.5k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "wooyeo",
+    "dam",
+    "hyesun",
+    "jaejin",
+    "sunwoo"
+  ],
+  "people": [
+    {
+      "id": "wooyeo",
+      "name": "Shin Woo Yeo",
+      "actor": "Jang Ki Yong",
+      "image": "https://i.mydramalist.com/eYgEOW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "A 999-year-old nine-tailed fox, born in 1022; a writer, collecting human energy in a bead"
+    },
+    {
+      "id": "dam",
+      "name": "Lee Dam",
+      "actor": "Lee Hye Ri",
+      "image": "https://i.mydramalist.com/EbVK0_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Twenty-two, five meals a day; swallowed the bead"
+    },
+    {
+      "id": "hyesun",
+      "name": "Yang Hye Sun",
+      "actor": "Kang Han Na",
+      "image": "https://i.mydramalist.com/l0dbov_5m.jpg",
+      "group": "The foxes",
+      "inCast": true,
+      "note": "747 by the fox count, 22 by the registry; became human"
+    },
+    {
+      "id": "jaejin",
+      "name": "Do Jae Jin",
+      "actor": "Kim Do Wan",
+      "image": "https://i.mydramalist.com/Qe5m5_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Dam's friend; a pushover in love"
+    },
+    {
+      "id": "sunwoo",
+      "name": "Gye Sun Woo",
+      "actor": "Bae In Hyuk",
+      "image": "https://i.mydramalist.com/5vP0me_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Campus celebrity — born in the year of the rooster"
+    },
+    {
+      "id": "sookyung",
+      "name": "Choi Soo Kyung",
+      "actor": "Park Kyung Hye",
+      "image": "https://i.mydramalist.com/QJBrog_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Best friend of Dam and Jae Jin; top of the class"
+    },
+    {
+      "id": "jungsuk",
+      "name": "Jung Suk",
+      "actor": "Kim Kang Min",
+      "image": "https://i.mydramalist.com/QWwvA_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Class representative"
+    },
+    {
+      "id": "moogeun",
+      "name": "Kim Moo Geun",
+      "actor": "Park Won Ho",
+      "image": "https://i.mydramalist.com/v1Op2_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Sun Woo's friend"
+    },
+    {
+      "id": "daehun",
+      "name": "Bin Dae Hun",
+      "actor": "Lee Pung Woon",
+      "image": "https://i.mydramalist.com/Q5Yp5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Sun Woo's friend; bets on everything"
+    },
+    {
+      "id": "dayeong",
+      "name": "Jeon Da Yeong",
+      "actor": "Bang Eun Jung",
+      "image": "https://i.mydramalist.com/1e4Yd_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Dam's classmate, in name"
+    },
+    {
+      "id": "seojin",
+      "name": "Seo Jin",
+      "actor": "Kang Min Ji",
+      "image": "https://i.mydramalist.com/wLAPp_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true,
+      "note": "Dam's classmate, in name"
+    },
+    {
+      "id": "dan",
+      "name": "Lee Dan",
+      "actor": "Choi Woo Sung",
+      "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
+      "group": "The families",
+      "inCast": true,
+      "note": "Youth national archer"
+    },
+    {
+      "id": "seowoo",
+      "name": "Gye Seo Woo",
+      "actor": "Kim Do Yeon",
+      "image": "https://i.mydramalist.com/E57PeO_5m.jpg",
+      "group": "The families",
+      "inCast": true
+    },
+    {
+      "id": "taejin",
+      "name": "Tae Jin",
+      "actor": "Kim Hyun Chi",
+      "image": "https://i.mydramalist.com/2jxLw_5m.jpg",
+      "group": "Seogwa University",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "dam",
+      "to": "wooyeo",
+      "type": "romance",
+      "label": "she swallowed his bead; they live together; they fall in love",
+      "short": "in love",
+      "evidence": "구미호인 신우여의 여우 구슬을 삼켜 어쩔 수 없이 신우여와 동거를 하게 된다. 신우여와 사귀는 사이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dam",
+      "to": "wooyeo",
+      "type": "bond",
+      "label": "carries his fox bead — and cannot eat chicken, or touch a rooster-year man",
+      "short": "carries his bead",
+      "evidence": "Lee Dam unintentionally swallows it / 닭을 먹으면 안되고, 닭띠인 남자와 접촉하면 안된다",
+      "source": "MDL synopsis · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesun",
+      "to": "wooyeo",
+      "type": "friend",
+      "label": "his fox friend of centuries; became human before him",
+      "short": "old friend",
+      "evidence": "전직 구미호. 신우여의 구미호 친구. 여우 구슬을 모아 인간이 되었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyesun",
+      "to": "jaejin",
+      "type": "romance",
+      "label": "the ex-fox and the pushover",
+      "short": "in love",
+      "evidence": "도재진과 사귀는 사이이다 / 양혜선과 사귀는 사이이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaejin",
+      "to": "dam",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "이담의 친구, 연애 호구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sunwoo",
+      "to": "dam",
+      "type": "romance",
+      "label": "likes her — the rooster-year man she must not touch",
+      "short": "likes her",
+      "evidence": "닭띠… 신우여와 라이벌, 이담을 좋아한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunwoo",
+      "to": "wooyeo",
+      "type": "rivalry",
+      "label": "rival",
+      "short": "rival",
+      "evidence": "신우여와 라이벌",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sookyung",
+      "to": "dam",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "이담과 도재진의 베프, 불변의 과탑",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sookyung",
+      "to": "jaejin",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "이담과 도재진의 베프",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jungsuk",
+      "to": "dam",
+      "type": "work",
+      "label": "class representative",
+      "short": "class rep",
+      "evidence": "과대표, 석선배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "moogeun",
+      "to": "sunwoo",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "계선우의 친구, 꾸러기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daehun",
+      "to": "sunwoo",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "계선우의 친구, 허세는 그만 허세",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dayeong",
+      "to": "dam",
+      "type": "friend",
+      "label": "classmate, in name",
+      "short": "classmate",
+      "evidence": "이담의 동기, 무늬만 동기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seojin",
+      "to": "dam",
+      "type": "friend",
+      "label": "classmate, in name",
+      "short": "classmate",
+      "evidence": "이담의 동기2, 무늬만 동기2",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dan",
+      "to": "dam",
+      "type": "family",
+      "label": "younger brother — a youth national archer",
+      "short": "younger brother",
+      "evidence": "[Lee Dam's brother] / 이담의 남동생, 양궁 청소년 국가대표",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seowoo",
+      "to": "sunwoo",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "[Sun Woo's sister] / 계선우의 여동생",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dan",
+      "to": "seowoo",
+      "type": "romance",
+      "label": "the two younger siblings",
+      "short": "in love",
+      "evidence": "이담의 남동생 / 계선우의 여동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "taejin",
+      "to": "sunwoo",
+      "type": "friend",
+      "label": "at Seogwa",
+      "short": "classmate",
+      "evidence": "태진",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "wooyeo",
+      "dam",
+      "hyesun",
+      "jaejin",
+      "sunwoo",
+      "sookyung",
+      "jungsuk",
+      "moogeun",
+      "daehun",
+      "dayeong",
+      "seojin",
+      "dan",
+      "seowoo",
+      "taejin"
+    ],
+    "blocks": {
+      "The foxes": [
+        0,
+        0
+      ],
+      "The families": [
+        0,
+        2
+      ],
+      "Seogwa University": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "wooyeo",
+      "dam"
+    ]
+  }
+}

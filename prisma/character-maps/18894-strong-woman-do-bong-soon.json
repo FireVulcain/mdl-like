@@ -1,0 +1,689 @@
+{
+  "version": 1,
+  "mdlSlug": "18894-strong-woman-do-bong-soon",
+  "title": "Strong Woman Do Bong Soon",
+  "native": "힘쎈여자 도봉순",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (61 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (3k chars)",
+    "en.wikipedia (nothing found)"
+  ],
+  "main": [
+    "bongsun",
+    "minhyeok",
+    "gukdu"
+  ],
+  "people": [
+    {
+      "id": "bongsun",
+      "name": "Do Bong Sun",
+      "actor": "Park Bo Young",
+      "image": "https://i.mydramalist.com/l0AEjv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Petite, unemployed, and stronger than anyone — the family gift, passed down the women"
+    },
+    {
+      "id": "minhyeok",
+      "name": "An Min Hyeok",
+      "actor": "Park Hyung Sik",
+      "image": "https://i.mydramalist.com/zB2qq1_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "CEO of Ainsoft; fourth son of Osung Group"
+    },
+    {
+      "id": "gukdu",
+      "name": "In Guk Du",
+      "actor": "Kim Ji Soo",
+      "image": "https://i.mydramalist.com/WzwB5_5m.jpg",
+      "group": "Dobong police",
+      "inCast": true,
+      "note": "Detective, Violent Crimes Team 3; police academy"
+    },
+    {
+      "id": "jini",
+      "name": "Hwang Jin I",
+      "actor": "Shim Hye Jin",
+      "image": "https://i.mydramalist.com/73RKyD_5m.jpg",
+      "group": "Bong Sun's family",
+      "inCast": true,
+      "note": "Had the strength once"
+    },
+    {
+      "id": "chilgu",
+      "name": "Do Chil Gu",
+      "actor": "Yoo Chea Myung",
+      "image": "https://i.mydramalist.com/Lw8Q65_5m.jpg",
+      "group": "Bong Sun's family",
+      "inCast": true,
+      "note": "Runs the Dobong walnut shop"
+    },
+    {
+      "id": "bonggi",
+      "name": "Do Bong Gi",
+      "actor": "Ahn Woo Yeon",
+      "image": "https://i.mydramalist.com/JB4Nyp_5m.jpg",
+      "group": "Bong Sun's family",
+      "inCast": true,
+      "note": "First-year medical resident"
+    },
+    {
+      "id": "seonsim",
+      "name": "Seon Sim",
+      "actor": "Baek Soo Ryun",
+      "image": "https://i.mydramalist.com/RWdVVm.jpg",
+      "group": "Bong Sun's family",
+      "inCast": true,
+      "note": "Has the strength too"
+    },
+    {
+      "id": "gyeongsim",
+      "name": "Na Gyeong Sim",
+      "actor": "Park Bo Mi",
+      "image": "https://i.mydramalist.com/x4Eo1X_5m.jpg",
+      "group": "Bong Sun's family",
+      "inCast": true,
+      "note": "Bong Sun's friend; cheerleading captain"
+    },
+    {
+      "id": "kong",
+      "name": "Secretary Kong",
+      "actor": "Jeon Seok Ho",
+      "image": "https://i.mydramalist.com/YYj5OB_5m.jpg",
+      "group": "Ainsoft",
+      "inCast": true,
+      "note": "Min Hyeok's secretary; talks, and gets hurt"
+    },
+    {
+      "id": "dolpyu",
+      "name": "O Dol Pyu / Kim Gwang Bok",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Ainsoft",
+      "inCast": true,
+      "note": "Head of development planning — and, as Kim Gwang Bok, a Baek Tak thug: one actor, two men"
+    },
+    {
+      "id": "dongha",
+      "name": "An Dong Ha",
+      "actor": "Kim Sung Bum",
+      "image": "https://i.mydramalist.com/1gkdKm.jpg",
+      "group": "Osung Group",
+      "inCast": true,
+      "note": "First half-brother"
+    },
+    {
+      "id": "dongseok",
+      "name": "An Dong Seok",
+      "actor": "Shim Hoon Gi",
+      "image": "https://i.mydramalist.com/eRLAqm.jpg",
+      "group": "Osung Group",
+      "inCast": true,
+      "note": "Second half-brother; gentle"
+    },
+    {
+      "id": "stepmother",
+      "name": "Min Hyeok's stepmother",
+      "actor": "Yoon Young Joo",
+      "image": "https://i.mydramalist.com/73Oejm.jpg",
+      "group": "Osung Group",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "chuldo",
+      "name": "An Chul Do",
+      "actor": "Han Jung Guk",
+      "image": "https://i.mydramalist.com/QV1Z7_5m.jpg",
+      "group": "Osung Group",
+      "inCast": true,
+      "note": "Chairman of Osung Group"
+    },
+    {
+      "id": "gyeonghwan",
+      "name": "An Gyeong Hwan",
+      "actor": "Lee Se Wook",
+      "image": "https://i.mydramalist.com/nvqm4m.jpg",
+      "group": "Osung Group",
+      "inCast": true,
+      "note": "Third half-brother"
+    },
+    {
+      "id": "baektak",
+      "name": "Baek Tak",
+      "actor": "Im Won Hee",
+      "image": "https://i.mydramalist.com/3olvrd_5m.jpg",
+      "group": "Baek Tak gang",
+      "inCast": true,
+      "note": "Boss; real name Baek Su Tak"
+    },
+    {
+      "id": "agari",
+      "name": "A Ga Ri",
+      "actor": "Kim Min Kyo",
+      "image": "https://i.mydramalist.com/1w44B6_5m.jpg",
+      "group": "Baek Tak gang",
+      "inCast": true,
+      "note": "Baek Tak's right hand"
+    },
+    {
+      "id": "hyeondong",
+      "name": "Hwang Hyeon Dong",
+      "actor": "Kim Ki Moo",
+      "image": "https://i.mydramalist.com/wzOkN_5m.jpg",
+      "group": "Baek Tak gang",
+      "inCast": true,
+      "note": "Hired thug"
+    },
+    {
+      "id": "huiji",
+      "name": "Cho Hui Ji",
+      "actor": "Seor In A",
+      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
+      "group": "Dobong police",
+      "inCast": true,
+      "note": "Cellist; Guk Du's girlfriend"
+    },
+    {
+      "id": "mihwa",
+      "name": "Jung Mi Hwa",
+      "actor": "Yoon Ye Hee",
+      "image": "https://i.mydramalist.com/ELXKO_5m.jpg",
+      "group": "Dobong police",
+      "inCast": true,
+      "note": "Bestselling novelist"
+    },
+    {
+      "id": "dotbogi",
+      "name": "Detective Dotbogi",
+      "actor": "Kim Won Seok",
+      "image": "https://i.mydramalist.com/pBkKym.jpg",
+      "group": "Dobong police",
+      "inCast": true,
+      "note": "'Magnifying Glass'"
+    },
+    {
+      "id": "janghyeon",
+      "name": "Kim Jang Hyeon",
+      "actor": "Jang Mi Kwan",
+      "image": "https://i.mydramalist.com/veVbqm.jpg",
+      "group": "The kidnapper",
+      "inCast": true,
+      "note": "The kidnapper — a misogynist"
+    },
+    {
+      "id": "gwangseok",
+      "name": "Jang Gwang Seok",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/0pQBkm.jpg",
+      "group": "The kidnapper",
+      "inCast": true,
+      "note": "Accomplice; scrapyard worker, addict"
+    },
+    {
+      "id": "gyeongtae",
+      "name": "Jang Gyeong Tae",
+      "actor": "Choi Won Myung",
+      "image": "https://i.mydramalist.com/g07Y8O_5m.jpg",
+      "group": "Ainsoft",
+      "inCast": true
+    },
+    {
+      "id": "iljin",
+      "name": "Il Jin",
+      "actor": "Kim Young Choon",
+      "image": "https://i.mydramalist.com/rb2Rgm.jpg",
+      "group": "Bong Sun's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "bongsun",
+      "to": "minhyeok",
+      "type": "romance",
+      "label": "his bodyguard, then more",
+      "short": "in love",
+      "evidence": "괴력의 소유자, 민혁의 경호원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bongsun",
+      "to": "minhyeok",
+      "type": "work",
+      "label": "hired as his bodyguard",
+      "short": "his bodyguard",
+      "evidence": "민혁의 경호원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gukdu",
+      "to": "bongsun",
+      "type": "romance",
+      "label": "her crush since school; too late",
+      "short": "her old crush",
+      "evidence": "경찰대 출신, 도봉경찰서 강력3팀 형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gukdu",
+      "to": "bongsun",
+      "type": "friend",
+      "label": "childhood friend",
+      "short": "childhood friend",
+      "evidence": "인국두 역(아역 최민영) / 도봉순 역(아역 고나희, 신비)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jini",
+      "to": "bongsun",
+      "type": "family",
+      "label": "mother — had the strength herself",
+      "short": "mother",
+      "evidence": "봉순의 어머니, 과거 괴력의 소유자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chilgu",
+      "to": "bongsun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "봉순의 아버지, 도봉호두 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jini",
+      "to": "chilgu",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "봉순의 어머니 / 봉순의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bonggi",
+      "to": "bongsun",
+      "type": "family",
+      "label": "fraternal twin, younger",
+      "short": "twin brother",
+      "evidence": "봉순의 이란성 쌍둥이 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonsim",
+      "to": "bongsun",
+      "type": "family",
+      "label": "maternal grandmother — the strength runs in the line",
+      "short": "grandmother",
+      "evidence": "봉순의 외할머니, 괴력의 소유자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonsim",
+      "to": "jini",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "봉순의 외할머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongsim",
+      "to": "bongsun",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "봉순의 친구, 야구 치어리더 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongsim",
+      "to": "bonggi",
+      "type": "romance",
+      "label": "the friend and the twin",
+      "short": "in love",
+      "evidence": "봉순의 친구 / 봉순의 이란성 쌍둥이 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "kong",
+      "to": "minhyeok",
+      "type": "work",
+      "label": "his secretary",
+      "short": "secretary",
+      "evidence": "민혁의 수행비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dolpyu",
+      "to": "minhyeok",
+      "type": "work",
+      "label": "head of development planning",
+      "short": "team leader",
+      "evidence": "개발기획팀 팀장, 본명 오돌병",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dolpyu",
+      "to": "baektak",
+      "type": "work",
+      "label": "as Kim Gwang Bok — the gang's hired thug",
+      "short": "the doppelgänger",
+      "evidence": "백탁파 김광복의 도플갱어 / 김광복 역 - 용역 깡패",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongha",
+      "to": "minhyeok",
+      "type": "family",
+      "label": "first half-brother",
+      "short": "half-brother",
+      "evidence": "민혁의 첫째 이복형, 동석과 친형제",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongseok",
+      "to": "minhyeok",
+      "type": "family",
+      "label": "second half-brother",
+      "short": "half-brother",
+      "evidence": "민혁의 둘째 이복형. 유순한 성품",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongha",
+      "to": "minhyeok",
+      "type": "rivalry",
+      "label": "the brothers against the chosen heir",
+      "short": "rival heir",
+      "evidence": "회사를 민혁에게 물려주려고 함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "stepmother",
+      "to": "minhyeok",
+      "type": "family",
+      "label": "stepmother",
+      "short": "stepmother",
+      "evidence": "[Min Hyeok's stepmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chuldo",
+      "to": "minhyeok",
+      "type": "family",
+      "label": "father — means to hand him the group",
+      "short": "father",
+      "evidence": "민혁의 아버지, 오성그룹 회장. 회사를 민혁에게 물려주려고 함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonghwan",
+      "to": "minhyeok",
+      "type": "family",
+      "label": "third half-brother",
+      "short": "half-brother",
+      "evidence": "민혁의 셋째 이복형, 동하와 동석의 이복형제",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "baektak",
+      "to": "bongsun",
+      "type": "rivalry",
+      "label": "the gang she throws around",
+      "short": "her punching bag",
+      "evidence": "백탁파 두목, 본명 백수탁",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "agari",
+      "to": "baektak",
+      "type": "work",
+      "label": "right hand",
+      "short": "right hand",
+      "evidence": "백탁의 오른팔",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeondong",
+      "to": "baektak",
+      "type": "work",
+      "label": "hired thug",
+      "short": "thug",
+      "evidence": "용역 깡패",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiji",
+      "to": "gukdu",
+      "type": "romance",
+      "label": "girlfriend — a cellist",
+      "short": "girlfriend",
+      "evidence": "국두의 여자친구, 시향의 첼리스트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mihwa",
+      "to": "gukdu",
+      "type": "family",
+      "label": "mother — a novelist",
+      "short": "mother",
+      "evidence": "국두의 어머니, 베스트셀러 소설가",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dotbogi",
+      "to": "gukdu",
+      "type": "work",
+      "label": "detective on his team",
+      "short": "colleague",
+      "evidence": "돋보기 역 - 형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "janghyeon",
+      "to": "bongsun",
+      "type": "rivalry",
+      "label": "the kidnapper she hunts — and who hunts her",
+      "short": "the kidnapper",
+      "evidence": "범인 김장현 역 - 여성혐오자",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangseok",
+      "to": "janghyeon",
+      "type": "work",
+      "label": "accomplice",
+      "short": "accomplice",
+      "evidence": "공범 장광석 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gukdu",
+      "to": "janghyeon",
+      "type": "rivalry",
+      "label": "the case",
+      "short": "hunts him",
+      "evidence": "도봉경찰서 강력3팀 형사 / 범인 김장현",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeongtae",
+      "to": "minhyeok",
+      "type": "work",
+      "label": "at Ainsoft",
+      "short": "employee",
+      "evidence": "장경태",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "iljin",
+      "to": "chilgu",
+      "type": "friend",
+      "label": "around the walnut shop",
+      "short": "neighbour",
+      "evidence": "일진",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "bongsun",
+      "minhyeok",
+      "gukdu",
+      "jini",
+      "chilgu",
+      "bonggi",
+      "seonsim",
+      "gyeongsim",
+      "kong",
+      "dolpyu",
+      "dongha",
+      "dongseok",
+      "stepmother",
+      "chuldo",
+      "gyeonghwan",
+      "baektak",
+      "agari",
+      "hyeondong",
+      "huiji",
+      "mihwa",
+      "dotbogi",
+      "janghyeon",
+      "gwangseok",
+      "gyeongtae",
+      "iljin"
+    ],
+    "blocks": {
+      "Bong Sun's family": [
+        0,
+        0
+      ],
+      "Baek Tak gang": [
+        0,
+        2
+      ],
+      "Ainsoft": [
+        2,
+        0
+      ],
+      "Osung Group": [
+        2,
+        2
+      ],
+      "Dobong police": [
+        1,
+        0
+      ],
+      "The kidnapper": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "bongsun",
+      "minhyeok"
+    ]
+  }
+}
