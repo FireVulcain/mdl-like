@@ -1,0 +1,839 @@
+{
+  "version": 1,
+  "mdlSlug": "25560-moving",
+  "title": "Moving",
+  "native": "무빙",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (125 roles, 11 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (main, school, agency, North, families)",
+    "en.wikipedia Cast (not used — ko is fuller)"
+  ],
+  "main": [
+    "bongseok",
+    "huisu",
+    "ganghun",
+    "juwon",
+    "mihyeon",
+    "dusik"
+  ],
+  "people": [
+    {
+      "id": "bongseok",
+      "name": "Kim Bong Seok",
+      "actor": "Lee Jung Ha",
+      "image": "https://i.mydramalist.com/pqQwQ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Jung Min",
+          "image": "https://i.mydramalist.com/QP61v_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Flies — and has to weigh himself down to stay on the ground"
+    },
+    {
+      "id": "huisu",
+      "name": "Jang Hui Su",
+      "actor": "Go Youn Jung",
+      "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Su A",
+          "image": "https://i.mydramalist.com/Lwz8Xb_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Heals from anything"
+    },
+    {
+      "id": "ganghun",
+      "name": "Lee Gang Hun",
+      "actor": "Kim Do Hoon",
+      "image": "https://i.mydramalist.com/jR5yw_5m.jpg",
+      "group": "Gang Hun's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Shi Woo",
+          "image": "https://i.mydramalist.com/4AZkQ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Strength and speed"
+    },
+    {
+      "id": "mihyeon",
+      "name": "Lee Mi Hyeon",
+      "actor": "Han Hyo Joo",
+      "image": "https://i.mydramalist.com/R6W7x_5m.jpg",
+      "group": "Bong Seok's family",
+      "inCast": true,
+      "note": "Former NIS analyst; heightened senses"
+    },
+    {
+      "id": "dusik",
+      "name": "Kim Du Sik",
+      "actor": "Zo In Sung",
+      "image": "https://i.mydramalist.com/KponqX_5m.jpg",
+      "group": "Bong Seok's family",
+      "inCast": true,
+      "note": "Former black-ops agent, codename Moonsan; flies"
+    },
+    {
+      "id": "juwon",
+      "name": "Jang Ju Won",
+      "actor": "Ryu Seung Ryong",
+      "image": "https://i.mydramalist.com/qPwzQ_5m.jpg",
+      "group": "Hui Su's family",
+      "inCast": true,
+      "note": "Codename Guryongpo; heals from anything"
+    },
+    {
+      "id": "jihui",
+      "name": "Hwang Ji Hui",
+      "actor": "Kwak Sun Young",
+      "image": "https://i.mydramalist.com/yWyrd4_5m.jpg",
+      "group": "Hui Su's family",
+      "inCast": true,
+      "note": "Died before the story"
+    },
+    {
+      "id": "jaeman",
+      "name": "Lee Jae Man",
+      "actor": "Kim Sung Kyun",
+      "image": "https://i.mydramalist.com/ABLNZZ_5m.jpg",
+      "group": "Gang Hun's family",
+      "inCast": true,
+      "note": "Strength; a butcher"
+    },
+    {
+      "id": "yunyeong",
+      "name": "Sin Yun Yeong",
+      "actor": "Park Bo Kyung",
+      "image": "https://i.mydramalist.com/5vPjL4_5m.jpg",
+      "group": "Gang Hun's family",
+      "inCast": true
+    },
+    {
+      "id": "gyedo",
+      "name": "Jeon Gye Do",
+      "actor": "Cha Tae Hyun",
+      "image": "https://i.mydramalist.com/jO7J8_5m.jpg",
+      "group": "The agents' children",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Jun",
+          "image": "https://i.mydramalist.com/XEBpn_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "City bus driver; electricity"
+    },
+    {
+      "id": "seeun",
+      "name": "Yang Se Eun",
+      "actor": "Lee Ho Jung",
+      "image": "https://i.mydramalist.com/XdbL8d_5m.jpg",
+      "group": "The agents' children",
+      "inCast": true,
+      "note": "X-ray sight; enters Jeongwon High in 2008"
+    },
+    {
+      "id": "frank",
+      "name": "Frank",
+      "actor": "Ryu Seung Beom",
+      "image": "https://i.mydramalist.com/WBWARm.jpg",
+      "group": "The killer",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Tae Yul",
+          "image": "https://i.mydramalist.com/4NO6w_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "A cleaner posing as a courier, raised by US intelligence; heals from anything"
+    },
+    {
+      "id": "yongjun",
+      "name": "Min Yong Jun",
+      "actor": "Moon Sung Keun",
+      "image": "https://i.mydramalist.com/oQDZ4k_5m.jpg",
+      "group": "The Agency",
+      "inCast": true,
+      "note": "Fifth deputy director of the ANSP — the one behind everything"
+    },
+    {
+      "id": "ungyu",
+      "name": "Yeo Un Gyu",
+      "actor": "Kim Shin Rock",
+      "image": "https://i.mydramalist.com/oQzmpO_5m.jpg",
+      "group": "The Agency",
+      "inCast": true,
+      "note": "Director of information; Yong Jun's secretary"
+    },
+    {
+      "id": "sanggu",
+      "name": "Ma Sang Gu",
+      "actor": "Park Byung Eun",
+      "image": "https://i.mydramalist.com/JB4v2p_5m.jpg",
+      "group": "The Agency",
+      "inCast": true,
+      "note": "Black-ops agent; led Operation Seagull in Yanbian, 1992"
+    },
+    {
+      "id": "sangjin",
+      "name": "Jung Sang Jin",
+      "actor": "Baek Hyun Jin",
+      "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
+      "group": "The Agency",
+      "inCast": true,
+      "note": "Codename Jincheon"
+    },
+    {
+      "id": "yeongseok",
+      "name": "Jeon Yeong Seok",
+      "actor": "Choi Duk Moon",
+      "image": "https://i.mydramalist.com/YYj5lK_5m.jpg",
+      "group": "The Agency",
+      "inCast": true,
+      "note": "Codename Bongpyeong"
+    },
+    {
+      "id": "sunghwa",
+      "name": "Hong Sung Hwa",
+      "actor": "Kim Kuk Hee",
+      "image": "https://i.mydramalist.com/wegpk_5m.jpg",
+      "group": "The Agency",
+      "inCast": true,
+      "note": "Codename Naju; runs a hair salon now"
+    },
+    {
+      "id": "ilhwan",
+      "name": "Choi Il Hwan",
+      "actor": "Kim Hee Won",
+      "image": "https://i.mydramalist.com/1qZ0Km.jpg",
+      "group": "Jeongwon High",
+      "inCast": true,
+      "note": "PE teacher and homeroom teacher — a black-ops agent from special forces"
+    },
+    {
+      "id": "raehyeok",
+      "name": "Cho Rae Hyeok",
+      "actor": "Yoo Seung Mok",
+      "image": "https://i.mydramalist.com/Lw5eBB_5m.jpg",
+      "group": "Jeongwon High",
+      "inCast": true,
+      "note": "Principal; ANSP section chief running the NTDP for ten years"
+    },
+    {
+      "id": "jisung",
+      "name": "Hwang Ji Sung",
+      "actor": "Kim Jong Soo",
+      "image": "https://i.mydramalist.com/yWOdl4_5m.jpg",
+      "group": "Jeongwon High",
+      "inCast": true,
+      "note": "School guard"
+    },
+    {
+      "id": "gisu",
+      "name": "Bang Gi Su",
+      "actor": "Shin Jae Hwi",
+      "image": "https://i.mydramalist.com/pRBBr_5m.jpg",
+      "group": "Jeongwon High",
+      "inCast": true,
+      "note": "Third-year bully"
+    },
+    {
+      "id": "hanbyeol",
+      "name": "Han Byeol",
+      "actor": "Park Han Sol",
+      "image": "https://i.mydramalist.com/4NemK_5m.jpg",
+      "group": "Jeongwon High",
+      "inCast": true,
+      "note": "Classmate with a YouTube channel"
+    },
+    {
+      "id": "hyewon",
+      "name": "Sin Hye Won",
+      "actor": "Shim Dal Gi",
+      "image": "https://i.mydramalist.com/vLAAB_5m.jpg",
+      "group": "Jeongwon High",
+      "inCast": true,
+      "note": "Poses as a bullied student"
+    },
+    {
+      "id": "deokyun",
+      "name": "Kim Deok Yun",
+      "actor": "Park Hee Soon",
+      "image": "https://i.mydramalist.com/kWLmrm.jpg",
+      "group": "North Korea",
+      "inCast": true,
+      "note": "State Security agent; leads the North's enhanced soldiers"
+    },
+    {
+      "id": "junhwa",
+      "name": "Jung Jun Hwa",
+      "actor": "Yang Dong Geun",
+      "image": "https://i.mydramalist.com/yWOPQ4_5m.jpg",
+      "group": "North Korea",
+      "inCast": true,
+      "note": "The strongest of them; flies"
+    },
+    {
+      "id": "chanil",
+      "name": "Park Chan Il",
+      "actor": "Jo Bok Rae",
+      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
+      "group": "North Korea",
+      "inCast": true,
+      "note": "From the 1996 Gangneung infiltration; strength"
+    },
+    {
+      "id": "jaehak",
+      "name": "Bae Jae Hak",
+      "actor": "Kim Da Hyun",
+      "image": "https://i.mydramalist.com/RwWRR_5m.jpg",
+      "group": "North Korea",
+      "inCast": true,
+      "note": "Speed"
+    },
+    {
+      "id": "jaeseok",
+      "name": "Lim Jae Seok",
+      "actor": "Kim Joong Hee",
+      "image": "https://i.mydramalist.com/YYzlDo_5m.jpg",
+      "group": "North Korea",
+      "inCast": true,
+      "note": "Half a life in Yodok camp; shockwaves"
+    }
+  ],
+  "links": [
+    {
+      "from": "bongseok",
+      "to": "huisu",
+      "type": "friend",
+      "label": "classmates who find each other out",
+      "short": "friends",
+      "evidence": "희수와 강훈의 친구 / 봉석과 강훈의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bongseok",
+      "to": "huisu",
+      "type": "romance",
+      "label": "the students' leads — a first love",
+      "short": "first love",
+      "evidence": "이 드라마의 학생 측 남주인공 / 여주인공",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ganghun",
+      "to": "bongseok",
+      "type": "friend",
+      "label": "friends",
+      "short": "friends",
+      "evidence": "희수와 봉석의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ganghun",
+      "to": "huisu",
+      "type": "friend",
+      "label": "friends",
+      "short": "friends",
+      "evidence": "희수와 봉석의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mihyeon",
+      "to": "bongseok",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "두식의 아내, 봉석의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dusik",
+      "to": "bongseok",
+      "type": "family",
+      "label": "father — the flying agent who vanished",
+      "short": "father",
+      "evidence": "미현의 남편, 봉석의 아버지. 전 국정원 블랙 요원, 코드네임 문산",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dusik",
+      "to": "mihyeon",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "두식의 아내 / 미현의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juwon",
+      "to": "huisu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "희수의 아버지, 죽은 지희의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihui",
+      "to": "huisu",
+      "type": "family",
+      "label": "mother — dead",
+      "short": "mother",
+      "evidence": "주원의 아내, 희수의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juwon",
+      "to": "jihui",
+      "type": "romance",
+      "label": "married; she died",
+      "short": "married",
+      "evidence": "죽은 지희의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaeman",
+      "to": "ganghun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "강훈의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunyeong",
+      "to": "ganghun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "재만의 아내, 강훈의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeman",
+      "to": "yunyeong",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "재만의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongseok",
+      "to": "gyedo",
+      "type": "family",
+      "label": "father — a former agent, dead",
+      "short": "father",
+      "evidence": "전 안기부 요원, 코드네임 봉평, 계도의 아버지 / 죽은 영석의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunghwa",
+      "to": "seeun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "코드네임 나주의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongjun",
+      "to": "dusik",
+      "type": "work",
+      "label": "ran him as a black-ops agent",
+      "short": "his old boss",
+      "evidence": "전 국정원 블랙 요원 / 국가안전기획부 제 5차장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yongjun",
+      "to": "juwon",
+      "type": "work",
+      "label": "ran him as a black-ops agent",
+      "short": "his old boss",
+      "evidence": "코드네임 구룡포 / 국가안전기획부 제 5차장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yongjun",
+      "to": "bongseok",
+      "type": "rivalry",
+      "label": "the NTDP — ten years of grooming the children for the state",
+      "short": "wants the children",
+      "evidence": "용준의 주도하에 NTDP(국가 재능 육성 사업)를 10년 째 진행하고 있다 / 이 드라마의 진 최종 보스",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ungyu",
+      "to": "yongjun",
+      "type": "work",
+      "label": "his dedicated secretary",
+      "short": "secretary",
+      "evidence": "국가안전기획부 정보관리국장, 민용준 전담 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggu",
+      "to": "dusik",
+      "type": "work",
+      "label": "team leader on Operation Seagull, 1992",
+      "short": "led Seagull",
+      "evidence": "92년 연변에서의 갈매기작전 당시 팀장이었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangjin",
+      "to": "yeongseok",
+      "type": "work",
+      "label": "fellow former agents",
+      "short": "fellow agents",
+      "evidence": "전 안기부 요원, 코드네임 진천 / 코드네임 봉평",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sunghwa",
+      "to": "sangjin",
+      "type": "work",
+      "label": "fellow former agents",
+      "short": "fellow agents",
+      "evidence": "전 안기부 요원, 코드네임 나주",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "raehyeok",
+      "to": "yongjun",
+      "type": "work",
+      "label": "runs the NTDP at the school on his orders",
+      "short": "runs the NTDP",
+      "evidence": "국가안전기획부 과장, 정원고등학교 교장, 용준의 주도하에 NTDP를 10년 째 진행하고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilhwan",
+      "to": "bongseok",
+      "type": "work",
+      "label": "homeroom teacher — a black-ops agent from special forces",
+      "short": "homeroom teacher",
+      "evidence": "희수&봉석&강훈의 담임, 특전부사관 출신 국정원 블랙요원",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilhwan",
+      "to": "huisu",
+      "type": "work",
+      "label": "homeroom teacher",
+      "short": "homeroom teacher",
+      "evidence": "희수&봉석&강훈의 담임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jisung",
+      "to": "raehyeok",
+      "type": "work",
+      "label": "school guard",
+      "short": "guard",
+      "evidence": "정원고등학교 수위",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gisu",
+      "to": "ganghun",
+      "type": "rivalry",
+      "label": "the bully who resents him",
+      "short": "bullies him",
+      "evidence": "평소 같은 반인 강훈을 못마땅하게 여기고 있는 일진",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanbyeol",
+      "to": "huisu",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "희수, 봉석, 강훈과 같은 반 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyewon",
+      "to": "yongjun",
+      "type": "bond",
+      "label": "older than Yong Jun himself — she does not age",
+      "short": "does not age",
+      "evidence": "실제로는 민용준보다 선배이며 늙지 않는 능력을 갖고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "frank",
+      "to": "juwon",
+      "type": "rivalry",
+      "label": "sent to eliminate the old agents",
+      "short": "hunts him",
+      "evidence": "택배기사로 위장한 처리전문 요원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "frank",
+      "to": "dusik",
+      "type": "rivalry",
+      "label": "sent to eliminate the old agents",
+      "short": "hunts him",
+      "evidence": "택배기사로 위장한 처리전문 요원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "frank",
+      "to": "yeongseok",
+      "type": "rivalry",
+      "label": "killed him",
+      "short": "killed him",
+      "evidence": "죽은 영석의 아들 / 처리전문 요원",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deokyun",
+      "to": "junhwa",
+      "type": "work",
+      "label": "leads the North's enhanced soldiers",
+      "short": "his leader",
+      "evidence": "북한군에서 양성한 특수 능력자들의 리더",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokyun",
+      "to": "chanil",
+      "type": "work",
+      "label": "leads the North's enhanced soldiers",
+      "short": "his leader",
+      "evidence": "북한군에서 양성한 특수 능력자들의 리더",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokyun",
+      "to": "jaehak",
+      "type": "work",
+      "label": "leads the North's enhanced soldiers",
+      "short": "his leader",
+      "evidence": "호위부 소속",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokyun",
+      "to": "jaeseok",
+      "type": "work",
+      "label": "leads the North's enhanced soldiers",
+      "short": "his leader",
+      "evidence": "북한군에서 양성한 특수 능력자들의 리더",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junhwa",
+      "to": "bongseok",
+      "type": "rivalry",
+      "label": "the North's flyer against the South's",
+      "short": "flyer vs flyer",
+      "evidence": "비행능력 소유",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deokyun",
+      "to": "yongjun",
+      "type": "rivalry",
+      "label": "the North's operation against the South's children",
+      "short": "the other side",
+      "evidence": "이 드라마의 메인 빌런이자 준 최종 보스",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "bongseok",
+      "huisu",
+      "ganghun",
+      "mihyeon",
+      "dusik",
+      "juwon",
+      "jihui",
+      "jaeman",
+      "yunyeong",
+      "gyedo",
+      "seeun",
+      "frank",
+      "yongjun",
+      "ungyu",
+      "sanggu",
+      "sangjin",
+      "yeongseok",
+      "sunghwa",
+      "ilhwan",
+      "raehyeok",
+      "jisung",
+      "gisu",
+      "hanbyeol",
+      "hyewon"
+    ],
+    "blocks": {
+      "Bong Seok's family": [
+        0,
+        0
+      ],
+      "The Agency": [
+        0,
+        2
+      ],
+      "Hui Su's family": [
+        2,
+        0
+      ],
+      "The killer": [
+        2,
+        1
+      ],
+      "The agents' children": [
+        2,
+        2
+      ],
+      "Jeongwon High": [
+        1,
+        0
+      ],
+      "Gang Hun's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "bongseok",
+      "huisu"
+    ]
+  }
+}
