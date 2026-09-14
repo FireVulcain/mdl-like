@@ -28,10 +28,12 @@
         {
           "name": "Moon Woo Jin",
           "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/28/Its_Okay_To_Be_Not_Okay-Moon_Woo-Jin.jpg"
         }
       ],
-      "note": "Caregiver on the psychiatric ward"
+      "note": "Caregiver on the psychiatric ward",
+      "still": "https://asianwiki.com/images/5/5f/Its_Okay_to_Not_Be_Okay-Kim_Soo-Hyun.jpg"
     },
     {
       "id": "munyoung",
@@ -44,10 +46,12 @@
         {
           "name": "Kim Su In",
           "image": "https://i.mydramalist.com/PxLwo8_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/1/14/Its_Okay_To_Be_Not_Okay-Kim_Soo-In.jpg"
         }
       ],
-      "note": "Children's author; antisocial personality"
+      "note": "Children's author; antisocial personality",
+      "still": "https://asianwiki.com/images/8/8f/Its_Okay_to_Not_Be_Okay-Seo_Ye-Ji.jpg"
     },
     {
       "id": "sangtae",
@@ -60,10 +64,12 @@
         {
           "name": "Lee Kyu Sung",
           "image": "https://i.mydramalist.com/BE5kb_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/d5/Its_Okay_To_Be_Not_Okay-Lee_Kyu-Sung.jpg"
         }
       ],
-      "note": "Autistic; illustrator; afraid of butterflies"
+      "note": "Autistic; illustrator; afraid of butterflies",
+      "still": "https://asianwiki.com/images/a/a2/Its_Okay_to_Not_Be_Okay-Oh_Jung-Se.jpg"
     },
     {
       "id": "mom",
@@ -72,7 +78,8 @@
       "image": "https://i.mydramalist.com/6jVxj_5m.jpg",
       "group": "The brothers",
       "inCast": true,
-      "note": "Murdered; MDL lists the role unnamed"
+      "note": "Murdered; MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/2/2b/Its_Okay_To_Be_Not_Okay-Choi_Hee-Jin.jpg"
     },
     {
       "id": "jaesu",
@@ -81,7 +88,8 @@
       "image": "https://i.mydramalist.com/YYZ8yd_5m.jpg",
       "group": "The brothers",
       "inCast": true,
-      "note": "Gang Tae's only friend; runs a chicken place"
+      "note": "Gang Tae's only friend; runs a chicken place",
+      "still": "https://asianwiki.com/images/3/37/Its_Okay_To_Be_Not_Okay-Kang_Ki-Doong.jpg"
     },
     {
       "id": "juri",
@@ -94,10 +102,12 @@
         {
           "name": "Park Seo Kyung",
           "image": "https://i.mydramalist.com/xQD5jm.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/d0/Its_Okay_To_Be_Not_Okay-Park_Seo-Kyung.jpg"
         }
       ],
-      "note": "Psychiatric nurse, seven years in"
+      "note": "Psychiatric nurse, seven years in",
+      "still": "https://asianwiki.com/images/3/3c/Its_Okay_to_Not_Be_Okay-Park_Gyu-Young.jpg"
     },
     {
       "id": "haengja",
@@ -106,7 +116,8 @@
       "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
       "group": "OK Hospital staff",
       "inCast": true,
-      "note": "Head nurse"
+      "note": "Head nurse",
+      "still": "https://asianwiki.com/images/2/2b/Its_Okay_to_Not_Be_Okay-Jang_Young-Nam.jpg"
     },
     {
       "id": "jiwang",
@@ -115,7 +126,8 @@
       "image": "https://i.mydramalist.com/6xQPg_5m.jpg",
       "group": "OK Hospital staff",
       "inCast": true,
-      "note": "Director of OK Psychiatric Hospital"
+      "note": "Director of OK Psychiatric Hospital",
+      "still": "https://asianwiki.com/images/a/a3/Its_Okay_To_Be_Not_Okay-Kim_Chang-Wan01.jpg"
     },
     {
       "id": "sundeok",
@@ -124,7 +136,8 @@
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
       "group": "OK Hospital staff",
       "inCast": true,
-      "note": "Head cook"
+      "note": "Head cook",
+      "still": "https://asianwiki.com/images/9/98/Its_Okay_To_Be_Not_Okay-Kim_Mi-Kyung.jpg"
     },
     {
       "id": "seonbyul",
@@ -133,7 +146,8 @@
       "image": "https://i.mydramalist.com/kA7r7w_5m.jpg",
       "group": "OK Hospital staff",
       "inCast": true,
-      "note": "Nurse, three years in"
+      "note": "Nurse, three years in",
+      "still": "https://asianwiki.com/images/2/22/Its_Okay_to_Not_Be_Okay-Jang_Gyu-Ri.jpg"
     },
     {
       "id": "minseok",
@@ -142,7 +156,8 @@
       "image": "https://i.mydramalist.com/E3zm5_5m.jpg",
       "group": "OK Hospital staff",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/7/7d/Its_Okay_To_Be_Not_Okay-Seo-Joon.jpg"
     },
     {
       "id": "chayong",
@@ -151,7 +166,8 @@
       "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
       "group": "OK Hospital staff",
       "inCast": true,
-      "note": "Caregiver"
+      "note": "Caregiver",
+      "still": "https://asianwiki.com/images/4/48/Its_Okay_To_Be_Not_Okay-Choi_Woo-Sung.jpg"
     },
     {
       "id": "daehwan",
@@ -160,7 +176,8 @@
       "image": "https://i.mydramalist.com/r58x7_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "Famous architect; organic dementia"
+      "note": "Famous architect; organic dementia",
+      "still": "https://asianwiki.com/images/b/bc/Its_Okay_to_Not_Be_Okay-Lee_Eol.jpg"
     },
     {
       "id": "pilong",
@@ -169,7 +186,8 @@
       "image": "https://i.mydramalist.com/YY1OAK_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "PTSD; 'Gandhi'"
+      "note": "PTSD; 'Gandhi'",
+      "still": "https://asianwiki.com/images/c/c7/Its_Okay_to_Not_Be_Okay-Kim_Ki-Cheon.jpg"
     },
     {
       "id": "jungtae",
@@ -178,7 +196,8 @@
       "image": "https://i.mydramalist.com/mO1opk_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "Alcohol dependence"
+      "note": "Alcohol dependence",
+      "still": "https://asianwiki.com/images/9/95/Its_Okay_to_Not_Be_Okay-Jeong_Jae-Kwang.jpg"
     },
     {
       "id": "ahreum",
@@ -187,7 +206,8 @@
       "image": "https://i.mydramalist.com/E5Nr7W_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "Depression"
+      "note": "Depression",
+      "still": "https://asianwiki.com/images/1/15/Its_Okay_To_Be_Not_Okay-Ji_Hye-Won.jpg"
     },
     {
       "id": "okran",
@@ -196,7 +216,8 @@
       "image": "https://i.mydramalist.com/ejdLW_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "Borderline personality; once a stage actress; a fan of Do Hui Jae's books"
+      "note": "Borderline personality; once a stage actress; a fan of Do Hui Jae's books",
+      "still": "https://asianwiki.com/images/3/33/Its_Okay_To_Be_Not_Okay-Kang_Ji-Eun.jpg"
     },
     {
       "id": "sunhae",
@@ -209,10 +230,12 @@
         {
           "name": "Go Do Yeon",
           "image": "https://i.mydramalist.com/2LB0W_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/9/95/Its_Okay_To_Be_Not_Okay-Ko_Do-Yeon.jpg"
         }
       ],
-      "note": "Dissociative identity; raised by a shaman"
+      "note": "Dissociative identity; raised by a shaman",
+      "still": "https://asianwiki.com/images/9/95/Its_Okay_To_Be_Not_Okay-Joo_In-Young.jpg"
     },
     {
       "id": "sangin",
@@ -221,7 +244,8 @@
       "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
       "group": "Sangsangyisang",
       "inCast": true,
-      "note": "CEO of the children's publisher"
+      "note": "CEO of the children's publisher",
+      "still": "https://asianwiki.com/images/1/1d/Its_Okay_to_Not_Be_Okay-Kim_Joo-Hun.jpg"
     },
     {
       "id": "seungjae",
@@ -230,7 +254,8 @@
       "image": "https://i.mydramalist.com/5vV3xY_5m.jpg",
       "group": "Sangsangyisang",
       "inCast": true,
-      "note": "Art director, really his assistant"
+      "note": "Art director, really his assistant",
+      "still": "https://asianwiki.com/images/3/3a/Its_Okay_to_Not_Be_Okay-Park_Jin-Joo.jpg"
     }
   ],
   "links": [

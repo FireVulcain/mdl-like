@@ -34,10 +34,12 @@
         {
           "name": "Kim Tae Yul",
           "image": "https://i.mydramalist.com/4NO6w_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/3/37/Racket_Boys-Kim_Tae-Yul.jpg"
         }
       ],
-      "note": "Baseball boy from the city; picks up the racket again in Haenam"
+      "note": "Baseball boy from the city; picks up the racket again in Haenam",
+      "still": "https://asianwiki.com/images/4/4d/Racket_Boys-Tang_Joon_Sang.jpg"
     },
     {
       "id": "seyoon",
@@ -50,10 +52,12 @@
         {
           "name": "Shin Rin Ah",
           "image": "https://i.mydramalist.com/2YX3O_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/7/79/Racket_Boys-Shin_Rin-A.jpg"
         }
       ],
-      "note": "Wants to be the youngest on the national team"
+      "note": "Wants to be the youngest on the national team",
+      "still": "https://asianwiki.com/images/c/cc/Racket_Boys-Lee_Jae_In.jpg"
     },
     {
       "id": "hyunjong",
@@ -62,7 +66,8 @@
       "image": "https://i.mydramalist.com/ZdZAq_5m.jpg",
       "group": "Hae Kang's family",
       "inCast": true,
-      "note": "Former top player; coaches the boys' team to make ends meet"
+      "note": "Former top player; coaches the boys' team to make ends meet",
+      "still": "https://asianwiki.com/images/b/be/Racket_Boys-Kim_Sang_Kyung1.jpg"
     },
     {
       "id": "youngja",
@@ -71,7 +76,8 @@
       "image": "https://i.mydramalist.com/nOZJmL_5m.jpg",
       "group": "Hae Kang's family",
       "inCast": true,
-      "note": "A living legend — 'Ranos', by the book; coaches the girls"
+      "note": "A living legend — 'Ranos', by the book; coaches the girls",
+      "still": "https://asianwiki.com/images/1/1a/Racket_Boys-Oh_Na-Ra1.jpg"
     },
     {
       "id": "haein",
@@ -80,7 +86,8 @@
       "image": "https://i.mydramalist.com/oQ4J0E_5m.jpg",
       "group": "Hae Kang's family",
       "inCast": true,
-      "note": "Feisty like her mother; asthma"
+      "note": "Feisty like her mother; asthma",
+      "still": "https://asianwiki.com/images/8/80/Racket_Boys-Ahn_Se-Bin.jpg"
     },
     {
       "id": "yoondam",
@@ -89,7 +96,8 @@
       "image": "https://i.mydramalist.com/VXxRRx_5m.jpg",
       "group": "Haenam Seo boys",
       "inCast": true,
-      "note": "Captain and ace; wants 100,000 followers"
+      "note": "Captain and ace; wants 100,000 followers",
+      "still": "https://asianwiki.com/images/7/77/Racket_Boys-Son_Sang-Yeon1.jpg"
     },
     {
       "id": "uchan",
@@ -102,10 +110,12 @@
         {
           "name": "Oh Ja Hun",
           "image": "https://i.mydramalist.com/w3lXJ_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/f/f0/Racket_Boys-Oh_Ja-Hun.jpg"
         }
       ],
-      "note": "Hip-hop king and peacemaker"
+      "note": "Hip-hop king and peacemaker",
+      "still": "https://asianwiki.com/images/d/dc/Racket_Boys-Choi_Hyun_Wook.jpg"
     },
     {
       "id": "yongtae",
@@ -114,7 +124,8 @@
       "image": "https://i.mydramalist.com/JB6qYX_5m.jpg",
       "group": "Haenam Seo boys",
       "inCast": true,
-      "note": "The youngest; talks too much; a Lee Yong Dae fan"
+      "note": "The youngest; talks too much; a Lee Yong Dae fan",
+      "still": "https://asianwiki.com/images/e/ec/Racket_Boys-Kim_Kang_Hoon.jpg"
     },
     {
       "id": "insol",
@@ -123,7 +134,8 @@
       "image": "https://i.mydramalist.com/g0bBDn_5m.jpg",
       "group": "Haenam Seo boys",
       "inCast": true,
-      "note": "Class president who wants to play"
+      "note": "Class president who wants to play",
+      "still": "https://asianwiki.com/images/7/7b/Racket_Boys-Kim_Min-Ki.jpg"
     },
     {
       "id": "bae",
@@ -132,7 +144,8 @@
       "image": "https://i.mydramalist.com/wJm6xJ_5m.jpg",
       "group": "Haenam Seo boys",
       "inCast": true,
-      "note": "'White Wolf' — PE teacher and head coach"
+      "note": "'White Wolf' — PE teacher and head coach",
+      "still": "https://asianwiki.com/images/f/f1/Racket_Boys-Shin_Jung_Keun.jpg"
     },
     {
       "id": "hansol",
@@ -141,7 +154,8 @@
       "image": "https://i.mydramalist.com/2wQ152_5m.jpg",
       "group": "Haenam Jeil girls",
       "inCast": true,
-      "note": "Falls in love easily"
+      "note": "Falls in love easily",
+      "still": "https://asianwiki.com/images/a/a9/Racket_Boys-Lee_Ji_Won.jpg"
     },
     {
       "id": "yijang",
@@ -150,7 +164,8 @@
       "image": "https://i.mydramalist.com/EEq45_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Village head"
+      "note": "Village head",
+      "still": "https://asianwiki.com/images/d/d0/Racket_Boys-Woo-Hyeon.jpg"
     },
     {
       "id": "jeomduk",
@@ -159,7 +174,8 @@
       "image": "https://i.mydramalist.com/Xbllqm.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "The grandmother next door"
+      "note": "The grandmother next door",
+      "still": "https://asianwiki.com/images/f/f8/Racket_Boys-Cha_Mi_Kyung.jpg"
     },
     {
       "id": "grandfather",
@@ -168,7 +184,8 @@
       "image": "https://i.mydramalist.com/doLBzm.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/b/b4/Racket_Boys-Shin_Cheol_Jin.jpg"
     },
     {
       "id": "philja",
@@ -177,7 +194,8 @@
       "image": "https://i.mydramalist.com/4eyZjw_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Half of the couple who left the city"
+      "note": "Half of the couple who left the city",
+      "still": "https://asianwiki.com/images/6/6f/Racket_Boys-Park_Hyo_Joo.jpg"
     },
     {
       "id": "taeho",
@@ -186,7 +204,8 @@
       "image": "https://i.mydramalist.com/RRnBx_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Timid and caring"
+      "note": "Timid and caring",
+      "still": "https://asianwiki.com/images/c/c6/Racket_Boys-Jung_Min_Sung.jpg"
     },
     {
       "id": "songhee",
@@ -195,7 +214,8 @@
       "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Self-appointed guardian of the village"
+      "note": "Self-appointed guardian of the village",
+      "still": "https://asianwiki.com/images/7/76/Racket_Boys-Baek_Ji-Won.jpg"
     },
     {
       "id": "fang",
@@ -204,7 +224,8 @@
       "image": "https://i.mydramalist.com/1g5nQm.jpg",
       "group": "Badminton",
       "inCast": true,
-      "note": "National team coach"
+      "note": "National team coach",
+      "still": "https://asianwiki.com/images/1/17/Racket_Boys-Ahn_Nae-Sang.jpg"
     },
     {
       "id": "chan",
@@ -213,7 +234,8 @@
       "image": "https://i.mydramalist.com/jQWdrJ_5m.jpg",
       "group": "Badminton",
       "inCast": true,
-      "note": "Player from another school"
+      "note": "Player from another school",
+      "still": "https://asianwiki.com/images/b/b7/Racket_Boys-Yoon_Hyun-Soo.jpg"
     },
     {
       "id": "sanwoo",
@@ -222,7 +244,8 @@
       "image": "https://i.mydramalist.com/RQDz6_5m.jpg",
       "group": "Badminton",
       "inCast": true,
-      "note": "Runs the badminton shop"
+      "note": "Runs the badminton shop",
+      "still": "https://asianwiki.com/images/8/8c/Racket_Boys-Ahn_Sang-Woo.jpg"
     }
   ],
   "links": [

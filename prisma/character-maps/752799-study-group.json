@@ -28,7 +28,8 @@
       "image": "https://i.mydramalist.com/l0DnYv_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Wants college; can only fight"
+      "note": "Wants college; can only fight",
+      "still": "https://asianwiki.com/images/7/73/Study_Group-Minhyun.jpg"
     },
     {
       "id": "hangyeong",
@@ -37,7 +38,8 @@
       "image": "https://i.mydramalist.com/rNO717_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Temporary teacher with a secret; tutored him in middle school"
+      "note": "Temporary teacher with a secret; tutored him in middle school",
+      "still": "https://asianwiki.com/images/3/33/Study_Group-Han_Ji-Eun.jpg"
     },
     {
       "id": "hanul",
@@ -46,7 +48,8 @@
       "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
       "group": "The study group",
       "inCast": true,
-      "note": "The strongest at Yusung"
+      "note": "The strongest at Yusung",
+      "still": "https://asianwiki.com/images/3/32/Study_Group-Cha_Woo_Min1.jpg"
     },
     {
       "id": "sehyeon",
@@ -54,7 +57,8 @@
       "actor": "Lee Jong Hyun",
       "image": "https://i.mydramalist.com/DkJZ8z_5m.jpg",
       "group": "The study group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/22/Study_Group-Lee_Jong-Hyun.jpg"
     },
     {
       "id": "jiu",
@@ -62,7 +66,8 @@
       "actor": "Shin Su Hyun",
       "image": "https://i.mydramalist.com/xOWkN_5m.jpg",
       "group": "The study group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/08/Study_Group-Shin_Soo_Hyun.jpg"
     },
     {
       "id": "huiwon",
@@ -70,7 +75,8 @@
       "actor": "Yoon Sang Jung",
       "image": "https://i.mydramalist.com/dLzbb_5m.jpg",
       "group": "The study group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/10/Study_Group-Yun_Sang_Jeong.jpg"
     },
     {
       "id": "jun",
@@ -78,7 +84,8 @@
       "actor": "Gong Do Yu",
       "image": "https://i.mydramalist.com/YYlA8z_5m.jpg",
       "group": "The study group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/72/Study_Group-Gong_Do_Yu.jpg"
     },
     {
       "id": "hyeonu",
@@ -87,7 +94,8 @@
       "image": "https://i.mydramalist.com/YYVLQK_5m.jpg",
       "group": "Yusung Tech",
       "inCast": true,
-      "note": "First year"
+      "note": "First year",
+      "still": "https://asianwiki.com/images/e/e8/Study_Group-Park_Yoon-Ho.jpeg"
     },
     {
       "id": "geonyeop",
@@ -96,7 +104,8 @@
       "image": "https://i.mydramalist.com/Lwqzoy_5m.jpg",
       "group": "Yusung Tech",
       "inCast": true,
-      "note": "First year"
+      "note": "First year",
+      "still": "https://asianwiki.com/images/4/4a/Study_Group-Hong_Min-Gi.jpg"
     },
     {
       "id": "suncheol",
@@ -104,7 +113,8 @@
       "actor": "Ju Yeon U",
       "image": "https://i.mydramalist.com/XVBoZ_5m.jpg",
       "group": "Yusung Tech",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/74/Study_Group-Joo_Yeon-Woo1.jpg"
     },
     {
       "id": "taeo",
@@ -112,7 +122,8 @@
       "actor": "Seo Min Je",
       "image": "https://i.mydramalist.com/l0N34x_5m.jpg",
       "group": "Yusung Tech",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/34/Study_Group-Seo_Min_Je.jpg"
     },
     {
       "id": "gyujin",
@@ -121,7 +132,8 @@
       "image": "https://i.mydramalist.com/E2Py5m.jpg",
       "group": "Yusung Tech",
       "inCast": true,
-      "note": "Disciplinary committee"
+      "note": "Disciplinary committee",
+      "still": "https://asianwiki.com/images/1/12/Study_Group-Jin_Woo-Jin.jpg"
     },
     {
       "id": "no173",
@@ -130,7 +142,8 @@
       "image": "https://i.mydramalist.com/pd864b_5m.jpg",
       "group": "Yusung Tech",
       "inCast": true,
-      "note": "173rd in the school's ranking"
+      "note": "173rd in the school's ranking",
+      "still": "https://asianwiki.com/images/7/72/Study_Group-Kim_Hwi-Gyu.jpeg"
     },
     {
       "id": "viceprincipal",
@@ -139,7 +152,8 @@
       "image": "https://i.mydramalist.com/zBDbxO_5m.jpg",
       "group": "Yusung Tech",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/e/ed/Study_Group-Jung_Jae_Sun.jpeg"
     },
     {
       "id": "dean",
@@ -148,7 +162,8 @@
       "image": "https://i.mydramalist.com/nE60xm.jpg",
       "group": "Yusung Tech",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/e/e1/Study_Group-Ri_Min.jpeg"
     },
     {
       "id": "yeonbaek",
@@ -157,7 +172,8 @@
       "image": "https://i.mydramalist.com/VQAovm.jpg",
       "group": "Yeonbaek gang",
       "inCast": true,
-      "note": "The gang's boss"
+      "note": "The gang's boss",
+      "still": "https://asianwiki.com/images/0/07/Study_Group-Lee_Jong-Hyuk.jpg"
     },
     {
       "id": "minhwan",
@@ -165,7 +181,8 @@
       "actor": "Baek Seo Hoo",
       "image": "https://i.mydramalist.com/nOZANQ_5m.jpg",
       "group": "Yeonbaek gang",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/93/Study_Group-Baek_Seo_Hoo.jpg"
     },
     {
       "id": "anti",
@@ -178,14 +195,17 @@
         {
           "name": "Park Jun Hyuk",
           "image": "https://i.mydramalist.com/e7ZlE_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/c/ce/Study_Group-Park_Jun-Hyuk.jpg"
         },
         {
           "name": "Cho Yi An",
           "image": "https://i.mydramalist.com/eegmY_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/0/0c/Study_Group-Cho_Yi-An.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/6/6c/Study_Group-Lim_Ji_Sub.jpg"
     },
     {
       "id": "jangho",
@@ -194,7 +214,8 @@
       "image": "https://i.mydramalist.com/QJ5mZ6_5m.jpg",
       "group": "Yeonbaek gang",
       "inCast": true,
-      "note": "The gang's scout"
+      "note": "The gang's scout",
+      "still": "https://asianwiki.com/images/b/bb/Study_Group-Kim_Min.jpg"
     },
     {
       "id": "mihyeon",
@@ -203,7 +224,8 @@
       "image": "https://i.mydramalist.com/B16pz_5m.jpg",
       "group": "Ga Min's family",
       "inCast": true,
-      "note": "Director of the Korean Taekwondo Association"
+      "note": "Director of the Korean Taekwondo Association",
+      "still": "https://asianwiki.com/images/d/db/Study_Group-Kim_Young_Ah.jpg"
     },
     {
       "id": "taeman",
@@ -221,7 +243,8 @@
       "image": "https://i.mydramalist.com/603mjO_5m.jpg",
       "group": "The study group",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/1/10/Study_Group-Kim_Young_Woong.jpg"
     }
   ],
   "links": [
