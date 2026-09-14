@@ -26,14 +26,22 @@ export const ERA_LABEL: Record<Era, string> = {
 };
 
 /** Another actor who plays the same character, at another age. */
-export type MapActor = { name: string; image?: string | null; era?: Era };
+export type MapActor = { name: string; image?: string | null; era?: Era; still?: string | null };
 
 export type MapPerson = {
     id: string;
     name: string;
     /** the actor the chart draws — whoever the portrait belongs to */
     actor: string;
+    /** the actor's headshot, from MDL's cast list */
     image: string | null;
+    /**
+     * The character in the show — a still from the drama, from asianwiki.
+     * Drawn instead of the headshot when present: a face in costume is the one
+     * a reader recognises. Fetched from the reader's own browser (the site
+     * blocks servers), so it stays optional and the headshot stays behind it.
+     */
+    still?: string | null;
     group: string;
     /** the other actors of the same character, if the show casts it twice */
     alsoPlayedBy?: MapActor[];
@@ -41,6 +49,11 @@ export type MapPerson = {
     inCast: boolean;
     note?: string;
 };
+
+/** The picture to draw for a person: the still if there is one, else the headshot. */
+export function portrait(p: { image: string | null; still?: string | null }): string | null {
+    return p.still || p.image;
+}
 
 /**
  * The mono line under a face. One other actor fits there and is worth having
@@ -75,6 +88,8 @@ export type CharacterMapData = {
     version: 1;
     mdlSlug: string;
     title: string;
+    /** the asianwiki page, when its title is not the MDL one ("W - Two Worlds" for "W") */
+    asianwiki?: string;
     sources: string[];
     /** the leads — drawn in the middle */
     main: string[];

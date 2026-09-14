@@ -84,6 +84,16 @@ script below) is where the text a chart is read from is gathered first.
   when there is exactly one; the panel under it shows every face and era.
   Do not confuse this with one actor playing two characters (IU is both Ae
   Sun and Geum Myeong): those stay two people, and a `note` says so.
+- **`still`** is the character in costume, a photo from asianwiki, drawn in
+  place of the MDL headshot when present. It is never written by hand:
+  asianwiki turns servers away and lets a browser in, so the Chrome
+  extension's "Fetch character stills" button walks the Korean charts from
+  the reader's own browser, reads each page's cast tables and posts them to
+  `/api/ext/character-maps/stills`, which matches actors by a folded
+  romanisation ("Cho Jung-Seok" is "Jo Jung Suk") and writes the files. See
+  `extension/stills.js` and `src/lib/character-map-stills.ts`. When asianwiki
+  names the page by a title MDL does not carry, write it in `asianwiki`
+  ("W - Two Worlds" for "W") and the run looks there first.
 - `compact.people` is the cut the Compact view shows: the leads, their
   families, and whoever the story turns on — keep whole households, never
   half of one. Everything else is still drawn in the Everyone view.

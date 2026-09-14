@@ -358,3 +358,11 @@ select:focus { outline: none; border-color: var(--primary); }
 .footer-text { font-size: 10px; color: var(--text-muted); }
 .footer-brand { font-size: 9px; color: #334155; font-weight: 600; letter-spacing: 0.04em; }
 
+
+/* Character stills run */
+.stills { padding: 8px 12px; border-top: 1px solid var(--border, #333); font-size: 11px; }
+.stills-row { display: flex; align-items: center; gap: 10px; }
+.stills-app { flex: 1; min-width: 0; font-size: 11px; padding: 4px 6px; }
+.stills-redo { display: inline-flex; align-items: center; gap: 4px; opacity: 0.8; margin-top: 6px; }
+.stills-out { margin-top: 6px; max-height: 160px; overflow: auto; line-height: 1.5; white-space: nowrap; }
+.stills-out:empty { display: none; }

@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Crosshair, Minus, Plus } from "lucide-react";
-import { actorLine, ERA_LABEL, layoutCompact, linkPath, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType, type MapActor, type MapPerson } from "@/lib/character-map";
+import { actorLine, ERA_LABEL, layoutCompact, linkPath, portrait, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType, type MapActor, type MapPerson } from "@/lib/character-map";
 
 // Colour follows meaning, the way it does across the app: family is the quiet
 // one, romance rose, rivalry amber; teal for work and loyalty, lime for
@@ -39,15 +39,16 @@ const pill = (on: boolean, tone = "") =>
 // the portrait the chart draws (2 × PORTRAIT_R). A face in the panel is what
 // the reader came down here to look at, so it should never be the smaller of
 // the two pictures of the same person on screen.
-function Face({ person, size = "sm" }: { person: { image: string | null; name: string; inCast: boolean } | null; size?: "sm" | "lg" }) {
+function Face({ person, size = "sm" }: { person: { image: string | null; still?: string | null; name: string; inCast: boolean } | null; size?: "sm" | "lg" }) {
     if (!person) return null;
     const px = size === "lg" ? 2 * PORTRAIT_R : 32;
+    const src = portrait(person);
     return (
         <span
             className={`relative shrink-0 overflow-hidden rounded-full bg-surface-2 ${person.inCast ? "" : "border border-dashed border-fg-dim"}`}
             style={{ width: px, height: px }}
         >
-            {person.image && <Image unoptimized src={person.image} alt="" fill sizes={`${px}px`} className="object-cover" />}
+            {src && <Image unoptimized src={src} alt="" fill sizes={`${px}px`} className="object-cover" />}
         </span>
     );
 }
@@ -378,8 +379,8 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                                     strokeWidth={selected?.kind === "person" && selected.id === p.id ? 3.5 : p.lead ? 2.5 : 1.5}
                                     strokeDasharray={p.inCast ? undefined : "4 3"}
                                 />
-                                {p.image ? (
-                                    <image href={p.image} x={-(R - 2)} y={-(R - 2)} width={2 * (R - 2)} height={2 * (R - 2)} clipPath={`url(#cm-clip-${p.id})`} preserveAspectRatio="xMidYMid slice" />
+                                {portrait(p) ? (
+                                    <image href={portrait(p)!} x={-(R - 2)} y={-(R - 2)} width={2 * (R - 2)} height={2 * (R - 2)} clipPath={`url(#cm-clip-${p.id})`} preserveAspectRatio="xMidYMid slice" />
                                 ) : (
                                     <text dy={4} textAnchor="middle" className="fill-fg-faint font-mono text-[11px]">
                                         ?
@@ -498,7 +499,7 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                             )}
                             {(selectedPerson.alsoPlayedBy ?? []).map((a) => (
                                 <span key={`${a.name}-${a.era ?? ""}`} className="flex flex-col items-center gap-1.5 text-center">
-                                    <Face person={{ image: a.image ?? null, name: a.name, inCast: true }} size="lg" />
+                                    <Face person={{ image: a.image ?? null, still: a.still, name: a.name, inCast: true }} size="lg" />
                                     {a.era && <span className="text-xs text-fg-soft">{ERA_LABEL[a.era]}</span>}
                                     <span className="font-mono text-[11px] text-fg-dim">{a.name}</span>
                                 </span>
