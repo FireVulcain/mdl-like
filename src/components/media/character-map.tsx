@@ -197,6 +197,17 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
     }, [focus, layout]);
     const linkTouches = (l: LaidOutLink, id: string | null) => !!id && (l.from === id || l.to === id);
 
+    // A caption belongs to one link, and under a focus it only speaks if that
+    // link touches the face being read. Hovering I Chan leaves "father · I Chan"
+    // under Eun Ho and takes away "older brother · Eun Gyeol", which is about
+    // somebody else — the same cut the dimming already makes on the lines.
+    const linkOf = useMemo(() => new Map(layout.links.map((l) => [l.index, l])), [layout]);
+    const captionSpeaks = (linkIndex: number) => {
+        if (!focus) return true;
+        const l = linkOf.get(linkIndex);
+        return !l || linkTouches(l, focus);
+    };
+
     const toggleType = (t: LinkType) =>
         setTypes((prev) => {
             const next = new Set(prev);
@@ -362,20 +373,26 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                                     {p.actor}
                                 </text>
                                 {labels &&
-                                    p.captions.map((c, i) => (
-                                        <text
-                                            key={i}
-                                            x={tx}
-                                            dy={R + 41 + i * 12}
-                                            textAnchor={anchor}
-                                            className={`cursor-pointer text-[10.5px] font-medium ${TYPE_CLASS[c.type]} ${c.reveal ? "italic" : ""}`}
-                                            fill="currentColor"
-                                            style={textStroke}
-                                            onClick={unlessDragged(() => pickLink(c.linkIndex))}
-                                        >
-                                            {c.text}
-                                        </text>
-                                    ))}
+                                    p.captions.map((c, i) => {
+                                        const speaks = captionSpeaks(c.linkIndex);
+                                        return (
+                                            <text
+                                                key={i}
+                                                x={tx}
+                                                dy={R + 41 + i * 12}
+                                                textAnchor={anchor}
+                                                className={`cursor-pointer text-[10.5px] font-medium ${TYPE_CLASS[c.type]} ${c.reveal ? "italic" : ""}`}
+                                                fill="currentColor"
+                                                // The lines keep their places while some go quiet:
+                                                // captions that slid up to close a gap would make
+                                                // the whole chart twitch under the pointer.
+                                                style={{ ...textStroke, opacity: speaks ? 1 : 0, transition: "opacity .15s", pointerEvents: speaks ? undefined : "none" }}
+                                                onClick={unlessDragged(() => pickLink(c.linkIndex))}
+                                            >
+                                                {c.text}
+                                            </text>
+                                        );
+                                    })}
                             </g>
                         );
                     })}
