@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { User } from "lucide-react";
-import type { CharacterMapData } from "@/lib/character-map";
+import { portrait, type CharacterMapData } from "@/lib/character-map";
 import { closestRelations } from "@/lib/character-map-store";
 
 /**
@@ -47,8 +47,8 @@ export function CharacterMapSection({
                         className="group inline-flex items-center gap-2 rounded-full bg-surface-2 py-1 pl-1 pr-3 transition-colors hover:bg-surface-3"
                     >
                         <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-surface-3">
-                            {person.image ? (
-                                <Image unoptimized src={person.image} alt="" fill sizes="28px" className="object-cover" />
+                            {portrait(person) ? (
+                                <Image unoptimized src={portrait(person)!} alt="" fill sizes="28px" className="object-cover" />
                             ) : (
                                 <span className="absolute inset-0 flex items-center justify-center text-fg-faint">
                                     <User className="h-3.5 w-3.5" />
