@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "mdlSlug": "778182-this-is-ridiculous",
+  "title": "How Dare You!?",
+  "native": "成何体统",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (55 roles, 4 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 2k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "wanyin",
+    "dan",
+    "bo",
+    "yonger"
+  ],
+  "people": [
+    {
+      "id": "wanyin",
+      "name": "Yu Wan Yin / Wang Cui Hua",
+      "actor": "Wang Chu Ran",
+      "image": "https://i.mydramalist.com/VXlKZE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Office rookie from Beijing, now the novel's 'wicked consort' — later empress"
+    },
+    {
+      "id": "dan",
+      "name": "Xiahou Dan / Zhang San",
+      "actor": "Ryan Cheng",
+      "image": "https://i.mydramalist.com/yWDn53_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The 'tyrant' — a middle-schooler who has been him for ten years; migraines"
+    },
+    {
+      "id": "bo",
+      "name": "Xiahou Bo / Prince Duan",
+      "actor": "Tang Xiao Tian",
+      "image": "https://i.mydramalist.com/l0p1ZJ_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Half-brother; the rival faction"
+    },
+    {
+      "id": "yonger",
+      "name": "Xie Yong Er",
+      "actor": "Hu Yi Xuan",
+      "image": "https://i.mydramalist.com/LwbXoL_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "The novel's chosen heroine — a college student from A City, transmigrated too"
+    },
+    {
+      "id": "dowager",
+      "name": "The Empress Dowager",
+      "actor": "Ma Su",
+      "image": "https://i.mydramalist.com/r6ekm_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "From Qiang"
+    },
+    {
+      "id": "beishuf",
+      "name": "Bei Shu",
+      "actor": "Cui Yi",
+      "image": "https://i.mydramalist.com/Lwr3y3_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "'Nanny Bei' — her guise in the palace"
+    },
+    {
+      "id": "beishum",
+      "name": "Bei Shu (as himself)",
+      "actor": "Louis Fan",
+      "image": "https://i.mydramalist.com/xm5OEm.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "The late empress's childhood friend; the best fighter in the book, a master of disguise"
+    },
+    {
+      "id": "jintian",
+      "name": "Cen Jin Tian",
+      "actor": "He Lei",
+      "image": "https://i.mydramalist.com/nOobe6_5m.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Terminally ill; farms for the people"
+    },
+    {
+      "id": "wangzhao",
+      "name": "Wang Zhao",
+      "actor": "Ji Xiao Fei",
+      "image": "https://i.mydramalist.com/Er5obm.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Plain and honest"
+    },
+    {
+      "id": "duojie",
+      "name": "Yang Duo Jie",
+      "actor": "Xie Ze Cheng",
+      "image": "https://i.mydramalist.com/1VJNR_5m.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Astronomer, then vice minister of personnel"
+    },
+    {
+      "id": "tiancai",
+      "name": "Xiao Tian Cai",
+      "actor": "Hao Han",
+      "image": "https://i.mydramalist.com/JBOobY_5m.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Imperial physician — 'little genius'"
+    },
+    {
+      "id": "abai",
+      "name": "A Bai / Lin Xuan Ying",
+      "actor": "Cheng Hong Xin",
+      "image": "https://i.mydramalist.com/VXm1Qv_5m.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Disciple of the Nameless Guest; deputy general"
+    },
+    {
+      "id": "erlan",
+      "name": "Er Lan",
+      "actor": "Una You",
+      "image": "https://i.mydramalist.com/b3YxZj_5m.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "A woman in men's clothes; vice minister of revenue"
+    },
+    {
+      "id": "yunxi",
+      "name": "Li Yun Xi",
+      "actor": "Zhang Rui Han",
+      "image": "https://i.mydramalist.com/4pbWdm.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Upright to a fault; minister of revenue"
+    },
+    {
+      "id": "muyun",
+      "name": "Mu Yun",
+      "actor": "Sun Bin",
+      "image": "https://i.mydramalist.com/EBAwz_5m.jpg",
+      "group": "The ministers",
+      "inCast": true,
+      "note": "Minister of personnel; between the two factions"
+    },
+    {
+      "id": "an",
+      "name": "Eunuch An",
+      "actor": "Cheng Jun Hao",
+      "image": "https://i.mydramalist.com/jQEXkJ_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "The emperor's attendant"
+    },
+    {
+      "id": "shufei",
+      "name": "Consort Shu",
+      "actor": "Dong Si Yi",
+      "image": "https://i.mydramalist.com/qe5w2_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "shaoqing",
+      "name": "Yu Shao Qing",
+      "actor": "Liu Ling Zhi",
+      "image": "https://i.mydramalist.com/YYNAXg_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "xiaomei",
+      "name": "Xiao Mei",
+      "actor": "Huang Pan Pan",
+      "image": "https://i.mydramalist.com/QJjdRW_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "wanyin",
+      "to": "dan",
+      "type": "romance",
+      "label": "two transmigrators who join forces to survive — consort and emperor",
+      "short": "in love",
+      "evidence": "the two join forces to survive",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wanyin",
+      "to": "dan",
+      "type": "bond",
+      "label": "both from the real world, in a novel",
+      "short": "both transmigrated",
+      "evidence": "another transmigrator—this time, a hidden king who has been biding his time for over a decade",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bo",
+      "to": "dan",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "端王，夏侯澹同父異母的兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bo",
+      "to": "dan",
+      "type": "rivalry",
+      "label": "the other faction",
+      "short": "rival",
+      "evidence": "搖擺在端王黨與太后黨",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yonger",
+      "to": "wanyin",
+      "type": "rivalry",
+      "label": "the novel's heroine against the novel's villainess — both of them readers",
+      "short": "the heroine",
+      "evidence": "天選之女… A城出身的大學生。穿书后成为谢永儿",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yonger",
+      "to": "dan",
+      "type": "romance",
+      "label": "consort",
+      "short": "consort",
+      "evidence": "後升為謝妃",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dowager",
+      "to": "dan",
+      "type": "family",
+      "label": "the dowager, from Qiang; her own faction",
+      "short": "dowager",
+      "evidence": "大厦太后，來自瑲國",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "beishum",
+      "to": "beishuf",
+      "type": "bond",
+      "label": "one person — the nanny is the master in disguise",
+      "short": "the same person",
+      "evidence": "北嬤嬤，平時在宮中的扮相 / 懂縮骨功，喜愛易容",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "beishum",
+      "to": "dan",
+      "type": "work",
+      "label": "his mother's childhood friend; guards him",
+      "short": "his guardian",
+      "evidence": "夏侯澹母后的青梅竹馬好友，全書武功第一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jintian",
+      "to": "dan",
+      "type": "work",
+      "label": "minister",
+      "short": "minister",
+      "evidence": "身患绝症，卻心系百姓，擅種田",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wangzhao",
+      "to": "dan",
+      "type": "work",
+      "label": "minister",
+      "short": "minister",
+      "evidence": "純樸素直",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duojie",
+      "to": "dan",
+      "type": "work",
+      "label": "astronomer, then personnel",
+      "short": "minister",
+      "evidence": "任欽天監卜噬，後轉任吏部侍郎",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tiancai",
+      "to": "yonger",
+      "type": "work",
+      "label": "the physician she calls 'little genius'",
+      "short": "her physician",
+      "evidence": "大厦太醫，謝妃稱「小天才」",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "abai",
+      "to": "dan",
+      "type": "work",
+      "label": "deputy general",
+      "short": "general",
+      "evidence": "後任右軍副將",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "erlan",
+      "to": "dan",
+      "type": "work",
+      "label": "vice minister of revenue, a woman in disguise",
+      "short": "minister",
+      "evidence": "女扮男裝，著有《河運》，後任戶部侍郎",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunxi",
+      "to": "dan",
+      "type": "work",
+      "label": "minister of revenue",
+      "short": "minister",
+      "evidence": "後任戶部尚書",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "muyun",
+      "to": "bo",
+      "type": "work",
+      "label": "swings between his party and the dowager's",
+      "short": "swings between",
+      "evidence": "搖擺在端王黨與太后黨",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "an",
+      "to": "dan",
+      "type": "work",
+      "label": "attendant eunuch",
+      "short": "attendant",
+      "evidence": "皇帝近侍太監",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shufei",
+      "to": "dan",
+      "type": "romance",
+      "label": "one of his consorts",
+      "short": "consort",
+      "evidence": "夏侯澹嬪妃之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shaoqing",
+      "to": "wanyin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yu Wan Yin's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaomei",
+      "to": "wanyin",
+      "type": "work",
+      "label": "her maid",
+      "short": "maid",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "wanyin",
+      "dan",
+      "bo",
+      "yonger",
+      "dowager",
+      "beishuf",
+      "beishum",
+      "jintian",
+      "wangzhao",
+      "duojie",
+      "tiancai",
+      "abai",
+      "erlan",
+      "yunxi",
+      "muyun",
+      "an",
+      "shufei",
+      "shaoqing",
+      "xiaomei"
+    ],
+    "blocks": {
+      "The court": [
+        0,
+        0
+      ],
+      "The ministers": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "wanyin",
+      "dan"
+    ]
+  }
+}

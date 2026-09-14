@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "mdlSlug": "750689-bai-ri-ti-deng",
+  "title": "Love Beyond the Grave",
+  "native": "白日提灯",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (64 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 6k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "simu",
+    "duanxu"
+  ],
+  "people": [
+    {
+      "id": "simu",
+      "name": "He Si Mu / He Xiao Xiao",
+      "actor": "Dilraba Dilmurat",
+      "image": "https://i.mydramalist.com/b35kje_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Lord of All Spirits — the ghost queen, born without the five senses; 'Xiao Xiao' among the living"
+    },
+    {
+      "id": "duanxu",
+      "name": "Duan Xu / Duan Shun Xi / Foxy",
+      "actor": "Arthur Chen",
+      "image": "https://i.mydramalist.com/ABdAvP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Commander of the Tabai army; kidnapped as a child, raised by the assassins 'Heaven Knows'"
+    },
+    {
+      "id": "yanke",
+      "name": "Yan Ke",
+      "actor": "Miles Wei",
+      "image": "https://i.mydramalist.com/zBDywy_5m.jpg",
+      "group": "Guixu",
+      "inCast": true,
+      "note": "Right minister of Guixu; wants power, and her"
+    },
+    {
+      "id": "jiangai",
+      "name": "Jiang Ai",
+      "actor": "Zhang Li",
+      "image": "https://i.mydramalist.com/oQlyXx_5m.jpg",
+      "group": "Guixu",
+      "inCast": true,
+      "note": "Left minister; wants money"
+    },
+    {
+      "id": "baisanxing",
+      "name": "Bai San Xing",
+      "actor": "Baron Chen",
+      "image": "https://i.mydramalist.com/rNVQzN_5m.jpg",
+      "group": "Guixu",
+      "inCast": true,
+      "note": "Former master of the Qi hall"
+    },
+    {
+      "id": "fangchang",
+      "name": "Fang Chang",
+      "actor": "Shao Wei Tong",
+      "image": "https://i.mydramalist.com/O8LErd_5m.jpg",
+      "group": "Guixu",
+      "inCast": true,
+      "note": "Deputy of the Shan hall; tried to kill the Lord"
+    },
+    {
+      "id": "maizi",
+      "name": "Mai Zi",
+      "actor": "Tu Zhi Ying",
+      "image": "https://i.mydramalist.com/nOzLY6_5m.jpg",
+      "group": "Guixu",
+      "inCast": true,
+      "note": "Spirit clerk"
+    },
+    {
+      "id": "xingyu",
+      "name": "Song Xing Yu",
+      "actor": "Li Zhen Zhen",
+      "image": "https://i.mydramalist.com/3oWqj4_5m.jpg",
+      "group": "Guixu",
+      "inCast": true,
+      "note": "Hall master hiding among the living; a puppeteer"
+    },
+    {
+      "id": "fangji",
+      "name": "Fang Ji / Fang Xian Ye",
+      "actor": "Gao He Yuan",
+      "image": "https://i.mydramalist.com/3oNx24_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "First scholar of the south; Duan Xu's closest friend"
+    },
+    {
+      "id": "jingyuan",
+      "name": "Duan Jing Yuan",
+      "actor": "Yang Xi Zi",
+      "image": "https://i.mydramalist.com/KpLKwv_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Fourth daughter of the Duan"
+    },
+    {
+      "id": "chengzhang",
+      "name": "Duan Cheng Zhang",
+      "actor": "Xiu Qing",
+      "image": "https://i.mydramalist.com/mOd5Qm_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Minister of rites"
+    },
+    {
+      "id": "lingqiu",
+      "name": "Han Ling Qiu",
+      "actor": "Zhao Yi Qin",
+      "image": "https://i.mydramalist.com/Px56k3_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Captain — and a 'Heaven Knows' assassin of Duan Xu's cohort"
+    },
+    {
+      "id": "mengwan",
+      "name": "Meng Wan",
+      "actor": "Yan Bi Guo",
+      "image": "https://i.mydramalist.com/oQDPQY_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Captain"
+    },
+    {
+      "id": "qingsheng",
+      "name": "Xia Qing Sheng",
+      "actor": "Xu Bin",
+      "image": "https://i.mydramalist.com/wJ8vkA_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Officer"
+    },
+    {
+      "id": "shengliu",
+      "name": "Wu Sheng Liu",
+      "actor": "You Xian Chao",
+      "image": "https://i.mydramalist.com/PxZ3KL_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Officer"
+    },
+    {
+      "id": "wangjin",
+      "name": "Wang Jin",
+      "actor": "Huang Zhen Yu",
+      "image": "https://i.mydramalist.com/YYgd1d_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true,
+      "note": "Vice minister of justice — a prince in truth"
+    },
+    {
+      "id": "fengyi",
+      "name": "Feng Yi",
+      "actor": "Ding Jia Wen",
+      "image": "https://i.mydramalist.com/ABqj2g_5m.jpg",
+      "group": "Xingqing Palace",
+      "inCast": true,
+      "note": "Master of Xingqing Palace, state preceptor; Si Mu's distant kin"
+    },
+    {
+      "id": "ziji",
+      "name": "Zi Ji",
+      "actor": "Hu Yi Yao",
+      "image": "https://i.mydramalist.com/RBkgPr_5m.jpg",
+      "group": "Xingqing Palace",
+      "inCast": true,
+      "note": "Feng Yi's maid — the god of fate, in truth"
+    },
+    {
+      "id": "luda",
+      "name": "Lu Da",
+      "actor": "Gu Zi Cheng",
+      "image": "https://i.mydramalist.com/JB82Ny_5m.jpg",
+      "group": "North Chong",
+      "inCast": true,
+      "note": "Junior priest, then high priest by a deal with Yan Ke"
+    },
+    {
+      "id": "dongsheng",
+      "name": "Xia Dong Sheng",
+      "actor": "Xue Ba Yi",
+      "image": "https://i.mydramalist.com/Z8WNbj_5m.jpg",
+      "group": "Da Liang",
+      "inCast": true
+    },
+    {
+      "id": "hezhi",
+      "name": "He Zhi",
+      "actor": "Zhou Pei Chen",
+      "image": "https://i.mydramalist.com/kAY6Wv_5m.jpg",
+      "group": "Guixu",
+      "inCast": true
+    },
+    {
+      "id": "luoxian",
+      "name": "Luo Xian",
+      "actor": "Xu Mu Chan",
+      "image": "https://i.mydramalist.com/l0owyN_5m.jpg",
+      "group": "Guixu",
+      "inCast": true
+    },
+    {
+      "id": "heyan",
+      "name": "He Yan",
+      "actor": "Cao Sai Ya",
+      "image": "https://i.mydramalist.com/QLlk4_5m.jpg",
+      "group": "Guixu",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "simu",
+      "to": "duanxu",
+      "type": "romance",
+      "label": "the ghost queen and the general; married; she gives up her power to bring him back",
+      "short": "married",
+      "evidence": "收復十七州與賀思慕成親… 後賀思慕以靈力全無的代價復活",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "simu",
+      "to": "duanxu",
+      "type": "bond",
+      "label": "he carries something from her past; he is not quite the real Duan Xu",
+      "short": "not the real Duan Xu",
+      "evidence": "This young general, who carries an item belonging to someone from He Si Mu's past, seems not to be the real Duan Xu",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanke",
+      "to": "simu",
+      "type": "romance",
+      "label": "wants her",
+      "short": "wants her",
+      "evidence": "喜歡賀思慕",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanke",
+      "to": "simu",
+      "type": "rivalry",
+      "label": "the power-hungry minister she kills",
+      "short": "she kills him",
+      "evidence": "归墟右丞，貪權… 后殺死晏柯",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangai",
+      "to": "simu",
+      "type": "work",
+      "label": "left minister",
+      "short": "left minister",
+      "evidence": "归墟左丞，貪財",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangai",
+      "to": "baisanxing",
+      "type": "romance",
+      "label": "once had feelings",
+      "short": "once lovers",
+      "evidence": "与白散行有过情愫",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fangchang",
+      "to": "simu",
+      "type": "rivalry",
+      "label": "tried to assassinate her",
+      "short": "tried to kill her",
+      "evidence": "欲刺殺靈主被關押至九宮迷獄",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xingyu",
+      "to": "simu",
+      "type": "rivalry",
+      "label": "stole the pagoda and hid among the living",
+      "short": "the thief",
+      "evidence": "竊盜玲瓏塔、殿主令並潛伏於凡間的亼灵殿殿主",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maizi",
+      "to": "simu",
+      "type": "work",
+      "label": "spirit clerk",
+      "short": "clerk",
+      "evidence": "基層靈差",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fangji",
+      "to": "duanxu",
+      "type": "friend",
+      "label": "closest friend; dies protecting him",
+      "short": "best friend",
+      "evidence": "段胥的摯友… 為保護段胥撞柱子而犧牲",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fangji",
+      "to": "jingyuan",
+      "type": "romance",
+      "label": "loves her",
+      "short": "loves her",
+      "evidence": "喜歡段靜元",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jingyuan",
+      "to": "duanxu",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "段家四女，段胥的妹妹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chengzhang",
+      "to": "duanxu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "禮部尚書，段胥的父親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lingqiu",
+      "to": "duanxu",
+      "type": "work",
+      "label": "captain — and his fellow assassin, whom he helped fake a death",
+      "short": "his old cohort",
+      "evidence": "杀手组织「天知曉」，與段胥同期，段胥為救他不惜划花了脸",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mengwan",
+      "to": "duanxu",
+      "type": "work",
+      "label": "captain",
+      "short": "captain",
+      "evidence": "踏白軍校尉",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qingsheng",
+      "to": "duanxu",
+      "type": "work",
+      "label": "officer",
+      "short": "officer",
+      "evidence": "踏白軍郎將",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shengliu",
+      "to": "duanxu",
+      "type": "work",
+      "label": "officer",
+      "short": "officer",
+      "evidence": "踏白軍郎將",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wangjin",
+      "to": "duanxu",
+      "type": "work",
+      "label": "vice minister of justice — a prince in truth",
+      "short": "the hidden prince",
+      "evidence": "大理寺少卿，實為皇子晉王",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fengyi",
+      "to": "simu",
+      "type": "family",
+      "label": "distant kin; the state preceptor",
+      "short": "kin",
+      "evidence": "星卿宮宮主，大梁國師，賀思慕的遠方親戚",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ziji",
+      "to": "fengyi",
+      "type": "work",
+      "label": "her maid",
+      "short": "maid",
+      "evidence": "[Feng Yi's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ziji",
+      "to": "duanxu",
+      "type": "bond",
+      "label": "the god of fate — brings him back",
+      "short": "brings him back",
+      "evidence": "禾枷風夷的侍女，實為神明司命 / 後紫姬復活段胥",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "luda",
+      "to": "yanke",
+      "type": "work",
+      "label": "the deal that made him high priest",
+      "short": "his deal",
+      "evidence": "後與晏柯做了交易成為大司祭",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongsheng",
+      "to": "qingsheng",
+      "type": "family",
+      "label": "kin",
+      "short": "kin",
+      "evidence": "夏东胜 / 夏庆生",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hezhi",
+      "to": "simu",
+      "type": "work",
+      "label": "of Guixu",
+      "short": "of Guixu",
+      "evidence": "贺志",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "luoxian",
+      "to": "simu",
+      "type": "work",
+      "label": "of Guixu",
+      "short": "of Guixu",
+      "evidence": "洛贤",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "heyan",
+      "to": "simu",
+      "type": "work",
+      "label": "of Guixu",
+      "short": "of Guixu",
+      "evidence": "贺研",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "simu",
+      "duanxu",
+      "yanke",
+      "jiangai",
+      "baisanxing",
+      "fangchang",
+      "maizi",
+      "xingyu",
+      "fangji",
+      "jingyuan",
+      "chengzhang",
+      "lingqiu",
+      "mengwan",
+      "qingsheng",
+      "shengliu",
+      "wangjin",
+      "fengyi",
+      "ziji",
+      "luda",
+      "dongsheng",
+      "hezhi",
+      "luoxian",
+      "heyan"
+    ],
+    "blocks": {
+      "Guixu": [
+        0,
+        0
+      ],
+      "Xingqing Palace": [
+        0,
+        2
+      ],
+      "Da Liang": [
+        2,
+        0
+      ],
+      "North Chong": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "simu",
+      "duanxu"
+    ]
+  }
+}

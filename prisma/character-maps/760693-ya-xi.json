@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "mdlSlug": "760693-ya-xi",
+  "title": "Love Between Lines",
+  "native": "轧戏",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (38 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 主要演员 (six lines)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "zhiyu",
+    "huxiu"
+  ],
+  "people": [
+    {
+      "id": "zhiyu",
+      "name": "Xiao Zhi Yu / Qin Xiao Yi",
+      "actor": "Chen Xing Xu",
+      "image": "https://i.mydramalist.com/oQplKk_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Architect, founder of Dynamism; 'Qin Xiao Yi' inside the scripts"
+    },
+    {
+      "id": "huxiu",
+      "name": "Hu Xiu",
+      "actor": "Lu Yu Xiao",
+      "image": "https://i.mydramalist.com/73RXjn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Finds her fight again in the game"
+    },
+    {
+      "id": "peizhen",
+      "name": "Pei Zhen",
+      "actor": "Dai Xu",
+      "image": "https://i.mydramalist.com/oQprzx_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true,
+      "note": "Zhi Yu's stepbrother; GM at Zhuling"
+    },
+    {
+      "id": "huaicong",
+      "name": "Gong Huai Cong",
+      "actor": "Kido Ma",
+      "image": "https://i.mydramalist.com/Dk53Lq_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true,
+      "note": "Co-founded the murder-mystery club with him"
+    },
+    {
+      "id": "zhouyan",
+      "name": "Zhou Yan",
+      "actor": "Wang Ting",
+      "image": "https://i.mydramalist.com/3onNVR_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true,
+      "note": "Business partner"
+    },
+    {
+      "id": "xufang",
+      "name": "Xu Fang",
+      "actor": "Wu Qi",
+      "image": "https://i.mydramalist.com/kAvokg_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true,
+      "note": "His father's former subordinate"
+    },
+    {
+      "id": "kanghua",
+      "name": "Pei Kang Hua",
+      "actor": "Wang Zhi Fei",
+      "image": "https://i.mydramalist.com/Ey6Wz_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true
+    },
+    {
+      "id": "wanyue",
+      "name": "Xiao Wan Yue",
+      "actor": "Tao Hui Min",
+      "image": "https://i.mydramalist.com/4PdLr_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true
+    },
+    {
+      "id": "wubin",
+      "name": "Wu Bin",
+      "actor": "Mu Tong",
+      "image": "https://i.mydramalist.com/604en2_5m.jpg",
+      "group": "Zhi Yu's side",
+      "inCast": true,
+      "note": "Pei Zhen's assistant"
+    },
+    {
+      "id": "xiaorou",
+      "name": "Zhao Xiao Rou / Lao Zhao",
+      "actor": "Li Ting Ting",
+      "image": "https://i.mydramalist.com/1YZ8K_5m.jpg",
+      "group": "Hu Xiu's side",
+      "inCast": true,
+      "note": "Her closest friend"
+    },
+    {
+      "id": "guangming",
+      "name": "Wang Guang Ming",
+      "actor": "Ren You Lun",
+      "image": "https://i.mydramalist.com/nO8OrE_5m.jpg",
+      "group": "Hu Xiu's side",
+      "inCast": true
+    },
+    {
+      "id": "yifei",
+      "name": "Sun Yi Fei",
+      "actor": "Chen Tian Ming",
+      "image": "https://i.mydramalist.com/4ZNOJ_5m.jpg",
+      "group": "Hu Xiu's side",
+      "inCast": true,
+      "note": "Colleague"
+    },
+    {
+      "id": "huding",
+      "name": "Hu Ding",
+      "actor": "Fu Jia",
+      "image": "https://i.mydramalist.com/pjj7Bm.jpg",
+      "group": "Hu Xiu's side",
+      "inCast": true
+    },
+    {
+      "id": "renzi",
+      "name": "Bai Ren Zi",
+      "actor": "Chen Yi Sha",
+      "image": "https://i.mydramalist.com/5v2eY4_5m.jpg",
+      "group": "Hu Xiu's side",
+      "inCast": true
+    },
+    {
+      "id": "gaobo",
+      "name": "Gao Bo / Feng You Jin",
+      "actor": "Zhao Hao Hong",
+      "image": "https://i.mydramalist.com/b3782E_5m.jpg",
+      "group": "Midnight Express",
+      "inCast": true,
+      "note": "Staff at the club"
+    },
+    {
+      "id": "liyue",
+      "name": "Li Yue",
+      "actor": "Guo Zhe",
+      "image": "https://i.mydramalist.com/Xd3Lzg_5m.jpg",
+      "group": "Midnight Express",
+      "inCast": true,
+      "note": "Staff at the club"
+    }
+  ],
+  "links": [
+    {
+      "from": "zhiyu",
+      "to": "huxiu",
+      "type": "romance",
+      "label": "met in a murder-mystery game, in borrowed Republican-era identities",
+      "short": "in love",
+      "evidence": "Xiao Zhi Yu and Hu Xiu first met during a murder mystery game… both grow curious about each other's real-life personas",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "peizhen",
+      "to": "zhiyu",
+      "type": "family",
+      "label": "stepbrother",
+      "short": "stepbrother",
+      "evidence": "肖稚宇的继兄",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "peizhen",
+      "to": "huxiu",
+      "type": "romance",
+      "label": "likes her",
+      "short": "likes her",
+      "evidence": "喜欢胡羞",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huaicong",
+      "to": "zhiyu",
+      "type": "friend",
+      "label": "friend; co-founded the club",
+      "short": "co-founder",
+      "evidence": "肖稚宇的好友，与其共同创办了剧本杀俱乐部",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiaorou",
+      "to": "huxiu",
+      "type": "friend",
+      "label": "closest friend; stays through the hard part",
+      "short": "best friend",
+      "evidence": "胡羞的至交，性格开朗，陪伴胡羞度过难关",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guangming",
+      "to": "xiaorou",
+      "type": "romance",
+      "label": "ex-husband",
+      "short": "ex-husband",
+      "evidence": "赵孝柔前夫 / [Xiao Rou's husband]",
+      "source": "zh.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhouyan",
+      "to": "zhiyu",
+      "type": "work",
+      "label": "business partner",
+      "short": "partner",
+      "evidence": "[Zhi Yu's business partner]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yifei",
+      "to": "huxiu",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "[Xiu's colleague]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xufang",
+      "to": "zhiyu",
+      "type": "work",
+      "label": "his father's former subordinate",
+      "short": "father's man",
+      "evidence": "[Zhi Yu's father's former subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kanghua",
+      "to": "peizhen",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Pei Zhen's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kanghua",
+      "to": "wanyue",
+      "type": "romance",
+      "label": "married — the stepfamily",
+      "short": "married",
+      "evidence": "[Pei Zhen's father] / [Zhi Yu's mother] / 肖稚宇的继兄",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wanyue",
+      "to": "zhiyu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Zhi Yu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wubin",
+      "to": "peizhen",
+      "type": "work",
+      "label": "assistant",
+      "short": "assistant",
+      "evidence": "[Pei Zhen's personal assistant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huding",
+      "to": "huxiu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Xiu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "renzi",
+      "to": "huxiu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Xiu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gaobo",
+      "to": "huaicong",
+      "type": "work",
+      "label": "staff at the club",
+      "short": "staff",
+      "evidence": "[Midnight Express staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liyue",
+      "to": "huaicong",
+      "type": "work",
+      "label": "staff at the club",
+      "short": "staff",
+      "evidence": "[Midnight Express staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "zhiyu",
+      "huxiu",
+      "peizhen",
+      "huaicong",
+      "zhouyan",
+      "xufang",
+      "kanghua",
+      "wanyue",
+      "wubin",
+      "xiaorou",
+      "guangming",
+      "yifei",
+      "huding",
+      "renzi",
+      "gaobo",
+      "liyue"
+    ],
+    "blocks": {
+      "Zhi Yu's side": [
+        0,
+        0
+      ],
+      "Hu Xiu's side": [
+        2,
+        0
+      ],
+      "Midnight Express": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "zhiyu",
+      "huxiu"
+    ]
+  }
+}

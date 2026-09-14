@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "mdlSlug": "754361-love-story-in-the-1970s",
+  "title": "Love Story in the 1970s",
+  "native": "纯真年代的爱情",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (43 roles, 2 main) — names only; households read from surnames, every line inferred",
+    "MDL synopsis",
+    "zh.wikipedia (no article yet)"
+  ],
+  "main": [
+    "muyang",
+    "feini"
+  ],
+  "people": [
+    {
+      "id": "muyang",
+      "name": "Fang Mu Yang",
+      "actor": "Arthur Chen",
+      "image": "https://i.mydramalist.com/ABdAvP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Hurt saving lives; a hero of the seventies"
+    },
+    {
+      "id": "feini",
+      "name": "Fei Ni",
+      "actor": "Sun Qian",
+      "image": "https://i.mydramalist.com/YYZAkW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Hat-factory worker who wants college"
+    },
+    {
+      "id": "quhua",
+      "name": "Qu Hua",
+      "actor": "Wang Tian Chen",
+      "image": "https://i.mydramalist.com/yWv1KR_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "mujing",
+      "name": "Fang Mu Jing",
+      "actor": "Cristy Guo",
+      "image": "https://i.mydramalist.com/QwnD4_5m.jpg",
+      "group": "The Fang family",
+      "inCast": true
+    },
+    {
+      "id": "hongqi",
+      "name": "Xu Hong Qi",
+      "actor": "Liu Min Tao",
+      "image": "https://i.mydramalist.com/nO2e72_5m.jpg",
+      "group": "The Fang family",
+      "inCast": true
+    },
+    {
+      "id": "qingyuan",
+      "name": "Fang Qing Yuan",
+      "actor": "Hou Chang Rong",
+      "image": "https://i.mydramalist.com/zB3WZy_5m.jpg",
+      "group": "The Fang family",
+      "inCast": true
+    },
+    {
+      "id": "mingde",
+      "name": "Fei Ming De",
+      "actor": "Wu Yue",
+      "image": "https://i.mydramalist.com/XgrzJm.jpg",
+      "group": "The Fei family",
+      "inCast": true
+    },
+    {
+      "id": "baoying",
+      "name": "Wu Bao Ying",
+      "actor": "Hao Wen Ting",
+      "image": "https://i.mydramalist.com/oQz5Av_5m.jpg",
+      "group": "The Fei family",
+      "inCast": true
+    },
+    {
+      "id": "feiting",
+      "name": "Fei Ting",
+      "actor": "Shi Yun Peng",
+      "image": "https://i.mydramalist.com/ABqKoP_5m.jpg",
+      "group": "The Fei family",
+      "inCast": true
+    },
+    {
+      "id": "shanhe",
+      "name": "Mu Shan He",
+      "actor": "Kong Lin",
+      "image": "https://i.mydramalist.com/qpXXz_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "yefeng",
+      "name": "Ye Feng",
+      "actor": "Xia Hao Ran",
+      "image": "https://i.mydramalist.com/O82kgY_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "linmei",
+      "name": "Lin Mei",
+      "actor": "Guo Wei Jie",
+      "image": "https://i.mydramalist.com/0pRLNm.jpg",
+      "group": "The factory",
+      "inCast": true
+    },
+    {
+      "id": "lingyi",
+      "name": "Ling Yi",
+      "actor": "Li Shu Man",
+      "image": "https://i.mydramalist.com/O8QPOL_5m.jpg",
+      "group": "The factory",
+      "inCast": true
+    },
+    {
+      "id": "fenglin",
+      "name": "Feng Lin",
+      "actor": "Wu You You",
+      "image": "https://i.mydramalist.com/81ezjN_5m.jpg",
+      "group": "The factory",
+      "inCast": true
+    },
+    {
+      "id": "xiaoman",
+      "name": "Wang Xiao Man",
+      "actor": "Yu Xin He",
+      "image": "https://i.mydramalist.com/6Y4JO_5m.jpg",
+      "group": "The factory",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "feini",
+      "to": "muyang",
+      "type": "romance",
+      "label": "junior-high classmates; she nursed the hero back, hoping for a recommendation — and got more",
+      "short": "in love",
+      "evidence": "Fei Ni's junior high school classmate, Fang Mu Yang, became a hero… Fei Ni took the initiative to take care of him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mujing",
+      "to": "muyang",
+      "type": "family",
+      "label": "sister",
+      "short": "sister",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hongqi",
+      "to": "muyang",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "qingyuan",
+      "to": "muyang",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mingde",
+      "to": "feini",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "baoying",
+      "to": "feini",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "feiting",
+      "to": "feini",
+      "type": "family",
+      "label": "sibling",
+      "short": "sibling",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "quhua",
+      "to": "feini",
+      "type": "romance",
+      "label": "the other suitor",
+      "short": "suitor",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yefeng",
+      "to": "muyang",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "shanhe",
+      "to": "muyang",
+      "type": "work",
+      "label": "at the factory",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "linmei",
+      "to": "feini",
+      "type": "work",
+      "label": "at the hat factory",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "lingyi",
+      "to": "feini",
+      "type": "work",
+      "label": "at the hat factory",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "fenglin",
+      "to": "feini",
+      "type": "work",
+      "label": "at the hat factory",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "xiaoman",
+      "to": "feini",
+      "type": "work",
+      "label": "at the hat factory",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "muyang",
+      "feini",
+      "quhua",
+      "mujing",
+      "hongqi",
+      "qingyuan",
+      "mingde",
+      "baoying",
+      "feiting",
+      "shanhe",
+      "yefeng",
+      "linmei",
+      "lingyi",
+      "fenglin",
+      "xiaoman"
+    ],
+    "blocks": {
+      "The Fang family": [
+        0,
+        0
+      ],
+      "The Fei family": [
+        2,
+        0
+      ],
+      "The factory": [
+        1,
+        2
+      ],
+      "Around them": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "muyang",
+      "feini"
+    ]
+  }
+}

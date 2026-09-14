@@ -1,0 +1,402 @@
+{
+  "version": 1,
+  "mdlSlug": "764675-xia-lu",
+  "title": "Road to Success",
+  "native": "灿如繁星",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (34 roles, 2 main) — names only; the team read from the synopsis, every line inferred",
+    "MDL synopsis",
+    "zh.wikipedia (no article yet)"
+  ],
+  "main": [
+    "wanxing",
+    "wangfa"
+  ],
+  "people": [
+    {
+      "id": "wanxing",
+      "name": "Lin Wan Xing",
+      "actor": "Esther Yu",
+      "image": "https://i.mydramalist.com/81XYEm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "PhD student turned equipment custodian at Hongjing No. 8; told to revive the football team"
+    },
+    {
+      "id": "wangfa",
+      "name": "Wang Fa / Winfred Wang",
+      "actor": "Chen Jing Ke",
+      "image": "https://i.mydramalist.com/Kp4pPR_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former coach at a British club; her mysterious tenant"
+    },
+    {
+      "id": "genfa",
+      "name": "Wang Gen Fa",
+      "actor": "Feng Lei",
+      "image": "https://i.mydramalist.com/x4P7DE_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "xunya",
+      "name": "Lin Xun Ya",
+      "actor": "Lee Li Chun",
+      "image": "https://i.mydramalist.com/E5k1db_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "jin",
+      "name": "Director Jin",
+      "actor": "Long Bin",
+      "image": "https://i.mydramalist.com/j3LbJ_5m.jpg",
+      "group": "Hongjing No. 8",
+      "inCast": true
+    },
+    {
+      "id": "xinshu",
+      "name": "Fu Xin Shu",
+      "actor": "Liu Jun",
+      "image": "https://i.mydramalist.com/ABqkqZ_5m.jpg",
+      "group": "Hongjing No. 8",
+      "inCast": true
+    },
+    {
+      "id": "qinao",
+      "name": "Qin Ao",
+      "actor": "Zhu Bo Yan",
+      "image": "https://i.mydramalist.com/YY2JOK_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "linlu",
+      "name": "Lin Lu",
+      "actor": "Zhao Peng Hao",
+      "image": "https://i.mydramalist.com/b3o6ne_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "jianghe",
+      "name": "Chen Jiang He",
+      "actor": "Dong Li Wu You",
+      "image": "https://i.mydramalist.com/YYVwVA_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "chengye",
+      "name": "Wen Cheng Ye",
+      "actor": "Yan Yu Chen",
+      "image": "https://i.mydramalist.com/DkWAEr_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "yuming",
+      "name": "Yu Ming",
+      "actor": "Lu Zhan Xiang",
+      "image": "https://i.mydramalist.com/BovqR_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "feiyang",
+      "name": "Zhang Fei Yang",
+      "actor": "Yang Xing Hui",
+      "image": "https://i.mydramalist.com/mOEPxk_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "fengsuo",
+      "name": "Feng Suo",
+      "actor": "Yang Yun Hao",
+      "image": "https://i.mydramalist.com/O8JP6y_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "zhengren",
+      "name": "Zheng Ren",
+      "actor": "Ye Kai Wen",
+      "image": "https://i.mydramalist.com/QREQ5_5m.jpg",
+      "group": "The team",
+      "inCast": true
+    },
+    {
+      "id": "jason",
+      "name": "Jason / Yang Ming Sen",
+      "actor": "Chi Xing Kai",
+      "image": "https://i.mydramalist.com/RBX606_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "yubo",
+      "name": "Yu Bo / Felix Yu",
+      "actor": "Victor Ma",
+      "image": "https://i.mydramalist.com/eYwmDn_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "juli",
+      "name": "Ju Li",
+      "actor": "Chloe Xie",
+      "image": "https://i.mydramalist.com/ABZ7j3_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "wanxing",
+      "to": "wangfa",
+      "type": "romance",
+      "label": "landlady and tenant; custodian and coach",
+      "short": "in love",
+      "evidence": "Wang Fa, a former British football club coach, becomes her mysterious tenant",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wangfa",
+      "to": "wanxing",
+      "type": "work",
+      "label": "steps in as coach of the team she must revive",
+      "short": "coaches her team",
+      "evidence": "After a crushing defeat, Wang Fa steps in as coach, leading the team to victory",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "genfa",
+      "to": "wangfa",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Wang Fa's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xunya",
+      "to": "wanxing",
+      "type": "family",
+      "label": "kin",
+      "short": "kin",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jin",
+      "to": "wanxing",
+      "type": "work",
+      "label": "the director who hands her the team",
+      "short": "director",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xinshu",
+      "to": "wanxing",
+      "type": "work",
+      "label": "at the school",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "qinao",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "linlu",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jianghe",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chengye",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yuming",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "feiyang",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "fengsuo",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhengren",
+      "to": "wangfa",
+      "type": "work",
+      "label": "on the team",
+      "short": "player",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jason",
+      "to": "wangfa",
+      "type": "rivalry",
+      "label": "from his English years",
+      "short": "old rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yubo",
+      "to": "wangfa",
+      "type": "friend",
+      "label": "from his English years",
+      "short": "old friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "juli",
+      "to": "wanxing",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "wanxing",
+      "wangfa",
+      "genfa",
+      "xunya",
+      "jin",
+      "xinshu",
+      "qinao",
+      "linlu",
+      "jianghe",
+      "chengye",
+      "yuming",
+      "feiyang",
+      "fengsuo",
+      "zhengren",
+      "jason",
+      "yubo",
+      "juli"
+    ],
+    "blocks": {
+      "Hongjing No. 8": [
+        0,
+        0
+      ],
+      "Around them": [
+        2,
+        0
+      ],
+      "The team": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "wanxing",
+      "wangfa"
+    ]
+  }
+}

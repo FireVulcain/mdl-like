@@ -1,0 +1,546 @@
+{
+  "version": 1,
+  "mdlSlug": "722171-first-frost",
+  "title": "The First Frost",
+  "native": "难哄",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (52 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 4k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "sangyan",
+    "yifan"
+  ],
+  "people": [
+    {
+      "id": "sangyan",
+      "name": "Sang Yan",
+      "actor": "Bai Jing Ting",
+      "image": "https://i.mydramalist.com/jQjpnd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Games by day; co-owns the bar Overtime — the same Sang Yan as in Hidden Love"
+    },
+    {
+      "id": "yifan",
+      "name": "Wen Yi Fan / Wen Shuang Jiang",
+      "actor": "Zhang Ruo Nan",
+      "image": "https://i.mydramalist.com/DkmWqN_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Reporter; his high-school deskmate, pretending not to know him"
+    },
+    {
+      "id": "haoan",
+      "name": "Su Hao An",
+      "actor": "Edward Chen",
+      "image": "https://i.mydramalist.com/yWwZ4B_5m.jpg",
+      "group": "Sang Yan's side",
+      "inCast": true,
+      "note": "Brother since middle school; the other owner of Overtime"
+    },
+    {
+      "id": "siqiao",
+      "name": "Zhong Si Qiao",
+      "actor": "Zhang Miao Yi",
+      "image": "https://i.mydramalist.com/pdBrXe_5m.jpg",
+      "group": "Yi Fan's side",
+      "inCast": true,
+      "note": "Best friend since childhood"
+    },
+    {
+      "id": "xianglang",
+      "name": "Xiang Lang",
+      "actor": "Zhai Xiao Wen",
+      "image": "https://i.mydramalist.com/nO7276_5m.jpg",
+      "group": "Yi Fan's side",
+      "inCast": true,
+      "note": "The third of the childhood trio; studied in America"
+    },
+    {
+      "id": "chengyun",
+      "name": "Mu Cheng Yun",
+      "actor": "Yuan Ye",
+      "image": "https://i.mydramalist.com/738ddj_5m.jpg",
+      "group": "Yi Fan's side",
+      "inCast": true,
+      "note": "Child star; intern at the TV station"
+    },
+    {
+      "id": "sangrong",
+      "name": "Sang Rong",
+      "actor": "Wei Zi Xin",
+      "image": "https://i.mydramalist.com/nO8e8N_5m.jpg",
+      "group": "Sang Yan's side",
+      "inCast": true
+    },
+    {
+      "id": "liping",
+      "name": "Li Ping",
+      "actor": "Deng Ying",
+      "image": "https://i.mydramalist.com/Nd6wzE_5m.jpg",
+      "group": "Sang Yan's side",
+      "inCast": true
+    },
+    {
+      "id": "sangzhi",
+      "name": "Sang Zhi",
+      "actor": "Liu Chu Tian",
+      "image": "https://i.mydramalist.com/jVbv8m.jpg",
+      "group": "Sang Yan's side",
+      "inCast": true,
+      "note": "Studying in Yihe; likes Duan Jia Xu"
+    },
+    {
+      "id": "suhao",
+      "name": "Su Hao",
+      "actor": "Paul Chun",
+      "image": "https://i.mydramalist.com/b3jDoE_5m.jpg",
+      "group": "The Su grandparents",
+      "inCast": true,
+      "note": "Early Alzheimer's"
+    },
+    {
+      "id": "jiangru",
+      "name": "Jiang Ru",
+      "actor": "Nina Paw",
+      "image": "https://i.mydramalist.com/Kp0yzR_5m.jpg",
+      "group": "The Su grandparents",
+      "inCast": true
+    },
+    {
+      "id": "yuandong",
+      "name": "Zhao Yuan Dong",
+      "actor": "Feng Yun Zhi",
+      "image": "https://i.mydramalist.com/XrDBZm.jpg",
+      "group": "Yi Fan's family",
+      "inCast": true,
+      "note": "Remarried soon after Yi Fan's father died"
+    },
+    {
+      "id": "yanqin",
+      "name": "Che Yan Qin",
+      "actor": "Kong Lin",
+      "image": "https://i.mydramalist.com/qpXXz_5m.jpg",
+      "group": "Yi Fan's family",
+      "inCast": true
+    },
+    {
+      "id": "xingde",
+      "name": "Che Xing De",
+      "actor": "Li Hong Chen",
+      "image": "https://i.mydramalist.com/2WNjd_5m.jpg",
+      "group": "Yi Fan's family",
+      "inCast": true
+    },
+    {
+      "id": "sutian",
+      "name": "Su Tian",
+      "actor": "Chen Jia Nan",
+      "image": "https://i.mydramalist.com/4nDA1_5m.jpg",
+      "group": "The TV station",
+      "inCast": true,
+      "note": "Colleague; pregnant after her divorce"
+    },
+    {
+      "id": "fuzhuang",
+      "name": "Fu Zhuang",
+      "actor": "Zhang Ke Yuan",
+      "image": "https://i.mydramalist.com/peZze_5m.jpg",
+      "group": "The TV station",
+      "inCast": true
+    },
+    {
+      "id": "linlin",
+      "name": "Wang Lin Lin",
+      "actor": "Suo Lang Mei Qi",
+      "image": "https://i.mydramalist.com/WPBwbp_5m.jpg",
+      "group": "The TV station",
+      "inCast": true,
+      "note": "Hao An's ex; Yi Fan's former roommate"
+    },
+    {
+      "id": "asen",
+      "name": "A Sen",
+      "actor": "Jeffrey Ngai",
+      "image": "https://i.mydramalist.com/RO22r_5m.jpg",
+      "group": "The TV station",
+      "inCast": true,
+      "note": "Dance teacher from Hong Kong"
+    },
+    {
+      "id": "qianfei",
+      "name": "Qian Fei",
+      "actor": "Zhe Tang",
+      "image": "https://i.mydramalist.com/3oWdyj_5m.jpg",
+      "group": "Sang Yan's side",
+      "inCast": true,
+      "note": "College roommate"
+    },
+    {
+      "id": "junwen",
+      "name": "Chen Jun Wen",
+      "actor": "Su Yi Yang",
+      "image": "https://i.mydramalist.com/nO6ez2_5m.jpg",
+      "group": "Sang Yan's side",
+      "inCast": true,
+      "note": "College roommate"
+    }
+  ],
+  "links": [
+    {
+      "from": "sangyan",
+      "to": "yifan",
+      "type": "romance",
+      "label": "deskmates in high school; she loved him then, and pretends not to know him now",
+      "short": "in love",
+      "evidence": "He was Yi Fan's high school deskmate and the guy she once fell in love with… Yi Fan pretends that she does not know him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haoan",
+      "to": "sangyan",
+      "type": "friend",
+      "label": "brothers since middle school; co-own Overtime",
+      "short": "best friend",
+      "evidence": "桑延的兄弟… 和桑延合開了一間酒吧叫「加班」",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haoan",
+      "to": "yifan",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "溫以凡的朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "siqiao",
+      "to": "yifan",
+      "type": "friend",
+      "label": "best friend; the childhood trio",
+      "short": "best friend",
+      "evidence": "溫以凡的閨蜜，兩人和另一個男孩向朗從小一起長大",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xianglang",
+      "to": "yifan",
+      "type": "romance",
+      "label": "the third of the trio; loves her",
+      "short": "loves her",
+      "evidence": "他喜歡溫以凡",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xianglang",
+      "to": "siqiao",
+      "type": "friend",
+      "label": "childhood trio",
+      "short": "childhood friend",
+      "evidence": "青梅竹馬三人組",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chengyun",
+      "to": "yifan",
+      "type": "romance",
+      "label": "the intern who falls for her",
+      "short": "falls for her",
+      "evidence": "後來他喜歡上溫以凡",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chengyun",
+      "to": "sangyan",
+      "type": "work",
+      "label": "his junior from school",
+      "short": "his junior",
+      "evidence": "桑延學弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangrong",
+      "to": "sangyan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Sang Yan's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liping",
+      "to": "sangyan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Sang Yan's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangrong",
+      "to": "liping",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Sang Yan's father] / [Sang Yan's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangzhi",
+      "to": "sangyan",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "[Sang Yan's sister] / 桑延的妹妹",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhao",
+      "to": "haoan",
+      "type": "family",
+      "label": "grandfather — early Alzheimer's",
+      "short": "grandfather",
+      "evidence": "[Hao An's grandfather] / 後來，被診斷出患有初期阿爾茨海默症",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangru",
+      "to": "haoan",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Hao An's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhao",
+      "to": "jiangru",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Hao An's grandfather] / [Hao An's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuandong",
+      "to": "yifan",
+      "type": "family",
+      "label": "mother — remarried soon after her father died, and left her behind",
+      "short": "mother",
+      "evidence": "[Yi Fan's mother] / 在丈夫去世後沒多久便另組家庭",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanqin",
+      "to": "yifan",
+      "type": "family",
+      "label": "aunt — her uncle's wife",
+      "short": "aunt",
+      "evidence": "溫以凡的大伯母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xingde",
+      "to": "yanqin",
+      "type": "family",
+      "label": "younger brother",
+      "short": "younger brother",
+      "evidence": "溫以凡大伯母的弟弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sutian",
+      "to": "yifan",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "溫以凡同事",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fuzhuang",
+      "to": "yifan",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "温以凡的同事",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "linlin",
+      "to": "haoan",
+      "type": "romance",
+      "label": "ex-girlfriend",
+      "short": "ex-girlfriend",
+      "evidence": "蘇浩安的前女友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "linlin",
+      "to": "yifan",
+      "type": "friend",
+      "label": "former roommate",
+      "short": "old roommate",
+      "evidence": "溫以凡的前室友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "asen",
+      "to": "siqiao",
+      "type": "romance",
+      "label": "the dance teacher from Hong Kong",
+      "short": "in love",
+      "evidence": "香港舞蹈教師",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "qianfei",
+      "to": "sangyan",
+      "type": "friend",
+      "label": "college roommate",
+      "short": "roommate",
+      "evidence": "桑延的大學同學兼室友兼好兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junwen",
+      "to": "sangyan",
+      "type": "friend",
+      "label": "college roommate",
+      "short": "roommate",
+      "evidence": "桑延的大學同學兼室友兼好兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "sangyan",
+      "yifan",
+      "haoan",
+      "siqiao",
+      "xianglang",
+      "chengyun",
+      "sangrong",
+      "liping",
+      "sangzhi",
+      "suhao",
+      "jiangru",
+      "yuandong",
+      "yanqin",
+      "xingde",
+      "sutian",
+      "fuzhuang",
+      "linlin",
+      "asen",
+      "qianfei",
+      "junwen"
+    ],
+    "blocks": {
+      "Sang Yan's side": [
+        0,
+        0
+      ],
+      "The Su grandparents": [
+        0,
+        2
+      ],
+      "Yi Fan's side": [
+        2,
+        0
+      ],
+      "Yi Fan's family": [
+        2,
+        2
+      ],
+      "The TV station": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sangyan",
+      "yifan"
+    ]
+  }
+}

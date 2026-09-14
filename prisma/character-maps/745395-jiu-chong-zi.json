@@ -1,0 +1,617 @@
+{
+  "version": 1,
+  "mdlSlug": "745395-jiu-chong-zi",
+  "title": "Blossom",
+  "native": "九重紫",
+  "year": 2024,
+  "country": "CN",
+  "sources": [
+    "MDL cast (66 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 8k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "douzhao",
+    "songmo"
+  ],
+  "people": [
+    {
+      "id": "douzhao",
+      "name": "Dou Zhao / Shou Gu",
+      "actor": "Meng Zi Yi",
+      "image": "https://i.mydramalist.com/YYWz1z_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Woke up years in the past with her old life's memories and a prophetic book"
+    },
+    {
+      "id": "songmo",
+      "name": "Song Mo / Yan Tang",
+      "actor": "Li Yun Rui",
+      "image": "https://i.mydramalist.com/ABA45v_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "General, heir of the Duke of Ying; reborn too"
+    },
+    {
+      "id": "ansu",
+      "name": "Miao An Su",
+      "actor": "Snow Kong",
+      "image": "https://i.mydramalist.com/3ojD3j_5m.jpg",
+      "group": "Around Dou Zhao",
+      "inCast": true,
+      "note": "Merchant's daughter; grew up with Dou Zhao"
+    },
+    {
+      "id": "jiyong",
+      "name": "Ji Yong / Yuan Tong",
+      "actor": "Xia Zhi Guang",
+      "image": "https://i.mydramalist.com/zBmdrO_5m.jpg",
+      "group": "Around Song Mo",
+      "inCast": true,
+      "note": "Grandson of the chief minister; Song Mo's closest friend"
+    },
+    {
+      "id": "yingxue",
+      "name": "Wang Ying Xue",
+      "actor": "Alina Zhang",
+      "image": "https://i.mydramalist.com/bveKNV_5m.jpg",
+      "group": "The Dou family",
+      "inCast": true,
+      "note": "Second wife; once her mother's closest friend"
+    },
+    {
+      "id": "douming",
+      "name": "Dou Ming",
+      "actor": "Li Bai Hui",
+      "image": "https://i.mydramalist.com/j7oQJ_5m.jpg",
+      "group": "The Dou family",
+      "inCast": true,
+      "note": "Her half-sister"
+    },
+    {
+      "id": "zhangru",
+      "name": "Zhao Zhang Ru",
+      "actor": "Liu Mei Tong",
+      "image": "https://i.mydramalist.com/nOJkg2_5m.jpg",
+      "group": "Around Dou Zhao",
+      "inCast": true,
+      "note": "Cousin; grew up with her"
+    },
+    {
+      "id": "zhaosi",
+      "name": "Zhao Si",
+      "actor": "Tian Lei",
+      "image": "https://i.mydramalist.com/Pxz2Qy_5m.jpg",
+      "group": "The Dou family",
+      "inCast": true,
+      "note": "Maternal uncle"
+    },
+    {
+      "id": "shishu",
+      "name": "Dou Shi Shu / Yuan Ji",
+      "actor": "Wang Tong Hui",
+      "image": "https://i.mydramalist.com/l0Y2mL_5m.jpg",
+      "group": "The Dou family",
+      "inCast": true,
+      "note": "Fifth master, clan head"
+    },
+    {
+      "id": "cui",
+      "name": "Granny Cui",
+      "actor": "Mu Li Yan",
+      "image": "https://i.mydramalist.com/k4Llg_5m.jpg",
+      "group": "The Dou family",
+      "inCast": true,
+      "note": "Matriarch of the estate"
+    },
+    {
+      "id": "tingyu",
+      "name": "Wei Ting Yu / Pei Jin",
+      "actor": "Li Xin Ze",
+      "image": "https://i.mydramalist.com/g0jxmX_5m.jpg",
+      "group": "The Wei family",
+      "inCast": true,
+      "note": "Marquis of Jining — her husband in the first life"
+    },
+    {
+      "id": "qushui",
+      "name": "Chen Qu Shui",
+      "actor": "Wu Qi",
+      "image": "https://i.mydramalist.com/kAvokg_5m.jpg",
+      "group": "Around Dou Zhao",
+      "inCast": true,
+      "note": "Her strategist, freed from prison"
+    },
+    {
+      "id": "songhan",
+      "name": "Song Han / Mu Yu",
+      "actor": "Yan An",
+      "image": "https://i.mydramalist.com/Z83bjJ_5m.jpg",
+      "group": "Around Song Mo",
+      "inCast": true,
+      "note": "Song Mo's brother"
+    },
+    {
+      "id": "yichun",
+      "name": "Song Yi Chun",
+      "actor": "Wang Jiu Sheng",
+      "image": "https://i.mydramalist.com/jQ2LXb_5m.jpg",
+      "group": "Around Song Mo",
+      "inCast": true,
+      "note": "Duke of Ying"
+    },
+    {
+      "id": "wushan",
+      "name": "Wu Shan",
+      "actor": "Quan Yi Lun",
+      "image": "https://i.mydramalist.com/3oPn1A_5m.jpg",
+      "group": "Around Song Mo",
+      "inCast": true,
+      "note": "The duke's best man; Song Mo's aide and strategist"
+    },
+    {
+      "id": "chenjia",
+      "name": "Chen Jia",
+      "actor": "Zhu Jun Lin",
+      "image": "https://i.mydramalist.com/6Ow12_5m.jpg",
+      "group": "Around Song Mo",
+      "inCast": true,
+      "note": "A gambler, then Song Mo's mole in the guard"
+    },
+    {
+      "id": "suyan",
+      "name": "Su Yan",
+      "actor": "Shang Qi",
+      "image": "https://i.mydramalist.com/Rxmmr_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "The empress's woman, sent to An Su's side"
+    },
+    {
+      "id": "wange",
+      "name": "Wang Ge",
+      "actor": "Du Yi Heng",
+      "image": "https://i.mydramalist.com/73VDjR_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "emperor",
+      "name": "The Emperor",
+      "actor": "Tan Kai",
+      "image": "https://i.mydramalist.com/DkDjwr_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Frail, and wiser than he lets on; MDL lists the role unnamed"
+    },
+    {
+      "id": "empress",
+      "name": "Empress Wan",
+      "actor": "Yumiko Cheng",
+      "image": "https://i.mydramalist.com/l0bZJQ_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "crownprince",
+      "name": "Zhu You Sheng",
+      "actor": "Ye Zu Xin",
+      "image": "https://i.mydramalist.com/4ewBqZ_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Crown prince"
+    },
+    {
+      "id": "princeqing",
+      "name": "Prince Qing / You Ting",
+      "actor": "Dong Zi Fan",
+      "image": "https://i.mydramalist.com/zBWXDy_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "douzhao",
+      "to": "songmo",
+      "type": "romance",
+      "label": "partners in a second life; then married",
+      "short": "married",
+      "evidence": "she forges a partnership with Song Mo, a general who shares her secret of rebirth",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "douzhao",
+      "to": "songmo",
+      "type": "bond",
+      "label": "both reborn, both remembering",
+      "short": "both reborn",
+      "evidence": "a general who shares her secret of rebirth",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "tingyu",
+      "to": "douzhao",
+      "type": "romance",
+      "label": "her husband in the first life — weak, ruled by his sister",
+      "short": "first-life husband",
+      "evidence": "濟寧侯，竇昭前世丈夫，魏廷珍之弟。生性懦弱",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tingyu",
+      "to": "douming",
+      "type": "romance",
+      "label": "marries Dou Ming instead this time, and cannot protect her",
+      "short": "married",
+      "evidence": "這一世如願娶得竇明，卻沒有能力保護她",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yingxue",
+      "to": "douzhao",
+      "type": "family",
+      "label": "stepmother — drove her mother to her death, schemes against her",
+      "short": "stepmother",
+      "evidence": "[Zhao's stepmother] / 竇昭後母… 逼死趙谷秋後上位，處處算計竇昭",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yingxue",
+      "to": "douming",
+      "type": "family",
+      "label": "mother — dotes on her",
+      "short": "mother",
+      "evidence": "竇明之母… 極為疼愛竇明",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "douming",
+      "to": "douzhao",
+      "type": "family",
+      "label": "half-sister — betrayed her in the first life, gentle in this one",
+      "short": "half-sister",
+      "evidence": "[Zhao's sister] / 竇昭之妹。前世背叛竇昭，今生卻生性善良溫婉",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhaosi",
+      "to": "douzhao",
+      "type": "family",
+      "label": "maternal uncle who shields her",
+      "short": "uncle",
+      "evidence": "竇昭舅舅，趙谷秋長兄… 處處護著竇昭",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhaosi",
+      "to": "zhangru",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "趙璋如父親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhangru",
+      "to": "douzhao",
+      "type": "family",
+      "label": "cousin, raised together",
+      "short": "cousin",
+      "evidence": "竇昭表姐。與竇昭、苗安素一同長大",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ansu",
+      "to": "douzhao",
+      "type": "friend",
+      "label": "grew up together",
+      "short": "childhood friend",
+      "evidence": "與竇昭、苗安素一同長大，感情極好",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shishu",
+      "to": "douzhao",
+      "type": "family",
+      "label": "uncle, the clan head — uses her as a chess piece",
+      "short": "uncle",
+      "evidence": "[Dou Zhao's uncle] / 常刁難竇昭，將竇昭視為棋子",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shishu",
+      "to": "empress",
+      "type": "work",
+      "label": "serves the empress and Prince Qing; discarded",
+      "short": "her man",
+      "evidence": "為萬皇后及慶王效力，最後被萬皇后放棄",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cui",
+      "to": "douzhao",
+      "type": "family",
+      "label": "grandmother of the estate; adores her",
+      "short": "grandmother",
+      "evidence": "田莊大家長… 極其疼愛竇昭",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qushui",
+      "to": "douzhao",
+      "type": "work",
+      "label": "her strategist — she got him out of prison",
+      "short": "strategist",
+      "evidence": "為竇昭幕僚，當年因主上叛城被連累入獄，被竇昭救出",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiyong",
+      "to": "songmo",
+      "type": "friend",
+      "label": "closest friend",
+      "short": "best friend",
+      "evidence": "宋墨摯友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiyong",
+      "to": "douzhao",
+      "type": "romance",
+      "label": "fell for her when she saved him; keeps saving her back",
+      "short": "loves her",
+      "evidence": "後肺病發作由竇昭相救，一見傾心。曾多次涉險維護竇昭",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "songhan",
+      "to": "songmo",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[Mo's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yichun",
+      "to": "songmo",
+      "type": "family",
+      "label": "father — Duke of Ying",
+      "short": "father",
+      "evidence": "[Song Mo's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wushan",
+      "to": "songmo",
+      "type": "work",
+      "label": "aide and strategist",
+      "short": "aide",
+      "evidence": "於宋墨身邊擔任隨從與謀士",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chenjia",
+      "to": "songmo",
+      "type": "work",
+      "label": "his mole inside the Northern guard",
+      "short": "his mole",
+      "evidence": "後受宋墨賞識，任職北鎮撫司當暗樁",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chenjia",
+      "to": "zhangru",
+      "type": "romance",
+      "label": "quarrelling lovers; married at the end",
+      "short": "married",
+      "evidence": "與趙璋如為歡喜冤家，最後成婚",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suyan",
+      "to": "ansu",
+      "type": "work",
+      "label": "planted beside her by the empress to set her against Dou Zhao",
+      "short": "planted",
+      "evidence": "後被皇后派到苗安素身邊，製造其與竇昭之間的誤會",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyan",
+      "to": "wange",
+      "type": "rivalry",
+      "label": "the man who lied to her about her family",
+      "short": "lied to her",
+      "evidence": "後發現自己被汪格所騙",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chenjia",
+      "to": "wange",
+      "type": "rivalry",
+      "label": "kills him at the end",
+      "short": "kills him",
+      "evidence": "最後殺了汪格",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "empress",
+      "to": "princeqing",
+      "type": "work",
+      "label": "her faction",
+      "short": "her faction",
+      "evidence": "為萬皇后及慶王效力",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "emperor",
+      "to": "songmo",
+      "type": "work",
+      "label": "gives him the last snow lingzhi; clears his father's name",
+      "short": "clears his house",
+      "evidence": "最後將唯一的雪靈芝給了宋墨，並下罪己詔還定國公與蔣氏清白",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "crownprince",
+      "to": "emperor",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Crown Prince]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "princeqing",
+      "to": "crownprince",
+      "type": "rivalry",
+      "label": "the coup, 'to clear the emperor's side'",
+      "short": "the coup",
+      "evidence": "慶王以清君側為由宮變時",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "douzhao",
+      "songmo",
+      "ansu",
+      "jiyong",
+      "yingxue",
+      "douming",
+      "zhangru",
+      "zhaosi",
+      "shishu",
+      "cui",
+      "tingyu",
+      "qushui",
+      "songhan",
+      "yichun",
+      "wushan",
+      "chenjia",
+      "suyan",
+      "wange",
+      "emperor",
+      "empress",
+      "crownprince",
+      "princeqing"
+    ],
+    "blocks": {
+      "The Dou family": [
+        0,
+        0
+      ],
+      "Around Dou Zhao": [
+        0,
+        2
+      ],
+      "Around Song Mo": [
+        2,
+        0
+      ],
+      "The court": [
+        2,
+        2
+      ],
+      "The Wei family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "douzhao",
+      "songmo"
+    ]
+  }
+}

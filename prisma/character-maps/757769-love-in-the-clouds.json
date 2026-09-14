@@ -1,0 +1,567 @@
+{
+  "version": 1,
+  "mdlSlug": "757769-love-in-the-clouds",
+  "title": "Love in the Clouds",
+  "native": "入青云",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (54 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables — roles, few sentences)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "bozai",
+    "mingyi"
+  ],
+  "people": [
+    {
+      "id": "bozai",
+      "name": "Ji Bo Zai",
+      "actor": "Hou Ming Hao",
+      "image": "https://i.mydramalist.com/VXPoqm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Convict of the Sunken Abyss, fighter of Jixing — and, it turns out, Yaoguang's crown prince"
+    },
+    {
+      "id": "mingyi",
+      "name": "Ming Xian / Ming Yi",
+      "actor": "Lu Yu Xiao",
+      "image": "https://i.mydramalist.com/73RXjn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Seven years champion of the Qingyun Conference as 'Crown Prince Ming Xian' — a dancer of Moonlit Blossoms underneath"
+    },
+    {
+      "id": "situling",
+      "name": "Situ Ling / Chao Yuan",
+      "actor": "Yu Cheng En",
+      "image": "https://i.mydramalist.com/YYBYAo_5m.jpg",
+      "group": "Zhushui",
+      "inCast": true,
+      "note": "Clerk of the judgment hall — the lost young prince of Zhushui"
+    },
+    {
+      "id": "tianji",
+      "name": "Mu Tian Ji",
+      "actor": "He Nan",
+      "image": "https://i.mydramalist.com/dAZoem.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Princess of Jixing"
+    },
+    {
+      "id": "yanxiao",
+      "name": "Yan Xiao",
+      "actor": "Quan Yi Lun",
+      "image": "https://i.mydramalist.com/3oPn1A_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Tian Ji's guard, then physician, then fighter"
+    },
+    {
+      "id": "fuyue",
+      "name": "Fu Yue",
+      "actor": "Zhu Li Lan",
+      "image": "https://i.mydramalist.com/eqpgd_5m.jpg",
+      "group": "Moonlit Blossoms",
+      "inCast": true,
+      "note": "Mistress of the house; of the fox clan"
+    },
+    {
+      "id": "zhangtai",
+      "name": "Zhang Tai",
+      "actor": "Pan Jun Ya",
+      "image": "https://i.mydramalist.com/YY6g6Q_5m.jpg",
+      "group": "Moonlit Blossoms",
+      "inCast": true,
+      "note": "Dancer"
+    },
+    {
+      "id": "yuming",
+      "name": "Yu Ming",
+      "actor": "Wu Yi Qiao",
+      "image": "https://i.mydramalist.com/b38Vbj_5m.jpg",
+      "group": "Moonlit Blossoms",
+      "inCast": true,
+      "note": "Of the fox clan"
+    },
+    {
+      "id": "qibai",
+      "name": "Mu Qi Bai / Lord Hanfeng",
+      "actor": "Hu Yun Hao",
+      "image": "https://i.mydramalist.com/6KyrW_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Tian Ji's uncle"
+    },
+    {
+      "id": "yuanfeng",
+      "name": "Mu Yuan Feng",
+      "actor": "Peng Bo",
+      "image": "https://i.mydramalist.com/Kpo3z4_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "God-lord of Jixing"
+    },
+    {
+      "id": "buxiu",
+      "name": "Bu Xiu",
+      "actor": "Lu Qi",
+      "image": "https://i.mydramalist.com/BlW5R_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Bo Zai's beast companion; a dragon"
+    },
+    {
+      "id": "xun",
+      "name": "Granny Xun",
+      "actor": "Hao Yan Fei",
+      "image": "https://i.mydramalist.com/B67Dl_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "His steward; of the moth clan"
+    },
+    {
+      "id": "yangqiu",
+      "name": "Meng Yang Qiu",
+      "actor": "Cao Zi Shuo",
+      "image": "https://i.mydramalist.com/VXnByv_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Fighter"
+    },
+    {
+      "id": "sunliao",
+      "name": "Sun Liao",
+      "actor": "Lin Xiao",
+      "image": "https://i.mydramalist.com/81K8qb_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Qi Bai's guard"
+    },
+    {
+      "id": "xunming",
+      "name": "Xun Ming",
+      "actor": "Jerome Deng",
+      "image": "https://i.mydramalist.com/YYrgYz_5m.jpg",
+      "group": "Jixing Abyss",
+      "inCast": true,
+      "note": "Of the fox clan"
+    },
+    {
+      "id": "tianlin",
+      "name": "She Tian Lin",
+      "actor": "Lin Jiang Guo",
+      "image": "https://i.mydramalist.com/pgXvV_5m.jpg",
+      "group": "Yaoguang",
+      "inCast": true,
+      "note": "Venerable of Yaoguang; her master and father"
+    },
+    {
+      "id": "zhenghui",
+      "name": "Ming Zheng Hui",
+      "actor": "Yu Bo",
+      "image": "https://i.mydramalist.com/YYzNBo_5m.jpg",
+      "group": "Yaoguang",
+      "inCast": true,
+      "note": "God-lord of Yaoguang"
+    },
+    {
+      "id": "jingshu",
+      "name": "Jing Shu",
+      "actor": "Hu Cai Hong",
+      "image": "https://i.mydramalist.com/Kp44on_5m.jpg",
+      "group": "Yaoguang",
+      "inCast": true,
+      "note": "Empress"
+    },
+    {
+      "id": "meng",
+      "name": "Madame Meng",
+      "actor": "Lin Jing",
+      "image": "https://i.mydramalist.com/YYW6oP_5m.jpg",
+      "group": "Yaoguang",
+      "inCast": true,
+      "note": "The god-lord's favoured consort"
+    },
+    {
+      "id": "mingxin",
+      "name": "Ming Xin",
+      "actor": "Ke Bo Lun",
+      "image": "https://i.mydramalist.com/ZjndO_5m.jpg",
+      "group": "Yaoguang",
+      "inCast": true
+    },
+    {
+      "id": "ershiqi",
+      "name": "Er Shi Qi",
+      "actor": "Yu Yao",
+      "image": "https://i.mydramalist.com/E58Yml_5m.jpg",
+      "group": "Yaoguang",
+      "inCast": true,
+      "note": "Ming Yi's spirit pet"
+    },
+    {
+      "id": "chaoheng",
+      "name": "Chao Heng",
+      "actor": "Qu Gang",
+      "image": "https://i.mydramalist.com/YYNvne_5m.jpg",
+      "group": "Zhushui",
+      "inCast": true,
+      "note": "God-lord of Zhushui"
+    }
+  ],
+  "links": [
+    {
+      "from": "bozai",
+      "to": "mingyi",
+      "type": "romance",
+      "label": "he ended her seven-year reign; then the push and pull",
+      "short": "in love",
+      "evidence": "ending the seven-year reign of Ming Yi… locked in a constant push and pull",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bozai",
+      "to": "mingyi",
+      "type": "rivalry",
+      "label": "beat her at the Qingyun Conference",
+      "short": "beat her",
+      "evidence": "stuns the Six Realms by ending the seven-year reign of Ming Yi",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tianlin",
+      "to": "mingyi",
+      "type": "family",
+      "label": "master, and father",
+      "short": "master, father",
+      "evidence": "尧光尊者、明意的师傅兼父親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tianlin",
+      "to": "mingyi",
+      "type": "work",
+      "label": "had her compete as the crown prince",
+      "short": "her master",
+      "evidence": "who has competed for years… disguised as Crown Prince Ming Xian",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenghui",
+      "to": "bozai",
+      "type": "family",
+      "label": "birth father — the god-lord of Yaoguang",
+      "short": "birth father",
+      "evidence": "尧光神君、紀伯宰的生父",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jingshu",
+      "to": "bozai",
+      "type": "family",
+      "label": "birth mother",
+      "short": "birth mother",
+      "evidence": "尧光君后、紀伯宰的生母",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenghui",
+      "to": "jingshu",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "尧光神君 / 尧光君后",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "meng",
+      "to": "zhenghui",
+      "type": "romance",
+      "label": "favoured consort",
+      "short": "consort",
+      "evidence": "尧光神君的宠妃",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "meng",
+      "to": "mingxin",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "梦夫人的兒子 / [Ming Xin's mother]",
+      "source": "zh.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mingxin",
+      "to": "mingyi",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "[Ming Xian's half-brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ershiqi",
+      "to": "mingyi",
+      "type": "bond",
+      "label": "her spirit pet",
+      "short": "her pet",
+      "evidence": "明意的灵宠 / [Ming Xian's pet]",
+      "source": "zh.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "situling",
+      "to": "bozai",
+      "type": "friend",
+      "label": "the clerk who becomes a friend",
+      "short": "friend",
+      "evidence": "司判堂主事→逐水灵渊的小皇子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "chaoheng",
+      "to": "situling",
+      "type": "family",
+      "label": "father — Situ Ling is Zhushui's lost prince",
+      "short": "father",
+      "evidence": "逐水灵渊的小皇子→逐水靈淵太子 / 逐水神君",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tianji",
+      "to": "bozai",
+      "type": "friend",
+      "label": "the princess who backs him",
+      "short": "backs him",
+      "evidence": "极星渊公主",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yanxiao",
+      "to": "tianji",
+      "type": "work",
+      "label": "her guard",
+      "short": "her guard",
+      "evidence": "天玑的贴身侍卫→醫仙→极星渊鬥者",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuanfeng",
+      "to": "tianji",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "极星渊神君 / 极星渊公主",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "qibai",
+      "to": "tianji",
+      "type": "family",
+      "label": "uncle",
+      "short": "uncle",
+      "evidence": "沐天玑的叔叔",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunliao",
+      "to": "qibai",
+      "type": "work",
+      "label": "guard",
+      "short": "guard",
+      "evidence": "沐齐柏侍衛",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "buxiu",
+      "to": "bozai",
+      "type": "bond",
+      "label": "his beast companion, a dragon",
+      "short": "his dragon",
+      "evidence": "纪伯宰的从兽、蛟龙族 / [Bo Zai's aide]",
+      "source": "zh.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xun",
+      "to": "bozai",
+      "type": "work",
+      "label": "steward",
+      "short": "steward",
+      "evidence": "[Bo Zai's steward]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yangqiu",
+      "to": "bozai",
+      "type": "work",
+      "label": "fellow fighter of Jixing",
+      "short": "fellow fighter",
+      "evidence": "极星渊鬥者",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fuyue",
+      "to": "mingyi",
+      "type": "work",
+      "label": "mistress of the house she danced in",
+      "short": "her old mistress",
+      "evidence": "花月夜坊主 / 花月夜舞姬",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhangtai",
+      "to": "mingyi",
+      "type": "friend",
+      "label": "fellow dancer, and friend",
+      "short": "friend",
+      "evidence": "花月夜舞姬 / 章台與明意的好友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuming",
+      "to": "fuyue",
+      "type": "work",
+      "label": "of the house, and the fox clan",
+      "short": "of the house",
+      "evidence": "[Moonlit Blossoms, Jixing Abyss] / 有蘇狐族",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xunming",
+      "to": "fuyue",
+      "type": "work",
+      "label": "of the fox clan",
+      "short": "fox clan",
+      "evidence": "有蘇狐族",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "bozai",
+      "mingyi",
+      "situling",
+      "tianji",
+      "yanxiao",
+      "fuyue",
+      "zhangtai",
+      "yuming",
+      "qibai",
+      "yuanfeng",
+      "buxiu",
+      "xun",
+      "yangqiu",
+      "sunliao",
+      "xunming",
+      "tianlin",
+      "zhenghui",
+      "jingshu",
+      "meng",
+      "mingxin",
+      "ershiqi",
+      "chaoheng"
+    ],
+    "blocks": {
+      "Jixing Abyss": [
+        0,
+        0
+      ],
+      "Moonlit Blossoms": [
+        0,
+        2
+      ],
+      "Yaoguang": [
+        2,
+        0
+      ],
+      "Zhushui": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "bozai",
+      "mingyi"
+    ]
+  }
+}

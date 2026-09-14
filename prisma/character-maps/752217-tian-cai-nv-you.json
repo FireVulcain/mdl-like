@@ -1,0 +1,476 @@
+{
+  "version": 1,
+  "mdlSlug": "752217-tian-cai-nv-you",
+  "title": "Genius Girlfriend",
+  "native": "天才，女友",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (43 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (names, two sentences)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "zhixia",
+    "yubai"
+  ],
+  "people": [
+    {
+      "id": "zhixia",
+      "name": "Lin Zhi Xia",
+      "actor": "Tian Xi Wei",
+      "image": "https://i.mydramalist.com/eYv4Vd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "IQ 174; blunt, and alone since childhood"
+    },
+    {
+      "id": "yubai",
+      "name": "Jiang Yu Bai",
+      "actor": "Hu Yi Tian",
+      "image": "https://i.mydramalist.com/vP7OW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Luo Zhuo Ran",
+          "image": "https://i.mydramalist.com/VXp6BE_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Top student with the social gift she lacks; her desk partner"
+    },
+    {
+      "id": "tingting",
+      "name": "Tang Ting Ting",
+      "actor": "Li Jia Qi",
+      "image": "https://i.mydramalist.com/YYp1Qe_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "qiyan",
+      "name": "Duan Qi Yan",
+      "actor": "Xia Hao Ran",
+      "image": "https://i.mydramalist.com/O82kgY_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "fuxuan",
+      "name": "Shen Fu Xuan",
+      "actor": "Lai Wei Ming",
+      "image": "https://i.mydramalist.com/l0ADme_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true,
+      "note": "The school's maths prodigy"
+    },
+    {
+      "id": "baihui",
+      "name": "Jin Bai Hui",
+      "actor": "Vivienne Tien",
+      "image": "https://i.mydramalist.com/oQpogP_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "chunlei",
+      "name": "Wan Chun Lei",
+      "actor": "Sun Meng Qiu",
+      "image": "https://i.mydramalist.com/b3o2LN_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "qianche",
+      "name": "Tan Qian Che",
+      "actor": "Yang Kai Cheng",
+      "image": "https://i.mydramalist.com/ABdqeX_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "yuanyuan",
+      "name": "Kong Yuan Yuan",
+      "actor": "Ma Qiu Zi",
+      "image": "https://i.mydramalist.com/kpRkg_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true,
+      "note": "Homeroom teacher"
+    },
+    {
+      "id": "sui",
+      "name": "Director Sui",
+      "actor": "Zhang Lei",
+      "image": "https://i.mydramalist.com/yW1Ro6_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "zeqiu",
+      "name": "Lin Ze Qiu",
+      "actor": "Wu Jia Kai",
+      "image": "https://i.mydramalist.com/w1Y1b_5m.jpg",
+      "group": "Zhi Xia's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Yu Li Yang",
+          "image": "https://i.mydramalist.com/mO5DvP_5m.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "yanhong",
+      "name": "Ke Yan Hong",
+      "actor": "Liu Min",
+      "image": "https://i.mydramalist.com/g0pbXO_5m.jpg",
+      "group": "Zhi Xia's family",
+      "inCast": true
+    },
+    {
+      "id": "fugui",
+      "name": "Lin Fu Gui",
+      "actor": "Liu Ling Zhi",
+      "image": "https://i.mydramalist.com/YYNAXg_5m.jpg",
+      "group": "Zhi Xia's family",
+      "inCast": true
+    },
+    {
+      "id": "xunmei",
+      "name": "Guan Xun Mei",
+      "actor": "Lu Ling",
+      "image": "https://i.mydramalist.com/mORbv3_5m.jpg",
+      "group": "The parents",
+      "inCast": true
+    },
+    {
+      "id": "jinquan",
+      "name": "Jin Quan",
+      "actor": "Yu Lei",
+      "image": "https://i.mydramalist.com/VXnZgz_5m.jpg",
+      "group": "The parents",
+      "inCast": true
+    },
+    {
+      "id": "guiying",
+      "name": "Zhao Gui Ying",
+      "actor": "Wang Qing",
+      "image": "https://i.mydramalist.com/JBYVny_5m.jpg",
+      "group": "The parents",
+      "inCast": true
+    },
+    {
+      "id": "sumo",
+      "name": "Su Mo",
+      "actor": "Tu Xian Zhi",
+      "image": "https://i.mydramalist.com/KpPr88_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    },
+    {
+      "id": "xiaoshui",
+      "name": "Xiao Shui",
+      "actor": "Tian Yu Qing",
+      "image": "https://i.mydramalist.com/bveleN_5m.jpg",
+      "group": "Provincial No. 1",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yubai",
+      "to": "zhixia",
+      "type": "romance",
+      "label": "her desk partner, her guide into people, her love",
+      "short": "in love",
+      "evidence": "是林知夏的同桌兼成长守护者",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yubai",
+      "to": "zhixia",
+      "type": "friend",
+      "label": "helps her fit in; introduces her to his friends",
+      "short": "her guide",
+      "evidence": "As a social butterfly, Jiang Yu Bai helps Lin Zhi Xia fit in",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fuxuan",
+      "to": "zhixia",
+      "type": "rivalry",
+      "label": "the other maths prodigy",
+      "short": "maths rival",
+      "evidence": "省一中的数学学霸",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zeqiu",
+      "to": "zhixia",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "[Zhi Xia's brother] / 林知夏的哥哥",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanhong",
+      "to": "zhixia",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Zhi Xia & Ze Qiu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fugui",
+      "to": "zhixia",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Zhi Xia & Ze Qiu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanhong",
+      "to": "zeqiu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Zhi Xia & Ze Qiu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fugui",
+      "to": "zeqiu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Zhi Xia & Ze Qiu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanhong",
+      "to": "fugui",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Zhi Xia & Ze Qiu's mother] / [Zhi Xia & Ze Qiu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xunmei",
+      "to": "yubai",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Yu Bai's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinquan",
+      "to": "baihui",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Bai Hui's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "guiying",
+      "to": "tingting",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ting Ting's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sumo",
+      "to": "tingting",
+      "type": "work",
+      "label": "her artiste",
+      "short": "her artiste",
+      "evidence": "[Ting Ting's artiste]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuanyuan",
+      "to": "zhixia",
+      "type": "work",
+      "label": "homeroom teacher",
+      "short": "homeroom teacher",
+      "evidence": "[Homeroom teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sui",
+      "to": "yuanyuan",
+      "type": "work",
+      "label": "school director",
+      "short": "director",
+      "evidence": "[High School director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tingting",
+      "to": "zhixia",
+      "type": "friend",
+      "label": "the friends Yu Bai brings her",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "qiyan",
+      "to": "yubai",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "baihui",
+      "to": "zhixia",
+      "type": "rivalry",
+      "label": "the classmate who resents her",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chunlei",
+      "to": "zhixia",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "qianche",
+      "to": "yubai",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "xiaoshui",
+      "to": "zhixia",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "zhixia",
+      "yubai",
+      "tingting",
+      "qiyan",
+      "fuxuan",
+      "baihui",
+      "chunlei",
+      "qianche",
+      "yuanyuan",
+      "sui",
+      "zeqiu",
+      "yanhong",
+      "fugui",
+      "xunmei",
+      "jinquan",
+      "guiying",
+      "sumo",
+      "xiaoshui"
+    ],
+    "blocks": {
+      "Zhi Xia's family": [
+        0,
+        0
+      ],
+      "The parents": [
+        0,
+        2
+      ],
+      "Provincial No. 1": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "zhixia",
+      "yubai"
+    ]
+  }
+}

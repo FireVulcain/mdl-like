@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "mdlSlug": "767383-zhui-luo",
+  "title": "Never-Ending Summer",
+  "native": "炽夏",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (31 roles, 2 main) — the brackets carry the households",
+    "MDL synopsis",
+    "zh.wikipedia (no article yet)"
+  ],
+  "main": [
+    "zhouwan",
+    "xixiao"
+  ],
+  "people": [
+    {
+      "id": "zhouwan",
+      "name": "Zhou Wan",
+      "actor": "Bao Shang En",
+      "image": "https://i.mydramalist.com/E5PRDb_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Top student; needs the money for her grandmother's surgery"
+    },
+    {
+      "id": "xixiao",
+      "name": "Lu Xi Xiao",
+      "actor": "Daniel Zhou",
+      "image": "https://i.mydramalist.com/yWkex6_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rebellious; her mother's stepson"
+    },
+    {
+      "id": "jiangyan",
+      "name": "Jiang Yan",
+      "actor": "Zhao Ying Bo",
+      "image": "https://i.mydramalist.com/vBYLZ_5m.jpg",
+      "group": "The Lu family",
+      "inCast": true
+    },
+    {
+      "id": "shenlan",
+      "name": "Shen Lan",
+      "actor": "Huang Ting Ting",
+      "image": "https://i.mydramalist.com/yW10zd_5m.jpg",
+      "group": "The Lu family",
+      "inCast": true
+    },
+    {
+      "id": "zhongyue",
+      "name": "Lu Zhong Yue",
+      "actor": "Wang Ce",
+      "image": "https://i.mydramalist.com/Pxm7m0_5m.jpg",
+      "group": "The Lu family",
+      "inCast": true
+    },
+    {
+      "id": "wensheng",
+      "name": "Jiang Wen Sheng",
+      "actor": "Yuan Ran",
+      "image": "https://i.mydramalist.com/11Lky_5m.jpg",
+      "group": "The Lu family",
+      "inCast": true
+    },
+    {
+      "id": "grandpalu",
+      "name": "Old Grandpa Lu",
+      "actor": "Zeng Qiu Sheng",
+      "image": "https://i.mydramalist.com/1PVK5_5m.jpg",
+      "group": "The Lu family",
+      "inCast": true
+    },
+    {
+      "id": "xuefen",
+      "name": "Huang Xue Fen",
+      "actor": "Fang Fang",
+      "image": "https://i.mydramalist.com/QJnweA_5m.jpg",
+      "group": "Zhou Wan's family",
+      "inCast": true,
+      "note": "Seriously ill"
+    },
+    {
+      "id": "xiangling",
+      "name": "Guo Xiang Ling / Guo Yan",
+      "actor": "Huang Yi",
+      "image": "https://i.mydramalist.com/BdpDk6_5m.jpg",
+      "group": "Zhou Wan's family",
+      "inCast": true,
+      "note": "Left her years ago; married into the Lu"
+    },
+    {
+      "id": "gumeng",
+      "name": "Gu Meng",
+      "actor": "Xu Yuan Li Na",
+      "image": "https://i.mydramalist.com/VXVkRx_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Classmate"
+    },
+    {
+      "id": "jiangfan",
+      "name": "Jiang Fan",
+      "actor": "Fu Wei Lun",
+      "image": "https://i.mydramalist.com/B6Bbl_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Xi Xiao's friend"
+    },
+    {
+      "id": "wenhui",
+      "name": "He Wen Hui",
+      "actor": "Yang Qi Yuan",
+      "image": "https://i.mydramalist.com/ABWzBg_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Xi Xiao's rival"
+    },
+    {
+      "id": "luohe",
+      "name": "Luo He",
+      "actor": "Ke Chun",
+      "image": "https://i.mydramalist.com/O8Objk_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Hooligan"
+    },
+    {
+      "id": "kang",
+      "name": "Uncle Kang",
+      "actor": "Ge Si",
+      "image": "https://i.mydramalist.com/2wz8xV_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Noodle shop"
+    }
+  ],
+  "links": [
+    {
+      "from": "zhouwan",
+      "to": "xixiao",
+      "type": "romance",
+      "label": "she came for his money; what she found was him",
+      "short": "in love",
+      "evidence": "she deliberately approaches Lu Xi Xiao, her mother's stepson and a rebellious young man, hoping to secure money for the surgery through him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiangling",
+      "to": "zhouwan",
+      "type": "family",
+      "label": "the mother who left her — and refused to help",
+      "short": "mother",
+      "evidence": "[Zhou Wan's mother] / her mother, who abandoned her years ago",
+      "source": "MDL cast · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiangling",
+      "to": "xixiao",
+      "type": "family",
+      "label": "stepmother",
+      "short": "stepmother",
+      "evidence": "her mother's stepson",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xuefen",
+      "to": "zhouwan",
+      "type": "family",
+      "label": "grandmother — the surgery",
+      "short": "grandmother",
+      "evidence": "[Zhou Wan's grandmother] / save her seriously ill grandmother",
+      "source": "MDL cast · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangyan",
+      "to": "xixiao",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "[Xi Xiao's half-brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shenlan",
+      "to": "xixiao",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Xi Xiao's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhongyue",
+      "to": "xixiao",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Xi Xiao's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhongyue",
+      "to": "xiangling",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Xi Xiao's father] / her mother's stepson",
+      "source": "MDL cast · MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wensheng",
+      "to": "jiangyan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jiang Yan's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "grandpalu",
+      "to": "xixiao",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[Xi Xiao and Jiang Yan's grandfather]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "grandpalu",
+      "to": "jiangyan",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[Xi Xiao and Jiang Yan's grandfather]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gumeng",
+      "to": "zhouwan",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "[Zhou Wan's classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiangfan",
+      "to": "xixiao",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Xi Xiao's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wenhui",
+      "to": "xixiao",
+      "type": "rivalry",
+      "label": "rival",
+      "short": "rival",
+      "evidence": "[Xi Xiao's rival]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "luohe",
+      "to": "zhouwan",
+      "type": "rivalry",
+      "label": "the hooligan",
+      "short": "trouble",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kang",
+      "to": "zhouwan",
+      "type": "work",
+      "label": "the noodle shop",
+      "short": "noodle shop",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "zhouwan",
+      "xixiao",
+      "jiangyan",
+      "shenlan",
+      "zhongyue",
+      "wensheng",
+      "grandpalu",
+      "xuefen",
+      "xiangling",
+      "gumeng",
+      "jiangfan",
+      "wenhui",
+      "luohe",
+      "kang"
+    ],
+    "blocks": {
+      "Zhou Wan's family": [
+        0,
+        0
+      ],
+      "The Lu family": [
+        2,
+        0
+      ],
+      "School": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "zhouwan",
+      "xixiao"
+    ]
+  }
+}

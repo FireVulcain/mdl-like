@@ -1,0 +1,543 @@
+{
+  "version": 1,
+  "mdlSlug": "30941-falling-in-love-with-you-is-the-best-thing-i-have-ever-done",
+  "title": "The Best Thing",
+  "native": "爱你",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (27 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 6k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "suye",
+    "xifan"
+  ],
+  "people": [
+    {
+      "id": "suye",
+      "name": "He Su Ye",
+      "actor": "Zhang Ling He",
+      "image": "https://i.mydramalist.com/YY1bQP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Doctor of Chinese medicine, oncology; from a medical family"
+    },
+    {
+      "id": "xifan",
+      "name": "Shen Xi Fan",
+      "actor": "Xu Ruo Han",
+      "image": "https://i.mydramalist.com/yWwZrB_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Front-office manager at the Gunan Huating hotel; insomnia, migraines"
+    },
+    {
+      "id": "xiangya",
+      "name": "Xu Xiang Ya",
+      "actor": "Huang Can Can",
+      "image": "https://i.mydramalist.com/PxqRVL_5m.jpg",
+      "group": "The hotel",
+      "inCast": true,
+      "note": "F&B manager; seven years beside Xi Fan"
+    },
+    {
+      "id": "yishen",
+      "name": "Lin Yi Shen",
+      "actor": "Wang You Jun",
+      "image": "https://i.mydramalist.com/267QP_5m.jpg",
+      "group": "The hotel",
+      "inCast": true,
+      "note": "Marketing manager"
+    },
+    {
+      "id": "dingwei",
+      "name": "Ding Wei",
+      "actor": "Zhang Yu Ning",
+      "image": "https://i.mydramalist.com/O8dY4L_5m.jpg",
+      "group": "The hotel",
+      "inCast": true,
+      "note": "Front desk"
+    },
+    {
+      "id": "yunci",
+      "name": "Liu Yun Ci",
+      "actor": "Zhang Lu",
+      "image": "https://i.mydramalist.com/RDwkR_5m.jpg",
+      "group": "The hotel",
+      "inCast": true,
+      "note": "A guest, with the seniors' tour"
+    },
+    {
+      "id": "ding",
+      "name": "Mr. Ding",
+      "actor": "Wu Yue",
+      "image": "https://i.mydramalist.com/XgrzJm.jpg",
+      "group": "The hotel",
+      "inCast": true,
+      "note": "A guest"
+    },
+    {
+      "id": "lijie",
+      "name": "Li Jie",
+      "actor": "Tang Jiu Zhou",
+      "image": "https://i.mydramalist.com/O8QARx_5m.jpg",
+      "group": "The hospital",
+      "inCast": true,
+      "note": "Su Ye's junior; intern in oncology"
+    },
+    {
+      "id": "kexin",
+      "name": "Fang Ke Xin",
+      "actor": "Zhou Yi Ru",
+      "image": "https://i.mydramalist.com/5v2g1A_5m.jpg",
+      "group": "The hospital",
+      "inCast": true,
+      "note": "Su Ye's junior; intern"
+    },
+    {
+      "id": "songfeng",
+      "name": "Song Feng",
+      "actor": "Osborn Ma",
+      "image": "https://i.mydramalist.com/O8Z31L_5m.jpg",
+      "group": "The hospital",
+      "inCast": true,
+      "note": "Su Ye's senior; cannot find a girlfriend"
+    },
+    {
+      "id": "wang",
+      "name": "Nurse Wang",
+      "actor": "Jia Yu Meng",
+      "image": "https://i.mydramalist.com/pJzOQ_5m.jpg",
+      "group": "The hospital",
+      "inCast": true,
+      "note": "His father's new girlfriend"
+    },
+    {
+      "id": "zhaoze",
+      "name": "Zhao Ze",
+      "actor": "Wang Zi Ming",
+      "image": "https://i.mydramalist.com/BdN4ZV_5m.jpg",
+      "group": "The hospital",
+      "inCast": true,
+      "note": "A patient — a boy with leukaemia"
+    },
+    {
+      "id": "liren",
+      "name": "You Li Ren",
+      "actor": "Li Jian Yi",
+      "image": "https://i.mydramalist.com/VX3AV0_5m.jpg",
+      "group": "Su Ye's family",
+      "inCast": true,
+      "note": "Famous Chinese-medicine doctor; teaches the interns"
+    },
+    {
+      "id": "hesheng",
+      "name": "He Sheng",
+      "actor": "Guo Jing Lin",
+      "image": "https://i.mydramalist.com/pmn2n_5m.jpg",
+      "group": "Su Ye's family",
+      "inCast": true,
+      "note": "Cardiac surgeon; wanted his son in Western medicine"
+    },
+    {
+      "id": "nianxiang",
+      "name": "Yu Nian Xiang",
+      "actor": "Zhao Kai Yi",
+      "image": "https://i.mydramalist.com/jAldzm.jpg",
+      "group": "Su Ye's family",
+      "inCast": true,
+      "note": "Died of breast cancer; loved tulips"
+    },
+    {
+      "id": "jiaping",
+      "name": "Shen Jia Ping",
+      "actor": "Fang Zi Bin",
+      "image": "https://i.mydramalist.com/jd73w_5m.jpg",
+      "group": "Xi Fan's family",
+      "inCast": true,
+      "note": "High-school English teacher who speaks English when he drinks"
+    },
+    {
+      "id": "xiaoming",
+      "name": "Liu Xiao Ming",
+      "actor": "Liu Wei Wei",
+      "image": "https://i.mydramalist.com/g07d4W_5m.jpg",
+      "group": "Xi Fan's family",
+      "inCast": true
+    },
+    {
+      "id": "yanheng",
+      "name": "Yan Heng",
+      "actor": "Wu Xi Ze",
+      "image": "https://i.mydramalist.com/g0jOE1_5m.jpg",
+      "group": "The ex",
+      "inCast": true,
+      "note": "Seven years with Xi Fan; belittled her, left, came back"
+    }
+  ],
+  "links": [
+    {
+      "from": "xifan",
+      "to": "suye",
+      "type": "romance",
+      "label": "patient and doctor, then neighbours, then more",
+      "short": "in love",
+      "evidence": "their interactions grow beyond a doctor-patient relationship when they realize they live in the same community",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suye",
+      "to": "xifan",
+      "type": "work",
+      "label": "treats her insomnia",
+      "short": "her doctor",
+      "evidence": "seeks help from Chinese medicine doctor He Su Ye",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiangya",
+      "to": "xifan",
+      "type": "friend",
+      "label": "best friend; seven years at the hotel together",
+      "short": "best friend",
+      "evidence": "沈惜凡的好友，與沈惜凡一起在酒店工作七年",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yishen",
+      "to": "xifan",
+      "type": "friend",
+      "label": "best friend; seven years at the hotel together",
+      "short": "best friend",
+      "evidence": "沈惜凡的好友，與沈惜凡一起在酒店工作七年",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yishen",
+      "to": "xiangya",
+      "type": "romance",
+      "label": "liked each other since university, never said; together at the end",
+      "short": "in love, at last",
+      "evidence": "與许向雅大學就認識並互相喜歡但始終沒向對方坦白而一直錯過，最後告白成功",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dingwei",
+      "to": "xifan",
+      "type": "work",
+      "label": "front desk under her",
+      "short": "her staff",
+      "evidence": "古南華庭酒店前廳部員工，前台接待員",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lijie",
+      "to": "suye",
+      "type": "work",
+      "label": "his junior, the intern he supervises; grew up around him",
+      "short": "his junior",
+      "evidence": "何蘇葉的師弟… 兩人從小認識，對何蘇葉很崇拜",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lijie",
+      "to": "kexin",
+      "type": "romance",
+      "label": "likes her",
+      "short": "likes her",
+      "evidence": "喜歡方可歆",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kexin",
+      "to": "suye",
+      "type": "romance",
+      "label": "loves him in secret; moves to gynaecology after they talk",
+      "short": "secret crush",
+      "evidence": "一直暗戀師兄何蘇葉… 在一次何蘇葉與她談心之後，她從腫瘤科轉去婦科",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "songfeng",
+      "to": "suye",
+      "type": "work",
+      "label": "his senior in oncology",
+      "short": "his senior",
+      "evidence": "何蘇葉的師兄",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liren",
+      "to": "suye",
+      "type": "family",
+      "label": "grandfather — and his teacher",
+      "short": "grandfather",
+      "evidence": "[Su Ye's grandfather] / 何蘇葉外公",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liren",
+      "to": "lijie",
+      "type": "work",
+      "label": "his intern",
+      "short": "his intern",
+      "evidence": "他是何蘇葉外公的實習生",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liren",
+      "to": "kexin",
+      "type": "work",
+      "label": "his student",
+      "short": "his student",
+      "evidence": "何蘇葉外公的學生",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hesheng",
+      "to": "suye",
+      "type": "family",
+      "label": "father — cold, and estranged over the choice of medicine",
+      "short": "father",
+      "evidence": "[Su Ye's father] / 對兒子何蘇葉也顯得較為冷漠… 但何蘇葉卻選擇了中醫",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hesheng",
+      "to": "nianxiang",
+      "type": "romance",
+      "label": "married, coldly",
+      "short": "married",
+      "evidence": "與妻子郁年香的關係比較冷淡",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wang",
+      "to": "hesheng",
+      "type": "romance",
+      "label": "his new girlfriend",
+      "short": "girlfriend",
+      "evidence": "何蘇葉爸爸新交的女朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nianxiang",
+      "to": "suye",
+      "type": "family",
+      "label": "mother — died of breast cancer",
+      "short": "mother",
+      "evidence": "何蘇葉的媽媽… 因乳腺癌去世",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nianxiang",
+      "to": "liren",
+      "type": "family",
+      "label": "daughter — fell out with him over her marriage",
+      "short": "daughter",
+      "evidence": "郁年香為了嫁給他，不惜與父親郁里仁鬧僵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhaoze",
+      "to": "suye",
+      "type": "work",
+      "label": "his patient",
+      "short": "patient",
+      "evidence": "何蘇葉的病患，小兒白血病患者",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiaping",
+      "to": "xifan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Xi Fan's father] / 沈惜凡的父親",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaoming",
+      "to": "xifan",
+      "type": "family",
+      "label": "mother — like a friend",
+      "short": "mother",
+      "evidence": "[Xi Fan's mother] / 與女兒沈惜凡的關係親密無間",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiaping",
+      "to": "xiaoming",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "沈家平的妻子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yanheng",
+      "to": "xifan",
+      "type": "romance",
+      "label": "ex-boyfriend of seven years — the reason she cannot sleep",
+      "short": "the ex",
+      "evidence": "惜凡前男友，与其交往七年… 最終嚴恆提出了分手並消失",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanheng",
+      "to": "xifan",
+      "type": "rivalry",
+      "label": "comes back to win her over; nearly breaks her again",
+      "short": "comes back",
+      "evidence": "又突然出現想與沈惜凡複合並重新發起猛烈追求，差點讓沈惜凡逐漸治癒的心在一次崩潰",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ding",
+      "to": "xifan",
+      "type": "work",
+      "label": "a guest",
+      "short": "guest",
+      "evidence": "酒店客人",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunci",
+      "to": "xifan",
+      "type": "work",
+      "label": "a guest",
+      "short": "guest",
+      "evidence": "酒店老年團客人",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "suye",
+      "xifan",
+      "xiangya",
+      "yishen",
+      "dingwei",
+      "yunci",
+      "ding",
+      "lijie",
+      "kexin",
+      "songfeng",
+      "wang",
+      "zhaoze",
+      "liren",
+      "hesheng",
+      "nianxiang",
+      "jiaping",
+      "xiaoming",
+      "yanheng"
+    ],
+    "blocks": {
+      "The hotel": [
+        0,
+        0
+      ],
+      "Xi Fan's family": [
+        0,
+        2
+      ],
+      "The hospital": [
+        2,
+        0
+      ],
+      "Su Ye's family": [
+        2,
+        2
+      ],
+      "The ex": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "suye",
+      "xifan"
+    ]
+  }
+}

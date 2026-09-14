@@ -1,0 +1,559 @@
+{
+  "version": 1,
+  "mdlSlug": "768987-wan-xin-ji",
+  "title": "Fated Hearts",
+  "native": "一笑随歌",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (73 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 3k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "yixiao",
+    "suige"
+  ],
+  "people": [
+    {
+      "id": "yixiao",
+      "name": "Fu Yi Xiao",
+      "actor": "Li Qin",
+      "image": "https://i.mydramalist.com/Dk7p2r_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Jinxiu's first archer — the woman in red who turned Pingling; lost her memory off a cliff"
+    },
+    {
+      "id": "suige",
+      "name": "Feng Sui Ge",
+      "actor": "Chen Zhe Yuan",
+      "image": "https://i.mydramalist.com/b3RoZL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "First prince of Susha; the arrow was for him"
+    },
+    {
+      "id": "xiyang",
+      "name": "Feng Xi Yang",
+      "actor": "Xia Meng",
+      "image": "https://i.mydramalist.com/oQr2YN_5m.jpg",
+      "group": "Susha",
+      "inCast": true,
+      "note": "Princess of Susha; married Jing Shi for love, then left him"
+    },
+    {
+      "id": "jingshi",
+      "name": "Xia Jing Shi",
+      "actor": "Chen He Yi",
+      "image": "https://i.mydramalist.com/4ejVY6_5m.jpg",
+      "group": "Jinxiu",
+      "inCast": true,
+      "note": "Prince of Zhennan — the people's man on the surface, ambitious underneath"
+    },
+    {
+      "id": "murong",
+      "name": "Murong Yao",
+      "actor": "Zuo Ye",
+      "image": "https://i.mydramalist.com/816k2b_5m.jpg",
+      "group": "Susha",
+      "inCast": true,
+      "note": "Heir of the Marquis of Chang Le; Sui Ge's sworn brother"
+    },
+    {
+      "id": "jingyan",
+      "name": "Xia Jing Yan",
+      "actor": "Qin Tian Yu",
+      "image": "https://i.mydramalist.com/pd3y5E_5m.jpg",
+      "group": "Jinxiu",
+      "inCast": true,
+      "note": "Emperor of Jinxiu; dissolute"
+    },
+    {
+      "id": "xueying",
+      "name": "Ling Xue Ying",
+      "actor": "Xin Kai Li",
+      "image": "https://i.mydramalist.com/l0PNJL_5m.jpg",
+      "group": "Righteous Villa",
+      "inCast": true,
+      "note": "Young mistress of the villa; a physician"
+    },
+    {
+      "id": "lingfeng",
+      "name": "Ling Feng",
+      "actor": "Xia Ming Hao",
+      "image": "https://i.mydramalist.com/xdylz_5m.jpg",
+      "group": "Righteous Villa",
+      "inCast": true
+    },
+    {
+      "id": "shiyi",
+      "name": "Shi Yi",
+      "actor": "Chen Hao Ming",
+      "image": "https://i.mydramalist.com/QJB0PA_5m.jpg",
+      "group": "Righteous Villa",
+      "inCast": true
+    },
+    {
+      "id": "ningfei",
+      "name": "Ning Fei",
+      "actor": "Zhang Cheng Lang",
+      "image": "https://i.mydramalist.com/pdWeKD_5m.jpg",
+      "group": "Jinxiu",
+      "inCast": true,
+      "note": "Zhennan army strategist"
+    },
+    {
+      "id": "weiran",
+      "name": "Xiao Wei Ran",
+      "actor": "Sheng Ying Hao",
+      "image": "https://i.mydramalist.com/l0LzbE_5m.jpg",
+      "group": "Jinxiu",
+      "inCast": true,
+      "note": "Zhennan army adviser"
+    },
+    {
+      "id": "luke",
+      "name": "Lu Ke",
+      "actor": "Wang Zi Teng",
+      "image": "https://i.mydramalist.com/3oQb8W_5m.jpg",
+      "group": "Susha",
+      "inCast": true,
+      "note": "Lieutenant of the Feng battalion; commander at the end"
+    },
+    {
+      "id": "yunfang",
+      "name": "Yun Fang",
+      "actor": "Tian Guang Yu",
+      "image": "https://i.mydramalist.com/DkoPYq_5m.jpg",
+      "group": "Susha",
+      "inCast": true,
+      "note": "Susha's first archer; deputy commander"
+    },
+    {
+      "id": "zhuangshen",
+      "name": "Zhuang Shen",
+      "actor": "Eddie Cheung",
+      "image": "https://i.mydramalist.com/73or1e_5m.jpg",
+      "group": "Susha court",
+      "inCast": true,
+      "note": "Prime minister of Susha"
+    },
+    {
+      "id": "pingcheng",
+      "name": "Feng Ping Cheng",
+      "actor": "Zhao Bin",
+      "image": "https://i.mydramalist.com/nOLDqW_5m.jpg",
+      "group": "Susha court",
+      "inCast": true,
+      "note": "Emperor of Susha"
+    },
+    {
+      "id": "jingyuan",
+      "name": "Zhuang Jing Yuan",
+      "actor": "Xu Xiao Sa",
+      "image": "https://i.mydramalist.com/ABqj2g_5m.jpg",
+      "group": "Susha court",
+      "inCast": true,
+      "note": "Empress of Susha"
+    },
+    {
+      "id": "chengyang",
+      "name": "Feng Cheng Yang",
+      "actor": "Ding Jia Wen",
+      "image": "https://i.mydramalist.com/zBVJ7z_5m.jpg",
+      "group": "Susha court",
+      "inCast": true,
+      "note": "Second prince"
+    },
+    {
+      "id": "zhuangming",
+      "name": "Zhuang Ming",
+      "actor": "Wang Zi Rui",
+      "image": "https://i.mydramalist.com/e3yPWm.jpg",
+      "group": "Susha court",
+      "inCast": true
+    },
+    {
+      "id": "qiming",
+      "name": "Ma Qi Ming",
+      "actor": "Sun Di",
+      "image": "https://i.mydramalist.com/Px6dZ8_5m.jpg",
+      "group": "Susha court",
+      "inCast": true,
+      "note": "Chief eunuch"
+    }
+  ],
+  "links": [
+    {
+      "from": "yixiao",
+      "to": "suige",
+      "type": "romance",
+      "label": "the archer and the prince she shot — enemies, then not",
+      "short": "in love",
+      "evidence": "與付一笑正念山莊重逢，試圖利用她為復仇工具，但在相處中逐漸被她的堅韌與善良打動",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yixiao",
+      "to": "suige",
+      "type": "rivalry",
+      "label": "her arrow turned Pingling against him; he means to use her for revenge",
+      "short": "old enemies",
+      "evidence": "shoots an arrow at Susha's eldest prince, Feng Sui Ge… she unexpectedly reunites with her old enemy, Sui Ge",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiyang",
+      "to": "suige",
+      "type": "family",
+      "label": "sister",
+      "short": "sister",
+      "evidence": "[Princess of Susha] / 夙砂國公主",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiyang",
+      "to": "jingshi",
+      "type": "romance",
+      "label": "married him for love; divorced",
+      "short": "married, divorced",
+      "evidence": "因年少時對夏靜石一見傾心，執意遠嫁以和親身份成為振南王妃，之後與振南王和離",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jingshi",
+      "to": "yixiao",
+      "type": "work",
+      "label": "her former superior — and former lover",
+      "short": "her old commander",
+      "evidence": "是付一笑前任兼上級",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suige",
+      "to": "jingshi",
+      "type": "rivalry",
+      "label": "kills him at the end",
+      "short": "kills him",
+      "evidence": "最後被夙砂國皇子鳳隨歌殺死",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jingyan",
+      "to": "jingshi",
+      "type": "family",
+      "label": "half-brother — and lifelong enemy",
+      "short": "half-brother",
+      "evidence": "夏靜石同父異母的弟弟，視他為一生宿敵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jingshi",
+      "to": "jingyan",
+      "type": "rivalry",
+      "label": "kills him",
+      "short": "kills him",
+      "evidence": "最後被錦繡國振南王夏靜石殺死",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jingyan",
+      "to": "xiyang",
+      "type": "romance",
+      "label": "fond of the Susha princess",
+      "short": "fond of her",
+      "evidence": "對夙砂國公主鳳戲陽有好感",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "murong",
+      "to": "suige",
+      "type": "friend",
+      "label": "sworn brothers",
+      "short": "sworn brother",
+      "evidence": "與鳳隨歌是生死之交",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "murong",
+      "to": "suige",
+      "type": "rivalry",
+      "label": "betrays him for his family's due; killed by him",
+      "short": "betrays him",
+      "evidence": "在權力誘惑下，慕容曜背叛隨歌… 最後被夙砂國皇子鳳隨歌殺死",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xueying",
+      "to": "yixiao",
+      "type": "friend",
+      "label": "the physician who took her in; sisters",
+      "short": "her sister-friend",
+      "evidence": "與付一笑是好姐妹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xueying",
+      "to": "ningfei",
+      "type": "romance",
+      "label": "fond of him",
+      "short": "fond of him",
+      "evidence": "對寧非有好感",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ningfei",
+      "to": "xueying",
+      "type": "romance",
+      "label": "fond of her",
+      "short": "fond of her",
+      "evidence": "對凌雪影有好感",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ningfei",
+      "to": "yixiao",
+      "type": "friend",
+      "label": "sworn brother",
+      "short": "sworn brother",
+      "evidence": "與付一笑是好兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "weiran",
+      "to": "yixiao",
+      "type": "friend",
+      "label": "sworn brother",
+      "short": "sworn brother",
+      "evidence": "與付一笑是好兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "lingfeng",
+      "to": "xueying",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Xue Ying's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shiyi",
+      "to": "xueying",
+      "type": "work",
+      "label": "maidservant",
+      "short": "maidservant",
+      "evidence": "[Xue Ying's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "luke",
+      "to": "suige",
+      "type": "work",
+      "label": "lieutenant of his Feng battalion",
+      "short": "lieutenant",
+      "evidence": "鳳字營副將，最後被晉升為統領",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunfang",
+      "to": "suige",
+      "type": "work",
+      "label": "deputy commander; Susha's first archer",
+      "short": "deputy commander",
+      "evidence": "夙砂國第一神射手",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhuangshen",
+      "to": "suige",
+      "type": "rivalry",
+      "label": "had his mother killed to put his own daughter on the throne",
+      "short": "killed his mother",
+      "evidence": "設計害死鳳隨歌母后讓女兒封后，最後被夙砂國皇子鳳隨歌殺死",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhuangshen",
+      "to": "jingyuan",
+      "type": "family",
+      "label": "daughter — the empress",
+      "short": "daughter",
+      "evidence": "設計害死鳳隨歌母后讓女兒封后",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pingcheng",
+      "to": "suige",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Emperor of Susha]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pingcheng",
+      "to": "jingyuan",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Emperor of Susha] / [Empress of Susha]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chengyang",
+      "to": "suige",
+      "type": "family",
+      "label": "younger brother — the empress's son",
+      "short": "younger brother",
+      "evidence": "[Second prince of Susha]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhuangming",
+      "to": "zhuangshen",
+      "type": "family",
+      "label": "nephew",
+      "short": "nephew",
+      "evidence": "[Zhuang Shen's nephew]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qiming",
+      "to": "pingcheng",
+      "type": "work",
+      "label": "chief eunuch",
+      "short": "chief eunuch",
+      "evidence": "[Ping Cheng's chief eunuch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yixiao",
+      "suige",
+      "xiyang",
+      "jingshi",
+      "murong",
+      "jingyan",
+      "xueying",
+      "lingfeng",
+      "shiyi",
+      "ningfei",
+      "weiran",
+      "luke",
+      "yunfang",
+      "zhuangshen",
+      "pingcheng",
+      "jingyuan",
+      "chengyang",
+      "zhuangming",
+      "qiming"
+    ],
+    "blocks": {
+      "Susha": [
+        0,
+        0
+      ],
+      "Susha court": [
+        0,
+        2
+      ],
+      "Jinxiu": [
+        2,
+        0
+      ],
+      "Righteous Villa": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "yixiao",
+      "suige"
+    ]
+  }
+}

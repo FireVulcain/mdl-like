@@ -1,0 +1,563 @@
+{
+  "version": 1,
+  "mdlSlug": "62295-luo-yao-knew-what-he-meant",
+  "title": "When I Fly Towards You",
+  "native": "当我飞奔向你",
+  "year": 2023,
+  "country": "CN",
+  "sources": [
+    "MDL cast (41 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 4k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "lurang",
+    "zaizai"
+  ],
+  "people": [
+    {
+      "id": "lurang",
+      "name": "Zhang Lu Rang",
+      "actor": "Zhou Yi Ran",
+      "image": "https://i.mydramalist.com/3oxmrd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Top of the science class, cold, and hollow with self-doubt; only she calls him 'Rang Rang'"
+    },
+    {
+      "id": "zaizai",
+      "name": "Su Zai Zai",
+      "actor": "Zhang Miao Yi",
+      "image": "https://i.mydramalist.com/pdBrXe_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Transfer student, class 9; top three in English; films everything on her V8"
+    },
+    {
+      "id": "guran",
+      "name": "Gu Ran",
+      "actor": "Bian Tian Yang",
+      "image": "https://i.mydramalist.com/oQrVwE_5m.jpg",
+      "group": "The five",
+      "inCast": true,
+      "note": "Lu Rang's brother since childhood; loved Jiang Jia for eight years, in silence"
+    },
+    {
+      "id": "jiangjia",
+      "name": "Jiang Jia",
+      "actor": "Jiang Zhi Nan",
+      "image": "https://i.mydramalist.com/LwRkN5_5m.jpg",
+      "group": "The five",
+      "inCast": true,
+      "note": "Zai Zai's best friend; joined the drama club for a senior"
+    },
+    {
+      "id": "guanfang",
+      "name": "Guan Fang",
+      "actor": "Guo Zhe",
+      "image": "https://i.mydramalist.com/Xd3Lzg_5m.jpg",
+      "group": "The five",
+      "inCast": true,
+      "note": "Once the school's troublemaker; runs the dessert shop with his grandmother"
+    },
+    {
+      "id": "luli",
+      "name": "Zhang Lu Li",
+      "actor": "Wang Jia Xuan",
+      "image": "https://i.mydramalist.com/73WXrn_5m.jpg",
+      "group": "Lu Rang's family",
+      "inCast": true,
+      "note": "Genius younger brother, a year ahead; the parents' favourite"
+    },
+    {
+      "id": "linmao",
+      "name": "Lin Mao",
+      "actor": "Gao Wen Feng",
+      "image": "https://i.mydramalist.com/60rXbd_5m.jpg",
+      "group": "Lu Rang's family",
+      "inCast": true,
+      "note": "Uncle; maths teacher and homeroom teacher of 1-9 — the one adult who cares"
+    },
+    {
+      "id": "jianhua",
+      "name": "Su Jian Hua",
+      "actor": "Zhang Lei",
+      "image": "https://i.mydramalist.com/yW1Ro6_5m.jpg",
+      "group": "Zai Zai's family",
+      "inCast": true,
+      "note": "Spoils her"
+    },
+    {
+      "id": "xiaoli",
+      "name": "Zhou Xiao Li",
+      "actor": "Chen Si Si",
+      "image": "https://i.mydramalist.com/vXvVQ2_5m.jpg",
+      "group": "Zai Zai's family",
+      "inCast": true
+    },
+    {
+      "id": "qianyu",
+      "name": "Shen Qian Yu",
+      "actor": "Feng Xiang Kun",
+      "image": "https://i.mydramalist.com/1wOnjQ_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true,
+      "note": "Third-year; drama club president; guitar and piano"
+    },
+    {
+      "id": "zhenxin",
+      "name": "Ye Zhen Xin",
+      "actor": "Olive",
+      "image": "https://i.mydramalist.com/2wmLNP_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true,
+      "note": "Class president of 1-1; likes Lu Rang"
+    },
+    {
+      "id": "wangnan",
+      "name": "Wang Nan",
+      "actor": "Wang Yu Lin",
+      "image": "https://i.mydramalist.com/4emR71_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true,
+      "note": "Class president of 1-9 — 'Nan Shen'"
+    },
+    {
+      "id": "linnan",
+      "name": "Xie Lin Nan",
+      "actor": "Roy Xie",
+      "image": "https://i.mydramalist.com/qYVr1z_5m.jpg",
+      "group": "Huadong University",
+      "inCast": true,
+      "note": "Senior; head of new media; likes Zai Zai"
+    },
+    {
+      "id": "zhumiao",
+      "name": "Zhu Miao",
+      "actor": "Wang Mu Xuan",
+      "image": "https://i.mydramalist.com/pdKoYn_5m.jpg",
+      "group": "Huadong University",
+      "inCast": true,
+      "note": "Likes Lu Rang; posts the misleading photos"
+    },
+    {
+      "id": "xuqi",
+      "name": "Xu Qi",
+      "actor": "Guo Xiao Tian",
+      "image": "https://i.mydramalist.com/vXvVJ2_5m.jpg",
+      "group": "Huadong University",
+      "inCast": true
+    },
+    {
+      "id": "xianing",
+      "name": "Xia Ning",
+      "actor": "Zhang Xin Tong",
+      "image": "https://i.mydramalist.com/e4Eyd_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    },
+    {
+      "id": "dengqin",
+      "name": "Deng Qin",
+      "actor": "Cao Dan Ni",
+      "image": "https://i.mydramalist.com/eYwB1W_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    },
+    {
+      "id": "fuyao",
+      "name": "Fu Yao",
+      "actor": "Liu Jia Xi",
+      "image": "https://i.mydramalist.com/4emqAk_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    },
+    {
+      "id": "heyu",
+      "name": "He Yu",
+      "actor": "Li Yao Yao",
+      "image": "https://i.mydramalist.com/0wx28Y_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    },
+    {
+      "id": "chengwei",
+      "name": "Cheng Wei",
+      "actor": "Zhong Xuan Kai",
+      "image": "https://i.mydramalist.com/kA083b_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    },
+    {
+      "id": "xiaoxiao",
+      "name": "Zhang Xiao Xiao",
+      "actor": "Xu Ying Luo",
+      "image": "https://i.mydramalist.com/EQpem_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    },
+    {
+      "id": "changhua",
+      "name": "Chang Hua",
+      "actor": "Chang Hai Bo",
+      "image": "https://i.mydramalist.com/vmxWB_5m.jpg",
+      "group": "Jiangyi High",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "zaizai",
+      "to": "lurang",
+      "type": "romance",
+      "label": "fell for him at first sight outside the corner shop; every move a long-planned favour",
+      "short": "in love",
+      "evidence": "在小賣部外對路過的張陸讓一見鍾情，總是喜歡圍繞在他的身旁，所有行為都是她的蓄謀已久的偏愛",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guran",
+      "to": "lurang",
+      "type": "friend",
+      "label": "brothers since childhood; one of the five",
+      "short": "best friend",
+      "evidence": "張陸讓的好兄弟江宜附中五人小隊之一… 與張陸讓從小一起長大",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guran",
+      "to": "jiangjia",
+      "type": "romance",
+      "label": "loved her for eight years, a coward about it",
+      "short": "loves her, unsaid",
+      "evidence": "暗戀姜佳八年，是感情裡的膽小鬼",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangjia",
+      "to": "zaizai",
+      "type": "friend",
+      "label": "best friend; one of the five",
+      "short": "best friend",
+      "evidence": "蘇在在的閨蜜兼同學",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiangjia",
+      "to": "qianyu",
+      "type": "romance",
+      "label": "her crush — the reason she joined the drama club",
+      "short": "her crush",
+      "evidence": "因為欣賞同校的高三學長沈謙宇而加入話劇社 / 是姜佳的暗戀對象",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "guanfang",
+      "to": "lurang",
+      "type": "friend",
+      "label": "classmate and friend; one of the five",
+      "short": "friend",
+      "evidence": "張陸讓和顧然的同班摯友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guanfang",
+      "to": "guran",
+      "type": "friend",
+      "label": "one of the five",
+      "short": "friend",
+      "evidence": "江宜附中五人小隊之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "luli",
+      "to": "lurang",
+      "type": "family",
+      "label": "younger brother — the genius the parents prefer, who secretly looks up to him",
+      "short": "younger brother",
+      "evidence": "張陸讓的弟弟，天才數理跳級生… 總是受到父母與其他長輩的偏愛… 但其實從小就相當崇拜哥哥",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "linmao",
+      "to": "lurang",
+      "type": "family",
+      "label": "uncle — lives with him; the only elder who cares",
+      "short": "uncle",
+      "evidence": "張陸讓的舅舅，和他一起住在江宜市… 是家中唯一關心陸讓的長輩",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "linmao",
+      "to": "zaizai",
+      "type": "work",
+      "label": "her homeroom teacher",
+      "short": "homeroom teacher",
+      "evidence": "蘇在在和姜佳的班主任",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jianhua",
+      "to": "zaizai",
+      "type": "family",
+      "label": "father — spoils her",
+      "short": "father",
+      "evidence": "[Zai Zai's father] / 蘇在在的父親，非常疼愛在在",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaoli",
+      "to": "zaizai",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Zai Zai's mother] / 蘇在在的母親",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenxin",
+      "to": "lurang",
+      "type": "romance",
+      "label": "likes him; targets Zai Zai for it",
+      "short": "likes him",
+      "evidence": "對張陸讓有好感，因此經常針對圍繞在陸讓身邊的蘇在在",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenxin",
+      "to": "zaizai",
+      "type": "rivalry",
+      "label": "targets her",
+      "short": "targets her",
+      "evidence": "經常針對圍繞在陸讓身邊的蘇在在",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wangnan",
+      "to": "zaizai",
+      "type": "work",
+      "label": "class president of 1-9",
+      "short": "class president",
+      "evidence": "高一九班的班長，綽號「南神」",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "linnan",
+      "to": "zaizai",
+      "type": "romance",
+      "label": "the senior at Huadong who likes her",
+      "short": "likes her",
+      "evidence": "蘇在在的大學學長… 對蘇在在有好感",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhumiao",
+      "to": "lurang",
+      "type": "romance",
+      "label": "likes him; posts the photos that cause the misunderstanding",
+      "short": "likes him",
+      "evidence": "喜歡張陸讓，故意在微博上發佈與他曖昧的照片製造誤會",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xuqi",
+      "to": "lurang",
+      "type": "friend",
+      "label": "at Huadong",
+      "short": "at university",
+      "evidence": "许祁",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xianing",
+      "to": "zaizai",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "夏宁",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dengqin",
+      "to": "zaizai",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "邓芹",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "fuyao",
+      "to": "zaizai",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "傅遥",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "heyu",
+      "to": "zaizai",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "何雨",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chengwei",
+      "to": "lurang",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "程伟",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xiaoxiao",
+      "to": "zaizai",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "张潇潇",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "changhua",
+      "to": "lurang",
+      "type": "work",
+      "label": "teacher",
+      "short": "teacher",
+      "evidence": "常华",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "lurang",
+      "zaizai",
+      "guran",
+      "jiangjia",
+      "guanfang",
+      "luli",
+      "linmao",
+      "jianhua",
+      "xiaoli",
+      "qianyu",
+      "zhenxin",
+      "wangnan",
+      "linnan",
+      "zhumiao",
+      "xuqi",
+      "xianing",
+      "dengqin",
+      "fuyao",
+      "heyu",
+      "chengwei",
+      "xiaoxiao",
+      "changhua"
+    ],
+    "blocks": {
+      "The five": [
+        0,
+        0
+      ],
+      "Lu Rang's family": [
+        0,
+        2
+      ],
+      "Jiangyi High": [
+        2,
+        0
+      ],
+      "Huadong University": [
+        2,
+        2
+      ],
+      "Zai Zai's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "lurang",
+      "zaizai"
+    ]
+  }
+}

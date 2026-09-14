@@ -1,0 +1,613 @@
+{
+  "version": 1,
+  "mdlSlug": "62337-you-are-my-glory",
+  "title": "You Are My Glory",
+  "native": "你是我的荣耀",
+  "year": 2021,
+  "country": "CN",
+  "sources": [
+    "MDL cast (88 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 6k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "yutu",
+    "jingjing"
+  ],
+  "people": [
+    {
+      "id": "yutu",
+      "name": "Yu Tu",
+      "actor": "Yang Yang",
+      "image": "https://i.mydramalist.com/zBQOgO_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Chief designer at the aerospace institute; the school god who turned her down at seventeen"
+    },
+    {
+      "id": "jingjing",
+      "name": "Qiao Jing Jing",
+      "actor": "Dilraba Dilmurat",
+      "image": "https://i.mydramalist.com/b35kje_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "A-list star; the game's ambassador, and terrible at it"
+    },
+    {
+      "id": "guanzai",
+      "name": "Guan Zai",
+      "actor": "Pan Yue Ming",
+      "image": "https://i.mydramalist.com/4JPZY_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Came back from America; his senior, mentor and friend"
+    },
+    {
+      "id": "zhixue",
+      "name": "Zhang Zhi Xue",
+      "actor": "Wang Shi Huai",
+      "image": "https://i.mydramalist.com/W6Pn5_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Academician; teacher of both"
+    },
+    {
+      "id": "shenjing",
+      "name": "Shen Jing",
+      "actor": "Gao Lu",
+      "image": "https://i.mydramalist.com/1Blrz_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Guan Zai's wife; teaches Jing Jing to cook"
+    },
+    {
+      "id": "profwang",
+      "name": "Professor Wang",
+      "actor": "Liu Li Li",
+      "image": "https://i.mydramalist.com/vXvED8_5m.jpg",
+      "group": "The institute",
+      "inCast": true
+    },
+    {
+      "id": "kehang",
+      "name": "Hu Ke Hang",
+      "actor": "Zhao Ke Di",
+      "image": "https://i.mydramalist.com/ABjyOg_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Colleague, later his subordinate; marriage broke under the work"
+    },
+    {
+      "id": "anyu",
+      "name": "Meng An Yu",
+      "actor": "An Ge",
+      "image": "https://i.mydramalist.com/oQKoBz_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Colleague"
+    },
+    {
+      "id": "zhougong",
+      "name": "Zhou Gong",
+      "actor": "Zheng Qi",
+      "image": "https://i.mydramalist.com/1w8XO6_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Colleague"
+    },
+    {
+      "id": "jingsen",
+      "name": "Hu Jing Sen",
+      "actor": "Zheng Xiao Ning",
+      "image": "https://i.mydramalist.com/wRJJY_5m.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Director of the Shanghai institute"
+    },
+    {
+      "id": "xiao",
+      "name": "Professor Xiao",
+      "actor": "Ning Xiao Zhi",
+      "image": "https://i.mydramalist.com/Wrdkmm.jpg",
+      "group": "The institute",
+      "inCast": true,
+      "note": "Head of the Soushen project"
+    },
+    {
+      "id": "zhailiang",
+      "name": "Zhai Liang / Panicky",
+      "actor": "Wang Yan Lin",
+      "image": "https://i.mydramalist.com/05QW4_5m.jpg",
+      "group": "The gamers",
+      "inCast": true,
+      "note": "College roommate; plays with them nightly without knowing who she is"
+    },
+    {
+      "id": "shabao",
+      "name": "Sha Bao / Sandbag",
+      "actor": "Huang Cheng Cheng",
+      "image": "https://i.mydramalist.com/X5E3X_5m.jpg",
+      "group": "The gamers",
+      "inCast": true,
+      "note": "College classmate"
+    },
+    {
+      "id": "longwang",
+      "name": "Long Wang / Dragon King",
+      "actor": "Zhou Shuai",
+      "image": "https://i.mydramalist.com/e6z0p_5m.jpg",
+      "group": "The gamers",
+      "inCast": true,
+      "note": "College classmate"
+    },
+    {
+      "id": "ling",
+      "name": "Sister Ling",
+      "actor": "Hu Ke",
+      "image": "https://i.mydramalist.com/1RrN3_5m.jpg",
+      "group": "Jing Jing's team",
+      "inCast": true,
+      "note": "Manager and friend"
+    },
+    {
+      "id": "xiaozhu",
+      "name": "Xiao Zhu",
+      "actor": "Sun Ya Li",
+      "image": "https://i.mydramalist.com/pbmr8_5m.jpg",
+      "group": "Jing Jing's team",
+      "inCast": true,
+      "note": "Assistant, then executive manager"
+    },
+    {
+      "id": "peipei",
+      "name": "Pei Pei",
+      "actor": "Zheng He Hui Zi",
+      "image": "https://i.mydramalist.com/DkVAOr_5m.jpg",
+      "group": "Jing Jing's team",
+      "inCast": true,
+      "note": "Best friend; high-school classmate of both"
+    },
+    {
+      "id": "aguo",
+      "name": "A Guo",
+      "actor": "Tu Song Yan",
+      "image": "https://i.mydramalist.com/qZ6v2_5m.jpg",
+      "group": "Jing Jing's team",
+      "inCast": true,
+      "note": "Her first game coach; Ling's husband"
+    },
+    {
+      "id": "xiaqing",
+      "name": "Xia Qing",
+      "actor": "Gina Jin",
+      "image": "https://i.mydramalist.com/g0eW1O_5m.jpg",
+      "group": "The gamers",
+      "inCast": true,
+      "note": "Yu Tu's college girlfriend; left when he chose aerospace"
+    },
+    {
+      "id": "yutumother",
+      "name": "Yu Tu's mother",
+      "actor": "Cui Yi",
+      "image": "https://i.mydramalist.com/Lwr3y3_5m.jpg",
+      "group": "The families",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "yutufather",
+      "name": "Yu Tu's father",
+      "actor": "Cao Yi",
+      "image": "https://i.mydramalist.com/X51eg_5m.jpg",
+      "group": "The families",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "jjfather",
+      "name": "Jing Jing's father",
+      "actor": "Wang Quan You",
+      "image": "https://i.mydramalist.com/vYjVW_5m.jpg",
+      "group": "The families",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "jjmother",
+      "name": "Jing Jing's mother",
+      "actor": "Yan Qing Yu",
+      "image": "https://i.mydramalist.com/l0kw6Q_5m.jpg",
+      "group": "The families",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    }
+  ],
+  "links": [
+    {
+      "from": "jingjing",
+      "to": "yutu",
+      "type": "romance",
+      "label": "the crush he refused at school — 'I want someone who will work hard beside me' — ten years on",
+      "short": "in love",
+      "evidence": "學生時期暗戀學神于途，但被校草于途以「我以後想找一個能和我一起努力的人」禮貌拒絕。十年後",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yutu",
+      "to": "jingjing",
+      "type": "work",
+      "label": "coaches her at the game to save her endorsement",
+      "short": "her coach",
+      "evidence": "she jumps into a gaming competition… This leads her to reconnect",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "guanzai",
+      "to": "yutu",
+      "type": "work",
+      "label": "his senior — mentor and friend; would not let him quit",
+      "short": "his mentor",
+      "evidence": "[Yu Tu's senior] / 與于途關系亦師亦友… 他也一直堅信于途最後不會放棄",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhixue",
+      "to": "yutu",
+      "type": "work",
+      "label": "his teacher; kept him at the institute",
+      "short": "his teacher",
+      "evidence": "[Yu Tu and Guan Zai's mentor] / 在于途要求離職的期間，一直挽留其繼續留在航天所",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhixue",
+      "to": "guanzai",
+      "type": "work",
+      "label": "his teacher",
+      "short": "his teacher",
+      "evidence": "關在、于途的老師，兩位都是他最得意的學生",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shenjing",
+      "to": "guanzai",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Guan Zai's wife] / 關在的妻子",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shenjing",
+      "to": "jingjing",
+      "type": "friend",
+      "label": "teaches her to cook; becomes a friend",
+      "short": "friend",
+      "evidence": "指導喬晶晶做菜，成為閨蜜好友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "profwang",
+      "to": "zhixue",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Zhang Zhi Xue's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kehang",
+      "to": "yutu",
+      "type": "work",
+      "label": "colleague, then subordinate",
+      "short": "colleague",
+      "evidence": "前為于途的同事，後為于途的下屬",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anyu",
+      "to": "yutu",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "于途的同事",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhougong",
+      "to": "yutu",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "于途的同事",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jingsen",
+      "to": "yutu",
+      "type": "work",
+      "label": "director; his senior",
+      "short": "director",
+      "evidence": "上海科學空間研究所所長于途的前辈",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiao",
+      "to": "yutu",
+      "type": "work",
+      "label": "his boss on Soushen",
+      "short": "his boss",
+      "evidence": "搜神號總體負責人于途的上司",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhailiang",
+      "to": "yutu",
+      "type": "friend",
+      "label": "college roommate and best mate",
+      "short": "best mate",
+      "evidence": "[Yu Tu's friend and college classmate] / 于途的好哥們兼室友",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhailiang",
+      "to": "jingjing",
+      "type": "friend",
+      "label": "plays with her every night, never guessing who she is",
+      "short": "gaming mate",
+      "evidence": "經常與于途及喬晶晶打遊戲，卻一直不知道喬晶晶是大明星的身份",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shabao",
+      "to": "yutu",
+      "type": "friend",
+      "label": "college classmate; the team",
+      "short": "the team",
+      "evidence": "[Yu Tu's college classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "longwang",
+      "to": "yutu",
+      "type": "friend",
+      "label": "college classmate; the team",
+      "short": "the team",
+      "evidence": "[Yu Tu's college classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiaqing",
+      "to": "yutu",
+      "type": "romance",
+      "label": "college girlfriend — left when he chose the institute over money",
+      "short": "the ex",
+      "evidence": "[Yu Tu's ex-girlfriend] / 大学期间與于途成为恋人… 兩人的觀念出現分歧導致分手",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaqing",
+      "to": "jingjing",
+      "type": "rivalry",
+      "label": "decides Jing Jing does not deserve him",
+      "short": "looks down on her",
+      "evidence": "再得知喬晶晶與于途關係進展快速後，卻再一次自以爲喬晶晶不配",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ling",
+      "to": "jingjing",
+      "type": "work",
+      "label": "manager and friend",
+      "short": "manager",
+      "evidence": "[Jing Jing's manager] / 喬晶晶的經紀人兼好友",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aguo",
+      "to": "ling",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "[Sister Ling's husband] / 阿國的妻子",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "aguo",
+      "to": "jingjing",
+      "type": "work",
+      "label": "her first game coach",
+      "short": "first coach",
+      "evidence": "[Jing Jing's first game coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaozhu",
+      "to": "jingjing",
+      "type": "work",
+      "label": "assistant",
+      "short": "assistant",
+      "evidence": "[Jing Jing's assistant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "peipei",
+      "to": "jingjing",
+      "type": "friend",
+      "label": "best friend since high school",
+      "short": "best friend",
+      "evidence": "[Jing Jing's best friend] / 喬晶晶的閨蜜",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yutumother",
+      "to": "yutu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Yu Tu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yutufather",
+      "to": "yutu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yu Tu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jjfather",
+      "to": "jingjing",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Jing Jing's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jjmother",
+      "to": "jingjing",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jing Jing's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yutu",
+      "jingjing",
+      "guanzai",
+      "zhixue",
+      "shenjing",
+      "profwang",
+      "kehang",
+      "anyu",
+      "zhougong",
+      "jingsen",
+      "xiao",
+      "zhailiang",
+      "shabao",
+      "longwang",
+      "ling",
+      "xiaozhu",
+      "peipei",
+      "aguo",
+      "xiaqing",
+      "yutumother",
+      "yutufather",
+      "jjfather",
+      "jjmother"
+    ],
+    "blocks": {
+      "The institute": [
+        0,
+        0
+      ],
+      "The families": [
+        0,
+        2
+      ],
+      "Jing Jing's team": [
+        2,
+        0
+      ],
+      "The gamers": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "yutu",
+      "jingjing"
+    ]
+  }
+}

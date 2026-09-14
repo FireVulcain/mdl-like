@@ -1,0 +1,704 @@
+{
+  "version": 1,
+  "mdlSlug": "687393-the-prisoner-of-beauty",
+  "title": "The Prisoner of Beauty",
+  "native": "折腰",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (57 roles, 4 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員 (tables, 9k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "xiaoqiao",
+    "weishao",
+    "ehuang",
+    "weiyan"
+  ],
+  "people": [
+    {
+      "id": "xiaoqiao",
+      "name": "Qiao Man / Xiao Qiao",
+      "actor": "Song Zu Er",
+      "image": "https://i.mydramalist.com/KpW5Vq_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Granddaughter of Yanzhou's lord; took her cousin's place in the marriage"
+    },
+    {
+      "id": "weishao",
+      "name": "Wei Shao / Zhong Lin",
+      "actor": "Liu Yu Ning",
+      "image": "https://i.mydramalist.com/JBLKoj_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zhang Yue Bin",
+          "image": "https://i.mydramalist.com/81jQnW_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Lord of Wei; saw his father and brother killed at Xindu, hidden in a box"
+    },
+    {
+      "id": "ehuang",
+      "name": "Su E Huang / Lady Yu Lou",
+      "actor": "Xuan Lu",
+      "image": "https://i.mydramalist.com/VX6oxO_5m.jpg",
+      "group": "Bianzhou",
+      "inCast": true,
+      "note": "Once promised to Wei Bao; married to Bianzhou's lord; hates the Qiao"
+    },
+    {
+      "id": "weiyan",
+      "name": "Wei Yan / Shi Yuan",
+      "actor": "Liu Duan Duan",
+      "image": "https://i.mydramalist.com/KpYkJq_5m.jpg",
+      "group": "The Wei",
+      "inCast": true,
+      "note": "Wei Shao's cousin; raised with him"
+    },
+    {
+      "id": "ladyxu",
+      "name": "Lady Xu",
+      "actor": "Liu Xiao Qing",
+      "image": "https://i.mydramalist.com/5vw5WY_5m.jpg",
+      "group": "The Wei",
+      "inCast": true,
+      "note": "The grandmother, and the last word in the house"
+    },
+    {
+      "id": "ladyzhu",
+      "name": "Lady Zhu",
+      "actor": "Cui Yi",
+      "image": "https://i.mydramalist.com/Lwr3y3_5m.jpg",
+      "group": "The Wei",
+      "inCast": true,
+      "note": "Wei Shao's mother; wanted Zheng Chu Yu for him"
+    },
+    {
+      "id": "weibao",
+      "name": "Wei Bao / Bo Gong",
+      "actor": "Gao Wei Guang",
+      "image": "https://i.mydramalist.com/Ewynb_5m.jpg",
+      "group": "The Wei",
+      "inCast": true,
+      "note": "Killed at Xindu fourteen years ago"
+    },
+    {
+      "id": "chuyu",
+      "name": "Zheng Chu Yu",
+      "actor": "Snow Kong",
+      "image": "https://i.mydramalist.com/3ojD3j_5m.jpg",
+      "group": "The Wei",
+      "inCast": true,
+      "note": "Lady Zhu's niece; loves Wei Shao"
+    },
+    {
+      "id": "gongsun",
+      "name": "Gongsun Yang",
+      "actor": "Wei Zi Xin",
+      "image": "https://i.mydramalist.com/nO8e8N_5m.jpg",
+      "group": "Wei Shao's men",
+      "inCast": true,
+      "note": "Strategist; was the old lord's"
+    },
+    {
+      "id": "weiliang",
+      "name": "Wei Liang",
+      "actor": "Wang Cheng Si",
+      "image": "https://i.mydramalist.com/O8kEj3_5m.jpg",
+      "group": "Wei Shao's men",
+      "inCast": true,
+      "note": "One of the four generals; the shield"
+    },
+    {
+      "id": "weiqu",
+      "name": "Wei Qu",
+      "actor": "Wu Hao Chen",
+      "image": "https://i.mydramalist.com/Dkqkyr_5m.jpg",
+      "group": "Wei Shao's men",
+      "inCast": true,
+      "note": "One of the four; long and short swords"
+    },
+    {
+      "id": "weixiao",
+      "name": "Wei Xiao",
+      "actor": "Liu Yi Hong",
+      "image": "https://i.mydramalist.com/oQ1rPP_5m.jpg",
+      "group": "Wei Shao's men",
+      "inCast": true,
+      "note": "One of the four; the bow; hates the Qiao"
+    },
+    {
+      "id": "weiduo",
+      "name": "Wei Duo",
+      "actor": "Chu Zi Jun",
+      "image": "https://i.mydramalist.com/l0rzKJ_5m.jpg",
+      "group": "Wei Shao's men",
+      "inCast": true,
+      "note": "One of the four; the youngest"
+    },
+    {
+      "id": "xiaotan",
+      "name": "Xiao Tan",
+      "actor": "Liu Yu",
+      "image": "https://i.mydramalist.com/KpB32D_5m.jpg",
+      "group": "Wei Shao's men",
+      "inCast": true,
+      "note": "Servant"
+    },
+    {
+      "id": "qiaogui",
+      "name": "Qiao Gui",
+      "actor": "Chin Shih Chieh",
+      "image": "https://i.mydramalist.com/l0kwdv_5m.jpg",
+      "group": "The Qiao",
+      "inCast": true,
+      "note": "Lord of Yanzhou; failed to send help to Xindu"
+    },
+    {
+      "id": "qiaoping",
+      "name": "Qiao Ping",
+      "actor": "Liu Ling Zhi",
+      "image": "https://i.mydramalist.com/YYNAXg_5m.jpg",
+      "group": "The Qiao",
+      "inCast": true,
+      "note": "Governor of Kangjun; blinded by his brother"
+    },
+    {
+      "id": "qiaoci",
+      "name": "Qiao Ci",
+      "actor": "Ao Zi Yi",
+      "image": "https://i.mydramalist.com/nOXRlQ_5m.jpg",
+      "group": "The Qiao",
+      "inCast": true,
+      "note": "Younger brother; won the Luli contest"
+    },
+    {
+      "id": "daqiao",
+      "name": "Qiao Fan / Da Qiao",
+      "actor": "He Hong Shan",
+      "image": "https://i.mydramalist.com/Dkoe85_5m.jpg",
+      "group": "The Qiao",
+      "inCast": true,
+      "note": "The cousin who was meant to marry Wei Shao; ran off with a stable boy"
+    },
+    {
+      "id": "bizhi",
+      "name": "Bi Zhi",
+      "actor": "Zhou Lu La",
+      "image": "https://i.mydramalist.com/VXqZPJ_5m.jpg",
+      "group": "The Qiao",
+      "inCast": true,
+      "note": "The Qiao's stable boy; Da Qiao's husband; born with a giant's strength"
+    },
+    {
+      "id": "zhangpu",
+      "name": "Zhang Pu",
+      "actor": "Vinnie Yao",
+      "image": "https://i.mydramalist.com/k6Alm_5m.jpg",
+      "group": "The Qiao",
+      "inCast": true,
+      "note": "Qiao Yue's strategist — the wolf let in"
+    },
+    {
+      "id": "chunniang",
+      "name": "Chun Niang",
+      "actor": "Hu Xiao Ting",
+      "image": "https://i.mydramalist.com/JBmp1d_5m.jpg",
+      "group": "Xiao Qiao's household",
+      "inCast": true,
+      "note": "Her nanny; Xiao Tao's mother"
+    },
+    {
+      "id": "xiaotao",
+      "name": "Xiao Tao",
+      "actor": "Li Xue Qin",
+      "image": "https://i.mydramalist.com/l0me8L_5m.jpg",
+      "group": "Xiao Qiao's household",
+      "inCast": true,
+      "note": "Maidservant; good with numbers"
+    },
+    {
+      "id": "xiaozao",
+      "name": "Xiao Zao",
+      "actor": "Cola Yao",
+      "image": "https://i.mydramalist.com/ABq7dg_5m.jpg",
+      "group": "Xiao Qiao's household",
+      "inCast": true,
+      "note": "Maidservant"
+    },
+    {
+      "id": "liuyan",
+      "name": "Liu Yan / Mao Qing",
+      "actor": "Ji Xiao Bing",
+      "image": "https://i.mydramalist.com/YY1pnP_5m.jpg",
+      "group": "Bianzhou",
+      "inCast": true,
+      "note": "Young lord of Liangya"
+    },
+    {
+      "id": "liushan",
+      "name": "Liu Shan",
+      "actor": "Wang Xing Han",
+      "image": "https://i.mydramalist.com/81oOlD_5m.jpg",
+      "group": "Bianzhou",
+      "inCast": true
+    },
+    {
+      "id": "chenxiang",
+      "name": "Chen Xiang",
+      "actor": "Dai Xiang Yu",
+      "image": "https://i.mydramalist.com/Lw0jRx_5m.jpg",
+      "group": "Bianzhou",
+      "inCast": true,
+      "note": "Lord of Bianzhou; built the Jade Tower for her"
+    }
+  ],
+  "links": [
+    {
+      "from": "xiaoqiao",
+      "to": "weishao",
+      "type": "romance",
+      "label": "married for the alliance, wary of each other, then not",
+      "short": "married",
+      "evidence": "marries Wei Shao… as part of a family alliance. With bad blood between their clans, the two start off wary of each other",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "weishao",
+      "to": "qiaogui",
+      "type": "rivalry",
+      "label": "hates the Qiao — the help that never came to Xindu",
+      "short": "hates the Qiao",
+      "evidence": "因父兄之死而痛恨乔家 / 十四年前却未按约，出兵驰援巍国，致使魏家三代战死于辛都",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiyan",
+      "to": "weishao",
+      "type": "family",
+      "label": "cousin, raised together — Lady Xu's daughter's son, by force",
+      "short": "cousin",
+      "evidence": "魏劭的表兄，徐夫人獨女青雲被陳滂強占生下的孩子",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiyan",
+      "to": "xiaoqiao",
+      "type": "romance",
+      "label": "admires her",
+      "short": "admires her",
+      "evidence": "虽喜欢流连于万花丛中，但倾慕小乔",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ladyxu",
+      "to": "weishao",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Wei Shao and Wei Yan's grandmother] / 魏劭的祖母",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ladyxu",
+      "to": "weiyan",
+      "type": "family",
+      "label": "grandmother — kept his birth from him",
+      "short": "grandmother",
+      "evidence": "魏儼的外祖母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ladyzhu",
+      "to": "weishao",
+      "type": "family",
+      "label": "mother — schemed against Xiao Qiao, drugged his wine",
+      "short": "mother",
+      "evidence": "[Wei Shao's mother] / 多次陷害小喬，並在魏劭酒中下藥",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weibao",
+      "to": "weishao",
+      "type": "family",
+      "label": "older brother, dead at Xindu; left half a jade for E Huang",
+      "short": "older brother",
+      "evidence": "[Wei Shao's brother] / 魏劭之兄… 十四年前于辛都战死",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weibao",
+      "to": "ehuang",
+      "type": "romance",
+      "label": "once promised to each other",
+      "short": "once promised",
+      "evidence": "曾與蘇娥皇議親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chuyu",
+      "to": "weishao",
+      "type": "romance",
+      "label": "loves him; drugged him with his mother",
+      "short": "loves him",
+      "evidence": "心悦于魏劭，與魏母多次陷害小喬，並與魏母聯手對魏劭下藥",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chuyu",
+      "to": "ladyzhu",
+      "type": "family",
+      "label": "niece",
+      "short": "niece",
+      "evidence": "朱氏的外甥女",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ehuang",
+      "to": "xiaoqiao",
+      "type": "rivalry",
+      "label": "framed her again and again; maimed for it; masked for revenge",
+      "short": "her enemy",
+      "evidence": "屢次陷害小喬卻未果… 被魏劭處以劓刑毀容，從此以面具示人",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ehuang",
+      "to": "chenxiang",
+      "type": "romance",
+      "label": "wife — 'Lady Yu Lou'",
+      "short": "wife",
+      "evidence": "陈翔之妻 / 苏娥皇之夫",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ehuang",
+      "to": "liuyan",
+      "type": "work",
+      "label": "pushes him to attack Wei",
+      "short": "her weapon",
+      "evidence": "投靠劉琰，鼓吹其攻打焉州與巍國",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liushan",
+      "to": "liuyan",
+      "type": "family",
+      "label": "uncle",
+      "short": "uncle",
+      "evidence": "[Liu Yan's uncle]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gongsun",
+      "to": "weishao",
+      "type": "work",
+      "label": "strategist, once his grandfather's",
+      "short": "strategist",
+      "evidence": "[Wei Shao's advisor] / 魏劭的軍師，年轻时为魏伦的谋士",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiliang",
+      "to": "weishao",
+      "type": "work",
+      "label": "one of the four generals",
+      "short": "his general",
+      "evidence": "魏劭的心腹，四大家将之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiqu",
+      "to": "weishao",
+      "type": "work",
+      "label": "one of the four generals",
+      "short": "his general",
+      "evidence": "魏劭的心腹，四大家将之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weixiao",
+      "to": "weishao",
+      "type": "work",
+      "label": "one of the four generals",
+      "short": "his general",
+      "evidence": "魏劭的心腹，四大家将之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiduo",
+      "to": "weishao",
+      "type": "work",
+      "label": "one of the four generals",
+      "short": "his general",
+      "evidence": "魏劭的心腹，四大家将之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiliang",
+      "to": "xiaotao",
+      "type": "romance",
+      "label": "would do anything for her; dies bringing her the orchid",
+      "short": "loves her",
+      "evidence": "心悅於小桃，為了小桃可以做任何事… 將蘭草託付於喬慈後被殺",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaotan",
+      "to": "weishao",
+      "type": "work",
+      "label": "servant",
+      "short": "servant",
+      "evidence": "[Wei Shao's servant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qiaogui",
+      "to": "xiaoqiao",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[Qiao Man's grandfather] / 焉州家主",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qiaoping",
+      "to": "xiaoqiao",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Qiao Man's father] / 小乔、乔慈之父",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qiaoci",
+      "to": "xiaoqiao",
+      "type": "family",
+      "label": "younger brother",
+      "short": "younger brother",
+      "evidence": "[Qiao Man's brother] / 小乔的弟弟",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daqiao",
+      "to": "xiaoqiao",
+      "type": "family",
+      "label": "cousin — the bride that was meant to be",
+      "short": "cousin",
+      "evidence": "[Qiao Man's cousin] / 小乔的堂姐",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daqiao",
+      "to": "bizhi",
+      "type": "romance",
+      "label": "ran away with the stable boy; a son",
+      "short": "married",
+      "evidence": "比彘之妻… 與比彘真心相愛",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhangpu",
+      "to": "qiaoping",
+      "type": "rivalry",
+      "label": "Qiao Yue's strategist, who let Liu Yan in",
+      "short": "the traitor's man",
+      "evidence": "[Qiao Yue's advisor] / 乔越的军师… 引狼入室",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chunniang",
+      "to": "xiaoqiao",
+      "type": "work",
+      "label": "her nanny",
+      "short": "nanny",
+      "evidence": "[Qiao Man's nanny]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chunniang",
+      "to": "xiaotao",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "小桃的親娘",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaotao",
+      "to": "xiaoqiao",
+      "type": "work",
+      "label": "maidservant",
+      "short": "maidservant",
+      "evidence": "[Qiao Man's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaozao",
+      "to": "xiaoqiao",
+      "type": "work",
+      "label": "maidservant",
+      "short": "maidservant",
+      "evidence": "[Qiao Man's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "xiaoqiao",
+      "weishao",
+      "ehuang",
+      "weiyan",
+      "ladyxu",
+      "ladyzhu",
+      "weibao",
+      "chuyu",
+      "gongsun",
+      "weiliang",
+      "weiqu",
+      "weixiao",
+      "weiduo",
+      "xiaotan",
+      "qiaogui",
+      "qiaoping",
+      "qiaoci",
+      "daqiao",
+      "bizhi",
+      "zhangpu",
+      "chunniang",
+      "xiaotao",
+      "xiaozao",
+      "liuyan",
+      "liushan",
+      "chenxiang"
+    ],
+    "blocks": {
+      "The Wei": [
+        0,
+        0
+      ],
+      "Wei Shao's men": [
+        0,
+        2
+      ],
+      "The Qiao": [
+        2,
+        0
+      ],
+      "Xiao Qiao's household": [
+        2,
+        2
+      ],
+      "Bianzhou": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "xiaoqiao",
+      "weishao"
+    ]
+  }
+}
