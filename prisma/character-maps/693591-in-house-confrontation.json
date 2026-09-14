@@ -29,10 +29,12 @@
         {
           "name": "Park Jae Joon",
           "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/0/06/Business_Proposal-Park_Jae-Joon.jpg"
         }
       ],
-      "note": "CEO of GO Food"
+      "note": "CEO of GO Food",
+      "still": "https://asianwiki.com/images/4/4d/Business_Proposal-Ahn_Hyo_Seop.jpg"
     },
     {
       "id": "hari",
@@ -41,7 +43,8 @@
       "image": "https://i.mydramalist.com/vrmWX_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Assistant manager, retort food development team 1"
+      "note": "Assistant manager, retort food development team 1",
+      "still": "https://asianwiki.com/images/1/18/Business_Proposal-Kim_Se_Jeong.jpg"
     },
     {
       "id": "seonghun",
@@ -50,7 +53,8 @@
       "image": "https://i.mydramalist.com/W8VKm_5m.jpg",
       "group": "Marine Beauty",
       "inCast": true,
-      "note": "Tae Mu's chief secretary"
+      "note": "Tae Mu's chief secretary",
+      "still": "https://asianwiki.com/images/4/40/Business_Proposal-Kim_Min_Kyu1.jpg"
     },
     {
       "id": "yeongseo",
@@ -59,7 +63,8 @@
       "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
       "group": "Marine Beauty",
       "inCast": true,
-      "note": "Marketing team leader at Marine Beauty; the chaebol daughter"
+      "note": "Marketing team leader at Marine Beauty; the chaebol daughter",
+      "still": "https://asianwiki.com/images/5/5c/Business_Proposal-Seol_In_A.jpg"
     },
     {
       "id": "yujeong",
@@ -68,7 +73,8 @@
       "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
       "group": "Marine Beauty",
       "inCast": true,
-      "note": "Director at Marine Beauty"
+      "note": "Director at Marine Beauty",
+      "still": "https://asianwiki.com/images/f/f8/Business_Proposal-Seo_Hye_Won.jpg"
     },
     {
       "id": "chairmanjin",
@@ -76,7 +82,8 @@
       "actor": "Lee Ki Young",
       "image": "https://i.mydramalist.com/Qlpw2_5m.jpg",
       "group": "Marine Beauty",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d4/Business_Proposal-Lee_Ki-Young.jpg"
     },
     {
       "id": "dagu",
@@ -85,7 +92,8 @@
       "image": "https://i.mydramalist.com/R3KXEm.jpg",
       "group": "Tae Mu's family",
       "inCast": true,
-      "note": "Founder and chairman of Geumhwa Group"
+      "note": "Founder and chairman of Geumhwa Group",
+      "still": "https://asianwiki.com/images/c/c0/Business_Proposal-Lee_Deok_Hwa1.jpg"
     },
     {
       "id": "taemumother",
@@ -94,7 +102,8 @@
       "image": "https://i.mydramalist.com/RRDpP_5m.jpg",
       "group": "Tae Mu's family",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/1/15/Business_Proposal-Na_Eun-Saem.jpg"
     },
     {
       "id": "taemufather",
@@ -111,7 +120,8 @@
       "actor": "Kim Kwang Gyu",
       "image": "https://i.mydramalist.com/vgy5q_5m.jpg",
       "group": "Ha Ri's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d8/Business_Proposal-Kim_Kwang_Kyu001.jpg"
     },
     {
       "id": "mimo",
@@ -119,7 +129,8 @@
       "actor": "Jung Young Joo",
       "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
       "group": "Ha Ri's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/35/Business_Proposal-Jung_Young-Joo1.jpg"
     },
     {
       "id": "hamin",
@@ -127,7 +138,8 @@
       "actor": "Choi Byung Chan",
       "image": "https://i.mydramalist.com/ZxOD1_5m.jpg",
       "group": "Ha Ri's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/dc/Business_Proposal-Choi_Byung_Chan.jpg"
     },
     {
       "id": "minu",
@@ -136,7 +148,8 @@
       "image": "https://i.mydramalist.com/rNO6d7_5m.jpg",
       "group": "Ha Ri's friends",
       "inCast": true,
-      "note": "Owner-chef of M Kitchen"
+      "note": "Owner-chef of M Kitchen",
+      "still": "https://asianwiki.com/images/8/8a/Business_Proposal-Song_Won-Seok1.jpg"
     },
     {
       "id": "yura",
@@ -145,7 +158,8 @@
       "image": "https://i.mydramalist.com/e3Q0pm.jpg",
       "group": "Ha Ri's friends",
       "inCast": true,
-      "note": "Racing girl; ko.wikipedia names her Jung Hui Bin"
+      "note": "Racing girl; ko.wikipedia names her Jung Hui Bin",
+      "still": "https://asianwiki.com/images/f/fb/Business_Proposal-Woo-Hee.jpg"
     },
     {
       "id": "euiju",
@@ -154,7 +168,8 @@
       "image": "https://i.mydramalist.com/6EvLp_5m.jpg",
       "group": "GO Food",
       "inCast": true,
-      "note": "Manager, development team 1"
+      "note": "Manager, development team 1",
+      "still": "https://asianwiki.com/images/6/69/Business_Proposal-Kim_Hyun_Sook.jpg"
     },
     {
       "id": "kyebin",
@@ -172,7 +187,8 @@
       "image": "https://i.mydramalist.com/dLzbb_5m.jpg",
       "group": "GO Food",
       "inCast": true,
-      "note": "Staff"
+      "note": "Staff",
+      "still": "https://asianwiki.com/images/7/79/Business_Proposal-Yun_Sang-Jeong1.jpg"
     },
     {
       "id": "seonghunmother",
@@ -181,7 +197,8 @@
       "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
       "group": "Marine Beauty",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/9/99/Business_Proposal-Kim_Jung_Young.jpg"
     }
   ],
   "links": [

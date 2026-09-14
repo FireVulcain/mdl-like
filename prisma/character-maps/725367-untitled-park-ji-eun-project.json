@@ -30,15 +30,18 @@
         {
           "name": "Moon Seong Hyun",
           "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/e/e3/Queen_of_Tears-Moon_Sung_Hyun.jpg"
         },
         {
           "name": "Cho Yi An",
           "image": "https://i.mydramalist.com/eegmY_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/e/ea/The_Queen_of_Tears-Cho_Yi-An.jpg"
         }
       ],
-      "note": "Legal director of Queens Group; the pride of Yongduri"
+      "note": "Legal director of Queens Group; the pride of Yongduri",
+      "still": "https://asianwiki.com/images/c/c0/Queen_Of_Tears-Kim_Soo-Hyun.jpg"
     },
     {
       "id": "haein",
@@ -51,15 +54,18 @@
         {
           "name": "Hwang Ji Ah",
           "image": "https://i.mydramalist.com/ZOZLJ_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/0/0a/Queen_of_Tears-Hwang_Ji-A.jpg"
         },
         {
           "name": "Min Seo Young",
           "image": "https://i.mydramalist.com/qYnOnd_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/2/21/Queen_of_Tears-Min_Seo-Young.jpg"
         }
       ],
-      "note": "CEO of Queens Department Store — the 'queen'"
+      "note": "CEO of Queens Department Store — the 'queen'",
+      "still": "https://asianwiki.com/images/6/62/Queen_Of_Tears-Kim_Ji-Won.jpg"
     },
     {
       "id": "eunseong",
@@ -72,10 +78,12 @@
         {
           "name": "Lee Joo Won",
           "image": "https://i.mydramalist.com/ABe0VE_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/2/22/Queen_of_Tears-Lee_Joo-Won1.jpg"
         }
       ],
-      "note": "Wall Street analyst turned investor, back in Korea"
+      "note": "Wall Street analyst turned investor, back in Korea",
+      "still": "https://asianwiki.com/images/e/e4/Queen_Of_Tears-Park_Sung-Hoon.jpg"
     },
     {
       "id": "seulhui",
@@ -84,7 +92,8 @@
       "image": "https://i.mydramalist.com/kRYnk_5m.jpg",
       "group": "Around the Queens",
       "inCast": true,
-      "note": "Lives with the chairman"
+      "note": "Lives with the chairman",
+      "still": "https://asianwiki.com/images/6/6d/Queen_of_Tears-Lee_Mi_Sook.jpg"
     },
     {
       "id": "grace",
@@ -93,7 +102,8 @@
       "image": "https://i.mydramalist.com/kJVRvm.jpg",
       "group": "Around the Queens",
       "inCast": true,
-      "note": "Private secretary to the rich — and their secret butler"
+      "note": "Private secretary to the rich — and their secret butler",
+      "still": "https://asianwiki.com/images/b/b9/Queen_Of_Tears-Kim_Joo-Ryung.jpg"
     },
     {
       "id": "mandae",
@@ -102,7 +112,8 @@
       "image": "https://i.mydramalist.com/RRXLz_5m.jpg",
       "group": "Hae In's family",
       "inCast": true,
-      "note": "Chairman of Queens Group"
+      "note": "Chairman of Queens Group",
+      "still": "https://asianwiki.com/images/8/88/Queen_of_Tears-Kim_Kap-Soo.jpg"
     },
     {
       "id": "beomjun",
@@ -111,7 +122,8 @@
       "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
       "group": "Hae In's family",
       "inCast": true,
-      "note": "Vice chairman"
+      "note": "Vice chairman",
+      "still": "https://asianwiki.com/images/7/78/Queen_of_Tears-Jung_Jin-Young.jpg"
     },
     {
       "id": "seonhwa",
@@ -120,7 +132,8 @@
       "image": "https://i.mydramalist.com/QPZ02_5m.jpg",
       "group": "Hae In's family",
       "inCast": true,
-      "note": "Runs the department store's VVIP club"
+      "note": "Runs the department store's VVIP club",
+      "still": "https://asianwiki.com/images/b/b6/Queen_Of_Tears-Na_Young-Hee.jpg"
     },
     {
       "id": "beomja",
@@ -128,7 +141,8 @@
       "actor": "Kim Jung Nan",
       "image": "https://i.mydramalist.com/4jLAk_5m.jpg",
       "group": "Hae In's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/de/Queen_of_Tears-Kim_Jung_Nan.jpg"
     },
     {
       "id": "sucheol",
@@ -141,10 +155,12 @@
         {
           "name": "Kim Joon Eui",
           "image": "https://i.mydramalist.com/oEPPkm.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/2/2d/Queen_of_Tears-Kim_Joon-Eui.jpg"
         }
       ],
-      "note": "CEO of Queens Mart"
+      "note": "CEO of Queens Mart",
+      "still": "https://asianwiki.com/images/d/df/Queen_Of_Tears-Kwak_Dong-Yeon.jpg"
     },
     {
       "id": "dahye",
@@ -157,9 +173,11 @@
         {
           "name": "Choi Na Rin",
           "image": "https://i.mydramalist.com/wJwg61_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/8/87/Queen_of_Tears-Choi_Na-Rin.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/9/9c/Queen_Of_Tears-Lee_Joo-Bin.jpg"
     },
     {
       "id": "geonu",
@@ -167,7 +185,8 @@
       "actor": "Goo Shi Woo",
       "image": "https://i.mydramalist.com/QJpW0Q_5m.jpg",
       "group": "Hae In's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c2/Queen_Of_Tears-Goo_See-Woo_2022_.jpg"
     },
     {
       "id": "dugwan",
@@ -176,7 +195,8 @@
       "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
       "group": "Hyeon U's family",
       "inCast": true,
-      "note": "Village head of Yongduri"
+      "note": "Village head of Yongduri",
+      "still": "https://asianwiki.com/images/5/5e/Queen_of_Tears-Jeon_Bae-Su.jpg"
     },
     {
       "id": "bongae",
@@ -185,7 +205,8 @@
       "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
       "group": "Hyeon U's family",
       "inCast": true,
-      "note": "Runs the Yongdu supermarket"
+      "note": "Runs the Yongdu supermarket",
+      "still": "https://asianwiki.com/images/1/13/Queen_of_Tears-Hwang_Young-Hee.jpg"
     },
     {
       "id": "hyeontae",
@@ -194,7 +215,8 @@
       "image": "https://i.mydramalist.com/Nd5Edn_5m.jpg",
       "group": "Hyeon U's family",
       "inCast": true,
-      "note": "Runs the village boxing gym"
+      "note": "Runs the village boxing gym",
+      "still": "https://asianwiki.com/images/c/cd/Queen_of_Tears-Kim_Do_Hyun.jpg"
     },
     {
       "id": "misun",
@@ -203,7 +225,8 @@
       "image": "https://i.mydramalist.com/QjoZ4m.jpg",
       "group": "Hyeon U's family",
       "inCast": true,
-      "note": "Runs the village hair salon"
+      "note": "Runs the village hair salon",
+      "still": "https://asianwiki.com/images/1/1c/Queen_of_Tears-Jang_Yoon-Ju.jpg"
     },
     {
       "id": "hoyeol",
@@ -211,7 +234,8 @@
       "actor": "Kim Dong Ha",
       "image": "https://i.mydramalist.com/E5Poem_5m.jpg",
       "group": "Hyeon U's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/db/Queen_Of_Tears-Kim_Dong-Ha.jpg"
     },
     {
       "id": "na",
@@ -220,7 +244,8 @@
       "image": "https://i.mydramalist.com/eZ4gW_5m.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "Na Chae Yeon"
+      "note": "Na Chae Yeon",
+      "still": "https://asianwiki.com/images/0/04/Queen_of_Tears-Yoon_Bo-Mi.jpg"
     },
     {
       "id": "kim",
@@ -229,7 +254,8 @@
       "image": "https://i.mydramalist.com/rEWwpm.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "Kim Min Gyu"
+      "note": "Kim Min Gyu",
+      "still": "https://asianwiki.com/images/6/6a/Queen_of_Tears-Jeong_Ji-Hwan.jpg"
     },
     {
       "id": "yanggi",
@@ -238,7 +264,8 @@
       "image": "https://i.mydramalist.com/wezpJ_5m.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "Divorce lawyer"
+      "note": "Divorce lawyer",
+      "still": "https://asianwiki.com/images/9/92/Queen_of_Tears-Moon_Tae-Yoo.jpg"
     },
     {
       "id": "conan",
@@ -246,7 +273,8 @@
       "actor": "Hong Sang Pyo",
       "image": "https://i.mydramalist.com/xX7p0m.jpg",
       "group": "Queens Group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/0c/Queen_of_Tears-Hong_Sang-Pyo.jpg"
     },
     {
       "id": "yeongsong",
@@ -254,7 +282,8 @@
       "actor": "Kim Young Min",
       "image": "https://i.mydramalist.com/pgZJV_5m.jpg",
       "group": "Yongduri",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c5/Queen_of_Tears-Kim_Young-Min1.jpg"
     },
     {
       "id": "chunsik",
@@ -262,7 +291,8 @@
       "actor": "Park Jung Pyo",
       "image": "https://i.mydramalist.com/jNg3B_5m.jpg",
       "group": "Yongduri",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/37/Queen_of_Tears-Park_Jung-Pyo.jpg"
     },
     {
       "id": "bangsil",
@@ -270,7 +300,8 @@
       "actor": "Lee Su Ji",
       "image": "https://i.mydramalist.com/we5vY_5m.jpg",
       "group": "Yongduri",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a0/Queen_of_Tears-Lee_Soo_Ji.jpg"
     },
     {
       "id": "kangmi",
@@ -278,7 +309,8 @@
       "actor": "Park Sung Yun",
       "image": "https://i.mydramalist.com/4rVp1_5m.jpg",
       "group": "Yongduri",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/98/Queen_of_Tears-Park_Sung_Yeon.jpg"
     },
     {
       "id": "hyeonjeong",
@@ -286,7 +318,8 @@
       "actor": "Lee Ji Hye",
       "image": "https://i.mydramalist.com/WPnYRW_5m.jpg",
       "group": "Yongduri",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/15/Queen_of_Tears-Lee_Ji-Hye.jpg"
     }
   ],
   "links": [

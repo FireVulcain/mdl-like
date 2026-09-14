@@ -23,7 +23,8 @@
       "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Seven years without a job, then the gateway to Hell"
+      "note": "Seven years without a job, then the gateway to Hell",
+      "still": "https://asianwiki.com/images/e/ed/Deaths_Game-Seo_In-Guk1.jpg"
     },
     {
       "id": "death",
@@ -32,7 +33,8 @@
       "image": "https://i.mydramalist.com/yWkAA3_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "The judge of twelve lives and twelve deaths"
+      "note": "The judge of twelve lives and twelve deaths",
+      "still": "https://asianwiki.com/images/b/bd/Deaths_Game-Park_So-Dam1.jpg"
     },
     {
       "id": "jisu",
@@ -41,7 +43,8 @@
       "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
       "group": "I Jae's life",
       "inCast": true,
-      "note": "Novelist; his girlfriend since university"
+      "note": "Novelist; his girlfriend since university",
+      "still": "https://asianwiki.com/images/0/05/Deaths_Game-Ko_Yoon_Jung.jpg"
     },
     {
       "id": "mother",
@@ -50,7 +53,8 @@
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
       "group": "I Jae's life",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/a/a9/Deaths_Game-Kim_Mi-Kyung.jpg"
     },
     {
       "id": "jintae",
@@ -59,7 +63,8 @@
       "image": "https://i.mydramalist.com/pjkLDm.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "1st life — second son of Taekang Group"
+      "note": "1st life — second son of Taekang Group",
+      "still": "https://asianwiki.com/images/c/c1/Deaths_Game-Choi_Si_Won.jpg"
     },
     {
       "id": "jaeseop",
@@ -68,7 +73,8 @@
       "image": "https://i.mydramalist.com/nOZvrQ_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "2nd life — extreme-sports athlete"
+      "note": "2nd life — extreme-sports athlete",
+      "still": "https://asianwiki.com/images/d/df/Deaths_Game-Sung_Hoon-001.jpg"
     },
     {
       "id": "hyeoksu",
@@ -77,7 +83,8 @@
       "image": "https://i.mydramalist.com/JB6qYX_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "3rd life — a bullied schoolboy"
+      "note": "3rd life — a bullied schoolboy",
+      "still": "https://asianwiki.com/images/3/38/Deaths_Game-Kim_Kang_Hoon.jpg"
     },
     {
       "id": "juhun",
@@ -86,7 +93,8 @@
       "image": "https://i.mydramalist.com/p54Xn_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "4th life — a fixer for hire"
+      "note": "4th life — a fixer for hire",
+      "still": "https://asianwiki.com/images/c/cd/Deaths_Game-Jang_Seung-Jo1.jpg"
     },
     {
       "id": "taesang",
@@ -95,7 +103,8 @@
       "image": "https://i.mydramalist.com/KpJXVJ_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "5th life — a would-be fighter, in prison"
+      "note": "5th life — a would-be fighter, in prison",
+      "still": "https://asianwiki.com/images/e/e3/Deaths_Game-Lee_Jae_Wook1.jpg"
     },
     {
       "id": "geonu",
@@ -104,7 +113,8 @@
       "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "7th life — a model"
+      "note": "7th life — a model",
+      "still": "https://asianwiki.com/images/0/03/Deaths_Game-Lee_Do_Hyun01.jpg"
     },
     {
       "id": "gyucheol",
@@ -113,7 +123,8 @@
       "image": "https://i.mydramalist.com/WPJwRR_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "A painter who believes in his own genius; MDL carries only the child actor, Kim Jae Wook plays him grown"
+      "note": "A painter who believes in his own genius; MDL carries only the child actor, Kim Jae Wook plays him grown",
+      "still": "https://asianwiki.com/images/e/e4/Deaths_Game-Choi_Eun_Jun.jpg"
     },
     {
       "id": "jihyeong",
@@ -122,7 +133,8 @@
       "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
       "group": "The twelve lives",
       "inCast": true,
-      "note": "11th life; MDL carries only the young actor, Oh Jung Se plays him grown"
+      "note": "11th life; MDL carries only the young actor, Oh Jung Se plays him grown",
+      "still": "https://asianwiki.com/images/e/ed/Deaths_Game-Park_Jae_Joon.jpg"
     },
     {
       "id": "ijaefemale",
@@ -144,10 +156,12 @@
         {
           "name": "Jung Min Joon",
           "image": "https://i.mydramalist.com/jQbVYz_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/1/16/Deaths_Game-Jung_Min-Joon.jpg"
         }
       ],
-      "note": "CEO of Taekang; the gentle face everyone trusts"
+      "note": "CEO of Taekang; the gentle face everyone trusts",
+      "still": "https://asianwiki.com/images/e/e3/Deaths_Game-Kim_Ji-Hoon1.jpg"
     },
     {
       "id": "chairmannam",
@@ -156,7 +170,8 @@
       "image": "https://i.mydramalist.com/kOjLOm.jpg",
       "group": "Taekang Group",
       "inCast": true,
-      "note": "ko.wikipedia names him Chairman Park"
+      "note": "ko.wikipedia names him Chairman Park",
+      "still": "https://asianwiki.com/images/d/d3/Deaths_Game-Nam_Kyung_Eup01.jpg"
     },
     {
       "id": "hyeonsu",
@@ -164,7 +179,8 @@
       "actor": "Kim Sung Cheol",
       "image": "https://i.mydramalist.com/mO2q2k_5m.jpg",
       "group": "Taekang Group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/26/Deaths_Game-Kim_Sung_Cheol.jpg"
     },
     {
       "id": "jinsang",
@@ -172,7 +188,8 @@
       "actor": "Yoo In Soo",
       "image": "https://i.mydramalist.com/81XqdK_5m.jpg",
       "group": "The twelve lives",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/aa/Deaths_Game-Yoo_In_Soo1.jpg"
     }
   ],
   "links": [

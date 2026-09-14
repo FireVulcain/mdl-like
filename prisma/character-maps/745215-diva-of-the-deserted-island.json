@@ -30,15 +30,18 @@
         {
           "name": "Lee Re",
           "image": "https://i.mydramalist.com/Bd3xz7_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/0/0f/Castaway_Diva-Lee-Re.jpg"
         },
         {
           "name": "Lee A Rin",
           "image": "https://i.mydramalist.com/d0zP0z_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/a/a2/Castaway_Diva-Lee_A_Rin.jpg"
         }
       ],
-      "note": "Fifteen years alone on an island; Ran Ju's one fan, then a singer"
+      "note": "Fifteen years alone on an island; Ran Ju's one fan, then a singer",
+      "still": "https://asianwiki.com/images/6/6c/Castaway_Diva-Park_Eun-Bin01.jpg"
     },
     {
       "id": "bogeol",
@@ -47,7 +50,8 @@
       "image": "https://i.mydramalist.com/VXLDEy_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Variety PD at YGN; the name on his papers is not the one he was born with"
+      "note": "Variety PD at YGN; the name on his papers is not the one he was born with",
+      "still": "https://asianwiki.com/images/d/d1/Castaway_Diva-Chae_Jong-Hyeop01.jpg"
     },
     {
       "id": "ranju",
@@ -60,15 +64,18 @@
         {
           "name": "Son Ye Rin",
           "image": "https://i.mydramalist.com/RBW7R6_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/d/dd/Castaway_Diva-Son_Ye_Rin1.jpg"
         },
         {
           "name": "Han Da In",
           "image": "https://i.mydramalist.com/1wpnwd_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/3/3c/Castaway_Diva-Han_Da-In.jpg"
         }
       ],
-      "note": "The diva, fifteen years past her peak"
+      "note": "The diva, fifteen years past her peak",
+      "still": "https://asianwiki.com/images/c/cb/Castaway_Diva-Kim_Hyo-Jin-1.jpg"
     },
     {
       "id": "seojun",
@@ -77,7 +84,8 @@
       "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
       "group": "RJ Entertainment",
       "inCast": true,
-      "note": "CEO of RJ Entertainment"
+      "note": "CEO of RJ Entertainment",
+      "still": "https://asianwiki.com/images/5/5a/Castaway_Diva-Kim_Joo_Hun.jpg"
     },
     {
       "id": "morae",
@@ -90,10 +98,12 @@
         {
           "name": "Lee Ga Yeon",
           "image": "https://i.mydramalist.com/eYy6zW_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/0/0a/Castaway_Diva-Lee_Ga_Yeon.jpg"
         }
       ],
-      "note": "RJ's singer of the moment"
+      "note": "RJ's singer of the moment",
+      "still": "https://asianwiki.com/images/a/a1/Castaway_Diva-Bae_Gang_Hee1.jpg"
     },
     {
       "id": "yonggwan",
@@ -102,7 +112,8 @@
       "image": "https://i.mydramalist.com/WPvJ6P_5m.jpg",
       "group": "RJ Entertainment",
       "inCast": true,
-      "note": "Mo Rae's manager"
+      "note": "Mo Rae's manager",
+      "still": "https://asianwiki.com/images/c/c3/Castaway_Diva-Shin_Joo_Hyup.jpg"
     },
     {
       "id": "uhak",
@@ -111,7 +122,8 @@
       "image": "https://i.mydramalist.com/73lrzB_5m.jpg",
       "group": "Bo Geol's family",
       "inCast": true,
-      "note": "Reporter at YGN news"
+      "note": "Reporter at YGN news",
+      "still": "https://asianwiki.com/images/d/d6/Castaway_Diva-Cha_Hak_Yeon-1.jpg"
     },
     {
       "id": "hajung",
@@ -120,7 +132,8 @@
       "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
       "group": "Bo Geol's family",
       "inCast": true,
-      "note": "Hairdresser; once Yang Jae Gyeong"
+      "note": "Hairdresser; once Yang Jae Gyeong",
+      "still": "https://asianwiki.com/images/2/2c/Castaway_Diva-Seo_Jung-Yeon.jpg"
     },
     {
       "id": "sangdu",
@@ -129,7 +142,8 @@
       "image": "https://i.mydramalist.com/j4n3ym.jpg",
       "group": "Bo Geol's family",
       "inCast": true,
-      "note": "Hairdresser; once Lee Uk"
+      "note": "Hairdresser; once Lee Uk",
+      "still": "https://asianwiki.com/images/7/7e/Castaway_Diva-Lee_Joong_Ok1.jpg"
     },
     {
       "id": "yeongyeong",
@@ -138,7 +152,8 @@
       "image": "https://i.mydramalist.com/vZxV2_5m.jpg",
       "group": "YGN",
       "inCast": true,
-      "note": "Main producer of 'Nth Heyday'"
+      "note": "Main producer of 'Nth Heyday'",
+      "still": "https://asianwiki.com/images/2/22/Castaway_Diva-Kim_Bo-Jung1.jpg"
     },
     {
       "id": "dongmin",
@@ -147,7 +162,8 @@
       "image": "https://i.mydramalist.com/jo35B_5m.jpg",
       "group": "YGN",
       "inCast": true,
-      "note": "Assistant director"
+      "note": "Assistant director",
+      "still": "https://asianwiki.com/images/d/d0/Castaway_Diva-Yoon_Jung-Hoon.jpg"
     },
     {
       "id": "bongwan",
@@ -156,7 +172,8 @@
       "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
       "group": "Chunsam Island",
       "inCast": true,
-      "note": "Police officer on the island; security guard since"
+      "note": "Police officer on the island; security guard since",
+      "still": "https://asianwiki.com/images/a/aa/Castaway_Diva-Lee_Seung_Joon-01.jpg"
     },
     {
       "id": "giho",
@@ -165,7 +182,8 @@
       "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
       "group": "Chunsam Island",
       "inCast": true,
-      "note": "Mok Ha's classmate, sixteen"
+      "note": "Mok Ha's classmate, sixteen",
+      "still": "https://asianwiki.com/images/5/57/Castaway_Diva-Moon_Woo-Jin.jpg"
     },
     {
       "id": "jungho",
@@ -174,7 +192,8 @@
       "image": "https://i.mydramalist.com/73Bl0b_5m.jpg",
       "group": "Chunsam Island",
       "inCast": true,
-      "note": "Boat captain; ran the fish restaurant"
+      "note": "Boat captain; ran the fish restaurant",
+      "still": "https://asianwiki.com/images/a/a7/Castaway_Diva-Lee_Yoo_Joon.jpg"
     },
     {
       "id": "daeung",
@@ -187,10 +206,12 @@
         {
           "name": "Jung Joon",
           "image": "https://i.mydramalist.com/wLQZY_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/9/9f/Castaway_Diva-Jung-Joon1.jpg"
         }
       ],
-      "note": "Insurance agent"
+      "note": "Insurance agent",
+      "still": "https://asianwiki.com/images/0/06/Castaway_Diva-Kim_Min-Seok01.jpg"
     },
     {
       "id": "yeongju",
@@ -203,9 +224,11 @@
         {
           "name": "Kim Yoon Seol",
           "image": "https://i.mydramalist.com/rNqV0m_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/7/7e/Castaway_Diva-Kim_Yoon_Seol.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/8/8e/Castaway_Diva-Oh_Gyeong_Hwa1.jpg"
     },
     {
       "id": "byeonggak",
@@ -214,7 +237,8 @@
       "image": "https://i.mydramalist.com/qQY32m.jpg",
       "group": "RJ Entertainment",
       "inCast": true,
-      "note": "CEO of Suga Entertainment"
+      "note": "CEO of Suga Entertainment",
+      "still": "https://asianwiki.com/images/3/3c/Castaway_Diva-Song_Kyung-Cheol-1.jpg"
     }
   ],
   "links": [
