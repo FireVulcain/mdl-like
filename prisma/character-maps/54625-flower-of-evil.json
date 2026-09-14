@@ -1,0 +1,602 @@
+{
+  "version": 1,
+  "mdlSlug": "54625-flower-of-evil",
+  "title": "Flower of Evil",
+  "native": "악의 꽃",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (92 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (2.5k chars)",
+    "en.wikipedia Cast (1k chars)"
+  ],
+  "main": [
+    "hyeonsu",
+    "jiwon",
+    "haesu",
+    "mujin"
+  ],
+  "people": [
+    {
+      "id": "hyeonsu",
+      "name": "Do Hyeon Su / Baek Hui Seong",
+      "actor": "Lee Joon Gi",
+      "image": "https://i.mydramalist.com/67r8d_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Hyun Joon",
+          "image": "https://i.mydramalist.com/dxnX5_5m.jpg",
+          "era": "young"
+        },
+        {
+          "name": "Cha Sung Je",
+          "image": "https://i.mydramalist.com/QB8yA_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Metal craftsman living under another man's name"
+    },
+    {
+      "id": "jiwon",
+      "name": "Cha Ji Won",
+      "actor": "Moon Chae Won",
+      "image": "https://i.mydramalist.com/Xqy8Z_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Homicide detective"
+    },
+    {
+      "id": "haesu",
+      "name": "Do Hae Su",
+      "actor": "Jang Hee Jin",
+      "image": "https://i.mydramalist.com/O8ywWL_5m.jpg",
+      "group": "The Do family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Im Na Young",
+          "image": "https://i.mydramalist.com/p3xDV_5m.jpg",
+          "era": "young"
+        },
+        {
+          "name": "Lee Chae Yoon",
+          "image": "https://i.mydramalist.com/rgK8E_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Special-effects make-up artist"
+    },
+    {
+      "id": "minseok",
+      "name": "Do Min Seok",
+      "actor": "Choi Byung Mo",
+      "image": "https://i.mydramalist.com/JBQEAo_5m.jpg",
+      "group": "The Do family",
+      "inCast": true,
+      "note": "Metal craftsman; suspect in the Yeonju serial murders; dead"
+    },
+    {
+      "id": "mujin",
+      "name": "Kim Mu Jin",
+      "actor": "Seo Hyeon Woo",
+      "image": "https://i.mydramalist.com/3oAYOD_5m.jpg",
+      "group": "Hanjoogan",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Taek Hyun",
+          "image": "https://i.mydramalist.com/jgXly_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Reporter at the weekly Hanjoogan"
+    },
+    {
+      "id": "pilyeong",
+      "name": "Kang Pil Yeong",
+      "actor": "Yang Hye Jin",
+      "image": "https://i.mydramalist.com/O8mJob_5m.jpg",
+      "group": "Hanjoogan",
+      "inCast": true,
+      "note": "Team leader"
+    },
+    {
+      "id": "joo",
+      "name": "Reporter Joo",
+      "actor": "Ju Ye Eun",
+      "image": "https://i.mydramalist.com/08zjr_5m.jpg",
+      "group": "Hanjoogan",
+      "inCast": true
+    },
+    {
+      "id": "mija",
+      "name": "Kong Mi Ja",
+      "actor": "Nam Gi Ae",
+      "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
+      "group": "The Baek house",
+      "inCast": true,
+      "note": "Pharmacist"
+    },
+    {
+      "id": "manu",
+      "name": "Baek Man U",
+      "actor": "Son Jong Hak",
+      "image": "https://i.mydramalist.com/g0KPqP_5m.jpg",
+      "group": "The Baek house",
+      "inCast": true,
+      "note": "Director of a university hospital"
+    },
+    {
+      "id": "huiseong",
+      "name": "Baek Hui Seong",
+      "actor": "Kim Ji Hoon",
+      "image": "https://i.mydramalist.com/rXKp7_5m.jpg",
+      "group": "The Baek house",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Kwon Soo",
+          "image": "https://i.mydramalist.com/WeJZO_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Cho Yi An",
+          "image": "https://i.mydramalist.com/eegmY_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The real one — fifteen years in a coma"
+    },
+    {
+      "id": "sunyeong",
+      "name": "Park Sun Yeong",
+      "actor": "Jeon Young",
+      "image": "https://i.mydramalist.com/QB1QQ_5m.jpg",
+      "group": "The Baek house",
+      "inCast": true,
+      "note": "Housekeeper"
+    },
+    {
+      "id": "yeongok",
+      "name": "Moon Yeong Ok",
+      "actor": "Jo Kyung Sook",
+      "image": "https://i.mydramalist.com/EroW7m.jpg",
+      "group": "Ji Won's family",
+      "inCast": true,
+      "note": "Runs a corner shop"
+    },
+    {
+      "id": "eunha",
+      "name": "Baek Eun Ha",
+      "actor": "Jung Seo Yeon",
+      "image": "https://i.mydramalist.com/1xog3_5m.jpg",
+      "group": "Ji Won's family",
+      "inCast": true,
+      "note": "Six, in kindergarten"
+    },
+    {
+      "id": "ucheol",
+      "name": "Lee U Cheol",
+      "actor": "Choi Dae Hoon",
+      "image": "https://i.mydramalist.com/X85nqm.jpg",
+      "group": "Gangsu police",
+      "inCast": true,
+      "note": "Leader of Violent Crimes Team 3"
+    },
+    {
+      "id": "jaesup",
+      "name": "Choi Jae Sup",
+      "actor": "Choi Young Joon",
+      "image": "https://i.mydramalist.com/b3j0YE_5m.jpg",
+      "group": "Gangsu police",
+      "inCast": true,
+      "note": "Veteran detective"
+    },
+    {
+      "id": "hojun",
+      "name": "Im Ho Jun",
+      "actor": "Kim Soo Oh",
+      "image": "https://i.mydramalist.com/XOl0J_5m.jpg",
+      "group": "Gangsu police",
+      "inCast": true,
+      "note": "The youngest"
+    },
+    {
+      "id": "sangpil",
+      "name": "Yun Sang Pil",
+      "actor": "Im Chul Hyung",
+      "image": "https://i.mydramalist.com/qgwnz_5m.jpg",
+      "group": "Gangsu police",
+      "inCast": true,
+      "note": "Section chief"
+    },
+    {
+      "id": "sangcheol",
+      "name": "Yum Sang Cheol",
+      "actor": "Kim Ki Moo",
+      "image": "https://i.mydramalist.com/wzOkN_5m.jpg",
+      "group": "The past",
+      "inCast": true,
+      "note": "Ran the job agency tied to Do Min Seok"
+    },
+    {
+      "id": "misuk",
+      "name": "Jung Mi Suk",
+      "actor": "Han Soo Yeon",
+      "image": "https://i.mydramalist.com/kA0v5d_5m.jpg",
+      "group": "The past",
+      "inCast": true,
+      "note": "The seventh victim of the Yeonju murders"
+    }
+  ],
+  "links": [
+    {
+      "from": "hyeonsu",
+      "to": "jiwon",
+      "type": "romance",
+      "label": "married — she does not know whose name he lives under",
+      "short": "married",
+      "evidence": "희성(현수)의 아내 / He is a loving husband and a doting father",
+      "source": "ko.wikipedia · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiwon",
+      "to": "hyeonsu",
+      "type": "rivalry",
+      "label": "her case from fifteen years ago leads to her own husband",
+      "short": "investigates him",
+      "evidence": "begins investigating a string of serial murders from 15 years ago. Ji Won notices changes in Hui Seong's behavior",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonsu",
+      "to": "eunha",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Hui Seong and Ji Won's daughter] / 희성과 지원의 딸",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiwon",
+      "to": "eunha",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "희성과 지원의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongok",
+      "to": "jiwon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ji Won's mother] / 지원의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haesu",
+      "to": "hyeonsu",
+      "type": "family",
+      "label": "older sister",
+      "short": "older sister",
+      "evidence": "현수의 누나 / Hyun-soo's older sister",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minseok",
+      "to": "hyeonsu",
+      "type": "family",
+      "label": "father — the suspected Yeonju serial killer",
+      "short": "father",
+      "evidence": "[Hyeon Su's father] / 연주시 연쇄살인사건의 용의자. 해수와 현수의 아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minseok",
+      "to": "haesu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "해수와 현수의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mujin",
+      "to": "hyeonsu",
+      "type": "friend",
+      "label": "his old classmate — the reporter who digs",
+      "short": "old classmate",
+      "evidence": "현수의 동창",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mujin",
+      "to": "haesu",
+      "type": "romance",
+      "label": "the reporter and the sister",
+      "short": "in love",
+      "evidence": "현수의 동창 / 현수의 누나",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "pilyeong",
+      "to": "mujin",
+      "type": "work",
+      "label": "his team leader at Hanjoogan",
+      "short": "team leader",
+      "evidence": "주간지 [한주간]의 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joo",
+      "to": "mujin",
+      "type": "work",
+      "label": "his junior at the magazine",
+      "short": "junior",
+      "evidence": "주간지 [한주간]의 기자이자 무진의 후배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonsu",
+      "to": "huiseong",
+      "type": "bond",
+      "label": "took his name and his life while he lay in a coma",
+      "short": "lives as him",
+      "evidence": "도현수에서 백희성으로 신분세탁을 함 / 15년째 혼수상태였지만 다시 깨어남",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mija",
+      "to": "huiseong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "미자와 만우의 아들",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manu",
+      "to": "huiseong",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "미자와 만우의 아들",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mija",
+      "to": "hyeonsu",
+      "type": "family",
+      "label": "passes him off as her son",
+      "short": "'mother'",
+      "evidence": "[Hui Seong's mother] / 희성의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manu",
+      "to": "hyeonsu",
+      "type": "family",
+      "label": "passes him off as his son",
+      "short": "'father'",
+      "evidence": "[Hui Seong's father] / 희성의 아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mija",
+      "to": "manu",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "희성의 어머니 / 희성의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "huiseong",
+      "to": "minseok",
+      "type": "rivalry",
+      "label": "his accomplice in the murders",
+      "short": "accomplice",
+      "evidence": "도민석과 공범",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunyeong",
+      "to": "mija",
+      "type": "work",
+      "label": "housekeeper at the Baek house",
+      "short": "housekeeper",
+      "evidence": "[Baek housekeeper]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ucheol",
+      "to": "jiwon",
+      "type": "work",
+      "label": "her team leader",
+      "short": "team leader",
+      "evidence": "강력3팀 팀장 / leader of Homicide Investigation Team",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesup",
+      "to": "jiwon",
+      "type": "work",
+      "label": "veteran on the same team",
+      "short": "colleague",
+      "evidence": "강력3팀 베테랑 형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hojun",
+      "to": "jiwon",
+      "type": "work",
+      "label": "the youngest on the team",
+      "short": "colleague",
+      "evidence": "강력 3팀 막내형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangpil",
+      "to": "ucheol",
+      "type": "work",
+      "label": "section chief over the team",
+      "short": "section chief",
+      "evidence": "강력계장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangcheol",
+      "to": "minseok",
+      "type": "work",
+      "label": "the job agency tied to him",
+      "short": "tied to him",
+      "evidence": "과거 도민석과 관련된 직업소개소 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minseok",
+      "to": "misuk",
+      "type": "rivalry",
+      "label": "the seventh victim",
+      "short": "victim",
+      "evidence": "연주시 연쇄살인사건의 7번째 피해자",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hyeonsu",
+      "jiwon",
+      "haesu",
+      "minseok",
+      "mujin",
+      "pilyeong",
+      "joo",
+      "mija",
+      "manu",
+      "huiseong",
+      "sunyeong",
+      "yeongok",
+      "eunha",
+      "ucheol",
+      "jaesup",
+      "hojun",
+      "sangpil",
+      "sangcheol",
+      "misuk"
+    ],
+    "blocks": {
+      "The Baek house": [
+        0,
+        0
+      ],
+      "The Do family": [
+        0,
+        2
+      ],
+      "Hanjoogan": [
+        2,
+        0
+      ],
+      "Gangsu police": [
+        2,
+        2
+      ],
+      "The past": [
+        1,
+        0
+      ],
+      "Ji Won's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "hyeonsu",
+      "jiwon"
+    ]
+  }
+}
