@@ -1,0 +1,482 @@
+{
+  "version": 1,
+  "mdlSlug": "705589-taxi-driver-2",
+  "title": "Taxi Driver Season 2",
+  "native": "모범택시 2",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (173 roles, 5 main)",
+    "ko.wikipedia 모범택시 2 등장인물 (8k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "dogi",
+    "seongcheol",
+    "goeun",
+    "gyeonggu",
+    "jineon"
+  ],
+  "people": [
+    {
+      "id": "dogi",
+      "name": "Kim Do Gi",
+      "actor": "Lee Je Hoon",
+      "image": "https://i.mydramalist.com/nOQKbL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rainbow Taxi's driver; the plan is his"
+    },
+    {
+      "id": "seongcheol",
+      "name": "Jang Seong Cheol",
+      "actor": "Kim Eui Sung",
+      "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Runs Rainbow Taxi and the Bluebird foundation; lost his parents to a serial killer"
+    },
+    {
+      "id": "goeun",
+      "name": "An Go Eun",
+      "actor": "Pyo Ye Jin",
+      "image": "https://i.mydramalist.com/4epr0d_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "The hacker; her parents' friend recruited her after her sister's death"
+    },
+    {
+      "id": "gyeonggu",
+      "name": "Choi Gyeong Gu",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Engineer — 'the brain', in his own view"
+    },
+    {
+      "id": "jineon",
+      "name": "Park Jin Eon",
+      "actor": "Bae Yoo Ram",
+      "image": "https://i.mydramalist.com/jJ7Pw_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Engineer; does everything, says nothing"
+    },
+    {
+      "id": "hajun",
+      "name": "On Ha Jun",
+      "actor": "Shin Jae Ha",
+      "image": "https://i.mydramalist.com/eYVXkY_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "The cheerful new driver who moved in below Do Gi"
+    },
+    {
+      "id": "hyeonjo",
+      "name": "Park Hyeon Jo",
+      "actor": "Park Jong Hwan",
+      "image": "https://i.mydramalist.com/BLeRA_5m.jpg",
+      "group": "Geumsahoe",
+      "inCast": true,
+      "note": "Senior superintendent at Seoul police"
+    },
+    {
+      "id": "bishop",
+      "name": "The Bishop",
+      "actor": "Park Ho San",
+      "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
+      "group": "Geumsahoe",
+      "inCast": true,
+      "note": "The one the others answer to; MDL lists the role unnamed"
+    },
+    {
+      "id": "jongseon",
+      "name": "Im Jong Seon",
+      "actor": "Lee Dal",
+      "image": "https://i.mydramalist.com/rXvWg_5m.jpg",
+      "group": "Geumsahoe",
+      "inCast": true,
+      "note": "Head of security at club Black Sun"
+    },
+    {
+      "id": "jinu",
+      "name": "Cho Jin U",
+      "actor": "Yoo Seung Mok",
+      "image": "https://i.mydramalist.com/Lw5eBB_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "The prosecutor from season one"
+    },
+    {
+      "id": "hyeongseop",
+      "name": "Kim Hyeong Seop",
+      "actor": "Park Sung Geun",
+      "image": "https://i.mydramalist.com/k3JNm_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Police captain — chairman of Cheongeum International underneath"
+    },
+    {
+      "id": "imsun",
+      "name": "Lee Im Sun",
+      "actor": "Byun Jung Hee",
+      "image": "https://i.mydramalist.com/vbXEe_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Client — swindled by a gang that preys on the old"
+    },
+    {
+      "id": "sanggi",
+      "name": "Yoo Sang Gi",
+      "actor": "Ko Sang Ho",
+      "image": "https://i.mydramalist.com/xYwlqm.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "The swindler"
+    },
+    {
+      "id": "seoyeon",
+      "name": "Hwang Seo Yeon",
+      "actor": "Ahn Chae Heum",
+      "image": "https://i.mydramalist.com/kmd48_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Client — abused as a child, looking for her lost brother"
+    },
+    {
+      "id": "pilseung",
+      "name": "Kang Pil Seung",
+      "actor": "Kim Do Yoon",
+      "image": "https://i.mydramalist.com/81olvb_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Pil Real Estate Consulting"
+    },
+    {
+      "id": "jinhui",
+      "name": "Lee Jin Hui",
+      "actor": "Kim Eun Bi",
+      "image": "https://i.mydramalist.com/YYlEDe_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Client — her sister taken by a cult"
+    },
+    {
+      "id": "juman",
+      "name": "Ok Ju Man",
+      "actor": "Ahn Sang Woo",
+      "image": "https://i.mydramalist.com/RQDz6_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Leader of the Sunbaek church"
+    },
+    {
+      "id": "jaedeok",
+      "name": "Han Jae Deok",
+      "actor": "Jung Gi Sub",
+      "image": "https://i.mydramalist.com/B1Rb5_5m.jpg",
+      "group": "The cases",
+      "inCast": true,
+      "note": "Client — his daughter in a coma after surgery"
+    }
+  ],
+  "links": [
+    {
+      "from": "seongcheol",
+      "to": "dogi",
+      "type": "work",
+      "label": "his boss, and the family that pulled him out of the tunnel",
+      "short": "his boss",
+      "evidence": "도기 옆에는 자기 안의 깊은 터널을 빠져나오게 해 준 소중한 사람들이 있다. 바로 무지개 운수 식구들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "goeun",
+      "to": "dogi",
+      "type": "work",
+      "label": "the screens behind the wheel",
+      "short": "his hacker",
+      "evidence": "자칭 IT 전문가, 타칭 해커",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonggu",
+      "to": "dogi",
+      "type": "work",
+      "label": "backs him up once the taxi is out",
+      "short": "backs him up",
+      "evidence": "모범택시 운행이 시작되면 도기를 백업한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jineon",
+      "to": "dogi",
+      "type": "work",
+      "label": "everything mechanical, unnoticed",
+      "short": "his mechanic",
+      "evidence": "정비, 수리, 세차, 운전.. 등등 온갖 일은 다 하면서도 티가 안 난다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jineon",
+      "to": "gyeonggu",
+      "type": "work",
+      "label": "the one who keeps him in check",
+      "short": "keeps him in check",
+      "evidence": "여기저기 간섭하고 다니는 최 주임의 전담 추노꾼",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongcheol",
+      "to": "goeun",
+      "type": "work",
+      "label": "her parents' friend; recruited her",
+      "short": "recruited her",
+      "evidence": "파랑새 지원센터 대표이자 부모님의 친구인 장 대표의 스카웃 제의를 받아",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajun",
+      "to": "dogi",
+      "type": "work",
+      "label": "the new driver who finds the secret passage",
+      "short": "new driver",
+      "evidence": "'무지개 운수'에 새롭게 취직한 신입 일반 택시기사… 지하 정비실로 들어가는 비밀 통로를 발견하게 되는데",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajun",
+      "to": "bishop",
+      "type": "work",
+      "label": "a Geumsahoe agent planted in the taxi company",
+      "short": "planted by them",
+      "evidence": "온하준 역 † - 금사회' 실장",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjo",
+      "to": "bishop",
+      "type": "work",
+      "label": "Geumsahoe cadre — and the real owner of Black Sun",
+      "short": "cadre",
+      "evidence": "금사회의 간부이자 서울경찰청 총경, Black Sun의 진짜 사장",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjo",
+      "to": "dogi",
+      "type": "rivalry",
+      "label": "the policeman hunting Rainbow Taxi from the other side",
+      "short": "hunts them",
+      "evidence": "박호산 외 다수 : 무지개 택시를 쫓는 의문의 사람 (들) (금사회)",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bishop",
+      "to": "seongcheol",
+      "type": "rivalry",
+      "label": "the organisation behind the killings",
+      "short": "behind it all",
+      "evidence": "무지개 택시를 쫓는 의문의 사람 (들) (금사회)",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongseon",
+      "to": "hyeonjo",
+      "type": "work",
+      "label": "security chief at his club",
+      "short": "his guard",
+      "evidence": "[Black Sun Security chief] / 클럽 Black Sun의 가드장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinu",
+      "to": "seongcheol",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Seong Cheol's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeongseop",
+      "to": "dogi",
+      "type": "rivalry",
+      "label": "the police captain who runs a kidnapping ring",
+      "short": "first case",
+      "evidence": "서울 동북경찰서 강력팀 반장이었으나 실상은 천금 인터내셔널의 회장",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "imsun",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client",
+      "short": "client",
+      "evidence": "유상기 일당에게 속아 사기를 당한 피해자이자 모범택시의 의뢰인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggi",
+      "to": "imsun",
+      "type": "rivalry",
+      "label": "swindled her",
+      "short": "swindled her",
+      "evidence": "노인만을 노리는 전문 사기꾼",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seoyeon",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client",
+      "short": "client",
+      "evidence": "아동 학대 피해자이자 모범택시의 의뢰인. 잃어버린 동생 소망이를 찾고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilseung",
+      "to": "seoyeon",
+      "type": "rivalry",
+      "label": "the man behind the orphanage's trade",
+      "short": "her case",
+      "evidence": "필 부동산 컨설팅 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinhui",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client",
+      "short": "client",
+      "evidence": "모범택시의 의뢰인. 순백교에 빼앗긴 언니를 구하기 위해",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juman",
+      "to": "jinhui",
+      "type": "rivalry",
+      "label": "the cult that took her sister",
+      "short": "took her sister",
+      "evidence": "순백교 교주",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaedeok",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client",
+      "short": "client",
+      "evidence": "모범택시의 의뢰인, 수련의 아버지, 의료사고로 딸이 혼수상태에 빠져",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dogi",
+      "seongcheol",
+      "goeun",
+      "gyeonggu",
+      "jineon",
+      "hajun",
+      "hyeonjo",
+      "bishop",
+      "jongseon",
+      "jinu",
+      "hyeongseop",
+      "imsun",
+      "sanggi",
+      "seoyeon",
+      "pilseung",
+      "jinhui",
+      "juman",
+      "jaedeok"
+    ],
+    "blocks": {
+      "Rainbow Taxi": [
+        0,
+        0
+      ],
+      "Around them": [
+        0,
+        2
+      ],
+      "Geumsahoe": [
+        2,
+        0
+      ],
+      "The cases": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "dogi",
+      "seongcheol"
+    ]
+  }
+}

@@ -1,0 +1,424 @@
+{
+  "version": 1,
+  "mdlSlug": "702271-weak-hero-season-2",
+  "title": "Weak Hero Class 2",
+  "native": "약한영웅 Class 2",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (45 roles, 6 main)",
+    "MDL synopsis (one line)",
+    "ko.wikipedia 출연 (names only)",
+    "en.wikipedia Cast (both classes together; used for the Union lines)"
+  ],
+  "main": [
+    "sieun",
+    "humin",
+    "juntae",
+    "hyeontak",
+    "baekjin",
+    "seongje"
+  ],
+  "people": [
+    {
+      "id": "sieun",
+      "name": "Yeon Si Eun",
+      "actor": "Park Ji Hoon",
+      "image": "https://i.mydramalist.com/wJ3Jzg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Transferred to Eunjang after Class 1; decided never to fight again"
+    },
+    {
+      "id": "humin",
+      "name": "Park Hu Min",
+      "actor": "Ryeo Un",
+      "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "'Baku' — strength and a sense of justice"
+    },
+    {
+      "id": "juntae",
+      "name": "Seo Jun Tae",
+      "actor": "Choi Min Yeong",
+      "image": "https://i.mydramalist.com/vXN682_5m.jpg",
+      "group": "Eunjang",
+      "inCast": true,
+      "note": "Small, loud, the first to talk to Si Eun"
+    },
+    {
+      "id": "hyeontak",
+      "name": "Ko Hyeon Tak",
+      "actor": "Lee Min Jae",
+      "image": "https://i.mydramalist.com/yWK7rd_5m.jpg",
+      "group": "Eunjang",
+      "inCast": true,
+      "note": "Fights with heart, not skill"
+    },
+    {
+      "id": "hyoman",
+      "name": "Choi Hyo Man",
+      "actor": "Yoo Soo Bin",
+      "image": "https://i.mydramalist.com/XbbZZm.jpg",
+      "group": "Eunjang",
+      "inCast": true,
+      "note": "Hu Min's follower"
+    },
+    {
+      "id": "baekjin",
+      "name": "Na Baek Jin",
+      "actor": "Bae Na Ra",
+      "image": "https://i.mydramalist.com/RB3vjz_5m.jpg",
+      "group": "The Union",
+      "inCast": true,
+      "note": "Head of the Union — Hu Min's oldest friend, once"
+    },
+    {
+      "id": "seongje",
+      "name": "Geum Seong Je",
+      "actor": "Lee Jun Young",
+      "image": "https://i.mydramalist.com/v2yzZ_5m.jpg",
+      "group": "The Union",
+      "inCast": true,
+      "note": "'Wolf' — the Union's enforcer, who fights for the joy of it"
+    },
+    {
+      "id": "seongmok",
+      "name": "Do Seong Mok",
+      "actor": "Oh Gi Gwang",
+      "image": "https://i.mydramalist.com/dQLRD_5m.jpg",
+      "group": "The Union",
+      "inCast": true
+    },
+    {
+      "id": "dongha",
+      "name": "Baek Dong Ha",
+      "actor": "Lee Myeong Ro",
+      "image": "https://i.mydramalist.com/l0AW7v_5m.jpg",
+      "group": "The Union",
+      "inCast": true
+    },
+    {
+      "id": "gorilla",
+      "name": "Seoknam Gorilla",
+      "actor": "Son Bo Seung",
+      "image": "https://i.mydramalist.com/nO8022_5m.jpg",
+      "group": "The Union",
+      "inCast": true,
+      "note": "Picked out by Baek Jin for the Union"
+    },
+    {
+      "id": "yaechan",
+      "name": "Yoo Yae Chan",
+      "actor": "Yoon Hyun Sik",
+      "image": "https://i.mydramalist.com/Z80yrq_5m.jpg",
+      "group": "The Union",
+      "inCast": true
+    },
+    {
+      "id": "changhee",
+      "name": "Choi Chang Hee",
+      "actor": "Jo Jung Suk",
+      "image": null,
+      "group": "The Union",
+      "inCast": false,
+      "note": "Gangster with a bowling alley; Baek Jin launders his money"
+    },
+    {
+      "id": "gyujin",
+      "name": "Yeon Gyu Jin",
+      "actor": "Kim Sung Kyun",
+      "image": "https://i.mydramalist.com/ABLNZZ_5m.jpg",
+      "group": "Si Eun's family",
+      "inCast": true
+    },
+    {
+      "id": "suho",
+      "name": "An Su Ho",
+      "actor": "Choi Hyun Wook",
+      "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
+      "group": "Class 1",
+      "inCast": true,
+      "note": "In a coma since Class 1"
+    },
+    {
+      "id": "beomseok",
+      "name": "O Beom Seok",
+      "actor": "Hong Kyung",
+      "image": "https://i.mydramalist.com/O82gkY_5m.jpg",
+      "group": "Class 1",
+      "inCast": true,
+      "note": "The friend who betrayed him"
+    },
+    {
+      "id": "teacher",
+      "name": "Homeroom teacher",
+      "actor": "Im Ho Joon",
+      "image": "https://i.mydramalist.com/RrpBxm.jpg",
+      "group": "Eunjang",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    }
+  ],
+  "links": [
+    {
+      "from": "humin",
+      "to": "sieun",
+      "type": "friend",
+      "label": "the ally who will not let him stay alone",
+      "short": "his ally",
+      "evidence": "Nicknamed Baku, Hu-min is known for his strength and sense of justice. He becomes one of Si-eun's main allies from Eunjang",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juntae",
+      "to": "sieun",
+      "type": "friend",
+      "label": "the first to reach him at Eunjang",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyeontak",
+      "to": "sieun",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyeontak",
+      "to": "humin",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyoman",
+      "to": "humin",
+      "type": "friend",
+      "label": "follows him",
+      "short": "follows him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "baekjin",
+      "to": "humin",
+      "type": "friend",
+      "label": "childhood friends, on opposite sides now",
+      "short": "old friend",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "baekjin",
+      "to": "sieun",
+      "type": "rivalry",
+      "label": "the Union against the boy who will not join",
+      "short": "wants him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongje",
+      "to": "baekjin",
+      "type": "work",
+      "label": "the Union's enforcer",
+      "short": "enforcer",
+      "evidence": "A member of the Union",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongje",
+      "to": "sieun",
+      "type": "rivalry",
+      "label": "wants to fight him, for the joy of it",
+      "short": "wants the fight",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongmok",
+      "to": "baekjin",
+      "type": "work",
+      "label": "in the Union",
+      "short": "in the Union",
+      "evidence": "A member of the Union",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongha",
+      "to": "baekjin",
+      "type": "work",
+      "label": "in the Union",
+      "short": "in the Union",
+      "evidence": "A member of the Union",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gorilla",
+      "to": "baekjin",
+      "type": "work",
+      "label": "picked out for the Union",
+      "short": "recruited",
+      "evidence": "A member who Baek-jin personally identifies as a potential member of the Union",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yaechan",
+      "to": "baekjin",
+      "type": "work",
+      "label": "in the Union",
+      "short": "in the Union",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "changhee",
+      "to": "baekjin",
+      "type": "work",
+      "label": "the gangster whose money he launders",
+      "short": "his boss",
+      "evidence": "He is Baek-jin's boss who enlists his help in laundering the money earned",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyujin",
+      "to": "sieun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Si Eun's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suho",
+      "to": "sieun",
+      "type": "friend",
+      "label": "the friend from Class 1, in a coma",
+      "short": "in a coma",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "beomseok",
+      "to": "sieun",
+      "type": "rivalry",
+      "label": "what Class 1 left behind",
+      "short": "the betrayal",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "teacher",
+      "to": "sieun",
+      "type": "work",
+      "label": "homeroom teacher",
+      "short": "homeroom teacher",
+      "evidence": "[Homeroom teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sieun",
+      "humin",
+      "juntae",
+      "hyeontak",
+      "hyoman",
+      "baekjin",
+      "seongje",
+      "seongmok",
+      "dongha",
+      "gorilla",
+      "yaechan",
+      "changhee",
+      "gyujin",
+      "suho",
+      "beomseok",
+      "teacher"
+    ],
+    "blocks": {
+      "Eunjang": [
+        0,
+        0
+      ],
+      "Si Eun's family": [
+        0,
+        2
+      ],
+      "The Union": [
+        2,
+        0
+      ],
+      "Class 1": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sieun",
+      "humin"
+    ]
+  }
+}

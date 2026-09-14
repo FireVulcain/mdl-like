@@ -22,9 +22,11 @@ const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
 async function main() {
     const dir = path.join(process.cwd(), "prisma", "character-maps");
-    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+    // wiki-titles.json lives in the same folder and is not a chart
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "wiki-titles.json");
     for (const file of files) {
         const data = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8"));
+        if (!Array.isArray(data.people)) continue;
         const mdlSlug = data.mdlSlug ?? file.replace(/\.json$/, "");
         await prisma.characterMap.upsert({
             where: { mdlSlug },

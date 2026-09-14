@@ -1,0 +1,596 @@
+{
+  "version": 1,
+  "mdlSlug": "750099-time-walking-on-memory",
+  "title": "Lovely Runner",
+  "native": "선재 업고 튀어",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (100 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names and kinship only)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "seonjae",
+    "sol",
+    "taeseong",
+    "inhyeok"
+  ],
+  "people": [
+    {
+      "id": "seonjae",
+      "name": "Ryu Seon Jae",
+      "actor": "Byeon Woo Seok",
+      "image": "https://i.mydramalist.com/l0ZORJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Top star, exhausted by it; a swimmer at nineteen"
+    },
+    {
+      "id": "sol",
+      "name": "Im Sol",
+      "actor": "Kim Hye Yoon",
+      "image": "https://i.mydramalist.com/xpnmE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Shin Yeon Woo",
+          "image": "https://i.mydramalist.com/2wD5gR_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "His fan — went back to 2008 to keep him alive"
+    },
+    {
+      "id": "taeseong",
+      "name": "Kim Tae Seong",
+      "actor": "Song Geon Hee",
+      "image": "https://i.mydramalist.com/73EJbD_5m.jpg",
+      "group": "Around Sol",
+      "inCast": true,
+      "note": "Seon Jae's classmate; loves Sol too"
+    },
+    {
+      "id": "inhyeok",
+      "name": "Baek In Hyeok",
+      "actor": "Lee Seung Hyub",
+      "image": "https://i.mydramalist.com/602lyg_5m.jpg",
+      "group": "Eclipse",
+      "inCast": true,
+      "note": "Eclipse's guitarist; Seon Jae's friend"
+    },
+    {
+      "id": "boksun",
+      "name": "Park Bok Sun",
+      "actor": "Jung Young Joo",
+      "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
+      "group": "Sol's family",
+      "inCast": true
+    },
+    {
+      "id": "malja",
+      "name": "Jung Mal Ja",
+      "actor": "Seong Byung Sook",
+      "image": "https://i.mydramalist.com/5v8XOe_5m.jpg",
+      "group": "Sol's family",
+      "inCast": true
+    },
+    {
+      "id": "geum",
+      "name": "Im Geum",
+      "actor": "Song Ji Ho",
+      "image": "https://i.mydramalist.com/jlzwrm.jpg",
+      "group": "Sol's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Se Heon",
+          "image": "https://i.mydramalist.com/E5JObb_5m.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "hyeonju",
+      "name": "Lee Hyeon Ju",
+      "actor": "Seo Hye Won",
+      "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
+      "group": "Around Sol",
+      "inCast": true,
+      "note": "Sol's best friend"
+    },
+    {
+      "id": "geundeok",
+      "name": "Ryu Geun Deok",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "Runs a chicken place"
+    },
+    {
+      "id": "seokhyeon",
+      "name": "Kim Seok Hyeon",
+      "actor": "Ahn Sang Woo",
+      "image": "https://i.mydramalist.com/RQDz6_5m.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "CEO of JNT, his agency"
+    },
+    {
+      "id": "dongseok",
+      "name": "Park Dong Seok",
+      "actor": "Lee Il Joon",
+      "image": "https://i.mydramalist.com/jeZVr_5m.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "His manager"
+    },
+    {
+      "id": "hyeongu",
+      "name": "Kim Hyeong Gu",
+      "actor": "Lee Chul Woo",
+      "image": "https://i.mydramalist.com/6Q0Kgm.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "Swimming rival"
+    },
+    {
+      "id": "hyeongu2",
+      "name": "Choi Hyeon Gu",
+      "actor": "Kim Hyun Kyu",
+      "image": "https://i.mydramalist.com/RBk6nr_5m.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "Friend"
+    },
+    {
+      "id": "coachan",
+      "name": "Coach An",
+      "actor": "Jung Kang Hee",
+      "image": "https://i.mydramalist.com/xx2qj_5m.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "Swimming coach"
+    },
+    {
+      "id": "chorong",
+      "name": "Kim Cho Rong",
+      "actor": "Lee Woo Je",
+      "image": "https://i.mydramalist.com/jwQV8_5m.jpg",
+      "group": "Seon Jae's side",
+      "inCast": true,
+      "note": "Friend"
+    },
+    {
+      "id": "hyeonsu",
+      "name": "Hyeon Su",
+      "actor": "Moon Xion",
+      "image": "https://i.mydramalist.com/2wg2OR_5m.jpg",
+      "group": "Eclipse",
+      "inCast": true,
+      "note": "Drummer"
+    },
+    {
+      "id": "jay",
+      "name": "Jay",
+      "actor": "Yang Hyuk",
+      "image": "https://i.mydramalist.com/eYwQpY_5m.jpg",
+      "group": "Eclipse",
+      "inCast": true,
+      "note": "Bassist, the youngest"
+    },
+    {
+      "id": "woncheol",
+      "name": "Kim Won Cheol",
+      "actor": "Park Yoon Hee",
+      "image": "https://i.mydramalist.com/Rv24E_5m.jpg",
+      "group": "Around Sol",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "iseul",
+      "name": "Cha I Seul",
+      "actor": "Kim Hwi Gyu",
+      "image": "https://i.mydramalist.com/pd864b_5m.jpg",
+      "group": "Around Sol",
+      "inCast": true
+    },
+    {
+      "id": "gahyeon",
+      "name": "Choi Ga Hyeon",
+      "actor": "Oh Se Young",
+      "image": "https://i.mydramalist.com/0wy65K_5m.jpg",
+      "group": "Around Sol",
+      "inCast": true
+    },
+    {
+      "id": "gyeongja",
+      "name": "Lee Gyeong Ja",
+      "actor": "Jeon Young",
+      "image": "https://i.mydramalist.com/QB1QQ_5m.jpg",
+      "group": "BON Cinema",
+      "inCast": true,
+      "note": "CEO of the film company"
+    },
+    {
+      "id": "jeonghun",
+      "name": "Choi Jeong Hun",
+      "actor": "Ko Tae Jin",
+      "image": "https://i.mydramalist.com/Z8kEz1_5m.jpg",
+      "group": "BON Cinema",
+      "inCast": true
+    },
+    {
+      "id": "yeongsu",
+      "name": "Kim Yeong Su",
+      "actor": "Heo Hyung Kyu",
+      "image": "https://i.mydramalist.com/Z8v0YJ_5m.jpg",
+      "group": "The taxi",
+      "inCast": true,
+      "note": "The taxi driver"
+    }
+  ],
+  "links": [
+    {
+      "from": "sol",
+      "to": "seonjae",
+      "type": "romance",
+      "label": "the fan who went back in time for him — and the boy who loved her first",
+      "short": "in love",
+      "evidence": "Im Sol, an ardent admirer, holds an affectionate love for Ryu Seon Jae",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongsu",
+      "to": "sol",
+      "type": "rivalry",
+      "label": "the taxi driver behind her accident, and his death",
+      "short": "the killer",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongsu",
+      "to": "seonjae",
+      "type": "rivalry",
+      "label": "kills him — in the timeline she went back to undo",
+      "short": "the killer",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taeseong",
+      "to": "sol",
+      "type": "romance",
+      "label": "loves her, from the same class",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taeseong",
+      "to": "seonjae",
+      "type": "rivalry",
+      "label": "classmates and rivals — for her",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "inhyeok",
+      "to": "seonjae",
+      "type": "friend",
+      "label": "friend, and bandmate in Eclipse",
+      "short": "bandmate",
+      "evidence": "밴드 이클립스",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "inhyeok",
+      "to": "hyeonju",
+      "type": "romance",
+      "label": "the guitarist and Sol's best friend",
+      "short": "in love",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "boksun",
+      "to": "sol",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Im Sol's mother] / 솔의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "malja",
+      "to": "sol",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Im Sol's grandma] / 솔의 할머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geum",
+      "to": "sol",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "[Im Sol's brother] / 솔의 오빠",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonju",
+      "to": "sol",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "[Im Sol's friend] / 솔의 친구",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "geundeok",
+      "to": "seonjae",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Seon Jae's father] / 선재의 아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokhyeon",
+      "to": "seonjae",
+      "type": "work",
+      "label": "his agency's CEO",
+      "short": "his CEO",
+      "evidence": "[JNT's CEO] / 선재의 소속사 대표",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongseok",
+      "to": "seonjae",
+      "type": "work",
+      "label": "his manager",
+      "short": "manager",
+      "evidence": "[Seon Jae's manager] / 선재의 매니저",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongu",
+      "to": "seonjae",
+      "type": "rivalry",
+      "label": "rival in the pool",
+      "short": "rival",
+      "evidence": "[Seon Jae's rival]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeongu2",
+      "to": "seonjae",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Seon Jae's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chorong",
+      "to": "seonjae",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Seon Jae's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "coachan",
+      "to": "seonjae",
+      "type": "work",
+      "label": "his swimming coach",
+      "short": "coach",
+      "evidence": "[Swimming team coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonsu",
+      "to": "seonjae",
+      "type": "work",
+      "label": "Eclipse's drummer",
+      "short": "drummer",
+      "evidence": "['Eclipse' drummer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jay",
+      "to": "seonjae",
+      "type": "work",
+      "label": "Eclipse's bassist",
+      "short": "bassist",
+      "evidence": "['Eclipse' bassist] / 밴드 이클립스의 막내 멤버",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "woncheol",
+      "to": "taeseong",
+      "type": "family",
+      "label": "father — a detective",
+      "short": "father",
+      "evidence": "[Tae Seong's father] / 김 형사 역 - 태성의 아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "iseul",
+      "to": "taeseong",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Tae Seong's friend] / 태성의 친구",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gahyeon",
+      "to": "taeseong",
+      "type": "romance",
+      "label": "ex-girlfriend",
+      "short": "ex-girlfriend",
+      "evidence": "[Tae Seong's ex-girlfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongja",
+      "to": "sol",
+      "type": "work",
+      "label": "the film company she works at, in one of the timelines",
+      "short": "her boss",
+      "evidence": "[BON cinema's CEO] / 영화 제작사 대표",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jeonghun",
+      "to": "gyeongja",
+      "type": "work",
+      "label": "employee",
+      "short": "employee",
+      "evidence": "[BON cinema's employee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seonjae",
+      "sol",
+      "taeseong",
+      "inhyeok",
+      "boksun",
+      "malja",
+      "geum",
+      "hyeonju",
+      "geundeok",
+      "seokhyeon",
+      "dongseok",
+      "hyeongu",
+      "hyeongu2",
+      "coachan",
+      "chorong",
+      "hyeonsu",
+      "jay",
+      "woncheol",
+      "iseul",
+      "gahyeon",
+      "gyeongja",
+      "jeonghun",
+      "yeongsu"
+    ],
+    "blocks": {
+      "Sol's family": [
+        0,
+        0
+      ],
+      "Around Sol": [
+        0,
+        2
+      ],
+      "Seon Jae's side": [
+        2,
+        0
+      ],
+      "Eclipse": [
+        2,
+        2
+      ],
+      "The taxi": [
+        1,
+        0
+      ],
+      "BON Cinema": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seonjae",
+      "sol"
+    ]
+  }
+}

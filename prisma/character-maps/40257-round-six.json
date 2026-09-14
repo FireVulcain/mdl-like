@@ -1,0 +1,444 @@
+{
+  "version": 1,
+  "mdlSlug": "40257-round-six",
+  "title": "Squid Game",
+  "native": "오징어 게임",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (86 roles, 4 main)",
+    "ko.wikipedia 시즌1 등장인물 (3k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "gihun",
+    "sangu",
+    "saebyeok",
+    "junho"
+  ],
+  "people": [
+    {
+      "id": "gihun",
+      "name": "Seong Gi Hun / No. 456",
+      "actor": "Lee Jung Jae",
+      "image": "https://i.mydramalist.com/zBDqeP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Divorced driver, gambler; plays for his daughter"
+    },
+    {
+      "id": "sangu",
+      "name": "Cho Sang U / No. 218",
+      "actor": "Park Hae Soo",
+      "image": "https://i.mydramalist.com/VXxKlx_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former investment team leader; Seoul National — and a warrant"
+    },
+    {
+      "id": "saebyeok",
+      "name": "Kang Sae Byeok / No. 067",
+      "actor": "Jung Ho Yeon",
+      "image": "https://i.mydramalist.com/6XOgP_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Defector from the North; plays to bring her parents over"
+    },
+    {
+      "id": "ilnam",
+      "name": "O Il Nam / No. 001",
+      "actor": "O Yeong Su",
+      "image": "https://i.mydramalist.com/wn4rNm.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "The old man with a brain tumour"
+    },
+    {
+      "id": "ali",
+      "name": "Ali Abdul / No. 199",
+      "actor": "Anupam Tripathi",
+      "image": "https://i.mydramalist.com/2vW0O_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Migrant worker from Pakistan; his boss kept his wages"
+    },
+    {
+      "id": "deoksu",
+      "name": "Jang Deok Su / No. 101",
+      "actor": "Heo Sung Tae",
+      "image": "https://i.mydramalist.com/3oNjDW_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Gangster who stole from his own"
+    },
+    {
+      "id": "minyeo",
+      "name": "Han Mi Nyeo / No. 212",
+      "actor": "Kim Joo Ryoung",
+      "image": "https://i.mydramalist.com/kJVRvm.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Loud and cunning; five fraud convictions"
+    },
+    {
+      "id": "jiyeong",
+      "name": "Ji Yeong / No. 240",
+      "actor": "Lee You Mi",
+      "image": "https://i.mydramalist.com/4R4Jk_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Just out of prison"
+    },
+    {
+      "id": "byeonggi",
+      "name": "Byeong Gi / No. 111",
+      "actor": "Yoo Sung Joo",
+      "image": "https://i.mydramalist.com/evdBdm.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "The doctor"
+    },
+    {
+      "id": "junho",
+      "name": "Hwang Jun Ho",
+      "actor": "Wi Ha Joon",
+      "image": "https://i.mydramalist.com/xzdP0_5m.jpg",
+      "group": "Outside the game",
+      "inCast": true,
+      "note": "Detective who slips in as a guard, looking for his brother"
+    },
+    {
+      "id": "salesman",
+      "name": "The salesman",
+      "actor": "Gong Yoo",
+      "image": "https://i.mydramalist.com/DkWj1D_5m.jpg",
+      "group": "Outside the game",
+      "inCast": true,
+      "note": "Ddakji at the station; MDL lists the role unnamed"
+    },
+    {
+      "id": "malsun",
+      "name": "O Mal Sun",
+      "actor": "Kim Young Ok",
+      "image": "https://i.mydramalist.com/5vYdBB_5m.jpg",
+      "group": "Gi Hun's family",
+      "inCast": true
+    },
+    {
+      "id": "eunji",
+      "name": "Kang Eun Ji",
+      "actor": "Kang Mal Geum",
+      "image": "https://i.mydramalist.com/RRqnr_5m.jpg",
+      "group": "Gi Hun's family",
+      "inCast": true
+    },
+    {
+      "id": "gayeong",
+      "name": "Seong Ga Yeong",
+      "actor": "Jo Ah In",
+      "image": "https://i.mydramalist.com/BVjgl_5m.jpg",
+      "group": "Gi Hun's family",
+      "inCast": true
+    },
+    {
+      "id": "sangumother",
+      "name": "Sang U's mother",
+      "actor": "Park Hye Jin",
+      "image": "https://i.mydramalist.com/B1o3V_5m.jpg",
+      "group": "Gi Hun's family",
+      "inCast": true,
+      "note": "Runs the fish stall; MDL lists the role unnamed"
+    }
+  ],
+  "links": [
+    {
+      "from": "sangu",
+      "to": "gihun",
+      "type": "friend",
+      "label": "his junior from the neighbourhood; the last two standing",
+      "short": "his junior",
+      "evidence": "기훈의 후배로 서울대학교에서 공부했다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangu",
+      "to": "gihun",
+      "type": "rivalry",
+      "label": "the final game",
+      "short": "the final",
+      "evidence": "박해수 - 218번 조상우 역 / 456번 성기훈",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ilnam",
+      "to": "gihun",
+      "type": "friend",
+      "label": "the old man he befriends — 'gganbu'",
+      "short": "gganbu",
+      "evidence": "외부 세계에서 죽기를 기다리는 것보다 게임을 선호하고",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ilnam",
+      "to": "gihun",
+      "type": "bond",
+      "label": "the host of the game, all along",
+      "short": "the host",
+      "evidence": "나중에 게임의 주최자로 밝혀진 뇌종양을 앓고 있는 노인",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "saebyeok",
+      "to": "gihun",
+      "type": "friend",
+      "label": "allies",
+      "short": "ally",
+      "evidence": "북한 함경북도 출신의 탈북자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "saebyeok",
+      "to": "jiyeong",
+      "type": "friend",
+      "label": "paired for marbles; one walks away",
+      "short": "marbles",
+      "evidence": "이유미 - 240번 지영 역",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ali",
+      "to": "sangu",
+      "type": "friend",
+      "label": "calls him hyung; trusts him with the marbles",
+      "short": "trusts him",
+      "evidence": "상우를 형이라고 부를 정도로 잘 따른다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangu",
+      "to": "ali",
+      "type": "rivalry",
+      "label": "cheats him of his marbles",
+      "short": "cheats him",
+      "evidence": "상우를 형이라고 부를 정도로 잘 따른다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sangu",
+      "to": "saebyeok",
+      "type": "rivalry",
+      "label": "what he does before the last game",
+      "short": "kills her",
+      "evidence": "218번 조상우 / 067번 강새벽",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deoksu",
+      "to": "minyeo",
+      "type": "romance",
+      "label": "her ally in the dorm, then her enemy",
+      "short": "used her",
+      "evidence": "시끄럽고 교활한 여자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minyeo",
+      "to": "deoksu",
+      "type": "rivalry",
+      "label": "takes him down with her on the bridge",
+      "short": "takes him with her",
+      "evidence": "212번 한미녀 / 101번 장덕수",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deoksu",
+      "to": "saebyeok",
+      "type": "rivalry",
+      "label": "knew her from outside; the knife",
+      "short": "old enemy",
+      "evidence": "101번 장덕수 역: 조직폭력배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deoksu",
+      "to": "byeonggi",
+      "type": "work",
+      "label": "the doctor in his organ trade",
+      "short": "his doctor",
+      "evidence": "111번 병기",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "junho",
+      "to": "gihun",
+      "type": "work",
+      "label": "the policeman inside the walls",
+      "short": "inside as a guard",
+      "evidence": "실종된 형을 찾기 위해 경비원으로 변장한 채 게임에 잠입한 경찰관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "junho",
+      "to": "ilnam",
+      "type": "rivalry",
+      "label": "hunting the game's masters; finds his brother is the Front Man",
+      "short": "hunts the hosts",
+      "evidence": "자신의 형이 대회의 주최자인 프론트맨임을 알게 된다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "salesman",
+      "to": "gihun",
+      "type": "bond",
+      "label": "the ddakji at the station — the invitation",
+      "short": "recruited him",
+      "evidence": "[Salesman at the station]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "malsun",
+      "to": "gihun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "어머니와 함께 살고 있으며",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunji",
+      "to": "gihun",
+      "type": "romance",
+      "label": "ex-wife",
+      "short": "ex-wife",
+      "evidence": "이혼한 운전사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gihun",
+      "to": "gayeong",
+      "type": "family",
+      "label": "daughter — leaving for the United States",
+      "short": "daughter",
+      "evidence": "가영이라는 딸이 있다… 미국으로 떠나는 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunji",
+      "to": "gayeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "이혼한 운전사이자 도박 중독자로, 가영이라는 딸이 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sangumother",
+      "to": "sangu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Sang U's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "gihun",
+      "sangu",
+      "saebyeok",
+      "ilnam",
+      "ali",
+      "deoksu",
+      "minyeo",
+      "jiyeong",
+      "byeonggi",
+      "junho",
+      "salesman",
+      "malsun",
+      "eunji",
+      "gayeong",
+      "sangumother"
+    ],
+    "blocks": {
+      "The players": [
+        0,
+        0
+      ],
+      "Gi Hun's family": [
+        2,
+        0
+      ],
+      "Outside the game": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "gihun",
+      "sangu"
+    ]
+  }
+}

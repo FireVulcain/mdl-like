@@ -89,7 +89,7 @@ async function wikipedia(lang: string, title: string | undefined, query: string)
     const wholeArticle = /등장인물$|^List of .* characters$|角色列表$/.test(page);
     const section = wholeArticle
         ? wikitext.slice(wikitext.search(/^==[^=]/m))
-        : characterSection(wikitext, ["등장 인물", "등장인물", "演員", "演员", "角色", "人物", "Cast"]);
+        : characterSection(wikitext, ["등장 인물", "등장인물", "출연", "演員", "演员", "角色", "人物", "Cast"]);
     return section ? { title: page, text: cleanWikitext(section) } : { title: page, text: "(no character section found — headings: " + [...wikitext.matchAll(/^==([^=].*?)==/gm)].map((x) => x[1].trim()).join(", ") + ")" };
 }
 

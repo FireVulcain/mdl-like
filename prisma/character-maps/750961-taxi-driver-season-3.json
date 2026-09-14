@@ -1,0 +1,597 @@
+{
+  "version": 1,
+  "mdlSlug": "750961-taxi-driver-season-3",
+  "title": "Taxi Driver Season 3",
+  "native": "모범택시 3",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (75 roles, 5 main) — the guests are tagged by case, and that is the only source",
+    "ko.wikipedia (no season 3 article yet)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "dogi",
+    "seongcheol",
+    "goeun",
+    "gyeonggu",
+    "jineon"
+  ],
+  "people": [
+    {
+      "id": "dogi",
+      "name": "Kim Do Gi",
+      "actor": "Lee Je Hoon",
+      "image": "https://i.mydramalist.com/nOQKbL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rainbow Taxi's driver — seven cases, three countries"
+    },
+    {
+      "id": "seongcheol",
+      "name": "Jang Seong Cheol",
+      "actor": "Kim Eui Sung",
+      "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Runs Rainbow Taxi and the Bluebird foundation"
+    },
+    {
+      "id": "goeun",
+      "name": "An Go Eun",
+      "actor": "Pyo Ye Jin",
+      "image": "https://i.mydramalist.com/4epr0d_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "The hacker"
+    },
+    {
+      "id": "gyeonggu",
+      "name": "Choi Gyeong Gu",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Engineer"
+    },
+    {
+      "id": "jineon",
+      "name": "Park Jin Eon",
+      "actor": "Bae Yoo Ram",
+      "image": "https://i.mydramalist.com/jJ7Pw_5m.jpg",
+      "group": "Rainbow Taxi",
+      "inCast": true,
+      "note": "Engineer"
+    },
+    {
+      "id": "matsuda",
+      "name": "Keita Matsuda",
+      "actor": "Kasamatsu Show",
+      "image": "https://i.mydramalist.com/XdAeeZ_5m.jpg",
+      "group": "Neko Money",
+      "inCast": true,
+      "note": "Runs the loan racket in Japan"
+    },
+    {
+      "id": "iseo",
+      "name": "Yun I Seo",
+      "actor": "Cha Si Yeon",
+      "image": "https://i.mydramalist.com/PxzBAy_5m.jpg",
+      "group": "Neko Money",
+      "inCast": true,
+      "note": "Client"
+    },
+    {
+      "id": "hoshino",
+      "name": "Hoshino Masahisa",
+      "actor": "Takenaka Naoto",
+      "image": "https://i.mydramalist.com/Pxz0v0_5m.jpg",
+      "group": "Neko Money",
+      "inCast": true
+    },
+    {
+      "id": "mansu",
+      "name": "O Man Su",
+      "actor": "Kim Eun Seok",
+      "image": "https://i.mydramalist.com/wNrZn_5m.jpg",
+      "group": "Noblesse Motors",
+      "inCast": true,
+      "note": "Client"
+    },
+    {
+      "id": "deukso",
+      "name": "Ko Deuk So",
+      "actor": "Jung Si Heon",
+      "image": "https://i.mydramalist.com/PxZ5VX_5m.jpg",
+      "group": "Noblesse Motors",
+      "inCast": true
+    },
+    {
+      "id": "dongsu",
+      "name": "Park Dong Su",
+      "actor": "Kim Ki Cheon",
+      "image": "https://i.mydramalist.com/YY1OAK_5m.jpg",
+      "group": "Park Dong Su",
+      "inCast": true,
+      "note": "Client"
+    },
+    {
+      "id": "minho",
+      "name": "Park Min Ho",
+      "actor": "Lee Do Han",
+      "image": "https://i.mydramalist.com/VXVKeQ_5m.jpg",
+      "group": "Park Dong Su",
+      "inCast": true
+    },
+    {
+      "id": "yeontae",
+      "name": "Jung Yeon Tae",
+      "actor": "Lee Myeong Ro",
+      "image": "https://i.mydramalist.com/l0AW7v_5m.jpg",
+      "group": "Park Dong Su",
+      "inCast": true
+    },
+    {
+      "id": "jinu",
+      "name": "Cho Jin U",
+      "actor": "Yoo Seung Mok",
+      "image": "https://i.mydramalist.com/Lw5eBB_5m.jpg",
+      "group": "Park Dong Su",
+      "inCast": true,
+      "note": "The prosecutor from the first season"
+    },
+    {
+      "id": "romi",
+      "name": "Lee Ro Mi",
+      "actor": "Oh Ga Bin",
+      "image": "https://i.mydramalist.com/2pEz7_5m.jpg",
+      "group": "Lee Ro Mi",
+      "inCast": true,
+      "note": "Client"
+    },
+    {
+      "id": "gyeongsu",
+      "name": "Jung Gyeong Su",
+      "actor": "Yoo Tae Joo",
+      "image": "https://i.mydramalist.com/b3o01w_5m.jpg",
+      "group": "Lee Ro Mi",
+      "inCast": true,
+      "note": "Yellow Star's HQ manager"
+    },
+    {
+      "id": "dasom",
+      "name": "Park Da Som",
+      "actor": "Cha Jun Hui",
+      "image": "https://i.mydramalist.com/73ZjLn_5m.jpg",
+      "group": "Park Da Som",
+      "inCast": true,
+      "note": "Client"
+    },
+    {
+      "id": "ujong",
+      "name": "Kim U Jong",
+      "actor": "Park Si Yun",
+      "image": "https://i.mydramalist.com/0wwNKr_5m.jpg",
+      "group": "Park Da Som",
+      "inCast": true,
+      "note": "Leader of the second-hand trading fraud ring"
+    },
+    {
+      "id": "cheolung",
+      "name": "Choi Cheol Ung",
+      "actor": "Yu Hyung Jun",
+      "image": "https://i.mydramalist.com/jDqEO_5m.jpg",
+      "group": "Samheung Island",
+      "inCast": true,
+      "note": "Former mercenary; 'CEO Choi'"
+    },
+    {
+      "id": "cheolmin",
+      "name": "Kim Cheol Min",
+      "actor": "Ji Dae Han",
+      "image": "https://i.mydramalist.com/D8VAym.jpg",
+      "group": "Samheung Island",
+      "inCast": true,
+      "note": "Former detective; 'Sergeant Kim'"
+    },
+    {
+      "id": "yerim",
+      "name": "Yeo Ye Rim",
+      "actor": "Lee Chae Won",
+      "image": "https://i.mydramalist.com/EyWep_5m.jpg",
+      "group": "Samheung Island",
+      "inCast": true,
+      "note": "Former gambling programmer"
+    },
+    {
+      "id": "gihyeon",
+      "name": "Lee Gi Hyeon",
+      "actor": "Park Sung Il",
+      "image": "https://i.mydramalist.com/2DvnPm.jpg",
+      "group": "Samheung Island",
+      "inCast": true,
+      "note": "Former voice-phishing mastermind"
+    },
+    {
+      "id": "jaewon",
+      "name": "Park Jae Won",
+      "actor": "Kim Seo Ha",
+      "image": "https://i.mydramalist.com/yWOBB1_5m.jpg",
+      "group": "Yoo Seon A",
+      "inCast": true
+    },
+    {
+      "id": "hyeongin",
+      "name": "Lee Hyeong In",
+      "actor": "Park Do Wook",
+      "image": "https://i.mydramalist.com/BoVnA_5m.jpg",
+      "group": "Yoo Seon A",
+      "inCast": true
+    },
+    {
+      "id": "changhwan",
+      "name": "Kim Chang Hwan",
+      "actor": "Ryu Seung Moo",
+      "image": "https://i.mydramalist.com/654Q0_5m.jpg",
+      "group": "Yoo Seon A",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "seongcheol",
+      "to": "dogi",
+      "type": "work",
+      "label": "his boss",
+      "short": "his boss",
+      "evidence": "Jang Seong Cheol / Kim Do Gi",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "goeun",
+      "to": "dogi",
+      "type": "work",
+      "label": "his hacker",
+      "short": "his hacker",
+      "evidence": "An Go Eun",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeonggu",
+      "to": "dogi",
+      "type": "work",
+      "label": "his mechanic",
+      "short": "his mechanic",
+      "evidence": "Choi Gyeong Gu",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jineon",
+      "to": "dogi",
+      "type": "work",
+      "label": "his mechanic",
+      "short": "his mechanic",
+      "evidence": "Park Jin Eon",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "iseo",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client — the Neko Money case, Japan",
+      "short": "client (Japan)",
+      "evidence": "{Neko Money Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "matsuda",
+      "to": "iseo",
+      "type": "rivalry",
+      "label": "the lender who owns her debt",
+      "short": "her creditor",
+      "evidence": "{Neko Money Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hoshino",
+      "to": "matsuda",
+      "type": "work",
+      "label": "above him",
+      "short": "above him",
+      "evidence": "{Neko Money Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mansu",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client — the Noblesse Motors case",
+      "short": "client (cars)",
+      "evidence": "{Noblesse Motors Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deukso",
+      "to": "mansu",
+      "type": "rivalry",
+      "label": "the dealership that ruined him",
+      "short": "ruined him",
+      "evidence": "{Noblesse Motors Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dongsu",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client — his son and the gambling den",
+      "short": "client (gambling)",
+      "evidence": "{Park Dong Su Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "dongsu",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "{Park Dong Su Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeontae",
+      "to": "minho",
+      "type": "rivalry",
+      "label": "runs the den that took him",
+      "short": "the den",
+      "evidence": "{Park Dong Su Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinu",
+      "to": "seongcheol",
+      "type": "friend",
+      "label": "the old prosecutor, on their side now",
+      "short": "old friend",
+      "evidence": "{Park Dong Su Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "romi",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client — the idol trainee",
+      "short": "client (idol)",
+      "evidence": "{Lee Ro Mi Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeongsu",
+      "to": "romi",
+      "type": "rivalry",
+      "label": "the agency that used her",
+      "short": "her agency",
+      "evidence": "{Lee Ro Mi Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dasom",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "client — the second-hand trading fraud",
+      "short": "client (fraud)",
+      "evidence": "{Park Da Som Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ujong",
+      "to": "dasom",
+      "type": "rivalry",
+      "label": "the ring that defrauded her",
+      "short": "defrauded her",
+      "evidence": "{Park Da Som Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "cheolung",
+      "to": "dogi",
+      "type": "rivalry",
+      "label": "Samheung Island — the mercenary",
+      "short": "the island",
+      "evidence": "{Samheung Island Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "cheolmin",
+      "to": "cheolung",
+      "type": "work",
+      "label": "the island's crew",
+      "short": "crew",
+      "evidence": "{Samheung Island Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yerim",
+      "to": "cheolung",
+      "type": "work",
+      "label": "the island's crew",
+      "short": "crew",
+      "evidence": "{Samheung Island Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gihyeon",
+      "to": "cheolung",
+      "type": "work",
+      "label": "the island's crew",
+      "short": "crew",
+      "evidence": "{Samheung Island Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaewon",
+      "to": "seongcheol",
+      "type": "work",
+      "label": "the Yoo Seon A case — the army",
+      "short": "client (army)",
+      "evidence": "{Yoo Seon A Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeongin",
+      "to": "jaewon",
+      "type": "rivalry",
+      "label": "the officer",
+      "short": "the officer",
+      "evidence": "{Yoo Seon A Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "changhwan",
+      "to": "hyeongin",
+      "type": "work",
+      "label": "the general above",
+      "short": "above him",
+      "evidence": "{Yoo Seon A Case}",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dogi",
+      "seongcheol",
+      "goeun",
+      "gyeonggu",
+      "jineon",
+      "matsuda",
+      "iseo",
+      "hoshino",
+      "mansu",
+      "deukso",
+      "dongsu",
+      "minho",
+      "yeontae",
+      "jinu",
+      "romi",
+      "gyeongsu",
+      "dasom",
+      "ujong",
+      "cheolung",
+      "cheolmin",
+      "yerim",
+      "gihyeon",
+      "jaewon",
+      "hyeongin",
+      "changhwan"
+    ],
+    "blocks": {
+      "Rainbow Taxi": [
+        1,
+        0
+      ],
+      "Neko Money": [
+        0,
+        0
+      ],
+      "Noblesse Motors": [
+        0,
+        1
+      ],
+      "Park Dong Su": [
+        0,
+        2
+      ],
+      "Lee Ro Mi": [
+        2,
+        0
+      ],
+      "Park Da Som": [
+        2,
+        1
+      ],
+      "Samheung Island": [
+        2,
+        2
+      ],
+      "Yoo Seon A": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "dogi",
+      "seongcheol"
+    ]
+  }
+}

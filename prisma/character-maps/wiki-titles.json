@@ -1,9 +1,42 @@
 {
-  "79607-youngest-son-of-a-conglomerate": { "ko": "재벌집 막내아들의 등장인물" },
-  "697563-kai-duan": { "zh": "開端" },
-  "61371-vincenzo": { "ko": "빈센조 (드라마)", "en": "Vincenzo (TV series)" },
-  "702267-weak-hero": { "ko": "약한영웅 Class 1" },
-  "75433-rocket-boy-squad": { "ko": "라켓소년단" },
-  "752799-study-group": { "ko": "스터디그룹 (드라마)" },
-  "745215-diva-of-the-deserted-island": { "ko": "무인도의 디바" }
+  "79607-youngest-son-of-a-conglomerate": {
+    "ko": "재벌집 막내아들의 등장인물"
+  },
+  "697563-kai-duan": {
+    "zh": "開端"
+  },
+  "61371-vincenzo": {
+    "ko": "빈센조 (드라마)",
+    "en": "Vincenzo (TV series)"
+  },
+  "702267-weak-hero": {
+    "ko": "약한영웅 Class 1"
+  },
+  "75433-rocket-boy-squad": {
+    "ko": "라켓소년단"
+  },
+  "752799-study-group": {
+    "ko": "스터디그룹 (드라마)"
+  },
+  "745215-diva-of-the-deserted-island": {
+    "ko": "무인도의 디바"
+  },
+  "750099-time-walking-on-memory": {
+    "ko": "선재 업고 튀어"
+  },
+  "40257-round-six": {
+    "ko": "오징어 게임"
+  },
+  "702271-weak-hero-season-2": {
+    "ko": "약한영웅 Class 2"
+  },
+  "714529-squid-game-season-2": {
+    "ko": "오징어 게임"
+  },
+  "771707-squid-game-season-3": {
+    "ko": "오징어 게임"
+  },
+  "750961-taxi-driver-season-3": {
+    "ko": "모범택시 2"
+  }
 }

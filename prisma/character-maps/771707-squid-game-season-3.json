@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "mdlSlug": "771707-squid-game-season-3",
+  "title": "Squid Game Season 3",
+  "native": "오징어 게임 시즌 3",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (71 roles, 11 main)",
+    "ko.wikipedia 시즌 2~3 등장인물 (3k chars — season 3 outcomes inferred)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "gihun",
+    "inho",
+    "myeonggi",
+    "daeho",
+    "junho",
+    "noeul"
+  ],
+  "people": [
+    {
+      "id": "gihun",
+      "name": "Seong Gi Hun / No. 456",
+      "actor": "Lee Jung Jae",
+      "image": "https://i.mydramalist.com/zBDqeP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Back in the game, three years after winning it"
+    },
+    {
+      "id": "inho",
+      "name": "Hwang In Ho / The Front Man",
+      "actor": "Lee Byung Hun",
+      "image": "https://i.mydramalist.com/735VwR_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Winner of the 2015 game; runs it now — and plays it, as No. 001"
+    },
+    {
+      "id": "junho",
+      "name": "Hwang Jun Ho",
+      "actor": "Wi Ha Joon",
+      "image": "https://i.mydramalist.com/xzdP0_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "The detective, still looking for the island"
+    },
+    {
+      "id": "noeul",
+      "name": "Kang No Eul",
+      "actor": "Park Gyu Young",
+      "image": "https://i.mydramalist.com/oQBr6N_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Defector; a guard, looking for the daughter she left in the North"
+    },
+    {
+      "id": "captain",
+      "name": "Park Yeong Gil / Captain Park",
+      "actor": "Oh Dal Soo",
+      "image": "https://i.mydramalist.com/2nD0d_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "The boat captain helping Jun Ho — the hosts' spy"
+    },
+    {
+      "id": "useok",
+      "name": "Choi U Seok",
+      "actor": "Jeon Seok Ho",
+      "image": "https://i.mydramalist.com/YYj5OB_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Gi Hun's old loan shark, now on his payroll"
+    },
+    {
+      "id": "myeonggi",
+      "name": "Lee Myeong Gi / No. 333",
+      "actor": "Yim Si Wan",
+      "image": "https://i.mydramalist.com/73o5Kb_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Former YouTuber; his crypto scam sank hundreds"
+    },
+    {
+      "id": "junhui",
+      "name": "Kim Jun Hui / No. 222",
+      "actor": "Jo Yu Ri",
+      "image": "https://i.mydramalist.com/VXzNrQ_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Pregnant; lost her money on his coin"
+    },
+    {
+      "id": "daeho",
+      "name": "Kang Dae Ho / No. 388",
+      "actor": "Kang Ha Neul",
+      "image": "https://i.mydramalist.com/nOZ8J6_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Says he was a marine"
+    },
+    {
+      "id": "hyeonju",
+      "name": "Cho Hyeon Ju / No. 120",
+      "actor": "Park Sung Hoon",
+      "image": "https://i.mydramalist.com/mONo42_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Former special forces; playing for her surgery"
+    },
+    {
+      "id": "gyeongseok",
+      "name": "Park Gyeong Seok / No. 246",
+      "actor": "Lee Jin Wook",
+      "image": "https://i.mydramalist.com/JBDzLj_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Playing for his daughter's leukaemia treatment"
+    },
+    {
+      "id": "yongsik",
+      "name": "Park Yong Sik / No. 007",
+      "actor": "Yang Dong Geun",
+      "image": "https://i.mydramalist.com/yWOPQ4_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Gambler who repents"
+    },
+    {
+      "id": "geumja",
+      "name": "Jang Geum Ja / No. 149",
+      "actor": "Kang Ae Sim",
+      "image": "https://i.mydramalist.com/VXzNpQ_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Came to pay her son's debts"
+    },
+    {
+      "id": "seonnyeo",
+      "name": "Yong Gung Seon Nyeo / No. 044",
+      "actor": "Chae Gook Hee",
+      "image": "https://i.mydramalist.com/KpKXOv_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Self-styled shaman"
+    },
+    {
+      "id": "minsu",
+      "name": "Park Min Su / No. 125",
+      "actor": "David Lee",
+      "image": "https://i.mydramalist.com/6Pl1K_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Quiet, timid"
+    },
+    {
+      "id": "namgyu",
+      "name": "Nam Gyu / No. 124",
+      "actor": "Roh Jae Won",
+      "image": "https://i.mydramalist.com/Lwlkv7_5m.jpg",
+      "group": "Thanos' crew",
+      "inCast": true,
+      "note": "Thanos' right hand; another victim of the coin"
+    },
+    {
+      "id": "yeongmi",
+      "name": "Kim Yeong Mi / No. 095",
+      "actor": "Kim Si Eun",
+      "image": "https://i.mydramalist.com/Px47A5_5m.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Sees Hyeon Ju as the woman she is"
+    },
+    {
+      "id": "jeongdae",
+      "name": "Im Jeong Dae / No. 100",
+      "actor": "Song Young Chang",
+      "image": "https://i.mydramalist.com/1LW0Rm.jpg",
+      "group": "The players",
+      "inCast": true,
+      "note": "Leads the vote to keep playing"
+    },
+    {
+      "id": "gimin",
+      "name": "Kim Ki Min / No. 203",
+      "actor": "Choi Gwi Hwa",
+      "image": "https://i.mydramalist.com/E84Rlm.jpg",
+      "group": "The players",
+      "inCast": true
+    },
+    {
+      "id": "seungwon",
+      "name": "Lee Seung Won / No. 336",
+      "actor": "Park Jin U",
+      "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
+      "group": "The players",
+      "inCast": true
+    },
+    {
+      "id": "deputy",
+      "name": "Deputy commander",
+      "actor": "Park Hee Soon",
+      "image": "https://i.mydramalist.com/kWLmrm.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "speech",
+      "name": "Speech mask",
+      "actor": "Kim Byung Chul",
+      "image": "https://i.mydramalist.com/Dke4Z5_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "The masked officer who speaks; MDL lists the role unnamed"
+    },
+    {
+      "id": "no096",
+      "name": "No. 096",
+      "actor": "Lee Suk",
+      "image": "https://i.mydramalist.com/dJLr0_5m.jpg",
+      "group": "The players",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "inho",
+      "to": "gihun",
+      "type": "rivalry",
+      "label": "runs the game he came back to end",
+      "short": "runs the game",
+      "evidence": "게임 감독자이자 2015년 판 게임의 승자인 프론트 맨",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junho",
+      "to": "inho",
+      "type": "family",
+      "label": "his brother — the Front Man",
+      "short": "brother",
+      "evidence": "자신의 형이 대회의 주최자인 프론트맨임을 알게 된다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junho",
+      "to": "gihun",
+      "type": "work",
+      "label": "the search for the island",
+      "short": "searching",
+      "evidence": "게임 위치를 찾고 상사를 쓰러 뜨리려는 준호",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "captain",
+      "to": "junho",
+      "type": "work",
+      "label": "the sailor helping him — the hosts' spy",
+      "short": "his boatman",
+      "evidence": "게임 위치를 찾고… 준호와 나중에 기훈의 사채업자를 돕는 선원. 사실 주최 측 스파이임이 밝혀졌다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "useok",
+      "to": "gihun",
+      "type": "work",
+      "label": "the loan shark who now works for him",
+      "short": "his man",
+      "evidence": "기훈의 사채업자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "noeul",
+      "to": "inho",
+      "type": "work",
+      "label": "a guard in his game",
+      "short": "guard",
+      "evidence": "게임을 위해 경비병으로 일하는 전직 군인이자 탈북자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "noeul",
+      "to": "gyeongseok",
+      "type": "bond",
+      "label": "the guard who spares the father",
+      "short": "spares him",
+      "evidence": "딸의 혈액암 치료비를 마련하기 위해 게임에 참가한 남자",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "myeonggi",
+      "to": "junhui",
+      "type": "romance",
+      "label": "her ex, and the father of her child",
+      "short": "her ex",
+      "evidence": "준희의 전 남자친구이다 / 임신한 명기의 전 여자친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myeonggi",
+      "to": "junhui",
+      "type": "rivalry",
+      "label": "the coin she lost her money on was his",
+      "short": "sank her",
+      "evidence": "명기의 암호화폐를 사다가 돈을 잃고",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeho",
+      "to": "gihun",
+      "type": "friend",
+      "label": "allies — the 'marine'",
+      "short": "ally",
+      "evidence": "전 해병대원 이라고 거짓말을 하고 성기훈 일행과 동맹을 맺는다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongsik",
+      "to": "geumja",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "잘못을 뉘우친 도박 중독자이자 금자의 아들 / 아들의 빚을 갚기 위해 게임에 뛰어드는 용식의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongmi",
+      "to": "hyeonju",
+      "type": "friend",
+      "label": "sees her as a woman; follows her",
+      "short": "her friend",
+      "evidence": "현주를 여자로 인정해 주고 잘 따른다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonju",
+      "to": "gihun",
+      "type": "friend",
+      "label": "allies",
+      "short": "ally",
+      "evidence": "성전환 수술을 받을 돈이 부족한 트랜스젠더 여성이자 전직 특수부대 군인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "namgyu",
+      "to": "myeonggi",
+      "type": "rivalry",
+      "label": "another victim of his coin",
+      "short": "his victim",
+      "evidence": "명기 암호화폐 사기의 또 다른 피해자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "namgyu",
+      "to": "minsu",
+      "type": "rivalry",
+      "label": "bullies him",
+      "short": "bullies him",
+      "evidence": "수봉과 함께 다른 플레이어, 특히 명기와 민수를 괴롭히는 일에 동참한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongdae",
+      "to": "gihun",
+      "type": "rivalry",
+      "label": "leads the vote to go on",
+      "short": "votes to go on",
+      "evidence": "임정대 / 100번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "junhui",
+      "to": "gihun",
+      "type": "bond",
+      "label": "her baby, born in the game — the one he plays for at the end",
+      "short": "her child",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "myeonggi",
+      "to": "gihun",
+      "type": "rivalry",
+      "label": "the last game",
+      "short": "the final",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "geumja",
+      "to": "yongsik",
+      "type": "rivalry",
+      "label": "what the mother does when the son turns",
+      "short": "the night",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deputy",
+      "to": "inho",
+      "type": "work",
+      "label": "second in command",
+      "short": "second",
+      "evidence": "[Deputy commander]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "speech",
+      "to": "inho",
+      "type": "work",
+      "label": "the voice of the game",
+      "short": "his officer",
+      "evidence": "[Speech mask]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "noeul",
+      "to": "junho",
+      "type": "friend",
+      "label": "the guard and the detective, at the end",
+      "short": "at the end",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "gihun",
+      "inho",
+      "junho",
+      "noeul",
+      "captain",
+      "useok",
+      "myeonggi",
+      "junhui",
+      "daeho",
+      "hyeonju",
+      "gyeongseok",
+      "yongsik",
+      "geumja",
+      "seonnyeo",
+      "minsu",
+      "namgyu",
+      "yeongmi",
+      "jeongdae",
+      "gimin",
+      "seungwon",
+      "deputy",
+      "speech",
+      "no096"
+    ],
+    "blocks": {
+      "The players": [
+        0,
+        0
+      ],
+      "Thanos' crew": [
+        0,
+        2
+      ],
+      "Outside": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "gihun",
+      "inho"
+    ]
+  }
+}
