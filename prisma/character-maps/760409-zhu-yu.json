@@ -1,0 +1,646 @@
+{
+  "version": 1,
+  "mdlSlug": "760409-zhu-yu",
+  "title": "Pursuit of Jade",
+  "native": "逐玉",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (91 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 主要演員 (table, broken into lines; 4k chars)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "changyu",
+    "xiezheng"
+  ],
+  "people": [
+    {
+      "id": "changyu",
+      "name": "Fan Chang Yu",
+      "actor": "Tian Xi Wei",
+      "image": "https://i.mydramalist.com/eYv4Vd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "A butcher's daughter with a butcher's knife"
+    },
+    {
+      "id": "xiezheng",
+      "name": "Xie Zheng / Marquis of Wu'an",
+      "actor": "Zhang Ling He",
+      "image": "https://i.mydramalist.com/YY1bQP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "A fallen noble hiding as 'Xie Jiu Heng', seeking revenge"
+    },
+    {
+      "id": "qianqian",
+      "name": "Yu Qian Qian",
+      "actor": "Snow Kong",
+      "image": "https://i.mydramalist.com/3ojD3j_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true,
+      "note": "Owner of the Yixiang tavern; fled Qi Min"
+    },
+    {
+      "id": "baoer",
+      "name": "Yu Bao Er",
+      "actor": "Wu Jia Jun",
+      "image": "https://i.mydramalist.com/l0zRqJ_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true
+    },
+    {
+      "id": "changning",
+      "name": "Fan Chang Ning",
+      "actor": "Cao Yan Ning",
+      "image": "https://i.mydramalist.com/KpykED_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true,
+      "note": "'Ning Niang'"
+    },
+    {
+      "id": "zhao",
+      "name": "Mr. Zhao",
+      "actor": "Yue Yang",
+      "image": "https://i.mydramalist.com/l0LyV6_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true
+    },
+    {
+      "id": "mrszhao",
+      "name": "Mrs. Zhao",
+      "actor": "Liu Lin",
+      "image": "https://i.mydramalist.com/eWNpd_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true
+    },
+    {
+      "id": "zhaoxun",
+      "name": "Zhao Xun",
+      "actor": "Guan Zi Jing",
+      "image": "https://i.mydramalist.com/085pN_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true,
+      "note": "Rice shop manager"
+    },
+    {
+      "id": "jin",
+      "name": "Jin Yuan Bao",
+      "actor": "Li Dian Zun",
+      "image": "https://i.mydramalist.com/5vwzn4_5m.jpg",
+      "group": "Pig Butcher Squad",
+      "inCast": true,
+      "note": "Lin'an's thug, then a soldier"
+    },
+    {
+      "id": "manwu",
+      "name": "Man Wu",
+      "actor": "Wu Yi Jia",
+      "image": "https://i.mydramalist.com/E5x7QQ_5m.jpg",
+      "group": "Pig Butcher Squad",
+      "inCast": true
+    },
+    {
+      "id": "mancang",
+      "name": "Man Cang",
+      "actor": "Sun Kai",
+      "image": "https://i.mydramalist.com/6A14W_5m.jpg",
+      "group": "Pig Butcher Squad",
+      "inCast": true
+    },
+    {
+      "id": "mandi",
+      "name": "Man Di",
+      "actor": "Nine Kornchid Boonsathitpakdee",
+      "image": "https://i.mydramalist.com/nOorP8_5m.jpg",
+      "group": "Pig Butcher Squad",
+      "inCast": true
+    },
+    {
+      "id": "xiewu",
+      "name": "Xie Wu",
+      "actor": "Zhang Shu Lun",
+      "image": "https://i.mydramalist.com/1ww2Xd_5m.jpg",
+      "group": "Blood-Robed Cavalry",
+      "inCast": true
+    },
+    {
+      "id": "xieqi",
+      "name": "Xie Qi",
+      "actor": "Li Yu Wei",
+      "image": "https://i.mydramalist.com/d0QW2z_5m.jpg",
+      "group": "Blood-Robed Cavalry",
+      "inCast": true
+    },
+    {
+      "id": "xieshiyi",
+      "name": "Xie Shi Yi",
+      "actor": "Yang He Wen",
+      "image": "https://i.mydramalist.com/5vVQNy_5m.jpg",
+      "group": "Blood-Robed Cavalry",
+      "inCast": true
+    },
+    {
+      "id": "qimin",
+      "name": "Qi Min / Sui Yuan Huai",
+      "actor": "Deng Kai",
+      "image": "https://i.mydramalist.com/yWjNVN_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "Raised as Sui Yuan Huai — the crown prince's true son, swapped at the palace fire"
+    },
+    {
+      "id": "yuanqing",
+      "name": "Sui Yuan Qing",
+      "actor": "Lin Mu Ran",
+      "image": "https://i.mydramalist.com/g0dZLd_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true
+    },
+    {
+      "id": "weiyan",
+      "name": "Wei Yan",
+      "actor": "Yan Yi Kuan",
+      "image": "https://i.mydramalist.com/Nd63Qn_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "Prime minister of Yin"
+    },
+    {
+      "id": "weisheng",
+      "name": "Wei Sheng",
+      "actor": "Cheng Qi Meng",
+      "image": "https://i.mydramalist.com/yWeqx3_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true
+    },
+    {
+      "id": "qisheng",
+      "name": "Qi Sheng",
+      "actor": "Guan Yun Peng",
+      "image": "https://i.mydramalist.com/22Xjk_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "Emperor of Yin"
+    },
+    {
+      "id": "qishu",
+      "name": "Qi Shu",
+      "actor": "Yu Zhong Li",
+      "image": "https://i.mydramalist.com/4e0J0Q_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "Grand princess"
+    },
+    {
+      "id": "lijing",
+      "name": "Li Jing",
+      "actor": "Wang Jiu Sheng",
+      "image": "https://i.mydramalist.com/jQ2LXb_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "Grand tutor of Yin"
+    },
+    {
+      "id": "jianjia",
+      "name": "Jian Jia",
+      "actor": "Wang Ting Wen",
+      "image": "https://i.mydramalist.com/B6w2l_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true
+    },
+    {
+      "id": "huaian",
+      "name": "Li Huai An / Wen Kan",
+      "actor": "Ren Hao",
+      "image": "https://i.mydramalist.com/X7zRg_5m.jpg",
+      "group": "Heijian",
+      "inCast": true
+    },
+    {
+      "id": "zhuoran",
+      "name": "Zhuo Ran",
+      "actor": "Han Yi Ting",
+      "image": "https://i.mydramalist.com/kA3B3r_5m.jpg",
+      "group": "Heijian",
+      "inCast": true
+    },
+    {
+      "id": "gongsun",
+      "name": "Gongsun Yin",
+      "actor": "Li Qing",
+      "image": "https://i.mydramalist.com/Ezn85_5m.jpg",
+      "group": "Heijian",
+      "inCast": true,
+      "note": "Headmaster of Liu Yuan Academy"
+    }
+  ],
+  "links": [
+    {
+      "from": "changyu",
+      "to": "xiezheng",
+      "type": "romance",
+      "label": "a fake marriage that became a real one; war parts them",
+      "short": "married",
+      "evidence": "Their fake marriage turns into true love, but war tears them apart",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "changyu",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "takes her knife to the battlefield to find him",
+      "short": "goes to war for him",
+      "evidence": "Fan Chang Yu wields her butcher's knife on the battlefield, searching for justice and her husband",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changning",
+      "to": "changyu",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "[Chang Yu's sister] / 樊長玉的妹妹，乳名「寧娘」",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changning",
+      "to": "baoer",
+      "type": "friend",
+      "label": "playmates",
+      "short": "playmates",
+      "evidence": "俞寶兒玩伴",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "qianqian",
+      "to": "baoer",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Qian Qian's son] / 育有一子俞寶兒",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qianqian",
+      "to": "qimin",
+      "type": "romance",
+      "label": "his concubine, who fled him",
+      "short": "fled him",
+      "evidence": "齊旻逃妾",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qimin",
+      "to": "qianqian",
+      "type": "romance",
+      "label": "loves her; dies for her at the end",
+      "short": "loves her",
+      "evidence": "喜歡俞淺淺。最後為救俞淺淺墜下城樓被賜毒酒而死",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qianqian",
+      "to": "changyu",
+      "type": "friend",
+      "label": "the tavern owner who takes her in",
+      "short": "friend",
+      "evidence": "溢香樓的東家、掌櫃",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "zhao",
+      "to": "changyu",
+      "type": "friend",
+      "label": "neighbour",
+      "short": "neighbour",
+      "evidence": "[Chang Yu's neighbor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mrszhao",
+      "to": "zhao",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Chang Yu's neighbor] / [Chang Yu's neighbor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhaoxun",
+      "to": "changyu",
+      "type": "work",
+      "label": "the rice shop",
+      "short": "rice shop",
+      "evidence": "[Lin'an Rice Shop manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jin",
+      "to": "changyu",
+      "type": "rivalry",
+      "label": "the thug who kept picking on her — then a soldier beside her",
+      "short": "old nuisance",
+      "evidence": "本是林安镇的地痞，经常找长玉的麻烦，后为鎮西北殺豬小隊的成员之一",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manwu",
+      "to": "changyu",
+      "type": "work",
+      "label": "Pig Butcher Squad",
+      "short": "her squad",
+      "evidence": "[Northwest Pig Butcher Squad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mancang",
+      "to": "changyu",
+      "type": "work",
+      "label": "Pig Butcher Squad",
+      "short": "her squad",
+      "evidence": "[Northwest Pig Butcher Squad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mandi",
+      "to": "changyu",
+      "type": "work",
+      "label": "Pig Butcher Squad",
+      "short": "her squad",
+      "evidence": "[Northwest Pig Butcher Squad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiewu",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "Blood-Robed Cavalry guard",
+      "short": "his guard",
+      "evidence": "[Blood-Robed Cavalry guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xieqi",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "Blood-Robed Cavalry guard",
+      "short": "his guard",
+      "evidence": "[Blood-Robed Cavalry guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xieshiyi",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "Blood-Robed Cavalry guard",
+      "short": "his guard",
+      "evidence": "[Blood-Robed Cavalry guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qimin",
+      "to": "qisheng",
+      "type": "family",
+      "label": "the crown prince's true son, swapped seventeen years ago at the palace fire",
+      "short": "the true heir",
+      "evidence": "十七年前東宮大火，與長信王長子互換身分，實為大胤王承德太子嫡子、皇长孙",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qimin",
+      "to": "yuanqing",
+      "type": "rivalry",
+      "label": "kills him, and the woman who raised them, when he reveals himself",
+      "short": "kills him",
+      "evidence": "後自爆身份殺害養母與隨元青",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lijing",
+      "to": "qimin",
+      "type": "work",
+      "label": "the grand tutor who puts him on the throne",
+      "short": "makes him emperor",
+      "evidence": "李太傅則助他成功回到大胤皇朝稱帝",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiyan",
+      "to": "xiezheng",
+      "type": "family",
+      "label": "maternal uncle — and the prime minister who destroyed the Fan family",
+      "short": "uncle",
+      "evidence": "大胤丞相，謝征舅舅",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weiyan",
+      "to": "changyu",
+      "type": "rivalry",
+      "label": "framed her father over the Jinzhou massacre; the family was wiped out",
+      "short": "ruined her family",
+      "evidence": "被當朝丞相魏嚴构陷，導致家族滅門",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "weisheng",
+      "to": "weiyan",
+      "type": "work",
+      "label": "assistant",
+      "short": "assistant",
+      "evidence": "[Wei Yan's assistant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qishu",
+      "to": "xiezheng",
+      "type": "family",
+      "label": "the grand princess",
+      "short": "court",
+      "evidence": "[Grand Princess]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jianjia",
+      "to": "qishu",
+      "type": "work",
+      "label": "maidservant",
+      "short": "maidservant",
+      "evidence": "[Qi Shu's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huaian",
+      "to": "xiezheng",
+      "type": "rivalry",
+      "label": "Heijian against Yin",
+      "short": "the other side",
+      "evidence": "李懷安／溫侃",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhuoran",
+      "to": "huaian",
+      "type": "work",
+      "label": "guard",
+      "short": "guard",
+      "evidence": "[Huai An's guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gongsun",
+      "to": "huaian",
+      "type": "work",
+      "label": "headmaster of Liu Yuan Academy in Heijian",
+      "short": "headmaster",
+      "evidence": "[Headmaster of Liu Yuan Academy of Heijian]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "changyu",
+      "xiezheng",
+      "qianqian",
+      "baoer",
+      "changning",
+      "zhao",
+      "mrszhao",
+      "zhaoxun",
+      "jin",
+      "manwu",
+      "mancang",
+      "mandi",
+      "xiewu",
+      "xieqi",
+      "xieshiyi",
+      "qimin",
+      "yuanqing",
+      "weiyan",
+      "weisheng",
+      "qisheng",
+      "qishu",
+      "lijing",
+      "jianjia",
+      "huaian",
+      "zhuoran",
+      "gongsun"
+    ],
+    "blocks": {
+      "Lin'an": [
+        0,
+        0
+      ],
+      "Pig Butcher Squad": [
+        0,
+        2
+      ],
+      "The court of Yin": [
+        2,
+        0
+      ],
+      "Heijian": [
+        2,
+        2
+      ],
+      "Blood-Robed Cavalry": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "changyu",
+      "xiezheng"
+    ]
+  }
+}
