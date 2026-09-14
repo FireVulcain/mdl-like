@@ -1,0 +1,453 @@
+{
+  "version": 1,
+  "mdlSlug": "705723-strange-lawyer-woo-young-woo",
+  "title": "Extraordinary Attorney Woo",
+  "native": "이상한 변호사 우영우",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (197 roles, 3 main)",
+    "MDL synopsis (Soompi)",
+    "ko.wikipedia 등장인물 (1k chars)",
+    "en.wikipedia Cast (Han Seon-young's entry carries Tae Su-mi's description)"
+  ],
+  "main": [
+    "yeongu",
+    "junho",
+    "myeongseok"
+  ],
+  "people": [
+    {
+      "id": "yeongu",
+      "name": "Woo Yeong U",
+      "actor": "Park Eun Bin",
+      "image": "https://i.mydramalist.com/v7Evg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Ji Yul",
+          "image": "https://i.mydramalist.com/03nK6_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Rookie attorney at Hanbada; autistic, IQ 164, whales"
+    },
+    {
+      "id": "junho",
+      "name": "Lee Jun Ho",
+      "actor": "Kang Tae Oh",
+      "image": "https://i.mydramalist.com/qv3mz_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Litigation team staff at Hanbada"
+    },
+    {
+      "id": "myeongseok",
+      "name": "Jung Myeong Seok",
+      "actor": "Kang Ki Young",
+      "image": "https://i.mydramalist.com/EeKV5_5m.jpg",
+      "group": "Hanbada",
+      "inCast": true,
+      "note": "Senior attorney"
+    },
+    {
+      "id": "seonyeong",
+      "name": "Han Seon Yeong",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "Hanbada",
+      "inCast": true,
+      "note": "CEO of Hanbada"
+    },
+    {
+      "id": "suyeon",
+      "name": "Choi Soo Yeon",
+      "actor": "Ha Yoon Kyoung",
+      "image": "https://i.mydramalist.com/jz0zd_5m.jpg",
+      "group": "Hanbada",
+      "inCast": true,
+      "note": "Rookie attorney"
+    },
+    {
+      "id": "minu",
+      "name": "Kwon Min U",
+      "actor": "Joo Jong Hyuk",
+      "image": "https://i.mydramalist.com/2LA3d_5m.jpg",
+      "group": "Hanbada",
+      "inCast": true,
+      "note": "Rookie attorney"
+    },
+    {
+      "id": "seungjun",
+      "name": "Jang Seung Jun",
+      "actor": "Choi Dae Hoon",
+      "image": "https://i.mydramalist.com/X85nqm.jpg",
+      "group": "Hanbada",
+      "inCast": true,
+      "note": "Attorney"
+    },
+    {
+      "id": "gwangho",
+      "name": "Woo Gwang Ho",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "Yeong U's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jang Sung Bum",
+          "image": "https://i.mydramalist.com/44njkm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Runs a gimbap shop; gave up the law to raise her alone"
+    },
+    {
+      "id": "sumi",
+      "name": "Tae Su Mi",
+      "actor": "Jin Kyung",
+      "image": "https://i.mydramalist.com/Xe7vJm.jpg",
+      "group": "Taesan",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Han Bit",
+          "image": "https://i.mydramalist.com/vrLYW_5m.jpg",
+          "era": "young"
+        },
+        {
+          "name": "Lee Rang Seo",
+          "image": "https://i.mydramalist.com/doLKDm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Partner at Taesan — wealth, name, looks, skill"
+    },
+    {
+      "id": "sanghyeon",
+      "name": "Choi Sang Hyeon",
+      "actor": "Choi Hyun Jin",
+      "image": "https://i.mydramalist.com/WPNrnW_5m.jpg",
+      "group": "Taesan",
+      "inCast": true
+    },
+    {
+      "id": "geurami",
+      "name": "Dong Geurami",
+      "actor": "Joo Hyun Young",
+      "image": "https://i.mydramalist.com/py7wD_5m.jpg",
+      "group": "Yeong U's friends",
+      "inCast": true,
+      "note": "Her friend and teacher in the ways of people"
+    },
+    {
+      "id": "minsik",
+      "name": "Kim Min Sik",
+      "actor": "Im Sung Jae",
+      "image": "https://i.mydramalist.com/nOR1WW_5m.jpg",
+      "group": "Yeong U's friends",
+      "inCast": true,
+      "note": "Owner of the bar where Geurami works — Yeong U's hideout"
+    },
+    {
+      "id": "dongsam",
+      "name": "Dong Dong Sam",
+      "actor": "Jung Suk Yong",
+      "image": "https://i.mydramalist.com/j2rBOm.jpg",
+      "group": "Yeong U's friends",
+      "inCast": true
+    },
+    {
+      "id": "seunghui",
+      "name": "Lee Seung Hui",
+      "actor": "Chae Song Hwa",
+      "image": "https://i.mydramalist.com/R7bw6_5m.jpg",
+      "group": "Jun Ho's family",
+      "inCast": true
+    },
+    {
+      "id": "jungnam",
+      "name": "Jung Nam",
+      "actor": "Yoon Na Moo",
+      "image": "https://i.mydramalist.com/RX5n6_5m.jpg",
+      "group": "Jun Ho's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yeongu",
+      "to": "junho",
+      "type": "romance",
+      "label": "the litigation staffer who falls for the rookie attorney",
+      "short": "in love",
+      "evidence": "법무법인 한바다의 송무팀 직원 / an employee in the litigation team at Hanbada",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myeongseok",
+      "to": "yeongu",
+      "type": "work",
+      "label": "her mentor, the senior attorney",
+      "short": "her mentor",
+      "evidence": "영우의 멘토, 시니어 변호사 / Woo Young-woo's mentor",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonyeong",
+      "to": "myeongseok",
+      "type": "work",
+      "label": "CEO of Hanbada",
+      "short": "CEO",
+      "evidence": "대표 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonyeong",
+      "to": "gwangho",
+      "type": "friend",
+      "label": "his junior at university",
+      "short": "his junior",
+      "evidence": "대표 변호사. 광호의 대학 후배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonyeong",
+      "to": "yeongu",
+      "type": "work",
+      "label": "hired her — with the mother in mind",
+      "short": "hired her",
+      "evidence": "대표 변호사. 광호의 대학 후배 / 영우의 생모지만",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "suyeon",
+      "to": "yeongu",
+      "type": "friend",
+      "label": "law-school classmate and friend",
+      "short": "law-school friend",
+      "evidence": "영우의 친구, 신입 변호사. 영우와는 로스쿨 동기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minu",
+      "to": "yeongu",
+      "type": "rivalry",
+      "label": "the rookie who sees her as a rival",
+      "short": "her rival",
+      "evidence": "신입 변호사. 영우에게 라이벌 의식을 느끼는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjun",
+      "to": "myeongseok",
+      "type": "rivalry",
+      "label": "his contemporary and rival",
+      "short": "rival",
+      "evidence": "변호사. 명석의 동기이자 라이벌",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gwangho",
+      "to": "yeongu",
+      "type": "family",
+      "label": "father — raised her alone",
+      "short": "father",
+      "evidence": "영우의 아버지, 분식집 사장… 법조인이 아닌 미혼부의 길을 선택함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sumi",
+      "to": "yeongu",
+      "type": "family",
+      "label": "birth mother, who kept away",
+      "short": "birth mother",
+      "evidence": "영우의 생모지만, 광호와 영우 부녀를 멀리하고 살았음 / biological mother of Young-woo",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sumi",
+      "to": "gwangho",
+      "type": "romance",
+      "label": "his girlfriend in law school — Yeong U's mother",
+      "short": "her ex",
+      "evidence": "법대생 시절 사귀던 태수미와 본인 사이에 영우가 태어나고",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sumi",
+      "to": "sanghyeon",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Soo Mi's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghyeon",
+      "to": "yeongu",
+      "type": "family",
+      "label": "her younger half-brother",
+      "short": "half-brother",
+      "evidence": "Young-woo's younger half-brother and son of Tae Soo-mi",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geurami",
+      "to": "yeongu",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "영우의 친구이자 부족한 사회성을 가르쳐 주는 스승",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minsik",
+      "to": "geurami",
+      "type": "work",
+      "label": "her boss at the bar",
+      "short": "her boss",
+      "evidence": "동그라미가 아르바이트 중인 털보네 주점 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongsam",
+      "to": "geurami",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Geurami's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunghui",
+      "to": "junho",
+      "type": "family",
+      "label": "older sister",
+      "short": "older sister",
+      "evidence": "[Jun Ho's older sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungnam",
+      "to": "junho",
+      "type": "family",
+      "label": "brother-in-law",
+      "short": "brother-in-law",
+      "evidence": "[Jun Ho's brother-in-law]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungnam",
+      "to": "seunghui",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Jun Ho's older sister] / [Jun Ho's brother-in-law]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeongu",
+      "junho",
+      "myeongseok",
+      "seonyeong",
+      "suyeon",
+      "minu",
+      "seungjun",
+      "gwangho",
+      "sumi",
+      "sanghyeon",
+      "geurami",
+      "minsik",
+      "dongsam",
+      "seunghui",
+      "jungnam"
+    ],
+    "blocks": {
+      "Yeong U's family": [
+        0,
+        0
+      ],
+      "Yeong U's friends": [
+        0,
+        2
+      ],
+      "Hanbada": [
+        2,
+        0
+      ],
+      "Taesan": [
+        2,
+        2
+      ],
+      "Jun Ho's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "yeongu",
+      "junho"
+    ]
+  }
+}
