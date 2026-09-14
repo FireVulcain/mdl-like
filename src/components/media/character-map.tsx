@@ -72,16 +72,18 @@ const alsoLine = (p: MapPerson) => {
  *
  * The filters are the questions a reader has about a chart like this: the
  * compact cut or everyone, which kinds of link, whether to show the twists
- * (reveals follow the hideSpoilers preference to start with), the links no
- * sentence backs, and the people MDL's cast does not carry.
+ * (on only for a show the reader has finished), the links no sentence
+ * backs, and the people MDL's cast does not carry.
  */
-export function CharacterMap({ map, hideSpoilers, completed = false }: { map: CharacterMapData; hideSpoilers: boolean; completed?: boolean }) {
+export function CharacterMap({ map, completed = false }: { map: CharacterMapData; completed?: boolean }) {
     const [everyone, setEveryone] = useState(true);
     const [types, setTypes] = useState<Set<LinkType>>(() => new Set(TYPES));
     // A show the reader has finished opens with everything on the table: the
     // reveals, and the links no sentence backs — which are mostly what the
-    // story is known to do. Anything else keeps them behind their toggles.
-    const [reveals, setReveals] = useState(completed || !hideSpoilers);
+    // story is known to do. Anything else keeps both behind their toggles,
+    // whatever the site-wide spoiler preference says: a chart is one place
+    // where a twist is a caption under a face, read before it is meant to be.
+    const [reveals, setReveals] = useState(completed);
     const [inferred, setInferred] = useState(completed);
     const [ghosts, setGhosts] = useState(true);
     const [labels, setLabels] = useState(true);

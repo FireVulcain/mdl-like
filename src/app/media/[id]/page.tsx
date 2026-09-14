@@ -454,7 +454,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                         {characterMap && (
                             <div id="section-relationships" className="border-t border-line pt-8">
-                                <CharacterMapSection map={characterMap} href={`/media/${media.id}/relationships`} hideSpoilers={displayPrefs.hideSpoilers} completed={userMedia?.status === "Completed"} />
+                                <CharacterMapSection map={characterMap} href={`/media/${media.id}/relationships`} completed={userMedia?.status === "Completed"} />
                             </div>
                         )}
 
@@ -1146,7 +1146,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <CharacterMapSection
                                 map={characterMap}
                                 href={`/media/${media.id}/relationships${selectedSeason > 1 ? `?season=${selectedSeason}` : ""}`}
-                                hideSpoilers={displayPrefs.hideSpoilers}
                                 completed={userMedia?.status === "Completed"}
                             />
                         </div>

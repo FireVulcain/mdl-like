@@ -4,7 +4,6 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { mediaService } from "@/services/media.service";
 import { mediaMetadata } from "@/lib/page-metadata";
-import { getDisplayPreferences } from "@/actions/preferences";
 import { getCharacterMap, isCompleted, resolveMdlSlug } from "@/lib/character-map-store";
 import { CharacterMap } from "@/components/media/character-map";
 
@@ -28,7 +27,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
     const [{ id }, { season }] = await Promise.all([params, searchParams]);
     const selectedSeason = season ? parseInt(season) || 1 : 1;
 
-    const [media, slug, displayPrefs, completed] = await Promise.all([mediaService.getDetails(id), resolveMdlSlug(id, selectedSeason), getDisplayPreferences(), isCompleted(id, selectedSeason)]);
+    const [media, slug, completed] = await Promise.all([mediaService.getDetails(id), resolveMdlSlug(id, selectedSeason), isCompleted(id, selectedSeason)]);
     if (!media) notFound();
     const map = await getCharacterMap(slug);
     if (!map) notFound();
@@ -61,7 +60,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
 
                 <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
-                <CharacterMap map={map} hideSpoilers={displayPrefs.hideSpoilers} completed={completed} />
+                <CharacterMap map={map} completed={completed} />
             </div>
         </div>
     );
