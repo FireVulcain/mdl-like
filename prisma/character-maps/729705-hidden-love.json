@@ -1,0 +1,640 @@
+{
+  "version": 1,
+  "mdlSlug": "729705-hidden-love",
+  "title": "Hidden Love",
+  "native": "偷偷藏不住",
+  "year": 2023,
+  "country": "CN",
+  "sources": [
+    "MDL cast (33 roles, 3 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色 (5k chars)",
+    "en.wikipedia Cast (2k chars)"
+  ],
+  "main": [
+    "sangzhi",
+    "jiaxu",
+    "sangyan"
+  ],
+  "people": [
+    {
+      "id": "sangzhi",
+      "name": "Sang Zhi",
+      "actor": "Zhao Lu Si",
+      "image": "https://i.mydramalist.com/Ndyqmy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zhang Xi Wei",
+          "image": "https://i.mydramalist.com/pd4Jx8_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "'Zhizhi' — loved him in secret for five years"
+    },
+    {
+      "id": "jiaxu",
+      "name": "Duan Jia Xu",
+      "actor": "Chen Zhe Yuan",
+      "image": "https://i.mydramalist.com/b3RoZL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Game designer; worked through university to pay his father's debt"
+    },
+    {
+      "id": "sangyan",
+      "name": "Sang Yan",
+      "actor": "Victor Ma",
+      "image": "https://i.mydramalist.com/eYwmDn_5m.jpg",
+      "group": "The Sang family",
+      "inCast": true,
+      "note": "Sharp tongue, tofu heart; opens a bar after graduating"
+    },
+    {
+      "id": "liping",
+      "name": "Li Ping",
+      "actor": "Zeng Li",
+      "image": "https://i.mydramalist.com/d7egg_5m.jpg",
+      "group": "The Sang family",
+      "inCast": true,
+      "note": "Runs the family firm"
+    },
+    {
+      "id": "sangrong",
+      "name": "Sang Rong",
+      "actor": "Qiu Xin Zhi",
+      "image": "https://i.mydramalist.com/E5QVpm_5m.jpg",
+      "group": "The Sang family",
+      "inCast": true,
+      "note": "Gentle and romantic; lent Jia Xu the money"
+    },
+    {
+      "id": "ruoshu",
+      "name": "Xu Ruo Shu",
+      "actor": "Li Jia Wei",
+      "image": "https://i.mydramalist.com/ABdDP8_5m.jpg",
+      "group": "The Duan family",
+      "inCast": true
+    },
+    {
+      "id": "zhicheng",
+      "name": "Duan Zhi Cheng",
+      "actor": "Wang Wei Hua",
+      "image": "https://i.mydramalist.com/k8yYb_5m.jpg",
+      "group": "The Duan family",
+      "inCast": true,
+      "note": "In a coma after a fall"
+    },
+    {
+      "id": "jiangying",
+      "name": "Jiang Ying",
+      "actor": "Xu Shi Xin",
+      "image": "https://i.mydramalist.com/pq0dn_5m.jpg",
+      "group": "The Duan family",
+      "inCast": true,
+      "note": "His high-school classmate, and his creditor"
+    },
+    {
+      "id": "ningwei",
+      "name": "Ning Wei",
+      "actor": "Smile Wei",
+      "image": "https://i.mydramalist.com/kAJz6b_5m.jpg",
+      "group": "The dorm",
+      "inCast": true,
+      "note": "Roommate; the dorm's love coach"
+    },
+    {
+      "id": "yuxin",
+      "name": "Yu Xin",
+      "actor": "Qi Tian Qing",
+      "image": "https://i.mydramalist.com/w5KjJ_5m.jpg",
+      "group": "The dorm",
+      "inCast": true,
+      "note": "Roommate; wants to design games"
+    },
+    {
+      "id": "ruolan",
+      "name": "Wang Ruo Lan",
+      "actor": "Wang Yi Lan",
+      "image": "https://i.mydramalist.com/xrYWz_5m.jpg",
+      "group": "The dorm",
+      "inCast": true,
+      "note": "Roommate; quiet"
+    },
+    {
+      "id": "jiangming",
+      "name": "Jiang Ming",
+      "actor": "Lu Dong Xu",
+      "image": "https://i.mydramalist.com/yWk00k_5m.jpg",
+      "group": "The dorm",
+      "inCast": true,
+      "note": "PE student; badminton club"
+    },
+    {
+      "id": "chenqiang",
+      "name": "Chen Qiang",
+      "actor": "Song Pei Ze",
+      "image": "https://i.mydramalist.com/Bd28EA_5m.jpg",
+      "group": "The dorm",
+      "inCast": true,
+      "note": "PE student"
+    },
+    {
+      "id": "lixun",
+      "name": "Li Xun",
+      "actor": "Guan Zi Jing",
+      "image": "https://i.mydramalist.com/085pN_5m.jpg",
+      "group": "Xunjiang Tech",
+      "inCast": true,
+      "note": "Partner and producer; took Jia Xu home to Yihe to found it"
+    },
+    {
+      "id": "siyun",
+      "name": "Jiang Si Yun",
+      "actor": "Wang Yang",
+      "image": "https://i.mydramalist.com/21qgw_5m.jpg",
+      "group": "Xunjiang Tech",
+      "inCast": true
+    },
+    {
+      "id": "junwen",
+      "name": "Chen Jun Wen",
+      "actor": "Zhang Hao Lun",
+      "image": "https://i.mydramalist.com/j7Q8r_5m.jpg",
+      "group": "The roommates",
+      "inCast": true
+    },
+    {
+      "id": "qianfei",
+      "name": "Qian Fei",
+      "actor": "Hu Yu Xuan",
+      "image": "https://i.mydramalist.com/Lwojnr_5m.jpg",
+      "group": "The roommates",
+      "inCast": true,
+      "note": "First of the four to marry"
+    },
+    {
+      "id": "zhengchu",
+      "name": "Fu Zheng Chu",
+      "actor": "Zhang Jiong Min",
+      "image": "https://i.mydramalist.com/QJm6x2_5m.jpg",
+      "group": "School days",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Gao Yi Er",
+          "image": "https://i.mydramalist.com/zB8mkO_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Middle- and high-school classmate"
+    },
+    {
+      "id": "zhenru",
+      "name": "Yin Zhen Ru",
+      "actor": "Gu Shu Qi",
+      "image": "https://i.mydramalist.com/W24Pm_5m.jpg",
+      "group": "School days",
+      "inCast": true,
+      "note": "Classmate who transferred away"
+    },
+    {
+      "id": "xiaoyu",
+      "name": "Shi Xiao Yu",
+      "actor": "Xu Shi Yue",
+      "image": "https://i.mydramalist.com/qjYAD_5m.jpg",
+      "group": "School days",
+      "inCast": true,
+      "note": "Her boss at the internship"
+    }
+  ],
+  "links": [
+    {
+      "from": "sangzhi",
+      "to": "jiaxu",
+      "type": "romance",
+      "label": "a crush at thirteen, a couple in Yihe, a proposal at the end",
+      "short": "in love",
+      "evidence": "暗恋段嘉许五年 / 兩年後在宜荷與桑稚重逢，後開始戀愛，最後和桑稚求婚成功",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangyan",
+      "to": "sangzhi",
+      "type": "family",
+      "label": "older brother, by five years",
+      "short": "older brother",
+      "evidence": "桑稚的哥哥 / He is five years older than Sang Zhi",
+      "source": "zh.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangyan",
+      "to": "jiaxu",
+      "type": "friend",
+      "label": "college roommate and best friend",
+      "short": "best friend",
+      "evidence": "与段嘉许是同學兼室友兼好兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "liping",
+      "to": "sangzhi",
+      "type": "family",
+      "label": "mother — against the match, until she saw him",
+      "short": "mother",
+      "evidence": "[Sang Zhi's mother] / 当得知段嘉许和桑稚谈恋爱时，表示反对",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangrong",
+      "to": "sangzhi",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Sang Zhi's father] / 桑父",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liping",
+      "to": "sangyan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Sang Zhi and Sang Yan's mother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangrong",
+      "to": "sangyan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "Sang Zhi and Sang Yan's father",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liping",
+      "to": "sangrong",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "她与桑爸爸的感情很好",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangrong",
+      "to": "jiaxu",
+      "type": "work",
+      "label": "lent him money; a father figure since",
+      "short": "helped him",
+      "evidence": "在段嘉许来借钱时，愿意伸出援手，在那之后，也经常充当家长角色",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruoshu",
+      "to": "jiaxu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "Duan Jiaxu's mother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhicheng",
+      "to": "jiaxu",
+      "type": "family",
+      "label": "father — the hit-and-run that sank the family",
+      "short": "father",
+      "evidence": "Duan Jiaxu's father. He's in a coma… He killed Jiang Ying's father in traffic accident after driving drunk / 因父亲肇事逃逸并自杀后陷入低谷",
+      "source": "en.wikipedia · zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangying",
+      "to": "jiaxu",
+      "type": "rivalry",
+      "label": "his father's creditor, obsessed with him for years",
+      "short": "obsessed with him",
+      "evidence": "段嘉許爸爸的債主兼高中同學，對段嘉許有瘋狂的執念自認為是其女朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhicheng",
+      "to": "jiangying",
+      "type": "rivalry",
+      "label": "killed her father driving drunk",
+      "short": "killed her father",
+      "evidence": "He killed Jiang Ying's father in traffic accident after driving drunk",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ningwei",
+      "to": "sangzhi",
+      "type": "friend",
+      "label": "roommate",
+      "short": "roommate",
+      "evidence": "桑稚的大学舍友 / 是全宿舍的恋爱导师",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuxin",
+      "to": "sangzhi",
+      "type": "friend",
+      "label": "roommate",
+      "short": "roommate",
+      "evidence": "桑稚的大学舍友，热爱游戏，梦想成为游戏策划",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ruolan",
+      "to": "sangzhi",
+      "type": "friend",
+      "label": "roommate",
+      "short": "roommate",
+      "evidence": "桑稚的大学舍友，性格内向文静",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuxin",
+      "to": "jiaxu",
+      "type": "work",
+      "label": "idolises him; wants into Xunjiang",
+      "short": "admires him",
+      "evidence": "崇拜段嘉许，想要加入迅江科技",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangming",
+      "to": "sangzhi",
+      "type": "romance",
+      "label": "fell for her the day she enrolled; kept trying",
+      "short": "courts her",
+      "evidence": "因在大学报到时对桑稚一见钟情… 对桑稚的追求积极又坦蕩",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruolan",
+      "to": "jiangming",
+      "type": "romance",
+      "label": "loved him in secret; went after him once Sang Zhi said no",
+      "short": "secret crush",
+      "evidence": "一直偷偷暗恋江铭… 才在桑稚的鼓励下，鼓起勇气追求江铭",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chenqiang",
+      "to": "ningwei",
+      "type": "romance",
+      "label": "boyfriend",
+      "short": "boyfriend",
+      "evidence": "陳強的女朋友 / 寧薇的男朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chenqiang",
+      "to": "jiangming",
+      "type": "friend",
+      "label": "classmates in PE",
+      "short": "classmate",
+      "evidence": "Jiang Ming's college classmate",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "lixun",
+      "to": "jiaxu",
+      "type": "work",
+      "label": "his mentor since the internship; partner at Xunjiang",
+      "short": "his mentor",
+      "evidence": "在段嘉许大四实习时，作为项目领导… 带着还未毕业的段嘉许回宜荷创业，成立迅江网络科技",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "siyun",
+      "to": "jiaxu",
+      "type": "work",
+      "label": "his boss — Sang Zhi took her for his girlfriend",
+      "short": "his boss",
+      "evidence": "段嘉许上司… 曾被桑稚誤以為是段嘉许的女朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lixun",
+      "to": "siyun",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "跟李迅是夫妻",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junwen",
+      "to": "jiaxu",
+      "type": "friend",
+      "label": "college roommate",
+      "short": "roommate",
+      "evidence": "段嘉許的大學同學兼室友兼好兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "qianfei",
+      "to": "jiaxu",
+      "type": "friend",
+      "label": "college roommate",
+      "short": "roommate",
+      "evidence": "段嘉許的大學同學兼室友兼好兄弟，是四人裡第一個結婚的",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junwen",
+      "to": "sangyan",
+      "type": "friend",
+      "label": "college roommate",
+      "short": "roommate",
+      "evidence": "Duan Jiaxu and Sang Yan's college roommate",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhengchu",
+      "to": "sangzhi",
+      "type": "romance",
+      "label": "the schoolmate who liked her",
+      "short": "liked her",
+      "evidence": "桑稚的初中、高中同學，喜歡桑稚",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenru",
+      "to": "sangzhi",
+      "type": "friend",
+      "label": "schoolmate — dragged her into a fight, then transferred",
+      "short": "schoolmate",
+      "evidence": "桑稚的初中、高中同學，拉著桑稚被別的學校的女生欺負，后转学",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiaoyu",
+      "to": "sangzhi",
+      "type": "rivalry",
+      "label": "her internship boss, Jiang Ying's friend, who took her for a boyfriend-thief",
+      "short": "hostile boss",
+      "evidence": "桑稚實習公司的上司，姜穎的朋友，因誤以為桑稚搶姜穎男友而看她處處不順眼",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaoyu",
+      "to": "jiangying",
+      "type": "friend",
+      "label": "friends",
+      "short": "friends",
+      "evidence": "姜穎的朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "sangzhi",
+      "jiaxu",
+      "sangyan",
+      "liping",
+      "sangrong",
+      "ruoshu",
+      "zhicheng",
+      "jiangying",
+      "ningwei",
+      "yuxin",
+      "ruolan",
+      "jiangming",
+      "chenqiang",
+      "lixun",
+      "siyun",
+      "junwen",
+      "qianfei",
+      "zhengchu",
+      "zhenru",
+      "xiaoyu"
+    ],
+    "blocks": {
+      "The Sang family": [
+        0,
+        0
+      ],
+      "The dorm": [
+        0,
+        2
+      ],
+      "The Duan family": [
+        2,
+        0
+      ],
+      "Xunjiang Tech": [
+        2,
+        2
+      ],
+      "The roommates": [
+        1,
+        0
+      ],
+      "School days": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sangzhi",
+      "jiaxu"
+    ]
+  }
+}
