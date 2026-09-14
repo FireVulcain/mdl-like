@@ -1,0 +1,749 @@
+{
+  "version": 1,
+  "mdlSlug": "725367-untitled-park-ji-eun-project",
+  "title": "Queen of Tears",
+  "native": "눈물의 여왕",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (146 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (2k chars)",
+    "en.wikipedia Cast (entries run into one another; not used)"
+  ],
+  "main": [
+    "hyeonu",
+    "haein",
+    "eunseong",
+    "sucheol",
+    "dahye"
+  ],
+  "people": [
+    {
+      "id": "hyeonu",
+      "name": "Baek Hyeon U",
+      "actor": "Kim Soo Hyun",
+      "image": "https://i.mydramalist.com/rNgNLN_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Seong Hyun",
+          "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Cho Yi An",
+          "image": "https://i.mydramalist.com/eegmY_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Legal director of Queens Group; the pride of Yongduri"
+    },
+    {
+      "id": "haein",
+      "name": "Hong Hae In",
+      "actor": "Kim Ji Won",
+      "image": "https://i.mydramalist.com/KpY0kR_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Hwang Ji Ah",
+          "image": "https://i.mydramalist.com/ZOZLJ_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Min Seo Young",
+          "image": "https://i.mydramalist.com/qYnOnd_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "CEO of Queens Department Store — the 'queen'"
+    },
+    {
+      "id": "eunseong",
+      "name": "Yun Eun Seong",
+      "actor": "Park Sung Hoon",
+      "image": "https://i.mydramalist.com/mONo42_5m.jpg",
+      "group": "Around the Queens",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Joo Won",
+          "image": "https://i.mydramalist.com/ABe0VE_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Wall Street analyst turned investor, back in Korea"
+    },
+    {
+      "id": "seulhui",
+      "name": "Mo Seul Hui",
+      "actor": "Lee Mi Sook",
+      "image": "https://i.mydramalist.com/kRYnk_5m.jpg",
+      "group": "Around the Queens",
+      "inCast": true,
+      "note": "Lives with the chairman"
+    },
+    {
+      "id": "grace",
+      "name": "Grace Ko",
+      "actor": "Kim Joo Ryoung",
+      "image": "https://i.mydramalist.com/kJVRvm.jpg",
+      "group": "Around the Queens",
+      "inCast": true,
+      "note": "Private secretary to the rich — and their secret butler"
+    },
+    {
+      "id": "mandae",
+      "name": "Hong Man Dae",
+      "actor": "Kim Gab Soo",
+      "image": "https://i.mydramalist.com/RRXLz_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true,
+      "note": "Chairman of Queens Group"
+    },
+    {
+      "id": "beomjun",
+      "name": "Hong Beom Jun",
+      "actor": "Jung Jin Young",
+      "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true,
+      "note": "Vice chairman"
+    },
+    {
+      "id": "seonhwa",
+      "name": "Kim Seon Hwa",
+      "actor": "Na Young Hee",
+      "image": "https://i.mydramalist.com/QPZ02_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true,
+      "note": "Runs the department store's VVIP club"
+    },
+    {
+      "id": "beomja",
+      "name": "Hong Beom Ja",
+      "actor": "Kim Jung Nan",
+      "image": "https://i.mydramalist.com/4jLAk_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true
+    },
+    {
+      "id": "sucheol",
+      "name": "Hong Su Cheol",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Joon Eui",
+          "image": "https://i.mydramalist.com/oEPPkm.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "CEO of Queens Mart"
+    },
+    {
+      "id": "dahye",
+      "name": "Cheon Da Hye",
+      "actor": "Lee Joo Bin",
+      "image": "https://i.mydramalist.com/d0vP10_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Na Rin",
+          "image": "https://i.mydramalist.com/wJwg61_5m.jpg",
+          "era": "child"
+        }
+      ]
+    },
+    {
+      "id": "geonu",
+      "name": "Hong Geon U",
+      "actor": "Goo Shi Woo",
+      "image": "https://i.mydramalist.com/QJpW0Q_5m.jpg",
+      "group": "Hae In's family",
+      "inCast": true
+    },
+    {
+      "id": "dugwan",
+      "name": "Baek Du Gwan",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "Hyeon U's family",
+      "inCast": true,
+      "note": "Village head of Yongduri"
+    },
+    {
+      "id": "bongae",
+      "name": "Jeon Bong Ae",
+      "actor": "Hwang Young Hee",
+      "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
+      "group": "Hyeon U's family",
+      "inCast": true,
+      "note": "Runs the Yongdu supermarket"
+    },
+    {
+      "id": "hyeontae",
+      "name": "Baek Hyeon Tae",
+      "actor": "Kim Do Hyun",
+      "image": "https://i.mydramalist.com/Nd5Edn_5m.jpg",
+      "group": "Hyeon U's family",
+      "inCast": true,
+      "note": "Runs the village boxing gym"
+    },
+    {
+      "id": "misun",
+      "name": "Baek Mi Sun",
+      "actor": "Jang Yoon Ju",
+      "image": "https://i.mydramalist.com/QjoZ4m.jpg",
+      "group": "Hyeon U's family",
+      "inCast": true,
+      "note": "Runs the village hair salon"
+    },
+    {
+      "id": "hoyeol",
+      "name": "Baek Ho Yeol",
+      "actor": "Kim Dong Ha",
+      "image": "https://i.mydramalist.com/E5Poem_5m.jpg",
+      "group": "Hyeon U's family",
+      "inCast": true
+    },
+    {
+      "id": "na",
+      "name": "Secretary Na",
+      "actor": "Yoon Bo Mi",
+      "image": "https://i.mydramalist.com/eZ4gW_5m.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "Na Chae Yeon"
+    },
+    {
+      "id": "kim",
+      "name": "Secretary Kim",
+      "actor": "Jung Ji Hwan",
+      "image": "https://i.mydramalist.com/rEWwpm.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "Kim Min Gyu"
+    },
+    {
+      "id": "yanggi",
+      "name": "Kim Yang Gi",
+      "actor": "Moon Tae Yu",
+      "image": "https://i.mydramalist.com/wezpJ_5m.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "Divorce lawyer"
+    },
+    {
+      "id": "conan",
+      "name": "Conan Park",
+      "actor": "Hong Sang Pyo",
+      "image": "https://i.mydramalist.com/xX7p0m.jpg",
+      "group": "Queens Group",
+      "inCast": true
+    },
+    {
+      "id": "yeongsong",
+      "name": "Kim Yeong Song",
+      "actor": "Kim Young Min",
+      "image": "https://i.mydramalist.com/pgZJV_5m.jpg",
+      "group": "Yongduri",
+      "inCast": true
+    },
+    {
+      "id": "chunsik",
+      "name": "Chun Sik",
+      "actor": "Park Jung Pyo",
+      "image": "https://i.mydramalist.com/jNg3B_5m.jpg",
+      "group": "Yongduri",
+      "inCast": true
+    },
+    {
+      "id": "bangsil",
+      "name": "Bang Sil",
+      "actor": "Lee Su Ji",
+      "image": "https://i.mydramalist.com/we5vY_5m.jpg",
+      "group": "Yongduri",
+      "inCast": true
+    },
+    {
+      "id": "kangmi",
+      "name": "Kang Mi",
+      "actor": "Park Sung Yun",
+      "image": "https://i.mydramalist.com/4rVp1_5m.jpg",
+      "group": "Yongduri",
+      "inCast": true
+    },
+    {
+      "id": "hyeonjeong",
+      "name": "Hyeon Jeong",
+      "actor": "Lee Ji Hye",
+      "image": "https://i.mydramalist.com/WPnYRW_5m.jpg",
+      "group": "Yongduri",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "hyeonu",
+      "to": "haein",
+      "type": "romance",
+      "label": "married — the son-in-law and the queen, three years in",
+      "short": "married",
+      "evidence": "Hae-in's husband and the legal director of Queens Group / Hyun-woo's wife",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonu",
+      "to": "haein",
+      "type": "rivalry",
+      "label": "was about to ask for a divorce when her diagnosis came",
+      "short": "planned divorce",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mandae",
+      "to": "haein",
+      "type": "family",
+      "label": "grandfather — chairman",
+      "short": "grandfather",
+      "evidence": "[Hae In's grandfather] / 해인의 할아버지. 퀸즈그룹 회장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seulhui",
+      "to": "mandae",
+      "type": "romance",
+      "label": "the woman he lives with",
+      "short": "his partner",
+      "evidence": "[Man Dae's girlfriend] / 만대의 동거녀",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seulhui",
+      "to": "eunseong",
+      "type": "family",
+      "label": "his mother — the secret behind the takeover",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "eunseong",
+      "to": "haein",
+      "type": "romance",
+      "label": "wants her, and the group with her",
+      "short": "wants her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "eunseong",
+      "to": "haein",
+      "type": "work",
+      "label": "the investor who comes for Queens",
+      "short": "the investor",
+      "evidence": "유명 투자가로 오랜 해외 생활 끝에 한국으로 돌아와 퀸즈가와 인연을 맺기 시작하는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "grace",
+      "to": "seulhui",
+      "type": "work",
+      "label": "her hands inside the household",
+      "short": "her ally",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "beomjun",
+      "to": "haein",
+      "type": "family",
+      "label": "father — vice chairman",
+      "short": "father",
+      "evidence": "[Hae In's father] / 해인의 아빠. 퀸즈그룹 부회장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonhwa",
+      "to": "haein",
+      "type": "family",
+      "label": "mother — favours the son",
+      "short": "mother",
+      "evidence": "[Hae In's mother] / 해인의 엄마… 아들 수철을 더 아낀다",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "beomjun",
+      "to": "seonhwa",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "해인의 아빠 / 해인의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "beomjun",
+      "to": "mandae",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "퀸즈그룹 부회장 / 퀸즈그룹 회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "beomja",
+      "to": "haein",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "[Hae In's aunt] / 해인의 고모",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sucheol",
+      "to": "haein",
+      "type": "family",
+      "label": "younger brother — CEO of Queens Mart",
+      "short": "younger brother",
+      "evidence": "범준의 차남. 홍해인의 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dahye",
+      "to": "sucheol",
+      "type": "romance",
+      "label": "wife — the opposite of his sister",
+      "short": "wife",
+      "evidence": "홍수철의 아내 / 기가 센 누나와 정반대인 아내 천다혜와 결혼",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dahye",
+      "to": "sucheol",
+      "type": "rivalry",
+      "label": "married him under a false name, for the money",
+      "short": "conned him",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sucheol",
+      "to": "geonu",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Su Cheol and Da Hye's son] / 홍수철과 천다혜의 아들",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dahye",
+      "to": "geonu",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "홍수철과 천다혜의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dugwan",
+      "to": "hyeonu",
+      "type": "family",
+      "label": "father — village head",
+      "short": "father",
+      "evidence": "[Hyeon U's father] / 현우의 아빠. 용두리 이장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bongae",
+      "to": "hyeonu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Hyeon U's mother] / 현우의 엄마",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dugwan",
+      "to": "bongae",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "현우의 아빠 / 현우의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeontae",
+      "to": "hyeonu",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "[Hyeon U's older brother] / 현우의 형",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "misun",
+      "to": "hyeonu",
+      "type": "family",
+      "label": "older sister",
+      "short": "older sister",
+      "evidence": "[Hyeon U's older sister] / 현우의 누나",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeontae",
+      "to": "hoyeol",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Hyeon Tae's son] / 현우의 조카이자 현태의 아들",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "na",
+      "to": "haein",
+      "type": "work",
+      "label": "her secretary",
+      "short": "secretary",
+      "evidence": "[Hae In's secretary] / 해인의 비서",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kim",
+      "to": "hyeonu",
+      "type": "work",
+      "label": "his secretary",
+      "short": "secretary",
+      "evidence": "[Hyeon U's secretary] / 현우의 비서",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanggi",
+      "to": "hyeonu",
+      "type": "friend",
+      "label": "the divorce lawyer he confides in",
+      "short": "his confidant",
+      "evidence": "[Hyeon U's friend] / 현우가 유일하게 속을 털어놓을 수 있는 허물없는 친구",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "grace",
+      "to": "haein",
+      "type": "work",
+      "label": "the household's secret butler",
+      "short": "butler",
+      "evidence": "상류층 집안 대소사를 책임지는 개인 비서이자 비밀 집사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "conan",
+      "to": "eunseong",
+      "type": "work",
+      "label": "works for him",
+      "short": "his man",
+      "evidence": "Conan Park",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongsong",
+      "to": "dugwan",
+      "type": "friend",
+      "label": "neighbour",
+      "short": "neighbour",
+      "evidence": "[Du Gwan's neighbor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chunsik",
+      "to": "dugwan",
+      "type": "friend",
+      "label": "neighbour",
+      "short": "neighbour",
+      "evidence": "[Du Gwan's neighbor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bangsil",
+      "to": "misun",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Mi Sun's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kangmi",
+      "to": "misun",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Mi Sun's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "misun",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Mi Sun's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "hyeonu",
+      "haein",
+      "eunseong",
+      "seulhui",
+      "grace",
+      "mandae",
+      "beomjun",
+      "seonhwa",
+      "beomja",
+      "sucheol",
+      "dahye",
+      "geonu",
+      "dugwan",
+      "bongae",
+      "hyeontae",
+      "misun",
+      "hoyeol",
+      "na",
+      "kim",
+      "yanggi",
+      "conan"
+    ],
+    "blocks": {
+      "Hae In's family": [
+        0,
+        0
+      ],
+      "Around the Queens": [
+        0,
+        2
+      ],
+      "Hyeon U's family": [
+        2,
+        0
+      ],
+      "Queens Group": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "hyeonu",
+      "haein"
+    ]
+  }
+}

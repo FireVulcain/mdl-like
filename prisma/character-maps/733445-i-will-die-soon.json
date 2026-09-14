@@ -1,0 +1,471 @@
+{
+  "version": 1,
+  "mdlSlug": "733445-i-will-die-soon",
+  "title": "Death's Game",
+  "native": "이재, 곧 죽습니다",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (57 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (3k chars)",
+    "en.wikipedia (nothing found)"
+  ],
+  "main": [
+    "ijae",
+    "death"
+  ],
+  "people": [
+    {
+      "id": "ijae",
+      "name": "Choi I Jae",
+      "actor": "Seo In Guk",
+      "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Seven years without a job, then the gateway to Hell"
+    },
+    {
+      "id": "death",
+      "name": "Death",
+      "actor": "Park So Dam",
+      "image": "https://i.mydramalist.com/yWkAA3_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The judge of twelve lives and twelve deaths"
+    },
+    {
+      "id": "jisu",
+      "name": "Lee Ji Su",
+      "actor": "Go Youn Jung",
+      "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "group": "I Jae's life",
+      "inCast": true,
+      "note": "Novelist; his girlfriend since university"
+    },
+    {
+      "id": "mother",
+      "name": "I Jae's mother",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "I Jae's life",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "jintae",
+      "name": "Park Jin Tae",
+      "actor": "Choi Si Won",
+      "image": "https://i.mydramalist.com/pjkLDm.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "1st life — second son of Taekang Group"
+    },
+    {
+      "id": "jaeseop",
+      "name": "Song Jae Seop",
+      "actor": "Sung Hoon",
+      "image": "https://i.mydramalist.com/nOZvrQ_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "2nd life — extreme-sports athlete"
+    },
+    {
+      "id": "hyeoksu",
+      "name": "Kwon Hyeok Su",
+      "actor": "Kim Kang Hoon",
+      "image": "https://i.mydramalist.com/JB6qYX_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "3rd life — a bullied schoolboy"
+    },
+    {
+      "id": "juhun",
+      "name": "Lee Ju Hun",
+      "actor": "Jang Seung Jo",
+      "image": "https://i.mydramalist.com/p54Xn_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "4th life — a fixer for hire"
+    },
+    {
+      "id": "taesang",
+      "name": "Cho Tae Sang",
+      "actor": "Lee Jae Wook",
+      "image": "https://i.mydramalist.com/KpJXVJ_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "5th life — a would-be fighter, in prison"
+    },
+    {
+      "id": "geonu",
+      "name": "Jang Geon U",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "7th life — a model"
+    },
+    {
+      "id": "gyucheol",
+      "name": "Jung Gyu Cheol",
+      "actor": "Choi Eun Jun",
+      "image": "https://i.mydramalist.com/WPJwRR_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "A painter who believes in his own genius; MDL carries only the child actor, Kim Jae Wook plays him grown"
+    },
+    {
+      "id": "jihyeong",
+      "name": "An Ji Hyeong",
+      "actor": "Park Jae Joon",
+      "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "11th life; MDL carries only the young actor, Oh Jung Se plays him grown"
+    },
+    {
+      "id": "ijaefemale",
+      "name": "I Jae",
+      "actor": "Lee Ju Mi",
+      "image": "https://i.mydramalist.com/XdbL2X_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true,
+      "note": "The last life — his own mother's"
+    },
+    {
+      "id": "taeu",
+      "name": "Park Tae U",
+      "actor": "Kim Ji Hoon",
+      "image": "https://i.mydramalist.com/rXKp7_5m.jpg",
+      "group": "Taekang Group",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Min Joon",
+          "image": "https://i.mydramalist.com/jQbVYz_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "CEO of Taekang; the gentle face everyone trusts"
+    },
+    {
+      "id": "chairmannam",
+      "name": "Chairman Nam",
+      "actor": "Nam Kyung Eup",
+      "image": "https://i.mydramalist.com/kOjLOm.jpg",
+      "group": "Taekang Group",
+      "inCast": true,
+      "note": "ko.wikipedia names him Chairman Park"
+    },
+    {
+      "id": "hyeonsu",
+      "name": "Kim Hyeon Su",
+      "actor": "Kim Sung Cheol",
+      "image": "https://i.mydramalist.com/mO2q2k_5m.jpg",
+      "group": "Taekang Group",
+      "inCast": true
+    },
+    {
+      "id": "jinsang",
+      "name": "Lee Jin Sang",
+      "actor": "Yoo In Soo",
+      "image": "https://i.mydramalist.com/81XqdK_5m.jpg",
+      "group": "The twelve lives",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "death",
+      "to": "ijae",
+      "type": "bond",
+      "label": "sentences him to die twelve times — and to live twelve lives first",
+      "short": "sentences him",
+      "evidence": "Death assigns him a unique punishment: I Jae must endure death in 12 different bodies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "death",
+      "type": "rivalry",
+      "label": "tries to survive her game",
+      "short": "defies her",
+      "evidence": "To avoid his fate in Hell, he must find a way to survive",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jisu",
+      "to": "ijae",
+      "type": "romance",
+      "label": "girlfriend since university; grieves him",
+      "short": "his girlfriend",
+      "evidence": "[I Jae's girlfriend] / 최이재와 대학생 때부터 연애중이었던 소설가",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mother",
+      "to": "ijae",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[I Jae's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jisu",
+      "to": "geonu",
+      "type": "romance",
+      "label": "meets the model, not knowing who looks out of his eyes",
+      "short": "meets him",
+      "evidence": "최이재의 죽음 후 괴로움 속에 살아가던 이지수는 우연히 장건우와 마주치게 된다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "jintae",
+      "type": "bond",
+      "label": "his 1st life",
+      "short": "1st life",
+      "evidence": "[I Jae's 1st reincarnation] / 최이재가 환생한 인물",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "jaeseop",
+      "type": "bond",
+      "label": "his 2nd life",
+      "short": "2nd life",
+      "evidence": "[I Jae's 2nd reincarnation]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "hyeoksu",
+      "type": "bond",
+      "label": "his 3rd life",
+      "short": "3rd life",
+      "evidence": "[I Jae's 3rd reincarnation]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "juhun",
+      "type": "bond",
+      "label": "his 4th life",
+      "short": "4th life",
+      "evidence": "[I Jae's 4th reincarnation]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "taesang",
+      "type": "bond",
+      "label": "his 5th life",
+      "short": "5th life",
+      "evidence": "[I Jae's 5th reincarnation]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "geonu",
+      "type": "bond",
+      "label": "his 7th life",
+      "short": "7th life",
+      "evidence": "[I Jae's 7th reincarnation]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "gyucheol",
+      "type": "bond",
+      "label": "a later life — the painter",
+      "short": "a later life",
+      "evidence": "최이재가 환생한 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "jihyeong",
+      "type": "bond",
+      "label": "his 11th life",
+      "short": "11th life",
+      "evidence": "최이재가 11번째 환생한 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijae",
+      "to": "ijaefemale",
+      "type": "bond",
+      "label": "the twelfth life — his mother's",
+      "short": "12th life",
+      "evidence": "이재 (이주미)",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ijaefemale",
+      "to": "mother",
+      "type": "bond",
+      "label": "the same woman",
+      "short": "the same woman",
+      "evidence": "김미경 : 최희재 엄마 역 / 이주미 : 이재 역",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taeu",
+      "to": "jintae",
+      "type": "family",
+      "label": "older brother, by two years — rivals since birth",
+      "short": "older brother",
+      "evidence": "2살 터울의 친형 박태우와는 태어난 순간부터 신경전을 벌이고 있는 것",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeu",
+      "to": "jintae",
+      "type": "rivalry",
+      "label": "rivals for Taekang",
+      "short": "rival",
+      "evidence": "태어난 순간부터 신경전을 벌이고 있는 것",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taeu",
+      "to": "ijae",
+      "type": "rivalry",
+      "label": "the man behind the deaths",
+      "short": "the killer",
+      "evidence": "회사 안에서는 젠틀한 이미지로 직원들의 신뢰를 한 몸에 받고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chairmannam",
+      "to": "taeu",
+      "type": "family",
+      "label": "father — the founder's line",
+      "short": "father",
+      "evidence": "할아버지가 만든 태강그룹의 둘째 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeonsu",
+      "to": "ijae",
+      "type": "friend",
+      "label": "an old friend, at Taekang",
+      "short": "old friend",
+      "evidence": "김성철 : 김현수 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinsang",
+      "to": "hyeoksu",
+      "type": "rivalry",
+      "label": "the classmate who bullies him",
+      "short": "bullies him",
+      "evidence": "[Hyeok Su's classmate] / 학교 일진들의 표적이 된 인물",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "ijae",
+      "death",
+      "jisu",
+      "mother",
+      "jintae",
+      "jaeseop",
+      "hyeoksu",
+      "juhun",
+      "taesang",
+      "geonu",
+      "gyucheol",
+      "jihyeong",
+      "ijaefemale",
+      "taeu",
+      "chairmannam",
+      "hyeonsu",
+      "jinsang"
+    ],
+    "blocks": {
+      "I Jae's life": [
+        0,
+        0
+      ],
+      "Taekang Group": [
+        2,
+        0
+      ],
+      "The twelve lives": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "ijae",
+      "death"
+    ]
+  }
+}

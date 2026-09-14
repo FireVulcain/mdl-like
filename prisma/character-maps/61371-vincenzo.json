@@ -1,0 +1,798 @@
+{
+  "version": 1,
+  "mdlSlug": "61371-vincenzo",
+  "title": "Vincenzo",
+  "native": "빈센조",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (158 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장 인물 (7k chars)",
+    "en.wikipedia Cast (not used)"
+  ],
+  "main": [
+    "vincenzo",
+    "chayoung",
+    "hanseok"
+  ],
+  "people": [
+    {
+      "id": "vincenzo",
+      "name": "Vincenzo Cassano / Park Joo Hyung",
+      "actor": "Song Joong Ki",
+      "image": "https://i.mydramalist.com/1kymd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Consigliere of the Cassano family, adopted to Italy at eight"
+    },
+    {
+      "id": "chayoung",
+      "name": "Hong Cha Young",
+      "actor": "Jeon Yeo Been",
+      "image": "https://i.mydramalist.com/YYNAKg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Lawyer at Wusang, then at Jipuragi — will do anything to win"
+    },
+    {
+      "id": "hanseok",
+      "name": "Jang Jun Woo / Jang Han Seok",
+      "actor": "Ok Taec Yeon",
+      "image": "https://i.mydramalist.com/eQwkY_5m.jpg",
+      "group": "Babel Group",
+      "inCast": true,
+      "note": "The intern at Wusang — and Babel's real chairman"
+    },
+    {
+      "id": "hanseo",
+      "name": "Jang Han Seo",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "group": "Babel Group",
+      "inCast": true,
+      "note": "Vice chairman of Babel; the face of it"
+    },
+    {
+      "id": "deokjin",
+      "name": "Na Deok Jin",
+      "actor": "Na Chul",
+      "image": "https://i.mydramalist.com/5v7ZRy_5m.jpg",
+      "group": "Babel Group",
+      "inCast": true,
+      "note": "Babel Construction investment team leader"
+    },
+    {
+      "id": "seonho",
+      "name": "Seon Ho",
+      "actor": "Jung Wook Jin",
+      "image": "https://i.mydramalist.com/xw5mX_5m.jpg",
+      "group": "Babel Group",
+      "inCast": true,
+      "note": "Babel Pharmaceuticals researcher"
+    },
+    {
+      "id": "myunghee",
+      "name": "Choi Myung Hee",
+      "actor": "Kim Yeo Jin",
+      "image": "https://i.mydramalist.com/xKjpEm.jpg",
+      "group": "Wusang",
+      "inCast": true,
+      "note": "Wusang's most senior lawyer; zumba"
+    },
+    {
+      "id": "seunghyeok",
+      "name": "Han Seung Hyeok",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Wusang",
+      "inCast": true,
+      "note": "CEO of Wusang; once chief prosecutor"
+    },
+    {
+      "id": "hwanggyu",
+      "name": "Hwang Gyu",
+      "actor": "Lee Do Guk",
+      "image": "https://i.mydramalist.com/ddb8dm.jpg",
+      "group": "Wusang",
+      "inCast": true,
+      "note": "Myung Hee's fixer"
+    },
+    {
+      "id": "hyeokpil",
+      "name": "Pyo Hyeok Pil",
+      "actor": "Kim Tae Hoon",
+      "image": "https://i.mydramalist.com/Eowjp_5m.jpg",
+      "group": "Wusang",
+      "inCast": true,
+      "note": "Myung Hee's fixer"
+    },
+    {
+      "id": "yoochan",
+      "name": "Hong Yoo Chan",
+      "actor": "Yoo Chea Myung",
+      "image": "https://i.mydramalist.com/Lw8Q65_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Lawyer at Jipuragi"
+    },
+    {
+      "id": "joosung",
+      "name": "Nam Joo Sung",
+      "actor": "Yoon Byung Hee",
+      "image": "https://i.mydramalist.com/dJZPe_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Jipuragi's paralegal"
+    },
+    {
+      "id": "cheolwook",
+      "name": "Lee Cheol Wook",
+      "actor": "Yang Kyung Won",
+      "image": "https://i.mydramalist.com/pOO1Vm.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Pawn shop; Olympic wrestling gold"
+    },
+    {
+      "id": "yeonjin",
+      "name": "Jang Yeon Jin",
+      "actor": "Seo Ye Hwa",
+      "image": "https://i.mydramalist.com/WWZBR_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Olympic weightlifting gold"
+    },
+    {
+      "id": "hongshik",
+      "name": "Tak Hong Shik",
+      "actor": "Choi Duk Moon",
+      "image": "https://i.mydramalist.com/YYj5lK_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Laundromat; once a gang's blade"
+    },
+    {
+      "id": "miri",
+      "name": "Seo Mi Ri",
+      "actor": "Kim Yoon Hye",
+      "image": "https://i.mydramalist.com/g0R3LP_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Piano academy; programs secure vaults"
+    },
+    {
+      "id": "larry",
+      "name": "Larry Kang",
+      "actor": "Kim Seol Jin",
+      "image": "https://i.mydramalist.com/2AKWw_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Dance studio"
+    },
+    {
+      "id": "toto",
+      "name": "Toto",
+      "actor": "Kim Hyung Mook",
+      "image": "https://i.mydramalist.com/rZ3kE_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Chef at the Italian restaurant"
+    },
+    {
+      "id": "heesoo",
+      "name": "Kwak Hee Soo",
+      "actor": "Lee Hang Na",
+      "image": "https://i.mydramalist.com/0wN7J4_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Snack bar; former boxing champion"
+    },
+    {
+      "id": "youngho",
+      "name": "Kim Young Ho",
+      "actor": "Kang Chae Min",
+      "image": "https://i.mydramalist.com/R6YOr_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true
+    },
+    {
+      "id": "chaeshin",
+      "name": "Chae Shin",
+      "actor": "Kwon Seung Woo",
+      "image": "https://i.mydramalist.com/W658W_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Monk at Nanyak temple"
+    },
+    {
+      "id": "jeokha",
+      "name": "Jeok Ha",
+      "actor": "Ri Woo Jin",
+      "image": "https://i.mydramalist.com/xmdLXm.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Head monk"
+    },
+    {
+      "id": "seokdo",
+      "name": "Park Seok Do",
+      "actor": "Kim Young Woong",
+      "image": "https://i.mydramalist.com/603mjO_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Ant Financial, then Bye Bye Balloon"
+    },
+    {
+      "id": "soonam",
+      "name": "Jun Soo Nam",
+      "actor": "Lee Dal",
+      "image": "https://i.mydramalist.com/rXvWg_5m.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "Seok Do's right hand"
+    },
+    {
+      "id": "jooeun",
+      "name": "Yang Joo Eun",
+      "actor": "Jung Ji Yoon",
+      "image": "https://i.mydramalist.com/Pd1vRm.jpg",
+      "group": "Geumga Plaza",
+      "inCast": true,
+      "note": "'Miss Yang', the accountant"
+    },
+    {
+      "id": "youngwoon",
+      "name": "Jo Young Woon",
+      "actor": "Choi Young Joon",
+      "image": "https://i.mydramalist.com/b3j0YE_5m.jpg",
+      "group": "Intelligence",
+      "inCast": true,
+      "note": "Geumga Plaza's building manager — an intelligence black agent"
+    },
+    {
+      "id": "giseok",
+      "name": "An Gi Seok",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Intelligence",
+      "inCast": true,
+      "note": "Italy desk of the international crime team"
+    },
+    {
+      "id": "jonggu",
+      "name": "Tae Jong Gu",
+      "actor": "Kwon Tae Won",
+      "image": "https://i.mydramalist.com/ejd1p_5m.jpg",
+      "group": "Intelligence",
+      "inCast": true,
+      "note": "Head of the international crime bureau"
+    },
+    {
+      "id": "jintae",
+      "name": "Hwang Jin Tae",
+      "actor": "Seo Jin Won",
+      "image": "https://i.mydramalist.com/2zX2P_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "note": "Chief prosecutor, Namdongbu"
+    },
+    {
+      "id": "woongho",
+      "name": "Seo Woong Ho",
+      "actor": "Hwang Tae Kwang",
+      "image": "https://i.mydramalist.com/6ERWP_5m.jpg",
+      "group": "Prosecutors",
+      "inCast": true,
+      "note": "Senior prosecutor"
+    },
+    {
+      "id": "kyungja",
+      "name": "Oh Kyung Ja",
+      "actor": "Yoon Bok In",
+      "image": "https://i.mydramalist.com/jQVdnd_5m.jpg",
+      "group": "Vincenzo's past",
+      "inCast": true,
+      "note": "Yoo Chan's client, in prison"
+    }
+  ],
+  "links": [
+    {
+      "from": "vincenzo",
+      "to": "chayoung",
+      "type": "romance",
+      "label": "the consigliere and the lawyer",
+      "short": "in love",
+      "evidence": "차영의 연인 / 빈센조의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "vincenzo",
+      "to": "chayoung",
+      "type": "work",
+      "label": "gets involved with her against Babel",
+      "short": "partners",
+      "evidence": "he flies to South Korea where he gets involved with lawyer Hong Cha Young",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yoochan",
+      "to": "chayoung",
+      "type": "family",
+      "label": "father — killed by a truck Babel and Wusang arranged",
+      "short": "father",
+      "evidence": "[Cha Young's father] / 죽은 홍유찬 변호사의 딸 / '바벨'과 '우상'이 계획한 트럭 사고로 사망",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanseok",
+      "to": "vincenzo",
+      "type": "rivalry",
+      "label": "the conglomerate he gives a taste of its own medicine",
+      "short": "his target",
+      "evidence": "he gives an unrivalled conglomerate a taste of his own medicine",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hanseok",
+      "to": "chayoung",
+      "type": "work",
+      "label": "the intern under her at Wusang",
+      "short": "her intern",
+      "evidence": "장준우/장한석 역 - 바벨그룹의 '진짜' 회장",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanseok",
+      "to": "hanseo",
+      "type": "family",
+      "label": "half-brother — the real chairman behind the figurehead",
+      "short": "half-brother",
+      "evidence": "한서의 이복형 / 준우/한석의 이복동생",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanseo",
+      "to": "vincenzo",
+      "type": "work",
+      "label": "turns to Vincenzo's side; dies saving them",
+      "short": "turns to him",
+      "evidence": "후반부에는 빈센조의 조력자. 빈센조와 차영을 구하려다 한석에 의해 총살",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myunghee",
+      "to": "hanseok",
+      "type": "work",
+      "label": "Babel's lawyer",
+      "short": "Babel's lawyer",
+      "evidence": "법무법인 '우상'의 최고 시니어 변호사. '우상'의 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunghyeok",
+      "to": "myunghee",
+      "type": "work",
+      "label": "CEO of Wusang over her; then chief prosecutor",
+      "short": "her CEO",
+      "evidence": "법무법인 '우상'의 전 대표이자 변호사. 남동부지검 지검장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myunghee",
+      "to": "chayoung",
+      "type": "rivalry",
+      "label": "her old boss, on the other side",
+      "short": "old boss",
+      "evidence": "前 '우상'의 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hwanggyu",
+      "to": "myunghee",
+      "type": "work",
+      "label": "her fixer — later Vincenzo's shadow",
+      "short": "her fixer",
+      "evidence": "최명희 밑에서 온갖 지저분한 일을 도맡아하는 하수인 → 빈센조의 그림자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeokpil",
+      "to": "myunghee",
+      "type": "work",
+      "label": "her fixer — later Vincenzo's shadow",
+      "short": "her fixer",
+      "evidence": "최명희 밑에서 온갖 지저분한 일을 도맡아하는 하수인 → 빈센조의 그림자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myunghee",
+      "to": "kyungja",
+      "type": "rivalry",
+      "label": "had her killed",
+      "short": "had her killed",
+      "evidence": "한석과 명희가 보낸 킬러에 의해 사망",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kyungja",
+      "to": "vincenzo",
+      "type": "family",
+      "label": "his mother — the client he did not know",
+      "short": "mother",
+      "evidence": "빈센조(주형)의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoochan",
+      "to": "kyungja",
+      "type": "work",
+      "label": "her lawyer",
+      "short": "her lawyer",
+      "evidence": "[Yoo Chan's client]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joosung",
+      "to": "chayoung",
+      "type": "work",
+      "label": "Jipuragi's paralegal",
+      "short": "paralegal",
+      "evidence": "[Jipuragi Law Firm's paralegal]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolwook",
+      "to": "yeonjin",
+      "type": "romance",
+      "label": "married — two Olympic golds",
+      "short": "married",
+      "evidence": "[Cheol Wook's wife] / 연진의 남편",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "heesoo",
+      "to": "youngho",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Hee Soo's son] / 희수의 아들",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeokha",
+      "to": "chaeshin",
+      "type": "work",
+      "label": "head monk over him",
+      "short": "head monk",
+      "evidence": "난약사 주지 스님 / 난약사 작은 스님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokdo",
+      "to": "soonam",
+      "type": "work",
+      "label": "his right hand",
+      "short": "right hand",
+      "evidence": "박석도의 오른팔",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokdo",
+      "to": "jooeun",
+      "type": "work",
+      "label": "his accountant",
+      "short": "accountant",
+      "evidence": "[Ant Financial Management's accountant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolwook",
+      "to": "vincenzo",
+      "type": "friend",
+      "label": "the plaza's tenants, his army",
+      "short": "tenants",
+      "evidence": "아저씨 전당포의 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hongshik",
+      "to": "vincenzo",
+      "type": "friend",
+      "label": "the plaza's tenants, his army",
+      "short": "tenants",
+      "evidence": "제일 세탁소 사장. 충주 부엉이파 번개가위",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "miri",
+      "to": "vincenzo",
+      "type": "work",
+      "label": "opens the vault under the temple",
+      "short": "the vault",
+      "evidence": "밀실 보안 시스템 프로그래머",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "larry",
+      "to": "vincenzo",
+      "type": "friend",
+      "label": "tenant",
+      "short": "tenant",
+      "evidence": "댄스 교습소 '고스텝' 원장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "toto",
+      "to": "vincenzo",
+      "type": "friend",
+      "label": "tenant",
+      "short": "tenant",
+      "evidence": "파스타 전문점 '아르노' 오너 셰프",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "heesoo",
+      "to": "vincenzo",
+      "type": "friend",
+      "label": "tenant",
+      "short": "tenant",
+      "evidence": "영호분식 사장. 전 복싱 플라이급 동양 챔피언",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seokdo",
+      "to": "vincenzo",
+      "type": "friend",
+      "label": "the loan sharks who switch sides",
+      "short": "switch sides",
+      "evidence": "前 앤트 채무 관리, 現 바이바이 벌룬의 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "youngwoon",
+      "to": "vincenzo",
+      "type": "work",
+      "label": "the building manager watching him for the state",
+      "short": "watches him",
+      "evidence": "前 금가프라자 건물주, 대외안보정보원 블랙 요원/팀장",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giseok",
+      "to": "vincenzo",
+      "type": "work",
+      "label": "the Italy desk on his trail",
+      "short": "on his trail",
+      "evidence": "대외안보정보원 해외범죄조직대응팀 이탈리아부 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jonggu",
+      "to": "giseok",
+      "type": "work",
+      "label": "his director",
+      "short": "director",
+      "evidence": "대외안보정보원 국제 범죄 대응국 원장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jintae",
+      "to": "seunghyeok",
+      "type": "work",
+      "label": "chief prosecutor, then his successor",
+      "short": "chief prosecutor",
+      "evidence": "남동부지검 지검장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "woongho",
+      "to": "jintae",
+      "type": "work",
+      "label": "senior prosecutor under him",
+      "short": "prosecutor",
+      "evidence": "남동부지검 부장검사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanseok",
+      "to": "woongho",
+      "type": "rivalry",
+      "label": "killed him to threaten the chief prosecutor",
+      "short": "killed him",
+      "evidence": "장한석이 남동부지검 지검장을 협박하기 위해 죽였다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokjin",
+      "to": "hanseo",
+      "type": "work",
+      "label": "Babel Construction team leader",
+      "short": "team leader",
+      "evidence": "바벨건설 투자 개발 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonho",
+      "to": "hanseok",
+      "type": "work",
+      "label": "Babel Pharmaceuticals researcher",
+      "short": "researcher",
+      "evidence": "[Babel Pharmaceuticals' researcher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "vincenzo",
+      "chayoung",
+      "hanseok",
+      "hanseo",
+      "deokjin",
+      "seonho",
+      "myunghee",
+      "seunghyeok",
+      "hwanggyu",
+      "hyeokpil",
+      "yoochan",
+      "joosung",
+      "cheolwook",
+      "yeonjin",
+      "hongshik",
+      "miri",
+      "larry",
+      "toto",
+      "heesoo",
+      "youngho",
+      "chaeshin",
+      "jeokha",
+      "seokdo",
+      "soonam",
+      "jooeun",
+      "youngwoon",
+      "giseok",
+      "jonggu",
+      "jintae",
+      "woongho",
+      "kyungja"
+    ],
+    "blocks": {
+      "Wusang": [
+        0,
+        0
+      ],
+      "Prosecutors": [
+        0,
+        2
+      ],
+      "Babel Group": [
+        2,
+        0
+      ],
+      "Intelligence": [
+        2,
+        2
+      ],
+      "Vincenzo's past": [
+        1,
+        0
+      ],
+      "Geumga Plaza": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "vincenzo",
+      "chayoung"
+    ]
+  }
+}

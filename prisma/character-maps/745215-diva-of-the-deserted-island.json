@@ -1,0 +1,577 @@
+{
+  "version": 1,
+  "mdlSlug": "745215-diva-of-the-deserted-island",
+  "title": "Castaway Diva",
+  "native": "무인도의 디바",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (82 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (1.5k chars — names and ages, few sentences)",
+    "en.wikipedia Cast (not used)"
+  ],
+  "main": [
+    "mokha",
+    "ranju",
+    "bogeol",
+    "uhak",
+    "seojun"
+  ],
+  "people": [
+    {
+      "id": "mokha",
+      "name": "Seo Mok Ha",
+      "actor": "Park Eun Bin",
+      "image": "https://i.mydramalist.com/v7Evg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Re",
+          "image": "https://i.mydramalist.com/Bd3xz7_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Lee A Rin",
+          "image": "https://i.mydramalist.com/d0zP0z_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Fifteen years alone on an island; Ran Ju's one fan, then a singer"
+    },
+    {
+      "id": "bogeol",
+      "name": "Kang Bo Geol",
+      "actor": "Chae Jong Hyeop",
+      "image": "https://i.mydramalist.com/VXLDEy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Variety PD at YGN; the name on his papers is not the one he was born with"
+    },
+    {
+      "id": "ranju",
+      "name": "Yun Ran Ju",
+      "actor": "Kim Hyo Jin",
+      "image": "https://i.mydramalist.com/kRl2g_5m.jpg",
+      "group": "RJ Entertainment",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Son Ye Rin",
+          "image": "https://i.mydramalist.com/RBW7R6_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Han Da In",
+          "image": "https://i.mydramalist.com/1wpnwd_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The diva, fifteen years past her peak"
+    },
+    {
+      "id": "seojun",
+      "name": "Lee Seo Jun",
+      "actor": "Kim Joo Heon",
+      "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
+      "group": "RJ Entertainment",
+      "inCast": true,
+      "note": "CEO of RJ Entertainment"
+    },
+    {
+      "id": "morae",
+      "name": "Eun Mo Rae",
+      "actor": "Bae Gang Hee",
+      "image": "https://i.mydramalist.com/epd1e_5m.jpg",
+      "group": "RJ Entertainment",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Ga Yeon",
+          "image": "https://i.mydramalist.com/eYy6zW_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "RJ's singer of the moment"
+    },
+    {
+      "id": "yonggwan",
+      "name": "Park Yong Gwan",
+      "actor": "Shin Joo Hyup",
+      "image": "https://i.mydramalist.com/WPvJ6P_5m.jpg",
+      "group": "RJ Entertainment",
+      "inCast": true,
+      "note": "Mo Rae's manager"
+    },
+    {
+      "id": "uhak",
+      "name": "Kang U Hak",
+      "actor": "Cha Hak Yeon",
+      "image": "https://i.mydramalist.com/73lrzB_5m.jpg",
+      "group": "Bo Geol's family",
+      "inCast": true,
+      "note": "Reporter at YGN news"
+    },
+    {
+      "id": "hajung",
+      "name": "Song Ha Jung",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Bo Geol's family",
+      "inCast": true,
+      "note": "Hairdresser; once Yang Jae Gyeong"
+    },
+    {
+      "id": "sangdu",
+      "name": "Kang Sang Du",
+      "actor": "Lee Joong Ok",
+      "image": "https://i.mydramalist.com/j4n3ym.jpg",
+      "group": "Bo Geol's family",
+      "inCast": true,
+      "note": "Hairdresser; once Lee Uk"
+    },
+    {
+      "id": "yeongyeong",
+      "name": "Hong Yeon Gyeong",
+      "actor": "Kim Bo Jung",
+      "image": "https://i.mydramalist.com/vZxV2_5m.jpg",
+      "group": "YGN",
+      "inCast": true,
+      "note": "Main producer of 'Nth Heyday'"
+    },
+    {
+      "id": "dongmin",
+      "name": "An Dong Min",
+      "actor": "Yoon Jung Hoon",
+      "image": "https://i.mydramalist.com/jo35B_5m.jpg",
+      "group": "YGN",
+      "inCast": true,
+      "note": "Assistant director"
+    },
+    {
+      "id": "bongwan",
+      "name": "Jung Bong Wan",
+      "actor": "Lee Seung Jun",
+      "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
+      "group": "Chunsam Island",
+      "inCast": true,
+      "note": "Police officer on the island; security guard since"
+    },
+    {
+      "id": "giho",
+      "name": "Jung Gi Ho",
+      "actor": "Moon Woo Jin",
+      "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+      "group": "Chunsam Island",
+      "inCast": true,
+      "note": "Mok Ha's classmate, sixteen"
+    },
+    {
+      "id": "jungho",
+      "name": "Seo Jung Ho",
+      "actor": "Lee Yu Jun",
+      "image": "https://i.mydramalist.com/73Bl0b_5m.jpg",
+      "group": "Chunsam Island",
+      "inCast": true,
+      "note": "Boat captain; ran the fish restaurant"
+    },
+    {
+      "id": "daeung",
+      "name": "Han Dae Ung",
+      "actor": "Kim Min Seok",
+      "image": "https://i.mydramalist.com/EoL4l_5m.jpg",
+      "group": "Chunsam Island",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Joon",
+          "image": "https://i.mydramalist.com/wLQZY_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Insurance agent"
+    },
+    {
+      "id": "yeongju",
+      "name": "Moon Yeong Ju",
+      "actor": "Oh Kyung Hwa",
+      "image": "https://i.mydramalist.com/YYqdyo_5m.jpg",
+      "group": "Chunsam Island",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Yoon Seol",
+          "image": "https://i.mydramalist.com/rNqV0m_5m.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "byeonggak",
+      "name": "Hwang Byeong Gak",
+      "actor": "Song Kyung Chul",
+      "image": "https://i.mydramalist.com/qQY32m.jpg",
+      "group": "RJ Entertainment",
+      "inCast": true,
+      "note": "CEO of Suga Entertainment"
+    }
+  ],
+  "links": [
+    {
+      "from": "mokha",
+      "to": "bogeol",
+      "type": "romance",
+      "label": "the girl from the island and the PD who never stopped looking",
+      "short": "in love",
+      "evidence": "박은빈 : 서목하 / 채종협 : 강보걸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "bogeol",
+      "to": "giho",
+      "type": "bond",
+      "label": "the same boy — Gi Ho became Bo Geol",
+      "short": "the same boy",
+      "evidence": "채종협 : 강보걸 (남, 30세) / 정기호 (31세) / 이기호 역",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giho",
+      "to": "mokha",
+      "type": "friend",
+      "label": "her classmate; helped her run",
+      "short": "classmate",
+      "evidence": "[Mok Ha's classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bongwan",
+      "to": "giho",
+      "type": "family",
+      "label": "father — a policeman, violent at home",
+      "short": "father",
+      "evidence": "[Gi Ho's father] / 춘삼도파출소 경찰인 봉완의 외동 아들",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bongwan",
+      "to": "bogeol",
+      "type": "rivalry",
+      "label": "the father he fled, still looking for him",
+      "short": "hunts him",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungho",
+      "to": "mokha",
+      "type": "family",
+      "label": "father — the reason she ran",
+      "short": "father",
+      "evidence": "[Mok Ha's father] / 선장, 횟집 주인",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uhak",
+      "to": "bogeol",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "[U Hak and Bo Geol's mother] / 강우학 (남, 31세) / 정채호 (32세)",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajung",
+      "to": "bogeol",
+      "type": "family",
+      "label": "mother — took a new name with the family",
+      "short": "mother",
+      "evidence": "[U Hak and Bo Geol's mother] / 송하정 / 양재경 역",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangdu",
+      "to": "bogeol",
+      "type": "family",
+      "label": "father — took a new name with the family",
+      "short": "father",
+      "evidence": "[U Hak and Bo Geol's father] / 강상두 / 이욱 역",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajung",
+      "to": "uhak",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[U Hak and Bo Geol's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangdu",
+      "to": "uhak",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[U Hak and Bo Geol's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajung",
+      "to": "sangdu",
+      "type": "romance",
+      "label": "married; both hairdressers",
+      "short": "married",
+      "evidence": "미용사 / 미용사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "uhak",
+      "to": "mokha",
+      "type": "romance",
+      "label": "the brother who also falls for her",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mokha",
+      "to": "ranju",
+      "type": "work",
+      "label": "her only fan — then her manager",
+      "short": "her fan, manager",
+      "evidence": "윤란주 하나뿐인 팬… 메니저이기도하고",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seojun",
+      "to": "ranju",
+      "type": "work",
+      "label": "her CEO, and her past",
+      "short": "her CEO",
+      "evidence": "RJ엔터테인먼트 대표 / 가수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seojun",
+      "to": "ranju",
+      "type": "romance",
+      "label": "once lovers",
+      "short": "once lovers",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "morae",
+      "to": "ranju",
+      "type": "rivalry",
+      "label": "the singer who replaced her",
+      "short": "replaced her",
+      "evidence": "RJ엔터테인먼트 소속 / 가수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yonggwan",
+      "to": "morae",
+      "type": "work",
+      "label": "her manager",
+      "short": "manager",
+      "evidence": "RJ엔터테인먼트 소속 은모래 매니저",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonggwan",
+      "to": "seojun",
+      "type": "work",
+      "label": "right-hand man",
+      "short": "right hand",
+      "evidence": "[Seo Jun's right-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongyeong",
+      "to": "bogeol",
+      "type": "work",
+      "label": "main producer of the show he works on",
+      "short": "main producer",
+      "evidence": "['Nth Heyday' main producer] / YGN 예능국 PD",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongmin",
+      "to": "bogeol",
+      "type": "work",
+      "label": "assistant director",
+      "short": "assistant director",
+      "evidence": "['Nth Heyday' assistant director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongyeong",
+      "to": "ranju",
+      "type": "work",
+      "label": "produces her comeback show",
+      "short": "produces her",
+      "evidence": "N번째 전성기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "daeung",
+      "to": "yeongju",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "[Dae Ung's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeung",
+      "to": "mokha",
+      "type": "friend",
+      "label": "classmates on the island",
+      "short": "old classmate",
+      "evidence": "한대웅 (남, 16세→31세) / 서목하 (여, 16세 → 31세)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeongju",
+      "to": "mokha",
+      "type": "friend",
+      "label": "classmates on the island",
+      "short": "old classmate",
+      "evidence": "문영주 (여, 16세 → 31세)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "byeonggak",
+      "to": "seojun",
+      "type": "rivalry",
+      "label": "the rival agency",
+      "short": "rival CEO",
+      "evidence": "[Suga Entertainment CEO]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "mokha",
+      "bogeol",
+      "ranju",
+      "seojun",
+      "morae",
+      "yonggwan",
+      "uhak",
+      "hajung",
+      "sangdu",
+      "yeongyeong",
+      "dongmin",
+      "bongwan",
+      "giho",
+      "jungho",
+      "daeung",
+      "yeongju",
+      "byeonggak"
+    ],
+    "blocks": {
+      "Bo Geol's family": [
+        0,
+        0
+      ],
+      "YGN": [
+        0,
+        2
+      ],
+      "RJ Entertainment": [
+        2,
+        0
+      ],
+      "Chunsam Island": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "mokha",
+      "bogeol"
+    ]
+  }
+}

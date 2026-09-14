@@ -1,0 +1,501 @@
+{
+  "version": 1,
+  "mdlSlug": "693591-in-house-confrontation",
+  "title": "Business Proposal",
+  "native": "사내맞선",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (87 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (1.5k chars)",
+    "en.wikipedia Cast (not used)"
+  ],
+  "main": [
+    "taemu",
+    "hari",
+    "seonghun",
+    "yeongseo"
+  ],
+  "people": [
+    {
+      "id": "taemu",
+      "name": "Kang Tae Mu",
+      "actor": "Ahn Hyo Seop",
+      "image": "https://i.mydramalist.com/2wk2NP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Jae Joon",
+          "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "CEO of GO Food"
+    },
+    {
+      "id": "hari",
+      "name": "Sin Ha Ri",
+      "actor": "Kim Se Jeong",
+      "image": "https://i.mydramalist.com/vrmWX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Assistant manager, retort food development team 1"
+    },
+    {
+      "id": "seonghun",
+      "name": "Cha Seong Hun",
+      "actor": "Kim Min Gue",
+      "image": "https://i.mydramalist.com/W8VKm_5m.jpg",
+      "group": "Marine Beauty",
+      "inCast": true,
+      "note": "Tae Mu's chief secretary"
+    },
+    {
+      "id": "yeongseo",
+      "name": "Jin Yeong Seo",
+      "actor": "Seor In A",
+      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
+      "group": "Marine Beauty",
+      "inCast": true,
+      "note": "Marketing team leader at Marine Beauty; the chaebol daughter"
+    },
+    {
+      "id": "yujeong",
+      "name": "Jo Yu Jeong",
+      "actor": "Seo Hye Won",
+      "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
+      "group": "Marine Beauty",
+      "inCast": true,
+      "note": "Director at Marine Beauty"
+    },
+    {
+      "id": "chairmanjin",
+      "name": "Chairman Jin",
+      "actor": "Lee Ki Young",
+      "image": "https://i.mydramalist.com/Qlpw2_5m.jpg",
+      "group": "Marine Beauty",
+      "inCast": true
+    },
+    {
+      "id": "dagu",
+      "name": "Kang Da Gu",
+      "actor": "Lee Deok Hwa",
+      "image": "https://i.mydramalist.com/R3KXEm.jpg",
+      "group": "Tae Mu's family",
+      "inCast": true,
+      "note": "Founder and chairman of Geumhwa Group"
+    },
+    {
+      "id": "taemumother",
+      "name": "Tae Mu's mother",
+      "actor": "Na Eun Saem",
+      "image": "https://i.mydramalist.com/RRDpP_5m.jpg",
+      "group": "Tae Mu's family",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "taemufather",
+      "name": "Tae Mu's father",
+      "actor": "Kim Kyu Jong",
+      "image": "https://i.mydramalist.com/rN2edg_5m.jpg",
+      "group": "Tae Mu's family",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    },
+    {
+      "id": "junghae",
+      "name": "Sin Jung Hae",
+      "actor": "Kim Kwang Gyu",
+      "image": "https://i.mydramalist.com/vgy5q_5m.jpg",
+      "group": "Ha Ri's family",
+      "inCast": true
+    },
+    {
+      "id": "mimo",
+      "name": "Han Mi Mo",
+      "actor": "Jung Young Joo",
+      "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
+      "group": "Ha Ri's family",
+      "inCast": true
+    },
+    {
+      "id": "hamin",
+      "name": "Sin Ha Min",
+      "actor": "Choi Byung Chan",
+      "image": "https://i.mydramalist.com/ZxOD1_5m.jpg",
+      "group": "Ha Ri's family",
+      "inCast": true
+    },
+    {
+      "id": "minu",
+      "name": "Lee Min U",
+      "actor": "Go Wook",
+      "image": "https://i.mydramalist.com/rNO6d7_5m.jpg",
+      "group": "Ha Ri's friends",
+      "inCast": true,
+      "note": "Owner-chef of M Kitchen"
+    },
+    {
+      "id": "yura",
+      "name": "Ko Yu Ra",
+      "actor": "Bae Woo Hee",
+      "image": "https://i.mydramalist.com/e3Q0pm.jpg",
+      "group": "Ha Ri's friends",
+      "inCast": true,
+      "note": "Racing girl; ko.wikipedia names her Jung Hui Bin"
+    },
+    {
+      "id": "euiju",
+      "name": "Yeo Eui Ju",
+      "actor": "Kim Hyun Sook",
+      "image": "https://i.mydramalist.com/6EvLp_5m.jpg",
+      "group": "GO Food",
+      "inCast": true,
+      "note": "Manager, development team 1"
+    },
+    {
+      "id": "kyebin",
+      "name": "Kye Bin / Kevin",
+      "actor": "Im Ki Hong",
+      "image": "https://i.mydramalist.com/j3Lmd_5m.jpg",
+      "group": "GO Food",
+      "inCast": true,
+      "note": "Deputy manager"
+    },
+    {
+      "id": "hyeji",
+      "name": "Kim Hye Ji",
+      "actor": "Yoon Sang Jung",
+      "image": "https://i.mydramalist.com/dLzbb_5m.jpg",
+      "group": "GO Food",
+      "inCast": true,
+      "note": "Staff"
+    },
+    {
+      "id": "seonghunmother",
+      "name": "Seong Hun's mother",
+      "actor": "Kim Jung Young",
+      "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
+      "group": "Marine Beauty",
+      "inCast": true,
+      "note": "MDL lists the role unnamed"
+    }
+  ],
+  "links": [
+    {
+      "from": "hari",
+      "to": "taemu",
+      "type": "romance",
+      "label": "the blind date she took in her friend's place — with her own CEO",
+      "short": "in love",
+      "evidence": "she is shocked to discover that her date is Kang Tae Mu, the CEO of her company / 하리의 연인",
+      "source": "MDL synopsis · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hari",
+      "to": "taemu",
+      "type": "work",
+      "label": "assistant manager at his company",
+      "short": "his employee",
+      "evidence": "GO푸드 레토르트 식품개발 1팀 대리 / GO푸드 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongseo",
+      "to": "hari",
+      "type": "friend",
+      "label": "best friend — paid her to take the blind date",
+      "short": "best friend",
+      "evidence": "하리의 단짝친구 / asks Sin Ha Ri to take her place on a blind date in exchange for money",
+      "source": "ko.wikipedia · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonghun",
+      "to": "yeongseo",
+      "type": "romance",
+      "label": "in love",
+      "short": "in love",
+      "evidence": "영서의 연인 / 성훈의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonghun",
+      "to": "taemu",
+      "type": "work",
+      "label": "chief secretary",
+      "short": "chief secretary",
+      "evidence": "강태무 사장의 비서실장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dagu",
+      "to": "taemu",
+      "type": "family",
+      "label": "grandfather — chairman of the group",
+      "short": "grandfather",
+      "evidence": "[Tae Mu's grandfather] / 다구의 친손자",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dagu",
+      "to": "hari",
+      "type": "rivalry",
+      "label": "wants his grandson married — to her, thinking she is Yeong Seo",
+      "short": "pushes the match",
+      "evidence": "금화그룹 창업주 회장, 태무의 할아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taemumother",
+      "to": "taemu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Tae Mu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taemufather",
+      "to": "taemu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Tae Mu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chairmanjin",
+      "to": "yeongseo",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yeong Seo's father] / 진회장의 외딸",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yujeong",
+      "to": "yeongseo",
+      "type": "family",
+      "label": "cousin",
+      "short": "cousin",
+      "evidence": "[Yeong Seo's cousin] / 유정과 사촌지간",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonghunmother",
+      "to": "seonghun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Seong Hun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junghae",
+      "to": "hari",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ha Ri's father] / 하리와 하민의 아버지",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mimo",
+      "to": "hari",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ha Ri's mother] / 하리와 하민의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junghae",
+      "to": "mimo",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "미모의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hamin",
+      "to": "hari",
+      "type": "family",
+      "label": "younger brother",
+      "short": "younger brother",
+      "evidence": "[Ha Ri's brother] / 하리의 동생",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minu",
+      "to": "hari",
+      "type": "romance",
+      "label": "her seven-year crush, a university friend",
+      "short": "her old crush",
+      "evidence": "하리의 7년 짝사랑인 대학교 동창 / has a crush on her male friend but is heartbroken to learn he has a girlfriend",
+      "source": "ko.wikipedia · MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yura",
+      "to": "minu",
+      "type": "romance",
+      "label": "his girlfriend",
+      "short": "girlfriend",
+      "evidence": "유라의 연인 / 민우의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yura",
+      "to": "hari",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Ha Ri's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "euiju",
+      "to": "hari",
+      "type": "work",
+      "label": "her team manager",
+      "short": "manager",
+      "evidence": "레토르트 식품개발 1팀 부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kyebin",
+      "to": "hari",
+      "type": "work",
+      "label": "deputy manager on the team",
+      "short": "colleague",
+      "evidence": "레토르트 식품개발 1팀 차장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeji",
+      "to": "hari",
+      "type": "work",
+      "label": "colleague on the team",
+      "short": "colleague",
+      "evidence": "레토르트 식품개발 1팀 사원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "taemu",
+      "hari",
+      "seonghun",
+      "yeongseo",
+      "yujeong",
+      "chairmanjin",
+      "dagu",
+      "taemumother",
+      "taemufather",
+      "junghae",
+      "mimo",
+      "hamin",
+      "minu",
+      "yura",
+      "euiju",
+      "kyebin",
+      "hyeji",
+      "seonghunmother"
+    ],
+    "blocks": {
+      "Tae Mu's family": [
+        0,
+        0
+      ],
+      "GO Food": [
+        0,
+        2
+      ],
+      "Marine Beauty": [
+        2,
+        0
+      ],
+      "Ha Ri's friends": [
+        2,
+        2
+      ],
+      "Ha Ri's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "taemu",
+      "hari"
+    ]
+  }
+}
