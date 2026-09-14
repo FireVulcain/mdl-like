@@ -53,13 +53,19 @@ function cleanWikitext(text: string): string {
         .trim();
 }
 
-/** The level-2 section whose heading matches, with all its subsections. */
+/**
+ * The level-2 section whose heading carries one of the words, with all its
+ * subsections. A contains-match, not an exact one: zh articles head the
+ * section 演員陣容, 演员阵容, 演員阵容, 角色介紹, 主要演員… and every new
+ * drama brings a spelling, but each has 演員/演员/角色/人物 in it.
+ */
 function characterSection(wikitext: string, headings: string[]): string | null {
-    const re = new RegExp(`^==\\s*(${headings.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})[^=]*==\\s*$`, "m");
+    const re = new RegExp(`^==\\s*[^=]*(${headings.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})[^=]*==.*$`, "m");
     const m = re.exec(wikitext);
     if (!m) return null;
     const rest = wikitext.slice(m.index + m[0].length);
-    const next = /^==[^=].*==\s*$/m.exec(rest);
+    // .*$ and not \s*$: a heading may carry an HTML comment after its ==
+    const next = /^==[^=].*==.*$/m.exec(rest);
     return rest.slice(0, next ? next.index : undefined);
 }
 
@@ -81,7 +87,7 @@ async function wikipedia(lang: string, title: string | undefined, query: string)
     const wholeArticle = /등장인물$|^List of .* characters$|角色列表$/.test(page);
     const section = wholeArticle
         ? wikitext.slice(wikitext.search(/^==[^=]/m))
-        : characterSection(wikitext, ["등장 인물", "등장인물", "演員列表", "演员列表", "演員", "演员", "角色", "Cast", "Cast and characters"]);
+        : characterSection(wikitext, ["등장 인물", "등장인물", "演員", "演员", "角色", "人物", "Cast"]);
     return section ? { title: page, text: cleanWikitext(section) } : { title: page, text: "(no character section found — headings: " + [...wikitext.matchAll(/^==([^=].*?)==/gm)].map((x) => x[1].trim()).join(", ") + ")" };
 }
 

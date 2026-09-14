@@ -1,0 +1,653 @@
+{
+  "version": 1,
+  "mdlSlug": "697563-kai-duan",
+  "title": "Reset",
+  "native": "开端",
+  "year": 2022,
+  "country": "CN",
+  "sources": [
+    "MDL cast (47 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演員阵容 (tables, 3k chars)",
+    "en.wikipedia Cast (tables, 1.5k chars)"
+  ],
+  "main": [
+    "heyun",
+    "shiqing"
+  ],
+  "people": [
+    {
+      "id": "heyun",
+      "name": "Xiao He Yun",
+      "actor": "Bai Jing Ting",
+      "image": "https://i.mydramalist.com/jQjpnd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Programmer; builds the world of a game"
+    },
+    {
+      "id": "shiqing",
+      "name": "Li Shi Qing",
+      "actor": "Zhao Jin Mai",
+      "image": "https://i.mydramalist.com/1w3xQ6_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Third-year student, on bus 45 to buy a book"
+    },
+    {
+      "id": "xingde",
+      "name": "Wang Xing De",
+      "actor": "Huang Jue",
+      "image": "https://i.mydramalist.com/mOnnkk_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "The driver — once commended in the papers for a good deed"
+    },
+    {
+      "id": "yinghong",
+      "name": "Tao Ying Hong",
+      "actor": "Liu Dan",
+      "image": "https://i.mydramalist.com/O8Pqzk_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "A passenger with a red plastic bag at her feet, watched closely"
+    },
+    {
+      "id": "ludi",
+      "name": "Lu Di",
+      "actor": "Zeng Ke Lang",
+      "image": "https://i.mydramalist.com/2wze52_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "Asthmatic; loves ACG and cats"
+    },
+    {
+      "id": "guoqiang",
+      "name": "Ma Guo Qiang",
+      "actor": "Zhang Xi Qian",
+      "image": "https://i.mydramalist.com/vljvD_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "Northwestern accent; served time for manslaughter; a burlap sack"
+    },
+    {
+      "id": "yige",
+      "name": "Yao Shi Nan / 'Yi Ge'",
+      "actor": "Song Jia Teng",
+      "image": "https://i.mydramalist.com/vrQX2_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "Short-video livestreamer"
+    },
+    {
+      "id": "yaopo",
+      "name": "The medicine woman",
+      "actor": "Ma Lan",
+      "image": "https://i.mydramalist.com/e5jYY_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "A bag full of medicine"
+    },
+    {
+      "id": "muscle",
+      "name": "The man with headphones",
+      "actor": "Bu Yu Xin",
+      "image": "https://i.mydramalist.com/nOoJvE_5m.jpg",
+      "group": "Bus 45",
+      "inCast": true,
+      "note": "Bungee-jump instructor"
+    },
+    {
+      "id": "xiangrong",
+      "name": "Jiao Xiang Rong",
+      "actor": "Jiao Peng",
+      "image": null,
+      "group": "Bus 45",
+      "inCast": false,
+      "note": "Migrant worker with a suitcase his old landlord gave him"
+    },
+    {
+      "id": "zhangcheng",
+      "name": "Zhang Cheng",
+      "actor": "Liu Yi Jun",
+      "image": "https://i.mydramalist.com/JBmRgl_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Deputy captain of criminal investigation; leads the case"
+    },
+    {
+      "id": "jinsong",
+      "name": "Du Jin Song",
+      "actor": "Liu Tao",
+      "image": "https://i.mydramalist.com/yWxBB1_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Deputy director; heads the task force"
+    },
+    {
+      "id": "jiangfeng",
+      "name": "Jiang Feng",
+      "actor": "Li Gan",
+      "image": "https://i.mydramalist.com/DkwAjy_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Officer; direct"
+    },
+    {
+      "id": "yeqian",
+      "name": "Ye Qian",
+      "actor": "Fan Shuai Qi",
+      "image": "https://i.mydramalist.com/rNVNWy_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Officer"
+    },
+    {
+      "id": "yulei",
+      "name": "Yu Lei",
+      "actor": "Yu Pei Shan",
+      "image": "https://i.mydramalist.com/We0NR_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Officer"
+    },
+    {
+      "id": "xiaoliu",
+      "name": "Officer Lu / 'Xiao Liu'",
+      "actor": "Ju Bo Zhan",
+      "image": "https://i.mydramalist.com/vXXbkZ_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Officer"
+    },
+    {
+      "id": "xiajiang",
+      "name": "Xia Jiang",
+      "actor": "Ren Shuai",
+      "image": "https://i.mydramalist.com/jndDy_5m.jpg",
+      "group": "Jialin police",
+      "inCast": true,
+      "note": "Senior officer"
+    },
+    {
+      "id": "qin",
+      "name": "Officer Qin",
+      "actor": "Gao Hai Peng",
+      "image": "https://i.mydramalist.com/2xnO2m.jpg",
+      "group": "Five years ago",
+      "inCast": true,
+      "note": "Handled the bus 45 accident on the bridge, five years ago"
+    },
+    {
+      "id": "mengmeng",
+      "name": "Wang Meng Meng",
+      "actor": "Chen Jie Yi",
+      "image": "https://i.mydramalist.com/Dke53y_5m.jpg",
+      "group": "Five years ago",
+      "inCast": true,
+      "note": "Forced her way off bus 45 mid-bridge; hit by a truck"
+    },
+    {
+      "id": "liuyao",
+      "name": "Liu Yao",
+      "actor": "Una You",
+      "image": "https://i.mydramalist.com/b3YxZj_5m.jpg",
+      "group": "Five years ago",
+      "inCast": true,
+      "note": "Saw Meng Meng harassed on the bus"
+    },
+    {
+      "id": "zhu",
+      "name": "Master Zhu",
+      "actor": "Wu Qi Jiang",
+      "image": "https://i.mydramalist.com/vBNkD_5m.jpg",
+      "group": "Five years ago",
+      "inCast": true,
+      "note": "Drove bus 45 then; opened the doors mid-bridge"
+    },
+    {
+      "id": "wu",
+      "name": "Teacher Wu",
+      "actor": "Xu Wei",
+      "image": "https://i.mydramalist.com/731oge_5m.jpg",
+      "group": "Five years ago",
+      "inCast": true,
+      "note": "Counsellor to Shi Qing — and to Meng Meng and Liu Yao before her"
+    },
+    {
+      "id": "liupeng",
+      "name": "Liu Peng",
+      "actor": "Bai Yu Fan",
+      "image": "https://i.mydramalist.com/jQQb8y_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "He Yun's partner at the game studio"
+    },
+    {
+      "id": "shiyou",
+      "name": "Shi You",
+      "actor": "Ma Bo",
+      "image": "https://i.mydramalist.com/k8p8v_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "caicai",
+      "name": "Liu Cai Cai",
+      "actor": "Zhao Qian Zi",
+      "image": "https://i.mydramalist.com/nO1QpQ_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "xiaolong",
+      "name": "Ma Xiao Long",
+      "actor": "Mu Tong",
+      "image": "https://i.mydramalist.com/604en2_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "shiqing",
+      "to": "heyun",
+      "type": "bond",
+      "label": "pulled him into her loop",
+      "short": "share the loop",
+      "evidence": "Shi Qing inadvertently drags fellow bus passenger Xiao He Yun into the time loop as well",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heyun",
+      "to": "shiqing",
+      "type": "romance",
+      "label": "the two who die together, again and again",
+      "short": "in love",
+      "evidence": "Together they try to find a way to alter their fate",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "xingde",
+      "to": "shiqing",
+      "type": "rivalry",
+      "label": "the driver of the bus that explodes",
+      "short": "drives the bus",
+      "evidence": "45號公車司机 / a public service bus which is due to explode",
+      "source": "zh.wikipedia · MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yinghong",
+      "to": "xingde",
+      "type": "romance",
+      "label": "married — the bomb is in her bag",
+      "short": "married",
+      "evidence": "45號公車的乘客、司机王兴德之妻。其带着一红色的塑膠袋於腳邊，盯得很紧",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xingde",
+      "to": "mengmeng",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "王兴德、陶映紅夫妻之独生女",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yinghong",
+      "to": "mengmeng",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "王兴德、陶映紅夫妻之独生女",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhu",
+      "to": "mengmeng",
+      "type": "rivalry",
+      "label": "opened the doors mid-bridge; the truck did the rest",
+      "short": "let her off",
+      "evidence": "因停車開門於路中央，導致王萌萌遭後方卡車追撞喪命",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liuyao",
+      "to": "mengmeng",
+      "type": "friend",
+      "label": "saw her harassed on the bus, and was told to stay out of it",
+      "short": "witness",
+      "evidence": "五年前於45路公車上目擊王萌萌被色狼騷擾 / 勸誡女兒不要出頭",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qin",
+      "to": "mengmeng",
+      "type": "work",
+      "label": "closed the case five years ago",
+      "short": "closed her case",
+      "evidence": "五年前跨江大橋45路公車車禍事故責任警員",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wu",
+      "to": "shiqing",
+      "type": "work",
+      "label": "her counsellor",
+      "short": "counsellor",
+      "evidence": "李詩情的輔導員，也是五年前王萌萌與劉瑤的輔導員",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wu",
+      "to": "mengmeng",
+      "type": "work",
+      "label": "her counsellor, five years ago",
+      "short": "counsellor",
+      "evidence": "也是五年前王萌萌與劉瑤的輔導員",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ludi",
+      "to": "heyun",
+      "type": "friend",
+      "label": "the passenger they keep off the bus, then bring along",
+      "short": "ally",
+      "evidence": "曾于第15次循环中被肖鶴雲與李詩晴阻撓上車",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guoqiang",
+      "to": "heyun",
+      "type": "rivalry",
+      "label": "the ex-convict with the sack, suspected first",
+      "short": "suspected",
+      "evidence": "曾因過失殺人服刑；带麻布袋上車",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yige",
+      "to": "shiqing",
+      "type": "work",
+      "label": "streaming the whole ride",
+      "short": "streamer",
+      "evidence": "短影音平臺主播",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yaopo",
+      "to": "shiqing",
+      "type": "work",
+      "label": "fellow passenger",
+      "short": "passenger",
+      "evidence": "帶著充滿藥物的包包上车",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "muscle",
+      "to": "shiqing",
+      "type": "work",
+      "label": "fellow passenger",
+      "short": "passenger",
+      "evidence": "蹦极俱乐部教练",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xiangrong",
+      "to": "shiqing",
+      "type": "work",
+      "label": "fellow passenger",
+      "short": "passenger",
+      "evidence": "进城务工人员；帶著前房東送的行李箱上車",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhangcheng",
+      "to": "heyun",
+      "type": "rivalry",
+      "label": "the investigator who interrogates them, loop after loop",
+      "short": "interrogates them",
+      "evidence": "45號公車爆炸案的主要調查官",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhangcheng",
+      "to": "shiqing",
+      "type": "rivalry",
+      "label": "the investigator who interrogates them",
+      "short": "interrogates them",
+      "evidence": "45號公車爆炸案的主要調查官",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinsong",
+      "to": "zhangcheng",
+      "type": "work",
+      "label": "heads the task force over him",
+      "short": "his superior",
+      "evidence": "45號公車爆炸案专案小组的主要负责人",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiangfeng",
+      "to": "zhangcheng",
+      "type": "work",
+      "label": "his protégé",
+      "short": "protégé",
+      "evidence": "與張成為師徒關係",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeqian",
+      "to": "zhangcheng",
+      "type": "work",
+      "label": "officer on the case",
+      "short": "officer",
+      "evidence": "嘉林市公安局警员",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yulei",
+      "to": "zhangcheng",
+      "type": "work",
+      "label": "officer on the case",
+      "short": "officer",
+      "evidence": "嘉林市公安局警员",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaoliu",
+      "to": "zhangcheng",
+      "type": "work",
+      "label": "officer on the case",
+      "short": "officer",
+      "evidence": "外號“小六”，嘉林市公安局警员",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiajiang",
+      "to": "jinsong",
+      "type": "work",
+      "label": "senior officer above her",
+      "short": "her superior",
+      "evidence": "警局高層",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liupeng",
+      "to": "heyun",
+      "type": "work",
+      "label": "his partner at the studio; the investor meeting he never reaches",
+      "short": "studio partner",
+      "evidence": "肖鶴雲游戏工作室合伙人。原计划与肖鶴雲一同会面投资人",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shiyou",
+      "to": "xingde",
+      "type": "friend",
+      "label": "roommate",
+      "short": "roommate",
+      "evidence": "[Xing De's roommate] / 王兴德室友",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "caicai",
+      "to": "guoqiang",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "馬國強妻子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiaolong",
+      "to": "guoqiang",
+      "type": "family",
+      "label": "only son",
+      "short": "son",
+      "evidence": "馬國強独生子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "heyun",
+      "shiqing",
+      "xingde",
+      "yinghong",
+      "ludi",
+      "guoqiang",
+      "yige",
+      "yaopo",
+      "muscle",
+      "xiangrong",
+      "zhangcheng",
+      "jinsong",
+      "jiangfeng",
+      "yeqian",
+      "yulei",
+      "xiaoliu",
+      "xiajiang",
+      "qin",
+      "mengmeng",
+      "liuyao",
+      "zhu",
+      "wu",
+      "liupeng",
+      "shiyou",
+      "caicai",
+      "xiaolong"
+    ],
+    "blocks": {
+      "Bus 45": [
+        0,
+        0
+      ],
+      "Around them": [
+        0,
+        2
+      ],
+      "Jialin police": [
+        2,
+        0
+      ],
+      "Five years ago": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "heyun",
+      "shiqing"
+    ]
+  }
+}
