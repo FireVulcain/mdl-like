@@ -16,7 +16,9 @@ script below) is where the text a chart is read from is gathered first.
    `inputs/<slug>.txt`: the MDL cast with its `[bracket]` notes, the synopsis,
    and the character section of the Wikipedia articles it found (ko for Korean
    dramas, zh + en for Chinese). If a search picked the wrong article, pass
-   the title: `--ko "제목"`, `--zh "标题"`, `--en "Title"`.
+   the title: `--ko "제목"`, `--zh "标题"`, `--en "Title"` — and record it in
+   `wiki-titles.json` (`slug → { ko, zh, en }`), which the script reads first,
+   so no other machine has to find it again.
 3. Read the inputs and write `<slug>.json` in the shape below.
 4. `npm run db:seed-character-maps` (re-runnable; replaces the row).
 5. Check `/media/mdl-<slug>/relationships`.

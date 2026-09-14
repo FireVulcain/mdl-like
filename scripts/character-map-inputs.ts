@@ -13,7 +13,9 @@
  *     dramas, zh + en for Chinese ones; en often adds what zh lacks)
  *
  * Wikipedia articles are searched by native title and year unless a title
- * is given. When a search picks the wrong article, pass the title by hand.
+ * is given. When a search picks the wrong article, pass the title by hand —
+ * and record it in prisma/character-maps/wiki-titles.json, which is read
+ * first, so the next machine (or the next run) does not search again.
  *
  * The chart itself is then written by hand (or, one day, by a model) into
  * prisma/character-maps/<slug>.json — the format is described in
@@ -97,7 +99,10 @@ async function main() {
         console.error("usage: npx tsx scripts/character-map-inputs.ts <mdl-slug> [--ko title] [--zh title] [--en title]");
         process.exit(1);
     }
-    const given: Record<string, string> = {};
+    // The titles the search got wrong, kept in git; a flag on the command line wins.
+    const titlesFile = path.join(process.cwd(), "prisma", "character-maps", "wiki-titles.json");
+    const known: Record<string, Record<string, string>> = fs.existsSync(titlesFile) ? JSON.parse(fs.readFileSync(titlesFile, "utf-8")) : {};
+    const given: Record<string, string> = { ...(known[slug] ?? {}) };
     for (let i = 0; i < rest.length; i += 2) if (rest[i]?.startsWith("--")) given[rest[i].slice(2)] = rest[i + 1];
 
     const details = await json<{ data: { title: string; sub_title?: string; synopsis?: string; details?: { country?: string } } }>(`${KURYANA}/id/${slug}`);
