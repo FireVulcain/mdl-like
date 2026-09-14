@@ -1,0 +1,846 @@
+{
+  "version": 1,
+  "mdlSlug": "35729-emergency-lands-of-love",
+  "title": "Crash Landing on You",
+  "native": "사랑의 불시착",
+  "year": 2019,
+  "country": "KR",
+  "sources": [
+    "MDL cast (146 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (main, families, Company Five, State Security)",
+    "en.wikipedia Cast (Eun Dong's entry runs into Cheol Gang's)"
+  ],
+  "main": [
+    "jeonghyeok",
+    "seri",
+    "seodan",
+    "seungjun"
+  ],
+  "people": [
+    {
+      "id": "jeonghyeok",
+      "name": "Ri Jeong Hyeok",
+      "actor": "Hyun Bin",
+      "image": "https://i.mydramalist.com/qAkLdm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Seung Chan",
+          "image": "https://i.mydramalist.com/d6OLd_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Captain of Company Five; a pianist who gave up Switzerland for the army"
+    },
+    {
+      "id": "seri",
+      "name": "Yun Se Ri",
+      "actor": "Son Ye Jin",
+      "image": "https://i.mydramalist.com/vgnXX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Tae Yeon",
+          "image": "https://i.mydramalist.com/6Lzb2m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "CEO of Seri's Choice, heiress named to succeed at Queens Group"
+    },
+    {
+      "id": "seodan",
+      "name": "Seo Dan",
+      "actor": "Seo Ji Hye",
+      "image": "https://i.mydramalist.com/En2vO_5m.jpg",
+      "group": "Pyongyang",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Seo Yeon",
+          "image": "https://i.mydramalist.com/rmyQjm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Cellist trained in Russia"
+    },
+    {
+      "id": "seungjun",
+      "name": "Koo Seung Jun",
+      "actor": "Kim Jung Hyun",
+      "image": "https://i.mydramalist.com/QVKxv_5m.jpg",
+      "group": "Pyongyang",
+      "inCast": true,
+      "note": "British-Korean businessman hiding in the North"
+    },
+    {
+      "id": "myeongeun",
+      "name": "Ko Myeong Eun",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "group": "Pyongyang",
+      "inCast": true,
+      "note": "Runs the Pyongyang department store"
+    },
+    {
+      "id": "myeongsuk",
+      "name": "Ko Myeong Suk",
+      "actor": "Park Myung Hoon",
+      "image": "https://i.mydramalist.com/yWdk84_5m.jpg",
+      "group": "Pyongyang",
+      "inCast": true,
+      "note": "One-star general at the Ministry of State Security"
+    },
+    {
+      "id": "chungryeol",
+      "name": "Ri Chung Ryeol",
+      "actor": "Jeon Gook Hwan",
+      "image": "https://i.mydramalist.com/xXNAEm.jpg",
+      "group": "Jeong Hyeok's family",
+      "inCast": true,
+      "note": "Director of the General Political Bureau — the 'Old Fox'"
+    },
+    {
+      "id": "yunhui",
+      "name": "Kim Yun Hui",
+      "actor": "Jung Ae Ri",
+      "image": "https://i.mydramalist.com/QXrxAm.jpg",
+      "group": "Jeong Hyeok's family",
+      "inCast": true,
+      "note": "A former People's Actress"
+    },
+    {
+      "id": "muhyeok",
+      "name": "Ri Mu Hyeok",
+      "actor": "Ha Seok Jin",
+      "image": "https://i.mydramalist.com/oQznOk_5m.jpg",
+      "group": "Jeong Hyeok's family",
+      "inCast": true,
+      "note": "Died seven years before the story"
+    },
+    {
+      "id": "chisu",
+      "name": "Pyo Chi Su",
+      "actor": "Yang Kyung Won",
+      "image": "https://i.mydramalist.com/pOO1Vm.jpg",
+      "group": "Company Five",
+      "inCast": true,
+      "note": "Master sergeant"
+    },
+    {
+      "id": "gwangbeom",
+      "name": "Park Gwang Beom",
+      "actor": "Lee Shin Young",
+      "image": "https://i.mydramalist.com/ABODV4_5m.jpg",
+      "group": "Company Five",
+      "inCast": true,
+      "note": "Staff sergeant"
+    },
+    {
+      "id": "jumuk",
+      "name": "Kim Ju Muk",
+      "actor": "Yoo Soo Bin",
+      "image": "https://i.mydramalist.com/XbbZZm.jpg",
+      "group": "Company Five",
+      "inCast": true,
+      "note": "Devoted fan of South Korean dramas"
+    },
+    {
+      "id": "eundong",
+      "name": "Geum Eun Dong",
+      "actor": "Tang Jun Sang",
+      "image": "https://i.mydramalist.com/AB2jwg_5m.jpg",
+      "group": "Company Five",
+      "inCast": true,
+      "note": "The youngest, at seventeen"
+    },
+    {
+      "id": "cheolgang",
+      "name": "Cho Cheol Gang",
+      "actor": "Oh Man Seok",
+      "image": "https://i.mydramalist.com/xOy30_5m.jpg",
+      "group": "State Security",
+      "inCast": true,
+      "note": "Major in the State Security Department; a former kotjebi"
+    },
+    {
+      "id": "manbok",
+      "name": "Jung Man Bok",
+      "actor": "Kim Young Min",
+      "image": "https://i.mydramalist.com/pgZJV_5m.jpg",
+      "group": "State Security",
+      "inCast": true,
+      "note": "The wiretapper — 'Ears'"
+    },
+    {
+      "id": "myeongsuk2",
+      "name": "Hyun Myeong Suk",
+      "actor": "Jang So Yeon",
+      "image": "https://i.mydramalist.com/BdqzvR_5m.jpg",
+      "group": "State Security",
+      "inCast": true
+    },
+    {
+      "id": "jeungpyeong",
+      "name": "Yun Jeung Pyeong",
+      "actor": "Nam Kyung Eup",
+      "image": "https://i.mydramalist.com/kOjLOm.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "Chairman of Queens Group"
+    },
+    {
+      "id": "jeongyeon",
+      "name": "Han Jeong Yun",
+      "actor": "Bang Eun Jin",
+      "image": "https://i.mydramalist.com/2DDNwm.jpg",
+      "group": "Queens Group",
+      "inCast": true
+    },
+    {
+      "id": "sejun",
+      "name": "Yun Se Jun",
+      "actor": "Choi Dae Hoon",
+      "image": "https://i.mydramalist.com/X85nqm.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "CEO of Queens Motors"
+    },
+    {
+      "id": "hyeji",
+      "name": "Do Hye Ji",
+      "actor": "Hwang Woo Seul Hye",
+      "image": "https://i.mydramalist.com/j436zm.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "A former actress"
+    },
+    {
+      "id": "sehyeong",
+      "name": "Yun Se Hyeong",
+      "actor": "Park Hyung Soo",
+      "image": "https://i.mydramalist.com/2Dkd2m.jpg",
+      "group": "Queens Group",
+      "inCast": true,
+      "note": "CEO of Queens Industries. MDL spells the role 'You Se Hyeong'"
+    },
+    {
+      "id": "sanga",
+      "name": "Ko Sang A",
+      "actor": "Yoon Ji Min",
+      "image": "https://i.mydramalist.com/Xbb8Zm.jpg",
+      "group": "Queens Group",
+      "inCast": true
+    },
+    {
+      "id": "changsik",
+      "name": "Hong Chang Sik",
+      "actor": "Ko Kyu Pil",
+      "image": "https://i.mydramalist.com/Lw8q2x_5m.jpg",
+      "group": "Seri's Choice",
+      "inCast": true,
+      "note": "PR team manager"
+    },
+    {
+      "id": "suchan",
+      "name": "Park Su Chan",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Seri's Choice",
+      "inCast": true,
+      "note": "Her life-insurance agent"
+    },
+    {
+      "id": "sangu",
+      "name": "Cha Sang U",
+      "actor": "Jung Kyung Ho",
+      "image": "https://i.mydramalist.com/yWBx7n_5m.jpg",
+      "group": "Seri's Choice",
+      "inCast": true,
+      "note": "A Hallyu star"
+    },
+    {
+      "id": "wolsuk",
+      "name": "Na Wol Seok",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Head of the people's unit"
+    },
+    {
+      "id": "yeongae",
+      "name": "Ma Yeong Ae",
+      "actor": "Kim Jung Nan",
+      "image": "https://i.mydramalist.com/4jLAk_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "The power in the officers' village"
+    },
+    {
+      "id": "ryonghae",
+      "name": "Kim Ryong Hae",
+      "actor": "Kim Young Pil",
+      "image": "https://i.mydramalist.com/vnzlZm.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Senior colonel"
+    },
+    {
+      "id": "okgeum",
+      "name": "Yang Ok Geum",
+      "actor": "Cha Chung Hwa",
+      "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Hairdresser, once a news announcer"
+    }
+  ],
+  "links": [
+    {
+      "from": "jeonghyeok",
+      "to": "seri",
+      "type": "romance",
+      "label": "hides her, then falls for her across the border",
+      "short": "in love",
+      "evidence": "he agrees to help her return to South Korea… the two of them start falling for one another",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seodan",
+      "to": "jeonghyeok",
+      "type": "romance",
+      "label": "his fiancée — a childhood crush he never returned",
+      "short": "fiancée",
+      "evidence": "리정혁의 약혼녀… 어릴 때부터 짝사랑한 정혁과 약혼을 하지만, 정혁은 그녀에게 관심조차 주지 않는다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjun",
+      "to": "seri",
+      "type": "romance",
+      "label": "her former fiancé",
+      "short": "ex-fiancé",
+      "evidence": "세리의 파혼남 / former fiancé of Se-ri",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjun",
+      "to": "seodan",
+      "type": "romance",
+      "label": "courts her in Pyongyang; she comes round",
+      "short": "courts her",
+      "evidence": "he develops a romantic interest in Seo Dan… She eventually opens her heart to Seung-jun",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjun",
+      "to": "sehyeong",
+      "type": "rivalry",
+      "label": "swindled a hundred billion won out of him",
+      "short": "swindled him",
+      "evidence": "세리의 작은오빠 세형에게서 1,000억 원을 사기치고 북한으로 들어와",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungryeol",
+      "to": "jeonghyeok",
+      "type": "family",
+      "label": "father — Director of the General Political Bureau",
+      "short": "father",
+      "evidence": "[Jeong Hyeok's father] / 정혁의 아버지, 북한 총정치국장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunhui",
+      "to": "jeonghyeok",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jeong Hyeok's mother] / 정혁의 어머니",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "muhyeok",
+      "to": "jeonghyeok",
+      "type": "family",
+      "label": "older brother, dead seven years",
+      "short": "older brother",
+      "evidence": "[Jeong Hyeok's older brother] / 정혁의 형, 대위, 7년 전 사망함",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolgang",
+      "to": "muhyeok",
+      "type": "rivalry",
+      "label": "murdered him in a staged accident when he uncovered the corruption",
+      "short": "murdered him",
+      "evidence": "He was murdered by Cheol-gang in a staged accident after uncovering the latter's corruption",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghyeok",
+      "to": "cheolgang",
+      "type": "rivalry",
+      "label": "hunting his brother's killer",
+      "short": "hunts him",
+      "evidence": "군인이 되어 석연치 않은 형의 죽음을 파해친다 / He murders those who threaten to expose him, including Jeong-hyeok's brother",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manbok",
+      "to": "muhyeok",
+      "type": "work",
+      "label": "his old benefactor — whose death his intelligence caused",
+      "short": "betrayed him",
+      "evidence": "he previously provided the intelligence that led to the death of Ri Mu-hyeok, Jeong-hyeok's brother and Man-bok's former benefactor",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manbok",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "the wiretapper set on him, who turns to his side",
+      "short": "wiretaps him",
+      "evidence": "A wiretapper assigned to monitor Jeong-hyeok… he ultimately allies with Jeong-hyeok and Se-ri to bring down Cheol-gang",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolgang",
+      "to": "manbok",
+      "type": "work",
+      "label": "coerces him by threatening his family",
+      "short": "coerces him",
+      "evidence": "Coerced into working for Cheol-gang to protect his family",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsuk2",
+      "to": "manbok",
+      "type": "family",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Man Bok's wife] / 만복의 아내",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chisu",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "master sergeant of Company Five",
+      "short": "master sergeant",
+      "evidence": "[5th Company master sergeant] / 5중대 특무상사",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chisu",
+      "to": "seri",
+      "type": "rivalry",
+      "label": "her sworn enemy in the unit, and kind underneath",
+      "short": "bickers with her",
+      "evidence": "윤세리와 앙숙이다 / Despite his short temper and hostility toward Se-ri… he is kind-hearted and loyal",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gwangbeom",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "staff sergeant; his most trusted man",
+      "short": "trusted sergeant",
+      "evidence": "5중대 하사. 정혁과 신뢰 관계 돈독함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jumuk",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "staff sergeant, and a K-drama expert",
+      "short": "soldier",
+      "evidence": "[5th Company staff sergeant] / 열혈 한류 팬",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eundong",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "private first class",
+      "short": "private",
+      "evidence": "[5th Company private first class] / 5중대 초급병사",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eundong",
+      "to": "seri",
+      "type": "friend",
+      "label": "bonds closely with her",
+      "short": "bonds with her",
+      "evidence": "The youngest member of the unit… bonds closely with Se-ri",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myeongeun",
+      "to": "seodan",
+      "type": "family",
+      "label": "mother — runs the Pyongyang department store",
+      "short": "mother",
+      "evidence": "[Seo Dan's mother] / 어머니, 평양백화점 사장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsuk",
+      "to": "seodan",
+      "type": "family",
+      "label": "maternal uncle",
+      "short": "uncle",
+      "evidence": "[Seo Dan's uncle] / 외삼촌, 명은의 동생",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsuk",
+      "to": "myeongeun",
+      "type": "family",
+      "label": "her younger brother",
+      "short": "younger brother",
+      "evidence": "명은의 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsuk",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "secretly on his side at State Security",
+      "short": "backs him quietly",
+      "evidence": "a major general in the Ministry of State Security. He secretly supports Jeong-hyeok",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeungpyeong",
+      "to": "seri",
+      "type": "family",
+      "label": "father — chairman of Queens Group",
+      "short": "father",
+      "evidence": "[Se Ri's father] / 아버지, 퀸즈그룹 회장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongyeon",
+      "to": "seri",
+      "type": "family",
+      "label": "the mother who raised her — not her birth mother",
+      "short": "mother",
+      "evidence": "[Se Ri's mother] / Se-ri's stepmother… abandoned a young Se-ri at a beach",
+      "source": "MDL cast · en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeungpyeong",
+      "to": "jeongyeon",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "아버지, 퀸즈그룹 회장 / 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sejun",
+      "to": "seri",
+      "type": "family",
+      "label": "eldest brother — CEO of Queens Motors",
+      "short": "eldest brother",
+      "evidence": "[Se Ri's eldest brother] / 세리의 큰오빠",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sehyeong",
+      "to": "seri",
+      "type": "family",
+      "label": "second brother — CEO of Queens Industries",
+      "short": "second brother",
+      "evidence": "세리의 작은오빠, 세준의 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeji",
+      "to": "sejun",
+      "type": "romance",
+      "label": "wife — married him for the money",
+      "short": "wife",
+      "evidence": "[Se Jun's wife] / She married Se-jun for his wealth",
+      "source": "MDL cast · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanga",
+      "to": "sehyeong",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Se Hyeong's wife] / 세형의 아내",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanga",
+      "to": "seri",
+      "type": "rivalry",
+      "label": "covets her company; conspires to keep her in the North",
+      "short": "wants her company",
+      "evidence": "Se-hyeong's ambitious wife who covets Se-ri's company. She conspires to keep Se-ri trapped in the North",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sejun",
+      "to": "seri",
+      "type": "rivalry",
+      "label": "hinders her return to keep the succession",
+      "short": "blocks her return",
+      "evidence": "Upon learning of her survival in North Korea, he actively hinders her return to preserve his claim to the family fortune",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changsik",
+      "to": "seri",
+      "type": "work",
+      "label": "PR team manager who never stops looking for her",
+      "short": "team manager",
+      "evidence": "[Seri Choice team manager] / 세리네 회사 홍보팀장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suchan",
+      "to": "seri",
+      "type": "work",
+      "label": "her life-insurance agent, searching with Chang Sik",
+      "short": "insurance agent",
+      "evidence": "세리의 생명보험 담당자 / along with Su-chan, tirelessly searches for her",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangu",
+      "to": "seri",
+      "type": "romance",
+      "label": "her secret ex-boyfriend",
+      "short": "ex-boyfriend",
+      "evidence": "[Se Ri's ex-boyfriend] / Se-ri's former secret boyfriend",
+      "source": "MDL cast · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ryonghae",
+      "to": "yeongae",
+      "type": "romance",
+      "label": "married — the senior colonel and the village's queen",
+      "short": "married",
+      "evidence": "영애의 남편, 대좌",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongae",
+      "to": "seri",
+      "type": "friend",
+      "label": "won over by flattery",
+      "short": "won over",
+      "evidence": "Se-ri quickly wins her favor through flattery",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okgeum",
+      "to": "wolsuk",
+      "type": "friend",
+      "label": "close friends",
+      "short": "close friends",
+      "evidence": "She is Wol-suk's close friend",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ryonghae",
+      "to": "jeonghyeok",
+      "type": "work",
+      "label": "senior colonel over him",
+      "short": "his superior",
+      "evidence": "[Senior colonel] / 대좌",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jeonghyeok",
+      "seri",
+      "seodan",
+      "seungjun",
+      "myeongeun",
+      "myeongsuk",
+      "chungryeol",
+      "yunhui",
+      "muhyeok",
+      "chisu",
+      "gwangbeom",
+      "jumuk",
+      "eundong",
+      "cheolgang",
+      "manbok",
+      "myeongsuk2",
+      "jeungpyeong",
+      "jeongyeon",
+      "sejun",
+      "hyeji",
+      "sehyeong",
+      "sanga",
+      "changsik",
+      "suchan",
+      "sangu"
+    ],
+    "blocks": {
+      "Jeong Hyeok's family": [
+        0,
+        0
+      ],
+      "Company Five": [
+        0,
+        1
+      ],
+      "State Security": [
+        0,
+        2
+      ],
+      "Queens Group": [
+        2,
+        0
+      ],
+      "Seri's Choice": [
+        2,
+        2
+      ],
+      "Pyongyang": [
+        1,
+        0
+      ],
+      "The village": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jeonghyeok",
+      "seri"
+    ]
+  }
+}
