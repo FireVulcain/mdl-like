@@ -40,6 +40,14 @@ export function foldName(name: string): string {
         .replace(/(.)\1+/g, "$1");
 }
 
+/**
+ * The same fold with the words in alphabetical order: a Japanese actor is
+ * "Takenaka Naoto" on MDL and "Naoto Takenaka" on asianwiki.
+ */
+export function foldNameSorted(name: string): string {
+    return foldName(name.replace(/\(.*?\)/g, "").split(/[\s-]+/).filter(Boolean).sort().join(" "));
+}
+
 /** A person's name without the alias part or a parenthetical: "Naksu / Cho Yeong" → "Naksu". */
 const bare = (name: string) => name.split(" / ")[0].replace(/ \(.*\)$/, "");
 
@@ -59,11 +67,14 @@ export type StillsResult = {
  */
 export function applyStills(map: CharacterMapData, rows: StillRow[]): StillsResult {
     const byActor = new Map<string, StillRow>();
+    const byActorSorted = new Map<string, StillRow>();
     const byCharacter = new Map<string, StillRow>();
     for (const r of rows) {
         if (!r.image) continue;
         const a = foldName(r.actor ?? "");
         if (a && !byActor.has(a)) byActor.set(a, r);
+        const as = foldNameSorted(r.actor ?? "");
+        if (as && !byActorSorted.has(as)) byActorSorted.set(as, r);
         const c = foldName(r.character ?? "");
         if (c && !byCharacter.has(c)) byCharacter.set(c, r);
     }
@@ -73,9 +84,9 @@ export function applyStills(map: CharacterMapData, rows: StillRow[]): StillsResu
     const unmatched: string[] = [];
 
     const people = map.people.map((p) => {
-        const row = byActor.get(foldName(p.actor)) ?? byCharacter.get(foldName(bare(p.name)));
+        const row = byActor.get(foldName(p.actor)) ?? byActorSorted.get(foldNameSorted(p.actor)) ?? byCharacter.get(foldName(bare(p.name)));
         const alsoPlayedBy = p.alsoPlayedBy?.map((a) => {
-            const r = byActor.get(foldName(a.name));
+            const r = byActor.get(foldName(a.name)) ?? byActorSorted.get(foldNameSorted(a.name));
             if (!r) return a;
             used.add(r);
             return { ...a, still: r.image };

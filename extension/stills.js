@@ -19,13 +19,15 @@ const norm = (s) => s.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]/g
 // lands on an actor's page, and their photos on the wrong faces — ranked
 // with the year first, then "(Korean Drama)": "W" alone is a Thai film there,
 // "W (Korean Drama)" is the one.
-async function searchPages(title, year) {
-    const res = await fetch(`${AW}/index.php?search=${encodeURIComponent(title)}&fulltext=0`, { credentials: "omit" });
+async function searchPages(title, year, listOnly = false) {
+    // fulltext=1 asks for the result list even when a title matches exactly —
+    // "18 Again" lands on a 2009 film, and the drama is one line down the list.
+    const res = await fetch(`${AW}/index.php?search=${encodeURIComponent(title)}&fulltext=${listOnly ? 1 : 0}`, { credentials: "omit" });
     if (!res.ok) return { error: `search HTTP ${res.status}` };
     const html = await res.text();
     if (!/index\.php/.test(res.url)) {
         const landed = decodeURIComponent(new URL(res.url).pathname.slice(1)).replace(/_/g, " ");
-        return { pages: [landed], html, seen: [landed] };
+        return { pages: [landed], html, seen: [landed], landed: true };
     }
     const doc = new DOMParser().parseFromString(html, "text/html");
     const names = [...new Set([...doc.querySelectorAll(".mw-search-result-heading a, .mw-search-results a")]
@@ -58,8 +60,15 @@ async function fetchPage(page) {
 
 // Cast tables: a row of photos, a row of actor links, a row of characters.
 // The actor row must be links to pages — that is what tells a cast table
-// from any other three rows with pictures.
+// from any other three rows with pictures. An older page writes the actors
+// as plain text; when the strict read finds nothing, a lenient one takes
+// the cell's text instead.
 function castRows(html) {
+    const strict = readCastRows(html, true);
+    return strict.length ? strict : readCastRows(html, false);
+}
+
+function readCastRows(html, strict) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const rows = [];
     for (const table of doc.querySelectorAll("table")) {
@@ -68,7 +77,7 @@ function castRows(html) {
             const cells = [...trs[i].querySelectorAll("td")];
             const imgs = cells.map((td) => td.querySelector("img"));
             if (!imgs.some(Boolean)) continue;
-            const actors = [...trs[i + 1].querySelectorAll("td")].map((td) => td.querySelector("a")?.textContent.trim() ?? "");
+            const actors = [...trs[i + 1].querySelectorAll("td")].map((td) => (strict ? td.querySelector("a")?.textContent.trim() : td.textContent.trim()) ?? "");
             const chars = [...trs[i + 2].querySelectorAll("td")].map((td) => td.textContent.trim());
             if (!actors.some(Boolean)) continue;
             imgs.forEach((img, k) => {
@@ -95,8 +104,13 @@ async function runStills(appUrl, redo, report) {
         try {
             let posted = false, seen = [], lastError = null;
             for (const variant of titleVariants(c.title, c.asianwiki)) {
-                const found = await searchPages(variant, c.year);
+                let found = await searchPages(variant, c.year);
                 if (found.error) { lastError = found.error; continue; }
+                // Landed straight on a page with no cast table: ask for the list instead
+                if (found.landed && castRows(found.html).length === 0) {
+                    const listed = await searchPages(variant, c.year, true);
+                    if (!listed.error && listed.pages.length) found = { ...listed, pages: listed.pages.filter((p) => p !== found.pages[0]) };
+                }
                 seen = seen.concat(found.seen);
                 for (const page of found.pages) {
                     const html = found.html && found.pages[0] === page ? found.html : (await fetchPage(page)).html;
