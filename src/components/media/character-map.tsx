@@ -89,8 +89,8 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
     const [hover, setHover] = useState<string | null>(null);
 
     // The chart is looked at through a fixed window and dragged around, not
-    // scrolled: it opens on the leads, and a household off to the side is a
-    // pull away. Nothing but the SVG's viewBox moves.
+    // scrolled: it opens on the whole thing, and a reader who wants a corner
+    // zooms into it. Nothing but the SVG's viewBox moves.
     const frameRef = useRef<HTMLDivElement>(null);
     const [frame, setFrame] = useState({ w: 1100, h: 760 });
     // x, y: the top-left of the window in chart units; z: chart units per screen pixel, inverted (2 = twice as big)
@@ -113,12 +113,6 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
         return () => ro.disconnect();
     }, []);
 
-    const leadsCentre = useMemo(() => {
-        const leads = layout.people.filter((p) => p.lead);
-        const xs = leads.length ? leads : layout.people;
-        return { x: xs.reduce((t, p) => t + p.x, 0) / (xs.length || 1), y: xs.reduce((t, p) => t + p.y, 0) / (xs.length || 1) + 30 };
-    }, [layout]);
-
     // The window in chart units is the frame divided by the zoom. It may not
     // leave the chart, and a chart smaller than the window sits centred.
     const clamp = (x: number, y: number, z: number) => {
@@ -129,9 +123,17 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
             z,
         };
     };
-    const recentre = () => setView((v) => clamp(leadsCentre.x - frame.w / v.z / 2, leadsCentre.y - frame.h / v.z / 2, v.z));
+    // The whole chart, in the frame. Never past 1: a chart that fits already
+    // is drawn at the size it was designed at rather than blown up to fill
+    // the room. The charts written so far land between 0.74 and 1, so this
+    // is a step back, not a squint — and clamp() does the centring.
+    const fit = () =>
+        setView(() => {
+            const z = Math.max(ZMIN, Math.min(1, frame.w / layout.width, frame.h / layout.height));
+            return clamp(0, 0, z);
+        });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(recentre, [layout, frame.w, frame.h]);
+    useEffect(fit, [layout, frame.w, frame.h]);
 
     // Zoom about a point of the frame (the cursor, or its middle for the
     // buttons): the chart point under it stays under it.
@@ -419,7 +421,7 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                         [
                             ["Zoom in", <Plus key="in" className="h-4 w-4" />, () => zoomAt(1.25, frame.w / 2, frame.h / 2), view.z >= ZMAX],
                             ["Zoom out", <Minus key="out" className="h-4 w-4" />, () => zoomAt(0.8, frame.w / 2, frame.h / 2), view.z <= ZMIN],
-                            ["Back to the leads", <Crosshair key="c" className="h-4 w-4" />, recentre, false],
+                            ["Fit the whole chart", <Crosshair key="c" className="h-4 w-4" />, fit, false],
                         ] as const
                     ).map(([title, icon, run, off]) => (
                         <button
