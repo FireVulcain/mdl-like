@@ -14,7 +14,7 @@
   "main": ["kangcheol", "yeonju"],
   "people": [
     { "id": "kangcheol", "name": "Kang Cheol", "actor": "Lee Jong Suk", "image": "https://i.mydramalist.com/NdXbQv_5m.jpg", "group": "Leads", "inCast": true },
-    { "id": "yeonju", "name": "O Yeon Ju", "actor": "Han Hyo Joo", "image": "https://i.mydramalist.com/R6W7x_5m.jpg", "group": "Leads", "inCast": true },
+    { "id": "yeonju", "name": "O Yeon Ju", "actor": "Han Hyo Joo", "image": "https://i.mydramalist.com/R6W7x_5m.jpg", "group": "Leads", "inCast": true, "alsoPlayedBy": [{ "name": "Jung Ji So", "image": "https://i.mydramalist.com/2wmKLV_5m.jpg", "era": "young" }, { "name": "Park Min Ha", "image": "https://i.mydramalist.com/6xgKW_5m.jpg", "era": "young" }] },
     { "id": "seongmu", "name": "O Seong Mu", "actor": "Kim Eui Sung", "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg", "group": "Yeon Ju's family", "inCast": true, "note": "Author of the webtoon W — Kang Cheol's world is his drawing" },
     { "id": "suseon", "name": "Kil Su Seon", "actor": "Nam Gi Ae", "image": "https://i.mydramalist.com/O8e2kd_5m.jpg", "group": "Yeon Ju's family", "inCast": true },
     { "id": "suyeong", "name": "Kil Su Yeong", "actor": "Lee Se Rang", "image": "https://i.mydramalist.com/QXBeWm.jpg", "group": "Yeon Ju's family", "inCast": true },

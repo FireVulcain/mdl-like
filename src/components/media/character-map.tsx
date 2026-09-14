@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Crosshair, Minus, Plus } from "lucide-react";
-import { layoutCompact, linkPath, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType } from "@/lib/character-map";
+import { actorLine, ERA_LABEL, layoutCompact, linkPath, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType, type MapActor, type MapPerson } from "@/lib/character-map";
 
 // Colour follows meaning, the way it does across the app: family is the quiet
 // one, romance rose, rivalry amber; teal for work and loyalty, lime for
@@ -43,6 +43,15 @@ function Face({ person }: { person: { image: string | null; name: string; inCast
         </span>
     );
 }
+
+// The other actors of a character, as one line of prose — for the tooltip,
+// which is a native SVG <title> and so can hold nothing but text.
+const alsoLine = (p: MapPerson) => {
+    const others = p.alsoPlayedBy ?? [];
+    if (others.length === 0) return "";
+    const say = (a: MapActor) => (a.era ? `${a.name} (${ERA_LABEL[a.era]})` : a.name);
+    return `\nAlso played by ${others.map(say).join(", ")}`;
+};
 
 /**
  * The relationship chart, on its own page.
@@ -336,7 +345,7 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                         const faded = near ? !near.has(p.id) : false;
                         // Text is centred under the face unless that would run it off the
                         // frame's edge; then it hangs from the face's near side instead.
-                        const widest = Math.max(p.name.length * 6.8, p.actor.length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
+                        const widest = Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
                         const anchor = p.x - widest / 2 < 8 ? "start" : p.x + widest / 2 > layout.width - 8 ? "end" : "middle";
                         const tx = anchor === "start" ? -R : anchor === "end" ? R : 0;
                         return (
@@ -352,7 +361,7 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                                 onClick={unlessDragged(() => pickPerson(p.id))}
                                 className="cursor-pointer"
                             >
-                                <title>{`${p.name} — ${p.actor}${p.note ? `\n${p.note}` : ""}${p.inCast ? "" : "\n(not in MDL's cast)"}`}</title>
+                                <title>{`${p.name} — ${p.actor}${alsoLine(p)}${p.note ? `\n${p.note}` : ""}${p.inCast ? "" : "\n(not in MDL's cast)"}`}</title>
                                 <circle
                                     r={R}
                                     className={p.lead ? "fill-surface-2 stroke-sky-400" : p.inCast ? "fill-surface-2 stroke-line-strong" : "fill-surface-1 stroke-fg-dim"}
@@ -370,7 +379,7 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                                     {p.name.replace(/ \(.*\)$/, "")}
                                 </text>
                                 <text x={tx} dy={R + 27} textAnchor={anchor} className="fill-fg-dim font-mono text-[9.5px]" style={textStroke}>
-                                    {p.actor}
+                                    {actorLine(p)}
                                 </text>
                                 {labels &&
                                     p.captions.map((c, i) => {
@@ -469,6 +478,21 @@ export function CharacterMap({ map, hideSpoilers }: { map: CharacterMapData; hid
                             {personLinks.length} link{personLinks.length === 1 ? "" : "s"}
                         </span>
                     </div>
+                    {/* The same character at another age. The chart draws one portrait and
+                        names one actor; here there is room for the others' faces, which is
+                        what makes "the father is also Choi Won Young" land. */}
+                    {selectedPerson.alsoPlayedBy && selectedPerson.alsoPlayedBy.length > 0 && (
+                        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
+                            <span className="text-xs text-fg-dim">Also played by</span>
+                            {selectedPerson.alsoPlayedBy.map((a) => (
+                                <span key={`${a.name}-${a.era ?? ""}`} className="inline-flex items-center gap-2">
+                                    <Face person={{ image: a.image ?? null, name: a.name, inCast: true }} />
+                                    <span className="font-mono text-[11px] text-fg-soft">{a.name}</span>
+                                    {a.era && <span className="text-xs text-fg-dim">{ERA_LABEL[a.era]}</span>}
+                                </span>
+                            ))}
+                        </div>
+                    )}
                     {selectedPerson.note && <p className="mt-1 text-xs text-fg-dim">{selectedPerson.note}</p>}
                     {personLinks.length > 0 && (
                         <ul className="mt-2 divide-y divide-line-soft">

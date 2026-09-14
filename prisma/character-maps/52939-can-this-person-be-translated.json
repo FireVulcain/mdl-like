@@ -21,7 +21,19 @@
       "actor": "Lee Jae Wook",
       "image": "https://i.mydramalist.com/KpJXVJ_5m.jpg",
       "group": "Jang family",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ye Gyeom",
+          "image": "https://i.mydramalist.com/28Qo2_5m.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Park Soo Oh",
+          "image": "https://i.mydramalist.com/b3yD7V_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "mudeok",
@@ -37,7 +49,14 @@
       "actor": "Go Youn Jung",
       "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
       "group": "Naksu",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Gu Yu Jung",
+          "image": "https://i.mydramalist.com/XLyWX_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "chochung",
@@ -80,7 +99,19 @@
       "actor": "Hwang Min Hyun",
       "image": "https://i.mydramalist.com/l0DnYv_5m.jpg",
       "group": "Seo family",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jang Sun Yool",
+          "image": "https://i.mydramalist.com/RrBrYm.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Moon Seong Hyun",
+          "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "parkjin",
@@ -88,7 +119,19 @@
       "actor": "Yoo Joon Sang",
       "image": "https://i.mydramalist.com/ZN4EY_5m.jpg",
       "group": "Songrim",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Seung Wook",
+          "image": "https://i.mydramalist.com/ndrmNm.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Kim Min Seung",
+          "image": "https://i.mydramalist.com/Rvv0x_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "danggu",
@@ -96,7 +139,14 @@
       "actor": "Yoo In Soo",
       "image": "https://i.mydramalist.com/81XqdK_5m.jpg",
       "group": "Songrim",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jeong Seo Yul",
+          "image": "https://i.mydramalist.com/W20eW_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "sangho",

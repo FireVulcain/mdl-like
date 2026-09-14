@@ -25,7 +25,14 @@
       "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "CODA — the only hearing person in a deaf family; guitarist, and a member of Spine9 in 2023"
+      "note": "CODA — the only hearing person in a deaf family; guitarist, and a member of Spine9 in 2023",
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Hyun Joon",
+          "image": "https://i.mydramalist.com/PxQq0Z_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "ichan",
@@ -34,7 +41,14 @@
       "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Frontman of Watermelon Sugar. Older: Choi Won Young"
+      "note": "Frontman of Watermelon Sugar",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Won Young",
+          "image": "https://i.mydramalist.com/QBrn6_5m.jpg",
+          "era": "older"
+        }
+      ]
     },
     {
       "id": "cheonga",
@@ -43,7 +57,19 @@
       "image": "https://i.mydramalist.com/b3o64e_5m.jpg",
       "group": "Eun Gyeol's family",
       "inCast": true,
-      "note": "Deaf since birth. Older: Seo Young Hee"
+      "note": "Deaf since birth",
+      "alsoPlayedBy": [
+        {
+          "name": "Seo Young Hee",
+          "image": "https://i.mydramalist.com/WXOy3_5m.jpg",
+          "era": "older"
+        },
+        {
+          "name": "Kwon Dan Ah",
+          "image": "https://i.mydramalist.com/RBPy8x_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "eunho",
@@ -52,7 +78,19 @@
       "image": "https://i.mydramalist.com/kA7NPO_5m.jpg",
       "group": "Eun Gyeol's family",
       "inCast": true,
-      "note": "Deaf"
+      "note": "Deaf",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ji Woo",
+          "image": "https://i.mydramalist.com/XqW4x_5m.jpg",
+          "era": "young"
+        },
+        {
+          "name": "Cho Yeo Jun",
+          "image": "https://i.mydramalist.com/eYrWxp_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "segyeong",
@@ -61,7 +99,19 @@
       "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
       "group": "Se Gyeong's family",
       "inCast": true,
-      "note": "Cellist, the muse of Seowon Arts High. Older: Lee So Yeon"
+      "note": "Cellist, the muse of Seowon Arts High",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee So Yeon",
+          "image": "https://i.mydramalist.com/60yVN0_5m.jpg",
+          "era": "older"
+        },
+        {
+          "name": "Moon Seo Yeon",
+          "image": "https://i.mydramalist.com/2KPgk_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "eunyu",
@@ -79,7 +129,14 @@
       "image": "https://i.mydramalist.com/2wdNA7_5m.jpg",
       "group": "Se Gyeong's family",
       "inCast": true,
-      "note": "Medical student, vocalist and guitarist of Golden Mess. Adult: Ryu Jin"
+      "note": "Medical student, vocalist and guitarist of Golden Mess",
+      "alsoPlayedBy": [
+        {
+          "name": "Ryu Jin",
+          "image": "https://i.mydramalist.com/RB2EpV_5m.jpg",
+          "era": "adult"
+        }
+      ]
     },
     {
       "id": "choihyeon",
@@ -123,7 +180,14 @@
       "image": "https://i.mydramalist.com/BDgml_5m.jpg",
       "group": "Watermelon Sugar",
       "inCast": true,
-      "note": "Runs MJ Entertainment in 2023. Adult: Kim Hyung Bum"
+      "note": "Runs MJ Entertainment in 2023",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Hyung Bum",
+          "image": "https://i.mydramalist.com/rzPo2_5m.jpg",
+          "era": "older"
+        }
+      ]
     },
     {
       "id": "hyeonyul",
@@ -131,7 +195,14 @@
       "actor": "Yoon Jae Chan",
       "image": "https://i.mydramalist.com/g0QBe1_5m.jpg",
       "group": "Watermelon Sugar",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Song Chang Eui",
+          "image": "https://i.mydramalist.com/Wl72X_5m.jpg",
+          "era": "older"
+        }
+      ]
     },
     {
       "id": "siguk",
@@ -139,7 +210,14 @@
       "actor": "Lee Ha Min",
       "image": "https://i.mydramalist.com/2wNWJV_5m.jpg",
       "group": "Watermelon Sugar",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Ryu Soo Young",
+          "image": "https://i.mydramalist.com/Ndq4bY_5m.jpg",
+          "era": "older"
+        }
+      ]
     },
     {
       "id": "sebeom",
@@ -147,7 +225,14 @@
       "actor": "Lee Su Chan",
       "image": "https://i.mydramalist.com/2wxKAP_5m.jpg",
       "group": "Watermelon Sugar",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zin Tae Hyun",
+          "image": "https://i.mydramalist.com/1xYd5_5m.jpg",
+          "era": "older"
+        }
+      ]
     },
     {
       "id": "yanghui",
@@ -191,7 +276,14 @@
       "actor": "Kwon Do Hyung",
       "image": "https://i.mydramalist.com/81k8w2_5m.jpg",
       "group": "Jinseong Instruments",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Yoon Woo",
+          "image": "https://i.mydramalist.com/2XkXW_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "sanga",
@@ -200,7 +292,14 @@
       "image": "https://i.mydramalist.com/nODnrL_5m.jpg",
       "group": "Jinseong Instruments",
       "inCast": true,
-      "note": "Art student at Seowon Arts High"
+      "note": "Art student at Seowon Arts High",
+      "alsoPlayedBy": [
+        {
+          "name": "Woo Jeong Won",
+          "image": "https://i.mydramalist.com/BwOw5m.jpg",
+          "era": "adult"
+        }
+      ]
     },
     {
       "id": "junhyeong",
@@ -236,7 +335,14 @@
       "image": "https://i.mydramalist.com/XdZBRd_5m.jpg",
       "group": "The rock scene",
       "inCast": true,
-      "note": "The legendary guitarist of Chuncheon; young: Kim Jun Hyung"
+      "note": "The legendary guitarist of Chuncheon",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Jun Hyung",
+          "image": "https://i.mydramalist.com/DkQREr_5m.jpg",
+          "era": "young"
+        }
+      ]
     }
   ],
   "links": [

@@ -24,7 +24,14 @@
       "actor": "Zhang Ruo Yun",
       "image": "https://i.mydramalist.com/b3XA3w_5m.jpg",
       "group": "Fan household",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Finn Han",
+          "image": "https://i.mydramalist.com/E5D2gQ_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "waner",
@@ -80,7 +87,14 @@
       "actor": "Song Yi",
       "image": "https://i.mydramalist.com/nOQ1b4_5m.jpg",
       "group": "Fan household",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zhang Wan Er",
+          "image": "https://i.mydramalist.com/g0AYrn_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "fanjian",
@@ -121,7 +135,14 @@
       "image": "https://i.mydramalist.com/Eplrlm.jpg",
       "group": "Fan household",
       "inCast": true,
-      "note": "MDL Guest Role: Professor Ye / Ye Qing Mei"
+      "note": "MDL Guest Role: Professor Ye / Ye Qing Mei",
+      "alsoPlayedBy": [
+        {
+          "name": "Gu Yu Han",
+          "image": "https://i.mydramalist.com/j28ovm.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "wuzhu",

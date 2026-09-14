@@ -57,7 +57,8 @@ script below) is where the text a chart is read from is gathered first.
   "main": ["aesun", "gwansik"],
   "people": [
     { "id": "aesun", "name": "O Ae Sun", "actor": "IU", "image": "https://i.mydramalist.com/….jpg",
-      "group": "Ae Sun & Gwan Sik", "inCast": true, "note": "optional" }
+      "group": "Ae Sun & Gwan Sik", "inCast": true, "note": "optional",
+      "alsoPlayedBy": [{ "name": "Moon So Ri", "image": "https://i.mydramalist.com/….jpg", "era": "middle-aged" }] }
   ],
   "links": [
     { "from": "gwangrye", "to": "aesun", "type": "family", "label": "mother", "short": "mother",
@@ -74,6 +75,15 @@ script below) is where the text a chart is read from is gathered first.
 
 - `group` names the household or circle a person belongs to; the chart draws
   one block per group. Name them the way a broadcaster's chart would.
+- **`actor` is whoever the drawn portrait belongs to**; `alsoPlayedBy` lists
+  the other actors of the same character, with an `era` out of `child`,
+  `teen`, `young`, `adult`, `middle-aged`, `older`. That vocabulary is MDL's
+  own — its cast writes `O Ae Sun [Child]`, `Ha I Chan [Older]` — so take the
+  era from the bracket rather than inventing an age or a year, which the
+  sources only give sometimes. The chart writes a second name under the face
+  when there is exactly one; the panel under it shows every face and era.
+  Do not confuse this with one actor playing two characters (IU is both Ae
+  Sun and Geum Myeong): those stay two people, and a `note` says so.
 - `compact.people` is the cut the Compact view shows: the leads, their
   families, and whoever the story turns on — keep whole households, never
   half of one. Everything else is still drawn in the Everyone view.

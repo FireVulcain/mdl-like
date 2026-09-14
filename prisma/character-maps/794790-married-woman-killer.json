@@ -22,7 +22,14 @@
       "actor": "Kong Hyo Jin",
       "image": "https://i.mydramalist.com/4k0oZm.jpg",
       "group": "Leads",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Gi So Yoo",
+          "image": "https://i.mydramalist.com/QJNnQA_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "taeseong",

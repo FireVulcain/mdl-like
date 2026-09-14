@@ -9,16 +9,49 @@
  */
 export type LinkType = "family" | "romance" | "rivalry" | "work" | "friend" | "bond";
 
+/**
+ * Which stretch of a life an actor covers. MDL tags its own cast that way —
+ * "Ha I Chan [Older]", "O Ae Sun [Child]" — so the vocabulary is theirs, and
+ * it is what we can count on: an age or a year is only in the sources
+ * sometimes, the bracket is always there when a role is cast twice.
+ */
+export type Era = "child" | "teen" | "young" | "adult" | "middle-aged" | "older";
+export const ERA_LABEL: Record<Era, string> = {
+    child: "as a child",
+    teen: "as a teenager",
+    young: "younger",
+    adult: "as an adult",
+    "middle-aged": "middle-aged",
+    older: "older",
+};
+
+/** Another actor who plays the same character, at another age. */
+export type MapActor = { name: string; image?: string | null; era?: Era };
+
 export type MapPerson = {
     id: string;
     name: string;
+    /** the actor the chart draws — whoever the portrait belongs to */
     actor: string;
     image: string | null;
     group: string;
+    /** the other actors of the same character, if the show casts it twice */
+    alsoPlayedBy?: MapActor[];
     /** false for someone the text names but MDL's cast does not carry */
     inCast: boolean;
     note?: string;
 };
+
+/**
+ * The mono line under a face. One other actor fits there and is worth having
+ * in the picture — it is half of who plays this person. A list of three does
+ * not: it widens the household to say what the panel below says better, so
+ * past one the chart keeps the drawn actor alone.
+ */
+export function actorLine(p: MapPerson): string {
+    const others = p.alsoPlayedBy ?? [];
+    return others.length === 1 ? `${p.actor} · ${others[0].name}` : p.actor;
+}
 
 export type MapLink = {
     from: string;
@@ -139,7 +172,7 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         if (!groups.has(g)) groups.set(g, []);
         groups.get(g)!.push(p);
     }
-    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, p.actor.length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
+    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => c.text.length * 5.9));
     type Shape = { name: string; members: LaidOutPerson[]; perRow: number; rows: number; dx: number; dy: number; w: number; h: number; x: number; y: number };
     const shapes = new Map<string, Shape>();
     for (const [g, members] of groups) {

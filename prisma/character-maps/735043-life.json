@@ -21,7 +21,24 @@
       "actor": "IU",
       "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
       "group": "Ae Sun & Gwan Sik",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Moon So Ri",
+          "image": "https://i.mydramalist.com/b35WBx_5m.jpg",
+          "era": "middle-aged"
+        },
+        {
+          "name": "Kim Tae Yeon",
+          "image": "https://i.mydramalist.com/6Lzb2m.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Yoon Seo Yeon",
+          "image": "https://i.mydramalist.com/rzl7m_5m.jpg",
+          "era": "teen"
+        }
+      ]
     },
     {
       "id": "gwansik",
@@ -29,7 +46,24 @@
       "actor": "Park Bo Gum",
       "image": "https://i.mydramalist.com/ABWwYZ_5m.jpg",
       "group": "Ae Sun & Gwan Sik",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Hae Joon",
+          "image": "https://i.mydramalist.com/RRQJR_5m.jpg",
+          "era": "middle-aged"
+        },
+        {
+          "name": "Lee Cheon Mu",
+          "image": "https://i.mydramalist.com/l01DP6_5m.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Moon Woo Jin",
+          "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+          "era": "teen"
+        }
+      ]
     },
     {
       "id": "geummyeong",
@@ -38,7 +72,19 @@
       "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
       "group": "Children",
       "inCast": true,
-      "note": "Same actress as Ae Sun — MDL lists IU for both roles"
+      "note": "Same actress as Ae Sun — MDL lists IU for both roles",
+      "alsoPlayedBy": [
+        {
+          "name": "An Tae Rin",
+          "image": "https://i.mydramalist.com/XdeJjJ_5m.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Lee A Ra",
+          "image": "https://i.mydramalist.com/vgYEg_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "eunmyeong",
@@ -46,7 +92,14 @@
       "actor": "Kang You Seok",
       "image": "https://i.mydramalist.com/ABQEA3_5m.jpg",
       "group": "Children",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Chae Hyun",
+          "image": "https://i.mydramalist.com/Xp4Ap_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "dongmyeong",
@@ -136,7 +189,14 @@
       "actor": "Jang Hye Jin",
       "image": "https://i.mydramalist.com/2OnqEm.jpg",
       "group": "Sang Gil's family",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Chae Seo An",
+          "image": "https://i.mydramalist.com/RBjqAr_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "hyeonsuk",
@@ -144,7 +204,14 @@
       "actor": "Lee Soo Kyung",
       "image": "https://i.mydramalist.com/Wll2P_5m.jpg",
       "group": "Sang Gil's family",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Ha Yoon",
+          "image": "https://i.mydramalist.com/pmZye_5m.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "misuk",

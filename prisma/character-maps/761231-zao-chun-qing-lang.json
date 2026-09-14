@@ -22,7 +22,14 @@
       "actor": "Jing Bo Ran",
       "image": "https://i.mydramalist.com/JB8jgJ_5m.jpg",
       "group": "Leads",
-      "inCast": true
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Huang Yao Hong",
+          "image": "https://i.mydramalist.com/x4X6mE_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "zhitao",
