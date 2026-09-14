@@ -30,9 +30,11 @@
         {
           "name": "Jung Hyun Joon",
           "image": "https://i.mydramalist.com/PxQq0Z_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/a/a1/Twinkling_Watermelon-Jeong_Hyun-Jun.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/7/76/Twinkling_Watermelon-Ryeo_Un01.jpg"
     },
     {
       "id": "ichan",
@@ -46,9 +48,11 @@
         {
           "name": "Choi Won Young",
           "image": "https://i.mydramalist.com/QBrn6_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/1/17/Twinkling_Watermelon-Choi_Won_Young.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/c/c6/Twinkling_Watermelon-Choi_Hyun-Wook1.jpg"
     },
     {
       "id": "cheonga",
@@ -62,14 +66,17 @@
         {
           "name": "Seo Young Hee",
           "image": "https://i.mydramalist.com/WXOy3_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/6/62/Twinkling_Watermelon-Seo_Young_Hee.jpg"
         },
         {
           "name": "Kwon Dan Ah",
           "image": "https://i.mydramalist.com/RBPy8x_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/dc/Twinkling_Watermelon-Kwon_Dan-A.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/3/35/Twinkling_Watermelon-Shin_Eun_Soo.jpg"
     },
     {
       "id": "eunho",
@@ -83,14 +90,17 @@
         {
           "name": "Kim Ji Woo",
           "image": "https://i.mydramalist.com/XqW4x_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/9/94/Twinkling_Watermelon-Kim_Ji_Woo.jpg"
         },
         {
           "name": "Cho Yeo Jun",
           "image": "https://i.mydramalist.com/eYrWxp_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/4/4b/Twinkling_Watermelon-Jo_Yeo-Joon.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/1/19/Twinkling_Watermelon-Bong_Jae-Hyun.jpg"
     },
     {
       "id": "segyeong",
@@ -104,14 +114,17 @@
         {
           "name": "Lee So Yeon",
           "image": "https://i.mydramalist.com/60yVN0_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/4/42/Twinkling_Watermelon-Lee_So_Yeon1.jpg"
         },
         {
           "name": "Moon Seo Yeon",
           "image": "https://i.mydramalist.com/2KPgk_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/5/5a/Twinkling_Watermelon-PD-Moon_Seo_Yeon.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/0/0f/Twinkling_Watermelon-Seol_In-A.jpg"
     },
     {
       "id": "eunyu",
@@ -120,7 +133,8 @@
       "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
       "group": "Se Gyeong's family",
       "inCast": true,
-      "note": "Same actress as Se Gyeong — MDL lists Seor In A for both roles"
+      "note": "Same actress as Se Gyeong — MDL lists Seor In A for both roles",
+      "still": "https://asianwiki.com/images/0/0f/Twinkling_Watermelon-Seol_In-A.jpg"
     },
     {
       "id": "jihwan",
@@ -134,9 +148,11 @@
         {
           "name": "Ryu Jin",
           "image": "https://i.mydramalist.com/RB2EpV_5m.jpg",
-          "era": "adult"
+          "era": "adult",
+          "still": "https://asianwiki.com/images/8/8f/Twinkling_Watermelon-Ryu_Jin.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/9/93/Twinkling_Watermelon-Woo_Je_Yeon1.jpg"
     },
     {
       "id": "choihyeon",
@@ -145,7 +161,8 @@
       "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
       "group": "Se Gyeong's family",
       "inCast": true,
-      "note": "Owner of Baekya Music, guitarist of the rock band Baekya"
+      "note": "Owner of Baekya Music, guitarist of the rock band Baekya",
+      "still": "https://asianwiki.com/images/7/7a/Twinkling_Watermelon-Park_Ho-San.jpg"
     },
     {
       "id": "hayeong",
@@ -153,7 +170,8 @@
       "actor": "Oh Hyun Kyung",
       "image": "https://i.mydramalist.com/E5Pdr0_5m.jpg",
       "group": "Se Gyeong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/9f/Twinkling_Watermelon-Oh_Hyun_Kyung.jpg"
     },
     {
       "id": "viva",
@@ -162,7 +180,8 @@
       "image": "https://i.mydramalist.com/Lw8QkB_5m.jpg",
       "group": "The music shops",
       "inCast": true,
-      "note": "Owner of the Viva Music instrument store"
+      "note": "Owner of the Viva Music instrument store",
+      "still": "https://asianwiki.com/images/1/13/Twinkling_Watermelon-Cheon_Ho_Jin.jpg"
     },
     {
       "id": "master",
@@ -171,7 +190,8 @@
       "image": "https://i.mydramalist.com/BwN11m.jpg",
       "group": "The music shops",
       "inCast": true,
-      "note": "Identity unknown — the master of the strange La Vida Music store"
+      "note": "Identity unknown — the master of the strange La Vida Music store",
+      "still": "https://asianwiki.com/images/b/b2/Twinkling_Watermelon-Jung_Sang-Hoon1.jpg"
     },
     {
       "id": "maju",
@@ -185,9 +205,11 @@
         {
           "name": "Kim Hyung Bum",
           "image": "https://i.mydramalist.com/rzPo2_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/6/6f/Twinkling_Watermelon-Kim_Hyeong-Beom.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/3/34/Twinkling_Watermelon-Ahn_Do-Kyu1.jpg"
     },
     {
       "id": "hyeonyul",
@@ -200,9 +222,11 @@
         {
           "name": "Song Chang Eui",
           "image": "https://i.mydramalist.com/Wl72X_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/9/90/Twinkling_Watermelon-Song_Chang-Eui.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/e/ec/Twinkling_Watermelon-Yoon_Jae_Chan1.jpg"
     },
     {
       "id": "siguk",
@@ -215,9 +239,11 @@
         {
           "name": "Ryu Soo Young",
           "image": "https://i.mydramalist.com/Ndq4bY_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/d/d8/Twinkling_Watermelon-Ryu_Soo-Young.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/2/22/Twinkling_Watermelon-Lee_Ha-Min01.jpg"
     },
     {
       "id": "sebeom",
@@ -230,9 +256,11 @@
         {
           "name": "Zin Tae Hyun",
           "image": "https://i.mydramalist.com/1xYd5_5m.jpg",
-          "era": "older"
+          "era": "older",
+          "still": "https://asianwiki.com/images/7/79/Twinkling_Watermelon-Jin_Tae-Hyun.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/2/2a/Twinkling_Watermelon-Lee_Su_Chan.jpg"
     },
     {
       "id": "yanghui",
@@ -241,7 +269,8 @@
       "image": "https://i.mydramalist.com/RJnePm.jpg",
       "group": "Snail boarding house",
       "inCast": true,
-      "note": "Keeper of the Snail boarding house"
+      "note": "Keeper of the Snail boarding house",
+      "still": "https://asianwiki.com/images/b/be/Twinkling_Watermelon-Ko_Du_Shim1.jpg"
     },
     {
       "id": "balsan",
@@ -250,7 +279,8 @@
       "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
       "group": "Snail boarding house",
       "inCast": true,
-      "note": "Fashion design student, back from military service"
+      "note": "Fashion design student, back from military service",
+      "still": "https://asianwiki.com/images/8/8a/Twinkling_Watermelon-Lee_Suk-Hyeong1.jpg"
     },
     {
       "id": "gunhyeong",
@@ -259,7 +289,8 @@
       "image": "https://i.mydramalist.com/47PO1_5m.jpg",
       "group": "Jinseong Instruments",
       "inCast": true,
-      "note": "Chairman of Jinseong Musical Instruments"
+      "note": "Chairman of Jinseong Musical Instruments",
+      "still": "https://asianwiki.com/images/4/48/Twinkling_Watermelon-Kim_Tae_Woo.jpg"
     },
     {
       "id": "jimi",
@@ -268,7 +299,8 @@
       "image": "https://i.mydramalist.com/kJVRvm.jpg",
       "group": "Jinseong Instruments",
       "inCast": true,
-      "note": "Chairwoman of the Seowon Arts High foundation"
+      "note": "Chairwoman of the Seowon Arts High foundation",
+      "still": "https://asianwiki.com/images/9/92/Twinkling_Watermelon-Kim_Joo-Ryung.jpg"
     },
     {
       "id": "juyeop",
@@ -283,7 +315,8 @@
           "image": "https://i.mydramalist.com/2XkXW_5m.jpg",
           "era": "young"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/b/b8/Twinkling_Watermelon-Kwon_Do_Hyung.jpg"
     },
     {
       "id": "sanga",
@@ -297,9 +330,11 @@
         {
           "name": "Woo Jeong Won",
           "image": "https://i.mydramalist.com/BwOw5m.jpg",
-          "era": "adult"
+          "era": "adult",
+          "still": "https://asianwiki.com/images/8/89/Twinkling_Watermelon-Woo_Jung-Won.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/a/aa/Twinkling_Watermelon-Lee_Soo_Min.jpg"
     },
     {
       "id": "junhyeong",
@@ -308,7 +343,8 @@
       "image": "https://i.mydramalist.com/Bdbwm1_5m.jpg",
       "group": "The rock scene",
       "inCast": true,
-      "note": "Spine9's main vocalist"
+      "note": "Spine9's main vocalist",
+      "still": "https://asianwiki.com/images/7/73/Twinkling_Watermelon-Koo_Jun_Hoe.jpg"
     },
     {
       "id": "jio",
@@ -317,7 +353,8 @@
       "image": "https://i.mydramalist.com/dldR0_5m.jpg",
       "group": "The rock scene",
       "inCast": true,
-      "note": "Spine9"
+      "note": "Spine9",
+      "still": "https://asianwiki.com/images/e/ef/Twinkling_Watermelon-Yeon-Oh.jpg"
     },
     {
       "id": "sutak",
@@ -326,7 +363,8 @@
       "image": "https://i.mydramalist.com/yWOd8K_5m.jpg",
       "group": "The rock scene",
       "inCast": true,
-      "note": "Spine9"
+      "note": "Spine9",
+      "still": "https://asianwiki.com/images/0/01/Twinkling_Watermelon-Han_Min.jpg"
     },
     {
       "id": "dongjin",
@@ -340,9 +378,11 @@
         {
           "name": "Kim Jun Hyung",
           "image": "https://i.mydramalist.com/DkQREr_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/7/7c/Twinkling_Watermelon-YDJ.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/2/24/Twinkling_Watermelon-Yoon_Do-Hyun.jpg"
     }
   ],
   "links": [

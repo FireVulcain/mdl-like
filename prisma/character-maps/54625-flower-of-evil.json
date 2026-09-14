@@ -29,15 +29,18 @@
         {
           "name": "Park Hyun Joon",
           "image": "https://i.mydramalist.com/dxnX5_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/8/87/Flower_Of_Evil-Rue.jpg"
         },
         {
           "name": "Cha Sung Je",
           "image": "https://i.mydramalist.com/QB8yA_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/f/f8/Flower_of_Evil-Cha_Sung-Je.jpg"
         }
       ],
-      "note": "Metal craftsman living under another man's name"
+      "note": "Metal craftsman living under another man's name",
+      "still": "https://asianwiki.com/images/e/ec/Flower_of_Evil-Lee_Joon-Gi.jpg"
     },
     {
       "id": "jiwon",
@@ -46,7 +49,8 @@
       "image": "https://i.mydramalist.com/Xqy8Z_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Homicide detective"
+      "note": "Homicide detective",
+      "still": "https://asianwiki.com/images/9/90/Flower_of_Evil-Moon_Chae-Won.jpg"
     },
     {
       "id": "haesu",
@@ -64,10 +68,12 @@
         {
           "name": "Lee Chae Yoon",
           "image": "https://i.mydramalist.com/rgK8E_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/3/33/Flower_of_Evil-Lee_Chae-Yun.jpg"
         }
       ],
-      "note": "Special-effects make-up artist"
+      "note": "Special-effects make-up artist",
+      "still": "https://asianwiki.com/images/8/8b/Flower_of_Evil-Jang_Hee-Jin.jpg"
     },
     {
       "id": "minseok",
@@ -76,7 +82,8 @@
       "image": "https://i.mydramalist.com/JBQEAo_5m.jpg",
       "group": "The Do family",
       "inCast": true,
-      "note": "Metal craftsman; suspect in the Yeonju serial murders; dead"
+      "note": "Metal craftsman; suspect in the Yeonju serial murders; dead",
+      "still": "https://asianwiki.com/images/f/fe/Flower_of_Evil-Choi_Byung_Mo.jpg"
     },
     {
       "id": "mujin",
@@ -89,10 +96,12 @@
         {
           "name": "Jung Taek Hyun",
           "image": "https://i.mydramalist.com/jgXly_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/cf/Flower_of_Evil-Jung_Taek_Hyun.jpg"
         }
       ],
-      "note": "Reporter at the weekly Hanjoogan"
+      "note": "Reporter at the weekly Hanjoogan",
+      "still": "https://asianwiki.com/images/8/83/Flower_of_Evil-Seo_Hyun-Woo.jpg"
     },
     {
       "id": "pilyeong",
@@ -101,7 +110,8 @@
       "image": "https://i.mydramalist.com/O8mJob_5m.jpg",
       "group": "Hanjoogan",
       "inCast": true,
-      "note": "Team leader"
+      "note": "Team leader",
+      "still": "https://asianwiki.com/images/a/a9/Flower_of_Evil-Yang_Hye-Jin.jpg"
     },
     {
       "id": "joo",
@@ -109,7 +119,8 @@
       "actor": "Ju Ye Eun",
       "image": "https://i.mydramalist.com/08zjr_5m.jpg",
       "group": "Hanjoogan",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6a/Flower_Of_Evil-Ju_Ye-Eun.jpg"
     },
     {
       "id": "mija",
@@ -118,7 +129,8 @@
       "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
       "group": "The Baek house",
       "inCast": true,
-      "note": "Pharmacist"
+      "note": "Pharmacist",
+      "still": "https://asianwiki.com/images/9/93/Flower_of_Evil-Nam_Gi-Ae.jpg"
     },
     {
       "id": "manu",
@@ -127,7 +139,8 @@
       "image": "https://i.mydramalist.com/g0KPqP_5m.jpg",
       "group": "The Baek house",
       "inCast": true,
-      "note": "Director of a university hospital"
+      "note": "Director of a university hospital",
+      "still": "https://asianwiki.com/images/0/02/Flower_of_Evil-Son_Jong-Hak.jpg"
     },
     {
       "id": "huiseong",
@@ -140,7 +153,8 @@
         {
           "name": "Choi Kwon Soo",
           "image": "https://i.mydramalist.com/WeJZO_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/8/89/Flower_of_Evil-Choi_Kwon_Soo.jpg"
         },
         {
           "name": "Cho Yi An",
@@ -148,7 +162,8 @@
           "era": "child"
         }
       ],
-      "note": "The real one — fifteen years in a coma"
+      "note": "The real one — fifteen years in a coma",
+      "still": "https://asianwiki.com/images/9/96/Flower_of_Evil-Kim_Ji-Hoon001.jpg"
     },
     {
       "id": "sunyeong",
@@ -157,7 +172,8 @@
       "image": "https://i.mydramalist.com/QB1QQ_5m.jpg",
       "group": "The Baek house",
       "inCast": true,
-      "note": "Housekeeper"
+      "note": "Housekeeper",
+      "still": "https://asianwiki.com/images/d/d2/Flower_of_Evil-Jeon_Young.jpg"
     },
     {
       "id": "yeongok",
@@ -166,7 +182,8 @@
       "image": "https://i.mydramalist.com/EroW7m.jpg",
       "group": "Ji Won's family",
       "inCast": true,
-      "note": "Runs a corner shop"
+      "note": "Runs a corner shop",
+      "still": "https://asianwiki.com/images/f/ff/Flower_Of_Evil-Jo_Kyung_Sook.jpg"
     },
     {
       "id": "eunha",
@@ -175,7 +192,8 @@
       "image": "https://i.mydramalist.com/1xog3_5m.jpg",
       "group": "Ji Won's family",
       "inCast": true,
-      "note": "Six, in kindergarten"
+      "note": "Six, in kindergarten",
+      "still": "https://asianwiki.com/images/1/14/Flower_Of_Evil-Baek_Eun_Ha.jpg"
     },
     {
       "id": "ucheol",
@@ -184,7 +202,8 @@
       "image": "https://i.mydramalist.com/X85nqm.jpg",
       "group": "Gangsu police",
       "inCast": true,
-      "note": "Leader of Violent Crimes Team 3"
+      "note": "Leader of Violent Crimes Team 3",
+      "still": "https://asianwiki.com/images/8/8d/Flower_of_Evil-Choi_Dae_Hoon.jpg"
     },
     {
       "id": "jaesup",
@@ -193,7 +212,8 @@
       "image": "https://i.mydramalist.com/b3j0YE_5m.jpg",
       "group": "Gangsu police",
       "inCast": true,
-      "note": "Veteran detective"
+      "note": "Veteran detective",
+      "still": "https://asianwiki.com/images/a/a8/Flower_Of_Evil-Choi_Young_Joon.jpg"
     },
     {
       "id": "hojun",
@@ -202,7 +222,8 @@
       "image": "https://i.mydramalist.com/XOl0J_5m.jpg",
       "group": "Gangsu police",
       "inCast": true,
-      "note": "The youngest"
+      "note": "The youngest",
+      "still": "https://asianwiki.com/images/d/d8/Flower_of_Evil-Kim_Su-Oh.jpg"
     },
     {
       "id": "sangpil",
@@ -211,7 +232,8 @@
       "image": "https://i.mydramalist.com/qgwnz_5m.jpg",
       "group": "Gangsu police",
       "inCast": true,
-      "note": "Section chief"
+      "note": "Section chief",
+      "still": "https://asianwiki.com/images/9/9a/Flower_of_Evil-Lim_Chul_Hyung.jpg"
     },
     {
       "id": "sangcheol",
@@ -220,7 +242,8 @@
       "image": "https://i.mydramalist.com/wzOkN_5m.jpg",
       "group": "The past",
       "inCast": true,
-      "note": "Ran the job agency tied to Do Min Seok"
+      "note": "Ran the job agency tied to Do Min Seok",
+      "still": "https://asianwiki.com/images/e/e2/Flower_of_Evil-Kim_Ki_Moo.jpg"
     },
     {
       "id": "misuk",
@@ -229,7 +252,8 @@
       "image": "https://i.mydramalist.com/kA0v5d_5m.jpg",
       "group": "The past",
       "inCast": true,
-      "note": "The seventh victim of the Yeonju murders"
+      "note": "The seventh victim of the Yeonju murders",
+      "still": "https://asianwiki.com/images/5/58/Flower_of_Evil-Han_Soo_Yeon.jpg"
     }
   ],
   "links": [

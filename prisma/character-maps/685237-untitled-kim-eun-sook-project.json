@@ -31,10 +31,12 @@
         {
           "name": "Jung Ji So",
           "image": "https://i.mydramalist.com/2wmKLV_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/2/21/The_Glory-Jung_Ji-So.jpg"
         }
       ],
-      "note": "Homeroom teacher of class 1-2 at Semyeong Elementary — by design"
+      "note": "Homeroom teacher of class 1-2 at Semyeong Elementary — by design",
+      "still": "https://asianwiki.com/images/e/ed/The_Glory-Song_Hye-Kyo.jpg"
     },
     {
       "id": "yeonjin",
@@ -47,10 +49,12 @@
         {
           "name": "Shin Ye Eun",
           "image": "https://i.mydramalist.com/mORYq3_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/9/99/The_Glory-Shin_Ye-Eun1.jpg"
         }
       ],
-      "note": "TV weather presenter; led the group"
+      "note": "TV weather presenter; led the group",
+      "still": "https://asianwiki.com/images/3/34/The_Glory-Lim_Ji_Yeon.jpg"
     },
     {
       "id": "yeojeong",
@@ -59,7 +63,8 @@
       "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
       "group": "Dong Eun's side",
       "inCast": true,
-      "note": "Plastic surgeon; teaches her Go"
+      "note": "Plastic surgeon; teaches her Go",
+      "still": "https://asianwiki.com/images/b/b2/The_Glory-Lee_Do-Hyun1.jpg"
     },
     {
       "id": "hyeonnam",
@@ -68,7 +73,8 @@
       "image": "https://i.mydramalist.com/VX2AVJ_5m.jpg",
       "group": "Dong Eun's side",
       "inCast": true,
-      "note": "Housekeeper at the Semyeong foundation chairman's house"
+      "note": "Housekeeper at the Semyeong foundation chairman's house",
+      "still": "https://asianwiki.com/images/9/9b/The_Glory-Yum_Hye_Ran.jpg"
     },
     {
       "id": "seona",
@@ -76,7 +82,8 @@
       "actor": "Choi Soo In",
       "image": "https://i.mydramalist.com/xOkmX_5m.jpg",
       "group": "Dong Eun's side",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f9/The_Glory-Choi_Soo-In.jpg"
     },
     {
       "id": "seokjae",
@@ -85,7 +92,8 @@
       "image": "https://i.mydramalist.com/YYBZLe_5m.jpg",
       "group": "Dong Eun's side",
       "inCast": true,
-      "note": "Gambler and alcoholic"
+      "note": "Gambler and alcoholic",
+      "still": "https://asianwiki.com/images/7/7f/The_Glory-Ryoo_Sung-Hyun.jpg"
     },
     {
       "id": "jaejun",
@@ -98,10 +106,12 @@
         {
           "name": "Song Byeong Geun",
           "image": "https://i.mydramalist.com/eD40Q_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/2/28/The_Glory-Song_Byung-Geun.jpg"
         }
       ],
-      "note": "Colour-blind heir to a country club"
+      "note": "Colour-blind heir to a country club",
+      "still": "https://asianwiki.com/images/a/ad/The_Glory-Park_Sung_Hoon.jpg"
     },
     {
       "id": "sara",
@@ -114,10 +124,12 @@
         {
           "name": "Bae Gang Hee",
           "image": "https://i.mydramalist.com/epd1e_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/1/13/The_Glory-Bae_Gang-Hee.jpg"
         }
       ],
-      "note": "Abstract painter; addict"
+      "note": "Abstract painter; addict",
+      "still": "https://asianwiki.com/images/f/f7/The_Glory-Kim_Hieora1.jpg"
     },
     {
       "id": "hyejeong",
@@ -130,10 +142,12 @@
         {
           "name": "Song Ji Woo",
           "image": "https://i.mydramalist.com/BdwYZq_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/d/d8/The_Glory-Song_Ji-Woo.jpg"
         }
       ],
-      "note": "Flight attendant; parents run a laundromat"
+      "note": "Flight attendant; parents run a laundromat",
+      "still": "https://asianwiki.com/images/e/e2/The_Glory-Cha_Joo_Young.jpg"
     },
     {
       "id": "myeongoh",
@@ -146,10 +160,12 @@
         {
           "name": "Seo Woo Hyeok",
           "image": "https://i.mydramalist.com/1wKL8d_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/d/db/The_Glory-Seo_Woo-Hyeok.jpg"
         }
       ],
-      "note": "The lowest of the group"
+      "note": "The lowest of the group",
+      "still": "https://asianwiki.com/images/6/66/The_Glory-Kim_Gun_Woo.jpg"
     },
     {
       "id": "doyeong",
@@ -158,7 +174,8 @@
       "image": "https://i.mydramalist.com/l0mxVx_5m.jpg",
       "group": "Yeon Jin's house",
       "inCast": true,
-      "note": "CEO of Jaepyeong Construction"
+      "note": "CEO of Jaepyeong Construction",
+      "still": "https://asianwiki.com/images/4/47/The_Glory-Jung_Sung_Il.jpg"
     },
     {
       "id": "yesol",
@@ -167,7 +184,8 @@
       "image": "https://i.mydramalist.com/03nK6_5m.jpg",
       "group": "Yeon Jin's house",
       "inCast": true,
-      "note": "In class 1-2; colour-blind"
+      "note": "In class 1-2; colour-blind",
+      "still": "https://asianwiki.com/images/a/a1/The_Glory-KD-Oh_Ji-Yul.jpg"
     },
     {
       "id": "yeongae",
@@ -176,7 +194,8 @@
       "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
       "group": "Yeon Jin's house",
       "inCast": true,
-      "note": "Yeon Jin's mother; puts her faith in a shaman. MDL lists the role unnamed"
+      "note": "Yeon Jin's mother; puts her faith in a shaman. MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/c/c3/The_Glory-Yoon_Da-Kyung.jpg"
     },
     {
       "id": "yeongjun",
@@ -185,7 +204,8 @@
       "image": "https://i.mydramalist.com/YYRbdz_5m.jpg",
       "group": "Yeon Jin's house",
       "inCast": true,
-      "note": "Senior superintendent general"
+      "note": "Senior superintendent general",
+      "still": "https://asianwiki.com/images/6/6f/The_Glory-Lee_Hae-Young.jpg"
     },
     {
       "id": "gyeongran",
@@ -194,7 +214,8 @@
       "image": "https://i.mydramalist.com/kA7vkj_5m.jpg",
       "group": "Sunghan High",
       "inCast": true,
-      "note": "Clerk at Jae Jun's boutique"
+      "note": "Clerk at Jae Jun's boutique",
+      "still": "https://asianwiki.com/images/d/de/The_Glory-Ahn_So-Yo.jpg"
     },
     {
       "id": "sohui",
@@ -203,7 +224,8 @@
       "image": "https://i.mydramalist.com/x4Alpz_5m.jpg",
       "group": "Sunghan High",
       "inCast": true,
-      "note": "Their victim before Dong Eun"
+      "note": "Their victim before Dong Eun",
+      "still": "https://asianwiki.com/images/b/b8/The_Glory-Lee_Soy-E.jpg"
     },
     {
       "id": "jongmun",
@@ -212,7 +234,8 @@
       "image": "https://i.mydramalist.com/Rv24E_5m.jpg",
       "group": "Sunghan High",
       "inCast": true,
-      "note": "Her homeroom teacher then"
+      "note": "Her homeroom teacher then",
+      "still": "https://asianwiki.com/images/6/63/The_Glory-Park_Yoon-Hee.jpg"
     },
     {
       "id": "jeongmi",
@@ -221,7 +244,8 @@
       "image": "https://i.mydramalist.com/4KlyQ_5m.jpg",
       "group": "Sunghan High",
       "inCast": true,
-      "note": "School nurse"
+      "note": "School nurse",
+      "still": "https://asianwiki.com/images/a/a5/The_Glory-Jeon_Soo_A.jpg"
     },
     {
       "id": "suhan",
@@ -230,7 +254,8 @@
       "image": "https://i.mydramalist.com/QlW06_5m.jpg",
       "group": "Sunghan High",
       "inCast": true,
-      "note": "Her senior at Euicheon University of Education"
+      "note": "Her senior at Euicheon University of Education",
+      "still": "https://asianwiki.com/images/5/54/The_Glory-Kang_Gil-Woo.jpg"
     },
     {
       "id": "mihee",
@@ -239,7 +264,8 @@
       "image": "https://i.mydramalist.com/dWdzb_5m.jpg",
       "group": "Dong Eun's past",
       "inCast": true,
-      "note": "Worked at a barber shop; drinks"
+      "note": "Worked at a barber shop; drinks",
+      "still": "https://asianwiki.com/images/a/a4/The_Glory-Park_Ji-A.jpg"
     },
     {
       "id": "landlord",
@@ -248,7 +274,8 @@
       "image": "https://i.mydramalist.com/e313Wm.jpg",
       "group": "Dong Eun's past",
       "inCast": true,
-      "note": "Owner of Eden Villa and Semyeong Real Estate"
+      "note": "Owner of Eden Villa and Semyeong Real Estate",
+      "still": "https://asianwiki.com/images/0/0a/The_Glory-Son-Sook.jpg"
     },
     {
       "id": "sangim",
@@ -257,7 +284,8 @@
       "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
       "group": "Yeo Jung's family",
       "inCast": true,
-      "note": "Director of Seoul Joo General Hospital"
+      "note": "Director of Seoul Joo General Hospital",
+      "still": "https://asianwiki.com/images/3/3a/The_Glory-Kim_Jung_Young.jpg"
     },
     {
       "id": "sunghak",
@@ -275,7 +303,8 @@
       "image": "https://i.mydramalist.com/xnAqE_5m.jpg",
       "group": "Yeo Jung's family",
       "inCast": true,
-      "note": "Prisoner No. 3724"
+      "note": "Prisoner No. 3724",
+      "still": "https://asianwiki.com/images/3/3c/The_Glory-Lee_Mu-Saeng.jpg"
     },
     {
       "id": "gilseong",
@@ -284,7 +313,8 @@
       "image": "https://i.mydramalist.com/1gyLQm.jpg",
       "group": "The parents",
       "inCast": true,
-      "note": "Pastor"
+      "note": "Pastor",
+      "still": "https://asianwiki.com/images/3/32/The_Glory-Lee_Byung-Joon.jpg"
     },
     {
       "id": "saramother",
@@ -293,7 +323,8 @@
       "image": "https://i.mydramalist.com/Xb03xm.jpg",
       "group": "The parents",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/0/06/The_Glory-Kim_Sun-Hwa.jpg"
     },
     {
       "id": "doyeongmother",
@@ -302,7 +333,8 @@
       "image": "https://i.mydramalist.com/r7Kz2_5m.jpg",
       "group": "The parents",
       "inCast": true,
-      "note": "MDL lists the role unnamed"
+      "note": "MDL lists the role unnamed",
+      "still": "https://asianwiki.com/images/e/ea/The_Glory-Oh_Min-Ae.jpg"
     },
     {
       "id": "jeongho",
@@ -311,7 +343,8 @@
       "image": "https://i.mydramalist.com/0gk2O_5m.jpg",
       "group": "Semyeong Elementary",
       "inCast": true,
-      "note": "Teacher who photographs the girls"
+      "note": "Teacher who photographs the girls",
+      "still": "https://asianwiki.com/images/a/ac/The_Glory-KD-Heo_Dong-Won.jpg"
     },
     {
       "id": "shintae",
@@ -320,7 +353,8 @@
       "image": "https://i.mydramalist.com/r460g_5m.jpg",
       "group": "Semyeong Elementary",
       "inCast": true,
-      "note": "Chairman of the foundation"
+      "note": "Chairman of the foundation",
+      "still": "https://asianwiki.com/images/8/8c/The_Glory-Park_Sang-Jong.jpg"
     }
   ],
   "links": [

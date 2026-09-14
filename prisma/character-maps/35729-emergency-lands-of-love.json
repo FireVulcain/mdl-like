@@ -29,10 +29,12 @@
         {
           "name": "Kim Seung Chan",
           "image": "https://i.mydramalist.com/d6OLd_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/1/1c/Crash_Landing_On_You-Kim_Seung-Chan.jpg"
         }
       ],
-      "note": "Captain of Company Five; a pianist who gave up Switzerland for the army"
+      "note": "Captain of Company Five; a pianist who gave up Switzerland for the army",
+      "still": "https://asianwiki.com/images/6/67/CLOY-TVN-Hyun-Bin.jpg"
     },
     {
       "id": "seri",
@@ -45,10 +47,12 @@
         {
           "name": "Kim Tae Yeon",
           "image": "https://i.mydramalist.com/6Lzb2m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/3/3d/Crash_Landing_On_You-Kim_Tae-Yeon.jpg"
         }
       ],
-      "note": "CEO of Seri's Choice, heiress named to succeed at Queens Group"
+      "note": "CEO of Seri's Choice, heiress named to succeed at Queens Group",
+      "still": "https://asianwiki.com/images/7/76/CLOY-TVN-Son_Ye-Jin.jpg"
     },
     {
       "id": "seodan",
@@ -61,10 +65,12 @@
         {
           "name": "Park Seo Yeon",
           "image": "https://i.mydramalist.com/rmyQjm.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/6/63/CLOY-TVN-Park_Seo-Yeon.jpg"
         }
       ],
-      "note": "Cellist trained in Russia"
+      "note": "Cellist trained in Russia",
+      "still": "https://asianwiki.com/images/7/7d/CLOY-TVN-Seo_Ji-Hye.jpg"
     },
     {
       "id": "seungjun",
@@ -73,7 +79,8 @@
       "image": "https://i.mydramalist.com/QVKxv_5m.jpg",
       "group": "Pyongyang",
       "inCast": true,
-      "note": "British-Korean businessman hiding in the North"
+      "note": "British-Korean businessman hiding in the North",
+      "still": "https://asianwiki.com/images/9/95/CLOY-TVN-Kim_Jung-Hyun.jpg"
     },
     {
       "id": "myeongeun",
@@ -82,7 +89,8 @@
       "image": "https://i.mydramalist.com/2OnqEm.jpg",
       "group": "Pyongyang",
       "inCast": true,
-      "note": "Runs the Pyongyang department store"
+      "note": "Runs the Pyongyang department store",
+      "still": "https://asianwiki.com/images/c/c3/Crash_Landing_on_You-Jang_Hye-Jin.jpg"
     },
     {
       "id": "myeongsuk",
@@ -91,7 +99,8 @@
       "image": "https://i.mydramalist.com/yWdk84_5m.jpg",
       "group": "Pyongyang",
       "inCast": true,
-      "note": "One-star general at the Ministry of State Security"
+      "note": "One-star general at the Ministry of State Security",
+      "still": "https://asianwiki.com/images/9/9d/Crash_Landing_on_You-Park_Myoung-Hoon.jpg"
     },
     {
       "id": "chungryeol",
@@ -100,7 +109,8 @@
       "image": "https://i.mydramalist.com/xXNAEm.jpg",
       "group": "Jeong Hyeok's family",
       "inCast": true,
-      "note": "Director of the General Political Bureau — the 'Old Fox'"
+      "note": "Director of the General Political Bureau — the 'Old Fox'",
+      "still": "https://asianwiki.com/images/9/92/Crash_Landing_on_You-Jeon_Kuk-Hwan.jpg"
     },
     {
       "id": "yunhui",
@@ -109,7 +119,8 @@
       "image": "https://i.mydramalist.com/QXrxAm.jpg",
       "group": "Jeong Hyeok's family",
       "inCast": true,
-      "note": "A former People's Actress"
+      "note": "A former People's Actress",
+      "still": "https://asianwiki.com/images/a/ac/Crash_Landing_on_You-Jung_Ae-Ri.jpg"
     },
     {
       "id": "muhyeok",
@@ -118,7 +129,8 @@
       "image": "https://i.mydramalist.com/oQznOk_5m.jpg",
       "group": "Jeong Hyeok's family",
       "inCast": true,
-      "note": "Died seven years before the story"
+      "note": "Died seven years before the story",
+      "still": "https://asianwiki.com/images/1/11/CLOY-Ha_Seok-Jin.jpg"
     },
     {
       "id": "chisu",
@@ -127,7 +139,8 @@
       "image": "https://i.mydramalist.com/pOO1Vm.jpg",
       "group": "Company Five",
       "inCast": true,
-      "note": "Master sergeant"
+      "note": "Master sergeant",
+      "still": "https://asianwiki.com/images/6/6b/CLOY-Yang_Kyung-Won.jpg"
     },
     {
       "id": "gwangbeom",
@@ -136,7 +149,8 @@
       "image": "https://i.mydramalist.com/ABODV4_5m.jpg",
       "group": "Company Five",
       "inCast": true,
-      "note": "Staff sergeant"
+      "note": "Staff sergeant",
+      "still": "https://asianwiki.com/images/2/21/CLOY-Lee_Sin-Young.jpg"
     },
     {
       "id": "jumuk",
@@ -145,7 +159,8 @@
       "image": "https://i.mydramalist.com/XbbZZm.jpg",
       "group": "Company Five",
       "inCast": true,
-      "note": "Devoted fan of South Korean dramas"
+      "note": "Devoted fan of South Korean dramas",
+      "still": "https://asianwiki.com/images/8/87/CLOY-Yoo_Su-Bin.jpg"
     },
     {
       "id": "eundong",
@@ -154,7 +169,8 @@
       "image": "https://i.mydramalist.com/AB2jwg_5m.jpg",
       "group": "Company Five",
       "inCast": true,
-      "note": "The youngest, at seventeen"
+      "note": "The youngest, at seventeen",
+      "still": "https://asianwiki.com/images/4/48/CLOY-Tang_Joon-Sang.jpg"
     },
     {
       "id": "cheolgang",
@@ -163,7 +179,8 @@
       "image": "https://i.mydramalist.com/xOy30_5m.jpg",
       "group": "State Security",
       "inCast": true,
-      "note": "Major in the State Security Department; a former kotjebi"
+      "note": "Major in the State Security Department; a former kotjebi",
+      "still": "https://asianwiki.com/images/f/f8/CLOY-TVN-Oh_Man-Seok1.jpg"
     },
     {
       "id": "manbok",
@@ -172,7 +189,8 @@
       "image": "https://i.mydramalist.com/pgZJV_5m.jpg",
       "group": "State Security",
       "inCast": true,
-      "note": "The wiretapper — 'Ears'"
+      "note": "The wiretapper — 'Ears'",
+      "still": "https://asianwiki.com/images/4/43/CLOY-TVN-Kim_Young-Min1.jpg"
     },
     {
       "id": "myeongsuk2",
@@ -180,7 +198,8 @@
       "actor": "Jang So Yeon",
       "image": "https://i.mydramalist.com/BdqzvR_5m.jpg",
       "group": "State Security",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/28/CLOY-TVN-Jang_So-Yeon1.jpg"
     },
     {
       "id": "jeungpyeong",
@@ -189,7 +208,8 @@
       "image": "https://i.mydramalist.com/kOjLOm.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "Chairman of Queens Group"
+      "note": "Chairman of Queens Group",
+      "still": "https://asianwiki.com/images/a/a6/Crash_Landing_on_You-Nam_Kyoung-Eub1.jpg"
     },
     {
       "id": "jeongyeon",
@@ -197,7 +217,8 @@
       "actor": "Bang Eun Jin",
       "image": "https://i.mydramalist.com/2DDNwm.jpg",
       "group": "Queens Group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/18/Crash_Landing_on_You-Pang_Eun-Jin1.jpg"
     },
     {
       "id": "sejun",
@@ -206,7 +227,8 @@
       "image": "https://i.mydramalist.com/X85nqm.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "CEO of Queens Motors"
+      "note": "CEO of Queens Motors",
+      "still": "https://asianwiki.com/images/0/0a/Crash_Landing_on_You-Choi_Dae-Hoon1.jpg"
     },
     {
       "id": "hyeji",
@@ -215,7 +237,8 @@
       "image": "https://i.mydramalist.com/j436zm.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "A former actress"
+      "note": "A former actress",
+      "still": "https://asianwiki.com/images/d/dd/Crash_Landing_on_You-Hwang_Woo_Seul_Hye1.jpg"
     },
     {
       "id": "sehyeong",
@@ -224,7 +247,8 @@
       "image": "https://i.mydramalist.com/2Dkd2m.jpg",
       "group": "Queens Group",
       "inCast": true,
-      "note": "CEO of Queens Industries. MDL spells the role 'You Se Hyeong'"
+      "note": "CEO of Queens Industries. MDL spells the role 'You Se Hyeong'",
+      "still": "https://asianwiki.com/images/4/41/Crash_Landing_on_You-Park_Hyoung-Soo1.jpg"
     },
     {
       "id": "sanga",
@@ -232,7 +256,8 @@
       "actor": "Yoon Ji Min",
       "image": "https://i.mydramalist.com/Xbb8Zm.jpg",
       "group": "Queens Group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5e/Crash_Landing_on_You-Yoon_Ji-Min1.jpg"
     },
     {
       "id": "changsik",
@@ -241,7 +266,8 @@
       "image": "https://i.mydramalist.com/Lw8q2x_5m.jpg",
       "group": "Seri's Choice",
       "inCast": true,
-      "note": "PR team manager"
+      "note": "PR team manager",
+      "still": "https://asianwiki.com/images/9/90/Crash_Landing_on_You-Ko_Kyu-Pil1.jpg"
     },
     {
       "id": "suchan",
@@ -250,7 +276,8 @@
       "image": "https://i.mydramalist.com/RJRZom.jpg",
       "group": "Seri's Choice",
       "inCast": true,
-      "note": "Her life-insurance agent"
+      "note": "Her life-insurance agent",
+      "still": "https://asianwiki.com/images/7/7f/Crash_Landing_on_You-Lim_Chul-Soo.jpg"
     },
     {
       "id": "sangu",
@@ -259,7 +286,8 @@
       "image": "https://i.mydramalist.com/yWBx7n_5m.jpg",
       "group": "Seri's Choice",
       "inCast": true,
-      "note": "A Hallyu star"
+      "note": "A Hallyu star",
+      "still": "https://asianwiki.com/images/d/d8/Crash_Landing_on_You-Jung_Kyoung-Ho.jpg"
     },
     {
       "id": "wolsuk",
@@ -268,7 +296,8 @@
       "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Head of the people's unit"
+      "note": "Head of the people's unit",
+      "still": "https://asianwiki.com/images/6/6f/CLOY-TVN-Kim_Sun-Young.jpg"
     },
     {
       "id": "yeongae",
@@ -277,7 +306,8 @@
       "image": "https://i.mydramalist.com/4jLAk_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "The power in the officers' village"
+      "note": "The power in the officers' village",
+      "still": "https://asianwiki.com/images/c/cb/CLOY-TVN-Kim_Jung-Nan.jpg"
     },
     {
       "id": "ryonghae",
@@ -286,7 +316,8 @@
       "image": "https://i.mydramalist.com/vnzlZm.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Senior colonel"
+      "note": "Senior colonel",
+      "still": "https://asianwiki.com/images/3/38/CLOY-Kim_Young-Pil.jpg"
     },
     {
       "id": "okgeum",
@@ -295,7 +326,8 @@
       "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
       "group": "The village",
       "inCast": true,
-      "note": "Hairdresser, once a news announcer"
+      "note": "Hairdresser, once a news announcer",
+      "still": "https://asianwiki.com/images/6/6a/Crash_Landing_on_You1-Cha_Chung-Hwa.jpg"
     }
   ],
   "links": [

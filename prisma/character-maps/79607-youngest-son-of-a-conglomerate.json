@@ -28,10 +28,12 @@
         {
           "name": "Kim Kang Hoon",
           "image": "https://i.mydramalist.com/JB6qYX_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/1/1a/Reborn_Rich-Kim_Kang-Hoon.jpg"
         }
       ],
-      "note": "Soonyang's murdered fixer, awake again in 1987 as the chairman's youngest grandson"
+      "note": "Soonyang's murdered fixer, awake again in 1987 as the chairman's youngest grandson",
+      "still": "https://asianwiki.com/images/1/10/Reborn_Rich-YHW-Song_Joong-Ki.jpg"
     },
     {
       "id": "yangcheol",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/d78nD_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Founder and chairman of Soonyang Group — greed, suspicion, and a change of heart"
+      "note": "Founder and chairman of Soonyang Group — greed, suspicion, and a change of heart",
+      "still": "https://asianwiki.com/images/0/01/Reborn_Rich-Lee_Sung_Min.jpg"
     },
     {
       "id": "minyoung",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/1n4K3_5m.jpg",
       "group": "Prosecutors",
       "inCast": true,
-      "note": "'Soonyang's Grim Reaper' at the anti-corruption division"
+      "note": "'Soonyang's Grim Reaper' at the anti-corruption division",
+      "still": "https://asianwiki.com/images/c/c8/Reborn_Rich-Shin_Hyun-Bin01.jpg"
     },
     {
       "id": "pilok",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/5v7BVY_5m.jpg",
       "group": "Soonyang headquarters",
       "inCast": true,
-      "note": "The chairman's wife; sure the heir must be a son of hers"
+      "note": "The chairman's wife; sure the heir must be a son of hers",
+      "still": "https://asianwiki.com/images/8/87/Reborn_Rich-Kim_Hyun1.jpg"
     },
     {
       "id": "hangjae",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/735b3r_5m.jpg",
       "group": "Soonyang headquarters",
       "inCast": true,
-      "note": "Chief of the secretariat — the chairman's right hand"
+      "note": "Chief of the secretariat — the chairman's right hand",
+      "still": "https://asianwiki.com/images/b/b7/Reborn_Rich-Jung_Hee_Tae1.jpg"
     },
     {
       "id": "insuk",
@@ -76,7 +82,8 @@
       "image": "https://i.mydramalist.com/XKLxXm.jpg",
       "group": "Soonyang headquarters",
       "inCast": true,
-      "note": "Do Jun's driver"
+      "note": "Do Jun's driver",
+      "still": "https://asianwiki.com/images/f/fa/Reborn_Rich-Park_Ji-Hoon.jpg"
     },
     {
       "id": "youngki",
@@ -85,7 +92,8 @@
       "image": "https://i.mydramalist.com/0dq7Y_5m.jpg",
       "group": "Young Ki's family",
       "inCast": true,
-      "note": "Eldest son; vice chairman, never trusted by his father"
+      "note": "Eldest son; vice chairman, never trusted by his father",
+      "still": "https://asianwiki.com/images/a/a7/Reborn_Rich-Yoon_Je-Moon01.jpg"
     },
     {
       "id": "jungrae",
@@ -94,7 +102,8 @@
       "image": "https://i.mydramalist.com/4jLAk_5m.jpg",
       "group": "Young Ki's family",
       "inCast": true,
-      "note": "Only daughter of a Myeongdong moneylender"
+      "note": "Only daughter of a Myeongdong moneylender",
+      "still": "https://asianwiki.com/images/3/30/Reborn_Rich-Kim_Jung-Nan1.jpg"
     },
     {
       "id": "sungjoon",
@@ -107,10 +116,12 @@
         {
           "name": "Moon Seong Hyun",
           "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/6/6d/Reborn_Rich-Moon_Sung_Hyun.jpg"
         }
       ],
-      "note": "Eldest grandson — Soonyang was always his, he thought"
+      "note": "Eldest grandson — Soonyang was always his, he thought",
+      "still": "https://asianwiki.com/images/9/9e/Reborn_Rich-Kim_Nam-Hee01.jpg"
     },
     {
       "id": "hyunmin",
@@ -119,7 +130,8 @@
       "image": "https://i.mydramalist.com/AB8PvP_5m.jpg",
       "group": "Young Ki's family",
       "inCast": true,
-      "note": "Only daughter of the owner of Hyunsung Ilbo"
+      "note": "Only daughter of the owner of Hyunsung Ilbo",
+      "still": "https://asianwiki.com/images/b/b4/Reborn_Rich-Park_Ji-Hyun1.jpg"
     },
     {
       "id": "juryun",
@@ -128,7 +140,8 @@
       "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
       "group": "Young Ki's family",
       "inCast": true,
-      "note": "Secretariat; chose to be Young Ki's man"
+      "note": "Secretariat; chose to be Young Ki's man",
+      "still": "https://asianwiki.com/images/a/a9/Reborn_Rich-Heo_Jung_Do1.jpg"
     },
     {
       "id": "donggi",
@@ -137,7 +150,8 @@
       "image": "https://i.mydramalist.com/vyZw2m.jpg",
       "group": "Dong Gi's family",
       "inCast": true,
-      "note": "Second son; president of Soonyang Fire Insurance"
+      "note": "Second son; president of Soonyang Fire Insurance",
+      "still": "https://asianwiki.com/images/6/68/Reborn_Rich-Jo_Han-Chul1.jpg"
     },
     {
       "id": "jina",
@@ -146,7 +160,8 @@
       "image": "https://i.mydramalist.com/06YzE_5m.jpg",
       "group": "Dong Gi's family",
       "inCast": true,
-      "note": "Youngest daughter of a former finance minister"
+      "note": "Youngest daughter of a former finance minister",
+      "still": "https://asianwiki.com/images/3/3e/Reborn_Rich-Seo_Jae_Hee1.jpg"
     },
     {
       "id": "yejun",
@@ -159,10 +174,12 @@
         {
           "name": "Kang Ji Woo",
           "image": "https://i.mydramalist.com/XozoZ_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/a/a5/Reborn_Rich-Kang_Ji-Woo.jpg"
         }
       ],
-      "note": "CEO of SY Apparel — 'Korea's Paris Hilton'"
+      "note": "CEO of SY Apparel — 'Korea's Paris Hilton'",
+      "still": "https://asianwiki.com/images/e/ec/Reborn_Rich-Cho_Hye-Joo1.jpg"
     },
     {
       "id": "sangmoo",
@@ -171,7 +188,8 @@
       "image": "https://i.mydramalist.com/QlW06_5m.jpg",
       "group": "Dong Gi's family",
       "inCast": true,
-      "note": "Managing director; ko.wikipedia names him Baek Dong Min"
+      "note": "Managing director; ko.wikipedia names him Baek Dong Min",
+      "still": "https://asianwiki.com/images/0/07/Reborn_Rich-Kang_Gil-Woo.jpg"
     },
     {
       "id": "hwayoung",
@@ -180,7 +198,8 @@
       "image": "https://i.mydramalist.com/oQzmpO_5m.jpg",
       "group": "Hwa Young's family",
       "inCast": true,
-      "note": "Only daughter; head of Soonyang Department Store"
+      "note": "Only daughter; head of Soonyang Department Store",
+      "still": "https://asianwiki.com/images/8/87/Reborn_Rich-Kim_Shin_Rok1.jpg"
     },
     {
       "id": "changje",
@@ -189,7 +208,8 @@
       "image": "https://i.mydramalist.com/Nd5Edn_5m.jpg",
       "group": "Hwa Young's family",
       "inCast": true,
-      "note": "Prosecutor, then mayor of Seoul — the family's one son-in-law from nothing"
+      "note": "Prosecutor, then mayor of Seoul — the family's one son-in-law from nothing",
+      "still": "https://asianwiki.com/images/4/49/Reborn_Rich-Kim_Do_Hyun.jpg"
     },
     {
       "id": "yungi",
@@ -198,7 +218,8 @@
       "image": "https://i.mydramalist.com/Z3VeYm.jpg",
       "group": "Yun Gi's family",
       "inCast": true,
-      "note": "Born outside the marriage; runs a film company and wants nothing of Soonyang"
+      "note": "Born outside the marriage; runs a film company and wants nothing of Soonyang",
+      "still": "https://asianwiki.com/images/6/66/Reborn_Rich-Kim_Young-Jae1.jpg"
     },
     {
       "id": "haein",
@@ -207,7 +228,8 @@
       "image": "https://i.mydramalist.com/l0nvkb_5m.jpg",
       "group": "Yun Gi's family",
       "inCast": true,
-      "note": "Once a top star"
+      "note": "Once a top star",
+      "still": "https://asianwiki.com/images/d/dc/Reborn_Rich-Jung_Hye_Young1.jpg"
     },
     {
       "id": "hyungjoon",
@@ -220,10 +242,12 @@
         {
           "name": "Cha Sung Je",
           "image": "https://i.mydramalist.com/QB8yA_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/6/6d/Reborn_Rich-Cha_Sung_Je.jpg"
         }
       ],
-      "note": "Runs an entertainment agency; no interest in the succession"
+      "note": "Runs an entertainment agency; no interest in the succession",
+      "still": "https://asianwiki.com/images/6/6a/Reborn_Rich-Kang_Ki_Doong.jpg"
     },
     {
       "id": "sehyun",
@@ -232,7 +256,8 @@
       "image": "https://i.mydramalist.com/w6pZY_5m.jpg",
       "group": "Miracle Investment",
       "inCast": true,
-      "note": "Investor whose bible is the Bible"
+      "note": "Investor whose bible is the Bible",
+      "still": "https://asianwiki.com/images/7/7e/Reborn_Rich-Park_Hyuk-Kwon.jpg"
     },
     {
       "id": "rachel",
@@ -241,7 +266,8 @@
       "image": "https://i.mydramalist.com/18mnK_5m.jpg",
       "group": "Miracle Investment",
       "inCast": true,
-      "note": "Analyst; Korean-American"
+      "note": "Analyst; Korean-American",
+      "still": "https://asianwiki.com/images/1/1a/Reborn_Rich-Tiffany_Young.jpg"
     },
     {
       "id": "dongsu",
@@ -249,7 +275,8 @@
       "actor": "Lee Kyu Hoe",
       "image": "https://i.mydramalist.com/Qb7QA_5m.jpg",
       "group": "Hyun Woo's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cc/Reborn_Rich-Lee_Gyu-Hoe.jpg"
     },
     {
       "id": "kyunghee",
@@ -258,7 +285,8 @@
       "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
       "group": "Hyun Woo's family",
       "inCast": true,
-      "note": "Died in 1998, at the Ajin Motors protest"
+      "note": "Died in 1998, at the Ajin Motors protest",
+      "still": "https://asianwiki.com/images/b/be/Reborn_Rich-Seo_Jung_Yeon.jpg"
     }
   ],
   "links": [

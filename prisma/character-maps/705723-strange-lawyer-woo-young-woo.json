@@ -28,10 +28,12 @@
         {
           "name": "Oh Ji Yul",
           "image": "https://i.mydramalist.com/03nK6_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/3/3e/Extraordinary_Attorney_Woo-Oh_Ji_Yul.jpg"
         }
       ],
-      "note": "Rookie attorney at Hanbada; autistic, IQ 164, whales"
+      "note": "Rookie attorney at Hanbada; autistic, IQ 164, whales",
+      "still": "https://asianwiki.com/images/d/dc/Extraordinary_Attorney_Woo-Park_Eun_Bin.jpg"
     },
     {
       "id": "junho",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/qv3mz_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Litigation team staff at Hanbada"
+      "note": "Litigation team staff at Hanbada",
+      "still": "https://asianwiki.com/images/1/12/Extraordinary_Attorney_Woo-Kang_Tae-_Oh.jpg"
     },
     {
       "id": "myeongseok",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/EeKV5_5m.jpg",
       "group": "Hanbada",
       "inCast": true,
-      "note": "Senior attorney"
+      "note": "Senior attorney",
+      "still": "https://asianwiki.com/images/b/bb/Extraordinary_Attorney_Woo-Kang_Ki-Young1.jpg"
     },
     {
       "id": "seonyeong",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
       "group": "Hanbada",
       "inCast": true,
-      "note": "CEO of Hanbada"
+      "note": "CEO of Hanbada",
+      "still": "https://asianwiki.com/images/8/8b/Extraordinary_Attorney_Woo-Baek_Ji_Won.jpg"
     },
     {
       "id": "suyeon",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/jz0zd_5m.jpg",
       "group": "Hanbada",
       "inCast": true,
-      "note": "Rookie attorney"
+      "note": "Rookie attorney",
+      "still": "https://asianwiki.com/images/b/b1/Extraordinary_Attorney_Woo-Ha_Yoon_Kyung.jpg"
     },
     {
       "id": "minu",
@@ -76,7 +82,8 @@
       "image": "https://i.mydramalist.com/2LA3d_5m.jpg",
       "group": "Hanbada",
       "inCast": true,
-      "note": "Rookie attorney"
+      "note": "Rookie attorney",
+      "still": "https://asianwiki.com/images/2/2f/Extraordinary_Attorney_Woo-Joo_Jong-Hyuk.jpg"
     },
     {
       "id": "seungjun",
@@ -85,7 +92,8 @@
       "image": "https://i.mydramalist.com/X85nqm.jpg",
       "group": "Hanbada",
       "inCast": true,
-      "note": "Attorney"
+      "note": "Attorney",
+      "still": "https://asianwiki.com/images/6/68/Extraordinary_Attorney_Woo-Choi_Dae-Hoon1.jpg"
     },
     {
       "id": "gwangho",
@@ -98,10 +106,12 @@
         {
           "name": "Jang Sung Bum",
           "image": "https://i.mydramalist.com/44njkm.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/1/19/Extraordinary_Attorney_Woo-Jang_Sung_Bum.jpg"
         }
       ],
-      "note": "Runs a gimbap shop; gave up the law to raise her alone"
+      "note": "Runs a gimbap shop; gave up the law to raise her alone",
+      "still": "https://asianwiki.com/images/f/f7/Extraordinary_Attorney_Woo-Jeon_Bae-Su.jpg"
     },
     {
       "id": "sumi",
@@ -114,15 +124,18 @@
         {
           "name": "Jung Han Bit",
           "image": "https://i.mydramalist.com/vrLYW_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/b/b9/Extraordinary_Attorney_Woo-Jung_Han-Bit.jpg"
         },
         {
           "name": "Lee Rang Seo",
           "image": "https://i.mydramalist.com/doLKDm.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/0/07/Extraordinary_Attorney_Woo-Lee_Rang-Seo.jpg"
         }
       ],
-      "note": "Partner at Taesan — wealth, name, looks, skill"
+      "note": "Partner at Taesan — wealth, name, looks, skill",
+      "still": "https://asianwiki.com/images/d/d6/Extraordinary_Attorney_Woo-Jin_Kyung01.jpg"
     },
     {
       "id": "sanghyeon",
@@ -130,7 +143,8 @@
       "actor": "Choi Hyun Jin",
       "image": "https://i.mydramalist.com/WPNrnW_5m.jpg",
       "group": "Taesan",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/92/Extraordinary_Attorney_Woo-Choi_Hyun_Jin.jpg"
     },
     {
       "id": "geurami",
@@ -139,7 +153,8 @@
       "image": "https://i.mydramalist.com/py7wD_5m.jpg",
       "group": "Yeong U's friends",
       "inCast": true,
-      "note": "Her friend and teacher in the ways of people"
+      "note": "Her friend and teacher in the ways of people",
+      "still": "https://asianwiki.com/images/8/8c/Extraordinary_Attorney_Woo-Joo_Hyun_Young.jpg"
     },
     {
       "id": "minsik",
@@ -148,7 +163,8 @@
       "image": "https://i.mydramalist.com/nOR1WW_5m.jpg",
       "group": "Yeong U's friends",
       "inCast": true,
-      "note": "Owner of the bar where Geurami works — Yeong U's hideout"
+      "note": "Owner of the bar where Geurami works — Yeong U's hideout",
+      "still": "https://asianwiki.com/images/0/0f/Extraordinary_Attorney_Woo-Im_Sung-Jae.jpg"
     },
     {
       "id": "dongsam",
@@ -156,7 +172,8 @@
       "actor": "Jung Suk Yong",
       "image": "https://i.mydramalist.com/j2rBOm.jpg",
       "group": "Yeong U's friends",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3b/Extraordinary_Attorney_Woo-Jung_Suk-Yong.jpg"
     },
     {
       "id": "seunghui",
@@ -164,7 +181,8 @@
       "actor": "Chae Song Hwa",
       "image": "https://i.mydramalist.com/R7bw6_5m.jpg",
       "group": "Jun Ho's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f6/Extraordinary_Attorney_Woo-Chae_Song-Hwa.jpg"
     },
     {
       "id": "jungnam",
@@ -172,7 +190,8 @@
       "actor": "Yoon Na Moo",
       "image": "https://i.mydramalist.com/RX5n6_5m.jpg",
       "group": "Jun Ho's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6e/Extraordinary_Attorney_Woo-Yoon_Na-Moo.jpg"
     }
   ],
   "links": [

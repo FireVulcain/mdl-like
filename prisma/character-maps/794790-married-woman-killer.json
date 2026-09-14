@@ -27,9 +27,11 @@
         {
           "name": "Gi So Yoo",
           "image": "https://i.mydramalist.com/QJNnQA_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/f/fa/A_Bona_fide_Killer-Ki_So-Yu1.jpg"
         }
-      ]
+      ],
+      "still": "https://asianwiki.com/images/2/20/A_Bona_fide_Killer-Kong_Hyo-Jin.jpg"
     },
     {
       "id": "taeseong",
@@ -37,7 +39,8 @@
       "actor": "Jung Jun Won",
       "image": "https://i.mydramalist.com/LwjK4B_5m.jpg",
       "group": "Leads",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1c/A_Bona_fide_Killer-Jung_Joon-Won.jpg"
     },
     {
       "id": "dongjin",
@@ -45,7 +48,8 @@
       "actor": "Lee Sang Yi",
       "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
       "group": "Police",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/55/A_Bona_fide_Killer-Lee_Sang-Yi.jpg"
     },
     {
       "id": "seonghun",
@@ -53,7 +57,8 @@
       "actor": "Choi Woo Sung",
       "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
       "group": "Police",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4d/A_Bona_fide_Killer-Choi_Woo-Sung.jpg"
     },
     {
       "id": "seulgi",
@@ -61,7 +66,8 @@
       "actor": "Shin Hyun Soo",
       "image": "https://i.mydramalist.com/zB1K27_5m.jpg",
       "group": "Others",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b5/A_Bona_fide_Killer-Shin_Hyun-Soo01.jpg"
     },
     {
       "id": "bongpal",
@@ -69,7 +75,8 @@
       "actor": "Sung Dong Il",
       "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/bc/A_Bona_fide_Killer-Sung_Dong-Il.jpg"
     },
     {
       "id": "yunok",
@@ -77,7 +84,8 @@
       "actor": "Seo Jung Yeon",
       "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/14/A_Bona_fide_Killer-Seo_Jung-Yeon.jpg"
     },
     {
       "id": "yeonggap",
@@ -85,7 +93,8 @@
       "actor": "Heo Jae Ho",
       "image": "https://i.mydramalist.com/Rng7z_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/7b/A_Bona_fide_Killer-Heo_Jae-Ho.jpg"
     },
     {
       "id": "taemin",
@@ -93,7 +102,8 @@
       "actor": "Kim Nam Hee",
       "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d4/A_Bona_fide_Killer-Kim_Nam-Hee1.jpg"
     },
     {
       "id": "yeongdo",
@@ -101,7 +111,8 @@
       "actor": "Moo Jin Sung",
       "image": "https://i.mydramalist.com/VXdnpE_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4e/A_Bona_fide_Killer-Mu_Jin-Sung.jpg"
     },
     {
       "id": "hyeonnam",
@@ -109,7 +120,8 @@
       "actor": "Ha Yul Ri",
       "image": "https://i.mydramalist.com/x4YL6X_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f6/A_Bona_fide_Killer-Ha_Yul-Ri1.jpeg"
     },
     {
       "id": "yesul",
@@ -117,7 +129,8 @@
       "actor": "Kim Ga Hee",
       "image": "https://i.mydramalist.com/RRgl6_5m.jpg",
       "group": "Sales Team 3",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/45/A_Bona_fide_Killer-Kim_Ga-Hee.jpg"
     },
     {
       "id": "haena",
@@ -125,7 +138,8 @@
       "actor": "Han Chae Rin",
       "image": "https://i.mydramalist.com/DkBAZy_5m.jpg",
       "group": "Newsroom",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cb/A_Bona_fide_Killer-Han_Chae-Rin001.jpg"
     },
     {
       "id": "gukjin",
@@ -133,7 +147,8 @@
       "actor": "Choi Duk Moon",
       "image": "https://i.mydramalist.com/YYj5lK_5m.jpg",
       "group": "Newsroom",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4b/A_Bona_fide_Killer-Choi_Duk-Moon1.jpeg"
     },
     {
       "id": "seonja",
@@ -141,7 +156,8 @@
       "actor": "Cha Mi Kyung",
       "image": "https://i.mydramalist.com/Xbllqm.jpg",
       "group": "Tae Seong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/02/A_Bona_fide_Killer-Cha_Mi-Kyung.jpg"
     },
     {
       "id": "sunil",
@@ -149,7 +165,8 @@
       "actor": "Lee Seon Hee",
       "image": "https://i.mydramalist.com/w2NXYm.jpg",
       "group": "Tae Seong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/8b/A_Bona_fide_Killer-Lee_Sun-Hee1.jpg"
     },
     {
       "id": "duri",
@@ -157,7 +174,8 @@
       "actor": "Kim Yun Jeong",
       "image": "https://i.mydramalist.com/3oABDD_5m.jpg",
       "group": "Tae Seong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d0/A_Bona_fide_Killer-Kim_Youn-Jeong0.jpg"
     },
     {
       "id": "sea",
@@ -165,7 +183,8 @@
       "actor": "Lee Eun Saem",
       "image": "https://i.mydramalist.com/eWngY_5m.jpg",
       "group": "Tae Seong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/ba/A_Bona_fide_Killer-Lee_Eun-Saem.jpg"
     },
     {
       "id": "yul",
@@ -174,7 +193,8 @@
       "image": null,
       "group": "Tae Seong's family",
       "inCast": false,
-      "note": "The daughter — named on ko.wikipedia, absent from MDL's cast"
+      "note": "The daughter — named on ko.wikipedia, absent from MDL's cast",
+      "still": "https://asianwiki.com/images/b/b1/A_Bona_fide_Killer-Hwang_Bom-E.jpg"
     }
   ],
   "links": [
