@@ -1,0 +1,815 @@
+{
+  "version": 1,
+  "mdlSlug": "739603-sparkling-watermelon",
+  "title": "Twinkling Watermelon",
+  "native": "반짝이는 워터멜론",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (95 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (4.4k chars)",
+    "en.wikipedia Cast (3.3k chars — several entries run into one another)"
+  ],
+  "main": [
+    "eungyeol",
+    "ichan",
+    "segyeong",
+    "cheonga"
+  ],
+  "people": [
+    {
+      "id": "eungyeol",
+      "name": "Ha Eun Gyeol",
+      "actor": "Ryeo Un",
+      "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "CODA — the only hearing person in a deaf family; guitarist, and a member of Spine9 in 2023"
+    },
+    {
+      "id": "ichan",
+      "name": "Ha I Chan",
+      "actor": "Choi Hyun Wook",
+      "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Frontman of Watermelon Sugar. Older: Choi Won Young"
+    },
+    {
+      "id": "cheonga",
+      "name": "Yun Cheong A",
+      "actor": "Shin Eun Soo",
+      "image": "https://i.mydramalist.com/b3o64e_5m.jpg",
+      "group": "Eun Gyeol's family",
+      "inCast": true,
+      "note": "Deaf since birth. Older: Seo Young Hee"
+    },
+    {
+      "id": "eunho",
+      "name": "Ha Eun Ho",
+      "actor": "Bong Jae Hyun",
+      "image": "https://i.mydramalist.com/kA7NPO_5m.jpg",
+      "group": "Eun Gyeol's family",
+      "inCast": true,
+      "note": "Deaf"
+    },
+    {
+      "id": "segyeong",
+      "name": "Choi Se Gyeong",
+      "actor": "Seor In A",
+      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
+      "group": "Se Gyeong's family",
+      "inCast": true,
+      "note": "Cellist, the muse of Seowon Arts High. Older: Lee So Yeon"
+    },
+    {
+      "id": "eunyu",
+      "name": "On Eun Yu",
+      "actor": "Seor In A",
+      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
+      "group": "Se Gyeong's family",
+      "inCast": true,
+      "note": "Same actress as Se Gyeong — MDL lists Seor In A for both roles"
+    },
+    {
+      "id": "jihwan",
+      "name": "On Ji Hwan",
+      "actor": "Woo Je Yeon",
+      "image": "https://i.mydramalist.com/2wdNA7_5m.jpg",
+      "group": "Se Gyeong's family",
+      "inCast": true,
+      "note": "Medical student, vocalist and guitarist of Golden Mess. Adult: Ryu Jin"
+    },
+    {
+      "id": "choihyeon",
+      "name": "Choi Hyeon",
+      "actor": "Park Ho San",
+      "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
+      "group": "Se Gyeong's family",
+      "inCast": true,
+      "note": "Owner of Baekya Music, guitarist of the rock band Baekya"
+    },
+    {
+      "id": "hayeong",
+      "name": "Sin Ha Yeong",
+      "actor": "Oh Hyun Kyung",
+      "image": "https://i.mydramalist.com/E5Pdr0_5m.jpg",
+      "group": "Se Gyeong's family",
+      "inCast": true
+    },
+    {
+      "id": "viva",
+      "name": "Grandpa Viva",
+      "actor": "Cheon Ho Jin",
+      "image": "https://i.mydramalist.com/Lw8QkB_5m.jpg",
+      "group": "The music shops",
+      "inCast": true,
+      "note": "Owner of the Viva Music instrument store"
+    },
+    {
+      "id": "master",
+      "name": "The Master",
+      "actor": "Jung Sang Hoon",
+      "image": "https://i.mydramalist.com/BwN11m.jpg",
+      "group": "The music shops",
+      "inCast": true,
+      "note": "Identity unknown — the master of the strange La Vida Music store"
+    },
+    {
+      "id": "maju",
+      "name": "O Ma Ju",
+      "actor": "Ahn Do Kyu",
+      "image": "https://i.mydramalist.com/BDgml_5m.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true,
+      "note": "Runs MJ Entertainment in 2023. Adult: Kim Hyung Bum"
+    },
+    {
+      "id": "hyeonyul",
+      "name": "Kang Hyeon Yul",
+      "actor": "Yoon Jae Chan",
+      "image": "https://i.mydramalist.com/g0QBe1_5m.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true
+    },
+    {
+      "id": "siguk",
+      "name": "Lee Si Guk",
+      "actor": "Lee Ha Min",
+      "image": "https://i.mydramalist.com/2wNWJV_5m.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true
+    },
+    {
+      "id": "sebeom",
+      "name": "No Se Beom",
+      "actor": "Lee Su Chan",
+      "image": "https://i.mydramalist.com/2wxKAP_5m.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true
+    },
+    {
+      "id": "yanghui",
+      "name": "Ko Yang Hui",
+      "actor": "Go Doo Shim",
+      "image": "https://i.mydramalist.com/RJnePm.jpg",
+      "group": "Snail boarding house",
+      "inCast": true,
+      "note": "Keeper of the Snail boarding house"
+    },
+    {
+      "id": "balsan",
+      "name": "Jung Bal San",
+      "actor": "Lee Suk Hyeong",
+      "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
+      "group": "Snail boarding house",
+      "inCast": true,
+      "note": "Fashion design student, back from military service"
+    },
+    {
+      "id": "gunhyeong",
+      "name": "Yun Gun Hyeong",
+      "actor": "Kim Tae Woo",
+      "image": "https://i.mydramalist.com/47PO1_5m.jpg",
+      "group": "Jinseong Instruments",
+      "inCast": true,
+      "note": "Chairman of Jinseong Musical Instruments"
+    },
+    {
+      "id": "jimi",
+      "name": "Lim Ji Mi",
+      "actor": "Kim Joo Ryoung",
+      "image": "https://i.mydramalist.com/kJVRvm.jpg",
+      "group": "Jinseong Instruments",
+      "inCast": true,
+      "note": "Chairwoman of the Seowon Arts High foundation"
+    },
+    {
+      "id": "juyeop",
+      "name": "Yun Ju Yeop",
+      "actor": "Kwon Do Hyung",
+      "image": "https://i.mydramalist.com/81k8w2_5m.jpg",
+      "group": "Jinseong Instruments",
+      "inCast": true
+    },
+    {
+      "id": "sanga",
+      "name": "Yun Sang A",
+      "actor": "Lee Soo Min",
+      "image": "https://i.mydramalist.com/nODnrL_5m.jpg",
+      "group": "Jinseong Instruments",
+      "inCast": true,
+      "note": "Art student at Seowon Arts High"
+    },
+    {
+      "id": "junhyeong",
+      "name": "Koo Jun Hyeong",
+      "actor": "Koo Jun Hoe",
+      "image": "https://i.mydramalist.com/Bdbwm1_5m.jpg",
+      "group": "The rock scene",
+      "inCast": true,
+      "note": "Spine9's main vocalist"
+    },
+    {
+      "id": "jio",
+      "name": "Jung Ji O",
+      "actor": "Yeon Oh",
+      "image": "https://i.mydramalist.com/dldR0_5m.jpg",
+      "group": "The rock scene",
+      "inCast": true,
+      "note": "Spine9"
+    },
+    {
+      "id": "sutak",
+      "name": "Bae Su Tak",
+      "actor": "Han Min",
+      "image": "https://i.mydramalist.com/yWOd8K_5m.jpg",
+      "group": "The rock scene",
+      "inCast": true,
+      "note": "Spine9"
+    },
+    {
+      "id": "dongjin",
+      "name": "Yun Dong Jin",
+      "actor": "Yoon Do Hyun",
+      "image": "https://i.mydramalist.com/XdZBRd_5m.jpg",
+      "group": "The rock scene",
+      "inCast": true,
+      "note": "The legendary guitarist of Chuncheon; young: Kim Jun Hyung"
+    }
+  ],
+  "links": [
+    {
+      "from": "ichan",
+      "to": "eungyeol",
+      "type": "family",
+      "label": "father — 28 years before he becomes one",
+      "short": "father",
+      "evidence": "이찬과 청아의 아들로 코다 / he meets his father, Ha I Chan, as a high schooler",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheonga",
+      "to": "eungyeol",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "은결의 친어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ichan",
+      "to": "cheonga",
+      "type": "romance",
+      "label": "married — Eun Gyeol and Eun Ho's parents",
+      "short": "married",
+      "evidence": "은호와 은결의 아버지 / 은호와 은결의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eungyeol",
+      "to": "ichan",
+      "type": "work",
+      "label": "joined the band his father fronts, to bring his parents together",
+      "short": "joined his band",
+      "evidence": "Eun Gyeol joins a band led by I Chan, hoping to reunite his future parents",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ichan",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "infatuated with the cellist — not with Eun Gyeol's mother",
+      "short": "in love with her",
+      "evidence": "I Chan doesn't recognize him and is infatuated with a cellist, Se Gyeong, not Eun Gyeol's mother, Cheong A",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "master",
+      "to": "eungyeol",
+      "type": "bond",
+      "label": "sent him back to 1995 through La Vida Music",
+      "short": "sent him to 1995",
+      "evidence": "수상한 악기점 '라비다 뮤직'의 마스터 / Through the store, Eun-gyeol and Eun-yoo time travel to 1995",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "master",
+      "to": "eunyu",
+      "type": "bond",
+      "label": "sent her back to 1995 through La Vida Music",
+      "short": "sent her to 1995",
+      "evidence": "Through the store, Eun-gyeol and Eun-yoo time travel to 1995",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eungyeol",
+      "to": "eunyu",
+      "type": "bond",
+      "label": "the other one who slipped out of 2023",
+      "short": "fellow time traveler",
+      "evidence": "Through the store, Eun-gyeol and Eun-yoo time travel to 1995",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ichan",
+      "to": "eunho",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "은호와 은결의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheonga",
+      "to": "eunho",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "은호와 은결의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunho",
+      "to": "eungyeol",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "[Eun Gyeol's brother] / 은결의 형",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanghui",
+      "to": "ichan",
+      "type": "family",
+      "label": "grandmother, and the keeper of his boarding house",
+      "short": "grandmother",
+      "evidence": "이찬의 할머니이자 달팽이 하숙집 쥔장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanghui",
+      "to": "eungyeol",
+      "type": "family",
+      "label": "great-grandmother",
+      "short": "great-grandmother",
+      "evidence": "은호와 은결의 증조할머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "balsan",
+      "to": "yanghui",
+      "type": "work",
+      "label": "lodger at the Snail boarding house",
+      "short": "her lodger",
+      "evidence": "정발산 (23세, 남) - 의상디자인학과 복학생 / a college student at a boarding house run by Yi-chan's grandmother",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maju",
+      "to": "ichan",
+      "type": "friend",
+      "label": "childhood friend, and the band's manager",
+      "short": "childhood friend",
+      "evidence": "밴드 매니저, 이찬의 소꿉친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonyul",
+      "to": "ichan",
+      "type": "work",
+      "label": "bassist in Watermelon Sugar",
+      "short": "bassist",
+      "evidence": "천재 베이시스트 / [Bassist] · 워터멜론 슈가의 프론트맨",
+      "source": "ko.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "siguk",
+      "to": "ichan",
+      "type": "work",
+      "label": "drummer in Watermelon Sugar",
+      "short": "drummer",
+      "evidence": "지옥에서 온 드러머 / [Drummer]",
+      "source": "ko.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sebeom",
+      "to": "ichan",
+      "type": "work",
+      "label": "keyboardist in Watermelon Sugar",
+      "short": "keyboards",
+      "evidence": "실력파 건반, 클래식 피아노 전공 / [Keyboardist]",
+      "source": "ko.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "segyeong",
+      "to": "eunyu",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "세경과 지환의 딸 / 은유의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihwan",
+      "to": "eunyu",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "세경의 전 남편이자 은유의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "segyeong",
+      "to": "jihwan",
+      "type": "romance",
+      "label": "married, then divorced when Eun Yu turned 18",
+      "short": "divorced",
+      "evidence": "세경의 전 남편이자 은유의 아버지 / She lives in a disharmonious family until she is 18 years old, when her parents divorce",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "viva",
+      "to": "segyeong",
+      "type": "family",
+      "label": "adoptive father",
+      "short": "adoptive father",
+      "evidence": "비바 할아버지의 양딸",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "choihyeon",
+      "to": "segyeong",
+      "type": "family",
+      "label": "birth father",
+      "short": "birth father",
+      "evidence": "최현과 하영의 친딸 / His girlfriend is actually Choi Se-gyeong's real mother",
+      "source": "ko.wikipedia · en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayeong",
+      "to": "segyeong",
+      "type": "family",
+      "label": "birth mother",
+      "short": "birth mother",
+      "evidence": "신하영 역 (†) - 세경의 친어머니 / [Se Gyeong's mother]",
+      "source": "ko.wikipedia · MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "choihyeon",
+      "to": "hayeong",
+      "type": "romance",
+      "label": "the rock star and the girlfriend whose pregnancy ended his career",
+      "short": "her partner",
+      "evidence": "He was a famous rock star whose popularity decreased after his girlfriend became pregnant",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunyu",
+      "to": "segyeong",
+      "type": "rivalry",
+      "label": "went back to 1995 to undo her mother's first love — and her own existence",
+      "short": "undoing her mother",
+      "evidence": "she time slips to 1995 so that she can find her mother's first love, and cease her existence",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "segyeong",
+      "to": "cheonga",
+      "type": "friend",
+      "label": "the only person Cheong A is not aloof with",
+      "short": "her one friend",
+      "evidence": "Chung-ah is aloof towards other people except to Choi Se-kyung, who is much friendlier toward her",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "viva",
+      "to": "eungyeol",
+      "type": "work",
+      "label": "the instrument-store owner who first put a guitar in his hands",
+      "short": "his mentor",
+      "evidence": "은결에게 기타와 음악을 처음 가르쳐준 스승이자 멘토",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "master",
+      "to": "viva",
+      "type": "bond",
+      "label": "the Master wears Grandpa Viva's face",
+      "short": "the same face",
+      "evidence": "정상훈 : 마스터 / 비바 할아버지 (남) 역 - 신원미상",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gunhyeong",
+      "to": "cheonga",
+      "type": "family",
+      "label": "father, and chairman of Jinseong Musical Instruments",
+      "short": "father",
+      "evidence": "[Cheong A's father] / 청아의 아버지, 종합 악기제조회사 주식회사 진성악기 회장",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jimi",
+      "to": "cheonga",
+      "type": "family",
+      "label": "stepmother — Cheong A's live-in tutor before she married in",
+      "short": "stepmother",
+      "evidence": "[Cheong A's stepmother] / 청아의 계모",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jimi",
+      "to": "cheonga",
+      "type": "rivalry",
+      "label": "torments the heir to Jinseong while her father travels",
+      "short": "torments her",
+      "evidence": "She uses harsh methods to torture Cheong-ah, who will be the next chairwoman of Jinseong Group",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gunhyeong",
+      "to": "jimi",
+      "type": "romance",
+      "label": "married, then divorced",
+      "short": "ex-spouses",
+      "evidence": "임지미의 전 남편 / 건형의 전 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jimi",
+      "to": "juyeop",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "임지미의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jimi",
+      "to": "sanga",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "임지미의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyeop",
+      "to": "cheonga",
+      "type": "family",
+      "label": "stepbrother",
+      "short": "stepbrother",
+      "evidence": "[Cheong A's stepbrother] / 청아의 의붓오빠",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanga",
+      "to": "cheonga",
+      "type": "family",
+      "label": "stepsister, a year behind her",
+      "short": "stepsister",
+      "evidence": "청아의 의붓여동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyeop",
+      "to": "sanga",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "상아의 친오빠",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanga",
+      "to": "segyeong",
+      "type": "friend",
+      "label": "Se Gyeong's friend at Seowon Arts High",
+      "short": "friends",
+      "evidence": "[Se Gyeong's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junhyeong",
+      "to": "eungyeol",
+      "type": "work",
+      "label": "Spine9's vocalist — Eun Gyeol's band in 2023",
+      "short": "Spine9 bandmate",
+      "evidence": "그룹 스파인9 멤버 / [Spine9's vocalist]",
+      "source": "ko.wikipedia · MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jio",
+      "to": "eungyeol",
+      "type": "work",
+      "label": "Spine9",
+      "short": "Spine9 bandmate",
+      "evidence": "그룹 스파인9 멤버 / 스파인9 베이시스트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sutak",
+      "to": "eungyeol",
+      "type": "work",
+      "label": "Spine9",
+      "short": "Spine9 bandmate",
+      "evidence": "그룹 스파인9 멤버 / 스파인9 드러머",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maju",
+      "to": "dongjin",
+      "type": "work",
+      "label": "manages him at MJ Entertainment in 2023",
+      "short": "manages him",
+      "evidence": "In 2023, Ma-joo owns MJ Entertainment who manages a famous rockstar Yoon Dong-jin",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "eungyeol",
+      "ichan",
+      "cheonga",
+      "eunho",
+      "segyeong",
+      "eunyu",
+      "jihwan",
+      "choihyeon",
+      "hayeong",
+      "viva",
+      "master",
+      "maju",
+      "hyeonyul",
+      "siguk",
+      "sebeom",
+      "yanghui",
+      "balsan",
+      "gunhyeong",
+      "jimi",
+      "juyeop",
+      "sanga"
+    ],
+    "blocks": {
+      "Watermelon Sugar": [
+        1,
+        0
+      ],
+      "Jinseong Instruments": [
+        0,
+        0
+      ],
+      "Se Gyeong's family": [
+        2,
+        0
+      ],
+      "Snail boarding house": [
+        0,
+        2
+      ],
+      "The music shops": [
+        2,
+        2
+      ],
+      "Eun Gyeol's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "eungyeol",
+      "ichan"
+    ]
+  }
+}
