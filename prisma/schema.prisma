@@ -430,6 +430,8 @@ model CharacterMapJob {
   peopleCount  Int?
   linkCount    Int?
   warnings     Json?
+  // Every step the run went through, [{ t, status, step }], for the console
+  log          Json?
   startedBy    String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt

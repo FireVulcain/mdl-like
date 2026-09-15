@@ -14,11 +14,39 @@ import type { CharacterMapJob } from "@prisma/client";
 const ACTIVE = new Set(["queued", "gathering", "generating", "validating"]);
 const STALE_MS = 15 * 60 * 1000;
 
-export type JobView = Pick<CharacterMapJob, "id" | "mdlSlug" | "status" | "step" | "error" | "model" | "inputTokens" | "outputTokens" | "cacheRead" | "peopleCount" | "linkCount" | "createdAt" | "finishedAt"> & { warnings: string[] };
+/** One line of the run's console: when, in what state, what it was doing. */
+export type JobLogEntry = { t: string; status: string; step: string };
+
+export type JobView = Pick<CharacterMapJob, "id" | "mdlSlug" | "status" | "step" | "error" | "model" | "inputTokens" | "outputTokens" | "cacheRead" | "peopleCount" | "linkCount" | "createdAt" | "finishedAt"> & { warnings: string[]; log: JobLogEntry[] };
 
 export function jobView(job: CharacterMapJob): JobView {
     const { id, mdlSlug, status, step, error, model, inputTokens, outputTokens, cacheRead, peopleCount, linkCount, createdAt, finishedAt } = job;
-    return { id, mdlSlug, status, step, error, model, inputTokens, outputTokens, cacheRead, peopleCount, linkCount, createdAt, finishedAt, warnings: Array.isArray(job.warnings) ? (job.warnings as string[]) : [] };
+    return {
+        id, mdlSlug, status, step, error, model, inputTokens, outputTokens, cacheRead, peopleCount, linkCount, createdAt, finishedAt,
+        warnings: Array.isArray(job.warnings) ? (job.warnings as string[]) : [],
+        log: Array.isArray(job.log) ? (job.log as JobLogEntry[]) : [],
+    };
+}
+
+/**
+ * The steps a run reports, kept as a list in the row so the console can
+ * show the whole run — after a reload too. The list lives here while the
+ * run goes (one process, one run per row) and is written whole each time;
+ * a step repeated verbatim ("Writing the chart… 14K characters" ticks) only
+ * moves the last line on.
+ */
+function stepWriter(id: string, initial: { status: string; step: string }) {
+    const log: JobLogEntry[] = [{ t: new Date().toISOString(), ...initial }];
+    let status = initial.status;
+    return async (data: { status?: string; step?: string }) => {
+        if (data.status) status = data.status;
+        const step = data.step ?? log[log.length - 1].step;
+        const last = log[log.length - 1];
+        const ticking = /…\s*\d+K characters$/.test(step) && /…\s*\d+K characters$/.test(last.step);
+        if (ticking) log[log.length - 1] = { t: new Date().toISOString(), status, step };
+        else if (last.step !== step || last.status !== status) log.push({ t: new Date().toISOString(), status, step });
+        await prisma.characterMapJob.update({ where: { id }, data: { status, step, log } }).catch(() => undefined);
+    };
 }
 
 /** The most recent job for an entry, active or not — what the button shows on load. */
@@ -53,6 +81,13 @@ export async function startJob(mdlSlug: string, startedBy: string | null, titles
 
     const job = await prisma.characterMapJob.create({ data: { mdlSlug, status: "queued", step: "Starting", startedBy, model } });
     if (!process.env.ANTHROPIC_API_KEY) {
+        // No key in development: walk the console through a pretend run, so
+        // the page can be worked on without spending anything or writing a
+        // chart. In production a missing key is a failure, said in the row.
+        if (process.env.NODE_ENV !== "production") {
+            void simulate(job.id, model);
+            return jobView(job);
+        }
         const failed = await prisma.characterMapJob.update({
             where: { id: job.id },
             data: { status: "failed", step: "", error: "ANTHROPIC_API_KEY is not set on the server", finishedAt: new Date() },
@@ -64,8 +99,44 @@ export async function startJob(mdlSlug: string, startedBy: string | null, titles
     return jobView(job);
 }
 
+async function simulate(id: string, model: GeneratorModel) {
+    const set = stepWriter(id, { status: "queued", step: "Starting" });
+    const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const script: [number, { status?: string; step?: string }][] = [
+        [600, { status: "gathering", step: "Reading the MDL entry" }],
+        [1200, { step: "Reading ko.wikipedia" }],
+        [1500, { step: "Reading en.wikipedia" }],
+        [900, { status: "generating", step: "Writing the chart from the cast and ko, en.wikipedia" }],
+        [1500, { step: "Writing the chart… 2K characters" }],
+        [1500, { step: "Writing the chart… 6K characters" }],
+        [1500, { step: "Writing the chart… 11K characters" }],
+        [1500, { step: "Writing the chart… 15K characters" }],
+        [800, { step: "Checking the chart" }],
+        [700, { status: "validating", step: "Saving" }],
+    ];
+    for (const [ms, data] of script) {
+        await wait(ms);
+        await set(data);
+    }
+    await wait(500);
+    await set({ status: "done", step: "23 people, 31 links (simulated)" });
+    await prisma.characterMapJob.update({
+        where: { id },
+        data: {
+            model: `${model} (simulated)`,
+            inputTokens: 31_000,
+            outputTokens: 9_500,
+            cacheRead: 12_000,
+            peopleCount: 23,
+            linkCount: 31,
+            warnings: ["Simulated run — ANTHROPIC_API_KEY is not set, so nothing was written"],
+            finishedAt: new Date(),
+        },
+    }).catch(() => undefined);
+}
+
 async function run(id: string, mdlSlug: string, titles: Record<string, string>, model: GeneratorModel) {
-    const set = (data: Partial<Pick<CharacterMapJob, "status" | "step">>) => prisma.characterMapJob.update({ where: { id }, data }).catch(() => undefined);
+    const set = stepWriter(id, { status: "queued", step: "Starting" });
     try {
         await set({ status: "gathering", step: "Reading the MDL entry" });
         const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }));
@@ -77,11 +148,10 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         const warnings = [...result.warnings];
         for (const w of inputs.wiki) if (!w.text) warnings.push(`${w.lang}.wikipedia: ${w.title ? `no character section in "${w.title}"` : "no article found"} — pin a title in wiki-titles.json and regenerate`);
         if (!file) warnings.push("the chart file was not written (folder missing or read-only); the row is the only copy");
+        await set({ status: "done", step: `${result.map.people.length} people, ${result.map.links.length} links` });
         await prisma.characterMapJob.update({
             where: { id },
             data: {
-                status: "done",
-                step: `${result.map.people.length} people, ${result.map.links.length} links`,
                 model: result.model,
                 inputTokens: result.usage.inputTokens,
                 outputTokens: result.usage.outputTokens,
@@ -93,9 +163,11 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
             },
         });
     } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        await set({ status: "failed", step: "Failed" });
         await prisma.characterMapJob.update({
             where: { id },
-            data: { status: "failed", step: "", error: e instanceof Error ? e.message : String(e), finishedAt: new Date() },
+            data: { step: "", error: message, finishedAt: new Date() },
         }).catch(() => undefined);
     }
 }
