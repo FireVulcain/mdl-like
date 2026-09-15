@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "mdlSlug": "26644-eulachacha-waikiki",
+  "title": "Welcome to Waikiki",
+  "native": "으라차차 와이키키",
+  "year": 2018,
+  "country": "KR",
+  "sources": [
+    "MDL cast (11 roles + guests, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "donggu",
+    "jungi",
+    "dusik"
+  ],
+  "people": [
+    {
+      "id": "donggu",
+      "name": "Kang Dong Gu",
+      "actor": "Kim Jung Hyun",
+      "image": "https://i.mydramalist.com/QVKxv_5m.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true,
+      "note": "Unlucky would-be film director; co-CEO"
+    },
+    {
+      "id": "jungi",
+      "name": "Lee Jun Gi",
+      "actor": "Lee Yi Kyung",
+      "image": "https://i.mydramalist.com/5v7nrV_5m.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true,
+      "note": "Eccentric bit-part actor; co-CEO"
+    },
+    {
+      "id": "dusik",
+      "name": "Bong Du Sik",
+      "actor": "Son Seung Won",
+      "image": "https://i.mydramalist.com/e5V3E_5m.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true,
+      "note": "Lazy freelance writer; co-CEO"
+    },
+    {
+      "id": "yuna",
+      "name": "Han Yun A",
+      "actor": "Jung In Sun",
+      "image": "https://i.mydramalist.com/xDYe0_5m.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true,
+      "note": "Single mother with a mysterious baby"
+    },
+    {
+      "id": "seojin",
+      "name": "Kang Seo Jin",
+      "actor": "Go Won Hee",
+      "image": "https://i.mydramalist.com/LwV7wL_5m.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true,
+      "note": "Practical; job-hunting"
+    },
+    {
+      "id": "sua",
+      "name": "Min Su A",
+      "actor": "Lee Joo Woo",
+      "image": "https://i.mydramalist.com/kYoAkm.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true,
+      "note": "Shopping-mall model"
+    },
+    {
+      "id": "sol",
+      "name": "Baby Sol",
+      "actor": "Han Yeo Reum",
+      "image": "https://i.mydramalist.com/eD58Y_5m.jpg",
+      "group": "Waikiki guesthouse",
+      "inCast": true
+    },
+    {
+      "id": "hyeonjun",
+      "name": "Song Hyeon Jun",
+      "actor": "Kang Kyung Joon",
+      "image": "https://i.mydramalist.com/d0wX7b_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    },
+    {
+      "id": "jungi_father",
+      "name": "Jun Gi's father (Lee Deok Hwa)",
+      "actor": "Lee Deok Hwa",
+      "image": "https://i.mydramalist.com/R3KXEm.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "The actor, playing himself"
+    },
+    {
+      "id": "senior",
+      "name": "Seo Jin's senior reporter",
+      "actor": "Kim Yoon Joo",
+      "image": "https://i.mydramalist.com/r5dDm_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "donggu",
+      "to": "jungi",
+      "type": "friend",
+      "label": "co-owners of Waikiki, opened to fund their film",
+      "short": "co-owner",
+      "evidence": "Three young men [...] open a guesthouse called 'Waikiki' in Itaewon to fund their film",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "donggu",
+      "to": "dusik",
+      "type": "friend",
+      "label": "co-owners of Waikiki",
+      "short": "co-owner",
+      "evidence": "open a guesthouse called 'Waikiki' in Itaewon to fund their film",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jungi",
+      "to": "dusik",
+      "type": "friend",
+      "label": "co-owners of Waikiki",
+      "short": "co-owner",
+      "evidence": "open a guesthouse called 'Waikiki' in Itaewon to fund their film",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seojin",
+      "to": "donggu",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "강서진 역 - 취업준비생, 동구의 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sua",
+      "to": "donggu",
+      "type": "romance",
+      "label": "ex-girlfriend, back in the house",
+      "short": "ex",
+      "evidence": "민수아 역 - 동구의 전 여친 / Dong Gu's ex-girlfriend Su A",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuna",
+      "to": "sol",
+      "type": "family",
+      "label": "the single mother and her baby",
+      "short": "mother",
+      "evidence": "한윤아 역 - 싱글맘, 솔이의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuna",
+      "to": "donggu",
+      "type": "romance",
+      "label": "the single mother and the director",
+      "short": "falls for him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seojin",
+      "to": "dusik",
+      "type": "romance",
+      "label": "the sister and the writer",
+      "short": "falls for him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sua",
+      "to": "jungi",
+      "type": "romance",
+      "label": "the ex and the actor",
+      "short": "falls for him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyeonjun",
+      "to": "yuna",
+      "type": "romance",
+      "label": "the man from her past",
+      "short": "her past",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungi_father",
+      "to": "jungi",
+      "type": "family",
+      "label": "father — the star Lee Deok Hwa, as himself",
+      "short": "father",
+      "evidence": "[Himself - Jun Gi's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "senior",
+      "to": "seojin",
+      "type": "work",
+      "label": "her senior at the paper",
+      "short": "senior",
+      "evidence": "[Seo Jin's senior reporter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "donggu",
+      "jungi",
+      "dusik",
+      "yuna",
+      "seojin",
+      "sua",
+      "sol",
+      "hyeonjun",
+      "jungi_father",
+      "senior"
+    ],
+    "blocks": {
+      "Outside": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "donggu",
+      "jungi",
+      "dusik",
+      "yuna",
+      "seojin",
+      "sua",
+      "sol"
+    ]
+  }
+}

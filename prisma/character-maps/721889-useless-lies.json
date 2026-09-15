@@ -1,0 +1,589 @@
+{
+  "version": 1,
+  "mdlSlug": "721889-useless-lies",
+  "title": "My Lovely Liar",
+  "native": "소용없어 거짓말",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (23 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "solhee",
+    "doha"
+  ],
+  "people": [
+    {
+      "id": "solhee",
+      "name": "Mok Sol Hee",
+      "actor": "Kim So Hyun",
+      "image": "https://i.mydramalist.com/VX8D3Q_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "27, the 'liar hunter' who hears lies; runs a tarot cafe as a front"
+    },
+    {
+      "id": "doha",
+      "name": "Kim Do Ha / Kim Seung Ju",
+      "actor": "Hwang Min Hyun",
+      "image": "https://i.mydramalist.com/l0DnYv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "29, masked composer hiding next door since a murder case; her ability fails on him"
+    },
+    {
+      "id": "kangmin",
+      "name": "Lee Kang Min",
+      "actor": "Seo Ji Hoon",
+      "image": "https://i.mydramalist.com/xK7bqm.jpg",
+      "group": "Sol Hee's people",
+      "inCast": true,
+      "note": "31, detective"
+    },
+    {
+      "id": "syaon",
+      "name": "Syaon / Sa Ji On",
+      "actor": "Lee Si Woo",
+      "image": "https://i.mydramalist.com/O8P1WP_5m.jpg",
+      "group": "J Entertainment",
+      "inCast": true,
+      "note": "24, top solo singer, 'the nation's little sister'"
+    },
+    {
+      "id": "syaon_mgr",
+      "name": "Syaon's manager",
+      "actor": "Kim Eun Soo",
+      "image": "https://i.mydramalist.com/JBb3DJ_5m.jpg",
+      "group": "J Entertainment",
+      "inCast": true
+    },
+    {
+      "id": "deukchan",
+      "name": "Jo Deuk Chan",
+      "actor": "Yun Ji On",
+      "image": "https://i.mydramalist.com/qpyJQ_5m.jpg",
+      "group": "J Entertainment",
+      "inCast": true,
+      "note": "31, CEO"
+    },
+    {
+      "id": "jaechan",
+      "name": "Jo Jae Chan",
+      "actor": "Nam Hyun Woo",
+      "image": "https://i.mydramalist.com/Z8ERN7_5m.jpg",
+      "group": "J Entertainment",
+      "inCast": true,
+      "note": "29, planning director"
+    },
+    {
+      "id": "mujin",
+      "name": "Park Moo Jin",
+      "actor": "Song Jin Woo",
+      "image": "https://i.mydramalist.com/xOWVz_5m.jpg",
+      "group": "J Entertainment",
+      "inCast": true,
+      "note": "42, director and composer"
+    },
+    {
+      "id": "ethan",
+      "name": "Ethan",
+      "actor": "Baek Seung Do",
+      "image": "https://i.mydramalist.com/RvAL6_5m.jpg",
+      "group": "J Entertainment",
+      "inCast": true,
+      "note": "Atlantis main vocalist"
+    },
+    {
+      "id": "chihoon",
+      "name": "Baek Chi Hoon",
+      "actor": "Ha Jong Woo",
+      "image": "https://i.mydramalist.com/qKpkB_5m.jpg",
+      "group": "Sol Hee's people",
+      "inCast": true,
+      "note": "26, bodyguard"
+    },
+    {
+      "id": "cassandra",
+      "name": "Cassandra / Yoon Ye Seul",
+      "actor": "Park Kyung Hye",
+      "image": "https://i.mydramalist.com/QJBrog_5m.jpg",
+      "group": "Sol Hee's people",
+      "inCast": true,
+      "note": "27, tarot reader and barista"
+    },
+    {
+      "id": "hyangsuk",
+      "name": "Cha Hyang Suk",
+      "actor": "Jin Kyung",
+      "image": "https://i.mydramalist.com/Xe7vJm.jpg",
+      "group": "Sol Hee's people",
+      "inCast": true,
+      "note": "50"
+    },
+    {
+      "id": "taeseop",
+      "name": "Mok Tae Seop",
+      "actor": "Ahn Nae Sang",
+      "image": "https://i.mydramalist.com/1g5nQm.jpg",
+      "group": "Sol Hee's people",
+      "inCast": true,
+      "note": "53, lives off the land"
+    },
+    {
+      "id": "yeonmi",
+      "name": "Jung Yeon Mi",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Around Do Ha",
+      "inCast": true,
+      "note": "Assemblywoman"
+    },
+    {
+      "id": "eomji",
+      "name": "Choi Eom Ji",
+      "actor": "Song Ji Hyun",
+      "image": "https://i.mydramalist.com/krl7b_5m.jpg",
+      "group": "Around Do Ha",
+      "inCast": true,
+      "note": "The murder victim"
+    },
+    {
+      "id": "eomho",
+      "name": "Choi Eom Ho",
+      "actor": "Kwon Dong Ho",
+      "image": "https://i.mydramalist.com/ED3vQm.jpg",
+      "group": "Around Do Ha",
+      "inCast": true,
+      "note": "35"
+    },
+    {
+      "id": "joongkyu",
+      "name": "Jang Joong Kyu",
+      "actor": "Seo Hyun Chul",
+      "image": "https://i.mydramalist.com/E5lJoz_5m.jpg",
+      "group": "Around Do Ha",
+      "inCast": true,
+      "note": "Runs the jazz bar Oasis; drummer"
+    },
+    {
+      "id": "jinsoo",
+      "name": "Oh Jin Soo",
+      "actor": "Baek Min Hyun",
+      "image": "https://i.mydramalist.com/dJdq5_5m.jpg",
+      "group": "Around Do Ha",
+      "inCast": true,
+      "note": "Entertainment reporter"
+    },
+    {
+      "id": "boro",
+      "name": "So Bo Ro",
+      "actor": "Cho Jin Se",
+      "image": "https://i.mydramalist.com/WPNAxR_5m.jpg",
+      "group": "Yeonseo-dong",
+      "inCast": true,
+      "note": "34, Yeonseo Bakery"
+    },
+    {
+      "id": "obaek",
+      "name": "Oh Oh Baek",
+      "actor": "Kim Won Hun",
+      "image": "https://i.mydramalist.com/1wdYr7_5m.jpg",
+      "group": "Yeonseo-dong",
+      "inCast": true,
+      "note": "34, Boo Boo"
+    },
+    {
+      "id": "chorok",
+      "name": "Hwang Cho Rok",
+      "actor": "Eom Ji Yoon",
+      "image": "https://i.mydramalist.com/kpEjv_5m.jpg",
+      "group": "Yeonseo-dong",
+      "inCast": true,
+      "note": "30, Chorok Salad"
+    },
+    {
+      "id": "yeongjae",
+      "name": "Lee Yeong Jae",
+      "actor": "Seo Jae Woo",
+      "image": "https://i.mydramalist.com/QJn23g_5m.jpg",
+      "group": "Yeonseo-dong",
+      "inCast": true,
+      "note": "Convenience-store part-timer"
+    },
+    {
+      "id": "sungyeong",
+      "name": "Hwang Sun Gyeong",
+      "actor": "Park Joon Soo",
+      "image": "https://i.mydramalist.com/2XWgk_5m.jpg",
+      "group": "Sol Hee's people",
+      "inCast": true,
+      "note": "Police officer"
+    }
+  ],
+  "links": [
+    {
+      "from": "solhee",
+      "to": "doha",
+      "type": "romance",
+      "label": "the one man whose lies she can't hear — next door, hiding from a murder case",
+      "short": "can't read him",
+      "evidence": "she meets Kim Do Ha, a music producer hiding next door after becoming embroiled in a murder case. As she discovers that her ability doesn't work on him, she becomes intrigued",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kangmin",
+      "to": "solhee",
+      "type": "romance",
+      "label": "the detective, her ex",
+      "short": "ex",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kangmin",
+      "to": "doha",
+      "type": "work",
+      "label": "the detective on the old murder case",
+      "short": "investigates",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "syaon",
+      "to": "doha",
+      "type": "work",
+      "label": "the singer he writes for",
+      "short": "sings his songs",
+      "evidence": "샤온(사지온) 역 - 가수 / 김도하 역 - 작곡가",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "syaon",
+      "to": "doha",
+      "type": "romance",
+      "label": "obsessed with the masked composer",
+      "short": "obsessed",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "syaon_mgr",
+      "to": "syaon",
+      "type": "work",
+      "label": "manager",
+      "short": "manager",
+      "evidence": "[Syaon's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deukchan",
+      "to": "doha",
+      "type": "work",
+      "label": "CEO of J Entertainment, who knows who he really is",
+      "short": "knows his secret",
+      "evidence": "Jo Deuk-chan: CEO of J Entertainment who knows Do-ha's identity",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaechan",
+      "to": "deukchan",
+      "type": "family",
+      "label": "younger brother; planning director",
+      "short": "brother",
+      "evidence": "[Deuk Chan's brother] / Deuk-chan's younger brother who is the planning director",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mujin",
+      "to": "doha",
+      "type": "rivalry",
+      "label": "J Entertainment's composer, his rival",
+      "short": "rival composer",
+      "evidence": "Park Moo-jin: a director and composer of J Entertainment and Do-ha's rival",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ethan",
+      "to": "deukchan",
+      "type": "work",
+      "label": "Atlantis, the agency's group",
+      "short": "the agency's idol",
+      "evidence": "[Atlantis main vocalist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chihoon",
+      "to": "solhee",
+      "type": "work",
+      "label": "bodyguard",
+      "short": "bodyguard",
+      "evidence": "[Sol Hee's bodyguard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cassandra",
+      "to": "solhee",
+      "type": "work",
+      "label": "tarot reader and barista at her cafe",
+      "short": "at the cafe",
+      "evidence": "카산드라 역 - 타로술사 겸 바리스타",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyangsuk",
+      "to": "solhee",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "차향숙 역 - 솔희의 어머니, 태섭의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseop",
+      "to": "solhee",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Sol Hee's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseop",
+      "to": "hyangsuk",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "향숙의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeonmi",
+      "to": "doha",
+      "type": "family",
+      "label": "mother, an assemblywoman",
+      "short": "mother",
+      "evidence": "[Do Ha's Mother] / 정연미 역 - 국회의원",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eomji",
+      "to": "doha",
+      "type": "romance",
+      "label": "ex-girlfriend — the murder he is suspected of",
+      "short": "ex, the victim",
+      "evidence": "[Do Ha's ex-girlfriend]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eomho",
+      "to": "eomji",
+      "type": "family",
+      "label": "older brother",
+      "short": "brother",
+      "evidence": "[Eom Ji's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eomho",
+      "to": "doha",
+      "type": "rivalry",
+      "label": "believes he killed his sister",
+      "short": "blames him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "joongkyu",
+      "to": "doha",
+      "type": "friend",
+      "label": "runs the jazz bar where Do Ha plays",
+      "short": "jazz bar",
+      "evidence": "장중규 역 - 라이브 재즈바 '오아시스' 운영",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinsoo",
+      "to": "doha",
+      "type": "rivalry",
+      "label": "the reporter trying to unmask him",
+      "short": "hunts his face",
+      "evidence": "Oh Ki-ja: a veteran entertainment club who tries to reveal Do-ha's face",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boro",
+      "to": "solhee",
+      "type": "friend",
+      "label": "Yeonseo-dong neighbour",
+      "short": "neighbour",
+      "evidence": "[Owner of Yeonseo Bakery]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "obaek",
+      "to": "solhee",
+      "type": "friend",
+      "label": "Yeonseo-dong neighbour",
+      "short": "neighbour",
+      "evidence": "[Owner of Boo Boo]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chorok",
+      "to": "solhee",
+      "type": "friend",
+      "label": "Yeonseo-dong neighbour",
+      "short": "neighbour",
+      "evidence": "[Owner of Chorok Salad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongjae",
+      "to": "solhee",
+      "type": "friend",
+      "label": "the convenience-store kid",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sungyeong",
+      "to": "kangmin",
+      "type": "work",
+      "label": "police",
+      "short": "colleague",
+      "evidence": "[Police officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "solhee",
+      "doha",
+      "kangmin",
+      "syaon",
+      "syaon_mgr",
+      "deukchan",
+      "jaechan",
+      "mujin",
+      "ethan",
+      "chihoon",
+      "cassandra",
+      "hyangsuk",
+      "taeseop",
+      "yeonmi",
+      "eomji",
+      "eomho",
+      "joongkyu",
+      "jinsoo",
+      "boro",
+      "obaek",
+      "chorok",
+      "yeongjae",
+      "sungyeong"
+    ],
+    "blocks": {
+      "J Entertainment": [
+        2,
+        0
+      ],
+      "Sol Hee's people": [
+        0,
+        0
+      ],
+      "Around Do Ha": [
+        2,
+        2
+      ],
+      "Yeonseo-dong": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "solhee",
+      "doha"
+    ]
+  }
+}

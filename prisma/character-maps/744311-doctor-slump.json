@@ -1,0 +1,438 @@
+{
+  "version": 1,
+  "mdlSlug": "744311-doctor-slump",
+  "title": "Doctor Slump",
+  "native": "닥터 슬럼프",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (14 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "jeongu",
+    "haneul"
+  ],
+  "people": [
+    {
+      "id": "jeongu",
+      "name": "Yeo Jeong U",
+      "actor": "Park Hyung Sik",
+      "image": "https://i.mydramalist.com/zB2qq1_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Star plastic surgeon, ruined overnight by a mysterious medical accident"
+    },
+    {
+      "id": "haneul",
+      "name": "Nam Ha Neul",
+      "actor": "Park Shin Hye",
+      "image": "https://i.mydramalist.com/Q3Nz7_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Anaesthesiologist who quit on burnout"
+    },
+    {
+      "id": "daeyeong",
+      "name": "Bin Dae Yeong",
+      "actor": "Yoon Bak",
+      "image": "https://i.mydramalist.com/d0vdyg_5m.jpg",
+      "group": "Doctors",
+      "inCast": true,
+      "note": "Plastic surgeon"
+    },
+    {
+      "id": "hongran",
+      "name": "Lee Hong Ran",
+      "actor": "Gong Sung Ha",
+      "image": "https://i.mydramalist.com/yWnbYd_5m.jpg",
+      "group": "Doctors",
+      "inCast": true,
+      "note": "Single mother of a six-year-old"
+    },
+    {
+      "id": "gyeongmin",
+      "name": "Min Gyeong Min",
+      "actor": "Oh Dong Min",
+      "image": "https://i.mydramalist.com/Rq5lg_5m.jpg",
+      "group": "Doctors",
+      "inCast": true,
+      "note": "The root of it all"
+    },
+    {
+      "id": "hyeji",
+      "name": "Do Hye Ji",
+      "actor": "Song Ji Woo",
+      "image": "https://i.mydramalist.com/BdwYZq_5m.jpg",
+      "group": "Doctors",
+      "inCast": true,
+      "note": "Nurse at Dae Yeong's clinic"
+    },
+    {
+      "id": "jinseok",
+      "name": "Kang Jin Seok",
+      "actor": "Kim Jae Bum",
+      "image": "https://i.mydramalist.com/1woWj5_5m.jpg",
+      "group": "Doctors",
+      "inCast": true
+    },
+    {
+      "id": "sanggeun",
+      "name": "Kim Sang Geun",
+      "actor": "Oh Ryoong",
+      "image": "https://i.mydramalist.com/xnDKX_5m.jpg",
+      "group": "Doctors",
+      "inCast": true,
+      "note": "Professor"
+    },
+    {
+      "id": "jinu",
+      "name": "Jin U",
+      "actor": "Kim Hee Sung",
+      "image": "https://i.mydramalist.com/rNmDQ7_5m.jpg",
+      "group": "Doctors",
+      "inCast": true
+    },
+    {
+      "id": "wolseon",
+      "name": "Kong Wol Seon",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "group": "Ha Neul's family",
+      "inCast": true
+    },
+    {
+      "id": "taeseon",
+      "name": "Kong Tae Seon",
+      "actor": "Hyun Bong Sik",
+      "image": "https://i.mydramalist.com/81A0vQ_5m.jpg",
+      "group": "Ha Neul's family",
+      "inCast": true
+    },
+    {
+      "id": "bada",
+      "name": "Nam Ba Da",
+      "actor": "Youn Sang Hyun",
+      "image": "https://i.mydramalist.com/w4O7J_5m.jpg",
+      "group": "Ha Neul's family",
+      "inCast": true
+    },
+    {
+      "id": "manseok",
+      "name": "Nam Man Seok",
+      "actor": "Park Won Sang",
+      "image": "https://i.mydramalist.com/DkJoJq_5m.jpg",
+      "group": "Ha Neul's family",
+      "inCast": true,
+      "note": "Deceased"
+    },
+    {
+      "id": "sangcheol",
+      "name": "Han Sang Cheol",
+      "actor": "Jung Ji Soon",
+      "image": "https://i.mydramalist.com/RJE16m.jpg",
+      "group": "Yeongwon High",
+      "inCast": true,
+      "note": "Their homeroom teacher in third year"
+    },
+    {
+      "id": "mugeun",
+      "name": "Kim Mu Geun",
+      "actor": "Park Won Ho",
+      "image": "https://i.mydramalist.com/v1Op2_5m.jpg",
+      "group": "Yeongwon High",
+      "inCast": true,
+      "note": "Prankster"
+    },
+    {
+      "id": "chanyeong",
+      "name": "Son Chan Yeong",
+      "actor": "Kang Sang Jun",
+      "image": "https://i.mydramalist.com/qY8Pgz_5m.jpg",
+      "group": "Yeongwon High",
+      "inCast": true,
+      "note": "Prankster"
+    }
+  ],
+  "links": [
+    {
+      "from": "jeongu",
+      "to": "haneul",
+      "type": "romance",
+      "label": "high-school rivals who meet again at rock bottom and find comfort in each other",
+      "short": "lovers",
+      "evidence": "he reunites with Nam Ha Neul, a former rival [...] They find comfort in each other, and a romance begins to develop",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongu",
+      "to": "haneul",
+      "type": "rivalry",
+      "label": "rivals for first place at Yeongwon High",
+      "short": "old rival",
+      "evidence": "하늘과 고등학교 동창 / a former rival",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeyeong",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "university classmate, fellow plastic surgeon",
+      "short": "classmate",
+      "evidence": "빈대영 역 - 정우의 대학 동기, 성형외과 의사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hongran",
+      "to": "haneul",
+      "type": "friend",
+      "label": "university classmate and friend",
+      "short": "friend",
+      "evidence": "이홍란 역 - 하늘의 대학 동기이자 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeyeong",
+      "to": "hongran",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hongran",
+      "to": "jinu",
+      "type": "family",
+      "label": "son, six",
+      "short": "mother",
+      "evidence": "[Hong Ran's son] / 6살 아들을 둔 싱글맘",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongmin",
+      "to": "jeongu",
+      "type": "rivalry",
+      "label": "the med-school senior who tutored him — and the villain behind the accident",
+      "short": "the villain",
+      "evidence": "민경민 역 - 본작의 만악의 근원이자 메인 빌런 [...] 정우가 고3 때 과외를 해주던 의대 형",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongmin",
+      "to": "haneul",
+      "type": "work",
+      "label": "her med-school senior",
+      "short": "senior",
+      "evidence": "하늘과 홍란의 의대 선배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeji",
+      "to": "daeyeong",
+      "type": "work",
+      "label": "nurse at his clinic",
+      "short": "nurse",
+      "evidence": "도혜지 역 - 빈대영 성형외과 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinseok",
+      "to": "jeongu",
+      "type": "work",
+      "label": "the anaesthesiologist of the fatal surgery",
+      "short": "in the OR",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sanggeun",
+      "to": "haneul",
+      "type": "work",
+      "label": "her superior at the university hospital",
+      "short": "superior",
+      "evidence": "[Ha Neul's superior]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wolseon",
+      "to": "haneul",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "공월선 역 - 하늘과 바다의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wolseon",
+      "to": "bada",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "하늘과 바다의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bada",
+      "to": "haneul",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "남바다 역 - 하늘의 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseon",
+      "to": "wolseon",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "공태선 역 - 월선의 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseon",
+      "to": "haneul",
+      "type": "family",
+      "label": "maternal uncle",
+      "short": "uncle",
+      "evidence": "하늘과 바다의 외삼촌",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manseok",
+      "to": "haneul",
+      "type": "family",
+      "label": "father, deceased",
+      "short": "father",
+      "evidence": "[Ha Neul's dad]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangcheol",
+      "to": "jeongu",
+      "type": "work",
+      "label": "homeroom teacher in their final year",
+      "short": "teacher",
+      "evidence": "한상철 역 - 정우와 하늘의 고3 때 담임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mugeun",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "school friend, a prankster",
+      "short": "friend",
+      "evidence": "김무근 역 - 정우의 친구, 장난꾸러기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chanyeong",
+      "to": "jeongu",
+      "type": "friend",
+      "label": "school friend, a prankster",
+      "short": "friend",
+      "evidence": "손찬영 역 - 정우의 친구, 장난꾸러기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "jeongu",
+      "haneul",
+      "daeyeong",
+      "hongran",
+      "gyeongmin",
+      "hyeji",
+      "jinseok",
+      "sanggeun",
+      "jinu",
+      "wolseon",
+      "taeseon",
+      "bada",
+      "manseok",
+      "sangcheol",
+      "mugeun",
+      "chanyeong"
+    ],
+    "blocks": {
+      "Ha Neul's family": [
+        0,
+        0
+      ],
+      "Doctors": [
+        2,
+        0
+      ],
+      "Yeongwon High": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jeongu",
+      "haneul"
+    ]
+  }
+}

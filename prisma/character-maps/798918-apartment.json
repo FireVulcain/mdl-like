@@ -1,0 +1,656 @@
+{
+  "version": 1,
+  "mdlSlug": "798918-apartment",
+  "title": "The Apartment Job",
+  "native": "아파트",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (31 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "haegang",
+    "hari"
+  ],
+  "people": [
+    {
+      "id": "haegang",
+      "name": "Park Hae Gang",
+      "actor": "Ji Sung",
+      "image": "https://i.mydramalist.com/E55lEp_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former boss of the Oasis gang; runs for council president to get at the building's hidden money"
+    },
+    {
+      "id": "hari",
+      "name": "Kang Ha Ri",
+      "actor": "Ha Yoon Kyoung",
+      "image": "https://i.mydramalist.com/jz0zd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Part-timer at a law firm, would-be lawyer"
+    },
+    {
+      "id": "chungwon",
+      "name": "Lee Chung Won",
+      "actor": "Park Byung Eun",
+      "image": "https://i.mydramalist.com/JB4v2p_5m.jpg",
+      "group": "One Club",
+      "inCast": true,
+      "note": "The developer with the kingdom"
+    },
+    {
+      "id": "sukjin",
+      "name": "Jang Suk Jin",
+      "actor": "Moon So Ri",
+      "image": "https://i.mydramalist.com/b35WBx_5m.jpg",
+      "group": "Residents' council",
+      "inCast": true,
+      "note": "'The eyes and ears of True Value'"
+    },
+    {
+      "id": "gyeongnam",
+      "name": "\"Gyeong Nam\"",
+      "actor": "Jung Soon Won",
+      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
+      "group": "Hae Gang's crew",
+      "inCast": true,
+      "note": "Right-hand man, the gentle second"
+    },
+    {
+      "id": "jegil",
+      "name": "\"Je Gil\"",
+      "actor": "Hwang Hee",
+      "image": "https://i.mydramalist.com/XdrKnw_5m.jpg",
+      "group": "Hae Gang's crew",
+      "inCast": true,
+      "note": "Left-hand man, the brains"
+    },
+    {
+      "id": "bigguy",
+      "name": "\"Big Guy\"",
+      "actor": "Kim Kyu Won",
+      "image": "https://i.mydramalist.com/2w74qV_5m.jpg",
+      "group": "Hae Gang's crew",
+      "inCast": true,
+      "note": "The youngest, huge as a door"
+    },
+    {
+      "id": "lizard",
+      "name": "Hwang In Sik / \"Lizard\"",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Hae Gang's crew",
+      "inCast": true,
+      "note": "Former building manager"
+    },
+    {
+      "id": "gyeongbuk",
+      "name": "Kim Gyeong Buk",
+      "actor": "Kim Han Gyeol",
+      "image": "https://i.mydramalist.com/JBdrzw_5m.jpg",
+      "group": "Hae Gang's crew",
+      "inCast": true,
+      "note": "'Stanford prospect'"
+    },
+    {
+      "id": "yongman",
+      "name": "Park Yong Man",
+      "actor": "Jung Jin Young",
+      "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
+      "group": "Hae Gang's crew",
+      "inCast": true
+    },
+    {
+      "id": "gangwon",
+      "name": "Seo Gang Won",
+      "actor": "Baek Hyun Jin",
+      "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
+      "group": "Residents' council",
+      "inCast": true,
+      "note": "Council president"
+    },
+    {
+      "id": "dongho",
+      "name": "O Dong Ho",
+      "actor": "Seo Sung Jong",
+      "image": "https://i.mydramalist.com/2O6PWm.jpg",
+      "group": "Residents' council",
+      "inCast": true,
+      "note": "Council old guard"
+    },
+    {
+      "id": "orye",
+      "name": "Kim O Rye",
+      "actor": "Choi Bo Kwang",
+      "image": "https://i.mydramalist.com/JKqYXm.jpg",
+      "group": "Residents' council",
+      "inCast": true
+    },
+    {
+      "id": "seokman",
+      "name": "Lee Seok Man",
+      "actor": "Park Choong Seon",
+      "image": "https://i.mydramalist.com/Bx6p7m.jpg",
+      "group": "Residents' council",
+      "inCast": true
+    },
+    {
+      "id": "minsu",
+      "name": "Kim Min Su",
+      "actor": "Park Tae Rin",
+      "image": "https://i.mydramalist.com/d0QdJe_5m.jpg",
+      "group": "Residents' council",
+      "inCast": true
+    },
+    {
+      "id": "yunjo",
+      "name": "Cha Yun Jo",
+      "actor": "Son Ji Yoon",
+      "image": "https://i.mydramalist.com/O878nx_5m.jpg",
+      "group": "Residents' council",
+      "inCast": true,
+      "note": "Runs the mums' cafe"
+    },
+    {
+      "id": "yeongjae",
+      "name": "Choi Yeong Jae",
+      "actor": "Jung Seung Kil",
+      "image": "https://i.mydramalist.com/g075LO_5m.jpg",
+      "group": "Management office",
+      "inCast": true,
+      "note": "Manager"
+    },
+    {
+      "id": "hajeong",
+      "name": "Kang Ha Jeong",
+      "actor": "Ryu Hyun Kyung",
+      "image": "https://i.mydramalist.com/mOLv6P_5m.jpg",
+      "group": "Management office",
+      "inCast": true,
+      "note": "Accounting manager"
+    },
+    {
+      "id": "mina",
+      "name": "Min A",
+      "actor": "Han Da Hee",
+      "image": "https://i.mydramalist.com/4ewo2K_5m.jpg",
+      "group": "Management office",
+      "inCast": true
+    },
+    {
+      "id": "sangtae",
+      "name": "Sang Tae",
+      "actor": "Baek Dong Hyeon",
+      "image": "https://i.mydramalist.com/VXxD5x_5m.jpg",
+      "group": "Management office",
+      "inCast": true
+    },
+    {
+      "id": "yunseo",
+      "name": "Yun Seo",
+      "actor": "Yim So Yun",
+      "image": "https://i.mydramalist.com/pbDnQ_5m.jpg",
+      "group": "Management office",
+      "inCast": true
+    },
+    {
+      "id": "seungho",
+      "name": "Choi Seung Ho",
+      "actor": "Choi Duk Moon",
+      "image": "https://i.mydramalist.com/YYj5lK_5m.jpg",
+      "group": "One Club",
+      "inCast": true,
+      "note": "Prosecutor general"
+    },
+    {
+      "id": "usik",
+      "name": "Song U Sik",
+      "actor": "Oh Dae Suk",
+      "image": "https://i.mydramalist.com/731qQB_5m.jpg",
+      "group": "One Club",
+      "inCast": true,
+      "note": "Senior secretary for civil affairs"
+    },
+    {
+      "id": "gwangho",
+      "name": "Yoo Gwang Ho",
+      "actor": "Park Jung Hak",
+      "image": "https://i.mydramalist.com/oQk7qx_5m.jpg",
+      "group": "One Club",
+      "inCast": true,
+      "note": "Supreme Court justice"
+    },
+    {
+      "id": "kim",
+      "name": "Mr. Kim",
+      "actor": "No Jeong Hyeon",
+      "image": "https://i.mydramalist.com/3oRPnV_5m.jpg",
+      "group": "One Club",
+      "inCast": true
+    },
+    {
+      "id": "jugwon",
+      "name": "Kwak Ju Gwon",
+      "actor": "Jung Hee Tae",
+      "image": "https://i.mydramalist.com/735b3r_5m.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Police commissioner"
+    },
+    {
+      "id": "daeun",
+      "name": "Son Dae Un",
+      "actor": "Lee Hyun Kyun",
+      "image": "https://i.mydramalist.com/JBbyXd_5m.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Seoul police investigations chief"
+    },
+    {
+      "id": "yeongju",
+      "name": "Ha Yeong Ju",
+      "actor": "Yang Yoo Jin",
+      "image": "https://i.mydramalist.com/2p15P_5m.jpg",
+      "group": "Management office",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "hari",
+      "to": "haegang",
+      "type": "romance",
+      "label": "the would-be lawyer and the ex-gangster running for council",
+      "short": "his ally",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hajeong",
+      "to": "hari",
+      "type": "family",
+      "label": "older sister; the management office's accountant",
+      "short": "sister",
+      "evidence": "[Ha Ri's older sister] / 하리의 하나뿐인 언니",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongju",
+      "to": "hari",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "하영주 역 - 하리의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongnam",
+      "to": "haegang",
+      "type": "work",
+      "label": "right-hand man",
+      "short": "right-hand man",
+      "evidence": "[Hae Gang's right-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jegil",
+      "to": "haegang",
+      "type": "work",
+      "label": "left-hand man, the brains",
+      "short": "left-hand man",
+      "evidence": "[Hae Gang's left-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bigguy",
+      "to": "haegang",
+      "type": "work",
+      "label": "the youngest of the crew",
+      "short": "youngest",
+      "evidence": "[Haegang organization's youngest member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lizard",
+      "to": "haegang",
+      "type": "work",
+      "label": "the former manager who knows where the money is",
+      "short": "the insider",
+      "evidence": "[Former apartment manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeongnam",
+      "to": "gyeongbuk",
+      "type": "family",
+      "label": "son, the 'Stanford prospect'",
+      "short": "father",
+      "evidence": "경북이 역 - 경남의 귀염둥이 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongman",
+      "to": "haegang",
+      "type": "family",
+      "label": "his big brother",
+      "short": "big brother",
+      "evidence": "[Hae Gang's older brother] / 해강의 큰 형님",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gangwon",
+      "to": "haegang",
+      "type": "rivalry",
+      "label": "the council president he runs against",
+      "short": "rival",
+      "evidence": "[Residents' representative council president]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dongho",
+      "to": "gangwon",
+      "type": "work",
+      "label": "blindly shields the president; leads the charge against Hae Gang",
+      "short": "his shield",
+      "evidence": "서강원 회장을 맹목적으로 비호하며 [...] 해강을 궁지에 모는 데 앞장서는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "orye",
+      "to": "gangwon",
+      "type": "work",
+      "label": "follows him blindly, with Dong Ho",
+      "short": "follower",
+      "evidence": "오동호와 끈끈하게 협력하며 [...] 서강원 회장을 맹목적으로 추종하는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokman",
+      "to": "gangwon",
+      "type": "work",
+      "label": "hangs on for the crumbs",
+      "short": "hanger-on",
+      "evidence": "서강원 회장 세력에 붙어 가담하는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukjin",
+      "to": "minsu",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "[Suk Jin's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukjin",
+      "to": "haegang",
+      "type": "work",
+      "label": "the eyes and ears of the complex — on his side, or not",
+      "short": "watches him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yunjo",
+      "to": "sukjin",
+      "type": "friend",
+      "label": "the mums' cafe",
+      "short": "the mums",
+      "evidence": "차윤조 역 - 루이 엄마, 트루밸류 스테이트 맘카페장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeongjae",
+      "to": "hajeong",
+      "type": "work",
+      "label": "the manager she works under",
+      "short": "manager",
+      "evidence": "최영재 역 - 관리소장 / 강하정 역 - 경리과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mina",
+      "to": "yeongjae",
+      "type": "work",
+      "label": "operations manager",
+      "short": "staff",
+      "evidence": "[Operations manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangtae",
+      "to": "yeongjae",
+      "type": "work",
+      "label": "management officer",
+      "short": "staff",
+      "evidence": "[Management officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunseo",
+      "to": "yeongjae",
+      "type": "work",
+      "label": "chief clerk",
+      "short": "staff",
+      "evidence": "[Chief clerk]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungho",
+      "to": "chungwon",
+      "type": "work",
+      "label": "the prosecutor general who props up his kingdom",
+      "short": "backs him",
+      "evidence": "이충원의 거대한 왕국을 뒤에서 지탱하는 최상위 권력 카르텔 원클럽",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "usik",
+      "to": "chungwon",
+      "type": "work",
+      "label": "One Club",
+      "short": "One Club",
+      "evidence": "송우식 역 - 민정수석",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangho",
+      "to": "chungwon",
+      "type": "work",
+      "label": "One Club",
+      "short": "One Club",
+      "evidence": "유광호 역 - 대법관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kim",
+      "to": "chungwon",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Chung Won's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungwon",
+      "to": "haegang",
+      "type": "rivalry",
+      "label": "the corruption behind the complex the gangster stumbles on",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "chungwon",
+      "to": "gangwon",
+      "type": "work",
+      "label": "the council president is his",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jugwon",
+      "to": "daeun",
+      "type": "work",
+      "label": "commissioner and investigations chief",
+      "short": "his chief",
+      "evidence": "주권 역 - 경찰청장 / 부장 역 - 서울경찰청 수사부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jugwon",
+      "to": "chungwon",
+      "type": "work",
+      "label": "the police, in his pocket",
+      "short": "in his pocket",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "haegang",
+      "hari",
+      "chungwon",
+      "sukjin",
+      "gyeongnam",
+      "jegil",
+      "bigguy",
+      "lizard",
+      "gyeongbuk",
+      "yongman",
+      "gangwon",
+      "dongho",
+      "orye",
+      "seokman",
+      "minsu",
+      "yunjo",
+      "yeongjae",
+      "hajeong",
+      "mina",
+      "sangtae",
+      "yunseo",
+      "seungho",
+      "usik",
+      "gwangho",
+      "kim",
+      "yeongju"
+    ],
+    "blocks": {
+      "Hae Gang's crew": [
+        0,
+        0
+      ],
+      "Residents' council": [
+        2,
+        0
+      ],
+      "Management office": [
+        0,
+        2
+      ],
+      "One Club": [
+        2,
+        2
+      ],
+      "Police": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "haegang",
+      "hari"
+    ]
+  }
+}

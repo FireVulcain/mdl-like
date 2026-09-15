@@ -1,0 +1,433 @@
+{
+  "version": 1,
+  "mdlSlug": "776997-monthly-boyfriend",
+  "title": "Boyfriend on Demand",
+  "native": "월간남친",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (12 roles + guests, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "mirae",
+    "gyeongnam"
+  ],
+  "people": [
+    {
+      "id": "mirae",
+      "name": "Seo Mi Rae",
+      "actor": "Ji Soo",
+      "image": "https://i.mydramalist.com/6BVYd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Exhausted webtoon producer, escaping into a subscription dating simulation"
+    },
+    {
+      "id": "gyeongnam",
+      "name": "Park Gyeong Nam / Koo Yeong Il",
+      "actor": "Seo In Guk",
+      "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Webtoon producer — and, in the program, Koo Yeong Il"
+    },
+    {
+      "id": "yunsong",
+      "name": "Yun Song",
+      "actor": "Gong Min Jung",
+      "image": "https://i.mydramalist.com/ZWm3j_5m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true,
+      "note": "Webtoon artist"
+    },
+    {
+      "id": "hwany",
+      "name": "Hwa Ni / Hwany",
+      "actor": "Yoo Seon Ho",
+      "image": "https://i.mydramalist.com/mOKXDJ_5m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true,
+      "note": "Webtoon artist"
+    },
+    {
+      "id": "byeonghak",
+      "name": "Hwang Byeong Hak",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true,
+      "note": "The boss"
+    },
+    {
+      "id": "junyeong",
+      "name": "Min Jun Yeong",
+      "actor": "Lee Hak Joo",
+      "image": "https://i.mydramalist.com/do6KDm.jpg",
+      "group": "Naemo Studio",
+      "inCast": true,
+      "note": "Team leader"
+    },
+    {
+      "id": "seonghun",
+      "name": "Kim Seong Hun",
+      "actor": "Park Ji Ho",
+      "image": "https://i.mydramalist.com/mOXqJq_5m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true
+    },
+    {
+      "id": "hyebin",
+      "name": "Kim Hye Bin",
+      "actor": "Ryu Abel",
+      "image": "https://i.mydramalist.com/WPJN7O_5m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true
+    },
+    {
+      "id": "dongmin",
+      "name": "Choi Dong Min",
+      "actor": "Jo Deok Hee",
+      "image": "https://i.mydramalist.com/pzEdB_5m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true
+    },
+    {
+      "id": "eunju",
+      "name": "Song Eun Ju",
+      "actor": "Han Ga Eul",
+      "image": "https://i.mydramalist.com/Ndq46W_5m.jpg",
+      "group": "Naemo Studio",
+      "inCast": true
+    },
+    {
+      "id": "jiyeon",
+      "name": "Lee Ji Yeon",
+      "actor": "Ha Young",
+      "image": "https://i.mydramalist.com/ABmJOP_5m.jpg",
+      "group": "Mi Rae's people",
+      "inCast": true
+    },
+    {
+      "id": "soyeong",
+      "name": "Yoo So Yeong",
+      "actor": "Lee Soo Min",
+      "image": "https://i.mydramalist.com/nODnrL_5m.jpg",
+      "group": "Mi Rae's people",
+      "inCast": true
+    },
+    {
+      "id": "sejun",
+      "name": "Kim Se Jun",
+      "actor": "Kim Sung Cheol",
+      "image": null,
+      "group": "Mi Rae's people",
+      "inCast": false,
+      "note": "Ex-boyfriend"
+    },
+    {
+      "id": "hoi",
+      "name": "Kang Ho I",
+      "actor": "Yoo In Na",
+      "image": null,
+      "group": "The virtual world",
+      "inCast": false,
+      "note": "The program's manager"
+    },
+    {
+      "id": "siwoo",
+      "name": "Choi Si Woo",
+      "actor": "Lee Soo Hyuk",
+      "image": null,
+      "group": "The virtual world",
+      "inCast": false,
+      "note": "A webtoon protagonist"
+    },
+    {
+      "id": "eunho",
+      "name": "Seo Eun Ho",
+      "actor": "Seo Kang Jun",
+      "image": null,
+      "group": "The virtual world",
+      "inCast": false,
+      "note": "Kendo martial artist"
+    },
+    {
+      "id": "hyeonwoo",
+      "name": "Bae Hyeon Woo",
+      "actor": "Ong Seong Wu",
+      "image": null,
+      "group": "The virtual world",
+      "inCast": false
+    },
+    {
+      "id": "jaewook",
+      "name": "Lee Jae Wook",
+      "actor": "Lee Jae Wook",
+      "image": null,
+      "group": "The virtual world",
+      "inCast": false,
+      "note": "As himself"
+    }
+  ],
+  "links": [
+    {
+      "from": "mirae",
+      "to": "gyeongnam",
+      "type": "work",
+      "label": "webtoon producers at the same studio",
+      "short": "colleague",
+      "evidence": "서인국 : 박경남 역 / 지수 : 서미래 역 — 내모 스튜디오",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "gyeongnam",
+      "to": "mirae",
+      "type": "romance",
+      "label": "the colleague who turns up inside her program as Koo Yeong Il",
+      "short": "in her program",
+      "evidence": "박경남 역 / 구영일 역 (1인 2역)",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yunsong",
+      "to": "mirae",
+      "type": "work",
+      "label": "the artist she manages",
+      "short": "her artist",
+      "evidence": "Yun Song, a webtoon artist who Mi-rae manages",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwany",
+      "to": "gyeongnam",
+      "type": "work",
+      "label": "the artist he manages",
+      "short": "his artist",
+      "evidence": "Hwany, a webtoon artist who Kyeong-nam manages",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeonghak",
+      "to": "mirae",
+      "type": "work",
+      "label": "the boss of Naemo",
+      "short": "boss",
+      "evidence": "[Naemo's boss]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junyeong",
+      "to": "mirae",
+      "type": "work",
+      "label": "team leader",
+      "short": "team leader",
+      "evidence": "[Team leader]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonghun",
+      "to": "mirae",
+      "type": "work",
+      "label": "co-worker",
+      "short": "co-worker",
+      "evidence": "[Naemo employee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyebin",
+      "to": "mirae",
+      "type": "work",
+      "label": "co-worker",
+      "short": "co-worker",
+      "evidence": "[Mi Rae's co-worker]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongmin",
+      "to": "mirae",
+      "type": "work",
+      "label": "co-worker",
+      "short": "co-worker",
+      "evidence": "[Mi Rae's co-worker]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunju",
+      "to": "mirae",
+      "type": "work",
+      "label": "co-worker",
+      "short": "co-worker",
+      "evidence": "[Mi Rae's co-worker]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiyeon",
+      "to": "mirae",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "[Mi Rae's friend] / Lee Ji-yeon, Mi-rae's bestfriend",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "soyeong",
+      "to": "mirae",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "Yoo So-young, Mi-Rae's friend",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sejun",
+      "to": "mirae",
+      "type": "romance",
+      "label": "ex-boyfriend",
+      "short": "ex",
+      "evidence": "Kim Se-jun, Mi-rae's ex-boyfriend",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hoi",
+      "to": "mirae",
+      "type": "work",
+      "label": "the program's manager",
+      "short": "her manager",
+      "evidence": "강호이 역 - 매니저",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "siwoo",
+      "to": "mirae",
+      "type": "romance",
+      "label": "the webtoon hero, her first boyfriend on demand",
+      "short": "boyfriend on demand",
+      "evidence": "Choi Si-woo, a webtoon protagonist who appears in the Boyfriend on Demand program",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunho",
+      "to": "mirae",
+      "type": "romance",
+      "label": "the kendo boyfriend on demand",
+      "short": "boyfriend on demand",
+      "evidence": "Seo Eun-ho, a kumdo martial artist who appears in the Boyfriend on Demand program",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonwoo",
+      "to": "mirae",
+      "type": "romance",
+      "label": "a boyfriend on demand",
+      "short": "boyfriend on demand",
+      "evidence": "옹성우 : 배현우 역 (가상 세계)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaewook",
+      "to": "mirae",
+      "type": "romance",
+      "label": "a boyfriend on demand — the actor as himself",
+      "short": "boyfriend on demand",
+      "evidence": "이재욱 : 이재욱 역 (가상 세계)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "mirae",
+      "gyeongnam",
+      "yunsong",
+      "hwany",
+      "byeonghak",
+      "junyeong",
+      "seonghun",
+      "hyebin",
+      "dongmin",
+      "eunju",
+      "jiyeon",
+      "soyeong",
+      "sejun",
+      "hoi",
+      "siwoo",
+      "eunho",
+      "hyeonwoo",
+      "jaewook"
+    ],
+    "blocks": {
+      "Naemo Studio": [
+        0,
+        0
+      ],
+      "Mi Rae's people": [
+        2,
+        0
+      ],
+      "The virtual world": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "mirae",
+      "gyeongnam"
+    ]
+  }
+}

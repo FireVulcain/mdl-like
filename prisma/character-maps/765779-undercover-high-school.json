@@ -1,0 +1,631 @@
+{
+  "version": 1,
+  "mdlSlug": "765779-undercover-high-school",
+  "title": "Undercover High School",
+  "native": "언더커버 하이스쿨",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (25 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "haeseong",
+    "sua"
+  ],
+  "people": [
+    {
+      "id": "haeseong",
+      "name": "Jung Hae Seong / Jung Si Hyeon",
+      "actor": "Seo Kang Jun",
+      "image": "https://i.mydramalist.com/l0d8zE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "NIS ace, undercover as a student to find King Gojong's gold"
+    },
+    {
+      "id": "sua",
+      "name": "O Su A / O Bong Ja",
+      "actor": "Jin Ki Joo",
+      "image": "https://i.mydramalist.com/nOYKnL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Contract Korean-history teacher, his homeroom teacher"
+    },
+    {
+      "id": "myeongju",
+      "name": "Seo Myeong Ju",
+      "actor": "Kim Shin Rock",
+      "image": "https://i.mydramalist.com/oQzmpO_5m.jpg",
+      "group": "Byeongmun staff",
+      "inCast": true,
+      "note": "Chair of the Byeongmun foundation"
+    },
+    {
+      "id": "seokho",
+      "name": "An Seok Ho",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "NIS",
+      "inCast": true,
+      "note": "Team 4 leader"
+    },
+    {
+      "id": "yeonghun",
+      "name": "Ko Yeong Hun",
+      "actor": "Jo Bok Rae",
+      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
+      "group": "NIS",
+      "inCast": true,
+      "note": "Team 4 agent"
+    },
+    {
+      "id": "mijeong",
+      "name": "Park Mi Jeong",
+      "actor": "Yoon Ga Yi",
+      "image": "https://i.mydramalist.com/3oAYPA_5m.jpg",
+      "group": "NIS",
+      "inCast": true,
+      "note": "Team 4 agent"
+    },
+    {
+      "id": "hyeongbae",
+      "name": "Kim Hyeong Bae",
+      "actor": "Lee Seo Hwan",
+      "image": "https://i.mydramalist.com/QJN414_5m.jpg",
+      "group": "NIS",
+      "inCast": true,
+      "note": "Director, domestic (deceased)"
+    },
+    {
+      "id": "jinsang",
+      "name": "Kong Jin Sang",
+      "actor": "Im Chul Hyung",
+      "image": "https://i.mydramalist.com/qgwnz_5m.jpg",
+      "group": "NIS",
+      "inCast": true,
+      "note": "Team 1 leader"
+    },
+    {
+      "id": "manok",
+      "name": "Jang Man Ok",
+      "actor": "Kim Soo Jin",
+      "image": "https://i.mydramalist.com/28yld_5m.jpg",
+      "group": "NIS",
+      "inCast": true
+    },
+    {
+      "id": "yujeong",
+      "name": "An Yu Jeong",
+      "actor": "Park Se Hyun",
+      "image": "https://i.mydramalist.com/E5Ylxm_5m.jpg",
+      "group": "Student council",
+      "inCast": true
+    },
+    {
+      "id": "yena",
+      "name": "Lee Ye Na",
+      "actor": "Kim Min Ju",
+      "image": "https://i.mydramalist.com/l0nvob_5m.jpg",
+      "group": "Student council",
+      "inCast": true,
+      "note": "Student council president"
+    },
+    {
+      "id": "taesu",
+      "name": "Park Tae Su",
+      "actor": "Jang Sung Bum",
+      "image": "https://i.mydramalist.com/44njkm.jpg",
+      "group": "Student council",
+      "inCast": true,
+      "note": "Son of a three-term assemblyman; heads the bullies"
+    },
+    {
+      "id": "seungjae",
+      "name": "Han Seung Jae",
+      "actor": "Lee Hyun So",
+      "image": "https://i.mydramalist.com/KpE41v_5m.jpg",
+      "group": "Student council",
+      "inCast": true,
+      "note": "Son of the top law firm's CEO"
+    },
+    {
+      "id": "hyeonjun",
+      "name": "Ji Hyeon Jun",
+      "actor": "Kim Sun Min",
+      "image": "https://i.mydramalist.com/AB4yEg_5m.jpg",
+      "group": "Student council",
+      "inCast": true,
+      "note": "Vice-president"
+    },
+    {
+      "id": "chaerin",
+      "name": "Yun Chae Rin",
+      "actor": "Yun Chae Bin",
+      "image": "https://i.mydramalist.com/l0APvb_5m.jpg",
+      "group": "Student council",
+      "inCast": true,
+      "note": "Idol trainee"
+    },
+    {
+      "id": "dongmin",
+      "name": "Lee Dong Min",
+      "actor": "Shin Jun Hang",
+      "image": "https://i.mydramalist.com/2w3KgW_5m.jpg",
+      "group": "Byeongmun students",
+      "inCast": true,
+      "note": "Admitted on the social-care track"
+    },
+    {
+      "id": "yuncheol",
+      "name": "Im Yun Cheol",
+      "actor": "Jeong Soo Hyun",
+      "image": "https://i.mydramalist.com/l01B4N_5m.jpg",
+      "group": "Byeongmun students",
+      "inCast": true,
+      "note": "Tae Su's gang"
+    },
+    {
+      "id": "beomsik",
+      "name": "Son Beom Sik",
+      "actor": "Kang Pil Jun",
+      "image": "https://i.mydramalist.com/4ew17Y_5m.jpg",
+      "group": "Byeongmun students",
+      "inCast": true,
+      "note": "Tae Su's gang"
+    },
+    {
+      "id": "sujin",
+      "name": "Choi Su Jin",
+      "actor": "Shin Ga Eun",
+      "image": "https://i.mydramalist.com/EOK0Q_5m.jpg",
+      "group": "Byeongmun students",
+      "inCast": true,
+      "note": "First on every trend"
+    },
+    {
+      "id": "hojin",
+      "name": "Kim Ho Jin",
+      "actor": "Kim Seung Beom",
+      "image": "https://i.mydramalist.com/81dd5m_5m.jpg",
+      "group": "Byeongmun students",
+      "inCast": true,
+      "note": "The school's information broker"
+    },
+    {
+      "id": "jaemun",
+      "name": "Park Jae Mun",
+      "actor": "Park Jin U",
+      "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
+      "group": "Byeongmun staff",
+      "inCast": true,
+      "note": "Principal"
+    },
+    {
+      "id": "gwangdo",
+      "name": "Baek Gwang Do",
+      "actor": "Oh Yong",
+      "image": "https://i.mydramalist.com/nERJBm.jpg",
+      "group": "Byeongmun staff",
+      "inCast": true,
+      "note": "Vice-principal"
+    },
+    {
+      "id": "rian",
+      "name": "Kim Ri An",
+      "actor": "Lee Min Ji",
+      "image": "https://i.mydramalist.com/qO0d0m.jpg",
+      "group": "Byeongmun staff",
+      "inCast": true,
+      "note": "P.E. teacher"
+    },
+    {
+      "id": "junho",
+      "name": "Lee Jun Ho",
+      "actor": "Noh Jong Hyun",
+      "image": "https://i.mydramalist.com/pd045e_5m.jpg",
+      "group": "Byeongmun staff",
+      "inCast": true,
+      "note": "Maths teacher"
+    },
+    {
+      "id": "cheongha",
+      "name": "Im Cheong Ha",
+      "actor": "Kim Young Ah",
+      "image": "https://i.mydramalist.com/B16pz_5m.jpg",
+      "group": "Byeongmun staff",
+      "inCast": true,
+      "note": "Runs the bar 'Had-a-drink Su A'"
+    }
+  ],
+  "links": [
+    {
+      "from": "sua",
+      "to": "haeseong",
+      "type": "work",
+      "label": "his homeroom teacher — he a 'student'",
+      "short": "homeroom teacher",
+      "evidence": "오수아 역 - 해성의 담임이자 병문고 기간제 선생님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haeseong",
+      "to": "sua",
+      "type": "romance",
+      "label": "grow closer as he digs into the school",
+      "short": "grows close",
+      "evidence": "Posing as a student, he encounters O Su A [...] As they grow closer, Hae Seong uncovers the school's dark corruption",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myeongju",
+      "to": "haeseong",
+      "type": "rivalry",
+      "label": "the foundation chair — the corruption he uncovers",
+      "short": "enemy",
+      "evidence": "서명주 역 - 현 병문재단 및 병문고 이사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "myeongju",
+      "to": "yena",
+      "type": "family",
+      "label": "mother; her only daughter",
+      "short": "mother",
+      "evidence": "서명주 역 - 예나의 모친 / 이예나 역 - 이사장 명주의 외동딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokho",
+      "to": "haeseong",
+      "type": "work",
+      "label": "team leader — and a second father",
+      "short": "like a father",
+      "evidence": "안석호 역 - 국정원 국내 4팀의 팀장이자 해성에겐 제 2의 가족, 아버지 같은 존재",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghun",
+      "to": "haeseong",
+      "type": "work",
+      "label": "his junior agent",
+      "short": "junior",
+      "evidence": "고영훈 역 - 해성의 국정원 후배 요원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mijeong",
+      "to": "haeseong",
+      "type": "work",
+      "label": "his junior agent",
+      "short": "junior",
+      "evidence": "박미정 역 - 해성의 국정원 후배 요원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongbae",
+      "to": "seokho",
+      "type": "work",
+      "label": "director over the team",
+      "short": "director",
+      "evidence": "[NIS director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinsang",
+      "to": "seokho",
+      "type": "work",
+      "label": "same intake; team 1 leader",
+      "short": "peer",
+      "evidence": "공 팀장 역 - 안팀장의 동기이자 국가정보원 국내1팀 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "manok",
+      "to": "seokho",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Seok Ho's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "manok",
+      "to": "haeseong",
+      "type": "family",
+      "label": "like a mother to him",
+      "short": "like a mother",
+      "evidence": "해성에겐 어머니와도 같은 사람",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokho",
+      "to": "yujeong",
+      "type": "family",
+      "label": "daughter",
+      "short": "father",
+      "evidence": "[Seok Ho's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yujeong",
+      "to": "haeseong",
+      "type": "family",
+      "label": "his little sister, all but",
+      "short": "little sister",
+      "evidence": "안팀장의 딸이자 해성의 여동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yena",
+      "to": "haeseong",
+      "type": "friend",
+      "label": "the council president and the new student",
+      "short": "classmate",
+      "evidence": "이예나 역 - 병문고 학생회 학생회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "taesu",
+      "to": "yena",
+      "type": "work",
+      "label": "student council",
+      "short": "council",
+      "evidence": "박태수 역 - 병문고 학생회 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjae",
+      "to": "yena",
+      "type": "work",
+      "label": "student council",
+      "short": "council",
+      "evidence": "한승재 역 - 병문고 학생회 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjun",
+      "to": "yena",
+      "type": "work",
+      "label": "vice-president to her president",
+      "short": "vice-president",
+      "evidence": "지현준 역 - 병문고 학생회 부학생회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chaerin",
+      "to": "yena",
+      "type": "work",
+      "label": "student council",
+      "short": "council",
+      "evidence": "윤채린 역 - 병문고 학생회 멤버이자 아이돌 연습생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuncheol",
+      "to": "taesu",
+      "type": "friend",
+      "label": "Tae Su's bully crowd",
+      "short": "his crowd",
+      "evidence": "임윤철 역 - 태수와 함께 일진무리를 형성하고 있는 학생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "beomsik",
+      "to": "taesu",
+      "type": "friend",
+      "label": "Tae Su's bully crowd",
+      "short": "his crowd",
+      "evidence": "손범식 역 - 태수와 함께 일진무리를 형성하고 있는 학생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesu",
+      "to": "dongmin",
+      "type": "rivalry",
+      "label": "bullies the scholarship kid",
+      "short": "bullies him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "haeseong",
+      "to": "dongmin",
+      "type": "friend",
+      "label": "the undercover agent takes his side",
+      "short": "protects him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sujin",
+      "to": "hojin",
+      "type": "friend",
+      "label": "the trend-chaser and the info broker",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jaemun",
+      "to": "myeongju",
+      "type": "work",
+      "label": "principal and her henchman",
+      "short": "henchman",
+      "evidence": "박재문 역 - 병문고 교장 선생님이자 이사장 명주의 심복",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangdo",
+      "to": "jaemun",
+      "type": "work",
+      "label": "vice-principal",
+      "short": "vice-principal",
+      "evidence": "백광두 역 - 병문고 교감 선생님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rian",
+      "to": "sua",
+      "type": "friend",
+      "label": "fellow teacher, soulmate",
+      "short": "soulmate",
+      "evidence": "김리안 역 - 수아의 동료 선생님이자 영혼의 파트너",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junho",
+      "to": "sua",
+      "type": "work",
+      "label": "fellow teacher",
+      "short": "colleague",
+      "evidence": "이준호 역 - 수아의 동료 선생님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "cheongha",
+      "to": "sua",
+      "type": "family",
+      "label": "mother; runs the bar",
+      "short": "mother",
+      "evidence": "[Su A's mother] / 10년 넘게 '한잔했-수아' 운영 중",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "haeseong",
+      "sua",
+      "myeongju",
+      "seokho",
+      "yeonghun",
+      "mijeong",
+      "hyeongbae",
+      "jinsang",
+      "manok",
+      "yujeong",
+      "yena",
+      "taesu",
+      "seungjae",
+      "hyeonjun",
+      "chaerin",
+      "dongmin",
+      "yuncheol",
+      "beomsik",
+      "sujin",
+      "hojin",
+      "jaemun",
+      "gwangdo",
+      "rian",
+      "junho",
+      "cheongha"
+    ],
+    "blocks": {
+      "NIS": [
+        0,
+        0
+      ],
+      "Student council": [
+        2,
+        0
+      ],
+      "Byeongmun students": [
+        2,
+        2
+      ],
+      "Byeongmun staff": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "haeseong",
+      "sua"
+    ]
+  }
+}

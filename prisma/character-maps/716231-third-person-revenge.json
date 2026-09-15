@@ -1,0 +1,571 @@
+{
+  "version": 1,
+  "mdlSlug": "716231-third-person-revenge",
+  "title": "Revenge of Others",
+  "native": "3인칭 복수",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (35 roles + guests, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only; ties inferred)"
+  ],
+  "main": [
+    "chanmi",
+    "sooheon"
+  ],
+  "people": [
+    {
+      "id": "chanmi",
+      "name": "Ok Chan Mi",
+      "actor": "Shin Ye Eun",
+      "image": "https://i.mydramalist.com/mORYq3_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Shooting athlete who transfers to Yongtan High after her twin's death"
+    },
+    {
+      "id": "sooheon",
+      "name": "Ji Soo Heon",
+      "actor": "Lomon",
+      "image": "https://i.mydramalist.com/kA0exO_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Witnessed Won Seok's fall"
+    },
+    {
+      "id": "wonseok",
+      "name": "Park Won Seok / Ok Chan Kyu",
+      "actor": "Kang Yul",
+      "image": "https://i.mydramalist.com/vqBQ2m.jpg",
+      "group": "Yongtan High",
+      "inCast": true,
+      "note": "Fell to his death at school"
+    },
+    {
+      "id": "jaebeom",
+      "name": "Seok Jae Beom",
+      "actor": "Seo Ji Hoon",
+      "image": "https://i.mydramalist.com/xK7bqm.jpg",
+      "group": "Yongtan High",
+      "inCast": true,
+      "note": "Rich boy back from a coma, missing his memory"
+    },
+    {
+      "id": "oseong",
+      "name": "Ki O Seong",
+      "actor": "Chae Sang Woo",
+      "image": "https://i.mydramalist.com/E52yrp_5m.jpg",
+      "group": "Gi Wang Do's house",
+      "inCast": true,
+      "note": "The bully"
+    },
+    {
+      "id": "jihyun",
+      "name": "Kook Ji Hyun",
+      "actor": "Lee Soo Min",
+      "image": "https://i.mydramalist.com/nODnrL_5m.jpg",
+      "group": "Gi Wang Do's house",
+      "inCast": true,
+      "note": "Class president"
+    },
+    {
+      "id": "soyeon",
+      "name": "Tae So Yeon",
+      "actor": "Chung Su Bin",
+      "image": "https://i.mydramalist.com/XpEBn_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "ajung",
+      "name": "Hong A Jung",
+      "actor": "Woo Yeon",
+      "image": "https://i.mydramalist.com/QJ5Yng_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "seungwoo",
+      "name": "Im Seung Woo",
+      "actor": "Yeon Oh",
+      "image": "https://i.mydramalist.com/dldR0_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "junggyeong",
+      "name": "Sa Jung Gyeong",
+      "actor": "Jin Ho Eun",
+      "image": "https://i.mydramalist.com/81ZAwN_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "haksoo",
+      "name": "Nam Hak Soo",
+      "actor": "Han Seung Bin",
+      "image": "https://i.mydramalist.com/Xp8Xw_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "dayeon",
+      "name": "Seo Da Yeon",
+      "actor": "Hwang Bo Un",
+      "image": "https://i.mydramalist.com/rLnm7_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "narin",
+      "name": "Park Na Rin",
+      "actor": "Moon Ye Jin",
+      "image": "https://i.mydramalist.com/WPQZQP_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "seonha",
+      "name": "Min Seon Ha",
+      "actor": "Ahn Hyun Ho",
+      "image": "https://i.mydramalist.com/wQB6b_5m.jpg",
+      "group": "Yongtan High",
+      "inCast": true
+    },
+    {
+      "id": "sojung",
+      "name": "Jin So Jung",
+      "actor": "Kim Joo Ryoung",
+      "image": "https://i.mydramalist.com/kJVRvm.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "wangdo",
+      "name": "Gi Wang Do",
+      "actor": "Jang Hyun Sung",
+      "image": "https://i.mydramalist.com/1LJLdm.jpg",
+      "group": "Gi Wang Do's house",
+      "inCast": true,
+      "note": "Chief of the police station"
+    },
+    {
+      "id": "hyejeong",
+      "name": "Yang Hye Jeong",
+      "actor": "Seo Hye Rin",
+      "image": "https://i.mydramalist.com/xQ1Zrm.jpg",
+      "group": "Gi Wang Do's house",
+      "inCast": true
+    },
+    {
+      "id": "jataek",
+      "name": "Gu Ja Taek",
+      "actor": "Jeon Seok Chan",
+      "image": "https://i.mydramalist.com/ZvqZWm.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Teacher"
+    },
+    {
+      "id": "dukhyun",
+      "name": "Jo Duk Hyun",
+      "actor": "Han Chul Woo",
+      "image": "https://i.mydramalist.com/EQeYz_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Teacher"
+    },
+    {
+      "id": "namsoo",
+      "name": "Oh Nam Soo",
+      "actor": "Yoo Sun Ho",
+      "image": "https://i.mydramalist.com/ZVevJ_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Coach"
+    },
+    {
+      "id": "jaebeom_mother",
+      "name": "Jae Beom's mother",
+      "actor": "Park Sun Ah",
+      "image": "https://i.mydramalist.com/ROlNg_5m.jpg",
+      "group": "Adults",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "wonseok",
+      "to": "chanmi",
+      "type": "family",
+      "label": "twin brother — the death she refuses to call suicide",
+      "short": "twin",
+      "evidence": "Ok Chan Mi does not believe that her twin brother, Park Won Seok, committed suicide",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sooheon",
+      "to": "chanmi",
+      "type": "friend",
+      "label": "the witness of her brother's death, met at Yongtan High",
+      "short": "the witness",
+      "evidence": "meets Ji Soo Heon, who witnessed her brother's death",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sooheon",
+      "to": "chanmi",
+      "type": "romance",
+      "label": "the two who hunt the truth together",
+      "short": "falls for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sooheon",
+      "to": "chanmi",
+      "type": "bond",
+      "label": "the 'hero' who avenges the bullied — the one she is looking for",
+      "short": "the hero",
+      "evidence": "a 'hero,' who avenges bullied students, appears at Yongtan High. Chan Mi speculates that it may be connected to her brother and starts looking for this hero",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "soyeon",
+      "to": "sooheon",
+      "type": "work",
+      "label": "runs the revenge business he does the hitting for",
+      "short": "his partner",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaebeom",
+      "to": "wonseok",
+      "type": "friend",
+      "label": "close to Won Seok before the coma took his memory",
+      "short": "close to him",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jaebeom",
+      "to": "chanmi",
+      "type": "romance",
+      "label": "the boy without memories, drawn to her",
+      "short": "drawn to her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "oseong",
+      "to": "wonseok",
+      "type": "rivalry",
+      "label": "bullied him",
+      "short": "bullied him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "oseong",
+      "to": "sooheon",
+      "type": "rivalry",
+      "label": "the bully and the hero",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wangdo",
+      "to": "oseong",
+      "type": "family",
+      "label": "father; the police chief",
+      "short": "father",
+      "evidence": "[Chief of Police Station] / 기왕도 역",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jihyun",
+      "to": "oseong",
+      "type": "family",
+      "label": "step-siblings under one roof",
+      "short": "step-sibling",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyejeong",
+      "to": "jihyun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ji Hyun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyejeong",
+      "to": "wangdo",
+      "type": "romance",
+      "label": "married",
+      "short": "wife",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jihyun",
+      "to": "wonseok",
+      "type": "romance",
+      "label": "dated him",
+      "short": "ex",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ajung",
+      "to": "chanmi",
+      "type": "friend",
+      "label": "her friend at the new school",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seungwoo",
+      "to": "wonseok",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "junggyeong",
+      "to": "oseong",
+      "type": "friend",
+      "label": "the bully's crowd",
+      "short": "his crowd",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "haksoo",
+      "to": "oseong",
+      "type": "friend",
+      "label": "the bully's crowd",
+      "short": "his crowd",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dayeon",
+      "to": "jihyun",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "narin",
+      "to": "jihyun",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seonha",
+      "to": "sooheon",
+      "type": "bond",
+      "label": "the bullied girl the hero avenges",
+      "short": "avenged",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sojung",
+      "to": "chanmi",
+      "type": "work",
+      "label": "the detective on the case",
+      "short": "detective",
+      "evidence": "진소정 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sojung",
+      "to": "wangdo",
+      "type": "work",
+      "label": "under the chief",
+      "short": "her chief",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jataek",
+      "to": "chanmi",
+      "type": "work",
+      "label": "teacher",
+      "short": "teacher",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dukhyun",
+      "to": "chanmi",
+      "type": "work",
+      "label": "teacher",
+      "short": "teacher",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "namsoo",
+      "to": "chanmi",
+      "type": "work",
+      "label": "her shooting coach",
+      "short": "coach",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaebeom_mother",
+      "to": "jaebeom",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Seok Jae Bum's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "chanmi",
+      "sooheon",
+      "wonseok",
+      "jaebeom",
+      "oseong",
+      "jihyun",
+      "soyeon",
+      "ajung",
+      "seungwoo",
+      "junggyeong",
+      "haksoo",
+      "dayeon",
+      "narin",
+      "seonha",
+      "sojung",
+      "wangdo",
+      "hyejeong",
+      "jataek",
+      "dukhyun",
+      "namsoo",
+      "jaebeom_mother"
+    ],
+    "blocks": {
+      "Yongtan High": [
+        0,
+        0
+      ],
+      "Gi Wang Do's house": [
+        2,
+        0
+      ],
+      "Adults": [
+        0,
+        2
+      ],
+      "Police": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "chanmi",
+      "sooheon"
+    ]
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "version": 1,
+  "mdlSlug": "61489-destruction",
+  "title": "Doom at Your Service",
+  "native": "어느 날 우리 집 현관으로 멸망이 들어왔다",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles + guests, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "donggyeong",
+    "myeolmang"
+  ],
+  "people": [
+    {
+      "id": "donggyeong",
+      "name": "Tak Dong Gyeong",
+      "actor": "Park Bo Young",
+      "image": "https://i.mydramalist.com/l0AEjv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Ye Seo",
+          "image": "https://i.mydramalist.com/jovLb_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "28, web-novel editor; diagnosed with glioblastoma, she curses the world — and Doom answers"
+    },
+    {
+      "id": "myeolmang",
+      "name": "Kim Sa Ram / \"Myeol Mang\"",
+      "actor": "Seo In Guk",
+      "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Doom — born between light and dark; neither human nor god"
+    },
+    {
+      "id": "juik",
+      "name": "Cha Ju Ik",
+      "actor": "Lee Soo Hyuk",
+      "image": "https://i.mydramalist.com/k6VbO_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "33, head of the editorial team"
+    },
+    {
+      "id": "hyeongyu",
+      "name": "Lee Hyeon Gyu",
+      "actor": "Kang Tae Oh",
+      "image": "https://i.mydramalist.com/qv3mz_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "29, cafe owner"
+    },
+    {
+      "id": "jina",
+      "name": "Na Ji Na",
+      "actor": "Shin Do Hyun",
+      "image": "https://i.mydramalist.com/qxx6z_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "29, web novelist, pen name Lee Hyeon"
+    },
+    {
+      "id": "seongyeong",
+      "name": "Tak Seon Gyeong",
+      "actor": "Da Won",
+      "image": "https://i.mydramalist.com/dZRBe_5m.jpg",
+      "group": "Dong Gyeong's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Jae Joon",
+          "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "25"
+    },
+    {
+      "id": "suja",
+      "name": "Kang Su Ja",
+      "actor": "Woo Hee Jin",
+      "image": "https://i.mydramalist.com/d04pWD_5m.jpg",
+      "group": "Dong Gyeong's family",
+      "inCast": true,
+      "note": "48, motto: all in. Woo Hee Jin also plays Kang Su A, Dong Gyeong's late mother"
+    },
+    {
+      "id": "kevin",
+      "name": "Kevin",
+      "actor": "Daniel C. Kennedy",
+      "image": "https://i.mydramalist.com/B4no6_5m.jpg",
+      "group": "Dong Gyeong's family",
+      "inCast": true
+    },
+    {
+      "id": "sonyeosin",
+      "name": "\"So Nyeo Sin\"",
+      "actor": "Jung Ji So",
+      "image": "https://i.mydramalist.com/2wmKLV_5m.jpg",
+      "group": "Beyond",
+      "inCast": true,
+      "note": "The girl deity"
+    },
+    {
+      "id": "yeji",
+      "name": "Cho Ye Ji",
+      "actor": "Song Joo Hee",
+      "image": "https://i.mydramalist.com/xDZBN_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "Editorial team chief"
+    },
+    {
+      "id": "dain",
+      "name": "Kim Da In",
+      "actor": "Choi So Yoon",
+      "image": "https://i.mydramalist.com/vZ3DZ_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "Editorial team"
+    },
+    {
+      "id": "jeongmin",
+      "name": "Park Jeong Min",
+      "actor": "Park Tae In",
+      "image": "https://i.mydramalist.com/xKK3jm.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "New recruit"
+    },
+    {
+      "id": "changsin",
+      "name": "Park Chang Sin",
+      "actor": "Song Jin Woo",
+      "image": "https://i.mydramalist.com/xOWVz_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "CEO"
+    },
+    {
+      "id": "yeong",
+      "name": "Park Yeong / \"Young Prince\"",
+      "actor": "Nam  Da Reum",
+      "image": "https://i.mydramalist.com/E5QVml_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "Writer"
+    },
+    {
+      "id": "seungjun",
+      "name": "Jung Seung Jun / \"Jung Dang Myeong\"",
+      "actor": "Lee Seung Jun",
+      "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
+      "group": "Life Story",
+      "inCast": true,
+      "note": "Her neurologist — and a Life Story writer"
+    },
+    {
+      "id": "daehan",
+      "name": "Cho Dae Han",
+      "actor": "Kim Ji Suk",
+      "image": "https://i.mydramalist.com/2PnbE_5m.jpg",
+      "group": "Dong Gyeong's family",
+      "inCast": true,
+      "note": "Ex-boyfriend, a married man"
+    }
+  ],
+  "links": [
+    {
+      "from": "donggyeong",
+      "to": "myeolmang",
+      "type": "bond",
+      "label": "a hundred-day contract: live as she wants, risking everything",
+      "short": "the contract",
+      "evidence": "she makes a contract with Myeol Mang for a hundred days to live how she wants, risking her everything",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "donggyeong",
+      "to": "myeolmang",
+      "type": "romance",
+      "label": "Doom falls for the woman who called him",
+      "short": "lovers",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sonyeosin",
+      "to": "myeolmang",
+      "type": "bond",
+      "label": "the deity who made him — the garden he keeps",
+      "short": "his maker",
+      "evidence": "정지소 : 소녀신 역 (멸망의 주변인물)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "juik",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "her team leader",
+      "short": "team leader",
+      "evidence": "차주익 역 - 라이프스토리 웹소설 편집팀장 / 탁동경 역 - 웹소설 편집팀 주임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongyu",
+      "to": "jina",
+      "type": "romance",
+      "label": "ex-lovers",
+      "short": "ex",
+      "evidence": "이현규 역 - 카페 사장, 지나의 전연인 / 나지나 역 - 현규의 전연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juik",
+      "to": "jina",
+      "type": "romance",
+      "label": "the editor and the novelist",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jina",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "the novelist she edits",
+      "short": "her writer",
+      "evidence": "나지나 역 - 웹소설 작가, 필명 이현",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongyeong",
+      "to": "donggyeong",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Dong Gyeong's younger brother] / 선경의 누나",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suja",
+      "to": "donggyeong",
+      "type": "family",
+      "label": "aunt, who raised the orphaned two",
+      "short": "aunt",
+      "evidence": "[Dong Gyeong's aunt] / 수자의 조카",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kevin",
+      "to": "suja",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "[Su Ja's husband]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeji",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "editorial team chief",
+      "short": "team chief",
+      "evidence": "[Editorial team chief]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dain",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "editorial team",
+      "short": "colleague",
+      "evidence": "[Editorial team member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongmin",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "the new recruit",
+      "short": "recruit",
+      "evidence": "[Editorial team new recruit]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changsin",
+      "to": "juik",
+      "type": "work",
+      "label": "CEO of Life Story",
+      "short": "CEO",
+      "evidence": "[Life Story CEO]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeong",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "the writer 'Young Prince'",
+      "short": "her writer",
+      "evidence": "[Writer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjun",
+      "to": "donggyeong",
+      "type": "work",
+      "label": "her neurologist — also one of her writers",
+      "short": "her doctor",
+      "evidence": "[Dong Gyeong's neurologist] / 정당면 역 - 본명 정승준, 동경의 주치의",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daehan",
+      "to": "donggyeong",
+      "type": "romance",
+      "label": "ex-boyfriend — married, it turns out",
+      "short": "ex",
+      "evidence": "[Dong Gyeong's ex-boyfriend] / 조대한 역 - 동경의 전 남자친구, 유부남",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "donggyeong",
+      "myeolmang",
+      "juik",
+      "hyeongyu",
+      "jina",
+      "seongyeong",
+      "suja",
+      "kevin",
+      "sonyeosin",
+      "yeji",
+      "dain",
+      "jeongmin",
+      "changsin",
+      "yeong",
+      "seungjun",
+      "daehan"
+    ],
+    "blocks": {
+      "Dong Gyeong's family": [
+        0,
+        0
+      ],
+      "Life Story": [
+        2,
+        0
+      ],
+      "Beyond": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "donggyeong",
+      "myeolmang"
+    ]
+  }
+}

@@ -1,0 +1,596 @@
+{
+  "version": 1,
+  "mdlSlug": "742271-the-woman-who-plays",
+  "title": "My Sweet Mobster",
+  "native": "놀아주는 여자",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (23 roles + guests, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "jihwan",
+    "eunha"
+  ],
+  "people": [
+    {
+      "id": "jihwan",
+      "name": "Seo Ji Hwan / Yun Hyeon U",
+      "actor": "Um Tae Goo",
+      "image": "https://i.mydramalist.com/nON3px_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Yoo Geun",
+          "image": "https://i.mydramalist.com/l0PBlJ_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Lee Joo Won",
+          "image": "https://i.mydramalist.com/ABe0VE_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "36, once an underworld legend, now CEO of a meat company giving ex-convicts a fresh start"
+    },
+    {
+      "id": "eunha",
+      "name": "Ko Eun Ha",
+      "actor": "Han Sun Hwa",
+      "image": "https://i.mydramalist.com/DkrJYn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kwon Dan Ah",
+          "image": "https://i.mydramalist.com/RBPy8x_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "30, 'Sister Mini', a struggling kids' creator"
+    },
+    {
+      "id": "hyeonu",
+      "name": "Jang Hyeon U",
+      "actor": "Kwon Yul",
+      "image": "https://i.mydramalist.com/ABwd48_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "36, prosecutor, violent crimes"
+    },
+    {
+      "id": "ilyeong",
+      "name": "Ju Il Yeong",
+      "actor": "Kim Hyun Jin",
+      "image": "https://i.mydramalist.com/nOQ4v8_5m.jpg",
+      "group": "Thirsty Deer (Ji Hwan's company)",
+      "inCast": true,
+      "note": "29, general manager"
+    },
+    {
+      "id": "jaesu",
+      "name": "Kwak Jae Su",
+      "actor": "Yang Hyun Min",
+      "image": "https://i.mydramalist.com/VXpjrJ_5m.jpg",
+      "group": "Thirsty Deer (Ji Hwan's company)",
+      "inCast": true,
+      "note": "39, customer care"
+    },
+    {
+      "id": "manho",
+      "name": "Jung Man Ho",
+      "actor": "Lee Yu Jun",
+      "image": "https://i.mydramalist.com/73Bl0b_5m.jpg",
+      "group": "Thirsty Deer (Ji Hwan's company)",
+      "inCast": true,
+      "note": "32, product development"
+    },
+    {
+      "id": "honggi",
+      "name": "Yang Hong Gi",
+      "actor": "Moon Dong Hyeok",
+      "image": "https://i.mydramalist.com/ABm4QZ_5m.jpg",
+      "group": "Thirsty Deer (Ji Hwan's company)",
+      "inCast": true,
+      "note": "28, marketing"
+    },
+    {
+      "id": "donghui",
+      "name": "Lee Dong Hui",
+      "actor": "Park Jae Chan",
+      "image": "https://i.mydramalist.com/YY2keP_5m.jpg",
+      "group": "Thirsty Deer (Ji Hwan's company)",
+      "inCast": true,
+      "note": "22, the CEO's secretary; pure and naive"
+    },
+    {
+      "id": "seunghui",
+      "name": "Chae Seung Hui",
+      "actor": "Hwang Hyun Jeong",
+      "image": "https://i.mydramalist.com/XdAVkn_5m.jpg",
+      "group": "Thirsty Deer (Ji Hwan's company)",
+      "inCast": true
+    },
+    {
+      "id": "miho",
+      "name": "Koo Mi Ho",
+      "actor": "Moon Ji In",
+      "image": "https://i.mydramalist.com/Ndoqgo_5m.jpg",
+      "group": "Mi Ho's family",
+      "inCast": true,
+      "note": "30, runs a kids' academy"
+    },
+    {
+      "id": "pilseung",
+      "name": "Koo Pil Seung",
+      "actor": "Lee Byung Joon",
+      "image": "https://i.mydramalist.com/1gyLQm.jpg",
+      "group": "Mi Ho's family",
+      "inCast": true,
+      "note": "Fruit-shop owner"
+    },
+    {
+      "id": "miho_mother",
+      "name": "Mi Ho's mother",
+      "actor": "Yun Jin Seong",
+      "image": "https://i.mydramalist.com/03n8O_5m.jpg",
+      "group": "Mi Ho's family",
+      "inCast": true,
+      "note": "Fruit-shop owner"
+    },
+    {
+      "id": "yena",
+      "name": "Kang Ye Na",
+      "actor": "Song Seo Rin",
+      "image": "https://i.mydramalist.com/vXdmde_5m.jpg",
+      "group": "Macaron Soft",
+      "inCast": true,
+      "note": "27, kids' creator"
+    },
+    {
+      "id": "yeongho",
+      "name": "Ma Yeong Ho",
+      "actor": "Yeon Je Wook",
+      "image": "https://i.mydramalist.com/ZBpqL_5m.jpg",
+      "group": "Macaron Soft",
+      "inCast": true,
+      "note": "CEO of the MCN"
+    },
+    {
+      "id": "pdlee",
+      "name": "PD Lee",
+      "actor": "Jo Hyun Sik",
+      "image": "https://i.mydramalist.com/KpvoAJ_5m.jpg",
+      "group": "Macaron Soft",
+      "inCast": true,
+      "note": "34, her producer, master of tacky CG"
+    },
+    {
+      "id": "yanghui",
+      "name": "Ko Yang Hui",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Meow gang",
+      "inCast": true,
+      "note": "The boss"
+    },
+    {
+      "id": "ganggil",
+      "name": "Lee Gang Gil",
+      "actor": "Kim Hyun Jun",
+      "image": "https://i.mydramalist.com/vdpp2m.jpg",
+      "group": "Meow gang",
+      "inCast": true,
+      "note": "32, general manager"
+    },
+    {
+      "id": "taepyeong",
+      "name": "Seo Tae Pyeong",
+      "actor": "Kim Roi Ha",
+      "image": "https://i.mydramalist.com/wJmXZJ_5m.jpg",
+      "group": "Meow gang",
+      "inCast": true,
+      "note": "The old boss, in prison"
+    },
+    {
+      "id": "gwangtae",
+      "name": "Gwang Tae",
+      "actor": "Choon Sik",
+      "image": "https://i.mydramalist.com/1nmK5_5m.jpg",
+      "group": "Meow gang",
+      "inCast": true
+    },
+    {
+      "id": "gwangsik",
+      "name": "Hwang Gwang Sik",
+      "actor": "Han Sang Jo",
+      "image": "https://i.mydramalist.com/R4bRV_5m.jpg",
+      "group": "Meow gang",
+      "inCast": true
+    },
+    {
+      "id": "cheolman",
+      "name": "O Cheol Man",
+      "actor": "Park Chul Min",
+      "image": "https://i.mydramalist.com/dKZEA_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "Investigator"
+    },
+    {
+      "id": "song",
+      "name": "Officer Song",
+      "actor": "Shin Su Hyun",
+      "image": "https://i.mydramalist.com/xOWkN_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "The department's hidden ace"
+    },
+    {
+      "id": "yuntaek",
+      "name": "Jung Yun Taek",
+      "actor": "Kim Hyun Kyu",
+      "image": "https://i.mydramalist.com/RBk6nr_5m.jpg",
+      "group": "Meow gang",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "jihwan",
+      "to": "eunha",
+      "type": "romance",
+      "label": "after a string of comic and painful misunderstandings, they come to understand each other",
+      "short": "falls for her",
+      "evidence": "After a series of embarrassing, comical, and painful misunderstandings Ji Hwan and Eun Ha begin to get to know and understand each other",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jihwan",
+      "to": "eunha",
+      "type": "bond",
+      "label": "the childhood companion her show is built on — 'Hyeon U'",
+      "short": "childhood friend",
+      "evidence": "Eun Ha's show is inspired by memories of her childhood companion, Hyeon U / 서지환 / 윤현우 역",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonu",
+      "to": "eunha",
+      "type": "romance",
+      "label": "the prosecutor who takes her for the Hyeon U of her childhood",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeonu",
+      "to": "jihwan",
+      "type": "rivalry",
+      "label": "the prosecutor and the ex-gangster",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ilyeong",
+      "to": "jihwan",
+      "type": "work",
+      "label": "general manager",
+      "short": "general manager",
+      "evidence": "주일영 역 - 총괄본부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesu",
+      "to": "jihwan",
+      "type": "work",
+      "label": "customer care team lead",
+      "short": "team lead",
+      "evidence": "곽재수 역 - 고객관리팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manho",
+      "to": "jihwan",
+      "type": "work",
+      "label": "product development lead",
+      "short": "team lead",
+      "evidence": "정만호 역 - 제품개발팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "honggi",
+      "to": "jihwan",
+      "type": "work",
+      "label": "marketing lead",
+      "short": "team lead",
+      "evidence": "양홍기 역 - 홍보마케팅팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghui",
+      "to": "jihwan",
+      "type": "work",
+      "label": "the CEO's secretary",
+      "short": "secretary",
+      "evidence": "이동희 역 - 대표 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunghui",
+      "to": "donghui",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "[Dong Hui's first love]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miho",
+      "to": "eunha",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "구미호 역 - 원장, 은하의 베프",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "pilseung",
+      "to": "miho",
+      "type": "family",
+      "label": "father; the fruit shop",
+      "short": "father",
+      "evidence": "구필승 역 - 과일가게 주인 / 미호 모 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miho_mother",
+      "to": "miho",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Mi Ho's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miho",
+      "to": "ilyeong",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yena",
+      "to": "eunha",
+      "type": "rivalry",
+      "label": "the agency's other kids' creator",
+      "short": "rival creator",
+      "evidence": "강예나 역 - 소속 키즈 크리에이터",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeongho",
+      "to": "eunha",
+      "type": "work",
+      "label": "CEO of her MCN",
+      "short": "her CEO",
+      "evidence": "마영호 역 - 대표, 다수의 크리에이터를 보유한 MCN회사 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pdlee",
+      "to": "eunha",
+      "type": "work",
+      "label": "her producer",
+      "short": "producer",
+      "evidence": "이 피디 역 - 은하의 담당 피디",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taepyeong",
+      "to": "jihwan",
+      "type": "family",
+      "label": "father; the old Meow boss, in prison",
+      "short": "father",
+      "evidence": "서태평 역 - 과거 보스, 지환의 아버지. 현재 감옥에서 수감 중",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanghui",
+      "to": "jihwan",
+      "type": "rivalry",
+      "label": "the Meow gang's current boss, who won't let him retire",
+      "short": "old gang",
+      "evidence": "고양희 역 - 보스",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ganggil",
+      "to": "yanghui",
+      "type": "work",
+      "label": "general manager of the gang",
+      "short": "his man",
+      "evidence": "이강길 역 - 총괄본부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangtae",
+      "to": "yanghui",
+      "type": "work",
+      "label": "Meow gang",
+      "short": "member",
+      "evidence": "[Meow group member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangsik",
+      "to": "yanghui",
+      "type": "work",
+      "label": "Meow gang",
+      "short": "member",
+      "evidence": "[Meow group member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuntaek",
+      "to": "yanghui",
+      "type": "work",
+      "label": "Meow gang",
+      "short": "member",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "cheolman",
+      "to": "hyeonu",
+      "type": "work",
+      "label": "investigator in his department",
+      "short": "investigator",
+      "evidence": "오 계장 역 - 강력범죄수사부 수사관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "song",
+      "to": "hyeonu",
+      "type": "work",
+      "label": "the department's quiet ace",
+      "short": "officer",
+      "evidence": "송 실무관 역 - 강력범죄수사부 실무관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jihwan",
+      "eunha",
+      "hyeonu",
+      "ilyeong",
+      "jaesu",
+      "manho",
+      "honggi",
+      "donghui",
+      "seunghui",
+      "miho",
+      "pilseung",
+      "miho_mother",
+      "yena",
+      "yeongho",
+      "pdlee",
+      "yanghui",
+      "ganggil",
+      "taepyeong",
+      "gwangtae",
+      "gwangsik",
+      "cheolman",
+      "song",
+      "yuntaek"
+    ],
+    "blocks": {
+      "Thirsty Deer (Ji Hwan's company)": [
+        0,
+        0
+      ],
+      "Mi Ho's family": [
+        0,
+        2
+      ],
+      "Macaron Soft": [
+        2,
+        0
+      ],
+      "Meow gang": [
+        2,
+        2
+      ],
+      "Prosecutors' office": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jihwan",
+      "eunha"
+    ]
+  }
+}
