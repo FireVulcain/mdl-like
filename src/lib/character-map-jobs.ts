@@ -129,10 +129,7 @@ async function simulate(id: string, model: GeneratorModel) {
             cacheRead: 12_000,
             peopleCount: 23,
             linkCount: 31,
-            warnings: [
-                "Simulated run — ANTHROPIC_API_KEY is not set, so nothing was written",
-                'en.wikipedia: the search found "See You at Work Tomorrow!", which is not this drama — pin a title in wiki-titles.json and regenerate',
-            ],
+            warnings: ["Simulated run — ANTHROPIC_API_KEY is not set, so nothing was written"],
             finishedAt: new Date(),
         },
     }).catch(() => undefined);

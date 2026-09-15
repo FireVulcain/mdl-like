@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem } from "lucide-react";
+import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem, Pencil } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { JobView } from "@/lib/character-map-jobs";
+import type { Preflight } from "@/app/api/admin/character-maps/preflight/route";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 
 /**
@@ -57,10 +58,13 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [model, setModel] = useState<GeneratorModel>(DEFAULT_GENERATOR_MODEL);
-    // Wikipedia page titles given by hand for the next run, when the search
-    // found nothing or the wrong article — the last run's warnings say which
+    // What the run would read, checked before it costs anything; the titles
+    // given by hand when the search found nothing or the wrong article
     const [titles, setTitles] = useState<Record<string, string>>({});
-    const [pinning, setPinning] = useState(false);
+    const [editing, setEditing] = useState<Set<string>>(new Set());
+    const [preflight, setPreflight] = useState<Preflight | null>(null);
+    const [checking, setChecking] = useState(false);
+    const [checkError, setCheckError] = useState<string | null>(null);
     const [now, setNow] = useState(() => Date.now());
     const router = useRouter();
     const active = !!job && ACTIVE.has(job.status);
@@ -98,6 +102,38 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
         consoleEnd.current?.scrollIntoView({ block: "nearest" });
     }, [job?.log.length, job?.step]);
 
+    // Check the sources whenever the choice is on screen and a title changes
+    // — a moment after the last keystroke, so typing does not hammer Wikipedia
+    const titlesKey = JSON.stringify(titles);
+    useEffect(() => {
+        if (!open || view !== "choose") return;
+        const controller = new AbortController();
+        const timer = setTimeout(async () => {
+            setChecking(true);
+            setCheckError(null);
+            try {
+                const res = await fetch("/api/admin/character-maps/preflight", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mdlSlug, titles: JSON.parse(titlesKey) }),
+                    signal: controller.signal,
+                });
+                const data = (await res.json().catch(() => ({}))) as { preflight?: Preflight; error?: string };
+                if (!res.ok || !data.preflight) setCheckError(data.error ?? `HTTP ${res.status}`);
+                else setPreflight(data.preflight);
+            } catch (e) {
+                if (!(e instanceof DOMException && e.name === "AbortError")) setCheckError(e instanceof Error ? e.message : "failed");
+            } finally {
+                if (!controller.signal.aborted) setChecking(false);
+            }
+        }, preflight ? 600 : 0);
+        return () => {
+            clearTimeout(timer);
+            controller.abort();
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open, view, mdlSlug, titlesKey]);
+
     async function start() {
         setStarting(true);
         setError(null);
@@ -132,8 +168,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
     const elapsed = job ? ended - started : 0;
     const cost = job?.status === "done" ? costOf(job) : null;
     const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
-    // What the last run said about Wikipedia — the reason to pin a title
-    const wikiWarnings = job && !active ? job.warnings.filter((w) => /wikipedia/.test(w)) : [];
+    const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
 
     return (
         <>
@@ -185,56 +220,81 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                                     );
                                 })}
                             </div>
-                            {wikiWarnings.length > 0 && !pinning && (
-                                <div className="mx-6 mt-4 rounded-lg border border-amber-400/20 bg-amber-400/5 px-3 py-2.5 text-xs text-amber-400/90">
-                                    <ul className="space-y-1">
-                                        {wikiWarnings.map((w, i) => (
-                                            <li key={i} className="flex gap-2">
-                                                <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
-                                                <span>{w.replace(/ — pin a title.*$/, "")}</span>
-                                            </li>
-                                        ))}
+                            <div className="mx-6 mt-4 rounded-lg border border-line bg-surface-1 px-3 py-2.5">
+                                <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-wide text-fg-dim">
+                                    Sources
+                                    {checking && <Loader2 className="h-3 w-3 animate-spin text-sky-400" />}
+                                </div>
+                                {checkError && !preflight ? (
+                                    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-amber-400">
+                                        <AlertTriangle className="h-3 w-3" /> Could not check the sources: {checkError}
+                                    </p>
+                                ) : preflight ? (
+                                    <ul className="mt-1.5 space-y-1 text-xs">
+                                        <li className="flex items-center gap-2 text-fg-muted">
+                                            <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
+                                            <span>
+                                                MDL cast · {preflight.cast.main} main, {preflight.cast.support} support, {preflight.cast.guest} guest
+                                                {preflight.synopsis ? " · synopsis" : ""}
+                                            </span>
+                                        </li>
+                                        {preflight.wiki.map((w) => {
+                                            const shown = editing.has(w.lang) || !w.found;
+                                            return (
+                                                <li key={w.lang} className="space-y-1">
+                                                    <div className={`flex items-center gap-2 ${w.found ? "text-fg-muted" : "text-amber-400/90"}`}>
+                                                        {w.found ? <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400/80" /> : <AlertTriangle className="h-3.5 w-3.5 shrink-0" />}
+                                                        <span className="min-w-0 flex-1 truncate">
+                                                            {w.lang}.wikipedia
+                                                            {w.found ? (
+                                                                <> · {w.title} · {Math.round(w.chars / 1000)}K characters</>
+                                                            ) : w.rejected ? (
+                                                                <> · the search found &ldquo;{w.rejected}&rdquo;, which is not this drama</>
+                                                            ) : w.title ? (
+                                                                <> · &ldquo;{w.title}&rdquo; has no character section</>
+                                                            ) : (
+                                                                <> · no article found</>
+                                                            )}
+                                                        </span>
+                                                        {w.found && !shown && (
+                                                            <button type="button" onClick={() => setEditing((e) => new Set(e).add(w.lang))} className="text-fg-dim transition-colors hover:text-fg" title="Give another page title">
+                                                                <Pencil className="h-3 w-3" />
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                    {shown && (
+                                                        <label className="ml-5 flex items-center gap-2 rounded-md bg-surface-2 px-2 py-1.5">
+                                                            <span className="shrink-0 font-mono text-fg-dim">{w.lang}</span>
+                                                            <input
+                                                                value={titles[w.lang] ?? ""}
+                                                                onChange={(e) => setTitles((t) => ({ ...t, [w.lang]: e.target.value }))}
+                                                                placeholder="exact Wikipedia page title, e.g. 내일 (2022년 드라마)"
+                                                                className="min-w-0 flex-1 bg-transparent text-fg outline-none placeholder:text-fg-faint"
+                                                            />
+                                                        </label>
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
-                                    <button type="button" onClick={() => setPinning(true)} className="mt-2 font-medium text-amber-300 underline-offset-2 hover:underline">
-                                        Give the Wikipedia page titles for the next run
-                                    </button>
-                                </div>
-                            )}
-                            {pinning && (
-                                <div className="mx-6 mt-4 space-y-2 rounded-lg border border-line bg-surface-1 p-3">
-                                    <p className="text-xs text-fg-muted">The exact page titles, as written on Wikipedia — e.g. <span className="font-mono text-fg-soft">내일 (2022년 드라마)</span>. Leave a field empty to keep searching.</p>
-                                    <div className="grid gap-2 sm:grid-cols-3">
-                                        {(["ko", "zh", "en"] as const).map((lang) => (
-                                            <label key={lang} className="flex items-center gap-2 rounded-md bg-surface-2 px-2 py-1.5 text-xs">
-                                                <span className="w-5 shrink-0 font-mono text-fg-dim">{lang}</span>
-                                                <input
-                                                    value={titles[lang] ?? ""}
-                                                    onChange={(e) => setTitles((t) => ({ ...t, [lang]: e.target.value }))}
-                                                    placeholder="page title"
-                                                    className="min-w-0 flex-1 bg-transparent text-fg outline-none placeholder:text-fg-faint"
-                                                />
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+                                ) : (
+                                    <p className="mt-1.5 text-xs text-fg-dim">Checking what the run would read…</p>
+                                )}
+                            </div>
                             {error && (
                                 <p className="inline-flex items-center gap-1.5 px-6 pt-3 text-xs text-amber-400">
                                     <AlertTriangle className="h-3.5 w-3.5" /> {error}
                                 </p>
                             )}
                             <div className="flex items-center justify-between gap-3 px-6 pb-6 pt-5">
-                                <div className="flex items-center gap-3 text-xs text-fg-dim">
-                                    {job && !active && (
+                                <div className="text-xs text-fg-dim">
+                                    {job && !active ? (
                                         <button type="button" onClick={() => setView("run")} className="transition-colors hover:text-fg">
                                             Last run · {STATUS_LABEL[job.status] ?? job.status}
                                         </button>
-                                    )}
-                                    {!pinning && wikiWarnings.length === 0 && (
-                                        <button type="button" onClick={() => setPinning(true)} className="transition-colors hover:text-fg">
-                                            Wikipedia titles
-                                        </button>
-                                    )}
+                                    ) : !sourcesOk && preflight ? (
+                                        <span>Writes from what was found</span>
+                                    ) : null}
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <button type="button" onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg">
@@ -243,10 +303,11 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                                     <button
                                         type="button"
                                         onClick={start}
-                                        disabled={starting}
+                                        disabled={starting || checking || (!preflight && !checkError)}
                                         className="inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-sky-400 disabled:opacity-60"
+                                        title={checking ? "Checking the sources" : undefined}
                                     >
-                                        {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+                                        {starting || checking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                                         {hasChart ? "Rewrite with " : "Write with "}
                                         {GENERATOR_MODELS[model].label}
                                     </button>
