@@ -32,8 +32,8 @@ export function jobView(job: CharacterMapJob): JobView {
  * The steps a run reports, kept as a list in the row so the console can
  * show the whole run — after a reload too. The list lives here while the
  * run goes (one process, one run per row) and is written whole each time;
- * a step repeated verbatim ("Writing the chart… 14K characters" ticks) only
- * moves the last line on.
+ * the ticks of one step ("Writing the chart… 14K characters") stay one line,
+ * with the time the step began.
  */
 function stepWriter(id: string, initial: { status: string; step: string }) {
     const log: JobLogEntry[] = [{ t: new Date().toISOString(), ...initial }];
@@ -43,7 +43,7 @@ function stepWriter(id: string, initial: { status: string; step: string }) {
         const step = data.step ?? log[log.length - 1].step;
         const last = log[log.length - 1];
         const ticking = /…\s*\d+K characters$/.test(step) && /…\s*\d+K characters$/.test(last.step);
-        if (ticking) log[log.length - 1] = { t: new Date().toISOString(), status, step };
+        if (ticking) log[log.length - 1] = { t: last.t, status, step };
         else if (last.step !== step || last.status !== status) log.push({ t: new Date().toISOString(), status, step });
         await prisma.characterMapJob.update({ where: { id }, data: { status, step, log } }).catch(() => undefined);
     };
