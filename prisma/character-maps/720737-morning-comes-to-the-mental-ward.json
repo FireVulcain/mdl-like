@@ -23,7 +23,8 @@
       "image": "https://i.mydramalist.com/l0AEjv_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Third-year nurse, transferred from internal medicine to psychiatry"
+      "note": "Third-year nurse, transferred from internal medicine to psychiatry",
+      "still": "https://asianwiki.com/images/f/fc/Daily_Dose_of_Sunshine-Park_Bo-Young.jpg"
     },
     {
       "id": "goyun",
@@ -32,7 +33,8 @@
       "image": "https://i.mydramalist.com/O8PNYx_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Proctologist with an erratic personality"
+      "note": "Proctologist with an erratic personality",
+      "still": "https://asianwiki.com/images/a/a3/Daily_Dose_of_Sunshine-Yeon_Woo_Jin.jpg"
     },
     {
       "id": "yuchan",
@@ -45,10 +47,12 @@
         {
           "name": "Han Ji An",
           "image": "https://i.mydramalist.com/NdKP4Y_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/c/c0/Daily_Dose_of_Sunshine-Han_Ji-An.jpg"
         }
       ],
-      "note": "Cheerful outside, in pain inside"
+      "note": "Cheerful outside, in pain inside",
+      "still": "https://asianwiki.com/images/f/ff/Daily_Dose_of_Sunshine-Jang_Dong-Yoon.jpg"
     },
     {
       "id": "daeun_mother",
@@ -56,7 +60,8 @@
       "actor": "Hwang Young Hee",
       "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
       "group": "Da Eun's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/21/Daily_Dose_of_Sunshine-Hwang_Young_Hee1.jpg"
     },
     {
       "id": "jeongran",
@@ -65,7 +70,8 @@
       "image": "https://i.mydramalist.com/we7Xb_5m.jpg",
       "group": "Da Eun's people",
       "inCast": true,
-      "note": "Da Eun's college classmate"
+      "note": "Da Eun's college classmate",
+      "still": "https://asianwiki.com/images/a/ad/Daily_Dose_of_Sunshine-Park_Ji_Yeon01.jpg"
     },
     {
       "id": "yuchan_mother",
@@ -74,7 +80,8 @@
       "image": "https://i.mydramalist.com/02kxr_5m.jpg",
       "group": "Da Eun's people",
       "inCast": true,
-      "note": "Runs the family chicken place"
+      "note": "Runs the family chicken place",
+      "still": "https://asianwiki.com/images/c/c8/Daily_Dose_of_Sunshine-Lee_Jung-Eun.jpg"
     },
     {
       "id": "yuchan_father",
@@ -82,7 +89,8 @@
       "actor": "Jung Chung Gu",
       "image": "https://i.mydramalist.com/l01NkJ_5m.jpg",
       "group": "Da Eun's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/89/Daily_Dose_of_Sunshine-Jung_Chung-Gu.jpg"
     },
     {
       "id": "hyosin",
@@ -91,7 +99,8 @@
       "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Chief nurse"
+      "note": "Chief nurse",
+      "still": "https://asianwiki.com/images/c/c8/Daily_Dose_of_Sunshine-Lee_Jung-Eun.jpg"
     },
     {
       "id": "deulre",
@@ -100,7 +109,8 @@
       "image": "https://i.mydramalist.com/4e3VLk_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Nurse"
+      "note": "Nurse",
+      "still": "https://asianwiki.com/images/f/f4/Daily_Dose_of_Sunshine-Lee_E_Dam.jpg"
     },
     {
       "id": "suyeon",
@@ -109,7 +119,8 @@
       "image": "https://i.mydramalist.com/QQELW_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Nurse"
+      "note": "Nurse",
+      "still": "https://asianwiki.com/images/f/fd/Daily_Dose_of_Sunshine-Lee_Sang-Hee1.jpg"
     },
     {
       "id": "mancheon",
@@ -118,7 +129,8 @@
       "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Nursing attendant"
+      "note": "Nursing attendant",
+      "still": "https://asianwiki.com/images/6/68/Daily_Dose_of_Sunshine-Jeon_Bae-Su.jpg"
     },
     {
       "id": "yeohwan",
@@ -127,7 +139,8 @@
       "image": "https://i.mydramalist.com/01J1Ym.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/4/42/Daily_Dose_of_Sunshine-Chang_Ryul.jpg"
     },
     {
       "id": "hyeoksu",
@@ -136,7 +149,8 @@
       "image": "https://i.mydramalist.com/j3qOv_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/5/51/Daily_Dose_of_Sunshine-Kim_Jong_Tae.jpg"
     },
     {
       "id": "cheolu",
@@ -145,7 +159,8 @@
       "image": "https://i.mydramalist.com/QJnkEA_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/6/64/Daily_Dose_of_Sunshine-Lim_Jae_Hyuk.jpg"
     },
     {
       "id": "minseo",
@@ -154,7 +169,8 @@
       "image": "https://i.mydramalist.com/yWnbYd_5m.jpg",
       "group": "Psychiatric ward",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/5/51/Daily_Dose_of_Sunshine-Kong_Seong_Ha.jpg"
     },
     {
       "id": "rina",
@@ -163,7 +179,8 @@
       "image": "https://i.mydramalist.com/DkmRQp_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "Da Eun's first patient; bipolar disorder"
+      "note": "Da Eun's first patient; bipolar disorder",
+      "still": "https://asianwiki.com/images/1/12/Daily_Dose_of_Sunshine-Jung_Woon-Sun.jpg"
     },
     {
       "id": "rina_mother",
@@ -171,7 +188,8 @@
       "actor": "Cha Mi Kyung",
       "image": "https://i.mydramalist.com/Xbllqm.jpg",
       "group": "Patients",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/fa/Daily_Dose_of_Sunshine-Cha_Mi_Kyung.jpg"
     },
     {
       "id": "seongsik",
@@ -179,7 +197,8 @@
       "actor": "Jo Dal Hwan",
       "image": "https://i.mydramalist.com/WQKRlm.jpg",
       "group": "Patients",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/47/Daily_Dose_of_Sunshine-Jo_Dal-Hwan.jpg"
     },
     {
       "id": "seowan",
@@ -188,7 +207,8 @@
       "image": "https://i.mydramalist.com/Lwlkv7_5m.jpg",
       "group": "Patients",
       "inCast": true,
-      "note": "Believes he lives inside the game Lost Valhalla"
+      "note": "Believes he lives inside the game Lost Valhalla",
+      "still": "https://asianwiki.com/images/1/1e/Daily_Dose_of_Sunshine-Roh_Jae-Won.jpg"
     },
     {
       "id": "haram",
@@ -196,7 +216,8 @@
       "actor": "Kwon Han Sol",
       "image": "https://i.mydramalist.com/QJ2r14_5m.jpg",
       "group": "Patients",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/8c/Daily_Dose_of_Sunshine-Kwon_Han_Sol.jpg"
     },
     {
       "id": "juyeong",
@@ -204,7 +225,8 @@
       "actor": "Kim Yeo Jin",
       "image": "https://i.mydramalist.com/xKjpEm.jpg",
       "group": "Patients",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1e/Daily_Dose_of_Sunshine-Kim_Yeo_Jin.jpg"
     }
   ],
   "links": [

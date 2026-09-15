@@ -26,10 +26,12 @@
         {
           "name": "Lee A Rin",
           "image": "https://i.mydramalist.com/d0zP0z_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/d/d6/Head_Over_Heels-Lee_A_Rin01.jpeg"
         }
       ],
-      "note": "Schoolgirl by day, the shaman Fairy Cheon Ji by night"
+      "note": "Schoolgirl by day, the shaman Fairy Cheon Ji by night",
+      "still": "https://asianwiki.com/images/c/c2/Head_Over_Heels-Cho_Yi-Hyun.jpeg"
     },
     {
       "id": "gyeonu",
@@ -42,10 +44,12 @@
         {
           "name": "Kim Hee Sung",
           "image": "https://i.mydramalist.com/rNmDQ7_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/e/ef/Head_Over_Heels-Kim_Hee_Seong1.jpeg"
         }
       ],
-      "note": "The transfer student every misfortune seems made for; destined to die soon. From ep. 6 also the evil spirit Bong Su, possessing him"
+      "note": "The transfer student every misfortune seems made for; destined to die soon. From ep. 6 also the evil spirit Bong Su, possessing him",
+      "still": "https://asianwiki.com/images/8/8a/Head_Over_Heels-Choo_Yeong-Woo.jpeg"
     },
     {
       "id": "oksun",
@@ -54,7 +58,8 @@
       "image": "https://i.mydramalist.com/l0b7gv_5m.jpg",
       "group": "Gyeon U's family",
       "inCast": true,
-      "note": "Brings Gyeon U to the shaman"
+      "note": "Brings Gyeon U to the shaman",
+      "still": "https://asianwiki.com/images/2/2f/Head_Over_Heels-Gil_Hae-Yeon.jpg"
     },
     {
       "id": "uncle",
@@ -62,7 +67,8 @@
       "actor": "Kim Hee Chang",
       "image": "https://i.mydramalist.com/Z0wjYm.jpg",
       "group": "Gyeon U's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/14/Head_Over_Heels-Kim_Hee-Chang.jpg"
     },
     {
       "id": "motsin",
@@ -71,7 +77,8 @@
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
       "group": "Shamans",
       "inCast": true,
-      "note": "Seong A's spirit mother (deceased)"
+      "note": "Seong A's spirit mother (deceased)",
+      "still": "https://asianwiki.com/images/b/bb/Head_Over_Heels-Kim_Mi-Kyung1.jpg"
     },
     {
       "id": "yeomhwa",
@@ -80,7 +87,8 @@
       "image": "https://i.mydramalist.com/j8bP8m.jpg",
       "group": "Shamans",
       "inCast": true,
-      "note": "Celebrity shaman, all designer labels"
+      "note": "Celebrity shaman, all designer labels",
+      "still": "https://asianwiki.com/images/0/0d/Head_Over_Heels-Choo_Ja-Hyun.jpeg"
     },
     {
       "id": "doryeong",
@@ -89,7 +97,8 @@
       "image": "https://i.mydramalist.com/dJZPe_5m.jpg",
       "group": "Shamans",
       "inCast": true,
-      "note": "Shaman from Tongyeong"
+      "note": "Shaman from Tongyeong",
+      "still": "https://asianwiki.com/images/a/a0/Head_Over_Heels-Yoon_Byung-Hee-1.jpeg"
     },
     {
       "id": "maeng",
@@ -97,7 +106,8 @@
       "actor": "Lee Young Ran",
       "image": "https://i.mydramalist.com/6E2dg_5m.jpg",
       "group": "Shamans",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/77/Head_Over_Heels-Lee_Young-Ran1.jpg"
     },
     {
       "id": "jiho",
@@ -106,7 +116,8 @@
       "image": "https://i.mydramalist.com/Kpo2WD_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "The popular one nobody admits liking"
+      "note": "The popular one nobody admits liking",
+      "still": "https://asianwiki.com/images/1/1f/Head_Over_Heels-Cha_Kang-Yoon1.jpeg"
     },
     {
       "id": "doyeon",
@@ -115,7 +126,8 @@
       "image": "https://i.mydramalist.com/yWyAjk_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "The quiet otaku girl at the back"
+      "note": "The quiet otaku girl at the back",
+      "still": "https://asianwiki.com/images/b/b2/Head_Over_Heels-Kim_Min-Ju001.jpg"
     },
     {
       "id": "jinung",
@@ -124,7 +136,8 @@
       "image": "https://i.mydramalist.com/O8K5KY_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "Delinquent"
+      "note": "Delinquent",
+      "still": "https://asianwiki.com/images/5/55/Head_Over_Heels-Kim_Seong-Jeong1.jpeg"
     },
     {
       "id": "hyeri",
@@ -133,7 +146,8 @@
       "image": "https://i.mydramalist.com/eq4n8_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "Good at everything"
+      "note": "Good at everything",
+      "still": "https://asianwiki.com/images/9/95/Head_Over_Heels-Hwang_Se_In.jpg"
     },
     {
       "id": "juseung",
@@ -142,7 +156,8 @@
       "image": "https://i.mydramalist.com/kZqLr_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "Spreader of fake news"
+      "note": "Spreader of fake news",
+      "still": "https://asianwiki.com/images/b/b4/Head_Over_Heels-Cha_Yoo-Hyun.jpeg"
     },
     {
       "id": "mobeom",
@@ -151,7 +166,8 @@
       "image": "https://i.mydramalist.com/rb7Qmm.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "The model student"
+      "note": "The model student",
+      "still": "https://asianwiki.com/images/4/46/Head_Over_Heels-Ham_Sung-Min-1.jpg"
     },
     {
       "id": "somang",
@@ -159,7 +175,8 @@
       "actor": "Jung Ho Won",
       "image": "https://i.mydramalist.com/ABWVz8_5m.jpg",
       "group": "Hwamok High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/7a/Head_Over_Heels-Jeong_Ho-Won1.jpeg"
     },
     {
       "id": "seunghui",
@@ -168,7 +185,8 @@
       "image": "https://i.mydramalist.com/JBWVxm_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "Archery club"
+      "note": "Archery club",
+      "still": "https://asianwiki.com/images/a/ad/Head_Over_Heels-Jung_Da-Jung.jpg"
     },
     {
       "id": "coach",
@@ -177,7 +195,8 @@
       "image": "https://i.mydramalist.com/jNg3B_5m.jpg",
       "group": "Hwamok High",
       "inCast": true,
-      "note": "Archery coach"
+      "note": "Archery coach",
+      "still": "https://asianwiki.com/images/4/4c/Head_Over_Heels-Park_Jung-Pyo1.jpeg"
     },
     {
       "id": "teacher",
@@ -185,7 +204,8 @@
       "actor": "Kim Han Gyul",
       "image": "https://i.mydramalist.com/4PANr_5m.jpg",
       "group": "Hwamok High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/bf/Head_Over_Heels-Kim_Han-Gyeol.jpeg"
     },
     {
       "id": "auntie",
@@ -193,7 +213,8 @@
       "actor": "Lee Soo Mi",
       "image": "https://i.mydramalist.com/BdmxrV_5m.jpg",
       "group": "Shamans",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/34/Head_Over_Heels-Lee_Soo-Mi.jpg"
     }
   ],
   "links": [

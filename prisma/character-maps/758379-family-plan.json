@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/jz87z_5m.jpg",
       "group": "The family",
       "inCast": true,
-      "note": "The loving mother — with a special ability"
+      "note": "The loving mother — with a special ability",
+      "still": "https://asianwiki.com/images/0/08/Family_Matters-Bae_Doo-Na.jpg"
     },
     {
       "id": "cheolhui",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/WBWARm.jpg",
       "group": "The family",
       "inCast": true,
-      "note": "The timid father who hides his ability"
+      "note": "The timid father who hides his ability",
+      "still": "https://asianwiki.com/images/1/10/Family_Matters-Ryoo_Seung-Bum.jpg"
     },
     {
       "id": "gangseong",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/XBEwg_5m.jpg",
       "group": "The family",
       "inCast": true,
-      "note": "The gruff grandfather"
+      "note": "The gruff grandfather",
+      "still": "https://asianwiki.com/images/b/b5/Family_Matters-Baek_Yoon-Sik.jpg"
     },
     {
       "id": "jihun",
@@ -53,10 +56,12 @@
         {
           "name": "Kim Kang Yoon",
           "image": "https://i.mydramalist.com/qYkw0D_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/6/6f/Family_Matters-Kim_Kang-Yoon.jpg"
         }
       ],
-      "note": "17, warm and gentle"
+      "note": "17, warm and gentle",
+      "still": "https://asianwiki.com/images/3/39/Family_Matters-Lomon.jpg"
     },
     {
       "id": "jiu",
@@ -65,7 +70,8 @@
       "image": "https://i.mydramalist.com/g0PE2W_5m.jpg",
       "group": "The family",
       "inCast": true,
-      "note": "17, picky and sensitive"
+      "note": "17, picky and sensitive",
+      "still": "https://asianwiki.com/images/4/4e/Family_Matters-Lee_Su-Hyun1.jpg"
     },
     {
       "id": "myeonghwan",
@@ -74,7 +80,8 @@
       "image": "https://i.mydramalist.com/BbJllm.jpg",
       "group": "Geumsu church",
       "inCast": true,
-      "note": "Pastor"
+      "note": "Pastor",
+      "still": "https://asianwiki.com/images/e/e5/Family_Matters-Nam_Yun_Ho.jpg"
     },
     {
       "id": "gilja",
@@ -82,7 +89,8 @@
       "actor": "Kim Kuk Hee",
       "image": "https://i.mydramalist.com/wegpk_5m.jpg",
       "group": "Geumsu church",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f1/Family_Matters-Kim_Guk_Hee.jpg"
     },
     {
       "id": "haepal",
@@ -90,7 +98,8 @@
       "actor": "Yoo Seung Mok",
       "image": "https://i.mydramalist.com/Lw5eBB_5m.jpg",
       "group": "Geumsu church",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/bb/Family_Matters-Yoo_Seung-Mok.jpg"
     },
     {
       "id": "nowon",
@@ -98,7 +107,8 @@
       "actor": "Kwak Ja Hyung",
       "image": "https://i.mydramalist.com/EDNwlm.jpg",
       "group": "Geumsu church",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cf/Family_Matters-Kwak_Ja_Hyoung.jpg"
     },
     {
       "id": "jeonghwan",
@@ -106,7 +116,8 @@
       "actor": "Kim Jung Hyun",
       "image": "https://i.mydramalist.com/jxnwb_5m.jpg",
       "group": "Geumsu police",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/54/Family_Matters-Kim_Jung_Hyun.jpg"
     },
     {
       "id": "manjung",
@@ -114,7 +125,8 @@
       "actor": "Kim Eun Woo",
       "image": "https://i.mydramalist.com/QwDmA_5m.jpg",
       "group": "Geumsu police",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a2/Family_Matters-Kim_Eun_Woo.jpg"
     },
     {
       "id": "geunan",
@@ -122,7 +134,8 @@
       "actor": "Lee Dae Yeon",
       "image": "https://i.mydramalist.com/3oApzD_5m.jpg",
       "group": "Geumsu police",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/99/Family_Matters-Lee_Dae-Yeon.jpg"
     },
     {
       "id": "gyutae",
@@ -130,7 +143,8 @@
       "actor": "Bae Jae Young",
       "image": "https://i.mydramalist.com/BdjRlA_5m.jpg",
       "group": "School",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f6/Family_Matters-Bae_Jae-Young.jpg"
     },
     {
       "id": "hyeongseok",
@@ -138,7 +152,8 @@
       "actor": "Lee Jae Hak",
       "image": "https://i.mydramalist.com/wXxQg_5m.jpg",
       "group": "School",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a4/Family_Matters-Lee_Jae_Hak.jpg"
     },
     {
       "id": "minjeong",
@@ -146,7 +161,8 @@
       "actor": "Kim Si Eun",
       "image": "https://i.mydramalist.com/jJeor_5m.jpg",
       "group": "School",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b6/Family_Matters-Kim_Si_Eun.jpg"
     },
     {
       "id": "jaegon",
@@ -155,7 +171,8 @@
       "image": "https://i.mydramalist.com/2wnoOW_5m.jpg",
       "group": "School",
       "inCast": true,
-      "note": "Student council president"
+      "note": "Student council president",
+      "still": "https://asianwiki.com/images/9/9b/Family_Matters-Kwon_Ji_Woo1.jpg"
     },
     {
       "id": "miok",
@@ -163,7 +180,8 @@
       "actor": "Yoon Ga Yi",
       "image": "https://i.mydramalist.com/3oAYPA_5m.jpg",
       "group": "School",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/52/Family_Matters-Yoon_Ga_I.jpg"
     }
   ],
   "links": [

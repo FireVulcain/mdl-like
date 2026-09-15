@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/0w0gK7_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "CEO of the headhunting firm People's; hopeless outside work"
+      "note": "CEO of the headhunting firm People's; hopeless outside work",
+      "still": "https://asianwiki.com/images/7/7c/Love_Scout-Han_Ji-Min.jpg"
     },
     {
       "id": "eunho",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/jQ2288_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Her secretary; a single father"
+      "note": "Her secretary; a single father",
+      "still": "https://asianwiki.com/images/5/5d/Love_Scout-Lee_Joon_Hyuk.jpg"
     },
     {
       "id": "byeol",
@@ -39,7 +41,8 @@
       "actor": "Gi So Yoo",
       "image": "https://i.mydramalist.com/QJNnQA_5m.jpg",
       "group": "Eun Ho's home",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/fe/Love_Scout-Ki_So_Yu.jpg"
     },
     {
       "id": "suhyeon",
@@ -48,7 +51,8 @@
       "image": "https://i.mydramalist.com/g0R3LP_5m.jpg",
       "group": "Eun Ho's home",
       "inCast": true,
-      "note": "Picture-book author; single mother"
+      "note": "Picture-book author; single mother",
+      "still": "https://asianwiki.com/images/3/39/Love_Scout-Kim_Yoon-Hye.jpg"
     },
     {
       "id": "seojun",
@@ -56,7 +60,8 @@
       "actor": "Kim Tae Bin",
       "image": "https://i.mydramalist.com/E5lpnO_5m.jpg",
       "group": "Eun Ho's home",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3c/Love_Scout-Kim_Tae-Vin.jpg"
     },
     {
       "id": "jeongsun",
@@ -64,7 +69,8 @@
       "actor": "Yun Yu Sun",
       "image": "https://i.mydramalist.com/BDbjb_5m.jpg",
       "group": "Eun Ho's home",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/41/Love_Scout-Yun_Yoo-Sun.jpg"
     },
     {
       "id": "kangseok",
@@ -73,7 +79,8 @@
       "image": "https://i.mydramalist.com/eoJnqm.jpg",
       "group": "Eun Ho's home",
       "inCast": true,
-      "note": "Second-hand bookstore owner"
+      "note": "Second-hand bookstore owner",
+      "still": "https://asianwiki.com/images/0/05/Love_Scout-Lee_Jae-Woo.jpg"
     },
     {
       "id": "miae",
@@ -82,7 +89,8 @@
       "image": "https://i.mydramalist.com/QQELW_5m.jpg",
       "group": "People's",
       "inCast": true,
-      "note": "CFO"
+      "note": "CFO",
+      "still": "https://asianwiki.com/images/e/eb/Love_Scout-Lee_Sang_Hee.jpg"
     },
     {
       "id": "yongsu",
@@ -91,7 +99,8 @@
       "image": "https://i.mydramalist.com/0gk2O_5m.jpg",
       "group": "People's",
       "inCast": true,
-      "note": "Manager, consultant"
+      "note": "Manager, consultant",
+      "still": "https://asianwiki.com/images/e/e8/Love_Scout-Heo_Dong_Won.jpg"
     },
     {
       "id": "gyurim",
@@ -100,7 +109,8 @@
       "image": "https://i.mydramalist.com/3oAYPA_5m.jpg",
       "group": "People's",
       "inCast": true,
-      "note": "Consultant"
+      "note": "Consultant",
+      "still": "https://asianwiki.com/images/b/b8/Love_Scout-Yoon_Ga-I.jpg"
     },
     {
       "id": "gyeonghwa",
@@ -109,7 +119,8 @@
       "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
       "group": "People's",
       "inCast": true,
-      "note": "Consultant"
+      "note": "Consultant",
+      "still": "https://asianwiki.com/images/1/14/Love_Scout-Seo_Hye-Won.jpg"
     },
     {
       "id": "gwanghui",
@@ -118,7 +129,8 @@
       "image": "https://i.mydramalist.com/yWnejk_5m.jpg",
       "group": "People's",
       "inCast": true,
-      "note": "Consultant"
+      "note": "Consultant",
+      "still": "https://asianwiki.com/images/8/81/Love_Scout-Ko_Gun_Han.jpg"
     },
     {
       "id": "jeonghun",
@@ -127,7 +139,8 @@
       "image": "https://i.mydramalist.com/jR5yw_5m.jpg",
       "group": "Woomyung Group",
       "inCast": true,
-      "note": "People's CTO; the chaebol family's idle son"
+      "note": "People's CTO; the chaebol family's idle son",
+      "still": "https://asianwiki.com/images/5/57/Love_Scout-Kim_Do-Hoon.jpg"
     },
     {
       "id": "chulyong",
@@ -136,7 +149,8 @@
       "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
       "group": "Woomyung Group",
       "inCast": true,
-      "note": "Chairman of Woomyung Group"
+      "note": "Chairman of Woomyung Group",
+      "still": "https://asianwiki.com/images/5/52/Love_Scout-Jo_Seung-Yeon.jpg"
     },
     {
       "id": "seonggyeong",
@@ -145,7 +159,8 @@
       "image": "https://i.mydramalist.com/wRXbb_5m.jpg",
       "group": "Woomyung Group",
       "inCast": true,
-      "note": "Head of Haneul kindergarten"
+      "note": "Head of Haneul kindergarten",
+      "still": "https://asianwiki.com/images/c/c9/Love_Scout-Song_Ji_In.jpg"
     },
     {
       "id": "hyejin",
@@ -154,7 +169,8 @@
       "image": "https://i.mydramalist.com/5vPjL4_5m.jpg",
       "group": "Career Way",
       "inCast": true,
-      "note": "CEO of Career Way, the industry's number one"
+      "note": "CEO of Career Way, the industry's number one",
+      "still": "https://asianwiki.com/images/7/70/Love_Scout-Park_Bo_Kyung.jpg"
     }
   ],
   "links": [

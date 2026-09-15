@@ -26,10 +26,12 @@
         {
           "name": "Moon Woo Jin",
           "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/3/3b/The_Devil_Judge-Moon_Woo-Jin.jpg"
         }
       ],
-      "note": "Head judge of the pilot court — the 'Devil Judge' of the live trial show"
+      "note": "Head judge of the pilot court — the 'Devil Judge' of the live trial show",
+      "still": "https://asianwiki.com/images/4/4a/The_Devil_Judge-Ji-Sung01.jpg"
     },
     {
       "id": "seona",
@@ -42,10 +44,12 @@
         {
           "name": "Kim Ga Yoon",
           "image": "https://i.mydramalist.com/QLwjg_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/5/59/The_Devil_Judge-Kim_Ga_Yoon.jpg"
         }
       ],
-      "note": "Executive director of the Social Responsibility Foundation"
+      "note": "Executive director of the Social Responsibility Foundation",
+      "still": "https://asianwiki.com/images/6/6d/The_Devil_Judge-Kim_Min-Jung01.jpg"
     },
     {
       "id": "gaon",
@@ -58,10 +62,12 @@
         {
           "name": "Park Jin U",
           "image": "https://i.mydramalist.com/qZ5oQ_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/5/5e/The_Devil_Judge-Park_Jin-Woo.jpg"
         }
       ],
-      "note": "Rookie judge on Yo Han's bench; the face of the dead Isaac"
+      "note": "Rookie judge on Yo Han's bench; the face of the dead Isaac",
+      "still": "https://asianwiki.com/images/5/50/The_Devil_Judge-Jin-Young.jpg"
     },
     {
       "id": "suhyeon",
@@ -74,10 +80,12 @@
         {
           "name": "Yoon Byul Ha",
           "image": "https://i.mydramalist.com/B5qqR_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/25/The_Devil_Judge-Yoon_Byul_Ha.jpg"
         }
       ],
-      "note": "Detective, regional investigation unit"
+      "note": "Detective, regional investigation unit",
+      "still": "https://asianwiki.com/images/9/9d/The_Devil_Judge-Park_Gyu-Young.jpg"
     },
     {
       "id": "jinju",
@@ -86,7 +94,8 @@
       "image": "https://i.mydramalist.com/X6VEX_5m.jpg",
       "group": "Pilot court",
       "inCast": true,
-      "note": "Right-hand associate judge"
+      "note": "Right-hand associate judge",
+      "still": "https://asianwiki.com/images/9/93/The_Devil_Judge-Kim_Jae_Kyung.jpg"
     },
     {
       "id": "jeongho",
@@ -95,7 +104,8 @@
       "image": "https://i.mydramalist.com/1g5nQm.jpg",
       "group": "Pilot court",
       "inCast": true,
-      "note": "Supreme Court justice"
+      "note": "Supreme Court justice",
+      "still": "https://asianwiki.com/images/d/d7/The_Devil_Judge-Ahn_Nae-Sang1.jpg"
     },
     {
       "id": "yunsik",
@@ -104,7 +114,8 @@
       "image": "https://i.mydramalist.com/Z1Epkm.jpg",
       "group": "Pilot court",
       "inCast": true,
-      "note": "Chief justice"
+      "note": "Chief justice",
+      "still": "https://asianwiki.com/images/7/7e/The_Devil_Judge-Seo_Sang-Won.jpg"
     },
     {
       "id": "elijah",
@@ -117,10 +128,12 @@
         {
           "name": "Kim Soo Ha",
           "image": "https://i.mydramalist.com/qN7pK_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/2b/The_Devil_Judge-Kim_Su-Ha.jpg"
         }
       ],
-      "note": "In a wheelchair since the cathedral fire"
+      "note": "In a wheelchair since the cathedral fire",
+      "still": "https://asianwiki.com/images/7/72/The_Devil_Judge-Jeon_Chae-Eun.jpg"
     },
     {
       "id": "isaac",
@@ -133,10 +146,12 @@
         {
           "name": "Cha Yoo Jin",
           "image": "https://i.mydramalist.com/k62x8_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/8/8b/The_Devil_Judge-Cha_Yoo-Jin.jpg"
         }
       ],
-      "note": "Dead in the cathedral fire — Ga On wears his face"
+      "note": "Dead in the cathedral fire — Ga On wears his face",
+      "still": "https://asianwiki.com/images/8/8b/The_Devil_Judge-Cha_Yoo-Jin.jpg"
     },
     {
       "id": "yeongok",
@@ -145,7 +160,8 @@
       "image": "https://i.mydramalist.com/ELXKO_5m.jpg",
       "group": "Yo Han's house",
       "inCast": true,
-      "note": "The family's nanny"
+      "note": "The family's nanny",
+      "still": "https://asianwiki.com/images/8/8a/The_Devil_Judge-Yoon_Ye_Hee.jpg"
     },
     {
       "id": "k",
@@ -153,7 +169,8 @@
       "actor": "Lee Ki Taek",
       "image": "https://i.mydramalist.com/eYVKod_5m.jpg",
       "group": "Yo Han's house",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3d/The_Devil_Judge-Lee_Ki-Taek.jpg"
     },
     {
       "id": "soyun",
@@ -162,7 +179,8 @@
       "image": "https://i.mydramalist.com/ABKl43_5m.jpg",
       "group": "Yo Han's house",
       "inCast": true,
-      "note": "Actress"
+      "note": "Actress",
+      "still": "https://asianwiki.com/images/f/f8/The_Devil_Judge-Chun_In-Seo.jpg"
     },
     {
       "id": "gyeonghui",
@@ -171,7 +189,8 @@
       "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Minister of Justice"
+      "note": "Minister of Justice",
+      "still": "https://asianwiki.com/images/2/29/The_Devil_Judge-Jang_Young_Nam.jpg"
     },
     {
       "id": "jaegyeong",
@@ -179,7 +198,8 @@
       "actor": "Nam Sung Jin",
       "image": "https://i.mydramalist.com/Z6xWk_5m.jpg",
       "group": "The Foundation",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/59/The_Devil_Judge-Nam_Sung_Jin.jpg"
     },
     {
       "id": "yeongmin",
@@ -188,7 +208,8 @@
       "image": "https://i.mydramalist.com/ABm4QZ_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Vice-president of Jungwon F&B"
+      "note": "Vice-president of Jungwon F&B",
+      "still": "https://asianwiki.com/images/d/dc/The_Devil_Judge-Moon_Dong-Hyeok.jpg"
     },
     {
       "id": "jungse",
@@ -197,7 +218,8 @@
       "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "The President"
+      "note": "The President",
+      "still": "https://asianwiki.com/images/e/e8/The_Devil_Judge-Baek_Hyun-Jin.jpg"
     },
     {
       "id": "yeonjeong",
@@ -205,7 +227,8 @@
       "actor": "Jung Ae Yeon",
       "image": "https://i.mydramalist.com/0RBy6_5m.jpg",
       "group": "The Foundation",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/98/The_Devil_Judge-Jung_Ae-Youn.jpg"
     },
     {
       "id": "yongsik",
@@ -214,7 +237,8 @@
       "image": "https://i.mydramalist.com/v5dPD_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Chairman of Minbo Group"
+      "note": "Chairman of Minbo Group",
+      "still": "https://asianwiki.com/images/1/17/The_Devil_Judge-Hong_Seo-Jun.jpg"
     },
     {
       "id": "duman",
@@ -223,7 +247,8 @@
       "image": "https://i.mydramalist.com/QJN414_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Chairman of Saram Media Group"
+      "note": "Chairman of Saram Media Group",
+      "still": "https://asianwiki.com/images/7/75/The_Devil_Judge-Lee_Seo_Hwan.jpg"
     },
     {
       "id": "jeonghak",
@@ -232,7 +257,8 @@
       "image": "https://i.mydramalist.com/v5PdW_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Chairman of the Foundation"
+      "note": "Chairman of the Foundation",
+      "still": "https://asianwiki.com/images/5/51/The_Devil_Judge-Jung_In-Gyeom.jpg"
     },
     {
       "id": "ildo",
@@ -241,7 +267,8 @@
       "image": "https://i.mydramalist.com/zBDbxO_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Chairman of JU Chemicals — the first defendant"
+      "note": "Chairman of JU Chemicals — the first defendant",
+      "still": "https://asianwiki.com/images/0/07/The_Devil_Judge-Jung_Jae-Sung.jpg"
     },
     {
       "id": "inguk",
@@ -250,7 +277,8 @@
       "image": "https://i.mydramalist.com/2Dkd2m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "JU Chemicals' lawyer"
+      "note": "JU Chemicals' lawyer",
+      "still": "https://asianwiki.com/images/7/7f/The_Devil_Judge-Park_Hyoung-Soo.jpg"
     },
     {
       "id": "sangsuk",
@@ -258,7 +286,8 @@
       "actor": "Joo In Young",
       "image": "https://i.mydramalist.com/Kpy5zq_5m.jpg",
       "group": "The Foundation",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/50/The_Devil_Judge-Jin-Young.jpg"
     },
     {
       "id": "hyangmi",
@@ -266,7 +295,8 @@
       "actor": "Son Ji Na",
       "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
       "group": "The Foundation",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/0f/The_Devil_Judge-Yoon_Da-Kyung.jpg"
     },
     {
       "id": "jaehui",
@@ -274,7 +304,8 @@
       "actor": "Lee So Yeong",
       "image": "https://i.mydramalist.com/ELqkQ_5m.jpg",
       "group": "Yo Han's house",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/bc/The_Devil_Judge-Lee_So_Young.jpg"
     },
     {
       "id": "dojin",
@@ -282,7 +313,8 @@
       "actor": "Kwon Hae Sung",
       "image": "https://i.mydramalist.com/Xe1Bqm.jpg",
       "group": "The Foundation",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cc/The_Devil_Judge-Kwon_Hae_Sung.jpg"
     },
     {
       "id": "jukchang",
@@ -291,7 +323,8 @@
       "image": "https://i.mydramalist.com/2vboP_5m.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Host and leader of Jukchang TV"
+      "note": "Host and leader of Jukchang TV",
+      "still": "https://asianwiki.com/images/f/f9/The_Devil_Judge-Lee_Hae-Woon.jpg"
     },
     {
       "id": "pd",
@@ -300,7 +333,8 @@
       "image": "https://i.mydramalist.com/jXbdbm.jpg",
       "group": "The Foundation",
       "inCast": true,
-      "note": "Saram Media"
+      "note": "Saram Media",
+      "still": "https://asianwiki.com/images/4/45/The_Devil_Judge-Lee_Hwa-Ryong.jpg"
     }
   ],
   "links": [

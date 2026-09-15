@@ -26,10 +26,12 @@
         {
           "name": "Park So Yi",
           "image": "https://i.mydramalist.com/mOKWj1_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/f/fd/Her_Private_Life-Park_So-Yi.jpg"
         }
       ],
-      "note": "33, chief curator at Cheum Museum; secretly runs the Cha Si An fansite"
+      "note": "33, chief curator at Cheum Museum; secretly runs the Cha Si An fansite",
+      "still": "https://asianwiki.com/images/3/32/Her_Private_Life-Park_Min-Young.jpg"
     },
     {
       "id": "ryan",
@@ -45,7 +47,8 @@
           "era": "young"
         }
       ],
-      "note": "33, the museum's new director; a former painter"
+      "note": "33, the museum's new director; a former painter",
+      "still": "https://asianwiki.com/images/4/4c/Her_Private_Life-Kim_Jae-Wook.jpg"
     },
     {
       "id": "eungi",
@@ -58,10 +61,12 @@
         {
           "name": "Yang Hee Won",
           "image": "https://i.mydramalist.com/d0ABA5_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/7/77/Her_Private_Life-Yang_Hee-Won.jpg"
         }
       ],
-      "note": "33, runs a judo gym"
+      "note": "33, runs a judo gym",
+      "still": "https://asianwiki.com/images/1/12/Her_Private_Life-Ahn_Bo-Hyun.jpg"
     },
     {
       "id": "seonju",
@@ -70,7 +75,8 @@
       "image": "https://i.mydramalist.com/5vV3xY_5m.jpg",
       "group": "Deok Mi's people",
       "inCast": true,
-      "note": "Owner of cafe Cocomoco"
+      "note": "Owner of cafe Cocomoco",
+      "still": "https://asianwiki.com/images/6/61/Her_Private_Life-Park_Jin-Joo.jpg"
     },
     {
       "id": "seungmin",
@@ -79,7 +85,8 @@
       "image": "https://i.mydramalist.com/v60q2_5m.jpg",
       "group": "Deok Mi's people",
       "inCast": true,
-      "note": "TV producer"
+      "note": "TV producer",
+      "still": "https://asianwiki.com/images/7/7c/Her_Private_Life-Im_Ji_Kyu.jpg"
     },
     {
       "id": "geonu",
@@ -88,7 +95,8 @@
       "image": "https://i.mydramalist.com/Xo8zO_5m.jpg",
       "group": "Deok Mi's people",
       "inCast": true,
-      "note": "7"
+      "note": "7",
+      "still": "https://asianwiki.com/images/8/84/Her_Private_Life-Jung_Si-Yul.jpg"
     },
     {
       "id": "juhyeok",
@@ -97,7 +105,8 @@
       "image": "https://i.mydramalist.com/qYn68z_5m.jpg",
       "group": "Deok Mi's people",
       "inCast": true,
-      "note": "Part-timer at Cocomoco"
+      "note": "Part-timer at Cocomoco",
+      "still": "https://asianwiki.com/images/0/0a/Her_Private_Life-Yoo_Yong-Min.jpg"
     },
     {
       "id": "yeongsuk",
@@ -105,7 +114,8 @@
       "actor": "Kim Mi Kyung",
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
       "group": "Deok Mi's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b4/Her_Private_Life-Kim_Mi-Kyung.jpg"
     },
     {
       "id": "geunho",
@@ -113,7 +123,8 @@
       "actor": "Maeng Sang Hoon",
       "image": "https://i.mydramalist.com/92wKwm.jpg",
       "group": "Deok Mi's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/74/Her_Private_Life-Maeng_Sang-Hun.jpg"
     },
     {
       "id": "sian",
@@ -122,7 +133,8 @@
       "image": "https://i.mydramalist.com/JB43xJ_5m.jpg",
       "group": "Si An",
       "inCast": true,
-      "note": "23, member of White Ocean"
+      "note": "23, member of White Ocean",
+      "still": "https://asianwiki.com/images/2/26/Her_Private_Life-One.jpg"
     },
     {
       "id": "eunyeong",
@@ -140,7 +152,8 @@
       "image": "https://i.mydramalist.com/zBxEXd_5m.jpg",
       "group": "Cheum Museum",
       "inCast": true,
-      "note": "Si An fansite master; museum intern"
+      "note": "Si An fansite master; museum intern",
+      "still": "https://asianwiki.com/images/b/ba/Her_Private_Life-Kim_Bo-Ra.jpg"
     },
     {
       "id": "sohye",
@@ -149,7 +162,8 @@
       "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
       "group": "Cheum Museum",
       "inCast": true,
-      "note": "Former museum director"
+      "note": "Former museum director",
+      "still": "https://asianwiki.com/images/3/3f/Her_Private_Life-Kim_Sun-Young.jpg"
     },
     {
       "id": "dain",
@@ -158,7 +172,8 @@
       "image": "https://i.mydramalist.com/O845lP_5m.jpg",
       "group": "Cheum Museum",
       "inCast": true,
-      "note": "31, media artist"
+      "note": "31, media artist",
+      "still": "https://asianwiki.com/images/e/e3/Her_Private_Life-Hong_Seo-Young.jpg"
     },
     {
       "id": "gyeonga",
@@ -167,7 +182,8 @@
       "image": "https://i.mydramalist.com/WWZBR_5m.jpg",
       "group": "Cheum Museum",
       "inCast": true,
-      "note": "Curator, studied abroad"
+      "note": "Curator, studied abroad",
+      "still": "https://asianwiki.com/images/d/d7/Her_Private_Life-Seo_Ye-Hwa.jpg"
     },
     {
       "id": "yuseop",
@@ -176,7 +192,8 @@
       "image": "https://i.mydramalist.com/BElY5_5m.jpg",
       "group": "Cheum Museum",
       "inCast": true,
-      "note": "Part-timer"
+      "note": "Part-timer",
+      "still": "https://asianwiki.com/images/d/d1/Her_Private_Life-Jung_Won-Chang.jpg"
     }
   ],
   "links": [

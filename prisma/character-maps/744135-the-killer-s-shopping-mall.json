@@ -23,7 +23,8 @@
       "image": "https://i.mydramalist.com/jQQJvv_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "The uncle who raised her; a 'suicide' the police call in — and the shopping mall underneath the house"
+      "note": "The uncle who raised her; a 'suicide' the police call in — and the shopping mall underneath the house",
+      "still": "https://asianwiki.com/images/9/96/A_Shop_For_Killers-tmp-Lee_Dong-Wook.jpg"
     },
     {
       "id": "jian",
@@ -32,7 +33,8 @@
       "image": "https://i.mydramalist.com/YYJDeP_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Orphaned; raised by him; under fire from the day of the call"
+      "note": "Orphaned; raised by him; under fire from the day of the call",
+      "still": "https://asianwiki.com/images/3/36/A_Shop_For_Killers-tmp-Kim_Hye-Jun.jpg"
     },
     {
       "id": "seongjo",
@@ -41,7 +43,8 @@
       "image": "https://i.mydramalist.com/3oAYOD_5m.jpg",
       "group": "The mall's people",
       "inCast": true,
-      "note": "Jin Man's old comrade — on the other side now"
+      "note": "Jin Man's old comrade — on the other side now",
+      "still": "https://asianwiki.com/images/a/ae/A_Shop_For_Killers-tmp-Seo_Hyun-Woo.jpg"
     },
     {
       "id": "jeongmin",
@@ -54,10 +57,12 @@
         {
           "name": "Kim Ye Gyeom",
           "image": "https://i.mydramalist.com/28Qo2_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/5/53/A_Shop_For_Killers-Kim_Ye-Gyeom.jpg"
         }
       ],
-      "note": "Ji An's classmate; came into the mall as a boy"
+      "note": "Ji An's classmate; came into the mall as a boy",
+      "still": "https://asianwiki.com/images/b/bb/A_Shop_For_Killers-tmp-Park_Ji_Bin.jpg"
     },
     {
       "id": "minhye",
@@ -66,7 +71,8 @@
       "image": "https://i.mydramalist.com/Xdrx8X_5m.jpg",
       "group": "The mall's people",
       "inCast": true,
-      "note": "The mall's — and the one who comes for Ji An"
+      "note": "The mall's — and the one who comes for Ji An",
+      "still": "https://asianwiki.com/images/a/a7/A_Shop_For_Killers-tmp-Geum_Hannah.jpg"
     },
     {
       "id": "bale",
@@ -75,7 +81,8 @@
       "image": "https://i.mydramalist.com/vXJ6lW_5m.jpg",
       "group": "The mall's people",
       "inCast": true,
-      "note": "The mercenary who comes for the mall"
+      "note": "The mercenary who comes for the mall",
+      "still": "https://asianwiki.com/images/7/75/A_Shop_For_Killers-tmp-Jo_Han-Sun.jpg"
     },
     {
       "id": "brother",
@@ -88,10 +95,12 @@
         {
           "name": "Kim Se Heon",
           "image": "https://i.mydramalist.com/E5JObb_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/d4/A_Shop_For_Killers-Kim_Se-Heon.jpg"
         }
       ],
-      "note": "The giant, on Jin Man's side"
+      "note": "The giant, on Jin Man's side",
+      "still": "https://asianwiki.com/images/c/c3/A_Shop_For_Killers-tmp-Lee_Tae_Young.jpg"
     },
     {
       "id": "pasin",
@@ -100,7 +109,8 @@
       "image": "https://i.mydramalist.com/QJ5mZ6_5m.jpg",
       "group": "The mall's people",
       "inCast": true,
-      "note": "Pasin Kradek — the fighter"
+      "note": "Pasin Kradek — the fighter",
+      "still": "https://asianwiki.com/images/a/a0/A_Shop_For_Killers-tmp-Kim_Min.jpg"
     },
     {
       "id": "yonghan",
@@ -108,7 +118,8 @@
       "actor": "Ahn Kil Kang",
       "image": "https://i.mydramalist.com/O8LKVy_5m.jpg",
       "group": "The village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/da/A_Shop_For_Killers-Ahn_Kil-Kang.jpg"
     },
     {
       "id": "juncheol",
@@ -116,7 +127,8 @@
       "actor": "Jung Yi Hun",
       "image": "https://i.mydramalist.com/E5pKzm_5m.jpg",
       "group": "The village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d0/A_Shop_For_Killers-Jeong_I-Hun.jpg"
     }
   ],
   "links": [

@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Castle Group's heiress — 'the mad dog of Castle'; a commoner with everything"
+      "note": "Castle Group's heiress — 'the mad dog of Castle'; a commoner with everything",
+      "still": "https://asianwiki.com/images/3/32/Perfect_Crown-IU.jpg"
     },
     {
       "id": "yian",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/l0ZORJ_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "The king's son, with nothing but royal blood"
+      "note": "The king's son, with nothing but royal blood",
+      "still": "https://asianwiki.com/images/9/9d/Perfect_Crown-Byeon_Woo-Seok1.jpg"
     },
     {
       "id": "jeongu",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/nOQ4BN_5m.jpg",
       "group": "The government",
       "inCast": true,
-      "note": "Head of the executive — the prime minister"
+      "note": "Head of the executive — the prime minister",
+      "still": "https://asianwiki.com/images/d/da/Perfect_Crown-Noh_Sang-Hyun1.jpg"
     },
     {
       "id": "minyeong",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/yWVnqR_5m.jpg",
       "group": "The government",
       "inCast": true,
-      "note": "Prime minister's chief of staff"
+      "note": "Prime minister's chief of staff",
+      "still": "https://asianwiki.com/images/a/ac/My_Royal_Nemesis-Kim_Jung-Woon1.jpeg"
     },
     {
       "id": "jeongu_sec",
@@ -57,7 +61,8 @@
       "actor": "Kim Gyu Ri",
       "image": "https://i.mydramalist.com/JBoJPj_5m.jpg",
       "group": "The government",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/53/Perfect_Crown-Ha-Min-Kim_Gyu-Ri.jpeg"
     },
     {
       "id": "irang",
@@ -66,7 +71,8 @@
       "image": "https://i.mydramalist.com/eYyXln_5m.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "The perfect queen"
+      "note": "The perfect queen",
+      "still": "https://asianwiki.com/images/5/58/Perfect_Crown-Gong_Seung-Yeon1.jpg"
     },
     {
       "id": "seongwon",
@@ -75,7 +81,8 @@
       "image": "https://i.mydramalist.com/0d5kY_5m.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "The queen's father"
+      "note": "The queen's father",
+      "still": "https://asianwiki.com/images/a/af/Perfect_Crown-Jo_Jae-Yun01.jpg"
     },
     {
       "id": "yiyun",
@@ -84,7 +91,8 @@
       "image": "https://i.mydramalist.com/l0PBRx_5m.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "The current king"
+      "note": "The current king",
+      "still": "https://asianwiki.com/images/4/4b/Perfect_Crown-Kim_Eun-Ho1.jpg"
     },
     {
       "id": "yihwan",
@@ -92,7 +100,8 @@
       "actor": "Sung Jun",
       "image": "https://i.mydramalist.com/kAzJmj_5m.jpg",
       "group": "The palace",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/58/Perfect_Crown-Sung_Joon.jpg"
     },
     {
       "id": "huijong",
@@ -100,7 +109,8 @@
       "actor": "Son Jun Ho",
       "image": "https://i.mydramalist.com/qrrN8_5m.jpg",
       "group": "The palace",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/39/Perfect_Crown-Son_Jun-Ho1.jpg"
     },
     {
       "id": "jinsuk",
@@ -109,7 +119,8 @@
       "image": "https://i.mydramalist.com/kQb0m_5m.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "Court lady of Anhwa Hall"
+      "note": "Court lady of Anhwa Hall",
+      "still": "https://asianwiki.com/images/7/7a/Perfect_Crown-Park_Jun-Myun01.jpg"
     },
     {
       "id": "seonhwa",
@@ -118,7 +129,8 @@
       "image": "https://i.mydramalist.com/e3n6pm.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "Court lady of the queen dowager's quarters"
+      "note": "Court lady of the queen dowager's quarters",
+      "still": "https://asianwiki.com/images/0/09/Perfect_Crown-Lee_Chae-Kyung1.jpg"
     },
     {
       "id": "mihui",
@@ -127,7 +139,8 @@
       "image": "https://i.mydramalist.com/28yld_5m.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "Head court lady"
+      "note": "Head court lady",
+      "still": "https://asianwiki.com/images/6/65/Perfect_Crown-Kim_Soo-Jin01.jpg"
     },
     {
       "id": "hyeon",
@@ -136,7 +149,8 @@
       "image": "https://i.mydramalist.com/XbbZZm.jpg",
       "group": "Yi An's residence",
       "inCast": true,
-      "note": "The grand prince's aide"
+      "note": "The grand prince's aide",
+      "still": "https://asianwiki.com/images/5/58/Perfect_Crown-Yoo_Su-Bin1.jpg"
     },
     {
       "id": "areum",
@@ -145,7 +159,8 @@
       "image": "https://i.mydramalist.com/jDqAy_5m.jpg",
       "group": "Yi An's residence",
       "inCast": true,
-      "note": "The spy in the residence"
+      "note": "The spy in the residence",
+      "still": "https://asianwiki.com/images/e/ef/Perfect_Crown-Choi_Ji-Su.jpg"
     },
     {
       "id": "yeongmun",
@@ -154,7 +169,8 @@
       "image": "https://i.mydramalist.com/lyZQNm.jpg",
       "group": "Yi An's residence",
       "inCast": true,
-      "note": "Butler"
+      "note": "Butler",
+      "still": "https://asianwiki.com/images/d/d7/Perfect_Crown-Lee_Si-Hun.jpg"
     },
     {
       "id": "yeongseon",
@@ -163,7 +179,8 @@
       "image": "https://i.mydramalist.com/4EEy1_5m.jpg",
       "group": "Yi An's residence",
       "inCast": true,
-      "note": "The one who really runs the house"
+      "note": "The one who really runs the house",
+      "still": "https://asianwiki.com/images/0/09/Perfect_Crown-Jung_Ji-Ahn1.jpg"
     },
     {
       "id": "jisu",
@@ -171,7 +188,8 @@
       "actor": "Jin Se Rim",
       "image": "https://i.mydramalist.com/YYjNlP_5m.jpg",
       "group": "Yi An's residence",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e5/Perfect_Crown-Jin_Se-Lim1.jpg"
     },
     {
       "id": "hyeonguk",
@@ -180,7 +198,8 @@
       "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
       "group": "Castle Group",
       "inCast": true,
-      "note": "Chairman of Castle Group"
+      "note": "Chairman of Castle Group",
+      "still": "https://asianwiki.com/images/c/cc/Perfect_Crown-Jo_Seung-Yeon1.jpg"
     },
     {
       "id": "taeju",
@@ -189,7 +208,8 @@
       "image": "https://i.mydramalist.com/By7eb_5m.jpg",
       "group": "Castle Group",
       "inCast": true,
-      "note": "Eldest son"
+      "note": "Eldest son",
+      "still": "https://asianwiki.com/images/a/a8/Perfect_Crown-Lee_Jae-Won.jpg"
     },
     {
       "id": "dayeong",
@@ -197,7 +217,8 @@
       "actor": "Chae Seo An",
       "image": "https://i.mydramalist.com/RBjqAr_5m.jpg",
       "group": "Castle Group",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/42/Perfect_Crown-Chae_Seo-An1.jpg"
     },
     {
       "id": "hyejeong",
@@ -206,7 +227,8 @@
       "image": "https://i.mydramalist.com/WWq0O_5m.jpg",
       "group": "Castle Group",
       "inCast": true,
-      "note": "Hui Ju's chief secretary"
+      "note": "Hui Ju's chief secretary",
+      "still": "https://asianwiki.com/images/a/ad/Perfect_Crown-Lee_Yeon.jpg"
     },
     {
       "id": "seunghui",
@@ -215,7 +237,8 @@
       "image": "https://i.mydramalist.com/p1dqV_5m.jpg",
       "group": "Castle Group",
       "inCast": true,
-      "note": "Castle Beauty secretary's office"
+      "note": "Castle Beauty secretary's office",
+      "still": "https://asianwiki.com/images/f/f3/Perfect_Crown-Park_Ji-Ye1.jpg"
     }
   ],
   "links": [
