@@ -15,7 +15,8 @@ import type { Prisma } from "@prisma/client";
  * Nothing here is clever about the drama — the rules below are the README's,
  * and the model reads the cast and the articles the way a session did.
  */
-export const GENERATOR_MODEL = "claude-opus-5";
+export { GENERATOR_MODELS, DEFAULT_GENERATOR_MODEL, type GeneratorModel } from "@/lib/character-map-models";
+import { GENERATOR_MODELS, DEFAULT_GENERATOR_MODEL, type GeneratorModel } from "@/lib/character-map-models";
 
 /* ------------------------------------------------------------ the rules */
 
@@ -239,14 +240,14 @@ export type GenerateResult = Validation & { usage: { inputTokens: number; output
  * the line under the button. Throws when the key is missing, when the API
  * fails, or when the chart fails a check.
  */
-export async function generateChart(inputs: ChartInputs, onProgress?: (step: string) => void): Promise<GenerateResult> {
+export async function generateChart(inputs: ChartInputs, model: GeneratorModel = DEFAULT_GENERATOR_MODEL, onProgress?: (step: string) => void): Promise<GenerateResult> {
     if (!process.env.ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY is not set on the server");
     const client = new Anthropic();
 
     const user = `Write the chart for this entry.\n\nmdlSlug: ${inputs.mdlSlug}\ncountry code: ${countryCode(inputs.country)}\n\n${inputs.text}`;
     let chars = 0;
     const stream = client.messages.stream({
-        model: GENERATOR_MODEL,
+        model: GENERATOR_MODELS[model].id,
         max_tokens: 64000,
         thinking: { type: "adaptive" },
         output_config: { effort: "high", format: { type: "json_schema", schema: CHART_SCHEMA } },

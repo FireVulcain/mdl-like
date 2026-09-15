@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
-import { generateChart, saveChart } from "@/lib/character-map-generate";
+import { DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
 import type { CharacterMapJob } from "@prisma/client";
 
 /**
@@ -46,12 +46,12 @@ async function reapStale() {
  * row, when the server has no API key — the button then says so instead of
  * spinning. Returns the row to poll.
  */
-export async function startJob(mdlSlug: string, startedBy: string | null, titles: Record<string, string> = {}): Promise<JobView> {
+export async function startJob(mdlSlug: string, startedBy: string | null, titles: Record<string, string> = {}, model: GeneratorModel = DEFAULT_GENERATOR_MODEL): Promise<JobView> {
     await reapStale();
     const running = await prisma.characterMapJob.findFirst({ where: { mdlSlug, status: { in: [...ACTIVE] } } });
     if (running) return jobView(running);
 
-    const job = await prisma.characterMapJob.create({ data: { mdlSlug, status: "queued", step: "Starting", startedBy } });
+    const job = await prisma.characterMapJob.create({ data: { mdlSlug, status: "queued", step: "Starting", startedBy, model } });
     if (!process.env.ANTHROPIC_API_KEY) {
         const failed = await prisma.characterMapJob.update({
             where: { id: job.id },
@@ -60,18 +60,18 @@ export async function startJob(mdlSlug: string, startedBy: string | null, titles
         return jobView(failed);
     }
     // detached on purpose: the route returns now, the run goes on in the process
-    void run(job.id, mdlSlug, titles);
+    void run(job.id, mdlSlug, titles, model);
     return jobView(job);
 }
 
-async function run(id: string, mdlSlug: string, titles: Record<string, string>) {
+async function run(id: string, mdlSlug: string, titles: Record<string, string>, model: GeneratorModel) {
     const set = (data: Partial<Pick<CharacterMapJob, "status" | "step">>) => prisma.characterMapJob.update({ where: { id }, data }).catch(() => undefined);
     try {
         await set({ status: "gathering", step: "Reading the MDL entry" });
         const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }));
         const found = inputs.wiki.filter((w) => w.text).map((w) => w.lang);
         await set({ status: "generating", step: `Writing the chart from the cast${found.length ? ` and ${found.join(", ")}.wikipedia` : " alone (no article found)"}` });
-        const result = await generateChart(inputs, (step) => void set({ step }));
+        const result = await generateChart(inputs, model, (step) => void set({ step }));
         await set({ status: "validating", step: "Saving" });
         const { file } = await saveChart(result.map, "claude");
         const warnings = [...result.warnings];

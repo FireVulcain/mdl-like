@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Sparkles, AlertTriangle, Check } from "lucide-react";
 import type { JobView } from "@/lib/character-map-jobs";
+import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 
 /**
  * The admin's way to have a chart written: one button, a line under it that
@@ -16,10 +17,11 @@ import type { JobView } from "@/lib/character-map-jobs";
  */
 const ACTIVE = new Set(["queued", "gathering", "generating", "validating"]);
 
-// Opus 5 list price, to say what a run cost — input $5, output $25, cache reads $0.50 per 1M
+// List price of the model that ran, to say what a run cost
 function costOf(job: JobView): string | null {
     if (job.inputTokens == null || job.outputTokens == null) return null;
-    const usd = (job.inputTokens * 5 + (job.cacheRead ?? 0) * 0.5 + job.outputTokens * 25) / 1_000_000;
+    const price = Object.values(GENERATOR_MODELS).find((m) => job.model?.startsWith(m.id.replace(/-\d+$/, ""))) ?? GENERATOR_MODELS.opus;
+    const usd = (job.inputTokens * price.input + (job.cacheRead ?? 0) * price.cacheRead + job.outputTokens * price.output) / 1_000_000;
     return `$${usd.toFixed(2)}`;
 }
 
@@ -28,6 +30,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [showDetails, setShowDetails] = useState(false);
+    const [model, setModel] = useState<GeneratorModel>(DEFAULT_GENERATOR_MODEL);
     const router = useRouter();
     const active = !!job && ACTIVE.has(job.status);
     const wasActive = useRef(false);
@@ -61,7 +64,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
             const res = await fetch("/api/admin/character-maps/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug }),
+                body: JSON.stringify({ mdlSlug, model }),
             });
             const data = (await res.json().catch(() => ({}))) as { job?: JobView; error?: string };
             if (!res.ok || !data.job) {
@@ -81,6 +84,21 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
 
     return (
         <div className="flex flex-col items-end gap-1 text-right">
+            <div className="flex items-center gap-1.5">
+            {!active && (
+                <select
+                    value={model}
+                    onChange={(e) => setModel(e.target.value as GeneratorModel)}
+                    className="rounded-full bg-surface-2 px-2 py-1 text-xs text-fg-dim outline-none hover:text-fg"
+                    title="Which model writes the chart"
+                >
+                    {(Object.keys(GENERATOR_MODELS) as GeneratorModel[]).map((k) => (
+                        <option key={k} value={k}>
+                            {GENERATOR_MODELS[k].label}
+                        </option>
+                    ))}
+                </select>
+            )}
             <button
                 type="button"
                 onClick={start}
@@ -91,6 +109,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                 {active || starting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
                 {label}
             </button>
+            </div>
             {active && job && <span className="text-xs text-fg-dim">{job.step || job.status}</span>}
             {error && (
                 <span className="inline-flex items-center gap-1 text-xs text-amber-400">
