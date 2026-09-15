@@ -33,6 +33,9 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
     const [model, setModel] = useState<GeneratorModel>(DEFAULT_GENERATOR_MODEL);
     const router = useRouter();
     const active = !!job && ACTIVE.has(job.status);
+    // Whether a run was started or followed here. The last row is handed in
+    // so a run survives a reload, but its outcome — a failure from a click
+    // days ago — is not news the page should repeat on every visit.
     const wasActive = useRef(false);
 
     // Follow a run while it goes; refresh the page once it lands
@@ -71,6 +74,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                 setError(data.error ?? `HTTP ${res.status}`);
                 return;
             }
+            wasActive.current = true;
             setJob(data.job);
         } catch (e) {
             setError(e instanceof Error ? e.message : "failed");
@@ -116,7 +120,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                     <AlertTriangle className="h-3 w-3" /> {error}
                 </span>
             )}
-            {!active && job?.status === "failed" && (
+            {!active && job?.status === "failed" && wasActive.current && (
                 <span className="inline-flex items-center gap-1 text-xs text-amber-400">
                     <AlertTriangle className="h-3 w-3" /> {job.error ?? "failed"}
                 </span>
