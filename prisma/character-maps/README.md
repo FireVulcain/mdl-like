@@ -29,8 +29,24 @@ the script below) is where the text a chart is read from is gathered first.
    `wiki-titles.json` (`slug → { ko, zh, en }`), which the script reads first,
    so no other machine has to find it again.
 3. Read the inputs and write `<slug>.json` in the shape below.
-4. `npm run db:seed-character-maps` (re-runnable; replaces the row).
+4. `npm run db:seed-character-maps` (re-runnable; replaces the row). It
+   pulls first — see below — so a chart written from the media page is
+   never put back to an older file.
 5. Check `/media/mdl-<slug>/relationships`.
+
+## Charts written from the media page
+
+The admin's "Generate chart" button has Claude write a chart into the
+`CharacterMap` row — and into a file on the server's disk, never into this
+checkout. `npm run db:pull-character-maps` brings such rows home: it writes
+every row whose file is missing or says something else, comparing with keys
+sorted (Postgres keeps jsonb keys in its own order) and writing in the order
+below, so a pull that changed nothing leaves no diff. Nobody has to think
+of it: `npm run dev` runs it on start (quietly; a database out of reach
+does not stop the server) and the seed runs it first — so a chart
+generated in production is in the checkout the next time the dev server
+starts, and goes out with the next commit. Fetch stills on localhost after
+that start, so they land in the file as well as the row.
 
 ## Reading rules
 

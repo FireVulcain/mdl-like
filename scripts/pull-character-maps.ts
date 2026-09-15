@@ -6,9 +6,13 @@
  *   npm run db:pull-character-maps
  *
  * A chart the admin has Claude write from the media page lands in the row
- * (and in a file on the server's disk, not in this checkout). Run this
- * before seeding, or the seed puts the older file back over it. Charts that
- * came from the files are untouched unless the row was replaced since.
+ * (and in a file on the server's disk, not in this checkout). The seed runs
+ * this first, or it would put the older file back over such a chart; and
+ * `npm run dev` runs it too (--quiet: one line, and a database out of reach
+ * does not stop the dev server), so a chart generated in production shows
+ * up in the checkout the next time the dev server starts, and is committed
+ * with whatever comes next. Charts that came from the files are untouched
+ * unless the row was replaced since.
  *
  * Postgres keeps jsonb keys in its own order, so a row is compared to its
  * file with keys sorted, and written back in the README's order — a pull
@@ -51,6 +55,8 @@ function canonical(value: unknown): string {
     return "{" + Object.keys(obj).sort().map((k) => JSON.stringify(k) + ":" + canonical(obj[k])).join(",") + "}";
 }
 
+const quiet = process.argv.includes("--quiet");
+
 async function main() {
     const dir = path.join(process.cwd(), "prisma", "character-maps");
     const rows = await prisma.characterMap.findMany({ select: { mdlSlug: true, dataJson: true, source: true, updatedAt: true } });
@@ -66,11 +72,15 @@ async function main() {
         const map = row.dataJson as { people?: unknown[]; links?: unknown[] };
         console.log(`${current ? "updated" : "new    "} ${row.mdlSlug}: ${map.people?.length ?? "?"} people, ${map.links?.length ?? "?"} links · ${row.source} · ${row.updatedAt.toISOString().slice(0, 10)}`);
     }
-    console.log(`${written} file${written === 1 ? "" : "s"} written from ${rows.length} rows`);
+    if (written || !quiet) console.log(`${written} chart file${written === 1 ? "" : "s"} pulled from the database${written ? " — commit them with the next change" : ""}`);
 }
 
 main()
     .catch((e) => {
+        if (quiet) {
+            console.warn(`character maps not pulled: ${e instanceof Error ? e.message : e}`);
+            return;
+        }
         console.error(e);
         process.exit(1);
     })

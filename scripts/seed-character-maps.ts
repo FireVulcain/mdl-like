@@ -4,9 +4,10 @@
  *
  *   npm run db:seed-character-maps
  *
- * These files are the hand-read charts from the extraction trial. When a model
- * writes them instead, it writes rows directly and this script has nothing
- * left to do.
+ * The npm script runs pull-character-maps first: a chart Claude wrote from
+ * the media page lives in its row, and without the pull this would put an
+ * older file back over it. A row keeps its source ("claude", "session") when
+ * it already exists — who first wrote the chart stays readable.
  */
 import { PrismaClient } from "@prisma/client";
 import { Pool } from "pg";
@@ -31,7 +32,7 @@ async function main() {
         await prisma.characterMap.upsert({
             where: { mdlSlug },
             create: { mdlSlug, dataJson: data, source: "session" },
-            update: { dataJson: data, source: "session" },
+            update: { dataJson: data },
         });
         console.log(`${mdlSlug}: ${data.people.length} people, ${data.links.length} links`);
     }

@@ -1,0 +1,793 @@
+{
+  "version": 1,
+  "mdlSlug": "25172-my-ajusshi",
+  "title": "My Mister",
+  "native": "나의 아저씨",
+  "year": 2018,
+  "country": "KR",
+  "sources": [
+    "MDL cast (2 main, 27 support roles, selected guests)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia My Mister"
+  ],
+  "main": [
+    "donghun",
+    "jian"
+  ],
+  "people": [
+    {
+      "id": "donghun",
+      "name": "Park Dong Hun",
+      "actor": "Lee Sun Kyun",
+      "image": "https://i.mydramalist.com/81XQBd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Middle-aged structural engineer at Saman E&C",
+      "still": "https://asianwiki.com/images/8/8b/My_Mister-Lee_Sun-Kyun.jpg"
+    },
+    {
+      "id": "jian",
+      "name": "Lee Ji An",
+      "actor": "IU",
+      "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Part-time employee at Saman E&C, burdened by debt",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Gyu Ri",
+          "image": "https://i.mydramalist.com/kAYYWg_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/c/cd/My_Mister-Kim_Gyu-Ri_%282008%29.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/1/1b/My_Mister-IU.jpg"
+    },
+    {
+      "id": "sanghun",
+      "name": "Park Sang Hun",
+      "actor": "Park Ho San",
+      "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
+      "group": "Dong Hun's family",
+      "inCast": true,
+      "note": "Dong Hun's unemployed older brother",
+      "still": "https://asianwiki.com/images/a/ae/My_Mister-Park_Ho-San.jpg"
+    },
+    {
+      "id": "gihun",
+      "name": "Park Gi Hun",
+      "actor": "Song Sae Byuk",
+      "image": "https://i.mydramalist.com/QXBL5m.jpg",
+      "group": "Dong Hun's family",
+      "inCast": true,
+      "note": "Aspiring film director for 20 years, Dong Hun's younger brother",
+      "still": "https://asianwiki.com/images/1/12/My_Mister-Song_Sae-Byeok.jpg"
+    },
+    {
+      "id": "yunhui",
+      "name": "Kang Yun Hui",
+      "actor": "Lee Ji Ah",
+      "image": "https://i.mydramalist.com/Ndq3gA_5m.jpg",
+      "group": "Dong Hun's family",
+      "inCast": true,
+      "note": "Attorney; Dong Hun's wife",
+      "still": "https://asianwiki.com/images/9/93/My_Mister-Lee_Ji-Ah.jpg"
+    },
+    {
+      "id": "junyeong",
+      "name": "Do Jun Yeong",
+      "actor": "Kim Young Min",
+      "image": "https://i.mydramalist.com/pgZJV_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "CEO of Saman E&C; Dong Hun's college junior",
+      "still": "https://asianwiki.com/images/9/94/My_Mister-Kim_Young_Min.jpg"
+    },
+    {
+      "id": "yura",
+      "name": "Choi Yu Ra",
+      "actor": "Kwon Na Ra",
+      "image": "https://i.mydramalist.com/zB1ve7_5m.jpg",
+      "group": "Neighborhood",
+      "inCast": true,
+      "note": "Film actress dealing with an acting trauma",
+      "still": "https://asianwiki.com/images/5/5e/My_Mister-Kwon_Na-Ra.jpg"
+    },
+    {
+      "id": "gwangil",
+      "name": "Lee Gwang Il",
+      "actor": "Jang Ki Yong",
+      "image": "https://i.mydramalist.com/eYgEOW_5m.jpg",
+      "group": "People around Ji An",
+      "inCast": true,
+      "note": "Loan shark who torments Ji An",
+      "still": "https://asianwiki.com/images/1/14/My_Mister-Chang_Ki_Yong.jpg"
+    },
+    {
+      "id": "yosun",
+      "name": "Byeon Yo Sun",
+      "actor": "Go Doo Shim",
+      "image": "https://i.mydramalist.com/RJnePm.jpg",
+      "group": "Dong Hun's family",
+      "inCast": true,
+      "note": "Mother of the three Park brothers",
+      "still": "https://asianwiki.com/images/b/b5/My_Mister-Ko_Du_Shim.jpg"
+    },
+    {
+      "id": "gyumdeok",
+      "name": "Gyum Deok",
+      "actor": "Park Hae Joon",
+      "image": "https://i.mydramalist.com/RRQJR_5m.jpg",
+      "group": "Neighborhood",
+      "inCast": true,
+      "note": "Buddhist monk; Dong Hun's old friend, formerly named Yoon Sang Won",
+      "still": "https://asianwiki.com/images/b/b9/My_Mister-Park_Hae_Joon.jpg"
+    },
+    {
+      "id": "jeonghui",
+      "name": "Jung Jeong Hui",
+      "actor": "Oh Na Ra",
+      "image": "https://i.mydramalist.com/nOZJmL_5m.jpg",
+      "group": "Neighborhood",
+      "inCast": true,
+      "note": "Runs the neighborhood bar that serves as an informal meeting place",
+      "still": "https://asianwiki.com/images/7/73/My_Miste-Oh_Na-Ra.jpg"
+    },
+    {
+      "id": "yeongguk",
+      "name": "Wang Yeong Guk",
+      "actor": "Jeon Gook Hwan",
+      "image": "https://i.mydramalist.com/xXNAEm.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Executive who leads the faction opposing CEO Jun Yeong",
+      "still": "https://asianwiki.com/images/c/ce/My_Mister-Jeon_Kuk_Hwan.jpg"
+    },
+    {
+      "id": "sangtae",
+      "name": "Yun Sang Tae",
+      "actor": "Jung Jae Sung",
+      "image": "https://i.mydramalist.com/zBDbxO_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Executive; Jun Yeong's opportunistic right hand",
+      "still": "https://asianwiki.com/images/2/26/My_Mister-Jung_Jae_Sung.jpg"
+    },
+    {
+      "id": "jecheol",
+      "name": "Lee Je Cheol",
+      "actor": "Park Soo Young",
+      "image": "https://i.mydramalist.com/EDXRpm.jpg",
+      "group": "Neighborhood",
+      "inCast": true,
+      "note": "Neighborhood friend of the Park brothers",
+      "still": "https://asianwiki.com/images/4/48/My_Mister-Park_Soo-Young.jpg"
+    },
+    {
+      "id": "bongae",
+      "name": "Lee Bong Ae",
+      "actor": "Son Sook",
+      "image": "https://i.mydramalist.com/e313Wm.jpg",
+      "group": "Ji An's family",
+      "inCast": true,
+      "note": "Ji An's deaf grandmother, hospitalized in a nursing home",
+      "still": "https://asianwiki.com/images/4/41/My_Mister-Son-Sook.jpg"
+    },
+    {
+      "id": "gibeom",
+      "name": "Song Gi Beom",
+      "actor": "Ahn Seung Gyun",
+      "image": "https://i.mydramalist.com/10xkbm.jpg",
+      "group": "People around Ji An",
+      "inCast": true,
+      "note": "Ji An's longtime friend, a computer-game addict who helps her",
+      "still": "https://asianwiki.com/images/b/b7/My_Mister-Ahn_Seung_Kyoon.jpg"
+    },
+    {
+      "id": "aeryeon",
+      "name": "Jo Ae Ryeon",
+      "actor": "Jung Young Joo",
+      "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
+      "group": "Dong Hun's family",
+      "inCast": true,
+      "note": "Sang Hun's estranged wife",
+      "still": "https://asianwiki.com/images/8/86/My_Mister-Jung_Young_Joo.jpg"
+    },
+    {
+      "id": "yongdae",
+      "name": "Kim Yong Dae",
+      "actor": "Chae Dong Hyun",
+      "image": "https://i.mydramalist.com/bwzB6m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Assistant manager on Dong Hun's team",
+      "still": "https://asianwiki.com/images/b/b4/My_Mister-Chae_Dong_Hyun.jpg"
+    },
+    {
+      "id": "dongun",
+      "name": "Park Dong Un",
+      "actor": "Jung Hae Kyun",
+      "image": "https://i.mydramalist.com/QJ5A7Q_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Director; Wang Yeong Guk's right-hand man",
+      "still": "https://asianwiki.com/images/f/f7/My_Mister-Jung_Hae-Kyun1.jpg"
+    },
+    {
+      "id": "chaeryeong",
+      "name": "Jung Chae Ryeong",
+      "actor": "Ryu Abel",
+      "image": "https://i.mydramalist.com/WPJN7O_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "HR team member hostile toward Ji An",
+      "still": "https://asianwiki.com/images/3/35/My_Mister-Ryu_Sun_Young.jpg"
+    },
+    {
+      "id": "sukbeom",
+      "name": "Song Suk Beom",
+      "actor": "Seo Hyeon Woo",
+      "image": "https://i.mydramalist.com/3oAYOD_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Section chief who respects and supports Dong Hun",
+      "still": "https://asianwiki.com/images/3/33/My_Mister-Seo_Hyun_Woo.jpg"
+    },
+    {
+      "id": "hyeonggyu",
+      "name": "Yeo Hyeong Gyu",
+      "actor": "Kim Min Seok",
+      "image": "https://i.mydramalist.com/EoL4l_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Youngest member of Dong Hun's team",
+      "still": "https://asianwiki.com/images/c/c6/My_Mister-Kim_Min_Seok.jpg"
+    },
+    {
+      "id": "changmo",
+      "name": "Jung Chang Mo",
+      "actor": "Shin Dam Soo",
+      "image": "https://i.mydramalist.com/rx8lmm.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5e/My_Mister-Shin_Dam-Soo1.jpg"
+    },
+    {
+      "id": "chundae",
+      "name": "Seo Chun Dae",
+      "actor": "Lee Young Suk",
+      "image": "https://i.mydramalist.com/AvqzZm.jpg",
+      "group": "People around Ji An",
+      "inCast": true,
+      "note": "Elderly cleaner who knows Ji An's secret and watches over her",
+      "still": "https://asianwiki.com/images/5/57/My_Mister-Lee_Young-Suk.jpg"
+    },
+    {
+      "id": "jiseok",
+      "name": "Park Ji Seok",
+      "actor": "Jung Ji Hoon",
+      "image": "https://i.mydramalist.com/Kpkbd0_5m.jpg",
+      "group": "Dong Hun's family",
+      "inCast": true,
+      "note": "Dong Hun and Yun Hui's son, studying abroad in the US",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Joon Eui",
+          "image": "https://i.mydramalist.com/oEPPkm.jpg",
+          "era": "child"
+        }
+      ],
+      "still": "https://asianwiki.com/images/a/a3/My_Mister-Jung_Ji-Hoon.jpg"
+    },
+    {
+      "id": "jongsu",
+      "name": "Jong Su",
+      "actor": "Hong In",
+      "image": "https://i.mydramalist.com/QogWY_5m.jpg",
+      "group": "People around Ji An",
+      "inCast": true,
+      "note": "Gwang Il's fellow loan shark and accomplice",
+      "still": "https://asianwiki.com/images/d/dd/My_Mister-Hong-In.jpg"
+    },
+    {
+      "id": "hanggu",
+      "name": "Jang Hang Gu",
+      "actor": "Shin Goo",
+      "image": "https://i.mydramalist.com/exVee_5m.jpg",
+      "group": "Saman E&C",
+      "inCast": true,
+      "note": "Founder and chairman of Saman E&C",
+      "still": "https://asianwiki.com/images/0/06/My_Mister-Shin-Goo.jpg"
+    },
+    {
+      "id": "jinbeom",
+      "name": "Ko Jin Beom",
+      "actor": "Seo Sang Won",
+      "image": "https://i.mydramalist.com/Z1Epkm.jpg",
+      "group": "Neighborhood",
+      "inCast": true,
+      "note": "Neighborhood friend of the Park brothers",
+      "still": "https://asianwiki.com/images/2/29/My_Mister-Seo_Sang-Won.jpg"
+    },
+    {
+      "id": "gwonsik",
+      "name": "Im Gwon Sik",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/0pQBkm.jpg",
+      "group": "Neighborhood",
+      "inCast": true,
+      "note": "Neighborhood friend of the Park brothers",
+      "still": "https://asianwiki.com/images/0/08/My_Mister-Lee_Do-Hyun.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "donghun",
+      "to": "jian",
+      "type": "work",
+      "label": "Coworkers at Saman E&C; Dong Hun notices Ji An witnessed him take a bribe",
+      "short": "coworkers",
+      "evidence": "Receiving an unexpected bribe one day, Dong Hun notices that his co-worker Lee Ji An witnessed the incident.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junyeong",
+      "to": "jian",
+      "type": "work",
+      "label": "Secretly hires Ji An to gather information on Dong Hun",
+      "short": "secret spy",
+      "evidence": "All the while unaware...that Ji An is working for him.",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghun",
+      "to": "yunhui",
+      "type": "family",
+      "label": "Married; Dong Hun's wife",
+      "short": "husband/wife",
+      "evidence": "he is married to attorney Kang Yun Hui",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yunhui",
+      "to": "junyeong",
+      "type": "romance",
+      "label": "Secretly having an affair with CEO Do Jun Yeong",
+      "short": "secret affair",
+      "evidence": "his wife is secretly having an affair with CEO Do Jun Yeong",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junyeong",
+      "to": "donghun",
+      "type": "work",
+      "label": "Jun Yeong is Dong Hun's boss and college junior, and secretly wants to get rid of him",
+      "short": "boss/rival",
+      "evidence": "CEO Jun Yeong wants to get rid of him",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghun",
+      "to": "donghun",
+      "type": "family",
+      "label": "Dong Hun's older brother",
+      "short": "older brother",
+      "evidence": "동훈의 형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gihun",
+      "to": "donghun",
+      "type": "family",
+      "label": "Dong Hun's younger brother",
+      "short": "younger brother",
+      "evidence": "박동훈의 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghun",
+      "to": "gihun",
+      "type": "family",
+      "label": "Brothers, both dependent on Dong Hun",
+      "short": "brothers",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yosun",
+      "to": "donghun",
+      "type": "family",
+      "label": "Mother of the three Park brothers",
+      "short": "mother",
+      "evidence": "삼형제의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yosun",
+      "to": "sanghun",
+      "type": "family",
+      "label": "Mother of the three Park brothers",
+      "short": "mother",
+      "evidence": "삼형제의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yosun",
+      "to": "gihun",
+      "type": "family",
+      "label": "Mother of the three Park brothers",
+      "short": "mother",
+      "evidence": "삼형제의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aeryeon",
+      "to": "sanghun",
+      "type": "family",
+      "label": "Sang Hun's estranged wife",
+      "short": "estranged wife",
+      "evidence": "Park Sang-hoon's estranged wife.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghun",
+      "to": "jiseok",
+      "type": "family",
+      "label": "Dong Hun and Yun Hui's son",
+      "short": "son",
+      "evidence": "[Park Dong Hoon and Kang Yoon Hee's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunhui",
+      "to": "jiseok",
+      "type": "family",
+      "label": "Dong Hun and Yun Hui's son",
+      "short": "son",
+      "evidence": "[Park Dong Hoon and Kang Yoon Hee's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bongae",
+      "to": "jian",
+      "type": "family",
+      "label": "Ji An's deaf grandmother, whom she cares for",
+      "short": "grandmother",
+      "evidence": "Lee Ji-an's deaf grandmother.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangil",
+      "to": "jian",
+      "type": "bond",
+      "label": "Loan shark who torments Ji An; secretly cared for her when young, and whose father she killed in self-defense",
+      "short": "tormentor",
+      "evidence": "A loan shark Ji-an owes money to, who liked Ji-an when he was young. His father was killed by Ji-an in self defense, while she was trying to protect her grandmother. He torments and brutalizes Ji-an.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gibeom",
+      "to": "jian",
+      "type": "friend",
+      "label": "Ji An's longtime friend and helper, a computer game addict",
+      "short": "best friend",
+      "evidence": "지안의 오래된 친구이자 조력자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chundae",
+      "to": "jian",
+      "type": "bond",
+      "label": "Elderly cleaner who knows Ji An's secret and watches over her",
+      "short": "secret keeper",
+      "evidence": "지안의 비밀을 알고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongsu",
+      "to": "gwangil",
+      "type": "work",
+      "label": "Fellow loan shark, Gwang Il's accomplice",
+      "short": "accomplice",
+      "evidence": "loan shark Lee Kwang-il's accomplice / colleague.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukbeom",
+      "to": "donghun",
+      "type": "work",
+      "label": "Section chief who respects and loyally supports Dong Hun",
+      "short": "loyal subordinate",
+      "evidence": "부장인 박동훈을 인간적으로 존경하고 잘 따르는 부하직원으로 늘 동훈의 편에 선다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongdae",
+      "to": "donghun",
+      "type": "work",
+      "label": "Team member who trusts and follows Dong Hun",
+      "short": "loyal subordinate",
+      "evidence": "박동훈을 믿고 잘 따르는 부하직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonggyu",
+      "to": "donghun",
+      "type": "work",
+      "label": "Youngest team member, quietly loyal to his seniors",
+      "short": "junior colleague",
+      "evidence": "선배들을 잘 따르며 묵묵히 자기 일을 하는 듬직한 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chaeryeong",
+      "to": "jian",
+      "type": "rivalry",
+      "label": "HR team member who looks down on and treats Ji An with hostility",
+      "short": "hostile coworker",
+      "evidence": "평소 이지안의 행실을 마땅치 않게 여기고 적대적으로 대하는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongun",
+      "to": "yeongguk",
+      "type": "work",
+      "label": "Wang Yeong Guk's right-hand man",
+      "short": "right hand",
+      "evidence": "왕전무의 오른팔",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangtae",
+      "to": "junyeong",
+      "type": "work",
+      "label": "Do Jun Yeong's opportunistic right-hand man",
+      "short": "right hand",
+      "evidence": "도준영의 오른팔",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongguk",
+      "to": "junyeong",
+      "type": "rivalry",
+      "label": "Leads the internal faction opposing CEO Jun Yeong",
+      "short": "rival faction",
+      "evidence": "the company's internal rivalry between the company's CEO and the people opposing him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanggu",
+      "to": "junyeong",
+      "type": "work",
+      "label": "Founder and chairman overseeing CEO Jun Yeong's re-confirmation",
+      "short": "chairman",
+      "evidence": "재신임을 앞둔 삼안E&C 대표이사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghun",
+      "to": "gyumdeok",
+      "type": "friend",
+      "label": "Longtime friend, now a Buddhist monk",
+      "short": "old friend",
+      "evidence": "A Buddhist monk who is Dong-hoon's friend",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyumdeok",
+      "to": "jeonghui",
+      "type": "romance",
+      "label": "Jung Hui's ex-boyfriend before he became a monk",
+      "short": "former couple",
+      "evidence": "Jung-hee's ex-boyfriend.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "donghun",
+      "to": "jeonghui",
+      "type": "friend",
+      "label": "Childhood friend and owner of the neighborhood bar",
+      "short": "old friend",
+      "evidence": "삼형제와 한 동네서 나고 자란 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gihun",
+      "to": "yura",
+      "type": "romance",
+      "label": "Yu Ra stars in Gi Hun's directorial debut and becomes his love interest",
+      "short": "love interest",
+      "evidence": "Park Ki-hoon's love interest.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "donghun",
+      "to": "jecheol",
+      "type": "friend",
+      "label": "Neighborhood friend, regular at Jung Hui's bar",
+      "short": "neighborhood friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "donghun",
+      "to": "jinbeom",
+      "type": "friend",
+      "label": "Neighborhood friend, regular at Jung Hui's bar",
+      "short": "neighborhood friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "donghun",
+      "to": "gwonsik",
+      "type": "friend",
+      "label": "Neighborhood friend, regular at Jung Hui's bar",
+      "short": "neighborhood friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "donghun",
+      "jian",
+      "sanghun",
+      "gihun",
+      "yunhui",
+      "yosun",
+      "aeryeon",
+      "jiseok",
+      "bongae",
+      "gwangil",
+      "gibeom",
+      "chundae",
+      "jongsu",
+      "junyeong",
+      "yeongguk",
+      "sangtae",
+      "sukbeom",
+      "yongdae",
+      "hyeonggyu",
+      "chaeryeong",
+      "hanggu",
+      "changmo",
+      "dongun",
+      "yura",
+      "gyumdeok",
+      "jeonghui",
+      "jecheol",
+      "jinbeom",
+      "gwonsik"
+    ],
+    "blocks": {
+      "Saman E&C": [
+        0,
+        1
+      ],
+      "Neighborhood": [
+        1,
+        2
+      ],
+      "Ji An's family": [
+        2,
+        0
+      ],
+      "Dong Hun's family": [
+        0,
+        0
+      ],
+      "People around Ji An": [
+        2,
+        1
+      ]
+    },
+    "center": [
+      "donghun",
+      "jian"
+    ]
+  }
+}
