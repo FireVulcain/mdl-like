@@ -1,0 +1,512 @@
+{
+  "version": 1,
+  "mdlSlug": "749923-pyramid-game",
+  "title": "Pyramid Game",
+  "native": "피라미드 게임",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (37 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "suji",
+    "harin"
+  ],
+  "people": [
+    {
+      "id": "suji",
+      "name": "Seong Su Ji",
+      "actor": "Bo Na",
+      "image": "https://i.mydramalist.com/pmorQ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The transfer student who becomes the game's victim — and leads the rebellion"
+    },
+    {
+      "id": "harin",
+      "name": "Baek Ha Rin",
+      "actor": "Jang Da A",
+      "image": "https://i.mydramalist.com/2wD5nV_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Dignified, gentle — and the one who runs the game"
+    },
+    {
+      "id": "jaeun",
+      "name": "Myung Ja Eun",
+      "actor": "Ryu Da In",
+      "image": "https://i.mydramalist.com/Bd76J5_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Timid, affectionate; the rank F everyone hits"
+    },
+    {
+      "id": "yerim",
+      "name": "Im Ye Rim",
+      "actor": "Kang Na Eon",
+      "image": "https://i.mydramalist.com/dbyYe_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Idol trainee"
+    },
+    {
+      "id": "doa",
+      "name": "Seo Do A",
+      "actor": "Shin Seul Ki",
+      "image": "https://i.mydramalist.com/1wd6y6_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Class president, top student"
+    },
+    {
+      "id": "eunbyeol",
+      "name": "Ko Eun Byeol",
+      "actor": "Jung Ha Dam",
+      "image": "https://i.mydramalist.com/5v7gXL_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true
+    },
+    {
+      "id": "ui",
+      "name": "Bang U I",
+      "actor": "Ha Yul Ri",
+      "image": "https://i.mydramalist.com/x4YL6X_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Talkative, pretentious"
+    },
+    {
+      "id": "dayun",
+      "name": "Kim Da Yun",
+      "actor": "Hwang Hyun Jeong",
+      "image": "https://i.mydramalist.com/XdAVkn_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Youngest daughter of a chaebol"
+    },
+    {
+      "id": "eunjeong",
+      "name": "Sim Eun Jeong",
+      "actor": "Lee Ju Yeon",
+      "image": "https://i.mydramalist.com/5vJ1PZ_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Swimmer"
+    },
+    {
+      "id": "jaehyeong",
+      "name": "Song Jae Hyeong",
+      "actor": "Oh Se Eun",
+      "image": "https://i.mydramalist.com/BEV8l_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "The strategist"
+    },
+    {
+      "id": "jiae",
+      "name": "Pyo Ji Ae",
+      "actor": "Kim Se Hee",
+      "image": "https://i.mydramalist.com/d0Ok6e_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Glass mentality"
+    },
+    {
+      "id": "seulha",
+      "name": "Koo Seul Ha",
+      "actor": "Choi Yoon Seo",
+      "image": "https://i.mydramalist.com/4e3mrr_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "Judoka"
+    },
+    {
+      "id": "haejun",
+      "name": "Ra Hae Jun",
+      "actor": "Son Ji Young",
+      "image": "https://i.mydramalist.com/RB2ZR6_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true,
+      "note": "The class's 'housekeeper'"
+    },
+    {
+      "id": "yeondu",
+      "name": "Jung Yeon Du",
+      "actor": "Kim Ye Na",
+      "image": "https://i.mydramalist.com/60rKqO_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true
+    },
+    {
+      "id": "seungi",
+      "name": "Joo Seung I",
+      "actor": "Kwon I Su",
+      "image": "https://i.mydramalist.com/jQXjRr_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true
+    },
+    {
+      "id": "soyeong",
+      "name": "Yang So Yeong",
+      "actor": "Jeong Ji Soo",
+      "image": "https://i.mydramalist.com/g0w0jq_5m.jpg",
+      "group": "Class 2-5",
+      "inCast": true
+    },
+    {
+      "id": "nahui",
+      "name": "Yun Na Hui",
+      "actor": "Ahn So Yo",
+      "image": "https://i.mydramalist.com/kA7vkj_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Part-time literature teacher"
+    },
+    {
+      "id": "sunae",
+      "name": "Lim Sun Ae",
+      "actor": "Son Ji Na",
+      "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Principal"
+    },
+    {
+      "id": "juhyeong",
+      "name": "Im Ju Hyeong",
+      "actor": "Choi Sung Won",
+      "image": "https://i.mydramalist.com/rNkNkZ_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Art teacher, homeroom of 2-5"
+    },
+    {
+      "id": "ihwa",
+      "name": "Choi I Hwa",
+      "actor": "Jung Ae Yeon",
+      "image": "https://i.mydramalist.com/0RBy6_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Chairwoman of the school"
+    },
+    {
+      "id": "jungyun",
+      "name": "Seo Jung Yun",
+      "actor": "Jung Seung Kil",
+      "image": "https://i.mydramalist.com/g075LO_5m.jpg",
+      "group": "Adults",
+      "inCast": true,
+      "note": "Hospital director"
+    },
+    {
+      "id": "seunghwa",
+      "name": "Jo Seung Hwa",
+      "actor": "Jo Dong Een",
+      "image": "https://i.mydramalist.com/PxQlvZ_5m.jpg",
+      "group": "Around the school",
+      "inCast": true,
+      "note": "Convenience-store part-timer"
+    }
+  ],
+  "links": [
+    {
+      "from": "harin",
+      "to": "suji",
+      "type": "rivalry",
+      "label": "the game's maker and the transfer student who leads the rebellion against it",
+      "short": "enemy",
+      "evidence": "She gets entangled in a pyramid game and becomes a victim of school violence, but leads a rebellion / 백하린 — 장다아",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suji",
+      "to": "jaeun",
+      "type": "friend",
+      "label": "the rank-F girl she stands with",
+      "short": "stands with her",
+      "evidence": "Myeong Ja-eun: always timid, but affectionate towards people",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ui",
+      "to": "harin",
+      "type": "friend",
+      "label": "misses and looks up to Ha Rin",
+      "short": "looks up to her",
+      "evidence": "She misses and looks up to Ha-rin",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunjeong",
+      "to": "yerim",
+      "type": "friend",
+      "label": "only close to Ye Rim",
+      "short": "only friend",
+      "evidence": "who is only close with Ye-rim",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiae",
+      "to": "suji",
+      "type": "friend",
+      "label": "changes after meeting Su Ji",
+      "short": "changed by her",
+      "evidence": "undergoes a change after meeting Su-ji",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doa",
+      "to": "suji",
+      "type": "work",
+      "label": "class president of 2-5",
+      "short": "class president",
+      "evidence": "Seo Do-ah: The class president of class 2–5",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doa",
+      "to": "harin",
+      "type": "rivalry",
+      "label": "the top student under the game's queen",
+      "short": "under her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaehyeong",
+      "to": "harin",
+      "type": "work",
+      "label": "the strategist of the game",
+      "short": "her strategist",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "eunbyeol",
+      "to": "harin",
+      "type": "work",
+      "label": "Ha Rin's side",
+      "short": "her side",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dayun",
+      "to": "harin",
+      "type": "work",
+      "label": "the chaebol daughter in her circle",
+      "short": "her circle",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seulha",
+      "to": "suji",
+      "type": "friend",
+      "label": "the judoka who comes to her side",
+      "short": "her side",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "haejun",
+      "to": "doa",
+      "type": "work",
+      "label": "the class's housekeeper",
+      "short": "class role",
+      "evidence": "The housekeeper of class 2–5",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeondu",
+      "to": "jaeun",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seungi",
+      "to": "jaeun",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "soyeong",
+      "to": "harin",
+      "type": "work",
+      "label": "Ha Rin's side",
+      "short": "her side",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "nahui",
+      "to": "suji",
+      "type": "work",
+      "label": "the teacher who digs into the game's violence",
+      "short": "digs in",
+      "evidence": "A part-time literature teacher [...] who is interested in the school violence that occurs in the pyramid game and tries to get to the bottom of it",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunae",
+      "to": "nahui",
+      "type": "rivalry",
+      "label": "the principal hiding the violence",
+      "short": "hides it",
+      "evidence": "The principal of Baekyeon Girls' High School who is trying to hide the school violence",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juhyeong",
+      "to": "suji",
+      "type": "work",
+      "label": "homeroom teacher of 2-5",
+      "short": "homeroom teacher",
+      "evidence": "the homeroom teacher of class 2–5",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ihwa",
+      "to": "harin",
+      "type": "family",
+      "label": "mother; the school's chairwoman",
+      "short": "mother",
+      "evidence": "[Ha Rin's mother] / chairwoman of Baekyeon Girls' High School",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungyun",
+      "to": "doa",
+      "type": "family",
+      "label": "father; hospital director",
+      "short": "father",
+      "evidence": "[Do A's father] / the hospital director",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunghwa",
+      "to": "suji",
+      "type": "friend",
+      "label": "the convenience-store part-timer drawn into the game because of her",
+      "short": "drawn in",
+      "evidence": "got into the Pyramid Game because of Su-ji",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "suji",
+      "harin",
+      "jaeun",
+      "yerim",
+      "doa",
+      "eunbyeol",
+      "ui",
+      "dayun",
+      "eunjeong",
+      "jaehyeong",
+      "jiae",
+      "seulha",
+      "haejun",
+      "yeondu",
+      "seungi",
+      "soyeong",
+      "nahui",
+      "sunae",
+      "juhyeong",
+      "ihwa",
+      "jungyun",
+      "seunghwa"
+    ],
+    "blocks": {
+      "Class 2-5": [
+        0,
+        0
+      ],
+      "Adults": [
+        2,
+        0
+      ],
+      "Around the school": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "suji",
+      "harin"
+    ]
+  }
+}

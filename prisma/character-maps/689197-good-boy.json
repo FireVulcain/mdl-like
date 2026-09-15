@@ -1,0 +1,548 @@
+{
+  "version": 1,
+  "mdlSlug": "689197-good-boy",
+  "title": "Good Boy",
+  "native": "굿보이",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (23 roles + guests, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "dongju",
+    "hanna"
+  ],
+  "people": [
+    {
+      "id": "dongju",
+      "name": "Yun Dong Ju",
+      "actor": "Park Bo Gum",
+      "image": "https://i.mydramalist.com/ABWwYZ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Boxing gold medallist, now a constable on the special violent-crimes team"
+    },
+    {
+      "id": "hanna",
+      "name": "Ji Han Na",
+      "actor": "Kim So Hyun",
+      "image": "https://i.mydramalist.com/VX8D3Q_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Shooting gold medallist, now a senior constable"
+    },
+    {
+      "id": "juyeong",
+      "name": "Min Ju Yeong",
+      "actor": "Oh Jung Se",
+      "image": "https://i.mydramalist.com/VXDoEJ_5m.jpg",
+      "group": "Min Ju Yeong's cartel",
+      "inCast": true,
+      "note": "Customs officer, grade 7 — the cartel's head"
+    },
+    {
+      "id": "jonghyeon",
+      "name": "Kim Jong Hyeon",
+      "actor": "Lee Sang Yi",
+      "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
+      "group": "Special team",
+      "inCast": true,
+      "note": "Fencing silver; sergeant"
+    },
+    {
+      "id": "mansik",
+      "name": "Ko Man Sik",
+      "actor": "Heo Sung Tae",
+      "image": "https://i.mydramalist.com/3oNjDW_5m.jpg",
+      "group": "Special team",
+      "inCast": true,
+      "note": "Wrestling bronze; team leader"
+    },
+    {
+      "id": "jaehong",
+      "name": "Sin Jae Hong",
+      "actor": "Tae Won Seok",
+      "image": "https://i.mydramalist.com/b3o6QZ_5m.jpg",
+      "group": "Special team",
+      "inCast": true,
+      "note": "Discus bronze; senior constable"
+    },
+    {
+      "id": "drugmon",
+      "name": "\"Drug Monster\" / Kim Yeon Ha",
+      "actor": "Lee Ho Jung",
+      "image": "https://i.mydramalist.com/XdbL8d_5m.jpg",
+      "group": "Min Ju Yeong's cartel",
+      "inCast": true,
+      "note": "The drug ghost of Korea, Japan and Southeast Asia"
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "actor": "Ko Jun",
+      "image": "https://i.mydramalist.com/DkWo3y_5m.jpg",
+      "group": "Min Ju Yeong's cartel",
+      "inCast": true,
+      "note": "Russian mafia"
+    },
+    {
+      "id": "seokchun",
+      "name": "Baek Seok Chun",
+      "actor": "Ahn Se Ho",
+      "image": "https://i.mydramalist.com/ABX7ZL_5m.jpg",
+      "group": "Min Ju Yeong's cartel",
+      "inCast": true,
+      "note": "Knife man"
+    },
+    {
+      "id": "jeonggu",
+      "name": "O Jeong Gu",
+      "actor": "Jung Man Sik",
+      "image": "https://i.mydramalist.com/l01Nn6_5m.jpg",
+      "group": "Min Ju Yeong's cartel",
+      "inCast": true,
+      "note": "Former national boxing coach; J9 Security"
+    },
+    {
+      "id": "gwangse",
+      "name": "Lee Gwang Se",
+      "actor": "Jung Jae Won",
+      "image": "https://i.mydramalist.com/xd3V0_5m.jpg",
+      "group": "Min Ju Yeong's cartel",
+      "inCast": true,
+      "note": "Smuggler"
+    },
+    {
+      "id": "panyeol",
+      "name": "Cho Pan Yeol",
+      "actor": "Kim Eung Soo",
+      "image": "https://i.mydramalist.com/xxXKN_5m.jpg",
+      "group": "Insung police",
+      "inCast": true,
+      "note": "Insung police commissioner"
+    },
+    {
+      "id": "daeyong",
+      "name": "An Dae Yong",
+      "actor": "Han Kyu Won",
+      "image": "https://i.mydramalist.com/xQ3jjm.jpg",
+      "group": "Insung police",
+      "inCast": true,
+      "note": "Regional investigation team leader"
+    },
+    {
+      "id": "gyeongcheol",
+      "name": "Hwang Gyeong Cheol",
+      "actor": "Seo Hyun Chul",
+      "image": "https://i.mydramalist.com/E5lJoz_5m.jpg",
+      "group": "Insung police",
+      "inCast": true,
+      "note": "Chief of administration"
+    },
+    {
+      "id": "gyeongmi",
+      "name": "Jung Gyeong Mi",
+      "actor": "Lee Ji Hye",
+      "image": "https://i.mydramalist.com/WPnYRW_5m.jpg",
+      "group": "Insung police",
+      "inCast": true,
+      "note": "Police officer"
+    },
+    {
+      "id": "lee",
+      "name": "Section Chief Lee",
+      "actor": "Nam Jin Bok",
+      "image": "https://i.mydramalist.com/pg4Jb_5m.jpg",
+      "group": "Insung police",
+      "inCast": true
+    },
+    {
+      "id": "seokhyeon",
+      "name": "Kim Seok Hyeon",
+      "actor": "Kim Seo Kyung",
+      "image": "https://i.mydramalist.com/pz7ZV_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Prosecutor"
+    },
+    {
+      "id": "geumnam",
+      "name": "Kim Geum Nam",
+      "actor": "Park Chul Min",
+      "image": "https://i.mydramalist.com/dKZEA_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Pawn shop"
+    },
+    {
+      "id": "mija",
+      "name": "Jung Mi Ja",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Noodle restaurant"
+    },
+    {
+      "id": "gyeongsuk",
+      "name": "Jin Gyeong Suk",
+      "actor": "Seo Jae Hee",
+      "image": "https://i.mydramalist.com/06YzE_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "hocheol",
+      "name": "Ji Ho Cheol",
+      "actor": "Kim Young Sung",
+      "image": "https://i.mydramalist.com/0nRbr_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "jeonga",
+      "name": "Ko Jeong A",
+      "actor": "Choi Myung Bin",
+      "image": "https://i.mydramalist.com/4emLPw_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "gyeongil",
+      "name": "Lee Gyeong Il",
+      "actor": "Lee Jung Ha",
+      "image": "https://i.mydramalist.com/pqQwQ_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "dongju",
+      "to": "hanna",
+      "type": "romance",
+      "label": "lovers — the boxer and the shooter",
+      "short": "lovers",
+      "evidence": "윤동주 역 - 한나의 연인 / 지한나 역 - 동주의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mansik",
+      "to": "dongju",
+      "type": "work",
+      "label": "team leader of the 'Olympic Avengers'",
+      "short": "team leader",
+      "evidence": "고만식 역 - 현 강력특수팀 팀장 경위",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jonghyeon",
+      "to": "dongju",
+      "type": "work",
+      "label": "the fencer on the team",
+      "short": "teammate",
+      "evidence": "김종현 역 - 현 강력특수팀 경사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaehong",
+      "to": "dongju",
+      "type": "work",
+      "label": "the thrower on the team",
+      "short": "teammate",
+      "evidence": "신재홍 역 - 현 강력특수팀 경장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hanna",
+      "to": "mansik",
+      "type": "work",
+      "label": "on his team",
+      "short": "her team leader",
+      "evidence": "지한나 역 - 현 강력특수팀 경장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyeong",
+      "to": "dongju",
+      "type": "rivalry",
+      "label": "the customs officer behind the cartel — the team's enemy",
+      "short": "enemy",
+      "evidence": "민주영 역 - 관세청 공무원 / 민주영 카르텔 빌런",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "drugmon",
+      "to": "juyeong",
+      "type": "work",
+      "label": "the cartel's drug dealer",
+      "short": "cartel",
+      "evidence": "마귀(김연하) 역 - 마약딜러 (민주영 카르텔)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "leo",
+      "to": "juyeong",
+      "type": "work",
+      "label": "Russian mafia, in the cartel",
+      "short": "cartel",
+      "evidence": "레오 역 - 러시아 마피아 (민주영 카르텔)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokchun",
+      "to": "juyeong",
+      "type": "work",
+      "label": "the cartel's knife man",
+      "short": "cartel",
+      "evidence": "백석춘 역 - 조선족 칼잽이 (민주영 카르텔)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonggu",
+      "to": "dongju",
+      "type": "rivalry",
+      "label": "his old national boxing coach — now on the cartel's side",
+      "short": "old coach",
+      "evidence": "[Former national boxing team coach] / 오종구 역 - 전 복싱국대 코치, 현 J9경비 대표 (민주영 카르텔)",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangse",
+      "to": "juyeong",
+      "type": "work",
+      "label": "smuggler",
+      "short": "smuggler",
+      "evidence": "[Smuggler]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "panyeol",
+      "to": "mansik",
+      "type": "work",
+      "label": "the commissioner",
+      "short": "commissioner",
+      "evidence": "조판열 역 - 인성시 지방경찰청장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeyong",
+      "to": "mansik",
+      "type": "rivalry",
+      "label": "the regional team leader, his rival",
+      "short": "rival team leader",
+      "evidence": "안대용 역 - 광역수사대 팀장, 만식과 신경전을 벌이는 라이벌",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongcheol",
+      "to": "panyeol",
+      "type": "work",
+      "label": "chief of administration",
+      "short": "administration",
+      "evidence": "황경철 역 - 경무부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongmi",
+      "to": "hanna",
+      "type": "work",
+      "label": "police officer",
+      "short": "colleague",
+      "evidence": "[Police officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "lee",
+      "to": "mansik",
+      "type": "work",
+      "label": "section chief",
+      "short": "section chief",
+      "evidence": "이 과장 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokhyeon",
+      "to": "jonghyeon",
+      "type": "family",
+      "label": "older brother, a prosecutor",
+      "short": "brother",
+      "evidence": "김석현 역 - 검사, 종현의 형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumnam",
+      "to": "dongju",
+      "type": "friend",
+      "label": "the pawn-shop owner",
+      "short": "pawn shop",
+      "evidence": "김금남 역 - 전당포 운영",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mija",
+      "to": "gyeongil",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "정미자 역 - 경일의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongil",
+      "to": "dongju",
+      "type": "friend",
+      "label": "the boy from the neighbourhood",
+      "short": "the kid",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeongsuk",
+      "to": "hanna",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Han Na's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hocheol",
+      "to": "hanna",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Han Na's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonga",
+      "to": "mansik",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": "[Man Sik's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dongju",
+      "hanna",
+      "juyeong",
+      "jonghyeon",
+      "mansik",
+      "jaehong",
+      "drugmon",
+      "leo",
+      "seokchun",
+      "jeonggu",
+      "gwangse",
+      "panyeol",
+      "daeyong",
+      "gyeongcheol",
+      "gyeongmi",
+      "lee",
+      "seokhyeon",
+      "geumnam",
+      "mija",
+      "gyeongsuk",
+      "hocheol",
+      "jeonga",
+      "gyeongil"
+    ],
+    "blocks": {
+      "Special team": [
+        0,
+        0
+      ],
+      "Min Ju Yeong's cartel": [
+        2,
+        0
+      ],
+      "Insung police": [
+        0,
+        2
+      ],
+      "Around them": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "dongju",
+      "hanna"
+    ]
+  }
+}

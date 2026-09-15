@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "mdlSlug": "758259-mom-s-friend-s-son",
+  "title": "Love Next Door",
+  "native": "엄마친구아들",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "seunghyo",
+    "seokryu"
+  ],
+  "people": [
+    {
+      "id": "seunghyo",
+      "name": "Choi Seung Hyo",
+      "actor": "Jung Hae In",
+      "image": "https://i.mydramalist.com/PxZeJ0_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Cho Yeo Jun",
+          "image": "https://i.mydramalist.com/eYrWxp_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Korea's most watched young architect; co-head of Atelier In"
+    },
+    {
+      "id": "seokryu",
+      "name": "Bae Seok Ryu",
+      "actor": "Jung So Min",
+      "image": "https://i.mydramalist.com/mON8QP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Eun Seo",
+          "image": "https://i.mydramalist.com/nOrkvW_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Ex-Greip employee, back home jobless"
+    },
+    {
+      "id": "moeum",
+      "name": "Jung Mo Eum",
+      "actor": "Kim Ji Eun",
+      "image": "https://i.mydramalist.com/RBk6gg_5m.jpg",
+      "group": "Mo Eum's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Se A",
+          "image": "https://i.mydramalist.com/73BbEj_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "119 paramedic"
+    },
+    {
+      "id": "danho",
+      "name": "Kang Dan Ho",
+      "actor": "Yun Ji On",
+      "image": "https://i.mydramalist.com/qpyJQ_5m.jpg",
+      "group": "Dan Ho's family",
+      "inCast": true,
+      "note": "Reporter at Chungwoo Daily"
+    },
+    {
+      "id": "hyesuk",
+      "name": "Seo Hye Suk",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "Seung Hyo's family",
+      "inCast": true,
+      "note": "Diplomat; of the 'Suk sisters', Lavender"
+    },
+    {
+      "id": "gyeongjong",
+      "name": "Choi Gyeong Jong",
+      "actor": "Lee Seung Jun",
+      "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
+      "group": "Seung Hyo's family",
+      "inCast": true,
+      "note": "Emergency medicine professor"
+    },
+    {
+      "id": "misuk",
+      "name": "Na Mi Suk",
+      "actor": "Park Ji Young",
+      "image": "https://i.mydramalist.com/JBom2p_5m.jpg",
+      "group": "Seok Ryu's family",
+      "inCast": true,
+      "note": "Of the 'Suk sisters', Lavender"
+    },
+    {
+      "id": "geunsik",
+      "name": "Bae Geun Sik",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Seok Ryu's family",
+      "inCast": true,
+      "note": "Runs the snack bar"
+    },
+    {
+      "id": "dongjin",
+      "name": "Bae Dong Jin",
+      "actor": "Lee Seung Hyub",
+      "image": "https://i.mydramalist.com/602lyg_5m.jpg",
+      "group": "Seok Ryu's family",
+      "inCast": true
+    },
+    {
+      "id": "jaesuk",
+      "name": "Do Jae Suk",
+      "actor": "Kim Geum Soon",
+      "image": "https://i.mydramalist.com/RNoEP_5m.jpg",
+      "group": "Mo Eum's family",
+      "inCast": true,
+      "note": "Of the 'Suk sisters', Lavender"
+    },
+    {
+      "id": "insuk",
+      "name": "Bang In Suk",
+      "actor": "Han Ye Ju",
+      "image": "https://i.mydramalist.com/jQqnzy_5m.jpg",
+      "group": "Mo Eum's family",
+      "inCast": true,
+      "note": "The fourth 'Suk sister'"
+    },
+    {
+      "id": "yeondu",
+      "name": "Kang Yeon Du",
+      "actor": "Shim Ji Yoo",
+      "image": "https://i.mydramalist.com/Xnrpp_5m.jpg",
+      "group": "Dan Ho's family",
+      "inCast": true
+    },
+    {
+      "id": "myeongu",
+      "name": "Yun Myeong U",
+      "actor": "Jeon Seok Ho",
+      "image": "https://i.mydramalist.com/YYj5OB_5m.jpg",
+      "group": "Atelier In",
+      "inCast": true,
+      "note": "Co-head of Atelier In"
+    },
+    {
+      "id": "nayun",
+      "name": "Lee Na Yun",
+      "actor": "Shim So Young",
+      "image": "https://i.mydramalist.com/RBPLeo_5m.jpg",
+      "group": "Atelier In",
+      "inCast": true
+    },
+    {
+      "id": "jungmin",
+      "name": "Han Jung Min",
+      "actor": "Bang So Min",
+      "image": "https://i.mydramalist.com/vXWmkp_5m.jpg",
+      "group": "Atelier In",
+      "inCast": true
+    },
+    {
+      "id": "hyeonjun",
+      "name": "Song Hyeon Jun",
+      "actor": "Han Joon Woo",
+      "image": "https://i.mydramalist.com/73b5br_5m.jpg",
+      "group": "Seok Ryu's family",
+      "inCast": true,
+      "note": "Lawyer"
+    },
+    {
+      "id": "taehui",
+      "name": "Jang Tae Hui",
+      "actor": "Seo Ji Hye",
+      "image": "https://i.mydramalist.com/En2vO_5m.jpg",
+      "group": "Seung Hyo's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "seunghyo",
+      "to": "seokryu",
+      "type": "romance",
+      "label": "best friends since four — bathhouse and all — and lovers",
+      "short": "best friend, lover",
+      "evidence": "석류의 절친이자 연인 / When they were 4 years old, their moms became friends",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "moeum",
+      "to": "seokryu",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "모음의 절친 / 승효와 석류의 절친",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "moeum",
+      "to": "seunghyo",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "승효와 석류의 절친",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "danho",
+      "to": "moeum",
+      "type": "romance",
+      "label": "lovers — the reporter and the paramedic",
+      "short": "lovers",
+      "evidence": "강단호 역 - 모음의 연인 / 정모음 역 - 단호의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyesuk",
+      "to": "seunghyo",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "서혜숙 역 - 승효의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongjong",
+      "to": "seunghyo",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "최경종 역 - 승효의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongjong",
+      "to": "hyesuk",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "혜숙의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "misuk",
+      "to": "seokryu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "나미숙 역 - 석류와 동진의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunsik",
+      "to": "seokryu",
+      "type": "family",
+      "label": "father; the snack bar",
+      "short": "father",
+      "evidence": "배근식 역 - 분식집 운영, 석류와 동진의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunsik",
+      "to": "misuk",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "미숙의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongjin",
+      "to": "seokryu",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "배동진 역 - 석류의 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesuk",
+      "to": "moeum",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "도재숙 역 - 모음의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesuk",
+      "to": "misuk",
+      "type": "friend",
+      "label": "the 'Suk sisters' — best friends since school, the mothers who made the story",
+      "short": "Suk sisters",
+      "evidence": "미숙와 재숙와 인숙의 절친, 라벤더 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaesuk",
+      "to": "misuk",
+      "type": "friend",
+      "label": "the 'Suk sisters'",
+      "short": "Suk sisters",
+      "evidence": "미숙와 혜숙와 인숙의 절친, 라벤더 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "insuk",
+      "to": "misuk",
+      "type": "friend",
+      "label": "the fourth 'Suk sister'",
+      "short": "Suk sisters",
+      "evidence": "방인숙 역 - '쑥자매'의 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "danho",
+      "to": "yeondu",
+      "type": "family",
+      "label": "raises her as his daughter — his brother's child, in truth",
+      "short": "father",
+      "evidence": "강연두 역 - 단호의 딸. 단호의 조카. 13회에서 단호의 친딸이 아니라 형 내외의 친딸임이 밝혀졌다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongu",
+      "to": "seunghyo",
+      "type": "work",
+      "label": "co-head of Atelier In; his senior from university",
+      "short": "partner",
+      "evidence": "윤명우 역 - 아틀리에 '인'의 공동대표, 승효의 과 선배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nayun",
+      "to": "seunghyo",
+      "type": "work",
+      "label": "Atelier In staff",
+      "short": "staff",
+      "evidence": "이나윤 역 - 아틀리에 '인'의 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungmin",
+      "to": "seunghyo",
+      "type": "work",
+      "label": "Atelier In staff",
+      "short": "staff",
+      "evidence": "한정민 역 - 아틀리에 '인'의 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjun",
+      "to": "seokryu",
+      "type": "romance",
+      "label": "ex-fiance",
+      "short": "ex-fiance",
+      "evidence": "[Seok Ryu's ex-fiancé]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taehui",
+      "to": "seunghyo",
+      "type": "romance",
+      "label": "ex-girlfriend",
+      "short": "ex",
+      "evidence": "[Seung Hyo's ex-girlfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seunghyo",
+      "seokryu",
+      "moeum",
+      "danho",
+      "hyesuk",
+      "gyeongjong",
+      "misuk",
+      "geunsik",
+      "dongjin",
+      "jaesuk",
+      "insuk",
+      "yeondu",
+      "myeongu",
+      "nayun",
+      "jungmin",
+      "hyeonjun",
+      "taehui"
+    ],
+    "blocks": {
+      "Seung Hyo's family": [
+        0,
+        0
+      ],
+      "Seok Ryu's family": [
+        2,
+        0
+      ],
+      "Mo Eum's family": [
+        0,
+        2
+      ],
+      "Dan Ho's family": [
+        2,
+        2
+      ],
+      "Atelier In": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seunghyo",
+      "seokryu"
+    ]
+  }
+}

@@ -1,0 +1,457 @@
+{
+  "version": 1,
+  "mdlSlug": "788412-brave-new-world",
+  "title": "My Royal Nemesis",
+  "native": "멋진 신세계",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (18 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)"
+  ],
+  "main": [
+    "seori",
+    "segye"
+  ],
+  "people": [
+    {
+      "id": "seori",
+      "name": "Sin Seo Ri / Kang Dan Sim",
+      "actor": "Im Ji Yeon",
+      "image": "https://i.mydramalist.com/5vL620_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Actress playing a villainess — and Joseon's legendary villainess Kang Dan Sim, reborn"
+    },
+    {
+      "id": "segye",
+      "name": "Cha Se Gye / Grand Prince Cheongheon",
+      "actor": "Heo Nam Jun",
+      "image": "https://i.mydramalist.com/3o7wNe_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Ruthless chaebol; the prince Yi Hyeon of three hundred years ago"
+    },
+    {
+      "id": "mundo",
+      "name": "Choi Mun Do / King An Jong",
+      "actor": "Jang Seung Jo",
+      "image": "https://i.mydramalist.com/p54Xn_5m.jpg",
+      "group": "Three hundred years ago",
+      "inCast": true,
+      "note": "The king who sent Dan Sim the poison — reborn"
+    },
+    {
+      "id": "gwangnam",
+      "name": "Baek Gwang Nam",
+      "actor": "Kim Min Seok",
+      "image": "https://i.mydramalist.com/0LVrK_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true,
+      "note": "Manager"
+    },
+    {
+      "id": "jihyo",
+      "name": "Yun Ji Hyo",
+      "actor": "Lee Se Hee",
+      "image": "https://i.mydramalist.com/4ZDQr_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true,
+      "note": "Top star"
+    },
+    {
+      "id": "oksun",
+      "name": "Nam Ok Sun",
+      "actor": "Kim Hae Sook",
+      "image": "https://i.mydramalist.com/Z8gXdk_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true,
+      "note": "Deceased in ep. 13"
+    },
+    {
+      "id": "buseon",
+      "name": "Hong Bu Seon",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true,
+      "note": "CEO of Doran Entertainment"
+    },
+    {
+      "id": "jeongae",
+      "name": "Geum Jeong Ae / Hwang",
+      "actor": "Oh Min Ae",
+      "image": "https://i.mydramalist.com/r7Kz2_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true,
+      "note": "Shaman 'Geum Bosal'"
+    },
+    {
+      "id": "pilgyu",
+      "name": "Koo Pil Gyu",
+      "actor": "Park Jin U",
+      "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true,
+      "note": "Goshiwon manager"
+    },
+    {
+      "id": "euna",
+      "name": "Kwak Eun A",
+      "actor": "Kim Gye Rim",
+      "image": "https://i.mydramalist.com/x42W83_5m.jpg",
+      "group": "Seo Ri's people",
+      "inCast": true
+    },
+    {
+      "id": "taehui",
+      "name": "Mo Tae Hui",
+      "actor": "Chae Seo An",
+      "image": "https://i.mydramalist.com/RBjqAr_5m.jpg",
+      "group": "Se Gye's people",
+      "inCast": true
+    },
+    {
+      "id": "dalsu",
+      "name": "Cha Dal Su",
+      "actor": "Yoon Joo Sang",
+      "image": "https://i.mydramalist.com/oQ4dxm.jpg",
+      "group": "Se Gye's people",
+      "inCast": true
+    },
+    {
+      "id": "jaehan",
+      "name": "Son Jae Han",
+      "actor": "Yoon Byung Hee",
+      "image": "https://i.mydramalist.com/dJZPe_5m.jpg",
+      "group": "Se Gye's people",
+      "inCast": true
+    },
+    {
+      "id": "juran",
+      "name": "Cha Ju Ran",
+      "actor": "Jung Young Joo",
+      "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
+      "group": "Se Gye's people",
+      "inCast": true
+    },
+    {
+      "id": "jumi",
+      "name": "Cha Ju Mi",
+      "actor": "Baek Eun Hye",
+      "image": "https://i.mydramalist.com/4k7yZm.jpg",
+      "group": "Se Gye's people",
+      "inCast": true
+    },
+    {
+      "id": "jinok",
+      "name": "Kwon Jin Ok",
+      "actor": "Kim Hyun",
+      "image": "https://i.mydramalist.com/5v7BVY_5m.jpg",
+      "group": "Se Gye's people",
+      "inCast": true,
+      "note": "Butler"
+    },
+    {
+      "id": "seokho",
+      "name": "Jang Seok Ho",
+      "actor": "Oh Man Seok",
+      "image": "https://i.mydramalist.com/BE5AV_5m.jpg",
+      "group": "Se Gye's people",
+      "inCast": true,
+      "note": "Biojei executive"
+    },
+    {
+      "id": "namjin",
+      "name": "Seo Nam Jin",
+      "actor": "Jung Jae Hyuk",
+      "image": "https://i.mydramalist.com/rDv7N_5m.jpg",
+      "group": "Three hundred years ago",
+      "inCast": true,
+      "note": "Mun Do's attendant"
+    }
+  ],
+  "links": [
+    {
+      "from": "seori",
+      "to": "segye",
+      "type": "romance",
+      "label": "love-hate: the Joseon villainess and the modern chaebol",
+      "short": "love-hate",
+      "evidence": "a love-hate relationship between Sin Seo Ri, a legendary villainess from Joseon, and Cha Se Gye, a ruthless modern-day chaebol",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seori",
+      "to": "segye",
+      "type": "bond",
+      "label": "Dan Sim and Prince Cheongheon — three hundred years ago",
+      "short": "past lives",
+      "evidence": "신서리 / 강단심 — 차세계 / 청헌대군 이현",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mundo",
+      "to": "segye",
+      "type": "family",
+      "label": "King An Jong, the prince's brother — then; now Choi Mun Do",
+      "short": "brother, then",
+      "evidence": "서경화 : 대비 역 - 안종과 청헌대군의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mundo",
+      "to": "seori",
+      "type": "rivalry",
+      "label": "the king who had Dan Sim poisoned; reborn",
+      "short": "her death",
+      "evidence": "300년 전 단심에게 어명을 전하고 사약을 내린 금부도사 / 최문도 / 안종",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mundo",
+      "to": "seori",
+      "type": "romance",
+      "label": "the other man, now",
+      "short": "wants her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gwangnam",
+      "to": "seori",
+      "type": "work",
+      "label": "manager",
+      "short": "manager",
+      "evidence": "[Seo Ri's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihyo",
+      "to": "seori",
+      "type": "rivalry",
+      "label": "the top star opposite the villainess",
+      "short": "top star",
+      "evidence": "[Top star]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "oksun",
+      "to": "seori",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Seo Ri's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "buseon",
+      "to": "seori",
+      "type": "work",
+      "label": "CEO of her agency",
+      "short": "her CEO",
+      "evidence": "[Doran Entertainment CEO]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongae",
+      "to": "seori",
+      "type": "bond",
+      "label": "her mentor — the shaman",
+      "short": "mentor",
+      "evidence": "[Seo Ri's mentor] / 금정애(금보살)",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilgyu",
+      "to": "seori",
+      "type": "work",
+      "label": "manager of her goshiwon",
+      "short": "goshiwon",
+      "evidence": "[Goshiwon manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "euna",
+      "to": "seori",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Seo Ri's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taehui",
+      "to": "segye",
+      "type": "romance",
+      "label": "his blind date",
+      "short": "blind date",
+      "evidence": "[Se Gye's blind date]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dalsu",
+      "to": "segye",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[Se Gye's grandfather]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehan",
+      "to": "segye",
+      "type": "work",
+      "label": "right-hand man",
+      "short": "right-hand man",
+      "evidence": "[Se Gye's right-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juran",
+      "to": "segye",
+      "type": "family",
+      "label": "eldest aunt",
+      "short": "aunt",
+      "evidence": "[Se Gye's eldest aunt]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jumi",
+      "to": "segye",
+      "type": "family",
+      "label": "second aunt",
+      "short": "aunt",
+      "evidence": "[Se Gye's second aunt]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinok",
+      "to": "dalsu",
+      "type": "work",
+      "label": "butler",
+      "short": "butler",
+      "evidence": "[Dal Su's butler]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokho",
+      "to": "segye",
+      "type": "work",
+      "label": "Biojei executive",
+      "short": "executive",
+      "evidence": "[Biojei executive]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "namjin",
+      "to": "mundo",
+      "type": "work",
+      "label": "attendant",
+      "short": "attendant",
+      "evidence": "[Mun Do's attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seori",
+      "segye",
+      "mundo",
+      "gwangnam",
+      "jihyo",
+      "oksun",
+      "buseon",
+      "jeongae",
+      "pilgyu",
+      "euna",
+      "taehui",
+      "dalsu",
+      "jaehan",
+      "juran",
+      "jumi",
+      "jinok",
+      "seokho",
+      "namjin"
+    ],
+    "blocks": {
+      "Seo Ri's people": [
+        0,
+        0
+      ],
+      "Se Gye's people": [
+        2,
+        0
+      ],
+      "Three hundred years ago": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seori",
+      "segye"
+    ]
+  }
+}

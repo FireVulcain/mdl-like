@@ -1,0 +1,533 @@
+{
+  "version": 1,
+  "mdlSlug": "688213-ghost-doctor",
+  "title": "Ghost Doctor",
+  "native": "고스트 닥터",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (26 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "youngmin",
+    "seungtak"
+  ],
+  "people": [
+    {
+      "id": "youngmin",
+      "name": "Cha Young Min",
+      "actor": "Rain",
+      "image": "https://i.mydramalist.com/Rm65g_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "38, brilliant, arrogant surgeon — in a coma, his spirit in Seung Tak's body"
+    },
+    {
+      "id": "seungtak",
+      "name": "Ko Seung Tak",
+      "actor": "Kim Bum",
+      "image": "https://i.mydramalist.com/81PNNb_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "28, rich, lucky resident with no wish to be a good doctor"
+    },
+    {
+      "id": "sejin",
+      "name": "Jang Se Jin",
+      "actor": "Uee",
+      "image": "https://i.mydramalist.com/x4g22X_5m.jpg",
+      "group": "Se Jin's family",
+      "inCast": true,
+      "note": "38, genius neurosurgeon back from abroad"
+    },
+    {
+      "id": "soojung",
+      "name": "Oh Soo Jung",
+      "actor": "Son Na Eun",
+      "image": "https://i.mydramalist.com/eZenK_5m.jpg",
+      "group": "Hospital",
+      "inCast": true,
+      "note": "28, ER intern who wants thoracic surgery"
+    },
+    {
+      "id": "tess",
+      "name": "Tess / Oh Joo Myung",
+      "actor": "Sung Dong Il",
+      "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
+      "group": "Coma ghosts",
+      "inCast": true,
+      "note": "Genius surgeon, a ghost for twenty years"
+    },
+    {
+      "id": "seungwon",
+      "name": "Han Seung Won",
+      "actor": "Tae In Ho",
+      "image": "https://i.mydramalist.com/4b5erm.jpg",
+      "group": "The foundation (Seung Tak's family)",
+      "inCast": true,
+      "note": "Executive director; two-faced"
+    },
+    {
+      "id": "miran",
+      "name": "Sung Mi Ran",
+      "actor": "Son Ji Na",
+      "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
+      "group": "The foundation (Seung Tak's family)",
+      "inCast": true,
+      "note": "President of the foundation"
+    },
+    {
+      "id": "jaesik",
+      "name": "Chairman Ko Jae Sik",
+      "actor": "Myung Gye Nam",
+      "image": "https://i.mydramalist.com/j4eq8m.jpg",
+      "group": "The foundation (Seung Tak's family)",
+      "inCast": true
+    },
+    {
+      "id": "sunghye",
+      "name": "Ko Sung Hye",
+      "actor": "Seo Ji Young",
+      "image": "https://i.mydramalist.com/RX13o_5m.jpg",
+      "group": "The foundation (Seung Tak's family)",
+      "inCast": true,
+      "note": "Foundation director"
+    },
+    {
+      "id": "taesik",
+      "name": "Ban Tae Sik",
+      "actor": "Park Chul Min",
+      "image": "https://i.mydramalist.com/dKZEA_5m.jpg",
+      "group": "Thoracic surgery",
+      "inCast": true,
+      "note": "Chief of thoracic surgery"
+    },
+    {
+      "id": "taehyeon",
+      "name": "An Tae Hyeon",
+      "actor": "Ko Sang Ho",
+      "image": "https://i.mydramalist.com/xYwlqm.jpg",
+      "group": "Thoracic surgery",
+      "inCast": true,
+      "note": "34, fellow"
+    },
+    {
+      "id": "jaewon",
+      "name": "Kim Jae Won",
+      "actor": "Ahn Tae Hwan",
+      "image": "https://i.mydramalist.com/eQ6XQ_5m.jpg",
+      "group": "Thoracic surgery",
+      "inCast": true,
+      "note": "29, resident"
+    },
+    {
+      "id": "sunho",
+      "name": "Lee Sun Ho",
+      "actor": "Kim Jae Yong",
+      "image": "https://i.mydramalist.com/yWBdAn_5m.jpg",
+      "group": "Thoracic surgery",
+      "inCast": true,
+      "note": "30, resident"
+    },
+    {
+      "id": "youngho",
+      "name": "Han Young Ho",
+      "actor": "Ma Jung Pil",
+      "image": "https://i.mydramalist.com/WBR0Rm.jpg",
+      "group": "Thoracic surgery",
+      "inCast": true
+    },
+    {
+      "id": "minho",
+      "name": "Jang Min Ho",
+      "actor": "Lee Tae Sung",
+      "image": "https://i.mydramalist.com/1r487_5m.jpg",
+      "group": "Se Jin's family",
+      "inCast": true,
+      "note": "Chunmyung Group"
+    },
+    {
+      "id": "gwangduk",
+      "name": "Jang Gwang Duk",
+      "actor": "Lee Moon Soo",
+      "image": "https://i.mydramalist.com/Y3LjBm.jpg",
+      "group": "Se Jin's family",
+      "inCast": true,
+      "note": "Chunmyung chairman — a coma ghost"
+    },
+    {
+      "id": "bomi",
+      "name": "Im Bo Mi",
+      "actor": "Yoon So Hui",
+      "image": "https://i.mydramalist.com/qz7WQ_5m.jpg",
+      "group": "Coma ghosts",
+      "inCast": true
+    },
+    {
+      "id": "hoonkil",
+      "name": "Choi Hoon Kil",
+      "actor": "Choi Seok Won",
+      "image": "https://i.mydramalist.com/2wm3p2_5m.jpg",
+      "group": "Coma ghosts",
+      "inCast": true,
+      "note": "Dreams of acting"
+    },
+    {
+      "id": "kookchan",
+      "name": "Hwang Kook Chan",
+      "actor": "Han Seung Hyun",
+      "image": "https://i.mydramalist.com/4qg4J_5m.jpg",
+      "group": "Coma ghosts",
+      "inCast": true
+    },
+    {
+      "id": "kim",
+      "name": "Ms. Kim",
+      "actor": "Hwang Seok Jeong",
+      "image": "https://i.mydramalist.com/2wmzlR_5m.jpg",
+      "group": "Hospital",
+      "inCast": true,
+      "note": "Cleaner"
+    },
+    {
+      "id": "nursejung",
+      "name": "Nurse Jung",
+      "actor": "Park So Eun",
+      "image": "https://i.mydramalist.com/B6PoR_5m.jpg",
+      "group": "Hospital",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "youngmin",
+      "to": "seungtak",
+      "type": "bond",
+      "label": "his spirit possesses Seung Tak's body",
+      "short": "possesses him",
+      "evidence": "his spirit possesses the body of Seung Tak, a lucky and rich resident doctor",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sejin",
+      "to": "youngmin",
+      "type": "romance",
+      "label": "his ex — left for abroad a decade ago because of her father, never explained",
+      "short": "ex",
+      "evidence": "Jang Se-jin: 38 years old, Cha Young-min's ex-girlfriend. She had to leave for overseas due to her father a decade ago",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "soojung",
+      "to": "seungtak",
+      "type": "romance",
+      "label": "best friend and love interest",
+      "short": "best friend",
+      "evidence": "She is Go Seung-tak's best friend and love interest",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "tess",
+      "to": "soojung",
+      "type": "family",
+      "label": "grandfather — the ghost Tess",
+      "short": "grandfather",
+      "evidence": "the granddaughter of Oh Joo-Myung, who becomes the ghost 'Tes' after his death",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tess",
+      "to": "youngmin",
+      "type": "work",
+      "label": "possessed him in his residency — his ghostly mentor",
+      "short": "ghost mentor",
+      "evidence": "helping the patients by possessing the hospital staff, including Cha Young-min while in his residency",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungwon",
+      "to": "seungtak",
+      "type": "family",
+      "label": "older cousin — and the villain",
+      "short": "cousin",
+      "evidence": "Han Seung-won: executive director and Go Seung-tak's older cousin [...] the main villain",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungwon",
+      "to": "youngmin",
+      "type": "rivalry",
+      "label": "the accident was his doing",
+      "short": "the culprit",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "miran",
+      "to": "seungtak",
+      "type": "family",
+      "label": "mother; foundation president",
+      "short": "mother",
+      "evidence": "[Seung Tak's mother] / president of a medical foundation",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesik",
+      "to": "seungtak",
+      "type": "family",
+      "label": "grandfather; chairman",
+      "short": "grandfather",
+      "evidence": "[(Seung Tak's grandfather]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunghye",
+      "to": "jaesik",
+      "type": "family",
+      "label": "of the Ko family, on the foundation board",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taesik",
+      "to": "youngmin",
+      "type": "work",
+      "label": "chief of the department — small in front of Young Min",
+      "short": "chief",
+      "evidence": "Chief of Thoracic Surgery [...] in front of Cha Young-min, he always gets smaller",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taehyeon",
+      "to": "youngmin",
+      "type": "work",
+      "label": "fellow under him",
+      "short": "fellow",
+      "evidence": "[Thoracic Surgery fellow]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaewon",
+      "to": "seungtak",
+      "type": "work",
+      "label": "fellow resident",
+      "short": "resident",
+      "evidence": "[Thoracic Surgery Resident]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sunho",
+      "to": "seungtak",
+      "type": "work",
+      "label": "fellow resident",
+      "short": "resident",
+      "evidence": "[Thoracic Surgery resident]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "youngho",
+      "to": "taesik",
+      "type": "work",
+      "label": "thoracic surgeon",
+      "short": "surgeon",
+      "evidence": "[Thoracic Surgeon]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangduk",
+      "to": "sejin",
+      "type": "family",
+      "label": "father; Chunmyung's chairman, now a coma ghost",
+      "short": "father",
+      "evidence": "장광덕 역 - 장세진의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "gwangduk",
+      "type": "family",
+      "label": "son — uses his father's illness to seize the group",
+      "short": "son",
+      "evidence": "Jang Min-ho: son of Chairman Jang Myung-duk. He is a cold-hearted man who takes advantage of his father's illness to become the heir",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "sejin",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "bomi",
+      "to": "hoonkil",
+      "type": "romance",
+      "label": "coma ghosts in love",
+      "short": "love interest",
+      "evidence": "Hun-gil: a coma ghost [...] Bo-mi's love interest",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bomi",
+      "to": "tess",
+      "type": "friend",
+      "label": "coma ghost, with Tess",
+      "short": "coma ghost",
+      "evidence": "[Coma ghost]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kookchan",
+      "to": "tess",
+      "type": "friend",
+      "label": "coma ghost, with Tess",
+      "short": "coma ghost",
+      "evidence": "[Coma ghost]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kim",
+      "to": "tess",
+      "type": "friend",
+      "label": "the cleaner who sees ghosts",
+      "short": "sees ghosts",
+      "evidence": "[Cleaner]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "nursejung",
+      "to": "soojung",
+      "type": "work",
+      "label": "nurse",
+      "short": "nurse",
+      "evidence": "[Nurse]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "youngmin",
+      "seungtak",
+      "sejin",
+      "soojung",
+      "tess",
+      "seungwon",
+      "miran",
+      "jaesik",
+      "sunghye",
+      "taesik",
+      "taehyeon",
+      "jaewon",
+      "sunho",
+      "youngho",
+      "minho",
+      "gwangduk",
+      "bomi",
+      "hoonkil",
+      "kookchan",
+      "kim",
+      "nursejung"
+    ],
+    "blocks": {
+      "The foundation (Seung Tak's family)": [
+        0,
+        0
+      ],
+      "Thoracic surgery": [
+        2,
+        0
+      ],
+      "Se Jin's family": [
+        0,
+        2
+      ],
+      "Coma ghosts": [
+        2,
+        2
+      ],
+      "Hospital": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "youngmin",
+      "seungtak"
+    ]
+  }
+}

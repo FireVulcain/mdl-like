@@ -1,0 +1,662 @@
+{
+  "version": 1,
+  "mdlSlug": "698379-shooting-star",
+  "title": "Sh**ting Stars",
+  "native": "별똥별",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (26 roles + guests, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "hanbyeol",
+    "taeseong"
+  ],
+  "people": [
+    {
+      "id": "hanbyeol",
+      "name": "O Han Byeol",
+      "actor": "Lee Sung Kyoung",
+      "image": "https://i.mydramalist.com/6q6Z2_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Head of Starforce's PR team; the one who knows what Tae Seong is really like"
+    },
+    {
+      "id": "taeseong",
+      "name": "Kong Tae Seong",
+      "actor": "Kim Young Dae",
+      "image": "https://i.mydramalist.com/3oxm3D_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The nation's beloved star — polite in public, hot-tempered off it"
+    },
+    {
+      "id": "yuseong",
+      "name": "Kang Yu Seong",
+      "actor": "Yoon Jong Hoon",
+      "image": "https://i.mydramalist.com/81Xr22_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Management team 1 leader"
+    },
+    {
+      "id": "hoyeong",
+      "name": "Park Ho Yeong",
+      "actor": "Kim Yoon Hye",
+      "image": "https://i.mydramalist.com/g0R3LP_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Management team 2 leader"
+    },
+    {
+      "id": "gippeum",
+      "name": "Cho Gi Ppeum",
+      "actor": "Park So Jin",
+      "image": "https://i.mydramalist.com/rjekZ_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Reporter at OnStar Daily"
+    },
+    {
+      "id": "suhyeok",
+      "name": "Do Su Hyeok",
+      "actor": "Lee Jung Shin",
+      "image": "https://i.mydramalist.com/x17Yr_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Starforce's legal counsel"
+    },
+    {
+      "id": "jihun",
+      "name": "Choi Ji Hun",
+      "actor": "Ha Do Kwon",
+      "image": "https://i.mydramalist.com/O87y5k_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Director"
+    },
+    {
+      "id": "dahye",
+      "name": "Baek Da Hye",
+      "actor": "Jang Hee Ryung",
+      "image": "https://i.mydramalist.com/kd6Bk_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Actress"
+    },
+    {
+      "id": "mingyu",
+      "name": "Kang Min Gyu",
+      "actor": "Lee Han Ik",
+      "image": "https://i.mydramalist.com/vWyLpm.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Tae Seong's manager"
+    },
+    {
+      "id": "jeongyeol",
+      "name": "Byeon Jeong Yeol",
+      "actor": "Jin Ho Eun",
+      "image": "https://i.mydramalist.com/81ZAwN_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Rookie manager"
+    },
+    {
+      "id": "jaehyeon",
+      "name": "Yun Jae Hyeon",
+      "actor": "Shin Hyun Seung",
+      "image": "https://i.mydramalist.com/eOrKW_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Rookie actor"
+    },
+    {
+      "id": "minyeo",
+      "name": "Kim Mi Nyeo",
+      "actor": "Jung Ji Ahn",
+      "image": "https://i.mydramalist.com/4EEy1_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "PR team"
+    },
+    {
+      "id": "eunsu",
+      "name": "Chae Eun Su",
+      "actor": "Yoon Sang Jung",
+      "image": "https://i.mydramalist.com/dLzbb_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "PR team"
+    },
+    {
+      "id": "boin",
+      "name": "Hong Bo In",
+      "actor": "Kwon Han Sol",
+      "image": "https://i.mydramalist.com/QJ2r14_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "PR team's youngest"
+    },
+    {
+      "id": "seoku",
+      "name": "Jang Seok U",
+      "actor": "Jang Do Ha",
+      "image": "https://i.mydramalist.com/0Nmbrm.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Actor"
+    },
+    {
+      "id": "yunu",
+      "name": "Lee Yun U",
+      "actor": "Im Sung Kyun",
+      "image": "https://i.mydramalist.com/XdgpRO_5m.jpg",
+      "group": "Starforce Entertainment",
+      "inCast": true,
+      "note": "Actor"
+    },
+    {
+      "id": "daesu",
+      "name": "Han Dae Su",
+      "actor": "Kim Dae Gon",
+      "image": "https://i.mydramalist.com/b3YOQE_5m.jpg",
+      "group": "DS Actors",
+      "inCast": true,
+      "note": "CEO"
+    },
+    {
+      "id": "yuna",
+      "name": "Jin Yu Na",
+      "actor": "Lee Si Woo",
+      "image": "https://i.mydramalist.com/O8P1WP_5m.jpg",
+      "group": "DS Actors",
+      "inCast": true,
+      "note": "Rookie actress"
+    },
+    {
+      "id": "jinu",
+      "name": "Sim Jin U",
+      "actor": "Kang Joon Gyu",
+      "image": "https://i.mydramalist.com/4eDBbd_5m.jpg",
+      "group": "DS Actors",
+      "inCast": true,
+      "note": "Main actor; left Starforce with Dae Su"
+    },
+    {
+      "id": "sideok",
+      "name": "Kang Si Deok",
+      "actor": "Lee Seung Hyub",
+      "image": "https://i.mydramalist.com/602lyg_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Runs the gukbap place"
+    },
+    {
+      "id": "myeonghui",
+      "name": "Hwang Myeong Hui",
+      "actor": "So Hee Jung",
+      "image": "https://i.mydramalist.com/wN30n_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Tae Seong's housekeeper"
+    },
+    {
+      "id": "gwinong",
+      "name": "Yoo Gwi Nong",
+      "actor": "Heo Gyu",
+      "image": "https://i.mydramalist.com/4eokRJ_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Owner of the Organic Bar, their hideout"
+    },
+    {
+      "id": "yeonggi",
+      "name": "Yang Yeong Gi",
+      "actor": "Lee Joo Won",
+      "image": "https://i.mydramalist.com/XK1kpm.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "OnStar Daily desk chief"
+    },
+    {
+      "id": "hanseok",
+      "name": "Park Han Seok",
+      "actor": "Yoo Gun Woo",
+      "image": "https://i.mydramalist.com/rxLoZm.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Director of 'World of Stars'"
+    },
+    {
+      "id": "haemin",
+      "name": "Lee Hae Min",
+      "actor": "Yoon Young Min",
+      "image": "https://i.mydramalist.com/R4LPr_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Su Hyeok's office manager"
+    },
+    {
+      "id": "siu",
+      "name": "Eun Si U / Kim Bok Sun",
+      "actor": "Choi Ji Woo",
+      "image": "https://i.mydramalist.com/2KgbO_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "hanbyeol",
+      "to": "taeseong",
+      "type": "rivalry",
+      "label": "natural enemies, constantly bickering — she keeps his image spotless",
+      "short": "natural enemies",
+      "evidence": "there isn't anyone in the world better suited to the role of natural enemies than Han Byeol and Tae Seong",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hanbyeol",
+      "to": "taeseong",
+      "type": "romance",
+      "label": "from enemies to lovers",
+      "short": "lovers",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hanbyeol",
+      "to": "taeseong",
+      "type": "work",
+      "label": "the PR head who manages his crises",
+      "short": "his PR",
+      "evidence": "As the head of that company's PR team, O Han Byeol knows exactly what Tae Seong is really like",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuseong",
+      "to": "taeseong",
+      "type": "work",
+      "label": "his management team leader",
+      "short": "his manager's boss",
+      "evidence": "강유성 역 - 스타포스엔터 매니지먼트 1팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuseong",
+      "to": "hanbyeol",
+      "type": "romance",
+      "label": "the ex who still cares",
+      "short": "ex",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hoyeong",
+      "to": "hanbyeol",
+      "type": "friend",
+      "label": "team 2 leader; friend, the Organic Bar crowd",
+      "short": "friend",
+      "evidence": "한별, 기쁨, 호영의 아지트 '오가닉바'",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gippeum",
+      "to": "hanbyeol",
+      "type": "friend",
+      "label": "the reporter friend of the Organic Bar crowd",
+      "short": "friend",
+      "evidence": "한별, 기쁨, 호영의 아지트 '오가닉바'",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gippeum",
+      "to": "yuseong",
+      "type": "romance",
+      "label": "the reporter and the manager",
+      "short": "courts him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "suhyeok",
+      "to": "taeseong",
+      "type": "work",
+      "label": "Starforce's lawyer",
+      "short": "lawyer",
+      "evidence": "도수혁 역 - 스타포스엔터 고문변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhyeok",
+      "to": "hoyeong",
+      "type": "romance",
+      "label": "the lawyer and the team leader",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jihun",
+      "to": "hanbyeol",
+      "type": "work",
+      "label": "director",
+      "short": "director",
+      "evidence": "최지훈 역 - 스타포스엔터 이사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dahye",
+      "to": "taeseong",
+      "type": "work",
+      "label": "co-star in 'World of Stars'",
+      "short": "co-star",
+      "evidence": "태성과 다혜 주연의 드라마 '별들의 세계'",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mingyu",
+      "to": "taeseong",
+      "type": "work",
+      "label": "his manager",
+      "short": "manager",
+      "evidence": "강민규 역 - 태성의 매니저",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongyeol",
+      "to": "mingyu",
+      "type": "work",
+      "label": "rookie manager",
+      "short": "rookie",
+      "evidence": "변정열 역 - 신입 매니저",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehyeon",
+      "to": "yuseong",
+      "type": "work",
+      "label": "rookie actor under him",
+      "short": "rookie actor",
+      "evidence": "윤재현 역 - 스타포스엔터 신인 배우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minyeo",
+      "to": "hanbyeol",
+      "type": "work",
+      "label": "PR team",
+      "short": "PR team",
+      "evidence": "김미녀 역 - 홍보팀 대리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunsu",
+      "to": "hanbyeol",
+      "type": "work",
+      "label": "PR team",
+      "short": "PR team",
+      "evidence": "채은수 역 - 홍보팀 사원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boin",
+      "to": "hanbyeol",
+      "type": "work",
+      "label": "PR team's youngest",
+      "short": "PR team",
+      "evidence": "홍보인 역 - 홍보팀 막내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seoku",
+      "to": "hoyeong",
+      "type": "work",
+      "label": "actor under team 2",
+      "short": "actor",
+      "evidence": "장석우 역 - 스타포스엔터 배우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunu",
+      "to": "hoyeong",
+      "type": "work",
+      "label": "actor under team 2",
+      "short": "actor",
+      "evidence": "이윤우 역 - 스타포스엔터 소속 배우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daesu",
+      "to": "jihun",
+      "type": "rivalry",
+      "label": "left Starforce to found DS Actors",
+      "short": "rival agency",
+      "evidence": "심진우 역 - 대수와 함께 스타포스에서 이적했다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinu",
+      "to": "daesu",
+      "type": "work",
+      "label": "DS's main actor, moved with him",
+      "short": "main actor",
+      "evidence": "심진우 역 - DS액터스 메인 배우, 대수와 함께 스타포스에서 이적했다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuna",
+      "to": "daesu",
+      "type": "work",
+      "label": "rookie actress at DS",
+      "short": "rookie",
+      "evidence": "진유나 역 - DS액터스 신인 배우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sideok",
+      "to": "hanbyeol",
+      "type": "friend",
+      "label": "the gukbap place",
+      "short": "gukbap",
+      "evidence": "강시덕 역 - 국밥집 사장님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "myeonghui",
+      "to": "taeseong",
+      "type": "work",
+      "label": "his housekeeper",
+      "short": "housekeeper",
+      "evidence": "권명희 역 - 태성의 집을 돌봐주는 도우미 여사님",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwinong",
+      "to": "hanbyeol",
+      "type": "friend",
+      "label": "owner of their hideout, the Organic Bar",
+      "short": "the bar",
+      "evidence": "유귀농 역 - 한별, 기쁨, 호영의 아지트 '오가닉바'의 주인장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonggi",
+      "to": "gippeum",
+      "type": "work",
+      "label": "her desk chief, who lives for exclusives",
+      "short": "boss",
+      "evidence": "양영기 역 - '단독'에 살고 '단독'에 죽는 온스타일보 국장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanseok",
+      "to": "taeseong",
+      "type": "work",
+      "label": "director of his drama",
+      "short": "director",
+      "evidence": "박한석 역 - 태성과 다혜 주연의 드라마 '별들의 세계' 감독",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haemin",
+      "to": "suhyeok",
+      "type": "work",
+      "label": "office manager",
+      "short": "office manager",
+      "evidence": "[Su Hyeok's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "siu",
+      "to": "taeseong",
+      "type": "bond",
+      "label": "the girl from his past",
+      "short": "his past",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hanbyeol",
+      "taeseong",
+      "yuseong",
+      "hoyeong",
+      "gippeum",
+      "suhyeok",
+      "jihun",
+      "dahye",
+      "mingyu",
+      "jeongyeol",
+      "jaehyeon",
+      "minyeo",
+      "eunsu",
+      "boin",
+      "seoku",
+      "yunu",
+      "daesu",
+      "yuna",
+      "jinu",
+      "sideok",
+      "myeonghui",
+      "gwinong",
+      "yeonggi",
+      "hanseok",
+      "haemin",
+      "siu"
+    ],
+    "blocks": {
+      "Starforce Entertainment": [
+        0,
+        0
+      ],
+      "DS Actors": [
+        2,
+        0
+      ],
+      "Around them": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "hanbyeol",
+      "taeseong"
+    ]
+  }
+}

@@ -1,0 +1,455 @@
+{
+  "version": 1,
+  "mdlSlug": "755669-in-your-brilliant-season",
+  "title": "In Your Radiant Season",
+  "native": "찬란한 너의 계절에",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (17 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "haran",
+    "chan"
+  ],
+  "people": [
+    {
+      "id": "haran",
+      "name": "Song Ha Ran",
+      "actor": "Lee Sung Kyoung",
+      "image": "https://i.mydramalist.com/6q6Z2_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Chief designer of Nana Atelier; locked in winter since losing those she loved"
+    },
+    {
+      "id": "chan",
+      "name": "Sunwoo Chan",
+      "actor": "Chae Jong Hyeop",
+      "image": "https://i.mydramalist.com/VXLDEy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Character designer at an American animation studio"
+    },
+    {
+      "id": "nana",
+      "name": "Kim Na Na / Kim Na Bong",
+      "actor": "Lee Mi Sook",
+      "image": "https://i.mydramalist.com/kRYnk_5m.jpg",
+      "group": "Nana Atelier",
+      "inCast": true,
+      "note": "Founder and head designer of Nana Atelier"
+    },
+    {
+      "id": "hayeong",
+      "name": "Song Ha Yeong",
+      "actor": "Han Ji Hyeon",
+      "image": "https://i.mydramalist.com/xOWAX_5m.jpg",
+      "group": "Ha Ran's family",
+      "inCast": true,
+      "note": "The middle sister; junior designer"
+    },
+    {
+      "id": "hadam",
+      "name": "Song Ha Dam",
+      "actor": "Oh Ye Ju",
+      "image": "https://i.mydramalist.com/l0KyLv_5m.jpg",
+      "group": "Ha Ran's family",
+      "inCast": true,
+      "note": "The youngest; top of her school"
+    },
+    {
+      "id": "manjae",
+      "name": "Park Man Jae",
+      "actor": "Kang  Suk Woo",
+      "image": "https://i.mydramalist.com/x4g6Q0_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "White-haired barista of cafe 'Rest'"
+    },
+    {
+      "id": "yugyeom",
+      "name": "Cha Yu Gyeom",
+      "actor": "Kim Tae Young",
+      "image": "https://i.mydramalist.com/O8wpDb_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "The country's best high-school pitcher"
+    },
+    {
+      "id": "taeseok",
+      "name": "Yeon Tae Seok",
+      "actor": "Kwon Hyuk",
+      "image": "https://i.mydramalist.com/XXj4X_5m.jpg",
+      "group": "Nana Atelier",
+      "inCast": true,
+      "note": "COO"
+    },
+    {
+      "id": "jeremy",
+      "name": "Jeremy",
+      "actor": "Jang Yong Won",
+      "image": "https://i.mydramalist.com/yWpo7N_5m.jpg",
+      "group": "Nana Atelier",
+      "inCast": true,
+      "note": "Senior designer, team 1"
+    },
+    {
+      "id": "seunggyu",
+      "name": "Baek Seung Gyu",
+      "actor": "Ki Hyun Woo",
+      "image": "https://i.mydramalist.com/2wmKbO_5m.jpg",
+      "group": "Nana Atelier",
+      "inCast": true,
+      "note": "Junior designer"
+    },
+    {
+      "id": "pureum",
+      "name": "Jeon Pu Reum",
+      "actor": "Lee Seung Yeon",
+      "image": "https://i.mydramalist.com/l0n2Px_5m.jpg",
+      "group": "Nana Atelier",
+      "inCast": true,
+      "note": "Assistant designer"
+    },
+    {
+      "id": "sol",
+      "name": "Kim Sol",
+      "actor": "Yun Chae Bin",
+      "image": "https://i.mydramalist.com/l0APvb_5m.jpg",
+      "group": "Nana Atelier",
+      "inCast": true,
+      "note": "Intern"
+    },
+    {
+      "id": "ben",
+      "name": "Ben",
+      "actor": "Firas Naji",
+      "image": "https://i.mydramalist.com/PxmVP0_5m.jpg",
+      "group": "Chan's family",
+      "inCast": true,
+      "note": "Producer at the studio"
+    },
+    {
+      "id": "useok",
+      "name": "Seon U Seok",
+      "actor": "Jung Hae Kyun",
+      "image": "https://i.mydramalist.com/QJ5A7Q_5m.jpg",
+      "group": "Chan's family",
+      "inCast": true,
+      "note": "Bioengineering PhD"
+    },
+    {
+      "id": "seon",
+      "name": "Kim Seon",
+      "actor": "Kang Ae Sim",
+      "image": "https://i.mydramalist.com/VXzNpQ_5m.jpg",
+      "group": "Chan's family",
+      "inCast": true,
+      "note": "Potter in Mungyeong"
+    },
+    {
+      "id": "hyeokchan",
+      "name": "Kang Hyeok Chan",
+      "actor": "Kwon Do Hyung",
+      "image": "https://i.mydramalist.com/81k8w2_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "sujin",
+      "name": "Cha Su Jin",
+      "actor": "Lee Ju Yeon",
+      "image": "https://i.mydramalist.com/5vJ1PZ_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "chan",
+      "to": "haran",
+      "type": "romance",
+      "label": "the chance meeting that cracks her winter",
+      "short": "cracks her winter",
+      "evidence": "Song Ha Ran accidentally meets Sunwoo Chan. This causes cracks in her daily life and the balance of her life begins to shake",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nana",
+      "to": "haran",
+      "type": "work",
+      "label": "the head of the atelier she is chief designer of",
+      "short": "her boss",
+      "evidence": "김나나 역 - 나나아틀리에 대표 / 송하란 역 - '나나 아틀리에' 수석 디자이너",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nana",
+      "to": "haran",
+      "type": "family",
+      "label": "the one who raised the three sisters",
+      "short": "raised her",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "haran",
+      "to": "hayeong",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "송하란 역 - 하영과 하담의 언니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haran",
+      "to": "hadam",
+      "type": "family",
+      "label": "eldest sister",
+      "short": "sister",
+      "evidence": "하영과 하담의 언니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayeong",
+      "to": "hadam",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "송하영 역 - 하담의 언니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayeong",
+      "to": "haran",
+      "type": "work",
+      "label": "junior designer on her sister's team",
+      "short": "on her team",
+      "evidence": "나나 아틀리에 디자인1팀 주니어 디자이너",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yugyeom",
+      "to": "hadam",
+      "type": "romance",
+      "label": "boyfriend, the pitcher",
+      "short": "boyfriend",
+      "evidence": "차유겸 역 - 고교 야구선수, 막내 하담의 남자친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "manjae",
+      "to": "haran",
+      "type": "friend",
+      "label": "the cafe where she rests; his dog adores her",
+      "short": "the cafe",
+      "evidence": "박만재 역 - 카페 주인 [...] 천재 역 - 만재의 애완견 [...] 하란을 유독 좋아한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeseok",
+      "to": "nana",
+      "type": "work",
+      "label": "COO, her loyal right hand",
+      "short": "right hand",
+      "evidence": "연태석 역 - 나나 아틀리에 COO, 나나의 충신이자 오른팔 같은 존재",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeremy",
+      "to": "haran",
+      "type": "work",
+      "label": "senior designer on her team",
+      "short": "team 1",
+      "evidence": "제래미 역 - 디자인1팀 시니어 디자이너",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunggyu",
+      "to": "haran",
+      "type": "work",
+      "label": "junior designer on her team",
+      "short": "team 1",
+      "evidence": "[Nana Atelier's design team 1 junior designer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pureum",
+      "to": "haran",
+      "type": "work",
+      "label": "assistant designer on her team",
+      "short": "team 1",
+      "evidence": "[Nana Atelier's design team 1 assistant designer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sol",
+      "to": "haran",
+      "type": "work",
+      "label": "the team's intern",
+      "short": "intern",
+      "evidence": "[Nana Atelier's design team 1 Intern]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ben",
+      "to": "chan",
+      "type": "friend",
+      "label": "colleague at the studio, 'Ben-seobang'",
+      "short": "colleague",
+      "evidence": "[Chan's American animation studio colleague] / 일명 벤서방",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "useok",
+      "to": "chan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Chan's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seon",
+      "to": "chan",
+      "type": "family",
+      "label": "maternal grandmother, the potter",
+      "short": "grandmother",
+      "evidence": "[Chan's maternal grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seon",
+      "to": "useok",
+      "type": "family",
+      "label": "mother-in-law",
+      "short": "mother-in-law",
+      "evidence": "석의 장모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeokchan",
+      "to": "haran",
+      "type": "romance",
+      "label": "ex-boyfriend",
+      "short": "ex",
+      "evidence": "[Ha Ran's ex-boyfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sujin",
+      "to": "yugyeom",
+      "type": "family",
+      "label": "of the Cha family",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "haran",
+      "chan",
+      "nana",
+      "hayeong",
+      "hadam",
+      "manjae",
+      "yugyeom",
+      "taeseok",
+      "jeremy",
+      "seunggyu",
+      "pureum",
+      "sol",
+      "ben",
+      "useok",
+      "seon",
+      "hyeokchan",
+      "sujin"
+    ],
+    "blocks": {
+      "Ha Ran's family": [
+        0,
+        0
+      ],
+      "Nana Atelier": [
+        2,
+        0
+      ],
+      "Chan's family": [
+        2,
+        2
+      ],
+      "Around them": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "haran",
+      "chan"
+    ]
+  }
+}

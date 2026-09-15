@@ -1,0 +1,480 @@
+{
+  "version": 1,
+  "mdlSlug": "754057-it-will-come-true",
+  "title": "Genie, Make a Wish",
+  "native": "다 이루어질지니",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles + guests, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only; ties inferred)",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "genie",
+    "gayeong"
+  ],
+  "people": [
+    {
+      "id": "genie",
+      "name": "Genie / Iblis",
+      "actor": "Kim Woo Bin",
+      "image": "https://i.mydramalist.com/DkB2vz_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The lamp's spirit, awake after a thousand years; three wishes"
+    },
+    {
+      "id": "gayeong",
+      "name": "Ki Ga Yeong",
+      "actor": "Bae Suzy",
+      "image": "https://i.mydramalist.com/3oVYod_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Yuna",
+          "image": "https://i.mydramalist.com/E5vlyQ_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Kim Yun Seul",
+          "image": "https://i.mydramalist.com/oQ0g6P_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Cold and impassive; her psychopathic streak kept in check by her grandmother"
+    },
+    {
+      "id": "miju",
+      "name": "Lee Mi Ju",
+      "actor": "Ahn Eun Jin",
+      "image": "https://i.mydramalist.com/LwPlPy_5m.jpg",
+      "group": "Ga Yeong's world",
+      "inCast": true
+    },
+    {
+      "id": "suhyeon",
+      "name": "Ryu Su Hyeon / Ejlael",
+      "actor": "Steve Noh",
+      "image": "https://i.mydramalist.com/nOQ4BN_5m.jpg",
+      "group": "The thousand years",
+      "inCast": true
+    },
+    {
+      "id": "sade",
+      "name": "Sade / Sayyid",
+      "actor": "Ko Kyu Pil",
+      "image": "https://i.mydramalist.com/Lw8q2x_5m.jpg",
+      "group": "The thousand years",
+      "inCast": true
+    },
+    {
+      "id": "minji",
+      "name": "Choi Min Ji",
+      "actor": "Lee Joo Young",
+      "image": "https://i.mydramalist.com/XdEmQn_5m.jpg",
+      "group": "Ga Yeong's world",
+      "inCast": true
+    },
+    {
+      "id": "pangeum",
+      "name": "O Pan Geum",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Ga Yeong's world",
+      "inCast": true
+    },
+    {
+      "id": "gayeong_mother",
+      "name": "Ga Yeong's mother",
+      "actor": "Woo Mi Hwa",
+      "image": "https://i.mydramalist.com/ABRm3q_5m.jpg",
+      "group": "Ga Yeong's world",
+      "inCast": true
+    },
+    {
+      "id": "irem",
+      "name": "I Rem",
+      "actor": "Woo Hyun Jin",
+      "image": "https://i.mydramalist.com/Zpd2k_5m.jpg",
+      "group": "The thousand years",
+      "inCast": true
+    },
+    {
+      "id": "jeonghun",
+      "name": "Jeong Hun / Khalid",
+      "actor": "Kim Ye Gyeom",
+      "image": "https://i.mydramalist.com/28Qo2_5m.jpg",
+      "group": "The thousand years",
+      "inCast": true
+    },
+    {
+      "id": "jeonghun_mother",
+      "name": "Jeong Hun's mother",
+      "actor": "Bae Geu Rin",
+      "image": "https://i.mydramalist.com/pdnNgE_5m.jpg",
+      "group": "The thousand years",
+      "inCast": true
+    },
+    {
+      "id": "changsik",
+      "name": "Park Chang Sik",
+      "actor": "Yang Hyun Min",
+      "image": "https://i.mydramalist.com/VXpjrJ_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Village head"
+    },
+    {
+      "id": "oknam",
+      "name": "Sa Ok Nam",
+      "actor": "Park Myung Shin",
+      "image": "https://i.mydramalist.com/g0jd1O_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Gamjatang restaurant"
+    },
+    {
+      "id": "sangtae",
+      "name": "Um Sang Tae",
+      "actor": "Jo Joon",
+      "image": "https://i.mydramalist.com/oQ4Jzx_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "yeonghyeon",
+      "name": "Ko Yeong Hyeon",
+      "actor": "Kim Mu Jun",
+      "image": "https://i.mydramalist.com/nO2vkL_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "dajin",
+      "name": "Choi Da Jin",
+      "actor": "Park Moon Ah",
+      "image": "https://i.mydramalist.com/aVnrym.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "heungrye",
+      "name": "Park Heung Rye",
+      "actor": "Shin Shin Ae",
+      "image": "https://i.mydramalist.com/qxZDB_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Grandmother"
+    },
+    {
+      "id": "bokja",
+      "name": "An Bok Ja",
+      "actor": "Kim Deok Ju",
+      "image": "https://i.mydramalist.com/73b8Je_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "minjae",
+      "name": "Woo Min Jae",
+      "actor": "Wi Gwang Hoon",
+      "image": "https://i.mydramalist.com/vy7DDm.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "bogyeong",
+      "name": "Koo Bo Gyeong",
+      "actor": "Kang Chae Young",
+      "image": "https://i.mydramalist.com/2RLO2_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "imseon",
+      "name": "Kang Im Seon",
+      "actor": "Park Bo Kyung",
+      "image": "https://i.mydramalist.com/5vPjL4_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "genie",
+      "to": "gayeong",
+      "type": "bond",
+      "label": "she rubbed the lamp: three wishes",
+      "short": "three wishes",
+      "evidence": "she awakens the mysterious spirit Genie from his thousand-year slumber — and yes, he promises the young woman three life-changing wishes",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "genie",
+      "to": "gayeong",
+      "type": "romance",
+      "label": "a whirlwind romance in a new millennium",
+      "short": "lovers",
+      "evidence": "the two find themselves in a surprising whirlwind romance",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "pangeum",
+      "to": "gayeong",
+      "type": "family",
+      "label": "grandmother — tough love keeping her in check",
+      "short": "grandmother",
+      "evidence": "[Ga Yeong's grandmother] / whose watchful eye and tough-love approach have helped keep Ga Yeong's psychopathic tendencies in check",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gayeong_mother",
+      "to": "gayeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ga Yeong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miju",
+      "to": "gayeong",
+      "type": "friend",
+      "label": "her only friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "miju",
+      "to": "suhyeon",
+      "type": "romance",
+      "label": "in love with him",
+      "short": "loves him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "suhyeon",
+      "to": "genie",
+      "type": "rivalry",
+      "label": "the angel and the demon — a thousand years old",
+      "short": "old enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "irem",
+      "to": "suhyeon",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Su Hyeon's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sade",
+      "to": "genie",
+      "type": "work",
+      "label": "his servant through the ages",
+      "short": "his servant",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minji",
+      "to": "sade",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "minji",
+      "to": "gayeong",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jeonghun",
+      "to": "genie",
+      "type": "bond",
+      "label": "the boy Khalid of the old days",
+      "short": "the old days",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jeonghun_mother",
+      "to": "jeonghun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jeong Hun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changsik",
+      "to": "gayeong",
+      "type": "work",
+      "label": "village head",
+      "short": "village head",
+      "evidence": "[Village head]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "oknam",
+      "to": "sangtae",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "[Ok Nam's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghyeon",
+      "to": "dajin",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Yeong Hyeon's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "heungrye",
+      "to": "pangeum",
+      "type": "friend",
+      "label": "the village grandmothers",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "bokja",
+      "to": "pangeum",
+      "type": "friend",
+      "label": "the village grandmothers",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "minjae",
+      "to": "bogyeong",
+      "type": "friend",
+      "label": "the village",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "imseon",
+      "to": "oknam",
+      "type": "friend",
+      "label": "the village",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "genie",
+      "gayeong",
+      "miju",
+      "suhyeon",
+      "sade",
+      "minji",
+      "pangeum",
+      "gayeong_mother",
+      "irem",
+      "jeonghun",
+      "jeonghun_mother"
+    ],
+    "blocks": {
+      "Ga Yeong's world": [
+        0,
+        0
+      ],
+      "The thousand years": [
+        2,
+        0
+      ],
+      "The village": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "genie",
+      "gayeong"
+    ]
+  }
+}

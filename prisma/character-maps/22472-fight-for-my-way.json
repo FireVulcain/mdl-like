@@ -1,0 +1,660 @@
+{
+  "version": 1,
+  "mdlSlug": "22472-fight-for-my-way",
+  "title": "Fight for My Way",
+  "native": "쌈 마이웨이",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (24 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "dongman",
+    "aera"
+  ],
+  "people": [
+    {
+      "id": "dongman",
+      "name": "Ko Dong Man",
+      "actor": "Park Seo Jun",
+      "image": "https://i.mydramalist.com/b3m53E_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jo Yeon Ho",
+          "image": "https://i.mydramalist.com/dPNjb_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "29, once a taekwondo prospect; a fighter"
+    },
+    {
+      "id": "aera",
+      "name": "Choi Ae Ra",
+      "actor": "Kim Ji Won",
+      "image": "https://i.mydramalist.com/KpY0kR_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Han Seo",
+          "image": "https://i.mydramalist.com/X8wldm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "29, dreamed of the news desk; works the department-store info desk"
+    },
+    {
+      "id": "juman",
+      "name": "Kim Ju Man",
+      "actor": "Ahn Jae Hong",
+      "image": "https://i.mydramalist.com/PxZr80_5m.jpg",
+      "group": "Ju Man's people",
+      "inCast": true,
+      "note": "29, home-shopping food MD with an absolute palate"
+    },
+    {
+      "id": "seolhui",
+      "name": "Baek Seol Hui",
+      "actor": "Song  Ha Yoon",
+      "image": "https://i.mydramalist.com/5v6LvB_5m.jpg",
+      "group": "Seol Hui's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ha Yun",
+          "image": "https://i.mydramalist.com/1gxo7m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "28, contract call-centre agent at Dream Home Shopping"
+    },
+    {
+      "id": "jangho",
+      "name": "Hwang Jang Ho",
+      "actor": "Kim Sung Oh",
+      "image": "https://i.mydramalist.com/27Jlkm.jpg",
+      "group": "The fight world",
+      "inCast": true,
+      "note": "39, Sydney 2000 taekwondo silver; runs the gym and a sundae shop"
+    },
+    {
+      "id": "bokhui",
+      "name": "Hwang Bok Hui",
+      "actor": "Jin Hee Kyung",
+      "image": "https://i.mydramalist.com/v3Wmq_5m.jpg",
+      "group": "Dong Man's people",
+      "inCast": true,
+      "note": "49, 'Kanako', landlady of Namil Villa"
+    },
+    {
+      "id": "hyeran",
+      "name": "Park Hye Ran",
+      "actor": "Lee Elijah",
+      "image": "https://i.mydramalist.com/yW1EeN_5m.jpg",
+      "group": "Ae Ra's people",
+      "inCast": true,
+      "note": "28, announcer"
+    },
+    {
+      "id": "taksu",
+      "name": "Kim Tak Su",
+      "actor": "Kim Gun Woo",
+      "image": "https://i.mydramalist.com/Xd3dXd_5m.jpg",
+      "group": "The fight world",
+      "inCast": true,
+      "note": "31, star fighter"
+    },
+    {
+      "id": "wonbo",
+      "name": "Choi Won Bo",
+      "actor": "Yang Jae Young",
+      "image": "https://i.mydramalist.com/2k2PR_5m.jpg",
+      "group": "The fight world",
+      "inCast": true,
+      "note": "38"
+    },
+    {
+      "id": "taehui",
+      "name": "Yang Tae Hui",
+      "actor": "Chae Dong Hyun",
+      "image": "https://i.mydramalist.com/bwzB6m.jpg",
+      "group": "The fight world",
+      "inCast": true,
+      "note": "36, ex 'Cro Cop' club waiter"
+    },
+    {
+      "id": "duho",
+      "name": "Han Du Ho",
+      "actor": "Jung Soon Won",
+      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
+      "group": "The fight world",
+      "inCast": true,
+      "note": "26"
+    },
+    {
+      "id": "byeongju",
+      "name": "Lee Byeong Ju",
+      "actor": "Kim Sung Bum",
+      "image": "https://i.mydramalist.com/1gkdKm.jpg",
+      "group": "The fight world",
+      "inCast": true,
+      "note": "32"
+    },
+    {
+      "id": "yejin",
+      "name": "Jang Ye Jin",
+      "actor": "Pyo Ye Jin",
+      "image": "https://i.mydramalist.com/4epr0d_5m.jpg",
+      "group": "Ju Man's people",
+      "inCast": true,
+      "note": "25, intern; daughter of the jokbal-chain CEO"
+    },
+    {
+      "id": "choi",
+      "name": "Manager Choi",
+      "actor": "Kim Hee Chang",
+      "image": "https://i.mydramalist.com/Z0wjYm.jpg",
+      "group": "Ju Man's people",
+      "inCast": true
+    },
+    {
+      "id": "chanho",
+      "name": "Kim Chan Ho",
+      "actor": "Baek Soo Jang",
+      "image": "https://i.mydramalist.com/01g7Ym.jpg",
+      "group": "Ju Man's people",
+      "inCast": true,
+      "note": "Intern"
+    },
+    {
+      "id": "hyeongsik",
+      "name": "Ko Hyeong Sik",
+      "actor": "Son Byung Ho",
+      "image": "https://i.mydramalist.com/BDbpl_5m.jpg",
+      "group": "Dong Man's people",
+      "inCast": true,
+      "note": "57, construction sales"
+    },
+    {
+      "id": "sunyang",
+      "name": "Park Sun Yang",
+      "actor": "Kim Ye Ryung",
+      "image": "https://i.mydramalist.com/Bgg06_5m.jpg",
+      "group": "Dong Man's people",
+      "inCast": true,
+      "note": "53, runs a mackerel-soup place"
+    },
+    {
+      "id": "donghui",
+      "name": "Ko Dong Hui",
+      "actor": "Jo Eun Yoo",
+      "image": "https://i.mydramalist.com/mO60l2_5m.jpg",
+      "group": "Dong Man's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Go Na Hee",
+          "image": "https://i.mydramalist.com/pg2m8_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "17, his number-one fan"
+    },
+    {
+      "id": "jeongap",
+      "name": "Choi Jeon Gap",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "Ae Ra's people",
+      "inCast": true,
+      "note": "52"
+    },
+    {
+      "id": "mugi",
+      "name": "Kim Mu Gi",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "group": "Ae Ra's people",
+      "inCast": true,
+      "note": "26, exam-prep boyfriend"
+    },
+    {
+      "id": "mubin",
+      "name": "Park Mu Bin",
+      "actor": "Choi  Woo Shik",
+      "image": "https://i.mydramalist.com/xWAE0_5m.jpg",
+      "group": "Ae Ra's people",
+      "inCast": true,
+      "note": "29, doctor, hopeless at dating"
+    },
+    {
+      "id": "gyeonggu",
+      "name": "Jang Gyeong Gu",
+      "actor": "Kang Gi Doong",
+      "image": "https://i.mydramalist.com/YYZ8yd_5m.jpg",
+      "group": "Ae Ra's people",
+      "inCast": true,
+      "note": "32, TV producer"
+    },
+    {
+      "id": "geumbok",
+      "name": "Geum Bok",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
+      "group": "Seol Hui's people",
+      "inCast": true,
+      "note": "58"
+    },
+    {
+      "id": "jangsu",
+      "name": "Baek Jang Su",
+      "actor": "Kim Hak Seon",
+      "image": "https://i.mydramalist.com/Bz1V6_5m.jpg",
+      "group": "Seol Hui's people",
+      "inCast": true,
+      "note": "57"
+    }
+  ],
+  "links": [
+    {
+      "from": "dongman",
+      "to": "aera",
+      "type": "romance",
+      "label": "childhood friends who become lovers",
+      "short": "lovers",
+      "evidence": "고동만 역 - 학창 시절 태권도 국가대표를 꿈꾸던 / 최애라 역 - 고양이보단 개 같은 여자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "juman",
+      "to": "dongman",
+      "type": "friend",
+      "label": "best friends since seventeen — the 'brothers'",
+      "short": "best friend",
+      "evidence": "김주만 역 - 동만의 절친. 열일곱에 '똥만이 쭈만이 만만이 브라더스'로 만나",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juman",
+      "to": "seolhui",
+      "type": "romance",
+      "label": "fell at first sight; six years together",
+      "short": "six years",
+      "evidence": "동만의 고향 친구 설희를 알게 됐고 첫눈에 반해 6년을 만남",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seolhui",
+      "to": "dongman",
+      "type": "friend",
+      "label": "hometown friend",
+      "short": "hometown friend",
+      "evidence": "동만의 고향 친구 설희",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "aera",
+      "to": "seolhui",
+      "type": "friend",
+      "label": "the girls of the four",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jangho",
+      "to": "dongman",
+      "type": "work",
+      "label": "his old taekwondo coach; the gym",
+      "short": "coach",
+      "evidence": "[Dong Man's coach] / 과거 동만의 태권도 코치",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bokhui",
+      "to": "dongman",
+      "type": "work",
+      "label": "landlady of the villa where the four live",
+      "short": "landlady",
+      "evidence": "[Landlord / mysterious woman] / 판타스틱 포가 거주하고 있는 남일 빌라의 주인",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bokhui",
+      "to": "aera",
+      "type": "family",
+      "label": "the mother who left",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeran",
+      "to": "dongman",
+      "type": "romance",
+      "label": "ex-girlfriend, the 'femme fatale'",
+      "short": "ex",
+      "evidence": "[Dong Man's ex-girlfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeran",
+      "to": "aera",
+      "type": "work",
+      "label": "fellow announcer",
+      "short": "colleague",
+      "evidence": "애라와는 같은 동료 아나운서다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taksu",
+      "to": "dongman",
+      "type": "rivalry",
+      "label": "the star fighter, his rival",
+      "short": "rival",
+      "evidence": "김탁수 역 - 동만의 라이벌. 스타 파이터",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wonbo",
+      "to": "taksu",
+      "type": "work",
+      "label": "main coach; once Jang Ho's fellow taekwondo athlete",
+      "short": "coach",
+      "evidence": "[Tak Su's coach] / 과거엔 장호와 함께 태권도 선수",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taehui",
+      "to": "taksu",
+      "type": "work",
+      "label": "manager and strategist",
+      "short": "manager",
+      "evidence": "[Tak Su's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duho",
+      "to": "jangho",
+      "type": "work",
+      "label": "his student — who betrays him for Tak Su's camp",
+      "short": "student, then traitor",
+      "evidence": "[Jang Ho's student] / 스승 장호를 배신하고 탁수 소속사로 옮기지만",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeongju",
+      "to": "jangho",
+      "type": "work",
+      "label": "his student",
+      "short": "student",
+      "evidence": "[Jang Ho's student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yejin",
+      "to": "juman",
+      "type": "work",
+      "label": "the intern in his department — with eyes for him",
+      "short": "intern",
+      "evidence": "[Ju Man's colleague] / 주만의 부서에 들어온 드림 홈쇼핑 새내기 인턴",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yejin",
+      "to": "juman",
+      "type": "romance",
+      "label": "the intern who wants him",
+      "short": "wants him",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "choi",
+      "to": "juman",
+      "type": "work",
+      "label": "his boss",
+      "short": "boss",
+      "evidence": "[Ju Man's boss]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chanho",
+      "to": "juman",
+      "type": "work",
+      "label": "colleague",
+      "short": "colleague",
+      "evidence": "[Ju Man's work colleague]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongsik",
+      "to": "dongman",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Dong Man's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunyang",
+      "to": "dongman",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Dong Man's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghui",
+      "to": "dongman",
+      "type": "family",
+      "label": "younger sister, his number-one fan",
+      "short": "sister",
+      "evidence": "[Dong Man's sister] / 실은 동만의 골수 1호 팬",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongap",
+      "to": "aera",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ae Ra's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mugi",
+      "to": "aera",
+      "type": "romance",
+      "label": "ex-boyfriend, younger",
+      "short": "ex",
+      "evidence": "[Ae Ra's ex-boyfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mubin",
+      "to": "dongman",
+      "type": "friend",
+      "label": "middle-school classmate",
+      "short": "classmate",
+      "evidence": "[Dong Man's middle school classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mubin",
+      "to": "aera",
+      "type": "romance",
+      "label": "the doctor who courts her",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeonggu",
+      "to": "aera",
+      "type": "friend",
+      "label": "her senior from the university samulnori club; a PD",
+      "short": "senior",
+      "evidence": "장경구 역 - 방송국 PD. 애라의 대학 풍물패 동아리 선후배 사이",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumbok",
+      "to": "seolhui",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Seol Hui's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangsu",
+      "to": "seolhui",
+      "type": "family",
+      "label": "father; runs the jokbal place with Geum Bok",
+      "short": "father",
+      "evidence": "[Seol Hui's father] / 금복과 함께 '설희네 왕족발'을 운영",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dongman",
+      "aera",
+      "juman",
+      "seolhui",
+      "bokhui",
+      "hyeran",
+      "yejin",
+      "choi",
+      "chanho",
+      "hyeongsik",
+      "sunyang",
+      "donghui",
+      "jeongap",
+      "mugi",
+      "mubin",
+      "gyeonggu",
+      "geumbok",
+      "jangsu"
+    ],
+    "blocks": {
+      "Dong Man's people": [
+        0,
+        0
+      ],
+      "Ae Ra's people": [
+        2,
+        0
+      ],
+      "Ju Man's people": [
+        0,
+        2
+      ],
+      "Seol Hui's people": [
+        2,
+        2
+      ],
+      "The fight world": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "dongman",
+      "aera"
+    ]
+  }
+}
