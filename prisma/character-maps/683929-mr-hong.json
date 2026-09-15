@@ -1,0 +1,681 @@
+{
+  "version": 1,
+  "mdlSlug": "683929-mr-hong",
+  "title": "Hometown Cha-Cha-Cha",
+  "native": "갯마을 차차차",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (25 roles + guests, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "hyejin",
+    "dusik"
+  ],
+  "people": [
+    {
+      "id": "hyejin",
+      "name": "Yoon Hye Jin",
+      "actor": "Shin Min Ah",
+      "image": "https://i.mydramalist.com/g0Nb5W_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Perfectionist dentist who leaves Seoul for Gongjin and opens the village's clinic"
+    },
+    {
+      "id": "dusik",
+      "name": "Hong Doo Shik",
+      "actor": "Kim Seon Ho",
+      "image": "https://i.mydramalist.com/mOE622_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "'Chief Hong', the village's jack of all trades, officially unemployed"
+    },
+    {
+      "id": "seonghyeon",
+      "name": "Ji Sung Hyun",
+      "actor": "Lee Sang Yi",
+      "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
+      "group": "Seong Hyeon's crew",
+      "inCast": true,
+      "note": "Variety-show producer"
+    },
+    {
+      "id": "jiwon",
+      "name": "Wang Ji Won",
+      "actor": "Park Ye Young",
+      "image": "https://i.mydramalist.com/vw2YX_5m.jpg",
+      "group": "Seong Hyeon's crew",
+      "inCast": true,
+      "note": "Writer, seven years with him"
+    },
+    {
+      "id": "doha",
+      "name": "Kang Do Ha",
+      "actor": "Lee Suk Hyeong",
+      "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
+      "group": "Seong Hyeon's crew",
+      "inCast": true,
+      "note": "Assistant director"
+    },
+    {
+      "id": "jun",
+      "name": "Jun",
+      "actor": "Byun Sung Tae",
+      "image": "https://i.mydramalist.com/vXeLv2_5m.jpg",
+      "group": "Seong Hyeon's crew",
+      "inCast": true,
+      "note": "DOS main rapper"
+    },
+    {
+      "id": "inwoo",
+      "name": "In Woo",
+      "actor": "Baek Seung",
+      "image": "https://i.mydramalist.com/pdnVRQ_5m.jpg",
+      "group": "Seong Hyeon's crew",
+      "inCast": true,
+      "note": "DOS member"
+    },
+    {
+      "id": "seona",
+      "name": "Seon A",
+      "actor": "Kim Ji Hyun",
+      "image": "https://i.mydramalist.com/QoynQ_5m.jpg",
+      "group": "Seong Hyeon's crew",
+      "inCast": true
+    },
+    {
+      "id": "miseon",
+      "name": "Pyo Mi Seon",
+      "actor": "Gong Min Jung",
+      "image": "https://i.mydramalist.com/ZWm3j_5m.jpg",
+      "group": "Hye Jin's people",
+      "inCast": true,
+      "note": "Dental hygienist"
+    },
+    {
+      "id": "taehwa",
+      "name": "Yoon Tae Hwa",
+      "actor": "Seo Sang Won",
+      "image": "https://i.mydramalist.com/Z1Epkm.jpg",
+      "group": "Hye Jin's people",
+      "inCast": true
+    },
+    {
+      "id": "myungshin",
+      "name": "Lee Myung Shin",
+      "actor": "Woo Mi Hwa",
+      "image": "https://i.mydramalist.com/ABRm3q_5m.jpg",
+      "group": "Hye Jin's people",
+      "inCast": true
+    },
+    {
+      "id": "gamri",
+      "name": "Kim Gam Ri",
+      "actor": "Kim Young Ok",
+      "image": "https://i.mydramalist.com/5vYdBB_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Leader of the grandmothers"
+    },
+    {
+      "id": "maji",
+      "name": "Lee Ma Ji",
+      "actor": "Lee Yong Yi",
+      "image": "https://i.mydramalist.com/2zL7w_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Second of the grandmothers"
+    },
+    {
+      "id": "sukja",
+      "name": "Park Suk Ja",
+      "actor": "Shin Shin Ae",
+      "image": "https://i.mydramalist.com/qxZDB_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Third of the grandmothers"
+    },
+    {
+      "id": "yeongguk",
+      "name": "Jang Yeong Guk",
+      "actor": "In Gyo Jin",
+      "image": "https://i.mydramalist.com/pOZeEm.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "The youngest district head"
+    },
+    {
+      "id": "hwajeong",
+      "name": "Yeo Hwa Jeong",
+      "actor": "Lee Bong Ryun",
+      "image": "https://i.mydramalist.com/en0DEm.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Owns the building of the clinic"
+    },
+    {
+      "id": "ijun",
+      "name": "Jang Yi Jun",
+      "actor": "Ki Eun Yoo",
+      "image": "https://i.mydramalist.com/2zRKw_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true
+    },
+    {
+      "id": "chohui",
+      "name": "Yu Cho Hui",
+      "actor": "Hong Ji Hee",
+      "image": "https://i.mydramalist.com/XdbL7q_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Teacher at Cheongjin Elementary, back after fifteen years"
+    },
+    {
+      "id": "chunjae",
+      "name": "O Chun Jae",
+      "actor": "Jo Han Chul",
+      "image": "https://i.mydramalist.com/vyZw2m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Owner of the Live Cafe; once the singer O Yun"
+    },
+    {
+      "id": "juri",
+      "name": "O Ju Ri",
+      "actor": "Kim Min Seo",
+      "image": "https://i.mydramalist.com/81PYmK_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "DOS fan"
+    },
+    {
+      "id": "eunchul",
+      "name": "Choi Eun Chul",
+      "actor": "Kang Hyung Suk",
+      "image": "https://i.mydramalist.com/EZPxz_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Constable"
+    },
+    {
+      "id": "geumchul",
+      "name": "Choi Geum Chul",
+      "actor": "Yoon Seok Hyun",
+      "image": "https://i.mydramalist.com/pX4z8_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true
+    },
+    {
+      "id": "yunkyung",
+      "name": "Ham Yun Kyung",
+      "actor": "Kim Joo Yeon",
+      "image": "https://i.mydramalist.com/wgXJb_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true
+    },
+    {
+      "id": "bora",
+      "name": "Choi Bo Ra",
+      "actor": "Go Do Yeon",
+      "image": "https://i.mydramalist.com/2LB0W_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true
+    },
+    {
+      "id": "namsook",
+      "name": "Cho Nam Sook",
+      "actor": "Cha Chung Hwa",
+      "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Chinese restaurant; the village gossip"
+    },
+    {
+      "id": "yonghoon",
+      "name": "Ban Yong Hoon",
+      "actor": "Kim Sung Bum",
+      "image": "https://i.mydramalist.com/1gkdKm.jpg",
+      "group": "Gongjin",
+      "inCast": true,
+      "note": "Community centre manager"
+    }
+  ],
+  "links": [
+    {
+      "from": "dusik",
+      "to": "hyejin",
+      "type": "romance",
+      "label": "steps in to teach the stiff city dentist village life — badly at first",
+      "short": "helps her",
+      "evidence": "in steps the free-spirited jack of all trades, Hong Do Sik. There to help her learn to navigate life in a small village, although they don't hit it off well at first",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonghyeon",
+      "to": "hyejin",
+      "type": "romance",
+      "label": "old university crush, back to shoot his show in Gongjin",
+      "short": "old crush",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiwon",
+      "to": "seonghyeon",
+      "type": "work",
+      "label": "his writer for seven years",
+      "short": "writer",
+      "evidence": "Wang Ji-won, a veteran writer who has been working with Seong-hyun for seven years",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiwon",
+      "to": "seonghyeon",
+      "type": "romance",
+      "label": "seven years of unsaid",
+      "short": "loves him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "doha",
+      "to": "seonghyeon",
+      "type": "work",
+      "label": "assistant director",
+      "short": "AD",
+      "evidence": "[Assistant director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jun",
+      "to": "seonghyeon",
+      "type": "work",
+      "label": "DOS, on his show",
+      "short": "on his show",
+      "evidence": "['DOS' member] / June, main rapper of idol group DOS",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "inwoo",
+      "to": "jun",
+      "type": "work",
+      "label": "DOS",
+      "short": "bandmate",
+      "evidence": "['DOS' member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seona",
+      "to": "seonghyeon",
+      "type": "family",
+      "label": "cousin; the widow of Doo Shik's senior Jung Woo",
+      "short": "cousin",
+      "evidence": "김선아 역 - 지성현의 사촌누나, 박정우의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seona",
+      "to": "dusik",
+      "type": "bond",
+      "label": "the widow of the man Doo Shik couldn't save — his wound",
+      "short": "his wound",
+      "evidence": "박정우 역 - 홍두식의 대학교 선배, YK자산운용 팀장. 교통사고로 죽음 / 박정우의 아내",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miseon",
+      "to": "hyejin",
+      "type": "friend",
+      "label": "best friend; her hygienist",
+      "short": "best friend",
+      "evidence": "[Hye Jin's best friend] / a dental hygienist",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "miseon",
+      "to": "eunchul",
+      "type": "romance",
+      "label": "the hygienist and the constable",
+      "short": "courts him",
+      "evidence": "[Police substation's constable]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "taehwa",
+      "to": "hyejin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Hye Jin's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myungshin",
+      "to": "hyejin",
+      "type": "family",
+      "label": "stepmother",
+      "short": "stepmother",
+      "evidence": "[Hye Jin's stepmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gamri",
+      "to": "dusik",
+      "type": "family",
+      "label": "the grandmother who all but raised him",
+      "short": "like a grandmother",
+      "evidence": "leader of the grandmothers in Gongjin",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "maji",
+      "to": "gamri",
+      "type": "friend",
+      "label": "the three grandmothers",
+      "short": "the grandmothers",
+      "evidence": "Lee Mat-yi, the second of the three grandmothers",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sukja",
+      "to": "gamri",
+      "type": "friend",
+      "label": "the three grandmothers",
+      "short": "the grandmothers",
+      "evidence": "박숙자 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongguk",
+      "to": "hwajeong",
+      "type": "romance",
+      "label": "ex-husband and ex-wife",
+      "short": "ex-husband",
+      "evidence": "Yeo Hwa-jung, Young-guk's ex-wife / Jang Young-guk, Hwa-jung's ex-husband",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hwajeong",
+      "to": "ijun",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "[Young Guk and Hwa Jung's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongguk",
+      "to": "ijun",
+      "type": "family",
+      "label": "son",
+      "short": "father",
+      "evidence": "[Young Guk and Hwa Jung's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwajeong",
+      "to": "hyejin",
+      "type": "work",
+      "label": "landlady of the clinic and the house",
+      "short": "landlady",
+      "evidence": "[Building owner] / She is the building owner of Hye-jin's dental clinic and house",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chohui",
+      "to": "yeongguk",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "[Yeong Guk's first love]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chohui",
+      "to": "hwajeong",
+      "type": "friend",
+      "label": "once her tenant and friend — until she suddenly left",
+      "short": "old friend",
+      "evidence": "she had been a tenant in Hwa-jung's house, and they had become friends until Cho-hui needed to suddenly move away",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chunjae",
+      "to": "juri",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Chun Jae's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juri",
+      "to": "jun",
+      "type": "bond",
+      "label": "DOS's biggest fan",
+      "short": "his fan",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "geumchul",
+      "to": "dusik",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Doo Shik's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "geumchul",
+      "to": "yunkyung",
+      "type": "romance",
+      "label": "husband and wife",
+      "short": "husband",
+      "evidence": "[Geum Chul and Yun Kyung's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yunkyung",
+      "to": "bora",
+      "type": "family",
+      "label": "daughter",
+      "short": "mother",
+      "evidence": "[Geum Chul and Yun Kyung's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumchul",
+      "to": "bora",
+      "type": "family",
+      "label": "daughter",
+      "short": "father",
+      "evidence": "[Geum Chul and Yun Kyung's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bora",
+      "to": "ijun",
+      "type": "friend",
+      "label": "the two kids of the village",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "namsook",
+      "to": "hyejin",
+      "type": "work",
+      "label": "the Chinese restaurant next to the clinic; the village gossip",
+      "short": "neighbour",
+      "evidence": "owner of a Chinese restaurant near Hye-jin's dental clinic",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonghoon",
+      "to": "yeongguk",
+      "type": "work",
+      "label": "community centre manager under the district head",
+      "short": "works for him",
+      "evidence": "[Community center manager] / [District head]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunchul",
+      "to": "dusik",
+      "type": "friend",
+      "label": "the constable, one of the village",
+      "short": "the constable",
+      "evidence": "[Police substation's constable]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hyejin",
+      "dusik",
+      "seonghyeon",
+      "jiwon",
+      "doha",
+      "jun",
+      "inwoo",
+      "seona",
+      "miseon",
+      "taehwa",
+      "myungshin",
+      "gamri",
+      "maji",
+      "sukja",
+      "yeongguk",
+      "hwajeong",
+      "ijun",
+      "chohui",
+      "chunjae",
+      "juri",
+      "eunchul",
+      "geumchul",
+      "yunkyung",
+      "bora",
+      "namsook",
+      "yonghoon"
+    ],
+    "blocks": {
+      "Gongjin": [
+        0,
+        0
+      ],
+      "Hye Jin's people": [
+        2,
+        0
+      ],
+      "Seong Hyeon's crew": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "hyejin",
+      "dusik"
+    ]
+  }
+}

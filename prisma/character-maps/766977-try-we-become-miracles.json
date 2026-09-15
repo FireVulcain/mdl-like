@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "mdlSlug": "766977-try-we-become-miracles",
+  "title": "The Winning Try",
+  "native": "트라이: 우리는 기적이 된다",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (27 roles + guests, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "garam",
+    "iji"
+  ],
+  "people": [
+    {
+      "id": "garam",
+      "name": "Ju Ga Ram",
+      "actor": "Yoon Kye Sang",
+      "image": "https://i.mydramalist.com/VXVyDJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "37, once the hope of Korean rugby, retired under a drug scandal; back as contract coach of his old school's team"
+    },
+    {
+      "id": "iji",
+      "name": "Bae I Ji",
+      "actor": "Im Se Mi",
+      "image": "https://i.mydramalist.com/KpEXeX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "37, playing coach of the shooting team"
+    },
+    {
+      "id": "seongjun",
+      "name": "Yun Seong Jun",
+      "actor": "Kim Yo Han",
+      "image": "https://i.mydramalist.com/DkeRQo_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "19, rugby captain; twin of Seok Jun, off playing football in Spain"
+    },
+    {
+      "id": "yeonggwang",
+      "name": "O Yeong Gwang",
+      "actor": "Kim E Jun",
+      "image": "https://i.mydramalist.com/l0A8xe_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "Vice-captain"
+    },
+    {
+      "id": "myeongu",
+      "name": "So Myeong U",
+      "actor": "Lee Su Chan",
+      "image": "https://i.mydramalist.com/2wxKAP_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "Third year"
+    },
+    {
+      "id": "hyeongsik",
+      "name": "Do Hyeong Sik",
+      "actor": "Yoon Jae Chan",
+      "image": "https://i.mydramalist.com/g0QBe1_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "Second year"
+    },
+    {
+      "id": "juyang",
+      "name": "Kim Ju Yang",
+      "actor": "Hwang Sung Bin",
+      "image": "https://i.mydramalist.com/2L3LE_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "Second year"
+    },
+    {
+      "id": "seonho",
+      "name": "Pyo Seon Ho",
+      "actor": "Woo Min Gyu",
+      "image": "https://i.mydramalist.com/mO1AZ3_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "Second year, from judo"
+    },
+    {
+      "id": "ung",
+      "name": "Moon Ung",
+      "actor": "Kim Dan",
+      "image": "https://i.mydramalist.com/zB8QnP_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "First year; the physique that turns every head in Uisan market"
+    },
+    {
+      "id": "taepung",
+      "name": "Kang Tae Pung",
+      "actor": "Cho Han Gyeol",
+      "image": "https://i.mydramalist.com/Ndovwo_5m.jpg",
+      "group": "Rugby team",
+      "inCast": true,
+      "note": "The only freshman recruit; transfers to Daesang High"
+    },
+    {
+      "id": "ujin",
+      "name": "Seo U Jin",
+      "actor": "Park Jung Yeon",
+      "image": "https://i.mydramalist.com/j4LnJm.jpg",
+      "group": "Shooting team",
+      "inCast": true,
+      "note": "Captain, the ace"
+    },
+    {
+      "id": "seolhyeon",
+      "name": "Na Seol Hyeon",
+      "actor": "Sung Zi Young",
+      "image": "https://i.mydramalist.com/ABWo2g_5m.jpg",
+      "group": "Shooting team",
+      "inCast": true,
+      "note": "Vice-captain; student council president"
+    },
+    {
+      "id": "nakgyeon",
+      "name": "Jeon Nak Gyeon",
+      "actor": "Lee Sung Wook",
+      "image": "https://i.mydramalist.com/B0Qz5m.jpg",
+      "group": "Shooting team",
+      "inCast": true,
+      "note": "Shooting coach; resigns in disgrace"
+    },
+    {
+      "id": "junghyo",
+      "name": "Kang Jung Hyo",
+      "actor": "Kil Hae Yeon",
+      "image": "https://i.mydramalist.com/l0b7gv_5m.jpg",
+      "group": "Hanyang Sports High",
+      "inCast": true,
+      "note": "Principal"
+    },
+    {
+      "id": "jongman",
+      "name": "Seung Jong Man",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "group": "Hanyang Sports High",
+      "inCast": true,
+      "note": "Vice-principal; resigns in disgrace"
+    },
+    {
+      "id": "heungnam",
+      "name": "Bang Heung Nam",
+      "actor": "Jung Soon Won",
+      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
+      "group": "Hanyang Sports High",
+      "inCast": true,
+      "note": "Aerobics coach on contract; an old Hanyang rugby player"
+    },
+    {
+      "id": "seunghui",
+      "name": "Yang Seung Hui",
+      "actor": "Lee Ji Min",
+      "image": "https://i.mydramalist.com/EJ7zpm.jpg",
+      "group": "Hanyang Sports High",
+      "inCast": true,
+      "note": "School nurse"
+    },
+    {
+      "id": "gyuwon",
+      "name": "Na Gyu Won",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true,
+      "note": "Deputy superintendent; head of the parents' association"
+    },
+    {
+      "id": "minjung",
+      "name": "Kim Min Jung",
+      "actor": "Song Young Gyu",
+      "image": "https://i.mydramalist.com/oQRB5O_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true,
+      "note": "Daesang High's rugby coach; formerly Hanyang's"
+    },
+    {
+      "id": "seokbong",
+      "name": "Ma Seok Bong",
+      "actor": "Bae Myung Jin",
+      "image": "https://i.mydramalist.com/q6XEK_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true,
+      "note": "Chicken-shop owner; old Hanyang rugby player"
+    },
+    {
+      "id": "wonjung",
+      "name": "Won Jung",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true
+    },
+    {
+      "id": "cheolyeong",
+      "name": "Moon Cheol Yeong",
+      "actor": "Jung Gi Sub",
+      "image": "https://i.mydramalist.com/B1Rb5_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true,
+      "note": "Former rugby player"
+    },
+    {
+      "id": "sohyeon",
+      "name": "Kim So Hyeon",
+      "actor": "Jo Yun Hee",
+      "image": "https://i.mydramalist.com/2EQRP_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true,
+      "note": "Former national shooter"
+    },
+    {
+      "id": "sanggi",
+      "name": "Mo Sang Gi",
+      "actor": "Kwon Yul",
+      "image": "https://i.mydramalist.com/ABwd48_5m.jpg",
+      "group": "Outside the school",
+      "inCast": true,
+      "note": "Ga Ram's rival from their playing days"
+    }
+  ],
+  "links": [
+    {
+      "from": "garam",
+      "to": "iji",
+      "type": "romance",
+      "label": "the two coaches, both 37",
+      "short": "the two coaches",
+      "evidence": "주가람 (37세, 남) 역 - 한양체고 럭비부 감독 / 배이지 (37세, 여) 역 - 사격부 플레잉 코치",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "garam",
+      "to": "seongjun",
+      "type": "work",
+      "label": "coaches the captain of the weakest team in the league",
+      "short": "coach",
+      "evidence": "he returns as a contract coach for the high school rugby team where he once played for / 럭비부 주장",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonggwang",
+      "to": "seongjun",
+      "type": "work",
+      "label": "vice-captain to the captain",
+      "short": "vice-captain",
+      "evidence": "오영광 역 - 럭비부 부주장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongu",
+      "to": "garam",
+      "type": "work",
+      "label": "rugby team",
+      "short": "player",
+      "evidence": "소명우 역 - 럭비부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongsik",
+      "to": "garam",
+      "type": "work",
+      "label": "rugby team",
+      "short": "player",
+      "evidence": "도형식 역 - 럭비부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyang",
+      "to": "garam",
+      "type": "work",
+      "label": "rugby team",
+      "short": "player",
+      "evidence": "김주양 역 - 럭비부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonho",
+      "to": "garam",
+      "type": "work",
+      "label": "rugby team, from judo",
+      "short": "player",
+      "evidence": "표선호 역 - 럭비부. 유도부 출신",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ung",
+      "to": "garam",
+      "type": "work",
+      "label": "rugby team",
+      "short": "player",
+      "evidence": "문웅 역 - 럭비부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taepung",
+      "to": "garam",
+      "type": "work",
+      "label": "the only freshman; leaves for Daesang, comes back in the last episode",
+      "short": "the recruit",
+      "evidence": "럭비부 유일한 신입생. 대상고로 전학 갔다. 마지막회에서 다시 한양체고로 전학 왔다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "iji",
+      "to": "ujin",
+      "type": "work",
+      "label": "coaches the ace",
+      "short": "coach",
+      "evidence": "서우진 역 - 사격부 주장. 에이스",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seolhyeon",
+      "to": "ujin",
+      "type": "work",
+      "label": "vice-captain to the captain",
+      "short": "vice-captain",
+      "evidence": "나설현 역 - 사격부 부주장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nakgyeon",
+      "to": "iji",
+      "type": "work",
+      "label": "the shooting coach before her; resigns in disgrace",
+      "short": "predecessor",
+      "evidence": "전낙균 역 - 사격부 감독. 불명예 퇴직",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junghyo",
+      "to": "garam",
+      "type": "work",
+      "label": "principal who hires the contract coach",
+      "short": "principal",
+      "evidence": "[Principal]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongman",
+      "to": "junghyo",
+      "type": "work",
+      "label": "vice-principal; resigns in disgrace",
+      "short": "vice-principal",
+      "evidence": "성종만 역 - 한양체고 교감. 불명예 퇴직",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heungnam",
+      "to": "garam",
+      "type": "friend",
+      "label": "old Hanyang rugby teammate; now the aerobics coach after a permanent post",
+      "short": "old teammate",
+      "evidence": "방흥남 역 - 에어로빅 감독, 전 한양체고 럭비부 출신",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seunghui",
+      "to": "iji",
+      "type": "friend",
+      "label": "old friend; the school nurse",
+      "short": "old friend",
+      "evidence": "양승희 역 - 보건교사. 이지의 오랜 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokbong",
+      "to": "seunghui",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "마석봉 역 - 치킨집 사장. 승희의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokbong",
+      "to": "garam",
+      "type": "friend",
+      "label": "old Hanyang rugby teammate",
+      "short": "old teammate",
+      "evidence": "전 한양체고 럭비부 출신",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyuwon",
+      "to": "seolhyeon",
+      "type": "family",
+      "label": "father; the deputy superintendent",
+      "short": "father",
+      "evidence": "[Seol Hyeon's father] / 부교육감, 학부모 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyuwon",
+      "to": "garam",
+      "type": "rivalry",
+      "label": "the power that wants the disgraced coach out",
+      "short": "wants him out",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minjung",
+      "to": "garam",
+      "type": "rivalry",
+      "label": "Hanyang's old coach, now at rival Daesang",
+      "short": "rival coach",
+      "evidence": "김민중 역 - 현 대상고등학교 럭비부 감독, 전 한양체고 럭비부 감독",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wonjung",
+      "to": "seongjun",
+      "type": "family",
+      "label": "mother of the twins",
+      "short": "mother",
+      "evidence": "[Seong Jun's mother] / 성준과 석준의 어머니",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolyeong",
+      "to": "ung",
+      "type": "family",
+      "label": "father, a former rugby player",
+      "short": "father",
+      "evidence": "[Ung's father] / 전직 럭비선수",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sohyeon",
+      "to": "ujin",
+      "type": "family",
+      "label": "mother, a former national shooter",
+      "short": "mother",
+      "evidence": "[U Jin's mother] / 전직 사격 국가대표",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggi",
+      "to": "garam",
+      "type": "rivalry",
+      "label": "his rival from their playing days — the ordinary man beside a genius",
+      "short": "old rival",
+      "evidence": "모상기 역 - 주가람의 라이벌, 천재를 바라봐야 했던 평범한 인간",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "garam",
+      "iji",
+      "seongjun",
+      "yeonggwang",
+      "myeongu",
+      "hyeongsik",
+      "juyang",
+      "seonho",
+      "ung",
+      "taepung",
+      "ujin",
+      "seolhyeon",
+      "nakgyeon",
+      "junghyo",
+      "jongman",
+      "heungnam",
+      "seunghui",
+      "gyuwon",
+      "minjung",
+      "seokbong",
+      "wonjung",
+      "cheolyeong",
+      "sohyeon",
+      "sanggi"
+    ],
+    "blocks": {
+      "Rugby team": [
+        0,
+        0
+      ],
+      "Shooting team": [
+        2,
+        0
+      ],
+      "Hanyang Sports High": [
+        0,
+        2
+      ],
+      "Outside the school": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "garam",
+      "iji"
+    ]
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "version": 1,
+  "mdlSlug": "62541-money-heist",
+  "title": "Money Heist: Korea - Joint Economic Area",
+  "native": "종이의 집: 공동경제구역",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (25 roles + guests, 14 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "professor",
+    "woojin"
+  ],
+  "people": [
+    {
+      "id": "professor",
+      "name": "\"The Professor\" / Song Seon Ho",
+      "actor": "Yoo Ji Tae",
+      "image": "https://i.mydramalist.com/eeyxe_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The mastermind; Woo Jin knows him as Park Seon Ho"
+    },
+    {
+      "id": "woojin",
+      "name": "Seon Woo Jin",
+      "actor": "Kim Yoon Jin",
+      "image": "https://i.mydramalist.com/27NzEm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "South Korea's chief negotiator; Gyeonggi police inspector"
+    },
+    {
+      "id": "berlin",
+      "name": "\"Berlin\" / Song Jung Ho",
+      "actor": "Park Hae Soo",
+      "image": "https://i.mydramalist.com/VXxKlx_5m.jpg",
+      "group": "The gang",
+      "inCast": true,
+      "note": "From the North's Kaechon labour camp"
+    },
+    {
+      "id": "tokyo",
+      "name": "\"Tokyo\" / Ri Hong Dan",
+      "actor": "Jeon Jong Seo",
+      "image": "https://i.mydramalist.com/rNEPry_5m.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "moscow",
+      "name": "\"Moscow\" / O Man Sik",
+      "actor": "Lee Won Jong",
+      "image": "https://i.mydramalist.com/1w43j3_5m.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "denver",
+      "name": "\"Denver\" / O Taek Su",
+      "actor": "Kim Ji Hoon",
+      "image": "https://i.mydramalist.com/rXKp7_5m.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "nairobi",
+      "name": "\"Nairobi\" / Sim Yeong Mun",
+      "actor": "Jang Yoon Ju",
+      "image": "https://i.mydramalist.com/QjoZ4m.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "rio",
+      "name": "\"Rio\" / Han Joseph",
+      "actor": "Lee Hyun Woo",
+      "image": "https://i.mydramalist.com/JB4jwp_5m.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "helsinki",
+      "name": "\"Helsinki\" / Myeong Tae",
+      "actor": "Kim Ji Hoon",
+      "image": "https://i.mydramalist.com/RQOdV_5m.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "oslo",
+      "name": "\"Oslo\" / Sang Yeon",
+      "actor": "Lee Gyu Ho",
+      "image": "https://i.mydramalist.com/p0K3nm.jpg",
+      "group": "The gang",
+      "inCast": true
+    },
+    {
+      "id": "muhyeok",
+      "name": "Cha Mu Hyeok",
+      "actor": "Kim Sung Oh",
+      "image": "https://i.mydramalist.com/27Jlkm.jpg",
+      "group": "Joint negotiation team",
+      "inCast": true,
+      "note": "North Korea's representative; People's Security captain"
+    },
+    {
+      "id": "changsu",
+      "name": "Yun Chang Su",
+      "actor": "Park Soo Young",
+      "image": "https://i.mydramalist.com/EDXRpm.jpg",
+      "group": "Joint negotiation team",
+      "inCast": true,
+      "note": "JEA police chief"
+    },
+    {
+      "id": "cheolu",
+      "name": "Park Cheol U",
+      "actor": "Kil Geum Sung",
+      "image": "https://i.mydramalist.com/eBoeE_5m.jpg",
+      "group": "Joint negotiation team",
+      "inCast": true,
+      "note": "North Korean special forces"
+    },
+    {
+      "id": "yeongmin",
+      "name": "Cho Yeong Min",
+      "actor": "Park Myung Hoon",
+      "image": "https://i.mydramalist.com/yWdk84_5m.jpg",
+      "group": "Hostages",
+      "inCast": true,
+      "note": "Director of the Unified Mint"
+    },
+    {
+      "id": "miseon",
+      "name": "Yun Mi Seon",
+      "actor": "Lee Joo Bin",
+      "image": "https://i.mydramalist.com/d0vP10_5m.jpg",
+      "group": "Hostages",
+      "inCast": true,
+      "note": "Accountant at the mint"
+    },
+    {
+      "id": "anne",
+      "name": "Anne Kim",
+      "actor": "Lee Si Woo",
+      "image": "https://i.mydramalist.com/O8P1WP_5m.jpg",
+      "group": "Hostages",
+      "inCast": true,
+      "note": "Daughter of the US ambassador"
+    },
+    {
+      "id": "hyunho",
+      "name": "Hwang Hyun Ho",
+      "actor": "Hong In",
+      "image": "https://i.mydramalist.com/QogWY_5m.jpg",
+      "group": "Hostages",
+      "inCast": true,
+      "note": "Deputy director of the mint"
+    },
+    {
+      "id": "jaewook",
+      "name": "Park Jae Wook",
+      "actor": "Shin Soo Ho",
+      "image": "https://i.mydramalist.com/EPnrbm.jpg",
+      "group": "Hostages",
+      "inCast": true,
+      "note": "Assistant manager"
+    },
+    {
+      "id": "cheongmyeong",
+      "name": "Ri Cheong Myeong",
+      "actor": "Lee Yoon Hee",
+      "image": "https://i.mydramalist.com/jovpz_5m.jpg",
+      "group": "Hostages",
+      "inCast": true
+    },
+    {
+      "id": "sangman",
+      "name": "Kim Sang Man",
+      "actor": "Jang Hyun Sung",
+      "image": "https://i.mydramalist.com/1LJLdm.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Presidential frontrunner"
+    },
+    {
+      "id": "pilsoon",
+      "name": "Park Pil Soon",
+      "actor": "Lee Yong Nyeo",
+      "image": "https://i.mydramalist.com/6zY2j_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Has Alzheimer's"
+    },
+    {
+      "id": "mina",
+      "name": "Kim Min Ah",
+      "actor": "Han Seo Jin",
+      "image": "https://i.mydramalist.com/j6yzB_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    },
+    {
+      "id": "jaeyun",
+      "name": "O Jae Yun",
+      "actor": "Lee Chang Hoon",
+      "image": "https://i.mydramalist.com/yWwVER_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Chairman of Osung Group"
+    },
+    {
+      "id": "marshall",
+      "name": "Marshall Kim",
+      "actor": "Jung Jae Sung",
+      "image": "https://i.mydramalist.com/zBDbxO_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "US ambassador"
+    }
+  ],
+  "links": [
+    {
+      "from": "professor",
+      "to": "woojin",
+      "type": "romance",
+      "label": "courts the negotiator as 'Park Seon Ho' — the cafe owner across the street",
+      "short": "'Park Seon Ho'",
+      "evidence": "교수 역 - 본명 송선호, 베를린과 친형제, 우진은 그를 박선호라 알고 있다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "professor",
+      "to": "woojin",
+      "type": "rivalry",
+      "label": "the mastermind and the negotiator",
+      "short": "opponent",
+      "evidence": "the police must stop them — as well as the shadowy mastermind behind it all",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "professor",
+      "to": "berlin",
+      "type": "family",
+      "label": "brothers",
+      "short": "brother",
+      "evidence": "교수 역 - 베를린과 친형제",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "berlin",
+      "to": "tokyo",
+      "type": "rivalry",
+      "label": "the gang's leader inside and the one who defies him",
+      "short": "clashes",
+      "evidence": "베를린 역 - 본명 송중호 / 도쿄 역 - 본명 리홍단",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "moscow",
+      "to": "denver",
+      "type": "family",
+      "label": "father and son",
+      "short": "father",
+      "evidence": "모스크바 역 - 본명 오만식 / 덴버 역 - 본명 오택수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "denver",
+      "to": "miseon",
+      "type": "romance",
+      "label": "the hostage he falls for — codename Stockholm",
+      "short": "lovers",
+      "evidence": "윤미선 역 - 통일조폐국 경리담당, 덴버의 연인, 코드네임 스톡홀름",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "tokyo",
+      "to": "rio",
+      "type": "romance",
+      "label": "the youngest and the ex-soldier",
+      "short": "lovers",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "helsinki",
+      "to": "oslo",
+      "type": "friend",
+      "label": "from the same orphanage",
+      "short": "same orphanage",
+      "evidence": "오슬로 역 - 본명 상연, 헬싱키와는 같은 고아원 출신이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nairobi",
+      "to": "professor",
+      "type": "work",
+      "label": "runs the printing",
+      "short": "prints the money",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "professor",
+      "to": "tokyo",
+      "type": "work",
+      "label": "recruited her",
+      "short": "recruited",
+      "evidence": "The Professor",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "muhyeok",
+      "to": "woojin",
+      "type": "work",
+      "label": "the North's negotiator beside the South's",
+      "short": "counterpart",
+      "evidence": "차무혁 역 - 북한대표 인민보안성 대위 / 선우진 역 - 남한대표 위기협상팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "changsu",
+      "to": "woojin",
+      "type": "work",
+      "label": "JEA police chief",
+      "short": "chief",
+      "evidence": "윤창수 역 - JEA 경찰서장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolu",
+      "to": "muhyeok",
+      "type": "work",
+      "label": "the North's special forces on the task force",
+      "short": "special forces",
+      "evidence": "[Joint Task Force] / 박철우 역 - 북한 인민무력부 특작부대원",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongmin",
+      "to": "miseon",
+      "type": "work",
+      "label": "the director and his accountant — his mistress",
+      "short": "director",
+      "evidence": "조영민 역 - 한반도 통일조폐국장 / 윤미선 역 - 통일조폐국 경리담당",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyunho",
+      "to": "yeongmin",
+      "type": "work",
+      "label": "deputy director",
+      "short": "deputy",
+      "evidence": "[JEA-UKM deputy director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaewook",
+      "to": "yeongmin",
+      "type": "work",
+      "label": "assistant manager at the mint",
+      "short": "staff",
+      "evidence": "박 대리 역 - 통일조폐국 대리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheongmyeong",
+      "to": "yeongmin",
+      "type": "work",
+      "label": "mint staff",
+      "short": "staff",
+      "evidence": "[JEA-UKM]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "marshall",
+      "to": "anne",
+      "type": "family",
+      "label": "father, the US ambassador",
+      "short": "father",
+      "evidence": "앤 킴 역 - 주한 미국 대사의 딸 / [USA ambassador in Korea]",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anne",
+      "to": "rio",
+      "type": "bond",
+      "label": "the hostage who takes to the youngest robber",
+      "short": "takes to him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sangman",
+      "to": "woojin",
+      "type": "romance",
+      "label": "ex-husband, in a custody fight with her",
+      "short": "ex-husband",
+      "evidence": "김상만 역 - 선우진의 전 남편, 유력 대권 주자, 우진과 양육권 분쟁중이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "woojin",
+      "to": "mina",
+      "type": "family",
+      "label": "daughter",
+      "short": "mother",
+      "evidence": "김민아 역 - 우진과 상만의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangman",
+      "to": "mina",
+      "type": "family",
+      "label": "daughter",
+      "short": "father",
+      "evidence": "우진과 상만의 딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilsoon",
+      "to": "woojin",
+      "type": "family",
+      "label": "mother, with Alzheimer's",
+      "short": "mother",
+      "evidence": "박필순 역 - 선우진의 어머니, 알츠하이머를 앓고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeyun",
+      "to": "sangman",
+      "type": "work",
+      "label": "Osung's chairman, his backer",
+      "short": "backer",
+      "evidence": "오재윤 - 오성그룹 회장, 김상만의 서포트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "professor",
+      "woojin",
+      "berlin",
+      "tokyo",
+      "moscow",
+      "denver",
+      "nairobi",
+      "rio",
+      "helsinki",
+      "oslo",
+      "muhyeok",
+      "changsu",
+      "cheolu",
+      "yeongmin",
+      "miseon",
+      "anne",
+      "hyunho",
+      "jaewook",
+      "cheongmyeong",
+      "sangman",
+      "pilsoon",
+      "mina",
+      "jaeyun",
+      "marshall"
+    ],
+    "blocks": {
+      "The gang": [
+        0,
+        0
+      ],
+      "Joint negotiation team": [
+        2,
+        0
+      ],
+      "Hostages": [
+        0,
+        2
+      ],
+      "Outside": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "professor",
+      "woojin"
+    ]
+  }
+}

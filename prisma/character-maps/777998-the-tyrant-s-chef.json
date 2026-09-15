@@ -1,0 +1,771 @@
+{
+  "version": 1,
+  "mdlSlug": "777998-the-tyrant-s-chef",
+  "title": "Bon Appetit, Your Majesty",
+  "native": "폭군의 셰프",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (30 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (main section vandalised; rest used)",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "jiyeong",
+    "heon"
+  ],
+  "people": [
+    {
+      "id": "jiyeong",
+      "name": "Yeon Ji Yeong",
+      "actor": "Lim Yoon A",
+      "image": "https://i.mydramalist.com/l0drLv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "French-trained chef at the peak of her career, thrown back into the palace kitchen"
+    },
+    {
+      "id": "heon",
+      "name": "King Yi Heon",
+      "actor": "Lee Chae Min",
+      "image": "https://i.mydramalist.com/yWDJlB_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The tyrant with a killer palate and a deadly temper"
+    },
+    {
+      "id": "mokju",
+      "name": "Kang Mok Ju",
+      "actor": "Kang Han Na",
+      "image": "https://i.mydramalist.com/l0dbov_5m.jpg",
+      "group": "Prince Je San's side",
+      "inCast": true,
+      "note": "Consort Kang"
+    },
+    {
+      "id": "jesan",
+      "name": "Prince Je San",
+      "actor": "Choi Gwi Hwa",
+      "image": "https://i.mydramalist.com/E84Rlm.jpg",
+      "group": "Prince Je San's side",
+      "inCast": true
+    },
+    {
+      "id": "deokcheol",
+      "name": "Deok Cheol",
+      "actor": "Lee Kwan Hoon",
+      "image": "https://i.mydramalist.com/0jorY_5m.jpg",
+      "group": "Prince Je San's side",
+      "inCast": true,
+      "note": "Je San's bodyguard"
+    },
+    {
+      "id": "chuwol",
+      "name": "Chu Wol",
+      "actor": "Kim Chae Hyun",
+      "image": "https://i.mydramalist.com/RRQb6_5m.jpg",
+      "group": "Prince Je San's side",
+      "inCast": true,
+      "note": "Inspector court lady"
+    },
+    {
+      "id": "gilgeum",
+      "name": "Seo Gil Geum",
+      "actor": "Yoon Seo Ah",
+      "image": "https://i.mydramalist.com/608DRP_5m.jpg",
+      "group": "Royal kitchen",
+      "inCast": true,
+      "note": "The girl with the absolute nose"
+    },
+    {
+      "id": "bongsik",
+      "name": "Um Bong Sik",
+      "actor": "Kim Kwang Gyu",
+      "image": "https://i.mydramalist.com/vgy5q_5m.jpg",
+      "group": "Royal kitchen",
+      "inCast": true,
+      "note": "Senior cook, 7th rank"
+    },
+    {
+      "id": "mansu",
+      "name": "Maeng Man Su",
+      "actor": "Hong Jin Ki",
+      "image": "https://i.mydramalist.com/RNolV_5m.jpg",
+      "group": "Royal kitchen",
+      "inCast": true,
+      "note": "Senior cook, 8th rank"
+    },
+    {
+      "id": "gaeduk",
+      "name": "Min Gae Duk",
+      "actor": "Kim Hyun Mok",
+      "image": "https://i.mydramalist.com/pXQ68_5m.jpg",
+      "group": "Royal kitchen",
+      "inCast": true,
+      "note": "Assistant cook, rice"
+    },
+    {
+      "id": "makjin",
+      "name": "Sim Mak Jin",
+      "actor": "Joo Kwang Hyun",
+      "image": "https://i.mydramalist.com/jB0E8_5m.jpg",
+      "group": "Royal kitchen",
+      "inCast": true,
+      "note": "Assistant cook, fire"
+    },
+    {
+      "id": "chunsik",
+      "name": "Yun Chun Sik",
+      "actor": "Jung Kyu Soo",
+      "image": "https://i.mydramalist.com/2Rl2w_5m.jpg",
+      "group": "Royal kitchen",
+      "inCast": true,
+      "note": "Kitchen steward"
+    },
+    {
+      "id": "songjae",
+      "name": "Im Song Jae",
+      "actor": "Oh Eui Shik",
+      "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
+      "group": "Heon's people",
+      "inCast": true,
+      "note": "Chief royal secretary; schemer"
+    },
+    {
+      "id": "suhyeok",
+      "name": "Sin Su Hyeok",
+      "actor": "Park Young Woon",
+      "image": "https://i.mydramalist.com/7nKRBm.jpg",
+      "group": "Heon's people",
+      "inCast": true,
+      "note": "Commander of the Urimwi guard"
+    },
+    {
+      "id": "gonggil",
+      "name": "Gong Gil",
+      "actor": "Lee Joo Ahn",
+      "image": "https://i.mydramalist.com/JBOPkl_5m.jpg",
+      "group": "Heon's people",
+      "inCast": true,
+      "note": "The king's jester; head of the namsadang troupe"
+    },
+    {
+      "id": "changseon",
+      "name": "Chang Seon",
+      "actor": "Jang Gwang",
+      "image": "https://i.mydramalist.com/WP5KLX_5m.jpg",
+      "group": "Heon's people",
+      "inCast": true,
+      "note": "Chief eunuch, two reigns"
+    },
+    {
+      "id": "malim",
+      "name": "Choi Mal Im",
+      "actor": "Park Joon Myun",
+      "image": "https://i.mydramalist.com/kQb0m_5m.jpg",
+      "group": "Heon's people",
+      "inCast": true,
+      "note": "Court lady of the king's quarters"
+    },
+    {
+      "id": "queenyeon",
+      "name": "Deposed Queen Yeon",
+      "actor": "Lee Eun Jae",
+      "image": "https://i.mydramalist.com/d0Yq1d_5m.jpg",
+      "group": "Heon's people",
+      "inCast": true,
+      "note": "Deposed and dead when Heon was a child"
+    },
+    {
+      "id": "inju",
+      "name": "Queen Dowager In Ju",
+      "actor": "Seo Yi Sook",
+      "image": "https://i.mydramalist.com/qbZddm.jpg",
+      "group": "Inner court",
+      "inCast": true
+    },
+    {
+      "id": "jahyeon",
+      "name": "Queen Dowager Ja Hyeon",
+      "actor": "Shin Eun Jung",
+      "image": "https://i.mydramalist.com/RB87kr_5m.jpg",
+      "group": "Inner court",
+      "inCast": true
+    },
+    {
+      "id": "jinmyeong",
+      "name": "Grand Prince Jin Myeong",
+      "actor": "Kim Kang Yoon",
+      "image": "https://i.mydramalist.com/qYkw0D_5m.jpg",
+      "group": "Inner court",
+      "inCast": true
+    },
+    {
+      "id": "boksun",
+      "name": "Kim Bok Sun",
+      "actor": "Choi Yeon Ho",
+      "image": "https://i.mydramalist.com/wb6Zk_5m.jpg",
+      "group": "Inner court",
+      "inCast": true,
+      "note": "Head court lady"
+    },
+    {
+      "id": "yanggwin",
+      "name": "Yang Gwin",
+      "actor": "Kim Yoon Mi",
+      "image": "https://i.mydramalist.com/d0z0ve_5m.jpg",
+      "group": "Inner court",
+      "inCast": true,
+      "note": "Late king's concubine"
+    },
+    {
+      "id": "seonggwin",
+      "name": "Seong Gwin",
+      "actor": "Lee Heon Ju",
+      "image": "https://i.mydramalist.com/YYz4ZQ_5m.jpg",
+      "group": "Inner court",
+      "inCast": true,
+      "note": "Late king's concubine"
+    },
+    {
+      "id": "minseong",
+      "name": "Han Min Seong",
+      "actor": "Son Jong Hak",
+      "image": "https://i.mydramalist.com/g0KPqP_5m.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Chief state councillor"
+    },
+    {
+      "id": "wonjun",
+      "name": "Park Won Jun",
+      "actor": "Kwon Tae Won",
+      "image": "https://i.mydramalist.com/ejd1p_5m.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Left state councillor"
+    },
+    {
+      "id": "hyeongmin",
+      "name": "Yoo Hyeong Min",
+      "actor": "Bae Gi Beom",
+      "image": "https://i.mydramalist.com/W7Kn3_5m.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Minister of Rites"
+    },
+    {
+      "id": "seohong",
+      "name": "Im Seo Hong",
+      "actor": "Nam Kyung Eup",
+      "image": "https://i.mydramalist.com/kOjLOm.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Second minister of works"
+    },
+    {
+      "id": "injae",
+      "name": "Seong In Jae",
+      "actor": "Jo Seung Yun",
+      "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Right state councillor"
+    },
+    {
+      "id": "munjeong",
+      "name": "Yoo Mun Jeong",
+      "actor": "Jo Duk Hyun",
+      "image": "https://i.mydramalist.com/jv4d8_5m.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Minister of personnel"
+    },
+    {
+      "id": "yangson",
+      "name": "Kim Yang Son",
+      "actor": "Jo Yeong Jin",
+      "image": "https://i.mydramalist.com/3oAZ1v_5m.jpg",
+      "group": "Court ministers",
+      "inCast": true,
+      "note": "Head scholar of Hongmungwan"
+    }
+  ],
+  "links": [
+    {
+      "from": "jiyeong",
+      "to": "heon",
+      "type": "work",
+      "label": "forced to cook for the tyrant",
+      "short": "cooks for him",
+      "evidence": "she's forced to cook for an infamously temperamental tyrant, King Yi Heon",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "heon",
+      "to": "jiyeong",
+      "type": "romance",
+      "label": "the tyrant and his chef",
+      "short": "falls for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "mokju",
+      "to": "jiyeong",
+      "type": "rivalry",
+      "label": "Consort Kang, behind the schemes against her",
+      "short": "schemes against her",
+      "evidence": "Consort Kang is behind his schemes / the actual culprit is Kang Mok-ju",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mokju",
+      "to": "heon",
+      "type": "romance",
+      "label": "the consort",
+      "short": "consort",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jesan",
+      "to": "heon",
+      "type": "rivalry",
+      "label": "the prince the ministers would put on the throne",
+      "short": "rival for the throne",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mokju",
+      "to": "jesan",
+      "type": "work",
+      "label": "on his side",
+      "short": "his side",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deokcheol",
+      "to": "jesan",
+      "type": "work",
+      "label": "bodyguard",
+      "short": "bodyguard",
+      "evidence": "[Je San's bodyguard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chuwol",
+      "to": "mokju",
+      "type": "work",
+      "label": "the inspector court lady — a spy Mok Ju planted",
+      "short": "her spy",
+      "evidence": "추월 역 - 감찰상궁 [...] 사실 목주가 심어 놓은 첩자다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gilgeum",
+      "to": "jiyeong",
+      "type": "friend",
+      "label": "the girl with the absolute nose, at her side in the kitchen",
+      "short": "her helper",
+      "evidence": "서길금 역 - 냄새를 잘 맡는 소녀, 절대 후각의 소유자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gonggil",
+      "to": "gilgeum",
+      "type": "friend",
+      "label": "saves her from Mok Ju's assassin",
+      "short": "saves her",
+      "evidence": "He also saves Gil-geum when she is nearly assassinated by Kang Mok-ju's court lady",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mansu",
+      "to": "jiyeong",
+      "type": "rivalry",
+      "label": "rival in the royal cooks' contest; harasses her for Mok Ju, then stops",
+      "short": "rival cook",
+      "evidence": "Ji-yeong's rival in the royal cooks competition [...] He initially works for Kang Mok-ju to disrupt and harass Ji-yeong",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gaeduk",
+      "to": "jiyeong",
+      "type": "rivalry",
+      "label": "rival in the royal cooks' contest, later an acquaintance",
+      "short": "rival cook",
+      "evidence": "Ji-yeong's rival in the royal cooks competition later becomes her acquaintance",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bongsik",
+      "to": "mansu",
+      "type": "work",
+      "label": "senior cooks of the kitchen",
+      "short": "senior cook",
+      "evidence": "엄봉식 역 - 선임 숙수, 종7품 선부 / 맹만수 역 - 선임 숙수, 종8품 조부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "makjin",
+      "to": "bongsik",
+      "type": "work",
+      "label": "assistant cook, in charge of fire",
+      "short": "assistant",
+      "evidence": "심막진 역 - 보조 숙수, 불 다루는 일",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chunsik",
+      "to": "bongsik",
+      "type": "work",
+      "label": "runs the kitchen's household",
+      "short": "steward",
+      "evidence": "윤춘식 역 - 수라간 관리내관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "songjae",
+      "to": "heon",
+      "type": "work",
+      "label": "chief royal secretary, loyal since childhood; husband of the king's sister",
+      "short": "chief secretary",
+      "evidence": "Grand Royal Secretary, King Lee Heon's loyal minister and acquaintance from childhood / 이헌의 누이 휘숙옹주의 부마",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "songjae",
+      "to": "jiyeong",
+      "type": "work",
+      "label": "becomes her supporter once chaehong is abolished",
+      "short": "supporter",
+      "evidence": "After King Lee Heon abolishes chaehong, Im Song-jae becomes Ji-yeong's supporter",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seohong",
+      "to": "songjae",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "임서홍 역 - 공조참판, 임숭재/임송재의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhyeok",
+      "to": "heon",
+      "type": "work",
+      "label": "commander of the guard; silently at his side",
+      "short": "his guard",
+      "evidence": "[Commander of Urumwi] / 이헌의 곁을 묵묵히 지킨다",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gonggil",
+      "to": "heon",
+      "type": "bond",
+      "label": "the king's jester — who came to kill him for his sister's death",
+      "short": "jester",
+      "evidence": "King Lee Heon's mysterious jester [...] He used to secretly assassinate King Lee Heon because of the allegations that he caused Gong Gil's sister's death",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changseon",
+      "to": "heon",
+      "type": "work",
+      "label": "chief eunuch, serving a second king",
+      "short": "chief eunuch",
+      "evidence": "창선 역 - 상선, 선대왕 시절부터 왕을 2대째 모시고 있는 내관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "malim",
+      "to": "heon",
+      "type": "work",
+      "label": "court lady of his quarters; loves Ji Yeong's cooking",
+      "short": "court lady",
+      "evidence": "최말임 역 - 대전 상궁 [...] 지영의 요리는 더욱 좋아한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "queenyeon",
+      "to": "heon",
+      "type": "family",
+      "label": "birth mother, deposed and dead in his childhood",
+      "short": "mother",
+      "evidence": "[Heon's biological mother] / 이헌의 생모",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "inju",
+      "to": "heon",
+      "type": "family",
+      "label": "paternal grandmother — responsible for his mother's death",
+      "short": "grandmother",
+      "evidence": "[Heon's grandmother] / is responsible for the death of his mother",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jahyeon",
+      "to": "heon",
+      "type": "family",
+      "label": "stepmother",
+      "short": "stepmother",
+      "evidence": "[Heon's stepmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jahyeon",
+      "to": "jinmyeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "진명대군 역 - 이헌의 이복동생, 자현대비의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinmyeong",
+      "to": "heon",
+      "type": "family",
+      "label": "half-brother — who takes the throne in the history books",
+      "short": "half-brother",
+      "evidence": "[Heon's half-brother] / 역사에서는 이헌이 폐위되며 보위에 오른다",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boksun",
+      "to": "inju",
+      "type": "work",
+      "label": "head court lady, serving the Grand Queen Dowager",
+      "short": "head court lady",
+      "evidence": "김복순 역 - 제조상궁 [...] 인주대왕대비를 주로 보필한다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanggwin",
+      "to": "seonggwin",
+      "type": "friend",
+      "label": "the late king's concubines, like sisters",
+      "short": "like sisters",
+      "evidence": "양귀인&성귀인 역 - 후궁들, 선종이 총애하던 후궁들. 친자매처럼 지내며",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minseong",
+      "to": "inju",
+      "type": "family",
+      "label": "elder brother; the power behind the court",
+      "short": "brother",
+      "evidence": "한민성 역 - 영의정. 인주대왕대비의 오라버니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wonjun",
+      "to": "minseong",
+      "type": "work",
+      "label": "Han Min Seong's faction",
+      "short": "his faction",
+      "evidence": "박원준 역 - 한민성파, 좌의정",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongmin",
+      "to": "minseong",
+      "type": "work",
+      "label": "Han Min Seong's faction",
+      "short": "his faction",
+      "evidence": "유형민 역 - 한민성파, 예조참판",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "injae",
+      "to": "jesan",
+      "type": "work",
+      "label": "Je San's faction; dreams of a new Joseon behind him",
+      "short": "his faction",
+      "evidence": "성인재 역 - 제산대군파, 우의정",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "munjeong",
+      "to": "jesan",
+      "type": "work",
+      "label": "Je San's faction",
+      "short": "his faction",
+      "evidence": "유문정 역 - 제산대군파, 이조판서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yangson",
+      "to": "heon",
+      "type": "rivalry",
+      "label": "lost his brother in the purge; hostile to the king",
+      "short": "hostile",
+      "evidence": "김양손 역 - 제산대군파 [...] 이헌에게 적대심을 지니고 있다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jiyeong",
+      "heon",
+      "mokju",
+      "jesan",
+      "deokcheol",
+      "chuwol",
+      "gilgeum",
+      "bongsik",
+      "mansu",
+      "gaeduk",
+      "makjin",
+      "chunsik",
+      "songjae",
+      "suhyeok",
+      "gonggil",
+      "changseon",
+      "malim",
+      "queenyeon",
+      "inju",
+      "jahyeon",
+      "jinmyeong",
+      "boksun",
+      "yanggwin",
+      "seonggwin"
+    ],
+    "blocks": {
+      "Royal kitchen": [
+        0,
+        0
+      ],
+      "Heon's people": [
+        0,
+        2
+      ],
+      "Inner court": [
+        2,
+        0
+      ],
+      "Prince Je San's side": [
+        2,
+        2
+      ],
+      "Court ministers": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jiyeong",
+      "heon"
+    ]
+  }
+}

@@ -1,0 +1,494 @@
+{
+  "version": 1,
+  "mdlSlug": "30817-touch-your-heart",
+  "title": "Touch Your Heart",
+  "native": "진심이 닿다",
+  "year": 2019,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "jungrok",
+    "yoonseo"
+  ],
+  "people": [
+    {
+      "id": "jungrok",
+      "name": "Kwon Jung Rok",
+      "actor": "Lee Dong Wook",
+      "image": "https://i.mydramalist.com/jQQJvv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "35, Always' ace lawyer — arrogant, cold, always wins"
+    },
+    {
+      "id": "yoonseo",
+      "name": "Oh Yoon Seo / Oh Jin Shim",
+      "actor": "Yoo In Na",
+      "image": "https://i.mydramalist.com/NdeYyy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "32, top actress fallen after a chaebol scandal; his secretary for three months to prepare a role"
+    },
+    {
+      "id": "sewon",
+      "name": "Kim Se Won",
+      "actor": "Lee Sang Woo",
+      "image": "https://i.mydramalist.com/1Ljp3m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "35, elite prosecutor"
+    },
+    {
+      "id": "yeoreum",
+      "name": "Yoo Yeo Reum",
+      "actor": "Son Sung Yoon",
+      "image": "https://i.mydramalist.com/60rE32_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "35, prosecutor"
+    },
+    {
+      "id": "juyeong",
+      "name": "Lee Ju Yeong",
+      "actor": "Kim Chae Eun",
+      "image": "https://i.mydramalist.com/XXEBn_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "27, rookie prosecutor"
+    },
+    {
+      "id": "im",
+      "name": "Prosecutor Im",
+      "actor": "Lee Hyun Kyun",
+      "image": "https://i.mydramalist.com/JBbyXd_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true
+    },
+    {
+      "id": "chief",
+      "name": "Chief prosecutor",
+      "actor": "Kim Hee Chang",
+      "image": "https://i.mydramalist.com/Z0wjYm.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true
+    },
+    {
+      "id": "hyeongsik",
+      "name": "Kim Hyeong Sik",
+      "actor": "Na Chul",
+      "image": "https://i.mydramalist.com/5v7ZRy_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true
+    },
+    {
+      "id": "hyunji",
+      "name": "Yoo Hyun Ji",
+      "actor": "Park Yun",
+      "image": "https://i.mydramalist.com/xwjPNm.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true
+    },
+    {
+      "id": "joonkyu",
+      "name": "Yeon Joon Kyu",
+      "actor": "Oh Jung Se",
+      "image": "https://i.mydramalist.com/VXDoEJ_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "42, CEO"
+    },
+    {
+      "id": "yoonhyuk",
+      "name": "Choi Yoon Hyuk",
+      "actor": "Shim Hyung Tak",
+      "image": "https://i.mydramalist.com/wJmQJk_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "37, divorce lawyer"
+    },
+    {
+      "id": "moonhee",
+      "name": "Dan Moon Hee",
+      "actor": "Park Kyung Hye",
+      "image": "https://i.mydramalist.com/QJBrog_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "29, lawyer"
+    },
+    {
+      "id": "dooseop",
+      "name": "Lee Doo Seop",
+      "actor": "Park Ji Hwan",
+      "image": "https://i.mydramalist.com/Z83mZ7_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "40, office manager"
+    },
+    {
+      "id": "eunji",
+      "name": "Yang Eun Ji",
+      "actor": "Jang So Yeon",
+      "image": "https://i.mydramalist.com/BdqzvR_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "37, secretary"
+    },
+    {
+      "id": "haeyoung",
+      "name": "Kim Hae Young",
+      "actor": "Kim Hee Jung",
+      "image": "https://i.mydramalist.com/rAKwD_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "27, assistant secretary"
+    },
+    {
+      "id": "pilgi",
+      "name": "Kim Pil Gi",
+      "actor": "Lee Kyu Sung",
+      "image": "https://i.mydramalist.com/BE5kb_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "Intern"
+    },
+    {
+      "id": "jonghwa",
+      "name": "Lee Jong Hwa",
+      "actor": "Lee Jong Hwa",
+      "image": "https://i.mydramalist.com/jQWWe8_5m.jpg",
+      "group": "Always Law Firm",
+      "inCast": true,
+      "note": "Intern"
+    },
+    {
+      "id": "junsuk",
+      "name": "Yoon Jun Suk",
+      "actor": "Lee Joon Hyuk",
+      "image": "https://i.mydramalist.com/dWxog_5m.jpg",
+      "group": "Yoon Seo's agency",
+      "inCast": true,
+      "note": "40, CEO of her agency"
+    },
+    {
+      "id": "hyeokjun",
+      "name": "Kong Hyeok Jun",
+      "actor": "Oh Eui Shik",
+      "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
+      "group": "Yoon Seo's agency",
+      "inCast": true,
+      "note": "35, her manager"
+    }
+  ],
+  "links": [
+    {
+      "from": "yoonseo",
+      "to": "jungrok",
+      "type": "work",
+      "label": "his secretary for three months, to learn the role",
+      "short": "secretary",
+      "evidence": "his boss asks Kwon Jeong Rok to let actress O Yun Seo work as his secretary for 3 months",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungrok",
+      "to": "yoonseo",
+      "type": "romance",
+      "label": "the cold lawyer and the actress",
+      "short": "falls for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sewon",
+      "to": "jungrok",
+      "type": "friend",
+      "label": "best friend; law school and training-institute classmates",
+      "short": "best friend",
+      "evidence": "Kim Se-won, Jung-rok's best friend who is an elite prosecutor / 정록의 법대와 사법연수원 동기",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeoreum",
+      "to": "sewon",
+      "type": "romance",
+      "label": "dated in university — he broke her heart",
+      "short": "ex",
+      "evidence": "She and Se-won dated in university, but he broke her heart",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jungrok",
+      "to": "yeoreum",
+      "type": "romance",
+      "label": "his old crush; law school classmates",
+      "short": "old crush",
+      "evidence": "Yoo Yeo-reum, a prosecutor, whom Jung-rok had a crush on / 정록과 세원의 법대 동기",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyeong",
+      "to": "sewon",
+      "type": "work",
+      "label": "his junior",
+      "short": "junior",
+      "evidence": "이주영 역 - 서울중앙지검 신입 검사, 세원의 후배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "im",
+      "to": "yeoreum",
+      "type": "work",
+      "label": "her senior, who puts her down",
+      "short": "her senior",
+      "evidence": "Prosecutor Im, Yeo-reum's senior who often puts her down",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chief",
+      "to": "yeoreum",
+      "type": "work",
+      "label": "her boss",
+      "short": "boss",
+      "evidence": "[Chief prosecutor] / a prosecutor and Yeo-reum's boss",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongsik",
+      "to": "sewon",
+      "type": "work",
+      "label": "Se Won's team",
+      "short": "his team",
+      "evidence": "Kim Hyung-shik from Se-won's team",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunji",
+      "to": "sewon",
+      "type": "work",
+      "label": "Se Won's team",
+      "short": "his team",
+      "evidence": "[Se Won's team]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joonkyu",
+      "to": "jungrok",
+      "type": "work",
+      "label": "CEO of Always; the boss who lands him the actress",
+      "short": "boss",
+      "evidence": "['Always' law firm CEO] / his boss asks Kwon Jeong Rok to let actress O Yun Seo work as his secretary",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joonkyu",
+      "to": "yoonseo",
+      "type": "bond",
+      "label": "her ardent fan",
+      "short": "her fan",
+      "evidence": "Yeon Joon-kyu, the CEO of Always Law Firm. An ardent fan of Yoon-seo",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoonhyuk",
+      "to": "jungrok",
+      "type": "work",
+      "label": "the firm's divorce lawyer",
+      "short": "colleague",
+      "evidence": "[Divorce lawyer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "moonhee",
+      "to": "jungrok",
+      "type": "work",
+      "label": "the firm's civil lawyer",
+      "short": "colleague",
+      "evidence": "[Civil defense attorney]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "moonhee",
+      "to": "yoonhyuk",
+      "type": "romance",
+      "label": "the second couple at the firm",
+      "short": "courts him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dooseop",
+      "to": "joonkyu",
+      "type": "work",
+      "label": "office manager",
+      "short": "office manager",
+      "evidence": "[Office manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunji",
+      "to": "jungrok",
+      "type": "work",
+      "label": "legal secretary",
+      "short": "secretary",
+      "evidence": "[Legal secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haeyoung",
+      "to": "eunji",
+      "type": "work",
+      "label": "assistant secretary",
+      "short": "assistant",
+      "evidence": "[Assistant legal secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilgi",
+      "to": "joonkyu",
+      "type": "work",
+      "label": "intern",
+      "short": "intern",
+      "evidence": "[Intern]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jonghwa",
+      "to": "joonkyu",
+      "type": "work",
+      "label": "intern",
+      "short": "intern",
+      "evidence": "[Intern]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junsuk",
+      "to": "yoonseo",
+      "type": "work",
+      "label": "CEO of her agency",
+      "short": "her CEO",
+      "evidence": "[CEO of Yoon Seo's agency]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeokjun",
+      "to": "yoonseo",
+      "type": "work",
+      "label": "her manager",
+      "short": "manager",
+      "evidence": "[Yun Seo's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jungrok",
+      "yoonseo",
+      "sewon",
+      "yeoreum",
+      "juyeong",
+      "im",
+      "chief",
+      "hyeongsik",
+      "hyunji",
+      "joonkyu",
+      "yoonhyuk",
+      "moonhee",
+      "dooseop",
+      "eunji",
+      "haeyoung",
+      "pilgi",
+      "jonghwa",
+      "junsuk",
+      "hyeokjun"
+    ],
+    "blocks": {
+      "Always Law Firm": [
+        0,
+        0
+      ],
+      "Prosecutors' office": [
+        2,
+        0
+      ],
+      "Yoon Seo's agency": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jungrok",
+      "yoonseo"
+    ]
+  }
+}

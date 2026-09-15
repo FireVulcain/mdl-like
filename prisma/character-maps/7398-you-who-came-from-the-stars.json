@@ -1,0 +1,607 @@
+{
+  "version": 1,
+  "mdlSlug": "7398-you-who-came-from-the-stars",
+  "title": "My Love from the Star",
+  "native": "별에서 온 그대",
+  "year": 2013,
+  "country": "KR",
+  "sources": [
+    "MDL cast (25 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "songi",
+    "minjun"
+  ],
+  "people": [
+    {
+      "id": "songi",
+      "name": "Cheon Song I",
+      "actor": "Jun Ji Hyun",
+      "image": "https://i.mydramalist.com/ABo7XL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Hyeon Soo",
+          "image": "https://i.mydramalist.com/r5mnj_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "28, the biggest Hallyu star — and a university student"
+    },
+    {
+      "id": "minjun",
+      "name": "Do Min Jun",
+      "actor": "Kim Soo Hyun",
+      "image": "https://i.mydramalist.com/rNgNLN_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The alien who landed in Joseon 400 years ago; a lecturer, with three months left on Earth"
+    },
+    {
+      "id": "huigyeong",
+      "name": "Lee Hui Gyeong",
+      "actor": "Park Hae Jin",
+      "image": "https://i.mydramalist.com/JBelwY_5m.jpg",
+      "group": "Hui Gyeong's family (S&C)",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jo Seung Hyun",
+          "image": "https://i.mydramalist.com/zBjVem.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "28, youngest son of S&C Group"
+    },
+    {
+      "id": "semi",
+      "name": "Yoo Se Mi",
+      "actor": "Yoo In Na",
+      "image": "https://i.mydramalist.com/NdeYyy_5m.jpg",
+      "group": "Se Mi's family",
+      "inCast": true,
+      "note": "28, supporting actress"
+    },
+    {
+      "id": "jaegyeong",
+      "name": "Lee Jae Gyeong",
+      "actor": "Shin Sung Rok",
+      "image": "https://i.mydramalist.com/j50eO_5m.jpg",
+      "group": "Hui Gyeong's family (S&C)",
+      "inCast": true,
+      "note": "36, heir of S&C"
+    },
+    {
+      "id": "beomjung",
+      "name": "Lee Beom Jung",
+      "actor": "Lee Jung Gil",
+      "image": "https://i.mydramalist.com/nEEL2m.jpg",
+      "group": "Hui Gyeong's family (S&C)",
+      "inCast": true,
+      "note": "67, chairman of S&C"
+    },
+    {
+      "id": "euna",
+      "name": "Hong Eun A",
+      "actor": "Seong Byung Sook",
+      "image": "https://i.mydramalist.com/5v8XOe_5m.jpg",
+      "group": "Hui Gyeong's family (S&C)",
+      "inCast": true,
+      "note": "58"
+    },
+    {
+      "id": "sin",
+      "name": "Lee Sin",
+      "actor": "Lee Yi Kyung",
+      "image": "https://i.mydramalist.com/5v7nrV_5m.jpg",
+      "group": "Hui Gyeong's family (S&C)",
+      "inCast": true,
+      "note": "Jae Gyeong's secretary"
+    },
+    {
+      "id": "yura",
+      "name": "Han Yu Ra",
+      "actor": "Yoo In Young",
+      "image": "https://i.mydramalist.com/EyBdp_5m.jpg",
+      "group": "Hui Gyeong's family (S&C)",
+      "inCast": true,
+      "note": "Actress, found dead"
+    },
+    {
+      "id": "yeongmok",
+      "name": "Jang Yeong Mok",
+      "actor": "Kim Chang Wan",
+      "image": "https://i.mydramalist.com/6xQPg_5m.jpg",
+      "group": "Around Min Jun",
+      "inCast": true,
+      "note": "62, lawyer"
+    },
+    {
+      "id": "ihwa",
+      "name": "Seo I Hwa",
+      "actor": "Kim Hyeon Soo",
+      "image": "https://i.mydramalist.com/r5mnj_5m.jpg",
+      "group": "Around Min Jun",
+      "inCast": true,
+      "note": "The girl of Joseon, 400 years ago"
+    },
+    {
+      "id": "miyeon",
+      "name": "Yang Mi Yeon",
+      "actor": "Na Young Hee",
+      "image": "https://i.mydramalist.com/QPZ02_5m.jpg",
+      "group": "Song I's family",
+      "inCast": true,
+      "note": "54"
+    },
+    {
+      "id": "mingu",
+      "name": "Cheon Min Gu",
+      "actor": "Um Hyo Sup",
+      "image": "https://i.mydramalist.com/jov5z_5m.jpg",
+      "group": "Song I's family",
+      "inCast": true,
+      "note": "56"
+    },
+    {
+      "id": "yunjae",
+      "name": "Cheon Yun Jae",
+      "actor": "Ahn Jae Hyun",
+      "image": "https://i.mydramalist.com/VXd7jJ_5m.jpg",
+      "group": "Song I's family",
+      "inCast": true,
+      "note": "18, high-schooler"
+    },
+    {
+      "id": "hyein",
+      "name": "Hong Hye In / Hong Bok Ja",
+      "actor": "Hong Jin Kyung",
+      "image": "https://i.mydramalist.com/Z6Vmq_5m.jpg",
+      "group": "Around Song I",
+      "inCast": true,
+      "note": "Runs the comic-book cafe"
+    },
+    {
+      "id": "cheolsu",
+      "name": "Cheol Su",
+      "actor": "Jo Se Ho",
+      "image": "https://i.mydramalist.com/d0OlLe_5m.jpg",
+      "group": "Around Song I",
+      "inCast": true,
+      "note": "Comic-cafe regular, jobless"
+    },
+    {
+      "id": "hyeok",
+      "name": "Hyeok",
+      "actor": "Nam Chang Hee",
+      "image": "https://i.mydramalist.com/vYVmp_5m.jpg",
+      "group": "Around Song I",
+      "inCast": true,
+      "note": "Comic-cafe regular, jobless"
+    },
+    {
+      "id": "dongmin",
+      "name": "An Dong Min",
+      "actor": "Cho Hee Bong",
+      "image": "https://i.mydramalist.com/RXXAV_5m.jpg",
+      "group": "Around Song I",
+      "inCast": true,
+      "note": "CEO of her agency"
+    },
+    {
+      "id": "beom",
+      "name": "Yun Beom",
+      "actor": "Kim Kang Hyun",
+      "image": "https://i.mydramalist.com/wzV2b_5m.jpg",
+      "group": "Around Song I",
+      "inCast": true,
+      "note": "Manager"
+    },
+    {
+      "id": "mina",
+      "name": "Min A",
+      "actor": "Kim  Bo Mi",
+      "image": "https://i.mydramalist.com/vnxDqm.jpg",
+      "group": "Around Song I",
+      "inCast": true,
+      "note": "Stylist"
+    },
+    {
+      "id": "byeonghui",
+      "name": "Park Byeong Hui",
+      "actor": "Kim Hee Won",
+      "image": "https://i.mydramalist.com/1qZ0Km.jpg",
+      "group": "Se Mi's family",
+      "inCast": true,
+      "note": "Detective on Han Yu Ra's death"
+    },
+    {
+      "id": "sunyeong",
+      "name": "Han Sun Yeong",
+      "actor": "Lee Il Hwa",
+      "image": "https://i.mydramalist.com/nODnn4_5m.jpg",
+      "group": "Se Mi's family",
+      "inCast": true,
+      "note": "49"
+    },
+    {
+      "id": "seok",
+      "name": "Yoo Seok",
+      "actor": "Oh  Sang Jin",
+      "image": "https://i.mydramalist.com/qoLxDm.jpg",
+      "group": "Se Mi's family",
+      "inCast": true,
+      "note": "31, prosecutor"
+    }
+  ],
+  "links": [
+    {
+      "from": "minjun",
+      "to": "songi",
+      "type": "romance",
+      "label": "the alien with three months left meets the star next door",
+      "short": "falls for her",
+      "evidence": "he discovers that he has three months left on Earth. And that is when he meets Cheon Song I, the biggest Hallyu star in Korea",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minjun",
+      "to": "songi",
+      "type": "work",
+      "label": "her lecturer at university",
+      "short": "lecturer",
+      "evidence": "도민준 역 - 대학 강사 / 천송이 역 - 톱 배우, 대학생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huigyeong",
+      "to": "songi",
+      "type": "romance",
+      "label": "loved her for fifteen years",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "semi",
+      "to": "huigyeong",
+      "type": "romance",
+      "label": "loves him, unsaid",
+      "short": "loves him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "semi",
+      "to": "songi",
+      "type": "rivalry",
+      "label": "best friend since school — and her jealous shadow",
+      "short": "jealous friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jaegyeong",
+      "to": "huigyeong",
+      "type": "family",
+      "label": "older brother; S&C's heir",
+      "short": "older brother",
+      "evidence": "[Hui Gyeong's older brother] / S&C그룹 후계자",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaegyeong",
+      "to": "songi",
+      "type": "rivalry",
+      "label": "wants her silenced — the killer",
+      "short": "the killer",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaegyeong",
+      "to": "yura",
+      "type": "romance",
+      "label": "the actress he was seeing — dead",
+      "short": "his secret",
+      "evidence": "한유라 사망 사건",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "beomjung",
+      "to": "huigyeong",
+      "type": "family",
+      "label": "father; chairman of S&C",
+      "short": "father",
+      "evidence": "[Hui Gyeong's father] / S&C그룹 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "euna",
+      "to": "huigyeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Hui Gyeong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sin",
+      "to": "jaegyeong",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Jae Gyeong's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongmok",
+      "to": "minjun",
+      "type": "friend",
+      "label": "his lawyer, and the one friend who knows what he is",
+      "short": "only friend",
+      "evidence": "[Min Jun's friend] / 장영목 역 - 변호사",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ihwa",
+      "to": "minjun",
+      "type": "romance",
+      "label": "the girl he saved in Joseon, 400 years ago — Song I's face",
+      "short": "Joseon love",
+      "evidence": "천송이 역 (아역 김현수) / 김현수 : 서이화 역",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miyeon",
+      "to": "songi",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Song I's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mingu",
+      "to": "songi",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Song I's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunjae",
+      "to": "songi",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Song I's younger brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyein",
+      "to": "songi",
+      "type": "friend",
+      "label": "school classmate; runs the comic cafe",
+      "short": "old classmate",
+      "evidence": "[Song I's high school classmate] / 만화방 주인",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "cheolsu",
+      "to": "hyein",
+      "type": "work",
+      "label": "comic-cafe regular",
+      "short": "regular",
+      "evidence": "철수 역 - 만화방 단골. 동네 백수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeok",
+      "to": "hyein",
+      "type": "work",
+      "label": "comic-cafe regular",
+      "short": "regular",
+      "evidence": "혁 역 - 만화방 단골. 동네 백수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongmin",
+      "to": "songi",
+      "type": "work",
+      "label": "CEO of her agency",
+      "short": "her CEO",
+      "evidence": "[CEO of Song Yi's management agency]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "beom",
+      "to": "songi",
+      "type": "work",
+      "label": "manager",
+      "short": "manager",
+      "evidence": "[Song I's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mina",
+      "to": "songi",
+      "type": "work",
+      "label": "stylist",
+      "short": "stylist",
+      "evidence": "[Song I's stylist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunyeong",
+      "to": "semi",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Se Mi's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seok",
+      "to": "semi",
+      "type": "family",
+      "label": "older brother, a prosecutor",
+      "short": "brother",
+      "evidence": "[Prosecutor / Se Mi's older brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeonghui",
+      "to": "seok",
+      "type": "work",
+      "label": "detective on the Han Yu Ra case, with the prosecutor",
+      "short": "works with",
+      "evidence": "박병희 역 - 한유라 사망 사건 담당 형사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seok",
+      "to": "jaegyeong",
+      "type": "rivalry",
+      "label": "the prosecutor on his trail",
+      "short": "investigates",
+      "evidence": "유석 역 - 검사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "songi",
+      "minjun",
+      "huigyeong",
+      "semi",
+      "jaegyeong",
+      "beomjung",
+      "euna",
+      "sin",
+      "yura",
+      "yeongmok",
+      "ihwa",
+      "miyeon",
+      "mingu",
+      "yunjae",
+      "hyein",
+      "cheolsu",
+      "hyeok",
+      "dongmin",
+      "beom",
+      "mina",
+      "byeonghui",
+      "sunyeong",
+      "seok"
+    ],
+    "blocks": {
+      "Song I's family": [
+        0,
+        0
+      ],
+      "Around Song I": [
+        0,
+        2
+      ],
+      "Around Min Jun": [
+        1,
+        0
+      ],
+      "Hui Gyeong's family (S&C)": [
+        2,
+        0
+      ],
+      "Se Mi's family": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "songi",
+      "minjun"
+    ]
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "mdlSlug": "19262-weightlifting-fairy-kim-bok-joo",
+  "title": "Weightlifting Fairy Kim Bok Joo",
+  "native": "역도요정 김복주",
+  "year": 2016,
+  "country": "KR",
+  "sources": [
+    "MDL cast (29 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "bokjoo",
+    "joonhyeong"
+  ],
+  "people": [
+    {
+      "id": "bokjoo",
+      "name": "Kim Bok Joo",
+      "actor": "Lee Sung Kyoung",
+      "image": "https://i.mydramalist.com/6q6Z2_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Ji Woo",
+          "image": "https://i.mydramalist.com/YE3EQm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "21, second-year weightlifter (-58kg) at Haneol Sports University"
+    },
+    {
+      "id": "joonhyeong",
+      "name": "Jung Joon Hyeong",
+      "actor": "Nam Joo Hyuk",
+      "image": "https://i.mydramalist.com/VXl4Nm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ye Jun",
+          "image": "https://i.mydramalist.com/03gq6_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "21, second-year swimmer (200m freestyle)"
+    },
+    {
+      "id": "jaeyi",
+      "name": "Jung Jae Yi",
+      "actor": "Lee Jae Yoon",
+      "image": "https://i.mydramalist.com/x2Wr3m.jpg",
+      "group": "Joon Hyeong's family",
+      "inCast": true,
+      "note": "31, doctor at an obesity clinic"
+    },
+    {
+      "id": "shiho",
+      "name": "Song Shi Ho",
+      "actor": "Gyeong Su Jin",
+      "image": "https://i.mydramalist.com/x4wpzj_5m.jpg",
+      "group": "Swimming & gymnastics",
+      "inCast": true,
+      "note": "22, third-year rhythmic gymnast"
+    },
+    {
+      "id": "nanhee",
+      "name": "Jung Nan Hee",
+      "actor": "Cho Hye Jung",
+      "image": "https://i.mydramalist.com/jONov_5m.jpg",
+      "group": "Weightlifting team",
+      "inCast": true,
+      "note": "21, weightlifter (-63kg)"
+    },
+    {
+      "id": "sunok",
+      "name": "Lee Sun Ok",
+      "actor": "Lee Joo Young",
+      "image": "https://i.mydramalist.com/0lA54_5m.jpg",
+      "group": "Weightlifting team",
+      "inCast": true,
+      "note": "21, weightlifter (-53kg)"
+    },
+    {
+      "id": "ungi",
+      "name": "Bang Un Gi",
+      "actor": "Oh Eui Shik",
+      "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
+      "group": "Weightlifting team",
+      "inCast": true,
+      "note": "23, team captain"
+    },
+    {
+      "id": "sungchul",
+      "name": "Sung Chul",
+      "actor": "Moon  Ji Yoon",
+      "image": "https://i.mydramalist.com/qAQJ8m.jpg",
+      "group": "Weightlifting team",
+      "inCast": true
+    },
+    {
+      "id": "jungwoo",
+      "name": "Jung Woo",
+      "actor": "Yoo Joon Hong",
+      "image": "https://i.mydramalist.com/AvEbZm.jpg",
+      "group": "Weightlifting team",
+      "inCast": true
+    },
+    {
+      "id": "deokman",
+      "name": "Yoon Deok Man",
+      "actor": "Choi Mu Sung",
+      "image": "https://i.mydramalist.com/NdnJwe_5m.jpg",
+      "group": "Weightlifting team",
+      "inCast": true,
+      "note": "46, head coach"
+    },
+    {
+      "id": "sungeun",
+      "name": "Choi Sung Eun",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "Weightlifting team",
+      "inCast": true,
+      "note": "36, coach"
+    },
+    {
+      "id": "taekwon",
+      "name": "Jo Tae Kwon",
+      "actor": "Ji  Il Joo",
+      "image": "https://i.mydramalist.com/6qLYd_5m.jpg",
+      "group": "Swimming & gymnastics",
+      "inCast": true,
+      "note": "21, swimmer; Joon Hyeong's roommate"
+    },
+    {
+      "id": "kisuk",
+      "name": "Kim Ki Suk",
+      "actor": "Choi Woong",
+      "image": "https://i.mydramalist.com/xnd53_5m.jpg",
+      "group": "Swimming & gymnastics",
+      "inCast": true,
+      "note": "22, swimmer"
+    },
+    {
+      "id": "yoohee",
+      "name": "Sung Yoo Hee",
+      "actor": "Ray Yang",
+      "image": "https://i.mydramalist.com/vOOqXm.jpg",
+      "group": "Swimming & gymnastics",
+      "inCast": true,
+      "note": "34, gymnastics coach"
+    },
+    {
+      "id": "soobin",
+      "name": "Soo Bin",
+      "actor": "Jo Soo Hyang",
+      "image": "https://i.mydramalist.com/Ee07W_5m.jpg",
+      "group": "Swimming & gymnastics",
+      "inCast": true
+    },
+    {
+      "id": "shiyeon",
+      "name": "Song Shi Yeon",
+      "actor": "Z Hera",
+      "image": "https://i.mydramalist.com/xQA3rm.jpg",
+      "group": "Swimming & gymnastics",
+      "inCast": true
+    },
+    {
+      "id": "ahyeong",
+      "name": "Go Ah Yeong",
+      "actor": "Yoo Da In",
+      "image": "https://i.mydramalist.com/QgJoW_5m.jpg",
+      "group": "Joon Hyeong's family",
+      "inCast": true,
+      "note": "31, doctor at the university infirmary"
+    },
+    {
+      "id": "changgul",
+      "name": "Kim Chang Gul",
+      "actor": "Ahn Kil Kang",
+      "image": "https://i.mydramalist.com/O8LKVy_5m.jpg",
+      "group": "Bok Joo's family",
+      "inCast": true,
+      "note": "48, former weightlifter; runs a chicken place"
+    },
+    {
+      "id": "daeho",
+      "name": "Kim Dae Ho",
+      "actor": "Kang Ki Young",
+      "image": "https://i.mydramalist.com/EeKV5_5m.jpg",
+      "group": "Bok Joo's family",
+      "inCast": true,
+      "note": "36; works at the chicken place; an extra"
+    },
+    {
+      "id": "uncle",
+      "name": "Joon Hyeong's uncle",
+      "actor": "Jung In Ki",
+      "image": "https://i.mydramalist.com/627A2m.jpg",
+      "group": "Joon Hyeong's family",
+      "inCast": true,
+      "note": "Runs the couple's pharmacy"
+    },
+    {
+      "id": "aunt",
+      "name": "Joon Hyeong's aunt",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
+      "group": "Joon Hyeong's family",
+      "inCast": true,
+      "note": "Runs the couple's pharmacy"
+    },
+    {
+      "id": "jongyeon",
+      "name": "Kim Jong Yeon",
+      "actor": "Yun Yu Sun",
+      "image": "https://i.mydramalist.com/BDbjb_5m.jpg",
+      "group": "Joon Hyeong's family",
+      "inCast": true
+    },
+    {
+      "id": "therapist",
+      "name": "Joon Hyeong's therapist",
+      "actor": "Park Won Sang",
+      "image": "https://i.mydramalist.com/DkJoJq_5m.jpg",
+      "group": "Joon Hyeong's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "joonhyeong",
+      "to": "bokjoo",
+      "type": "romance",
+      "label": "her first romance — the swimmer and the weightlifter",
+      "short": "first love",
+      "evidence": "she then finds romance for the first time in her life",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bokjoo",
+      "to": "jaeyi",
+      "type": "romance",
+      "label": "her crush on the clinic doctor — Joon Hyeong's cousin",
+      "short": "crush",
+      "evidence": "정재이 역 - 비만클리닉 의사, 준형의 사촌형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaeyi",
+      "to": "joonhyeong",
+      "type": "family",
+      "label": "cousin",
+      "short": "cousin",
+      "evidence": "정재이 역 - 준형의 사촌형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shiho",
+      "to": "joonhyeong",
+      "type": "romance",
+      "label": "his ex, the gymnast",
+      "short": "ex",
+      "evidence": "송시호 역 - 한얼체대 3학년 리듬체조부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "nanhee",
+      "to": "bokjoo",
+      "type": "friend",
+      "label": "best friend, same team",
+      "short": "best friend",
+      "evidence": "[Bok Joo's best friend] / 복주의 절친",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sunok",
+      "to": "bokjoo",
+      "type": "friend",
+      "label": "best friend, same team",
+      "short": "best friend",
+      "evidence": "[Bok Joo's best friend] / 복주의 절친",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ungi",
+      "to": "bokjoo",
+      "type": "work",
+      "label": "team captain, her senior",
+      "short": "captain",
+      "evidence": "[Bok Ju's sunbae] / 역도부 주장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungchul",
+      "to": "bokjoo",
+      "type": "work",
+      "label": "senior on the team",
+      "short": "senior",
+      "evidence": "[Bok Joo's sunbae]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungwoo",
+      "to": "bokjoo",
+      "type": "work",
+      "label": "senior on the team",
+      "short": "senior",
+      "evidence": "[Bok Joo's sunbae]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokman",
+      "to": "bokjoo",
+      "type": "work",
+      "label": "head coach",
+      "short": "head coach",
+      "evidence": "[Bok Joo's professor] / 역도부 감독",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungeun",
+      "to": "bokjoo",
+      "type": "work",
+      "label": "coach",
+      "short": "coach",
+      "evidence": "[Bok Joo's coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taekwon",
+      "to": "joonhyeong",
+      "type": "friend",
+      "label": "best friend and roommate on the swim team",
+      "short": "best friend",
+      "evidence": "[Joo Hyeong's best friend] / 준형의 수영부 절친",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taekwon",
+      "to": "sunok",
+      "type": "romance",
+      "label": "shows some interest in her",
+      "short": "likes her",
+      "evidence": "eventually shows some interest in Seon-ok",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kisuk",
+      "to": "joonhyeong",
+      "type": "work",
+      "label": "senior on the swim team",
+      "short": "senior",
+      "evidence": "[Joon Hyeong's sunbae]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoohee",
+      "to": "shiho",
+      "type": "work",
+      "label": "her coach",
+      "short": "coach",
+      "evidence": "[Shi Ho's coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soobin",
+      "to": "shiho",
+      "type": "work",
+      "label": "teammate",
+      "short": "teammate",
+      "evidence": "[Shi Ho's teammate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shiyeon",
+      "to": "shiho",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Shi Ho's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ahyeong",
+      "to": "jaeyi",
+      "type": "friend",
+      "label": "friend; the infirmary doctor",
+      "short": "friend",
+      "evidence": "[Jae Yi's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "changgul",
+      "to": "bokjoo",
+      "type": "family",
+      "label": "father, a former weightlifter",
+      "short": "father",
+      "evidence": "[Bok Joo's father] / 역도선수 출신",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeho",
+      "to": "bokjoo",
+      "type": "family",
+      "label": "youngest uncle",
+      "short": "uncle",
+      "evidence": "[Bok Joo's uncle] / 복주의 막내 삼촌",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeho",
+      "to": "changgul",
+      "type": "work",
+      "label": "works at his brother's chicken place",
+      "short": "works for him",
+      "evidence": "복주네 치킨 집 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uncle",
+      "to": "joonhyeong",
+      "type": "family",
+      "label": "paternal uncle and foster father",
+      "short": "foster father",
+      "evidence": "[Joon Hyeong's uncle] / Joon-hyung's paternal uncle and foster father",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aunt",
+      "to": "joonhyeong",
+      "type": "family",
+      "label": "paternal aunt and foster mother",
+      "short": "foster mother",
+      "evidence": "[Joon Hyung's aunt] / paternal aunt and foster mother",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongyeon",
+      "to": "joonhyeong",
+      "type": "family",
+      "label": "birth mother — the one who left",
+      "short": "birth mother",
+      "evidence": "[Joon Hyeong's mom]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "therapist",
+      "to": "joonhyeong",
+      "type": "work",
+      "label": "his therapist",
+      "short": "therapist",
+      "evidence": "[Joon Hyeong's therapist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "bokjoo",
+      "joonhyeong",
+      "jaeyi",
+      "shiho",
+      "nanhee",
+      "sunok",
+      "ungi",
+      "sungchul",
+      "jungwoo",
+      "deokman",
+      "sungeun",
+      "taekwon",
+      "kisuk",
+      "yoohee",
+      "soobin",
+      "shiyeon",
+      "ahyeong",
+      "changgul",
+      "daeho",
+      "uncle",
+      "aunt",
+      "jongyeon",
+      "therapist"
+    ],
+    "blocks": {
+      "Weightlifting team": [
+        0,
+        0
+      ],
+      "Swimming & gymnastics": [
+        2,
+        0
+      ],
+      "Bok Joo's family": [
+        0,
+        2
+      ],
+      "Joon Hyeong's family": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "bokjoo",
+      "joonhyeong"
+    ]
+  }
+}

@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "mdlSlug": "706923-crazy-love",
+  "title": "Crazy Love",
+  "native": "크레이지 러브",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (23 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "gojin",
+    "sina"
+  ],
+  "people": [
+    {
+      "id": "gojin",
+      "name": "No Go Jin",
+      "actor": "Kim Jae Uck",
+      "image": "https://i.mydramalist.com/KpELb8_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "35, the country's top instructor and CEO of GoTop; narcissist — warned he will be murdered"
+    },
+    {
+      "id": "sina",
+      "name": "Lee Sin A",
+      "actor": "Krystal Jung",
+      "image": "https://i.mydramalist.com/O8m5OP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "29, his quiet, unnoticed secretary — with little time left to live"
+    },
+    {
+      "id": "segi",
+      "name": "O Se Gi",
+      "actor": "Ha Jun",
+      "image": "https://i.mydramalist.com/g0bm8P_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "33, Go Jin's only friend and business partner"
+    },
+    {
+      "id": "suyeong",
+      "name": "Baek Su Yeong",
+      "actor": "Yoo In Young",
+      "image": "https://i.mydramalist.com/EyBdp_5m.jpg",
+      "group": "Rivals",
+      "inCast": true,
+      "note": "38"
+    },
+    {
+      "id": "jongo",
+      "name": "Cho Jong O",
+      "actor": "Seo Ji Hoo",
+      "image": "https://i.mydramalist.com/EKrjm_5m.jpg",
+      "group": "Rivals",
+      "inCast": true,
+      "note": "39"
+    },
+    {
+      "id": "yangtae",
+      "name": "Park Yang Tae",
+      "actor": "Im Won Hee",
+      "image": "https://i.mydramalist.com/3olvrd_5m.jpg",
+      "group": "Rivals",
+      "inCast": true,
+      "note": "49, CEO of Ilpum Edu"
+    },
+    {
+      "id": "kangmin",
+      "name": "Kang Min",
+      "actor": "Lee Si Eon",
+      "image": "https://i.mydramalist.com/PxZ3pX_5m.jpg",
+      "group": "Rivals",
+      "inCast": true,
+      "note": "33, former GoTop English instructor"
+    },
+    {
+      "id": "junpal",
+      "name": "Ju Jun Pal / \"John\"",
+      "actor": "Ko Kyu Pil",
+      "image": "https://i.mydramalist.com/Lw8q2x_5m.jpg",
+      "group": "Rivals",
+      "inCast": true,
+      "note": "35"
+    },
+    {
+      "id": "chabae",
+      "name": "Kim Cha Bae",
+      "actor": "Jung Sung Ho",
+      "image": "https://i.mydramalist.com/QJnoq7_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "47, Korean instructor; Go Jin's official yes-man"
+    },
+    {
+      "id": "huicheol",
+      "name": "Kong Hui Cheol",
+      "actor": "Kim Ki Nam",
+      "image": "https://i.mydramalist.com/nOoWw8_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "38, social studies instructor"
+    },
+    {
+      "id": "michelle",
+      "name": "Michelle Lee",
+      "actor": "Lee Ji Min",
+      "image": "https://i.mydramalist.com/EJ7zpm.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "32, English instructor, the 13-billion-won legend"
+    },
+    {
+      "id": "eunjeong",
+      "name": "Ma Eun Jeong",
+      "actor": "Baek Joo Hee",
+      "image": "https://i.mydramalist.com/DkB8X5_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "40, head of Go Jin's research team"
+    },
+    {
+      "id": "hyeseon",
+      "name": "Kim Hye Seon",
+      "actor": "Joe In",
+      "image": "https://i.mydramalist.com/6BDJj_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "35, eldest of the three ex-secretaries"
+    },
+    {
+      "id": "eunhui",
+      "name": "Park Eun Hui",
+      "actor": "Song Seung A",
+      "image": "https://i.mydramalist.com/l0DVKL_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "33, second of the three ex-secretaries"
+    },
+    {
+      "id": "sora",
+      "name": "Lee So Ra",
+      "actor": "Moon Seo Yoon",
+      "image": "https://i.mydramalist.com/dqXbg_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "26, youngest of the three ex-secretaries"
+    },
+    {
+      "id": "pilseon",
+      "name": "Kong Pil Seon",
+      "actor": "Lee Mi Young",
+      "image": "https://i.mydramalist.com/jQjN7b_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "56, head of the cleaning team"
+    },
+    {
+      "id": "hwang",
+      "name": "Security Guard Hwang",
+      "actor": "Lee Yoon Hee",
+      "image": "https://i.mydramalist.com/jovpz_5m.jpg",
+      "group": "GoTop Education",
+      "inCast": true,
+      "note": "55"
+    },
+    {
+      "id": "okhui",
+      "name": "Chu Ok Hui",
+      "actor": "Park Han Sol",
+      "image": "https://i.mydramalist.com/4NemK_5m.jpg",
+      "group": "Sin A's people",
+      "inCast": true,
+      "note": "29, housemate; stage actress"
+    },
+    {
+      "id": "suho",
+      "name": "Lee Su Ho",
+      "actor": "Yoon San Ha",
+      "image": "https://i.mydramalist.com/ABezJq_5m.jpg",
+      "group": "Sin A's people",
+      "inCast": true,
+      "note": "25"
+    },
+    {
+      "id": "yonggu",
+      "name": "Lee Yong Gu",
+      "actor": "Kim Hak Seon",
+      "image": "https://i.mydramalist.com/Bz1V6_5m.jpg",
+      "group": "Sin A's people",
+      "inCast": true,
+      "note": "60, a farmer in Gangwon"
+    }
+  ],
+  "links": [
+    {
+      "from": "sina",
+      "to": "gojin",
+      "type": "work",
+      "label": "his secretary for over a year, unnoticed",
+      "short": "secretary",
+      "evidence": "Lee Sin A, his quiet and introverted secretary, is diligent but unnoticed by both her boss and colleagues",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sina",
+      "to": "gojin",
+      "type": "romance",
+      "label": "the fake fiancee after his 'amnesia' — then the real thing",
+      "short": "'fiancee'",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "segi",
+      "to": "gojin",
+      "type": "friend",
+      "label": "his one and only friend and business partner",
+      "short": "only friend",
+      "evidence": "오세기 역 - 고진의 유일무이한 친구이자 동업자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suyeong",
+      "to": "gojin",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "백수영 역 - 고진의 첫사랑",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyeong",
+      "to": "gojin",
+      "type": "rivalry",
+      "label": "wants him ruined",
+      "short": "wants him ruined",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jongo",
+      "to": "suyeong",
+      "type": "work",
+      "label": "her secretary",
+      "short": "secretary",
+      "evidence": "[Su Yeong's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yangtae",
+      "to": "gojin",
+      "type": "rivalry",
+      "label": "CEO of the rival academy Ilpum Edu",
+      "short": "rival CEO",
+      "evidence": "박양태 역 - 일품에듀 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kangmin",
+      "to": "gojin",
+      "type": "rivalry",
+      "label": "the English instructor he drove out of GoTop",
+      "short": "ex-employee",
+      "evidence": "[GoTop ex-employee] / GOTOP 前 영어 강사",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junpal",
+      "to": "gojin",
+      "type": "rivalry",
+      "label": "the one who comes for him",
+      "short": "comes for him",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chabae",
+      "to": "gojin",
+      "type": "work",
+      "label": "GoTop's Korean instructor, his official yes-man",
+      "short": "yes-man",
+      "evidence": "김차배 역 - 고탑의 국어 강사, 노고진 공식 딸랑이",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huicheol",
+      "to": "gojin",
+      "type": "work",
+      "label": "GoTop's social studies instructor",
+      "short": "instructor",
+      "evidence": "[GoTop Social Studies instructor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "michelle",
+      "to": "gojin",
+      "type": "work",
+      "label": "GoTop's English instructor",
+      "short": "instructor",
+      "evidence": "[GoTop English instructor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunjeong",
+      "to": "gojin",
+      "type": "work",
+      "label": "head of his research team",
+      "short": "research head",
+      "evidence": "마은정 역 - 고탑교육 고진 연구팀 수석 실장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeseon",
+      "to": "gojin",
+      "type": "work",
+      "label": "ex-secretary, eldest of the three",
+      "short": "ex-secretary",
+      "evidence": "[GoTop ex-secretary] / 노고진 전 비서 3인방 중 맏언니",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhui",
+      "to": "gojin",
+      "type": "work",
+      "label": "ex-secretary",
+      "short": "ex-secretary",
+      "evidence": "[GoTop ex-secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sora",
+      "to": "gojin",
+      "type": "work",
+      "label": "ex-secretary",
+      "short": "ex-secretary",
+      "evidence": "[GoTop ex-secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilseon",
+      "to": "gojin",
+      "type": "work",
+      "label": "GoTop's cleaning-team head",
+      "short": "cleaner",
+      "evidence": "[GoTop cleaner]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwang",
+      "to": "gojin",
+      "type": "work",
+      "label": "the building's security guard",
+      "short": "security",
+      "evidence": "황씨 역 - 고탑교육 경비실 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okhui",
+      "to": "sina",
+      "type": "friend",
+      "label": "housemate and bestie",
+      "short": "bestie",
+      "evidence": "[Sin A's bestie] / 신아의 하우스메이트",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "okhui",
+      "to": "suho",
+      "type": "romance",
+      "label": "lovers",
+      "short": "lover",
+      "evidence": "추옥희 역 - 수호의 연인 / 이수호 역 - 옥희의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suho",
+      "to": "sina",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Sin A's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonggu",
+      "to": "sina",
+      "type": "family",
+      "label": "father, a farmer in Gangwon",
+      "short": "father",
+      "evidence": "[Sin A's father] / 강원도의 성실한 농부",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yonggu",
+      "to": "suho",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "이수호 역 - 용구의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "gojin",
+      "sina",
+      "segi",
+      "suyeong",
+      "jongo",
+      "yangtae",
+      "kangmin",
+      "junpal",
+      "chabae",
+      "huicheol",
+      "michelle",
+      "eunjeong",
+      "hyeseon",
+      "eunhui",
+      "sora",
+      "pilseon",
+      "hwang",
+      "okhui",
+      "suho",
+      "yonggu"
+    ],
+    "blocks": {
+      "GoTop Education": [
+        0,
+        0
+      ],
+      "Sin A's people": [
+        2,
+        0
+      ],
+      "Rivals": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "gojin",
+      "sina"
+    ]
+  }
+}

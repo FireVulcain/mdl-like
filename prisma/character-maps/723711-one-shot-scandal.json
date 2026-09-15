@@ -1,0 +1,653 @@
+{
+  "version": 1,
+  "mdlSlug": "723711-one-shot-scandal",
+  "title": "Crash Course in Romance",
+  "native": "일타 스캔들",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (26 roles + guests, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "haengseon",
+    "chiyeol"
+  ],
+  "people": [
+    {
+      "id": "haengseon",
+      "name": "Nam Haeng Seon",
+      "actor": "Jeon Do Yeon",
+      "image": "https://i.mydramalist.com/2DKBdm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former national handball player; runs the side-dish shop 'National Team'"
+    },
+    {
+      "id": "chiyeol",
+      "name": "Choi Chi Yeol",
+      "actor": "Jung Kyung Ho",
+      "image": "https://i.mydramalist.com/yWBx7n_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Star maths instructor, the 'Trillion Won Man'; can't eat, can't sleep"
+    },
+    {
+      "id": "haei",
+      "name": "Nam Hae I",
+      "actor": "Roh Yoon Seo",
+      "image": "https://i.mydramalist.com/NdnkOY_5m.jpg",
+      "group": "Haeng Seon's family",
+      "inCast": true,
+      "note": "Class president of 2-1"
+    },
+    {
+      "id": "jaeu",
+      "name": "Nam Jae U",
+      "actor": "Oh Eui Shik",
+      "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
+      "group": "Haeng Seon's family",
+      "inCast": true,
+      "note": "Cashier at the shop"
+    },
+    {
+      "id": "yeongju",
+      "name": "Kim Yeong Ju",
+      "actor": "Lee Bong Ryun",
+      "image": "https://i.mydramalist.com/en0DEm.jpg",
+      "group": "Haeng Seon's family",
+      "inCast": true,
+      "note": "Co-owner of the shop"
+    },
+    {
+      "id": "yeongsun",
+      "name": "Jung Yeong Sun",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Haeng Seon's family",
+      "inCast": true,
+      "note": "Deceased"
+    },
+    {
+      "id": "haengja",
+      "name": "Nam Haeng Ja",
+      "actor": "Bae Hae Seon",
+      "image": "https://i.mydramalist.com/EDX8Qm.jpg",
+      "group": "Haeng Seon's family",
+      "inCast": true
+    },
+    {
+      "id": "donghui",
+      "name": "Ji Dong Hui",
+      "actor": "Shin Jae Ha",
+      "image": "https://i.mydramalist.com/eYVXkY_5m.jpg",
+      "group": "Chi Yeol's people",
+      "inCast": true,
+      "note": "Head of Chi Yeol's research office"
+    },
+    {
+      "id": "gayeon",
+      "name": "Cho Ga Yeon",
+      "actor": "Go Ae Ri",
+      "image": "https://i.mydramalist.com/7gXVLm.jpg",
+      "group": "Chi Yeol's people",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "seojin",
+      "name": "Jang Seo Jin",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "Seon Jae's home",
+      "inCast": true,
+      "note": "Lawyer"
+    },
+    {
+      "id": "seonjae",
+      "name": "Lee Seon Jae",
+      "actor": "Lee Chae Min",
+      "image": "https://i.mydramalist.com/yWDJlB_5m.jpg",
+      "group": "Seon Jae's home",
+      "inCast": true,
+      "note": "Class 2-1"
+    },
+    {
+      "id": "huijae",
+      "name": "Lee Hui Jae",
+      "actor": "Kim Tae Jung",
+      "image": "https://i.mydramalist.com/60zRKj_5m.jpg",
+      "group": "Seon Jae's home",
+      "inCast": true
+    },
+    {
+      "id": "suhui",
+      "name": "Cho Su Hui",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
+      "group": "Su A's home",
+      "inCast": true
+    },
+    {
+      "id": "sua",
+      "name": "Bang Su A",
+      "actor": "Kang Na Eon",
+      "image": "https://i.mydramalist.com/dbyYe_5m.jpg",
+      "group": "Su A's home",
+      "inCast": true,
+      "note": "Class 2-1"
+    },
+    {
+      "id": "miok",
+      "name": "Lee Mi Ok",
+      "actor": "Hwang Bo Ra",
+      "image": "https://i.mydramalist.com/2z6BP_5m.jpg",
+      "group": "Dan Ji's home",
+      "inCast": true
+    },
+    {
+      "id": "danji",
+      "name": "Jang Dan Ji",
+      "actor": "Ryu Da In",
+      "image": "https://i.mydramalist.com/Bd76J5_5m.jpg",
+      "group": "Dan Ji's home",
+      "inCast": true,
+      "note": "Class 2-1"
+    },
+    {
+      "id": "geonhu",
+      "name": "Seo Geon Hu",
+      "actor": "Lee Min Jae",
+      "image": "https://i.mydramalist.com/yWK7rd_5m.jpg",
+      "group": "Woorim High",
+      "inCast": true,
+      "note": "Class 2-1"
+    },
+    {
+      "id": "jongryeol",
+      "name": "Jeon Jong Ryeol",
+      "actor": "Kim Da Hwin",
+      "image": "https://i.mydramalist.com/jKReb_5m.jpg",
+      "group": "Woorim High",
+      "inCast": true,
+      "note": "Maths teacher, homeroom of 2-1"
+    },
+    {
+      "id": "suhyeon",
+      "name": "Jung Su Hyeon",
+      "actor": "Lee Do Hye",
+      "image": "https://i.mydramalist.com/Pxjqmz_5m.jpg",
+      "group": "Woorim High",
+      "inCast": true,
+      "note": "Student (deceased)"
+    },
+    {
+      "id": "yeongmin",
+      "name": "Lee Yeong Min",
+      "actor": "Yoo Jun",
+      "image": "https://i.mydramalist.com/nOQqYx_5m.jpg",
+      "group": "Woorim High",
+      "inCast": true,
+      "note": "Deceased"
+    },
+    {
+      "id": "yeongmin_mother",
+      "name": "Yeong Min's mother",
+      "actor": "Choi Hee Jin",
+      "image": "https://i.mydramalist.com/6jVxj_5m.jpg",
+      "group": "Woorim High",
+      "inCast": true
+    },
+    {
+      "id": "junsang",
+      "name": "Kang Jun Sang",
+      "actor": "Heo Jung Do",
+      "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
+      "group": "The Pride Academy",
+      "inCast": true,
+      "note": "Director"
+    },
+    {
+      "id": "isang",
+      "name": "Jin I Sang",
+      "actor": "Ji  Il Joo",
+      "image": "https://i.mydramalist.com/6qLYd_5m.jpg",
+      "group": "The Pride Academy",
+      "inCast": true,
+      "note": "Maths instructor (deceased)"
+    },
+    {
+      "id": "itae",
+      "name": "Song I Tae",
+      "actor": "Hwang Jae Yeol",
+      "image": "https://i.mydramalist.com/PxzZe8_5m.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Detective; handled the old matricide case"
+    },
+    {
+      "id": "jeongsu",
+      "name": "Bae Jeong Su",
+      "actor": "Jeong Han Seol",
+      "image": "https://i.mydramalist.com/EErwb_5m.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "dogyeom",
+      "name": "Do Gyeom",
+      "actor": "Jang Tae Min",
+      "image": "https://i.mydramalist.com/eoZmQm.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Detective"
+    }
+  ],
+  "links": [
+    {
+      "from": "chiyeol",
+      "to": "haengseon",
+      "type": "romance",
+      "label": "the aloof star instructor caught by her cheer and energy — and her food",
+      "short": "falls for her",
+      "evidence": "Her cheerful personality and boundless energy catch the attention of Choi Chi Yeol",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haengseon",
+      "to": "haei",
+      "type": "family",
+      "label": "raises her as her daughter — in truth her niece",
+      "short": "mother",
+      "evidence": "[Haeng Seon's daughter] / 남행자 역 - 해이의 친모이자 행선의 언니",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haengja",
+      "to": "haei",
+      "type": "family",
+      "label": "birth mother",
+      "short": "birth mother",
+      "evidence": "남행자 역 - 해이의 친모이자 행선의 언니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haengja",
+      "to": "haengseon",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "해이의 친모이자 행선의 언니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeu",
+      "to": "haengseon",
+      "type": "family",
+      "label": "little brother; the shop's cashier",
+      "short": "brother",
+      "evidence": "[Haeng Seon's little brother] / 국가대표 반찬가게 캐셔",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongju",
+      "to": "haengseon",
+      "type": "friend",
+      "label": "best friend; co-owner of the shop",
+      "short": "best friend",
+      "evidence": "[Haeng Seon's best friend] / 국가대표 반찬가게 공동대표",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongsun",
+      "to": "haengseon",
+      "type": "family",
+      "label": "mother, deceased",
+      "short": "mother",
+      "evidence": "[Haeng Seon's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chiyeol",
+      "to": "haei",
+      "type": "work",
+      "label": "his student",
+      "short": "teaches her",
+      "evidence": "남해이 역 - 우림고 2-1반 반장 / 최치열 역 - 수학 일타강사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghui",
+      "to": "chiyeol",
+      "type": "work",
+      "label": "his secretary, head of his research office",
+      "short": "secretary",
+      "evidence": "[Chi Yeol's secretary] / 최치열 연구소 메인실장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghui",
+      "to": "chiyeol",
+      "type": "rivalry",
+      "label": "the one behind the steel balls",
+      "short": "the culprit",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gayeon",
+      "to": "chiyeol",
+      "type": "work",
+      "label": "his psychiatrist",
+      "short": "psychiatrist",
+      "evidence": "조가연 역 - 정신과 의사, 치열의 주치의",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seojin",
+      "to": "seonjae",
+      "type": "family",
+      "label": "mother, a lawyer",
+      "short": "mother",
+      "evidence": "[Seon Jae and Hui Jae's mother] / 변호사",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seojin",
+      "to": "huijae",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Seon Jae and Hui Jae's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huijae",
+      "to": "seonjae",
+      "type": "family",
+      "label": "older brother",
+      "short": "brother",
+      "evidence": "[Seon Jae's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonjae",
+      "to": "haei",
+      "type": "romance",
+      "label": "classmate in 2-1 — likes her",
+      "short": "likes her",
+      "evidence": "이선재 역 - 고2, 우림고 2-1반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "suhui",
+      "to": "sua",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Su A's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sua",
+      "to": "haei",
+      "type": "rivalry",
+      "label": "classmates, rivals for first place",
+      "short": "rival",
+      "evidence": "방수아 역 - 고2, 우림고 2-1반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "miok",
+      "to": "danji",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Dan Ji's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "danji",
+      "to": "haei",
+      "type": "friend",
+      "label": "classmate and friend",
+      "short": "friend",
+      "evidence": "장단지 역 - 고2, 우림고 2-1반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "geonhu",
+      "to": "haei",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "서건후 역 - 고2, 우림고 2-1반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "geonhu",
+      "to": "haei",
+      "type": "romance",
+      "label": "the tall transfer who takes to her",
+      "short": "likes her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jongryeol",
+      "to": "haei",
+      "type": "work",
+      "label": "homeroom teacher of 2-1",
+      "short": "homeroom teacher",
+      "evidence": "전종렬 역 - 우림고 수학교사 2-1반 담임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhyeon",
+      "to": "haei",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "[Student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongmin_mother",
+      "to": "yeongmin",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Lee Yeong Min's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junsang",
+      "to": "chiyeol",
+      "type": "work",
+      "label": "director of the academy he teaches at",
+      "short": "director",
+      "evidence": "[Director of The Pride Academy]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "isang",
+      "to": "chiyeol",
+      "type": "rivalry",
+      "label": "instructor at the same academy; rival",
+      "short": "rival instructor",
+      "evidence": "[Instructor of The Pride Academy]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "itae",
+      "to": "chiyeol",
+      "type": "work",
+      "label": "the detective on the steel-ball deaths; handled the old matricide case",
+      "short": "investigates",
+      "evidence": "송이태 역 : 강현 경찰서 강력계 경위, 과거 중학생 친모 살인사건 수사를 담당했었다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongsu",
+      "to": "itae",
+      "type": "work",
+      "label": "detectives",
+      "short": "colleague",
+      "evidence": "[Detective]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dogyeom",
+      "to": "itae",
+      "type": "work",
+      "label": "detectives",
+      "short": "colleague",
+      "evidence": "[Detective]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "haengseon",
+      "chiyeol",
+      "haei",
+      "jaeu",
+      "yeongju",
+      "yeongsun",
+      "haengja",
+      "donghui",
+      "gayeon",
+      "seojin",
+      "seonjae",
+      "huijae",
+      "suhui",
+      "sua",
+      "miok",
+      "danji",
+      "geonhu",
+      "jongryeol",
+      "suhyeon",
+      "yeongmin",
+      "yeongmin_mother"
+    ],
+    "blocks": {
+      "Haeng Seon's family": [
+        0,
+        0
+      ],
+      "Chi Yeol's people": [
+        2,
+        0
+      ],
+      "Seon Jae's home": [
+        0,
+        2
+      ],
+      "Su A's home": [
+        2,
+        2
+      ],
+      "Dan Ji's home": [
+        1,
+        2
+      ],
+      "Woorim High": [
+        1,
+        0
+      ]
+    },
+    "center": [
+      "haengseon",
+      "chiyeol"
+    ]
+  }
+}

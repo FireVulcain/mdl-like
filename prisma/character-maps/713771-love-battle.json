@@ -1,0 +1,495 @@
+{
+  "version": 1,
+  "mdlSlug": "713771-love-battle",
+  "title": "Love to Hate You",
+  "native": "연애대전",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 4 main)",
+    "MDL synopsis",
+    "en.wikipedia Cast",
+    "ko.wikipedia (no character section)"
+  ],
+  "main": [
+    "miran",
+    "gangho"
+  ],
+  "people": [
+    {
+      "id": "miran",
+      "name": "Yeo Mi Ran",
+      "actor": "Kim Ok Bin",
+      "image": "https://i.mydramalist.com/O8P3by_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rookie lawyer at Gilmu; hates losing to men, has no use for romance"
+    },
+    {
+      "id": "gangho",
+      "name": "Nam Gang Ho",
+      "actor": "Yoo Teo",
+      "image": "https://i.mydramalist.com/XbdWqm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Korea's top actor, the romantic lead with no faith in women"
+    },
+    {
+      "id": "wonjun",
+      "name": "Do Won Jun",
+      "actor": "Kim Ji Hoon",
+      "image": "https://i.mydramalist.com/rXKp7_5m.jpg",
+      "group": "Gang Ho's people",
+      "inCast": true,
+      "note": "CEO of Dowon Entertainment; Gang Ho's friend"
+    },
+    {
+      "id": "naeun",
+      "name": "Sin Na Eun",
+      "actor": "Go Won Hee",
+      "image": "https://i.mydramalist.com/LwV7wL_5m.jpg",
+      "group": "Mi Ran's people",
+      "inCast": true,
+      "note": "Mi Ran's best friend"
+    },
+    {
+      "id": "sena",
+      "name": "O Se Na",
+      "actor": "Lee Joo Bin",
+      "image": "https://i.mydramalist.com/d0vP10_5m.jpg",
+      "group": "Gang Ho's people",
+      "inCast": true,
+      "note": "'The nation's first love'"
+    },
+    {
+      "id": "sujin",
+      "name": "Choi Su Jin",
+      "actor": "Kim Sung Ryung",
+      "image": "https://i.mydramalist.com/kArkNd_5m.jpg",
+      "group": "Gang Ho's people",
+      "inCast": true,
+      "note": "Dowon Entertainment"
+    },
+    {
+      "id": "sangsup",
+      "name": "Yun Sang Sup",
+      "actor": "Han Seo Joon",
+      "image": "https://i.mydramalist.com/jQjAx8_5m.jpg",
+      "group": "Gang Ho's people",
+      "inCast": true,
+      "note": "Manager"
+    },
+    {
+      "id": "jiu",
+      "name": "Kim Ji U",
+      "actor": "Jo Seung Hee",
+      "image": "https://i.mydramalist.com/eYzjnW_5m.jpg",
+      "group": "Gang Ho's people",
+      "inCast": true
+    },
+    {
+      "id": "ipsae",
+      "name": "Lee Ip Sae",
+      "actor": "Kim Han Na",
+      "image": "https://i.mydramalist.com/q5p4D_5m.jpg",
+      "group": "Gang Ho's people",
+      "inCast": true,
+      "note": "Fan club president"
+    },
+    {
+      "id": "jaeguk",
+      "name": "Yeo Jae Guk",
+      "actor": "Jung Kyu Soo",
+      "image": "https://i.mydramalist.com/2Rl2w_5m.jpg",
+      "group": "Mi Ran's people",
+      "inCast": true
+    },
+    {
+      "id": "eunhui",
+      "name": "Kim Eun Hui",
+      "actor": "Kim Ye Ryung",
+      "image": "https://i.mydramalist.com/Bgg06_5m.jpg",
+      "group": "Mi Ran's people",
+      "inCast": true
+    },
+    {
+      "id": "jinseo",
+      "name": "Lee Jin Seo",
+      "actor": "Jeon Shin Hwan",
+      "image": "https://i.mydramalist.com/72bdem.jpg",
+      "group": "Mi Ran's people",
+      "inCast": true
+    },
+    {
+      "id": "gilmu",
+      "name": "Yang Gil Mu",
+      "actor": "Choi Dae Sung",
+      "image": "https://i.mydramalist.com/E31xz_5m.jpg",
+      "group": "Gilmu Law",
+      "inCast": true,
+      "note": "CEO"
+    },
+    {
+      "id": "yongu",
+      "name": "Ko Yong U",
+      "actor": "Baek Sung Chul",
+      "image": "https://i.mydramalist.com/4DNPrm.jpg",
+      "group": "Gilmu Law",
+      "inCast": true,
+      "note": "Director"
+    },
+    {
+      "id": "yeonggi",
+      "name": "Seo Yeong Gi",
+      "actor": "Joo Jong Hyuk",
+      "image": "https://i.mydramalist.com/jQ0x7B_5m.jpg",
+      "group": "Gilmu Law",
+      "inCast": true,
+      "note": "Lawyer"
+    },
+    {
+      "id": "grace",
+      "name": "Grace",
+      "actor": "Choi Yoon So",
+      "image": "https://i.mydramalist.com/5vPXOw_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "Film production representative"
+    },
+    {
+      "id": "jihye",
+      "name": "Hwang Ji Hye",
+      "actor": "Song Ji Woo",
+      "image": "https://i.mydramalist.com/BdwYZq_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "Rookie actress"
+    },
+    {
+      "id": "yun",
+      "name": "CEO Yun",
+      "actor": "Kim Kang Hyun",
+      "image": "https://i.mydramalist.com/wzV2b_5m.jpg",
+      "group": "The industry",
+      "inCast": true
+    },
+    {
+      "id": "seongjun",
+      "name": "Yoo Seong Jun",
+      "actor": "Lee Chul Min",
+      "image": "https://i.mydramalist.com/RdvDY_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "Film director"
+    },
+    {
+      "id": "hyeonsang",
+      "name": "Yoo Hyeon Sang",
+      "actor": "Lee Suk",
+      "image": "https://i.mydramalist.com/dJLr0_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "Action director"
+    }
+  ],
+  "links": [
+    {
+      "from": "miran",
+      "to": "gangho",
+      "type": "romance",
+      "label": "two people who don't believe in love, in a romantic battle",
+      "short": "love battle",
+      "evidence": "Despite their shared disbelief in love, Yeo Mi Ran and Nam Gang Ho find themselves engaged in a romantic battle",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "miran",
+      "to": "gangho",
+      "type": "work",
+      "label": "the lawyer assigned to the star",
+      "short": "his lawyer",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wonjun",
+      "to": "gangho",
+      "type": "friend",
+      "label": "friend and CEO of his agency",
+      "short": "friend & CEO",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "naeun",
+      "to": "miran",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wonjun",
+      "to": "naeun",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sena",
+      "to": "gangho",
+      "type": "romance",
+      "label": "his first love — the nation's first love",
+      "short": "first love",
+      "evidence": "[Gang Ho's 1st love] / who is called 'the nation's first love'",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sujin",
+      "to": "gangho",
+      "type": "work",
+      "label": "Dowon Entertainment",
+      "short": "his agency",
+      "evidence": "[Dowon Entertainment]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangsup",
+      "to": "gangho",
+      "type": "work",
+      "label": "his manager",
+      "short": "manager",
+      "evidence": "[Gang Ho's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiu",
+      "to": "gangho",
+      "type": "family",
+      "label": "niece",
+      "short": "niece",
+      "evidence": "[Gang Ho's niece]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ipsae",
+      "to": "gangho",
+      "type": "bond",
+      "label": "president of his fan club",
+      "short": "fan club",
+      "evidence": "[Gang Ho's fan club president]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeguk",
+      "to": "miran",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Mi Ran's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhui",
+      "to": "miran",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Mi Ran's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinseo",
+      "to": "miran",
+      "type": "romance",
+      "label": "ex-boyfriend",
+      "short": "ex",
+      "evidence": "[Mi Ran's ex-boyfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gilmu",
+      "to": "miran",
+      "type": "work",
+      "label": "CEO of her firm",
+      "short": "CEO",
+      "evidence": "[Gil Mu Law CEO]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongu",
+      "to": "miran",
+      "type": "work",
+      "label": "director at the firm",
+      "short": "director",
+      "evidence": "[Gil Mu Law director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonggi",
+      "to": "miran",
+      "type": "work",
+      "label": "fellow lawyer",
+      "short": "colleague",
+      "evidence": "[Lawyer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "grace",
+      "to": "gangho",
+      "type": "work",
+      "label": "the production company of his film",
+      "short": "producer",
+      "evidence": "[Representative of film production co.]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihye",
+      "to": "gangho",
+      "type": "work",
+      "label": "rookie actress starring alongside him",
+      "short": "co-star",
+      "evidence": "a rookie actress acting alongside Nam Kang-ho",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yun",
+      "to": "jihye",
+      "type": "work",
+      "label": "her manager",
+      "short": "manager",
+      "evidence": "[Ji Hye's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongjun",
+      "to": "gangho",
+      "type": "work",
+      "label": "director of his film",
+      "short": "director",
+      "evidence": "[Film director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonsang",
+      "to": "miran",
+      "type": "work",
+      "label": "the action director — her martial-arts world",
+      "short": "action director",
+      "evidence": "[Action director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "miran",
+      "gangho",
+      "wonjun",
+      "naeun",
+      "sena",
+      "sujin",
+      "sangsup",
+      "jiu",
+      "ipsae",
+      "jaeguk",
+      "eunhui",
+      "jinseo",
+      "gilmu",
+      "yongu",
+      "yeonggi",
+      "grace",
+      "jihye",
+      "yun",
+      "seongjun",
+      "hyeonsang"
+    ],
+    "blocks": {
+      "Mi Ran's people": [
+        0,
+        0
+      ],
+      "Gang Ho's people": [
+        2,
+        0
+      ],
+      "Gilmu Law": [
+        0,
+        2
+      ],
+      "The industry": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "miran",
+      "gangho"
+    ]
+  }
+}
