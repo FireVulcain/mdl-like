@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/2DKBdm.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Former national handball player; runs the side-dish shop 'National Team'"
+      "note": "Former national handball player; runs the side-dish shop 'National Team'",
+      "still": "https://asianwiki.com/images/0/00/Crash_Course_in_Romance-Jeon_Do-Yeon1.jpg"
     },
     {
       "id": "chiyeol",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/yWBx7n_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Star maths instructor, the 'Trillion Won Man'; can't eat, can't sleep"
+      "note": "Star maths instructor, the 'Trillion Won Man'; can't eat, can't sleep",
+      "still": "https://asianwiki.com/images/9/94/Crash_Course_in_Romance-Jung_Kyoung-Ho1.jpg"
     },
     {
       "id": "haei",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/NdnkOY_5m.jpg",
       "group": "Haeng Seon's family",
       "inCast": true,
-      "note": "Class president of 2-1"
+      "note": "Class president of 2-1",
+      "still": "https://asianwiki.com/images/0/00/Crash_Course_in_Romance-Roh_Yoon-Seo1.jpg"
     },
     {
       "id": "jaeu",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
       "group": "Haeng Seon's family",
       "inCast": true,
-      "note": "Cashier at the shop"
+      "note": "Cashier at the shop",
+      "still": "https://asianwiki.com/images/1/16/Crash_Course_in_Romance-Oh_Eui-Sik1.jpg"
     },
     {
       "id": "yeongju",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/en0DEm.jpg",
       "group": "Haeng Seon's family",
       "inCast": true,
-      "note": "Co-owner of the shop"
+      "note": "Co-owner of the shop",
+      "still": "https://asianwiki.com/images/9/97/Crash_Course_in_Romance-Lee_Bong-Ryun1.jpg"
     },
     {
       "id": "yeongsun",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
       "group": "Haeng Seon's family",
       "inCast": true,
-      "note": "Deceased"
+      "note": "Deceased",
+      "still": "https://asianwiki.com/images/2/22/Crash_Course_in_Romance-Kim_Mi-Kyung.jpg"
     },
     {
       "id": "haengja",
@@ -75,7 +81,8 @@
       "actor": "Bae Hae Seon",
       "image": "https://i.mydramalist.com/EDX8Qm.jpg",
       "group": "Haeng Seon's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/80/Crash_Course_In_Romance-Bae_Hae-Sun.jpg"
     },
     {
       "id": "donghui",
@@ -84,7 +91,8 @@
       "image": "https://i.mydramalist.com/eYVXkY_5m.jpg",
       "group": "Chi Yeol's people",
       "inCast": true,
-      "note": "Head of Chi Yeol's research office"
+      "note": "Head of Chi Yeol's research office",
+      "still": "https://asianwiki.com/images/1/17/Crash_Course_In_Romance-Shin_Jae-Ha.jpg"
     },
     {
       "id": "gayeon",
@@ -93,7 +101,8 @@
       "image": "https://i.mydramalist.com/7gXVLm.jpg",
       "group": "Chi Yeol's people",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/0/0e/Crash_Course_In_Romance-Go_Ae-Ri.jpg"
     },
     {
       "id": "seojin",
@@ -102,7 +111,8 @@
       "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
       "group": "Seon Jae's home",
       "inCast": true,
-      "note": "Lawyer"
+      "note": "Lawyer",
+      "still": "https://asianwiki.com/images/2/2e/Crash_Course_In_Romance-Jang_Young_Nam.jpg"
     },
     {
       "id": "seonjae",
@@ -111,7 +121,8 @@
       "image": "https://i.mydramalist.com/yWDJlB_5m.jpg",
       "group": "Seon Jae's home",
       "inCast": true,
-      "note": "Class 2-1"
+      "note": "Class 2-1",
+      "still": "https://asianwiki.com/images/8/8a/Crash_Course_in_Romance-Lee_Chae-Min.jpg"
     },
     {
       "id": "huijae",
@@ -119,7 +130,8 @@
       "actor": "Kim Tae Jung",
       "image": "https://i.mydramalist.com/60zRKj_5m.jpg",
       "group": "Seon Jae's home",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/94/Crash_Course_In_Romance-Kim_Tae_Jung.jpg"
     },
     {
       "id": "suhui",
@@ -127,7 +139,8 @@
       "actor": "Kim Sun Young",
       "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
       "group": "Su A's home",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/91/Crash_Course_In_Romance-Kim_Sun-Young.jpg"
     },
     {
       "id": "sua",
@@ -136,7 +149,8 @@
       "image": "https://i.mydramalist.com/dbyYe_5m.jpg",
       "group": "Su A's home",
       "inCast": true,
-      "note": "Class 2-1"
+      "note": "Class 2-1",
+      "still": "https://asianwiki.com/images/4/48/Crash_Course_In_Romance-Kang_Na-Eon1.jpg"
     },
     {
       "id": "miok",
@@ -144,7 +158,8 @@
       "actor": "Hwang Bo Ra",
       "image": "https://i.mydramalist.com/2z6BP_5m.jpg",
       "group": "Dan Ji's home",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/48/Crash_Course_in_Romance-Hwang_Bo-Ra.jpg"
     },
     {
       "id": "danji",
@@ -153,7 +168,8 @@
       "image": "https://i.mydramalist.com/Bd76J5_5m.jpg",
       "group": "Dan Ji's home",
       "inCast": true,
-      "note": "Class 2-1"
+      "note": "Class 2-1",
+      "still": "https://asianwiki.com/images/f/f8/Crash_Course_In_Romance-Yoo_Da_In.jpg"
     },
     {
       "id": "geonhu",
@@ -162,7 +178,8 @@
       "image": "https://i.mydramalist.com/yWK7rd_5m.jpg",
       "group": "Woorim High",
       "inCast": true,
-      "note": "Class 2-1"
+      "note": "Class 2-1",
+      "still": "https://asianwiki.com/images/d/d8/Crash_Course_In_Romance-Lee_Min_Jae.jpg"
     },
     {
       "id": "jongryeol",
@@ -171,7 +188,8 @@
       "image": "https://i.mydramalist.com/jKReb_5m.jpg",
       "group": "Woorim High",
       "inCast": true,
-      "note": "Maths teacher, homeroom of 2-1"
+      "note": "Maths teacher, homeroom of 2-1",
+      "still": "https://asianwiki.com/images/2/27/Crash_Course_In_Romance-Kim_Da-Hwin.jpg"
     },
     {
       "id": "suhyeon",
@@ -180,7 +198,8 @@
       "image": "https://i.mydramalist.com/Pxjqmz_5m.jpg",
       "group": "Woorim High",
       "inCast": true,
-      "note": "Student (deceased)"
+      "note": "Student (deceased)",
+      "still": "https://asianwiki.com/images/a/a3/Crash_Course_in_Romance-Lee_Do-Hye1.jpg"
     },
     {
       "id": "yeongmin",
@@ -189,7 +208,8 @@
       "image": "https://i.mydramalist.com/nOQqYx_5m.jpg",
       "group": "Woorim High",
       "inCast": true,
-      "note": "Deceased"
+      "note": "Deceased",
+      "still": "https://asianwiki.com/images/9/9c/Crash_Course_In_Romance-Yoo_Jun.jpg"
     },
     {
       "id": "yeongmin_mother",
@@ -197,7 +217,8 @@
       "actor": "Choi Hee Jin",
       "image": "https://i.mydramalist.com/6jVxj_5m.jpg",
       "group": "Woorim High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e4/Crash_Course_in_Romance-Choi_Hee_Jin.jpg"
     },
     {
       "id": "junsang",
@@ -206,7 +227,8 @@
       "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
       "group": "The Pride Academy",
       "inCast": true,
-      "note": "Director"
+      "note": "Director",
+      "still": "https://asianwiki.com/images/6/69/Crash_Course_In_Romance-Heo_Jung_Do.jpg"
     },
     {
       "id": "isang",
@@ -215,7 +237,8 @@
       "image": "https://i.mydramalist.com/6qLYd_5m.jpg",
       "group": "The Pride Academy",
       "inCast": true,
-      "note": "Maths instructor (deceased)"
+      "note": "Maths instructor (deceased)",
+      "still": "https://asianwiki.com/images/1/1a/Crash_Course_In_Romance-Ji_Il-Joo.jpg"
     },
     {
       "id": "itae",
@@ -224,7 +247,8 @@
       "image": "https://i.mydramalist.com/PxzZe8_5m.jpg",
       "group": "Police",
       "inCast": true,
-      "note": "Detective; handled the old matricide case"
+      "note": "Detective; handled the old matricide case",
+      "still": "https://asianwiki.com/images/d/d7/Crash_Course_In_Romance-Hwang_Jae-Yeol.jpg"
     },
     {
       "id": "jeongsu",
@@ -233,7 +257,8 @@
       "image": "https://i.mydramalist.com/EErwb_5m.jpg",
       "group": "Police",
       "inCast": true,
-      "note": "Detective"
+      "note": "Detective",
+      "still": "https://asianwiki.com/images/7/73/Crash_Course_In_Romance-Jeong_Han_Seol.jpg"
     },
     {
       "id": "dogyeom",
@@ -242,7 +267,8 @@
       "image": "https://i.mydramalist.com/eoZmQm.jpg",
       "group": "Police",
       "inCast": true,
-      "note": "Detective"
+      "note": "Detective",
+      "still": "https://asianwiki.com/images/6/6d/Crash_Course_In_Romance-Jang_Tae-Min.jpg"
     }
   ],
   "links": [

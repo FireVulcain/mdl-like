@@ -11,7 +11,7 @@
 const AW = "https://asianwiki.com";
 const PAUSE_MS = 1000;
 
-const norm = (s) => s.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
+const norm = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
 
 // api.php answers 500 on asianwiki, so this is the search page a reader
 // uses. MediaWiki redirects straight to the article on an exact title match;
