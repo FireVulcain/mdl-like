@@ -26,10 +26,12 @@
         {
           "name": "Cho Yeo Jun",
           "image": "https://i.mydramalist.com/eYrWxp_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/5/50/Love_Next_Door-Jo_Yeo_Joon.jpg"
         }
       ],
-      "note": "Korea's most watched young architect; co-head of Atelier In"
+      "note": "Korea's most watched young architect; co-head of Atelier In",
+      "still": "https://asianwiki.com/images/5/5d/Love_Next_Door-Jung_Hae-In.jpg"
     },
     {
       "id": "seokryu",
@@ -42,10 +44,12 @@
         {
           "name": "Oh Eun Seo",
           "image": "https://i.mydramalist.com/nOrkvW_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/a/a9/Love_Next_Door-Oh_Eun-Seo.jpg"
         }
       ],
-      "note": "Ex-Greip employee, back home jobless"
+      "note": "Ex-Greip employee, back home jobless",
+      "still": "https://asianwiki.com/images/d/d6/Love_Next_Door-Jung_So-Min1.jpg"
     },
     {
       "id": "moeum",
@@ -58,10 +62,12 @@
         {
           "name": "Kim Se A",
           "image": "https://i.mydramalist.com/73BbEj_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/f/f6/Love_Next_Door-Kim_Se-A.jpg"
         }
       ],
-      "note": "119 paramedic"
+      "note": "119 paramedic",
+      "still": "https://asianwiki.com/images/b/bf/Love_Next_Door-Kim_Ji-Eun.jpg"
     },
     {
       "id": "danho",
@@ -70,7 +76,8 @@
       "image": "https://i.mydramalist.com/qpyJQ_5m.jpg",
       "group": "Dan Ho's family",
       "inCast": true,
-      "note": "Reporter at Chungwoo Daily"
+      "note": "Reporter at Chungwoo Daily",
+      "still": "https://asianwiki.com/images/e/e4/Love_Next_Door-Yun_Ji-On.jpg"
     },
     {
       "id": "hyesuk",
@@ -79,7 +86,8 @@
       "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
       "group": "Seung Hyo's family",
       "inCast": true,
-      "note": "Diplomat; of the 'Suk sisters', Lavender"
+      "note": "Diplomat; of the 'Suk sisters', Lavender",
+      "still": "https://asianwiki.com/images/3/3d/Love_Next_Door-Jang_Young-Nam.jpg"
     },
     {
       "id": "gyeongjong",
@@ -88,7 +96,8 @@
       "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
       "group": "Seung Hyo's family",
       "inCast": true,
-      "note": "Emergency medicine professor"
+      "note": "Emergency medicine professor",
+      "still": "https://asianwiki.com/images/a/a9/Love_Next_Door-Lee_Seung-Joon.jpg"
     },
     {
       "id": "misuk",
@@ -97,7 +106,8 @@
       "image": "https://i.mydramalist.com/JBom2p_5m.jpg",
       "group": "Seok Ryu's family",
       "inCast": true,
-      "note": "Of the 'Suk sisters', Lavender"
+      "note": "Of the 'Suk sisters', Lavender",
+      "still": "https://asianwiki.com/images/e/e0/Love_Next_Door-Park_Ji-Young.jpg"
     },
     {
       "id": "geunsik",
@@ -106,7 +116,8 @@
       "image": "https://i.mydramalist.com/vyZw2m.jpg",
       "group": "Seok Ryu's family",
       "inCast": true,
-      "note": "Runs the snack bar"
+      "note": "Runs the snack bar",
+      "still": "https://asianwiki.com/images/d/d9/Love_Next_Door-Jo_Han-Chul.jpg"
     },
     {
       "id": "dongjin",
@@ -114,7 +125,8 @@
       "actor": "Lee Seung Hyub",
       "image": "https://i.mydramalist.com/602lyg_5m.jpg",
       "group": "Seok Ryu's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d4/Love_Next_Door-Lee_Seung-Hyub.jpg"
     },
     {
       "id": "jaesuk",
@@ -123,7 +135,8 @@
       "image": "https://i.mydramalist.com/RNoEP_5m.jpg",
       "group": "Mo Eum's family",
       "inCast": true,
-      "note": "Of the 'Suk sisters', Lavender"
+      "note": "Of the 'Suk sisters', Lavender",
+      "still": "https://asianwiki.com/images/f/ff/Love_Next_Door-Kim_Keum-Soon01.jpg"
     },
     {
       "id": "insuk",
@@ -132,7 +145,8 @@
       "image": "https://i.mydramalist.com/jQqnzy_5m.jpg",
       "group": "Mo Eum's family",
       "inCast": true,
-      "note": "The fourth 'Suk sister'"
+      "note": "The fourth 'Suk sister'",
+      "still": "https://asianwiki.com/images/2/2c/Love_Next_Door-Han_Ye-Joo.jpg"
     },
     {
       "id": "yeondu",
@@ -140,7 +154,8 @@
       "actor": "Shim Ji Yoo",
       "image": "https://i.mydramalist.com/Xnrpp_5m.jpg",
       "group": "Dan Ho's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/fe/Love_Next_Door-Shim_Ji_Yoo.jpg"
     },
     {
       "id": "myeongu",
@@ -149,7 +164,8 @@
       "image": "https://i.mydramalist.com/YYj5OB_5m.jpg",
       "group": "Atelier In",
       "inCast": true,
-      "note": "Co-head of Atelier In"
+      "note": "Co-head of Atelier In",
+      "still": "https://asianwiki.com/images/5/5a/Love_Next_Door-Jun_Suk-Ho.jpg"
     },
     {
       "id": "nayun",
@@ -157,7 +173,8 @@
       "actor": "Shim So Young",
       "image": "https://i.mydramalist.com/RBPLeo_5m.jpg",
       "group": "Atelier In",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/31/Love_Next_Door-Sim_So-Young1.jpg"
     },
     {
       "id": "jungmin",
@@ -165,7 +182,8 @@
       "actor": "Bang So Min",
       "image": "https://i.mydramalist.com/vXWmkp_5m.jpg",
       "group": "Atelier In",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/76/Love_Next_Door-Bang_So_Min.jpg"
     },
     {
       "id": "hyeonjun",
@@ -174,7 +192,8 @@
       "image": "https://i.mydramalist.com/73b5br_5m.jpg",
       "group": "Seok Ryu's family",
       "inCast": true,
-      "note": "Lawyer"
+      "note": "Lawyer",
+      "still": "https://asianwiki.com/images/5/59/Love_Next_Door-Han_Joon_Woo.jpg"
     },
     {
       "id": "taehui",
@@ -182,7 +201,8 @@
       "actor": "Seo Ji Hye",
       "image": "https://i.mydramalist.com/En2vO_5m.jpg",
       "group": "Seung Hyo's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/64/Love_Next_Door-Seo_Ji_Hye.jpg"
     }
   ],
   "links": [

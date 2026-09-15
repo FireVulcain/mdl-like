@@ -23,7 +23,8 @@
       "image": "https://i.mydramalist.com/Rm65g_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "38, brilliant, arrogant surgeon — in a coma, his spirit in Seung Tak's body"
+      "note": "38, brilliant, arrogant surgeon — in a coma, his spirit in Seung Tak's body",
+      "still": "https://asianwiki.com/images/0/02/Ghost_Doctor-Rain1.jpg"
     },
     {
       "id": "seungtak",
@@ -32,7 +33,8 @@
       "image": "https://i.mydramalist.com/81PNNb_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "28, rich, lucky resident with no wish to be a good doctor"
+      "note": "28, rich, lucky resident with no wish to be a good doctor",
+      "still": "https://asianwiki.com/images/e/e2/Ghost_Doctor-Kim-Beom.jpg"
     },
     {
       "id": "sejin",
@@ -41,7 +43,8 @@
       "image": "https://i.mydramalist.com/x4g22X_5m.jpg",
       "group": "Se Jin's family",
       "inCast": true,
-      "note": "38, genius neurosurgeon back from abroad"
+      "note": "38, genius neurosurgeon back from abroad",
+      "still": "https://asianwiki.com/images/0/05/Ghost_Doctor-Uee1.jpg"
     },
     {
       "id": "soojung",
@@ -50,7 +53,8 @@
       "image": "https://i.mydramalist.com/eZenK_5m.jpg",
       "group": "Hospital",
       "inCast": true,
-      "note": "28, ER intern who wants thoracic surgery"
+      "note": "28, ER intern who wants thoracic surgery",
+      "still": "https://asianwiki.com/images/9/9e/Ghost_Doctor-Son_Na_Eun.jpg"
     },
     {
       "id": "tess",
@@ -59,7 +63,8 @@
       "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
       "group": "Coma ghosts",
       "inCast": true,
-      "note": "Genius surgeon, a ghost for twenty years"
+      "note": "Genius surgeon, a ghost for twenty years",
+      "still": "https://asianwiki.com/images/c/cb/Ghost_Doctor-Sung_Dong_Il.jpg"
     },
     {
       "id": "seungwon",
@@ -68,7 +73,8 @@
       "image": "https://i.mydramalist.com/4b5erm.jpg",
       "group": "The foundation (Seung Tak's family)",
       "inCast": true,
-      "note": "Executive director; two-faced"
+      "note": "Executive director; two-faced",
+      "still": "https://asianwiki.com/images/0/04/Ghost_Doctor-Tae_In_Ho.jpg"
     },
     {
       "id": "miran",
@@ -77,7 +83,8 @@
       "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
       "group": "The foundation (Seung Tak's family)",
       "inCast": true,
-      "note": "President of the foundation"
+      "note": "President of the foundation",
+      "still": "https://asianwiki.com/images/9/96/Ghost_Doctor-Yoon_Da-Kyung_.jpg"
     },
     {
       "id": "jaesik",
@@ -85,7 +92,8 @@
       "actor": "Myung Gye Nam",
       "image": "https://i.mydramalist.com/j4eq8m.jpg",
       "group": "The foundation (Seung Tak's family)",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/dd/Ghost_Doctor-Myung_Gye-Nam.jpg"
     },
     {
       "id": "sunghye",
@@ -94,7 +102,8 @@
       "image": "https://i.mydramalist.com/RX13o_5m.jpg",
       "group": "The foundation (Seung Tak's family)",
       "inCast": true,
-      "note": "Foundation director"
+      "note": "Foundation director",
+      "still": "https://asianwiki.com/images/d/d3/Ghost_Doctor-Seo_Ji-Young.jpg"
     },
     {
       "id": "taesik",
@@ -103,7 +112,8 @@
       "image": "https://i.mydramalist.com/dKZEA_5m.jpg",
       "group": "Thoracic surgery",
       "inCast": true,
-      "note": "Chief of thoracic surgery"
+      "note": "Chief of thoracic surgery",
+      "still": "https://asianwiki.com/images/e/eb/Ghost_Doctor-Park_Chul_Min1.jpg"
     },
     {
       "id": "taehyeon",
@@ -112,7 +122,8 @@
       "image": "https://i.mydramalist.com/xYwlqm.jpg",
       "group": "Thoracic surgery",
       "inCast": true,
-      "note": "34, fellow"
+      "note": "34, fellow",
+      "still": "https://asianwiki.com/images/6/64/Ghost_Doctor-Ko_Sang-Ho.jpg"
     },
     {
       "id": "jaewon",
@@ -121,7 +132,8 @@
       "image": "https://i.mydramalist.com/eQ6XQ_5m.jpg",
       "group": "Thoracic surgery",
       "inCast": true,
-      "note": "29, resident"
+      "note": "29, resident",
+      "still": "https://asianwiki.com/images/0/03/Ghost_Doctor-Ahn_Tae-Hwan.jpg"
     },
     {
       "id": "sunho",
@@ -130,7 +142,8 @@
       "image": "https://i.mydramalist.com/yWBdAn_5m.jpg",
       "group": "Thoracic surgery",
       "inCast": true,
-      "note": "30, resident"
+      "note": "30, resident",
+      "still": "https://asianwiki.com/images/0/04/Ghost_Doctor-Kim_Jae_Yong.jpg"
     },
     {
       "id": "youngho",
@@ -138,7 +151,8 @@
       "actor": "Ma Jung Pil",
       "image": "https://i.mydramalist.com/WBR0Rm.jpg",
       "group": "Thoracic surgery",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/84/Ghost_Doctor-Ma_Jung_Pil.jpg"
     },
     {
       "id": "minho",
@@ -147,7 +161,8 @@
       "image": "https://i.mydramalist.com/1r487_5m.jpg",
       "group": "Se Jin's family",
       "inCast": true,
-      "note": "Chunmyung Group"
+      "note": "Chunmyung Group",
+      "still": "https://asianwiki.com/images/8/8e/Ghost_Doctor-Lee_Tae_Sung.jpg"
     },
     {
       "id": "gwangduk",
@@ -156,7 +171,8 @@
       "image": "https://i.mydramalist.com/Y3LjBm.jpg",
       "group": "Se Jin's family",
       "inCast": true,
-      "note": "Chunmyung chairman — a coma ghost"
+      "note": "Chunmyung chairman — a coma ghost",
+      "still": "https://asianwiki.com/images/c/c5/Ghost_Doctor-Lee_Moon-Soo.jpg"
     },
     {
       "id": "bomi",
@@ -164,7 +180,8 @@
       "actor": "Yoon So Hui",
       "image": "https://i.mydramalist.com/qz7WQ_5m.jpg",
       "group": "Coma ghosts",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cf/Ghost_Doctor-Yoon_So-Hee.jpg"
     },
     {
       "id": "hoonkil",
@@ -173,7 +190,8 @@
       "image": "https://i.mydramalist.com/2wm3p2_5m.jpg",
       "group": "Coma ghosts",
       "inCast": true,
-      "note": "Dreams of acting"
+      "note": "Dreams of acting",
+      "still": "https://asianwiki.com/images/c/cb/Ghost_Doctor-Tan.jpg"
     },
     {
       "id": "kookchan",
@@ -181,7 +199,8 @@
       "actor": "Han Seung Hyun",
       "image": "https://i.mydramalist.com/4qg4J_5m.jpg",
       "group": "Coma ghosts",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f2/Ghost_Doctor-Han_Seung-Hyun.jpg"
     },
     {
       "id": "kim",
@@ -190,7 +209,8 @@
       "image": "https://i.mydramalist.com/2wmzlR_5m.jpg",
       "group": "Hospital",
       "inCast": true,
-      "note": "Cleaner"
+      "note": "Cleaner",
+      "still": "https://asianwiki.com/images/1/17/Ghost_Doctor-Hwang_Suk_Jung.jpg"
     },
     {
       "id": "nursejung",
@@ -198,7 +218,8 @@
       "actor": "Park So Eun",
       "image": "https://i.mydramalist.com/B6PoR_5m.jpg",
       "group": "Hospital",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/ee/Ghost_Doctor-Park_So_Eun.jpg"
     }
   ],
   "links": [

@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/5vL620_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Actress playing a villainess — and Joseon's legendary villainess Kang Dan Sim, reborn"
+      "note": "Actress playing a villainess — and Joseon's legendary villainess Kang Dan Sim, reborn",
+      "still": "https://asianwiki.com/images/d/da/My_Royal_Nemesis-Kang_Hye-Rin01.jpg"
     },
     {
       "id": "segye",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/3o7wNe_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Ruthless chaebol; the prince Yi Hyeon of three hundred years ago"
+      "note": "Ruthless chaebol; the prince Yi Hyeon of three hundred years ago",
+      "still": "https://asianwiki.com/images/2/27/My_Royal_Nemesis-Heo_Nam-Jun.jpg"
     },
     {
       "id": "mundo",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/p54Xn_5m.jpg",
       "group": "Three hundred years ago",
       "inCast": true,
-      "note": "The king who sent Dan Sim the poison — reborn"
+      "note": "The king who sent Dan Sim the poison — reborn",
+      "still": "https://asianwiki.com/images/4/41/My_Royal_Nemesis-Jang_Seung-Jo.jpg"
     },
     {
       "id": "gwangnam",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/0LVrK_5m.jpg",
       "group": "Seo Ri's people",
       "inCast": true,
-      "note": "Manager"
+      "note": "Manager",
+      "still": "https://asianwiki.com/images/6/6d/My_Royal_Nemesis-Kim_Min-Suk1.jpg"
     },
     {
       "id": "jihyo",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/4ZDQr_5m.jpg",
       "group": "Seo Ri's people",
       "inCast": true,
-      "note": "Top star"
+      "note": "Top star",
+      "still": "https://asianwiki.com/images/e/e2/My_Royal_Nemesis-Lee_Se-Hee1.jpg"
     },
     {
       "id": "oksun",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/Z8gXdk_5m.jpg",
       "group": "Seo Ri's people",
       "inCast": true,
-      "note": "Deceased in ep. 13"
+      "note": "Deceased in ep. 13",
+      "still": "https://asianwiki.com/images/c/c0/My_Royal_Nemesis-Kim_Hae-Sook.jpg"
     },
     {
       "id": "buseon",
@@ -76,7 +82,8 @@
       "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
       "group": "Seo Ri's people",
       "inCast": true,
-      "note": "CEO of Doran Entertainment"
+      "note": "CEO of Doran Entertainment",
+      "still": "https://asianwiki.com/images/7/73/My_Royal_Nemesis-Baek_Ji-Won.jpg"
     },
     {
       "id": "jeongae",
@@ -85,7 +92,8 @@
       "image": "https://i.mydramalist.com/r7Kz2_5m.jpg",
       "group": "Seo Ri's people",
       "inCast": true,
-      "note": "Shaman 'Geum Bosal'"
+      "note": "Shaman 'Geum Bosal'",
+      "still": "https://asianwiki.com/images/5/5f/My_Royal_Nemesis-Oh_Min-Ae1.jpg"
     },
     {
       "id": "pilgyu",
@@ -94,7 +102,8 @@
       "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
       "group": "Seo Ri's people",
       "inCast": true,
-      "note": "Goshiwon manager"
+      "note": "Goshiwon manager",
+      "still": "https://asianwiki.com/images/8/85/My_Royal_Nemesis-Park_Jin-Woo.jpg"
     },
     {
       "id": "euna",
@@ -102,7 +111,8 @@
       "actor": "Kim Gye Rim",
       "image": "https://i.mydramalist.com/x42W83_5m.jpg",
       "group": "Seo Ri's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6e/My_Royal_Nemesis-Kim_Gye-Rim01.jpg"
     },
     {
       "id": "taehui",
@@ -110,7 +120,8 @@
       "actor": "Chae Seo An",
       "image": "https://i.mydramalist.com/RBjqAr_5m.jpg",
       "group": "Se Gye's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/88/My_Royal_Nemesis-Chae_Seo-An.jpg"
     },
     {
       "id": "dalsu",
@@ -118,7 +129,8 @@
       "actor": "Yoon Joo Sang",
       "image": "https://i.mydramalist.com/oQ4dxm.jpg",
       "group": "Se Gye's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/69/My_Royal_Nemesis-Yun_Ju-Sang.jpg"
     },
     {
       "id": "jaehan",
@@ -126,7 +138,8 @@
       "actor": "Yoon Byung Hee",
       "image": "https://i.mydramalist.com/dJZPe_5m.jpg",
       "group": "Se Gye's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/75/My_Royal_Nemesis-Yoon_Byung-Hee.jpg"
     },
     {
       "id": "juran",
@@ -134,7 +147,8 @@
       "actor": "Jung Young Joo",
       "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
       "group": "Se Gye's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3a/My_Royal_Nemesis-Jung_Young-Joo1.jpg"
     },
     {
       "id": "jumi",
@@ -142,7 +156,8 @@
       "actor": "Baek Eun Hye",
       "image": "https://i.mydramalist.com/4k7yZm.jpg",
       "group": "Se Gye's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/83/My_Royal_Nemesis-Baek_Eun-Hye1.jpg"
     },
     {
       "id": "jinok",
@@ -151,7 +166,8 @@
       "image": "https://i.mydramalist.com/5v7BVY_5m.jpg",
       "group": "Se Gye's people",
       "inCast": true,
-      "note": "Butler"
+      "note": "Butler",
+      "still": "https://asianwiki.com/images/b/bb/My_Royal_Nemesis-Kim_Hyun.jpg"
     },
     {
       "id": "seokho",
@@ -160,7 +176,8 @@
       "image": "https://i.mydramalist.com/BE5AV_5m.jpg",
       "group": "Se Gye's people",
       "inCast": true,
-      "note": "Biojei executive"
+      "note": "Biojei executive",
+      "still": "https://asianwiki.com/images/9/9a/My_Royal_Nemesis-Oh_Man-Seok01.jpg"
     },
     {
       "id": "namjin",
@@ -169,7 +186,8 @@
       "image": "https://i.mydramalist.com/rDv7N_5m.jpg",
       "group": "Three hundred years ago",
       "inCast": true,
-      "note": "Mun Do's attendant"
+      "note": "Mun Do's attendant",
+      "still": "https://asianwiki.com/images/c/c6/My_Royal_Nemesis-Jung_Jae-Hyuk.jpg"
     }
   ],
   "links": [
