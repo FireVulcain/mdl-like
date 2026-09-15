@@ -132,7 +132,7 @@ export const CHART_SCHEMA = {
                         type: "object",
                         additionalProperties: false,
                         required: ["group", "column", "row"],
-                        properties: { group: { type: "string" }, column: { type: "integer", minimum: 0, maximum: 2 }, row: { type: "integer", minimum: 0, maximum: 2 } },
+                        properties: { group: { type: "string" }, column: { type: "integer", enum: [0, 1, 2] }, row: { type: "integer", enum: [0, 1, 2] } },
                     },
                 },
                 center: { type: "array", items: { type: "string" } },
