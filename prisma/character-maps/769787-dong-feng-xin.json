@@ -1,0 +1,690 @@
+{
+  "version": 1,
+  "mdlSlug": "769787-dong-feng-xin",
+  "title": "Blossoms of Power",
+  "native": "百花杀",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (22 roles + guests, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色"
+  ],
+  "main": [
+    "xihe",
+    "huayong"
+  ],
+  "people": [
+    {
+      "id": "xihe",
+      "name": "Shen Xi He / Gu Qing Zhi",
+      "actor": "Meng Zi Yi",
+      "image": "https://i.mydramalist.com/YYWz1z_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Princess Zhaoning of the Northwest — carrying the soul and memory of Gu Qing Zhi, the dead consort of Prince Xin"
+    },
+    {
+      "id": "huayong",
+      "name": "Xiao Hua Yong / the Crown Prince",
+      "actor": "He Yu",
+      "image": "https://i.mydramalist.com/RBQgwo_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Poisoned at nine; frail on the surface, razor-sharp beneath — with his own men in the capital"
+    },
+    {
+      "id": "tianyuan",
+      "name": "Tian Yuan",
+      "actor": "Lester Lin",
+      "image": "https://i.mydramalist.com/BdwOOR_5m.jpg",
+      "group": "The crown prince's men",
+      "inCast": true,
+      "note": "The crown prince's attendant"
+    },
+    {
+      "id": "zhenzhu",
+      "name": "Zhen Zhu",
+      "actor": "Cao Yang Ming Zhu",
+      "image": "https://i.mydramalist.com/YYrOnz_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Maid, grew up with her; her ears in the palace"
+    },
+    {
+      "id": "moyu",
+      "name": "Mo Yu",
+      "actor": "Jiang Yi Xuan",
+      "image": "https://i.mydramalist.com/2j2n2_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Maid, grew up with her; martial arts and medicine"
+    },
+    {
+      "id": "moyuan",
+      "name": "Mo Yuan",
+      "actor": "Zhu Jun Lin",
+      "image": "https://i.mydramalist.com/6Ow12_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Attendant"
+    },
+    {
+      "id": "shulin",
+      "name": "Bu Shu Lin / Bu Shu Yao",
+      "actor": "Fan Shuai Qi",
+      "image": "https://i.mydramalist.com/rNVNWy_5m.jpg",
+      "group": "The crown prince's men",
+      "inCast": true,
+      "note": "Heir of the Shunan marquis — a woman dressed as a man, the capital's hostage"
+    },
+    {
+      "id": "jinbai",
+      "name": "Cui Jin Bai",
+      "actor": "Dong Zi Fan",
+      "image": "https://i.mydramalist.com/zBWXDy_5m.jpg",
+      "group": "The crown prince's men",
+      "inCast": true,
+      "note": "Vice-minister of the Court of Judicial Review"
+    },
+    {
+      "id": "changying",
+      "name": "Xiao Chang Ying / Prince Lie",
+      "actor": "Lai Wei Ming",
+      "image": "https://i.mydramalist.com/l0ADme_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Ninth prince, the youngest; straight and kind"
+    },
+    {
+      "id": "changyu",
+      "name": "Xiao Chang Yu / Prince Yu",
+      "actor": "Chen He Yi",
+      "image": "https://i.mydramalist.com/4ejVY6_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Sixth prince"
+    },
+    {
+      "id": "changqing",
+      "name": "Xiao Chang Qing / Prince Xin",
+      "actor": "Jeremy Xu",
+      "image": "https://i.mydramalist.com/RBXWWr_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Fifth prince; the widower of Gu Qing Zhi"
+    },
+    {
+      "id": "changmin",
+      "name": "Xiao Chang Min / Prince Ning",
+      "actor": "Ye Zu Xin",
+      "image": "https://i.mydramalist.com/4ewBqZ_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Second prince"
+    },
+    {
+      "id": "changtai",
+      "name": "Xiao Chang Tai / Prince Ding",
+      "actor": "Johnny Zhang",
+      "image": "https://i.mydramalist.com/JBOzYj_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Fourth prince"
+    },
+    {
+      "id": "yanhui",
+      "name": "Li Yan Hui / Princess Consort Ding",
+      "actor": "Snow Kong",
+      "image": "https://i.mydramalist.com/3ojD3j_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Princess of fallen Nanzhou"
+    },
+    {
+      "id": "yunhuai",
+      "name": "Xie Yun Huai",
+      "actor": "Gala Zhang",
+      "image": "https://i.mydramalist.com/yWOPXN_5m.jpg",
+      "group": "The crown prince's men",
+      "inCast": true
+    },
+    {
+      "id": "rong",
+      "name": "Noble Consort Rong",
+      "actor": "Zeng Li",
+      "image": "https://i.mydramalist.com/d7egg_5m.jpg",
+      "group": "The imperial family",
+      "inCast": true,
+      "note": "Ran the inner palace — until Xi He took it"
+    },
+    {
+      "id": "emperor",
+      "name": "Xiao Jue Chong / Emperor You Ning",
+      "actor": "Cao Wei Yu",
+      "image": "https://i.mydramalist.com/81ld8K_5m.jpg",
+      "group": "The imperial family",
+      "inCast": true,
+      "note": "Loves the seventh prince best"
+    },
+    {
+      "id": "meng",
+      "name": "Empress Dowager Meng",
+      "actor": "Dai Chun Rong",
+      "image": "https://i.mydramalist.com/Z01KOm.jpg",
+      "group": "The imperial family",
+      "inCast": true,
+      "note": "Prince Qian's mother; the emperor's adoptive mother"
+    },
+    {
+      "id": "yingruo",
+      "name": "Shen Ying Ruo",
+      "actor": "Zhou Jing Bo",
+      "image": "https://i.mydramalist.com/Zwy0Y_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Half-sister, raised clear-eyed by her wet nurse"
+    },
+    {
+      "id": "jinshan",
+      "name": "Jin Shan",
+      "actor": "Dylan Dai",
+      "image": "https://i.mydramalist.com/Dk4elo_5m.jpg",
+      "group": "The crown prince's men",
+      "inCast": true,
+      "note": "Shu Lin's guard"
+    },
+    {
+      "id": "zhuanxian",
+      "name": "Tao Zhuan Xian",
+      "actor": "Wang Jian Guo",
+      "image": "https://i.mydramalist.com/LwoLm3_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Maternal grandfather"
+    },
+    {
+      "id": "sanzhi",
+      "name": "Liu San Zhi",
+      "actor": "Wu Qi",
+      "image": "https://i.mydramalist.com/kAvokg_5m.jpg",
+      "group": "The imperial family",
+      "inCast": true,
+      "note": "Chief eunuch"
+    },
+    {
+      "id": "qingshu",
+      "name": "Gu Qing Shu",
+      "actor": "Rong Yan",
+      "image": "https://i.mydramalist.com/O8Z1nb_5m.jpg",
+      "group": "The princes",
+      "inCast": true,
+      "note": "Gu Qing Zhi's sister"
+    },
+    {
+      "id": "yueshan",
+      "name": "Shen Yue Shan",
+      "actor": "Peter Ho",
+      "image": "https://i.mydramalist.com/jzZxd_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Duke Wei; commands the Northwest army"
+    },
+    {
+      "id": "yunan",
+      "name": "Shen Yun An",
+      "actor": "Zhao Zhi Wei",
+      "image": "https://i.mydramalist.com/YYrERW_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "Heir of Duke Wei"
+    },
+    {
+      "id": "madamexiao",
+      "name": "Madame Xiao",
+      "actor": "Cao Yan Yan",
+      "image": "https://i.mydramalist.com/VX3lB0_5m.jpg",
+      "group": "Xi He's house (Duke Wei)",
+      "inCast": true,
+      "note": "The duke's concubine"
+    }
+  ],
+  "links": [
+    {
+      "from": "xihe",
+      "to": "huayong",
+      "type": "romance",
+      "label": "test each other, then ally; she marries him for his short life — and finds she loves him",
+      "short": "wife",
+      "evidence": "後與皇室太子蕭華雍互相試探，轉而互相合作、互惠互利。原先會同意嫁予太子是因為太子短命，但婚後才發現其實已心悅太子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xihe",
+      "to": "changqing",
+      "type": "romance",
+      "label": "Gu Qing Zhi, his consort, cold to a love that was possession — dead; he sees her again in Xi He",
+      "short": "his dead consort",
+      "evidence": "深愛信王妃顧青梔，但顧青梔對信王極其冷淡 [...] 堅信沈汐和是顧青梔，便同其他皇子一樣欲求娶沈汐和",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tianyuan",
+      "to": "huayong",
+      "type": "work",
+      "label": "attendant and guard; guards his widow after him",
+      "short": "attendant",
+      "evidence": "太子近侍 [...] 於蕭華雍死後，代其護衛太子妃沈汐和的安全",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenzhu",
+      "to": "xihe",
+      "type": "work",
+      "label": "maid, raised together like sisters; her ears in the palace",
+      "short": "maid, sister",
+      "evidence": "與墨玉、沈汐和一同長大 [...] 三人情同姊妹 [...] 時常作為沈汐和的耳朵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "moyu",
+      "to": "xihe",
+      "type": "work",
+      "label": "maid, raised together like sisters; her guard and physician",
+      "short": "maid, sister",
+      "evidence": "與珍珠、沈汐和一同長大 [...] 會武功及醫術",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "moyuan",
+      "to": "xihe",
+      "type": "work",
+      "label": "attendant",
+      "short": "attendant",
+      "evidence": "[Xi He's personal attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shulin",
+      "to": "jinbai",
+      "type": "romance",
+      "label": "lovers; twins later — married as the marquis's 'lost sister'",
+      "short": "lovers",
+      "evidence": "後與大理寺少卿崔晉百相互交好後相愛，育有雙胞胎",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shulin",
+      "to": "xihe",
+      "type": "friend",
+      "label": "the disguised hostage who keeps the capital's peace, at her side",
+      "short": "ally",
+      "evidence": "武功高強，協助維護皇都內的治安",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinbai",
+      "to": "huayong",
+      "type": "work",
+      "label": "the crown prince's man — one of the faces he borrows",
+      "short": "his man",
+      "evidence": "可差遣 [...] 最有前途的大理寺少卿崔晉百 [...] 假扮前述三個角色",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinshan",
+      "to": "shulin",
+      "type": "work",
+      "label": "guard",
+      "short": "guard",
+      "evidence": "[Shu Lin's attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "emperor",
+      "to": "huayong",
+      "type": "family",
+      "label": "adoptive father — poisoned him at nine; his favourite, made crown prince",
+      "short": "the emperor",
+      "evidence": "於九歲時祐寧帝餵食烙櫻桃，身中西域奇毒 / 最疼愛第七個皇子蕭華雍，並冊封蕭華雍為太子",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "meng",
+      "to": "emperor",
+      "type": "family",
+      "label": "adoptive mother; mother of Prince Qian, Hua Yong's real father",
+      "short": "adoptive mother",
+      "evidence": "前朝大皇子謙王之生母，祐寧帝之養母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "meng",
+      "to": "huayong",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "亦為所有皇子之皇祖母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rong",
+      "to": "changqing",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "榮貴妃，為五皇子信王及九皇子烈王之生母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rong",
+      "to": "changying",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "五皇子信王及九皇子烈王之生母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rong",
+      "to": "xihe",
+      "type": "rivalry",
+      "label": "ran the inner palace until Xi He took it; plots the throne when the emperor sickens",
+      "short": "rival",
+      "evidence": "原先執掌後宮之權，後被沈汐和奪去 [...] 欲以榮家為首奪取皇權",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changying",
+      "to": "changqing",
+      "type": "family",
+      "label": "raised under his brother's care",
+      "short": "brother",
+      "evidence": "從小受信王的照拂",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changying",
+      "to": "yingruo",
+      "type": "friend",
+      "label": "soulmates, neither wanting marriage on others' terms",
+      "short": "soulmate",
+      "evidence": "與沈瓔婼互為知己，同不想受婚姻左右",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "changtai",
+      "to": "yanhui",
+      "type": "romance",
+      "label": "wife, the princess of fallen Nanzhou",
+      "short": "wife",
+      "evidence": "四皇子定王，娶南州公主李雁回為妻",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "changtai",
+      "to": "emperor",
+      "type": "rivalry",
+      "label": "resents his father's favourites; turns traitor",
+      "short": "traitor",
+      "evidence": "因不滿祐寧帝偏袒其他皇子 [...] 故通敵叛國",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changyu",
+      "to": "xihe",
+      "type": "romance",
+      "label": "wants to marry the princess for the Northwest army",
+      "short": "wants her army",
+      "evidence": "欲娶郡主奪取軍權",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changmin",
+      "to": "huayong",
+      "type": "rivalry",
+      "label": "the second prince, in the princes' contest",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yunhuai",
+      "to": "huayong",
+      "type": "work",
+      "label": "of the crown prince's side",
+      "short": "his man",
+      "evidence": "張凌赫 : 謝雲懷",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sanzhi",
+      "to": "emperor",
+      "type": "work",
+      "label": "chief eunuch",
+      "short": "chief eunuch",
+      "evidence": "劉三指 - 祐寧帝近侍",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yueshan",
+      "to": "xihe",
+      "type": "family",
+      "label": "father; Duke Wei of the Northwest army",
+      "short": "father",
+      "evidence": "衛國公，沈雲安、沈汐和、沈瓔婼之父親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yueshan",
+      "to": "yunan",
+      "type": "family",
+      "label": "only son, at his side on the frontier",
+      "short": "son",
+      "evidence": "與其獨子沈雲安一同領兵護衛西北邊疆",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunan",
+      "to": "xihe",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "沈汐和的親哥哥",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yingruo",
+      "to": "xihe",
+      "type": "family",
+      "label": "half-sister — the concubine's daughter, raised well despite her",
+      "short": "half-sister",
+      "evidence": "沈汐和同父異母的妹妹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "madamexiao",
+      "to": "yingruo",
+      "type": "family",
+      "label": "mother — ruthless",
+      "short": "mother",
+      "evidence": "為沈瓔婼生母，為求目的不擇手段",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "madamexiao",
+      "to": "xihe",
+      "type": "rivalry",
+      "label": "had her pushed into the sea",
+      "short": "pushed her in",
+      "evidence": "唆使下人將沈汐和推入海中",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhuanxian",
+      "to": "xihe",
+      "type": "family",
+      "label": "maternal grandfather",
+      "short": "grandfather",
+      "evidence": "沈汐和的外祖父",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qingshu",
+      "to": "xihe",
+      "type": "family",
+      "label": "Gu Qing Zhi's sister",
+      "short": "her old sister",
+      "evidence": "[Qing Zhi's sister]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "xihe",
+      "huayong",
+      "tianyuan",
+      "zhenzhu",
+      "moyu",
+      "moyuan",
+      "shulin",
+      "jinbai",
+      "changying",
+      "changyu",
+      "changqing",
+      "changmin",
+      "changtai",
+      "yanhui",
+      "yunhuai",
+      "rong",
+      "emperor",
+      "meng",
+      "yingruo",
+      "jinshan",
+      "zhuanxian",
+      "sanzhi",
+      "qingshu",
+      "yueshan",
+      "yunan",
+      "madamexiao"
+    ],
+    "blocks": {
+      "Xi He's house (Duke Wei)": [
+        0,
+        0
+      ],
+      "The crown prince's men": [
+        0,
+        2
+      ],
+      "The princes": [
+        2,
+        0
+      ],
+      "The imperial family": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "xihe",
+      "huayong"
+    ]
+  }
+}

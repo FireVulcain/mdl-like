@@ -1,0 +1,466 @@
+{
+  "version": 1,
+  "mdlSlug": "24678-because-this-is-my-first-life",
+  "title": "Because This Is My First Life",
+  "native": "이번 생은 처음이라",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (18 roles, 6 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "sehui",
+    "jiho"
+  ],
+  "people": [
+    {
+      "id": "sehui",
+      "name": "Nam Se Hui",
+      "actor": "Lee Min Ki",
+      "image": "https://i.mydramalist.com/wE3Qp_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "38, chief designer at the dating app; owns a house and a mortgage; won't marry"
+    },
+    {
+      "id": "jiho",
+      "name": "Yun Ji Ho",
+      "actor": "Jung So Min",
+      "image": "https://i.mydramalist.com/mON8QP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "30, assistant drama writer; homeless, off dating for money reasons"
+    },
+    {
+      "id": "suji",
+      "name": "Woo Su Ji",
+      "actor": "Esom",
+      "image": "https://i.mydramalist.com/18ED5_5m.jpg",
+      "group": "The three friends",
+      "inCast": true,
+      "note": "30, assistant manager, then an underwear start-up founder"
+    },
+    {
+      "id": "sanggu",
+      "name": "Ma Sang Gu",
+      "actor": "Park Byung Eun",
+      "image": "https://i.mydramalist.com/JB4v2p_5m.jpg",
+      "group": "Gyeolmalae (the app)",
+      "inCast": true,
+      "note": "38, CEO of Gyeolmalae"
+    },
+    {
+      "id": "horang",
+      "name": "Yang Ho Rang",
+      "actor": "Kim Ga Eun",
+      "image": "https://i.mydramalist.com/pdgEpy_5m.jpg",
+      "group": "The three friends",
+      "inCast": true,
+      "note": "30, restaurant manager"
+    },
+    {
+      "id": "wonseok",
+      "name": "Sim Won Seok",
+      "actor": "Kim Min Seok",
+      "image": "https://i.mydramalist.com/0LVrK_5m.jpg",
+      "group": "Gyeolmalae (the app)",
+      "inCast": true,
+      "note": "28, CTO"
+    },
+    {
+      "id": "bomi",
+      "name": "Yun Bo Mi",
+      "actor": "Yoon Bo Mi",
+      "image": "https://i.mydramalist.com/eZ4gW_5m.jpg",
+      "group": "Gyeolmalae (the app)",
+      "inCast": true,
+      "note": "Data analyst"
+    },
+    {
+      "id": "jeongmin",
+      "name": "Ko Jeong Min",
+      "actor": "Lee Chung Ah",
+      "image": "https://i.mydramalist.com/nONz5B_5m.jpg",
+      "group": "Se Hui's family",
+      "inCast": true
+    },
+    {
+      "id": "boknam",
+      "name": "Yeon Bok Nam",
+      "actor": "Kim Min Gue",
+      "image": "https://i.mydramalist.com/W8VKm_5m.jpg",
+      "group": "Work",
+      "inCast": true,
+      "note": "24, cafe part-timer bound for Sweden"
+    },
+    {
+      "id": "jongsu",
+      "name": "Yun Jong Su",
+      "actor": "Kim Byung Ok",
+      "image": "https://i.mydramalist.com/ro6py_5m.jpg",
+      "group": "Ji Ho's family",
+      "inCast": true,
+      "note": "Runs a garage"
+    },
+    {
+      "id": "hyeonja",
+      "name": "Kim Hyeon Ja",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
+      "group": "Ji Ho's family",
+      "inCast": true
+    },
+    {
+      "id": "huibong",
+      "name": "Nam Hui Bong",
+      "actor": "Kim Eung Soo",
+      "image": "https://i.mydramalist.com/xxXKN_5m.jpg",
+      "group": "Se Hui's family",
+      "inCast": true,
+      "note": "Former high-school principal"
+    },
+    {
+      "id": "myeongja",
+      "name": "Cho Myeong Ja",
+      "actor": "Moon Hee Kyung",
+      "image": "https://i.mydramalist.com/2k5xk_5m.jpg",
+      "group": "Se Hui's family",
+      "inCast": true
+    },
+    {
+      "id": "hwang",
+      "name": "Writer Hwang",
+      "actor": "Hwang Seok Jeong",
+      "image": "https://i.mydramalist.com/2wmzlR_5m.jpg",
+      "group": "Work",
+      "inCast": true
+    },
+    {
+      "id": "park",
+      "name": "PD Park",
+      "actor": "Jang Won Young",
+      "image": "https://i.mydramalist.com/60yB0d_5m.jpg",
+      "group": "Work",
+      "inCast": true
+    },
+    {
+      "id": "jiseok",
+      "name": "Yun Ji Seok",
+      "actor": "Noh Jong Hyun",
+      "image": "https://i.mydramalist.com/pd045e_5m.jpg",
+      "group": "Ji Ho's family",
+      "inCast": true,
+      "note": "26, back from the army"
+    },
+    {
+      "id": "eunsol",
+      "name": "Lee Eun Sol",
+      "actor": "Jeon Hye Won",
+      "image": "https://i.mydramalist.com/yWlN5n_5m.jpg",
+      "group": "Ji Ho's family",
+      "inCast": true,
+      "note": "22"
+    },
+    {
+      "id": "yongseok",
+      "name": "Gye Yong Seok",
+      "actor": "Kim Wook",
+      "image": "https://i.mydramalist.com/Y3zNgm.jpg",
+      "group": "Work",
+      "inCast": true,
+      "note": "Assistant director"
+    }
+  ],
+  "links": [
+    {
+      "from": "jiho",
+      "to": "sehui",
+      "type": "romance",
+      "label": "housemates by accident — then a marriage of convenience",
+      "short": "housemates",
+      "evidence": "Yun Ji Ho begins to live at Nam Se Hui's house. They become housemates",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suji",
+      "to": "jiho",
+      "type": "friend",
+      "label": "the three friends",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "horang",
+      "to": "jiho",
+      "type": "friend",
+      "label": "the three friends",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "suji",
+      "to": "horang",
+      "type": "friend",
+      "label": "the three friends",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sanggu",
+      "to": "sehui",
+      "type": "work",
+      "label": "CEO of the app Se Hui designs for",
+      "short": "CEO",
+      "evidence": "마상구 역 - 결말애 CEO / 남세희 역 - 결말애 수석 디자이너",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggu",
+      "to": "suji",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wonseok",
+      "to": "horang",
+      "type": "romance",
+      "label": "the third couple, seven years in",
+      "short": "lovers",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wonseok",
+      "to": "sehui",
+      "type": "work",
+      "label": "CTO to his chief designer",
+      "short": "colleague",
+      "evidence": "심원석 역 - 결말애 CTO",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bomi",
+      "to": "sehui",
+      "type": "work",
+      "label": "the app's data analyst",
+      "short": "colleague",
+      "evidence": "윤보미 역 - 결말애 데이터 분석가",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongmin",
+      "to": "sehui",
+      "type": "romance",
+      "label": "ex-girlfriend",
+      "short": "ex",
+      "evidence": "[Se Hui's ex-girlfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boknam",
+      "to": "jiho",
+      "type": "friend",
+      "label": "the part-timer at the cafe she writes in",
+      "short": "cafe",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jongsu",
+      "to": "jiho",
+      "type": "family",
+      "label": "father; the garage",
+      "short": "father",
+      "evidence": "[Ji Ho's father] / 카센터 운영",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonja",
+      "to": "jiho",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ji Ho's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huibong",
+      "to": "sehui",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Se Hui's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongja",
+      "to": "sehui",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Se Hui's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwang",
+      "to": "jiho",
+      "type": "work",
+      "label": "the writer she assists",
+      "short": "her writer",
+      "evidence": "황석정 : 황세희 작가 역 / 윤지호 역 - 드라마 보조작가",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "park",
+      "to": "jiho",
+      "type": "work",
+      "label": "the PD on her drama",
+      "short": "PD",
+      "evidence": "장원영 : PD 박",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiseok",
+      "to": "jiho",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Ji Ho's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunsol",
+      "to": "jiseok",
+      "type": "romance",
+      "label": "girlfriend — the reason Ji Ho loses her room",
+      "short": "girlfriend",
+      "evidence": "[Ji Ho's sister-in-law] / 이은솔 역 - 지석의 여자친구",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongseok",
+      "to": "jiho",
+      "type": "work",
+      "label": "assistant director",
+      "short": "AD",
+      "evidence": "김욱：계용석 역 - 조감독",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sehui",
+      "jiho",
+      "suji",
+      "sanggu",
+      "horang",
+      "wonseok",
+      "bomi",
+      "jeongmin",
+      "boknam",
+      "jongsu",
+      "hyeonja",
+      "huibong",
+      "myeongja",
+      "hwang",
+      "park",
+      "jiseok",
+      "eunsol",
+      "yongseok"
+    ],
+    "blocks": {
+      "The three friends": [
+        0,
+        0
+      ],
+      "Se Hui's family": [
+        2,
+        0
+      ],
+      "Ji Ho's family": [
+        0,
+        2
+      ],
+      "Gyeolmalae (the app)": [
+        2,
+        2
+      ],
+      "Work": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sehui",
+      "jiho"
+    ]
+  }
+}

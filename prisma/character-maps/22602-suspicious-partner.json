@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "mdlSlug": "22602-suspicious-partner",
+  "title": "Suspicious Partner",
+  "native": "수상한 파트너",
+  "year": 2017,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "jiwook",
+    "bonghee"
+  ],
+  "people": [
+    {
+      "id": "jiwook",
+      "name": "Noh Ji Wook",
+      "actor": "Ji Chang Wook",
+      "image": "https://i.mydramalist.com/ZyyEJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Han Kyul",
+          "image": "https://i.mydramalist.com/w2Z08m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Brilliant prosecutor who risks his career for the accused intern"
+    },
+    {
+      "id": "bonghee",
+      "name": "Eun Bong Hee",
+      "actor": "Nam Ji Hyun",
+      "image": "https://i.mydramalist.com/NdqRlY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rookie intern, falsely accused of murder"
+    },
+    {
+      "id": "eunhyuk",
+      "name": "Ji Eun Hyuk",
+      "actor": "Choi  Tae Joon",
+      "image": "https://i.mydramalist.com/NdXwKJ_5m.jpg",
+      "group": "Ji Wook's people",
+      "inCast": true,
+      "note": "Law-firm lawyer; Ji Wook's estranged best friend"
+    },
+    {
+      "id": "yoojung",
+      "name": "Cha Yoo Jung",
+      "actor": "Kwon Na Ra",
+      "image": "https://i.mydramalist.com/zB1ve7_5m.jpg",
+      "group": "Ji Wook's people",
+      "inCast": true,
+      "note": "Prosecutor"
+    },
+    {
+      "id": "hyunsoo",
+      "name": "Jung Hyun Soo",
+      "actor": "Dong Ha",
+      "image": "https://i.mydramalist.com/EQBd0_5m.jpg",
+      "group": "Bong Hee's people",
+      "inCast": true,
+      "note": "The gentle client"
+    },
+    {
+      "id": "jihae",
+      "name": "Na Ji Hae",
+      "actor": "Kim Ye Won",
+      "image": "https://i.mydramalist.com/1wLQBy_5m.jpg",
+      "group": "Training institute",
+      "inCast": true
+    },
+    {
+      "id": "younghee",
+      "name": "Byun Young Hee",
+      "actor": "Lee Deok Hwa",
+      "image": "https://i.mydramalist.com/R3KXEm.jpg",
+      "group": "Byun & Partners",
+      "inCast": true,
+      "note": "Head of Byun & Partners"
+    },
+    {
+      "id": "bokja",
+      "name": "Hong Bok Ja",
+      "actor": "Nam Gi Ae",
+      "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
+      "group": "Ji Wook's people",
+      "inCast": true
+    },
+    {
+      "id": "yeongsuk",
+      "name": "Noh Yeong Suk",
+      "actor": "Jo Seung Yun",
+      "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
+      "group": "Ji Wook's people",
+      "inCast": true
+    },
+    {
+      "id": "bang",
+      "name": "Section Chief Bang",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "Ji Wook's people",
+      "inCast": true,
+      "note": "Investigator"
+    },
+    {
+      "id": "youngsoon",
+      "name": "Park Young Soon",
+      "actor": "Yoon Bok In",
+      "image": "https://i.mydramalist.com/jQVdnd_5m.jpg",
+      "group": "Bong Hee's people",
+      "inCast": true,
+      "note": "Sports masseuse"
+    },
+    {
+      "id": "heegyu",
+      "name": "Woo Hee Gyu",
+      "actor": "Heo Jun Seok",
+      "image": "https://i.mydramalist.com/XdR1dm.jpg",
+      "group": "Training institute",
+      "inCast": true,
+      "note": "The chatterbox informant"
+    },
+    {
+      "id": "chaeun",
+      "name": "Hong Cha Eun",
+      "actor": "Shim Eun Woo",
+      "image": "https://i.mydramalist.com/vXQZX2_5m.jpg",
+      "group": "Training institute",
+      "inCast": true
+    },
+    {
+      "id": "mooyeong",
+      "name": "Jang Moo Yeong",
+      "actor": "Kim Hong Pa",
+      "image": "https://i.mydramalist.com/Egvrz_5m.jpg",
+      "group": "Bong Hee's people",
+      "inCast": true,
+      "note": "Chief prosecutor of Seonho"
+    },
+    {
+      "id": "heejoon",
+      "name": "Jang Hee Joon",
+      "actor": "Hwang Chan Sung",
+      "image": "https://i.mydramalist.com/nOQ408_5m.jpg",
+      "group": "Bong Hee's people",
+      "inCast": true,
+      "note": "Trainee; the chief's son"
+    },
+    {
+      "id": "chanho",
+      "name": "Go Chan Ho",
+      "actor": "Jin Ju Hyung",
+      "image": "https://i.mydramalist.com/d04yx5_5m.jpg",
+      "group": "Ji Wook's people",
+      "inCast": true,
+      "note": "Forensics"
+    },
+    {
+      "id": "yeonwoo",
+      "name": "Choi Yeon Woo",
+      "actor": "Lee Rang Seo",
+      "image": "https://i.mydramalist.com/doLKDm.jpg",
+      "group": "Bong Hee's people",
+      "inCast": true
+    },
+    {
+      "id": "kang",
+      "name": "Lawyer Kang",
+      "actor": "Nam Jung Woo",
+      "image": "https://i.mydramalist.com/E4327_5m.jpg",
+      "group": "Byun & Partners",
+      "inCast": true
+    },
+    {
+      "id": "yeonghun",
+      "name": "Min Yeong Hun",
+      "actor": "Lee Dal",
+      "image": "https://i.mydramalist.com/rXvWg_5m.jpg",
+      "group": "Byun & Partners",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "jiwook",
+      "to": "bonghee",
+      "type": "romance",
+      "label": "the prosecutor who risks everything for the accused intern",
+      "short": "lovers",
+      "evidence": "Bong Hee is falsely accused of murder, and Ji Wook risks his career to help her. As their careers and love lives intersect",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiwook",
+      "to": "bonghee",
+      "type": "work",
+      "label": "her boss, then her partner at the firm",
+      "short": "partner",
+      "evidence": "은봉희 역 - 검찰 수사관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "eunhyuk",
+      "to": "jiwook",
+      "type": "friend",
+      "label": "once his closest friend — back, and unwelcome",
+      "short": "estranged friend",
+      "evidence": "Ji Wook's former close friend, Ji Eun Hyuk, reappears / 지욱의 과거 절친",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yoojung",
+      "to": "jiwook",
+      "type": "romance",
+      "label": "his ex — who left him for Eun Hyuk",
+      "short": "ex",
+      "evidence": "나라 : 차유정 역 - 검사",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yoojung",
+      "to": "eunhyuk",
+      "type": "romance",
+      "label": "the betrayal",
+      "short": "the affair",
+      "evidence": "지욱의 과거 절친",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyunsoo",
+      "to": "bonghee",
+      "type": "bond",
+      "label": "the client she defends — the killer",
+      "short": "the killer",
+      "evidence": "동하 : 정현수 역 / catch the true culprit behind a series of murders",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "younghee",
+      "to": "jiwook",
+      "type": "work",
+      "label": "head of the firm he joins",
+      "short": "his boss",
+      "evidence": "변영희 역 - 변앤파트너스 로펌 대표 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bokja",
+      "to": "jiwook",
+      "type": "family",
+      "label": "mother; regular at Young Soon's massage shop",
+      "short": "mother",
+      "evidence": "[Ji Wook's mother] / 영순의 마사지샵 단골",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsuk",
+      "to": "jiwook",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "노영석 역 - 지욱의 친부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bang",
+      "to": "jiwook",
+      "type": "work",
+      "label": "his investigator",
+      "short": "investigator",
+      "evidence": "방은호 계장 역 - 지욱의 검찰 수사관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngsoon",
+      "to": "bonghee",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Bong Hee's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngsoon",
+      "to": "bokja",
+      "type": "friend",
+      "label": "masseuse and her regular",
+      "short": "her regular",
+      "evidence": "지욱의 모친. 영순의 마사지샵 단골",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "heejoon",
+      "to": "bonghee",
+      "type": "romance",
+      "label": "ex-boyfriend, the chief's son",
+      "short": "ex",
+      "evidence": "[Bong Hee's ex-boyfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mooyeong",
+      "to": "heejoon",
+      "type": "family",
+      "label": "father; the chief prosecutor",
+      "short": "father",
+      "evidence": "[Hee Joon's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihae",
+      "to": "bonghee",
+      "type": "friend",
+      "label": "training-institute classmate",
+      "short": "classmate",
+      "evidence": "연수원 동기들 - 김예원 : 나지해 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "heegyu",
+      "to": "bonghee",
+      "type": "friend",
+      "label": "training-institute classmate, the informant",
+      "short": "classmate",
+      "evidence": "우희규 역 - 수다쟁이. 정보원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chaeun",
+      "to": "bonghee",
+      "type": "friend",
+      "label": "training-institute classmate",
+      "short": "classmate",
+      "evidence": "연수원 동기들 - 심은우 : 홍차은 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chanho",
+      "to": "jiwook",
+      "type": "work",
+      "label": "police forensics",
+      "short": "forensics",
+      "evidence": "고찬호 역 - 경찰청 감식반",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonwoo",
+      "to": "bonghee",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "이랑서 : 최연우 역 - 은봉희의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kang",
+      "to": "younghee",
+      "type": "work",
+      "label": "at the firm",
+      "short": "lawyer",
+      "evidence": "[Lawyer Kang]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghun",
+      "to": "younghee",
+      "type": "work",
+      "label": "at the firm",
+      "short": "staff",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jiwook",
+      "bonghee",
+      "eunhyuk",
+      "yoojung",
+      "hyunsoo",
+      "jihae",
+      "younghee",
+      "bokja",
+      "yeongsuk",
+      "bang",
+      "youngsoon",
+      "heegyu",
+      "chaeun",
+      "mooyeong",
+      "heejoon",
+      "chanho",
+      "yeonwoo",
+      "kang",
+      "yeonghun"
+    ],
+    "blocks": {
+      "Ji Wook's people": [
+        0,
+        0
+      ],
+      "Bong Hee's people": [
+        2,
+        0
+      ],
+      "Byun & Partners": [
+        0,
+        2
+      ],
+      "Training institute": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "jiwook",
+      "bonghee"
+    ]
+  }
+}

@@ -1,0 +1,1226 @@
+{
+  "version": 1,
+  "mdlSlug": "687167-xing-han-can-lan",
+  "title": "Love Like the Galaxy",
+  "native": "星汉灿烂",
+  "year": 2022,
+  "country": "CN",
+  "sources": [
+    "MDL cast (49 roles + guests, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "buyi",
+    "shaoshang"
+  ],
+  "people": [
+    {
+      "id": "buyi",
+      "name": "Ling Bu Yi / Zi Sheng",
+      "actor": "Leo Wu",
+      "image": "https://i.mydramalist.com/Xd1zNn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "General of the Black Armour; the emperor's foster son — in truth Huo Wu Shang, sole survivor of the massacre"
+    },
+    {
+      "id": "shaoshang",
+      "name": "Cheng Shao Shang / Niao Niao",
+      "actor": "Zhao Lu Si",
+      "image": "https://i.mydramalist.com/Ndyqmy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Fourth daughter of the Chengs, raised by her cruel aunt while her parents fought; sharp, untamed"
+    },
+    {
+      "id": "chengshi",
+      "name": "Cheng Shi",
+      "actor": "Guo Tao",
+      "image": "https://i.mydramalist.com/JB861J_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Head of the Chengs; adores his daughter"
+    },
+    {
+      "id": "yuanyi",
+      "name": "Xiao Yuan Yi",
+      "actor": "Zeng Li",
+      "image": "https://i.mydramalist.com/d7egg_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Followed her husband to war; hard on the daughter she left"
+    },
+    {
+      "id": "chengsong",
+      "name": "Cheng Song",
+      "actor": "Jiang Yi Ming",
+      "image": "https://i.mydramalist.com/EejJb_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Second son"
+    },
+    {
+      "id": "shaogong",
+      "name": "Cheng Shao Gong",
+      "actor": "Mickey Zhao",
+      "image": "https://i.mydramalist.com/j53Xb_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Third son; divination"
+    },
+    {
+      "id": "chengyang",
+      "name": "Cheng Yang / Yang Yang",
+      "actor": "Xu Jiao",
+      "image": "https://i.mydramalist.com/Ee0z0_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Gentle daughter of the second house"
+    },
+    {
+      "id": "chengzhi",
+      "name": "Cheng Zhi",
+      "actor": "Zhang Tian Yang",
+      "image": "https://i.mydramalist.com/RBX85P_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Youngest brother; the lucky one"
+    },
+    {
+      "id": "shunhua",
+      "name": "Sang Shun Hua",
+      "actor": "Peng Yang",
+      "image": "https://i.mydramalist.com/eYjwvn_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Daughter of the Bailu mountain's master"
+    },
+    {
+      "id": "matriarch",
+      "name": "Old Madame Cheng",
+      "actor": "Xu Di",
+      "image": "https://i.mydramalist.com/81v6QA_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Superstitious; broke up Shao Shang and her parents"
+    },
+    {
+      "id": "lianfang",
+      "name": "Lian Fang",
+      "actor": "Wang Ya Jia",
+      "image": "https://i.mydramalist.com/VXxv1Q_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Shao Shang's maid"
+    },
+    {
+      "id": "fudeng",
+      "name": "Fu Deng",
+      "actor": "Miao Ya Ning",
+      "image": "https://i.mydramalist.com/2LZ8R_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Servant"
+    },
+    {
+      "id": "lingyi",
+      "name": "Ling Yi / Marquis Chengyang",
+      "actor": "Sha Bao Liang",
+      "image": "https://i.mydramalist.com/xqDp0_5m.jpg",
+      "group": "The Ling & Huo houses",
+      "inCast": true,
+      "note": "Ling Bu Yi's father — the butcher of the Huo clan"
+    },
+    {
+      "id": "chunyu",
+      "name": "Chunyu Shi",
+      "actor": "Zhao Zi Qi",
+      "image": "https://i.mydramalist.com/B8ol7_5m.jpg",
+      "group": "The Ling & Huo houses",
+      "inCast": true
+    },
+    {
+      "id": "junhua",
+      "name": "Huo Jun Hua",
+      "actor": "Zhang Tong",
+      "image": "https://i.mydramalist.com/yWr6QN_5m.jpg",
+      "group": "The Ling & Huo houses",
+      "inCast": true,
+      "note": "Mad since her husband killed her brother's family"
+    },
+    {
+      "id": "huochong",
+      "name": "Huo Chong",
+      "actor": "Yu Xiao Guang",
+      "image": "https://i.mydramalist.com/EKYP7_5m.jpg",
+      "group": "The Ling & Huo houses",
+      "inCast": true,
+      "note": "General; the emperor's sworn brother"
+    },
+    {
+      "id": "liangqiufei",
+      "name": "Liang Qiu Fei",
+      "actor": "Sun Kai",
+      "image": "https://i.mydramalist.com/6A14W_5m.jpg",
+      "group": "The Ling & Huo houses",
+      "inCast": true,
+      "note": "Black Armour; loyal, simple"
+    },
+    {
+      "id": "emperor",
+      "name": "Emperor Wen",
+      "actor": "Bao Jian Feng",
+      "image": "https://i.mydramalist.com/l0b8ze_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "empress",
+      "name": "Empress Xuan Shen An",
+      "actor": "Tong Lei",
+      "image": "https://i.mydramalist.com/663l2_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Raised Zi Sheng in Changqiu Palace; treats Shao Shang as a daughter"
+    },
+    {
+      "id": "yueheng",
+      "name": "Yue Heng / Consort Yue",
+      "actor": "Cao Xi Wen",
+      "image": "https://i.mydramalist.com/JB4nRd_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The emperor's childhood love, wife made concubine to balance the clans"
+    },
+    {
+      "id": "crownprince",
+      "name": "Crown Prince Yuan",
+      "actor": "Wang Zhuo Cheng",
+      "image": "https://i.mydramalist.com/VX3D2m_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Honest, used by his kin"
+    },
+    {
+      "id": "crownprincess",
+      "name": "Crown Princess Sun",
+      "actor": "Shao Yun",
+      "image": "https://i.mydramalist.com/b3jnqN_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "thirdprince",
+      "name": "The Third Prince",
+      "actor": "Gao He Yuan",
+      "image": "https://i.mydramalist.com/3oNx24_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Consort Yue's son; at odds with Ling Bu Yi on the surface"
+    },
+    {
+      "id": "thirdprincess",
+      "name": "The Third Princess",
+      "actor": "Wang Zhen",
+      "image": "https://i.mydramalist.com/Dken4D_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "In love with Ling Bu Yi, unrequited"
+    },
+    {
+      "id": "fifthprincess",
+      "name": "The Fifth Princess",
+      "actor": "Wang Zi Wei",
+      "image": "https://i.mydramalist.com/j5PrJ_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The emperor's spoilt youngest"
+    },
+    {
+      "id": "fifthprince",
+      "name": "The Fifth Prince",
+      "actor": "Liu Rui",
+      "image": "https://i.mydramalist.com/2wQRrE_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "fifthconsort",
+      "name": "The Fifth Prince's consort",
+      "actor": "Li Yan Man",
+      "image": "https://i.mydramalist.com/wZEXN_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "xiaoyuehou",
+      "name": "Xiao Yue Hou",
+      "actor": "Wang Zi Quan",
+      "image": "https://i.mydramalist.com/JBmbzd_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Consort Yue's third brother; the schemer"
+    },
+    {
+      "id": "caocheng",
+      "name": "Cao Cheng",
+      "actor": "Zhong Wei Hua",
+      "image": "https://i.mydramalist.com/l0mYJv_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Chief eunuch"
+    },
+    {
+      "id": "zhai",
+      "name": "Nanny Zhai",
+      "actor": "Zhang Li Ping",
+      "image": "https://i.mydramalist.com/663N0_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The empress's maid"
+    },
+    {
+      "id": "louyao",
+      "name": "Lou Yao",
+      "actor": "Yu Cheng En",
+      "image": "https://i.mydramalist.com/YYBYAo_5m.jpg",
+      "group": "The Lou family",
+      "inCast": true,
+      "note": "The second house's younger son"
+    },
+    {
+      "id": "louben",
+      "name": "Lou Ben",
+      "actor": "Wang Zi Rui",
+      "image": "https://i.mydramalist.com/QJB0PA_5m.jpg",
+      "group": "The Lou family",
+      "inCast": true,
+      "note": "Brilliant, held back by his uncle; the Tongniu mastermind"
+    },
+    {
+      "id": "wangyanji",
+      "name": "Wang Yan Ji",
+      "actor": "Kira Shi",
+      "image": "https://i.mydramalist.com/l0pjNQ_5m.jpg",
+      "group": "The Lou family",
+      "inCast": true
+    },
+    {
+      "id": "louli",
+      "name": "Lou Li",
+      "actor": "Tang Meng Jia",
+      "image": "https://i.mydramalist.com/yW1d8n_5m.jpg",
+      "group": "The Lou family",
+      "inCast": true,
+      "note": "At odds with Shao Shang"
+    },
+    {
+      "id": "patriarchlou",
+      "name": "Patriarch Lou",
+      "actor": "Xing Min Shan",
+      "image": "https://i.mydramalist.com/j5wlw_5m.jpg",
+      "group": "The Lou family",
+      "inCast": true,
+      "note": "The Grand Tutor"
+    },
+    {
+      "id": "hezhaojun",
+      "name": "He Zhao Jun",
+      "actor": "Estelle Chen",
+      "image": "https://i.mydramalist.com/l0KdE4_5m.jpg",
+      "group": "The Lou family",
+      "inCast": true
+    },
+    {
+      "id": "yuanshen",
+      "name": "Yuan Shen",
+      "actor": "Li Yun Rui",
+      "image": "https://i.mydramalist.com/ABA45v_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Bailu academy's talent; sharp-tongued suitor"
+    },
+    {
+      "id": "huangfuyi",
+      "name": "Huang Fu Yi",
+      "actor": "Zheng Qi",
+      "image": "https://i.mydramalist.com/1w8XO6_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Master of the Bailu academy"
+    },
+    {
+      "id": "qiqi",
+      "name": "Wan Qi Qi",
+      "actor": "Zhang Yue",
+      "image": "https://i.mydramalist.com/JB7z7y_5m.jpg",
+      "group": "The Wan family",
+      "inCast": true,
+      "note": "Bold and loyal; the girls' 'big sister'"
+    },
+    {
+      "id": "songbai",
+      "name": "Wan Song Bai",
+      "actor": "Ren Qing An",
+      "image": "https://i.mydramalist.com/2ZexR_5m.jpg",
+      "group": "The Wan family",
+      "inCast": true,
+      "note": "General; Cheng Shi's sworn brother"
+    },
+    {
+      "id": "mrswan",
+      "name": "Mrs. Wan",
+      "actor": "Wang Yi Jun",
+      "image": "https://i.mydramalist.com/150d3_5m.jpg",
+      "group": "The Wan family",
+      "inCast": true
+    },
+    {
+      "id": "wangling",
+      "name": "Wang Ling",
+      "actor": "Hu Jia Xin",
+      "image": "https://i.mydramalist.com/DkLoVr_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Of the Wang house; bullies Shao Shang"
+    },
+    {
+      "id": "yuchang",
+      "name": "Princess Yu Chang",
+      "actor": "Cui En Ci",
+      "image": "https://i.mydramalist.com/g2PEvm.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Loves Ling Bu Yi; bullies Shao Shang"
+    },
+    {
+      "id": "ruyang",
+      "name": "Princess of Ru Yang",
+      "actor": "Fang Xiao Li",
+      "image": "https://i.mydramalist.com/81leBl_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Yu Chang's grandmother"
+    },
+    {
+      "id": "luojitong",
+      "name": "Luo Ji Tong",
+      "actor": "Zhao Jing",
+      "image": "https://i.mydramalist.com/16OBz_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The Fifth Princess's study companion"
+    },
+    {
+      "id": "muxu",
+      "name": "Mu Xu",
+      "actor": "Ma Fei",
+      "image": "https://i.mydramalist.com/jQjgYJ_5m.jpg",
+      "group": "The Cheng family",
+      "inCast": true,
+      "note": "Cheng Yang's attendant"
+    }
+  ],
+  "links": [
+    {
+      "from": "buyi",
+      "to": "shaoshang",
+      "type": "romance",
+      "label": "met her chasing a fugitive through her village; wife, in the end",
+      "short": "wife",
+      "evidence": "when he met Cheng Shao Shang during a mission to apprehend a fugitive in a rural village / 程少商之夫",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "lingyi",
+      "to": "buyi",
+      "type": "family",
+      "label": "'father' — who slaughtered the Huo clan; Bu Yi is Huo Wu Shang, playing his cousin A Li to avenge them",
+      "short": "'father'",
+      "evidence": "[Ling Bu Yi's father] / 實為霍無傷 [...] 五歲那年被姑父凌益屠殺全族，因與阿狸互換衣服而逃過一劫 [...] 認賊為父",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junhua",
+      "to": "buyi",
+      "type": "family",
+      "label": "'mother' — in truth his aunt, who saved him; mad since the massacre",
+      "short": "aunt, 'mother'",
+      "evidence": "霍君華 [...] 凌不疑之母，實為霍無傷之姑母 [...] 因丈夫殺了自己兄長一家，以致瘋癲",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junhua",
+      "to": "lingyi",
+      "type": "romance",
+      "label": "first wife, divorced",
+      "short": "ex-wife",
+      "evidence": "[Ling Yi's 1st wife] / 凌益原配，後絕婚",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chunyu",
+      "to": "lingyi",
+      "type": "romance",
+      "label": "second wife; kept barren by him",
+      "short": "second wife",
+      "evidence": "[Ling Yi's 2nd wife] / 凌益不讓其有孕",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "huochong",
+      "to": "buyi",
+      "type": "family",
+      "label": "uncle — Huo Jun Hua's brother, the general the emperor swore brotherhood to",
+      "short": "uncle",
+      "evidence": "[General / Ling Bu Yi's uncle] / 霍翀之妹",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liangqiufei",
+      "to": "buyi",
+      "type": "work",
+      "label": "Black Armour, at his side through everything",
+      "short": "his man",
+      "evidence": "[Ling Bu Yi's subordinate] / 凌不疑隨從，跟隨凌不疑出生入死",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "emperor",
+      "to": "buyi",
+      "type": "family",
+      "label": "adoptive father",
+      "short": "adoptive father",
+      "evidence": "[Zi Sheng's adoptive father] / 皇帝義子",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "empress",
+      "to": "buyi",
+      "type": "family",
+      "label": "raised him in Changqiu Palace as her own",
+      "short": "raised him",
+      "evidence": "撫養子晟在長秋宮長大，視子晟如親兒",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "empress",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "teaches her at the palace; treats her as a daughter",
+      "short": "like a daughter",
+      "evidence": "少商入宮與皇后學習，待少商如親女",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yueheng",
+      "to": "emperor",
+      "type": "romance",
+      "label": "childhood love, the emperor's true love; demoted from wife to concubine for the clans",
+      "short": "his true love",
+      "evidence": "和文帝青梅竹馬，亦是皇帝的摯愛，本應明媒正娶的妻，為了平衡勢力，降妻為妾",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "empress",
+      "to": "emperor",
+      "type": "romance",
+      "label": "empress by alliance",
+      "short": "empress",
+      "evidence": "為了與乾安王結盟，與宣神諳結為夫妻",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "empress",
+      "to": "yueheng",
+      "type": "friend",
+      "label": "like sisters, without suspicion",
+      "short": "like sisters",
+      "evidence": "與越妃情同姐妹，互不相疑",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "empress",
+      "to": "crownprince",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "太子、五公主之母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "empress",
+      "to": "fifthprincess",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Empress Xuan's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yueheng",
+      "to": "thirdprince",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "三皇子、二公主、三公主之母",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yueheng",
+      "to": "thirdprincess",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Yue Heng's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "crownprincess",
+      "to": "crownprince",
+      "type": "romance",
+      "label": "wife, by a promise from the emperor's rustic days; later stripped of rank",
+      "short": "wife",
+      "evidence": "太子妃 [...] 為聖上於鄉野時定下之婚約",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "thirdprince",
+      "to": "buyi",
+      "type": "friend",
+      "label": "at odds on the surface; secretly allies since a childhood rescue",
+      "short": "secret ally",
+      "evidence": "表面上與凌不疑不合，實為從小時起就因為救命之恩就認識了 [...] 背後互相幫助",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "thirdprincess",
+      "to": "buyi",
+      "type": "romance",
+      "label": "loves him, unrequited",
+      "short": "loves him",
+      "evidence": "傾心於凌不疑，卻愛而不得",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fifthprincess",
+      "to": "shaoshang",
+      "type": "rivalry",
+      "label": "bullies her — until the emperor kills her 'advisers'",
+      "short": "bullies her",
+      "evidence": "後來因欺凌程少商，被凌不疑和文帝殺光所有面首",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fifthconsort",
+      "to": "fifthprince",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[5th Prince's consort]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fifthconsort",
+      "to": "buyi",
+      "type": "friend",
+      "label": "childhood playmate",
+      "short": "childhood friend",
+      "evidence": "幼時為曲泠君、凌不疑之玩伴",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xiaoyuehou",
+      "to": "yueheng",
+      "type": "family",
+      "label": "third brother; raised the Third Princess",
+      "short": "brother",
+      "evidence": "[Yue Hueng's 3rd brother] / 越姮之三兄",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaoyuehou",
+      "to": "crownprince",
+      "type": "rivalry",
+      "label": "framed him; stripped of his title",
+      "short": "framed him",
+      "evidence": "為了栽贓嫁禍太子，與梁遐勾結 [...] 褫奪爵位",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "caocheng",
+      "to": "emperor",
+      "type": "work",
+      "label": "chief eunuch",
+      "short": "chief eunuch",
+      "evidence": "[Chief eunuch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhai",
+      "to": "empress",
+      "type": "work",
+      "label": "her maid",
+      "short": "maid",
+      "evidence": "[Empress Xuan's maid]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "luojitong",
+      "to": "fifthprincess",
+      "type": "work",
+      "label": "study companion",
+      "short": "companion",
+      "evidence": "[Fitfh Princess study companion]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chengshi",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "father; adores her",
+      "short": "father",
+      "evidence": "程始 [...] 程少商之父，極度疼愛女兒",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuanyi",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "mother — fifteen years away at war; strict to make it up, and the rift grows",
+      "short": "mother",
+      "evidence": "蕭元漪 [...] 程少商之母 [...] 對少商嚴加管教 [...] 進而造成母女間極大嫌隙",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chengshi",
+      "to": "yuanyi",
+      "type": "romance",
+      "label": "husband — a model one",
+      "short": "husband",
+      "evidence": "尊敬其妻蕭元漪，是位好丈夫榜樣",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chengsong",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "second brother; protective",
+      "short": "brother",
+      "evidence": "[Shao Shang's second brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shaogong",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "twin brother",
+      "short": "twin",
+      "evidence": "[Shao Shang's twin brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chengyang",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "cousin of the second house — like a sister",
+      "short": "cousin",
+      "evidence": "[Shao Shang's paternal cousin] / 與少商情如親姐妹",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chengzhi",
+      "to": "chengshi",
+      "type": "family",
+      "label": "youngest brother",
+      "short": "brother",
+      "evidence": "[Cheng Shi's youngest brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shunhua",
+      "to": "chengzhi",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Cheng Zhi's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "shunhua",
+      "to": "shaoshang",
+      "type": "friend",
+      "label": "sees what she is; the aunt who values her",
+      "short": "values her",
+      "evidence": "欣賞程少商的毫無畏懼，看出其之與眾不同",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "matriarch",
+      "to": "shaoshang",
+      "type": "family",
+      "label": "grandmother — who let the aunt separate her from her parents",
+      "short": "grandmother",
+      "evidence": "[Shao Shang's grandmother] / 因而拆散少商及其父母",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lianfang",
+      "to": "shaoshang",
+      "type": "work",
+      "label": "her maid, who raised her",
+      "short": "maid",
+      "evidence": "[Shao Shang's maid] / 照顧少商長大",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fudeng",
+      "to": "lianfang",
+      "type": "romance",
+      "label": "in love with her; husband later",
+      "short": "husband",
+      "evidence": "傾心於蓮房，後與蓮房成為夫妻",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "muxu",
+      "to": "chengyang",
+      "type": "work",
+      "label": "attendant",
+      "short": "attendant",
+      "evidence": "[Cheng Yang's attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "louyao",
+      "to": "shaoshang",
+      "type": "romance",
+      "label": "her first betrothal, broken by his family",
+      "short": "first fiance",
+      "evidence": "[Second Madame Lou's younger son] / 樓垚",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hezhaojun",
+      "to": "louyao",
+      "type": "romance",
+      "label": "fiancee",
+      "short": "fiancee",
+      "evidence": "[Lou Yao's fiancée]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "louben",
+      "to": "louyao",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[Lou Yao's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wangyanji",
+      "to": "louben",
+      "type": "romance",
+      "label": "wife — who avenges him on Shao Shang",
+      "short": "wife",
+      "evidence": "[Lou Ben's wife] / 之後為報復程少商",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "louben",
+      "to": "chengshi",
+      "type": "rivalry",
+      "label": "framed him for the Tongniu massacre",
+      "short": "framed him",
+      "evidence": "將罪名栽贓曲陵侯程始，犯下設計一連串銅牛縣一案的主謀",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "louli",
+      "to": "shaoshang",
+      "type": "rivalry",
+      "label": "at odds with her, again and again",
+      "short": "rival",
+      "evidence": "與程少商不合，多次與程少商作對",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "louli",
+      "to": "louyao",
+      "type": "family",
+      "label": "cousin",
+      "short": "cousin",
+      "evidence": "[Lou Yao's cousin]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "patriarchlou",
+      "to": "louyao",
+      "type": "family",
+      "label": "uncle; the Grand Tutor who held Lou Ben back",
+      "short": "uncle",
+      "evidence": "[Lou Yao's uncle]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuanshen",
+      "to": "shaoshang",
+      "type": "romance",
+      "label": "fell for her at the lantern festival; too sharp-tongued to be liked",
+      "short": "suitor",
+      "evidence": "初見程少商，便一見傾心 [...] 因自身過於毒舌，極不受程少商待見",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huangfuyi",
+      "to": "yuanshen",
+      "type": "work",
+      "label": "his master at Bailu",
+      "short": "master",
+      "evidence": "[Yuan Shen's master]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huangfuyi",
+      "to": "shunhua",
+      "type": "romance",
+      "label": "once betrothed",
+      "short": "once betrothed",
+      "evidence": "曾與白鹿山書院皇甫儀有過婚約",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "qiqi",
+      "to": "shaoshang",
+      "type": "friend",
+      "label": "friend from the first meeting; the girls' big sister",
+      "short": "friend",
+      "evidence": "初識時就與程少商及程姎交好，自認身為大姊",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "qiqi",
+      "to": "chengsong",
+      "type": "romance",
+      "label": "wife; twins later",
+      "short": "wife",
+      "evidence": "萬萋萋之夫 / 後嫁於程頌，育有雙胞胎",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "songbai",
+      "to": "qiqi",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Qi Qi's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mrswan",
+      "to": "qiqi",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Qi Qi's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "songbai",
+      "to": "chengshi",
+      "type": "friend",
+      "label": "sworn brothers",
+      "short": "sworn brother",
+      "evidence": "與萬松柏為結拜兄弟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wangling",
+      "to": "shaoshang",
+      "type": "rivalry",
+      "label": "bullies her, with Yu Chang and Lou Li",
+      "short": "bullies her",
+      "evidence": "與王姈及裕昌郡主交好 [...] 次次欺負程少商",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuchang",
+      "to": "buyi",
+      "type": "romance",
+      "label": "loves him; heartbroken at his betrothal",
+      "short": "loves him",
+      "evidence": "愛慕凌不疑 [...] 得知凌不疑訂婚後傷心至極",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuchang",
+      "to": "shaoshang",
+      "type": "rivalry",
+      "label": "bullies her, every time",
+      "short": "bullies her",
+      "evidence": "次次欺負程少商",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ruyang",
+      "to": "yuchang",
+      "type": "family",
+      "label": "grandmother; tried to wreck the betrothal",
+      "short": "grandmother",
+      "evidence": "[Princess consort Ruyang's granddaughter] / 於凌不疑與程少商訂親日欲攪黃婚事",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "buyi",
+      "shaoshang",
+      "chengshi",
+      "yuanyi",
+      "chengsong",
+      "shaogong",
+      "chengyang",
+      "chengzhi",
+      "shunhua",
+      "matriarch",
+      "lianfang",
+      "fudeng",
+      "lingyi",
+      "chunyu",
+      "junhua",
+      "huochong",
+      "liangqiufei",
+      "emperor",
+      "empress",
+      "yueheng",
+      "crownprince",
+      "crownprincess",
+      "thirdprince",
+      "thirdprincess",
+      "fifthprincess",
+      "fifthprince",
+      "fifthconsort",
+      "xiaoyuehou",
+      "caocheng",
+      "zhai",
+      "luojitong",
+      "muxu"
+    ],
+    "blocks": {
+      "The Cheng family": [
+        0,
+        0
+      ],
+      "The Ling & Huo houses": [
+        2,
+        0
+      ],
+      "The palace": [
+        2,
+        2
+      ],
+      "The Lou family": [
+        0,
+        2
+      ],
+      "The Wan family": [
+        1,
+        0
+      ],
+      "Around them": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "buyi",
+      "shaoshang"
+    ]
+  }
+}

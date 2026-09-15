@@ -1,0 +1,561 @@
+{
+  "version": 1,
+  "mdlSlug": "28963-hitting-on-the-blind-boss",
+  "title": "The Secret Life of My Secretary",
+  "native": "초면에 사랑합니다",
+  "year": 2019,
+  "country": "KR",
+  "sources": [
+    "MDL cast (22 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "minik",
+    "galhee"
+  ],
+  "people": [
+    {
+      "id": "minik",
+      "name": "Do Min Ik",
+      "actor": "Kim Young Kwang",
+      "image": "https://i.mydramalist.com/QwnLg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Perfectionist head of Media 1 at T&T Mobile; heart of stone — and, soon, face-blind"
+    },
+    {
+      "id": "galhee",
+      "name": "Jung Gal Hee",
+      "actor": "Jin Ki Joo",
+      "image": "https://i.mydramalist.com/nOYKnL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "His secretary, hot-tempered, never holds her tongue; passes for Veronica Park"
+    },
+    {
+      "id": "veronica",
+      "name": "Veronica Park / Park Ok Soon",
+      "actor": "Kim Jae Kyung",
+      "image": "https://i.mydramalist.com/X6VEX_5m.jpg",
+      "group": "Veronica's people",
+      "inCast": true,
+      "note": "CEO of Cine Park"
+    },
+    {
+      "id": "daejoo",
+      "name": "Ki Dae Joo",
+      "actor": "Koo Ja Sung",
+      "image": "https://i.mydramalist.com/vnmKgm.jpg",
+      "group": "T&T Mobile",
+      "inCast": true,
+      "note": "Head of Media 2"
+    },
+    {
+      "id": "haera",
+      "name": "Sim Hae Ra",
+      "actor": "Jung Ae Ri",
+      "image": "https://i.mydramalist.com/QXrxAm.jpg",
+      "group": "Min Ik's family",
+      "inCast": true,
+      "note": "Head of the T&T art centre"
+    },
+    {
+      "id": "haeyoung",
+      "name": "Shim Hae Young",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "group": "Min Ik's family",
+      "inCast": true,
+      "note": "CEO of T&T Mobile"
+    },
+    {
+      "id": "eulwang",
+      "name": "Lee Eul Wang",
+      "actor": "Jang So Yeon",
+      "image": "https://i.mydramalist.com/BdqzvR_5m.jpg",
+      "group": "The secretaries",
+      "inCast": true,
+      "note": "Head of secretaries; Media 2"
+    },
+    {
+      "id": "seonja",
+      "name": "Park Seon Ja",
+      "actor": "Baek Hyeon Ju",
+      "image": "https://i.mydramalist.com/73583b_5m.jpg",
+      "group": "Veronica's people",
+      "inCast": true
+    },
+    {
+      "id": "rira",
+      "name": "Ha Ri Ra",
+      "actor": "Kwon So Hyun",
+      "image": "https://i.mydramalist.com/6Bx2K_5m.jpg",
+      "group": "The secretaries",
+      "inCast": true,
+      "note": "New secretary"
+    },
+    {
+      "id": "myungjung",
+      "name": "Goo Myung Jung",
+      "actor": "Son San",
+      "image": "https://i.mydramalist.com/wzJ5p_5m.jpg",
+      "group": "The secretaries",
+      "inCast": true,
+      "note": "Eul Wang's right hand"
+    },
+    {
+      "id": "hani",
+      "name": "Mo Ha Ni",
+      "actor": "Han Ji Sun",
+      "image": "https://i.mydramalist.com/yWX7b4_5m.jpg",
+      "group": "The secretaries",
+      "inCast": true,
+      "note": "The CEO's secretary"
+    },
+    {
+      "id": "seyeong",
+      "name": "Boo Se Yeong",
+      "actor": "Choi Yoon Ra",
+      "image": "https://i.mydramalist.com/QmQQWm.jpg",
+      "group": "The secretaries",
+      "inCast": true
+    },
+    {
+      "id": "jungsoo",
+      "name": "Eun Jung Soo",
+      "actor": "Choi Tae Hwan",
+      "image": "https://i.mydramalist.com/kRO1O_5m.jpg",
+      "group": "Around Min Ik",
+      "inCast": true,
+      "note": "Driver"
+    },
+    {
+      "id": "seokchan",
+      "name": "Goo Seok Chan",
+      "actor": "Kim Byung Chun",
+      "image": "https://i.mydramalist.com/ZqYOq_5m.jpg",
+      "group": "Around Min Ik",
+      "inCast": true,
+      "note": "Neurosurgeon"
+    },
+    {
+      "id": "namhee",
+      "name": "Jung Nam Hee",
+      "actor": "Kim Ji Min",
+      "image": "https://i.mydramalist.com/qoDJKm.jpg",
+      "group": "Gal Hee's family",
+      "inCast": true,
+      "note": "Jobless after high school"
+    },
+    {
+      "id": "sirae",
+      "name": "Ko Si Rae",
+      "actor": "Kim Hee Jung",
+      "image": "https://i.mydramalist.com/jgOKb_5m.jpg",
+      "group": "Gal Hee's family",
+      "inCast": true,
+      "note": "Deceased"
+    },
+    {
+      "id": "joonghee",
+      "name": "Jung Joong Hee",
+      "actor": "Seo Dong Won",
+      "image": "https://i.mydramalist.com/XOvEx_5m.jpg",
+      "group": "Gal Hee's family",
+      "inCast": true,
+      "note": "Masseur"
+    },
+    {
+      "id": "dirpark",
+      "name": "Director Park",
+      "actor": "Lee Seung Hyung",
+      "image": "https://i.mydramalist.com/RB5pVm.jpg",
+      "group": "T&T Mobile",
+      "inCast": true,
+      "note": "Outside director"
+    },
+    {
+      "id": "dirlee",
+      "name": "Director Lee",
+      "actor": "Kim Kyung Ryong",
+      "image": "https://i.mydramalist.com/6n342m.jpg",
+      "group": "T&T Mobile",
+      "inCast": true,
+      "note": "Legal"
+    },
+    {
+      "id": "ohchan",
+      "name": "Kim Oh Chan",
+      "actor": "Kwon Hong Seok",
+      "image": "https://i.mydramalist.com/2OR2Wm.jpg",
+      "group": "T&T Mobile",
+      "inCast": true,
+      "note": "Outside director"
+    },
+    {
+      "id": "hanil",
+      "name": "Uhm Han Il",
+      "actor": "Jo Jae Ryong",
+      "image": "https://i.mydramalist.com/wNry1_5m.jpg",
+      "group": "Around Min Ik",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "doohan",
+      "name": "Woo Doo Han",
+      "actor": "Song Jin Woo",
+      "image": "https://i.mydramalist.com/xOWVz_5m.jpg",
+      "group": "Around Min Ik",
+      "inCast": true,
+      "note": "Detective"
+    }
+  ],
+  "links": [
+    {
+      "from": "galhee",
+      "to": "minik",
+      "type": "work",
+      "label": "the secretary the mean boss relies on for everything",
+      "short": "his secretary",
+      "evidence": "Do Min Ik [...] always relies on his secretary, the hot-tempered Jung Gal Hee",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minik",
+      "to": "galhee",
+      "type": "romance",
+      "label": "an office romance, once he can't tell faces apart",
+      "short": "falls for her",
+      "evidence": "Will an office romance blossom?",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "galhee",
+      "to": "veronica",
+      "type": "bond",
+      "label": "passes for Veronica Park in front of the face-blind Min Ik",
+      "short": "impersonates her",
+      "evidence": "정갈희 | 베로니카 박 (1인 2역 표기)",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "veronica",
+      "to": "daejoo",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "daejoo",
+      "to": "minik",
+      "type": "rivalry",
+      "label": "heads of Media 2 and Media 1",
+      "short": "rival head",
+      "evidence": "기대주 역 - T&T모바일 미디어2 본부장 / 도민익 역 - 미디어1 본부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haera",
+      "to": "minik",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Min Ik's mother] / T&T아트센터 이사장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haeyoung",
+      "to": "minik",
+      "type": "family",
+      "label": "maternal uncle; CEO of T&T Mobile",
+      "short": "uncle, CEO",
+      "evidence": "[CEO of T&T Mobile / Min Ik's uncle]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eulwang",
+      "to": "daejoo",
+      "type": "work",
+      "label": "his secretary; head of the secretaries",
+      "short": "secretary",
+      "evidence": "이을왕 역 - 미디어2 본부장실 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eulwang",
+      "to": "galhee",
+      "type": "work",
+      "label": "head of secretaries over her",
+      "short": "head secretary",
+      "evidence": "[Head of secretaries]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myungjung",
+      "to": "eulwang",
+      "type": "work",
+      "label": "her right hand",
+      "short": "right hand",
+      "evidence": "구명정 역 - 비서, 이을왕의 오른손",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hani",
+      "to": "haeyoung",
+      "type": "work",
+      "label": "the CEO's secretary",
+      "short": "secretary",
+      "evidence": "모하니 역 - 대표이사 심해용 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rira",
+      "to": "galhee",
+      "type": "work",
+      "label": "the new secretary",
+      "short": "new secretary",
+      "evidence": "하리라 역 - 신입 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seyeong",
+      "to": "galhee",
+      "type": "work",
+      "label": "fellow secretary",
+      "short": "secretary",
+      "evidence": "[Secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonja",
+      "to": "veronica",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Veronica's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungsoo",
+      "to": "minik",
+      "type": "work",
+      "label": "driver — and the assailant",
+      "short": "driver, assailant",
+      "evidence": "[Min Ik's driver / Assailant]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokchan",
+      "to": "minik",
+      "type": "work",
+      "label": "his neurosurgeon",
+      "short": "his doctor",
+      "evidence": "[Min Ik's physician]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "namhee",
+      "to": "galhee",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Gal Hee's younger sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joonghee",
+      "to": "galhee",
+      "type": "family",
+      "label": "older brother, a masseur",
+      "short": "brother",
+      "evidence": "[Gal Hee's big brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sirae",
+      "to": "galhee",
+      "type": "family",
+      "label": "mother, deceased",
+      "short": "mother",
+      "evidence": "[Gal Hui's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dirpark",
+      "to": "haeyoung",
+      "type": "work",
+      "label": "board",
+      "short": "director",
+      "evidence": "[T&T Mobile]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dirlee",
+      "to": "haeyoung",
+      "type": "work",
+      "label": "board, legal",
+      "short": "director",
+      "evidence": "[T&T Mobile]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ohchan",
+      "to": "haeyoung",
+      "type": "work",
+      "label": "board",
+      "short": "director",
+      "evidence": "[Director at T&T Mobile]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hanil",
+      "to": "minik",
+      "type": "work",
+      "label": "the detective on the assault",
+      "short": "detective",
+      "evidence": "[Police officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doohan",
+      "to": "hanil",
+      "type": "work",
+      "label": "detectives",
+      "short": "colleague",
+      "evidence": "[Police officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "minik",
+      "galhee",
+      "veronica",
+      "daejoo",
+      "haera",
+      "haeyoung",
+      "eulwang",
+      "seonja",
+      "rira",
+      "myungjung",
+      "hani",
+      "seyeong",
+      "jungsoo",
+      "seokchan",
+      "namhee",
+      "sirae",
+      "joonghee",
+      "dirpark",
+      "dirlee",
+      "ohchan",
+      "hanil",
+      "doohan"
+    ],
+    "blocks": {
+      "T&T Mobile": [
+        0,
+        0
+      ],
+      "The secretaries": [
+        0,
+        2
+      ],
+      "Min Ik's family": [
+        2,
+        0
+      ],
+      "Gal Hee's family": [
+        2,
+        2
+      ],
+      "Veronica's people": [
+        1,
+        0
+      ],
+      "Around Min Ik": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "minik",
+      "galhee"
+    ]
+  }
+}

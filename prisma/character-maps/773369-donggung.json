@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "mdlSlug": "773369-donggung",
+  "title": "The East Palace",
+  "native": "동궁",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (11 roles + guests, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "gucheon",
+    "saenggang"
+  ],
+  "people": [
+    {
+      "id": "gucheon",
+      "name": "Gu Cheon",
+      "actor": "Nam Joo Hyuk",
+      "image": "https://i.mydramalist.com/VXl4Nm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Proud ghost-slayer who crosses into the spirit world"
+    },
+    {
+      "id": "saenggang",
+      "name": "Saeng Gang",
+      "actor": "Roh Yoon Seo",
+      "image": "https://i.mydramalist.com/NdnkOY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Court lady cursed to hear the dead"
+    },
+    {
+      "id": "king",
+      "name": "King Ju Sang (Yi Yeon)",
+      "actor": "Cho Seung Woo",
+      "image": "https://i.mydramalist.com/g0z3mn_5m.jpg",
+      "group": "The king's side",
+      "inCast": true,
+      "note": "The king who chases the ghosts of the deep"
+    },
+    {
+      "id": "dowager",
+      "name": "The Queen Dowager",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "The Queen Dowager's side",
+      "inCast": true,
+      "note": "The late king's queen"
+    },
+    {
+      "id": "sukbin",
+      "name": "Choi Suk Bin",
+      "actor": "Hwang Young Hee",
+      "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
+      "group": "The king's side",
+      "inCast": true,
+      "note": "Once a court lady; gentle"
+    },
+    {
+      "id": "sangseon",
+      "name": "Kim Sang Seon",
+      "actor": "Hong Seo Joon",
+      "image": "https://i.mydramalist.com/v5dPD_5m.jpg",
+      "group": "The king's side",
+      "inCast": true,
+      "note": "Chief eunuch"
+    },
+    {
+      "id": "iksang",
+      "name": "Prince Ik Sang",
+      "actor": "Tae In Ho",
+      "image": "https://i.mydramalist.com/4b5erm.jpg",
+      "group": "The Queen Dowager's side",
+      "inCast": true,
+      "note": "The king's cousin; wants his own son as heir"
+    },
+    {
+      "id": "paksu",
+      "name": "Park Su",
+      "actor": "Lee Hong Nae",
+      "image": "https://i.mydramalist.com/JBdxdX_5m.jpg",
+      "group": "The Queen Dowager's side",
+      "inCast": true,
+      "note": "The shaman the Dowager brings into the palace"
+    },
+    {
+      "id": "jang",
+      "name": "Court lady Jang",
+      "actor": "Choi Hyuk Joo",
+      "image": "https://i.mydramalist.com/xnxAX_5m.jpg",
+      "group": "The Queen Dowager's side",
+      "inCast": true,
+      "note": "Of the Dowager's quarters"
+    },
+    {
+      "id": "jiyul",
+      "name": "Ji Yul",
+      "actor": "Kim Ji Yul",
+      "image": "https://i.mydramalist.com/EOPEp_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Young trainee, Saeng Gang's right hand and roommate"
+    },
+    {
+      "id": "seja",
+      "name": "The Crown Prince",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "gucheon",
+      "to": "saenggang",
+      "type": "work",
+      "label": "the unlikely pair sent to find what haunts the East Palace",
+      "short": "partners",
+      "evidence": "the unlikely pair uncover long-buried secrets hidden behind the royal walls",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gucheon",
+      "to": "saenggang",
+      "type": "romance",
+      "label": "the slayer and the listener",
+      "short": "drawn to her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "king",
+      "to": "gucheon",
+      "type": "work",
+      "label": "summons him in secret",
+      "short": "summons him",
+      "evidence": "the king secretly summons Gu Cheon, a proud and powerful ghost-slayer",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "king",
+      "to": "saenggang",
+      "type": "work",
+      "label": "summons her too — the court lady who hears the dead",
+      "short": "summons her",
+      "evidence": "and Saeng Gang, a court lady cursed with the ability to hear and communicate with the dead",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "king",
+      "to": "saenggang",
+      "type": "family",
+      "label": "her father: her mother was his favoured concubine, framed and poisoned",
+      "short": "father",
+      "evidence": "소용 한 씨 역 - 생강의 어머니 [...] 왕의 눈에 들어 승은후궁이 되어 딸 생강을 낳았다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukbin",
+      "to": "king",
+      "type": "family",
+      "label": "birth mother, a court lady by origin",
+      "short": "mother",
+      "evidence": "[Ju Sang's biological mother] / 숙빈 최씨 역 - 왕의 생모",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukbin",
+      "to": "saenggang",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "왕의 생모이자 생강의 친할머니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dowager",
+      "to": "king",
+      "type": "family",
+      "label": "stepmother — has scorned the 'bastard of a lowly court lady' since he was crown prince",
+      "short": "stepmother",
+      "evidence": "대비 역 - 왕의 의붓어머니 [...] 왕을 미천한 궁녀 소생의 서자라고 세자 시절 때부터 무시해서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dowager",
+      "to": "paksu",
+      "type": "work",
+      "label": "the shaman she brought in to lift the curse",
+      "short": "her shaman",
+      "evidence": "박수 무당 역 - 저주를 풀기 위해 대비가 궁에 들인 무당이다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jang",
+      "to": "dowager",
+      "type": "work",
+      "label": "court lady of her quarters",
+      "short": "court lady",
+      "evidence": "장 상궁 역 - 대비전 상궁",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "iksang",
+      "to": "king",
+      "type": "family",
+      "label": "cousin — plotting his own son onto the throne",
+      "short": "cousin",
+      "evidence": "익상군 역 - 왕의 사촌 [...] 자기 아들로 후사를 잇게 하려는 함",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "iksang",
+      "to": "dowager",
+      "type": "friend",
+      "label": "her travelling companion and confidant",
+      "short": "her confidant",
+      "evidence": "유람이나 다니면서 대비의 말동무나 하는 왕족",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangseon",
+      "to": "king",
+      "type": "work",
+      "label": "chief eunuch",
+      "short": "chief eunuch",
+      "evidence": "[Chief eunuch] / 김 상선 역 - 대전 내관",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiyul",
+      "to": "saenggang",
+      "type": "friend",
+      "label": "her right hand and roommate; wise beyond her years",
+      "short": "right hand",
+      "evidence": "지율 역 - 생강의 오른팔이자 방을 같이 쓰게된 어린 생각시",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seja",
+      "to": "king",
+      "type": "family",
+      "label": "the crown prince — whose palace is haunted",
+      "short": "son",
+      "evidence": "[Crown Prince] / Crown Prince's East Palace",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "gucheon",
+      "saenggang",
+      "king",
+      "dowager",
+      "sukbin",
+      "sangseon",
+      "iksang",
+      "paksu",
+      "jang",
+      "jiyul",
+      "seja"
+    ],
+    "blocks": {
+      "The king's side": [
+        0,
+        0
+      ],
+      "The Queen Dowager's side": [
+        2,
+        0
+      ],
+      "The palace": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "gucheon",
+      "saenggang"
+    ]
+  }
+}

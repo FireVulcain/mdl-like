@@ -1,0 +1,1092 @@
+{
+  "version": 1,
+  "mdlSlug": "719227-ning-an-ru-meng",
+  "title": "Story of Kunning Palace",
+  "native": "宁安如梦",
+  "year": 2023,
+  "country": "CN",
+  "sources": [
+    "MDL cast (32 roles + guests, 7 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "xuening",
+    "xiewei"
+  ],
+  "people": [
+    {
+      "id": "xuening",
+      "name": "Jiang Xue Ning",
+      "actor": "Bai Lu",
+      "image": "https://i.mydramalist.com/b3X2pL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The second Jiang daughter who schemed her way to empress, died for Zhang Zhe — and woke at eighteen"
+    },
+    {
+      "id": "xiewei",
+      "name": "Xie Wei / Xie Ju An",
+      "actor": "Zhang Ling He",
+      "image": "https://i.mydramalist.com/YY1bQP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Grand tutor to the crown prince; secretly Ping Nan's chief strategist — and Xue Ding Fei, the lost heir of Duke Xue"
+    },
+    {
+      "id": "zhangzhe",
+      "name": "Zhang Zhe",
+      "actor": "Wang Xing Yue",
+      "image": "https://i.mydramalist.com/yWxN14_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Incorruptible official; the man she died for in the first life"
+    },
+    {
+      "id": "yanlin",
+      "name": "Yan Lin",
+      "actor": "Zhou Jun Wei",
+      "image": "https://i.mydramalist.com/vXxyge_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Heir of the Yongyi marquis; loved her at first sight"
+    },
+    {
+      "id": "zhiyi",
+      "name": "Shen Zhi Yi / Princess Le Yang",
+      "actor": "Liu Xie Ning",
+      "image": "https://i.mydramalist.com/1n7Kd_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The princess she becomes companion to"
+    },
+    {
+      "id": "xueshu",
+      "name": "Xue Shu",
+      "actor": "Elisa Ye",
+      "image": "https://i.mydramalist.com/6YzPp_5m.jpg",
+      "group": "The study companions",
+      "inCast": true,
+      "note": "The Dowager's niece; wants the throne beside the emperor"
+    },
+    {
+      "id": "fangyin",
+      "name": "You Fang Yin",
+      "actor": "Tang Meng Jia",
+      "image": "https://i.mydramalist.com/yW1d8n_5m.jpg",
+      "group": "The study companions",
+      "inCast": true,
+      "note": "The Earl of You's slighted daughter; her partner in trade"
+    },
+    {
+      "id": "xueyuan",
+      "name": "Xue Yuan",
+      "actor": "Huang Hai Bing",
+      "image": "https://i.mydramalist.com/rK4ED_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Duke of Xue"
+    },
+    {
+      "id": "shenlang",
+      "name": "Emperor Shen Lang",
+      "actor": "Hu Yun Hao",
+      "image": "https://i.mydramalist.com/YY6g6Q_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "shenjie",
+      "name": "Shen Jie / Lord Lin Zi",
+      "actor": "Zhou Da Wei",
+      "image": "https://i.mydramalist.com/Lw5pL3_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The prince she married in the first life"
+    },
+    {
+      "id": "empresszheng",
+      "name": "Empress Zheng",
+      "actor": "Nina Tu",
+      "image": "https://i.mydramalist.com/VXx35E_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "dowager",
+      "name": "Empress Dowager Xue",
+      "actor": "Liu Min",
+      "image": "https://i.mydramalist.com/g0pbXO_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "yanping",
+      "name": "Prince Yan Ping",
+      "actor": "Liu Ming Hao",
+      "image": "https://i.mydramalist.com/pdvKjV_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "dayue",
+      "name": "Prince Da Yue",
+      "actor": "Zu Ka Er",
+      "image": "https://i.mydramalist.com/0ZYOe_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The foreign prince the princess is sent to"
+    },
+    {
+      "id": "yaoxi",
+      "name": "Yao Xi",
+      "actor": "Joyin Cai",
+      "image": "https://i.mydramalist.com/zBLe81_5m.jpg",
+      "group": "The study companions",
+      "inCast": true,
+      "note": "Daughter of the Minister of Personnel"
+    },
+    {
+      "id": "youyue",
+      "name": "You Yue",
+      "actor": "Wang Ya Ni",
+      "image": "https://i.mydramalist.com/KponR4_5m.jpg",
+      "group": "The study companions",
+      "inCast": true,
+      "note": "Second daughter of the Earl of You"
+    },
+    {
+      "id": "xuehui",
+      "name": "Jiang Xue Hui",
+      "actor": "Yu Zhong Li",
+      "image": "https://i.mydramalist.com/4e0J0Q_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true,
+      "note": "The eldest Jiang daughter — the concubine's child, swapped at birth"
+    },
+    {
+      "id": "mengshi",
+      "name": "Meng Shi",
+      "actor": "Yvonne Yung",
+      "image": "https://i.mydramalist.com/ABdJL4_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true
+    },
+    {
+      "id": "boyou",
+      "name": "Jiang Bo You",
+      "actor": "Lu Xing Yu",
+      "image": "https://i.mydramalist.com/5vYp40_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true,
+      "note": "Vice Minister of Revenue"
+    },
+    {
+      "id": "tanger",
+      "name": "Tang Er",
+      "actor": "Gong Fang Ni",
+      "image": "https://i.mydramalist.com/nOZzn4_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true,
+      "note": "Xue Ning's maid"
+    },
+    {
+      "id": "lianer",
+      "name": "Lian Er",
+      "actor": "Zhong Yi Fan",
+      "image": "https://i.mydramalist.com/kA7nZ8_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true,
+      "note": "Xue Ning's maid"
+    },
+    {
+      "id": "motherwang",
+      "name": "Mother Wang",
+      "actor": "Shi Yan",
+      "image": "https://i.mydramalist.com/g0dwlP_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true
+    },
+    {
+      "id": "meier",
+      "name": "Mei Er",
+      "actor": "Ma Shun Sha",
+      "image": "https://i.mydramalist.com/XzQnn_5m.jpg",
+      "group": "The Jiang household",
+      "inCast": true,
+      "note": "Xue Hui's maid"
+    },
+    {
+      "id": "luxian",
+      "name": "Lu Xian",
+      "actor": "Qin Tian Yu",
+      "image": "https://i.mydramalist.com/pd3y5E_5m.jpg",
+      "group": "Xie Wei's people",
+      "inCast": true,
+      "note": "Master of the Youhuang store; Xie Wei's money man"
+    },
+    {
+      "id": "jianshu",
+      "name": "Jian Shu",
+      "actor": "Zhang Cheng Lang",
+      "image": "https://i.mydramalist.com/DkoPYq_5m.jpg",
+      "group": "Xie Wei's people",
+      "inCast": true,
+      "note": "Guard"
+    },
+    {
+      "id": "daoqin",
+      "name": "Dao Qin",
+      "actor": "Jiang Xiao Lin",
+      "image": "https://i.mydramalist.com/KpkB5q_5m.jpg",
+      "group": "Xie Wei's people",
+      "inCast": true,
+      "note": "Guard"
+    },
+    {
+      "id": "yanmin",
+      "name": "Yan Min",
+      "actor": "Michelle Hu",
+      "image": "https://i.mydramalist.com/E5543m_5m.jpg",
+      "group": "Xie Wei's people",
+      "inCast": true,
+      "note": "Died in grief"
+    },
+    {
+      "id": "pingnan",
+      "name": "King Ping Nan",
+      "actor": "Zong Feng Yan",
+      "image": "https://i.mydramalist.com/Kp48pX_5m.jpg",
+      "group": "King Ping Nan's rebels",
+      "inCast": true,
+      "note": "The late emperor's brother; the rebellion's master"
+    },
+    {
+      "id": "gongyicheng",
+      "name": "Gong Yi Cheng",
+      "actor": "Xia Ming Hao",
+      "image": "https://i.mydramalist.com/xdylz_5m.jpg",
+      "group": "King Ping Nan's rebels",
+      "inCast": true,
+      "note": "Counsellor"
+    },
+    {
+      "id": "fakexue",
+      "name": "Xue Ding Fei (the false one)",
+      "actor": "Cui Shao Yang",
+      "image": "https://i.mydramalist.com/DkKjA2_5m.jpg",
+      "group": "King Ping Nan's rebels",
+      "inCast": true,
+      "note": "Xie Wei's stand-in, sent to test him"
+    },
+    {
+      "id": "fengmingyu",
+      "name": "Feng Ming Yu",
+      "actor": "Yang Jun Cheng",
+      "image": "https://i.mydramalist.com/XJ8Rx_5m.jpg",
+      "group": "King Ping Nan's rebels",
+      "inCast": true,
+      "note": "Commands Ping Nan's troops"
+    },
+    {
+      "id": "huangqian",
+      "name": "Huang Qian",
+      "actor": "Tenzing Jigmey",
+      "image": "https://i.mydramalist.com/E55N5b_5m.jpg",
+      "group": "King Ping Nan's rebels",
+      "inCast": true
+    },
+    {
+      "id": "zhouyinzhi",
+      "name": "Zhou Yin Zhi",
+      "actor": "Wang Zi Teng",
+      "image": "https://i.mydramalist.com/e3yPWm.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Once the Jiangs' groom; a weathervane climbing the guards"
+    },
+    {
+      "id": "motherzhang",
+      "name": "Mother Zhang",
+      "actor": "Zhang Han",
+      "image": "https://i.mydramalist.com/jQEVmJ_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "wangjiu",
+      "name": "Wang Jiu",
+      "actor": "Xiao Bing",
+      "image": "https://i.mydramalist.com/ABKv2q_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Hanlin teacher"
+    },
+    {
+      "id": "zhengbao",
+      "name": "Zheng Bao",
+      "actor": "Yang Gen",
+      "image": "https://i.mydramalist.com/We4rR_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Eunuch"
+    },
+    {
+      "id": "wangxinyi",
+      "name": "Wang Xin Yi",
+      "actor": "Yu Miao Xin",
+      "image": "https://i.mydramalist.com/jpbAv_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The emperor's eunuch"
+    },
+    {
+      "id": "huangrenli",
+      "name": "Huang Ren Li",
+      "actor": "Sun Di",
+      "image": "https://i.mydramalist.com/Px6dZ8_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The Dowager's eunuch"
+    },
+    {
+      "id": "eunuchliu",
+      "name": "Eunuch Liu",
+      "actor": "Li Hai Dong",
+      "image": "https://i.mydramalist.com/6PQlj_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "madameyou",
+      "name": "Madame You",
+      "actor": "Tian Miao",
+      "image": "https://i.mydramalist.com/73JrAN_5m.jpg",
+      "group": "The study companions",
+      "inCast": true,
+      "note": "Of the Earl of You's house"
+    },
+    {
+      "id": "renweizhi",
+      "name": "Ren Wei Zhi",
+      "actor": "Lei Peng Yu",
+      "image": "https://i.mydramalist.com/RBWL26_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Salt merchant"
+    },
+    {
+      "id": "xuwenyi",
+      "name": "Xu Wen Yi",
+      "actor": "Yang Chao Wei",
+      "image": "https://i.mydramalist.com/LwrLwL_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Silk merchant"
+    }
+  ],
+  "links": [
+    {
+      "from": "xuening",
+      "to": "xiewei",
+      "type": "romance",
+      "label": "his disciple in the second life — the man behind her first downfall; her husband, in the end",
+      "short": "disciple, wife",
+      "evidence": "a disciple of Xie Wei, the man behind her past downfall / 謝危之妻 [...] 原愛張遮後愛上謝危，與其結婚生子",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xuening",
+      "to": "zhangzhe",
+      "type": "romance",
+      "label": "the first life's love: she traded her life for his freedom",
+      "short": "first life's love",
+      "evidence": "In her final moments, she trades her life for Zhang Zhe's freedom / 深愛張遮",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhangzhe",
+      "to": "xuening",
+      "type": "romance",
+      "label": "loves her, lets her go; never marries",
+      "short": "lets her go",
+      "evidence": "深愛姜雪寧後放手祝福，終身不婚不娶",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanlin",
+      "to": "xuening",
+      "type": "romance",
+      "label": "loved her at first sight, 'Ning Ning'; the first life's rebel",
+      "short": "loves her",
+      "evidence": "一見鍾情於姜雪寧 [...] 稱姜雪寧為「寧寧」",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanlin",
+      "to": "xuening",
+      "type": "rivalry",
+      "label": "in the first life, led the rebels who wiped out the royal family",
+      "short": "first-life rebel",
+      "evidence": "rebels, led by Yan Lin, wipe out the royal family",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiewei",
+      "to": "yanlin",
+      "type": "family",
+      "label": "cousins — Xie Wei's mother was Yan Mu's sister; he shields the Yans in secret",
+      "short": "cousin",
+      "evidence": "燕牧之外甥、燕臨之表兄 [...] 於京中暗地保護燕家",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhiyi",
+      "to": "xuening",
+      "type": "friend",
+      "label": "the princess she serves as companion — dearest friend",
+      "short": "dearest friend",
+      "evidence": "becoming a study companion to Princess Le Yang / 沈芷衣 [...] 之摯友",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhiyi",
+      "to": "dayue",
+      "type": "romance",
+      "label": "sent to him as a tribute bride",
+      "short": "tribute bride",
+      "evidence": "[Prince Da Yue]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "shenlang",
+      "to": "zhiyi",
+      "type": "family",
+      "label": "brother — the emperor",
+      "short": "brother",
+      "evidence": "沈琅 / 沈芷衣",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "shenlang",
+      "to": "shenjie",
+      "type": "family",
+      "label": "brothers",
+      "short": "brother",
+      "evidence": "沈琅 / 沈玠",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "shenjie",
+      "to": "xuening",
+      "type": "romance",
+      "label": "the prince she married to be empress, in the first life",
+      "short": "first-life husband",
+      "evidence": "第一世 [...] 費盡心機當上皇后 / 沈玠",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "xuehui",
+      "to": "shenjie",
+      "type": "romance",
+      "label": "likes him",
+      "short": "likes him",
+      "evidence": "喜歡沈玠",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "empresszheng",
+      "to": "shenlang",
+      "type": "romance",
+      "label": "empress",
+      "short": "empress",
+      "evidence": "[Empress Zheng]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dowager",
+      "to": "shenlang",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "薛太后 / 沈琅",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dowager",
+      "to": "xueshu",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "薛太后 [...] 薛姝",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xueyuan",
+      "to": "xiewei",
+      "type": "family",
+      "label": "his father — 'unfeeling'; the son he lost is the tutor he hates",
+      "short": "father",
+      "evidence": "原為定國公世子薛定非(定國公薛遠與燕敏之子) [...] 父親無情 [...] 憎恨皇族與薛家",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanmin",
+      "to": "xiewei",
+      "type": "family",
+      "label": "mother, who died in grief",
+      "short": "mother",
+      "evidence": "[Xue Ding Fei's mother] / 母親含恨而終",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xueshu",
+      "to": "xuening",
+      "type": "rivalry",
+      "label": "mortal enemy",
+      "short": "enemy",
+      "evidence": "薛姝、尤月、姚惜之死敵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "youyue",
+      "to": "xuening",
+      "type": "rivalry",
+      "label": "mortal enemy",
+      "short": "enemy",
+      "evidence": "薛姝、尤月、姚惜之死敵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yaoxi",
+      "to": "xuening",
+      "type": "rivalry",
+      "label": "mortal enemy",
+      "short": "enemy",
+      "evidence": "視姜雪寧為死敵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yaoxi",
+      "to": "zhangzhe",
+      "type": "romance",
+      "label": "betrothed — rejected twice",
+      "short": "rejected fiancee",
+      "evidence": "被張遮二度退婚",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yaoxi",
+      "to": "xueshu",
+      "type": "friend",
+      "label": "close — until she sees through her",
+      "short": "friend",
+      "evidence": "薛姝之交好 [...] 真正看清薛姝的心計",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fangyin",
+      "to": "xuening",
+      "type": "friend",
+      "label": "dearest friend and partner in trade",
+      "short": "dearest friend",
+      "evidence": "尤芳吟之摯友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fangyin",
+      "to": "youyue",
+      "type": "family",
+      "label": "half-sisters",
+      "short": "half-sister",
+      "evidence": "[Second daughter, Earl of You] / 尤芳吟",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "luxian",
+      "to": "fangyin",
+      "type": "romance",
+      "label": "married her in name to get her out of the You house — and meant it, at the end",
+      "short": "husband in name",
+      "evidence": "為救尤芳吟離開尤府而與她假成親 [...] 認定她為自己真正的妻子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "luxian",
+      "to": "xiewei",
+      "type": "work",
+      "label": "his ablest helper, in both lives",
+      "short": "right hand",
+      "evidence": "不論前世今生都是謝危的得力助手",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhouyinzhi",
+      "to": "fangyin",
+      "type": "rivalry",
+      "label": "kills her to escape",
+      "short": "kills her",
+      "evidence": "為脫逃，殺害尤芳吟",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhouyinzhi",
+      "to": "xuening",
+      "type": "work",
+      "label": "once her family's groom; her tool, then her enemy",
+      "short": "the groom",
+      "evidence": "四年前原為姜雪寧家的馬夫 [...] 暫為姜雪寧所用",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhouyinzhi",
+      "to": "zhangzhe",
+      "type": "rivalry",
+      "label": "enemies",
+      "short": "enemy",
+      "evidence": "張遮之敵",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "madameyou",
+      "to": "fangyin",
+      "type": "family",
+      "label": "the house that slighted her",
+      "short": "her house",
+      "evidence": "[House of Earl of You]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boyou",
+      "to": "xuening",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "姜伯游 [...] 姜雪蕙與姜雪寧的父親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mengshi",
+      "to": "xuening",
+      "type": "family",
+      "label": "birth mother — who could never quite love her",
+      "short": "mother",
+      "evidence": "[Jiang Xue Ning's mother] / 姜雪寧的親生母親 [...] 與姜雪寧不和",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xuehui",
+      "to": "xuening",
+      "type": "family",
+      "label": "elder sister — the swapped concubine's daughter",
+      "short": "sister",
+      "evidence": "姜雪寧之姐、姜家嫡長女(實為庶女)",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "tanger",
+      "to": "xuening",
+      "type": "work",
+      "label": "loyal maid",
+      "short": "maid",
+      "evidence": "姜雪寧侍女 [...] 忠心耿耿",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lianer",
+      "to": "xuening",
+      "type": "work",
+      "label": "loyal maid",
+      "short": "maid",
+      "evidence": "姜雪寧侍女 [...] 忠心耿耿",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "meier",
+      "to": "xuehui",
+      "type": "work",
+      "label": "maid",
+      "short": "maid",
+      "evidence": "姜雪蕙侍女",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "motherwang",
+      "to": "xuening",
+      "type": "work",
+      "label": "the nanny who stole from her",
+      "short": "nanny",
+      "evidence": "愛把姜雪寧的物品偷偷據為己有，後被懲罰",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jianshu",
+      "to": "xiewei",
+      "type": "work",
+      "label": "guard, close combat",
+      "short": "guard",
+      "evidence": "[Xie Wei's guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daoqin",
+      "to": "xiewei",
+      "type": "work",
+      "label": "guard, the bow",
+      "short": "guard",
+      "evidence": "[Xie Wei's guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pingnan",
+      "to": "xiewei",
+      "type": "family",
+      "label": "foster father — the rebel who took everything from him; killed by Xue Ning's blade",
+      "short": "foster father",
+      "evidence": "先皇的親兄弟、謝危的義父 [...] 再被姜雪寧刺殺而死",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gongyicheng",
+      "to": "pingnan",
+      "type": "work",
+      "label": "counsellor; killed by Xie Wei",
+      "short": "counsellor",
+      "evidence": "[Lord Ping Nan's counsellor] / 後被謝危殺之",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fakexue",
+      "to": "xiewei",
+      "type": "bond",
+      "label": "the stand-in sent to test him",
+      "short": "stand-in",
+      "evidence": "謝危的替身，由平南王安排入京探謝危是否叛變",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fengmingyu",
+      "to": "pingnan",
+      "type": "work",
+      "label": "the only one trusted with his troops",
+      "short": "general",
+      "evidence": "平南王麾下唯一統領軍隊之人",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huangqian",
+      "to": "pingnan",
+      "type": "work",
+      "label": "guard",
+      "short": "guard",
+      "evidence": "[Lord Ping Nan's guard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "motherzhang",
+      "to": "zhangzhe",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "與母親蔣氏相依为命",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanping",
+      "to": "yanlin",
+      "type": "friend",
+      "label": "friend of Yan Lin and Shen Jie",
+      "short": "friend",
+      "evidence": "燕臨與沈玠之友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wangjiu",
+      "to": "xuening",
+      "type": "work",
+      "label": "Hanlin teacher of the companions",
+      "short": "teacher",
+      "evidence": "[Teacher of Hanlin Academy]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhengbao",
+      "to": "xuening",
+      "type": "bond",
+      "label": "the eunuch she saved; loyal",
+      "short": "owes her",
+      "evidence": "第二世被姜雪寧引導沈芷衣所救，視姜雪寧為恩人",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wangxinyi",
+      "to": "shenlang",
+      "type": "work",
+      "label": "attendant eunuch",
+      "short": "eunuch",
+      "evidence": "[Emperor's attendant eunuch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huangrenli",
+      "to": "dowager",
+      "type": "work",
+      "label": "attendant eunuch",
+      "short": "eunuch",
+      "evidence": "[Empress Dowager's attending eunuch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunuchliu",
+      "to": "shenlang",
+      "type": "work",
+      "label": "the emperor's confidant",
+      "short": "eunuch",
+      "evidence": "沈琅心腹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "renweizhi",
+      "to": "fangyin",
+      "type": "work",
+      "label": "the salt merchant of her trade",
+      "short": "merchant",
+      "evidence": "[Salt merchant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xuwenyi",
+      "to": "fangyin",
+      "type": "work",
+      "label": "the silk merchant of her trade",
+      "short": "merchant",
+      "evidence": "[Silk merchant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "xuening",
+      "xiewei",
+      "zhiyi",
+      "xueshu",
+      "fangyin",
+      "xueyuan",
+      "shenlang",
+      "shenjie",
+      "empresszheng",
+      "dowager",
+      "yanping",
+      "dayue",
+      "yaoxi",
+      "youyue",
+      "xuehui",
+      "mengshi",
+      "boyou",
+      "tanger",
+      "lianer",
+      "motherwang",
+      "meier",
+      "luxian",
+      "jianshu",
+      "daoqin",
+      "yanmin",
+      "wangjiu",
+      "zhengbao",
+      "wangxinyi",
+      "huangrenli",
+      "eunuchliu",
+      "madameyou"
+    ],
+    "blocks": {
+      "The Jiang household": [
+        0,
+        0
+      ],
+      "Xie Wei's people": [
+        2,
+        0
+      ],
+      "The palace": [
+        2,
+        2
+      ],
+      "The study companions": [
+        0,
+        2
+      ],
+      "King Ping Nan's rebels": [
+        1,
+        0
+      ],
+      "Around them": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "xuening",
+      "xiewei"
+    ]
+  }
+}

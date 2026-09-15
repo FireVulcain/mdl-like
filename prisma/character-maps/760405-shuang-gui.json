@@ -1,0 +1,581 @@
+{
+  "version": 1,
+  "mdlSlug": "760405-shuang-gui",
+  "title": "Speed and Love",
+  "native": "双轨",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (24 roles + guests, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色 (names only; ties inferred)"
+  ],
+  "main": [
+    "jiangmu",
+    "jinzhao"
+  ],
+  "people": [
+    {
+      "id": "jiangmu",
+      "name": "Jiang Mu",
+      "actor": "Esther Yu",
+      "image": "https://i.mydramalist.com/81XYEm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lu Ya Xi",
+          "image": "https://i.mydramalist.com/mO51k2_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The sheltered younger sister who flies to Thailand alone"
+    },
+    {
+      "id": "jinzhao",
+      "name": "Jin Zhao / \"Brandy\"",
+      "actor": "He Yu",
+      "image": "https://i.mydramalist.com/RBQgwo_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Luo Zi Shuo",
+          "image": "https://i.mydramalist.com/dbEZg_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The gifted older brother — adopted — hardened by the streets; boxing and racing"
+    },
+    {
+      "id": "sanlai",
+      "name": "San Lai",
+      "actor": "Fei Qi Ming",
+      "image": "https://i.mydramalist.com/mOKyzb_5m.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "jinqiang",
+      "name": "Jin Qiang",
+      "actor": "Luan Yuan Hui",
+      "image": "https://i.mydramalist.com/Z6AP7_5m.jpg",
+      "group": "The Jiang / Jin family",
+      "inCast": true
+    },
+    {
+      "id": "nana",
+      "name": "Na Na",
+      "actor": "Li Ao",
+      "image": "https://i.mydramalist.com/E5Jyjz_5m.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "linsui",
+      "name": "Lin Sui / \"Drunk\"",
+      "actor": "Mike Angelo",
+      "image": "https://i.mydramalist.com/RBZ6vz_5m.jpg",
+      "group": "The racing world",
+      "inCast": true
+    },
+    {
+      "id": "yanfeng",
+      "name": "Liang Yan Feng",
+      "actor": "Patrick Nattawat Finkler",
+      "image": "https://i.mydramalist.com/AB5AVL_5m.jpg",
+      "group": "The racing world",
+      "inCast": true
+    },
+    {
+      "id": "dayong",
+      "name": "Wan Da Yong",
+      "actor": "Chai Juan Zhe",
+      "image": "https://i.mydramalist.com/w47qA_5m.jpg",
+      "group": "The Wan family",
+      "inCast": true
+    },
+    {
+      "id": "zhijie",
+      "name": "Gu Zhi Jie",
+      "actor": "Zhou Hao Qi",
+      "image": "https://i.mydramalist.com/4ebDlk_5m.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "tiegongji",
+      "name": "Tie Gong Ji",
+      "actor": "Li Fei Yang",
+      "image": "https://i.mydramalist.com/VXA8KE_5m.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "fengzi",
+      "name": "Jin Feng Zi",
+      "actor": "Guan Zi Jing",
+      "image": "https://i.mydramalist.com/085pN_5m.jpg",
+      "group": "The Jiang / Jin family",
+      "inCast": true
+    },
+    {
+      "id": "wanqing",
+      "name": "Wan Qing / \"Snakey\"",
+      "actor": "Sun Mei Lin",
+      "image": "https://i.mydramalist.com/O8yOEL_5m.jpg",
+      "group": "The Wan family",
+      "inCast": true,
+      "note": "Daughter of Wan Sheng Bang; the Wan garage's heiress"
+    },
+    {
+      "id": "hezhang",
+      "name": "He Zhang",
+      "actor": "Casper",
+      "image": "https://i.mydramalist.com/qXvZ5_5m.jpg",
+      "group": "The racing world",
+      "inCast": true
+    },
+    {
+      "id": "yinghan",
+      "name": "Jiang Ying Han",
+      "actor": "Yvonne Yung",
+      "image": "https://i.mydramalist.com/ABdJL4_5m.jpg",
+      "group": "The Jiang / Jin family",
+      "inCast": true
+    },
+    {
+      "id": "pankai",
+      "name": "Pan Kai",
+      "actor": "Li Ming Jun",
+      "image": "https://i.mydramalist.com/wJwkAk_5m.jpg",
+      "group": "The racing world",
+      "inCast": true
+    },
+    {
+      "id": "luwan",
+      "name": "Lu Wan",
+      "actor": "Zhao Bin",
+      "image": "https://i.mydramalist.com/73or1e_5m.jpg",
+      "group": "The racing world",
+      "inCast": true
+    },
+    {
+      "id": "shengbang",
+      "name": "Wan Sheng Bang",
+      "actor": "Ma Jun",
+      "image": "https://i.mydramalist.com/VXR84L_5m.jpg",
+      "group": "The Wan family",
+      "inCast": true,
+      "note": "The Wan garage"
+    },
+    {
+      "id": "xiaojia",
+      "name": "Xiao Jia",
+      "actor": "Liu Jia Xin",
+      "image": "https://i.mydramalist.com/W2QXW_5m.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "julia",
+      "name": "Julia",
+      "actor": "Liu Min",
+      "image": "https://i.mydramalist.com/g0pbXO_5m.jpg",
+      "group": "The Jiang / Jin family",
+      "inCast": true
+    },
+    {
+      "id": "zhangfan",
+      "name": "Zhang Fan",
+      "actor": "Zuo Ming",
+      "image": "https://i.mydramalist.com/zBxqdJ_5m.jpg",
+      "group": "The racing world",
+      "inCast": true
+    },
+    {
+      "id": "xiaowen",
+      "name": "Xiao Wen",
+      "actor": "Wang Yan Hao",
+      "image": "https://i.mydramalist.com/d0zwpb_5m.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "laiqide",
+      "name": "Lai Qi De",
+      "actor": "Li Yan Sheng",
+      "image": "https://i.mydramalist.com/Avy2Lm.jpg",
+      "group": "The streets of Bangkok",
+      "inCast": true
+    },
+    {
+      "id": "meijuan",
+      "name": "Zhao Mei Juan",
+      "actor": "Qi Xiang",
+      "image": "https://i.mydramalist.com/AB61qq_5m.jpg",
+      "group": "The Jiang / Jin family",
+      "inCast": true
+    },
+    {
+      "id": "jinxin",
+      "name": "Jin Xin",
+      "actor": "Cai Ming Xuan",
+      "image": "https://i.mydramalist.com/JB8zZw_5m.jpg",
+      "group": "The Jiang / Jin family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "jiangmu",
+      "to": "jinzhao",
+      "type": "family",
+      "label": "adopted siblings, split by the divorce at nine — two tracks that never cross",
+      "short": "adopted siblings",
+      "evidence": "the adopted siblings Jiang Mu [...] and Jin Zhao [...] their parents get a divorce, and her father and Zhao move to Thailand",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jiangmu",
+      "to": "jinzhao",
+      "type": "romance",
+      "label": "his co-pilot, his navigator — and the one who pulls him out of the mire",
+      "short": "his navigator",
+      "evidence": "As Zhao's co-pilot, she is his perfect navigator. Seeing that Zhao is stuck in a quagmire, she decides to pull him out and take him home",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yinghan",
+      "to": "jiangmu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "姜迎寒 - 姜暮的母親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinqiang",
+      "to": "jinzhao",
+      "type": "family",
+      "label": "father — the one who took Zhao to Thailand",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinqiang",
+      "to": "jiangmu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "julia",
+      "to": "jinqiang",
+      "type": "romance",
+      "label": "the father's new family",
+      "short": "new wife",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jinxin",
+      "to": "jinzhao",
+      "type": "family",
+      "label": "the father's new family",
+      "short": "half-sibling",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sanlai",
+      "to": "jinzhao",
+      "type": "friend",
+      "label": "his brother of the streets",
+      "short": "brother in arms",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "nana",
+      "to": "jinzhao",
+      "type": "friend",
+      "label": "the streets",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "linsui",
+      "to": "jinzhao",
+      "type": "rivalry",
+      "label": "the rival driver",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yanfeng",
+      "to": "jiangmu",
+      "type": "romance",
+      "label": "the Thai boy who courts her",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wanqing",
+      "to": "shengbang",
+      "type": "family",
+      "label": "daughter; the garage's heiress",
+      "short": "father",
+      "evidence": "萬勝邦之女、萬記車行千金",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wanqing",
+      "to": "jinzhao",
+      "type": "romance",
+      "label": "the garage heiress who wants him",
+      "short": "wants him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dayong",
+      "to": "shengbang",
+      "type": "family",
+      "label": "of the Wan family",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hezhang",
+      "to": "jinzhao",
+      "type": "work",
+      "label": "the racing circuit",
+      "short": "racing",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "pankai",
+      "to": "jinzhao",
+      "type": "work",
+      "label": "the racing circuit",
+      "short": "racing",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "luwan",
+      "to": "jinzhao",
+      "type": "work",
+      "label": "the racing circuit",
+      "short": "racing",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhangfan",
+      "to": "jinzhao",
+      "type": "work",
+      "label": "the racing circuit",
+      "short": "racing",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhijie",
+      "to": "sanlai",
+      "type": "friend",
+      "label": "the streets",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "tiegongji",
+      "to": "jinzhao",
+      "type": "rivalry",
+      "label": "the boxing ring",
+      "short": "boxing",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xiaojia",
+      "to": "nana",
+      "type": "friend",
+      "label": "the streets",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "xiaowen",
+      "to": "sanlai",
+      "type": "friend",
+      "label": "the streets",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "laiqide",
+      "to": "jinzhao",
+      "type": "rivalry",
+      "label": "the streets' boss",
+      "short": "the boss",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "fengzi",
+      "to": "jinqiang",
+      "type": "family",
+      "label": "of the Jin family",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "meijuan",
+      "to": "yinghan",
+      "type": "friend",
+      "label": "the mother's side",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "jiangmu",
+      "jinzhao",
+      "sanlai",
+      "jinqiang",
+      "nana",
+      "linsui",
+      "yanfeng",
+      "dayong",
+      "zhijie",
+      "tiegongji",
+      "fengzi",
+      "wanqing",
+      "hezhang",
+      "yinghan",
+      "pankai",
+      "luwan",
+      "shengbang",
+      "xiaojia",
+      "julia",
+      "zhangfan",
+      "xiaowen",
+      "laiqide",
+      "meijuan",
+      "jinxin"
+    ],
+    "blocks": {
+      "The Jiang / Jin family": [
+        0,
+        0
+      ],
+      "The streets of Bangkok": [
+        2,
+        0
+      ],
+      "The racing world": [
+        2,
+        2
+      ],
+      "The Wan family": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "jiangmu",
+      "jinzhao"
+    ]
+  }
+}

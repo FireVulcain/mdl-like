@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "mdlSlug": "760407-ye-gou-gu-tou",
+  "title": "Love for You",
+  "native": "野狗骨头",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (21 roles + guests, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia (names only; ties inferred)"
+  ],
+  "main": [
+    "chenyi",
+    "miaojing"
+  ],
+  "people": [
+    {
+      "id": "chenyi",
+      "name": "Chen Yi",
+      "actor": "Song Wei Long",
+      "image": "https://i.mydramalist.com/PxLoKy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zhou Yu Chen",
+          "image": "https://i.mydramalist.com/NdqXev_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "Tough outside, protective inside; grieving his mother"
+    },
+    {
+      "id": "miaojing",
+      "name": "Miao Jing",
+      "actor": "Zhang Jing Yi",
+      "image": "https://i.mydramalist.com/JBWLLo_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Chen Zi Xuan",
+          "image": "https://i.mydramalist.com/mOErBm_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "Resilient; her kindness breaks through"
+    },
+    {
+      "id": "cenye",
+      "name": "Cen Ye",
+      "actor": "Liang Jing Kang",
+      "image": "https://i.mydramalist.com/oQrQdE_5m.jpg",
+      "group": "Later",
+      "inCast": true
+    },
+    {
+      "id": "tuli",
+      "name": "Tu Li",
+      "actor": "He Rui Xian",
+      "image": "https://i.mydramalist.com/6Y0AP_5m.jpg",
+      "group": "Later",
+      "inCast": true
+    },
+    {
+      "id": "shanbai",
+      "name": "Liu Shan Bai",
+      "actor": "Ken Lok",
+      "image": "https://i.mydramalist.com/Lw5A6r_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "zhangbin",
+      "name": "Zhang Bin",
+      "actor": "Zhou Tie",
+      "image": "https://i.mydramalist.com/eYY2Vp_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "mingzhen",
+      "name": "Wei Ming Zhen",
+      "actor": "Lian Lian",
+      "image": "https://i.mydramalist.com/kAy1zd_5m.jpg",
+      "group": "The blended family",
+      "inCast": true
+    },
+    {
+      "id": "kangan",
+      "name": "Zhou Kang An",
+      "actor": "He Ming Han",
+      "image": "https://i.mydramalist.com/Q4Pe2_5m.jpg",
+      "group": "Later",
+      "inCast": true
+    },
+    {
+      "id": "fengmao",
+      "name": "Zhai Feng Mao",
+      "actor": "Zhao Long Hao",
+      "image": "https://i.mydramalist.com/wJAxlk_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "libin",
+      "name": "Chen Li Bin",
+      "actor": "Tian Zheng",
+      "image": "https://i.mydramalist.com/DkYR4p_5m.jpg",
+      "group": "The blended family",
+      "inCast": true
+    },
+    {
+      "id": "wenjie",
+      "name": "He Wen Jie",
+      "actor": "Yang Xue Er",
+      "image": "https://i.mydramalist.com/1bRVz_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "xiaoyu",
+      "name": "Xiao Yu",
+      "actor": "Yan Zhi Chao",
+      "image": "https://i.mydramalist.com/JBX32p_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "mayang",
+      "name": "Ma Yang",
+      "actor": "Qu Jing",
+      "image": "https://i.mydramalist.com/4ejwpZ_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "bozai",
+      "name": "Wang Bo / \"Bo Zai\"",
+      "actor": "Miao Ruo Peng",
+      "image": "https://i.mydramalist.com/JBQZJw_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "dayong",
+      "name": "Da Yong",
+      "actor": "Sun Yi Hong",
+      "image": "https://i.mydramalist.com/73RDDr_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kun Yu",
+          "image": "https://i.mydramalist.com/DkLY7o_5m.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "linda",
+      "name": "Lin Da",
+      "actor": "Carmen Tong",
+      "image": "https://i.mydramalist.com/REX3V_5m.jpg",
+      "group": "Later",
+      "inCast": true
+    },
+    {
+      "id": "dinglei",
+      "name": "Ding Lei",
+      "actor": "Wu Qi Jiang",
+      "image": "https://i.mydramalist.com/vBNkD_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "taojiang",
+      "name": "Tao Jiang",
+      "actor": "Wu Hong",
+      "image": "https://i.mydramalist.com/g0kL3O_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    },
+    {
+      "id": "liqiao",
+      "name": "Li Qiao",
+      "actor": "Ling Mei Shi",
+      "image": "https://i.mydramalist.com/YYlbgQ_5m.jpg",
+      "group": "Later",
+      "inCast": true
+    },
+    {
+      "id": "yilan",
+      "name": "Huang Yi Lan",
+      "actor": "Hui Yuan",
+      "image": "https://i.mydramalist.com/XEd1Om.jpg",
+      "group": "Later",
+      "inCast": true
+    },
+    {
+      "id": "xugong",
+      "name": "Xu Gong",
+      "actor": "Bian Yi Ming",
+      "image": "https://i.mydramalist.com/rDL0g_5m.jpg",
+      "group": "The years of hardship",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "chenyi",
+      "to": "miaojing",
+      "type": "family",
+      "label": "under one roof when their parents get together, in the late 90s",
+      "short": "step-siblings",
+      "evidence": "their parents' relationship brings the two teenagers under the same roof",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chenyi",
+      "to": "miaojing",
+      "type": "romance",
+      "label": "left with no one but each other; he pushes her away to keep her safe",
+      "short": "each other",
+      "evidence": "the two are left with no one but each other [...] a devastating incident forces Chen Yi to push Miao Jing away for her own safety",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "libin",
+      "to": "chenyi",
+      "type": "family",
+      "label": "father — dies",
+      "short": "father",
+      "evidence": "田征 饰 陈礼彬 / After Chen Yi's father dies",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mingzhen",
+      "to": "miaojing",
+      "type": "family",
+      "label": "mother — disappears",
+      "short": "mother",
+      "evidence": "练练 饰 魏明珍 / Miao Jing's mother disappears",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "libin",
+      "to": "mingzhen",
+      "type": "romance",
+      "label": "the parents' relationship",
+      "short": "partners",
+      "evidence": "their parents' relationship brings the two teenagers under the same roof",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "cenye",
+      "to": "miaojing",
+      "type": "romance",
+      "label": "the man of the later years",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "tuli",
+      "to": "chenyi",
+      "type": "romance",
+      "label": "the woman of the later years",
+      "short": "courts him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dayong",
+      "to": "chenyi",
+      "type": "friend",
+      "label": "his friend since boyhood",
+      "short": "old friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "bozai",
+      "to": "chenyi",
+      "type": "friend",
+      "label": "the streets",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "shanbai",
+      "to": "chenyi",
+      "type": "rivalry",
+      "label": "the boss of the hard years",
+      "short": "the boss",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhangbin",
+      "to": "chenyi",
+      "type": "rivalry",
+      "label": "the hard years",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "fengmao",
+      "to": "chenyi",
+      "type": "rivalry",
+      "label": "the hard years",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wenjie",
+      "to": "miaojing",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "xiaoyu",
+      "to": "miaojing",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "mayang",
+      "to": "chenyi",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "kangan",
+      "to": "miaojing",
+      "type": "work",
+      "label": "the later years",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "linda",
+      "to": "miaojing",
+      "type": "work",
+      "label": "the later years",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "liqiao",
+      "to": "cenye",
+      "type": "friend",
+      "label": "the later years",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yilan",
+      "to": "miaojing",
+      "type": "work",
+      "label": "the later years",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dinglei",
+      "to": "shanbai",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taojiang",
+      "to": "shanbai",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "xugong",
+      "to": "chenyi",
+      "type": "work",
+      "label": "the hard years",
+      "short": "work",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "chenyi",
+      "miaojing",
+      "cenye",
+      "tuli",
+      "shanbai",
+      "zhangbin",
+      "mingzhen",
+      "kangan",
+      "fengmao",
+      "libin",
+      "wenjie",
+      "xiaoyu",
+      "mayang",
+      "bozai",
+      "dayong",
+      "linda",
+      "dinglei",
+      "taojiang",
+      "liqiao",
+      "yilan",
+      "xugong"
+    ],
+    "blocks": {
+      "The blended family": [
+        0,
+        0
+      ],
+      "The years of hardship": [
+        2,
+        0
+      ],
+      "Later": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "chenyi",
+      "miaojing"
+    ]
+  }
+}

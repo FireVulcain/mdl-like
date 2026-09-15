@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "mdlSlug": "693413-xian-yu",
+  "title": "When Destiny Brings the Demon",
+  "native": "献鱼",
+  "year": 2025,
+  "country": "CN",
+  "sources": [
+    "MDL cast (30 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色"
+  ],
+  "main": [
+    "simajiao",
+    "tingyan"
+  ],
+  "people": [
+    {
+      "id": "simajiao",
+      "name": "Sima Jiao / Wei Jiao",
+      "actor": "Arthur Chen",
+      "image": "https://i.mydramalist.com/ABdAvP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Grandmaster of Gengchen, sealed in the mountain 500 years; host of the spirit fire; cold, bent on revenge"
+    },
+    {
+      "id": "tingyan",
+      "name": "Liao Ting Yan / Shi Yan / Zou Yan",
+      "actor": "Wang Ying Lu",
+      "image": "https://i.mydramalist.com/rKn2g_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Office drone Zou Yan, woken in the body of the lowest disciple — whose true self was a demonic assassin"
+    },
+    {
+      "id": "ruling",
+      "name": "Ye Ru Ling / Hong Luo",
+      "actor": "Wang Yi Ting",
+      "image": "https://i.mydramalist.com/7317Ky_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "Master of the Yin palace; the courtesan Hong Luo in the demon realm"
+    },
+    {
+      "id": "nianjiu",
+      "name": "Hei Nian Jiu",
+      "actor": "Gao He Yuan",
+      "image": "https://i.mydramalist.com/3oNx24_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "The grandmaster's confidant; a black snake"
+    },
+    {
+      "id": "fengqi",
+      "name": "Feng Qi",
+      "actor": "Wu Yu Heng",
+      "image": "https://i.mydramalist.com/PxPP5w_5m.jpg",
+      "group": "The demon realm",
+      "inCast": true,
+      "note": "Guard at the Rouge Terrace; orphan of General Chang"
+    },
+    {
+      "id": "zhiming",
+      "name": "Zhi Ming / Bi An",
+      "actor": "Wang Ya Jia",
+      "image": "https://i.mydramalist.com/VXxv1Q_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Heir of the Fengshan bloodline"
+    },
+    {
+      "id": "anhe",
+      "name": "Chi An He",
+      "actor": "Qi Pei Xin",
+      "image": "https://i.mydramalist.com/5vVvvw_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "General of Gengchen"
+    },
+    {
+      "id": "mingli",
+      "name": "Ming Li",
+      "actor": "Zhao Shun Ran",
+      "image": "https://i.mydramalist.com/YYWD7K_5m.jpg",
+      "group": "The demon realm",
+      "inCast": true,
+      "note": "State preceptor of the demon realm"
+    },
+    {
+      "id": "qianlu",
+      "name": "Shi Qian Lu",
+      "actor": "Bao Jian Feng",
+      "image": "https://i.mydramalist.com/l0b8ze_5m.jpg",
+      "group": "The Shi palace",
+      "inCast": true,
+      "note": "Master of the Shi palace"
+    },
+    {
+      "id": "yuanche",
+      "name": "Yuan Che",
+      "actor": "He Zhong Hua",
+      "image": "https://i.mydramalist.com/Lw5ZZ5_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "Master of the Four Seasons palace"
+    },
+    {
+      "id": "nisheng",
+      "name": "Mu Ni Sheng",
+      "actor": "Chen Shu Jun",
+      "image": "https://i.mydramalist.com/Lwbjk3_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "Disciple of the Heaven palace"
+    },
+    {
+      "id": "simae",
+      "name": "Sima E",
+      "actor": "Zeng Li",
+      "image": "https://i.mydramalist.com/d7egg_5m.jpg",
+      "group": "Hu kingdom (the second life)",
+      "inCast": true,
+      "note": "Empress Dowager, in the second life"
+    },
+    {
+      "id": "nanyan",
+      "name": "Nan Yan",
+      "actor": "Huang Hai Bing",
+      "image": "https://i.mydramalist.com/rK4ED_5m.jpg",
+      "group": "Hu kingdom (the second life)",
+      "inCast": true,
+      "note": "Marquis, eyeing the throne"
+    },
+    {
+      "id": "qiandu",
+      "name": "Shi Qian Du",
+      "actor": "Ma Ya Shu",
+      "image": "https://i.mydramalist.com/PxPYDL_5m.jpg",
+      "group": "The Shi palace",
+      "inCast": true
+    },
+    {
+      "id": "zhenxu",
+      "name": "Shi Zhen Xu",
+      "actor": "Li Xin Ze",
+      "image": "https://i.mydramalist.com/g0jxmX_5m.jpg",
+      "group": "The Shi palace",
+      "inCast": true,
+      "note": "Young master of the Shi"
+    },
+    {
+      "id": "dongyang",
+      "name": "Dongyang Zhen Ren",
+      "actor": "Chen Bo Hao",
+      "image": "https://i.mydramalist.com/jQy81r_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "Master of the Serene Vale"
+    },
+    {
+      "id": "qinger",
+      "name": "Zhou Qing Er",
+      "actor": "Zheng He Hui Zi",
+      "image": "https://i.mydramalist.com/DkVAOr_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "simashi",
+      "name": "Sima Shi",
+      "actor": "Dai Xiang Yu",
+      "image": "https://i.mydramalist.com/Lw0jRx_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true
+    },
+    {
+      "id": "anxue",
+      "name": "An Xue",
+      "actor": "Isabella",
+      "image": "https://i.mydramalist.com/YY1O4P_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true,
+      "note": "Disciple of the Yin palace"
+    },
+    {
+      "id": "yihuo",
+      "name": "Yi Huo",
+      "actor": "Liu Meng Meng",
+      "image": "https://i.mydramalist.com/XLznZ_5m.jpg",
+      "group": "Hu kingdom (the second life)",
+      "inCast": true,
+      "note": "Imperial physician"
+    },
+    {
+      "id": "yanheng",
+      "name": "Yan Heng",
+      "actor": "Shi Zi Xun",
+      "image": "https://i.mydramalist.com/yWrvvn_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "yuanshang",
+      "name": "Yuan Shang",
+      "actor": "Liu Zhe Hui",
+      "image": "https://i.mydramalist.com/oQp3Yk_5m.jpg",
+      "group": "Gengchen Immortal Manor",
+      "inCast": true
+    },
+    {
+      "id": "youchi",
+      "name": "You Chi",
+      "actor": "Tang Zhen Chao",
+      "image": "https://i.mydramalist.com/Xd8REq_5m.jpg",
+      "group": "The demon realm",
+      "inCast": true,
+      "note": "The demon lord"
+    },
+    {
+      "id": "wuzhong",
+      "name": "Wu Zhong",
+      "actor": "Wang Guan",
+      "image": "https://i.mydramalist.com/736QmN_5m.jpg",
+      "group": "The demon realm",
+      "inCast": true,
+      "note": "Chief demon general"
+    }
+  ],
+  "links": [
+    {
+      "from": "tingyan",
+      "to": "simajiao",
+      "type": "work",
+      "label": "chosen to serve the strange grandmaster sealed in the mountain",
+      "short": "serves him",
+      "evidence": "She's soon selected to serve the reclusive Grandmaster Sima Jiao",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "simajiao",
+      "to": "tingyan",
+      "type": "romance",
+      "label": "her want-nothing nature fascinates him — a villainous immortal and a slacker",
+      "short": "fascinated",
+      "evidence": "Her nature fascinates him. Thus begins an unlikely romance between a villainous immortal and a healing-type 'slacker'",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ruling",
+      "to": "tingyan",
+      "type": "friend",
+      "label": "her good friend — infiltrating Gengchen for the spirit fire",
+      "short": "friend, spy",
+      "evidence": "廖停雁好友 [...] 为了夺取司马焦的灵火与血凝花潜伏在庚辰仙府",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nianjiu",
+      "to": "simajiao",
+      "type": "work",
+      "label": "his confidant; a black snake in human form",
+      "short": "confidant",
+      "evidence": "師祖的心腹，本体是一条黑蛇",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nianjiu",
+      "to": "ruling",
+      "type": "romance",
+      "label": "loves her, since she returned his core",
+      "short": "loves her",
+      "evidence": "因夜洳淩歸還內丹使其化為人形，而喜歡夜洳淩",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fengqi",
+      "to": "tingyan",
+      "type": "bond",
+      "label": "saved by her at the Bone Abyss",
+      "short": "saved by her",
+      "evidence": "曾在白骨渊遇险，被廖停雁所救",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhiming",
+      "to": "simajiao",
+      "type": "bond",
+      "label": "saved as a child by the two; a puppet of the old demon lord, to save him",
+      "short": "owes him",
+      "evidence": "早年曾被司马焦和廖停雁救助 [...] 為救司馬焦 [...] 淪為傀儡",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yanheng",
+      "to": "qinger",
+      "type": "romance",
+      "label": "the couple whose daughter is Bi An",
+      "short": "parents of Bi An",
+      "evidence": "嚴桓與周青兒之女",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "qinger",
+      "to": "zhiming",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "嚴桓與周青兒之女。原名周月清",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anhe",
+      "to": "simajiao",
+      "type": "work",
+      "label": "Gengchen's general",
+      "short": "general",
+      "evidence": "庚辰仙府將軍",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mingli",
+      "to": "ruling",
+      "type": "work",
+      "label": "preceptor of the realm she becomes preceptor of",
+      "short": "preceptor",
+      "evidence": "魔域國師 / 後成為魔域國師",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "qianlu",
+      "to": "tingyan",
+      "type": "family",
+      "label": "washed her memory, made her 'his daughter' Shi Yan",
+      "short": "false father",
+      "evidence": "廖停雁受傷後被師千縷洗魂失憶後的假身份，師千縷的女兒",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qiandu",
+      "to": "qianlu",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "師千縷的妹妹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenxu",
+      "to": "qianlu",
+      "type": "family",
+      "label": "son; young master of the Shi",
+      "short": "son",
+      "evidence": "師氏少掌門，師千縷的兒子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhenxu",
+      "to": "anxue",
+      "type": "romance",
+      "label": "likes her",
+      "short": "likes her",
+      "evidence": "喜歡暗雪",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anxue",
+      "to": "ruling",
+      "type": "work",
+      "label": "disciple of the Yin palace",
+      "short": "her disciple",
+      "evidence": "[Disciple of Yin Palace]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuanche",
+      "to": "yuanshang",
+      "type": "family",
+      "label": "son",
+      "short": "father",
+      "evidence": "四时之宫的宫主，育有一子袁觞",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongyang",
+      "to": "tingyan",
+      "type": "work",
+      "label": "her master",
+      "short": "master",
+      "evidence": "廖停雁的師父",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "simashi",
+      "to": "simajiao",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "司马焦之父 / 司马莳與司馬萼之子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "simae",
+      "to": "simajiao",
+      "type": "family",
+      "label": "mother; the Empress Dowager in the second life",
+      "short": "mother",
+      "evidence": "司马焦的亲生母亲，在扈國轉世為太后",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nanyan",
+      "to": "simajiao",
+      "type": "rivalry",
+      "label": "the marquis eyeing the emperor's throne, in the second life",
+      "short": "eyes the throne",
+      "evidence": "扈國皇族成員，一直對皇位虎視眈眈 / 後轉世為扈國皇帝",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yihuo",
+      "to": "simajiao",
+      "type": "work",
+      "label": "physician close to Nan Yan — his spy, in truth",
+      "short": "his spy",
+      "evidence": "表面上與南堰侯關係匪淺，實際上是司馬焦的眼線",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youchi",
+      "to": "zhiming",
+      "type": "rivalry",
+      "label": "the old demon lord who takes her as puppet",
+      "short": "her puppeteer",
+      "evidence": "被前魔主蚰蜒發現並控制，淪為傀儡",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wuzhong",
+      "to": "youchi",
+      "type": "work",
+      "label": "chief demon general",
+      "short": "his general",
+      "evidence": "主魔將",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nisheng",
+      "to": "tingyan",
+      "type": "friend",
+      "label": "fellow disciple",
+      "short": "disciple",
+      "evidence": "天之宮弟子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "simajiao",
+      "tingyan",
+      "ruling",
+      "nianjiu",
+      "fengqi",
+      "zhiming",
+      "anhe",
+      "mingli",
+      "qianlu",
+      "yuanche",
+      "nisheng",
+      "simae",
+      "nanyan",
+      "qiandu",
+      "zhenxu",
+      "dongyang",
+      "qinger",
+      "simashi",
+      "anxue",
+      "yihuo",
+      "yanheng",
+      "yuanshang",
+      "youchi",
+      "wuzhong"
+    ],
+    "blocks": {
+      "Gengchen Immortal Manor": [
+        0,
+        0
+      ],
+      "The Shi palace": [
+        2,
+        0
+      ],
+      "The demon realm": [
+        2,
+        2
+      ],
+      "Hu kingdom (the second life)": [
+        0,
+        2
+      ],
+      "Around them": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "simajiao",
+      "tingyan"
+    ]
+  }
+}
