@@ -240,14 +240,16 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                                         </li>
                                         {preflight.wiki.map((w) => {
                                             const shown = editing.has(w.lang) || !w.found;
+                                            // A section this short is a list of names — households, no sentences
+                                            const thin = w.found && w.chars < 1000;
                                             return (
                                                 <li key={w.lang} className="space-y-1">
                                                     <div className={`flex items-center gap-2 ${w.found ? "text-fg-muted" : "text-amber-400/90"}`}>
-                                                        {w.found ? <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400/80" /> : <AlertTriangle className="h-3.5 w-3.5 shrink-0" />}
+                                                        {w.found ? <Check className={`h-3.5 w-3.5 shrink-0 ${thin ? "text-fg-dim" : "text-emerald-400/80"}`} /> : <AlertTriangle className="h-3.5 w-3.5 shrink-0" />}
                                                         <span className="min-w-0 flex-1 truncate">
                                                             {w.lang}.wikipedia
                                                             {w.found ? (
-                                                                <> · {w.title} · {Math.round(w.chars / 1000)}K characters</>
+                                                                <> · {w.title} · {thin ? `names only, ${(w.chars / 1000).toFixed(1)}K` : `${Math.round(w.chars / 1000)}K`} characters</>
                                                             ) : w.rejected ? (
                                                                 <> · the search found &ldquo;{w.rejected}&rdquo;, which is not this drama</>
                                                             ) : w.title ? (
