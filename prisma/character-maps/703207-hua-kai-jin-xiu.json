@@ -1,0 +1,844 @@
+{
+  "version": 1,
+  "mdlSlug": "703207-hua-kai-jin-xiu",
+  "title": "The Road to Splendor",
+  "native": "花开锦绣",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (38 roles + guests, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色"
+  ],
+  "main": [
+    "zhaoling",
+    "tingyun"
+  ],
+  "people": [
+    {
+      "id": "zhaoling",
+      "name": "Zhao Ling",
+      "actor": "Ding Yu Xi",
+      "image": "https://i.mydramalist.com/l0eJX4_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "'Ninth Master', a private salt dealer of the streets — in truth the wronged son of a general's house"
+    },
+    {
+      "id": "tingyun",
+      "name": "Fu Ting Yun",
+      "actor": "Deng En Xi",
+      "image": "https://i.mydramalist.com/AB2Lk3_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The Fu house's ninth daughter, framed by her cousin and cast off by her family"
+    },
+    {
+      "id": "yake",
+      "name": "Fan Ya Ke",
+      "actor": "Fan Shi Ran",
+      "image": "https://i.mydramalist.com/20BrE_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true,
+      "note": "Once her closest friend; married into the Yu house by ambition"
+    },
+    {
+      "id": "jingxiu",
+      "name": "Yu Jing Xiu",
+      "actor": "Dong Zi Fan",
+      "image": "https://i.mydramalist.com/zBWXDy_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true,
+      "note": "Eldest young master of the Yu house, his life arranged by his mother"
+    },
+    {
+      "id": "guodong",
+      "name": "Yu Guo Dong",
+      "actor": "Tan Kai",
+      "image": "https://i.mydramalist.com/DkDjwr_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true,
+      "note": "Left Censor-in-chief"
+    },
+    {
+      "id": "madameyu",
+      "name": "Madame Yu",
+      "actor": "Wen Zheng Rong",
+      "image": "https://i.mydramalist.com/Lw5rK5_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true
+    },
+    {
+      "id": "wanyi",
+      "name": "Tian Wan Yi",
+      "actor": "Alina Zhang",
+      "image": "https://i.mydramalist.com/bveKNV_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Grand Secretary Tian's daughter"
+    },
+    {
+      "id": "dongling",
+      "name": "Wei Dong Lin",
+      "actor": "Han Dong",
+      "image": "https://i.mydramalist.com/b3o6bN_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Vice-minister of Personnel; weak"
+    },
+    {
+      "id": "ladyzuo",
+      "name": "Lady Zuo",
+      "actor": "Una You",
+      "image": "https://i.mydramalist.com/b3YxZj_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Wife of the first house's eldest son"
+    },
+    {
+      "id": "junjie",
+      "name": "Zuo Jun Jie",
+      "actor": "Wang Run Ze",
+      "image": "https://i.mydramalist.com/VXPPNJ_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Lady Zuo's younger brother"
+    },
+    {
+      "id": "prince",
+      "name": "The Sixteenth Master / Crown Prince",
+      "actor": "Bai Shu",
+      "image": "https://i.mydramalist.com/x4goDE_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Crown prince, then emperor"
+    },
+    {
+      "id": "liansheng",
+      "name": "Lian Sheng",
+      "actor": "Wang Jin Hao",
+      "image": "https://i.mydramalist.com/g0DA2n_5m.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true
+    },
+    {
+      "id": "moyi",
+      "name": "Mo Yi",
+      "actor": "Zhang Cheng He",
+      "image": "https://i.mydramalist.com/WPd56l_5m.jpg",
+      "group": "The Northwest army",
+      "inCast": true,
+      "note": "General Mo"
+    },
+    {
+      "id": "mozhan",
+      "name": "Mo Zhan",
+      "actor": "Shi Xin Tong",
+      "image": "https://i.mydramalist.com/60NB7W_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Ting Yun's maid"
+    },
+    {
+      "id": "wangyi",
+      "name": "Wang Yi",
+      "actor": "Wei Zi Xin",
+      "image": "https://i.mydramalist.com/nO8e8N_5m.jpg",
+      "group": "The Northwest army",
+      "inCast": true,
+      "note": "Commander of the Northwest"
+    },
+    {
+      "id": "asen",
+      "name": "A Sen",
+      "actor": "Li Ze Yu",
+      "image": "https://i.mydramalist.com/oQpnoL_5m.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true,
+      "note": "Zhao Ling's most trusted man"
+    },
+    {
+      "id": "zhengsan",
+      "name": "Zheng San",
+      "actor": "Fu Jia",
+      "image": "https://i.mydramalist.com/ZkPPjm.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true
+    },
+    {
+      "id": "limao",
+      "name": "Li Mao",
+      "actor": "Sun Zhi Hong",
+      "image": "https://i.mydramalist.com/O8k3qL_5m.jpg",
+      "group": "The Northwest army",
+      "inCast": true,
+      "note": "Councillor of Gandu"
+    },
+    {
+      "id": "fifthmadam",
+      "name": "Fifth Madam Fu",
+      "actor": "Shi Yue Ling",
+      "image": "https://i.mydramalist.com/DkJnEn_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Ting Yun's mother, clear-eyed"
+    },
+    {
+      "id": "fifthmaster",
+      "name": "Fifth Master Fu",
+      "actor": "Yu Yi",
+      "image": "https://i.mydramalist.com/l026ZL_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Ting Yun's father, cold and scheming"
+    },
+    {
+      "id": "dahu",
+      "name": "Lu Da Hu",
+      "actor": "Zhu Jian",
+      "image": "https://i.mydramalist.com/JBmL3X_5m.jpg",
+      "group": "The Northwest army",
+      "inCast": true
+    },
+    {
+      "id": "tingzhuo",
+      "name": "Fu Ting Zhuo",
+      "actor": "Li Xin Ze",
+      "image": "https://i.mydramalist.com/g0jxmX_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Ting Yun's brother"
+    },
+    {
+      "id": "shenshi",
+      "name": "Shen Shi",
+      "actor": "Fu Dong Nuan",
+      "image": "https://i.mydramalist.com/3oYpjW_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true
+    },
+    {
+      "id": "chengxin",
+      "name": "Cheng Xin",
+      "actor": "Yang Zhi He",
+      "image": "https://i.mydramalist.com/73RDwe_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true,
+      "note": "Jing Xiu's servant"
+    },
+    {
+      "id": "zhengsanniang",
+      "name": "Zheng San Niang",
+      "actor": "Zhao Yuan Yuan",
+      "image": "https://i.mydramalist.com/YYZweo_5m.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true,
+      "note": "Loyal since Ting Yun saved her"
+    },
+    {
+      "id": "biaozi",
+      "name": "Biao Zi",
+      "actor": "Yuan Ruo Hang",
+      "image": "https://i.mydramalist.com/b3Aebw_5m.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true,
+      "note": "Muscle"
+    },
+    {
+      "id": "fankun",
+      "name": "Fan Kun",
+      "actor": "Ji Chen Mu",
+      "image": "https://i.mydramalist.com/l0edex_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true,
+      "note": "Ya Ke's father; Jing Xiu's teacher"
+    },
+    {
+      "id": "yucheng",
+      "name": "Yang Yu Cheng",
+      "actor": "Zhang Jing Wei",
+      "image": "https://i.mydramalist.com/woZAb_5m.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true,
+      "note": "Former confidant of the Nine-Tailed Jiao"
+    },
+    {
+      "id": "yuwei",
+      "name": "Yu Wei",
+      "actor": "Chang Su Sheng",
+      "image": "https://i.mydramalist.com/nO7poL_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Maid"
+    },
+    {
+      "id": "nannyli",
+      "name": "Nanny Li",
+      "actor": "He Miao",
+      "image": "https://i.mydramalist.com/Ndy5bW_5m.jpg",
+      "group": "The Fu family",
+      "inCast": true,
+      "note": "Old Madam Fu's maid"
+    },
+    {
+      "id": "wuxiaojie",
+      "name": "Miss Wu",
+      "actor": "Zhong Li Li",
+      "image": "https://i.mydramalist.com/AB05B4_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true,
+      "note": "Later a concubine of the Yu house"
+    },
+    {
+      "id": "yuanbao",
+      "name": "Jin Yuan Bao",
+      "actor": "Wu Hao Chen",
+      "image": "https://i.mydramalist.com/Dkqkyr_5m.jpg",
+      "group": "Zhao Ling's people",
+      "inCast": true,
+      "note": "Salt shopkeeper"
+    },
+    {
+      "id": "huaian",
+      "name": "Yu Huai An",
+      "actor": "Zheng Xi Long",
+      "image": "https://i.mydramalist.com/x44zbE_5m.jpg",
+      "group": "The Yu family",
+      "inCast": true
+    },
+    {
+      "id": "hanyan",
+      "name": "Han Yan",
+      "actor": "Zhou Rui Jun",
+      "image": "https://i.mydramalist.com/Rp77o_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "yanfei",
+      "name": "Yan Fei",
+      "actor": "Zhao Wen Hao",
+      "image": "https://i.mydramalist.com/QJ22vY_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "zhaoling",
+      "to": "tingyun",
+      "type": "romance",
+      "label": "the salt dealer and the framed lady, forced to flee together — a legendary couple in the end",
+      "short": "flee together",
+      "evidence": "He met Fu Ting Yun, a lady from a noble family who was falsely accused of having an affair, and they were forced to flee together [...] finally became a legendary couple",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yake",
+      "to": "tingyun",
+      "type": "friend",
+      "label": "once her closest friend — not content with her birth, climbs into the Yu house",
+      "short": "old friend",
+      "evidence": "[Ting Yun's childhood friend] / 曾與傅庭芸是摯交，卻不甘心自己出身，一心只想高攀",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jingxiu",
+      "to": "tingyun",
+      "type": "rivalry",
+      "label": "had Zuo Jun Jie frame her, to wreck the match his mother arranged",
+      "short": "framed her",
+      "evidence": "教唆左俊杰陷害傅庭芸，破壞母親的安排",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jingxiu",
+      "to": "yake",
+      "type": "romance",
+      "label": "husband — hearts apart, then she leaves",
+      "short": "husband",
+      "evidence": "順利嫁入俞家，之後夫妻離心，貌合神離離開俞家",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "madameyu",
+      "to": "jingxiu",
+      "type": "family",
+      "label": "mother, who arranged his whole life",
+      "short": "mother",
+      "evidence": "俞敬修之母 / 一生都被母親安排",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "guodong",
+      "to": "jingxiu",
+      "type": "family",
+      "label": "father; Left Censor-in-chief",
+      "short": "father",
+      "evidence": "俞國棟 [...] 俞敬修之父",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "guodong",
+      "to": "madameyu",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "俞阁老之妻",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fankun",
+      "to": "jingxiu",
+      "type": "work",
+      "label": "his teacher",
+      "short": "teacher",
+      "evidence": "俞敬修之恩師",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fankun",
+      "to": "yake",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ya Ke's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chengxin",
+      "to": "jingxiu",
+      "type": "work",
+      "label": "servant",
+      "short": "servant",
+      "evidence": "[Jing Xiu's servant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wuxiaojie",
+      "to": "jingxiu",
+      "type": "romance",
+      "label": "later his concubine",
+      "short": "concubine",
+      "evidence": "後嫁入俞家當妾",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junjie",
+      "to": "tingyun",
+      "type": "rivalry",
+      "label": "wanted her; the base trick that ruined her",
+      "short": "ruined her",
+      "evidence": "喜歡傅庭芸想用卑劣手段得到傅庭芸",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junjie",
+      "to": "ladyzuo",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Madam Zuo's younger brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ladyzuo",
+      "to": "tingyun",
+      "type": "family",
+      "label": "cousin's wife — sent back to run a 'women's precepts hall'",
+      "short": "cousin-in-law",
+      "evidence": "傅庭芸之堂嫂，後被趕回甘霖鎮開設女誡堂",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "limao",
+      "to": "ladyzuo",
+      "type": "romance",
+      "label": "the affair at the precepts hall",
+      "short": "affair",
+      "evidence": "與傅左氏在女誡堂案中偷情",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "fifthmadam",
+      "to": "tingyun",
+      "type": "family",
+      "label": "mother — the one who stood by her",
+      "short": "mother",
+      "evidence": "[Ting Yun's mother] / 一直給予傅庭芸與趙凌支持",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fifthmaster",
+      "to": "tingyun",
+      "type": "family",
+      "label": "father — cold, grasping, hypocritical",
+      "short": "father",
+      "evidence": "[Ting Yun's father] / 贪权算计、冷酷无情和极度虚伪",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tingzhuo",
+      "to": "tingyun",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[Ting Yun's older brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "shenshi",
+      "to": "tingzhuo",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "傅沈氏 - 傅庭茁之妻",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mozhan",
+      "to": "tingyun",
+      "type": "work",
+      "label": "her maid",
+      "short": "maid",
+      "evidence": "墨盞 - 傅九小姐的贴身丫鬟",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuwei",
+      "to": "tingyun",
+      "type": "work",
+      "label": "her maid",
+      "short": "maid",
+      "evidence": "[Ting Yun's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nannyli",
+      "to": "tingyun",
+      "type": "work",
+      "label": "Old Madam Fu's maid — the grandmother who cast her off",
+      "short": "the old madam's",
+      "evidence": "[Old madam Fu's maidservant] / 傅太夫人 [...] 將傅庭芸捨棄",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "asen",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "his most trusted man; eyes and ears",
+      "short": "his man",
+      "evidence": "赵凌最信任的心腹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhengsanniang",
+      "to": "tingyun",
+      "type": "work",
+      "label": "loyal since Ting Yun saved her",
+      "short": "loyal",
+      "evidence": "被傅庭芸搭救之後，便守著傅庭芸忠心不二",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zhengsan",
+      "to": "zhengsanniang",
+      "type": "romance",
+      "label": "husband; stays as a servant",
+      "short": "husband",
+      "evidence": "郑三娘之夫婿，留下當家僕",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "biaozi",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "muscle at his side",
+      "short": "his man",
+      "evidence": "負責貼身隨從、打架充場面",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yucheng",
+      "to": "zhaoling",
+      "type": "friend",
+      "label": "three years in his service; brothers unto death — takes his own head to clear his path",
+      "short": "brother unto death",
+      "evidence": "自願為趙凌效力三年，兩人成為生死至交，後為保最後選擇自刎",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuanbao",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "the salt shopkeeper who split from him, then came back true",
+      "short": "partner",
+      "evidence": "先前 [...] 與其拆夥，後判流放被趙凌贖回，真心跟著趙凌",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "liansheng",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "his people",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wangyi",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "his superior in the Northwest war",
+      "short": "his commander",
+      "evidence": "王總兵 - 西北戰事總帥，趙凌的上司",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "moyi",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "general of the Northwest army",
+      "short": "general",
+      "evidence": "陌將軍，西北軍中驍勇善戰的將領",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dahu",
+      "to": "moyi",
+      "type": "family",
+      "label": "the general's brother-in-law",
+      "short": "brother-in-law",
+      "evidence": "鲁姨娘之弟、陌將軍小舅子",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "prince",
+      "to": "zhaoling",
+      "type": "work",
+      "label": "the crown prince he serves — who gives him a name",
+      "short": "the prince",
+      "evidence": "當朝太子，後當上當今聖上 / 聖上賜字虎臣",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongling",
+      "to": "wanyi",
+      "type": "romance",
+      "label": "husband, weak",
+      "short": "husband",
+      "evidence": "田婉仪之夫，性格軟弱",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wanyi",
+      "to": "tingyun",
+      "type": "friend",
+      "label": "of the court's ladies",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "huaian",
+      "to": "guodong",
+      "type": "family",
+      "label": "of the Yu house",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hanyan",
+      "to": "prince",
+      "type": "work",
+      "label": "the court",
+      "short": "court",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yanfei",
+      "to": "prince",
+      "type": "work",
+      "label": "the court",
+      "short": "court",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "zhaoling",
+      "tingyun",
+      "yake",
+      "jingxiu",
+      "guodong",
+      "madameyu",
+      "ladyzuo",
+      "junjie",
+      "liansheng",
+      "moyi",
+      "mozhan",
+      "wangyi",
+      "asen",
+      "zhengsan",
+      "limao",
+      "fifthmadam",
+      "fifthmaster",
+      "dahu",
+      "tingzhuo",
+      "shenshi",
+      "chengxin",
+      "zhengsanniang",
+      "biaozi",
+      "fankun",
+      "yucheng",
+      "yuwei",
+      "nannyli",
+      "wuxiaojie",
+      "yuanbao",
+      "huaian"
+    ],
+    "blocks": {
+      "The Fu family": [
+        0,
+        0
+      ],
+      "The Yu family": [
+        2,
+        0
+      ],
+      "Zhao Ling's people": [
+        0,
+        2
+      ],
+      "The Northwest army": [
+        2,
+        2
+      ],
+      "The court": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "zhaoling",
+      "tingyun"
+    ]
+  }
+}

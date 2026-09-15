@@ -1,0 +1,782 @@
+{
+  "version": 1,
+  "mdlSlug": "779368-mo-li",
+  "title": "The First Jasmine",
+  "native": "莫离",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (77 roles + guests, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia (no article; ties inferred beyond the brackets)"
+  ],
+  "main": [
+    "yeli",
+    "xiuyao"
+  ],
+  "people": [
+    {
+      "id": "yeli",
+      "name": "Ye Li",
+      "actor": "Bai Lu",
+      "image": "https://i.mydramalist.com/b3X2pL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Meng Zhi Xu",
+          "image": "https://i.mydramalist.com/yW85n4_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Eldest daughter of the Yes; a descendant of Lishan, married to a crippled prince, seeking revenge for her clan"
+    },
+    {
+      "id": "xiuyao",
+      "name": "Mo Xiu Yao / Prince Ding",
+      "actor": "Ryan Cheng",
+      "image": "https://i.mydramalist.com/yWDn53_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zhou Yi Ge",
+          "image": "https://i.mydramalist.com/l01bLJ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The 'disabled' prince — hiding a revenge plan of his own"
+    },
+    {
+      "id": "jingli",
+      "name": "Mo Jing Li / Prince Li",
+      "actor": "Cai Zheng Jie",
+      "image": "https://i.mydramalist.com/Bd3ogb_5m.jpg",
+      "group": "Prince Li's side",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Zohn Xu",
+          "image": "https://i.mydramalist.com/e4e6K_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Plots the throne"
+    },
+    {
+      "id": "yeying",
+      "name": "Ye Ying",
+      "actor": "Yang Shu Yi",
+      "image": "https://i.mydramalist.com/81bJBd_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "Married the same day, to Prince Li"
+    },
+    {
+      "id": "qingshuang",
+      "name": "Qing Shuang",
+      "actor": "Feng Xue Ya",
+      "image": "https://i.mydramalist.com/NdK1ey_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true,
+      "note": "Ye Li's maid"
+    },
+    {
+      "id": "xinger",
+      "name": "Xing Er",
+      "actor": "Zhang Xi Wei",
+      "image": "https://i.mydramalist.com/pd4Jx8_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true,
+      "note": "Ye Li's maid"
+    },
+    {
+      "id": "mingxi",
+      "name": "Han Ming Xi",
+      "actor": "Lin Mu Ran",
+      "image": "https://i.mydramalist.com/g0dZLd_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "mingyue",
+      "name": "Han Ming Yue",
+      "actor": "Hei Ze",
+      "image": "https://i.mydramalist.com/ABV0BL_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    },
+    {
+      "id": "guojin",
+      "name": "Guo Jin / Empress Dowager",
+      "actor": "Dong Jie",
+      "image": "https://i.mydramalist.com/nOzbm8_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "qinzheng",
+      "name": "Qin Zheng / Consort Dowager",
+      "actor": "Zhang Yue",
+      "image": "https://i.mydramalist.com/JB7z7y_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "yanqi",
+      "name": "Mo Yan Qi / the Emperor",
+      "actor": "Xu Wai Luo",
+      "image": "https://i.mydramalist.com/YYWBpo_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "feibai",
+      "name": "Li Fei Bai",
+      "actor": "Zhang Shu Lun",
+      "image": "https://i.mydramalist.com/1ww2Xd_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true
+    },
+    {
+      "id": "yusheng",
+      "name": "Yu Sheng",
+      "actor": "Chen Xi",
+      "image": "https://i.mydramalist.com/2wkNXw_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true
+    },
+    {
+      "id": "wenshen",
+      "name": "Ye Wen Shen",
+      "actor": "Li Mu Feng",
+      "image": "https://i.mydramalist.com/YYZbAo_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "Third branch"
+    },
+    {
+      "id": "wenhua",
+      "name": "Ye Wen Hua",
+      "actor": "Qiu Xin Zhi",
+      "image": "https://i.mydramalist.com/E5QVpm_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "Ye Li's father; second branch"
+    },
+    {
+      "id": "wending",
+      "name": "Ye Wen Ding",
+      "actor": "Hei Zi",
+      "image": "https://i.mydramalist.com/QJPmeg_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "First branch"
+    },
+    {
+      "id": "wanzhou",
+      "name": "Xu Wan Zhou",
+      "actor": "Yao Tong",
+      "image": "https://i.mydramalist.com/zBDqkO_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "Ye Wen Hua's first wife"
+    },
+    {
+      "id": "madamewang",
+      "name": "Madame Wang",
+      "actor": "Karina Zhao",
+      "image": "https://i.mydramalist.com/kVmbdm.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "Second wife of the second branch"
+    },
+    {
+      "id": "yerong",
+      "name": "Ye Rong",
+      "actor": "Wang Jun Rui",
+      "image": "https://i.mydramalist.com/oQ4dqE_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true,
+      "note": "Youngest son, second branch"
+    },
+    {
+      "id": "oldmadame",
+      "name": "Old Madame Ye",
+      "actor": "Li Wen Ling",
+      "image": "https://i.mydramalist.com/81X4Xd_5m.jpg",
+      "group": "The Ye family",
+      "inCast": true
+    },
+    {
+      "id": "zhoujing",
+      "name": "Zhou Jing / Marquis Muyang",
+      "actor": "Yu Jin Wei",
+      "image": "https://i.mydramalist.com/d0WzvK_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Minister of the Court of Judicial Review"
+    },
+    {
+      "id": "zhiyao",
+      "name": "Feng Zhi Yao",
+      "actor": "Xuan Yan",
+      "image": "https://i.mydramalist.com/QoWDv_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Head of the Qingfeng Mingyue Tower"
+    },
+    {
+      "id": "ajin",
+      "name": "A Jin",
+      "actor": "Liu Xing Chen",
+      "image": "https://i.mydramalist.com/O8Qz8Q_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true
+    },
+    {
+      "id": "wuyou",
+      "name": "Mo Wu You",
+      "actor": "Jiang Rui Lin",
+      "image": "https://i.mydramalist.com/2vd3k_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true,
+      "note": "Prince Ding's nephew"
+    },
+    {
+      "id": "xiuwen",
+      "name": "Mo Xiu Wen",
+      "actor": "Liu Qing",
+      "image": "https://i.mydramalist.com/KpeEPq_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true,
+      "note": "The former Prince Ding"
+    },
+    {
+      "id": "wenran",
+      "name": "Wen Ran",
+      "actor": "Wen Yu",
+      "image": "https://i.mydramalist.com/48zLr_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true,
+      "note": "Prince Ding's sister-in-law"
+    },
+    {
+      "id": "qingyun",
+      "name": "Xu Qing Yun",
+      "actor": "Hou Chang Rong",
+      "image": "https://i.mydramalist.com/zB3WZy_5m.jpg",
+      "group": "Lishan",
+      "inCast": true,
+      "note": "Headmaster of Lishan Academy"
+    },
+    {
+      "id": "zuidie",
+      "name": "Su Zui Die",
+      "actor": "Sun Xue Ning",
+      "image": "https://i.mydramalist.com/l0bV3L_5m.jpg",
+      "group": "Prince Ding's household",
+      "inCast": true,
+      "note": "Xiu Yao's former betrothed"
+    },
+    {
+      "id": "murong",
+      "name": "Murong Shen",
+      "actor": "Wang Shuo",
+      "image": "https://i.mydramalist.com/YYZrAB_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Chief Imperial Secretary"
+    },
+    {
+      "id": "changfu",
+      "name": "Lu Chang Fu",
+      "actor": "Li Hong Quan",
+      "image": "https://i.mydramalist.com/mO4x4Q_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "General of the Imperial Guard"
+    },
+    {
+      "id": "lingyun",
+      "name": "Princess Ling Yun",
+      "actor": "Li Mu Yun",
+      "image": "https://i.mydramalist.com/Lw5BQg_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "dukehua",
+      "name": "Duke Hua",
+      "actor": "Yu Yang",
+      "image": "https://i.mydramalist.com/O8LjlQ_5m.jpg",
+      "group": "The court",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yeli",
+      "to": "xiuyao",
+      "type": "romance",
+      "label": "married to the crippled prince — he suspects her, she hides her revenge; allies, then more",
+      "short": "wife, ally",
+      "evidence": "Eldest daughter Ye Li marries the disabled Prince Mo Xiu Yao [...] Suspected by her husband, who also hides a revenge plan, the couple gradually become allies",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeying",
+      "to": "jingli",
+      "type": "romance",
+      "label": "married the same day",
+      "short": "wife",
+      "evidence": "her sister Ye Ying weds Prince Mo Jing Li the same day",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeying",
+      "to": "yeli",
+      "type": "family",
+      "label": "half-sister, second branch",
+      "short": "half-sister",
+      "evidence": "[Ye Li's half-sister; second branch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jingli",
+      "to": "xiuyao",
+      "type": "rivalry",
+      "label": "brothers; Jing Li plots the throne — Ye Li and Xiu Yao bring him down",
+      "short": "rival brother",
+      "evidence": "Prince Jing Li plots to seize the throne. In the end, Ye Li and Mo Xiu Yao join forces to defeat their enemies",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeli",
+      "to": "qingyun",
+      "type": "bond",
+      "label": "a descendant of Lishan — the clan wronged; the academy's headmaster",
+      "short": "Lishan",
+      "evidence": "A descendant of Lishan, Ye Li secretly seeks revenge on those who wronged her clan / [Lishan Academy headmaster]",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wenhua",
+      "to": "yeli",
+      "type": "family",
+      "label": "father; second branch",
+      "short": "father",
+      "evidence": "[Ye Li's father; second branch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wanzhou",
+      "to": "wenhua",
+      "type": "romance",
+      "label": "first wife",
+      "short": "first wife",
+      "evidence": "[Ye Wen Hua's first wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wanzhou",
+      "to": "yeli",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "madamewang",
+      "to": "wenhua",
+      "type": "romance",
+      "label": "second wife",
+      "short": "second wife",
+      "evidence": "[Second wife, Ye second branch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "madamewang",
+      "to": "yeying",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yerong",
+      "to": "yeli",
+      "type": "family",
+      "label": "youngest brother, second branch",
+      "short": "brother",
+      "evidence": "[Youngest son; second branch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wending",
+      "to": "wenhua",
+      "type": "family",
+      "label": "first branch — the eldest brother",
+      "short": "brother",
+      "evidence": "[First branch] / [Ye Li's father; second branch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wenshen",
+      "to": "wenhua",
+      "type": "family",
+      "label": "third branch",
+      "short": "brother",
+      "evidence": "[Third branch]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "oldmadame",
+      "to": "wenhua",
+      "type": "family",
+      "label": "the matriarch",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "qingshuang",
+      "to": "yeli",
+      "type": "work",
+      "label": "maid",
+      "short": "maid",
+      "evidence": "[Ye Li's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xinger",
+      "to": "yeli",
+      "type": "work",
+      "label": "maid",
+      "short": "maid",
+      "evidence": "[Ye Li's maidservant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiuwen",
+      "to": "xiuyao",
+      "type": "family",
+      "label": "the former Prince Ding — his elder brother",
+      "short": "brother",
+      "evidence": "[Former Prince Ding]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wenran",
+      "to": "xiuyao",
+      "type": "family",
+      "label": "sister-in-law",
+      "short": "sister-in-law",
+      "evidence": "[Prince Ding's sister-in-law]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wuyou",
+      "to": "xiuyao",
+      "type": "family",
+      "label": "nephew",
+      "short": "nephew",
+      "evidence": "[Prince Ding's nephew]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "zuidie",
+      "to": "xiuyao",
+      "type": "romance",
+      "label": "his former betrothed",
+      "short": "former betrothed",
+      "evidence": "[Xiu Yao's former betrothed]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "feibai",
+      "to": "xiuyao",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yusheng",
+      "to": "xiuyao",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ajin",
+      "to": "xiuyao",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "guojin",
+      "to": "yanqi",
+      "type": "family",
+      "label": "the Empress Dowager, over the emperor",
+      "short": "dowager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yanqi",
+      "to": "xiuyao",
+      "type": "family",
+      "label": "the emperor; of the imperial house",
+      "short": "the emperor",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "qinzheng",
+      "to": "jingli",
+      "type": "family",
+      "label": "the consort dowager, on Jing Li's side",
+      "short": "dowager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mingxi",
+      "to": "yeli",
+      "type": "friend",
+      "label": "the Han siblings",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "mingyue",
+      "to": "mingxi",
+      "type": "family",
+      "label": "siblings",
+      "short": "sibling",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "zhoujing",
+      "to": "yeli",
+      "type": "work",
+      "label": "the judicial minister",
+      "short": "minister",
+      "evidence": "[Court of Judicial Review minster]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhiyao",
+      "to": "yeli",
+      "type": "work",
+      "label": "head of the Qingfeng Mingyue Tower — the intelligence house",
+      "short": "the tower",
+      "evidence": "[Qingfeng Mingyue Tower head]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "murong",
+      "to": "jingli",
+      "type": "work",
+      "label": "the court, on Jing Li's side",
+      "short": "his side",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "changfu",
+      "to": "yanqi",
+      "type": "work",
+      "label": "general of the Imperial Guard",
+      "short": "the guard",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "lingyun",
+      "to": "yanqi",
+      "type": "family",
+      "label": "princess",
+      "short": "princess",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dukehua",
+      "to": "yanqi",
+      "type": "work",
+      "label": "the court",
+      "short": "court",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeli",
+      "xiuyao",
+      "jingli",
+      "yeying",
+      "qingshuang",
+      "xinger",
+      "guojin",
+      "qinzheng",
+      "yanqi",
+      "feibai",
+      "yusheng",
+      "wenshen",
+      "wenhua",
+      "wending",
+      "wanzhou",
+      "madamewang",
+      "yerong",
+      "oldmadame",
+      "ajin",
+      "wuyou",
+      "xiuwen",
+      "wenran",
+      "qingyun",
+      "zuidie",
+      "lingyun"
+    ],
+    "blocks": {
+      "The Ye family": [
+        0,
+        0
+      ],
+      "Prince Ding's household": [
+        2,
+        0
+      ],
+      "Prince Li's side": [
+        2,
+        2
+      ],
+      "The palace": [
+        1,
+        2
+      ],
+      "Lishan": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "yeli",
+      "xiuyao"
+    ]
+  }
+}

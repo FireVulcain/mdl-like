@@ -1,0 +1,595 @@
+{
+  "version": 1,
+  "mdlSlug": "760547-jiang-luo-wo-xin-shang",
+  "title": "Blossom through the Cloud",
+  "native": "飞到我心上",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (24 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 角色"
+  ],
+  "main": [
+    "sixian",
+    "mingyu"
+  ],
+  "people": [
+    {
+      "id": "sixian",
+      "name": "Ruan Si Xian",
+      "actor": "Liu Xie Ning",
+      "image": "https://i.mydramalist.com/1n7Kd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Flight attendant turned, three years later, Hengshi's best pilot"
+    },
+    {
+      "id": "mingyu",
+      "name": "Fu Ming Yu",
+      "actor": "Miles Wei",
+      "image": "https://i.mydramalist.com/zBDywy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Hengshi's vice-president; cold outside, decisive"
+    },
+    {
+      "id": "yanan",
+      "name": "Yan An",
+      "actor": "Fei Qi Ming",
+      "image": "https://i.mydramalist.com/mOKyzb_5m.jpg",
+      "group": "Yan An & Zheng You An",
+      "inCast": true,
+      "note": "Bo'ao Airlines' VP; rich, loyal, easy-going"
+    },
+    {
+      "id": "youan",
+      "name": "Zheng You An",
+      "actor": "Zhao Qing",
+      "image": "https://i.mydramalist.com/3oY8r4_5m.jpg",
+      "group": "Yan An & Zheng You An",
+      "inCast": true,
+      "note": "Photographer, back from France"
+    },
+    {
+      "id": "baiyang",
+      "name": "Bai Yang",
+      "actor": "Zhao Xuan",
+      "image": "https://i.mydramalist.com/demJd_5m.jpg",
+      "group": "Ming Yu's people",
+      "inCast": true,
+      "note": "Assistant"
+    },
+    {
+      "id": "yueyang",
+      "name": "Yue Yang",
+      "actor": "Jin Ze Hao",
+      "image": "https://i.mydramalist.com/YYZw1Q_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Captain"
+    },
+    {
+      "id": "ziyue",
+      "name": "Jiang Zi Yue",
+      "actor": "Ma Yu Jie",
+      "image": "https://i.mydramalist.com/RBYl3o_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Flight attendant"
+    },
+    {
+      "id": "xiaozhen",
+      "name": "Si Xiao Zhen",
+      "actor": "Ji Mei Han",
+      "image": "https://i.mydramalist.com/jQy81v_5m.jpg",
+      "group": "Si Xian's people",
+      "inCast": true,
+      "note": "Flight attendant; best friend"
+    },
+    {
+      "id": "bianxuan",
+      "name": "Bian Xuan",
+      "actor": "Ma Meng Wei",
+      "image": "https://i.mydramalist.com/E5xX0p_5m.jpg",
+      "group": "Si Xian's people",
+      "inCast": true,
+      "note": "Best friend, frank and bright"
+    },
+    {
+      "id": "fanlei",
+      "name": "Fan Lei",
+      "actor": "Xu Fan Xi",
+      "image": "https://i.mydramalist.com/zvOomP_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Woman pilot; Si Xian's mentor"
+    },
+    {
+      "id": "dongxian",
+      "name": "Dong Xian",
+      "actor": "Fu Miao",
+      "image": "https://i.mydramalist.com/VX32LL_5m.jpg",
+      "group": "Si Xian's people",
+      "inCast": true
+    },
+    {
+      "id": "tongle",
+      "name": "Tong Le",
+      "actor": "Huang Yi Wei",
+      "image": "https://i.mydramalist.com/07Vnk_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true
+    },
+    {
+      "id": "sinian",
+      "name": "Fu Si Nian",
+      "actor": "Gao Shu Guang",
+      "image": "https://i.mydramalist.com/JB0rjY_5m.jpg",
+      "group": "Ming Yu's people",
+      "inCast": true,
+      "note": "Chairman Fu"
+    },
+    {
+      "id": "taichu",
+      "name": "Zheng Tai Chu",
+      "actor": "Li Chuan Ying",
+      "image": "https://i.mydramalist.com/Bd7B26_5m.jpg",
+      "group": "Yan An & Zheng You An",
+      "inCast": true
+    },
+    {
+      "id": "lanxiang",
+      "name": "He Lan Xiang",
+      "actor": "Tian Ling",
+      "image": "https://i.mydramalist.com/jY8gO_5m.jpg",
+      "group": "Ming Yu's people",
+      "inCast": true
+    },
+    {
+      "id": "nitong",
+      "name": "Ni Tong",
+      "actor": "Hu Yi Yan",
+      "image": "https://i.mydramalist.com/73EmRr_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Flight attendant"
+    },
+    {
+      "id": "zuona",
+      "name": "Zuo Na",
+      "actor": "Wu Mo Tong",
+      "image": "https://i.mydramalist.com/VB0K6m_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Flight attendant"
+    },
+    {
+      "id": "yangmei",
+      "name": "Yang Mei",
+      "actor": "Xu Jing Ya",
+      "image": "https://i.mydramalist.com/DkWYQ2_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Flight attendant"
+    },
+    {
+      "id": "jingyu",
+      "name": "Chen Jing Yu",
+      "actor": "Zhao Yi Jia",
+      "image": "https://i.mydramalist.com/0w8EoO_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Flight attendant"
+    },
+    {
+      "id": "luhua",
+      "name": "Lu Hua",
+      "actor": "Qiao Lin Kai",
+      "image": "https://i.mydramalist.com/5vW1lA_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Pilot"
+    },
+    {
+      "id": "qiaoqiao",
+      "name": "Qiao Qiao",
+      "actor": "Lin Meng Qi",
+      "image": "https://i.mydramalist.com/rydkE_5m.jpg",
+      "group": "Ming Yu's people",
+      "inCast": true,
+      "note": "Secretary"
+    },
+    {
+      "id": "lekang",
+      "name": "Wang Le Kang",
+      "actor": "Cai Rong",
+      "image": "https://i.mydramalist.com/dj6Ez_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Director"
+    },
+    {
+      "id": "zhudong",
+      "name": "Zhu Dong",
+      "actor": "Liu Dong Qin",
+      "image": "https://i.mydramalist.com/pdOlVb_5m.jpg",
+      "group": "Hengshi Airlines",
+      "inCast": true,
+      "note": "Engineer"
+    },
+    {
+      "id": "kang",
+      "name": "Instructor Kang",
+      "actor": "Qiao Xin Feng",
+      "image": "https://i.mydramalist.com/mO1w33_5m.jpg",
+      "group": "Si Xian's people",
+      "inCast": true,
+      "note": "At the flight academy"
+    }
+  ],
+  "links": [
+    {
+      "from": "sixian",
+      "to": "mingyu",
+      "type": "rivalry",
+      "label": "the reform that cost her the pilot slot; the misunderstanding that made her quit",
+      "short": "at odds",
+      "evidence": "Ruan Si Xian decided to find CEO Fu Mingyu but a misunderstanding occurred [...] in a fit of anger, she resigned / 因立场不同与阮思娴产生隔阂",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mingyu",
+      "to": "sixian",
+      "type": "romance",
+      "label": "drops his pride once he sees what she can do; recruits her back himself",
+      "short": "recruits her back",
+      "evidence": "在发现她的实力后放下傲慢，以优厚条件亲自将其招募回",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yanan",
+      "to": "mingyu",
+      "type": "friend",
+      "label": "good friend; VP of the rival airline",
+      "short": "good friend",
+      "evidence": "傅明予的好朋友",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yanan",
+      "to": "youan",
+      "type": "romance",
+      "label": "married",
+      "short": "married",
+      "evidence": "與鄭幼安結婚",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "youan",
+      "to": "sixian",
+      "type": "family",
+      "label": "half-sister, same mother",
+      "short": "half-sister",
+      "evidence": "阮思嫻同母異父的妹妹",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongxian",
+      "to": "sixian",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "阮思嫻和鄭幼安共同的母親",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongxian",
+      "to": "youan",
+      "type": "family",
+      "label": "mother — MDL calls her stepmother",
+      "short": "mother",
+      "evidence": "[You An's stepmother] / 阮思嫻和鄭幼安共同的母親",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taichu",
+      "to": "youan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[You An's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "baiyang",
+      "to": "mingyu",
+      "type": "work",
+      "label": "assistant",
+      "short": "assistant",
+      "evidence": "[Ming Yu's assistant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "qiaoqiao",
+      "to": "mingyu",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Ming Yu's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sinian",
+      "to": "mingyu",
+      "type": "family",
+      "label": "father; chairman",
+      "short": "father",
+      "evidence": "[Ming Yu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lanxiang",
+      "to": "mingyu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ming Yu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "fanlei",
+      "to": "sixian",
+      "type": "work",
+      "label": "her mentor, a woman pilot",
+      "short": "mentor",
+      "evidence": "范蕾 - 恒世航空女飛行員。阮思嫻的師父",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yueyang",
+      "to": "sixian",
+      "type": "work",
+      "label": "captain",
+      "short": "captain",
+      "evidence": "[Hengshi Air captain]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "xiaozhen",
+      "to": "sixian",
+      "type": "friend",
+      "label": "best friend, flight attendant",
+      "short": "best friend",
+      "evidence": "[Si Xian's friend] / 阮思嫻的好閨蜜",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bianxuan",
+      "to": "sixian",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "[Si Xian's friend] / 阮思嫻的好閨蜜",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zhudong",
+      "to": "mingyu",
+      "type": "friend",
+      "label": "friend of Ming Yu and Yan An; engineer",
+      "short": "friend",
+      "evidence": "傅明予跟宴安的好友。恒世航空工程師",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ziyue",
+      "to": "sixian",
+      "type": "work",
+      "label": "flight attendants together",
+      "short": "colleague",
+      "evidence": "[Hengshi Air flight attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nitong",
+      "to": "sixian",
+      "type": "work",
+      "label": "flight attendant",
+      "short": "colleague",
+      "evidence": "[Hengshi Air flight attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "zuona",
+      "to": "sixian",
+      "type": "work",
+      "label": "flight attendant",
+      "short": "colleague",
+      "evidence": "[Hengshi Air flight attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yangmei",
+      "to": "sixian",
+      "type": "work",
+      "label": "flight attendant",
+      "short": "colleague",
+      "evidence": "[Hengshi Air flight attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jingyu",
+      "to": "sixian",
+      "type": "work",
+      "label": "flight attendant",
+      "short": "colleague",
+      "evidence": "[Hengshi Air flight attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "luhua",
+      "to": "sixian",
+      "type": "work",
+      "label": "fellow pilot",
+      "short": "pilot",
+      "evidence": "[Hengshi Air pilot]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "lekang",
+      "to": "mingyu",
+      "type": "work",
+      "label": "director",
+      "short": "director",
+      "evidence": "[Hengshi Air director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kang",
+      "to": "sixian",
+      "type": "work",
+      "label": "her instructor at the academy",
+      "short": "instructor",
+      "evidence": "[Instructor Kang] / entered a flight academy to study",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "tongle",
+      "to": "sixian",
+      "type": "work",
+      "label": "the airline",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "sixian",
+      "mingyu",
+      "yanan",
+      "youan",
+      "baiyang",
+      "yueyang",
+      "ziyue",
+      "xiaozhen",
+      "bianxuan",
+      "fanlei",
+      "dongxian",
+      "tongle",
+      "sinian",
+      "taichu",
+      "lanxiang",
+      "nitong",
+      "zuona",
+      "yangmei",
+      "jingyu",
+      "luhua",
+      "qiaoqiao",
+      "lekang",
+      "zhudong",
+      "kang"
+    ],
+    "blocks": {
+      "Hengshi Airlines": [
+        0,
+        0
+      ],
+      "Si Xian's people": [
+        2,
+        0
+      ],
+      "Ming Yu's people": [
+        0,
+        2
+      ],
+      "Yan An & Zheng You An": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "sixian",
+      "mingyu"
+    ]
+  }
+}
