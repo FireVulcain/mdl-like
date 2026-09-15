@@ -3,6 +3,7 @@ import Image from "next/image";
 import { User } from "lucide-react";
 import { portrait, type CharacterMapData } from "@/lib/character-map";
 import { closestRelations } from "@/lib/character-map-store";
+import type { ReactNode } from "react";
 
 /**
  * The "Relationships" section of a media page: who is who around the leads,
@@ -16,10 +17,13 @@ export function CharacterMapSection({
     map,
     href,
     completed = false,
+    admin,
 }: {
     map: CharacterMapData;
     href: string;
     completed?: boolean;
+    /** the admin's generate button, rendered beside the link when there is one */
+    admin?: ReactNode;
 }) {
     // Reveals only for a show the reader has finished — a twist in this row is read before the show is
     const closest = closestRelations(map, !completed);
@@ -33,9 +37,12 @@ export function CharacterMapSection({
                     <h2 className="font-display text-lg font-semibold text-fg">Relationships</h2>
                     <span className="text-sm text-fg-muted">({map.people.length})</span>
                 </div>
-                <Link href={href} className="text-sm font-medium text-sky-400 transition-colors hover:text-sky-300">
-                    Open the map →
-                </Link>
+                <div className="flex items-center gap-4">
+                    {admin}
+                    <Link href={href} className="text-sm font-medium text-sky-400 transition-colors hover:text-sky-300">
+                        Open the map →
+                    </Link>
+                </div>
             </div>
 
             {/* One chip per person: portrait, name, and what they are to which lead.

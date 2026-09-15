@@ -41,6 +41,7 @@ import { getCurrentUserId } from "@/lib/session";
 import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
 import { MdlSeasonLinkButton } from "@/components/media/mdl-season-link-button";
 import { CharacterMapSection } from "@/components/media/character-map-section";
+import { CharacterMapAdmin, CharacterMapEmptyAdmin } from "@/components/media/character-map-admin";
 import { getCharacterMap } from "@/lib/character-map-store";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
 import { MetaLinkList, GENRE_LIST, TAG_LIST } from "@/components/media/meta-link-list";
@@ -452,10 +453,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         </div>
 
-                        {characterMap && (
+                        {characterMap ? (
                             <div id="section-relationships" className="border-t border-line pt-8">
-                                <CharacterMapSection map={characterMap} href={`/media/${media.id}/relationships`} completed={userMedia?.status === "Completed"} />
+                                <CharacterMapSection
+                                    map={characterMap}
+                                    href={`/media/${media.id}/relationships`}
+                                    completed={userMedia?.status === "Completed"}
+                                    admin={<CharacterMapAdmin mdlSlug={media.externalId} hasChart />}
+                                />
                             </div>
+                        ) : (
+                            <CharacterMapEmptyAdmin mdlSlug={media.externalId} />
                         )}
 
                         {media.type === "TV" && (
@@ -613,9 +621,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     // The chart belongs to the MDL entry, so it follows the season the way
     // the rating and the aired range do: the season link's slug for S2+, the
     // show-level slug for S1. One indexed read; null means no section.
-    const characterMap = await getCharacterMap(
-        existingSeasonLink?.mdlSlug ?? (selectedSeason <= 1 && cached?.mdlSlug && !cached.mdlDisabled ? cached.mdlSlug : null),
-    );
+    const chartSlug = existingSeasonLink?.mdlSlug ?? (selectedSeason <= 1 && cached?.mdlSlug && !cached.mdlDisabled ? cached.mdlSlug : null);
+    const characterMap = await getCharacterMap(chartSlug);
     const showSeasonLinkButton = isMdlRelevant && selectedSeason > 1 && !!cached?.mdlSlug && !existingSeasonLink;
     // The season's own range when there is one — a finished season 1 says nothing
     // about a season 2 still going out.
@@ -1141,14 +1148,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         )}
                     </div>
 
-                    {characterMap && (
+                    {characterMap ? (
                         <div id="section-relationships" className="border-t border-line pt-8">
                             <CharacterMapSection
                                 map={characterMap}
                                 href={`/media/${media.id}/relationships${selectedSeason > 1 ? `?season=${selectedSeason}` : ""}`}
                                 completed={userMedia?.status === "Completed"}
+                                admin={<CharacterMapAdmin mdlSlug={chartSlug} hasChart />}
                             />
                         </div>
+                    ) : (
+                        <CharacterMapEmptyAdmin mdlSlug={chartSlug} />
                     )}
 
                     {/* Episode Guide */}

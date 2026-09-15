@@ -411,3 +411,29 @@ model CachedEpisode {
   @@unique([mediaId, seasonNumber, episodeNumber])
   @@index([mediaId])
 }
+
+// One run of the chart generator for one MDL entry — started from the media
+// page by the admin, run inside the server process. Progress is written here
+// step by step, and the page polls the row: `step` is the line under the
+// button ("Reading ko.wikipedia…"), `status` is where the run is. The usage
+// fields are what the run cost, kept so the button can say so next time.
+model CharacterMapJob {
+  id           String    @id @default(cuid())
+  mdlSlug      String
+  status       String    // queued | gathering | generating | validating | done | failed
+  step         String    @default("")
+  error        String?
+  model        String?
+  inputTokens  Int?
+  outputTokens Int?
+  cacheRead    Int?
+  peopleCount  Int?
+  linkCount    Int?
+  warnings     Json?
+  startedBy    String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  finishedAt   DateTime?
+
+  @@index([mdlSlug, createdAt])
+}
