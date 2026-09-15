@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/O8JKLk_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Planning team leader at Yongseong Department Store; humiliated at 18 by 'Black Dragon'"
+      "note": "Planning team leader at Yongseong Department Store; humiliated at 18 by 'Black Dragon'",
+      "still": "https://asianwiki.com/images/0/0c/My_Dearest_Nemesis-Mun_Ka-Young.jpeg"
     },
     {
       "id": "juyeon",
@@ -35,10 +36,12 @@
         {
           "name": "Moon Woo Jin",
           "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/f/fe/My_Dearest_Nemesis-Moon_Woo-Jin.jpg"
         }
       ],
-      "note": "New head of strategic planning — the 'Black Dragon' of sixteen years ago"
+      "note": "New head of strategic planning — the 'Black Dragon' of sixteen years ago",
+      "still": "https://asianwiki.com/images/0/02/My_Dearest_Nemesis-Choi_Hyun_Wook.jpeg"
     },
     {
       "id": "hajin",
@@ -47,7 +50,8 @@
       "image": "https://i.mydramalist.com/KpEXeX_5m.jpg",
       "group": "Around them",
       "inCast": true,
-      "note": "Owner of the bar 'Sullo'"
+      "note": "Owner of the bar 'Sullo'",
+      "still": "https://asianwiki.com/images/5/5f/My_Dearest_Nemesis-Lim_Se_Mi.jpeg"
     },
     {
       "id": "sinwon",
@@ -56,7 +60,8 @@
       "image": "https://i.mydramalist.com/g0bJzq_5m.jpg",
       "group": "Yongseong Group",
       "inCast": true,
-      "note": "Head of the design office"
+      "note": "Head of the design office",
+      "still": "https://asianwiki.com/images/9/95/My_Dearest_Nemesis-Kwak_Si_Yang.jpeg"
     },
     {
       "id": "hyoseon",
@@ -65,7 +70,8 @@
       "image": "https://i.mydramalist.com/B1PB6_5m.jpg",
       "group": "Yongseong Group",
       "inCast": true,
-      "note": "Chairwoman of Yongseong Group"
+      "note": "Chairwoman of Yongseong Group",
+      "still": "https://asianwiki.com/images/9/9a/My_Dearest_Nemesis-Ban_Hyo_Jung.jpeg"
     },
     {
       "id": "ingyeong",
@@ -74,7 +80,8 @@
       "image": "https://i.mydramalist.com/B16pz_5m.jpg",
       "group": "Yongseong Group",
       "inCast": true,
-      "note": "Chief secretary"
+      "note": "Chief secretary",
+      "still": "https://asianwiki.com/images/3/39/My_Dearest_Nemesis-Kim_Young_Ah1.jpg"
     },
     {
       "id": "hyeju",
@@ -83,7 +90,8 @@
       "image": "https://i.mydramalist.com/R4LPr_5m.jpg",
       "group": "Yongseong Group",
       "inCast": true,
-      "note": "Group planning team leader"
+      "note": "Group planning team leader",
+      "still": "https://asianwiki.com/images/f/fb/My_Dearest_Nemesis-Yoon_Young-Min.jpg"
     },
     {
       "id": "junsu",
@@ -92,7 +100,8 @@
       "image": "https://i.mydramalist.com/we6Yg_5m.jpg",
       "group": "Planning team",
       "inCast": true,
-      "note": "Assistant manager"
+      "note": "Assistant manager",
+      "still": "https://asianwiki.com/images/a/a2/My_Dearest_Nemesis-Kim_Woo-Kyum1.jpg"
     },
     {
       "id": "nana",
@@ -100,7 +109,8 @@
       "actor": "Lim Young Ju",
       "image": "https://i.mydramalist.com/eYgK8Y_5m.jpg",
       "group": "Planning team",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d5/My_Dearest_Nemesis-Lim_Young-Joo01.jpg"
     },
     {
       "id": "seokhui",
@@ -109,7 +119,8 @@
       "image": "https://i.mydramalist.com/ABQRjZ_5m.jpg",
       "group": "Planning team",
       "inCast": true,
-      "note": "Intern; tactless, hard to dislike"
+      "note": "Intern; tactless, hard to dislike",
+      "still": "https://asianwiki.com/images/2/26/My_Dearest_Nemesis-Sung_Seung_Ha.jpeg"
     },
     {
       "id": "wonseop",
@@ -118,7 +129,8 @@
       "image": "https://i.mydramalist.com/RDd46_5m.jpg",
       "group": "Su Jeong's family",
       "inCast": true,
-      "note": "Hardware-shop owner"
+      "note": "Hardware-shop owner",
+      "still": "https://asianwiki.com/images/3/38/My_Dearest_Nemesis-Ko_Chang_Seok.jpeg"
     },
     {
       "id": "subin",
@@ -126,7 +138,8 @@
       "actor": "Son Sang Yeon",
       "image": "https://i.mydramalist.com/VXxRRx_5m.jpg",
       "group": "Su Jeong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e2/My_Dearest_Nemesis-Son_Sang_Yeon.jpeg"
     }
   ],
   "links": [

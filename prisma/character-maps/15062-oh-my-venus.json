@@ -29,7 +29,8 @@
           "era": "young"
         }
       ],
-      "note": "Hollywood's faceless star trainer; back in Korea after a scandal"
+      "note": "Hollywood's faceless star trainer; back in Korea after a scandal",
+      "still": "https://asianwiki.com/images/8/8a/Oh_My_Venus-So_Ji-Sub.jpg"
     },
     {
       "id": "jueun",
@@ -38,7 +39,8 @@
       "image": "https://i.mydramalist.com/g0Nb5W_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "The 'Daegu Venus' of her youth; a lawyer, out of shape, just dumped"
+      "note": "The 'Daegu Venus' of her youth; a lawyer, out of shape, just dumped",
+      "still": "https://asianwiki.com/images/5/57/Oh_My_Venus-Shin_Min-A.jpg"
     },
     {
       "id": "usik",
@@ -47,7 +49,8 @@
       "image": "https://i.mydramalist.com/Z8gqR8_5m.jpg",
       "group": "Ju Eun's people",
       "inCast": true,
-      "note": "Former swimming star"
+      "note": "Former swimming star",
+      "still": "https://asianwiki.com/images/9/92/Oh_My_Venus-Jung_Gyu-Woon.jpg"
     },
     {
       "id": "sujin",
@@ -56,7 +59,8 @@
       "image": "https://i.mydramalist.com/EyBdp_5m.jpg",
       "group": "Ju Eun's people",
       "inCast": true,
-      "note": "Top of her law class, youngest to pass the bar"
+      "note": "Top of her law class, youngest to pass the bar",
+      "still": "https://asianwiki.com/images/f/fc/Oh_My_Venus-Yu_In-Young.jpg"
     },
     {
       "id": "junseong",
@@ -65,7 +69,8 @@
       "image": "https://i.mydramalist.com/nOZvrQ_5m.jpg",
       "group": "Yeong Ho's crew",
       "inCast": true,
-      "note": "UFC fighter"
+      "note": "UFC fighter",
+      "still": "https://asianwiki.com/images/c/c8/Oh_My_Venus-Sung_Hoon.jpg"
     },
     {
       "id": "jiung",
@@ -74,7 +79,8 @@
       "image": "https://i.mydramalist.com/ABWQQg_5m.jpg",
       "group": "Yeong Ho's crew",
       "inCast": true,
-      "note": "Harvard graduate; genius and child"
+      "note": "Harvard graduate; genius and child",
+      "still": "https://asianwiki.com/images/c/c8/Oh_My_Venus-Henry.jpg"
     },
     {
       "id": "honghim",
@@ -83,7 +89,8 @@
       "image": "https://i.mydramalist.com/B1PB6_5m.jpg",
       "group": "Yeong Ho's family (Gahong)",
       "inCast": true,
-      "note": "Chairwoman of Gahong"
+      "note": "Chairwoman of Gahong",
+      "still": "https://asianwiki.com/images/6/6b/Oh_My_Venus-Ban_Hyo-Jung.jpg"
     },
     {
       "id": "seongcheol",
@@ -92,7 +99,8 @@
       "image": "https://i.mydramalist.com/QlXVv_5m.jpg",
       "group": "Yeong Ho's family (Gahong)",
       "inCast": true,
-      "note": "Gahong's director"
+      "note": "Gahong's director",
+      "still": "https://asianwiki.com/images/b/bb/Oh_My_Venus-Choi_Il-Hwa.jpg"
     },
     {
       "id": "byeonguk",
@@ -101,7 +109,8 @@
       "image": "https://i.mydramalist.com/NdL0rJ_5m.jpg",
       "group": "Yeong Ho's family (Gahong)",
       "inCast": true,
-      "note": "Gahong's secretary"
+      "note": "Gahong's secretary",
+      "still": "https://asianwiki.com/images/9/9f/Oh_My_Venus-Choi_Jin-Ho.jpg"
     },
     {
       "id": "hyeran",
@@ -109,7 +118,8 @@
       "actor": "Jin Kyung",
       "image": "https://i.mydramalist.com/Xe7vJm.jpg",
       "group": "Yeong Ho's family (Gahong)",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/60/Oh_My_Venus-Jin_Kyung.jpg"
     },
     {
       "id": "namcheol",
@@ -117,7 +127,8 @@
       "actor": "Kim Jung Tae",
       "image": "https://i.mydramalist.com/X1bDw_5m.jpg",
       "group": "Yeong Ho's family (Gahong)",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3d/Oh_My_Venus-Kim_Jung-Tae.jpg"
     },
     {
       "id": "yeongjun",
@@ -125,7 +136,8 @@
       "actor": "Lee  Seung Ho",
       "image": "https://i.mydramalist.com/yWYx6m.jpg",
       "group": "Yeong Ho's family (Gahong)",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/dd/Oh_My_Venus-Lee_Seung-Ho.jpg"
     },
     {
       "id": "hyeonu",
@@ -133,7 +145,8 @@
       "actor": "Jo Eun Ji",
       "image": "https://i.mydramalist.com/xgz33m.jpg",
       "group": "Ju Eun's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c3/Oh_My_Venus-Jo_Eun-Ji.jpg"
     },
     {
       "id": "minjun",
@@ -141,7 +154,8 @@
       "actor": "Kwon Soon Joon",
       "image": "https://i.mydramalist.com/Xwj6Om.jpg",
       "group": "Ju Eun's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/0c/Oh_My_Venus-Kwon_Soon-Joon.jpg"
     },
     {
       "id": "ko",
@@ -149,7 +163,8 @@
       "actor": "Song Yoo Ha",
       "image": "https://i.mydramalist.com/w2wygm.jpg",
       "group": "Ju Eun's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f3/Oh_My_Venus-Song_Yoo-Ha.jpg"
     },
     {
       "id": "soonja",
@@ -166,7 +181,8 @@
       "image": "https://i.mydramalist.com/E5Y8EQ_5m.jpg",
       "group": "Yeong Ho's crew",
       "inCast": true,
-      "note": "Celebrity"
+      "note": "Celebrity",
+      "still": "https://asianwiki.com/images/0/0e/Oh_My_Venus-Jung_Hye-Seong.jpg"
     },
     {
       "id": "hyeonjeong",
@@ -175,7 +191,8 @@
       "image": "https://i.mydramalist.com/E578WW_5m.jpg",
       "group": "Ju Eun's people",
       "inCast": true,
-      "note": "Her assistant at the firm"
+      "note": "Her assistant at the firm",
+      "still": "https://asianwiki.com/images/2/2a/Oh_My_Venus-Hong_Yoon-Hwa.jpg"
     },
     {
       "id": "okbun",
@@ -183,7 +200,8 @@
       "actor": "Kwon Ki Sun",
       "image": "https://i.mydramalist.com/Eprezm.jpg",
       "group": "Ju Eun's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/eb/Oh_My_Venus-Kwon_Ki-Seon.jpg"
     },
     {
       "id": "jaehyeok",
@@ -191,7 +209,8 @@
       "actor": "Ahn Ji Hoon",
       "image": "https://i.mydramalist.com/WbjWPm.jpg",
       "group": "Ju Eun's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/aa/Oh_My_Venus-Ahn_Ji-Hoon.jpg"
     }
   ],
   "links": [

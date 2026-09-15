@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/zB1vld_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "36, CEO of JK Power Energy; the village's loud-mouthed heart"
+      "note": "36, CEO of JK Power Energy; the village's loud-mouthed heart",
+      "still": "https://asianwiki.com/images/5/57/Spring_Fever-Ahn_Bo-Hyun1.jpg"
     },
     {
       "id": "bom",
@@ -35,10 +36,12 @@
         {
           "name": "Han Joo Hyun",
           "image": "https://i.mydramalist.com/QZpmQ_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/2/21/Spring_Fever-Han_Joo-Hyun1.jpg"
         }
       ],
-      "note": "32, exchange teacher who fled Seoul for Sinsu"
+      "note": "32, exchange teacher who fled Seoul for Sinsu",
+      "still": "https://asianwiki.com/images/1/1a/Spring_Fever-Lee_Joo_Bin.jpg"
     },
     {
       "id": "ijun",
@@ -47,7 +50,8 @@
       "image": "https://i.mydramalist.com/Xv7Znm.jpg",
       "group": "The Choi family",
       "inCast": true,
-      "note": "36, lawyer"
+      "note": "36, lawyer",
+      "still": "https://asianwiki.com/images/2/2f/Spring_Fever-Cha_Seo_Won.jpg"
     },
     {
       "id": "hangyeol",
@@ -56,7 +60,8 @@
       "image": "https://i.mydramalist.com/O8mzE3_5m.jpg",
       "group": "Jae Gyu's family",
       "inCast": true,
-      "note": "18, Sinsu High"
+      "note": "18, Sinsu High",
+      "still": "https://asianwiki.com/images/7/77/Spring_Fever-Jo_Joon-Young1.jpg"
     },
     {
       "id": "sejin",
@@ -65,7 +70,8 @@
       "image": "https://i.mydramalist.com/1wd6r6_5m.jpg",
       "group": "The Choi family",
       "inCast": true,
-      "note": "18, transfer student"
+      "note": "18, transfer student",
+      "still": "https://asianwiki.com/images/e/e8/Spring_Fever-Lee_Jae-In1.jpg"
     },
     {
       "id": "huiyeon",
@@ -73,7 +79,8 @@
       "actor": "Son Yeo Eun",
       "image": "https://i.mydramalist.com/RBPLbP_5m.jpg",
       "group": "Jae Gyu's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a4/Spring_Fever-Son_Yeo-Eun01.jpeg"
     },
     {
       "id": "nanhui",
@@ -82,7 +89,8 @@
       "image": "https://i.mydramalist.com/QPZ02_5m.jpg",
       "group": "Yun Bom's family",
       "inCast": true,
-      "note": "58, famous actress"
+      "note": "58, famous actress",
+      "still": "https://asianwiki.com/images/5/5f/Spring_Fever-Na_Young-Hee1.jpg"
     },
     {
       "id": "jeonggi",
@@ -91,7 +99,8 @@
       "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
       "group": "Yun Bom's family",
       "inCast": true,
-      "note": "60, celebrity psychology professor"
+      "note": "60, celebrity psychology professor",
+      "still": "https://asianwiki.com/images/2/25/Spring_Fever-Jo_Seung-Yeon.jpeg"
     },
     {
       "id": "changu",
@@ -100,7 +109,8 @@
       "image": "https://i.mydramalist.com/Z1Epkm.jpg",
       "group": "The Choi family",
       "inCast": true,
-      "note": "Governor"
+      "note": "Governor",
+      "still": "https://asianwiki.com/images/2/27/Spring_Fever-Seo_Sang-Won01.jpg"
     },
     {
       "id": "jinhui",
@@ -108,7 +118,8 @@
       "actor": "Kim Sun Hye",
       "image": "https://i.mydramalist.com/r1wXN_5m.jpg",
       "group": "The Choi family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/27/Spring_Fever-Kim_Sun-Hye1.jpg"
     },
     {
       "id": "seongtae",
@@ -117,7 +128,8 @@
       "image": "https://i.mydramalist.com/4lxjd_5m.jpg",
       "group": "The Choi family",
       "inCast": true,
-      "note": "I Jun's office manager"
+      "note": "I Jun's office manager",
+      "still": "https://asianwiki.com/images/8/84/Spring_Fever-Im_Su-Hyung1.jpg"
     },
     {
       "id": "hyesuk",
@@ -126,7 +138,8 @@
       "image": "https://i.mydramalist.com/Xe7vJm.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "50, Korean teacher, homeroom"
+      "note": "50, Korean teacher, homeroom",
+      "still": "https://asianwiki.com/images/a/af/Spring_Fever-Jin_Kyung001.jpg"
     },
     {
       "id": "jinhyeok",
@@ -135,7 +148,8 @@
       "image": "https://i.mydramalist.com/eYlAPe_5m.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "48, PE teacher"
+      "note": "48, PE teacher",
+      "still": "https://asianwiki.com/images/d/d9/Spring_Fever-Bae_Jeong-Nam.jpg"
     },
     {
       "id": "jeongpyo",
@@ -144,7 +158,8 @@
       "image": "https://i.mydramalist.com/BE5AV_5m.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "52, dean of academic affairs; the town's self-styled card shark"
+      "note": "52, dean of academic affairs; the town's self-styled card shark",
+      "still": "https://asianwiki.com/images/3/38/Spring_Fever-Oh_Man-Seok01.jpg"
     },
     {
       "id": "jeonghwan",
@@ -153,7 +168,8 @@
       "image": "https://i.mydramalist.com/vzYQg_5m.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "41, history teacher"
+      "note": "41, history teacher",
+      "still": "https://asianwiki.com/images/d/d1/Spring_Fever-Jung_Young-Ki01.jpg"
     },
     {
       "id": "gwansu",
@@ -162,7 +178,8 @@
       "image": "https://i.mydramalist.com/ZqYOq_5m.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "60, principal"
+      "note": "60, principal",
+      "still": "https://asianwiki.com/images/4/49/Spring_Fever-Kim_Byung-Choon1.jpg"
     },
     {
       "id": "daehan",
@@ -171,7 +188,8 @@
       "image": "https://i.mydramalist.com/5vk2JZ_5m.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "18, 'Korea's eldest son'; fraternal twin of Min Guk"
+      "note": "18, 'Korea's eldest son'; fraternal twin of Min Guk",
+      "still": "https://asianwiki.com/images/4/44/Spring_Fever-An_Sang-Jin001.jpeg"
     },
     {
       "id": "dongpyo",
@@ -180,7 +198,8 @@
       "image": "https://i.mydramalist.com/NdJyeY_5m.jpg",
       "group": "Sinsu High",
       "inCast": true,
-      "note": "17, first year"
+      "note": "17, first year",
+      "still": "https://asianwiki.com/images/3/3b/Spring_Fever-Lee_Jae_Mu.jpg"
     },
     {
       "id": "philip",
@@ -189,7 +208,8 @@
       "image": "https://i.mydramalist.com/XJz4p_5m.jpg",
       "group": "Jae Gyu's family",
       "inCast": true,
-      "note": "JK Energy employee"
+      "note": "JK Energy employee",
+      "still": "https://asianwiki.com/images/5/5f/Spring_Fever-Bin_Chan-Uk.jpeg"
     },
     {
       "id": "jaeyeong",
@@ -197,7 +217,8 @@
       "actor": "Son Deok Ki",
       "image": "https://i.mydramalist.com/L22Rxm.jpg",
       "group": "Sinsu High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1f/Spring_Fever-Son_Deok-Ki.jpg"
     }
   ],
   "links": [

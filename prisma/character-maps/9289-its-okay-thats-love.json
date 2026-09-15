@@ -29,7 +29,8 @@
           "era": "young"
         }
       ],
-      "note": "Star mystery novelist and radio host; prickly"
+      "note": "Star mystery novelist and radio host; prickly",
+      "still": "https://asianwiki.com/images/f/ff/It%27s_Okay%2C_That%27s_Love-Zo_In-Sung.jpg"
     },
     {
       "id": "haesoo",
@@ -38,7 +39,8 @@
       "image": "https://i.mydramalist.com/4k0oZm.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Psychiatrist"
+      "note": "Psychiatrist",
+      "still": "https://asianwiki.com/images/8/8a/It%27s_Okay%2C_That%27s_Love-Kong_Hyo-Jin.jpg"
     },
     {
       "id": "dongmin",
@@ -47,7 +49,8 @@
       "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
       "group": "The housemates",
       "inCast": true,
-      "note": "Psychiatrist; the house's senior"
+      "note": "Psychiatrist; the house's senior",
+      "still": "https://asianwiki.com/images/9/93/It%27s_Okay%2C_That%27s_Love-Sung_Dong-Il.jpg"
     },
     {
       "id": "sookwang",
@@ -56,7 +59,8 @@
       "image": "https://i.mydramalist.com/PxZzbX_5m.jpg",
       "group": "The housemates",
       "inCast": true,
-      "note": "With Tourette's"
+      "note": "With Tourette's",
+      "still": "https://asianwiki.com/images/0/0f/It%27s_Okay%2C_That%27s_Love-Lee_Kwang-Soo_%281985%29.jpg"
     },
     {
       "id": "kangwoo",
@@ -65,7 +69,8 @@
       "image": "https://i.mydramalist.com/43e46m.jpg",
       "group": "Jae Yeol's people",
       "inCast": true,
-      "note": "18, would-be novelist"
+      "note": "18, would-be novelist",
+      "still": "https://asianwiki.com/images/7/7f/It%27s_Okay%2C_That%27s_Love-D.O..jpg"
     },
     {
       "id": "yeongjin",
@@ -74,7 +79,8 @@
       "image": "https://i.mydramalist.com/Xe7vJm.jpg",
       "group": "Work",
       "inCast": true,
-      "note": "Psychiatry professor"
+      "note": "Psychiatry professor",
+      "still": "https://asianwiki.com/images/f/f5/It%27s_Okay%2C_That%27s_Love-Jin_Kyung.jpg"
     },
     {
       "id": "sonyeo",
@@ -83,7 +89,8 @@
       "image": "https://i.mydramalist.com/6q6Z2_5m.jpg",
       "group": "The housemates",
       "inCast": true,
-      "note": "19, cafe part-timer"
+      "note": "19, cafe part-timer",
+      "still": "https://asianwiki.com/images/f/f1/It%27s_Okay%2C_That%27s_Love-Lee_Sung-Kyung.jpg"
     },
     {
       "id": "jaebum",
@@ -99,7 +106,8 @@
           "era": "young"
         }
       ],
-      "note": "Late thirties"
+      "note": "Late thirties",
+      "still": "https://asianwiki.com/images/8/8c/It%27s_Okay%2C_That%27s_Love-Yang_Ik-June.jpg"
     },
     {
       "id": "okja",
@@ -107,7 +115,8 @@
       "actor": "Cha Hwa Yun",
       "image": "https://i.mydramalist.com/ROpgY_5m.jpg",
       "group": "Jae Yeol's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1f/It%27s_Okay%2C_That%27s_Love-Cha_Hwa-Yeon.jpg"
     },
     {
       "id": "haesoo_mother",

@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/jQjpmd_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Civil servant whose strength grows with the cash in his pocket"
+      "note": "Civil servant whose strength grows with the cash in his pocket",
+      "still": "https://asianwiki.com/images/4/40/Cashero-Lee_Joon-Ho1.jpg"
     },
     {
       "id": "minsuk",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/YYJDeP_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Practical, efficient — and supportive of a very inefficient power"
+      "note": "Practical, efficient — and supportive of a very inefficient power",
+      "still": "https://asianwiki.com/images/d/d9/Cashero-Kim_Hye-Jun.jpg"
     },
     {
       "id": "hoin",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/Dke4Z5_5m.jpg",
       "group": "The supers",
       "inCast": true,
-      "note": "Lawyer; leads the supers' organisation"
+      "note": "Lawyer; leads the supers' organisation",
+      "still": "https://asianwiki.com/images/3/39/Cashero-Kim_Byung-Chul01.jpg"
     },
     {
       "id": "eunmi",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/4e0ww6_5m.jpg",
       "group": "The supers",
       "inCast": true,
-      "note": "Telekinetic, powered by calories"
+      "note": "Telekinetic, powered by calories",
+      "still": "https://asianwiki.com/images/f/f9/Cashero-Kim_Hyang-Gi.jpg"
     },
     {
       "id": "hyeonseung",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/1LJLdm.jpg",
       "group": "The supers",
       "inCast": true,
-      "note": "Detective; a super"
+      "note": "Detective; a super",
+      "still": "https://asianwiki.com/images/f/fb/Cashero-Jang_Hyun-Sung.jpg"
     },
     {
       "id": "sueun",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/xOWkN_5m.jpg",
       "group": "The supers",
       "inCast": true,
-      "note": "Researcher"
+      "note": "Researcher",
+      "still": "https://asianwiki.com/images/6/66/Cashero-Shin_Soo-Hyun0001.jpg"
     },
     {
       "id": "anna",
@@ -75,7 +81,8 @@
       "actor": "Kang Han Na",
       "image": "https://i.mydramalist.com/l0dbov_5m.jpg",
       "group": "Criminal Society",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1e/Cashero-Kang_Han-Na1.jpg"
     },
     {
       "id": "nathan",
@@ -83,7 +90,8 @@
       "actor": "Lee Chae Min",
       "image": "https://i.mydramalist.com/yWDJlB_5m.jpg",
       "group": "Criminal Society",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/ab/Cashero-Lee_Chae-Min.jpg"
     },
     {
       "id": "wondo",
@@ -91,7 +99,8 @@
       "actor": "Kim Eui Sung",
       "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
       "group": "Criminal Society",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/af/Cashero-Kim_Eui-Sung.jpg"
     },
     {
       "id": "ki",
@@ -99,7 +108,8 @@
       "actor": "Kang Sang Jun",
       "image": "https://i.mydramalist.com/qY8Pgz_5m.jpg",
       "group": "Criminal Society",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1a/Cashero-Kang_Sang_Joon.jpg"
     },
     {
       "id": "hyeongi",
@@ -108,7 +118,8 @@
       "image": "https://i.mydramalist.com/2ORlPm.jpg",
       "group": "Police",
       "inCast": true,
-      "note": "Detective"
+      "note": "Detective",
+      "still": "https://asianwiki.com/images/1/1e/Cashero-Cha_Si-Won01.jpg"
     },
     {
       "id": "jeongja",
@@ -117,7 +128,8 @@
       "image": "https://i.mydramalist.com/wegpk_5m.jpg",
       "group": "Sang Ung's people",
       "inCast": true,
-      "note": "Loan shark"
+      "note": "Loan shark",
+      "still": "https://asianwiki.com/images/f/fb/Cashero-Kim_Guk-Hee1.jpg"
     },
     {
       "id": "donggi",
@@ -125,7 +137,8 @@
       "actor": "Jung Seung Kil",
       "image": "https://i.mydramalist.com/g075LO_5m.jpg",
       "group": "Sang Ung's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b3/Cashero-Jung_Seung-Gil.jpg"
     },
     {
       "id": "eunhui",
@@ -133,7 +146,8 @@
       "actor": "Kim Soo Jin",
       "image": "https://i.mydramalist.com/28yld_5m.jpg",
       "group": "Sang Ung's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/54/Cashero-Kim_Soo-Jin.jpg"
     },
     {
       "id": "boss",
@@ -141,7 +155,8 @@
       "actor": "Kim Min Sang",
       "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
       "group": "Sang Ung's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/90/Cashero-Kim_Min-Sang01.jpg"
     }
   ],
   "links": [

@@ -30,7 +30,8 @@
           "era": "child"
         }
       ],
-      "note": "Former writer; polyglot interpreter whose rule is to stay invisible"
+      "note": "Former writer; polyglot interpreter whose rule is to stay invisible",
+      "still": "https://asianwiki.com/images/b/b5/Can_This_Love_Be_Translated-Kim_Sun-Ho1.jpg"
     },
     {
       "id": "muhui",
@@ -43,10 +44,12 @@
         {
           "name": "An Tae Rin",
           "image": "https://i.mydramalist.com/XdeJjJ_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/8/88/Can_This_Love_Be_Translated-Ahn_Tae-Rin1.jpg"
         }
       ],
-      "note": "The 'Horror Queen', famous overnight as Do Ra Mi in Quiet Woman"
+      "note": "The 'Horror Queen', famous overnight as Do Ra Mi in Quiet Woman",
+      "still": "https://asianwiki.com/images/4/45/Can_This_Love_Be_Translated-Go_Youn-Jung001.jpg"
     },
     {
       "id": "hiro",
@@ -55,7 +58,8 @@
       "image": "https://i.mydramalist.com/KpLrvq_5m.jpg",
       "group": "Romantic Trip (the show)",
       "inCast": true,
-      "note": "Japanese star, the 'Prince of Romance'"
+      "note": "Japanese star, the 'Prince of Romance'",
+      "still": "https://asianwiki.com/images/0/0d/Can_This_Love_Be_Translated-Sota_Fukushi01.jpg"
     },
     {
       "id": "jiseon",
@@ -63,7 +67,8 @@
       "actor": "Lee E Dam",
       "image": "https://i.mydramalist.com/4e3VLk_5m.jpg",
       "group": "Romantic Trip (the show)",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/9a/Can_This_Love_Be_Translated-Lee_E-Dam.jpg"
     },
     {
       "id": "yongu",
@@ -72,7 +77,8 @@
       "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
       "group": "Romantic Trip (the show)",
       "inCast": true,
-      "note": "Director of Romantic Trip"
+      "note": "Director of Romantic Trip",
+      "still": "https://asianwiki.com/images/1/12/Can_This_Love_Be_Translated-Choi_Woo-Sung.jpg"
     },
     {
       "id": "cho",
@@ -81,7 +87,8 @@
       "image": "https://i.mydramalist.com/DkB8X5_5m.jpg",
       "group": "Romantic Trip (the show)",
       "inCast": true,
-      "note": "Main writer"
+      "note": "Main writer",
+      "still": "https://asianwiki.com/images/a/a0/Can_This_Love_Be_Translated-Baek_Joo-Hee.jpg"
     },
     {
       "id": "jeongsu",
@@ -90,7 +97,8 @@
       "image": "https://i.mydramalist.com/RJRZom.jpg",
       "group": "Romantic Trip (the show)",
       "inCast": true,
-      "note": "PD"
+      "note": "PD",
+      "still": "https://asianwiki.com/images/2/2e/Can_This_Love_Be_Translated-Lim_Chul-Soo.jpg"
     },
     {
       "id": "insu",
@@ -99,7 +107,8 @@
       "image": "https://i.mydramalist.com/2gEpdm.jpg",
       "group": "Romantic Trip (the show)",
       "inCast": true,
-      "note": "PD"
+      "note": "PD",
+      "still": "https://asianwiki.com/images/8/8d/Can_This_Love_Be_Translated-Kwak_Min-Gyu.jpg"
     },
     {
       "id": "nanami",
@@ -108,7 +117,8 @@
       "image": "https://i.mydramalist.com/VXlmlL_5m.jpg",
       "group": "Romantic Trip (the show)",
       "inCast": true,
-      "note": "Hiro's manager"
+      "note": "Hiro's manager",
+      "still": "https://asianwiki.com/images/8/8f/Can_This_Love_Be_Translated-Hyunri.jpg"
     },
     {
       "id": "yeonghwan",
@@ -117,7 +127,8 @@
       "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
       "group": "Ho Jin's people",
       "inCast": true,
-      "note": "Novelist"
+      "note": "Novelist",
+      "still": "https://asianwiki.com/images/e/e9/Can_This_Love_Be_Translated-Kim_Won-Hae01.jpg"
     },
     {
       "id": "uncle",
@@ -125,7 +136,8 @@
       "actor": "Shin Moon Sung",
       "image": "https://i.mydramalist.com/73j10L_5m.jpg",
       "group": "Mu Hui's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a6/Can_This_Love_Be_Translated-Shin_Mun-Sung1.jpg"
     },
     {
       "id": "aunt",
@@ -133,7 +145,8 @@
       "actor": "Woo Mi Hwa",
       "image": "https://i.mydramalist.com/ABRm3q_5m.jpg",
       "group": "Mu Hui's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/ca/Can_This_Love_Be_Translated-Woo_Mi-Hwa01.jpg"
     }
   ],
   "links": [

@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/ZyyEJ_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Mild-mannered, wrongfully imprisoned for a heinous crime"
+      "note": "Mild-mannered, wrongfully imprisoned for a heinous crime",
+      "still": "https://asianwiki.com/images/2/22/The_Manipulated-Ji_Chang-Wook1.jpeg"
     },
     {
       "id": "yohan",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/43e46m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "The mysterious figure who orchestrated his downfall"
+      "note": "The mysterious figure who orchestrated his downfall",
+      "still": "https://asianwiki.com/images/9/9f/The_Manipulated-Do_Kyung-Soo1.jpeg"
     },
     {
       "id": "yongsik",
@@ -39,7 +41,8 @@
       "actor": "Kim Jong Soo",
       "image": "https://i.mydramalist.com/yWOdl4_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5a/The_Manipulated-Kim_Jong-Soo.jpeg"
     },
     {
       "id": "eunbi",
@@ -47,7 +50,8 @@
       "actor": "Jo Yoon Soo",
       "image": "https://i.mydramalist.com/2wqKkR_5m.jpg",
       "group": "Outside",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/8/8e/The_Manipulated-Jo_Yoon-Soo1.jpeg"
     },
     {
       "id": "dogyeong",
@@ -55,7 +59,8 @@
       "actor": "Lee Kwang Soo",
       "image": "https://i.mydramalist.com/PxZzbX_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/41/The_Manipulated-Lee_Kwang-Soo1.jpeg"
     },
     {
       "id": "deoksu",
@@ -63,7 +68,8 @@
       "actor": "Yang Dong Geun",
       "image": "https://i.mydramalist.com/yWOPQ4_5m.jpg",
       "group": "Outside",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4a/The_Manipulated-Yang_Dong-Geun.jpeg"
     },
     {
       "id": "gangjae",
@@ -71,7 +77,8 @@
       "actor": "Eum Moon Suk",
       "image": "https://i.mydramalist.com/RWzAPm.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3a/The_Manipulated-Eum_Moon-Suk.jpg"
     },
     {
       "id": "cheolhwan",
@@ -79,7 +86,8 @@
       "actor": "Kim Jae Chul",
       "image": "https://i.mydramalist.com/b3dkvj_5m.jpg",
       "group": "Yo Han's side",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1f/The_Manipulated-Kim_Jae-Chul.jpeg"
     },
     {
       "id": "jiyong",
@@ -87,7 +95,8 @@
       "actor": "Lee Jae Kyoon",
       "image": "https://i.mydramalist.com/l0oRme_5m.jpg",
       "group": "Yo Han's side",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a7/The_Manipulated-Lee_Jae-Kyoon1.jpeg"
     },
     {
       "id": "sangrak",
@@ -96,7 +105,8 @@
       "image": "https://i.mydramalist.com/YYzlDo_5m.jpg",
       "group": "Outside",
       "inCast": true,
-      "note": "Public defender"
+      "note": "Public defender",
+      "still": "https://asianwiki.com/images/6/6e/The_Manipulated-Kim_Joong-Hee1.jpeg"
     },
     {
       "id": "warden",
@@ -104,7 +114,8 @@
       "actor": "Lee Seo Hwan",
       "image": "https://i.mydramalist.com/QJN414_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/bc/The_Manipulated-Lee_Seo-Hwan1.jpeg"
     },
     {
       "id": "junhan",
@@ -112,7 +123,8 @@
       "actor": "Kwak Jin",
       "image": "https://i.mydramalist.com/XVZBZ_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/bc/The_Manipulated-Kwak_Jin.jpeg"
     },
     {
       "id": "ujung",
@@ -120,7 +132,8 @@
       "actor": "Kwon Da Ham",
       "image": "https://i.mydramalist.com/rN27bE_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d8/The_Manipulated-Kwon_Da-Ham.jpeg"
     },
     {
       "id": "jeongsu",
@@ -128,7 +141,8 @@
       "actor": "Jung Heon",
       "image": "https://i.mydramalist.com/dlAeb_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/ce/The_Manipulated-Kim_Jung-Hun1.jpeg"
     },
     {
       "id": "daehun",
@@ -136,7 +150,8 @@
       "actor": "Lee Suk Hyeong",
       "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
       "group": "Prison",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b5/The_Manipulated-Lee_Suk-Hyeong.jpeg"
     },
     {
       "id": "ilguk",
@@ -144,7 +159,8 @@
       "actor": "Lee Sung Woo",
       "image": "https://i.mydramalist.com/KpkxdD_5m.jpg",
       "group": "Yo Han's side",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b8/The_Manipulated-Lee_Sung-Woo.jpg"
     },
     {
       "id": "nanny",
@@ -152,7 +168,8 @@
       "actor": "Jeong In Ji",
       "image": "https://i.mydramalist.com/q77z2_5m.jpg",
       "group": "Yo Han's side",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c1/The_Manipulated-Jeong_In-Ji1.jpg"
     },
     {
       "id": "detective",
@@ -160,7 +177,8 @@
       "actor": "Jeon Gang Ho",
       "image": "https://i.mydramalist.com/l0DwpL_5m.jpg",
       "group": "Outside",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/db/The_Manipulated-Jeon_Kang-Ho.jpg"
     }
   ],
   "links": [

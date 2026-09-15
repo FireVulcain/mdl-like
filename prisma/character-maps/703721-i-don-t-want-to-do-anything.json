@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/g0Rw01_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "28; quit her job after her mother's death and a breakup, moved to Angok to do nothing"
+      "note": "28; quit her job after her mother's death and a breakup, moved to Angok to do nothing",
+      "still": "https://asianwiki.com/images/6/6c/Summer_Strike-Seol_Hyun1.jpg"
     },
     {
       "id": "daebeom",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/73o5Kb_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Former physics prodigy, now the village librarian"
+      "note": "Former physics prodigy, now the village librarian",
+      "still": "https://asianwiki.com/images/c/c5/Summer_Strike-Im_Si-Wan01.jpg"
     },
     {
       "id": "bom",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/b3o64e_5m.jpg",
       "group": "Bom's family",
       "inCast": true,
-      "note": "The girl at the library"
+      "note": "The girl at the library",
+      "still": "https://asianwiki.com/images/1/1c/Summer_Strike-Shin_Eun_Soo.jpg"
     },
     {
       "id": "jaehoon",
@@ -48,7 +51,8 @@
       "actor": "a.mond",
       "image": "https://i.mydramalist.com/X0AQJ_5m.jpg",
       "group": "Bom's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/cd/Summer_Strike-Bang_Jae_Min1.jpg"
     },
     {
       "id": "haneul",
@@ -56,7 +60,8 @@
       "actor": "Shin Ki Joon",
       "image": "https://i.mydramalist.com/NdKPwy_5m.jpg",
       "group": "Bom's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c7/Summer_Strike-Shin_Ki-Jun.jpg"
     },
     {
       "id": "jungho",
@@ -64,7 +69,8 @@
       "actor": "Nam Jin Bok",
       "image": "https://i.mydramalist.com/pg4Jb_5m.jpg",
       "group": "Bom's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a6/Summer_Strike-Nam_Jin-Bok1.jpg"
     },
     {
       "id": "myeongsuk",
@@ -72,7 +78,8 @@
       "actor": "Kim Hye Jung",
       "image": "https://i.mydramalist.com/R6rXR_5m.jpg",
       "group": "Bom's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/64/Summer_Strike-Kim_Hye_Jung.jpg"
     },
     {
       "id": "jiyoung",
@@ -80,7 +87,8 @@
       "actor": "Park Ye Young",
       "image": "https://i.mydramalist.com/vw2YX_5m.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/6/6d/Summer_Strike-Park_Ye_Young.jpg"
     },
     {
       "id": "sungmin",
@@ -88,7 +96,8 @@
       "actor": "Kwak Min Gyoo",
       "image": "https://i.mydramalist.com/2gEpdm.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/47/Summer_Strike-Kwak_Min_Gyu1.jpg"
     },
     {
       "id": "joon",
@@ -96,7 +105,8 @@
       "actor": "Kim Jun",
       "image": "https://i.mydramalist.com/XEBpn_5m.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3d/Summer_Strike-Kim-Jun1.jpg"
     },
     {
       "id": "sungmin_father",
@@ -104,7 +114,8 @@
       "actor": "Yoo Soon Woong",
       "image": "https://i.mydramalist.com/ddQz5m.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/06/Summer_Strike-Yoo_Soon-Woong1.jpg"
     },
     {
       "id": "kwak",
@@ -112,7 +123,8 @@
       "actor": "Kim Hak Seon",
       "image": "https://i.mydramalist.com/Bz1V6_5m.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b1/Summer_Strike-Kim_Hak-Sun.jpg"
     },
     {
       "id": "kwak_wife",
@@ -120,7 +132,8 @@
       "actor": "Kim Jung Young",
       "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3a/Summer_Strike-Kim_Jung-Young.jpg"
     },
     {
       "id": "moochul",
@@ -128,7 +141,8 @@
       "actor": "Park Ji Hoon",
       "image": "https://i.mydramalist.com/XKLxXm.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/33/Summer_Strike-Park_Ji-Hoon.jpg"
     },
     {
       "id": "changsoo",
@@ -136,7 +150,8 @@
       "actor": "Oh Yong",
       "image": "https://i.mydramalist.com/nERJBm.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/7/7c/Summer_Strike-Oh_Yong1.jpg"
     },
     {
       "id": "oksoon",
@@ -144,7 +159,8 @@
       "actor": "Park Ok Chool",
       "image": "https://i.mydramalist.com/XKopxm.jpg",
       "group": "Angok village",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/34/Summer_Strike-Park_Ok_Chool.jpg"
     },
     {
       "id": "chunwong",
@@ -153,7 +169,8 @@
       "image": "https://i.mydramalist.com/ZQr2Y_5m.jpg",
       "group": "Around Dae Beom",
       "inCast": true,
-      "note": "Professor"
+      "note": "Professor",
+      "still": "https://asianwiki.com/images/6/6e/Summer_Strike-Yoon_Sang-Hwa.jpg"
     }
   ],
   "links": [
