@@ -1,0 +1,814 @@
+{
+  "version": 1,
+  "mdlSlug": "733003-bad-mother",
+  "title": "The Good Bad Mother",
+  "native": "나쁜엄마",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Characters"
+  ],
+  "main": [
+    "yeongsun",
+    "kangho",
+    "mijoo",
+    "samsik"
+  ],
+  "people": [
+    {
+      "id": "yeongsun",
+      "name": "Jin Young Soon",
+      "actor": "Ra Mi Ran",
+      "image": "https://i.mydramalist.com/AB8PYP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Pig farm owner",
+      "alsoPlayedBy": [
+        {
+          "name": "Kang Bo Kyung",
+          "image": "https://i.mydramalist.com/85xomm.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/e/ef/The_Good_Bad_Mother-Kang_Bo_Kyung.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/c/c5/The_Good_Bad_Mother-Ra_Mi-Ran.jpg"
+    },
+    {
+      "id": "kangho",
+      "name": "Choi Kang Ho",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Cold-hearted prosecutor who regains a child's mind after an accident",
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Kyung Hoon",
+          "image": "https://i.mydramalist.com/RKd0Y_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/6/63/The_Good_Bad_Mother-Lee_Kyung-Hoon.jpg"
+        },
+        {
+          "name": "Bae Jae Hyun",
+          "image": "https://i.mydramalist.com/jQlDyr_5m.jpg",
+          "era": "young",
+          "still": "https://asianwiki.com/images/e/ec/The_Good_Bad_Mother-Bae_Jae-Hyun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/3/3f/The_Good_Bad_Mother-Lee_Do-Hyun.jpg"
+    },
+    {
+      "id": "mijoo",
+      "name": "Lee Mi Joo",
+      "actor": "Ahn Eun Jin",
+      "image": "https://i.mydramalist.com/LwPlPy_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "note": "Nail artist",
+      "alsoPlayedBy": [
+        {
+          "name": "Jeon Si Hyun",
+          "image": "https://i.mydramalist.com/Px1rz8_5m.jpg",
+          "era": "child",
+          "still": "https://asianwiki.com/images/6/62/The_Good_Bad_Mother-Jeon_Si_Hyun.jpg"
+        }
+      ],
+      "still": "https://asianwiki.com/images/6/61/The_Good_Bad_Mother-Ahn_Eun-Jin.jpg"
+    },
+    {
+      "id": "samsik",
+      "name": "Bang Sam Sik",
+      "actor": "Yoo In Soo",
+      "image": "https://i.mydramalist.com/81XqdK_5m.jpg",
+      "group": "Sam Sik's family",
+      "inCast": true,
+      "note": "Recently released from prison for theft",
+      "still": "https://asianwiki.com/images/7/7d/The_Good_Bad_Mother-Yoo_In-Soo.jpg"
+    },
+    {
+      "id": "ubyeok",
+      "name": "Song Woo Byeok",
+      "actor": "Choi Mu Sung",
+      "image": "https://i.mydramalist.com/NdnJwe_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "note": "Chairman of Woobyeok Group; main antagonist",
+      "still": "https://asianwiki.com/images/e/e3/The_Good_Bad_Mother-Choi_Moo_Sung.jpg"
+    },
+    {
+      "id": "taesoo",
+      "name": "Oh Tae Soo",
+      "actor": "Jung Woong In",
+      "image": "https://i.mydramalist.com/EPWJzm.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "note": "Former prosecutor turned National Assembly member",
+      "still": "https://asianwiki.com/images/0/04/The_Good_Bad_Mother-Jung_Woong_In.jpg"
+    },
+    {
+      "id": "hayoung",
+      "name": "Oh Ha Young",
+      "actor": "Hong Bi Ra",
+      "image": "https://i.mydramalist.com/6KqE0_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/34/The_Good_Bad_Mother-Hong_Bi_Ra.jpg"
+    },
+    {
+      "id": "sungae",
+      "name": "Park Sung Ae",
+      "actor": "Seo Yi Sook",
+      "image": "https://i.mydramalist.com/qbZddm.jpg",
+      "group": "Sam Sik's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/3b/The_Good_Bad_Mother-Seo_Yi_Sook.jpg"
+    },
+    {
+      "id": "gumja",
+      "name": "Jung Gum Ja",
+      "actor": "Kang Mal Geum",
+      "image": "https://i.mydramalist.com/RRqnr_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b5/The_Good_Bad_Mother-Kang_Mal_Geum.jpg"
+    },
+    {
+      "id": "mrbang",
+      "name": "Mr. Bang",
+      "actor": "Jang Won Young",
+      "image": "https://i.mydramalist.com/60yB0d_5m.jpg",
+      "group": "Sam Sik's family",
+      "inCast": true,
+      "note": "Runs the village mill",
+      "still": "https://asianwiki.com/images/4/4c/The_Good_Bad_Mother-Jang_Won_Young.jpg"
+    },
+    {
+      "id": "yongrak",
+      "name": "Son Yong Rak",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Jowoo-ri village",
+      "inCast": true,
+      "note": "Village chief of Jowoo-ri",
+      "still": "https://asianwiki.com/images/3/38/The_Good_Bad_Mother-Kim_Won-Hae01.jpg"
+    },
+    {
+      "id": "yongrakwife",
+      "name": "Young Rak's Wife",
+      "actor": "Park Bo Kyung",
+      "image": "https://i.mydramalist.com/5vPjL4_5m.jpg",
+      "group": "Jowoo-ri village",
+      "inCast": true,
+      "note": "Always wears a face mask, hiding her face",
+      "still": "https://asianwiki.com/images/4/43/The_Good_Bad_Mother-Park_Bo-Kyung01.jpg"
+    },
+    {
+      "id": "yejin",
+      "name": "Lee Ye Jin",
+      "actor": "Gi So Yoo",
+      "image": "https://i.mydramalist.com/QJNnQA_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/fb/The_Good_Bad_Mother-Ki_So-Yu.jpg"
+    },
+    {
+      "id": "seojin",
+      "name": "Lee Seo Jin",
+      "actor": "Park Da On",
+      "image": "https://i.mydramalist.com/kAvvVb_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/56/The_Good_Bad_Mother-Park_Da-On.jpg"
+    },
+    {
+      "id": "hoonah",
+      "name": "Baek Hoon Ah",
+      "actor": "Baek Hyun Jin",
+      "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
+      "group": "Jowoo-ri village",
+      "inCast": true,
+      "note": "Plagiarist trot composer scheming to seize Young Soon's farmland",
+      "still": "https://asianwiki.com/images/1/1b/The_Good_Bad_Mother-Baek_Hyun_Jin.jpg"
+    },
+    {
+      "id": "jiseok",
+      "name": "So Ji Seok",
+      "actor": "Choi Sun Jin",
+      "image": "https://i.mydramalist.com/RBj5mo_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "note": "Woo Byeok's henchman posing as a farmer",
+      "still": "https://asianwiki.com/images/c/c4/The_Good_Bad_Mother-Choi_Sun_Jin.jpg"
+    },
+    {
+      "id": "seungeon",
+      "name": "Cha Seung Eon",
+      "actor": "Park Cheon",
+      "image": "https://i.mydramalist.com/2wqg0d_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "note": "Woo Byeok's henchman posing as a farmer",
+      "still": "https://asianwiki.com/images/8/81/The_Good_Bad_Mother-Park_Cheon.jpg"
+    },
+    {
+      "id": "mryang",
+      "name": "Mr. Yang",
+      "actor": "Lee Sang Hoon",
+      "image": "https://i.mydramalist.com/dxz5g_5m.jpg",
+      "group": "Jowoo-ri village",
+      "inCast": true,
+      "note": "Runs the village brewery, real estate office, and boarding house",
+      "still": "https://asianwiki.com/images/a/a7/The_Good_Bad_Mother-Lee_Sang-Hoon.jpg"
+    },
+    {
+      "id": "sunyoung",
+      "name": "Sun Young",
+      "actor": "Oh Ha Nee",
+      "image": "https://i.mydramalist.com/w1von_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "note": "Mi Joo's nail salon business partner",
+      "still": "https://asianwiki.com/images/4/43/The_Good_Bad_Mother-Oh_Ha-Nee.jpg"
+    },
+    {
+      "id": "andrea",
+      "name": "Andrea",
+      "actor": "Joshua Newton",
+      "image": "https://i.mydramalist.com/Bd7Pj5_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c7/The_Good_Bad_Mother-Joshua_Newton.jpg"
+    },
+    {
+      "id": "jonggu",
+      "name": "Jung Jong Gu",
+      "actor": "Shin Hyun Yong",
+      "image": "https://i.mydramalist.com/Z8QB4W_5m.jpg",
+      "group": "Kang Ho's colleagues",
+      "inCast": true,
+      "note": "Took the blame for a murder he didn't commit",
+      "still": "https://asianwiki.com/images/2/28/The_Good_Bad_Mother-Shin_Hyeon_Yong.jpg"
+    },
+    {
+      "id": "haesik",
+      "name": "Choi Hae Sik",
+      "actor": "Jo Jin Woong",
+      "image": "https://i.mydramalist.com/kOYmOm.jpg",
+      "group": "Young Soon's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/aa/The_Good_Bad_Mother-Cho_Jin-Woong10.jpg"
+    },
+    {
+      "id": "yeongsunfather",
+      "name": "Jin Young Soon's Father",
+      "actor": "Kim Jae Man",
+      "image": "https://i.mydramalist.com/k4jDd_5m.jpg",
+      "group": "Young Soon's family",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d8/The_Good_Bad_Mother-Kim_Jae-Man.jpg"
+    },
+    {
+      "id": "yeongsunmother",
+      "name": "Jin Young Soon's Mother",
+      "actor": "Kim Eun Kyung",
+      "image": "https://i.mydramalist.com/zByolP_5m.jpg",
+      "group": "Young Soon's family",
+      "inCast": true
+    },
+    {
+      "id": "mijoofather",
+      "name": "Jung Gum Ja's Husband",
+      "actor": "Lee Do Yeop",
+      "image": "https://i.mydramalist.com/l060wE_5m.jpg",
+      "group": "Mi Joo's family",
+      "inCast": true,
+      "note": "Left Gum Ja for another woman before his death",
+      "still": "https://asianwiki.com/images/f/f1/The_Good_Bad_Mother-Lee_Do-Yub.jpg"
+    },
+    {
+      "id": "taesoowife",
+      "name": "Oh Tae Soo's Wife",
+      "actor": "Park Sun Ah",
+      "image": "https://i.mydramalist.com/ROlNg_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "still": "https://asianwiki.com/images/a/a9/The_Good_Bad_Mother-Park_Sun-A.jpg"
+    },
+    {
+      "id": "soohyeon",
+      "name": "Hwang Soo Hyeon",
+      "actor": "Ki Eun Se",
+      "image": "https://i.mydramalist.com/QYlv4_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "note": "Tae Soo's secretary and secret mistress",
+      "still": "https://asianwiki.com/images/0/09/The_Good_Bad_Mother-Ki_Eun-Se1.jpg"
+    },
+    {
+      "id": "jiwoong",
+      "name": "Lee Ji Woong",
+      "actor": "Kim Ji Woong",
+      "image": "https://i.mydramalist.com/rNYnXy_5m.jpg",
+      "group": "Axis of Crime",
+      "inCast": true,
+      "note": "Wealthy chairman's son; Ha Young's new fiancé",
+      "still": "https://asianwiki.com/images/5/50/The_Good_Bad_Mother-Kim_Ji-Woong.jpg"
+    },
+    {
+      "id": "dongki",
+      "name": "Dong Ki",
+      "actor": "Kim Sun Bin",
+      "image": "https://i.mydramalist.com/42bbd_5m.jpg",
+      "group": "Kang Ho's colleagues",
+      "inCast": true,
+      "note": "Kang Ho's rival at the prosecutor's office",
+      "still": "https://asianwiki.com/images/b/b1/The_Good_Bad_Mother-Kim_Sun-Bin.jpg"
+    }
+  ],
+  "links": [
+    {
+      "from": "yeongsun",
+      "to": "kangho",
+      "type": "family",
+      "label": "Kang Ho's mother",
+      "short": "mother",
+      "evidence": "강호의 어머니.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kangho",
+      "to": "mijoo",
+      "type": "romance",
+      "label": "Mi Joo's lover and childhood sweetheart",
+      "short": "first love",
+      "evidence": "미주의 연인.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kangho",
+      "to": "samsik",
+      "type": "friend",
+      "label": "Sam Sik's close friend",
+      "short": "friend",
+      "evidence": "삼식의 친구.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kangho",
+      "to": "hayoung",
+      "type": "romance",
+      "label": "Ha Young's former lover, once arranged as her fiancé",
+      "short": "ex-fiancée",
+      "evidence": "하영의 옛연인.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "samsik",
+      "to": "mijoo",
+      "type": "romance",
+      "label": "Has loved Mi Joo one-sidedly since childhood",
+      "short": "unrequited love",
+      "evidence": "어릴 적부터 쭈욱 미주를 짝사랑하는 나름 순정마초맨.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsun",
+      "to": "haesik",
+      "type": "family",
+      "label": "Widow of the late Choi Hae Sik",
+      "short": "late husband",
+      "evidence": "죽은 해식의 아내, 강호의 어머니.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haesik",
+      "to": "kangho",
+      "type": "family",
+      "label": "Kang Ho's late father",
+      "short": "father",
+      "evidence": "해식과 영순의 아들, 서울중앙지검 검사.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ubyeok",
+      "to": "haesik",
+      "type": "rivalry",
+      "label": "Responsible for Hae Sik's death",
+      "short": "killer",
+      "evidence": "He is responsible for Kang-ho's father death.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsunfather",
+      "to": "yeongsun",
+      "type": "family",
+      "label": "Young Soon's father, killed in a car accident with her mother and brother",
+      "short": "father",
+      "evidence": "어린 나이에 눈 앞에서 부모님과 남동생을 교통사고로 잃는 아픔을 겪고",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsunmother",
+      "to": "yeongsun",
+      "type": "family",
+      "label": "Young Soon's mother, killed in the same accident",
+      "short": "mother",
+      "evidence": "어린 나이에 눈 앞에서 부모님과 남동생을 교통사고로 잃는 아픔을 겪고",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gumja",
+      "to": "mijoo",
+      "type": "family",
+      "label": "Mi Joo's mother",
+      "short": "mother",
+      "evidence": "미주의 어머니, 영순의 이웃.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gumja",
+      "to": "yeongsun",
+      "type": "bond",
+      "label": "Gave birth on the same day and in the same place as Young Soon; feels special affection for her",
+      "short": "kindred neighbor",
+      "evidence": "한 날, 한 곳에서 낳은 기막힌 인연 때문인지 영순에 대한 애정이 남다르다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gumja",
+      "to": "yejin",
+      "type": "family",
+      "label": "Raises her granddaughter Ye Jin",
+      "short": "grandmother",
+      "evidence": "미혼모가 된 미주의 쌍둥이 남매 예진, 서진을 키우고 있다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gumja",
+      "to": "seojin",
+      "type": "family",
+      "label": "Raises her grandson Seo Jin",
+      "short": "grandmother",
+      "evidence": "미혼모가 된 미주의 쌍둥이 남매 예진, 서진을 키우고 있다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mijoo",
+      "to": "yejin",
+      "type": "family",
+      "label": "Ye Jin's mother",
+      "short": "mother",
+      "evidence": "[Mi Ju's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mijoo",
+      "to": "seojin",
+      "type": "family",
+      "label": "Seo Jin's mother",
+      "short": "mother",
+      "evidence": "[Lee Mi Joo's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mijoofather",
+      "to": "gumja",
+      "type": "family",
+      "label": "Gum Ja's husband, who had an affair before his death",
+      "short": "ex-husband",
+      "evidence": "[Jung Gum Ja's husband]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mijoofather",
+      "to": "mijoo",
+      "type": "family",
+      "label": "Mi Joo's father",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sungae",
+      "to": "samsik",
+      "type": "family",
+      "label": "Sam Sik's mother",
+      "short": "mother",
+      "evidence": "[Bang Sam Sik's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mrbang",
+      "to": "samsik",
+      "type": "family",
+      "label": "Sam Sik's father",
+      "short": "father",
+      "evidence": "[Bang Sam Sik's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungae",
+      "to": "mrbang",
+      "type": "family",
+      "label": "Married couple who run the village mill together",
+      "short": "husband",
+      "evidence": "애처가 남편 청년 회장과 함께 방앗간을 운영한다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sungae",
+      "to": "yeongsun",
+      "type": "friend",
+      "label": "Feels half envy, half jealousy toward Young Soon",
+      "short": "envious neighbor",
+      "evidence": "영순에 대해 부러움 반, 질투 반이다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongrak",
+      "to": "yongrakwife",
+      "type": "family",
+      "label": "Childless couple with a good marriage",
+      "short": "wife",
+      "evidence": "자녀는 없지만 아내와 금슬이 좋다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hoonah",
+      "to": "yeongsun",
+      "type": "rivalry",
+      "label": "Schemes to seize Young Soon's pig farm land for his concert hall project",
+      "short": "land rival",
+      "evidence": "영순네 돼지 농장 자리를 뺏고 싶어 온갖 계략을 꾸리며 영순을 괴롭힌다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ubyeok",
+      "to": "taesoo",
+      "type": "rivalry",
+      "label": "Rival powers forming a corrupt axis, each checking the other's rise",
+      "short": "corrupt rival",
+      "evidence": "송우벽과 악의 축을 이루는 쌍두마차. 송우벽을 견제하며 유력 대권주자로서의 탄탄대로 행보를 걷고 있다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ubyeok",
+      "to": "kangho",
+      "type": "work",
+      "label": "Uses Kang Ho to forge a connection with Oh Tae Soo",
+      "short": "manipulator",
+      "evidence": "유력한 대선 주자인 오태수 의원과의 커넥션을 위해 강호를 이용하기로 한다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesoo",
+      "to": "kangho",
+      "type": "work",
+      "label": "Blackmailed into arranging his daughter's marriage to Kang Ho",
+      "short": "blackmailed ally",
+      "evidence": "강호에게 약점이 잡혀, 어쩔 수 없이 강호와 자신의 무남독녀 하영을 결혼시키기로 약속한다.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesoo",
+      "to": "hayoung",
+      "type": "family",
+      "label": "Tae Soo's daughter",
+      "short": "daughter",
+      "evidence": "[Oh Tae Soo's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesoo",
+      "to": "taesoowife",
+      "type": "family",
+      "label": "Tae Soo's wife",
+      "short": "wife",
+      "evidence": "[Oh Tae Soo's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "soohyeon",
+      "to": "taesoo",
+      "type": "romance",
+      "label": "Tae Soo's secret mistress, eventually abandoned by him",
+      "short": "mistress",
+      "evidence": "태수의 내연녀... 대권에 도전하려는 오태수에게 결국 버림받는 인물.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soohyeon",
+      "to": "ubyeok",
+      "type": "work",
+      "label": "Formerly Woo Byeok's secretary before becoming Tae Soo's aide",
+      "short": "ex-secretary",
+      "evidence": "우벽그룹에서 송우벽의 비서로 일하다가 오태수의 수행비서가 된다.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiseok",
+      "to": "ubyeok",
+      "type": "work",
+      "label": "Woo Byeok's handyman and henchman",
+      "short": "henchman",
+      "evidence": "[Woo Byeok's handyman]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungeon",
+      "to": "ubyeok",
+      "type": "work",
+      "label": "Woo Byeok's handyman and henchman",
+      "short": "henchman",
+      "evidence": "[Woo Byeok's handyman]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiwoong",
+      "to": "hayoung",
+      "type": "romance",
+      "label": "Ha Young's new fiancé",
+      "short": "fiancé",
+      "evidence": "Kim Ji-woong as Lee Ji-woong: Ha-yeong's fiancé.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongki",
+      "to": "kangho",
+      "type": "work",
+      "label": "Kang Ho's rival colleague at the prosecutor's office",
+      "short": "rival",
+      "evidence": "[Kang Ho's rival colleague]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mijoo",
+      "to": "sunyoung",
+      "type": "work",
+      "label": "Mi Joo's nail art business partner",
+      "short": "co-worker",
+      "evidence": "Oh Ha-nee as Seon-yung: Mi-joo's nail art partner.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeongsun",
+      "kangho",
+      "mijoo",
+      "gumja",
+      "yejin",
+      "seojin",
+      "mijoofather",
+      "sunyoung",
+      "andrea",
+      "samsik",
+      "sungae",
+      "mrbang",
+      "ubyeok",
+      "taesoo",
+      "hayoung",
+      "taesoowife",
+      "soohyeon",
+      "jiseok",
+      "seungeon",
+      "jiwoong",
+      "haesik",
+      "yeongsunfather",
+      "yeongsunmother"
+    ],
+    "blocks": {
+      "Axis of Crime": [
+        0,
+        2
+      ],
+      "Mi Joo's family": [
+        0,
+        0
+      ],
+      "Sam Sik's family": [
+        2,
+        0
+      ],
+      "Young Soon's family": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "yeongsun",
+      "kangho"
+    ]
+  }
+}

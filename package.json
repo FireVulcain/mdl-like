@@ -10,6 +10,7 @@
         "lint": "eslint",
         "db:seed-admin": "npx tsx scripts/seed-admin.ts",
         "db:seed-character-maps": "npx tsx scripts/seed-character-maps.ts",
+        "db:pull-character-maps": "npx tsx scripts/pull-character-maps.ts",
         "character-map:inputs": "npx tsx scripts/character-map-inputs.ts",
         "warm-cache": "npx tsx scripts/warm-cache.ts"
     },
