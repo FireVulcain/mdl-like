@@ -238,10 +238,10 @@
       "type": "family",
       "label": "father — dies",
       "short": "father",
-      "evidence": "田征 饰 陈礼彬 / After Chen Yi's father dies",
-      "source": "zh.wikipedia",
+      "evidence": "Still grieving the loss of his mother [...] After Chen Yi's father dies",
+      "source": "MDL synopsis",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {
@@ -250,10 +250,10 @@
       "type": "family",
       "label": "mother — disappears",
       "short": "mother",
-      "evidence": "练练 饰 魏明珍 / Miao Jing's mother disappears",
-      "source": "zh.wikipedia",
+      "evidence": "Miao Jing's mother disappears, the two are left with no one but each other",
+      "source": "MDL synopsis",
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": true
     },
     {

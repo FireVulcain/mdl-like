@@ -76,21 +76,25 @@ export type Closest = { person: MapPerson; lead: MapPerson; link: MapLink };
 
 /**
  * The handful of relations the media page shows inline: each person in the
- * compact cut with a family, romance or rivalry link to a lead — the answer to
- * "who is who" — leads first by link type, then in cast order. Reveals are
- * left out when the reader hides spoilers.
+ * compact cut with a link to a lead — the answer to "who is who". Family,
+ * romance and rivalry links with a sentence behind them come first; the rest
+ * (inferred links, and the work / friend types) fill the remaining slots, so
+ * a chart written from a cast list alone still shows faces here instead of
+ * an empty row beside a full map. Reveals are left out when the reader hides
+ * spoilers.
  */
 export function closestRelations(map: CharacterMapData, hideSpoilers: boolean, limit = 8): Closest[] {
     const byId = new Map(map.people.map((p) => [p.id, p]));
     const leads = new Set(map.compact.center ?? map.main.slice(0, 2));
     const keep = new Set(map.compact.people);
-    const rank: Record<string, number> = { romance: 0, family: 1, rivalry: 2, bond: 3 };
+    const rank: Record<string, number> = { romance: 0, family: 1, rivalry: 2, bond: 3, work: 4, friend: 5 };
     const seen = new Set<string>();
     const out: Closest[] = [];
     const candidates = map.links
-        .filter((l) => l.type in rank && !l.inferred && (!hideSpoilers || !l.reveal))
+        .filter((l) => l.type in rank && (!hideSpoilers || !l.reveal))
         .filter((l) => leads.has(l.from) !== leads.has(l.to) && keep.has(l.from) && keep.has(l.to))
-        .sort((a, b) => rank[a.type] - rank[b.type]);
+        // sourced before inferred; within each, the closer kinds of tie first
+        .sort((a, b) => Number(a.inferred) - Number(b.inferred) || rank[a.type] - rank[b.type]);
     for (const link of candidates) {
         const personId = leads.has(link.from) ? link.to : link.from;
         if (seen.has(personId)) continue;
