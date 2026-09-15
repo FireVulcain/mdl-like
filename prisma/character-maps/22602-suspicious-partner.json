@@ -29,7 +29,8 @@
           "era": "child"
         }
       ],
-      "note": "Brilliant prosecutor who risks his career for the accused intern"
+      "note": "Brilliant prosecutor who risks his career for the accused intern",
+      "still": "https://asianwiki.com/images/1/1b/Suspicious_Partner-Ji_Chang-Wook.jpg"
     },
     {
       "id": "bonghee",
@@ -38,7 +39,8 @@
       "image": "https://i.mydramalist.com/NdqRlY_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Rookie intern, falsely accused of murder"
+      "note": "Rookie intern, falsely accused of murder",
+      "still": "https://asianwiki.com/images/c/c2/Suspicious_Partner-Nam_Ji-Hyun.jpg"
     },
     {
       "id": "eunhyuk",
@@ -47,7 +49,8 @@
       "image": "https://i.mydramalist.com/NdXwKJ_5m.jpg",
       "group": "Ji Wook's people",
       "inCast": true,
-      "note": "Law-firm lawyer; Ji Wook's estranged best friend"
+      "note": "Law-firm lawyer; Ji Wook's estranged best friend",
+      "still": "https://asianwiki.com/images/6/6a/Suspicious_Partner-Choi_Tae-Joon.jpg"
     },
     {
       "id": "yoojung",
@@ -56,7 +59,8 @@
       "image": "https://i.mydramalist.com/zB1ve7_5m.jpg",
       "group": "Ji Wook's people",
       "inCast": true,
-      "note": "Prosecutor"
+      "note": "Prosecutor",
+      "still": "https://asianwiki.com/images/b/be/Suspicious_Partner-Nara.jpg"
     },
     {
       "id": "hyunsoo",
@@ -65,7 +69,8 @@
       "image": "https://i.mydramalist.com/EQBd0_5m.jpg",
       "group": "Bong Hee's people",
       "inCast": true,
-      "note": "The gentle client"
+      "note": "The gentle client",
+      "still": "https://asianwiki.com/images/5/50/Suspicious_Partner-Dong_Ha.jpg"
     },
     {
       "id": "jihae",
@@ -73,7 +78,8 @@
       "actor": "Kim Ye Won",
       "image": "https://i.mydramalist.com/1wLQBy_5m.jpg",
       "group": "Training institute",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/00/Suspicious_Partner-Kim_Ye-Won.jpg"
     },
     {
       "id": "younghee",
@@ -82,7 +88,8 @@
       "image": "https://i.mydramalist.com/R3KXEm.jpg",
       "group": "Byun & Partners",
       "inCast": true,
-      "note": "Head of Byun & Partners"
+      "note": "Head of Byun & Partners",
+      "still": "https://asianwiki.com/images/a/a9/Suspicious_Partner-Lee_Deok-Hwa.jpg"
     },
     {
       "id": "bokja",
@@ -90,7 +97,8 @@
       "actor": "Nam Gi Ae",
       "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
       "group": "Ji Wook's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/18/Suspicous_Partner-Nam_Gi-Ae.jpg"
     },
     {
       "id": "yeongsuk",
@@ -98,7 +106,8 @@
       "actor": "Jo Seung Yun",
       "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
       "group": "Ji Wook's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/24/Suspicous_Partner-Jo_Seung-Yeon.jpg"
     },
     {
       "id": "bang",
@@ -107,7 +116,8 @@
       "image": "https://i.mydramalist.com/4j7er_5m.jpg",
       "group": "Ji Wook's people",
       "inCast": true,
-      "note": "Investigator"
+      "note": "Investigator",
+      "still": "https://asianwiki.com/images/3/35/Suspicious_Partner-Jang_Hyuk-Jin.jpg"
     },
     {
       "id": "youngsoon",
@@ -116,7 +126,8 @@
       "image": "https://i.mydramalist.com/jQVdnd_5m.jpg",
       "group": "Bong Hee's people",
       "inCast": true,
-      "note": "Sports masseuse"
+      "note": "Sports masseuse",
+      "still": "https://asianwiki.com/images/5/5f/Suspicious_Partner-Yoon_Bok-In.jpg"
     },
     {
       "id": "heegyu",
@@ -125,7 +136,8 @@
       "image": "https://i.mydramalist.com/XdR1dm.jpg",
       "group": "Training institute",
       "inCast": true,
-      "note": "The chatterbox informant"
+      "note": "The chatterbox informant",
+      "still": "https://asianwiki.com/images/7/71/Suspicious_Partner-Heo_Joon-Seok.jpg"
     },
     {
       "id": "chaeun",
@@ -133,7 +145,8 @@
       "actor": "Shim Eun Woo",
       "image": "https://i.mydramalist.com/vXQZX2_5m.jpg",
       "group": "Training institute",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/13/Suspicious_Partner-Sim_Eun-Woo.jpg"
     },
     {
       "id": "mooyeong",
@@ -142,7 +155,8 @@
       "image": "https://i.mydramalist.com/Egvrz_5m.jpg",
       "group": "Bong Hee's people",
       "inCast": true,
-      "note": "Chief prosecutor of Seonho"
+      "note": "Chief prosecutor of Seonho",
+      "still": "https://asianwiki.com/images/7/70/Suspicious_Partner-Kim_Hong-Fa.jpg"
     },
     {
       "id": "heejoon",
@@ -151,7 +165,8 @@
       "image": "https://i.mydramalist.com/nOQ408_5m.jpg",
       "group": "Bong Hee's people",
       "inCast": true,
-      "note": "Trainee; the chief's son"
+      "note": "Trainee; the chief's son",
+      "still": "https://asianwiki.com/images/e/e3/Suspicious_Partner-Chansung.jpg"
     },
     {
       "id": "chanho",
@@ -176,7 +191,8 @@
       "actor": "Nam Jung Woo",
       "image": "https://i.mydramalist.com/E4327_5m.jpg",
       "group": "Byun & Partners",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/c/c5/Suspicious_Partner-Nam_Jung-Woo.jpg"
     },
     {
       "id": "yeonghun",

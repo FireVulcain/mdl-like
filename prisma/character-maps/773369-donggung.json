@@ -22,7 +22,8 @@
       "image": "https://i.mydramalist.com/VXl4Nm_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Proud ghost-slayer who crosses into the spirit world"
+      "note": "Proud ghost-slayer who crosses into the spirit world",
+      "still": "https://asianwiki.com/images/a/ad/The_East_Palace-Nam_Joo-Hyuk01.jpg"
     },
     {
       "id": "saenggang",
@@ -31,7 +32,8 @@
       "image": "https://i.mydramalist.com/NdnkOY_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Court lady cursed to hear the dead"
+      "note": "Court lady cursed to hear the dead",
+      "still": "https://asianwiki.com/images/0/01/The_East_Palace-Roh_Yoon-Seo.jpg"
     },
     {
       "id": "king",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/g0z3mn_5m.jpg",
       "group": "The king's side",
       "inCast": true,
-      "note": "The king who chases the ghosts of the deep"
+      "note": "The king who chases the ghosts of the deep",
+      "still": "https://asianwiki.com/images/e/ef/The_East_Palace-Cho_Seung-Woo01.jpg"
     },
     {
       "id": "dowager",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
       "group": "The Queen Dowager's side",
       "inCast": true,
-      "note": "The late king's queen"
+      "note": "The late king's queen",
+      "still": "https://asianwiki.com/images/1/13/The_East_Palace-Jang_Young-Nam1.jpg"
     },
     {
       "id": "sukbin",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
       "group": "The king's side",
       "inCast": true,
-      "note": "Once a court lady; gentle"
+      "note": "Once a court lady; gentle",
+      "still": "https://asianwiki.com/images/3/3d/The_East_Palace-Hwang_Young-Hee01.jpg"
     },
     {
       "id": "sangseon",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/v5dPD_5m.jpg",
       "group": "The king's side",
       "inCast": true,
-      "note": "Chief eunuch"
+      "note": "Chief eunuch",
+      "still": "https://asianwiki.com/images/e/e7/The_East_Palace-Hong_Seo-Jun.jpg"
     },
     {
       "id": "iksang",
@@ -76,7 +82,8 @@
       "image": "https://i.mydramalist.com/4b5erm.jpg",
       "group": "The Queen Dowager's side",
       "inCast": true,
-      "note": "The king's cousin; wants his own son as heir"
+      "note": "The king's cousin; wants his own son as heir",
+      "still": "https://asianwiki.com/images/8/81/The_East_Palace-Tae_In-Ho01.jpg"
     },
     {
       "id": "paksu",
@@ -85,7 +92,8 @@
       "image": "https://i.mydramalist.com/JBdxdX_5m.jpg",
       "group": "The Queen Dowager's side",
       "inCast": true,
-      "note": "The shaman the Dowager brings into the palace"
+      "note": "The shaman the Dowager brings into the palace",
+      "still": "https://asianwiki.com/images/1/1d/The_East_Palace-Lee_Hong-Nae001.jpg"
     },
     {
       "id": "jang",
@@ -94,7 +102,8 @@
       "image": "https://i.mydramalist.com/xnxAX_5m.jpg",
       "group": "The Queen Dowager's side",
       "inCast": true,
-      "note": "Of the Dowager's quarters"
+      "note": "Of the Dowager's quarters",
+      "still": "https://asianwiki.com/images/4/45/The_East_Palace-Choi_Hyuk-Joo.jpg"
     },
     {
       "id": "jiyul",
@@ -103,7 +112,8 @@
       "image": "https://i.mydramalist.com/EOPEp_5m.jpg",
       "group": "The palace",
       "inCast": true,
-      "note": "Young trainee, Saeng Gang's right hand and roommate"
+      "note": "Young trainee, Saeng Gang's right hand and roommate",
+      "still": "https://asianwiki.com/images/5/59/The_East_Palace-Kim_Ji-Yul01.jpg"
     },
     {
       "id": "seja",
@@ -111,7 +121,8 @@
       "actor": "Kwak Dong Yeon",
       "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
       "group": "The palace",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/48/The_East_Palace-Kwak_Dong-Yeon.jpg"
     }
   ],
   "links": [
