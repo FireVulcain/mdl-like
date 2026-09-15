@@ -125,7 +125,9 @@ async function runStills(appUrl, redo, report) {
                     });
                     const out = await res.json();
                     if (!res.ok) { lastError = `app ${res.status} ${out.error ?? ""}`; continue; }
-                    line(`${c.title} → ${page}: ${out.matched}/${out.people} faces${out.unmatched.length ? ` — missing ${out.unmatched.join(", ")}` : ""}`);
+                    // Missing faces with no unused rows: the page has no photo for
+                    // them. Missing faces beside unused rows: a name the fold missed.
+                    line(`${c.title} → ${page}: ${out.matched}/${out.people} faces from ${rows.length} photos${out.unmatched.length ? ` — missing ${out.unmatched.join(", ")}` : ""}${out.unused.length ? ` — unused ${out.unused.join(", ")}` : ""}`);
                     posted = true;
                     break;
                 }
