@@ -57,6 +57,10 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [model, setModel] = useState<GeneratorModel>(DEFAULT_GENERATOR_MODEL);
+    // Wikipedia page titles given by hand for the next run, when the search
+    // found nothing or the wrong article — the last run's warnings say which
+    const [titles, setTitles] = useState<Record<string, string>>({});
+    const [pinning, setPinning] = useState(false);
     const [now, setNow] = useState(() => Date.now());
     const router = useRouter();
     const active = !!job && ACTIVE.has(job.status);
@@ -101,7 +105,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
             const res = await fetch("/api/admin/character-maps/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug, model }),
+                body: JSON.stringify({ mdlSlug, model, titles }),
             });
             const data = (await res.json().catch(() => ({}))) as { job?: JobView; error?: string };
             if (!res.ok || !data.job) {
@@ -128,6 +132,8 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
     const elapsed = job ? ended - started : 0;
     const cost = job?.status === "done" ? costOf(job) : null;
     const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
+    // What the last run said about Wikipedia — the reason to pin a title
+    const wikiWarnings = job && !active ? job.warnings.filter((w) => /wikipedia/.test(w)) : [];
 
     return (
         <>
@@ -179,19 +185,57 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                                     );
                                 })}
                             </div>
+                            {wikiWarnings.length > 0 && !pinning && (
+                                <div className="mx-6 mt-4 rounded-lg border border-amber-400/20 bg-amber-400/5 px-3 py-2.5 text-xs text-amber-400/90">
+                                    <ul className="space-y-1">
+                                        {wikiWarnings.map((w, i) => (
+                                            <li key={i} className="flex gap-2">
+                                                <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
+                                                <span>{w.replace(/ — pin a title.*$/, "")}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button type="button" onClick={() => setPinning(true)} className="mt-2 font-medium text-amber-300 underline-offset-2 hover:underline">
+                                        Give the Wikipedia page titles for the next run
+                                    </button>
+                                </div>
+                            )}
+                            {pinning && (
+                                <div className="mx-6 mt-4 space-y-2 rounded-lg border border-line bg-surface-1 p-3">
+                                    <p className="text-xs text-fg-muted">The exact page titles, as written on Wikipedia — e.g. <span className="font-mono text-fg-soft">내일 (2022년 드라마)</span>. Leave a field empty to keep searching.</p>
+                                    <div className="grid gap-2 sm:grid-cols-3">
+                                        {(["ko", "zh", "en"] as const).map((lang) => (
+                                            <label key={lang} className="flex items-center gap-2 rounded-md bg-surface-2 px-2 py-1.5 text-xs">
+                                                <span className="w-5 shrink-0 font-mono text-fg-dim">{lang}</span>
+                                                <input
+                                                    value={titles[lang] ?? ""}
+                                                    onChange={(e) => setTitles((t) => ({ ...t, [lang]: e.target.value }))}
+                                                    placeholder="page title"
+                                                    className="min-w-0 flex-1 bg-transparent text-fg outline-none placeholder:text-fg-faint"
+                                                />
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                             {error && (
                                 <p className="inline-flex items-center gap-1.5 px-6 pt-3 text-xs text-amber-400">
                                     <AlertTriangle className="h-3.5 w-3.5" /> {error}
                                 </p>
                             )}
                             <div className="flex items-center justify-between gap-3 px-6 pb-6 pt-5">
-                                {job && !active ? (
-                                    <button type="button" onClick={() => setView("run")} className="text-xs text-fg-dim transition-colors hover:text-fg">
-                                        Last run · {STATUS_LABEL[job.status] ?? job.status}
-                                    </button>
-                                ) : (
-                                    <span />
-                                )}
+                                <div className="flex items-center gap-3 text-xs text-fg-dim">
+                                    {job && !active && (
+                                        <button type="button" onClick={() => setView("run")} className="transition-colors hover:text-fg">
+                                            Last run · {STATUS_LABEL[job.status] ?? job.status}
+                                        </button>
+                                    )}
+                                    {!pinning && wikiWarnings.length === 0 && (
+                                        <button type="button" onClick={() => setPinning(true)} className="transition-colors hover:text-fg">
+                                            Wikipedia titles
+                                        </button>
+                                    )}
+                                </div>
                                 <div className="flex items-center gap-2">
                                     <button type="button" onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg">
                                         Cancel

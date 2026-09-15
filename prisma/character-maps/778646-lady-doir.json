@@ -1,0 +1,261 @@
+{
+  "version": 1,
+  "mdlSlug": "778646-lady-doir",
+  "title": "The Art of Sarah",
+  "native": "레이디 두아",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (46 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia character list"
+  ],
+  "main": [
+    "sarah",
+    "mugyeong"
+  ],
+  "people": [
+    {
+      "id": "sarah",
+      "name": "Sarah Kim",
+      "actor": "Shin Hae Sun",
+      "image": "https://i.mydramalist.com/O8J8kk_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Also known as Mok Ga-hui, Du-a, and Kim Eun-jae"
+    },
+    {
+      "id": "mugyeong",
+      "name": "Park Mu Gyeong",
+      "actor": "Lee Jun Hyuk",
+      "image": "https://i.mydramalist.com/jQ2288_5m.jpg",
+      "group": "Leads",
+      "inCast": true
+    },
+    {
+      "id": "jihwon",
+      "name": "Kang Ji Hwon",
+      "actor": "Kim Jae Won",
+      "image": "https://i.mydramalist.com/DkVjpn_5m.jpg",
+      "group": "Samwol Department Store",
+      "inCast": true,
+      "note": "An escort turned Chae U's personal secretary"
+    },
+    {
+      "id": "chaeu",
+      "name": "Choi Chae U",
+      "actor": "Bae Jong Ok",
+      "image": "https://i.mydramalist.com/Qxym5_5m.jpg",
+      "group": "Samwol Department Store",
+      "inCast": true,
+      "note": "Chairwoman of Samwol Department Store"
+    },
+    {
+      "id": "jaehyeon",
+      "name": "Hyun Jae Hyeon",
+      "actor": "Shin Hyun Seung",
+      "image": "https://i.mydramalist.com/eOrKW_5m.jpg",
+      "group": "Violent Crimes Unit",
+      "inCast": true,
+      "note": "A rookie detective on Mu Gyeong's team"
+    },
+    {
+      "id": "yeojin",
+      "name": "Jung Yeo Jin",
+      "actor": "Park Bo Kyung",
+      "image": "https://i.mydramalist.com/5vPjL4_5m.jpg",
+      "group": "Sarah's Circle",
+      "inCast": true,
+      "note": "CEO of Nox"
+    },
+    {
+      "id": "seongsin",
+      "name": "Hong Seong Sin",
+      "actor": "Jung Jin Young",
+      "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
+      "group": "Sarah's Circle",
+      "inCast": true,
+      "note": "A loan shark businessman suffering from kidney failure"
+    },
+    {
+      "id": "hyoeun",
+      "name": "Woo Hyo Eun",
+      "actor": "Jung Da Bin",
+      "image": "https://i.mydramalist.com/k3lgg_5m.jpg",
+      "group": "Sarah's Circle",
+      "inCast": true
+    },
+    {
+      "id": "dahye",
+      "name": "Yang Da Hye",
+      "actor": "Yoon Ga Yi",
+      "image": "https://i.mydramalist.com/3oAYPA_5m.jpg",
+      "group": "Sarah's Circle",
+      "inCast": true
+    },
+    {
+      "id": "mijeong",
+      "name": "Kim Mi Jeong",
+      "actor": "Lee E Dam",
+      "image": "https://i.mydramalist.com/4e3VLk_5m.jpg",
+      "group": "Sarah's Circle",
+      "inCast": true,
+      "note": "An illicit factory worker who secretly designed Boudoir's products"
+    }
+  ],
+  "links": [
+    {
+      "from": "mugyeong",
+      "to": "sarah",
+      "type": "work",
+      "label": "the detective who investigates her murder case",
+      "short": "investigator",
+      "evidence": "Park Mu Gyeong is a sharp and persistent detective in the violent crimes unit. As Mu Gyeong delves deeper into the case, Sarah Kim's mysterious identity — involving different names, ages, jobs, and backgrounds — is gradually unveiled.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mugyeong",
+      "to": "sarah",
+      "type": "bond",
+      "label": "traces after her desires, obsessively pursuing who she truly is",
+      "short": "pursuer",
+      "evidence": "The story of Sarah Kim who wanted to embody luxury, even if it meant being fake, and Park Mu Gyeong, who traces after her desires.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihwon",
+      "to": "sarah",
+      "type": "romance",
+      "label": "an escort who falls in love with Sarah's alter ego Kim Eun-jae",
+      "short": "falls for her",
+      "evidence": "Kim Jae-won as Kang Ji-hwon, an escort who falls in love with Eun-jae, and Chae-u's personal secretary",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihwon",
+      "to": "chaeu",
+      "type": "work",
+      "label": "Chae U's personal secretary",
+      "short": "her secretary",
+      "evidence": "[Chae U's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sarah",
+      "to": "hyoeun",
+      "type": "work",
+      "label": "a former salesperson scouted by Sarah who becomes a department store line sitter",
+      "short": "scouted by her",
+      "evidence": "a former salesperson who was scouted by Sarah and becomes a department store line sitter",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dahye",
+      "to": "hyoeun",
+      "type": "friend",
+      "label": "Hyo Eun's friend",
+      "short": "friend",
+      "evidence": "[Hyo Eun's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeojin",
+      "to": "sarah",
+      "type": "friend",
+      "label": "Sarah's former friend, CEO of Nox",
+      "short": "former friend",
+      "evidence": "[Sarah's former friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongsin",
+      "to": "sarah",
+      "type": "bond",
+      "label": "a loan shark suffering kidney failure who received a kidney from Sarah's alter ego Kim Eun-jae for 500 million won",
+      "short": "kidney recipient",
+      "evidence": "Du-a / Kim Eun-jae, a bar hostess who donates her kidney in exchange for 500 million won",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehyeon",
+      "to": "mugyeong",
+      "type": "work",
+      "label": "a rookie detective working under Park Mu Gyeong in the Violent Crimes Unit",
+      "short": "his partner",
+      "evidence": "a rookie detective of Violent Crimes Unit at Seoul Metropolitan Police Agency",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mijeong",
+      "to": "sarah",
+      "type": "work",
+      "label": "the true designer behind the Boudoir products credited to Sarah",
+      "short": "real designer",
+      "evidence": "an illicit factory worker specializing in high-end counterfeits who served as the true designer behind the Boudoir products",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sarah",
+      "mugyeong",
+      "jihwon",
+      "chaeu",
+      "jaehyeon",
+      "yeojin",
+      "seongsin",
+      "hyoeun",
+      "dahye",
+      "mijeong"
+    ],
+    "blocks": {
+      "Sarah's Circle": [
+        1,
+        2
+      ],
+      "Violent Crimes Unit": [
+        2,
+        0
+      ],
+      "Samwol Department Store": [
+        0,
+        0
+      ]
+    },
+    "center": [
+      "sarah",
+      "mugyeong"
+    ]
+  }
+}

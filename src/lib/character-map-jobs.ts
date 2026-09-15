@@ -129,7 +129,10 @@ async function simulate(id: string, model: GeneratorModel) {
             cacheRead: 12_000,
             peopleCount: 23,
             linkCount: 31,
-            warnings: ["Simulated run — ANTHROPIC_API_KEY is not set, so nothing was written"],
+            warnings: [
+                "Simulated run — ANTHROPIC_API_KEY is not set, so nothing was written",
+                'en.wikipedia: the search found "See You at Work Tomorrow!", which is not this drama — pin a title in wiki-titles.json and regenerate',
+            ],
             finishedAt: new Date(),
         },
     }).catch(() => undefined);
@@ -146,7 +149,7 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         await set({ status: "validating", step: "Saving" });
         const { file } = await saveChart(result.map, "claude");
         const warnings = [...result.warnings];
-        for (const w of inputs.wiki) if (!w.text) warnings.push(`${w.lang}.wikipedia: ${w.title ? `no character section in "${w.title}"` : "no article found"} — pin a title in wiki-titles.json and regenerate`);
+        for (const w of inputs.wiki) if (!w.text) warnings.push(`${w.lang}.wikipedia: ${w.title ? `no character section in "${w.title}"` : w.rejected ? `the search found "${w.rejected}", which is not this drama` : "no article found"} — pin a title in wiki-titles.json and regenerate`);
         if (!file) warnings.push("the chart file was not written (folder missing or read-only); the row is the only copy");
         await set({ status: "done", step: `${result.map.people.length} people, ${result.map.links.length} links` });
         await prisma.characterMapJob.update({

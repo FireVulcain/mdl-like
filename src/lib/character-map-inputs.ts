@@ -17,7 +17,8 @@ const KURYANA = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 const UA = "trackr/character-map-inputs";
 
 export type CastMember = { name: string; role: { name: string }; profile_image?: string };
-export type WikiSection = { lang: string; title: string | null; text: string | null };
+/** `rejected` names the article a search found that turned out to be about something else. */
+export type WikiSection = { lang: string; title: string | null; text: string | null; rejected?: string };
 export type ChartInputs = {
     mdlSlug: string;
     title: string;
@@ -69,7 +70,37 @@ function characterSection(wikitext: string, headings: string[]): string | null {
     return rest.slice(0, next ? next.index : undefined);
 }
 
-async function wikipedia(lang: string, title: string | undefined, query: string): Promise<WikiSection> {
+/**
+ * Whether the article a search found is about this drama. The search is
+ * loose — it has answered a K-drama's title with "MBC 일일 드라마", an
+ * actor's page, a 2011 drama of the same name, the American series — and a
+ * wrong article would hand the model another cast's character section as
+ * if it were this one's. A year in the page title must be the drama's. A
+ * native-language page must contain the native title, or share a word of
+ * it. An English page must share a word of the title and name one of the
+ * main cast, since English articles carry the romanised names MDL uses. A
+ * title pinned by hand is trusted as it is.
+ */
+function aboutThisDrama(lang: string, page: string, wikitext: string, about: { native: string; bare: string; year: number | null; actors: string[] }): boolean {
+    const fold = (t: string) => t.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+    const head = page.replace(/\s*\([^)]*\)\s*$/, "");
+    const yearInTitle = page.match(/\((?:[^)]*\D)?((?:19|20)\d{2})\D[^)]*\)$|\(((?:19|20)\d{2})\)$/);
+    const year = yearInTitle ? parseInt(yearInTitle[1] ?? yearInTitle[2]) : null;
+    if (year && about.year && year !== about.year) return false;
+    if (lang === "en") {
+        const words = about.bare.split(/\s+/).map(fold).filter((w) => w.length >= 3 && !["the", "and", "with", "for"].includes(w));
+        const titleFits = fold(head).includes(fold(about.bare)) || words.some((w) => fold(head).includes(w));
+        const text = fold(wikitext);
+        return titleFits && about.actors.some((a) => text.includes(fold(a)));
+    }
+    const native = about.native || about.bare;
+    if (!native) return true;
+    if (fold(head).includes(fold(native))) return true;
+    const words = native.split(/\s+/).filter((w) => w.length >= 2);
+    return words.some((w) => head.includes(w));
+}
+
+async function wikipedia(lang: string, title: string | undefined, query: string, about: { native: string; bare: string; year: number | null; actors: string[] }): Promise<WikiSection> {
     const api = (params: Record<string, string>) =>
         json<Record<string, unknown>>(`https://${lang}.wikipedia.org/w/api.php?` + new URLSearchParams({ ...params, format: "json" }));
     let page = title;
@@ -81,6 +112,7 @@ async function wikipedia(lang: string, title: string | undefined, query: string)
     const r = (await api({ action: "parse", page, prop: "wikitext" })) as { parse?: { wikitext?: { "*": string } } } | null;
     const wikitext = r?.parse?.wikitext?.["*"];
     if (!wikitext) return { lang, title: page, text: null };
+    if (!title && !aboutThisDrama(lang, page, wikitext, about)) return { lang, title: null, text: null, rejected: page };
     // A big drama gets its own characters article ("재벌집 막내아들의 등장인물",
     // "List of X characters"): every level-2 heading there is a household, so
     // the article is the section.
@@ -136,12 +168,13 @@ export async function gatherChartInputs(
     const wants: [string, string][] = country.includes("Korea") ? [["ko", `${native} 드라마`], ["en", `${bare} Korean drama`]]
         : country.includes("China") ? [["zh", `${native} 电视剧`], ["en", `${bare} Chinese drama`]]
         : [["en", bare]];
+    const about = { native, bare, year, actors: casts.main.slice(0, 4).map((m) => m.name) };
     const wiki: WikiSection[] = [];
     for (const [lang, query] of wants) {
         onStep?.(`Reading ${lang}.wikipedia`);
-        const w = await wikipedia(lang, given[lang], query);
+        const w = await wikipedia(lang, given[lang], query, about);
         wiki.push(w);
-        out.push("", `=== ${lang}.wikipedia${w.title ? ` · ${w.title}` : ""} ===`, w.text ?? (w.title ? "(no character section found)" : "(nothing found)"));
+        out.push("", `=== ${lang}.wikipedia${w.title ? ` · ${w.title}` : ""} ===`, w.text ?? (w.title ? "(no character section found)" : w.rejected ? `(search found "${w.rejected}", which is not this drama)` : "(nothing found)"));
     }
 
     return { mdlSlug, title: d.title, native, year, country, synopsis: d.synopsis ?? "", cast: casts, wiki, text: out.join("\n") + "\n" };
