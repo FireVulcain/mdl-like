@@ -23,7 +23,8 @@
       "image": "https://i.mydramalist.com/6BVYd_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Exhausted webtoon producer, escaping into a subscription dating simulation"
+      "note": "Exhausted webtoon producer, escaping into a subscription dating simulation",
+      "still": "https://asianwiki.com/images/3/3f/Boyfriend_On_Demand-Kim_Ji-Soo2.jpg"
     },
     {
       "id": "gyeongnam",
@@ -32,7 +33,8 @@
       "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Webtoon producer — and, in the program, Koo Yeong Il"
+      "note": "Webtoon producer — and, in the program, Koo Yeong Il",
+      "still": "https://asianwiki.com/images/2/28/Boyfriend_On_Demand-Seo_In-Guk1.jpg"
     },
     {
       "id": "yunsong",
@@ -41,7 +43,8 @@
       "image": "https://i.mydramalist.com/ZWm3j_5m.jpg",
       "group": "Naemo Studio",
       "inCast": true,
-      "note": "Webtoon artist"
+      "note": "Webtoon artist",
+      "still": "https://asianwiki.com/images/6/67/Boyfriend_On_Demand-Gong_Min_Jung.jpg"
     },
     {
       "id": "hwany",
@@ -50,7 +53,8 @@
       "image": "https://i.mydramalist.com/mOKXDJ_5m.jpg",
       "group": "Naemo Studio",
       "inCast": true,
-      "note": "Webtoon artist"
+      "note": "Webtoon artist",
+      "still": "https://asianwiki.com/images/f/ff/Boyfriend_On_Demand-Yoo_Seon-Ho1.jpg"
     },
     {
       "id": "byeonghak",
@@ -59,7 +63,8 @@
       "image": "https://i.mydramalist.com/vyZw2m.jpg",
       "group": "Naemo Studio",
       "inCast": true,
-      "note": "The boss"
+      "note": "The boss",
+      "still": "https://asianwiki.com/images/e/e0/Boyfriend_on_Demand-Jo_Han-Chul1.jpg"
     },
     {
       "id": "junyeong",
@@ -68,7 +73,8 @@
       "image": "https://i.mydramalist.com/do6KDm.jpg",
       "group": "Naemo Studio",
       "inCast": true,
-      "note": "Team leader"
+      "note": "Team leader",
+      "still": "https://asianwiki.com/images/1/17/Boyfriend_On_Demand-Lee_Hak-Joo.jpg"
     },
     {
       "id": "seonghun",
@@ -76,7 +82,8 @@
       "actor": "Park Ji Ho",
       "image": "https://i.mydramalist.com/mOXqJq_5m.jpg",
       "group": "Naemo Studio",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/5/5e/Boyfriend_On_Demand-Park_Ji-Ho1.jpg"
     },
     {
       "id": "hyebin",
@@ -84,7 +91,8 @@
       "actor": "Ryu Abel",
       "image": "https://i.mydramalist.com/WPJN7O_5m.jpg",
       "group": "Naemo Studio",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/41/Boyfriend_On_Demand-Ryu_Abel1.jpg"
     },
     {
       "id": "dongmin",
@@ -92,7 +100,8 @@
       "actor": "Jo Deok Hee",
       "image": "https://i.mydramalist.com/pzEdB_5m.jpg",
       "group": "Naemo Studio",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1e/Boyfriend_On_Demand-Cho_Jung-Won.jpg"
     },
     {
       "id": "eunju",
@@ -100,7 +109,8 @@
       "actor": "Han Ga Eul",
       "image": "https://i.mydramalist.com/Ndq46W_5m.jpg",
       "group": "Naemo Studio",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/31/Boyfriend_On_Demand-Han_Ga-Eul01.jpg"
     },
     {
       "id": "jiyeon",
@@ -108,7 +118,8 @@
       "actor": "Ha Young",
       "image": "https://i.mydramalist.com/ABmJOP_5m.jpg",
       "group": "Mi Rae's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/e4/Boyfriend_On_Demand-Ha_Young1.jpg"
     },
     {
       "id": "soyeong",
@@ -116,7 +127,8 @@
       "actor": "Lee Soo Min",
       "image": "https://i.mydramalist.com/nODnrL_5m.jpg",
       "group": "Mi Rae's people",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4a/Boyfriend_On_Demand-Lee_Soo-Min.jpg"
     },
     {
       "id": "sejun",
@@ -125,7 +137,8 @@
       "image": null,
       "group": "Mi Rae's people",
       "inCast": false,
-      "note": "Ex-boyfriend"
+      "note": "Ex-boyfriend",
+      "still": "https://asianwiki.com/images/d/da/Boyfriend_On_Demand-Kim_Sung-Cheol01.jpg"
     },
     {
       "id": "hoi",
@@ -134,7 +147,8 @@
       "image": null,
       "group": "The virtual world",
       "inCast": false,
-      "note": "The program's manager"
+      "note": "The program's manager",
+      "still": "https://asianwiki.com/images/8/8f/Boyfriend_On_Demand-Yoo_In-Na1.jpg"
     },
     {
       "id": "siwoo",
@@ -143,7 +157,8 @@
       "image": null,
       "group": "The virtual world",
       "inCast": false,
-      "note": "A webtoon protagonist"
+      "note": "A webtoon protagonist",
+      "still": "https://asianwiki.com/images/2/28/Boyfriend_On_Demand-Lee_Soo-Hyuk1.jpeg"
     },
     {
       "id": "eunho",
@@ -152,7 +167,8 @@
       "image": null,
       "group": "The virtual world",
       "inCast": false,
-      "note": "Kendo martial artist"
+      "note": "Kendo martial artist",
+      "still": "https://asianwiki.com/images/b/b7/Boyfriend_On_Demand-Seo_Kang_Joon.jpeg"
     },
     {
       "id": "hyeonwoo",
@@ -160,7 +176,8 @@
       "actor": "Ong Seong Wu",
       "image": null,
       "group": "The virtual world",
-      "inCast": false
+      "inCast": false,
+      "still": "https://asianwiki.com/images/1/1f/Boyfriend_On_Demand-Ong_Seong-Wu01.jpg"
     },
     {
       "id": "jaewook",
@@ -169,7 +186,8 @@
       "image": null,
       "group": "The virtual world",
       "inCast": false,
-      "note": "As himself"
+      "note": "As himself",
+      "still": "https://asianwiki.com/images/d/dd/Boyfriend_On_Demand-Lee_Jae-Wook1.jpg"
     }
   ],
   "links": [

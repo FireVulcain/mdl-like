@@ -26,15 +26,18 @@
         {
           "name": "Jung Yoo Geun",
           "image": "https://i.mydramalist.com/l0PBlJ_5m.jpg",
-          "era": "teen"
+          "era": "teen",
+          "still": "https://asianwiki.com/images/0/04/My_Sweet_Mobster-Jung_Yoo_Geun.jpg"
         },
         {
           "name": "Lee Joo Won",
           "image": "https://i.mydramalist.com/ABe0VE_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/2/2f/My_Sweet_Mobster-Lee_Joo_Won.jpg"
         }
       ],
-      "note": "36, once an underworld legend, now CEO of a meat company giving ex-convicts a fresh start"
+      "note": "36, once an underworld legend, now CEO of a meat company giving ex-convicts a fresh start",
+      "still": "https://asianwiki.com/images/c/c1/My_Sweet_Mobster-Um_Tae-Goo.jpg"
     },
     {
       "id": "eunha",
@@ -47,10 +50,12 @@
         {
           "name": "Kwon Dan Ah",
           "image": "https://i.mydramalist.com/RBPy8x_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/5/58/My_Sweet_Mobster-Kwon_Dan-A.jpg"
         }
       ],
-      "note": "30, 'Sister Mini', a struggling kids' creator"
+      "note": "30, 'Sister Mini', a struggling kids' creator",
+      "still": "https://asianwiki.com/images/5/5a/My_Sweet_Mobster-Han_Sun-Hwa_.jpg"
     },
     {
       "id": "hyeonu",
@@ -59,7 +64,8 @@
       "image": "https://i.mydramalist.com/ABwd48_5m.jpg",
       "group": "Prosecutors' office",
       "inCast": true,
-      "note": "36, prosecutor, violent crimes"
+      "note": "36, prosecutor, violent crimes",
+      "still": "https://asianwiki.com/images/9/94/My_Sweet_Mobster-Kwon_Yool.jpg"
     },
     {
       "id": "ilyeong",
@@ -68,7 +74,8 @@
       "image": "https://i.mydramalist.com/nOQ4v8_5m.jpg",
       "group": "Thirsty Deer (Ji Hwan's company)",
       "inCast": true,
-      "note": "29, general manager"
+      "note": "29, general manager",
+      "still": "https://asianwiki.com/images/7/72/My_Sweet_Mobster-Kim_Hyun-Jin.jpg"
     },
     {
       "id": "jaesu",
@@ -77,7 +84,8 @@
       "image": "https://i.mydramalist.com/VXpjrJ_5m.jpg",
       "group": "Thirsty Deer (Ji Hwan's company)",
       "inCast": true,
-      "note": "39, customer care"
+      "note": "39, customer care",
+      "still": "https://asianwiki.com/images/1/1b/My_Sweet_Mobster-Yang_Hyun-Min.jpg"
     },
     {
       "id": "manho",
@@ -86,7 +94,8 @@
       "image": "https://i.mydramalist.com/73Bl0b_5m.jpg",
       "group": "Thirsty Deer (Ji Hwan's company)",
       "inCast": true,
-      "note": "32, product development"
+      "note": "32, product development",
+      "still": "https://asianwiki.com/images/4/41/My_Sweet_Mobster-Lee_Yoo_Joon.jpg"
     },
     {
       "id": "honggi",
@@ -95,7 +104,8 @@
       "image": "https://i.mydramalist.com/ABm4QZ_5m.jpg",
       "group": "Thirsty Deer (Ji Hwan's company)",
       "inCast": true,
-      "note": "28, marketing"
+      "note": "28, marketing",
+      "still": "https://asianwiki.com/images/f/fb/My_Sweet_Mobster-Moon_Dong-Hyeok.jpg"
     },
     {
       "id": "donghui",
@@ -104,7 +114,8 @@
       "image": "https://i.mydramalist.com/YY2keP_5m.jpg",
       "group": "Thirsty Deer (Ji Hwan's company)",
       "inCast": true,
-      "note": "22, the CEO's secretary; pure and naive"
+      "note": "22, the CEO's secretary; pure and naive",
+      "still": "https://asianwiki.com/images/f/f2/My_Sweet_Mobster-Jae_Chan.jpg"
     },
     {
       "id": "seunghui",
@@ -112,7 +123,8 @@
       "actor": "Hwang Hyun Jeong",
       "image": "https://i.mydramalist.com/XdAVkn_5m.jpg",
       "group": "Thirsty Deer (Ji Hwan's company)",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/4c/My_Sweet_Mobster-Hwang_Hyun-Jung.jpg"
     },
     {
       "id": "miho",
@@ -121,7 +133,8 @@
       "image": "https://i.mydramalist.com/Ndoqgo_5m.jpg",
       "group": "Mi Ho's family",
       "inCast": true,
-      "note": "30, runs a kids' academy"
+      "note": "30, runs a kids' academy",
+      "still": "https://asianwiki.com/images/d/dd/My_Sweet_Mobster-Moon_Ji_In.jpg"
     },
     {
       "id": "pilseung",
@@ -130,7 +143,8 @@
       "image": "https://i.mydramalist.com/1gyLQm.jpg",
       "group": "Mi Ho's family",
       "inCast": true,
-      "note": "Fruit-shop owner"
+      "note": "Fruit-shop owner",
+      "still": "https://asianwiki.com/images/f/f0/My_Sweet_Mobster-Lee_Byung-Joon1.jpg"
     },
     {
       "id": "miho_mother",
@@ -139,7 +153,8 @@
       "image": "https://i.mydramalist.com/03n8O_5m.jpg",
       "group": "Mi Ho's family",
       "inCast": true,
-      "note": "Fruit-shop owner"
+      "note": "Fruit-shop owner",
+      "still": "https://asianwiki.com/images/f/f3/My_Sweet_Mobster-Yoon_Jin-Sung1.jpg"
     },
     {
       "id": "yena",
@@ -148,7 +163,8 @@
       "image": "https://i.mydramalist.com/vXdmde_5m.jpg",
       "group": "Macaron Soft",
       "inCast": true,
-      "note": "27, kids' creator"
+      "note": "27, kids' creator",
+      "still": "https://asianwiki.com/images/3/3c/My_Sweet_Mobster-Song_Seo-Rin.jpg"
     },
     {
       "id": "yeongho",
@@ -157,7 +173,8 @@
       "image": "https://i.mydramalist.com/ZBpqL_5m.jpg",
       "group": "Macaron Soft",
       "inCast": true,
-      "note": "CEO of the MCN"
+      "note": "CEO of the MCN",
+      "still": "https://asianwiki.com/images/8/86/My_Sweet_Mobster-Yeon_Je-Wook.jpg"
     },
     {
       "id": "pdlee",
@@ -166,7 +183,8 @@
       "image": "https://i.mydramalist.com/KpvoAJ_5m.jpg",
       "group": "Macaron Soft",
       "inCast": true,
-      "note": "34, her producer, master of tacky CG"
+      "note": "34, her producer, master of tacky CG",
+      "still": "https://asianwiki.com/images/1/1d/My_Sweet_Mobster-Jo_Hyun-Sik.jpg"
     },
     {
       "id": "yanghui",
@@ -175,7 +193,8 @@
       "image": "https://i.mydramalist.com/RJRZom.jpg",
       "group": "Meow gang",
       "inCast": true,
-      "note": "The boss"
+      "note": "The boss",
+      "still": "https://asianwiki.com/images/9/97/My_Sweet_Mobster-Lim_Chul_Soo.jpg"
     },
     {
       "id": "ganggil",
@@ -184,7 +203,8 @@
       "image": "https://i.mydramalist.com/vdpp2m.jpg",
       "group": "Meow gang",
       "inCast": true,
-      "note": "32, general manager"
+      "note": "32, general manager",
+      "still": "https://asianwiki.com/images/a/ad/My_Sweet_Mobster-Kim_Hyun-Joon.jpg"
     },
     {
       "id": "taepyeong",
@@ -193,7 +213,8 @@
       "image": "https://i.mydramalist.com/wJmXZJ_5m.jpg",
       "group": "Meow gang",
       "inCast": true,
-      "note": "The old boss, in prison"
+      "note": "The old boss, in prison",
+      "still": "https://asianwiki.com/images/9/96/My_Sweet_Mobster-Kim_Roe-Ha1.jpg"
     },
     {
       "id": "gwangtae",
@@ -201,7 +222,8 @@
       "actor": "Choon Sik",
       "image": "https://i.mydramalist.com/1nmK5_5m.jpg",
       "group": "Meow gang",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/d/d4/My_Sweet_Mobster-Choon-Sik.jpg"
     },
     {
       "id": "gwangsik",
@@ -209,7 +231,8 @@
       "actor": "Han Sang Jo",
       "image": "https://i.mydramalist.com/R4bRV_5m.jpg",
       "group": "Meow gang",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/20/My_Sweet_Mobster-Han_Sang_Jo.jpg"
     },
     {
       "id": "cheolman",
@@ -218,7 +241,8 @@
       "image": "https://i.mydramalist.com/dKZEA_5m.jpg",
       "group": "Prosecutors' office",
       "inCast": true,
-      "note": "Investigator"
+      "note": "Investigator",
+      "still": "https://asianwiki.com/images/6/61/My_Sweet_Mobster-Park_Chul_Min1.jpg"
     },
     {
       "id": "song",
@@ -227,7 +251,8 @@
       "image": "https://i.mydramalist.com/xOWkN_5m.jpg",
       "group": "Prosecutors' office",
       "inCast": true,
-      "note": "The department's hidden ace"
+      "note": "The department's hidden ace",
+      "still": "https://asianwiki.com/images/a/ac/My_Sweet_Mobster-Shin_Soo-Hyun1.jpg"
     },
     {
       "id": "yuntaek",
@@ -235,7 +260,8 @@
       "actor": "Kim Hyun Kyu",
       "image": "https://i.mydramalist.com/RBk6nr_5m.jpg",
       "group": "Meow gang",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/e/ef/My_Sweet_Mobster-Kim_Hyun-Kyu.jpg"
     }
   ],
   "links": [

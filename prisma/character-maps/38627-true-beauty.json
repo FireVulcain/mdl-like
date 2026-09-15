@@ -26,10 +26,12 @@
         {
           "name": "Lee Go Eun",
           "image": "https://i.mydramalist.com/x4QevX_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/b/b0/True_Beauty-Lee_Go-Eun.jpg"
         }
       ],
-      "note": "Bullied for her looks at her old school; a goddess by makeup, bare face hidden from everyone"
+      "note": "Bullied for her looks at her old school; a goddess by makeup, bare face hidden from everyone",
+      "still": "https://asianwiki.com/images/a/ab/True_Beauty-Mun_Ka-Young.jpg"
     },
     {
       "id": "suho",
@@ -42,10 +44,12 @@
         {
           "name": "Lee Seung Woo",
           "image": "https://i.mydramalist.com/nOoWqN_5m.jpg",
-          "era": "child"
+          "era": "child",
+          "still": "https://asianwiki.com/images/5/58/True_Beauty-_Lee_Seung-Woo.jpg"
         }
       ],
-      "note": "Saebom's cold, perfect top student; carries the guilt of Se Yeon's death"
+      "note": "Saebom's cold, perfect top student; carries the guilt of Se Yeon's death",
+      "still": "https://asianwiki.com/images/e/eb/True_Beauty-Cha_Eun-Woo.jpg"
     },
     {
       "id": "seojun",
@@ -54,7 +58,8 @@
       "image": "https://i.mydramalist.com/Lwr2A3_5m.jpg",
       "group": "Seo Jun's family",
       "inCast": true,
-      "note": "Sings; likes Ju Gyeong"
+      "note": "Sings; likes Ju Gyeong",
+      "still": "https://asianwiki.com/images/b/b6/True_Beauty-Hwang_In-Yeop.jpg"
     },
     {
       "id": "sujin",
@@ -63,7 +68,8 @@
       "image": "https://i.mydramalist.com/eYVX7Y_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Saebom's original bare-faced goddess; a violent father at home"
+      "note": "Saebom's original bare-faced goddess; a violent father at home",
+      "still": "https://asianwiki.com/images/b/b7/True_Beauty-Park_Yoo-Na.jpg"
     },
     {
       "id": "seyeon",
@@ -72,7 +78,8 @@
       "image": "https://i.mydramalist.com/E0mPm_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Dead — the friend both boys lost"
+      "note": "Dead — the friend both boys lost",
+      "still": "https://asianwiki.com/images/3/3f/True_Beauty-Kang_Chan-Hee.jpg"
     },
     {
       "id": "hyeonsuk",
@@ -81,7 +88,8 @@
       "image": "https://i.mydramalist.com/2OnqEm.jpg",
       "group": "Ju Gyeong's family",
       "inCast": true,
-      "note": "Runs the Pandora shop; queen of the neighbourhood's semi-permanent makeup"
+      "note": "Runs the Pandora shop; queen of the neighbourhood's semi-permanent makeup",
+      "still": "https://asianwiki.com/images/a/ac/True_Beauty-Jang_Hye-Jin1.jpg"
     },
     {
       "id": "jaepil",
@@ -90,7 +98,8 @@
       "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
       "group": "Ju Gyeong's family",
       "inCast": true,
-      "note": "The handsome dad"
+      "note": "The handsome dad",
+      "still": "https://asianwiki.com/images/0/00/True_Beauty-Park_Ho-San.jpg"
     },
     {
       "id": "huigyeong",
@@ -108,7 +117,8 @@
       "image": "https://i.mydramalist.com/g0bBDn_5m.jpg",
       "group": "Ju Gyeong's family",
       "inCast": true,
-      "note": "The clever little brother"
+      "note": "The clever little brother",
+      "still": "https://asianwiki.com/images/5/59/True_Beauty-Kim_Min_Ki.jpg"
     },
     {
       "id": "junu",
@@ -117,7 +127,8 @@
       "image": "https://i.mydramalist.com/5v7D6y_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Homeroom teacher of 2-5, literature"
+      "note": "Homeroom teacher of 2-5, literature",
+      "still": "https://asianwiki.com/images/4/47/True_Beauty-Oh_Eui_Sik.jpg"
     },
     {
       "id": "juhun",
@@ -126,7 +137,8 @@
       "image": "https://i.mydramalist.com/pY2L8_5m.jpg",
       "group": "Su Ho's family",
       "inCast": true,
-      "note": "Top actor, the original Hallyu star; former CEO of Move"
+      "note": "Top actor, the original Hallyu star; former CEO of Move",
+      "still": "https://asianwiki.com/images/6/6d/True_Beauty-Jung_Joon-Ho.jpg"
     },
     {
       "id": "mihyang",
@@ -135,7 +147,8 @@
       "image": "https://i.mydramalist.com/g035mO_5m.jpg",
       "group": "Seo Jun's family",
       "inCast": true,
-      "note": "Insurance planner"
+      "note": "Insurance planner",
+      "still": "https://asianwiki.com/images/e/ea/True_Beauty-Park_Hyun-Jung-1975.jpg"
     },
     {
       "id": "goun",
@@ -144,7 +157,8 @@
       "image": "https://i.mydramalist.com/d5mve_5m.jpg",
       "group": "Seo Jun's family",
       "inCast": true,
-      "note": "17, dreams of musicals; choir"
+      "note": "17, dreams of musicals; choir",
+      "still": "https://asianwiki.com/images/d/d8/True_Beauty-Yeo_Joo_Ha.jpg"
     },
     {
       "id": "sua",
@@ -153,7 +167,8 @@
       "image": "https://i.mydramalist.com/b31VrV_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "The too-much talker"
+      "note": "The too-much talker",
+      "still": "https://asianwiki.com/images/4/45/True_Beauty-Kang_Min-Ah.jpg"
     },
     {
       "id": "taehun",
@@ -162,7 +177,8 @@
       "image": "https://i.mydramalist.com/jeZVr_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Mr Average"
+      "note": "Mr Average",
+      "still": "https://asianwiki.com/images/9/96/True_Beauty-Lee_Il-Jun-1996.jpg"
     },
     {
       "id": "chorong",
@@ -171,7 +187,8 @@
       "image": "https://i.mydramalist.com/jwQV8_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Seo Jun's loyal simple friend"
+      "note": "Seo Jun's loyal simple friend",
+      "still": "https://asianwiki.com/images/c/cb/True_Beauty-Lee_Woo-Je-actor.jpg"
     },
     {
       "id": "mansik",
@@ -180,7 +197,8 @@
       "image": "https://i.mydramalist.com/JBOPkl_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Cho Rong's gang"
+      "note": "Cho Rong's gang",
+      "still": "https://asianwiki.com/images/b/b7/True_Beauty-Lee_Joo-Ahn.jpg"
     },
     {
       "id": "hyeongyu",
@@ -188,7 +206,8 @@
       "actor": "Lee Sang Jin",
       "image": "https://i.mydramalist.com/60om8W_5m.jpg",
       "group": "Saebom High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/40/True_Beauty-Lee_Sang-Jin.jpg"
     },
     {
       "id": "jiyeong",
@@ -197,7 +216,8 @@
       "image": "https://i.mydramalist.com/EOwPQ_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Class president, the girls' gang"
+      "note": "Class president, the girls' gang",
+      "still": "https://asianwiki.com/images/6/6b/True_Beauty-Han_Yi-Young.jpg"
     },
     {
       "id": "hyemin",
@@ -206,7 +226,8 @@
       "image": "https://i.mydramalist.com/qEzXB_5m.jpg",
       "group": "Yongpa High",
       "inCast": true,
-      "note": "Bullied after Ju Gyeong left; knows her secret"
+      "note": "Bullied after Ju Gyeong left; knows her secret",
+      "still": "https://asianwiki.com/images/1/16/True_Beauty-Oh_Yoo-Jin.jpg"
     },
     {
       "id": "saemi",
@@ -215,7 +236,8 @@
       "image": "https://i.mydramalist.com/yWlN5n_5m.jpg",
       "group": "Yongpa High",
       "inCast": true,
-      "note": "Yongpa's goddess; led the bullying"
+      "note": "Yongpa's goddess; led the bullying",
+      "still": "https://asianwiki.com/images/f/f6/True_Beauty-Jeon_Hye_Won.jpg"
     },
     {
       "id": "jihui",
@@ -223,7 +245,8 @@
       "actor": "Seo Hye Won",
       "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
       "group": "Yongpa High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/1/1d/True_Beauty-Seo_Hye_Won.jpg"
     },
     {
       "id": "gayeong",
@@ -231,7 +254,8 @@
       "actor": "Kim Ryul Ha",
       "image": "https://i.mydramalist.com/BOKx5_5m.jpg",
       "group": "Yongpa High",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/b/b9/True_Beauty-Kim_Ryul-Ha.jpg"
     },
     {
       "id": "selena",
@@ -239,7 +263,8 @@
       "actor": "Go Woo Ri",
       "image": "https://i.mydramalist.com/5vPXqL_5m.jpg",
       "group": "Su Ho's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/9/99/True_Beauty-Go_Woo-Ri.jpg"
     },
     {
       "id": "science",
@@ -248,7 +273,8 @@
       "image": "https://i.mydramalist.com/BNRdq_5m.jpg",
       "group": "Saebom High",
       "inCast": true,
-      "note": "Secretly in love with Jun U"
+      "note": "Secretly in love with Jun U",
+      "still": "https://asianwiki.com/images/1/1d/True_Beauty-Ahn_So-Rim01.jpg"
     }
   ],
   "links": [

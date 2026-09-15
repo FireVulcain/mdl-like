@@ -26,10 +26,12 @@
         {
           "name": "Lee Ye Seo",
           "image": "https://i.mydramalist.com/jovLb_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/2e/Doom_At_Your_Service-Lee_Ye_Seo.jpg"
         }
       ],
-      "note": "28, web-novel editor; diagnosed with glioblastoma, she curses the world — and Doom answers"
+      "note": "28, web-novel editor; diagnosed with glioblastoma, she curses the world — and Doom answers",
+      "still": "https://asianwiki.com/images/4/4d/Doom_at_Your_Service-Park_Bo-Young.jpg"
     },
     {
       "id": "myeolmang",
@@ -38,7 +40,8 @@
       "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Doom — born between light and dark; neither human nor god"
+      "note": "Doom — born between light and dark; neither human nor god",
+      "still": "https://asianwiki.com/images/c/ca/Doom_At_Your_Service-Seo_In-Guk.jpg"
     },
     {
       "id": "juik",
@@ -47,7 +50,8 @@
       "image": "https://i.mydramalist.com/k6VbO_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "33, head of the editorial team"
+      "note": "33, head of the editorial team",
+      "still": "https://asianwiki.com/images/3/32/Doom_At_Your_Service-Lee_Soo-Hyuk.jpg"
     },
     {
       "id": "hyeongyu",
@@ -56,7 +60,8 @@
       "image": "https://i.mydramalist.com/qv3mz_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "29, cafe owner"
+      "note": "29, cafe owner",
+      "still": "https://asianwiki.com/images/c/c0/Doom_at_Your_Service-Kang_Tae-Oh.jpg"
     },
     {
       "id": "jina",
@@ -65,7 +70,8 @@
       "image": "https://i.mydramalist.com/qxx6z_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "29, web novelist, pen name Lee Hyeon"
+      "note": "29, web novelist, pen name Lee Hyeon",
+      "still": "https://asianwiki.com/images/2/21/Doom_At_Your_Service-Shin_Do-Hyun.jpg"
     },
     {
       "id": "seongyeong",
@@ -78,10 +84,12 @@
         {
           "name": "Park Jae Joon",
           "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/2/2d/Doom_At_Your_Service-Park_Jae-Joon.jpg"
         }
       ],
-      "note": "25"
+      "note": "25",
+      "still": "https://asianwiki.com/images/e/e7/Doom_At_Your_Service-Da_Won.jpg"
     },
     {
       "id": "suja",
@@ -90,7 +98,8 @@
       "image": "https://i.mydramalist.com/d04pWD_5m.jpg",
       "group": "Dong Gyeong's family",
       "inCast": true,
-      "note": "48, motto: all in. Woo Hee Jin also plays Kang Su A, Dong Gyeong's late mother"
+      "note": "48, motto: all in. Woo Hee Jin also plays Kang Su A, Dong Gyeong's late mother",
+      "still": "https://asianwiki.com/images/c/c8/Doom_At_Your_Service-Woo_Hee-Jin.jpg"
     },
     {
       "id": "kevin",
@@ -98,7 +107,8 @@
       "actor": "Daniel C. Kennedy",
       "image": "https://i.mydramalist.com/B4no6_5m.jpg",
       "group": "Dong Gyeong's family",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/0/05/Doom_At_Your_Service-Daniel-Kennedy.jpg"
     },
     {
       "id": "sonyeosin",
@@ -107,7 +117,8 @@
       "image": "https://i.mydramalist.com/2wmKLV_5m.jpg",
       "group": "Beyond",
       "inCast": true,
-      "note": "The girl deity"
+      "note": "The girl deity",
+      "still": "https://asianwiki.com/images/b/bd/Doom_At_Your_Service-Jung_Ji_So.jpg"
     },
     {
       "id": "yeji",
@@ -116,7 +127,8 @@
       "image": "https://i.mydramalist.com/xDZBN_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "Editorial team chief"
+      "note": "Editorial team chief",
+      "still": "https://asianwiki.com/images/d/d0/Doom_At_Your_Service-Song_Ju-Hee.jpg"
     },
     {
       "id": "dain",
@@ -125,7 +137,8 @@
       "image": "https://i.mydramalist.com/vZ3DZ_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "Editorial team"
+      "note": "Editorial team",
+      "still": "https://asianwiki.com/images/0/07/Doom_At_Your_Service-Choi_So-Yoon.jpg"
     },
     {
       "id": "jeongmin",
@@ -134,7 +147,8 @@
       "image": "https://i.mydramalist.com/xKK3jm.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "New recruit"
+      "note": "New recruit",
+      "still": "https://asianwiki.com/images/d/d3/Doom_At_Your_Service-Park_Tae-In.jpg"
     },
     {
       "id": "changsin",
@@ -143,7 +157,8 @@
       "image": "https://i.mydramalist.com/xOWVz_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "CEO"
+      "note": "CEO",
+      "still": "https://asianwiki.com/images/a/ae/Doom_At_Your_Service-Song_Jin-Woo.jpg"
     },
     {
       "id": "yeong",
@@ -152,7 +167,8 @@
       "image": "https://i.mydramalist.com/E5QVml_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "Writer"
+      "note": "Writer",
+      "still": "https://asianwiki.com/images/f/f0/Doom_At_Your_Service-Nam_Da-Reum.jpg"
     },
     {
       "id": "seungjun",
@@ -161,7 +177,8 @@
       "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
       "group": "Life Story",
       "inCast": true,
-      "note": "Her neurologist — and a Life Story writer"
+      "note": "Her neurologist — and a Life Story writer",
+      "still": "https://asianwiki.com/images/7/7c/Doom_At_Your_Service-Lee_Seung-Joon.jpg"
     },
     {
       "id": "daehan",
@@ -170,7 +187,8 @@
       "image": "https://i.mydramalist.com/2PnbE_5m.jpg",
       "group": "Dong Gyeong's family",
       "inCast": true,
-      "note": "Ex-boyfriend, a married man"
+      "note": "Ex-boyfriend, a married man",
+      "still": "https://asianwiki.com/images/0/0e/Doom_At_Your_Service-Kim_Ji-Suk.jpg"
     }
   ],
   "links": [
