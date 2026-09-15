@@ -28,10 +28,12 @@
         {
           "name": "Lee Hyo Bi",
           "image": "https://i.mydramalist.com/DkBJyN_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/d/da/Dali_and_Cocky_Prince-Lee_Hyo-Bi.jpg"
         }
       ],
-      "note": "Guest researcher at Saint Miller — becomes director of the Cheongsong Art Museum"
+      "note": "Guest researcher at Saint Miller — becomes director of the Cheongsong Art Museum",
+      "still": "https://asianwiki.com/images/4/47/Dali_and_Cocky_Prince-Park_Gyu-Young.jpg"
     },
     {
       "id": "muhak",
@@ -40,7 +42,8 @@
       "image": "https://i.mydramalist.com/kA7pDO_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Managing director of Dondon F&B; grew up peddling in the market; only cares about money"
+      "note": "Managing director of Dondon F&B; grew up peddling in the market; only cares about money",
+      "still": "https://asianwiki.com/images/d/d8/Dali_and_Cocky_Prince-Kim_Min-Jae.jpg"
     },
     {
       "id": "taejin",
@@ -49,7 +52,8 @@
       "image": "https://i.mydramalist.com/ABwd48_5m.jpg",
       "group": "Around Dal Li",
       "inCast": true,
-      "note": "Segi Group's planning chief"
+      "note": "Segi Group's planning chief",
+      "still": "https://asianwiki.com/images/e/eb/Dali_and_Cocky_Prince-Kwon_Yool.jpg"
     },
     {
       "id": "wontak",
@@ -58,7 +62,8 @@
       "image": "https://i.mydramalist.com/XdrKnw_5m.jpg",
       "group": "Around Dal Li",
       "inCast": true,
-      "note": "Violent-crimes detective"
+      "note": "Violent-crimes detective",
+      "still": "https://asianwiki.com/images/0/0b/Dali_and_Cocky_Prince-Hwang_Hee.jpg"
     },
     {
       "id": "chakhui",
@@ -67,7 +72,8 @@
       "image": "https://i.mydramalist.com/vgjp8_5m.jpg",
       "group": "Around Dal Li",
       "inCast": true,
-      "note": "Gallerist"
+      "note": "Gallerist",
+      "still": "https://asianwiki.com/images/2/25/Dali_and_Cocky_Prince-Yeon_Woo.jpg"
     },
     {
       "id": "sangtae",
@@ -76,7 +82,8 @@
       "image": "https://i.mydramalist.com/EZDBp_5m.jpg",
       "group": "Around Dal Li",
       "inCast": true,
-      "note": "Assemblyman"
+      "note": "Assemblyman",
+      "still": "https://asianwiki.com/images/6/63/Dali_and_Cocky_Prince-Park_Sang-Myeon.jpg"
     },
     {
       "id": "nakcheon",
@@ -89,10 +96,12 @@
         {
           "name": "Gu Yun Hoi",
           "image": "https://i.mydramalist.com/rwVLE_5m.jpg",
-          "era": "young"
+          "era": "young",
+          "still": "https://asianwiki.com/images/4/40/Dali_and_Cocky_Prince-Gu_Yun-Hoi.jpg"
         }
       ],
-      "note": "Director of the Cheongsong Art Museum (deceased)"
+      "note": "Director of the Cheongsong Art Museum (deceased)",
+      "still": "https://asianwiki.com/images/1/1b/Dali_and_Cocky_Prince-Jang-Gwang.jpg"
     },
     {
       "id": "sihyeong",
@@ -101,7 +110,8 @@
       "image": "https://i.mydramalist.com/eoJnqm.jpg",
       "group": "Cheongsong Art Museum",
       "inCast": true,
-      "note": "Runs the museum cafe"
+      "note": "Runs the museum cafe",
+      "still": "https://asianwiki.com/images/e/ee/Dali_and_Cocky_Prince-Lee_Jae-Woo_1981.jpg"
     },
     {
       "id": "sabong",
@@ -110,7 +120,8 @@
       "image": "https://i.mydramalist.com/d04pWD_5m.jpg",
       "group": "Cheongsong Art Museum",
       "inCast": true,
-      "note": "Curator"
+      "note": "Curator",
+      "still": "https://asianwiki.com/images/3/39/Dali_and_Cocky_Prince-Woo_Hee_Jin.jpg"
     },
     {
       "id": "byeongse",
@@ -119,7 +130,8 @@
       "image": "https://i.mydramalist.com/XODjZ_5m.jpg",
       "group": "Cheongsong Art Museum",
       "inCast": true,
-      "note": "Educator / curator"
+      "note": "Educator / curator",
+      "still": "https://asianwiki.com/images/9/9e/Dali_and_Cocky_Prince-An_Se_Ha.jpg"
     },
     {
       "id": "gidong",
@@ -128,7 +140,8 @@
       "image": "https://i.mydramalist.com/pz4QD_5m.jpg",
       "group": "Cheongsong Art Museum",
       "inCast": true,
-      "note": "Facilities engineer"
+      "note": "Facilities engineer",
+      "still": "https://asianwiki.com/images/5/54/Dali_and_Cocky_Prince-Yoo_Hyung-Gwan.jpg"
     },
     {
       "id": "gongju",
@@ -137,7 +150,8 @@
       "image": "https://i.mydramalist.com/dAn5bm.jpg",
       "group": "Cheongsong Art Museum",
       "inCast": true,
-      "note": "Intern"
+      "note": "Intern",
+      "still": "https://asianwiki.com/images/c/ca/Dali_and_Cocky_Prince-Song_Ji-Won.jpg"
     },
     {
       "id": "baekwon",
@@ -146,7 +160,8 @@
       "image": "https://i.mydramalist.com/O8LKVy_5m.jpg",
       "group": "Dondon F&B",
       "inCast": true,
-      "note": "Chairman of Dondon F&B"
+      "note": "Chairman of Dondon F&B",
+      "still": "https://asianwiki.com/images/d/dd/Dali_and_Cocky_Prince-Ahn_Kil-Kang_.jpg"
     },
     {
       "id": "geumja",
@@ -154,7 +169,8 @@
       "actor": "Seo Jung Yeon",
       "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
       "group": "Dondon F&B",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/4/44/Dali_and_Cocky_Prince-Seo_Jung_Yeon.jpg"
     },
     {
       "id": "gicheol",
@@ -163,7 +179,8 @@
       "image": "https://i.mydramalist.com/QJ2wd7_5m.jpg",
       "group": "Dondon F&B",
       "inCast": true,
-      "note": "Head of planning at Dondon F&B"
+      "note": "Head of planning at Dondon F&B",
+      "still": "https://asianwiki.com/images/5/53/Dali_and_Cocky_Prince-Lee_Je_Yeon.jpg"
     },
     {
       "id": "miri",
@@ -171,7 +188,8 @@
       "actor": "Hwang Bo Ra",
       "image": "https://i.mydramalist.com/2z6BP_5m.jpg",
       "group": "Dondon F&B",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/3/37/Dali_and_Cocky_Prince-Hwang_Bo-Ra.jpg"
     },
     {
       "id": "jedeuk",
@@ -179,7 +197,8 @@
       "actor": "Ahn Dong Yeob",
       "image": "https://i.mydramalist.com/XvEqZm.jpg",
       "group": "Dondon F&B",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/f/f0/Dali_and_Cocky_Prince-Ahn_Dong-Yeob.jpg"
     },
     {
       "id": "pilgu",
@@ -187,7 +206,8 @@
       "actor": "Seo Dong Oh",
       "image": "https://i.mydramalist.com/25qo7_5m.jpg",
       "group": "Dondon F&B",
-      "inCast": true
+      "inCast": true,
+      "still": "https://asianwiki.com/images/2/2b/Dali_and_Cocky_Prince-Seo_Dong-Oh.jpg"
     }
   ],
   "links": [
