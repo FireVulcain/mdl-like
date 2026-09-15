@@ -1,0 +1,790 @@
+{
+  "version": 1,
+  "mdlSlug": "62087-the-demon-judge",
+  "title": "The Devil Judge",
+  "native": "악마판사",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (23 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "yohan",
+    "seona"
+  ],
+  "people": [
+    {
+      "id": "yohan",
+      "name": "Kang Yo Han",
+      "actor": "Ji Sung",
+      "image": "https://i.mydramalist.com/E55lEp_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Woo Jin",
+          "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Head judge of the pilot court — the 'Devil Judge' of the live trial show"
+    },
+    {
+      "id": "seona",
+      "name": "Jung Seon A",
+      "actor": "Kim Min Jung",
+      "image": "https://i.mydramalist.com/YY1xJg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ga Yoon",
+          "image": "https://i.mydramalist.com/QLwjg_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Executive director of the Social Responsibility Foundation"
+    },
+    {
+      "id": "gaon",
+      "name": "Kim Ga On",
+      "actor": "Park Jin Young",
+      "image": "https://i.mydramalist.com/LwL5q3_5m.jpg",
+      "group": "Pilot court",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park Jin U",
+          "image": "https://i.mydramalist.com/qZ5oQ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Rookie judge on Yo Han's bench; the face of the dead Isaac"
+    },
+    {
+      "id": "suhyeon",
+      "name": "Yun Su Hyeon",
+      "actor": "Park Gyu Young",
+      "image": "https://i.mydramalist.com/oQBr6N_5m.jpg",
+      "group": "Pilot court",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Yoon Byul Ha",
+          "image": "https://i.mydramalist.com/B5qqR_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Detective, regional investigation unit"
+    },
+    {
+      "id": "jinju",
+      "name": "O Jin Ju",
+      "actor": "Kim Jae Kyung",
+      "image": "https://i.mydramalist.com/X6VEX_5m.jpg",
+      "group": "Pilot court",
+      "inCast": true,
+      "note": "Right-hand associate judge"
+    },
+    {
+      "id": "jeongho",
+      "name": "Min Jeong Ho",
+      "actor": "Ahn Nae Sang",
+      "image": "https://i.mydramalist.com/1g5nQm.jpg",
+      "group": "Pilot court",
+      "inCast": true,
+      "note": "Supreme Court justice"
+    },
+    {
+      "id": "yunsik",
+      "name": "Ji Yun Sik",
+      "actor": "Seo Sang Won",
+      "image": "https://i.mydramalist.com/Z1Epkm.jpg",
+      "group": "Pilot court",
+      "inCast": true,
+      "note": "Chief justice"
+    },
+    {
+      "id": "elijah",
+      "name": "Kang Elijah",
+      "actor": "Jeon Chae Eun",
+      "image": "https://i.mydramalist.com/4VQp1_5m.jpg",
+      "group": "Yo Han's house",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Soo Ha",
+          "image": "https://i.mydramalist.com/qN7pK_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "In a wheelchair since the cathedral fire"
+    },
+    {
+      "id": "isaac",
+      "name": "Kang Isaac",
+      "actor": "Park Jin Young",
+      "image": "https://i.mydramalist.com/nOrj7E_5m.jpg",
+      "group": "Yo Han's house",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Cha Yoo Jin",
+          "image": "https://i.mydramalist.com/k62x8_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Dead in the cathedral fire — Ga On wears his face"
+    },
+    {
+      "id": "yeongok",
+      "name": "Ji Yeong Ok",
+      "actor": "Yoon Ye Hee",
+      "image": "https://i.mydramalist.com/ELXKO_5m.jpg",
+      "group": "Yo Han's house",
+      "inCast": true,
+      "note": "The family's nanny"
+    },
+    {
+      "id": "k",
+      "name": "\"K\"",
+      "actor": "Lee Ki Taek",
+      "image": "https://i.mydramalist.com/eYVKod_5m.jpg",
+      "group": "Yo Han's house",
+      "inCast": true
+    },
+    {
+      "id": "soyun",
+      "name": "Han So Yun",
+      "actor": "Cheon Young Min",
+      "image": "https://i.mydramalist.com/ABKl43_5m.jpg",
+      "group": "Yo Han's house",
+      "inCast": true,
+      "note": "Actress"
+    },
+    {
+      "id": "gyeonghui",
+      "name": "Cha Gyeong Hui",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Minister of Justice"
+    },
+    {
+      "id": "jaegyeong",
+      "name": "Lee Jae Gyeong",
+      "actor": "Nam Sung Jin",
+      "image": "https://i.mydramalist.com/Z6xWk_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true
+    },
+    {
+      "id": "yeongmin",
+      "name": "Lee Yeong Min",
+      "actor": "Moon Dong Hyeok",
+      "image": "https://i.mydramalist.com/ABm4QZ_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Vice-president of Jungwon F&B"
+    },
+    {
+      "id": "jungse",
+      "name": "Heo Jung Se",
+      "actor": "Baek Hyun Jin",
+      "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "The President"
+    },
+    {
+      "id": "yeonjeong",
+      "name": "Do Yeon Jeong",
+      "actor": "Jung Ae Yeon",
+      "image": "https://i.mydramalist.com/0RBy6_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true
+    },
+    {
+      "id": "yongsik",
+      "name": "Min Yong Sik",
+      "actor": "Hong Seo Joon",
+      "image": "https://i.mydramalist.com/v5dPD_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Chairman of Minbo Group"
+    },
+    {
+      "id": "duman",
+      "name": "Park Du Man",
+      "actor": "Lee Seo Hwan",
+      "image": "https://i.mydramalist.com/QJN414_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Chairman of Saram Media Group"
+    },
+    {
+      "id": "jeonghak",
+      "name": "Seo Jeong Hak",
+      "actor": "Jung In Gyeom",
+      "image": "https://i.mydramalist.com/v5PdW_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Chairman of the Foundation"
+    },
+    {
+      "id": "ildo",
+      "name": "Ju Il Do",
+      "actor": "Jung Jae Sung",
+      "image": "https://i.mydramalist.com/zBDbxO_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Chairman of JU Chemicals — the first defendant"
+    },
+    {
+      "id": "inguk",
+      "name": "Go In Guk",
+      "actor": "Park Hyung Soo",
+      "image": "https://i.mydramalist.com/2Dkd2m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "JU Chemicals' lawyer"
+    },
+    {
+      "id": "sangsuk",
+      "name": "Kim Sang Suk",
+      "actor": "Joo In Young",
+      "image": "https://i.mydramalist.com/Kpy5zq_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true
+    },
+    {
+      "id": "hyangmi",
+      "name": "Pi Hyang Mi",
+      "actor": "Son Ji Na",
+      "image": "https://i.mydramalist.com/e6XOK_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true
+    },
+    {
+      "id": "jaehui",
+      "name": "Jae Hui",
+      "actor": "Lee So Yeong",
+      "image": "https://i.mydramalist.com/ELqkQ_5m.jpg",
+      "group": "Yo Han's house",
+      "inCast": true
+    },
+    {
+      "id": "dojin",
+      "name": "Lee Do Jin",
+      "actor": "Kwon Hae Sung",
+      "image": "https://i.mydramalist.com/Xe1Bqm.jpg",
+      "group": "The Foundation",
+      "inCast": true
+    },
+    {
+      "id": "jukchang",
+      "name": "Kim Chung Sik / \"Jukchang\"",
+      "actor": "Lee Hae Woon",
+      "image": "https://i.mydramalist.com/2vboP_5m.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Host and leader of Jukchang TV"
+    },
+    {
+      "id": "pd",
+      "name": "Live National Trial PD",
+      "actor": "Lee Hwa Ryong",
+      "image": "https://i.mydramalist.com/jXbdbm.jpg",
+      "group": "The Foundation",
+      "inCast": true,
+      "note": "Saram Media"
+    }
+  ],
+  "links": [
+    {
+      "from": "yohan",
+      "to": "seona",
+      "type": "rivalry",
+      "label": "a bitter rivalry between the Devil Judge and the foundation's director",
+      "short": "rival",
+      "evidence": "A bitter rivalry ensues between the 'Devil Judge' and the ambitious Jung Sun Ah, a corporate foundation director",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seona",
+      "to": "yohan",
+      "type": "romance",
+      "label": "the maid's girl who wanted the master's house — obsessed with him since",
+      "short": "obsessed",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gaon",
+      "to": "yohan",
+      "type": "work",
+      "label": "rookie judge on his bench; challenges him",
+      "short": "his associate",
+      "evidence": "rookie Judge Kim Ga On [...] strive for true justice, challenging both the scheming Jung Sun Ah and the notorious Kang / 시범재판부 좌배석판사",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gaon",
+      "to": "suhyeon",
+      "type": "friend",
+      "label": "childhood friends, both after true justice",
+      "short": "childhood friend",
+      "evidence": "two childhood friends, rookie Judge Kim Ga On and Police Officer Yoon Soo Hyun, strive for true justice",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suhyeon",
+      "to": "gaon",
+      "type": "romance",
+      "label": "loves him, unsaid",
+      "short": "loves him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gaon",
+      "to": "seona",
+      "type": "rivalry",
+      "label": "challenges her schemes",
+      "short": "challenges her",
+      "evidence": "challenging both the scheming Jung Sun Ah and the notorious Kang",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinju",
+      "to": "yohan",
+      "type": "work",
+      "label": "right-hand associate judge on his bench",
+      "short": "associate judge",
+      "evidence": "오진주 역 - 시범재판부 우배석판사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongho",
+      "to": "gaon",
+      "type": "work",
+      "label": "the Supreme Court justice who mentors him — and placed him on the bench",
+      "short": "mentor",
+      "evidence": "민정호 역 - 대법관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunsik",
+      "to": "jeongho",
+      "type": "work",
+      "label": "chief justice",
+      "short": "chief justice",
+      "evidence": "지윤식 역 - 대법원장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "isaac",
+      "to": "yohan",
+      "type": "family",
+      "label": "half-brother, dead in the cathedral fire",
+      "short": "half-brother",
+      "evidence": "강이삭 역 - 강요한의 이복 형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "elijah",
+      "to": "isaac",
+      "type": "family",
+      "label": "Isaac's only daughter",
+      "short": "father",
+      "evidence": "강엘리야 역 - 죽은 이삭의 외동딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yohan",
+      "to": "elijah",
+      "type": "family",
+      "label": "uncle; raises her",
+      "short": "uncle",
+      "evidence": "강엘리야 역 - 요한의 조카",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "elijah",
+      "to": "yohan",
+      "type": "bond",
+      "label": "the real culprit of the cathedral fire",
+      "short": "the fire",
+      "evidence": "성당 화재사건 진범",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gaon",
+      "to": "isaac",
+      "type": "bond",
+      "label": "wears Isaac's face — the same actor",
+      "short": "his face",
+      "evidence": "김가온/강이삭 역 (1인 2역)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gaon",
+      "to": "elijah",
+      "type": "friend",
+      "label": "the young judge she lets in",
+      "short": "her friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongok",
+      "to": "yohan",
+      "type": "work",
+      "label": "nanny of the Kang household",
+      "short": "nanny",
+      "evidence": "지영옥 역 - 강요한 일가의 유모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "k",
+      "to": "yohan",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "soyun",
+      "to": "yohan",
+      "type": "work",
+      "label": "actress, Yo Han's ally",
+      "short": "ally",
+      "evidence": "[Actress / Yo Han's ally]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehui",
+      "to": "yohan",
+      "type": "work",
+      "label": "his man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeonghui",
+      "to": "seona",
+      "type": "work",
+      "label": "Minister of Justice on the Foundation's side",
+      "short": "the minister",
+      "evidence": "차경희 역 - 법무부 장관 (사회적 책임재단)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaegyeong",
+      "to": "gyeonghui",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "이재경 - 차경희의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeonghui",
+      "to": "yeongmin",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "[Cha Gyeong Hui's son] / 법무부 장관 차경희와 이재경의 아들",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yohan",
+      "to": "yeongmin",
+      "type": "rivalry",
+      "label": "tries him on the live show",
+      "short": "tries him",
+      "evidence": "이영민 역 - 중원F&B 부사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungse",
+      "to": "seona",
+      "type": "work",
+      "label": "the President, on the Foundation's side",
+      "short": "the President",
+      "evidence": "허중세 역 - 대통령 (사회적 책임재단)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonjeong",
+      "to": "jungse",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "도연정 역 - 허중세의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongsik",
+      "to": "seona",
+      "type": "work",
+      "label": "Minbo chairman, of the Foundation",
+      "short": "chairman",
+      "evidence": "민용식 역 - 민보그룹 회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "duman",
+      "to": "seona",
+      "type": "work",
+      "label": "Saram Media chairman, of the Foundation",
+      "short": "media chairman",
+      "evidence": "박두만 역 - 사람미디어 그룹 회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pd",
+      "to": "duman",
+      "type": "work",
+      "label": "Saram Media's PD of the live trial",
+      "short": "PD",
+      "evidence": "사람미디어 소속, 국민시범재판 생중계 담당 PD",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghak",
+      "to": "seona",
+      "type": "work",
+      "label": "chairman of the Foundation she directs",
+      "short": "chairman",
+      "evidence": "서정학 역 - 사회적 책임재단 이사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seona",
+      "to": "jeonghak",
+      "type": "rivalry",
+      "label": "takes the Foundation from him",
+      "short": "takes his seat",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yohan",
+      "to": "ildo",
+      "type": "rivalry",
+      "label": "the first defendant of the show",
+      "short": "first defendant",
+      "evidence": "[JU Chemicals chairman] (Ep. 1-2)",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "inguk",
+      "to": "ildo",
+      "type": "work",
+      "label": "JU Chemicals' defence lawyer",
+      "short": "lawyer",
+      "evidence": "JU케미컬 법무팀 변호인 고인국 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangsuk",
+      "to": "seona",
+      "type": "work",
+      "label": "the Foundation's people",
+      "short": "Foundation",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyangmi",
+      "to": "seona",
+      "type": "work",
+      "label": "the Foundation's people",
+      "short": "Foundation",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dojin",
+      "to": "seona",
+      "type": "work",
+      "label": "the Foundation's people",
+      "short": "Foundation",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jukchang",
+      "to": "yohan",
+      "type": "rivalry",
+      "label": "the Jukchang TV host who turns the mob",
+      "short": "the mob",
+      "evidence": "김충식 역 - 죽창티비의 진행자이자 리더",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yohan",
+      "seona",
+      "gaon",
+      "suhyeon",
+      "jinju",
+      "jeongho",
+      "yunsik",
+      "elijah",
+      "isaac",
+      "yeongok",
+      "k",
+      "soyun",
+      "gyeonghui",
+      "jaegyeong",
+      "yeongmin",
+      "jungse",
+      "yeonjeong",
+      "yongsik",
+      "duman",
+      "jeonghak",
+      "ildo",
+      "inguk",
+      "sangsuk",
+      "hyangmi",
+      "jaehui",
+      "dojin",
+      "jukchang",
+      "pd"
+    ],
+    "blocks": {
+      "Pilot court": [
+        0,
+        0
+      ],
+      "Yo Han's house": [
+        0,
+        2
+      ],
+      "The Foundation": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "yohan",
+      "seona"
+    ]
+  }
+}

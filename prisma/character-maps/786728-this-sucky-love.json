@@ -1,0 +1,441 @@
+{
+  "version": 1,
+  "mdlSlug": "786728-this-sucky-love",
+  "title": "Our Sticky Love",
+  "native": "이런 엿같은 사랑",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (20 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia (no character section; village ties inferred)"
+  ],
+  "main": [
+    "taeha",
+    "eunsae"
+  ],
+  "people": [
+    {
+      "id": "taeha",
+      "name": "Jang Tae Ha",
+      "actor": "Jung Hae In",
+      "image": "https://i.mydramalist.com/PxZeJ0_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former boxer, now a boxing coach in the village"
+    },
+    {
+      "id": "eunsae",
+      "name": "Ko Eun Sae",
+      "actor": "Ha Young",
+      "image": "https://i.mydramalist.com/ABmJOP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Ambitious prosecutor who wakes up in a village with no memory"
+    },
+    {
+      "id": "sanggil",
+      "name": "Baek Sang Gil",
+      "actor": "Heo Sung Tae",
+      "image": "https://i.mydramalist.com/3oNjDW_5m.jpg",
+      "group": "The syndicate",
+      "inCast": true,
+      "note": "The crime syndicate she was investigating"
+    },
+    {
+      "id": "yeonhong",
+      "name": "Ko Yeon Hong",
+      "actor": "Kim Young Ok",
+      "image": "https://i.mydramalist.com/5vYdBB_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true
+    },
+    {
+      "id": "hyesu",
+      "name": "Jang Hye Su",
+      "actor": "Lee Ji Won",
+      "image": "https://i.mydramalist.com/2wQ152_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true
+    },
+    {
+      "id": "doyeop",
+      "name": "Hong Do Yeop",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true,
+      "note": "Boxing coach"
+    },
+    {
+      "id": "jeonghwa",
+      "name": "Do Jeong Hwa",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true
+    },
+    {
+      "id": "gangrok",
+      "name": "Kim Gang Rok",
+      "actor": "Jung Soon Won",
+      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true
+    },
+    {
+      "id": "gijun",
+      "name": "An Gi Jun",
+      "actor": "Lee Jae Won",
+      "image": "https://i.mydramalist.com/By7eb_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true
+    },
+    {
+      "id": "suji",
+      "name": "Min Su Ji",
+      "actor": "Choi Yu Ju",
+      "image": "https://i.mydramalist.com/2w4zNw_5m.jpg",
+      "group": "Tae Ha's people",
+      "inCast": true
+    },
+    {
+      "id": "hyojin",
+      "name": "Park Hyo Jin",
+      "actor": "Oh Kyung Hwa",
+      "image": "https://i.mydramalist.com/YYqdyo_5m.jpg",
+      "group": "Eun Sae's people",
+      "inCast": true
+    },
+    {
+      "id": "geumhyang",
+      "name": "Na Geum Hyang",
+      "actor": "Kim Mi Hwa",
+      "image": "https://i.mydramalist.com/wJK7rb_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "gyeongpyo",
+      "name": "Gyeong Pyo",
+      "actor": "Eun Jong Geon",
+      "image": "https://i.mydramalist.com/Bbngqm.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "songwol",
+      "name": "Kim Song Wol",
+      "actor": "Yang Jo Ah",
+      "image": "https://i.mydramalist.com/ABXYJE_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "huija",
+      "name": "Paeng Hui Ja",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "pilseung",
+      "name": "Kim Pil Seung",
+      "actor": "Moon Seong Hyun",
+      "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "maengsuk",
+      "name": "Cho Maeng Suk",
+      "actor": "Cha Chung Hwa",
+      "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Shaman"
+    },
+    {
+      "id": "minjong",
+      "name": "Ju Min Jong",
+      "actor": "Kim Jong Tae",
+      "image": "https://i.mydramalist.com/j3qOv_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Mayor"
+    },
+    {
+      "id": "chihyeon",
+      "name": "Kwak Chi Hyeon",
+      "actor": "Kim Seo Ha",
+      "image": "https://i.mydramalist.com/yWOBB1_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "The mayor's aide"
+    }
+  ],
+  "links": [
+    {
+      "from": "taeha",
+      "to": "eunsae",
+      "type": "romance",
+      "label": "greets the amnesiac prosecutor insisting he is her boyfriend",
+      "short": "'her boyfriend'",
+      "evidence": "only to be greeted by Jang Tae Ha, a former boxer turned boxing coach who insists he is her boyfriend",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggil",
+      "to": "eunsae",
+      "type": "rivalry",
+      "label": "the syndicate she was investigating when she lost her memory",
+      "short": "her target",
+      "evidence": "loses all her memories after a mysterious accident while investigating a powerful crime syndicate",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanggil",
+      "to": "taeha",
+      "type": "rivalry",
+      "label": "comes to the village after her",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeonhong",
+      "to": "taeha",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Tae Ha's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesu",
+      "to": "taeha",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Tae Ha's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "doyeop",
+      "to": "taeha",
+      "type": "work",
+      "label": "his boxing coach",
+      "short": "coach",
+      "evidence": "[Tae Ha's boxing coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghwa",
+      "to": "doyeop",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Do Yeop's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gangrok",
+      "to": "taeha",
+      "type": "work",
+      "label": "his subordinate at the gym",
+      "short": "subordinate",
+      "evidence": "[Tae Ha's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gijun",
+      "to": "taeha",
+      "type": "friend",
+      "label": "high-school classmate",
+      "short": "classmate",
+      "evidence": "[Tae Ha's high school classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suji",
+      "to": "gijun",
+      "type": "romance",
+      "label": "girlfriend",
+      "short": "girlfriend",
+      "evidence": "[Gi Jun's girlfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyojin",
+      "to": "eunsae",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Eun Sae's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "huija",
+      "to": "pilseung",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Pil Seung's mother] / [Hui Ja's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chihyeon",
+      "to": "minjong",
+      "type": "work",
+      "label": "the mayor's aide",
+      "short": "aide",
+      "evidence": "[Min Jong's aide] / [Mayor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumhyang",
+      "to": "taeha",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeongpyo",
+      "to": "taeha",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "songwol",
+      "to": "taeha",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "maengsuk",
+      "to": "eunsae",
+      "type": "bond",
+      "label": "the village shaman who reads her",
+      "short": "reads her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minjong",
+      "to": "taeha",
+      "type": "work",
+      "label": "the mayor of the village",
+      "short": "mayor",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "taeha",
+      "eunsae",
+      "sanggil",
+      "yeonhong",
+      "hyesu",
+      "doyeop",
+      "jeonghwa",
+      "gangrok",
+      "gijun",
+      "suji",
+      "hyojin",
+      "geumhyang",
+      "gyeongpyo",
+      "songwol",
+      "huija",
+      "pilseung",
+      "maengsuk",
+      "minjong",
+      "chihyeon"
+    ],
+    "blocks": {
+      "Tae Ha's people": [
+        0,
+        0
+      ],
+      "Eun Sae's people": [
+        2,
+        0
+      ],
+      "The syndicate": [
+        2,
+        2
+      ],
+      "The village": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "taeha",
+      "eunsae"
+    ]
+  }
+}

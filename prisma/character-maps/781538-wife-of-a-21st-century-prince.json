@@ -1,0 +1,560 @@
+{
+  "version": 1,
+  "mdlSlug": "781538-wife-of-a-21st-century-prince",
+  "title": "Perfect Crown",
+  "native": "21세기 대군부인",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "huiju",
+    "yian"
+  ],
+  "people": [
+    {
+      "id": "huiju",
+      "name": "Seong Hui Ju",
+      "actor": "IU",
+      "image": "https://i.mydramalist.com/73R8zn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Castle Group's heiress — 'the mad dog of Castle'; a commoner with everything"
+    },
+    {
+      "id": "yian",
+      "name": "Grand Prince Yi An",
+      "actor": "Byeon Woo Seok",
+      "image": "https://i.mydramalist.com/l0ZORJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The king's son, with nothing but royal blood"
+    },
+    {
+      "id": "jeongu",
+      "name": "Min Jeong U",
+      "actor": "Steve Noh",
+      "image": "https://i.mydramalist.com/nOQ4BN_5m.jpg",
+      "group": "The government",
+      "inCast": true,
+      "note": "Head of the executive — the prime minister"
+    },
+    {
+      "id": "minyeong",
+      "name": "Cho Min Yeong",
+      "actor": "Kim Jung Woon",
+      "image": "https://i.mydramalist.com/yWVnqR_5m.jpg",
+      "group": "The government",
+      "inCast": true,
+      "note": "Prime minister's chief of staff"
+    },
+    {
+      "id": "jeongu_sec",
+      "name": "Jeong U's secretary",
+      "actor": "Kim Gyu Ri",
+      "image": "https://i.mydramalist.com/JBoJPj_5m.jpg",
+      "group": "The government",
+      "inCast": true
+    },
+    {
+      "id": "irang",
+      "name": "Yun I Rang",
+      "actor": "Gong Seung Yeon",
+      "image": "https://i.mydramalist.com/eYyXln_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The perfect queen"
+    },
+    {
+      "id": "seongwon",
+      "name": "Yun Seong Won",
+      "actor": "Jo Jae Yun",
+      "image": "https://i.mydramalist.com/0d5kY_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The queen's father"
+    },
+    {
+      "id": "yiyun",
+      "name": "Yi Yun",
+      "actor": "Kim Eun Ho",
+      "image": "https://i.mydramalist.com/l0PBRx_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "The current king"
+    },
+    {
+      "id": "yihwan",
+      "name": "Yi Hwan",
+      "actor": "Sung Jun",
+      "image": "https://i.mydramalist.com/kAzJmj_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "huijong",
+      "name": "King Hui Jong",
+      "actor": "Son Jun Ho",
+      "image": "https://i.mydramalist.com/qrrN8_5m.jpg",
+      "group": "The palace",
+      "inCast": true
+    },
+    {
+      "id": "jinsuk",
+      "name": "Choi Jin Suk",
+      "actor": "Park Joon Myun",
+      "image": "https://i.mydramalist.com/kQb0m_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Court lady of Anhwa Hall"
+    },
+    {
+      "id": "seonhwa",
+      "name": "Yim Seon Hwa",
+      "actor": "Lee Chae Kyung",
+      "image": "https://i.mydramalist.com/e3n6pm.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Court lady of the queen dowager's quarters"
+    },
+    {
+      "id": "mihui",
+      "name": "Jung Mi Hui",
+      "actor": "Kim Soo Jin",
+      "image": "https://i.mydramalist.com/28yld_5m.jpg",
+      "group": "The palace",
+      "inCast": true,
+      "note": "Head court lady"
+    },
+    {
+      "id": "hyeon",
+      "name": "Choi Hyeon",
+      "actor": "Yoo Soo Bin",
+      "image": "https://i.mydramalist.com/XbbZZm.jpg",
+      "group": "Yi An's residence",
+      "inCast": true,
+      "note": "The grand prince's aide"
+    },
+    {
+      "id": "areum",
+      "name": "Lee A Reum",
+      "actor": "Choi Ji Su",
+      "image": "https://i.mydramalist.com/jDqAy_5m.jpg",
+      "group": "Yi An's residence",
+      "inCast": true,
+      "note": "The spy in the residence"
+    },
+    {
+      "id": "yeongmun",
+      "name": "Kim Yeong Mun",
+      "actor": "Lee Si Hoon",
+      "image": "https://i.mydramalist.com/lyZQNm.jpg",
+      "group": "Yi An's residence",
+      "inCast": true,
+      "note": "Butler"
+    },
+    {
+      "id": "yeongseon",
+      "name": "Kim Yeong Seon",
+      "actor": "Jung Ji Ahn",
+      "image": "https://i.mydramalist.com/4EEy1_5m.jpg",
+      "group": "Yi An's residence",
+      "inCast": true,
+      "note": "The one who really runs the house"
+    },
+    {
+      "id": "jisu",
+      "name": "Yoo Ji Su",
+      "actor": "Jin Se Rim",
+      "image": "https://i.mydramalist.com/YYjNlP_5m.jpg",
+      "group": "Yi An's residence",
+      "inCast": true
+    },
+    {
+      "id": "hyeonguk",
+      "name": "Seong Hyeon Guk",
+      "actor": "Jo Seung Yun",
+      "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
+      "group": "Castle Group",
+      "inCast": true,
+      "note": "Chairman of Castle Group"
+    },
+    {
+      "id": "taeju",
+      "name": "Seong Tae Ju",
+      "actor": "Lee Jae Won",
+      "image": "https://i.mydramalist.com/By7eb_5m.jpg",
+      "group": "Castle Group",
+      "inCast": true,
+      "note": "Eldest son"
+    },
+    {
+      "id": "dayeong",
+      "name": "Han Da Yeong",
+      "actor": "Chae Seo An",
+      "image": "https://i.mydramalist.com/RBjqAr_5m.jpg",
+      "group": "Castle Group",
+      "inCast": true
+    },
+    {
+      "id": "hyejeong",
+      "name": "Do Hye Jeong",
+      "actor": "Lee Yeon",
+      "image": "https://i.mydramalist.com/WWq0O_5m.jpg",
+      "group": "Castle Group",
+      "inCast": true,
+      "note": "Hui Ju's chief secretary"
+    },
+    {
+      "id": "seunghui",
+      "name": "Park Seung Hui",
+      "actor": "Park Ji Ye",
+      "image": "https://i.mydramalist.com/p1dqV_5m.jpg",
+      "group": "Castle Group",
+      "inCast": true,
+      "note": "Castle Beauty secretary's office"
+    }
+  ],
+  "links": [
+    {
+      "from": "huiju",
+      "to": "yian",
+      "type": "romance",
+      "label": "the heiress frustrated by her commoner status and the prince with nothing but his blood — a marriage that gives each what the other has",
+      "short": "marries him",
+      "evidence": "Chaebol heiress Seong Hui Ju, who is frustrated by her 'commoner' status despite having everything, and melancholic Grand Prince Yi An, whose royal blood is his only identity",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongu",
+      "to": "huiju",
+      "type": "romance",
+      "label": "the prime minister who wants her",
+      "short": "wants her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jeongu",
+      "to": "yian",
+      "type": "rivalry",
+      "label": "the head of government against the royal house",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "minyeong",
+      "to": "jeongu",
+      "type": "work",
+      "label": "chief of staff",
+      "short": "chief of staff",
+      "evidence": "[Prime minister's chief of staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongu_sec",
+      "to": "jeongu",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Jeong U's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "irang",
+      "to": "yiyun",
+      "type": "romance",
+      "label": "the queen — the king's wife",
+      "short": "queen",
+      "evidence": "윤이랑 역 - 완벽한 왕비 / 이윤 역 - 현 국왕",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "irang",
+      "to": "yian",
+      "type": "romance",
+      "label": "the queen's eyes on her brother-in-law",
+      "short": "watches him",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongwon",
+      "to": "irang",
+      "type": "family",
+      "label": "father — the queen's father",
+      "short": "father",
+      "evidence": "윤성원 역 - 부원군",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huijong",
+      "to": "yian",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yi An's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yihwan",
+      "to": "yian",
+      "type": "family",
+      "label": "older brother",
+      "short": "older brother",
+      "evidence": "[Yi An's older brother] / 이환 역 - 이안대군의 형",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yiyun",
+      "to": "yian",
+      "type": "family",
+      "label": "the current king; of the royal house",
+      "short": "the king",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinsuk",
+      "to": "yian",
+      "type": "work",
+      "label": "court lady of Anhwa Hall",
+      "short": "court lady",
+      "evidence": "[Court lady] / 최진숙 역 - 안화당 상궁",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonhwa",
+      "to": "mihui",
+      "type": "work",
+      "label": "court ladies of the palace",
+      "short": "court lady",
+      "evidence": "임선화 역 - 대비전 상궁 / 정미희 역 - 제조상궁",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeon",
+      "to": "yian",
+      "type": "work",
+      "label": "aide",
+      "short": "aide",
+      "evidence": "최현 역 - 이안대군의 보좌관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "areum",
+      "to": "yian",
+      "type": "work",
+      "label": "staff of his residence — and a spy in it",
+      "short": "the spy",
+      "evidence": "[Yi An's private residence's staff] / 이아름 역 - 이안대군 사저의 스파이",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongmun",
+      "to": "yian",
+      "type": "work",
+      "label": "butler",
+      "short": "butler",
+      "evidence": "[Yi An's butler]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongseon",
+      "to": "yeongmun",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Yeong Mun's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongseon",
+      "to": "yian",
+      "type": "work",
+      "label": "staff of his residence",
+      "short": "staff",
+      "evidence": "[Yi An's private residence's staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jisu",
+      "to": "yian",
+      "type": "work",
+      "label": "staff of his residence",
+      "short": "staff",
+      "evidence": "[Yi An's private residence's staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonguk",
+      "to": "huiju",
+      "type": "family",
+      "label": "father; chairman of Castle Group",
+      "short": "father",
+      "evidence": "성현국 역 - 캐슬그룹 회장 / 성희주 역 - 캐슬그룹의 미친개",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeju",
+      "to": "huiju",
+      "type": "family",
+      "label": "the eldest son of Castle — her brother",
+      "short": "brother",
+      "evidence": "성태주 역 - 캐슬그룹의 장남",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dayeong",
+      "to": "taeju",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "한다영 역 - 태주의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyejeong",
+      "to": "huiju",
+      "type": "work",
+      "label": "chief secretary",
+      "short": "chief secretary",
+      "evidence": "도혜정 역 - 희주의 수석비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seunghui",
+      "to": "hyejeong",
+      "type": "work",
+      "label": "Castle Beauty secretary's office",
+      "short": "secretary's office",
+      "evidence": "[Castle Beauty secretary's office staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "huiju",
+      "yian",
+      "jeongu",
+      "minyeong",
+      "jeongu_sec",
+      "irang",
+      "seongwon",
+      "yiyun",
+      "yihwan",
+      "huijong",
+      "jinsuk",
+      "seonhwa",
+      "mihui",
+      "hyeon",
+      "areum",
+      "yeongmun",
+      "yeongseon",
+      "jisu",
+      "hyeonguk",
+      "taeju",
+      "dayeong",
+      "hyejeong",
+      "seunghui"
+    ],
+    "blocks": {
+      "The government": [
+        0,
+        2
+      ],
+      "The palace": [
+        2,
+        0
+      ],
+      "Yi An's residence": [
+        2,
+        2
+      ],
+      "Castle Group": [
+        0,
+        0
+      ]
+    },
+    "center": [
+      "huiju",
+      "yian"
+    ]
+  }
+}

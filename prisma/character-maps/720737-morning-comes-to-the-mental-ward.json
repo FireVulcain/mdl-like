@@ -1,0 +1,543 @@
+{
+  "version": 1,
+  "mdlSlug": "720737-morning-comes-to-the-mental-ward",
+  "title": "Daily Dose of Sunshine",
+  "native": "정신병동에도 아침이 와요",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (19 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "daeun",
+    "goyun"
+  ],
+  "people": [
+    {
+      "id": "daeun",
+      "name": "Jung Da Eun",
+      "actor": "Park Bo Young",
+      "image": "https://i.mydramalist.com/l0AEjv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Third-year nurse, transferred from internal medicine to psychiatry"
+    },
+    {
+      "id": "goyun",
+      "name": "Dong Go Yun",
+      "actor": "Yeon Woo Jin",
+      "image": "https://i.mydramalist.com/O8PNYx_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Proctologist with an erratic personality"
+    },
+    {
+      "id": "yuchan",
+      "name": "Song Yu Chan",
+      "actor": "Jang Dong Yoon",
+      "image": "https://i.mydramalist.com/zBqrJe_5m.jpg",
+      "group": "Da Eun's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Han Ji An",
+          "image": "https://i.mydramalist.com/NdKP4Y_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Cheerful outside, in pain inside"
+    },
+    {
+      "id": "daeun_mother",
+      "name": "Da Eun's mother",
+      "actor": "Hwang Young Hee",
+      "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
+      "group": "Da Eun's people",
+      "inCast": true
+    },
+    {
+      "id": "jeongran",
+      "name": "Hong Jeong Ran",
+      "actor": "Park Ji Yun",
+      "image": "https://i.mydramalist.com/we7Xb_5m.jpg",
+      "group": "Da Eun's people",
+      "inCast": true,
+      "note": "Da Eun's college classmate"
+    },
+    {
+      "id": "yuchan_mother",
+      "name": "Yu Chan's mother",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/02kxr_5m.jpg",
+      "group": "Da Eun's people",
+      "inCast": true,
+      "note": "Runs the family chicken place"
+    },
+    {
+      "id": "yuchan_father",
+      "name": "Yu Chan's father",
+      "actor": "Jung Chung Gu",
+      "image": "https://i.mydramalist.com/l01NkJ_5m.jpg",
+      "group": "Da Eun's people",
+      "inCast": true
+    },
+    {
+      "id": "hyosin",
+      "name": "Song Hyo Sin",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Chief nurse"
+    },
+    {
+      "id": "deulre",
+      "name": "Min Deul Re",
+      "actor": "Lee E Dam",
+      "image": "https://i.mydramalist.com/4e3VLk_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Nurse"
+    },
+    {
+      "id": "suyeon",
+      "name": "Park Su Yeon",
+      "actor": "Lee Sang Hee",
+      "image": "https://i.mydramalist.com/QQELW_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Nurse"
+    },
+    {
+      "id": "mancheon",
+      "name": "Yun Man Cheon",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Nursing attendant"
+    },
+    {
+      "id": "yeohwan",
+      "name": "Hwang Yeo Hwan",
+      "actor": "Chang Ryul",
+      "image": "https://i.mydramalist.com/01J1Ym.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "hyeoksu",
+      "name": "Im Hyeok Su",
+      "actor": "Kim Jong Tae",
+      "image": "https://i.mydramalist.com/j3qOv_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "cheolu",
+      "name": "Kong Cheol U",
+      "actor": "Lim Jae Hyeok",
+      "image": "https://i.mydramalist.com/QJnkEA_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "minseo",
+      "name": "Cha Min Seo",
+      "actor": "Gong Sung Ha",
+      "image": "https://i.mydramalist.com/yWnbYd_5m.jpg",
+      "group": "Psychiatric ward",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "rina",
+      "name": "O Ri Na",
+      "actor": "Jeong Un Seon",
+      "image": "https://i.mydramalist.com/DkmRQp_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "Da Eun's first patient; bipolar disorder"
+    },
+    {
+      "id": "rina_mother",
+      "name": "Ri Na's mother",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "Patients",
+      "inCast": true
+    },
+    {
+      "id": "seongsik",
+      "name": "Kim Seong Sik",
+      "actor": "Jo Dal Hwan",
+      "image": "https://i.mydramalist.com/WQKRlm.jpg",
+      "group": "Patients",
+      "inCast": true
+    },
+    {
+      "id": "seowan",
+      "name": "Kim Seo Wan",
+      "actor": "Roh Jae Won",
+      "image": "https://i.mydramalist.com/Lwlkv7_5m.jpg",
+      "group": "Patients",
+      "inCast": true,
+      "note": "Believes he lives inside the game Lost Valhalla"
+    },
+    {
+      "id": "haram",
+      "name": "Jung Ha Ram",
+      "actor": "Kwon Han Sol",
+      "image": "https://i.mydramalist.com/QJ2r14_5m.jpg",
+      "group": "Patients",
+      "inCast": true
+    },
+    {
+      "id": "juyeong",
+      "name": "Kwon Ju Yeong",
+      "actor": "Kim Yeo Jin",
+      "image": "https://i.mydramalist.com/xKjpEm.jpg",
+      "group": "Patients",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "goyun",
+      "to": "daeun",
+      "type": "romance",
+      "label": "drawn to her purity, healed by her presence",
+      "short": "drawn to her",
+      "evidence": "doctor Dong Go Yun [...] finds himself drawn to Jung Da Eun's purity, feeling healed by her presence",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuchan",
+      "to": "daeun",
+      "type": "friend",
+      "label": "friends since childhood; hides a deep pain behind a cheerful face",
+      "short": "friend",
+      "evidence": "Jung Da Eun is also friends with Song Yu Chan, who hides a deep inner pain despite his cheerful exterior",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuchan",
+      "to": "daeun",
+      "type": "romance",
+      "label": "in love with her, unsaid",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyosin",
+      "to": "daeun",
+      "type": "work",
+      "label": "chief nurse who guides her through the new ward",
+      "short": "chief nurse",
+      "evidence": "With the support of Chief Nurse Song Hyo Jin, she grows professionally",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeun_mother",
+      "to": "daeun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jung Da Eun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongran",
+      "to": "daeun",
+      "type": "friend",
+      "label": "college classmate",
+      "short": "college friend",
+      "evidence": "[Da Eun's college classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuchan_mother",
+      "to": "yuchan",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Yu Chan's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuchan_father",
+      "to": "yuchan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Yu Chan's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeohwan",
+      "to": "daeun",
+      "type": "friend",
+      "label": "Da Eun and Yu Chan's friend, a psychiatrist on the ward",
+      "short": "friend",
+      "evidence": "Hwang Yeo-hwan: Da-eun and Yu-chan's friend who is a psychiatrist at the Psychiatric Department",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeohwan",
+      "to": "yuchan",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "Hwang Yeo-hwan: Da-eun and Yu-chan's friend",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeohwan",
+      "to": "deulre",
+      "type": "romance",
+      "label": "courts her",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deulre",
+      "to": "daeun",
+      "type": "work",
+      "label": "nurses on the same ward",
+      "short": "colleague",
+      "evidence": "[Psychiatric nurse]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suyeon",
+      "to": "daeun",
+      "type": "work",
+      "label": "nurses on the same ward",
+      "short": "colleague",
+      "evidence": "[Psychiatric nurse]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mancheon",
+      "to": "hyosin",
+      "type": "work",
+      "label": "nursing attendant on her ward",
+      "short": "attendant",
+      "evidence": "[Nursing attendant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeoksu",
+      "to": "hyosin",
+      "type": "work",
+      "label": "psychiatrist on the ward",
+      "short": "doctor",
+      "evidence": "[Psychiatric doctor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheolu",
+      "to": "yeohwan",
+      "type": "work",
+      "label": "psychiatrists on the same ward",
+      "short": "colleague",
+      "evidence": "[Psychiatric doctor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minseo",
+      "to": "yeohwan",
+      "type": "work",
+      "label": "psychiatrists on the same ward",
+      "short": "colleague",
+      "evidence": "[Psychiatric doctor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "rina",
+      "to": "daeun",
+      "type": "work",
+      "label": "her first patient",
+      "short": "first patient",
+      "evidence": "Oh Ri-na: Da-eun's first patient who has bipolar disorder",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rina_mother",
+      "to": "rina",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[O Ri Na's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seowan",
+      "to": "daeun",
+      "type": "work",
+      "label": "her patient, lost in a game",
+      "short": "patient",
+      "evidence": "Kim Seo-wan: Da-eun's patient who has delusions and believes he is in a video game called Lost Valhalla",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongsik",
+      "to": "hyosin",
+      "type": "work",
+      "label": "patient on the ward",
+      "short": "patient",
+      "evidence": "[Psychiatric patient]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haram",
+      "to": "hyosin",
+      "type": "work",
+      "label": "patient on the ward",
+      "short": "patient",
+      "evidence": "[Psychiatric patient]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyeong",
+      "to": "daeun",
+      "type": "work",
+      "label": "patient",
+      "short": "patient",
+      "evidence": "[Patient]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juyeong",
+      "to": "daeun",
+      "type": "bond",
+      "label": "the patient whose loss breaks Da Eun herself",
+      "short": "breaks her",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "daeun",
+      "goyun",
+      "yuchan",
+      "daeun_mother",
+      "jeongran",
+      "yuchan_mother",
+      "yuchan_father",
+      "hyosin",
+      "deulre",
+      "suyeon",
+      "mancheon",
+      "yeohwan",
+      "hyeoksu",
+      "cheolu",
+      "minseo",
+      "rina",
+      "rina_mother",
+      "seongsik",
+      "seowan",
+      "haram",
+      "juyeong"
+    ],
+    "blocks": {
+      "Da Eun's people": [
+        0,
+        0
+      ],
+      "Psychiatric ward": [
+        2,
+        0
+      ],
+      "Patients": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "daeun",
+      "goyun"
+    ]
+  }
+}

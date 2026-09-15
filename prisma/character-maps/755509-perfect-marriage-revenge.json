@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "mdlSlug": "755509-perfect-marriage-revenge",
+  "title": "Perfect Marriage Revenge",
+  "native": "완벽한 결혼의 정석",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (19 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "iju",
+    "doguk"
+  ],
+  "people": [
+    {
+      "id": "iju",
+      "name": "Han I Ju",
+      "actor": "Jung Yoo Min",
+      "image": "https://i.mydramalist.com/pdWJgE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "31, painter; adopted, neglected — wakes up in the past before her engagement"
+    },
+    {
+      "id": "doguk",
+      "name": "Seo Do Guk",
+      "actor": "Sung Hoon",
+      "image": "https://i.mydramalist.com/nOZvrQ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "33, CEO of an interior-design platform; grandson of Taeja's founder"
+    },
+    {
+      "id": "yura",
+      "name": "Han Yu Ra",
+      "actor": "Jin  Ji Hee",
+      "image": "https://i.mydramalist.com/vZ3eW_5m.jpg",
+      "group": "Hanul Financial (I Ju's family)",
+      "inCast": true,
+      "note": "28, chief gallerist at gallery 'The Han'"
+    },
+    {
+      "id": "jeonghye",
+      "name": "Lee Jeong Hye",
+      "actor": "Lee Min Young",
+      "image": "https://i.mydramalist.com/6OwO0_5m.jpg",
+      "group": "Hanul Financial (I Ju's family)",
+      "inCast": true,
+      "note": "Hanul executive; runs gallery 'The Han'"
+    },
+    {
+      "id": "jinung",
+      "name": "Han Jin Ung",
+      "actor": "Jeon Noh Min",
+      "image": "https://i.mydramalist.com/r5ROmm.jpg",
+      "group": "Hanul Financial (I Ju's family)",
+      "inCast": true,
+      "note": "Chairman of Hanul Financial Group"
+    },
+    {
+      "id": "unjae",
+      "name": "Han Un Jae",
+      "actor": "Lee Byung Joon",
+      "image": "https://i.mydramalist.com/1gyLQm.jpg",
+      "group": "Hanul Financial (I Ju's family)",
+      "inCast": true
+    },
+    {
+      "id": "jaewon",
+      "name": "Kim Jae Won",
+      "actor": "Do Yu",
+      "image": "https://i.mydramalist.com/02RO7_5m.jpg",
+      "group": "Hanul Financial (I Ju's family)",
+      "inCast": true
+    },
+    {
+      "id": "jamie",
+      "name": "Jamie / Lee Ji Won",
+      "actor": "Jin Hee Kyung",
+      "image": "https://i.mydramalist.com/v3Wmq_5m.jpg",
+      "group": "Hanul Financial (I Ju's family)",
+      "inCast": true,
+      "note": "Cooking instructor"
+    },
+    {
+      "id": "sehyeok",
+      "name": "Yoo Se Hyeok",
+      "actor": "Oh  Seung Yun",
+      "image": "https://i.mydramalist.com/2wN3X2_5m.jpg",
+      "group": "Se Hyeok's family",
+      "inCast": true,
+      "note": "32, Do Guk's chief of secretaries; son of the Han family's driver"
+    },
+    {
+      "id": "jaesuk",
+      "name": "Choi Jae Suk",
+      "actor": "Kim Ye Ryung",
+      "image": "https://i.mydramalist.com/Bgg06_5m.jpg",
+      "group": "Se Hyeok's family",
+      "inCast": true
+    },
+    {
+      "id": "sehui",
+      "name": "Yoo Se Hui",
+      "actor": "Song Su Yi",
+      "image": "https://i.mydramalist.com/kAX0Ek_5m.jpg",
+      "group": "Se Hyeok's family",
+      "inCast": true,
+      "note": "Jobless dreamer"
+    },
+    {
+      "id": "taeja",
+      "name": "Lee Tae Ja",
+      "actor": "Ban Hyo Jung",
+      "image": "https://i.mydramalist.com/B1PB6_5m.jpg",
+      "group": "Taeja Group (Do Guk's family)",
+      "inCast": true,
+      "note": "Chairwoman of Taeja Group"
+    },
+    {
+      "id": "yeonggyun",
+      "name": "Seo Yeong Gyun",
+      "actor": "Kim Eung Soo",
+      "image": "https://i.mydramalist.com/xxXKN_5m.jpg",
+      "group": "Taeja Group (Do Guk's family)",
+      "inCast": true,
+      "note": "President of Taeja Construction"
+    },
+    {
+      "id": "yeonhwa",
+      "name": "Cha Yeon Hwa",
+      "actor": "Lee Mi Sook",
+      "image": "https://i.mydramalist.com/kRYnk_5m.jpg",
+      "group": "Taeja Group (Do Guk's family)",
+      "inCast": true
+    },
+    {
+      "id": "jeonguk",
+      "name": "Seo Jeong Uk",
+      "actor": "Kang Shin Hyo",
+      "image": "https://i.mydramalist.com/xQEpwm.jpg",
+      "group": "Taeja Group (Do Guk's family)",
+      "inCast": true,
+      "note": "38, vice-president of Taeja Construction"
+    },
+    {
+      "id": "dona",
+      "name": "Seo Do Na",
+      "actor": "Oh Ha Nee",
+      "image": "https://i.mydramalist.com/w1von_5m.jpg",
+      "group": "Taeja Group (Do Guk's family)",
+      "inCast": true
+    },
+    {
+      "id": "jaeho",
+      "name": "Byeon Jae Ho",
+      "actor": "Lee Myung Hoon",
+      "image": "https://i.mydramalist.com/72X7Rm.jpg",
+      "group": "Do Guk's company",
+      "inCast": true
+    },
+    {
+      "id": "seongwon",
+      "name": "Kim Seon Gwon",
+      "actor": "Lee Won Hee",
+      "image": "https://i.mydramalist.com/B3Jxbm.jpg",
+      "group": "Do Guk's company",
+      "inCast": true,
+      "note": "Vice-president of H-terior"
+    },
+    {
+      "id": "sujin",
+      "name": "Ah Su Jin",
+      "actor": "Lee Da Hae",
+      "image": "https://i.mydramalist.com/Bo846_5m.jpg",
+      "group": "Do Guk's company",
+      "inCast": true,
+      "note": "Gossip reporter"
+    }
+  ],
+  "links": [
+    {
+      "from": "iju",
+      "to": "doguk",
+      "type": "romance",
+      "label": "proposes a contract marriage; he agrees, hoping it becomes real",
+      "short": "contract marriage",
+      "evidence": "proposes a contract marriage to Seo Do Guk [...] He agrees, but hopes for it to become a real marriage",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sehyeok",
+      "to": "iju",
+      "type": "romance",
+      "label": "her husband in the first life — loved her sister instead; the engagement she breaks off",
+      "short": "ex-husband",
+      "evidence": "Married to Yoo Se Hyeok, I Ju discovers he loves her sister instead [...] she breaks off the engagement",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sehyeok",
+      "to": "yura",
+      "type": "romance",
+      "label": "the affair — he loves her sister",
+      "short": "affair",
+      "evidence": "한유라 불륜 상대 / I Ju discovers he loves her sister instead",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sehyeok",
+      "to": "doguk",
+      "type": "work",
+      "label": "his chief of secretaries",
+      "short": "chief secretary",
+      "evidence": "유세혁 역 - 서도국의 회사 비서실장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sehyeok",
+      "to": "jinung",
+      "type": "work",
+      "label": "son of the chairman's driver",
+      "short": "driver's son",
+      "evidence": "한울금융그룹 한진웅 회장네 운전기사, 유현철의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yura",
+      "to": "iju",
+      "type": "family",
+      "label": "younger sister by adoption — neglects her like the rest",
+      "short": "adopted sister",
+      "evidence": "neglected by her family, including her younger sister, Han Yu Ra / 한이주 양여동생",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeonghye",
+      "to": "iju",
+      "type": "family",
+      "label": "adoptive mother",
+      "short": "adoptive mother",
+      "evidence": "이정혜 역 - 한이주 양어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghye",
+      "to": "yura",
+      "type": "family",
+      "label": "birth mother",
+      "short": "mother",
+      "evidence": "이정혜 역 - 한유라 어머니 / 이정혜 친딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinung",
+      "to": "iju",
+      "type": "family",
+      "label": "adoptive father — and, in truth, her birth father",
+      "short": "father",
+      "evidence": "[I Ju's adoptive father] / 한진웅 역 - 한이주 친아버지",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinung",
+      "to": "yura",
+      "type": "family",
+      "label": "adoptive father",
+      "short": "adoptive father",
+      "evidence": "한유라 양아버지",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinung",
+      "to": "jeonghye",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "이정혜 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "unjae",
+      "to": "jinung",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "한운재 역 - 한진웅 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "unjae",
+      "to": "iju",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[I Ju's adoptive grandfather] / 한이주 친할아버지",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaewon",
+      "to": "jeonghye",
+      "type": "work",
+      "label": "her secretary — discreet, trusted",
+      "short": "secretary",
+      "evidence": "[Jeong Hye's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jamie",
+      "to": "iju",
+      "type": "family",
+      "label": "her birth mother",
+      "short": "birth mother",
+      "evidence": "제이미역 - 이주의 친어머니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaesuk",
+      "to": "sehyeok",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Se Hyeok's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sehui",
+      "to": "sehyeok",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Se Hyeok's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeja",
+      "to": "doguk",
+      "type": "family",
+      "label": "grandmother; founder of Taeja",
+      "short": "grandmother",
+      "evidence": "[Do Guk's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonggyun",
+      "to": "doguk",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Do Guk's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonggyun",
+      "to": "taeja",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "서영균 역 - 태자의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonhwa",
+      "to": "doguk",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Do Guk's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonhwa",
+      "to": "yeonggyun",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "연화의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeonguk",
+      "to": "doguk",
+      "type": "family",
+      "label": "half-brother; Yeon Hwa's stepson",
+      "short": "half-brother",
+      "evidence": "서정욱 역 - 서도국 이복 형. 차연화 의붓아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeonguk",
+      "to": "doguk",
+      "type": "rivalry",
+      "label": "rivals for Taeja",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dona",
+      "to": "doguk",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Do Guk's younger sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeho",
+      "to": "dona",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "변재호 역 - 서도국 비서, 서도나 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaeho",
+      "to": "doguk",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Do Guk's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongwon",
+      "to": "doguk",
+      "type": "friend",
+      "label": "friend; vice-president of his company",
+      "short": "friend",
+      "evidence": "김선권 역 - 서도국 회사 부대표, 서도국 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sujin",
+      "to": "doguk",
+      "type": "family",
+      "label": "cousin",
+      "short": "cousin",
+      "evidence": "[Do Guk's cousin]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sujin",
+      "to": "iju",
+      "type": "friend",
+      "label": "helped by I Ju at school; has a soft spot for her",
+      "short": "owes her",
+      "evidence": "과거 학창 시절 한이주의 도움을 받아 이주에 대한 속정이 있는 인물",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "iju",
+      "doguk",
+      "yura",
+      "jeonghye",
+      "jinung",
+      "unjae",
+      "jaewon",
+      "jamie",
+      "sehyeok",
+      "jaesuk",
+      "sehui",
+      "taeja",
+      "yeonggyun",
+      "yeonhwa",
+      "jeonguk",
+      "dona",
+      "jaeho",
+      "seongwon",
+      "sujin"
+    ],
+    "blocks": {
+      "Hanul Financial (I Ju's family)": [
+        0,
+        0
+      ],
+      "Se Hyeok's family": [
+        0,
+        2
+      ],
+      "Taeja Group (Do Guk's family)": [
+        2,
+        0
+      ],
+      "Do Guk's company": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "iju",
+      "doguk"
+    ]
+  }
+}

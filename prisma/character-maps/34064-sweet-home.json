@@ -1,0 +1,629 @@
+{
+  "version": 1,
+  "mdlSlug": "34064-sweet-home",
+  "title": "Sweet Home",
+  "native": "스위트홈",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (26 roles + guests, 10 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "hyeonsu",
+    "sanguk",
+    "igyeong"
+  ],
+  "people": [
+    {
+      "id": "hyeonsu",
+      "name": "Cha Hyeon Su",
+      "actor": "Song Kang",
+      "image": "https://i.mydramalist.com/Dkjb4y_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Depressed dropout who moves into Green Home after his family's accident; becomes a monster-human hybrid"
+    },
+    {
+      "id": "sanguk",
+      "name": "Pyeon Sang Uk",
+      "actor": "Lee Jin Wook",
+      "image": "https://i.mydramalist.com/JBDzLj_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Burn-scarred contract killer; becomes the residents' ally"
+    },
+    {
+      "id": "igyeong",
+      "name": "Seo I Gyeong",
+      "actor": "Lee Si Young",
+      "image": "https://i.mydramalist.com/JB7NyY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former firefighter; her fiance vanished two days before the wedding"
+    },
+    {
+      "id": "eunhyeok",
+      "name": "Lee Eun Hyeok",
+      "actor": "Lee Do Hyun",
+      "image": "https://i.mydramalist.com/6PlYW_5m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Former medical student; the residents' de facto leader"
+    },
+    {
+      "id": "eunyu",
+      "name": "Lee Eun Yu",
+      "actor": "Go Min Si",
+      "image": "https://i.mydramalist.com/B8bR5_5m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Ballerina who quit after an injury"
+    },
+    {
+      "id": "jisu",
+      "name": "Yun Ji Su",
+      "actor": "Park Gyu Young",
+      "image": "https://i.mydramalist.com/oQBr6N_5m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Bass guitarist; moved in after her boyfriend's suicide"
+    },
+    {
+      "id": "jaeheon",
+      "name": "Jung Jae Heon",
+      "actor": "Kim Nam Hee",
+      "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Korean teacher, devout Christian, with a sword"
+    },
+    {
+      "id": "yuri",
+      "name": "Park Yu Ri",
+      "actor": "Go Youn Jung",
+      "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Caregiver with medical training and asthma"
+    },
+    {
+      "id": "gilseop",
+      "name": "An Gil Seop",
+      "actor": "Kim Gab Soo",
+      "image": "https://i.mydramalist.com/RRXLz_5m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Terminally ill senior"
+    },
+    {
+      "id": "dusik",
+      "name": "Han Du Sik",
+      "actor": "Kim  Sang Ho",
+      "image": "https://i.mydramalist.com/B3Vm1m.jpg",
+      "group": "Eun Hyeok's group",
+      "inCast": true,
+      "note": "Disabled neighbour; a blacksmith who arms the residents"
+    },
+    {
+      "id": "seokhyeon",
+      "name": "Kim Seok Hyeon",
+      "actor": "Woo Hyun",
+      "image": "https://i.mydramalist.com/EEq45_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "Convenience-store owner, short-tempered"
+    },
+    {
+      "id": "seonyeong",
+      "name": "An Seon Yeong",
+      "actor": "Kim Hyun",
+      "image": "https://i.mydramalist.com/5v7BVY_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true
+    },
+    {
+      "id": "byeongil",
+      "name": "No Byeong Il",
+      "actor": "Im Su Hyung",
+      "image": "https://i.mydramalist.com/4lxjd_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true
+    },
+    {
+      "id": "jinok",
+      "name": "Cha Jin Ok",
+      "actor": "Kim Hee Jung",
+      "image": "https://i.mydramalist.com/jgOKb_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true
+    },
+    {
+      "id": "hyein",
+      "name": "Son Hye In",
+      "actor": "Kim Kuk Hee",
+      "image": "https://i.mydramalist.com/wegpk_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "Gossips; owns the Pomeranian Bom"
+    },
+    {
+      "id": "myeongsuk",
+      "name": "Im Myung Suk",
+      "actor": "Lee Bong Ryun",
+      "image": "https://i.mydramalist.com/en0DEm.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "Lost her baby; psychosis"
+    },
+    {
+      "id": "yunjae",
+      "name": "Choi Yun Jae",
+      "actor": "Go Geon Han",
+      "image": "https://i.mydramalist.com/yWnejk_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "A child predator"
+    },
+    {
+      "id": "seungwan",
+      "name": "Kang Seung Wan",
+      "actor": "Woo Jung Kook",
+      "image": "https://i.mydramalist.com/nO1DDN_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "Timid, bespectacled"
+    },
+    {
+      "id": "suung",
+      "name": "Lee Su Ung",
+      "actor": "Ahn Dong Goo",
+      "image": "https://i.mydramalist.com/814Aj2_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "Young soldier"
+    },
+    {
+      "id": "jaehwan",
+      "name": "Ryu Jae Hwan / Jay",
+      "actor": "Lee Joon Woo",
+      "image": "https://i.mydramalist.com/kBoB8_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "Aspiring model"
+    },
+    {
+      "id": "jieun",
+      "name": "Kim Ji Eun",
+      "actor": "Jung Ha Dam",
+      "image": "https://i.mydramalist.com/5v7gXL_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true
+    },
+    {
+      "id": "yujin",
+      "name": "Han Yu Jin",
+      "actor": "Kim Ji Eun",
+      "image": "https://i.mydramalist.com/60pwWj_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true
+    },
+    {
+      "id": "suyeong",
+      "name": "Kim Su Yeong",
+      "actor": "Heo Yool",
+      "image": "https://i.mydramalist.com/ABR42P_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "9, orphaned"
+    },
+    {
+      "id": "yeongsu",
+      "name": "Kim Yeong Su",
+      "actor": "Choi Go",
+      "image": "https://i.mydramalist.com/rzkDE_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true,
+      "note": "6, orphaned"
+    },
+    {
+      "id": "minju",
+      "name": "Park Min Ju",
+      "actor": "Park Jin Soo",
+      "image": "https://i.mydramalist.com/k2jRk_5m.jpg",
+      "group": "Green Home residents",
+      "inCast": true
+    },
+    {
+      "id": "hoyeon",
+      "name": "Baek Ho Yeon",
+      "actor": "Cha U Yeong",
+      "image": "https://i.mydramalist.com/j5BzJ_5m.jpg",
+      "group": "Outsiders",
+      "inCast": true,
+      "note": "Violent thug"
+    },
+    {
+      "id": "uimyeong",
+      "name": "Jung Ui Myeong",
+      "actor": "Kim Sung Cheol",
+      "image": "https://i.mydramalist.com/mO2q2k_5m.jpg",
+      "group": "Outsiders",
+      "inCast": true,
+      "note": "Monster-human hybrid; wants to rule humanity"
+    },
+    {
+      "id": "sangwon",
+      "name": "Nam Sang Won",
+      "actor": "Lee Shin Sung",
+      "image": "https://i.mydramalist.com/x2KeEm.jpg",
+      "group": "Outsiders",
+      "inCast": true,
+      "note": "Scientist; becomes a monster"
+    }
+  ],
+  "links": [
+    {
+      "from": "hyeonsu",
+      "to": "eunhyeok",
+      "type": "work",
+      "label": "the hybrid the residents' leader uses — and protects",
+      "short": "his weapon",
+      "evidence": "he becomes the de facto leader of the residents [...] He becomes a monster-human hybrid",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sanguk",
+      "to": "yunjae",
+      "type": "rivalry",
+      "label": "hunts him through the first half of the season — a child predator",
+      "short": "hunts him",
+      "evidence": "He pursues Choi Yoon-jae throughout the first half of the first season [...] due to being a child predator",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanguk",
+      "to": "hyeonsu",
+      "type": "friend",
+      "label": "the killer who becomes the residents' trusted ally",
+      "short": "ally",
+      "evidence": "becomes a trusted ally to the residents",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangwon",
+      "to": "igyeong",
+      "type": "romance",
+      "label": "her fiance, vanished two days before the wedding",
+      "short": "fiance",
+      "evidence": "[Yi Kyung's fiance] / whose fiancé, Nam Sang-won, mysteriously disappeared two days before their wedding",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangwon",
+      "to": "sanguk",
+      "type": "bond",
+      "label": "the monster that possesses Sang Uk in the seasons to come",
+      "short": "possesses him",
+      "evidence": "Nam Sang-won, Yi-kyung's fiance and scientist who becomes a monster who possessed Ui-myeong and Sang-wook",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uimyeong",
+      "to": "hyeonsu",
+      "type": "rivalry",
+      "label": "his archenemy — the hybrid who wants to rule humanity",
+      "short": "archenemy",
+      "evidence": "He is the archenemy of Hyun-su",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suung",
+      "to": "igyeong",
+      "type": "friend",
+      "label": "good friend, a young soldier at Green Home",
+      "short": "friend",
+      "evidence": "Lee Su-ung, a young military soldier living in Green Home and a good friend of Yi-kyung",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunhyeok",
+      "to": "eunyu",
+      "type": "family",
+      "label": "adoptive older brother",
+      "short": "adoptive brother",
+      "evidence": "Eun-yu's adoptive older brother / Eun-hyuk's haughty adoptive younger sister",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jisu",
+      "to": "eunyu",
+      "type": "rivalry",
+      "label": "former rivals",
+      "short": "former rival",
+      "evidence": "She's the former rival of Eun-yu",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jisu",
+      "to": "eunhyeok",
+      "type": "romance",
+      "label": "the bass guitarist and the leader",
+      "short": "drawn to him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jaeheon",
+      "to": "jisu",
+      "type": "friend",
+      "label": "protects her with his sword",
+      "short": "protects her",
+      "evidence": "armed with a jingum [...] to protect himself, Ji-su, Du-sik and others",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeheon",
+      "to": "jisu",
+      "type": "romance",
+      "label": "the teacher and the bassist",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaeheon",
+      "to": "dusik",
+      "type": "friend",
+      "label": "protects him",
+      "short": "protects him",
+      "evidence": "to protect himself, Ji-su, Du-sik and others",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dusik",
+      "to": "hyeonsu",
+      "type": "friend",
+      "label": "his disabled neighbour; the blacksmith who arms the residents",
+      "short": "neighbour",
+      "evidence": "Han Du-sik, Hyun-su's disabled neighbor and a skilled blacksmith",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yuri",
+      "to": "gilseop",
+      "type": "work",
+      "label": "his caregiver",
+      "short": "caregiver",
+      "evidence": "Park Yu-ri, Gil-seob's caregiver who has medical training and asthma",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokhyeon",
+      "to": "seonyeong",
+      "type": "romance",
+      "label": "husband — abusive",
+      "short": "husband",
+      "evidence": "An Seon-yeong, Kim Seok-hyeon's timid but kindhearted wife",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "byeongil",
+      "to": "seokhyeon",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "No Byeong-il, a humorous resident and friend of Seok-hyeon",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "suyeong",
+      "to": "yeongsu",
+      "type": "family",
+      "label": "older sister — both orphaned",
+      "short": "sister",
+      "evidence": "Kim Su-yeong, a 9-year-old orphan and Yeong-su's older sister",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhyeok",
+      "to": "suyeong",
+      "type": "work",
+      "label": "the leader looks after the orphans",
+      "short": "looks after them",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinok",
+      "to": "hyein",
+      "type": "friend",
+      "label": "residents",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "myeongsuk",
+      "to": "hyein",
+      "type": "friend",
+      "label": "residents",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seungwan",
+      "to": "eunhyeok",
+      "type": "work",
+      "label": "resident under the leader",
+      "short": "resident",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jaehwan",
+      "to": "eunhyeok",
+      "type": "work",
+      "label": "resident under the leader",
+      "short": "resident",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jieun",
+      "to": "eunhyeok",
+      "type": "work",
+      "label": "resident under the leader",
+      "short": "resident",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yujin",
+      "to": "eunhyeok",
+      "type": "work",
+      "label": "resident under the leader",
+      "short": "resident",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minju",
+      "to": "eunhyeok",
+      "type": "work",
+      "label": "resident under the leader",
+      "short": "resident",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hoyeon",
+      "to": "hyeonsu",
+      "type": "rivalry",
+      "label": "the thugs who break into Green Home",
+      "short": "breaks in",
+      "evidence": "[Violent thug]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hyeonsu",
+      "sanguk",
+      "igyeong",
+      "eunhyeok",
+      "eunyu",
+      "jisu",
+      "jaeheon",
+      "yuri",
+      "gilseop",
+      "dusik",
+      "hoyeon",
+      "uimyeong",
+      "sangwon"
+    ],
+    "blocks": {
+      "Eun Hyeok's group": [
+        0,
+        0
+      ],
+      "Green Home residents": [
+        2,
+        0
+      ],
+      "Outsiders": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "hyeonsu",
+      "sanguk",
+      "igyeong"
+    ]
+  }
+}

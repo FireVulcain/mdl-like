@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "mdlSlug": "778658-get-schooled",
+  "title": "Teach You a Lesson",
+  "native": "참교육",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (8 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only; ties inferred)"
+  ],
+  "main": [
+    "hwajin",
+    "hanrim"
+  ],
+  "people": [
+    {
+      "id": "hwajin",
+      "name": "Na Hwa Jin",
+      "actor": "Kim Moo Yul",
+      "image": "https://i.mydramalist.com/pzODD_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Field agent of the teachers' rights bureau — the one who disciplines"
+    },
+    {
+      "id": "hanrim",
+      "name": "Im Han Rim",
+      "actor": "Jin Ki Joo",
+      "image": "https://i.mydramalist.com/nOYKnL_5m.jpg",
+      "group": "Leads",
+      "inCast": true
+    },
+    {
+      "id": "gangseok",
+      "name": "Choi Gang Seok",
+      "actor": "Lee Sung Min",
+      "image": "https://i.mydramalist.com/d78nD_5m.jpg",
+      "group": "Teachers' rights bureau",
+      "inCast": true
+    },
+    {
+      "id": "geundae",
+      "name": "Bong Geun Dae",
+      "actor": "P.O",
+      "image": "https://i.mydramalist.com/VXxROx_5m.jpg",
+      "group": "Teachers' rights bureau",
+      "inCast": true
+    },
+    {
+      "id": "gayun",
+      "name": "Choi Ga Yun",
+      "actor": "Ha Young",
+      "image": "https://i.mydramalist.com/ABmJOP_5m.jpg",
+      "group": "Around Hwa Jin",
+      "inCast": true,
+      "note": "A teacher"
+    },
+    {
+      "id": "gyucheol",
+      "name": "Cho Gyu Cheol",
+      "actor": "Lee Bong Jun",
+      "image": "https://i.mydramalist.com/WP33Al_5m.jpg",
+      "group": "Around Hwa Jin",
+      "inCast": true
+    },
+    {
+      "id": "gitae",
+      "name": "Hwang Gi Tae",
+      "actor": "Kim Jong Soo",
+      "image": "https://i.mydramalist.com/yWOdl4_5m.jpg",
+      "group": "The Assembly",
+      "inCast": true,
+      "note": "Assemblyman"
+    },
+    {
+      "id": "cheolmyeon",
+      "name": "Lee Cheol Myeon",
+      "actor": "Kim Byung Chun",
+      "image": "https://i.mydramalist.com/ZqYOq_5m.jpg",
+      "group": "The Assembly",
+      "inCast": true
+    },
+    {
+      "id": "junhyeong",
+      "name": "Ryu Jun Hyeong",
+      "actor": "Lee Seung Gyu",
+      "image": "https://i.mydramalist.com/vXQgkg_5m.jpg",
+      "group": "Daehan High (ep. 1)",
+      "inCast": true
+    },
+    {
+      "id": "gwangpil",
+      "name": "Ryu Gwang Pil",
+      "actor": "Song Young Gyu",
+      "image": "https://i.mydramalist.com/oQRB5O_5m.jpg",
+      "group": "Daehan High (ep. 1)",
+      "inCast": true
+    },
+    {
+      "id": "gwangsu",
+      "name": "Kim Gwang Su",
+      "actor": "Kim Do Geon",
+      "image": "https://i.mydramalist.com/qAErzm.jpg",
+      "group": "Daehan High (ep. 1)",
+      "inCast": true
+    },
+    {
+      "id": "daeseok",
+      "name": "Park Dae Seok",
+      "actor": "Jeong Soo Hyun",
+      "image": "https://i.mydramalist.com/l01B4N_5m.jpg",
+      "group": "Daehan High (ep. 1)",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "hwajin",
+      "to": "hanrim",
+      "type": "work",
+      "label": "partners in the bureau's field work",
+      "short": "partner",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "gangseok",
+      "to": "hwajin",
+      "type": "work",
+      "label": "heads the bureau that sends him into the schools",
+      "short": "his chief",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "geundae",
+      "to": "hwajin",
+      "type": "work",
+      "label": "on the team",
+      "short": "teammate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "gayun",
+      "to": "hwajin",
+      "type": "romance",
+      "label": "fiancee",
+      "short": "fiancee",
+      "evidence": "[Hwa Jin's fiancee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyucheol",
+      "to": "gayun",
+      "type": "work",
+      "label": "her student",
+      "short": "her student",
+      "evidence": "[Ga Yun's student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gitae",
+      "to": "hwajin",
+      "type": "rivalry",
+      "label": "the assemblyman behind the amendment — and against the bureau's methods",
+      "short": "the assemblyman",
+      "evidence": "The National Assembly and the Minister of Education passes the Amendment to the Act on the Protection of Teachers' Rights / [Assemblyman]",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "cheolmyeon",
+      "to": "gitae",
+      "type": "work",
+      "label": "close associate",
+      "short": "associate",
+      "evidence": "[Gi Tae's close associate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangpil",
+      "to": "junhyeong",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Jun Hyeong's father] / [Gwang Pil's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangsu",
+      "to": "junhyeong",
+      "type": "work",
+      "label": "his right-hand man",
+      "short": "right-hand man",
+      "evidence": "[Jun Hyeong' right-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junhyeong",
+      "to": "daeseok",
+      "type": "rivalry",
+      "label": "the bully and the bullied of the first case",
+      "short": "bullies him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hwajin",
+      "to": "junhyeong",
+      "type": "rivalry",
+      "label": "the first student he teaches a lesson",
+      "short": "first lesson",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hwajin",
+      "hanrim",
+      "gangseok",
+      "geundae",
+      "gayun",
+      "gyucheol",
+      "gitae",
+      "cheolmyeon",
+      "junhyeong",
+      "gwangpil",
+      "gwangsu",
+      "daeseok"
+    ],
+    "blocks": {
+      "Teachers' rights bureau": [
+        0,
+        0
+      ],
+      "Around Hwa Jin": [
+        0,
+        2
+      ],
+      "The Assembly": [
+        2,
+        0
+      ],
+      "Daehan High (ep. 1)": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "hwajin",
+      "hanrim"
+    ]
+  }
+}

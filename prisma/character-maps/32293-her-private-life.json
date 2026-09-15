@@ -1,0 +1,498 @@
+{
+  "version": 1,
+  "mdlSlug": "32293-her-private-life",
+  "title": "Her Private Life",
+  "native": "그녀의 사생활",
+  "year": 2019,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles + guests, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "deokmi",
+    "ryan"
+  ],
+  "people": [
+    {
+      "id": "deokmi",
+      "name": "Seong Deok Mi",
+      "actor": "Park Min Young",
+      "image": "https://i.mydramalist.com/yWxKQR_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Park So Yi",
+          "image": "https://i.mydramalist.com/mOKWj1_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "33, chief curator at Cheum Museum; secretly runs the Cha Si An fansite"
+    },
+    {
+      "id": "ryan",
+      "name": "Ryan Gold / Heo Yun Je",
+      "actor": "Kim Jae Uck",
+      "image": "https://i.mydramalist.com/KpELb8_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Go",
+          "image": "https://i.mydramalist.com/rzkDE_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "33, the museum's new director; a former painter"
+    },
+    {
+      "id": "eungi",
+      "name": "Nam Eun Gi",
+      "actor": "Ahn Bo Hyun",
+      "image": "https://i.mydramalist.com/zB1vld_5m.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Yang Hee Won",
+          "image": "https://i.mydramalist.com/d0ABA5_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "33, runs a judo gym"
+    },
+    {
+      "id": "seonju",
+      "name": "Lee Seon Ju",
+      "actor": "Park Jin Joo",
+      "image": "https://i.mydramalist.com/5vV3xY_5m.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true,
+      "note": "Owner of cafe Cocomoco"
+    },
+    {
+      "id": "seungmin",
+      "name": "Kang Seung Min",
+      "actor": "Im Ji Gyu",
+      "image": "https://i.mydramalist.com/v60q2_5m.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true,
+      "note": "TV producer"
+    },
+    {
+      "id": "geonu",
+      "name": "Kang Geon U",
+      "actor": "Jung Shi Yool",
+      "image": "https://i.mydramalist.com/Xo8zO_5m.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true,
+      "note": "7"
+    },
+    {
+      "id": "juhyeok",
+      "name": "Joo Hyeok",
+      "actor": "Yoo Yong Min",
+      "image": "https://i.mydramalist.com/qYn68z_5m.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true,
+      "note": "Part-timer at Cocomoco"
+    },
+    {
+      "id": "yeongsuk",
+      "name": "Ko Yeong Suk",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true
+    },
+    {
+      "id": "geunho",
+      "name": "Seong Geun Ho",
+      "actor": "Maeng Sang Hoon",
+      "image": "https://i.mydramalist.com/92wKwm.jpg",
+      "group": "Deok Mi's people",
+      "inCast": true
+    },
+    {
+      "id": "sian",
+      "name": "Cha Si An",
+      "actor": "One",
+      "image": "https://i.mydramalist.com/JB43xJ_5m.jpg",
+      "group": "Si An",
+      "inCast": true,
+      "note": "23, member of White Ocean"
+    },
+    {
+      "id": "eunyeong",
+      "name": "Lee Sol / Gong Eun Yeong",
+      "actor": "Lee Il Hwa",
+      "image": "https://i.mydramalist.com/nODnn4_5m.jpg",
+      "group": "Si An",
+      "inCast": true,
+      "note": "The painter Lee Sol"
+    },
+    {
+      "id": "cindy",
+      "name": "Cindy / Kim Hyo Jin",
+      "actor": "Kim Bo Ra",
+      "image": "https://i.mydramalist.com/zBxEXd_5m.jpg",
+      "group": "Cheum Museum",
+      "inCast": true,
+      "note": "Si An fansite master; museum intern"
+    },
+    {
+      "id": "sohye",
+      "name": "Um So Hye",
+      "actor": "Kim Sun Young",
+      "image": "https://i.mydramalist.com/qL0l5_5m.jpg",
+      "group": "Cheum Museum",
+      "inCast": true,
+      "note": "Former museum director"
+    },
+    {
+      "id": "dain",
+      "name": "Choi Da In",
+      "actor": "Hong Seo Young",
+      "image": "https://i.mydramalist.com/O845lP_5m.jpg",
+      "group": "Cheum Museum",
+      "inCast": true,
+      "note": "31, media artist"
+    },
+    {
+      "id": "gyeonga",
+      "name": "Yoo Gyeong A",
+      "actor": "Seo Ye Hwa",
+      "image": "https://i.mydramalist.com/WWZBR_5m.jpg",
+      "group": "Cheum Museum",
+      "inCast": true,
+      "note": "Curator, studied abroad"
+    },
+    {
+      "id": "yuseop",
+      "name": "Kim Yu Seop",
+      "actor": "Jung Won Chang",
+      "image": "https://i.mydramalist.com/BElY5_5m.jpg",
+      "group": "Cheum Museum",
+      "inCast": true,
+      "note": "Part-timer"
+    }
+  ],
+  "links": [
+    {
+      "from": "ryan",
+      "to": "deokmi",
+      "type": "romance",
+      "label": "the new director who uncovers her secret — and her lover",
+      "short": "lover",
+      "evidence": "When Ryan Gold [...] arrives, he uncovers her secret [...] 라이언 골드 역 - 채움미술관 신입관장. 덕미의 연인",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ryan",
+      "to": "deokmi",
+      "type": "work",
+      "label": "her museum's director",
+      "short": "director",
+      "evidence": "채움미술관 신입관장 / 채움미술관 수석 큐레이터",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokmi",
+      "to": "sian",
+      "type": "bond",
+      "label": "his devoted fan — runs his fansite 'Si An is my way'",
+      "short": "his fan",
+      "evidence": "she is a devoted fangirl of Cha Si An, managing his fansite",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ryan",
+      "to": "sian",
+      "type": "family",
+      "label": "half-brothers",
+      "short": "half-brother",
+      "evidence": "라이언 골드 역 - 시안의 이복형 / 차시안 역 - 라이언 골드(허윤제)의 이복동생",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunyeong",
+      "to": "ryan",
+      "type": "family",
+      "label": "mother — the painter Lee Sol",
+      "short": "mother",
+      "evidence": "[Si An's and Ryan's mother] / 은영(이솔작가)의 아들",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunyeong",
+      "to": "sian",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Si An's and Ryan's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eungi",
+      "to": "deokmi",
+      "type": "friend",
+      "label": "childhood friend; a second son to her mother",
+      "short": "childhood friend",
+      "evidence": "남은기 역 - 덕미의 소꿉친구 / 고영숙 역 - 은기의 제2의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eungi",
+      "to": "deokmi",
+      "type": "romance",
+      "label": "loves her, unsaid",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seonju",
+      "to": "deokmi",
+      "type": "friend",
+      "label": "best friend, high-school classmate; co-runs the fansite",
+      "short": "best friend",
+      "evidence": "덕미의 절친, 덕미와 은기의 고등학교 동창. 시.나.길 공동 운영자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonju",
+      "to": "eungi",
+      "type": "friend",
+      "label": "high-school classmates",
+      "short": "classmate",
+      "evidence": "덕미와 은기의 고등학교 동창",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seungmin",
+      "to": "seonju",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "강승민 역 - 선주의 남편. 시사 프로 PD",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonju",
+      "to": "geonu",
+      "type": "family",
+      "label": "son of Seon Ju and Seung Min",
+      "short": "mother",
+      "evidence": "강건우 역 - 7세. 선주와 승민의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juhyeok",
+      "to": "seonju",
+      "type": "work",
+      "label": "part-timer at her cafe",
+      "short": "part-timer",
+      "evidence": "주혁 역 - 카페 '코코모코'의 알바생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsuk",
+      "to": "deokmi",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "고영숙 역 - 덕미의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunho",
+      "to": "deokmi",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "성근호 역 - 덕미의 아버지. 영숙의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunho",
+      "to": "yeongsuk",
+      "type": "family",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "영숙의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "cindy",
+      "to": "sian",
+      "type": "bond",
+      "label": "his other fansite master — Deok Mi's rival fan",
+      "short": "his fan",
+      "evidence": "신디(김효진) 역 - 차시안의 홈마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cindy",
+      "to": "deokmi",
+      "type": "rivalry",
+      "label": "rival fansite masters, then intern under her",
+      "short": "rival fan",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sohye",
+      "to": "cindy",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "엄소혜 역 - 채움미술관 전임 관장, 신디(김효진)의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sohye",
+      "to": "ryan",
+      "type": "work",
+      "label": "the director before him",
+      "short": "predecessor",
+      "evidence": "채움미술관 전임 관장 / 채움미술관 신입관장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dain",
+      "to": "ryan",
+      "type": "romance",
+      "label": "the artist who wants him",
+      "short": "wants him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeonga",
+      "to": "deokmi",
+      "type": "work",
+      "label": "curators at the same museum",
+      "short": "colleague",
+      "evidence": "유경아 역 - 해외 유학파 큐레이터",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuseop",
+      "to": "deokmi",
+      "type": "work",
+      "label": "the museum's part-timer",
+      "short": "part-timer",
+      "evidence": "김유섭 역 - 채움미술관의 아르바이트생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "deokmi",
+      "ryan",
+      "eungi",
+      "seonju",
+      "seungmin",
+      "geonu",
+      "juhyeok",
+      "yeongsuk",
+      "geunho",
+      "sian",
+      "eunyeong",
+      "cindy",
+      "sohye",
+      "dain",
+      "gyeonga",
+      "yuseop"
+    ],
+    "blocks": {
+      "Deok Mi's people": [
+        0,
+        0
+      ],
+      "Si An": [
+        2,
+        0
+      ],
+      "Cheum Museum": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "deokmi",
+      "ryan"
+    ]
+  }
+}

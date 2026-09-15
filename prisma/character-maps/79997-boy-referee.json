@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "mdlSlug": "79997-boy-referee",
+  "title": "Juvenile Justice",
+  "native": "소년 심판",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (13 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "eunseok",
+    "taejoo"
+  ],
+  "people": [
+    {
+      "id": "eunseok",
+      "name": "Shim Eun Seok",
+      "actor": "Kim Hye Soo",
+      "image": "https://i.mydramalist.com/oQB8AO_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Right-hand associate judge of Yeonhwa's juvenile bench; hates juvenile offenders"
+    },
+    {
+      "id": "taejoo",
+      "name": "Cha Tae Joo",
+      "actor": "Kim Moo Yul",
+      "image": "https://i.mydramalist.com/pzODD_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Left-hand associate judge; a former juvenile offender himself"
+    },
+    {
+      "id": "wonjoong",
+      "name": "Kang Won Joong",
+      "actor": "Lee Sung Min",
+      "image": "https://i.mydramalist.com/d78nD_5m.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Presiding judge of the juvenile bench"
+    },
+    {
+      "id": "geunhee",
+      "name": "Na Geun Hee",
+      "actor": "Lee Jung Eun",
+      "image": "https://i.mydramalist.com/3on8rD_5m.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Presiding judge after Won Joong; judged the brick-throwing case five years earlier"
+    },
+    {
+      "id": "donghyo",
+      "name": "Kim Dong Hyo",
+      "actor": "Choi Jung Woo",
+      "image": "https://i.mydramalist.com/0vvxKm.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Chief judge of the court"
+    },
+    {
+      "id": "soomi",
+      "name": "Woo Soo Mi",
+      "actor": "Park Ji Yun",
+      "image": "https://i.mydramalist.com/we7Xb_5m.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Clerk in charge"
+    },
+    {
+      "id": "yeongshil",
+      "name": "Joo Yeong Shil",
+      "actor": "Lee Sang Hee",
+      "image": "https://i.mydramalist.com/QQELW_5m.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Court officer"
+    },
+    {
+      "id": "seobum",
+      "name": "Seo Bum",
+      "actor": "Shin Jae Hwi",
+      "image": "https://i.mydramalist.com/pRBBr_5m.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Clerk"
+    },
+    {
+      "id": "joonghan",
+      "name": "Kyung Joong Han",
+      "actor": "Geum Kwang San",
+      "image": "https://i.mydramalist.com/pWB0rm.jpg",
+      "group": "Yeonhwa District Court",
+      "inCast": true,
+      "note": "Bailiff"
+    },
+    {
+      "id": "kangshik",
+      "name": "Go Kang Shik",
+      "actor": "Park Jong Hwan",
+      "image": "https://i.mydramalist.com/BLeRA_5m.jpg",
+      "group": "Around the court",
+      "inCast": true,
+      "note": "Detective, Yeonhwa police juvenile division"
+    },
+    {
+      "id": "leehwan",
+      "name": "Namgoong Lee Hwan",
+      "actor": "Kim Joo Heon",
+      "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
+      "group": "Around the court",
+      "inCast": true
+    },
+    {
+      "id": "chanmi",
+      "name": "Heo Chan Mi",
+      "actor": "Kim Young Ah",
+      "image": "https://i.mydramalist.com/B16pz_5m.jpg",
+      "group": "Around the court",
+      "inCast": true,
+      "note": "Geobo Law Firm; Han Ye Eun's lawyer"
+    },
+    {
+      "id": "shinwoo",
+      "name": "Kang Shin Woo",
+      "actor": "Kim Joon Ho",
+      "image": "https://i.mydramalist.com/X5NLx_5m.jpg",
+      "group": "The juveniles",
+      "inCast": true,
+      "note": "Caught up in the Mungwang High exam leak"
+    },
+    {
+      "id": "yeeun",
+      "name": "Han Ye Eun",
+      "actor": "Hwang Hyun Jeong",
+      "image": "https://i.mydramalist.com/XdAVkn_5m.jpg",
+      "group": "The juveniles",
+      "inCast": true,
+      "note": "Main culprit of the Yeonhwa schoolboy murder"
+    },
+    {
+      "id": "seongu",
+      "name": "Baek Seong U",
+      "actor": "Lee Yeon",
+      "image": "https://i.mydramalist.com/WWq0O_5m.jpg",
+      "group": "The juveniles",
+      "inCast": true,
+      "note": "Accomplice in the Yeonhwa schoolboy murder"
+    },
+    {
+      "id": "yuri",
+      "name": "Seo Yu Ri",
+      "actor": "Shim Dal Gi",
+      "image": "https://i.mydramalist.com/vLAAB_5m.jpg",
+      "group": "The juveniles",
+      "inCast": true,
+      "note": "Victim of domestic violence"
+    },
+    {
+      "id": "seonja",
+      "name": "Oh Seon Ja",
+      "actor": "Yeom Hye Ran",
+      "image": "https://i.mydramalist.com/VX2AVJ_5m.jpg",
+      "group": "The juveniles",
+      "inCast": true,
+      "note": "Head of the Pureum youth recovery centre"
+    },
+    {
+      "id": "dohyeon",
+      "name": "Baek Do Hyeon",
+      "actor": "Kim Kyun Ha",
+      "image": "https://i.mydramalist.com/4Y1yY_5m.jpg",
+      "group": "The juveniles",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Yoo Joo Won",
+          "image": "https://i.mydramalist.com/ENrb5_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Main culprit of the Yeonhwa gang rape case; the brick-throwing case five years earlier"
+    }
+  ],
+  "links": [
+    {
+      "from": "eunseok",
+      "to": "taejoo",
+      "type": "work",
+      "label": "the two associate judges of the juvenile bench — she hates the offenders, he believes in them",
+      "short": "fellow judge",
+      "evidence": "심은석 역 - 소년형사합의부 우배석 판사 / 차태주 역 - 소년형사합의부 좌배석 판사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wonjoong",
+      "to": "eunseok",
+      "type": "work",
+      "label": "presiding judge of her bench",
+      "short": "presiding judge",
+      "evidence": "강원중 역 - 연화지방법원 소년형사합의부 부장판사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wonjoong",
+      "to": "taejoo",
+      "type": "work",
+      "label": "presiding judge of his bench",
+      "short": "presiding judge",
+      "evidence": "강원중 역 - 연화지방법원 소년형사합의부 부장판사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunhee",
+      "to": "wonjoong",
+      "type": "work",
+      "label": "succeeds him as presiding judge",
+      "short": "successor",
+      "evidence": "나근희 역 - 강원중의 후임 부장판사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geunhee",
+      "to": "eunseok",
+      "type": "work",
+      "label": "the judge of the brick case Eun Seok cannot forget — five years before",
+      "short": "the old case",
+      "evidence": "5년전 아파트 벽돌투척사건 담당 판사",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donghyo",
+      "to": "wonjoong",
+      "type": "work",
+      "label": "chief judge of the court",
+      "short": "chief judge",
+      "evidence": "[Chief judge] / 연화 지방 법원 법원장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soomi",
+      "to": "eunseok",
+      "type": "work",
+      "label": "the bench's clerk in charge",
+      "short": "clerk",
+      "evidence": "우수미 역 - 소년형사합의부 주임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongshil",
+      "to": "eunseok",
+      "type": "work",
+      "label": "court officer of the bench",
+      "short": "court officer",
+      "evidence": "주영실 역 - 소년형사합의부 참여관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seobum",
+      "to": "eunseok",
+      "type": "work",
+      "label": "clerk of the bench",
+      "short": "clerk",
+      "evidence": "서범 역 - 소년형사합의부 실무관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "joonghan",
+      "to": "eunseok",
+      "type": "work",
+      "label": "bailiff",
+      "short": "bailiff",
+      "evidence": "[Bailiff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kangshik",
+      "to": "eunseok",
+      "type": "work",
+      "label": "the juvenile-division detective on her cases",
+      "short": "detective",
+      "evidence": "[Detective] / 고강식 역 - 연화경찰서 여성청소년과 경장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "leehwan",
+      "to": "taejoo",
+      "type": "work",
+      "label": "the lawyer across the courtroom",
+      "short": "lawyer",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chanmi",
+      "to": "yeeun",
+      "type": "work",
+      "label": "her lawyer",
+      "short": "lawyer",
+      "evidence": "허찬미 역 - 한예은 담당 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chanmi",
+      "to": "eunseok",
+      "type": "work",
+      "label": "training-institute classmates",
+      "short": "old classmate",
+      "evidence": "심은석과는 연수원 동기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wonjoong",
+      "to": "shinwoo",
+      "type": "family",
+      "label": "father — his son is in the exam-leak case",
+      "short": "father",
+      "evidence": "[Won Joong's son] / 강원중의 아들, 문광고등학교 시험문제 유출 사건에 연루",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeeun",
+      "to": "seongu",
+      "type": "rivalry",
+      "label": "main culprit and accomplice of the same murder",
+      "short": "accomplice",
+      "evidence": "한예은 역 - 연화 초등생 살인사건 주범 / 백성우 역 - 연화 초등생 살인사건 공모자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunseok",
+      "to": "yeeun",
+      "type": "work",
+      "label": "judges her",
+      "short": "judges her",
+      "evidence": "연화 초등생 살인사건 주범",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunseok",
+      "to": "yuri",
+      "type": "work",
+      "label": "the abused girl she takes on",
+      "short": "her case",
+      "evidence": "서유리 역 - 가정폭력 피해자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonja",
+      "to": "eunseok",
+      "type": "work",
+      "label": "runs the recovery centre the judges inspect",
+      "short": "centre head",
+      "evidence": "오선자 역 - 푸름 청소년 회복센터 센터장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dohyeon",
+      "to": "eunseok",
+      "type": "rivalry",
+      "label": "the boy of the brick case — the judge's own loss",
+      "short": "the brick case",
+      "evidence": "백도현 역 - 5년전 벽돌투척사건 소년범",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dohyeon",
+      "to": "geunhee",
+      "type": "work",
+      "label": "judged by her, five years earlier",
+      "short": "judged by her",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "eunseok",
+      "taejoo",
+      "wonjoong",
+      "geunhee",
+      "donghyo",
+      "soomi",
+      "yeongshil",
+      "seobum",
+      "joonghan",
+      "kangshik",
+      "leehwan",
+      "chanmi",
+      "shinwoo",
+      "yeeun",
+      "seongu",
+      "yuri",
+      "seonja",
+      "dohyeon"
+    ],
+    "blocks": {
+      "Yeonhwa District Court": [
+        0,
+        0
+      ],
+      "Around the court": [
+        2,
+        0
+      ],
+      "The juveniles": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "eunseok",
+      "taejoo"
+    ]
+  }
+}

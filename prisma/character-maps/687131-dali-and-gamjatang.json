@@ -1,0 +1,474 @@
+{
+  "version": 1,
+  "mdlSlug": "687131-dali-and-gamjatang",
+  "title": "Dali & Cocky Prince",
+  "native": "달리와 감자탕",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (20 roles + guests, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "dali",
+    "muhak"
+  ],
+  "people": [
+    {
+      "id": "dali",
+      "name": "Kim Dal Li",
+      "actor": "Park Gyu Young",
+      "image": "https://i.mydramalist.com/oQBr6N_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Hyo Bi",
+          "image": "https://i.mydramalist.com/DkBJyN_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Guest researcher at Saint Miller — becomes director of the Cheongsong Art Museum"
+    },
+    {
+      "id": "muhak",
+      "name": "Jin Mu Hak",
+      "actor": "Kim Min Jae",
+      "image": "https://i.mydramalist.com/kA7pDO_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Managing director of Dondon F&B; grew up peddling in the market; only cares about money"
+    },
+    {
+      "id": "taejin",
+      "name": "Jang Tae Jin",
+      "actor": "Kwon Yul",
+      "image": "https://i.mydramalist.com/ABwd48_5m.jpg",
+      "group": "Around Dal Li",
+      "inCast": true,
+      "note": "Segi Group's planning chief"
+    },
+    {
+      "id": "wontak",
+      "name": "Ju Won Tak",
+      "actor": "Hwang Hee",
+      "image": "https://i.mydramalist.com/XdrKnw_5m.jpg",
+      "group": "Around Dal Li",
+      "inCast": true,
+      "note": "Violent-crimes detective"
+    },
+    {
+      "id": "chakhui",
+      "name": "An Chak Hui",
+      "actor": "Yeon Woo",
+      "image": "https://i.mydramalist.com/vgjp8_5m.jpg",
+      "group": "Around Dal Li",
+      "inCast": true,
+      "note": "Gallerist"
+    },
+    {
+      "id": "sangtae",
+      "name": "An Sang Tae",
+      "actor": "Park Sang Myeon",
+      "image": "https://i.mydramalist.com/EZDBp_5m.jpg",
+      "group": "Around Dal Li",
+      "inCast": true,
+      "note": "Assemblyman"
+    },
+    {
+      "id": "nakcheon",
+      "name": "Kim Nak Cheon",
+      "actor": "Jang Gwang",
+      "image": "https://i.mydramalist.com/WP5KLX_5m.jpg",
+      "group": "Cheongsong Art Museum",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Gu Yun Hoi",
+          "image": "https://i.mydramalist.com/rwVLE_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Director of the Cheongsong Art Museum (deceased)"
+    },
+    {
+      "id": "sihyeong",
+      "name": "Kim Si Hyeong",
+      "actor": "Lee Jae Woo",
+      "image": "https://i.mydramalist.com/eoJnqm.jpg",
+      "group": "Cheongsong Art Museum",
+      "inCast": true,
+      "note": "Runs the museum cafe"
+    },
+    {
+      "id": "sabong",
+      "name": "Song Sa Bong",
+      "actor": "Woo Hee Jin",
+      "image": "https://i.mydramalist.com/d04pWD_5m.jpg",
+      "group": "Cheongsong Art Museum",
+      "inCast": true,
+      "note": "Curator"
+    },
+    {
+      "id": "byeongse",
+      "name": "Han Byeong Se",
+      "actor": "Ahn Se Ha",
+      "image": "https://i.mydramalist.com/XODjZ_5m.jpg",
+      "group": "Cheongsong Art Museum",
+      "inCast": true,
+      "note": "Educator / curator"
+    },
+    {
+      "id": "gidong",
+      "name": "Hwang Gi Dong",
+      "actor": "Yoo Hyung Kwan",
+      "image": "https://i.mydramalist.com/pz4QD_5m.jpg",
+      "group": "Cheongsong Art Museum",
+      "inCast": true,
+      "note": "Facilities engineer"
+    },
+    {
+      "id": "gongju",
+      "name": "Na Gong Ju",
+      "actor": "Song Ji Won",
+      "image": "https://i.mydramalist.com/dAn5bm.jpg",
+      "group": "Cheongsong Art Museum",
+      "inCast": true,
+      "note": "Intern"
+    },
+    {
+      "id": "baekwon",
+      "name": "Jin Baek Won",
+      "actor": "Ahn Kil Kang",
+      "image": "https://i.mydramalist.com/O8LKVy_5m.jpg",
+      "group": "Dondon F&B",
+      "inCast": true,
+      "note": "Chairman of Dondon F&B"
+    },
+    {
+      "id": "geumja",
+      "name": "So Geum Ja",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Dondon F&B",
+      "inCast": true
+    },
+    {
+      "id": "gicheol",
+      "name": "Jin Gi Cheol",
+      "actor": "Lee Je Yeon",
+      "image": "https://i.mydramalist.com/QJ2wd7_5m.jpg",
+      "group": "Dondon F&B",
+      "inCast": true,
+      "note": "Head of planning at Dondon F&B"
+    },
+    {
+      "id": "miri",
+      "name": "Yeo Mi Ri",
+      "actor": "Hwang Bo Ra",
+      "image": "https://i.mydramalist.com/2z6BP_5m.jpg",
+      "group": "Dondon F&B",
+      "inCast": true
+    },
+    {
+      "id": "jedeuk",
+      "name": "Je Deuk",
+      "actor": "Ahn Dong Yeob",
+      "image": "https://i.mydramalist.com/XvEqZm.jpg",
+      "group": "Dondon F&B",
+      "inCast": true
+    },
+    {
+      "id": "pilgu",
+      "name": "Pil Gu",
+      "actor": "Seo Dong Oh",
+      "image": "https://i.mydramalist.com/25qo7_5m.jpg",
+      "group": "Dondon F&B",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "muhak",
+      "to": "dali",
+      "type": "romance",
+      "label": "the peddler-turned-director and the museum director — the creditor and the heiress",
+      "short": "falls for her",
+      "evidence": "Although he is ignorant, he is strong-willed and knows how to make money [...] 김달리 (여, 20대 후반) 역 - 청송미술관 관장",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nakcheon",
+      "to": "dali",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Dal Li's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nakcheon",
+      "to": "sihyeong",
+      "type": "family",
+      "label": "uncle — Si Hyeong is his nephew",
+      "short": "uncle",
+      "evidence": "[Nak Cheon's nephew]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taejin",
+      "to": "dali",
+      "type": "romance",
+      "label": "her first love",
+      "short": "first love",
+      "evidence": "장태진 역 - 세기그룹 기획조정실장, 김달리의 첫사랑",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wontak",
+      "to": "nakcheon",
+      "type": "work",
+      "label": "detective her father supported",
+      "short": "supported by him",
+      "evidence": "Joo Won-tak, a detective from the violent crime squad who was supported by Dali's father",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wontak",
+      "to": "dali",
+      "type": "friend",
+      "label": "looks out for her, as her father's protege",
+      "short": "looks out for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sangtae",
+      "to": "chakhui",
+      "type": "family",
+      "label": "father, a National Assembly member",
+      "short": "father",
+      "evidence": "안상태 역 - 국회의원, 안착희의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chakhui",
+      "to": "muhak",
+      "type": "romance",
+      "label": "the gallerist who wants Mu Hak",
+      "short": "wants him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sabong",
+      "to": "nakcheon",
+      "type": "work",
+      "label": "curator at his museum",
+      "short": "curator",
+      "evidence": "Song Sa-bong, a curator at Cheong-song Art Museum",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeongse",
+      "to": "nakcheon",
+      "type": "work",
+      "label": "educator at the museum",
+      "short": "educator",
+      "evidence": "[Cheongsong art museum curator]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gidong",
+      "to": "nakcheon",
+      "type": "work",
+      "label": "facilities engineer",
+      "short": "engineer",
+      "evidence": "[Facility management department engineer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gongju",
+      "to": "sabong",
+      "type": "work",
+      "label": "the museum's intern",
+      "short": "intern",
+      "evidence": "[Art museum intern]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "baekwon",
+      "to": "muhak",
+      "type": "family",
+      "label": "father; chairman of Dondon F&B",
+      "short": "father",
+      "evidence": "[Mu Hak's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumja",
+      "to": "muhak",
+      "type": "family",
+      "label": "stepmother, Baek Won's second wife",
+      "short": "stepmother",
+      "evidence": "[Mu Hak's stepmother] / 진백원의 후처",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumja",
+      "to": "baekwon",
+      "type": "family",
+      "label": "second wife",
+      "short": "wife",
+      "evidence": "소금자 역 - 진무학의 새어머니, 진백원의 후처",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gicheol",
+      "to": "muhak",
+      "type": "family",
+      "label": "stepbrother",
+      "short": "stepbrother",
+      "evidence": "[Mu Hak's stepbrother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "miri",
+      "to": "muhak",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Mu Hak's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jedeuk",
+      "to": "muhak",
+      "type": "work",
+      "label": "Dondon F&B employee",
+      "short": "employee",
+      "evidence": "[Dondon F&B employee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilgu",
+      "to": "muhak",
+      "type": "work",
+      "label": "Dondon F&B employee",
+      "short": "employee",
+      "evidence": "[Dondon F&B employee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "baekwon",
+      "to": "nakcheon",
+      "type": "work",
+      "label": "the creditor of the museum: the debt that brings Mu Hak to Dal Li",
+      "short": "creditor",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dali",
+      "muhak",
+      "taejin",
+      "wontak",
+      "chakhui",
+      "sangtae",
+      "nakcheon",
+      "sihyeong",
+      "sabong",
+      "byeongse",
+      "gidong",
+      "gongju",
+      "baekwon",
+      "geumja",
+      "gicheol",
+      "miri",
+      "jedeuk",
+      "pilgu"
+    ],
+    "blocks": {
+      "Around Dal Li": [
+        0,
+        0
+      ],
+      "Cheongsong Art Museum": [
+        0,
+        2
+      ],
+      "Dondon F&B": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "dali",
+      "muhak"
+    ]
+  }
+}

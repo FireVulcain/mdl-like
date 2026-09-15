@@ -1,0 +1,506 @@
+{
+  "version": 1,
+  "mdlSlug": "736965-gyeon-woo-and-fairy",
+  "title": "Head over Heels",
+  "native": "견우와 선녀",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (16 roles + guests, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "seonga",
+    "gyeonu"
+  ],
+  "people": [
+    {
+      "id": "seonga",
+      "name": "Park Seong A / Fairy Cheon Ji",
+      "actor": "Cho Yi Hyun",
+      "image": "https://i.mydramalist.com/Ndn76A_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee A Rin",
+          "image": "https://i.mydramalist.com/d0zP0z_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Schoolgirl by day, the shaman Fairy Cheon Ji by night"
+    },
+    {
+      "id": "gyeonu",
+      "name": "Bae Gyeon U",
+      "actor": "Choo Young Woo",
+      "image": "https://i.mydramalist.com/l0Qm8J_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Hee Sung",
+          "image": "https://i.mydramalist.com/rNmDQ7_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The transfer student every misfortune seems made for; destined to die soon. From ep. 6 also the evil spirit Bong Su, possessing him"
+    },
+    {
+      "id": "oksun",
+      "name": "O Ok Sun",
+      "actor": "Kil Hae Yeon",
+      "image": "https://i.mydramalist.com/l0b7gv_5m.jpg",
+      "group": "Gyeon U's family",
+      "inCast": true,
+      "note": "Brings Gyeon U to the shaman"
+    },
+    {
+      "id": "uncle",
+      "name": "Gyeon U's uncle",
+      "actor": "Kim Hee Chang",
+      "image": "https://i.mydramalist.com/Z0wjYm.jpg",
+      "group": "Gyeon U's family",
+      "inCast": true
+    },
+    {
+      "id": "motsin",
+      "name": "Mother Sin / General Dong Cheon",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Shamans",
+      "inCast": true,
+      "note": "Seong A's spirit mother (deceased)"
+    },
+    {
+      "id": "yeomhwa",
+      "name": "Yeom Hwa",
+      "actor": "Choo Ja Hyun",
+      "image": "https://i.mydramalist.com/j8bP8m.jpg",
+      "group": "Shamans",
+      "inCast": true,
+      "note": "Celebrity shaman, all designer labels"
+    },
+    {
+      "id": "doryeong",
+      "name": "Do Ryeong / \"Flower master\"",
+      "actor": "Yoon Byung Hee",
+      "image": "https://i.mydramalist.com/dJZPe_5m.jpg",
+      "group": "Shamans",
+      "inCast": true,
+      "note": "Shaman from Tongyeong"
+    },
+    {
+      "id": "maeng",
+      "name": "Shaman Maeng",
+      "actor": "Lee Young Ran",
+      "image": "https://i.mydramalist.com/6E2dg_5m.jpg",
+      "group": "Shamans",
+      "inCast": true
+    },
+    {
+      "id": "jiho",
+      "name": "Pyo Ji Ho",
+      "actor": "Cha Kang Yoon",
+      "image": "https://i.mydramalist.com/Kpo2WD_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "The popular one nobody admits liking"
+    },
+    {
+      "id": "doyeon",
+      "name": "Koo Do Yeon",
+      "actor": "Kim Min Joo",
+      "image": "https://i.mydramalist.com/yWyAjk_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "The quiet otaku girl at the back"
+    },
+    {
+      "id": "jinung",
+      "name": "Kim Jin Ung",
+      "actor": "Kim Seong Jeong",
+      "image": "https://i.mydramalist.com/O8K5KY_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "Delinquent"
+    },
+    {
+      "id": "hyeri",
+      "name": "Cho Hye Ri",
+      "actor": "Hwang Se In",
+      "image": "https://i.mydramalist.com/eq4n8_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "Good at everything"
+    },
+    {
+      "id": "juseung",
+      "name": "Maeng Ju Seung",
+      "actor": "Cha Yoo Hyun",
+      "image": "https://i.mydramalist.com/kZqLr_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "Spreader of fake news"
+    },
+    {
+      "id": "mobeom",
+      "name": "Mo Beom",
+      "actor": "Ham Sung Min",
+      "image": "https://i.mydramalist.com/rb7Qmm.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "The model student"
+    },
+    {
+      "id": "somang",
+      "name": "Ko So Mang",
+      "actor": "Jung Ho Won",
+      "image": "https://i.mydramalist.com/ABWVz8_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true
+    },
+    {
+      "id": "seunghui",
+      "name": "O Seung Hui",
+      "actor": "Jung Da Jung",
+      "image": "https://i.mydramalist.com/JBWVxm_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "Archery club"
+    },
+    {
+      "id": "coach",
+      "name": "Yang Ju Seop",
+      "actor": "Park Jung Pyo",
+      "image": "https://i.mydramalist.com/jNg3B_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true,
+      "note": "Archery coach"
+    },
+    {
+      "id": "teacher",
+      "name": "Classroom teacher",
+      "actor": "Kim Han Gyul",
+      "image": "https://i.mydramalist.com/4PANr_5m.jpg",
+      "group": "Hwamok High",
+      "inCast": true
+    },
+    {
+      "id": "auntie",
+      "name": "Auntie",
+      "actor": "Lee Soo Mi",
+      "image": "https://i.mydramalist.com/BdmxrV_5m.jpg",
+      "group": "Shamans",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "seonga",
+      "to": "gyeonu",
+      "type": "romance",
+      "label": "a crush at first sight — and she sees he is destined to die; decides to save him",
+      "short": "saves him",
+      "evidence": "Park Seong A has a crush on him at first sight, but she sees that he is destined to die soon [...] She decides to save him from his destiny",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonu",
+      "to": "seonga",
+      "type": "romance",
+      "label": "each other's first love",
+      "short": "first love",
+      "evidence": "박성아 역 - 견우의 첫사랑 / 배견우 역 - 성아의 첫사랑",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeonu",
+      "to": "seonga",
+      "type": "friend",
+      "label": "the new transfer student in her class",
+      "short": "classmate",
+      "evidence": "Bae Gyeon U appears in front of her as a new transfer student in her class",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "oksun",
+      "to": "gyeonu",
+      "type": "family",
+      "label": "grandmother; takes him to see Fairy Cheon Ji",
+      "short": "grandmother",
+      "evidence": "[Gyeon U's grandmother] / One night, Bae Gyeon U and his grandmother come to visit Fairy Cheon Ji",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uncle",
+      "to": "gyeonu",
+      "type": "family",
+      "label": "uncle",
+      "short": "uncle",
+      "evidence": "[Gyeon U's uncle]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "motsin",
+      "to": "seonga",
+      "type": "bond",
+      "label": "her spirit mother",
+      "short": "spirit mother",
+      "evidence": "신어머니 (동천장군) 역 - 성아의 신어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "motsin",
+      "to": "yeomhwa",
+      "type": "bond",
+      "label": "once Yeom Hwa's spirit mother too",
+      "short": "spirit mother",
+      "evidence": "과거 염화의 신어머니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maeng",
+      "to": "motsin",
+      "type": "family",
+      "label": "elder sister",
+      "short": "elder sister",
+      "evidence": "[Mother Sin's elder sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeomhwa",
+      "to": "seonga",
+      "type": "rivalry",
+      "label": "the famous shaman on the other side of Seong A's fight",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "doryeong",
+      "to": "seonga",
+      "type": "friend",
+      "label": "fellow shaman who helps",
+      "short": "helps her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "auntie",
+      "to": "seonga",
+      "type": "family",
+      "label": "the aunt who keeps house",
+      "short": "auntie",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiho",
+      "to": "seonga",
+      "type": "romance",
+      "label": "the second lead",
+      "short": "likes her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiho",
+      "to": "gyeonu",
+      "type": "friend",
+      "label": "classmates",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "doyeon",
+      "to": "seonga",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyeri",
+      "to": "seonga",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jinung",
+      "to": "gyeonu",
+      "type": "rivalry",
+      "label": "the delinquent of the class",
+      "short": "bullies him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "juseung",
+      "to": "gyeonu",
+      "type": "friend",
+      "label": "classmate, fake-news spreader",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "mobeom",
+      "to": "gyeonu",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "somang",
+      "to": "gyeonu",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seunghui",
+      "to": "gyeonu",
+      "type": "work",
+      "label": "archery club together",
+      "short": "archery club",
+      "evidence": "[Archery club student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "coach",
+      "to": "gyeonu",
+      "type": "work",
+      "label": "archery coach",
+      "short": "coach",
+      "evidence": "[Coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "teacher",
+      "to": "seonga",
+      "type": "work",
+      "label": "her homeroom teacher",
+      "short": "teacher",
+      "evidence": "[Classroom teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seonga",
+      "gyeonu",
+      "oksun",
+      "uncle",
+      "motsin",
+      "yeomhwa",
+      "doryeong",
+      "maeng",
+      "jiho",
+      "doyeon",
+      "jinung",
+      "hyeri",
+      "juseung",
+      "mobeom",
+      "somang",
+      "seunghui",
+      "coach",
+      "teacher",
+      "auntie"
+    ],
+    "blocks": {
+      "Gyeon U's family": [
+        2,
+        0
+      ],
+      "Shamans": [
+        0,
+        0
+      ],
+      "Hwamok High": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seonga",
+      "gyeonu"
+    ]
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "version": 1,
+  "mdlSlug": "748441-spirit-fingers",
+  "title": "Spirit Fingers",
+  "native": "스피릿 핑거스!",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)"
+  ],
+  "main": [
+    "uyeon",
+    "gijeong"
+  ],
+  "people": [
+    {
+      "id": "uyeon",
+      "name": "Song U Yeon / \"Baby Blue Finger\"",
+      "actor": "Park Ji Hu",
+      "image": "https://i.mydramalist.com/b3jV2Z_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The unremarkable schoolgirl invited into the club"
+    },
+    {
+      "id": "gijeong",
+      "name": "Nam Gi Jeong / \"Red Finger\"",
+      "actor": "Cho Jun Young",
+      "image": "https://i.mydramalist.com/O8mzE3_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Brash and gregarious"
+    },
+    {
+      "id": "seonho",
+      "name": "Koo Seon Ho / \"Blue Finger\"",
+      "actor": "Choi Bo Min",
+      "image": "https://i.mydramalist.com/JB43kd_5m.jpg",
+      "group": "Spirit Fingers",
+      "inCast": true
+    },
+    {
+      "id": "geurin",
+      "name": "Nam Geu Rin / \"Mint Finger\"",
+      "actor": "Park You Na",
+      "image": "https://i.mydramalist.com/eYVX7Y_5m.jpg",
+      "group": "Spirit Fingers",
+      "inCast": true
+    },
+    {
+      "id": "bunhong",
+      "name": "Hwang Bun Hong / \"Pink Finger\"",
+      "actor": "Kwon So Hyun",
+      "image": "https://i.mydramalist.com/Xd8qgZ_5m.jpg",
+      "group": "Spirit Fingers",
+      "inCast": true
+    },
+    {
+      "id": "taengja",
+      "name": "Ko Taeng Ja / \"Black Finger\"",
+      "actor": "Kim Seul Ki",
+      "image": "https://i.mydramalist.com/73jLVj_5m.jpg",
+      "group": "Spirit Fingers",
+      "inCast": true
+    },
+    {
+      "id": "donggeon",
+      "name": "Jang Dong Geon / \"Brown Finger\"",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Spirit Fingers",
+      "inCast": true
+    },
+    {
+      "id": "hyeok",
+      "name": "Kwon Hyeok / \"Khaki Finger\"",
+      "actor": "Lee Jin Hyuk",
+      "image": "https://i.mydramalist.com/qYVOKD_5m.jpg",
+      "group": "Spirit Fingers",
+      "inCast": true
+    },
+    {
+      "id": "taeseon",
+      "name": "Byeon Tae Seon",
+      "actor": "Cha Woo Min",
+      "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "daeo",
+      "name": "O Dae O",
+      "actor": "Ham Sung Min",
+      "image": "https://i.mydramalist.com/rb7Qmm.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "yerim",
+      "name": "An Ye Rim",
+      "actor": "Kang Hye Won",
+      "image": "https://i.mydramalist.com/LwV167_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "sera",
+      "name": "Yeom Se Ra",
+      "actor": "Eun Yeo Jin",
+      "image": "https://i.mydramalist.com/2Wned_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "mirae",
+      "name": "Cho Mi Rae",
+      "actor": "Son Young Joo",
+      "image": "https://i.mydramalist.com/EbZKl_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "seonggyeong",
+      "name": "Seong Gyeong",
+      "actor": "Kim Hye Eun",
+      "image": "https://i.mydramalist.com/Z8vj8q_5m.jpg",
+      "group": "U Yeon's family",
+      "inCast": true
+    },
+    {
+      "id": "udol",
+      "name": "Song U Dol",
+      "actor": "Ki Eun Yoo",
+      "image": "https://i.mydramalist.com/2zRKw_5m.jpg",
+      "group": "U Yeon's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "gijeong",
+      "to": "uyeon",
+      "type": "romance",
+      "label": "a collision course with Red Finger — and maybe romance",
+      "short": "collides with her",
+      "evidence": "This puts her on a collision course with the seemingly brash and gregarious Red Finger [...] and maybe romance?",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonho",
+      "to": "uyeon",
+      "type": "work",
+      "label": "the club: every member has a colour",
+      "short": "club member",
+      "evidence": "the club's members all have their own distinct colors",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonho",
+      "to": "uyeon",
+      "type": "romance",
+      "label": "the quiet one who watches her",
+      "short": "watches her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "geurin",
+      "to": "gijeong",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "geurin",
+      "to": "uyeon",
+      "type": "work",
+      "label": "the club",
+      "short": "club member",
+      "evidence": "the club's members all have their own distinct colors",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bunhong",
+      "to": "uyeon",
+      "type": "work",
+      "label": "the club",
+      "short": "club member",
+      "evidence": "동아리 그 외 멤버 - 핑크핑거",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taengja",
+      "to": "uyeon",
+      "type": "work",
+      "label": "the club",
+      "short": "club member",
+      "evidence": "동아리 그 외 멤버 - 블랙핑거",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "donggeon",
+      "to": "uyeon",
+      "type": "work",
+      "label": "the club",
+      "short": "club member",
+      "evidence": "동아리 그 외 멤버 - 브라운핑거",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeok",
+      "to": "uyeon",
+      "type": "work",
+      "label": "the club",
+      "short": "club member",
+      "evidence": "동아리 그 외 멤버 - 카키핑거",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taeseon",
+      "to": "gijeong",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Gi Jeong's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "daeo",
+      "to": "gijeong",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Gi Jeong's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yerim",
+      "to": "uyeon",
+      "type": "rivalry",
+      "label": "the girl at school who looks down on her",
+      "short": "looks down on her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sera",
+      "to": "uyeon",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[U Yeon's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mirae",
+      "to": "uyeon",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[U Yeon's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonggyeong",
+      "to": "uyeon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[U Yeon's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "udol",
+      "to": "uyeon",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[U Yeon's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "uyeon",
+      "gijeong",
+      "seonho",
+      "geurin",
+      "bunhong",
+      "taengja",
+      "donggeon",
+      "hyeok",
+      "taeseon",
+      "daeo",
+      "yerim",
+      "sera",
+      "mirae",
+      "seonggyeong",
+      "udol"
+    ],
+    "blocks": {
+      "Spirit Fingers": [
+        0,
+        0
+      ],
+      "School": [
+        2,
+        0
+      ],
+      "U Yeon's family": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "uyeon",
+      "gijeong"
+    ]
+  }
+}

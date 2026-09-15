@@ -1,0 +1,308 @@
+{
+  "version": 1,
+  "mdlSlug": "744135-the-killer-s-shopping-mall",
+  "title": "A Shop for Killers",
+  "native": "킬러들의 쇼핑몰",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (55 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only; sides inferred)",
+    "en.wikipedia (not used)"
+  ],
+  "main": [
+    "jinman",
+    "jian"
+  ],
+  "people": [
+    {
+      "id": "jinman",
+      "name": "Jung Jin Man",
+      "actor": "Lee Dong Wook",
+      "image": "https://i.mydramalist.com/jQQJvv_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The uncle who raised her; a 'suicide' the police call in — and the shopping mall underneath the house"
+    },
+    {
+      "id": "jian",
+      "name": "Jung Ji An",
+      "actor": "Kim Hye Jun",
+      "image": "https://i.mydramalist.com/YYJDeP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Orphaned; raised by him; under fire from the day of the call"
+    },
+    {
+      "id": "seongjo",
+      "name": "Lee Seong Jo",
+      "actor": "Seo Hyeon Woo",
+      "image": "https://i.mydramalist.com/3oAYOD_5m.jpg",
+      "group": "The mall's people",
+      "inCast": true,
+      "note": "Jin Man's old comrade — on the other side now"
+    },
+    {
+      "id": "jeongmin",
+      "name": "Bae Jeong Min",
+      "actor": "Park Ji Bin",
+      "image": "https://i.mydramalist.com/VXxvQy_5m.jpg",
+      "group": "The mall's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ye Gyeom",
+          "image": "https://i.mydramalist.com/28Qo2_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Ji An's classmate; came into the mall as a boy"
+    },
+    {
+      "id": "minhye",
+      "name": "So Min Hye",
+      "actor": "Geum Hae Na",
+      "image": "https://i.mydramalist.com/Xdrx8X_5m.jpg",
+      "group": "The mall's people",
+      "inCast": true,
+      "note": "The mall's — and the one who comes for Ji An"
+    },
+    {
+      "id": "bale",
+      "name": "Bale",
+      "actor": "Jo Han Sun",
+      "image": "https://i.mydramalist.com/vXJ6lW_5m.jpg",
+      "group": "The mall's people",
+      "inCast": true,
+      "note": "The mercenary who comes for the mall"
+    },
+    {
+      "id": "brother",
+      "name": "Brother",
+      "actor": "Lee Tae Young",
+      "image": "https://i.mydramalist.com/NdEKDn_5m.jpg",
+      "group": "The mall's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Se Heon",
+          "image": "https://i.mydramalist.com/E5JObb_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "The giant, on Jin Man's side"
+    },
+    {
+      "id": "pasin",
+      "name": "Pasin",
+      "actor": "Kim Min",
+      "image": "https://i.mydramalist.com/QJ5mZ6_5m.jpg",
+      "group": "The mall's people",
+      "inCast": true,
+      "note": "Pasin Kradek — the fighter"
+    },
+    {
+      "id": "yonghan",
+      "name": "Lee Yong Han",
+      "actor": "Ahn Kil Kang",
+      "image": "https://i.mydramalist.com/O8LKVy_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "juncheol",
+      "name": "Jun Cheol",
+      "actor": "Jung Yi Hun",
+      "image": "https://i.mydramalist.com/E5pKzm_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "jinman",
+      "to": "jian",
+      "type": "family",
+      "label": "uncle — raised her after her parents died; the 'suicide'",
+      "short": "uncle",
+      "evidence": "Raised by her mysterious uncle Jung Jin Man after her parents' death, she never imagined him as suicidal",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinman",
+      "to": "jian",
+      "type": "work",
+      "label": "left her the mall, and the codes to survive it",
+      "short": "left her the mall",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongjo",
+      "to": "jinman",
+      "type": "friend",
+      "label": "old comrades from the same unit",
+      "short": "old comrade",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seongjo",
+      "to": "jian",
+      "type": "rivalry",
+      "label": "leads the assassins at the house",
+      "short": "leads the attack",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jeongmin",
+      "to": "jian",
+      "type": "friend",
+      "label": "her classmate, taken in by the mall",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jeongmin",
+      "to": "jian",
+      "type": "rivalry",
+      "label": "not on her side, in the end",
+      "short": "turns",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minhye",
+      "to": "jinman",
+      "type": "work",
+      "label": "worked for the mall",
+      "short": "the mall's",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minhye",
+      "to": "jian",
+      "type": "rivalry",
+      "label": "comes for her",
+      "short": "comes for her",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "bale",
+      "to": "jinman",
+      "type": "rivalry",
+      "label": "the mercenary who wants the mall",
+      "short": "the enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "brother",
+      "to": "jinman",
+      "type": "work",
+      "label": "on his side",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "pasin",
+      "to": "jinman",
+      "type": "work",
+      "label": "on his side",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yonghan",
+      "to": "jinman",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "juncheol",
+      "to": "yonghan",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jinman",
+      "jian",
+      "seongjo",
+      "jeongmin",
+      "minhye",
+      "bale",
+      "brother",
+      "pasin",
+      "yonghan",
+      "juncheol"
+    ],
+    "blocks": {
+      "The mall's people": [
+        0,
+        0
+      ],
+      "The village": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "jinman",
+      "jian"
+    ]
+  }
+}

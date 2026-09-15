@@ -1,0 +1,962 @@
+{
+  "version": 1,
+  "mdlSlug": "57173-hospital-playlist-2",
+  "title": "Hospital Playlist Season 2",
+  "native": "슬기로운 의사생활 시즌2",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (213 roles, 5 main)",
+    "ko.wikipedia 슬기로운 의사생활 2 등장인물 (the four couples named)",
+    "season 1 chart (same ids)"
+  ],
+  "main": [
+    "ikjun",
+    "jeongwon",
+    "junwan",
+    "seokhyeong",
+    "songhwa"
+  ],
+  "people": [
+    {
+      "id": "ikjun",
+      "name": "Lee Ik Jun",
+      "actor": "Jo Jung Suk",
+      "image": "https://i.mydramalist.com/j8VlOm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Assistant professor, hepatobiliary surgery; single father"
+    },
+    {
+      "id": "songhwa",
+      "name": "Chae Song Hwa",
+      "actor": "Jeon Mi Do",
+      "image": "https://i.mydramalist.com/PxYPlL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Associate professor, neurosurgery"
+    },
+    {
+      "id": "jeongwon",
+      "name": "An Jeong Won",
+      "actor": "Yoo Yeon Seok",
+      "image": "https://i.mydramalist.com/p31Py_5m.jpg",
+      "group": "The band",
+      "inCast": true,
+      "note": "Assistant professor, pediatric surgery"
+    },
+    {
+      "id": "junwan",
+      "name": "Kim Jun Wan",
+      "actor": "Jung Kyung Ho",
+      "image": "https://i.mydramalist.com/yWBx7n_5m.jpg",
+      "group": "The band",
+      "inCast": true,
+      "note": "Associate professor, cardiothoracic surgery"
+    },
+    {
+      "id": "seokhyeong",
+      "name": "Yang Seok Hyeong",
+      "actor": "Kim Dae Myung",
+      "image": "https://i.mydramalist.com/xxxlz_5m.jpg",
+      "group": "The band",
+      "inCast": true,
+      "note": "Assistant professor, obstetrics"
+    },
+    {
+      "id": "iksun",
+      "name": "Lee Ik Sun",
+      "actor": "Kwak Sun Young",
+      "image": "https://i.mydramalist.com/yWyrd4_5m.jpg",
+      "group": "Ik Jun's family",
+      "inCast": true,
+      "note": "Army major"
+    },
+    {
+      "id": "uju",
+      "name": "Lee U Ju",
+      "actor": "Kim Jun",
+      "image": "https://i.mydramalist.com/XEBpn_5m.jpg",
+      "group": "Ik Jun's family",
+      "inCast": true,
+      "note": "Five"
+    },
+    {
+      "id": "hyejeong",
+      "name": "Yook Hye Jeong",
+      "actor": "Ki Eun Se",
+      "image": "https://i.mydramalist.com/QYlv4_5m.jpg",
+      "group": "Ik Jun's family",
+      "inCast": true
+    },
+    {
+      "id": "rosa",
+      "name": "Jung Ro Sa",
+      "actor": "Kim Hae Sook",
+      "image": "https://i.mydramalist.com/Z8gXdk_5m.jpg",
+      "group": "Yulje's owners",
+      "inCast": true,
+      "note": "Widow of the late chairman An Byeong U"
+    },
+    {
+      "id": "jongsu",
+      "name": "Ju Jong Su",
+      "actor": "Kim Gab Soo",
+      "image": "https://i.mydramalist.com/RRXLz_5m.jpg",
+      "group": "Yulje's owners",
+      "inCast": true,
+      "note": "Chairman of the Yulje foundation"
+    },
+    {
+      "id": "jujeon",
+      "name": "Ju Jeon",
+      "actor": "Jo Seung Yun",
+      "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
+      "group": "Yulje's owners",
+      "inCast": true,
+      "note": "Director of Yulje Hospital"
+    },
+    {
+      "id": "yeonghye",
+      "name": "Cho Yeong Hye",
+      "actor": "Moon Hee Kyung",
+      "image": "https://i.mydramalist.com/2k5xk_5m.jpg",
+      "group": "Seok Hyeong's family",
+      "inCast": true
+    },
+    {
+      "id": "gyeoul",
+      "name": "Jang Gyeo Ul",
+      "actor": "Shin Hyun Been",
+      "image": "https://i.mydramalist.com/1n4K3_5m.jpg",
+      "group": "General surgery",
+      "inCast": true,
+      "note": "Third-year surgery resident"
+    },
+    {
+      "id": "sehyeok",
+      "name": "Jong Se Hyeok",
+      "actor": "Jeon Kwang Jin",
+      "image": "https://i.mydramalist.com/0vlg4m.jpg",
+      "group": "General surgery",
+      "inCast": true,
+      "note": "Hepatobiliary fellow"
+    },
+    {
+      "id": "haeseong",
+      "name": "Kook Hae Seong",
+      "actor": "Lee Hye Eun",
+      "image": "https://i.mydramalist.com/eQD1Q_5m.jpg",
+      "group": "General surgery",
+      "inCast": true,
+      "note": "PA nurse"
+    },
+    {
+      "id": "deokju",
+      "name": "Ham Deok Ju",
+      "actor": "Kim Bi Bi",
+      "image": "https://i.mydramalist.com/kdx2j_5m.jpg",
+      "group": "General surgery",
+      "inCast": true,
+      "note": "Transplant coordinator"
+    },
+    {
+      "id": "hyeonhui",
+      "name": "Han Hyeon Hui",
+      "actor": "Lee Ji Won",
+      "image": "https://i.mydramalist.com/kqKrb_5m.jpg",
+      "group": "General surgery",
+      "inCast": true,
+      "note": "Pediatric surgery PA nurse"
+    },
+    {
+      "id": "jaehak",
+      "name": "Do Jae Hak",
+      "actor": "Jung Moon Sung",
+      "image": "https://i.mydramalist.com/5v8XXw_5m.jpg",
+      "group": "Cardiothoracic",
+      "inCast": true,
+      "note": "Chief resident"
+    },
+    {
+      "id": "myeongtae",
+      "name": "Cheon Myeong Tae",
+      "actor": "Choi Young Woo",
+      "image": "https://i.mydramalist.com/vgzW2_5m.jpg",
+      "group": "Cardiothoracic",
+      "inCast": true,
+      "note": "Professor"
+    },
+    {
+      "id": "ihyeon",
+      "name": "So I Hyeon",
+      "actor": "Yoon Hye Ree",
+      "image": "https://i.mydramalist.com/NdE5nW_5m.jpg",
+      "group": "Cardiothoracic",
+      "inCast": true,
+      "note": "PA nurse"
+    },
+    {
+      "id": "minha",
+      "name": "Chu Min Ha",
+      "actor": "Ahn Eun Jin",
+      "image": "https://i.mydramalist.com/LwPlPy_5m.jpg",
+      "group": "OB-GYN",
+      "inCast": true,
+      "note": "Second-year resident"
+    },
+    {
+      "id": "eunwon",
+      "name": "Myung Eun Won",
+      "actor": "Kim Hye In",
+      "image": "https://i.mydramalist.com/YY5mwA_5m.jpg",
+      "group": "OB-GYN",
+      "inCast": true,
+      "note": "Second-year resident"
+    },
+    {
+      "id": "seungju",
+      "name": "Han Seung Ju",
+      "actor": "Cha Yu Jin",
+      "image": "https://i.mydramalist.com/r5X77_5m.jpg",
+      "group": "OB-GYN",
+      "inCast": true,
+      "note": "Delivery-room nurse, fifteen years in"
+    },
+    {
+      "id": "seonjin",
+      "name": "Eun Seon Jin",
+      "actor": "Seol Yu Jin",
+      "image": "https://i.mydramalist.com/2wwwwW_5m.jpg",
+      "group": "OB-GYN",
+      "inCast": true,
+      "note": "PA nurse"
+    },
+    {
+      "id": "seokmin",
+      "name": "Yong Seok Min",
+      "actor": "Moon Tae Yu",
+      "image": "https://i.mydramalist.com/wezpJ_5m.jpg",
+      "group": "Neurosurgery",
+      "inCast": true,
+      "note": "Chief resident"
+    },
+    {
+      "id": "seonbin",
+      "name": "Heo Seon Bin",
+      "actor": "Ha Yoon Kyoung",
+      "image": "https://i.mydramalist.com/jz0zd_5m.jpg",
+      "group": "Neurosurgery",
+      "inCast": true,
+      "note": "Third-year resident"
+    },
+    {
+      "id": "gijun",
+      "name": "Min Gi Jun",
+      "actor": "Seo Jin Won",
+      "image": "https://i.mydramalist.com/2zX2P_5m.jpg",
+      "group": "Neurosurgery",
+      "inCast": true,
+      "note": "Professor"
+    },
+    {
+      "id": "jaesin",
+      "name": "Hwang Jae Sin",
+      "actor": "Yang Jo Ah",
+      "image": "https://i.mydramalist.com/ABXYJE_5m.jpg",
+      "group": "Neurosurgery",
+      "inCast": true,
+      "note": "PA nurse"
+    },
+    {
+      "id": "gwanghyeon",
+      "name": "Bong Gwang Hyeon",
+      "actor": "Choi Young Joon",
+      "image": "https://i.mydramalist.com/b3j0YE_5m.jpg",
+      "group": "Emergency",
+      "inCast": true,
+      "note": "Assistant professor, emergency medicine"
+    },
+    {
+      "id": "huisu",
+      "name": "Sunwoo Hui Su",
+      "actor": "Park Han Sol",
+      "image": "https://i.mydramalist.com/4NemK_5m.jpg",
+      "group": "Emergency",
+      "inCast": true,
+      "note": "ER nurse"
+    },
+    {
+      "id": "subin",
+      "name": "Song Su Bin",
+      "actor": "Kim Soo Jin",
+      "image": "https://i.mydramalist.com/28yld_5m.jpg",
+      "group": "Wards",
+      "inCast": true,
+      "note": "Head nurse"
+    },
+    {
+      "id": "yeongha",
+      "name": "Lee Yeong Ha",
+      "actor": "Lee No Ah",
+      "image": "https://i.mydramalist.com/r5gRm_5m.jpg",
+      "group": "Wards",
+      "inCast": true,
+      "note": "Surgical ward nurse"
+    },
+    {
+      "id": "jaehwan",
+      "name": "Kim Jae Hwan",
+      "actor": "Lee Dal",
+      "image": "https://i.mydramalist.com/rXvWg_5m.jpg",
+      "group": "Wards",
+      "inCast": true,
+      "note": "New surgical ward nurse"
+    },
+    {
+      "id": "changmin",
+      "name": "Im Chang Min",
+      "actor": "Kim Kang Min",
+      "image": "https://i.mydramalist.com/roKLj_5m.jpg",
+      "group": "Wards",
+      "inCast": true,
+      "note": "Intern"
+    },
+    {
+      "id": "yunbok",
+      "name": "Jang Yun Bok",
+      "actor": "Cho Yi Hyun",
+      "image": "https://i.mydramalist.com/Ndn76A_5m.jpg",
+      "group": "Wards",
+      "inCast": true,
+      "note": "Third-year medical student"
+    },
+    {
+      "id": "hongdo",
+      "name": "Jang Hong Do",
+      "actor": "Bae Hyun Sung",
+      "image": "https://i.mydramalist.com/qrmg8_5m.jpg",
+      "group": "Wards",
+      "inCast": true,
+      "note": "Third-year medical student; her twin"
+    },
+    {
+      "id": "seongyeong",
+      "name": "Choi Seong Yeong",
+      "actor": "Lee Chan Hyeong",
+      "image": "https://i.mydramalist.com/Dkjv5m.jpg",
+      "group": "Cardiothoracic",
+      "inCast": true,
+      "note": "New resident"
+    },
+    {
+      "id": "wang",
+      "name": "Auntie Wang",
+      "actor": "Lee Soo Mi",
+      "image": "https://i.mydramalist.com/BdmxrV_5m.jpg",
+      "group": "Ik Jun's family",
+      "inCast": true,
+      "note": "U Ju's sitter"
+    },
+    {
+      "id": "soye",
+      "name": "Kang So Ye",
+      "actor": "Lee Se Hee",
+      "image": "https://i.mydramalist.com/4ZDQr_5m.jpg",
+      "group": "OB-GYN",
+      "inCast": true,
+      "note": "Resident"
+    }
+  ],
+  "links": [
+    {
+      "from": "ikjun",
+      "to": "songhwa",
+      "type": "friend",
+      "label": "friends since medical school, 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ikjun",
+      "to": "songhwa",
+      "type": "romance",
+      "label": "together, at last",
+      "short": "in love",
+      "evidence": "송화의 연인 / 익준의 연인",
+      "source": "ko.wikipedia (슬기로운 의사생활 2)",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongwon",
+      "to": "ikjun",
+      "type": "friend",
+      "label": "friends since 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongwon",
+      "to": "songhwa",
+      "type": "friend",
+      "label": "friends since 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junwan",
+      "to": "ikjun",
+      "type": "friend",
+      "label": "friends since 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junwan",
+      "to": "songhwa",
+      "type": "friend",
+      "label": "friends since 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokhyeong",
+      "to": "ikjun",
+      "type": "friend",
+      "label": "friends since 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokhyeong",
+      "to": "songhwa",
+      "type": "friend",
+      "label": "friends since 1999; bandmates",
+      "short": "friends since 99",
+      "evidence": "The five doctors are long-time friends of 20 years who started their undergrad in 1999 in the same medical school and now are colleagues in the same hospital and have a band together",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "iksun",
+      "to": "ikjun",
+      "type": "family",
+      "label": "younger sister",
+      "short": "younger sister",
+      "evidence": "익준의 여동생. 우주의 고모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ikjun",
+      "to": "uju",
+      "type": "family",
+      "label": "his only son",
+      "short": "son",
+      "evidence": "5세 익준의 외동아들 / 우주의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyejeong",
+      "to": "ikjun",
+      "type": "romance",
+      "label": "ex-wife",
+      "short": "ex-wife",
+      "evidence": "[Ik Jun's ex-wife] / 익준의 전아내. 우주의 엄마",
+      "source": "MDL cast · ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyejeong",
+      "to": "uju",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "우주의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junwan",
+      "to": "iksun",
+      "type": "romance",
+      "label": "apart across two countries, then back together",
+      "short": "in love",
+      "evidence": "익순의 연인 / 준완의 연인",
+      "source": "ko.wikipedia (슬기로운 의사생활 2)",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "rosa",
+      "to": "jeongwon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "70세, 정원 모. 고 안병우 회장의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jongsu",
+      "to": "rosa",
+      "type": "friend",
+      "label": "the chairman, her old friend",
+      "short": "old friend",
+      "evidence": "율제재단 이사장 / 고 안병우 회장의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jujeon",
+      "to": "jongsu",
+      "type": "work",
+      "label": "runs the hospital the foundation owns",
+      "short": "hospital director",
+      "evidence": "율제병원장 / 율제재단 이사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghye",
+      "to": "seokhyeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "석형의 엄마",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeoul",
+      "to": "jeongwon",
+      "type": "romance",
+      "label": "a couple now",
+      "short": "in love",
+      "evidence": "겨울의 연인 / 정원의 연인",
+      "source": "ko.wikipedia (슬기로운 의사생활 2)",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeoul",
+      "to": "ikjun",
+      "type": "work",
+      "label": "surgery resident under him",
+      "short": "resident",
+      "evidence": "29세, 외과 레지던트 3년 차",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sehyeok",
+      "to": "ikjun",
+      "type": "work",
+      "label": "hepatobiliary fellow",
+      "short": "fellow",
+      "evidence": "간담췌외과 펠로우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haeseong",
+      "to": "ikjun",
+      "type": "work",
+      "label": "PA nurse",
+      "short": "PA nurse",
+      "evidence": "간담췌외과 PA간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "deokju",
+      "to": "ikjun",
+      "type": "work",
+      "label": "transplant coordinator",
+      "short": "coordinator",
+      "evidence": "이식코디네이터",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonhui",
+      "to": "jeongwon",
+      "type": "work",
+      "label": "pediatric surgery PA nurse",
+      "short": "PA nurse",
+      "evidence": "소아외과 PA 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehak",
+      "to": "junwan",
+      "type": "work",
+      "label": "chief resident under him",
+      "short": "chief resident",
+      "evidence": "흉부외과 치프 레지던트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongtae",
+      "to": "junwan",
+      "type": "rivalry",
+      "label": "the other cardiothoracic professor",
+      "short": "rival professor",
+      "evidence": "52세, 흉부외과 교수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ihyeon",
+      "to": "junwan",
+      "type": "work",
+      "label": "PA nurse",
+      "short": "PA nurse",
+      "evidence": "흉부외과 PA 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minha",
+      "to": "seokhyeong",
+      "type": "romance",
+      "label": "the confession that finally lands",
+      "short": "in love",
+      "evidence": "민하의 연인 / 석형의 연인",
+      "source": "ko.wikipedia (슬기로운 의사생활 2)",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minha",
+      "to": "seokhyeong",
+      "type": "work",
+      "label": "second-year resident",
+      "short": "resident",
+      "evidence": "34세, 산부인과 레지던트 2년 차",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunwon",
+      "to": "seokhyeong",
+      "type": "work",
+      "label": "second-year resident",
+      "short": "resident",
+      "evidence": "28세, 산부인과 레지던트 2년 차",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungju",
+      "to": "seokhyeong",
+      "type": "work",
+      "label": "delivery-room nurse",
+      "short": "nurse",
+      "evidence": "산부인과 분만실 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonjin",
+      "to": "seokhyeong",
+      "type": "work",
+      "label": "PA nurse",
+      "short": "PA nurse",
+      "evidence": "산부인과 PA간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokmin",
+      "to": "songhwa",
+      "type": "work",
+      "label": "chief resident under her",
+      "short": "chief resident",
+      "evidence": "신경외과 치프 레지던트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonbin",
+      "to": "songhwa",
+      "type": "work",
+      "label": "third-year resident",
+      "short": "resident",
+      "evidence": "신경외과 레지던트 3년 차",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gijun",
+      "to": "songhwa",
+      "type": "work",
+      "label": "fellow neurosurgery professor",
+      "short": "colleague",
+      "evidence": "율제병원 신경외과 교수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaesin",
+      "to": "songhwa",
+      "type": "work",
+      "label": "PA nurse",
+      "short": "PA nurse",
+      "evidence": "신경외과 PA 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwanghyeon",
+      "to": "ikjun",
+      "type": "friend",
+      "label": "emergency medicine, same year",
+      "short": "colleague",
+      "evidence": "40세, 응급의학과 조교수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "huisu",
+      "to": "gwanghyeon",
+      "type": "work",
+      "label": "ER nurse",
+      "short": "nurse",
+      "evidence": "응급실 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "subin",
+      "to": "yeongha",
+      "type": "work",
+      "label": "head nurse",
+      "short": "head nurse",
+      "evidence": "율제병원 수간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehwan",
+      "to": "yeongha",
+      "type": "work",
+      "label": "the new nurse on his ward",
+      "short": "new nurse",
+      "evidence": "외과 병동 신입 간호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hongdo",
+      "to": "yunbok",
+      "type": "family",
+      "label": "twins",
+      "short": "twins",
+      "evidence": "본과 3학년 실습생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seongyeong",
+      "to": "junwan",
+      "type": "work",
+      "label": "new resident",
+      "short": "resident",
+      "evidence": "흉부외과",
+      "source": "ko.wikipedia (슬기로운 의사생활 2)",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wang",
+      "to": "uju",
+      "type": "work",
+      "label": "his sitter",
+      "short": "sitter",
+      "evidence": "우주를 돌보는 베이비시터",
+      "source": "ko.wikipedia (season 1 article)",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "soye",
+      "to": "seokhyeong",
+      "type": "work",
+      "label": "resident",
+      "short": "resident",
+      "evidence": "산부인과",
+      "source": "ko.wikipedia (슬기로운 의사생활 2)",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "ikjun",
+      "songhwa",
+      "jeongwon",
+      "junwan",
+      "seokhyeong",
+      "iksun",
+      "uju",
+      "hyejeong",
+      "rosa",
+      "jongsu",
+      "jujeon",
+      "yeonghye",
+      "gyeoul",
+      "sehyeok",
+      "haeseong",
+      "deokju",
+      "hyeonhui",
+      "jaehak",
+      "myeongtae",
+      "ihyeon",
+      "minha",
+      "eunwon",
+      "seungju",
+      "seonjin",
+      "seokmin",
+      "seonbin",
+      "gijun",
+      "jaesin",
+      "seongyeong",
+      "wang",
+      "soye"
+    ],
+    "blocks": {
+      "Ik Jun's family": [
+        0,
+        0
+      ],
+      "General surgery": [
+        0,
+        1
+      ],
+      "Seok Hyeong's family": [
+        0,
+        2
+      ],
+      "Yulje's owners": [
+        2,
+        0
+      ],
+      "Neurosurgery": [
+        2,
+        1
+      ],
+      "Cardiothoracic": [
+        2,
+        2
+      ],
+      "The band": [
+        1,
+        0
+      ],
+      "OB-GYN": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "ikjun",
+      "songhwa"
+    ]
+  }
+}

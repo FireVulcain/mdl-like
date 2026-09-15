@@ -1,0 +1,626 @@
+{
+  "version": 1,
+  "mdlSlug": "10873-kill-me-heal-me",
+  "title": "Kill Me, Heal Me",
+  "native": "킬미힐미",
+  "year": 2015,
+  "country": "KR",
+  "sources": [
+    "MDL cast (29 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "dohyeon",
+    "rijin"
+  ],
+  "people": [
+    {
+      "id": "dohyeon",
+      "name": "Cha Do Hyeon / Sin Se Gi",
+      "actor": "Ji Sung",
+      "image": "https://i.mydramalist.com/E55lEp_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Do Hyun",
+          "image": "https://i.mydramalist.com/AEmgqm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Third-generation chaebol heir with seven personalities (Sin Se Gi, Perry Park, Ahn Yo Seob, Ahn Yo Na, Nana, Mr. X); vice-president of ID Entertainment"
+    },
+    {
+      "id": "rijin",
+      "name": "O Ri Jin",
+      "actor": "Hwang Jung Eum",
+      "image": "https://i.mydramalist.com/k11Kd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Min Gyul",
+          "image": "https://i.mydramalist.com/nE05Lm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "First-year psychiatry resident"
+    },
+    {
+      "id": "rion",
+      "name": "O Ri On",
+      "actor": "Park Seo Jun",
+      "image": "https://i.mydramalist.com/b3m53E_5m.jpg",
+      "group": "Ri Jin's family",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ye Jun",
+          "image": "https://i.mydramalist.com/03gq6_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Genius mystery novelist"
+    },
+    {
+      "id": "sunyeong",
+      "name": "Ji Sun Yeong",
+      "actor": "Kim Hee Jung",
+      "image": "https://i.mydramalist.com/jgOKb_5m.jpg",
+      "group": "Ri Jin's family",
+      "inCast": true
+    },
+    {
+      "id": "daeo",
+      "name": "O Dae O",
+      "actor": "Park Jun Gyu",
+      "image": "https://i.mydramalist.com/dx0K5_5m.jpg",
+      "group": "Ri Jin's family",
+      "inCast": true
+    },
+    {
+      "id": "taeim",
+      "name": "Seo Tae Im",
+      "actor": "Kim Young Ae",
+      "image": "https://i.mydramalist.com/1LRNym.jpg",
+      "group": "Do Hyeon's family",
+      "inCast": true,
+      "note": "Largest shareholder of Seungjin Group"
+    },
+    {
+      "id": "hwaran",
+      "name": "Sin Hwa Ran",
+      "actor": "Shim Hye Jin",
+      "image": "https://i.mydramalist.com/73RKyD_5m.jpg",
+      "group": "Do Hyeon's family",
+      "inCast": true
+    },
+    {
+      "id": "geonho",
+      "name": "Cha Geon Ho",
+      "actor": "Kim Yong Gun",
+      "image": "https://i.mydramalist.com/QJplL5_5m.jpg",
+      "group": "Do Hyeon's family",
+      "inCast": true
+    },
+    {
+      "id": "junpyo",
+      "name": "Cha Jun Pyo",
+      "actor": "Ahn Nae Sang",
+      "image": "https://i.mydramalist.com/1g5nQm.jpg",
+      "group": "Do Hyeon's family",
+      "inCast": true
+    },
+    {
+      "id": "seoyun",
+      "name": "Min Seo Yun",
+      "actor": "Myung Se Bin",
+      "image": "https://i.mydramalist.com/yWnYK3_5m.jpg",
+      "group": "Do Hyeon's family",
+      "inCast": true,
+      "note": "Do Hyeon's mother on paper"
+    },
+    {
+      "id": "gijun",
+      "name": "Cha Gi Jun",
+      "actor": "Oh Min Suk",
+      "image": "https://i.mydramalist.com/WB6zWm.jpg",
+      "group": "Gi Jun's family",
+      "inCast": true,
+      "note": "President of ID Entertainment"
+    },
+    {
+      "id": "chaeyun",
+      "name": "Han Chae Yun",
+      "actor": "Kim Yoo Ri",
+      "image": "https://i.mydramalist.com/XNLkd_5m.jpg",
+      "group": "Gi Jun's family",
+      "inCast": true,
+      "note": "Art director"
+    },
+    {
+      "id": "jagyeong",
+      "name": "Yun Ja Gyeong",
+      "actor": "Kim Na Woon",
+      "image": "https://i.mydramalist.com/0wKOZK_5m.jpg",
+      "group": "Gi Jun's family",
+      "inCast": true
+    },
+    {
+      "id": "yeongpyo",
+      "name": "Cha Yeong Pyo",
+      "actor": "Kim  Il Woo",
+      "image": "https://i.mydramalist.com/1w3Vz7_5m.jpg",
+      "group": "Gi Jun's family",
+      "inCast": true
+    },
+    {
+      "id": "jinsuk",
+      "name": "Baek Jin Suk",
+      "actor": "Kim Hyun Joo",
+      "image": "https://i.mydramalist.com/1vQPQm.jpg",
+      "group": "Gi Jun's family",
+      "inCast": true
+    },
+    {
+      "id": "hopil",
+      "name": "Dr. Seok Ho Pil",
+      "actor": "Ko Chang Seok",
+      "image": "https://i.mydramalist.com/RDd46_5m.jpg",
+      "group": "Do Hyeon's helpers",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "anguk",
+      "name": "An Guk",
+      "actor": "Choi Won Young",
+      "image": "https://i.mydramalist.com/QBrn6_5m.jpg",
+      "group": "Do Hyeon's helpers",
+      "inCast": true,
+      "note": "Secretary"
+    },
+    {
+      "id": "alex",
+      "name": "Alex",
+      "actor": "Baek Chul Min",
+      "image": "https://i.mydramalist.com/04yYKm.jpg",
+      "group": "Do Hyeon's helpers",
+      "inCast": true
+    },
+    {
+      "id": "choi",
+      "name": "Section Chief Choi",
+      "actor": "Kim Hyung Bum",
+      "image": "https://i.mydramalist.com/rzPo2_5m.jpg",
+      "group": "Gi Jun's family",
+      "inCast": true
+    },
+    {
+      "id": "sunjo",
+      "name": "Sin Sun Jo",
+      "actor": "Kang Bong Sung",
+      "image": "https://i.mydramalist.com/ZB6bY_5m.jpg",
+      "group": "Ri Jin's family",
+      "inCast": true
+    },
+    {
+      "id": "yeongseon",
+      "name": "Lee Yeong Seon",
+      "actor": "Kang Soo Jin",
+      "image": "https://i.mydramalist.com/RjVzPm.jpg",
+      "group": "Ri Jin's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "dohyeon",
+      "to": "rijin",
+      "type": "work",
+      "label": "asks the resident to help him regain control of his life",
+      "short": "his doctor",
+      "evidence": "Wanting to regain control over his life, he asks O Ri Jin, a first-year psychiatric resident, to help him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rijin",
+      "to": "dohyeon",
+      "type": "romance",
+      "label": "falls in love with one of his personalities",
+      "short": "loves him",
+      "evidence": "she eventually falls in love with one of his personalities",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rijin",
+      "to": "dohyeon",
+      "type": "bond",
+      "label": "the girl of the basement — the childhood he lost; the child the Cha family gave away",
+      "short": "the lost child",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "rion",
+      "to": "rijin",
+      "type": "family",
+      "label": "twin brother",
+      "short": "twin",
+      "evidence": "Ri Jin's twin brother, O Ri On, a famous mystery novelist",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "rion",
+      "to": "dohyeon",
+      "type": "work",
+      "label": "investigates him and his family",
+      "short": "investigates",
+      "evidence": "O Ri On, a famous mystery novelist, investigates Do Hyeon and his family",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sunyeong",
+      "to": "rijin",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ri Jin's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeo",
+      "to": "rijin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ri Jin's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daeo",
+      "to": "sunyeong",
+      "type": "family",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "오대오 역 - 지순영의 남편",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taeim",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Do Hyeon's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geonho",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "[Do Hyeon's grandfather]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwaran",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Do Hyeon's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junpyo",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Do Hyeon's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seoyun",
+      "to": "junpyo",
+      "type": "family",
+      "label": "legal wife",
+      "short": "wife",
+      "evidence": "[Jun Pyo's wife] / 차준표의 법적인 아내",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seoyun",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "his mother on the family register",
+      "short": "mother on paper",
+      "evidence": "민서연 역 - 도현의 호적상 어머니",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seoyun",
+      "to": "rijin",
+      "type": "family",
+      "label": "birth mother",
+      "short": "birth mother",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "chaeyun",
+      "to": "dohyeon",
+      "type": "romance",
+      "label": "his first love",
+      "short": "first love",
+      "evidence": "한채연 역 - 도현의 첫사랑",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chaeyun",
+      "to": "gijun",
+      "type": "romance",
+      "label": "fiancee",
+      "short": "fiancee",
+      "evidence": "기준의 약혼녀",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gijun",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "second cousin; president of the company Do Hyeon is vice-president of",
+      "short": "cousin",
+      "evidence": "차기준 역 - 도현의 육촌 형, ID엔터테인먼트 사장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gijun",
+      "to": "dohyeon",
+      "type": "rivalry",
+      "label": "rivals for Seungjin",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jagyeong",
+      "to": "gijun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Gi Jun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongpyo",
+      "to": "gijun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Gi Jun's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongpyo",
+      "to": "dohyeon",
+      "type": "family",
+      "label": "relative on his father's side",
+      "short": "relative",
+      "evidence": "차영표 역 - 도현의 오촌당숙",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinsuk",
+      "to": "chaeyun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Chae Yun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "choi",
+      "to": "gijun",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "최 실장 역 - 차기준의 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hopil",
+      "to": "dohyeon",
+      "type": "work",
+      "label": "his doctor from his years abroad",
+      "short": "his doctor",
+      "evidence": "석호필 역 - 도현의 유학시절 주치의",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hopil",
+      "to": "rijin",
+      "type": "work",
+      "label": "her supervising professor",
+      "short": "her professor",
+      "evidence": "리진의 지도교수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anguk",
+      "to": "dohyeon",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Secretary] / 안국 역 - 도현의 비서",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "alex",
+      "to": "dohyeon",
+      "type": "friend",
+      "label": "friend from his years abroad",
+      "short": "friend",
+      "evidence": "알렉스 강 역 - 도현의 유학시절 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sunjo",
+      "to": "rijin",
+      "type": "work",
+      "label": "fellow doctor",
+      "short": "colleague",
+      "evidence": "신선조 역 - 리진의 동료의사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongseon",
+      "to": "rijin",
+      "type": "work",
+      "label": "fellow doctor",
+      "short": "colleague",
+      "evidence": "이영선 역 - 리진의 동료의사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "dohyeon",
+      "rijin",
+      "rion",
+      "sunyeong",
+      "daeo",
+      "taeim",
+      "hwaran",
+      "geonho",
+      "junpyo",
+      "seoyun",
+      "gijun",
+      "chaeyun",
+      "jagyeong",
+      "yeongpyo",
+      "jinsuk",
+      "hopil",
+      "anguk",
+      "alex",
+      "choi",
+      "sunjo",
+      "yeongseon"
+    ],
+    "blocks": {
+      "Ri Jin's family": [
+        0,
+        0
+      ],
+      "Do Hyeon's family": [
+        2,
+        0
+      ],
+      "Gi Jun's family": [
+        2,
+        2
+      ],
+      "Do Hyeon's helpers": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "dohyeon",
+      "rijin"
+    ]
+  }
+}

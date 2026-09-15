@@ -1,0 +1,378 @@
+{
+  "version": 1,
+  "mdlSlug": "785270-pro-bono",
+  "title": "Pro Bono",
+  "native": "프로보노",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (10 roles + guests, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "dawit",
+    "gippeum"
+  ],
+  "people": [
+    {
+      "id": "dawit",
+      "name": "Kang Da Wit (David)",
+      "actor": "Jung Kyung Ho",
+      "image": "https://i.mydramalist.com/yWBx7n_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "43, the 'people's judge' turned public-interest lawyer; a legal influencer"
+    },
+    {
+      "id": "gippeum",
+      "name": "Park Gi Ppeum",
+      "actor": "So Ju Yeon",
+      "image": "https://i.mydramalist.com/r6WLm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "31, lawyer on the Pro Bono team"
+    },
+    {
+      "id": "yeongsil",
+      "name": "Jang Yeong Sil",
+      "actor": "Yoon Na Moo",
+      "image": "https://i.mydramalist.com/RX5n6_5m.jpg",
+      "group": "Pro Bono team",
+      "inCast": true,
+      "note": "37, eight years a public-interest lawyer; mushroom nerd"
+    },
+    {
+      "id": "nanhui",
+      "name": "Yoo Nan Hui",
+      "actor": "Seo Hye Won",
+      "image": "https://i.mydramalist.com/4LN1K_5m.jpg",
+      "group": "Pro Bono team",
+      "inCast": true,
+      "note": "29, the team's youngest; full combat mode"
+    },
+    {
+      "id": "junu",
+      "name": "Hwang Jun U",
+      "actor": "Kang Hyung Suk",
+      "image": "https://i.mydramalist.com/EZPxz_5m.jpg",
+      "group": "Pro Bono team",
+      "inCast": true,
+      "note": "31, in it for a living; not quite of the same mind as the others"
+    },
+    {
+      "id": "jeongin",
+      "name": "O Jeong In",
+      "actor": "Lee Yoo Young",
+      "image": "https://i.mydramalist.com/YYNq4e_5m.jpg",
+      "group": "O & Partners",
+      "inCast": true,
+      "note": "41, managing partner of the number-one firm"
+    },
+    {
+      "id": "gyujang",
+      "name": "O Gyu Jang",
+      "actor": "Kim Gab Soo",
+      "image": "https://i.mydramalist.com/RRXLz_5m.jpg",
+      "group": "O & Partners",
+      "inCast": true,
+      "note": "68, founder; the monster who moves the legal world"
+    },
+    {
+      "id": "yonghun",
+      "name": "Bae Yong Hun",
+      "actor": "Go Han Min",
+      "image": "https://i.mydramalist.com/vnEEXm.jpg",
+      "group": "O & Partners",
+      "inCast": true,
+      "note": "Management"
+    },
+    {
+      "id": "gukjin",
+      "name": "Cha Guk Jin",
+      "actor": "Kim Jae Man",
+      "image": "https://i.mydramalist.com/k4jDd_5m.jpg",
+      "group": "O & Partners",
+      "inCast": true,
+      "note": "Management"
+    },
+    {
+      "id": "myeonghun",
+      "name": "Woo Myeong Hun",
+      "actor": "Choi Dae Hoon",
+      "image": "https://i.mydramalist.com/X85nqm.jpg",
+      "group": "The courts",
+      "inCast": true,
+      "note": "Former prosecutor, now a lawyer"
+    },
+    {
+      "id": "jeongsuk",
+      "name": "Sin Jeong Suk",
+      "actor": "Lee Moon Sik",
+      "image": "https://i.mydramalist.com/jKm7d_5m.jpg",
+      "group": "The courts",
+      "inCast": true,
+      "note": "Chief judge of Seoul Central District Court"
+    },
+    {
+      "id": "hyeonbae",
+      "name": "Jang Hyeon Bae",
+      "actor": "Song Young Chang",
+      "image": "https://i.mydramalist.com/1LW0Rm.jpg",
+      "group": "The courts",
+      "inCast": true,
+      "note": "Chairman of JS Group"
+    },
+    {
+      "id": "seongrye",
+      "name": "Kim Seong Rye",
+      "actor": "Kim Jung Young",
+      "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
+      "group": "Ungcheon",
+      "inCast": true,
+      "note": "David's mother (deceased)"
+    },
+    {
+      "id": "juseop",
+      "name": "Kim Ju Seop",
+      "actor": "Yeon Je Wook",
+      "image": "https://i.mydramalist.com/ZBpqL_5m.jpg",
+      "group": "Ungcheon",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "dawit",
+      "to": "gippeum",
+      "type": "work",
+      "label": "the fallen judge and the young lawyer of the Pro Bono team",
+      "short": "colleague",
+      "evidence": "강다윗 역 - 공변이 된 국민판사 / 박기쁨 역 - 공익소송 전담팀 '프로보노' 소속 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dawit",
+      "to": "gippeum",
+      "type": "romance",
+      "label": "grows on each other in the sunless hallway",
+      "short": "drawn to her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeongsil",
+      "to": "gippeum",
+      "type": "work",
+      "label": "Pro Bono team",
+      "short": "teammate",
+      "evidence": "장영실 역 - 8년 차 공익변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nanhui",
+      "to": "gippeum",
+      "type": "work",
+      "label": "Pro Bono team, its youngest",
+      "short": "teammate",
+      "evidence": "유난희 역 - 전투력 만렙 공익변호사, 프로보노팀 막내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junu",
+      "to": "gippeum",
+      "type": "work",
+      "label": "Pro Bono team — with his own values",
+      "short": "teammate",
+      "evidence": "황준우 역 - 생계형 공익변호사, 다른 프로보노 팀원들과는 다른 속내와 가치관의 소유자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junu",
+      "to": "dawit",
+      "type": "rivalry",
+      "label": "the teammate who does not share the team's cause",
+      "short": "the odd one out",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyujang",
+      "to": "jeongin",
+      "type": "family",
+      "label": "father; founder of O & Partners",
+      "short": "father",
+      "evidence": "[Jeong In's father] / 오앤파트너스 설립자",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongin",
+      "to": "dawit",
+      "type": "rivalry",
+      "label": "the top firm across the aisle",
+      "short": "opposing counsel",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "gyujang",
+      "to": "dawit",
+      "type": "rivalry",
+      "label": "the man behind the incident that ended his judgeship",
+      "short": "the monster",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yonghun",
+      "to": "jeongin",
+      "type": "work",
+      "label": "O & Partners management",
+      "short": "management",
+      "evidence": "배용훈 역 - 오앤파트너스 경영진",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gukjin",
+      "to": "jeongin",
+      "type": "work",
+      "label": "O & Partners management",
+      "short": "management",
+      "evidence": "차국진 역 - 오앤파트너스 경영진",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeonghun",
+      "to": "dawit",
+      "type": "friend",
+      "label": "training-institute classmate",
+      "short": "old classmate",
+      "evidence": "[David's classmate] / 다윗의 연수원 동기",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongsuk",
+      "to": "dawit",
+      "type": "work",
+      "label": "chief judge of the court David left",
+      "short": "his old chief",
+      "evidence": "[Chief Justice of Seoul central district court]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonbae",
+      "to": "dawit",
+      "type": "rivalry",
+      "label": "the JS Group chairman of the first case",
+      "short": "first case",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongrye",
+      "to": "dawit",
+      "type": "family",
+      "label": "mother, deceased",
+      "short": "mother",
+      "evidence": "[David's mother] / 김성례 역 - 다윗의 어머니 (사망)",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juseop",
+      "to": "dawit",
+      "type": "friend",
+      "label": "childhood best friend, met again after thirty years",
+      "short": "childhood friend",
+      "evidence": "김주섭 역 - 다윗의 옛 절친, 30년 만에 다시 만난 다윗의 초등학교 때 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "dawit",
+      "gippeum",
+      "yeongsil",
+      "nanhui",
+      "junu",
+      "jeongin",
+      "gyujang",
+      "yonghun",
+      "gukjin",
+      "myeonghun",
+      "jeongsuk",
+      "hyeonbae",
+      "seongrye",
+      "juseop"
+    ],
+    "blocks": {
+      "Pro Bono team": [
+        0,
+        0
+      ],
+      "O & Partners": [
+        2,
+        0
+      ],
+      "The courts": [
+        2,
+        2
+      ],
+      "Ungcheon": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "dawit",
+      "gippeum"
+    ]
+  }
+}
