@@ -1,0 +1,540 @@
+{
+  "version": 1,
+  "mdlSlug": "795204-favorite-employee",
+  "title": "My Bias, My Boss",
+  "native": "최애의 사원",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "hagi",
+    "dareum"
+  ],
+  "people": [
+    {
+      "id": "hagi",
+      "name": "Kang Ha Gi",
+      "actor": "Kang Hoon",
+      "image": "https://i.mydramalist.com/xrXYX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "33, APPELLO's strict, workaholic CEO"
+    },
+    {
+      "id": "dareum",
+      "name": "Nam Da Reum",
+      "actor": "Kim Hye Jun",
+      "image": "https://i.mydramalist.com/YYJDeP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "27, new hire in marketing; a fan of Lee Chan for years"
+    },
+    {
+      "id": "chan",
+      "name": "Lee Chan",
+      "actor": "Cha Woo Min",
+      "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "33, D.N.X member turned actor"
+    },
+    {
+      "id": "minu",
+      "name": "Kim Min U",
+      "actor": "Hwang Sung Bin",
+      "image": "https://i.mydramalist.com/2L3LE_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "33"
+    },
+    {
+      "id": "jeongyeon",
+      "name": "Han Jeong Yeon",
+      "actor": "Yeon Woo",
+      "image": "https://i.mydramalist.com/vgjp8_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true
+    },
+    {
+      "id": "choi",
+      "name": "Yun Cho I",
+      "actor": "Shin Yu Na",
+      "image": "https://i.mydramalist.com/73AYJN_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "26, actress"
+    },
+    {
+      "id": "roy",
+      "name": "Roy",
+      "actor": "Chun Woo Jin",
+      "image": "https://i.mydramalist.com/3oNqLW_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "D.N.X's youngest"
+    },
+    {
+      "id": "hyeok",
+      "name": "Hyeok",
+      "actor": "Yoon Hyun Suk",
+      "image": "https://i.mydramalist.com/NdqNlW_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "D.N.X's eldest; the only other active member"
+    },
+    {
+      "id": "jinu",
+      "name": "Jin U",
+      "actor": "Jung Hyun Min",
+      "image": "https://i.mydramalist.com/zB3w3y_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "D.N.X's rapper"
+    },
+    {
+      "id": "taeo",
+      "name": "Tae O",
+      "actor": "Baek Seung",
+      "image": "https://i.mydramalist.com/pdnVRQ_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "D.N.X's main vocal"
+    },
+    {
+      "id": "wonbin",
+      "name": "Na Won Bin",
+      "actor": "Park Jong Wook",
+      "image": "https://i.mydramalist.com/dDEW5_5m.jpg",
+      "group": "Lee Chan's world",
+      "inCast": true,
+      "note": "41, manager"
+    },
+    {
+      "id": "mimi",
+      "name": "Park Mi Mi",
+      "actor": "Gong Ji Ho",
+      "image": "https://i.mydramalist.com/VXRQWy_5m.jpg",
+      "group": "Da Reum's people",
+      "inCast": true,
+      "note": "27, pilates instructor"
+    },
+    {
+      "id": "seula",
+      "name": "Lee Seul A",
+      "actor": "Kim Ah Young",
+      "image": "https://i.mydramalist.com/QJnB5W_5m.jpg",
+      "group": "Da Reum's people",
+      "inCast": true,
+      "note": "27, runs an online store"
+    },
+    {
+      "id": "mija",
+      "name": "Kim Mi Ja",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "group": "Da Reum's people",
+      "inCast": true,
+      "note": "Hung a banner for her daughter's job"
+    },
+    {
+      "id": "yeongu",
+      "name": "Park Yeong U",
+      "actor": "Nam Hyun Woo",
+      "image": "https://i.mydramalist.com/Z8ERN7_5m.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "27, marketing new hire"
+    },
+    {
+      "id": "mina",
+      "name": "Lee Min A",
+      "actor": "Lee Dam Hee",
+      "image": "https://i.mydramalist.com/Lw4bWD_5m.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "25, MD team new hire"
+    },
+    {
+      "id": "seonguk",
+      "name": "Choi Seong Uk",
+      "actor": "Heo Jun Seok",
+      "image": "https://i.mydramalist.com/XdR1dm.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "42, management support"
+    },
+    {
+      "id": "miyeong",
+      "name": "Kim Mi Yeong",
+      "actor": "Kim So Ra",
+      "image": "https://i.mydramalist.com/kdREv_5m.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "33, marketing team leader; founding member"
+    },
+    {
+      "id": "hyesu",
+      "name": "Seo Hye Su",
+      "actor": "Kim Chae Eun",
+      "image": "https://i.mydramalist.com/XXEBn_5m.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "32, marketing"
+    },
+    {
+      "id": "jinsang",
+      "name": "Lee Jin Sang",
+      "actor": "Song Jin Woo",
+      "image": "https://i.mydramalist.com/xOWVz_5m.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "42, sales team leader"
+    },
+    {
+      "id": "hancheol",
+      "name": "Kim Han Cheol",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "APPELLO",
+      "inCast": true,
+      "note": "SE Corporation director, eyeing APPELLO"
+    }
+  ],
+  "links": [
+    {
+      "from": "dareum",
+      "to": "hagi",
+      "type": "work",
+      "label": "the new hire who keeps clashing with the CEO",
+      "short": "clashes",
+      "evidence": "she keeps clashing with the strict workaholic CEO Kang Ha Gi",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hagi",
+      "to": "dareum",
+      "type": "romance",
+      "label": "from clashing to love",
+      "short": "falls for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dareum",
+      "to": "chan",
+      "type": "bond",
+      "label": "her idol for years — the reason she joined",
+      "short": "his fan",
+      "evidence": "an idol turned actor she has loved for years",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hagi",
+      "to": "chan",
+      "type": "friend",
+      "label": "the strange bond she misunderstands — a secret she thinks she must protect",
+      "short": "the secret",
+      "evidence": "begins to misunderstand the strange bond between Ha Gi and Chan, and gets pulled into a secret she believes she must protect",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minu",
+      "to": "hagi",
+      "type": "friend",
+      "label": "high-school classmate of both",
+      "short": "old classmate",
+      "evidence": "[Ha Gi and Chan's high school classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "minu",
+      "to": "chan",
+      "type": "friend",
+      "label": "high-school classmate",
+      "short": "old classmate",
+      "evidence": "[Ha Gi and Chan's high school classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongyeon",
+      "to": "hagi",
+      "type": "romance",
+      "label": "first love of both",
+      "short": "first love",
+      "evidence": "[Ha Gi and Lee Chan's first love]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongyeon",
+      "to": "chan",
+      "type": "romance",
+      "label": "first love",
+      "short": "first love",
+      "evidence": "[Ha Gi and Lee Chan's first love]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "choi",
+      "to": "chan",
+      "type": "work",
+      "label": "actress opposite him",
+      "short": "co-star",
+      "evidence": "[Actress]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyeok",
+      "to": "chan",
+      "type": "work",
+      "label": "D.N.X, the only other active member",
+      "short": "bandmate",
+      "evidence": "혁 역 - D.N.X의 맏형. 이찬 이외에 유일하게 현재 활동하고 있는 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "roy",
+      "to": "chan",
+      "type": "work",
+      "label": "D.N.X's youngest",
+      "short": "bandmate",
+      "evidence": "[D.N.X member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinu",
+      "to": "chan",
+      "type": "work",
+      "label": "D.N.X's rapper",
+      "short": "bandmate",
+      "evidence": "[D.N.X member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taeo",
+      "to": "chan",
+      "type": "work",
+      "label": "D.N.X's main vocal",
+      "short": "bandmate",
+      "evidence": "[D.N.X member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wonbin",
+      "to": "chan",
+      "type": "work",
+      "label": "manager",
+      "short": "manager",
+      "evidence": "[Lee Chan's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "mimi",
+      "to": "dareum",
+      "type": "friend",
+      "label": "best friend since high school",
+      "short": "best friend",
+      "evidence": "[Da Reum's best friend] / 다름과 고등학교를 같이 나온 베프",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seula",
+      "to": "dareum",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "[Da Reum's best friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mija",
+      "to": "dareum",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Da Reum's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongu",
+      "to": "dareum",
+      "type": "work",
+      "label": "same intake, marketing",
+      "short": "colleague",
+      "evidence": "[Da Reum's colleague] / 다름의 입사동기",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mina",
+      "to": "dareum",
+      "type": "work",
+      "label": "same intake, MD team",
+      "short": "colleague",
+      "evidence": "이민아 역 - MD팀 신입사원, 다름의 입사동기",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "miyeong",
+      "to": "dareum",
+      "type": "work",
+      "label": "her team leader and mentor; a founding member",
+      "short": "team leader",
+      "evidence": "김미영 역 - 마케팅팀 팀장, 다름의 사수이자 아펠로의 창립멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesu",
+      "to": "dareum",
+      "type": "work",
+      "label": "marketing",
+      "short": "colleague",
+      "evidence": "[Appello marketing team assistant manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonguk",
+      "to": "hagi",
+      "type": "work",
+      "label": "management support lead",
+      "short": "team lead",
+      "evidence": "[Appello management support team's head]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinsang",
+      "to": "hagi",
+      "type": "work",
+      "label": "sales lead",
+      "short": "team lead",
+      "evidence": "[Appello sales team leader]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hancheol",
+      "to": "hagi",
+      "type": "rivalry",
+      "label": "SE's director, eyeing APPELLO",
+      "short": "circling",
+      "evidence": "김한철 역 - SE물산의 이사이자, 아펠로를 호시탐탐 노리는 외부 빌런",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hagi",
+      "dareum",
+      "chan",
+      "minu",
+      "jeongyeon",
+      "choi",
+      "roy",
+      "hyeok",
+      "jinu",
+      "taeo",
+      "wonbin",
+      "mimi",
+      "seula",
+      "mija",
+      "yeongu",
+      "mina",
+      "seonguk",
+      "miyeong",
+      "hyesu",
+      "jinsang",
+      "hancheol"
+    ],
+    "blocks": {
+      "APPELLO": [
+        0,
+        0
+      ],
+      "Lee Chan's world": [
+        2,
+        0
+      ],
+      "Da Reum's people": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "hagi",
+      "dareum"
+    ]
+  }
+}

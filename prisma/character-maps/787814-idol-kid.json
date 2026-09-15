@@ -1,0 +1,416 @@
+{
+  "version": 1,
+  "mdlSlug": "787814-idol-kid",
+  "title": "Idol I",
+  "native": "아이돌아이",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (18 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "sena",
+    "raik"
+  ],
+  "people": [
+    {
+      "id": "sena",
+      "name": "Maeng Se Na",
+      "actor": "Choi Soo Young",
+      "image": "https://i.mydramalist.com/eW85d_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The 'lawyer for villains' — secretly a ten-year Gold Boys fan"
+    },
+    {
+      "id": "raik",
+      "name": "Do Ra Ik / Laik",
+      "actor": "Kim Jae Yeong",
+      "image": "https://i.mydramalist.com/g0r4v1_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Gold Boys' visual centre and main vocal, accused of murder"
+    },
+    {
+      "id": "byeonggyun",
+      "name": "Kwak Byeong Gyun",
+      "actor": "Jung Jae Kwang",
+      "image": "https://i.mydramalist.com/mO1opk_5m.jpg",
+      "group": "Prosecution & police",
+      "inCast": true,
+      "note": "Prosecutor, criminal division 3"
+    },
+    {
+      "id": "hyeju",
+      "name": "Hong Hye Ju",
+      "actor": "Choi Hee Jin",
+      "image": "https://i.mydramalist.com/LwrqND_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true,
+      "note": "Chaebol second daughter"
+    },
+    {
+      "id": "chungjae",
+      "name": "Park Chung Jae",
+      "actor": "Kim Hyun Jin",
+      "image": "https://i.mydramalist.com/nOQ4v8_5m.jpg",
+      "group": "Se Na's side",
+      "inCast": true,
+      "note": "Private investigator"
+    },
+    {
+      "id": "gwangsu",
+      "name": "Cheon Gwang Su",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Se Na's side",
+      "inCast": true,
+      "note": "Head of the law firm"
+    },
+    {
+      "id": "bosang",
+      "name": "Geum Bo Sang",
+      "actor": "Jung Man Sik",
+      "image": "https://i.mydramalist.com/l01Nn6_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true,
+      "note": "CEO of Goldi Entertainment"
+    },
+    {
+      "id": "useong",
+      "name": "Kang U Seong",
+      "actor": "Ahn Woo Yeon",
+      "image": "https://i.mydramalist.com/JB4Nyp_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true,
+      "note": "Leader"
+    },
+    {
+      "id": "jaehui",
+      "name": "Choi Jae Hui",
+      "actor": "Park Jeong Woo",
+      "image": "https://i.mydramalist.com/QJmNn6_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true,
+      "note": "Drummer"
+    },
+    {
+      "id": "yeongbin",
+      "name": "Lee Yeong Bin",
+      "actor": "Choi Geon",
+      "image": "https://i.mydramalist.com/YYmzJz_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true,
+      "note": "Keyboardist"
+    },
+    {
+      "id": "jongcheol",
+      "name": "Kwak Jong Cheol",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "group": "Prosecution & police",
+      "inCast": true
+    },
+    {
+      "id": "migyeong",
+      "name": "Do Mi Gyeong",
+      "actor": "Woo Mi Hwa",
+      "image": "https://i.mydramalist.com/ABRm3q_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true
+    },
+    {
+      "id": "hangu",
+      "name": "Jang Han Gu",
+      "actor": "Jo Hyun Sik",
+      "image": "https://i.mydramalist.com/KpvoAJ_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true,
+      "note": "Manager"
+    },
+    {
+      "id": "namsik",
+      "name": "Yoo Nam Sik",
+      "actor": "Jo Jae Ryong",
+      "image": "https://i.mydramalist.com/wNry1_5m.jpg",
+      "group": "Prosecution & police",
+      "inCast": true,
+      "note": "Detective team leader"
+    },
+    {
+      "id": "giuk",
+      "name": "Kim Gi Uk",
+      "actor": "Jo Wan Ki",
+      "image": "https://i.mydramalist.com/DkA2v2_5m.jpg",
+      "group": "Prosecution & police",
+      "inCast": true,
+      "note": "Prosecutor"
+    },
+    {
+      "id": "stalker",
+      "name": "Ra Ik's stalker",
+      "actor": "Ha Ju Ae",
+      "image": "https://i.mydramalist.com/g0plOn_5m.jpg",
+      "group": "Gold Boys / Goldi Entertainment",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "sena",
+      "to": "raik",
+      "type": "work",
+      "label": "defends her idol, hiding that she is his fan",
+      "short": "defends him",
+      "evidence": "When her idol becomes embroiled in a bizarre murder case, she conceals her admiration, takes his defense",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sena",
+      "to": "raik",
+      "type": "bond",
+      "label": "a devoted fan of ten years",
+      "short": "his fan",
+      "evidence": "she is secretly a devoted 10-year fan of the band Gold Boys",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "raik",
+      "to": "sena",
+      "type": "romance",
+      "label": "the idol and his lawyer",
+      "short": "falls for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "byeonggyun",
+      "to": "sena",
+      "type": "rivalry",
+      "label": "the prosecutor across the aisle",
+      "short": "opposing counsel",
+      "evidence": "곽병균 역 - 서울중앙지방검찰청 형사3부 검사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "byeonggyun",
+      "to": "sena",
+      "type": "romance",
+      "label": "the prosecutor who wants her",
+      "short": "wants her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeju",
+      "to": "raik",
+      "type": "romance",
+      "label": "ex-lover",
+      "short": "ex",
+      "evidence": "홍혜주 역 - 재벌가 차녀이자 라익의 전 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chungjae",
+      "to": "sena",
+      "type": "work",
+      "label": "her private investigator",
+      "short": "investigator",
+      "evidence": "박충재 역 - 세나의 사설 민간 조사관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangsu",
+      "to": "sena",
+      "type": "work",
+      "label": "her boss at Cheonun",
+      "short": "boss",
+      "evidence": "[Se Na's boss]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "bosang",
+      "to": "raik",
+      "type": "work",
+      "label": "CEO of his agency",
+      "short": "his CEO",
+      "evidence": "[Goldi Entertainment CEO]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "useong",
+      "to": "raik",
+      "type": "work",
+      "label": "Gold Boys' leader",
+      "short": "bandmate",
+      "evidence": "[Gold Boys leader]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaehui",
+      "to": "raik",
+      "type": "work",
+      "label": "Gold Boys' drummer",
+      "short": "bandmate",
+      "evidence": "[Gold Boys drummer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongbin",
+      "to": "raik",
+      "type": "work",
+      "label": "Gold Boys' keyboardist",
+      "short": "bandmate",
+      "evidence": "[Gold Boys keyboardist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jongcheol",
+      "to": "byeonggyun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Byeong Gyeon's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "migyeong",
+      "to": "raik",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ra Ik's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hangu",
+      "to": "raik",
+      "type": "work",
+      "label": "manager",
+      "short": "manager",
+      "evidence": "[Ra Ik's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "namsik",
+      "to": "byeonggyun",
+      "type": "work",
+      "label": "the detective team on the case",
+      "short": "detective",
+      "evidence": "[Detective team leader]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giuk",
+      "to": "byeonggyun",
+      "type": "work",
+      "label": "fellow prosecutor",
+      "short": "colleague",
+      "evidence": "[Prosecutor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "stalker",
+      "to": "raik",
+      "type": "bond",
+      "label": "his stalker",
+      "short": "stalker",
+      "evidence": "[Ra Ik's stalker]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sena",
+      "raik",
+      "byeonggyun",
+      "hyeju",
+      "chungjae",
+      "gwangsu",
+      "bosang",
+      "useong",
+      "jaehui",
+      "yeongbin",
+      "jongcheol",
+      "migyeong",
+      "hangu",
+      "namsik",
+      "giuk",
+      "stalker"
+    ],
+    "blocks": {
+      "Se Na's side": [
+        0,
+        0
+      ],
+      "Gold Boys / Goldi Entertainment": [
+        2,
+        0
+      ],
+      "Prosecution & police": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sena",
+      "raik"
+    ]
+  }
+}

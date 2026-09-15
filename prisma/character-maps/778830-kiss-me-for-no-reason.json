@@ -1,0 +1,465 @@
+{
+  "version": 1,
+  "mdlSlug": "778830-kiss-me-for-no-reason",
+  "title": "Dynamite Kiss",
+  "native": "키스는 괜히 해서!",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (18 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "jihyeok",
+    "darim"
+  ],
+  "people": [
+    {
+      "id": "jihyeok",
+      "name": "Kong Ji Hyeok",
+      "actor": "Jang Ki Yong",
+      "image": "https://i.mydramalist.com/eYgEOW_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "32, the heir who never had a romance — until Jeju; now she's a 'married woman' in his company"
+    },
+    {
+      "id": "darim",
+      "name": "Ko Da Rim",
+      "actor": "Ahn Eun Jin",
+      "image": "https://i.mydramalist.com/LwPlPy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "30, 'my job is being a married woman' — single, childless, and hiding both to keep the job"
+    },
+    {
+      "id": "seonu",
+      "name": "Kim Seon U",
+      "actor": "Kim Mu Jun",
+      "image": "https://i.mydramalist.com/nO2vkL_5m.jpg",
+      "group": "Seon U's home",
+      "inCast": true,
+      "note": "30, single father; her pretend husband"
+    },
+    {
+      "id": "hayeong",
+      "name": "Yoo Ha Yeong",
+      "actor": "Woo Da Vi",
+      "image": "https://i.mydramalist.com/Z1lwqm.jpg",
+      "group": "Ha Yeong's family",
+      "inCast": true,
+      "note": "27, 'what's wrong with a single dad?'"
+    },
+    {
+      "id": "changho",
+      "name": "Kong Chang Ho",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "group": "Ji Hyeok's family",
+      "inCast": true
+    },
+    {
+      "id": "inae",
+      "name": "Kim In Ae",
+      "actor": "Nam Gi Ae",
+      "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
+      "group": "Ji Hyeok's family",
+      "inCast": true
+    },
+    {
+      "id": "jihye",
+      "name": "Kong Ji Hye",
+      "actor": "Jung Ga Hee",
+      "image": "https://i.mydramalist.com/60QYVX_5m.jpg",
+      "group": "Ji Hyeok's family",
+      "inCast": true,
+      "note": "33"
+    },
+    {
+      "id": "myeongsun",
+      "name": "Jung Myeong Sun",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "Da Rim's family",
+      "inCast": true
+    },
+    {
+      "id": "dajeong",
+      "name": "Ko Da Jeong",
+      "actor": "Kim Soo A",
+      "image": "https://i.mydramalist.com/qYYmo0_5m.jpg",
+      "group": "Da Rim's family",
+      "inCast": true,
+      "note": "27"
+    },
+    {
+      "id": "jun",
+      "name": "Kim Jun",
+      "actor": "Choi Ja Woon",
+      "image": "https://i.mydramalist.com/QJX2jv_5m.jpg",
+      "group": "Seon U's home",
+      "inCast": true,
+      "note": "6"
+    },
+    {
+      "id": "jintae",
+      "name": "Yoo Jin Tae",
+      "actor": "Seo Sang Won",
+      "image": "https://i.mydramalist.com/Z1Epkm.jpg",
+      "group": "Ha Yeong's family",
+      "inCast": true
+    },
+    {
+      "id": "miok",
+      "name": "Han Mi Ok",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Ha Yeong's family",
+      "inCast": true
+    },
+    {
+      "id": "taeyeong",
+      "name": "Yoo Tae Yeong",
+      "actor": "Jung Hwan",
+      "image": "https://i.mydramalist.com/XmwOZ_5m.jpg",
+      "group": "Ha Yeong's family",
+      "inCast": true
+    },
+    {
+      "id": "nansuk",
+      "name": "Bae Nan Suk",
+      "actor": "Park Jee A",
+      "image": "https://i.mydramalist.com/3oZZ4V_5m.jpg",
+      "group": "Natural Bebe Mother TF",
+      "inCast": true,
+      "note": "44, mother of three, the team's big sister"
+    },
+    {
+      "id": "jinhui",
+      "name": "Jang Jin Hui",
+      "actor": "Jung  Soo Young",
+      "image": "https://i.mydramalist.com/BQ6z5_5m.jpg",
+      "group": "Natural Bebe Mother TF",
+      "inCast": true,
+      "note": "37, the office's news wire"
+    },
+    {
+      "id": "goeun",
+      "name": "Lee Go Eun",
+      "actor": "Park Jung Yeon",
+      "image": "https://i.mydramalist.com/RBrkyo_5m.jpg",
+      "group": "Natural Bebe Mother TF",
+      "inCast": true,
+      "note": "22, single mother since her teens; the youngest"
+    },
+    {
+      "id": "gyeongmin",
+      "name": "Kang Gyeong Min",
+      "actor": "Shin Joo Hyup",
+      "image": "https://i.mydramalist.com/WPvJ6P_5m.jpg",
+      "group": "Natural Bebe Mother TF",
+      "inCast": true,
+      "note": "31, secretary"
+    },
+    {
+      "id": "jeonggu",
+      "name": "Ma Jeong Gu",
+      "actor": "Park Jin U",
+      "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
+      "group": "Natural Bebe Mother TF",
+      "inCast": true,
+      "note": "Marketing team leader"
+    }
+  ],
+  "links": [
+    {
+      "from": "jihyeok",
+      "to": "darim",
+      "type": "romance",
+      "label": "a fling in Jeju — then she turns up at his company as a married mother",
+      "short": "Jeju fling",
+      "evidence": "A passionate fling in Jeju ends abruptly — until fate reunites an heir, Kong Ji Hyeok and a young woman, Ko Da Rim when she joins his company, disguised as a married mother",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonu",
+      "to": "darim",
+      "type": "bond",
+      "label": "plays her husband — 'can't I just be the real one?'",
+      "short": "fake husband",
+      "evidence": "김선우 - 뭘 자꾸 남편인 척하래, 그냥 나… 진짜 남편 하면 안 되니?",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hayeong",
+      "to": "seonu",
+      "type": "romance",
+      "label": "falls for the single dad",
+      "short": "loves him",
+      "evidence": "유하영 - 싱글대디가 왜요? 사랑은… 나이, 국경, 딸린 애까지도 초월할 수 있다구요!",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonu",
+      "to": "jun",
+      "type": "family",
+      "label": "son, six",
+      "short": "father",
+      "evidence": "[Seon U's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changho",
+      "to": "jihyeok",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ji Hyeok's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "inae",
+      "to": "jihyeok",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ji Hyeok's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "inae",
+      "to": "changho",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "창호의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jihye",
+      "to": "jihyeok",
+      "type": "family",
+      "label": "older sister — and his rival in the company",
+      "short": "sister",
+      "evidence": "[Ji Hyeok's older sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsun",
+      "to": "darim",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Da Rim's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dajeong",
+      "to": "darim",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Da Rim's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jintae",
+      "to": "hayeong",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ha Yeong's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miok",
+      "to": "hayeong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ha Yeong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miok",
+      "to": "jintae",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "진태의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taeyeong",
+      "to": "hayeong",
+      "type": "family",
+      "label": "older brother",
+      "short": "brother",
+      "evidence": "[Ha Yeong's older brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nansuk",
+      "to": "darim",
+      "type": "work",
+      "label": "the Mother TF's big sister",
+      "short": "teammate",
+      "evidence": "[Natural Bebe Mother TF team member] / 맏언니로서 앞장서며",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinhui",
+      "to": "darim",
+      "type": "work",
+      "label": "Mother TF",
+      "short": "teammate",
+      "evidence": "[Natural Bebe Mother TF team member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "goeun",
+      "to": "darim",
+      "type": "work",
+      "label": "Mother TF's youngest",
+      "short": "teammate",
+      "evidence": "[Natural Bebe Mother TF Team member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyeongmin",
+      "to": "jihyeok",
+      "type": "work",
+      "label": "secretary and confidant, even for love advice",
+      "short": "secretary",
+      "evidence": "[Ji Hyeok's secretary] / 연애상담까지 해주는 절친한 관계",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonggu",
+      "to": "jihye",
+      "type": "work",
+      "label": "Ji Hye's henchman; tramples the TF's work",
+      "short": "her henchman",
+      "evidence": "지혜의 심복으로 지혁을 견제하고, 마더TF팀의 성과를 짓밟는 일에 앞장선다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonggu",
+      "to": "nansuk",
+      "type": "rivalry",
+      "label": "belittles the mothers' team",
+      "short": "belittles them",
+      "evidence": "마더TF팀 팀원들에겐 하대와 무시",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jihyeok",
+      "darim",
+      "seonu",
+      "hayeong",
+      "changho",
+      "inae",
+      "jihye",
+      "myeongsun",
+      "dajeong",
+      "jun",
+      "jintae",
+      "miok",
+      "taeyeong",
+      "nansuk",
+      "jinhui",
+      "goeun",
+      "gyeongmin",
+      "jeonggu"
+    ],
+    "blocks": {
+      "Ji Hyeok's family": [
+        0,
+        0
+      ],
+      "Da Rim's family": [
+        2,
+        0
+      ],
+      "Seon U's home": [
+        0,
+        2
+      ],
+      "Ha Yeong's family": [
+        2,
+        2
+      ],
+      "Natural Bebe Mother TF": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "jihyeok",
+      "darim"
+    ]
+  }
+}

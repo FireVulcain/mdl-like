@@ -1,0 +1,351 @@
+{
+  "version": 1,
+  "mdlSlug": "79527-the-crazy-guy-in-the-district",
+  "title": "Mad for Each Other",
+  "native": "이 구역의 미친X",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (14 roles, 2 main)",
+    "MDL synopsis",
+    "en.wikipedia Cast",
+    "ko.wikipedia 등장인물 (names only)"
+  ],
+  "main": [
+    "mingyeong",
+    "hwio"
+  ],
+  "people": [
+    {
+      "id": "mingyeong",
+      "name": "Lee Min Gyeong",
+      "actor": "Oh Yeon Seo",
+      "image": "https://i.mydramalist.com/l0eBVN_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Caught in delusions and compulsions born of her past"
+    },
+    {
+      "id": "hwio",
+      "name": "No Hwi O",
+      "actor": "Jung Woo",
+      "image": "https://i.mydramalist.com/rg2Lm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Gangnam violent-crimes detective, suspended for his anger"
+    },
+    {
+      "id": "inja",
+      "name": "Kim In Ja",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "The building",
+      "inCast": true,
+      "note": "Women's association president"
+    },
+    {
+      "id": "seonyeong",
+      "name": "Choi Seon Yeong",
+      "actor": "Lee Hye Eun",
+      "image": "https://i.mydramalist.com/PxKWwm.jpg",
+      "group": "The building",
+      "inCast": true,
+      "note": "Vice-president"
+    },
+    {
+      "id": "juri",
+      "name": "Lee Ju Ri",
+      "actor": "Lee Yeon Du",
+      "image": "https://i.mydramalist.com/b31qdx_5m.jpg",
+      "group": "The building",
+      "inCast": true,
+      "note": "Accounts"
+    },
+    {
+      "id": "suhyeon",
+      "name": "Lee Su Hyeon",
+      "actor": "Lee Su Hyun",
+      "image": "https://i.mydramalist.com/Xd30Bd_5m.jpg",
+      "group": "The building",
+      "inCast": true,
+      "note": "Part-timer"
+    },
+    {
+      "id": "sangyeop",
+      "name": "Lee Sang Yeop / Samantha",
+      "actor": "Ahn Woo Yeon",
+      "image": "https://i.mydramalist.com/JB4Nyp_5m.jpg",
+      "group": "The building",
+      "inCast": true,
+      "note": "Unit 705"
+    },
+    {
+      "id": "seonho",
+      "name": "Lee Seon Ho",
+      "actor": "Kim Nam Hee",
+      "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "group": "Min Gyeong's past",
+      "inCast": true
+    },
+    {
+      "id": "kim",
+      "name": "Manager Kim",
+      "actor": "Jung Seung Kil",
+      "image": "https://i.mydramalist.com/g075LO_5m.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "pilhui",
+      "name": "Han Pil Hui / Yang",
+      "actor": "Lee Gyu Hyun",
+      "image": "https://i.mydramalist.com/5vLDJL_5m.jpg",
+      "group": "Police",
+      "inCast": true
+    },
+    {
+      "id": "hwio_mother",
+      "name": "Hwi O's mother",
+      "actor": "Kang Ae Sim",
+      "image": "https://i.mydramalist.com/VXzNpQ_5m.jpg",
+      "group": "Hwi O's people",
+      "inCast": true
+    },
+    {
+      "id": "hwio_father",
+      "name": "Hwi O's father",
+      "actor": "Nam Moon Chul",
+      "image": "https://i.mydramalist.com/RW20rm.jpg",
+      "group": "Hwi O's people",
+      "inCast": true
+    },
+    {
+      "id": "detective",
+      "name": "Detective",
+      "actor": "Jung Yeong Gi",
+      "image": "https://i.mydramalist.com/vzYQg_5m.jpg",
+      "group": "Police",
+      "inCast": true
+    },
+    {
+      "id": "jinyeong",
+      "name": "Han Jin Yeong",
+      "actor": "Lee Hye Ra",
+      "image": "https://i.mydramalist.com/ROAwY_5m.jpg",
+      "group": "Hwi O's people",
+      "inCast": true,
+      "note": "Psychiatrist"
+    }
+  ],
+  "links": [
+    {
+      "from": "hwio",
+      "to": "mingyeong",
+      "type": "romance",
+      "label": "two wounded neighbours, hurt and healing, falling in love",
+      "short": "neighbours, lovers",
+      "evidence": "Two individuals with painful pasts navigate a complex journey of hurt and healing while falling in love",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonho",
+      "to": "mingyeong",
+      "type": "romance",
+      "label": "ex-boyfriend — the source of the past",
+      "short": "ex",
+      "evidence": "[Min Gyeong's ex-boyfriend]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "inja",
+      "to": "mingyeong",
+      "type": "friend",
+      "label": "the building's women's association",
+      "short": "the association",
+      "evidence": "[Women's association's president]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonyeong",
+      "to": "inja",
+      "type": "work",
+      "label": "vice-president",
+      "short": "vice-president",
+      "evidence": "[Women's association's vice president]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juri",
+      "to": "inja",
+      "type": "work",
+      "label": "accounts",
+      "short": "accounts",
+      "evidence": "[Women's association's account manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suhyeon",
+      "to": "hwio",
+      "type": "friend",
+      "label": "the part-timer downstairs",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sangyeop",
+      "to": "mingyeong",
+      "type": "friend",
+      "label": "the neighbour in 705, Samantha",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "kim",
+      "to": "hwio",
+      "type": "work",
+      "label": "his team",
+      "short": "colleague",
+      "evidence": "[Detective]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pilhui",
+      "to": "hwio",
+      "type": "rivalry",
+      "label": "the old case that follows him",
+      "short": "old case",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hwio_mother",
+      "to": "hwio",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Hwi O's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwio_father",
+      "to": "hwio",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Hwi O's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "detective",
+      "to": "hwio",
+      "type": "work",
+      "label": "his team",
+      "short": "colleague",
+      "evidence": "[Detective]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinyeong",
+      "to": "hwio",
+      "type": "work",
+      "label": "the psychiatrist both of them see",
+      "short": "psychiatrist",
+      "evidence": "[Psychiatrist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinyeong",
+      "to": "mingyeong",
+      "type": "work",
+      "label": "her psychiatrist",
+      "short": "psychiatrist",
+      "evidence": "[Psychiatrist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "mingyeong",
+      "hwio",
+      "inja",
+      "seonyeong",
+      "juri",
+      "suhyeon",
+      "sangyeop",
+      "seonho",
+      "kim",
+      "pilhui",
+      "hwio_mother",
+      "hwio_father",
+      "detective",
+      "jinyeong"
+    ],
+    "blocks": {
+      "The building": [
+        0,
+        0
+      ],
+      "Police": [
+        2,
+        0
+      ],
+      "Min Gyeong's past": [
+        0,
+        2
+      ],
+      "Hwi O's people": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "mingyeong",
+      "hwio"
+    ]
+  }
+}

@@ -1,0 +1,424 @@
+{
+  "version": 1,
+  "mdlSlug": "759665-sculpture-city",
+  "title": "The Manipulated",
+  "native": "조각도시",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only; ties inferred)"
+  ],
+  "main": [
+    "taejung",
+    "yohan"
+  ],
+  "people": [
+    {
+      "id": "taejung",
+      "name": "Park Tae Jung",
+      "actor": "Ji Chang Wook",
+      "image": "https://i.mydramalist.com/ZyyEJ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Mild-mannered, wrongfully imprisoned for a heinous crime"
+    },
+    {
+      "id": "yohan",
+      "name": "An Yo Han",
+      "actor": "Doh Kyung Soo",
+      "image": "https://i.mydramalist.com/43e46m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The mysterious figure who orchestrated his downfall"
+    },
+    {
+      "id": "yongsik",
+      "name": "No Yong Sik",
+      "actor": "Kim Jong Soo",
+      "image": "https://i.mydramalist.com/yWOdl4_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "eunbi",
+      "name": "No Eun Bi",
+      "actor": "Jo Yoon Soo",
+      "image": "https://i.mydramalist.com/2wqKkR_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    },
+    {
+      "id": "dogyeong",
+      "name": "Baek Do Gyeong",
+      "actor": "Lee Kwang Soo",
+      "image": "https://i.mydramalist.com/PxZzbX_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "deoksu",
+      "name": "Yeo Deok Su",
+      "actor": "Yang Dong Geun",
+      "image": "https://i.mydramalist.com/yWOPQ4_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    },
+    {
+      "id": "gangjae",
+      "name": "Do Gang Jae",
+      "actor": "Eum Moon Suk",
+      "image": "https://i.mydramalist.com/RWzAPm.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "cheolhwan",
+      "name": "Yang Cheol Hwan",
+      "actor": "Kim Jae Chul",
+      "image": "https://i.mydramalist.com/b3dkvj_5m.jpg",
+      "group": "Yo Han's side",
+      "inCast": true
+    },
+    {
+      "id": "jiyong",
+      "name": "Gu Ji Yong",
+      "actor": "Lee Jae Kyoon",
+      "image": "https://i.mydramalist.com/l0oRme_5m.jpg",
+      "group": "Yo Han's side",
+      "inCast": true
+    },
+    {
+      "id": "sangrak",
+      "name": "Kim Sang Rak",
+      "actor": "Kim Joong Hee",
+      "image": "https://i.mydramalist.com/YYzlDo_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Public defender"
+    },
+    {
+      "id": "warden",
+      "name": "Warden Park",
+      "actor": "Lee Seo Hwan",
+      "image": "https://i.mydramalist.com/QJN414_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "junhan",
+      "name": "Kim Jun Han",
+      "actor": "Kwak Jin",
+      "image": "https://i.mydramalist.com/XVZBZ_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "ujung",
+      "name": "U Jung",
+      "actor": "Kwon Da Ham",
+      "image": "https://i.mydramalist.com/rN27bE_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "jeongsu",
+      "name": "Jeong Su",
+      "actor": "Jung Heon",
+      "image": "https://i.mydramalist.com/dlAeb_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "daehun",
+      "name": "Dae Hun",
+      "actor": "Lee Suk Hyeong",
+      "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
+      "group": "Prison",
+      "inCast": true
+    },
+    {
+      "id": "ilguk",
+      "name": "Hwang Il Guk",
+      "actor": "Lee Sung Woo",
+      "image": "https://i.mydramalist.com/KpkxdD_5m.jpg",
+      "group": "Yo Han's side",
+      "inCast": true
+    },
+    {
+      "id": "nanny",
+      "name": "Yo Han's nanny",
+      "actor": "Jeong In Ji",
+      "image": "https://i.mydramalist.com/q77z2_5m.jpg",
+      "group": "Yo Han's side",
+      "inCast": true
+    },
+    {
+      "id": "detective",
+      "name": "Detective",
+      "actor": "Jeon Gang Ho",
+      "image": "https://i.mydramalist.com/l0DwpL_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yohan",
+      "to": "taejung",
+      "type": "rivalry",
+      "label": "orchestrated his downfall; Tae Jung sets out to make him pay",
+      "short": "revenge",
+      "evidence": "He soon discovers that a mysterious figure named Yo Han orchestrated his downfall. Fueled by vengeance, Tae Jung sets out to make Yo Han pay",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongsik",
+      "to": "taejung",
+      "type": "friend",
+      "label": "the old inmate who takes him under his wing",
+      "short": "protects him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yongsik",
+      "to": "eunbi",
+      "type": "family",
+      "label": "daughter",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "eunbi",
+      "to": "taejung",
+      "type": "friend",
+      "label": "his ally outside",
+      "short": "ally",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dogyeong",
+      "to": "taejung",
+      "type": "friend",
+      "label": "the con man of the cell, later his ally",
+      "short": "cellmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gangjae",
+      "to": "taejung",
+      "type": "rivalry",
+      "label": "the prison bully",
+      "short": "bullies him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "deoksu",
+      "to": "taejung",
+      "type": "work",
+      "label": "the one who works for him after",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "cheolhwan",
+      "to": "yohan",
+      "type": "work",
+      "label": "in Yo Han's pocket",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jiyong",
+      "to": "yohan",
+      "type": "work",
+      "label": "in Yo Han's pocket",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ilguk",
+      "to": "yohan",
+      "type": "work",
+      "label": "in Yo Han's pocket",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "nanny",
+      "to": "yohan",
+      "type": "family",
+      "label": "the nanny who raised him",
+      "short": "nanny",
+      "evidence": "[Nanny] / 정인지 : 요한의 유모 역",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangrak",
+      "to": "taejung",
+      "type": "work",
+      "label": "his public defender",
+      "short": "defender",
+      "evidence": "김상락 역 - 국선 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "warden",
+      "to": "taejung",
+      "type": "work",
+      "label": "the warden",
+      "short": "warden",
+      "evidence": "이서환 : 교도소장 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junhan",
+      "to": "taejung",
+      "type": "friend",
+      "label": "fellow inmate",
+      "short": "inmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "ujung",
+      "to": "taejung",
+      "type": "friend",
+      "label": "fellow inmate",
+      "short": "inmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jeongsu",
+      "to": "taejung",
+      "type": "friend",
+      "label": "fellow inmate",
+      "short": "inmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "daehun",
+      "to": "gangjae",
+      "type": "work",
+      "label": "Gang Jae's man",
+      "short": "his man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "detective",
+      "to": "taejung",
+      "type": "work",
+      "label": "the detective who put him away",
+      "short": "detective",
+      "evidence": "[Detective]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "taejung",
+      "yohan",
+      "yongsik",
+      "eunbi",
+      "dogyeong",
+      "deoksu",
+      "gangjae",
+      "cheolhwan",
+      "jiyong",
+      "sangrak",
+      "warden",
+      "junhan",
+      "ujung",
+      "jeongsu",
+      "daehun",
+      "ilguk",
+      "nanny",
+      "detective"
+    ],
+    "blocks": {
+      "Prison": [
+        0,
+        0
+      ],
+      "Yo Han's side": [
+        2,
+        0
+      ],
+      "Outside": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "taejung",
+      "yohan"
+    ]
+  }
+}

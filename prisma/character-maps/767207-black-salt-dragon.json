@@ -1,0 +1,328 @@
+{
+  "version": 1,
+  "mdlSlug": "767207-black-salt-dragon",
+  "title": "My Dearest Nemesis",
+  "native": "그놈은 흑염룡",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (13 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "sujeong",
+    "juyeon"
+  ],
+  "people": [
+    {
+      "id": "sujeong",
+      "name": "Baek Su Jeong",
+      "actor": "Mun Ka Young",
+      "image": "https://i.mydramalist.com/O8JKLk_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Planning team leader at Yongseong Department Store; humiliated at 18 by 'Black Dragon'"
+    },
+    {
+      "id": "juyeon",
+      "name": "Ban Ju Yeon",
+      "actor": "Choi Hyun Wook",
+      "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Woo Jin",
+          "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+          "era": "teen"
+        }
+      ],
+      "note": "New head of strategic planning — the 'Black Dragon' of sixteen years ago"
+    },
+    {
+      "id": "hajin",
+      "name": "Seo Ha Jin",
+      "actor": "Im Se Mi",
+      "image": "https://i.mydramalist.com/KpEXeX_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Owner of the bar 'Sullo'"
+    },
+    {
+      "id": "sinwon",
+      "name": "Kim Sin Won",
+      "actor": "Kwak Shi Yang",
+      "image": "https://i.mydramalist.com/g0bJzq_5m.jpg",
+      "group": "Yongseong Group",
+      "inCast": true,
+      "note": "Head of the design office"
+    },
+    {
+      "id": "hyoseon",
+      "name": "Jung Hyo Seon",
+      "actor": "Ban Hyo Jung",
+      "image": "https://i.mydramalist.com/B1PB6_5m.jpg",
+      "group": "Yongseong Group",
+      "inCast": true,
+      "note": "Chairwoman of Yongseong Group"
+    },
+    {
+      "id": "ingyeong",
+      "name": "Kwon In Gyeong",
+      "actor": "Kim Young Ah",
+      "image": "https://i.mydramalist.com/B16pz_5m.jpg",
+      "group": "Yongseong Group",
+      "inCast": true,
+      "note": "Chief secretary"
+    },
+    {
+      "id": "hyeju",
+      "name": "O Hye Ju",
+      "actor": "Yoon Young Min",
+      "image": "https://i.mydramalist.com/R4LPr_5m.jpg",
+      "group": "Yongseong Group",
+      "inCast": true,
+      "note": "Group planning team leader"
+    },
+    {
+      "id": "junsu",
+      "name": "Yang Jun Su",
+      "actor": "Kim Woo Kyum",
+      "image": "https://i.mydramalist.com/we6Yg_5m.jpg",
+      "group": "Planning team",
+      "inCast": true,
+      "note": "Assistant manager"
+    },
+    {
+      "id": "nana",
+      "name": "Choi Na Na",
+      "actor": "Lim Young Ju",
+      "image": "https://i.mydramalist.com/eYgK8Y_5m.jpg",
+      "group": "Planning team",
+      "inCast": true
+    },
+    {
+      "id": "seokhui",
+      "name": "Kim Seok Hui",
+      "actor": "Seong Seung Ha",
+      "image": "https://i.mydramalist.com/ABQRjZ_5m.jpg",
+      "group": "Planning team",
+      "inCast": true,
+      "note": "Intern; tactless, hard to dislike"
+    },
+    {
+      "id": "wonseop",
+      "name": "Baek Won Seop",
+      "actor": "Ko Chang Seok",
+      "image": "https://i.mydramalist.com/RDd46_5m.jpg",
+      "group": "Su Jeong's family",
+      "inCast": true,
+      "note": "Hardware-shop owner"
+    },
+    {
+      "id": "subin",
+      "name": "Baek Su Bin",
+      "actor": "Son Sang Yeon",
+      "image": "https://i.mydramalist.com/VXxRRx_5m.jpg",
+      "group": "Su Jeong's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "juyeon",
+      "to": "sujeong",
+      "type": "romance",
+      "label": "her online crush at 18 who turned out to be a middle-schooler — now her boss",
+      "short": "Black Dragon",
+      "evidence": "Su Jeong developed a crush on an online player named 'Black Dragon,' only to be humiliated when he turned out to be an awkward middle schooler. Sixteen years later [...] the new head of strategic planning, Ban Ju Yeon, turns out to be 'Black Dragon'",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "juyeon",
+      "to": "sujeong",
+      "type": "work",
+      "label": "head of strategic planning over her team",
+      "short": "her boss",
+      "evidence": "반주연 역 - 전략기획본부 본부장 / 백수정 역 - 기획팀 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajin",
+      "to": "sujeong",
+      "type": "friend",
+      "label": "best friend, the bar owner",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sinwon",
+      "to": "hajin",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sinwon",
+      "to": "sujeong",
+      "type": "work",
+      "label": "head of design, her colleague",
+      "short": "colleague",
+      "evidence": "김신원 역 - 용성백화점 디자인실 실장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyoseon",
+      "to": "juyeon",
+      "type": "family",
+      "label": "grandmother; the group's chairwoman",
+      "short": "grandmother",
+      "evidence": "[Ju Yeon's grandmother] / 정효선 역 - 주연의 친조모이자 용성그룹 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ingyeong",
+      "to": "juyeon",
+      "type": "work",
+      "label": "chief secretary",
+      "short": "secretary",
+      "evidence": "[Ju Yeon's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeju",
+      "to": "sujeong",
+      "type": "work",
+      "label": "group planning team leader",
+      "short": "colleague",
+      "evidence": "오혜주 역 - 용성그룹 기획팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junsu",
+      "to": "sujeong",
+      "type": "work",
+      "label": "assistant manager on her team",
+      "short": "her team",
+      "evidence": "[Yongsung Department Store planning team member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nana",
+      "to": "sujeong",
+      "type": "work",
+      "label": "on her team",
+      "short": "her team",
+      "evidence": "[Yongsung Department Store planning team member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokhui",
+      "to": "sujeong",
+      "type": "work",
+      "label": "the team's intern",
+      "short": "intern",
+      "evidence": "김석희 역 - 용성백화점 기획팀 인턴",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wonseop",
+      "to": "sujeong",
+      "type": "family",
+      "label": "father; the hardware shop",
+      "short": "father",
+      "evidence": "[Su Jeong's father] / 철물점 사장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "subin",
+      "to": "sujeong",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Su Jeong's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sujeong",
+      "juyeon",
+      "hajin",
+      "sinwon",
+      "hyoseon",
+      "ingyeong",
+      "hyeju",
+      "junsu",
+      "nana",
+      "seokhui",
+      "wonseop",
+      "subin"
+    ],
+    "blocks": {
+      "Yongseong Group": [
+        0,
+        0
+      ],
+      "Planning team": [
+        0,
+        2
+      ],
+      "Su Jeong's family": [
+        2,
+        0
+      ],
+      "Around them": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "sujeong",
+      "juyeon"
+    ]
+  }
+}

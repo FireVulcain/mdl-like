@@ -1,0 +1,475 @@
+{
+  "version": 1,
+  "mdlSlug": "9289-its-okay-thats-love",
+  "title": "It's Okay, That's Love",
+  "native": "괜찮아, 사랑이야",
+  "year": 2014,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "jaeyeol",
+    "haesoo"
+  ],
+  "people": [
+    {
+      "id": "jaeyeol",
+      "name": "Jang Jae Yeol",
+      "actor": "Zo In Sung",
+      "image": "https://i.mydramalist.com/KponqX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Sung Yoo Bin",
+          "image": "https://i.mydramalist.com/VXdOeJ_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Star mystery novelist and radio host; prickly"
+    },
+    {
+      "id": "haesoo",
+      "name": "Ji Hae Soo",
+      "actor": "Kong Hyo Jin",
+      "image": "https://i.mydramalist.com/4k0oZm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "dongmin",
+      "name": "Jo Dong Min",
+      "actor": "Sung Dong Il",
+      "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
+      "group": "The housemates",
+      "inCast": true,
+      "note": "Psychiatrist; the house's senior"
+    },
+    {
+      "id": "sookwang",
+      "name": "Park Soo Kwang",
+      "actor": "Lee Kwang Soo",
+      "image": "https://i.mydramalist.com/PxZzbX_5m.jpg",
+      "group": "The housemates",
+      "inCast": true,
+      "note": "With Tourette's"
+    },
+    {
+      "id": "kangwoo",
+      "name": "Han Kang Woo",
+      "actor": "Doh Kyung Soo",
+      "image": "https://i.mydramalist.com/43e46m.jpg",
+      "group": "Jae Yeol's people",
+      "inCast": true,
+      "note": "18, would-be novelist"
+    },
+    {
+      "id": "yeongjin",
+      "name": "Lee Yeong Jin",
+      "actor": "Jin Kyung",
+      "image": "https://i.mydramalist.com/Xe7vJm.jpg",
+      "group": "Work",
+      "inCast": true,
+      "note": "Psychiatry professor"
+    },
+    {
+      "id": "sonyeo",
+      "name": "Oh So Nyeo",
+      "actor": "Lee Sung Kyoung",
+      "image": "https://i.mydramalist.com/6q6Z2_5m.jpg",
+      "group": "The housemates",
+      "inCast": true,
+      "note": "19, cafe part-timer"
+    },
+    {
+      "id": "jaebum",
+      "name": "Jang Jae Bum",
+      "actor": "Yang Ik June",
+      "image": "https://i.mydramalist.com/XV3xJ_5m.jpg",
+      "group": "Jae Yeol's people",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Noh Tae Yeob",
+          "image": "https://i.mydramalist.com/E2PZ5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Late thirties"
+    },
+    {
+      "id": "okja",
+      "name": "Jang Ok Ja",
+      "actor": "Cha Hwa Yun",
+      "image": "https://i.mydramalist.com/ROpgY_5m.jpg",
+      "group": "Jae Yeol's people",
+      "inCast": true
+    },
+    {
+      "id": "haesoo_mother",
+      "name": "Hae Soo's mother",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Hae Soo's people",
+      "inCast": true
+    },
+    {
+      "id": "yoonsoo",
+      "name": "Ji Yoon Soo",
+      "actor": "Choi Moon Kyung",
+      "image": "https://i.mydramalist.com/yW8b3m.jpg",
+      "group": "Hae Soo's people",
+      "inCast": true
+    },
+    {
+      "id": "dodeuk",
+      "name": "Oh Do Deuk",
+      "actor": "Choi Seung Kyung",
+      "image": "https://i.mydramalist.com/2w4EE2_5m.jpg",
+      "group": "Hae Soo's people",
+      "inCast": true
+    },
+    {
+      "id": "taeyong",
+      "name": "Yang Tae Yong",
+      "actor": "Tae Hang Ho",
+      "image": "https://i.mydramalist.com/pV1QB_5m.jpg",
+      "group": "Jae Yeol's people",
+      "inCast": true,
+      "note": "Publisher"
+    },
+    {
+      "id": "choiho",
+      "name": "Choi Ho",
+      "actor": "Do Sang Woo",
+      "image": "https://i.mydramalist.com/BwgA5m.jpg",
+      "group": "Hae Soo's people",
+      "inCast": true,
+      "note": "Variety PD"
+    },
+    {
+      "id": "hyunjoo",
+      "name": "Hyun Joo",
+      "actor": "Ha Yun Joo",
+      "image": "https://i.mydramalist.com/xpLOy_5m.jpg",
+      "group": "Jae Yeol's people",
+      "inCast": true
+    },
+    {
+      "id": "bae",
+      "name": "Editor Bae",
+      "actor": "Han Jung Hyun",
+      "image": "https://i.mydramalist.com/PxDyym.jpg",
+      "group": "Jae Yeol's people",
+      "inCast": true
+    },
+    {
+      "id": "lim",
+      "name": "Dr. Lim",
+      "actor": "Park Soo Young",
+      "image": "https://i.mydramalist.com/EDXRpm.jpg",
+      "group": "Work",
+      "inCast": true,
+      "note": "General surgeon"
+    },
+    {
+      "id": "yoonchul",
+      "name": "Yoon Chul",
+      "actor": "Lee Dong Ha",
+      "image": "https://i.mydramalist.com/Xd8krw_5m.jpg",
+      "group": "Work",
+      "inCast": true,
+      "note": "Singer"
+    }
+  ],
+  "links": [
+    {
+      "from": "jaeyeol",
+      "to": "haesoo",
+      "type": "romance",
+      "label": "rubbed each other wrong on a talk show — then housemates, then lovers",
+      "short": "housemates, lovers",
+      "evidence": "the two just rubbed each other the wrong way [...] One of the current tenants, is none other than Hae Soo, unwittingly making them housemates",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongmin",
+      "to": "haesoo",
+      "type": "work",
+      "label": "her senior; a psychiatrist and housemate",
+      "short": "senior",
+      "evidence": "조동민 역 (홈메이트) / 대학병원 정신과 교수, 조동민의 전처",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sookwang",
+      "to": "haesoo",
+      "type": "friend",
+      "label": "housemate",
+      "short": "housemate",
+      "evidence": "박수광 역 (홈메이트)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kangwoo",
+      "to": "jaeyeol",
+      "type": "bond",
+      "label": "the boy only Jae Yeol can see",
+      "short": "his hallucination",
+      "evidence": "한강우(18세) 역 - 고등학생, 소설가 지망생",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongjin",
+      "to": "dongmin",
+      "type": "romance",
+      "label": "ex-wife",
+      "short": "ex-wife",
+      "evidence": "이영진 역 - 대학병원 정신과 교수, 조동민의 전처",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongjin",
+      "to": "haesoo",
+      "type": "work",
+      "label": "professor over her",
+      "short": "professor",
+      "evidence": "대학병원 정신과 교수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sonyeo",
+      "to": "jaeyeol",
+      "type": "work",
+      "label": "part-timer at his cafe",
+      "short": "part-timer",
+      "evidence": "오소녀 역 - 장재열의 카페 알바생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sonyeo",
+      "to": "sookwang",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jaebum",
+      "to": "jaeyeol",
+      "type": "family",
+      "label": "older brother — in prison for attacking him",
+      "short": "brother",
+      "evidence": "장재범 역 - 장재열의 형",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "okja",
+      "to": "jaeyeol",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "차화연 : 재열 모 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okja",
+      "to": "jaebum",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "재열 모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haesoo_mother",
+      "to": "haesoo",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Hye Su's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoonsoo",
+      "to": "haesoo",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "지윤수 역 - 해수의 언니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dodeuk",
+      "to": "haesoo",
+      "type": "family",
+      "label": "brother-in-law",
+      "short": "brother-in-law",
+      "evidence": "오도득 역 - 해수의 형부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeyong",
+      "to": "jaeyeol",
+      "type": "friend",
+      "label": "childhood friend; co-head of his publisher",
+      "short": "childhood friend",
+      "evidence": "양태용 역 - 출판사 공동대표, 재열의 죽마고우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "choiho",
+      "to": "haesoo",
+      "type": "romance",
+      "label": "boyfriend, at the start",
+      "short": "boyfriend",
+      "evidence": "최호 역 - 방송국 예능 PD, 해수의 남자친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyunjoo",
+      "to": "jaeyeol",
+      "type": "romance",
+      "label": "the girlfriend who plagiarised his work",
+      "short": "the plagiarist",
+      "evidence": "Jae Yeol's girlfriend plagiarizes his work",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "bae",
+      "to": "jaeyeol",
+      "type": "work",
+      "label": "his editor",
+      "short": "editor",
+      "evidence": "한정현 : 출판사 편집장 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lim",
+      "to": "haesoo",
+      "type": "work",
+      "label": "at the hospital",
+      "short": "colleague",
+      "evidence": "[General Surgeon]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yoonchul",
+      "to": "jaeyeol",
+      "type": "work",
+      "label": "the singer on his radio show",
+      "short": "his show",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jaeyeol",
+      "haesoo",
+      "dongmin",
+      "sookwang",
+      "kangwoo",
+      "yeongjin",
+      "sonyeo",
+      "jaebum",
+      "okja",
+      "haesoo_mother",
+      "yoonsoo",
+      "dodeuk",
+      "taeyong",
+      "choiho",
+      "hyunjoo",
+      "bae",
+      "lim",
+      "yoonchul"
+    ],
+    "blocks": {
+      "The housemates": [
+        0,
+        0
+      ],
+      "Jae Yeol's people": [
+        2,
+        0
+      ],
+      "Hae Soo's people": [
+        0,
+        2
+      ],
+      "Work": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "jaeyeol",
+      "haesoo"
+    ]
+  }
+}

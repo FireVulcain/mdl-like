@@ -1,0 +1,517 @@
+{
+  "version": 1,
+  "mdlSlug": "729161-the-high-priest-rembrary",
+  "title": "The Heavenly Idol",
+  "native": "성스러운 아이돌",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (26 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "rembrary",
+    "dal"
+  ],
+  "people": [
+    {
+      "id": "rembrary",
+      "name": "Rembrary / Woo Yeon Woo",
+      "actor": "Kim Min Gue",
+      "image": "https://i.mydramalist.com/W8VKm_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "126, the pontifex of another world — in the body of Wild Animal's rapper, 26"
+    },
+    {
+      "id": "dal",
+      "name": "Kim Dal",
+      "actor": "Go Bo Gyeol",
+      "image": "https://i.mydramalist.com/0wxN5r_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "29, Wild Animal's new manager"
+    },
+    {
+      "id": "jowun",
+      "name": "Sin Jo Wun / the Devil",
+      "actor": "Lee Jang Woo",
+      "image": "https://i.mydramalist.com/BewNq_5m.jpg",
+      "group": "The other world",
+      "inCast": true,
+      "note": "The other world's devil; vice-chair of RU E&M"
+    },
+    {
+      "id": "redlin",
+      "name": "Redlin",
+      "actor": "Cha Joo Young",
+      "image": "https://i.mydramalist.com/DkLWKy_5m.jpg",
+      "group": "The other world",
+      "inCast": true,
+      "note": "The other world's goddess"
+    },
+    {
+      "id": "yeomra",
+      "name": "Lord Yeomra",
+      "actor": "Jang Young Nam",
+      "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
+      "group": "The other world",
+      "inCast": true,
+      "note": "Goddess of the underworld and this world"
+    },
+    {
+      "id": "gamjae",
+      "name": "Sa Gam Jae",
+      "actor": "Park Sang Nam",
+      "image": "https://i.mydramalist.com/nODkRN_5m.jpg",
+      "group": "The other world",
+      "inCast": true,
+      "note": "Grim reaper; Wild Animal's road manager"
+    },
+    {
+      "id": "hwanshin",
+      "name": "Hwanshin",
+      "actor": "Ryu Seung Moo",
+      "image": "https://i.mydramalist.com/654Q0_5m.jpg",
+      "group": "The other world",
+      "inCast": true
+    },
+    {
+      "id": "sunja",
+      "name": "Lim Sun Ja",
+      "actor": "Ye Ji Won",
+      "image": "https://i.mydramalist.com/73lwkb_5m.jpg",
+      "group": "Wild Animal / LLL Entertainment",
+      "inCast": true,
+      "note": "42, CEO of LLL"
+    },
+    {
+      "id": "jungseo",
+      "name": "Choi Jung Seo",
+      "actor": "Hong Seung Bum",
+      "image": "https://i.mydramalist.com/XKqPpm.jpg",
+      "group": "Wild Animal / LLL Entertainment",
+      "inCast": true,
+      "note": "27, leader"
+    },
+    {
+      "id": "taein",
+      "name": "Hwang Tae In",
+      "actor": "Shin Myung Sung",
+      "image": "https://i.mydramalist.com/73Bq1r_5m.jpg",
+      "group": "Wild Animal / LLL Entertainment",
+      "inCast": true,
+      "note": "26, main vocal"
+    },
+    {
+      "id": "kasy",
+      "name": "Kasy",
+      "actor": "Choi Jae Hyun",
+      "image": "https://i.mydramalist.com/674lg_5m.jpg",
+      "group": "Wild Animal / LLL Entertainment",
+      "inCast": true,
+      "note": "25, lead vocal"
+    },
+    {
+      "id": "haegyeol",
+      "name": "Cha Hae Gyeol",
+      "actor": "Shin Kyu Hyun",
+      "image": "https://i.mydramalist.com/ABW2y3_5m.jpg",
+      "group": "Wild Animal / LLL Entertainment",
+      "inCast": true,
+      "note": "23, the youngest; main dancer"
+    },
+    {
+      "id": "jeonghwan",
+      "name": "Jang Jeong Hwan",
+      "actor": "Baek Seo Bin",
+      "image": "https://i.mydramalist.com/YYrXQW_5m.jpg",
+      "group": "Wild Animal / LLL Entertainment",
+      "inCast": true,
+      "note": "General manager"
+    },
+    {
+      "id": "woosil",
+      "name": "Seon Woo Sil",
+      "actor": "Tak Jae Hoon",
+      "image": "https://i.mydramalist.com/g0APrr_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "46, the country's top singer"
+    },
+    {
+      "id": "moorok",
+      "name": "Kim Moo Rok",
+      "actor": "Lee Dal",
+      "image": "https://i.mydramalist.com/rXvWg_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "33, variety PD"
+    },
+    {
+      "id": "jungshin",
+      "name": "Oh Jung Shin",
+      "actor": "Oh Jin Seok",
+      "image": "https://i.mydramalist.com/2wDb6V_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "25, boy group AX"
+    },
+    {
+      "id": "wooshin",
+      "name": "Maeng Woo Shin",
+      "actor": "Kim Seo Ha",
+      "image": "https://i.mydramalist.com/yWOBB1_5m.jpg",
+      "group": "The industry",
+      "inCast": true,
+      "note": "31, actor and MC"
+    },
+    {
+      "id": "jinhwa",
+      "name": "Ma Jin Hwa",
+      "actor": "Song A Kyung",
+      "image": "https://i.mydramalist.com/6O1gO_5m.jpg",
+      "group": "The industry",
+      "inCast": true
+    },
+    {
+      "id": "raken",
+      "name": "Raken",
+      "actor": "Jeong Soo Hyun",
+      "image": "https://i.mydramalist.com/l01B4N_5m.jpg",
+      "group": "Evil Boys",
+      "inCast": true,
+      "note": "Leader"
+    },
+    {
+      "id": "typhon",
+      "name": "Typhon",
+      "actor": "Lee Won Jun",
+      "image": "https://i.mydramalist.com/Xdv8Vx_5m.jpg",
+      "group": "Evil Boys",
+      "inCast": true
+    },
+    {
+      "id": "vasily",
+      "name": "Vasily",
+      "actor": "Lee Woo Tae",
+      "image": "https://i.mydramalist.com/RBB1Pg_5m.jpg",
+      "group": "Evil Boys",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "dal",
+      "to": "rembrary",
+      "type": "work",
+      "label": "the new manager of the idol he turned into",
+      "short": "his manager",
+      "evidence": "김달 역 - 와일드 애니멀의 새로운 매니저 / 램브러리(우연우) 역 - 현 세계 와일드애니멀 멤버",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "rembrary",
+      "to": "dal",
+      "type": "romance",
+      "label": "the pontifex and his manager",
+      "short": "falls for her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jowun",
+      "to": "rembrary",
+      "type": "rivalry",
+      "label": "the devil he was fighting when he fell into this world",
+      "short": "the devil",
+      "evidence": "Pontifex Rembrary [...] gets transported to a new world while fighting a devil / 마왕(신조운) 역 - 이세계의 마왕, RU E&M 부회장",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "redlin",
+      "to": "rembrary",
+      "type": "bond",
+      "label": "the goddess he serves",
+      "short": "his goddess",
+      "evidence": "레드린 역 - 이세계의 신 (램브러리 주변 인물)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeomra",
+      "to": "gamjae",
+      "type": "work",
+      "label": "the reaper who serves her",
+      "short": "her reaper",
+      "evidence": "염라대왕 역 - 저승과 현 세계의 신 / 사감재 역 - 저승사자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gamjae",
+      "to": "rembrary",
+      "type": "work",
+      "label": "the group's road manager — a grim reaper",
+      "short": "road manager",
+      "evidence": "사감재 역 - 저승사자, 와일드애니멀 로드매니저",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hwanshin",
+      "to": "yeomra",
+      "type": "work",
+      "label": "of the underworld",
+      "short": "underworld",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sunja",
+      "to": "dal",
+      "type": "work",
+      "label": "CEO of LLL",
+      "short": "her CEO",
+      "evidence": "임선자 역 - LLL 엔터테인먼트 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungseo",
+      "to": "rembrary",
+      "type": "work",
+      "label": "Wild Animal's leader",
+      "short": "bandmate",
+      "evidence": "최정서 역 - 와일드애니멀 리더",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taein",
+      "to": "rembrary",
+      "type": "work",
+      "label": "main vocal",
+      "short": "bandmate",
+      "evidence": "황태인 역 - 와일드애니멀 메인보컬",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kasy",
+      "to": "rembrary",
+      "type": "work",
+      "label": "lead vocal",
+      "short": "bandmate",
+      "evidence": "캐시 역 - 와일드애니멀 리드보컬",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "haegyeol",
+      "to": "rembrary",
+      "type": "work",
+      "label": "the youngest, main dancer",
+      "short": "bandmate",
+      "evidence": "차해결 역 - 와일드애니멀 막내, 메인댄서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeonghwan",
+      "to": "sunja",
+      "type": "work",
+      "label": "general manager",
+      "short": "general manager",
+      "evidence": "[General manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "woosil",
+      "to": "rembrary",
+      "type": "rivalry",
+      "label": "the top singer looking down on the flops",
+      "short": "looks down",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "moorok",
+      "to": "dal",
+      "type": "work",
+      "label": "the PD she pitches",
+      "short": "PD",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungshin",
+      "to": "rembrary",
+      "type": "rivalry",
+      "label": "AX against Wild Animal",
+      "short": "rival idol",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "wooshin",
+      "to": "rembrary",
+      "type": "work",
+      "label": "the MC of the music show",
+      "short": "MC",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jinhwa",
+      "to": "sunja",
+      "type": "work",
+      "label": "the industry",
+      "short": "industry",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "raken",
+      "to": "rembrary",
+      "type": "rivalry",
+      "label": "leader of Evil Boys — the devil's group",
+      "short": "rival group",
+      "evidence": "[Leader of Evil Boys]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "typhon",
+      "to": "raken",
+      "type": "work",
+      "label": "Evil Boys",
+      "short": "member",
+      "evidence": "[Evil Boys member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "vasily",
+      "to": "raken",
+      "type": "work",
+      "label": "Evil Boys",
+      "short": "member",
+      "evidence": "[Evil Boys member]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jowun",
+      "to": "raken",
+      "type": "work",
+      "label": "his group",
+      "short": "his group",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "rembrary",
+      "dal",
+      "jowun",
+      "redlin",
+      "yeomra",
+      "gamjae",
+      "hwanshin",
+      "sunja",
+      "jungseo",
+      "taein",
+      "kasy",
+      "haegyeol",
+      "jeonghwan",
+      "woosil",
+      "moorok",
+      "jungshin",
+      "wooshin",
+      "jinhwa",
+      "raken",
+      "typhon",
+      "vasily"
+    ],
+    "blocks": {
+      "Wild Animal / LLL Entertainment": [
+        0,
+        0
+      ],
+      "The other world": [
+        2,
+        0
+      ],
+      "The industry": [
+        0,
+        2
+      ],
+      "Evil Boys": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "rembrary",
+      "dal"
+    ]
+  }
+}

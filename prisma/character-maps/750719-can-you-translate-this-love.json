@@ -1,0 +1,331 @@
+{
+  "version": 1,
+  "mdlSlug": "750719-can-you-translate-this-love",
+  "title": "Can This Love Be Translated?",
+  "native": "이 사랑 통역 되나요?",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (10 roles + guests, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "hojin",
+    "muhui"
+  ],
+  "people": [
+    {
+      "id": "hojin",
+      "name": "Ju Ho Jin",
+      "actor": "Kim Seon Ho",
+      "image": "https://i.mydramalist.com/mOE622_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jang Jae Ha",
+          "image": "https://i.mydramalist.com/pepXb_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "Former writer; polyglot interpreter whose rule is to stay invisible"
+    },
+    {
+      "id": "muhui",
+      "name": "Cha Mu Hui / Do Ra Mi",
+      "actor": "Go Youn Jung",
+      "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "An Tae Rin",
+          "image": "https://i.mydramalist.com/XdeJjJ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "The 'Horror Queen', famous overnight as Do Ra Mi in Quiet Woman"
+    },
+    {
+      "id": "hiro",
+      "name": "Kurosawa Hiro",
+      "actor": "Fukushi Sota",
+      "image": "https://i.mydramalist.com/KpLrvq_5m.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true,
+      "note": "Japanese star, the 'Prince of Romance'"
+    },
+    {
+      "id": "jiseon",
+      "name": "Sin Ji Seon",
+      "actor": "Lee E Dam",
+      "image": "https://i.mydramalist.com/4e3VLk_5m.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true
+    },
+    {
+      "id": "yongu",
+      "name": "Kim Yong U",
+      "actor": "Choi Woo Sung",
+      "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true,
+      "note": "Director of Romantic Trip"
+    },
+    {
+      "id": "cho",
+      "name": "Writer Cho",
+      "actor": "Baek Joo Hee",
+      "image": "https://i.mydramalist.com/DkB8X5_5m.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true,
+      "note": "Main writer"
+    },
+    {
+      "id": "jeongsu",
+      "name": "Kim Jeong Su",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true,
+      "note": "PD"
+    },
+    {
+      "id": "insu",
+      "name": "Park In Su",
+      "actor": "Kwak Min Gyoo",
+      "image": "https://i.mydramalist.com/2gEpdm.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true,
+      "note": "PD"
+    },
+    {
+      "id": "nanami",
+      "name": "Nanami",
+      "actor": "Hyunri",
+      "image": "https://i.mydramalist.com/VXlmlL_5m.jpg",
+      "group": "Romantic Trip (the show)",
+      "inCast": true,
+      "note": "Hiro's manager"
+    },
+    {
+      "id": "yeonghwan",
+      "name": "Kim Yeong Hwan",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "group": "Ho Jin's people",
+      "inCast": true,
+      "note": "Novelist"
+    },
+    {
+      "id": "uncle",
+      "name": "Mu Hui's uncle",
+      "actor": "Shin Moon Sung",
+      "image": "https://i.mydramalist.com/73j10L_5m.jpg",
+      "group": "Mu Hui's people",
+      "inCast": true
+    },
+    {
+      "id": "aunt",
+      "name": "Mu Hui's aunt",
+      "actor": "Woo Mi Hwa",
+      "image": "https://i.mydramalist.com/ABRm3q_5m.jpg",
+      "group": "Mu Hui's people",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "work",
+      "label": "her interpreter — softening every harsh line to save her image",
+      "short": "interpreter",
+      "evidence": "begins quietly altering her harsh, chaotic statements into softer versions that won't destroy her public image",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "romance",
+      "label": "the only person allowed to hear what she really means",
+      "short": "hears her",
+      "evidence": "He gradually realizes he isn't just her interpreter but the only person allowed to hear what she genuinely means, turning linguistic work into emotional intimacy",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hiro",
+      "to": "muhui",
+      "type": "romance",
+      "label": "her partner on the dating show Romantic Trip",
+      "short": "show partner",
+      "evidence": "A famous Japanese actor who joins Mu-hee on the dating show Romantic Trip",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yongu",
+      "to": "muhui",
+      "type": "work",
+      "label": "directs Romantic Trip",
+      "short": "director",
+      "evidence": "she is the director of Romantic Trip",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yongu",
+      "to": "hojin",
+      "type": "family",
+      "label": "engaged to his older brother, at the start",
+      "short": "brother's fiancee",
+      "evidence": "At the beginning of the series, she is engaged to Na Jin-seok (Joo Ho-jin's older brother)",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiseon",
+      "to": "hojin",
+      "type": "friend",
+      "label": "on the show's side, close to Ho Jin",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "cho",
+      "to": "yongu",
+      "type": "work",
+      "label": "the show's main writer",
+      "short": "writer",
+      "evidence": "Main writer of Romantic Trip",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongsu",
+      "to": "yongu",
+      "type": "work",
+      "label": "PD",
+      "short": "PD",
+      "evidence": "[PD]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "insu",
+      "to": "yongu",
+      "type": "work",
+      "label": "PD",
+      "short": "PD",
+      "evidence": "[PD]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nanami",
+      "to": "hiro",
+      "type": "work",
+      "label": "manager, fluent in Korean",
+      "short": "manager",
+      "evidence": "[Hiro's manager] / Hiro's manager, who is fluent in Korean",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghwan",
+      "to": "hojin",
+      "type": "work",
+      "label": "the novelist of his writing past",
+      "short": "old mentor",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "uncle",
+      "to": "muhui",
+      "type": "family",
+      "label": "uncle, who raised her",
+      "short": "uncle",
+      "evidence": "[Mu Hui's uncle]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aunt",
+      "to": "muhui",
+      "type": "family",
+      "label": "aunt",
+      "short": "aunt",
+      "evidence": "[Mu Hui's aunt]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hojin",
+      "muhui",
+      "hiro",
+      "jiseon",
+      "yongu",
+      "cho",
+      "jeongsu",
+      "insu",
+      "nanami",
+      "yeonghwan",
+      "uncle",
+      "aunt"
+    ],
+    "blocks": {
+      "Romantic Trip (the show)": [
+        0,
+        0
+      ],
+      "Mu Hui's people": [
+        2,
+        0
+      ],
+      "Ho Jin's people": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "hojin",
+      "muhui"
+    ]
+  }
+}

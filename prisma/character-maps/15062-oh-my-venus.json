@@ -1,0 +1,509 @@
+{
+  "version": 1,
+  "mdlSlug": "15062-oh-my-venus",
+  "title": "Oh My Venus",
+  "native": "오 마이 비너스",
+  "year": 2015,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "yeongho",
+    "jueun"
+  ],
+  "people": [
+    {
+      "id": "yeongho",
+      "name": "Kim Yeong Ho / John Kim",
+      "actor": "So Ji Sub",
+      "image": "https://i.mydramalist.com/nO7JzE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Hyo Je",
+          "image": "https://i.mydramalist.com/73b3mN_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Hollywood's faceless star trainer; back in Korea after a scandal"
+    },
+    {
+      "id": "jueun",
+      "name": "Kang Ju Eun",
+      "actor": "Shin Min Ah",
+      "image": "https://i.mydramalist.com/g0Nb5W_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The 'Daegu Venus' of her youth; a lawyer, out of shape, just dumped"
+    },
+    {
+      "id": "usik",
+      "name": "Im U Sik",
+      "actor": "Jung Gyu Woon",
+      "image": "https://i.mydramalist.com/Z8gqR8_5m.jpg",
+      "group": "Ju Eun's people",
+      "inCast": true,
+      "note": "Former swimming star"
+    },
+    {
+      "id": "sujin",
+      "name": "O Su Jin",
+      "actor": "Yoo In Young",
+      "image": "https://i.mydramalist.com/EyBdp_5m.jpg",
+      "group": "Ju Eun's people",
+      "inCast": true,
+      "note": "Top of her law class, youngest to pass the bar"
+    },
+    {
+      "id": "junseong",
+      "name": "Jang Jun Seong / \"Korean Snake\"",
+      "actor": "Sung Hoon",
+      "image": "https://i.mydramalist.com/nOZvrQ_5m.jpg",
+      "group": "Yeong Ho's crew",
+      "inCast": true,
+      "note": "UFC fighter"
+    },
+    {
+      "id": "jiung",
+      "name": "Kim Ji Ung",
+      "actor": "Henry Lau",
+      "image": "https://i.mydramalist.com/ABWQQg_5m.jpg",
+      "group": "Yeong Ho's crew",
+      "inCast": true,
+      "note": "Harvard graduate; genius and child"
+    },
+    {
+      "id": "honghim",
+      "name": "Lee Hong Him",
+      "actor": "Ban Hyo Jung",
+      "image": "https://i.mydramalist.com/B1PB6_5m.jpg",
+      "group": "Yeong Ho's family (Gahong)",
+      "inCast": true,
+      "note": "Chairwoman of Gahong"
+    },
+    {
+      "id": "seongcheol",
+      "name": "Kim Seong Cheol",
+      "actor": "Choi Il Hwa",
+      "image": "https://i.mydramalist.com/QlXVv_5m.jpg",
+      "group": "Yeong Ho's family (Gahong)",
+      "inCast": true,
+      "note": "Gahong's director"
+    },
+    {
+      "id": "byeonguk",
+      "name": "Min Byeong Uk",
+      "actor": "Choi Jin Ho",
+      "image": "https://i.mydramalist.com/NdL0rJ_5m.jpg",
+      "group": "Yeong Ho's family (Gahong)",
+      "inCast": true,
+      "note": "Gahong's secretary"
+    },
+    {
+      "id": "hyeran",
+      "name": "Choi Hye Ran",
+      "actor": "Jin Kyung",
+      "image": "https://i.mydramalist.com/Xe7vJm.jpg",
+      "group": "Yeong Ho's family (Gahong)",
+      "inCast": true
+    },
+    {
+      "id": "namcheol",
+      "name": "Choi Nam Cheol",
+      "actor": "Kim Jung Tae",
+      "image": "https://i.mydramalist.com/X1bDw_5m.jpg",
+      "group": "Yeong Ho's family (Gahong)",
+      "inCast": true
+    },
+    {
+      "id": "yeongjun",
+      "name": "Kim Yeong Jun",
+      "actor": "Lee  Seung Ho",
+      "image": "https://i.mydramalist.com/yWYx6m.jpg",
+      "group": "Yeong Ho's family (Gahong)",
+      "inCast": true
+    },
+    {
+      "id": "hyeonu",
+      "name": "Lee Hyeon U",
+      "actor": "Jo Eun Ji",
+      "image": "https://i.mydramalist.com/xgz33m.jpg",
+      "group": "Ju Eun's people",
+      "inCast": true
+    },
+    {
+      "id": "minjun",
+      "name": "Ko Min Jun",
+      "actor": "Kwon Soon Joon",
+      "image": "https://i.mydramalist.com/Xwj6Om.jpg",
+      "group": "Ju Eun's people",
+      "inCast": true
+    },
+    {
+      "id": "ko",
+      "name": "Producer Ko",
+      "actor": "Song Yoo Ha",
+      "image": "https://i.mydramalist.com/w2wygm.jpg",
+      "group": "Ju Eun's people",
+      "inCast": true
+    },
+    {
+      "id": "soonja",
+      "name": "Je Soon Ja",
+      "actor": "Nam Gi Ae",
+      "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
+      "group": "Yeong Ho's crew",
+      "inCast": true
+    },
+    {
+      "id": "ijin",
+      "name": "Jang I Jin",
+      "actor": "Jung Hye Sung",
+      "image": "https://i.mydramalist.com/E5Y8EQ_5m.jpg",
+      "group": "Yeong Ho's crew",
+      "inCast": true,
+      "note": "Celebrity"
+    },
+    {
+      "id": "hyeonjeong",
+      "name": "Cho Hyeon Jeong",
+      "actor": "Hong Yoon Hwa",
+      "image": "https://i.mydramalist.com/E578WW_5m.jpg",
+      "group": "Ju Eun's people",
+      "inCast": true,
+      "note": "Her assistant at the firm"
+    },
+    {
+      "id": "okbun",
+      "name": "Kwon Ok Bun",
+      "actor": "Kwon Ki Sun",
+      "image": "https://i.mydramalist.com/Eprezm.jpg",
+      "group": "Ju Eun's family",
+      "inCast": true
+    },
+    {
+      "id": "jaehyeok",
+      "name": "Kang Jae Hyeok",
+      "actor": "Ahn Ji Hoon",
+      "image": "https://i.mydramalist.com/WbjWPm.jpg",
+      "group": "Ju Eun's family",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yeongho",
+      "to": "jueun",
+      "type": "romance",
+      "label": "her trainer — they heal each other and fall in love",
+      "short": "trainer, lover",
+      "evidence": "When Yeong Ho becomes her trainer, they grow close, help each other heal, and fall in love",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "usik",
+      "to": "jueun",
+      "type": "romance",
+      "label": "the longtime boyfriend who dumps her",
+      "short": "ex",
+      "evidence": "Kang Ju Eun [...] is dumped by her longtime boyfriend / 임우식",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "usik",
+      "to": "sujin",
+      "type": "romance",
+      "label": "leaves Ju Eun for her",
+      "short": "new lover",
+      "evidence": "정겨운: 임우식 / 유인영: 오수진",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sujin",
+      "to": "jueun",
+      "type": "rivalry",
+      "label": "colleague and rival",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "junseong",
+      "to": "yeongho",
+      "type": "work",
+      "label": "the UFC fighter he trains",
+      "short": "trains him",
+      "evidence": "[UFC fighter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiung",
+      "to": "junseong",
+      "type": "work",
+      "label": "manager",
+      "short": "manager",
+      "evidence": "[Jun Seong's manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiung",
+      "to": "yeongho",
+      "type": "friend",
+      "label": "his crew",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "honghim",
+      "to": "yeongho",
+      "type": "family",
+      "label": "grandmother; Gahong's chairwoman",
+      "short": "grandmother",
+      "evidence": "[Yeong Ho's grandmother] / 가홍 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongcheol",
+      "to": "yeongho",
+      "type": "family",
+      "label": "father; Gahong's director",
+      "short": "father",
+      "evidence": "[Yeong Ho's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "byeonguk",
+      "to": "honghim",
+      "type": "work",
+      "label": "Gahong's secretary",
+      "short": "secretary",
+      "evidence": "[Gahong's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeran",
+      "to": "yeongho",
+      "type": "family",
+      "label": "stepmother",
+      "short": "stepmother",
+      "evidence": "[Yeong Ho's step-mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "namcheol",
+      "to": "hyeran",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[Hye Ran's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongjun",
+      "to": "hyeran",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "[Hye Ran's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongjun",
+      "to": "yeongho",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "영호의 배다른 동생 김영준",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonu",
+      "to": "jueun",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": "[Ju Eun's best friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonu",
+      "to": "minjun",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "[Hyeon U's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ko",
+      "to": "hyeonu",
+      "type": "romance",
+      "label": "ex-husband",
+      "short": "ex-husband",
+      "evidence": "[Hyeon U's ex-husband]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "soonja",
+      "to": "junseong",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Jun Seong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijin",
+      "to": "yeongho",
+      "type": "work",
+      "label": "the celebrity of the scandal",
+      "short": "the scandal",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "jueun",
+      "type": "work",
+      "label": "her assistant",
+      "short": "assistant",
+      "evidence": "[Ju Eun's assistant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "okbun",
+      "to": "jueun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ju Eun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaehyeok",
+      "to": "jueun",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[Ju Eun's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeongho",
+      "jueun",
+      "usik",
+      "sujin",
+      "junseong",
+      "jiung",
+      "honghim",
+      "seongcheol",
+      "byeonguk",
+      "hyeran",
+      "namcheol",
+      "yeongjun",
+      "hyeonu",
+      "minjun",
+      "ko",
+      "soonja",
+      "ijin",
+      "hyeonjeong",
+      "okbun",
+      "jaehyeok"
+    ],
+    "blocks": {
+      "Yeong Ho's family (Gahong)": [
+        0,
+        0
+      ],
+      "Yeong Ho's crew": [
+        0,
+        2
+      ],
+      "Ju Eun's family": [
+        2,
+        0
+      ],
+      "Ju Eun's people": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "yeongho",
+      "jueun"
+    ]
+  }
+}

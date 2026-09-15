@@ -1,0 +1,390 @@
+{
+  "version": 1,
+  "mdlSlug": "18774-something-about-1-percent",
+  "title": "Something about 1 Percent",
+  "native": "1%의 어떤 것",
+  "year": 2016,
+  "country": "KR",
+  "sources": [
+    "MDL cast (18 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia (no character section; ties inferred)"
+  ],
+  "main": [
+    "jaein",
+    "dahyeon"
+  ],
+  "people": [
+    {
+      "id": "jaein",
+      "name": "Lee Jae In",
+      "actor": "Ha Seok Jin",
+      "image": "https://i.mydramalist.com/oQznOk_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Rich, smart, handsome — and an arrogant jerk; must get engaged to inherit"
+    },
+    {
+      "id": "dahyeon",
+      "name": "Kim Da Hyeon",
+      "actor": "Jeon So Min",
+      "image": "https://i.mydramalist.com/zB0woP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Schoolteacher with the sweetest of natures"
+    },
+    {
+      "id": "hyeonjin",
+      "name": "Jung Hyeon Jin",
+      "actor": "Im Do Yoon",
+      "image": "https://i.mydramalist.com/61xyP_5m.jpg",
+      "group": "Around Jae In",
+      "inCast": true
+    },
+    {
+      "id": "sujeong",
+      "name": "Lee Su Jeong",
+      "actor": "Lee Hae In",
+      "image": "https://i.mydramalist.com/Z8RrDL_5m.jpg",
+      "group": "Jae In's family",
+      "inCast": true
+    },
+    {
+      "id": "hyeongjun",
+      "name": "Park Hyeong Jun",
+      "actor": "Kim Sun Hyuk",
+      "image": "https://i.mydramalist.com/jAB78m.jpg",
+      "group": "Around Jae In",
+      "inCast": true
+    },
+    {
+      "id": "juhui",
+      "name": "Han Ju Hui",
+      "actor": "Seo Eun Chae",
+      "image": "https://i.mydramalist.com/ObYrxm.jpg",
+      "group": "Da Hyeon's people",
+      "inCast": true
+    },
+    {
+      "id": "taeha",
+      "name": "Min Tae Ha",
+      "actor": "Kim Hyung Min",
+      "image": "https://i.mydramalist.com/b3pQnE_5m.jpg",
+      "group": "Jae In's family",
+      "inCast": true
+    },
+    {
+      "id": "dongseok",
+      "name": "Kang Dong Seok",
+      "actor": "Jo Jae Ryong",
+      "image": "https://i.mydramalist.com/wNry1_5m.jpg",
+      "group": "Around Jae In",
+      "inCast": true
+    },
+    {
+      "id": "gyucheol",
+      "name": "Lee Gyu Cheol",
+      "actor": "Joo Jin Mo",
+      "image": "https://i.mydramalist.com/ZOL8J_5m.jpg",
+      "group": "Jae In's family",
+      "inCast": true
+    },
+    {
+      "id": "sehui",
+      "name": "Kang Se Hui",
+      "actor": "Lee Kan Hee",
+      "image": "https://i.mydramalist.com/WQ81Dm.jpg",
+      "group": "Jae In's family",
+      "inCast": true
+    },
+    {
+      "id": "jisu",
+      "name": "Ji Su",
+      "actor": "Baek Seung Heon",
+      "image": "https://i.mydramalist.com/6YxZ0_5m.jpg",
+      "group": "Da Hyeon's people",
+      "inCast": true
+    },
+    {
+      "id": "yugyeong",
+      "name": "Han Yu Gyeong",
+      "actor": "Park Jin Joo",
+      "image": "https://i.mydramalist.com/5vV3xY_5m.jpg",
+      "group": "Da Hyeon's people",
+      "inCast": true
+    },
+    {
+      "id": "hyeokju",
+      "name": "Min Hyeok Ju",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "group": "Jae In's family",
+      "inCast": true
+    },
+    {
+      "id": "jinman",
+      "name": "Kim Jin Man",
+      "actor": "Lee Sang Hoon",
+      "image": "https://i.mydramalist.com/Beqy1_5m.jpg",
+      "group": "Da Hyeon's people",
+      "inCast": true
+    },
+    {
+      "id": "seonu",
+      "name": "Jung Seon U",
+      "actor": "Choi Sung Jae",
+      "image": "https://i.mydramalist.com/45j5dm.jpg",
+      "group": "Da Hyeon's people",
+      "inCast": true
+    },
+    {
+      "id": "suyeong",
+      "name": "Lee Su Yeong",
+      "actor": "Kim Shi Young",
+      "image": "https://i.mydramalist.com/ElAjQm.jpg",
+      "group": "Jae In's family",
+      "inCast": true
+    },
+    {
+      "id": "mijeong",
+      "name": "Jung Mi Jeong",
+      "actor": "Lee Young Sook",
+      "image": "https://i.mydramalist.com/ZBnRk_5m.jpg",
+      "group": "Da Hyeon's people",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "jaein",
+      "to": "dahyeon",
+      "type": "romance",
+      "label": "an engagement contract, on the grandfather's orders, to inherit",
+      "short": "contract engagement",
+      "evidence": "In order to inherit everything his grandfather was going to leave for him, Jae In would have to enter into an engagement contract with Kim Da Hyun",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonjin",
+      "to": "jaein",
+      "type": "romance",
+      "label": "the woman from his world who wants him",
+      "short": "wants him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taeha",
+      "to": "jaein",
+      "type": "rivalry",
+      "label": "cousin, rival for the inheritance",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dongseok",
+      "to": "jaein",
+      "type": "work",
+      "label": "his secretary",
+      "short": "secretary",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeongjun",
+      "to": "jaein",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "gyucheol",
+      "to": "jaein",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sehui",
+      "to": "jaein",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sujeong",
+      "to": "jaein",
+      "type": "family",
+      "label": "cousin",
+      "short": "cousin",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeokju",
+      "to": "taeha",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "suyeong",
+      "to": "jaein",
+      "type": "family",
+      "label": "the family",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "juhui",
+      "to": "dahyeon",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yugyeong",
+      "to": "dahyeon",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jisu",
+      "to": "dahyeon",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jinman",
+      "to": "dahyeon",
+      "type": "work",
+      "label": "at the school",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seonu",
+      "to": "dahyeon",
+      "type": "romance",
+      "label": "the man who courts the teacher",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "mijeong",
+      "to": "dahyeon",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Da Hyeon's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jaein",
+      "dahyeon",
+      "hyeonjin",
+      "sujeong",
+      "hyeongjun",
+      "juhui",
+      "taeha",
+      "dongseok",
+      "gyucheol",
+      "sehui",
+      "jisu",
+      "yugyeong",
+      "hyeokju",
+      "jinman",
+      "seonu",
+      "suyeong",
+      "mijeong"
+    ],
+    "blocks": {
+      "Jae In's family": [
+        0,
+        0
+      ],
+      "Around Jae In": [
+        0,
+        2
+      ],
+      "Da Hyeon's people": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "jaein",
+      "dahyeon"
+    ]
+  }
+}

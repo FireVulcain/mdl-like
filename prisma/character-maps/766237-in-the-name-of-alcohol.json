@@ -1,0 +1,446 @@
+{
+  "version": 1,
+  "mdlSlug": "766237-in-the-name-of-alcohol",
+  "title": "Brewing Love",
+  "native": "취하는 로맨스",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (20 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names mostly)",
+    "en.wikipedia Cast"
+  ],
+  "main": [
+    "yongju",
+    "minju"
+  ],
+  "people": [
+    {
+      "id": "yongju",
+      "name": "Chae Yong Ju",
+      "actor": "Kim Se Jeong",
+      "image": "https://i.mydramalist.com/vrmWX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Ex special forces; the liquor company's legendary saleswoman, on a mission to save her branch"
+    },
+    {
+      "id": "minju",
+      "name": "Yun Min Ju",
+      "actor": "Lee Jong Won",
+      "image": "https://i.mydramalist.com/XdzzKw_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Sensitive brewmaster and CEO, living in the countryside"
+    },
+    {
+      "id": "areum",
+      "name": "Bang A Reum",
+      "actor": "Shin Do Hyun",
+      "image": "https://i.mydramalist.com/qxx6z_5m.jpg",
+      "group": "Hyeonju (the rival)",
+      "inCast": true,
+      "note": "Planning manager at Hyeonju; power-J"
+    },
+    {
+      "id": "chanhwi",
+      "name": "O Chan Hwi",
+      "actor": "Baek Sung Chul",
+      "image": "https://i.mydramalist.com/4BOZQ_5m.jpg",
+      "group": "Yong Ju's side (Baekmok Liquor)",
+      "inCast": true,
+      "note": "Free spirit in a toast truck"
+    },
+    {
+      "id": "sukja",
+      "name": "Ko Suk Ja",
+      "actor": "Baek Hyeon Ju",
+      "image": "https://i.mydramalist.com/73583b_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "yeongja",
+      "name": "Sim Yeong Ja",
+      "actor": "Park Jee A",
+      "image": "https://i.mydramalist.com/3oZZ4V_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "ijang",
+      "name": "Lee Jang",
+      "actor": "Jang Hyuk Jin",
+      "image": "https://i.mydramalist.com/4j7er_5m.jpg",
+      "group": "The village",
+      "inCast": true,
+      "note": "Village head"
+    },
+    {
+      "id": "kim",
+      "name": "Kim Sun Gwan / Mr. Kim",
+      "actor": "Jang Won Young",
+      "image": "https://i.mydramalist.com/60yB0d_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "zhuyen",
+      "name": "Zhu Yen",
+      "actor": "Seo I Yeon",
+      "image": "https://i.mydramalist.com/YYq0Bd_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "kangbeom",
+      "name": "Kang Beom",
+      "actor": "Ryu Won U",
+      "image": "https://i.mydramalist.com/XdBZKq_5m.jpg",
+      "group": "Min Ju's brewery",
+      "inCast": true
+    },
+    {
+      "id": "rao",
+      "name": "Sim Ra O",
+      "actor": "Ha Min Hyeok",
+      "image": "https://i.mydramalist.com/81kW6d_5m.jpg",
+      "group": "Min Ju's brewery",
+      "inCast": true
+    },
+    {
+      "id": "janggyun",
+      "name": "Yeom Jang Gyun",
+      "actor": "Kim Joong Hee",
+      "image": "https://i.mydramalist.com/YYzlDo_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "taejo",
+      "name": "Na Tae Jo",
+      "actor": "Kim Won Shik",
+      "image": "https://i.mydramalist.com/rmpZpm.jpg",
+      "group": "Yong Ju's side (Baekmok Liquor)",
+      "inCast": true
+    },
+    {
+      "id": "changsuk",
+      "name": "Yun Chang Suk",
+      "actor": "Lee Ki Young",
+      "image": "https://i.mydramalist.com/Qlpw2_5m.jpg",
+      "group": "Min Ju's brewery",
+      "inCast": true
+    },
+    {
+      "id": "nari",
+      "name": "Lee Na Ri",
+      "actor": "Choi Bo Kwang",
+      "image": "https://i.mydramalist.com/JKqYXm.jpg",
+      "group": "Min Ju's brewery",
+      "inCast": true
+    },
+    {
+      "id": "pilnam",
+      "name": "Jo Pil Nam",
+      "actor": "Jeon Guk Hyang",
+      "image": "https://i.mydramalist.com/wg1g8_5m.jpg",
+      "group": "The village",
+      "inCast": true
+    },
+    {
+      "id": "minho",
+      "name": "Yun Min Ho",
+      "actor": "Choi Ja Woon",
+      "image": "https://i.mydramalist.com/QJX2jv_5m.jpg",
+      "group": "Min Ju's brewery",
+      "inCast": true
+    },
+    {
+      "id": "yongcheol",
+      "name": "Nam Yong Cheol",
+      "actor": "Yang Jae Young",
+      "image": "https://i.mydramalist.com/2k2PR_5m.jpg",
+      "group": "Yong Ju's side (Baekmok Liquor)",
+      "inCast": true,
+      "note": "Branch manager"
+    },
+    {
+      "id": "park",
+      "name": "Mr. Park",
+      "actor": "Lee Seung Won",
+      "image": "https://i.mydramalist.com/BZDNz_5m.jpg",
+      "group": "Yong Ju's side (Baekmok Liquor)",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yongju",
+      "to": "minju",
+      "type": "work",
+      "label": "must sell his new beer to save her branch",
+      "short": "sells his beer",
+      "evidence": "she takes on a mission to sell a new beer created by Yun Min Ju, a sensitive brewmaster and CEO",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minju",
+      "to": "yongju",
+      "type": "romance",
+      "label": "his quiet life changes when she walks in",
+      "short": "changes his life",
+      "evidence": "Min Ju, who lives in a quiet rural area to focus on brewing, finds his life changing when Yong Ju enters it",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "areum",
+      "to": "yongju",
+      "type": "rivalry",
+      "label": "competes with her for Min Ju's brewery",
+      "short": "rival",
+      "evidence": "방아름 역 - 윤민주의 브루어리를 두고 채용주와 경쟁하는 파워 J 현주의 기획팀 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chanhwi",
+      "to": "yongju",
+      "type": "friend",
+      "label": "best friend, in his toast truck",
+      "short": "best friend",
+      "evidence": "오찬휘 역 - 채용주의 절친이자 토스트 트럭을 몰고 전국을 떠도는 자유로운 영혼",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chanhwi",
+      "to": "areum",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "changsuk",
+      "to": "minju",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "Lee Ki-young as Yoon Chang-sook, Min-ju's father",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minho",
+      "to": "minju",
+      "type": "family",
+      "label": "the boy of the family",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kangbeom",
+      "to": "minju",
+      "type": "work",
+      "label": "at the brewery",
+      "short": "brewery",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "rao",
+      "to": "minju",
+      "type": "work",
+      "label": "at the brewery",
+      "short": "brewery",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "nari",
+      "to": "minju",
+      "type": "work",
+      "label": "at the brewery",
+      "short": "brewery",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yongcheol",
+      "to": "yongju",
+      "type": "work",
+      "label": "her branch manager",
+      "short": "branch manager",
+      "evidence": "양기원 : 지점장 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taejo",
+      "to": "yongju",
+      "type": "work",
+      "label": "her team",
+      "short": "team",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "park",
+      "to": "yongju",
+      "type": "work",
+      "label": "her team",
+      "short": "team",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ijang",
+      "to": "minju",
+      "type": "work",
+      "label": "the village head",
+      "short": "village head",
+      "evidence": "장혁진 : 이이장 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukja",
+      "to": "yeongja",
+      "type": "friend",
+      "label": "the village women",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "pilnam",
+      "to": "sukja",
+      "type": "friend",
+      "label": "the village women",
+      "short": "neighbour",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "kim",
+      "to": "ijang",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "zhuyen",
+      "to": "kim",
+      "type": "romance",
+      "label": "the village couple",
+      "short": "couple",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "janggyun",
+      "to": "ijang",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yongju",
+      "minju",
+      "areum",
+      "chanhwi",
+      "kangbeom",
+      "rao",
+      "taejo",
+      "changsuk",
+      "nari",
+      "minho",
+      "yongcheol",
+      "park"
+    ],
+    "blocks": {
+      "Yong Ju's side (Baekmok Liquor)": [
+        0,
+        0
+      ],
+      "Min Ju's brewery": [
+        2,
+        0
+      ],
+      "The village": [
+        1,
+        2
+      ],
+      "Hyeonju (the rival)": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "yongju",
+      "minju"
+    ]
+  }
+}

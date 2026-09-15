@@ -1,0 +1,563 @@
+{
+  "version": 1,
+  "mdlSlug": "778786-spring-fever",
+  "title": "Spring Fever",
+  "native": "스프링 피버",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "jaegyu",
+    "bom"
+  ],
+  "people": [
+    {
+      "id": "jaegyu",
+      "name": "Seon Jae Gyu",
+      "actor": "Ahn Bo Hyun",
+      "image": "https://i.mydramalist.com/zB1vld_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "36, CEO of JK Power Energy; the village's loud-mouthed heart"
+    },
+    {
+      "id": "bom",
+      "name": "Yun Bom",
+      "actor": "Lee Joo Bin",
+      "image": "https://i.mydramalist.com/d0vP10_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Han Joo Hyun",
+          "image": "https://i.mydramalist.com/QZpmQ_5m.jpg",
+          "era": "child"
+        }
+      ],
+      "note": "32, exchange teacher who fled Seoul for Sinsu"
+    },
+    {
+      "id": "ijun",
+      "name": "Choi I Jun",
+      "actor": "Cha Seo Won",
+      "image": "https://i.mydramalist.com/Xv7Znm.jpg",
+      "group": "The Choi family",
+      "inCast": true,
+      "note": "36, lawyer"
+    },
+    {
+      "id": "hangyeol",
+      "name": "Seon Han Gyeol",
+      "actor": "Cho Jun Young",
+      "image": "https://i.mydramalist.com/O8mzE3_5m.jpg",
+      "group": "Jae Gyu's family",
+      "inCast": true,
+      "note": "18, Sinsu High"
+    },
+    {
+      "id": "sejin",
+      "name": "Choi Se Jin",
+      "actor": "Lee Jae In",
+      "image": "https://i.mydramalist.com/1wd6r6_5m.jpg",
+      "group": "The Choi family",
+      "inCast": true,
+      "note": "18, transfer student"
+    },
+    {
+      "id": "huiyeon",
+      "name": "Seon Hui Yeon",
+      "actor": "Son Yeo Eun",
+      "image": "https://i.mydramalist.com/RBPLbP_5m.jpg",
+      "group": "Jae Gyu's family",
+      "inCast": true
+    },
+    {
+      "id": "nanhui",
+      "name": "Jung Nan Hui",
+      "actor": "Na Young Hee",
+      "image": "https://i.mydramalist.com/QPZ02_5m.jpg",
+      "group": "Yun Bom's family",
+      "inCast": true,
+      "note": "58, famous actress"
+    },
+    {
+      "id": "jeonggi",
+      "name": "Yun Jeong Gi",
+      "actor": "Jo Seung Yun",
+      "image": "https://i.mydramalist.com/xNZg0_5m.jpg",
+      "group": "Yun Bom's family",
+      "inCast": true,
+      "note": "60, celebrity psychology professor"
+    },
+    {
+      "id": "changu",
+      "name": "Choi Chan Gu",
+      "actor": "Seo Sang Won",
+      "image": "https://i.mydramalist.com/Z1Epkm.jpg",
+      "group": "The Choi family",
+      "inCast": true,
+      "note": "Governor"
+    },
+    {
+      "id": "jinhui",
+      "name": "Lee Jin Hui",
+      "actor": "Kim Sun Hye",
+      "image": "https://i.mydramalist.com/r1wXN_5m.jpg",
+      "group": "The Choi family",
+      "inCast": true
+    },
+    {
+      "id": "seongtae",
+      "name": "O Seong Tae",
+      "actor": "Im Su Hyung",
+      "image": "https://i.mydramalist.com/4lxjd_5m.jpg",
+      "group": "The Choi family",
+      "inCast": true,
+      "note": "I Jun's office manager"
+    },
+    {
+      "id": "hyesuk",
+      "name": "Seo Hye Suk",
+      "actor": "Jin Kyung",
+      "image": "https://i.mydramalist.com/Xe7vJm.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "50, Korean teacher, homeroom"
+    },
+    {
+      "id": "jinhyeok",
+      "name": "Jung Jin Hyeok",
+      "actor": "Bae Jung Nam",
+      "image": "https://i.mydramalist.com/eYlAPe_5m.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "48, PE teacher"
+    },
+    {
+      "id": "jeongpyo",
+      "name": "Hong Jeong Pyo",
+      "actor": "Oh Man Seok",
+      "image": "https://i.mydramalist.com/BE5AV_5m.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "52, dean of academic affairs; the town's self-styled card shark"
+    },
+    {
+      "id": "jeonghwan",
+      "name": "Wi Jeong Hwan",
+      "actor": "Jung Yeong Gi",
+      "image": "https://i.mydramalist.com/vzYQg_5m.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "41, history teacher"
+    },
+    {
+      "id": "gwansu",
+      "name": "Seok Gwan Su",
+      "actor": "Kim Byung Chun",
+      "image": "https://i.mydramalist.com/ZqYOq_5m.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "60, principal"
+    },
+    {
+      "id": "daehan",
+      "name": "Kim Dae Han",
+      "actor": "Ahn Sang Jin",
+      "image": "https://i.mydramalist.com/5vk2JZ_5m.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "18, 'Korea's eldest son'; fraternal twin of Min Guk"
+    },
+    {
+      "id": "dongpyo",
+      "name": "O Dong Pyo",
+      "actor": "Lee Jae Mu",
+      "image": "https://i.mydramalist.com/NdJyeY_5m.jpg",
+      "group": "Sinsu High",
+      "inCast": true,
+      "note": "17, first year"
+    },
+    {
+      "id": "philip",
+      "name": "Koo Philip",
+      "actor": "Bin Chan Uk",
+      "image": "https://i.mydramalist.com/XJz4p_5m.jpg",
+      "group": "Jae Gyu's family",
+      "inCast": true,
+      "note": "JK Energy employee"
+    },
+    {
+      "id": "jaeyeong",
+      "name": "Park Jae Yeong",
+      "actor": "Son Deok Ki",
+      "image": "https://i.mydramalist.com/L22Rxm.jpg",
+      "group": "Sinsu High",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "jaegyu",
+      "to": "bom",
+      "type": "romance",
+      "label": "the cold newcomer opens her heart after meeting him",
+      "short": "opens her heart",
+      "evidence": "Initially detached and cold toward everything, she gradually opens her heart after meeting Seon Jae Gyu",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaegyu",
+      "to": "hangyeol",
+      "type": "family",
+      "label": "uncle",
+      "short": "uncle",
+      "evidence": "[Jae Gyu's nephew] / the uncle of Seon Han Gyeol, a student at Sinsu High",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiyeon",
+      "to": "jaegyu",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "[Jae Gyu's older sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiyeon",
+      "to": "hangyeol",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "bom",
+      "to": "hangyeol",
+      "type": "work",
+      "label": "his teacher at Sinsu High",
+      "short": "teacher",
+      "evidence": "moves to the small town of Sinsu to begin anew as an exchange teacher / a student at Sinsu High",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hangyeol",
+      "to": "sejin",
+      "type": "romance",
+      "label": "'is what I feel for you goodwill, or malice?' — the transfer student he keeps blocking",
+      "short": "the two teens",
+      "evidence": "선한결 - '너에 대한 내 마음이 선의냐고, 악의냐고?' / 최세진 - '넌 왜 맨날 내 앞길을 막고 있는데?'",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ijun",
+      "to": "bom",
+      "type": "romance",
+      "label": "the city lawyer, the other man",
+      "short": "the other man",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ijun",
+      "to": "jaegyu",
+      "type": "rivalry",
+      "label": "city against country",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "changu",
+      "to": "ijun",
+      "type": "family",
+      "label": "father, the governor",
+      "short": "father",
+      "evidence": "최창우 역 - 이준, 세진의 아버지. 도지사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changu",
+      "to": "sejin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Se Jin's father] / 이준, 세진의 아버지",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinhui",
+      "to": "ijun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "이진희 역 - 이준, 세진의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinhui",
+      "to": "sejin",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Se Jin's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ijun",
+      "to": "sejin",
+      "type": "family",
+      "label": "older brother",
+      "short": "brother",
+      "evidence": "이준, 세진의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongtae",
+      "to": "ijun",
+      "type": "work",
+      "label": "office manager",
+      "short": "office manager",
+      "evidence": "오성태 역 - 이준의 사무장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nanhui",
+      "to": "bom",
+      "type": "family",
+      "label": "mother, a famous actress",
+      "short": "mother",
+      "evidence": "[Yun Bom's mother] / 유명배우",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonggi",
+      "to": "bom",
+      "type": "family",
+      "label": "father, 'Korea's Carl Jung'",
+      "short": "father",
+      "evidence": "[Yun Bom's father] / 한국의 칼 융이라 불리는 유명 심리학과 교수",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonggi",
+      "to": "nanhui",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "정기의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyesuk",
+      "to": "bom",
+      "type": "work",
+      "label": "fellow teacher, homeroom",
+      "short": "colleague",
+      "evidence": "[Homeroom teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jinhyeok",
+      "to": "bom",
+      "type": "work",
+      "label": "PE teacher",
+      "short": "colleague",
+      "evidence": "[PE teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongpyo",
+      "to": "bom",
+      "type": "work",
+      "label": "dean of academic affairs",
+      "short": "dean",
+      "evidence": "[Dean of Academic Affairs]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghwan",
+      "to": "bom",
+      "type": "work",
+      "label": "history teacher",
+      "short": "colleague",
+      "evidence": "[Korean history teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gwansu",
+      "to": "jeongpyo",
+      "type": "work",
+      "label": "principal",
+      "short": "principal",
+      "evidence": "[Principal of Sinsu high school]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daehan",
+      "to": "hangyeol",
+      "type": "friend",
+      "label": "classmate, second year",
+      "short": "classmate",
+      "evidence": "[Second-year student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongpyo",
+      "to": "hangyeol",
+      "type": "friend",
+      "label": "first-year junior",
+      "short": "junior",
+      "evidence": "[First-year student]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "philip",
+      "to": "jaegyu",
+      "type": "work",
+      "label": "JK Energy employee",
+      "short": "employee",
+      "evidence": "구필립 역 - JQ에너지 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaeyeong",
+      "to": "jaegyu",
+      "type": "friend",
+      "label": "the village",
+      "short": "villager",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "jaegyu",
+      "bom",
+      "ijun",
+      "hangyeol",
+      "sejin",
+      "huiyeon",
+      "nanhui",
+      "jeonggi",
+      "changu",
+      "jinhui",
+      "seongtae",
+      "hyesuk",
+      "jinhyeok",
+      "jeongpyo",
+      "jeonghwan",
+      "gwansu",
+      "daehan",
+      "dongpyo",
+      "philip",
+      "jaeyeong"
+    ],
+    "blocks": {
+      "Jae Gyu's family": [
+        0,
+        0
+      ],
+      "Yun Bom's family": [
+        2,
+        0
+      ],
+      "The Choi family": [
+        2,
+        2
+      ],
+      "Sinsu High": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "jaegyu",
+      "bom"
+    ]
+  }
+}

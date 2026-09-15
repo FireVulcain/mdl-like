@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "mdlSlug": "49231-move-to-heaven",
+  "title": "Move to Heaven",
+  "native": "무브 투 헤븐: 나는 유품정리사입니다",
+  "year": 2021,
+  "country": "KR",
+  "sources": [
+    "MDL cast (9 roles + guests, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "sanggu",
+    "geuru"
+  ],
+  "people": [
+    {
+      "id": "sanggu",
+      "name": "Cho Sang Gu",
+      "actor": "Lee Je Hoon",
+      "image": "https://i.mydramalist.com/nOQKbL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Ex-convict, underground fighter; the uncle made guardian for three months"
+    },
+    {
+      "id": "geuru",
+      "name": "Han Geu Ru",
+      "actor": "Tang Jun Sang",
+      "image": "https://i.mydramalist.com/AB2jwg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "20, autistic; trauma cleaner at his late father's Move to Heaven"
+    },
+    {
+      "id": "namu",
+      "name": "Yun Na Mu",
+      "actor": "Hong Seung Hee",
+      "image": "https://i.mydramalist.com/4Y7Ok_5m.jpg",
+      "group": "Na Mu's family",
+      "inCast": true,
+      "note": "Next door"
+    },
+    {
+      "id": "yeongsu",
+      "name": "Yun Yeong Su",
+      "actor": "Jung Suk Yong",
+      "image": "https://i.mydramalist.com/j2rBOm.jpg",
+      "group": "Na Mu's family",
+      "inCast": true
+    },
+    {
+      "id": "miran",
+      "name": "O Mi Ran",
+      "actor": "Jung Young Joo",
+      "image": "https://i.mydramalist.com/73dRzD_5m.jpg",
+      "group": "Na Mu's family",
+      "inCast": true
+    },
+    {
+      "id": "jutaek",
+      "name": "Park Ju Taek",
+      "actor": "Lee Moon Sik",
+      "image": "https://i.mydramalist.com/jKm7d_5m.jpg",
+      "group": "Around Move to Heaven",
+      "inCast": true,
+      "note": "Waste-truck driver"
+    },
+    {
+      "id": "hyeonchang",
+      "name": "O Hyeon Chang",
+      "actor": "Im Won Hee",
+      "image": "https://i.mydramalist.com/3olvrd_5m.jpg",
+      "group": "Around Move to Heaven",
+      "inCast": true,
+      "note": "Lawyer of the will"
+    },
+    {
+      "id": "madam",
+      "name": "Madam Jeong",
+      "actor": "Jung Ae Yeon",
+      "image": "https://i.mydramalist.com/0RBy6_5m.jpg",
+      "group": "Sang Gu's world",
+      "inCast": true,
+      "note": "Runs the underground fights"
+    },
+    {
+      "id": "junyeong",
+      "name": "Park Jun Yeong",
+      "actor": "Yang Hong Seok",
+      "image": "https://i.mydramalist.com/5vYbEZ_5m.jpg",
+      "group": "Around Move to Heaven",
+      "inCast": true,
+      "note": "Police officer"
+    }
+  ],
+  "links": [
+    {
+      "from": "sanggu",
+      "to": "geuru",
+      "type": "family",
+      "label": "uncle — his guardian for three months by the will, eyeing the inheritance",
+      "short": "uncle, guardian",
+      "evidence": "Geu Ru's guardianship passes to his uncle, ex-convict Cho Sang Gu [...] Sang Gu must care for and work with Geu Ru in 'Move To Heaven' for three months",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanggu",
+      "to": "geuru",
+      "type": "work",
+      "label": "works Move to Heaven with him",
+      "short": "trauma cleaners",
+      "evidence": "Sang Gu must care for and work with Geu Ru in 'Move To Heaven'",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "namu",
+      "to": "geuru",
+      "type": "friend",
+      "label": "his friend from next door; fiercely protective",
+      "short": "friend",
+      "evidence": "윤나무 역 - 한그루의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "namu",
+      "to": "sanggu",
+      "type": "rivalry",
+      "label": "doesn't trust the uncle",
+      "short": "distrusts him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongsu",
+      "to": "namu",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Na Mu's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "miran",
+      "to": "namu",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Na Mu's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jutaek",
+      "to": "geuru",
+      "type": "work",
+      "label": "drives the waste truck for them",
+      "short": "the truck",
+      "evidence": "박주택 역 - 폐기물 처리 트럭운전사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonchang",
+      "to": "sanggu",
+      "type": "work",
+      "label": "the lawyer who holds the will's conditions",
+      "short": "the will",
+      "evidence": "오현창 역 - 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "madam",
+      "to": "sanggu",
+      "type": "work",
+      "label": "the underground fights he owes",
+      "short": "his debts",
+      "evidence": "정애연 : 마담 역 / a martial arts fighter in underground matches",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "junyeong",
+      "to": "geuru",
+      "type": "work",
+      "label": "the officer who calls them to scenes",
+      "short": "calls them",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sanggu",
+      "geuru",
+      "namu",
+      "yeongsu",
+      "miran",
+      "jutaek",
+      "hyeonchang",
+      "madam",
+      "junyeong"
+    ],
+    "blocks": {
+      "Na Mu's family": [
+        0,
+        0
+      ],
+      "Sang Gu's world": [
+        2,
+        0
+      ],
+      "Around Move to Heaven": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sanggu",
+      "geuru"
+    ]
+  }
+}

@@ -1,0 +1,523 @@
+{
+  "version": 1,
+  "mdlSlug": "788726-it-s-sold-out-again-today",
+  "title": "Sold Out on You",
+  "native": "오늘도 매진했습니다",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (22 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "matthew",
+    "yejin"
+  ],
+  "people": [
+    {
+      "id": "matthew",
+      "name": "Matthew Lee / Lee Hae Seok",
+      "actor": "Ahn Hyo Seop",
+      "image": "https://i.mydramalist.com/2wk2NP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "33, the three-job farmer; CEO of the natural-ingredients company the world watches"
+    },
+    {
+      "id": "yejin",
+      "name": "Dam Ye Jin",
+      "actor": "Chae Won Bin",
+      "image": "https://i.mydramalist.com/JB42BY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "31, top show host"
+    },
+    {
+      "id": "eric",
+      "name": "Eric Seo",
+      "actor": "Kim Bum",
+      "image": "https://i.mydramalist.com/81PNNb_5m.jpg",
+      "group": "Eric's company",
+      "inCast": true,
+      "note": "35, executive director of a global skincare brand"
+    },
+    {
+      "id": "michelle",
+      "name": "Michelle",
+      "actor": "Ok Ja Yeon",
+      "image": "https://i.mydramalist.com/x5W0z_5m.jpg",
+      "group": "Eric's company",
+      "inCast": true,
+      "note": "37, vice-president"
+    },
+    {
+      "id": "junghun",
+      "name": "Cha Jung Hun",
+      "actor": "Kim Joong Don",
+      "image": "https://i.mydramalist.com/WPNvpO_5m.jpg",
+      "group": "Eric's company",
+      "inCast": true,
+      "note": "38, strategic planning"
+    },
+    {
+      "id": "changho",
+      "name": "Son Chang Ho",
+      "actor": "Chae Dong Hyun",
+      "image": "https://i.mydramalist.com/bwzB6m.jpg",
+      "group": "Eric's company",
+      "inCast": true,
+      "note": "CEO of HO Cosmetics"
+    },
+    {
+      "id": "muwon",
+      "name": "Kang Mu Won",
+      "actor": "Yoon Byung Hee",
+      "image": "https://i.mydramalist.com/dJZPe_5m.jpg",
+      "group": "Matthew's company",
+      "inCast": true,
+      "note": "40, co-CEO"
+    },
+    {
+      "id": "hakdaek",
+      "name": "Song Hak Daek / Yang Sang Geum",
+      "actor": "Go Doo Shim",
+      "image": "https://i.mydramalist.com/RJnePm.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "79, the village's real power"
+    },
+    {
+      "id": "gwangmo",
+      "name": "Park Gwang Mo",
+      "actor": "Jo Bok Rae",
+      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "40, foreman at Matthew's farm"
+    },
+    {
+      "id": "jini",
+      "name": "Na Jin I",
+      "actor": "Kim Seo An",
+      "image": "https://i.mydramalist.com/jQ82vJ_5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "28, runs the general store"
+    },
+    {
+      "id": "somi",
+      "name": "Na Som I",
+      "actor": "Ahn Se Bin",
+      "image": "https://i.mydramalist.com/oQ4J0E_5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "10"
+    },
+    {
+      "id": "aera",
+      "name": "Moon Ae Ra",
+      "actor": "Jo Woo Ri",
+      "image": "https://i.mydramalist.com/B2gQ5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "40, Moon Cafe"
+    },
+    {
+      "id": "jeongmuk",
+      "name": "Jeon Jeong Muk",
+      "actor": "Kim Jung Hwan",
+      "image": "https://i.mydramalist.com/XXNnq_5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "40, the clinic's doctor"
+    },
+    {
+      "id": "wontaek",
+      "name": "Jeon Won Taek",
+      "actor": "Seo Jin Won",
+      "image": "https://i.mydramalist.com/2zX2P_5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "62, livestock vet"
+    },
+    {
+      "id": "jongil",
+      "name": "So Jong Il",
+      "actor": "Yang Heung Joo",
+      "image": "https://i.mydramalist.com/X8llXm.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "62, livestock farmer"
+    },
+    {
+      "id": "bunhong",
+      "name": "O Bun Hong",
+      "actor": "Lee Sae Ro Mi",
+      "image": "https://i.mydramalist.com/PxzbA5_5m.jpg",
+      "group": "Deokpung village",
+      "inCast": true,
+      "note": "60"
+    },
+    {
+      "id": "seokgyeong",
+      "name": "Dam Seok Gyeong",
+      "actor": "Kim Young Jae",
+      "image": "https://i.mydramalist.com/Z3VeYm.jpg",
+      "group": "Ye Jin's people",
+      "inCast": true,
+      "note": "57, cooking-class teacher"
+    },
+    {
+      "id": "myeonghwa",
+      "name": "Song Myeong Hwa",
+      "actor": "Woo Hee Jin",
+      "image": "https://i.mydramalist.com/d04pWD_5m.jpg",
+      "group": "Ye Jin's people",
+      "inCast": true,
+      "note": "55, CEO of Beauty Song; the nation's first love, once"
+    },
+    {
+      "id": "seongmi",
+      "name": "Um Seong Mi",
+      "actor": "Park Ye Young",
+      "image": "https://i.mydramalist.com/vw2YX_5m.jpg",
+      "group": "Hit Home Shopping",
+      "inCast": true,
+      "note": "36, PD"
+    },
+    {
+      "id": "yunji",
+      "name": "Ji Yun Ji",
+      "actor": "Park Ah In",
+      "image": "https://i.mydramalist.com/Bw60lm.jpg",
+      "group": "Hit Home Shopping",
+      "inCast": true,
+      "note": "36, the beauty show host"
+    },
+    {
+      "id": "hyeongi",
+      "name": "Dong Hyeon Gi",
+      "actor": "Shin Dong Mi",
+      "image": "https://i.mydramalist.com/RQlbY_5m.jpg",
+      "group": "Hit Home Shopping",
+      "inCast": true,
+      "note": "55, director"
+    },
+    {
+      "id": "gihong",
+      "name": "Hwang Gi Hong",
+      "actor": "Yoon Jae Chan",
+      "image": "https://i.mydramalist.com/g0QBe1_5m.jpg",
+      "group": "Hit Home Shopping",
+      "inCast": true,
+      "note": "28, MD"
+    }
+  ],
+  "links": [
+    {
+      "from": "matthew",
+      "to": "yejin",
+      "type": "romance",
+      "label": "two people who pour everything into work with holes in their hearts",
+      "short": "lovers",
+      "evidence": "follows two individuals who pour their hearts into their work every day, yet feel like they have big holes in their hearts",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eric",
+      "to": "yejin",
+      "type": "romance",
+      "label": "the other man, the skincare executive",
+      "short": "wants her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "eric",
+      "to": "matthew",
+      "type": "rivalry",
+      "label": "wants his miracle ingredients",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "michelle",
+      "to": "eric",
+      "type": "family",
+      "label": "stepsister; vice-president",
+      "short": "stepsister",
+      "evidence": "미셸 역 - 부대표, 에릭의 의붓누나 / 미셸의 의붓남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "junghun",
+      "to": "eric",
+      "type": "work",
+      "label": "head of strategic planning",
+      "short": "strategy",
+      "evidence": "차중훈 역 - 전략기획실 실장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "changho",
+      "to": "eric",
+      "type": "work",
+      "label": "HO Cosmetics, in his orbit",
+      "short": "partner",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "muwon",
+      "to": "matthew",
+      "type": "work",
+      "label": "co-CEO",
+      "short": "co-CEO",
+      "evidence": "[Co-CEO of Gozneok Bio]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hakdaek",
+      "to": "matthew",
+      "type": "family",
+      "label": "the village's grandmother who watches over him",
+      "short": "watches over him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gwangmo",
+      "to": "matthew",
+      "type": "work",
+      "label": "foreman at his farm",
+      "short": "foreman",
+      "evidence": "[Foreman at Matthew's farm]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gwangmo",
+      "to": "jeongmuk",
+      "type": "friend",
+      "label": "friends",
+      "short": "friend",
+      "evidence": "박광모 역 - 정묵의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jini",
+      "to": "somi",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "[Jin I's younger sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aera",
+      "to": "matthew",
+      "type": "friend",
+      "label": "the cafe",
+      "short": "the cafe",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "wontaek",
+      "to": "jeongmuk",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "전정묵 역 - 원택의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wontaek",
+      "to": "jongil",
+      "type": "friend",
+      "label": "friends",
+      "short": "friend",
+      "evidence": "전원택 역 - 종일의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bunhong",
+      "to": "jongil",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Jong Il's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seokgyeong",
+      "to": "yejin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ye Jin's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeonghwa",
+      "to": "yejin",
+      "type": "work",
+      "label": "the Beauty Song CEO she sells for",
+      "short": "her brand",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seongmi",
+      "to": "yejin",
+      "type": "work",
+      "label": "her PD",
+      "short": "PD",
+      "evidence": "엄성미 역 - PD",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunji",
+      "to": "yejin",
+      "type": "rivalry",
+      "label": "the rival beauty host",
+      "short": "rival host",
+      "evidence": "지윤지 역 - 간판이자 '뷰티' 전문 쇼호스트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hyeongi",
+      "to": "yejin",
+      "type": "work",
+      "label": "the channel's director",
+      "short": "director",
+      "evidence": "동현기 역 - 국장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gihong",
+      "to": "yejin",
+      "type": "work",
+      "label": "MD",
+      "short": "MD",
+      "evidence": "황기홍 역 - MD",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "matthew",
+      "yejin",
+      "eric",
+      "michelle",
+      "junghun",
+      "changho",
+      "muwon",
+      "hakdaek",
+      "gwangmo",
+      "jini",
+      "somi",
+      "aera",
+      "jeongmuk",
+      "wontaek",
+      "jongil",
+      "bunhong",
+      "seokgyeong",
+      "myeonghwa",
+      "seongmi",
+      "yunji",
+      "hyeongi",
+      "gihong"
+    ],
+    "blocks": {
+      "Deokpung village": [
+        0,
+        0
+      ],
+      "Hit Home Shopping": [
+        2,
+        0
+      ],
+      "Ye Jin's people": [
+        2,
+        2
+      ],
+      "Eric's company": [
+        0,
+        2
+      ],
+      "Matthew's company": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "matthew",
+      "yejin"
+    ]
+  }
+}

@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "mdlSlug": "58651-run-on",
+  "title": "Run On",
+  "native": "런온",
+  "year": 2020,
+  "country": "KR",
+  "sources": [
+    "MDL cast (20 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "seongyeom",
+    "mijoo"
+  ],
+  "people": [
+    {
+      "id": "seongyeom",
+      "name": "Ki Seon Gyeom",
+      "actor": "Yim Si Wan",
+      "image": "https://i.mydramalist.com/73o5Kb_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "National sprinter, forced to quit after his legal troubles"
+    },
+    {
+      "id": "mijoo",
+      "name": "Oh Mi Joo",
+      "actor": "Shin Sae Kyeong",
+      "image": "https://i.mydramalist.com/yWD6Y6_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Film subtitle translator, who believes in fate"
+    },
+    {
+      "id": "danah",
+      "name": "Seo Dan Ah",
+      "actor": "Choi Soo Young",
+      "image": "https://i.mydramalist.com/eW85d_5m.jpg",
+      "group": "Seo family (Seomyung Group)",
+      "inCast": true,
+      "note": "CEO of Dann Agency; Seomyung's rightful heir, passed over for her brothers"
+    },
+    {
+      "id": "younghwa",
+      "name": "Lee Young Hwa",
+      "actor": "Kang Tae Oh",
+      "image": "https://i.mydramalist.com/qv3mz_5m.jpg",
+      "group": "Young Hwa's people",
+      "inCast": true,
+      "note": "Art student who loves movies"
+    },
+    {
+      "id": "jungdo",
+      "name": "Ki Jung Do",
+      "actor": "Park Young Gyu",
+      "image": "https://i.mydramalist.com/qYVEqQ_5m.jpg",
+      "group": "Ki family",
+      "inCast": true,
+      "note": "Four-term assemblyman, former athlete"
+    },
+    {
+      "id": "jiwoo",
+      "name": "Yook Ji Woo",
+      "actor": "Cha Hwa Yun",
+      "image": "https://i.mydramalist.com/ROpgY_5m.jpg",
+      "group": "Ki family",
+      "inCast": true,
+      "note": "Actress, the nation's first love"
+    },
+    {
+      "id": "eunbi",
+      "name": "Ki Eun Bi",
+      "actor": "Ryu Abel",
+      "image": "https://i.mydramalist.com/WPJN7O_5m.jpg",
+      "group": "Ki family",
+      "inCast": true,
+      "note": "World number one golfer"
+    },
+    {
+      "id": "jihyun",
+      "name": "Jung Ji Hyun",
+      "actor": "Yeon Je Wook",
+      "image": "https://i.mydramalist.com/ZBpqL_5m.jpg",
+      "group": "Dann Agency",
+      "inCast": true,
+      "note": "Dan Ah's secretary; Tae Woong's tutor"
+    },
+    {
+      "id": "maeyi",
+      "name": "Park Mae Yi",
+      "actor": "Lee Bong Ryun",
+      "image": "https://i.mydramalist.com/en0DEm.jpg",
+      "group": "Mi Joo's people",
+      "inCast": true,
+      "note": "Runs a film distributor; Mi Joo's flatmate"
+    },
+    {
+      "id": "wooshik",
+      "name": "Kim Woo Shik",
+      "actor": "Lee Jung Ha",
+      "image": "https://i.mydramalist.com/pqQwQ_5m.jpg",
+      "group": "Track team",
+      "inCast": true,
+      "note": "Track prospect"
+    },
+    {
+      "id": "youngil",
+      "name": "Kwon Young Il",
+      "actor": "Park Sung Jun",
+      "image": "https://i.mydramalist.com/nOoW4N_5m.jpg",
+      "group": "Track team",
+      "inCast": true,
+      "note": "Korea's number one sprinter"
+    },
+    {
+      "id": "myungpil",
+      "name": "Seo Myung Pil",
+      "actor": "Lee Hwang Ui",
+      "image": "https://i.mydramalist.com/XJXbX_5m.jpg",
+      "group": "Seo family (Seomyung Group)",
+      "inCast": true,
+      "note": "Chairman of Seomyung"
+    },
+    {
+      "id": "taewoong",
+      "name": "Seo Tae Woong",
+      "actor": "Choi Jae Hyun",
+      "image": "https://i.mydramalist.com/674lg_5m.jpg",
+      "group": "Seo family (Seomyung Group)",
+      "inCast": true,
+      "note": "Idol, member of Atoz"
+    },
+    {
+      "id": "myungmin",
+      "name": "Seo Myung Min",
+      "actor": "Lee Shin Ki",
+      "image": "https://i.mydramalist.com/Bd3x6V_5m.jpg",
+      "group": "Seo family (Seomyung Group)",
+      "inCast": true,
+      "note": "Seomyung executive"
+    },
+    {
+      "id": "donggyeong",
+      "name": "Dong Gyeong",
+      "actor": "Seo Jae Hee",
+      "image": "https://i.mydramalist.com/06YzE_5m.jpg",
+      "group": "Dann Agency",
+      "inCast": true,
+      "note": "Director at Dann"
+    },
+    {
+      "id": "yejoon",
+      "name": "Go Ye Joon",
+      "actor": "Kim Dong Young",
+      "image": "https://i.mydramalist.com/Xx2NO_5m.jpg",
+      "group": "Young Hwa's people",
+      "inCast": true
+    },
+    {
+      "id": "yechan",
+      "name": "Go Ye Chan",
+      "actor": "Kim Si Eun",
+      "image": "https://i.mydramalist.com/Px47A5_5m.jpg",
+      "group": "Young Hwa's people",
+      "inCast": true,
+      "note": "The most pitiable being: a high-school senior"
+    },
+    {
+      "id": "lucian",
+      "name": "Lucian",
+      "actor": "Cha Bo Sung",
+      "image": "https://i.mydramalist.com/5vDpEw_5m.jpg",
+      "group": "Seo family (Seomyung Group)",
+      "inCast": true,
+      "note": "Atoz's leader"
+    },
+    {
+      "id": "coach",
+      "name": "Seon Gyeom's coach",
+      "actor": "Seo Jin Won",
+      "image": "https://i.mydramalist.com/2zX2P_5m.jpg",
+      "group": "Track team",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "mijoo",
+      "to": "seongyeom",
+      "type": "romance",
+      "label": "the translator who believes their meeting is fate",
+      "short": "fate",
+      "evidence": "meets Oh Mi Joo, a translator of movie subtitles who believes their encounter is fate",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "younghwa",
+      "to": "danah",
+      "type": "romance",
+      "label": "the art student who enters the CEO's life",
+      "short": "enters her life",
+      "evidence": "Lee Young Hwa, an art major with a love for movies, enters her life",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "danah",
+      "to": "seongyeom",
+      "type": "work",
+      "label": "the agency CEO who signs the ex-sprinter",
+      "short": "signs him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungdo",
+      "to": "seongyeom",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Seon Gyeom's father] / 기정도 역 - 은비와 선겸의 아버지",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiwoo",
+      "to": "seongyeom",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Seon Gyeom's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiwoo",
+      "to": "jungdo",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "육지우 역 - 정도의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunbi",
+      "to": "seongyeom",
+      "type": "family",
+      "label": "older sister, the golf queen",
+      "short": "sister",
+      "evidence": "[Seon Gyeom's sister] / 세계 랭킹 1위 골프 여제",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihyun",
+      "to": "danah",
+      "type": "work",
+      "label": "her secretary",
+      "short": "secretary",
+      "evidence": "[Dan Ah's assistant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihyun",
+      "to": "taewoong",
+      "type": "work",
+      "label": "his tutor",
+      "short": "tutor",
+      "evidence": "정지현 역 - 태웅의 가정교사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "maeyi",
+      "to": "mijoo",
+      "type": "friend",
+      "label": "her senior, flatmate; runs the distributor",
+      "short": "flatmate",
+      "evidence": "[Mi Joo's friend] / 미주의 선배이자 현 동거인",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wooshik",
+      "to": "seongyeom",
+      "type": "work",
+      "label": "his junior on the track team — the one he took the fall for",
+      "short": "junior",
+      "evidence": "[Seon Gyeom's track team junior]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "youngil",
+      "to": "seongyeom",
+      "type": "friend",
+      "label": "friend; the top sprinter",
+      "short": "friend",
+      "evidence": "[Seon Gyeom's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myungpil",
+      "to": "danah",
+      "type": "family",
+      "label": "father; the chairman",
+      "short": "father",
+      "evidence": "[Dan Ah's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taewoong",
+      "to": "danah",
+      "type": "family",
+      "label": "half-brother, the idol",
+      "short": "half-brother",
+      "evidence": "[Dan Ah's step-brother] / 명민과 단아의 이복동생",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myungmin",
+      "to": "danah",
+      "type": "family",
+      "label": "half-brother, the executive",
+      "short": "half-brother",
+      "evidence": "[Dan Ah's step-brother] / 단아의 이복 오빠",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "myungmin",
+      "to": "danah",
+      "type": "rivalry",
+      "label": "the brother who gets the group",
+      "short": "rival heir",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "donggyeong",
+      "to": "danah",
+      "type": "work",
+      "label": "director at Dann",
+      "short": "director",
+      "evidence": "[Dann Agency's director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donggyeong",
+      "to": "yejoon",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "동경 역 - 예준과 예찬의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "donggyeong",
+      "to": "yechan",
+      "type": "family",
+      "label": "daughter",
+      "short": "mother",
+      "evidence": "예준과 예찬의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yejoon",
+      "to": "younghwa",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Young Hwa's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yechan",
+      "to": "yejoon",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "[Ye Joon's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "lucian",
+      "to": "taewoong",
+      "type": "work",
+      "label": "Atoz bandmates",
+      "short": "bandmate",
+      "evidence": "[Tae Woong' band mate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "coach",
+      "to": "seongyeom",
+      "type": "work",
+      "label": "coach",
+      "short": "coach",
+      "evidence": "[Seon Gyeom's coach]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "seongyeom",
+      "mijoo",
+      "danah",
+      "younghwa",
+      "jungdo",
+      "jiwoo",
+      "eunbi",
+      "jihyun",
+      "maeyi",
+      "wooshik",
+      "youngil",
+      "myungpil",
+      "taewoong",
+      "myungmin",
+      "donggyeong",
+      "yejoon",
+      "yechan",
+      "lucian",
+      "coach"
+    ],
+    "blocks": {
+      "Ki family": [
+        0,
+        0
+      ],
+      "Seo family (Seomyung Group)": [
+        2,
+        0
+      ],
+      "Mi Joo's people": [
+        0,
+        2
+      ],
+      "Track team": [
+        1,
+        0
+      ],
+      "Dann Agency": [
+        2,
+        2
+      ],
+      "Young Hwa's people": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "seongyeom",
+      "mijoo"
+    ]
+  }
+}

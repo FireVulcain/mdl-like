@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "mdlSlug": "755471-cashero",
+  "title": "Cashero",
+  "native": "캐셔로",
+  "year": 2025,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)"
+  ],
+  "main": [
+    "sangung",
+    "minsuk"
+  ],
+  "people": [
+    {
+      "id": "sangung",
+      "name": "Kang Sang Ung",
+      "actor": "Lee Jun Ho",
+      "image": "https://i.mydramalist.com/jQjpmd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Civil servant whose strength grows with the cash in his pocket"
+    },
+    {
+      "id": "minsuk",
+      "name": "Kim Min Suk",
+      "actor": "Kim Hye Jun",
+      "image": "https://i.mydramalist.com/YYJDeP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Practical, efficient — and supportive of a very inefficient power"
+    },
+    {
+      "id": "hoin",
+      "name": "Byeon Ho In",
+      "actor": "Kim Byung Chul",
+      "image": "https://i.mydramalist.com/Dke4Z5_5m.jpg",
+      "group": "The supers",
+      "inCast": true,
+      "note": "Lawyer; leads the supers' organisation"
+    },
+    {
+      "id": "eunmi",
+      "name": "Bang Eun Mi",
+      "actor": "Kim Hyang Gi",
+      "image": "https://i.mydramalist.com/4e0ww6_5m.jpg",
+      "group": "The supers",
+      "inCast": true,
+      "note": "Telekinetic, powered by calories"
+    },
+    {
+      "id": "hyeonseung",
+      "name": "Hwang Hyeon Seung",
+      "actor": "Jang Hyun Sung",
+      "image": "https://i.mydramalist.com/1LJLdm.jpg",
+      "group": "The supers",
+      "inCast": true,
+      "note": "Detective; a super"
+    },
+    {
+      "id": "sueun",
+      "name": "Lee Su Eun",
+      "actor": "Shin Su Hyun",
+      "image": "https://i.mydramalist.com/xOWkN_5m.jpg",
+      "group": "The supers",
+      "inCast": true,
+      "note": "Researcher"
+    },
+    {
+      "id": "anna",
+      "name": "Cho Anna",
+      "actor": "Kang Han Na",
+      "image": "https://i.mydramalist.com/l0dbov_5m.jpg",
+      "group": "Criminal Society",
+      "inCast": true
+    },
+    {
+      "id": "nathan",
+      "name": "Cho Nathan",
+      "actor": "Lee Chae Min",
+      "image": "https://i.mydramalist.com/yWDJlB_5m.jpg",
+      "group": "Criminal Society",
+      "inCast": true
+    },
+    {
+      "id": "wondo",
+      "name": "Cho Won Do",
+      "actor": "Kim Eui Sung",
+      "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
+      "group": "Criminal Society",
+      "inCast": true
+    },
+    {
+      "id": "ki",
+      "name": "Director Ki",
+      "actor": "Kang Sang Jun",
+      "image": "https://i.mydramalist.com/qY8Pgz_5m.jpg",
+      "group": "Criminal Society",
+      "inCast": true
+    },
+    {
+      "id": "hyeongi",
+      "name": "Jung Hyeon Gi",
+      "actor": "Cha Shi Won",
+      "image": "https://i.mydramalist.com/2ORlPm.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Detective"
+    },
+    {
+      "id": "jeongja",
+      "name": "Park Jeong Ja",
+      "actor": "Kim Kuk Hee",
+      "image": "https://i.mydramalist.com/wegpk_5m.jpg",
+      "group": "Sang Ung's people",
+      "inCast": true,
+      "note": "Loan shark"
+    },
+    {
+      "id": "donggi",
+      "name": "Kang Dong Gi",
+      "actor": "Jung Seung Kil",
+      "image": "https://i.mydramalist.com/g075LO_5m.jpg",
+      "group": "Sang Ung's people",
+      "inCast": true
+    },
+    {
+      "id": "eunhui",
+      "name": "Lee Eun Hui",
+      "actor": "Kim Soo Jin",
+      "image": "https://i.mydramalist.com/28yld_5m.jpg",
+      "group": "Sang Ung's people",
+      "inCast": true
+    },
+    {
+      "id": "boss",
+      "name": "Sang Ung's boss",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "group": "Sang Ung's people",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "minsuk",
+      "to": "sangung",
+      "type": "romance",
+      "label": "girlfriend — supports him despite the power's inefficiency",
+      "short": "girlfriend",
+      "evidence": "His girlfriend, Kim Min Suk, is practical and efficient but supports him despite his power's inefficiency",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hoin",
+      "to": "sangung",
+      "type": "work",
+      "label": "leads the supers he joins",
+      "short": "leader",
+      "evidence": "Byeon Ho In, a lawyer and leader of a supernatural organization",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunmi",
+      "to": "sangung",
+      "type": "work",
+      "label": "fellow super — telekinesis on calories",
+      "short": "teammate",
+      "evidence": "Bang Eun Mi, a telekinetic powered by calories, also have abilities. Together, they aim to protect their normal lives",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonseung",
+      "to": "hoin",
+      "type": "work",
+      "label": "a super, and a detective",
+      "short": "the supers",
+      "evidence": "황현승 역 (초능력자)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sueun",
+      "to": "hoin",
+      "type": "work",
+      "label": "the supers' researcher",
+      "short": "researcher",
+      "evidence": "[Researcher] / 이수은 역 (초능력자)",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "anna",
+      "to": "sangung",
+      "type": "rivalry",
+      "label": "Criminal Society against the supers",
+      "short": "enemy",
+      "evidence": "[Criminal Society's member] / villains who seek to destabilize the world",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nathan",
+      "to": "anna",
+      "type": "family",
+      "label": "brother",
+      "short": "brother",
+      "evidence": "[Anna's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "wondo",
+      "to": "anna",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Nathan and Anna's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wondo",
+      "to": "nathan",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Nathan and Anna's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ki",
+      "to": "anna",
+      "type": "work",
+      "label": "her confidant",
+      "short": "confidant",
+      "evidence": "[Anna's confidant]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongi",
+      "to": "hyeonseung",
+      "type": "work",
+      "label": "detectives",
+      "short": "colleague",
+      "evidence": "[Detective]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jeongja",
+      "to": "sangung",
+      "type": "work",
+      "label": "the loan shark he owes — cash is power, after all",
+      "short": "loan shark",
+      "evidence": "[Loan shark]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "donggi",
+      "to": "sangung",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Sang Ung's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunhui",
+      "to": "sangung",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Sang Ung's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boss",
+      "to": "sangung",
+      "type": "work",
+      "label": "his boss at the office",
+      "short": "boss",
+      "evidence": "[Sang Ung's boss]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "sangung",
+      "minsuk",
+      "hoin",
+      "eunmi",
+      "hyeonseung",
+      "sueun",
+      "anna",
+      "nathan",
+      "wondo",
+      "ki",
+      "hyeongi",
+      "jeongja",
+      "donggi",
+      "eunhui",
+      "boss"
+    ],
+    "blocks": {
+      "The supers": [
+        0,
+        0
+      ],
+      "Criminal Society": [
+        2,
+        0
+      ],
+      "Sang Ung's people": [
+        0,
+        2
+      ],
+      "Police": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "sangung",
+      "minsuk"
+    ]
+  }
+}

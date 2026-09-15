@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "mdlSlug": "703721-i-don-t-want-to-do-anything",
+  "title": "Summer Strike",
+  "native": "아무것도 하고 싶지 않아",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (17 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)"
+  ],
+  "main": [
+    "yeoreum",
+    "daebeom"
+  ],
+  "people": [
+    {
+      "id": "yeoreum",
+      "name": "Lee Yeo Reum",
+      "actor": "Kim Seol Hyun",
+      "image": "https://i.mydramalist.com/g0Rw01_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "28; quit her job after her mother's death and a breakup, moved to Angok to do nothing"
+    },
+    {
+      "id": "daebeom",
+      "name": "An Dae Beom",
+      "actor": "Yim Si Wan",
+      "image": "https://i.mydramalist.com/73o5Kb_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Former physics prodigy, now the village librarian"
+    },
+    {
+      "id": "bom",
+      "name": "Kim Bom",
+      "actor": "Shin Eun Soo",
+      "image": "https://i.mydramalist.com/b3o64e_5m.jpg",
+      "group": "Bom's family",
+      "inCast": true,
+      "note": "The girl at the library"
+    },
+    {
+      "id": "jaehoon",
+      "name": "Heo Jae Hoon",
+      "actor": "a.mond",
+      "image": "https://i.mydramalist.com/X0AQJ_5m.jpg",
+      "group": "Bom's family",
+      "inCast": true
+    },
+    {
+      "id": "haneul",
+      "name": "Kim Ha Neul",
+      "actor": "Shin Ki Joon",
+      "image": "https://i.mydramalist.com/NdKPwy_5m.jpg",
+      "group": "Bom's family",
+      "inCast": true
+    },
+    {
+      "id": "jungho",
+      "name": "Kim Jung Hoon",
+      "actor": "Nam Jin Bok",
+      "image": "https://i.mydramalist.com/pg4Jb_5m.jpg",
+      "group": "Bom's family",
+      "inCast": true
+    },
+    {
+      "id": "myeongsuk",
+      "name": "Jung Young Sook",
+      "actor": "Kim Hye Jung",
+      "image": "https://i.mydramalist.com/R6rXR_5m.jpg",
+      "group": "Bom's family",
+      "inCast": true
+    },
+    {
+      "id": "jiyoung",
+      "name": "Jo Ji Young",
+      "actor": "Park Ye Young",
+      "image": "https://i.mydramalist.com/vw2YX_5m.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "sungmin",
+      "name": "Bae Sung Min",
+      "actor": "Kwak Min Gyoo",
+      "image": "https://i.mydramalist.com/2gEpdm.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "joon",
+      "name": "Bae Joon",
+      "actor": "Kim Jun",
+      "image": "https://i.mydramalist.com/XEBpn_5m.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "sungmin_father",
+      "name": "Bae Yeong Ho",
+      "actor": "Yoo Soon Woong",
+      "image": "https://i.mydramalist.com/ddQz5m.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "kwak",
+      "name": "Realtor Kwak",
+      "actor": "Kim Hak Seon",
+      "image": "https://i.mydramalist.com/Bz1V6_5m.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "kwak_wife",
+      "name": "Realtor Kwak's wife",
+      "actor": "Kim Jung Young",
+      "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "moochul",
+      "name": "Kwak Moo Chul",
+      "actor": "Park Ji Hoon",
+      "image": "https://i.mydramalist.com/XKLxXm.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "changsoo",
+      "name": "Hwang Chang Soo",
+      "actor": "Oh Yong",
+      "image": "https://i.mydramalist.com/nERJBm.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "oksoon",
+      "name": "Song Ok Soon",
+      "actor": "Park Ok Chool",
+      "image": "https://i.mydramalist.com/XKopxm.jpg",
+      "group": "Angok village",
+      "inCast": true
+    },
+    {
+      "id": "chunwong",
+      "name": "Lee Chun Wong",
+      "actor": "Yoon Sang Hwa",
+      "image": "https://i.mydramalist.com/ZQr2Y_5m.jpg",
+      "group": "Around Dae Beom",
+      "inCast": true,
+      "note": "Professor"
+    }
+  ],
+  "links": [
+    {
+      "from": "yeoreum",
+      "to": "daebeom",
+      "type": "romance",
+      "label": "two people healing by doing nothing in Angok",
+      "short": "heal together",
+      "evidence": "There, she meets An Dae Beom, a former physics prodigy now working as a librarian after a fall from grace. As they bond, they both seek healing",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bom",
+      "to": "daebeom",
+      "type": "friend",
+      "label": "the girl who lives at the library he runs",
+      "short": "at the library",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "bom",
+      "to": "jaehoon",
+      "type": "romance",
+      "label": "the two teenagers",
+      "short": "the two teens",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "haneul",
+      "to": "bom",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "(Bom's Younger Brother) / 김하늘 역 - 김봄 동생",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jungho",
+      "to": "bom",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Kim Bom's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsuk",
+      "to": "bom",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "정명숙 역 - 봄의 할머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiyoung",
+      "to": "yeoreum",
+      "type": "friend",
+      "label": "the village friend",
+      "short": "friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sungmin",
+      "to": "daebeom",
+      "type": "friend",
+      "label": "old classmate in the village",
+      "short": "old classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sungmin",
+      "to": "joon",
+      "type": "family",
+      "label": "son",
+      "short": "father",
+      "evidence": "[Seong Min's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungmin_father",
+      "to": "sungmin",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Bae Sung Min's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kwak",
+      "to": "yeoreum",
+      "type": "work",
+      "label": "the realtor who rents her the house",
+      "short": "realtor",
+      "evidence": "곽두희 역 (부동산)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kwak_wife",
+      "to": "kwak",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Realtor Kwak's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "moochul",
+      "to": "kwak",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "oksoon",
+      "to": "changsoo",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "[Chang Soo's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chunwong",
+      "to": "daebeom",
+      "type": "work",
+      "label": "the professor of his past — the fall from grace",
+      "short": "old professor",
+      "evidence": "[Professor] / a former physics prodigy [...] after a fall from grace",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeoreum",
+      "daebeom",
+      "bom",
+      "jaehoon",
+      "haneul",
+      "jungho",
+      "myeongsuk",
+      "jiyoung",
+      "sungmin",
+      "joon",
+      "sungmin_father",
+      "kwak",
+      "kwak_wife",
+      "moochul",
+      "changsoo",
+      "oksoon",
+      "chunwong"
+    ],
+    "blocks": {
+      "Angok village": [
+        0,
+        0
+      ],
+      "Bom's family": [
+        2,
+        0
+      ],
+      "Around Dae Beom": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "yeoreum",
+      "daebeom"
+    ]
+  }
+}

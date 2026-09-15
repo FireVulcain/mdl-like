@@ -1,0 +1,557 @@
+{
+  "version": 1,
+  "mdlSlug": "747725-park-s-contract-marriage-story",
+  "title": "The Story of Park's Marriage Contract",
+  "native": "열녀박씨 계약결혼뎐",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "yeonu",
+    "taeha"
+  ],
+  "people": [
+    {
+      "id": "yeonu",
+      "name": "Park Yeon U",
+      "actor": "Lee Se Young",
+      "image": "https://i.mydramalist.com/O8PNXY_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The bride of 19th-century Hanyang, widowed on her wedding night and thrown into a well — awake in Seoul"
+    },
+    {
+      "id": "taeha",
+      "name": "Kang Tae Ha",
+      "actor": "Bae In Hyuk",
+      "image": "https://i.mydramalist.com/5vP0me_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "SH Seoul's vice-president, 'the living android'; a heart condition and a dead husband's face"
+    },
+    {
+      "id": "sawol",
+      "name": "Sa Wol",
+      "actor": "Joo Hyun Young",
+      "image": "https://i.mydramalist.com/py7wD_5m.jpg",
+      "group": "Yeon U's people",
+      "inCast": true,
+      "note": "Her maid and oldest friend"
+    },
+    {
+      "id": "taemin",
+      "name": "Kang Tae Min",
+      "actor": "Yoo Seon Ho",
+      "image": "https://i.mydramalist.com/mOKXDJ_5m.jpg",
+      "group": "The Kang family",
+      "inCast": true,
+      "note": "Idle third-generation heir"
+    },
+    {
+      "id": "seongpyo",
+      "name": "Hong Seong Pyo",
+      "actor": "Jo Bok Rae",
+      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
+      "group": "SH Seoul",
+      "inCast": true,
+      "note": "Secretary, on five-minute standby"
+    },
+    {
+      "id": "narae",
+      "name": "Hong Na Rae",
+      "actor": "Oh Yu Jin",
+      "image": "https://i.mydramalist.com/qEzXB_5m.jpg",
+      "group": "SH Seoul",
+      "inCast": true,
+      "note": "Three years job-hunting"
+    },
+    {
+      "id": "hyesuk",
+      "name": "Min Hye Suk",
+      "actor": "Jin Kyung",
+      "image": "https://i.mydramalist.com/Xe7vJm.jpg",
+      "group": "The Kang family",
+      "inCast": true,
+      "note": "CEO of SH Seoul; Lady Yun in the past life"
+    },
+    {
+      "id": "sangmo",
+      "name": "Kang Sang Mo",
+      "actor": "Cheon Ho Jin",
+      "image": "https://i.mydramalist.com/Lw8QkB_5m.jpg",
+      "group": "The Kang family",
+      "inCast": true,
+      "note": "SH chairman; the chatty grandfather"
+    },
+    {
+      "id": "haeryung",
+      "name": "Kang Hae Ryung",
+      "actor": "Son So Mang",
+      "image": "https://i.mydramalist.com/EgyP7_5m.jpg",
+      "group": "The Kang family",
+      "inCast": true,
+      "note": "The chairman's youngest"
+    },
+    {
+      "id": "seojun",
+      "name": "Lee Seo Jun",
+      "actor": "Jung Shi Yool",
+      "image": "https://i.mydramalist.com/Xo8zO_5m.jpg",
+      "group": "The Kang family",
+      "inCast": true
+    },
+    {
+      "id": "choi_sec",
+      "name": "Secretary Choi",
+      "actor": "Choi Go Yun",
+      "image": "https://i.mydramalist.com/XYdwn_5m.jpg",
+      "group": "The Kang family",
+      "inCast": true
+    },
+    {
+      "id": "myeongsu",
+      "name": "Hwang Myeong Su",
+      "actor": "Lee Joon Hyuk",
+      "image": "https://i.mydramalist.com/dWxog_5m.jpg",
+      "group": "SH Seoul",
+      "inCast": true,
+      "note": "Director; Hye Suk's right hand"
+    },
+    {
+      "id": "hana",
+      "name": "Yoo Ha Na",
+      "actor": "Kwon Ah Reum",
+      "image": "https://i.mydramalist.com/ABAP6v_5m.jpg",
+      "group": "SH Seoul",
+      "inCast": true,
+      "note": "Marketing"
+    },
+    {
+      "id": "hyeonjeong",
+      "name": "O Hyeon Jeong",
+      "actor": "Jung Shi Ah",
+      "image": "https://i.mydramalist.com/Xd4K1w_5m.jpg",
+      "group": "SH Seoul",
+      "inCast": true,
+      "note": "Marketing team leader; single working mum"
+    },
+    {
+      "id": "seokju",
+      "name": "Lee Seok Ju",
+      "actor": "Noh Jong Hyun",
+      "image": "https://i.mydramalist.com/pd045e_5m.jpg",
+      "group": "SH Seoul",
+      "inCast": true,
+      "note": "Marketing's rookie"
+    },
+    {
+      "id": "midam",
+      "name": "Lee Mi Dam",
+      "actor": "Kim Yeo Jin",
+      "image": "https://i.mydramalist.com/xKjpEm.jpg",
+      "group": "Midam",
+      "inCast": true,
+      "note": "Head of the hanbok brand Midam"
+    },
+    {
+      "id": "yunjae",
+      "name": "Do Yun Jae",
+      "actor": "Park Yeon Woo",
+      "image": "https://i.mydramalist.com/XdKvPn_5m.jpg",
+      "group": "Midam",
+      "inCast": true,
+      "note": "Chief designer"
+    },
+    {
+      "id": "cheonmyeong",
+      "name": "Cheon Myeong",
+      "actor": "Lee Young Jin",
+      "image": "https://i.mydramalist.com/RBZ3vP_5m.jpg",
+      "group": "Beyond",
+      "inCast": true,
+      "note": "The keeper of time, with green eyes"
+    },
+    {
+      "id": "hyeonuk",
+      "name": "Choi Hyeon Uk",
+      "actor": "Kim Joong Don",
+      "image": "https://i.mydramalist.com/WPNvpO_5m.jpg",
+      "group": "Beyond",
+      "inCast": true,
+      "note": "Heart surgeon; his secret doctor"
+    },
+    {
+      "id": "jaewon",
+      "name": "Park Jae Won",
+      "actor": "Um Hyo Sup",
+      "image": "https://i.mydramalist.com/jov5z_5m.jpg",
+      "group": "Yeon U's people",
+      "inCast": true
+    },
+    {
+      "id": "hyeon",
+      "name": "Park Hyeon",
+      "actor": "Nam Myeong Ryeol",
+      "image": "https://i.mydramalist.com/4rYJZ_5m.jpg",
+      "group": "Yeon U's people",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "yeonu",
+      "to": "taeha",
+      "type": "romance",
+      "label": "his contract bride, for the dying grandfather's wish — then his lover",
+      "short": "contract bride",
+      "evidence": "agrees to a contract marriage with Yeon U to fulfill his dying grandfather's wish / 태하의 가짜 신부. 태하의 연인",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeonu",
+      "to": "taeha",
+      "type": "bond",
+      "label": "the face of the husband who died on her wedding night",
+      "short": "her husband's face",
+      "evidence": "a man who looks exactly like her deceased husband saves her",
+      "source": "MDL synopsis",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sawol",
+      "to": "yeonu",
+      "type": "friend",
+      "label": "her maid and childhood friend — from the same century",
+      "short": "childhood friend",
+      "evidence": "사월 역 - 연우의 몸종, 세상에 둘도 없는 연우의 죽마고우",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taemin",
+      "to": "taeha",
+      "type": "family",
+      "label": "half-brother",
+      "short": "half-brother",
+      "evidence": "강태민 역 - 태하의 이복 남동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taemin",
+      "to": "sawol",
+      "type": "romance",
+      "label": "the second couple",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "seongpyo",
+      "to": "taeha",
+      "type": "work",
+      "label": "his secretary",
+      "short": "secretary",
+      "evidence": "홍성표 역 - 태하의 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "narae",
+      "to": "seongpyo",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "홍나래 역 - 성표의 여동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesuk",
+      "to": "taeha",
+      "type": "family",
+      "label": "stepmother; CEO of SH Seoul",
+      "short": "stepmother",
+      "evidence": "민혜숙 역 - 태하의 계모이자 태민의 친모, SH서울 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesuk",
+      "to": "taemin",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "태민의 친모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyesuk",
+      "to": "yeonu",
+      "type": "rivalry",
+      "label": "Lady Yun in the past life — who had her family and Tae Ha killed",
+      "short": "past-life killer",
+      "evidence": "전생의 윤씨 부인. 전생에 연우의 집안과 태하를 죽이려고 명수에게 지시함",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangmo",
+      "to": "taeha",
+      "type": "family",
+      "label": "grandfather; SH's chairman — whose wish is the wedding",
+      "short": "grandfather",
+      "evidence": "강상모 역 - 태하의 조부, SH 회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangmo",
+      "to": "taeha",
+      "type": "rivalry",
+      "label": "caused his mother's death, it turns out",
+      "short": "his mother's death",
+      "evidence": "혜숙을 통해 상모가 친어머니를 죽게 만든 것을 알게되었다",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangmo",
+      "to": "haeryung",
+      "type": "family",
+      "label": "youngest daughter",
+      "short": "father",
+      "evidence": "강해령 역 - 강회장의 막내딸",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "haeryung",
+      "to": "seojun",
+      "type": "family",
+      "label": "son",
+      "short": "mother",
+      "evidence": "이서준 역 - 해령의 아들",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "choi_sec",
+      "to": "hyesuk",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Hye Suk's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "myeongsu",
+      "to": "hyesuk",
+      "type": "work",
+      "label": "her right hand — and, in the past life, the killer she sent",
+      "short": "right hand",
+      "evidence": "황명수 역 - 혜숙의 오른팔 [...] 전생에 윤씨 부인의 지시로 연우의 집안과 태하를 죽인 범인",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hana",
+      "to": "taeha",
+      "type": "work",
+      "label": "marketing, SH Seoul",
+      "short": "staff",
+      "evidence": "유하나 역 - SH서울 마케팅팀 대리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "hana",
+      "type": "work",
+      "label": "marketing team leader",
+      "short": "team leader",
+      "evidence": "오현정 역 - SH서울 마케팅팀 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokju",
+      "to": "hyeonjeong",
+      "type": "work",
+      "label": "marketing rookie",
+      "short": "rookie",
+      "evidence": "이석주 역 - 마케팅팀 막내, 신입",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "midam",
+      "to": "yeonu",
+      "type": "bond",
+      "label": "her mother, in the past life; head of Midam",
+      "short": "past-life mother",
+      "evidence": "이미담 역 - 한복 브랜드 미담의 대표. 전생의 연우 엄마",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunjae",
+      "to": "yeonu",
+      "type": "work",
+      "label": "her mentor at Midam",
+      "short": "mentor",
+      "evidence": "도윤재 역 - 미담 실장, 수석 디자이너. 연우의 사수",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "cheonmyeong",
+      "to": "yeonu",
+      "type": "bond",
+      "label": "the keeper of time who moved her",
+      "short": "keeper of time",
+      "evidence": "천명 역 - 시간 관리자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hyeonuk",
+      "to": "taeha",
+      "type": "work",
+      "label": "his secret heart surgeon",
+      "short": "his doctor",
+      "evidence": "최현욱 역 - 태하 비밀 주치의",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaewon",
+      "to": "yeonu",
+      "type": "family",
+      "label": "father, in Joseon",
+      "short": "father",
+      "evidence": "박재원 역 - 박연우의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeon",
+      "to": "yeonu",
+      "type": "family",
+      "label": "grandfather, in Joseon",
+      "short": "grandfather",
+      "evidence": "박현 역 - 박연우의 할아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeonu",
+      "taeha",
+      "sawol",
+      "taemin",
+      "seongpyo",
+      "narae",
+      "hyesuk",
+      "sangmo",
+      "haeryung",
+      "seojun",
+      "choi_sec",
+      "myeongsu",
+      "hana",
+      "hyeonjeong",
+      "seokju",
+      "midam",
+      "yunjae",
+      "cheonmyeong",
+      "hyeonuk",
+      "jaewon",
+      "hyeon"
+    ],
+    "blocks": {
+      "The Kang family": [
+        0,
+        0
+      ],
+      "SH Seoul": [
+        2,
+        0
+      ],
+      "Yeon U's people": [
+        0,
+        2
+      ],
+      "Midam": [
+        2,
+        2
+      ],
+      "Beyond": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "yeonu",
+      "taeha"
+    ]
+  }
+}

@@ -1,0 +1,524 @@
+{
+  "version": 1,
+  "mdlSlug": "734875-irresistible-love",
+  "title": "Destined with You",
+  "native": "이 연애는 불가항력",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (19 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "hongjo",
+    "sinyu"
+  ],
+  "people": [
+    {
+      "id": "hongjo",
+      "name": "Lee Hong Jo / Aeng Cho",
+      "actor": "Jo Bo Ah",
+      "image": "https://i.mydramalist.com/ABAY0v_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "29, grade-9 civil servant in the parks division; the shaman Aeng Cho, 300 years ago"
+    },
+    {
+      "id": "sinyu",
+      "name": "Jang Sin Yu / Jang Mu Jin",
+      "actor": "Ro Woon",
+      "image": "https://i.mydramalist.com/2wDww2_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "33, City Hall's legal adviser, under a centuries-old family curse; the officer Mu Jin, 300 years ago"
+    },
+    {
+      "id": "jaegyeong",
+      "name": "Kwon Jae Gyeong / Seok Ha",
+      "actor": "Ha Jun",
+      "image": "https://i.mydramalist.com/g0bm8P_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "35, the mayor's adviser and power behind him"
+    },
+    {
+      "id": "nayeon",
+      "name": "Yun Na Yeon",
+      "actor": "Yura",
+      "image": "https://i.mydramalist.com/yWPJvk_5m.jpg",
+      "group": "Na Yeon's people",
+      "inCast": true,
+      "note": "29, interior designer"
+    },
+    {
+      "id": "saebyeol",
+      "name": "Son Sae Byeol",
+      "actor": "Park Kyung Hye",
+      "image": "https://i.mydramalist.com/QJBrog_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "29, parks division"
+    },
+    {
+      "id": "sujeong",
+      "name": "Yoo Su Jeong",
+      "actor": "Mi Ram",
+      "image": "https://i.mydramalist.com/JBe8oY_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "32, parks division; City Hall's know-it-all"
+    },
+    {
+      "id": "gidong",
+      "name": "Park Gi Dong",
+      "actor": "Lim Hyoun Soo",
+      "image": "https://i.mydramalist.com/2kKXd_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "32, legal team"
+    },
+    {
+      "id": "eunyeong",
+      "name": "Ma Eun Yeong",
+      "actor": "Lee Bong Ryun",
+      "image": "https://i.mydramalist.com/en0DEm.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "47, parks division chief"
+    },
+    {
+      "id": "seogu",
+      "name": "Kong Seo Gu",
+      "actor": "Hyun Bong Sik",
+      "image": "https://i.mydramalist.com/81A0vQ_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "48, team leader"
+    },
+    {
+      "id": "samsik",
+      "name": "O Sam Sik",
+      "actor": "Yoo Soon Woong",
+      "image": "https://i.mydramalist.com/ddQz5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "Public works"
+    },
+    {
+      "id": "uram",
+      "name": "O U Ram",
+      "actor": "Park Jae Joon",
+      "image": "https://i.mydramalist.com/vXv0EZ_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "9"
+    },
+    {
+      "id": "jungbeom",
+      "name": "Na Jung Beom",
+      "actor": "Ahn Sang Woo",
+      "image": "https://i.mydramalist.com/RQDz6_5m.jpg",
+      "group": "Onju City Hall",
+      "inCast": true,
+      "note": "Official"
+    },
+    {
+      "id": "hakyeong",
+      "name": "Yun Hak Yeong",
+      "actor": "Song Young Gyu",
+      "image": "https://i.mydramalist.com/oQRB5O_5m.jpg",
+      "group": "Na Yeon's people",
+      "inCast": true,
+      "note": "Mayor of Onju"
+    },
+    {
+      "id": "hyeonseo",
+      "name": "Lee Hyeon Seo",
+      "actor": "Kim Kwon",
+      "image": "https://i.mydramalist.com/47rKY_5m.jpg",
+      "group": "Na Yeon's people",
+      "inCast": true,
+      "note": "CEO of Haum Construction"
+    },
+    {
+      "id": "sehun",
+      "name": "Jang Se Hun",
+      "actor": "Lee Pil Mo",
+      "image": "https://i.mydramalist.com/Nd54dW_5m.jpg",
+      "group": "Sin Yu's people",
+      "inCast": true,
+      "note": "55, chairman of Bau Construction"
+    },
+    {
+      "id": "yunju",
+      "name": "Song Yun Ju",
+      "actor": "Jung Hye Young",
+      "image": "https://i.mydramalist.com/l0nvkb_5m.jpg",
+      "group": "Sin Yu's people",
+      "inCast": true,
+      "note": "53, former actress"
+    },
+    {
+      "id": "uk",
+      "name": "Kim Uk",
+      "actor": "Lee Tae Ri",
+      "image": "https://i.mydramalist.com/AB44gL_5m.jpg",
+      "group": "Sin Yu's people",
+      "inCast": true,
+      "note": "33, lawyer at Law & High"
+    },
+    {
+      "id": "eunwol",
+      "name": "Eun Wol / Myeong Eun",
+      "actor": "Kim Hye Ok",
+      "image": "https://i.mydramalist.com/DkrZpp_5m.jpg",
+      "group": "Hong Jo's people",
+      "inCast": true,
+      "note": "Shaman"
+    },
+    {
+      "id": "gyeongrim",
+      "name": "Kim Gyeong Rim",
+      "actor": "Jung Sae Rom",
+      "image": "https://i.mydramalist.com/QLW0W_5m.jpg",
+      "group": "Hong Jo's people",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "hongjo",
+      "to": "sinyu",
+      "type": "romance",
+      "label": "the key to his curse — and his wife",
+      "short": "wife",
+      "evidence": "she comes into possession of an old wooden chest and the key to lift a curse affecting Jang Sin Yu / 홍조의 남편",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hongjo",
+      "to": "sinyu",
+      "type": "bond",
+      "label": "Aeng Cho and Mu Jin: lovers three hundred years ago; her curse on his line",
+      "short": "past lives",
+      "evidence": "300년 전 무진의 정인이자 무당 / 300년 전 앵초의 정인이자 무관",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaegyeong",
+      "to": "sinyu",
+      "type": "friend",
+      "label": "his university senior",
+      "short": "senior",
+      "evidence": "권재경 역 - 신유의 대학 선배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaegyeong",
+      "to": "sinyu",
+      "type": "bond",
+      "label": "Seok Ha, Mu Jin's fellow officer in the past life",
+      "short": "past life",
+      "evidence": "전생에 무관이자 무진의 동료",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaegyeong",
+      "to": "hongjo",
+      "type": "romance",
+      "label": "her crush — the adviser from the fifth floor",
+      "short": "her crush",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "nayeon",
+      "to": "sinyu",
+      "type": "romance",
+      "label": "ex-girlfriend",
+      "short": "ex",
+      "evidence": "윤나연 역 - 신유의 전 여친",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "nayeon",
+      "to": "hongjo",
+      "type": "friend",
+      "label": "high-school classmates — the friend who turned on her",
+      "short": "old classmate",
+      "evidence": "홍조의 고등학교 동창",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nayeon",
+      "to": "hyeonseo",
+      "type": "romance",
+      "label": "her secret lover",
+      "short": "lover",
+      "evidence": "이현서 역 - 하움건설 대표, 나연의 내연남",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hakyeong",
+      "to": "nayeon",
+      "type": "family",
+      "label": "father, the mayor",
+      "short": "father",
+      "evidence": "[Onju City mayor / Na Yeon's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaegyeong",
+      "to": "hakyeong",
+      "type": "work",
+      "label": "the mayor's adviser",
+      "short": "adviser",
+      "evidence": "[Mayor's advisor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "saebyeol",
+      "to": "hongjo",
+      "type": "work",
+      "label": "parks division",
+      "short": "colleague",
+      "evidence": "손새별 역 - 녹지과 8급",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sujeong",
+      "to": "hongjo",
+      "type": "work",
+      "label": "parks division",
+      "short": "colleague",
+      "evidence": "유수정 역 - 녹지과 7급",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunyeong",
+      "to": "hongjo",
+      "type": "work",
+      "label": "chief of the parks division",
+      "short": "chief",
+      "evidence": "마은영 역 - 녹지과 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seogu",
+      "to": "hongjo",
+      "type": "work",
+      "label": "team leader",
+      "short": "team leader",
+      "evidence": "공서구 역 - 환경녹지과 팀장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gidong",
+      "to": "sinyu",
+      "type": "work",
+      "label": "legal team",
+      "short": "legal team",
+      "evidence": "박기동 역 - 법무팀 주무관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "samsik",
+      "to": "uram",
+      "type": "family",
+      "label": "grandfather",
+      "short": "grandfather",
+      "evidence": "오삼식 역 - 우람의 할아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uram",
+      "to": "hongjo",
+      "type": "friend",
+      "label": "the boy who takes to her",
+      "short": "friend",
+      "evidence": "오우람 (9세) 역 - 삼식의 손자",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungbeom",
+      "to": "hongjo",
+      "type": "rivalry",
+      "label": "the official who turns stalker",
+      "short": "stalker",
+      "evidence": "[Official]",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sehun",
+      "to": "sinyu",
+      "type": "family",
+      "label": "father; chairman of Bau",
+      "short": "father",
+      "evidence": "[Sin Yu's father] / 바우건설 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunju",
+      "to": "sinyu",
+      "type": "family",
+      "label": "mother, a former actress",
+      "short": "mother",
+      "evidence": "[Sin Yu's mother] / 배우 출신",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunju",
+      "to": "sehun",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "세헌의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "uk",
+      "to": "sinyu",
+      "type": "friend",
+      "label": "high-school best friend, a lawyer",
+      "short": "best friend",
+      "evidence": "김욱 역 - 신유의 고등학교 동창이자 절친",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunwol",
+      "to": "hongjo",
+      "type": "bond",
+      "label": "the shaman who hands her the chest",
+      "short": "the chest",
+      "evidence": "김혜옥 : 은월 역 - 무당",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gyeongrim",
+      "to": "hongjo",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "정새롬 : 김경림 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "hongjo",
+      "sinyu",
+      "jaegyeong",
+      "nayeon",
+      "saebyeol",
+      "sujeong",
+      "gidong",
+      "eunyeong",
+      "seogu",
+      "samsik",
+      "uram",
+      "jungbeom",
+      "hakyeong",
+      "hyeonseo",
+      "sehun",
+      "yunju",
+      "uk",
+      "eunwol",
+      "gyeongrim"
+    ],
+    "blocks": {
+      "Onju City Hall": [
+        0,
+        0
+      ],
+      "Sin Yu's people": [
+        2,
+        0
+      ],
+      "Na Yeon's people": [
+        2,
+        2
+      ],
+      "Hong Jo's people": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "hongjo",
+      "sinyu"
+    ]
+  }
+}

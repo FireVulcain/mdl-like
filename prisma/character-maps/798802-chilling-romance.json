@@ -1,0 +1,471 @@
+{
+  "version": 1,
+  "mdlSlug": "798802-chilling-romance",
+  "title": "Spooky in Love",
+  "native": "오싹한 연애",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (17 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "yeori",
+    "ganguk"
+  ],
+  "people": [
+    {
+      "id": "yeori",
+      "name": "Cheon Yeo Ri",
+      "actor": "Park Eun Bin",
+      "image": "https://i.mydramalist.com/v7Evg_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Heiress and CEO of the Reina Hotel — who sees ghosts"
+    },
+    {
+      "id": "ganguk",
+      "name": "Ma Gang Uk",
+      "actor": "Yang Se Jong",
+      "image": "https://i.mydramalist.com/73LgDn_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The Seoul office's ace prosecutor; falls for the woman who sees ghosts"
+    },
+    {
+      "id": "minhwan",
+      "name": "Kang Min Hwan",
+      "actor": "Ong Seong Wu",
+      "image": "https://i.mydramalist.com/nOQ0J6_5m.jpg",
+      "group": "Min Hwan's family (CL)",
+      "inCast": true,
+      "note": "Heir of CL Hotels; CEO of the Raymond"
+    },
+    {
+      "id": "myosun",
+      "name": "Paeng Myo Sun",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "Gang Uk's family",
+      "inCast": true
+    },
+    {
+      "id": "hari",
+      "name": "Cheon Ha Ri",
+      "actor": "Jo Hye Joo",
+      "image": "https://i.mydramalist.com/YYnnxK_5m.jpg",
+      "group": "Yeo Ri's family (Reina)",
+      "inCast": true
+    },
+    {
+      "id": "gyeongja",
+      "name": "Baek Gyeong Ja",
+      "actor": "Ye Soo Jung",
+      "image": "https://i.mydramalist.com/eEPQem.jpg",
+      "group": "Yeo Ri's family (Reina)",
+      "inCast": true,
+      "note": "Chairwoman of Reina Hotels & Resorts"
+    },
+    {
+      "id": "gyehui",
+      "name": "Ok Gye Hui",
+      "actor": "Baek Ji Won",
+      "image": "https://i.mydramalist.com/3oxZkd_5m.jpg",
+      "group": "Yeo Ri's family (Reina)",
+      "inCast": true,
+      "note": "Gallery director"
+    },
+    {
+      "id": "dongjun",
+      "name": "Cheon Dong Jun",
+      "actor": "Lee Dal",
+      "image": "https://i.mydramalist.com/rXvWg_5m.jpg",
+      "group": "Yeo Ri's family (Reina)",
+      "inCast": true,
+      "note": "Blunt, scheming, wanting"
+    },
+    {
+      "id": "pildong",
+      "name": "Ko Pil Dong",
+      "actor": "Lee Chang Hoon",
+      "image": "https://i.mydramalist.com/yWwVER_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "Investigator"
+    },
+    {
+      "id": "hyeongmin",
+      "name": "Son Hyeong Min",
+      "actor": "Kim Min Ho",
+      "image": "https://i.mydramalist.com/rNYwe2_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "Clerk"
+    },
+    {
+      "id": "seohyeon",
+      "name": "Im Seo Hyeon",
+      "actor": "Im Chae Young",
+      "image": "https://i.mydramalist.com/2vyPR_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "Prosecutor"
+    },
+    {
+      "id": "sangho",
+      "name": "Nam Sang Ho",
+      "actor": "Lee Ho Young",
+      "image": "https://i.mydramalist.com/eAWWW_5m.jpg",
+      "group": "Prosecutors' office",
+      "inCast": true,
+      "note": "Chief prosecutor"
+    },
+    {
+      "id": "jisu",
+      "name": "Uhm Ji Su",
+      "actor": "Kim Han Na",
+      "image": "https://i.mydramalist.com/q5p4D_5m.jpg",
+      "group": "Reina Hotel",
+      "inCast": true,
+      "note": "Secretary"
+    },
+    {
+      "id": "jiuk",
+      "name": "Bong Ji Uk",
+      "actor": "Lee Joon Hyuk",
+      "image": "https://i.mydramalist.com/dWxog_5m.jpg",
+      "group": "Reina Hotel",
+      "inCast": true,
+      "note": "General manager"
+    },
+    {
+      "id": "huiwon",
+      "name": "Song Hui Won",
+      "actor": "Kim Seo Ra",
+      "image": "https://i.mydramalist.com/oQYZYm.jpg",
+      "group": "Min Hwan's family (CL)",
+      "inCast": true,
+      "note": "Vice-chair of CL"
+    },
+    {
+      "id": "seungjae",
+      "name": "Park Seung Jae",
+      "actor": "Kim Do Wan",
+      "image": "https://i.mydramalist.com/Qe5m5_5m.jpg",
+      "group": "Yeo Ri's family (Reina)",
+      "inCast": true,
+      "note": "Pro golfer"
+    },
+    {
+      "id": "jihwan",
+      "name": "Kang Ji Hwan",
+      "actor": "Kim Min Chul",
+      "image": "https://i.mydramalist.com/jQAevb_5m.jpg",
+      "group": "Min Hwan's family (CL)",
+      "inCast": true,
+      "note": "The pretty-boy ghost at Yeo Ri's side"
+    }
+  ],
+  "links": [
+    {
+      "from": "yeori",
+      "to": "ganguk",
+      "type": "work",
+      "label": "the heiress who sees the murdered and the prosecutor who works their cases — a chaotic partnership",
+      "short": "partners",
+      "evidence": "a hotel heiress who can see ghosts and a passionate prosecutor who team up in a chaotic partnership",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ganguk",
+      "to": "yeori",
+      "type": "romance",
+      "label": "the man who fell for the woman who sees ghosts",
+      "short": "loves her",
+      "evidence": "마강욱 역 - 귀신을 보는 여자를 사랑하게 된 남자!",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minhwan",
+      "to": "yeori",
+      "type": "romance",
+      "label": "the rival hotel heir who courts her",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minhwan",
+      "to": "ganguk",
+      "type": "rivalry",
+      "label": "rivals for her",
+      "short": "rival",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "myosun",
+      "to": "ganguk",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Gang Uk's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hari",
+      "to": "yeori",
+      "type": "family",
+      "label": "younger cousin",
+      "short": "cousin",
+      "evidence": "[Yeo Ri's cousin] / 천하리 역 - 여리의 사촌 여동생",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeongja",
+      "to": "yeori",
+      "type": "family",
+      "label": "grandmother; chairwoman of Reina",
+      "short": "grandmother",
+      "evidence": "[Yeo Ri's grandmother] / 레이나 호텔&리조트 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyehui",
+      "to": "hari",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ha Ri's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyehui",
+      "to": "gyeongja",
+      "type": "family",
+      "label": "daughter-in-law",
+      "short": "daughter-in-law",
+      "evidence": "옥계희 역 - 백경자 회장의 며느리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongjun",
+      "to": "hari",
+      "type": "family",
+      "label": "older brother",
+      "short": "brother",
+      "evidence": "천동준 역 - 하리의 오빠",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongjun",
+      "to": "yeori",
+      "type": "family",
+      "label": "cousin — scheming for the hotel",
+      "short": "cousin",
+      "evidence": "여리의 사촌오빠 [...] 욕망덩어리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "pildong",
+      "to": "ganguk",
+      "type": "work",
+      "label": "the seasoned investigator who reads his eyes",
+      "short": "investigator",
+      "evidence": "고필동 역 - 노련한 서울지검 수사관, 강욱과는 눈빛만 봐도 통하는 사이",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeongmin",
+      "to": "ganguk",
+      "type": "work",
+      "label": "clerk",
+      "short": "clerk",
+      "evidence": "손형민 역 - 서울지검 사무관",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seohyeon",
+      "to": "ganguk",
+      "type": "romance",
+      "label": "training-institute classmate, in love with him unrequited",
+      "short": "loves him",
+      "evidence": "임서현 역 - 강욱의 사법연수원 동기 [...] 강욱을 짝사랑하는 직장 동료",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangho",
+      "to": "ganguk",
+      "type": "work",
+      "label": "chief prosecutor",
+      "short": "chief",
+      "evidence": "[Chief prosecutor]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jisu",
+      "to": "yeori",
+      "type": "work",
+      "label": "her closest secretary",
+      "short": "secretary",
+      "evidence": "[Yeo Ri's secretary] / 여리의 최측근 비서",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jiuk",
+      "to": "yeori",
+      "type": "work",
+      "label": "general manager, her closest aide",
+      "short": "general manager",
+      "evidence": "봉지욱 역 - 레이나 호텔 총지배인, 여리의 최측근",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "huiwon",
+      "to": "minhwan",
+      "type": "family",
+      "label": "mother; CL's vice-chair",
+      "short": "mother",
+      "evidence": "[Min Hwan's mother] / CL 호텔&리조트 그룹 부회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungjae",
+      "to": "hari",
+      "type": "romance",
+      "label": "fiance, a pro golfer",
+      "short": "fiance",
+      "evidence": "[Ha Ri's fiance]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jihwan",
+      "to": "yeori",
+      "type": "bond",
+      "label": "the ghost who hovers at her side",
+      "short": "her ghost",
+      "evidence": "강지환 역 - 여리 곁을 맴도는 미소년 비주얼의 귀신",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihwan",
+      "to": "minhwan",
+      "type": "family",
+      "label": "the Kang family's dead son",
+      "short": "family",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "yeori",
+      "ganguk",
+      "minhwan",
+      "myosun",
+      "hari",
+      "gyeongja",
+      "gyehui",
+      "dongjun",
+      "pildong",
+      "hyeongmin",
+      "seohyeon",
+      "sangho",
+      "jisu",
+      "jiuk",
+      "huiwon",
+      "seungjae",
+      "jihwan"
+    ],
+    "blocks": {
+      "Yeo Ri's family (Reina)": [
+        0,
+        0
+      ],
+      "Prosecutors' office": [
+        2,
+        0
+      ],
+      "Gang Uk's family": [
+        2,
+        2
+      ],
+      "Min Hwan's family (CL)": [
+        0,
+        2
+      ],
+      "Reina Hotel": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "yeori",
+      "ganguk"
+    ]
+  }
+}

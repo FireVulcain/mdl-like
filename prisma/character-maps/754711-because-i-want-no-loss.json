@@ -1,0 +1,442 @@
+{
+  "version": 1,
+  "mdlSlug": "754711-because-i-want-no-loss",
+  "title": "No Gain, No Love",
+  "native": "손해 보기 싫어서",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (17 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "haeyeong",
+    "jiuk"
+  ],
+  "people": [
+    {
+      "id": "haeyeong",
+      "name": "Son Hae Yeong",
+      "actor": "Shin Min Ah",
+      "image": "https://i.mydramalist.com/g0Nb5W_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "33, manager at Ggulbi Education; never loses a won — stages a fake wedding for a promotion"
+    },
+    {
+      "id": "jiuk",
+      "name": "Kim Ji Uk",
+      "actor": "Kim Young Dae",
+      "image": "https://i.mydramalist.com/3oxm3D_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "26, night cashier at the convenience store; her fake groom"
+    },
+    {
+      "id": "gyuhyun",
+      "name": "Bok Gyu Hyun",
+      "actor": "Lee Sang Yi",
+      "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "33, president of Ggulbi Education"
+    },
+    {
+      "id": "jayeon",
+      "name": "Nam Ja Yeon / Yeon Bo Ra",
+      "actor": "Han Ji Hyeon",
+      "image": "https://i.mydramalist.com/xOWAX_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "29, web novelist"
+    },
+    {
+      "id": "hajun",
+      "name": "Yeo Ha Jun / Kang Ha Jun",
+      "actor": "Lee You Jin",
+      "image": "https://i.mydramalist.com/RB2R5g_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "29, Gyu Hyun's secretary"
+    },
+    {
+      "id": "ujae",
+      "name": "An U Jae",
+      "actor": "Go Wook",
+      "image": "https://i.mydramalist.com/rNO6d7_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "35, manager, education team 2"
+    },
+    {
+      "id": "irin",
+      "name": "Kwon I Rin",
+      "actor": "Jeon Hye Won",
+      "image": "https://i.mydramalist.com/yWlN5n_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "HR"
+    },
+    {
+      "id": "giho",
+      "name": "Bok Gi Ho",
+      "actor": "Choi Jin Ho",
+      "image": "https://i.mydramalist.com/NdL0rJ_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "Chairman of Ggulbi Group"
+    },
+    {
+      "id": "jeonga",
+      "name": "Seon Jeong A",
+      "actor": "Lee Il Hwa",
+      "image": "https://i.mydramalist.com/nODnn4_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "The real power at Ggulbi Education"
+    },
+    {
+      "id": "eunyeong",
+      "name": "Kong Eun Yeong",
+      "actor": "Kim Hye Hwa",
+      "image": "https://i.mydramalist.com/QB7xW_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "Deputy head, education team 1"
+    },
+    {
+      "id": "giwon",
+      "name": "Bok Gi Won",
+      "actor": "Lee Chang Ho",
+      "image": "https://i.mydramalist.com/E6yyO_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true,
+      "note": "New hire, new business team"
+    },
+    {
+      "id": "kim",
+      "name": "Deputy Kim",
+      "actor": "Jo Deok Hee",
+      "image": "https://i.mydramalist.com/pzEdB_5m.jpg",
+      "group": "Ggulbi Education",
+      "inCast": true
+    },
+    {
+      "id": "huiseong",
+      "name": "Cha Hui Seong",
+      "actor": "Joo Min Kyung",
+      "image": "https://i.mydramalist.com/Xr2Kgm.jpg",
+      "group": "Hae Yeong's people",
+      "inCast": true,
+      "note": "32, voice actress, ten years chasing the audition"
+    },
+    {
+      "id": "taehyung",
+      "name": "Yun Tae Hyung",
+      "actor": "Heo Jung Min",
+      "image": "https://i.mydramalist.com/O8eoyP_5m.jpg",
+      "group": "Hae Yeong's people",
+      "inCast": true,
+      "note": "Studio director"
+    },
+    {
+      "id": "eunok",
+      "name": "Lee Eun Ok",
+      "actor": "Yoon Bok In",
+      "image": "https://i.mydramalist.com/jQVdnd_5m.jpg",
+      "group": "Hae Yeong's people",
+      "inCast": true
+    },
+    {
+      "id": "sejin",
+      "name": "Jang Se Jin",
+      "actor": "Yoon Seo Hyun",
+      "image": "https://i.mydramalist.com/e3PDnm.jpg",
+      "group": "Ji Uk's people",
+      "inCast": true,
+      "note": "The stranger who comes for Ji Uk"
+    },
+    {
+      "id": "minji",
+      "name": "Cho Min Ji",
+      "actor": "Choi Hye Jin",
+      "image": "https://i.mydramalist.com/4qegr_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "haeyeong",
+      "to": "jiuk",
+      "type": "romance",
+      "label": "recruits him as fake groom — then husband and wife",
+      "short": "fake groom",
+      "evidence": "She recruits Kim Ji Uk to be her fiance [...] 손해영 역 - 지욱의 아내 / 김지욱 역 - 해영의 남편",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyuhyun",
+      "to": "haeyeong",
+      "type": "work",
+      "label": "president of her company",
+      "short": "her president",
+      "evidence": "복규현 역 - 꿀비교육 사장 / 손해영 역 - 꿀비교육 교육 1팀 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyuhyun",
+      "to": "jayeon",
+      "type": "romance",
+      "label": "the president and the novelist",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hajun",
+      "to": "gyuhyun",
+      "type": "work",
+      "label": "secretary",
+      "short": "secretary",
+      "evidence": "[Gyu Hyun's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hajun",
+      "to": "jayeon",
+      "type": "friend",
+      "label": "high-school classmate",
+      "short": "old classmate",
+      "evidence": "여하준 역 - 규현의 비서, 자연의 고등학교 동창",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hajun",
+      "to": "jiuk",
+      "type": "family",
+      "label": "the other name — a brother's past",
+      "short": "his past",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "ujae",
+      "to": "haeyeong",
+      "type": "romance",
+      "label": "her old lover — now a colleague, and married",
+      "short": "ex",
+      "evidence": "안우재 역 - 해영의 옛연인, 이린의 남편. 교육2팀 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ujae",
+      "to": "irin",
+      "type": "romance",
+      "label": "husband",
+      "short": "husband",
+      "evidence": "권이린 역 - 인사팀 사원, 우재의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "giho",
+      "to": "gyuhyun",
+      "type": "family",
+      "label": "father; chairman",
+      "short": "father",
+      "evidence": "[Gyu Hyun's father] / 꿀비그룹 회장",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonga",
+      "to": "gyuhyun",
+      "type": "family",
+      "label": "mother; the real power",
+      "short": "mother",
+      "evidence": "[Gyu Hyun's mother] / 꿀비교육의 실세",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonga",
+      "to": "giho",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "기호의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunyeong",
+      "to": "haeyeong",
+      "type": "work",
+      "label": "deputy head of her team",
+      "short": "deputy head",
+      "evidence": "공은영 역 - 교육1팀 차장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "giwon",
+      "to": "gyuhyun",
+      "type": "family",
+      "label": "the Bok family's new hire",
+      "short": "family",
+      "evidence": "이창호 : 복기운 역 - 신사업팀 신입사원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kim",
+      "to": "haeyeong",
+      "type": "work",
+      "label": "team 1",
+      "short": "colleague",
+      "evidence": "김 대리 역 - 교육1팀",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "huiseong",
+      "to": "haeyeong",
+      "type": "friend",
+      "label": "friend; a voice actress",
+      "short": "friend",
+      "evidence": "[Hae Yeong's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "taehyung",
+      "to": "huiseong",
+      "type": "romance",
+      "label": "lovers",
+      "short": "lover",
+      "evidence": "윤태형 역 - 희성의 연인",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunok",
+      "to": "haeyeong",
+      "type": "family",
+      "label": "mother — whose love she had to share",
+      "short": "mother",
+      "evidence": "[Hae Yeong's mother] / she had to share her mother's love with others",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sejin",
+      "to": "jiuk",
+      "type": "bond",
+      "label": "the stranger who turns up looking for him",
+      "short": "comes for him",
+      "evidence": "장 실장 역 - 어느 날 김지욱을 찾아온 정체불명의 인물",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "minji",
+      "to": "jayeon",
+      "type": "work",
+      "label": "the publisher's side",
+      "short": "publisher",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "haeyeong",
+      "jiuk",
+      "gyuhyun",
+      "jayeon",
+      "hajun",
+      "ujae",
+      "irin",
+      "giho",
+      "jeonga",
+      "eunyeong",
+      "giwon",
+      "kim",
+      "huiseong",
+      "taehyung",
+      "eunok",
+      "sejin",
+      "minji"
+    ],
+    "blocks": {
+      "Ggulbi Education": [
+        0,
+        0
+      ],
+      "Hae Yeong's people": [
+        2,
+        0
+      ],
+      "Ji Uk's people": [
+        2,
+        2
+      ],
+      "Around them": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "haeyeong",
+      "jiuk"
+    ]
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "version": 1,
+  "mdlSlug": "773481-i-m-human-from-today",
+  "title": "No Tail to Tell",
+  "native": "오늘부터 인간입니다만",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (14 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "eunho",
+    "siyeol"
+  ],
+  "people": [
+    {
+      "id": "eunho",
+      "name": "Eun Ho",
+      "actor": "Kim Hye Yoon",
+      "image": "https://i.mydramalist.com/xpnmE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Cynical nine-tailed fox from Mount Myohyang, granting wishes — turned human by accident"
+    },
+    {
+      "id": "siyeol",
+      "name": "Kang Si Yeol",
+      "actor": "Lomon",
+      "image": "https://i.mydramalist.com/kA0exO_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "28, Thames FC's striker; narcissist with a warm heart"
+    },
+    {
+      "id": "useok",
+      "name": "Hyun U Seok",
+      "actor": "Jang Dong Ju",
+      "image": "https://i.mydramalist.com/RBe26V_5m.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "28, 'a failed footballer, to be blunt'"
+    },
+    {
+      "id": "geumho",
+      "name": "Geum Ho",
+      "actor": "Lee Si Woo",
+      "image": "https://i.mydramalist.com/O8P1WP_5m.jpg",
+      "group": "Foxes and spirits",
+      "inCast": true,
+      "note": "A gumiho from Eun Ho's past"
+    },
+    {
+      "id": "ducheol",
+      "name": "Jang Du Cheol",
+      "actor": "Kim Tae Woo",
+      "image": "https://i.mydramalist.com/47PO1_5m.jpg",
+      "group": "Foxes and spirits",
+      "inCast": true,
+      "note": "54, neighbourhood layabout — a possessed shaman"
+    },
+    {
+      "id": "pagun",
+      "name": "Pa Gun / Seong Jun",
+      "actor": "Joo Jin Mo",
+      "image": "https://i.mydramalist.com/ZOL8J_5m.jpg",
+      "group": "Beyond",
+      "inCast": true,
+      "note": "Seventh star of the Seven Stars"
+    },
+    {
+      "id": "iyun",
+      "name": "Lee Yun",
+      "actor": "Choi Seung Yoon",
+      "image": "https://i.mydramalist.com/EDgXzm.jpg",
+      "group": "Around Si Yeol",
+      "inCast": true,
+      "note": "39, Geumsu Group's fourth generation; sociopath"
+    },
+    {
+      "id": "yonggil",
+      "name": "Park Yong Gil",
+      "actor": "In Gyo Jin",
+      "image": "https://i.mydramalist.com/pOZeEm.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "42, manager; old-school grit"
+    },
+    {
+      "id": "sangcheol",
+      "name": "Hyun Sang Cheol",
+      "actor": "Lee Seung Jun",
+      "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "59"
+    },
+    {
+      "id": "seobeom",
+      "name": "Seo Beom",
+      "actor": "Yu Hwan",
+      "image": "https://i.mydramalist.com/eYlRkd_5m.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "28, attacking midfielder; efficiency over grit"
+    },
+    {
+      "id": "chisu",
+      "name": "Hwang Chi Su",
+      "actor": "Kim Tae Jung",
+      "image": "https://i.mydramalist.com/60zRKj_5m.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "26, centre back, silent"
+    },
+    {
+      "id": "gyeonghun",
+      "name": "Kim Gyeong Hun",
+      "actor": "Kim Tae Hee",
+      "image": "https://i.mydramalist.com/oQ6PPO_5m.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "26, backup keeper"
+    },
+    {
+      "id": "jeongbae",
+      "name": "Bae Jeong Bae",
+      "actor": "Ji Seung Jun",
+      "image": "https://i.mydramalist.com/l0Qx6J_5m.jpg",
+      "group": "Daeheung Citizens FC",
+      "inCast": true,
+      "note": "23, wing-back"
+    },
+    {
+      "id": "boksun",
+      "name": "Kim Bok Sun",
+      "actor": "Cha Mi Kyung",
+      "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "group": "Around Si Yeol",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "eunho",
+      "to": "siyeol",
+      "type": "romance",
+      "label": "one wish gone wrong: the fox turned human and the striker",
+      "short": "the wish",
+      "evidence": "a sudden accident involving Kang Si Yeol [...] turns her into an ordinary human, one wish gone wrong sparks a magical, chaotic romance neither of them ever asked for",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "eunho",
+      "to": "siyeol",
+      "type": "bond",
+      "label": "the business card she gave him nine years ago",
+      "short": "the card",
+      "evidence": "a mysterious business card, once given to him by Eun Ho, resurfaces — nine years later",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "geumho",
+      "to": "eunho",
+      "type": "bond",
+      "label": "a gumiho from her past",
+      "short": "old tie",
+      "evidence": "금호 역 - 과거 은호와 인연이 있는 구미호",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "geumho",
+      "to": "eunho",
+      "type": "rivalry",
+      "label": "the fox who took the other road",
+      "short": "rival fox",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "useok",
+      "to": "siyeol",
+      "type": "friend",
+      "label": "old teammates; the one who failed",
+      "short": "old teammate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sangcheol",
+      "to": "useok",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[U Seok's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ducheol",
+      "to": "eunho",
+      "type": "bond",
+      "label": "the shaman who knows what she is",
+      "short": "sees her",
+      "evidence": "장도철 역 - 실제 정체는 신내림을 받은 박수무당",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "pagun",
+      "to": "eunho",
+      "type": "bond",
+      "label": "the star-spirit who watches over the foxes",
+      "short": "the seventh star",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "iyun",
+      "to": "siyeol",
+      "type": "rivalry",
+      "label": "the sociopath heir against him",
+      "short": "enemy",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yonggil",
+      "to": "siyeol",
+      "type": "work",
+      "label": "manager of the citizens' club he lands in",
+      "short": "manager",
+      "evidence": "박용길 역 - 대흥시민구단의 감독",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seobeom",
+      "to": "yonggil",
+      "type": "work",
+      "label": "attacking midfielder",
+      "short": "player",
+      "evidence": "서범 역 - 대흥시민구단의 공격형 미드필더",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "chisu",
+      "to": "yonggil",
+      "type": "work",
+      "label": "centre back",
+      "short": "player",
+      "evidence": "황치수 역 - 대흥시민구단의 센터백",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonghun",
+      "to": "yonggil",
+      "type": "work",
+      "label": "backup keeper",
+      "short": "player",
+      "evidence": "김경훈 역 - 대흥시민구단의 백업 골키퍼",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongbae",
+      "to": "yonggil",
+      "type": "work",
+      "label": "wing-back",
+      "short": "player",
+      "evidence": "배정배 역 - 대흥시민구단의 윙백",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "boksun",
+      "to": "siyeol",
+      "type": "family",
+      "label": "grandmother",
+      "short": "grandmother",
+      "evidence": "[Si Yeol's grandmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "eunho",
+      "siyeol",
+      "useok",
+      "geumho",
+      "ducheol",
+      "pagun",
+      "iyun",
+      "yonggil",
+      "sangcheol",
+      "seobeom",
+      "chisu",
+      "gyeonghun",
+      "jeongbae",
+      "boksun"
+    ],
+    "blocks": {
+      "Foxes and spirits": [
+        0,
+        0
+      ],
+      "Daeheung Citizens FC": [
+        2,
+        0
+      ],
+      "Beyond": [
+        0,
+        2
+      ],
+      "Around Si Yeol": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "eunho",
+      "siyeol"
+    ]
+  }
+}

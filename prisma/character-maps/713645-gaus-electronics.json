@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "mdlSlug": "713645-gaus-electronics",
+  "title": "Gaus Electronics",
+  "native": "가우스전자",
+  "year": 2022,
+  "country": "KR",
+  "sources": [
+    "MDL cast (17 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "sangshik",
+    "narae"
+  ],
+  "people": [
+    {
+      "id": "sangshik",
+      "name": "Lee Sang Shik",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Zero tact, all common sense"
+    },
+    {
+      "id": "narae",
+      "name": "Cha Na Rae",
+      "actor": "Go Sung Hee",
+      "image": "https://i.mydramalist.com/dBm8g_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Assistant manager; a live volcano"
+    },
+    {
+      "id": "matan",
+      "name": "Baek Ma Tan",
+      "actor": "Bae Hyun Sung",
+      "image": "https://i.mydramalist.com/qrmg8_5m.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "New hire — secretly the Power Group heir, slumming it"
+    },
+    {
+      "id": "kangmi",
+      "name": "Gun Kang Mi",
+      "actor": "Kang Min Ah",
+      "image": "https://i.mydramalist.com/b31VrV_5m.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "Dirt-poor, hulk-strong when drunk"
+    },
+    {
+      "id": "sungnam",
+      "name": "Ki Sung Nam",
+      "actor": "Baek Hyun Jin",
+      "image": "https://i.mydramalist.com/Lw8doL_5m.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "Deputy general manager; Konglish and old-school"
+    },
+    {
+      "id": "jangbyung",
+      "name": "Wi Jang Byung",
+      "actor": "Heo Jung Do",
+      "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "General manager; smiles through every crisis, works as little as possible"
+    },
+    {
+      "id": "wawa",
+      "name": "Cha Wa Wa",
+      "actor": "Jeon Seok Chan",
+      "image": "https://i.mydramalist.com/ZvqZWm.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "Manager; nearly forty, more worried about hair loss than marriage"
+    },
+    {
+      "id": "hyungmi",
+      "name": "Sung Hyung Mi",
+      "actor": "Go Woo Ri",
+      "image": "https://i.mydramalist.com/5vPXqL_5m.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "Manager; expressionless and gets it all done"
+    },
+    {
+      "id": "moonhak",
+      "name": "Kim Moon Hak",
+      "actor": "Baek Soo Jang",
+      "image": "https://i.mydramalist.com/01g7Ym.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "Assistant manager; would-be novelist, writes reports instead"
+    },
+    {
+      "id": "moomyung",
+      "name": "Na Moo Myung",
+      "actor": "Jo Jung Chi",
+      "image": "https://i.mydramalist.com/60331W_5m.jpg",
+      "group": "Marketing Team 3",
+      "inCast": true,
+      "note": "Assistant manager; the invisible one"
+    },
+    {
+      "id": "haeyoung",
+      "name": "Mo Hae Young",
+      "actor": "Lee So Hee",
+      "image": "https://i.mydramalist.com/Xk8Pd_5m.jpg",
+      "group": "Gaus Electronics",
+      "inCast": true,
+      "note": "PR team"
+    },
+    {
+      "id": "dalsoon",
+      "name": "Choi Dal Soon",
+      "actor": "Cha Yu Jin",
+      "image": "https://i.mydramalist.com/r5X77_5m.jpg",
+      "group": "Gaus Electronics",
+      "inCast": true,
+      "note": "Director"
+    },
+    {
+      "id": "eokdae",
+      "name": "Chun Eok Dae",
+      "actor": "Kim Jung Ho",
+      "image": "https://i.mydramalist.com/1g1QRm.jpg",
+      "group": "Gaus Electronics",
+      "inCast": true,
+      "note": "Chairman"
+    },
+    {
+      "id": "manhae",
+      "name": "Go Man Hae",
+      "actor": "Park Yong",
+      "image": "https://i.mydramalist.com/dxE2b_5m.jpg",
+      "group": "Gaus Electronics",
+      "inCast": true
+    },
+    {
+      "id": "jowon",
+      "name": "Baek Jo Won",
+      "actor": "Kim Bup Rae",
+      "image": "https://i.mydramalist.com/WP5QRX_5m.jpg",
+      "group": "Outside",
+      "inCast": true
+    },
+    {
+      "id": "kim",
+      "name": "Secretary Kim",
+      "actor": "Kim Kyung Il",
+      "image": "https://i.mydramalist.com/weDJY_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Ma Tan's secretary"
+    },
+    {
+      "id": "aziz",
+      "name": "Aziz",
+      "actor": "Sazal Kim",
+      "image": "https://i.mydramalist.com/po4QD_5m.jpg",
+      "group": "Outside",
+      "inCast": true,
+      "note": "Sang Shik's Indian roommate"
+    }
+  ],
+  "links": [
+    {
+      "from": "sangshik",
+      "to": "narae",
+      "type": "romance",
+      "label": "the tactless one and the volcano",
+      "short": "lovers",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "matan",
+      "to": "kangmi",
+      "type": "romance",
+      "label": "opposites — silver spoon and bootstraps — who slowly bond",
+      "short": "sparks",
+      "evidence": "His polar opposite is Geon Gang Mi [...] they slowly begin to form a bond, with possible sparks of romance in the air",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangshik",
+      "to": "haeyoung",
+      "type": "romance",
+      "label": "his secret crush in PR",
+      "short": "crush",
+      "evidence": "모해영 역 - 이상식이 짝사랑하는 같은 회사 홍보팀 직원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "narae",
+      "to": "sangshik",
+      "type": "work",
+      "label": "assistant manager over the new guy",
+      "short": "senior",
+      "evidence": "차나래 역 - 마케팅3부 대리 / 이상식 역 - 마케팅3부 사원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sungnam",
+      "to": "narae",
+      "type": "work",
+      "label": "deputy GM of Team 3",
+      "short": "deputy GM",
+      "evidence": "기성남 역 - 마케팅3부 차장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangbyung",
+      "to": "sungnam",
+      "type": "work",
+      "label": "general manager of Team 3",
+      "short": "GM",
+      "evidence": "위장병 역 - 마케팅3부 부장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wawa",
+      "to": "narae",
+      "type": "work",
+      "label": "manager, Team 3",
+      "short": "manager",
+      "evidence": "차와와 역 - 마케팅3부 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyungmi",
+      "to": "narae",
+      "type": "work",
+      "label": "manager, Team 3",
+      "short": "manager",
+      "evidence": "성형미 역 - 마케팅3부 과장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "moonhak",
+      "to": "sangshik",
+      "type": "work",
+      "label": "assistant manager, Team 3",
+      "short": "colleague",
+      "evidence": "김문학 역 - 마케팅3부 대리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "moomyung",
+      "to": "sangshik",
+      "type": "work",
+      "label": "assistant manager, Team 3",
+      "short": "colleague",
+      "evidence": "나무명 역 - 마케팅3부 대리",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dalsoon",
+      "to": "jangbyung",
+      "type": "work",
+      "label": "director over the team",
+      "short": "director",
+      "evidence": "최달순 역 - 가우스전자 이사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eokdae",
+      "to": "dalsoon",
+      "type": "work",
+      "label": "chairman",
+      "short": "chairman",
+      "evidence": "[Chairman]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "manhae",
+      "to": "jangbyung",
+      "type": "work",
+      "label": "Gaus executive",
+      "short": "executive",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jowon",
+      "to": "matan",
+      "type": "family",
+      "label": "father; Power Group",
+      "short": "father",
+      "evidence": "김법래 : 백조원 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kim",
+      "to": "matan",
+      "type": "work",
+      "label": "his secretary",
+      "short": "secretary",
+      "evidence": "김 비서 역 - 백마탄 비서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "aziz",
+      "to": "sangshik",
+      "type": "friend",
+      "label": "roommate",
+      "short": "roommate",
+      "evidence": "아지즈 역 - 이상식 집에 같이 사는 인도인 룸메이트",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "sangshik",
+      "narae",
+      "matan",
+      "kangmi",
+      "sungnam",
+      "jangbyung",
+      "wawa",
+      "hyungmi",
+      "moonhak",
+      "moomyung",
+      "haeyoung",
+      "dalsoon",
+      "eokdae",
+      "manhae",
+      "jowon",
+      "kim",
+      "aziz"
+    ],
+    "blocks": {
+      "Marketing Team 3": [
+        0,
+        0
+      ],
+      "Gaus Electronics": [
+        2,
+        0
+      ],
+      "Outside": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "sangshik",
+      "narae"
+    ]
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "version": 1,
+  "mdlSlug": "801546-absolute-value-of-romance",
+  "title": "Absolute Value of Romance",
+  "native": "로맨스의 절대값",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (15 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물 (names only)"
+  ],
+  "main": [
+    "euiju",
+    "usu"
+  ],
+  "people": [
+    {
+      "id": "euiju",
+      "name": "Yeo Eui Ju",
+      "actor": "Kim Hyang Gi",
+      "image": "https://i.mydramalist.com/4e0ww6_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Average by day; secret writer of adults-only BL novels by night, with no readers"
+    },
+    {
+      "id": "usu",
+      "name": "Ga U Su",
+      "actor": "Cha Hak Yeon",
+      "image": "https://i.mydramalist.com/73lrzB_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Cold maths prodigy from a family of mathematicians; nearly lost his sight"
+    },
+    {
+      "id": "daju",
+      "name": "No Da Ju",
+      "actor": "Kim Jae Hyun",
+      "image": "https://i.mydramalist.com/2wdnZO_5m.jpg",
+      "group": "The four new teachers",
+      "inCast": true,
+      "note": "Playful Japanese teacher; rich, a polyglot"
+    },
+    {
+      "id": "gijeon",
+      "name": "Jung Gi Jeon",
+      "actor": "DEMIAN",
+      "image": "https://i.mydramalist.com/RBZL3g_5m.jpg",
+      "group": "The four new teachers",
+      "inCast": true,
+      "note": "Former luge athlete; warm, clumsy PE teacher"
+    },
+    {
+      "id": "dongju",
+      "name": "Yun Dong Ju",
+      "actor": "Kim Dong Kyu",
+      "image": "https://i.mydramalist.com/Px6LB0_5m.jpg",
+      "group": "The four new teachers",
+      "inCast": true,
+      "note": "Soft-spoken Korean teacher, honorifics always"
+    },
+    {
+      "id": "goya",
+      "name": "Choi Go Ya",
+      "actor": "Kim So Hui",
+      "image": "https://i.mydramalist.com/rNrErj_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "euido",
+      "name": "Yeo Eui Do",
+      "actor": "Lee Jae Hui",
+      "image": "https://i.mydramalist.com/x4W22E_5m.jpg",
+      "group": "Eui Ju's family",
+      "inCast": true
+    },
+    {
+      "id": "yeonghui",
+      "name": "Kim Yeong Hui",
+      "actor": "Baek Hyeon Ju",
+      "image": "https://i.mydramalist.com/73583b_5m.jpg",
+      "group": "School",
+      "inCast": true,
+      "note": "Head teacher"
+    },
+    {
+      "id": "sin",
+      "name": "Yeo Sin",
+      "actor": "Lee Seung Jun",
+      "image": "https://i.mydramalist.com/6bKNd_5m.jpg",
+      "group": "Eui Ju's family",
+      "inCast": true
+    },
+    {
+      "id": "yunju",
+      "name": "O Yun Ju",
+      "actor": "Yang So Min",
+      "image": "https://i.mydramalist.com/WNOQ3m.jpg",
+      "group": "Eui Ju's family",
+      "inCast": true
+    },
+    {
+      "id": "danji",
+      "name": "Kim Dan Ji",
+      "actor": "Jang Jae Yeong",
+      "image": "https://i.mydramalist.com/KpoBeq_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "yeongjae",
+      "name": "Kim Yeong Jae",
+      "actor": "Han Se Hee",
+      "image": "https://i.mydramalist.com/VXxmPL_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "jia",
+      "name": "Choi Ji A",
+      "actor": "Yoon Hye Rim",
+      "image": "https://i.mydramalist.com/zB1Wqz_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "hasu",
+      "name": "Eun Ha Su",
+      "actor": "Roh Ju Eun",
+      "image": "https://i.mydramalist.com/yWDLPB_5m.jpg",
+      "group": "School",
+      "inCast": true
+    },
+    {
+      "id": "iden",
+      "name": "Ha I Den",
+      "actor": "Jung Si Heon",
+      "image": "https://i.mydramalist.com/PxZ5VX_5m.jpg",
+      "group": "School",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "euiju",
+      "to": "usu",
+      "type": "work",
+      "label": "the new maths teacher — her muse, and her student",
+      "short": "her teacher",
+      "evidence": "her life as a writer takes an unexpected turn when four handsome new teachers arrive at her school. Among them is Ga U Su, a cold and brilliant math prodigy",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "usu",
+      "to": "euiju",
+      "type": "romance",
+      "label": "the cold prodigy and the secret novelist",
+      "short": "drawn to her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "daju",
+      "to": "usu",
+      "type": "friend",
+      "label": "longtime friends, forever squabbling",
+      "short": "old friend",
+      "evidence": "U Su's longtime friend, despite their constant squabbling",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gijeon",
+      "to": "euiju",
+      "type": "work",
+      "label": "sees her as his next prodigy — a runner",
+      "short": "coaches her",
+      "evidence": "sees Eui Ju as his next prodigy, recognizing her exceptional talent in running",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dongju",
+      "to": "euiju",
+      "type": "work",
+      "label": "the gentle Korean teacher",
+      "short": "her teacher",
+      "evidence": "Yun Dong Ju is a warm-hearted and modest Korean teacher",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "daju",
+      "to": "euiju",
+      "type": "work",
+      "label": "the Japanese teacher",
+      "short": "her teacher",
+      "evidence": "No Da Ju, a playful and mischievous Japanese teacher",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "goya",
+      "to": "euiju",
+      "type": "friend",
+      "label": "best friend",
+      "short": "best friend",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "euido",
+      "to": "euiju",
+      "type": "family",
+      "label": "brother",
+      "short": "sibling",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "sin",
+      "to": "euiju",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Eui Ju's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunju",
+      "to": "euiju",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Eui Ju's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonghui",
+      "to": "usu",
+      "type": "work",
+      "label": "head teacher over the new four",
+      "short": "head teacher",
+      "evidence": "[Head teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "danji",
+      "to": "euiju",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "yeongjae",
+      "to": "euiju",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "jia",
+      "to": "euiju",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "hasu",
+      "to": "euiju",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "iden",
+      "to": "euiju",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "euiju",
+      "usu",
+      "daju",
+      "gijeon",
+      "dongju",
+      "goya",
+      "euido",
+      "yeonghui",
+      "sin",
+      "yunju",
+      "danji",
+      "yeongjae",
+      "jia",
+      "hasu",
+      "iden"
+    ],
+    "blocks": {
+      "The four new teachers": [
+        0,
+        0
+      ],
+      "Eui Ju's family": [
+        2,
+        0
+      ],
+      "School": [
+        1,
+        2
+      ]
+    },
+    "center": [
+      "euiju",
+      "usu"
+    ]
+  }
+}

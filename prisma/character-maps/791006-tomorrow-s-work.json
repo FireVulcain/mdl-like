@@ -1,0 +1,494 @@
+{
+  "version": 1,
+  "mdlSlug": "791006-tomorrow-s-work",
+  "title": "See You at Work Tomorrow!",
+  "native": "내일도 출근!",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (20 roles, 5 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "siu",
+    "jiyun"
+  ],
+  "people": [
+    {
+      "id": "siu",
+      "name": "Kang Si U",
+      "actor": "Seo In Guk",
+      "image": "https://i.mydramalist.com/j64Ry_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "'The company's worst grump'; her direct supervisor"
+    },
+    {
+      "id": "jiyun",
+      "name": "Cha Ji Yun",
+      "actor": "Park Ji Hyun",
+      "image": "https://i.mydramalist.com/AB8PvP_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Seventh-year employee in a slump; picks the lesser evil"
+    },
+    {
+      "id": "noa",
+      "name": "Yun No A",
+      "actor": "Kang Mi Na",
+      "image": "https://i.mydramalist.com/3onw7e_5m.jpg",
+      "group": "No A's people",
+      "inCast": true,
+      "note": "Product planning team 1"
+    },
+    {
+      "id": "gaeul",
+      "name": "Cho Ga Eul",
+      "actor": "Choi Kyung Hoon",
+      "image": "https://i.mydramalist.com/PxV1g5_5m.jpg",
+      "group": "Ga Eul's band",
+      "inCast": true,
+      "note": "Vocalist of the band 'Autumn'"
+    },
+    {
+      "id": "jaein",
+      "name": "Lee Jae In",
+      "actor": "Won Gyu Bin",
+      "image": "https://i.mydramalist.com/73WxjR_5m.jpg",
+      "group": "Ji Yun's people",
+      "inCast": true,
+      "note": "Surfer boy"
+    },
+    {
+      "id": "seongmin",
+      "name": "Lee Seong Min",
+      "actor": "Kim Dong Young",
+      "image": "https://i.mydramalist.com/Xx2NO_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true
+    },
+    {
+      "id": "yeongmuk",
+      "name": "Cha Yeong Muk",
+      "actor": "Yoo Sung Joo",
+      "image": "https://i.mydramalist.com/evdBdm.jpg",
+      "group": "Ji Yun's people",
+      "inCast": true
+    },
+    {
+      "id": "hyegyeong",
+      "name": "Nam Hye Gyeong",
+      "actor": "Lee Ji Hyun",
+      "image": "https://i.mydramalist.com/XE10g_5m.jpg",
+      "group": "Ji Yun's people",
+      "inCast": true
+    },
+    {
+      "id": "junsu",
+      "name": "Cha Jun Su",
+      "actor": "Heo Jun Seo",
+      "image": "https://i.mydramalist.com/nOjdZ4_5m.jpg",
+      "group": "Ji Yun's people",
+      "inCast": true,
+      "note": "Retaking the entrance exam"
+    },
+    {
+      "id": "hyeji",
+      "name": "Lee Hye Ji",
+      "actor": "Ahn So Yo",
+      "image": "https://i.mydramalist.com/kA7vkj_5m.jpg",
+      "group": "Ji Yun's people",
+      "inCast": true
+    },
+    {
+      "id": "guwon",
+      "name": "Kim Gu Won",
+      "actor": "Yoon Jung Hoon",
+      "image": "https://i.mydramalist.com/jo35B_5m.jpg",
+      "group": "No A's people",
+      "inCast": true,
+      "note": "PhD student"
+    },
+    {
+      "id": "dara",
+      "name": "Yun Da Ra",
+      "actor": "Yeom Seung Yi",
+      "image": "https://i.mydramalist.com/BdB8V7_5m.jpg",
+      "group": "No A's people",
+      "inCast": true,
+      "note": "Gamer homebody"
+    },
+    {
+      "id": "seungjun",
+      "name": "Koo Seung Jun",
+      "actor": "Han Tae Ha",
+      "image": "https://i.mydramalist.com/oQk8RL_5m.jpg",
+      "group": "Ga Eul's band",
+      "inCast": true,
+      "note": "Guitarist"
+    },
+    {
+      "id": "ujin",
+      "name": "Han U Jin",
+      "actor": "Kim Jung Young",
+      "image": "https://i.mydramalist.com/VXyKlm_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true,
+      "note": "Division president"
+    },
+    {
+      "id": "jincheol",
+      "name": "No Jin Cheol",
+      "actor": "Kim Hak Seon",
+      "image": "https://i.mydramalist.com/Bz1V6_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true,
+      "note": "Executive director"
+    },
+    {
+      "id": "sujin",
+      "name": "Choi Su Jin",
+      "actor": "Park Ye Young",
+      "image": "https://i.mydramalist.com/vw2YX_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true,
+      "note": "Design team manager"
+    },
+    {
+      "id": "yeongsam",
+      "name": "Ko Yeong Sam",
+      "actor": "Hong Woo Jin",
+      "image": "https://i.mydramalist.com/3oAqqW_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true,
+      "note": "Product planning team 1 manager"
+    },
+    {
+      "id": "gitae",
+      "name": "Jeon Gi Tae",
+      "actor": "Kang Gi Doong",
+      "image": "https://i.mydramalist.com/YYZ8yd_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true,
+      "note": "Product planning team 2"
+    },
+    {
+      "id": "nari",
+      "name": "Sin Na Ri",
+      "actor": "Lee Jae Yi",
+      "image": "https://i.mydramalist.com/qYQAZP_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true,
+      "note": "Marketing"
+    },
+    {
+      "id": "yeonghun",
+      "name": "Lee Yeong Hun",
+      "actor": "Yang Byeong Yeol",
+      "image": "https://i.mydramalist.com/g0jJoq_5m.jpg",
+      "group": "Saeum Electronics",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "siu",
+      "to": "jiyun",
+      "type": "work",
+      "label": "her direct supervisor — the grump she picks as the lesser evil",
+      "short": "her boss",
+      "evidence": "Kang Si U, the direct supervisor of Cha Ji Yun [...] chooses her prickly boss, Kang Si U, as the 'lesser evil' to avoid the 'worst'",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "siu",
+      "to": "jiyun",
+      "type": "romance",
+      "label": "become each other's irreplaceable 'best'",
+      "short": "lovers",
+      "evidence": "Together, they grow to become each other's irreplaceable 'best'",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gaeul",
+      "to": "jiyun",
+      "type": "romance",
+      "label": "university friend and first love",
+      "short": "first love",
+      "evidence": "조가을 역 - 지윤의 대학 친구이자 첫사랑",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaein",
+      "to": "jiyun",
+      "type": "romance",
+      "label": "the surfer boy who turns her head",
+      "short": "courts her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "noa",
+      "to": "jiyun",
+      "type": "work",
+      "label": "same division, product planning",
+      "short": "colleague",
+      "evidence": "윤노아 역 - DA사업부 상품기획1팀 사원 / 차지윤 역 - DA사업부 선임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guwon",
+      "to": "noa",
+      "type": "romance",
+      "label": "boyfriend, a PhD student",
+      "short": "boyfriend",
+      "evidence": "[No A's boyfriend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dara",
+      "to": "noa",
+      "type": "family",
+      "label": "older sister",
+      "short": "sister",
+      "evidence": "[No A's older sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seongmin",
+      "to": "siu",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Si U's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongmuk",
+      "to": "jiyun",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Ji Yun's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyegyeong",
+      "to": "jiyun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "[Ji Yun's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyegyeong",
+      "to": "yeongmuk",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "영묵의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "junsu",
+      "to": "jiyun",
+      "type": "family",
+      "label": "younger brother",
+      "short": "brother",
+      "evidence": "[Ji Yun's younger brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeji",
+      "to": "jiyun",
+      "type": "friend",
+      "label": "friend",
+      "short": "friend",
+      "evidence": "[Ji Yun's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seungjun",
+      "to": "gaeul",
+      "type": "work",
+      "label": "the band's guitarist",
+      "short": "bandmate",
+      "evidence": "['Autumn' band guitarist]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ujin",
+      "to": "siu",
+      "type": "work",
+      "label": "division president",
+      "short": "president",
+      "evidence": "[Saeum Electronics DA business division president]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jincheol",
+      "to": "siu",
+      "type": "work",
+      "label": "executive director",
+      "short": "executive",
+      "evidence": "[Saeum Electronics DA business division executive director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sujin",
+      "to": "jiyun",
+      "type": "work",
+      "label": "design manager, her role model",
+      "short": "role model",
+      "evidence": "최수진 역 - 디자인팀 책임, 지윤의 롤모델",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongsam",
+      "to": "noa",
+      "type": "work",
+      "label": "her team manager",
+      "short": "manager",
+      "evidence": "고영삼 역 - 상품기획1팀 책임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gitae",
+      "to": "jiyun",
+      "type": "work",
+      "label": "product planning team 2",
+      "short": "colleague",
+      "evidence": "[Product Planning team 2 employee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "nari",
+      "to": "jiyun",
+      "type": "work",
+      "label": "marketing",
+      "short": "colleague",
+      "evidence": "[Marketing team employee]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeonghun",
+      "to": "jiyun",
+      "type": "work",
+      "label": "fellow senior",
+      "short": "colleague",
+      "evidence": "이영훈 역 - DA사업부 선임",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "siu",
+      "jiyun",
+      "noa",
+      "gaeul",
+      "jaein",
+      "seongmin",
+      "yeongmuk",
+      "hyegyeong",
+      "junsu",
+      "hyeji",
+      "guwon",
+      "dara",
+      "seungjun",
+      "ujin",
+      "jincheol",
+      "sujin",
+      "yeongsam",
+      "gitae",
+      "nari",
+      "yeonghun"
+    ],
+    "blocks": {
+      "Saeum Electronics": [
+        0,
+        0
+      ],
+      "Ji Yun's people": [
+        2,
+        0
+      ],
+      "No A's people": [
+        0,
+        2
+      ],
+      "Ga Eul's band": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "siu",
+      "jiyun"
+    ]
+  }
+}

@@ -1,0 +1,636 @@
+{
+  "version": 1,
+  "mdlSlug": "29185-my-id-is-gangnam-beauty",
+  "title": "My ID Is Gangnam Beauty",
+  "native": "내 아이디는 강남미인",
+  "year": 2018,
+  "country": "KR",
+  "sources": [
+    "MDL cast (30 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "mirae",
+    "gyeongseok"
+  ],
+  "people": [
+    {
+      "id": "mirae",
+      "name": "Kang Mi Rae",
+      "actor": "Im Soo Hyang",
+      "image": "https://i.mydramalist.com/2DKAdm.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Jeon Min Seo",
+          "image": "https://i.mydramalist.com/n0q6Nm.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Bullied for her looks; a new face by surgery — and the new label 'Gangnam Beauty'"
+    },
+    {
+      "id": "gyeongseok",
+      "name": "Do Gyeong Seok",
+      "actor": "Cha Eun Woo",
+      "image": "https://i.mydramalist.com/JBLjqX_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Shin Jun Seop",
+          "image": "https://i.mydramalist.com/d0oljz_5m.jpg",
+          "era": "young"
+        }
+      ],
+      "note": "Her middle-school classmate; the famous 'face genius' who sees only the inside"
+    },
+    {
+      "id": "sua",
+      "name": "Hyun Su A",
+      "actor": "Jo Woo Ri",
+      "image": "https://i.mydramalist.com/B2gQ5m.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "The department's goddess — kind, with strange corners"
+    },
+    {
+      "id": "uyeong",
+      "name": "Yeon U Yeong",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "TA of the freshmen's required course"
+    },
+    {
+      "id": "hyesung",
+      "name": "Na Hye Sung",
+      "actor": "Park Joo Mi",
+      "image": "https://i.mydramalist.com/wznnJ_5m.jpg",
+      "group": "Gyeong Seok's family",
+      "inCast": true,
+      "note": "CEO of Kelun Korea"
+    },
+    {
+      "id": "sangwon",
+      "name": "Do Sang Won",
+      "actor": "Park Sung Geun",
+      "image": "https://i.mydramalist.com/k3JNm_5m.jpg",
+      "group": "Gyeong Seok's family",
+      "inCast": true,
+      "note": "Three-term assemblyman"
+    },
+    {
+      "id": "gyeonghui",
+      "name": "Do Gyeong Hui",
+      "actor": "Kim Ji Min",
+      "image": "https://i.mydramalist.com/qoDJKm.jpg",
+      "group": "Gyeong Seok's family",
+      "inCast": true,
+      "note": "High-schooler, internet broadcaster"
+    },
+    {
+      "id": "yujin",
+      "name": "Seo Yu Jin",
+      "actor": "Lee Tae Sun",
+      "image": "https://i.mydramalist.com/wVAZAm.jpg",
+      "group": "Gyeong Seok's family",
+      "inCast": true,
+      "note": "Runs the bar Berlin"
+    },
+    {
+      "id": "yeongmo",
+      "name": "Yeong Mo",
+      "actor": "Jung Myung Hoon",
+      "image": "https://i.mydramalist.com/wJe6VJ_5m.jpg",
+      "group": "Gyeong Seok's family",
+      "inCast": true,
+      "note": "The assemblyman's aide"
+    },
+    {
+      "id": "taesik",
+      "name": "Kang Tae Sik",
+      "actor": "Woo Hyun",
+      "image": "https://i.mydramalist.com/EEq45_5m.jpg",
+      "group": "Mi Rae's family",
+      "inCast": true,
+      "note": "Taxi driver"
+    },
+    {
+      "id": "eunsin",
+      "name": "Na Eun Sin",
+      "actor": "Kim Seon Hwa",
+      "image": "https://i.mydramalist.com/Xb03xm.jpg",
+      "group": "Mi Rae's family",
+      "inCast": true,
+      "note": "Insurance planner"
+    },
+    {
+      "id": "hyeonjeong",
+      "name": "O Hyeon Jeong",
+      "actor": "Min Do Hee",
+      "image": "https://i.mydramalist.com/2kWyV_5m.jpg",
+      "group": "Mi Rae's family",
+      "inCast": true,
+      "note": "Psychology, class of '18"
+    },
+    {
+      "id": "yooeun",
+      "name": "Yoo Eun",
+      "actor": "Park You Na",
+      "image": "https://i.mydramalist.com/eYVX7Y_5m.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "Class rep, '18"
+    },
+    {
+      "id": "jeongbun",
+      "name": "Choi Jeong Bun",
+      "actor": "Jung Seung Hye",
+      "image": "https://i.mydramalist.com/dXR4b_5m.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "From Busan, curious about everything"
+    },
+    {
+      "id": "jihyo",
+      "name": "Lee Ji Hyo",
+      "actor": "Jung Hye Rin",
+      "image": "https://i.mydramalist.com/4042Qm.jpg",
+      "group": "Chemistry department",
+      "inCast": true
+    },
+    {
+      "id": "wonho",
+      "name": "Jang Won Ho",
+      "actor": "Kim Do Yeon",
+      "image": "https://i.mydramalist.com/dv3gAm.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "Selfish"
+    },
+    {
+      "id": "seongun",
+      "name": "Kim Seong Un",
+      "actor": "Kim Eun Soo",
+      "image": "https://i.mydramalist.com/BE58R_5m.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "Self-styled dating expert"
+    },
+    {
+      "id": "dongwon",
+      "name": "Jung Dong Won",
+      "actor": "Ham Sung Min",
+      "image": "https://i.mydramalist.com/rb7Qmm.jpg",
+      "group": "Chemistry department",
+      "inCast": true,
+      "note": "The outsider"
+    },
+    {
+      "id": "chanu",
+      "name": "Kim Chan U",
+      "actor": "Oh Hee Joon",
+      "image": "https://i.mydramalist.com/3oAEXv_5m.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'13, the returning student with garbage character"
+    },
+    {
+      "id": "taeyeong",
+      "name": "Koo Tae Yeong",
+      "actor": "Ryu Ki San",
+      "image": "https://i.mydramalist.com/Kp6gj0_5m.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'14, student president, indecisive"
+    },
+    {
+      "id": "jeonghyeop",
+      "name": "Cho Jeong Hyeop",
+      "actor": "Kim Yi Rin",
+      "image": "https://i.mydramalist.com/enW18m.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'14, lookist"
+    },
+    {
+      "id": "yunbyeol",
+      "name": "Kwon Yun Byeol",
+      "actor": "Bae Da Bin",
+      "image": "https://i.mydramalist.com/nO7RjL_5m.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'17, tomboy class rep"
+    },
+    {
+      "id": "taehui",
+      "name": "Kim Tae Hui",
+      "actor": "Lee Ye Rim",
+      "image": "https://i.mydramalist.com/KpYwkv_5m.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'17, council treasurer"
+    },
+    {
+      "id": "yena",
+      "name": "Ko Ye Na",
+      "actor": "Baek Soo Min",
+      "image": "https://i.mydramalist.com/QXwxQm.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'17, the 'finger princess'"
+    },
+    {
+      "id": "jeongho",
+      "name": "Song Jeong Ho",
+      "actor": "Choi Sung Won",
+      "image": "https://i.mydramalist.com/rNkNkZ_5m.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'17, mood maker"
+    },
+    {
+      "id": "mina",
+      "name": "Min A",
+      "actor": "Suh Jie Hye",
+      "image": "https://i.mydramalist.com/XEdgpm.jpg",
+      "group": "Seniors & student council",
+      "inCast": true,
+      "note": "'17, loves gossip"
+    }
+  ],
+  "links": [
+    {
+      "from": "gyeongseok",
+      "to": "mirae",
+      "type": "romance",
+      "label": "the boy who sees the inside — the one who stands up for her",
+      "short": "lovers",
+      "evidence": "he then becomes attracted to Kang Mi Rae [...] becomes the one person that stands up for her / 경석의 연인",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sua",
+      "to": "gyeongseok",
+      "type": "romance",
+      "label": "likes him",
+      "short": "likes him",
+      "evidence": "현수아 역 - 경석이를 좋아함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sua",
+      "to": "mirae",
+      "type": "rivalry",
+      "label": "the goddess with strange corners, against the 'Gangnam Beauty'",
+      "short": "rival",
+      "evidence": "자타공인 화학과 여신. 착한데 이상한 부분이 군데군데 보인다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "uyeong",
+      "to": "mirae",
+      "type": "romance",
+      "label": "the TA who likes her",
+      "short": "likes her",
+      "evidence": "연우영 역 - 미래를 좋아함",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "uyeong",
+      "to": "gyeongseok",
+      "type": "friend",
+      "label": "roommates in the rooftop room",
+      "short": "roommate",
+      "evidence": "경석이와 옥탑방에서 같이 거주",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyesung",
+      "to": "gyeongseok",
+      "type": "family",
+      "label": "mother; CEO of Kelun Korea",
+      "short": "mother",
+      "evidence": "나혜성 역 - 경석의 어머니, 한국켈런 대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangwon",
+      "to": "gyeongseok",
+      "type": "family",
+      "label": "father, a three-term assemblyman",
+      "short": "father",
+      "evidence": "도상원 역 - 경석의 아버지, 3선 국회의원",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyeonghui",
+      "to": "gyeongseok",
+      "type": "family",
+      "label": "younger sister",
+      "short": "sister",
+      "evidence": "도경희 역 - 경석의 동생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yujin",
+      "to": "gyeongseok",
+      "type": "friend",
+      "label": "the bar owner he confides in",
+      "short": "confidant",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "yeongmo",
+      "to": "sangwon",
+      "type": "work",
+      "label": "the assemblyman's aide",
+      "short": "aide",
+      "evidence": "영모 역 - 도상원 국회의원의 참모",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taesik",
+      "to": "mirae",
+      "type": "family",
+      "label": "father, a taxi driver",
+      "short": "father",
+      "evidence": "강태식 역 - 미래의 아버지, 개인택시 기사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "eunsin",
+      "to": "mirae",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "나은심 역 - 미래의 어머니, 보험설계사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "mirae",
+      "type": "friend",
+      "label": "best friend, psychology",
+      "short": "best friend",
+      "evidence": "오현정 역 - 심리학과 18학번, 미래의 절친",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yooeun",
+      "to": "mirae",
+      "type": "work",
+      "label": "class rep of '18",
+      "short": "class rep",
+      "evidence": "유은 역 - 화학과 18학번. 과대표",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongbun",
+      "to": "mirae",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "최정분 역 - 화학과 18학번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jihyo",
+      "to": "sua",
+      "type": "friend",
+      "label": "Su A's sidekick",
+      "short": "sidekick",
+      "evidence": "이지효 역 - 수아 단짝",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wonho",
+      "to": "mirae",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "장원호 역 - 화학과 18학번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seongun",
+      "to": "mirae",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "김성운 역 - 화학과 18학번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "dongwon",
+      "to": "mirae",
+      "type": "friend",
+      "label": "classmate",
+      "short": "classmate",
+      "evidence": "정동원 역 - 화학과 18학번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chanu",
+      "to": "mirae",
+      "type": "rivalry",
+      "label": "the returning senior who harasses her",
+      "short": "harasses her",
+      "evidence": "김찬우 역 - 쓰레기 인성의 소유자인 복학생",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "taeyeong",
+      "to": "chanu",
+      "type": "work",
+      "label": "student president, unable to decide",
+      "short": "president",
+      "evidence": "구태영 역 - 우유부단함의 학생회장",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeonghyeop",
+      "to": "taeyeong",
+      "type": "work",
+      "label": "third-year rep",
+      "short": "council",
+      "evidence": "조정협 역 - 3학년 과대",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yunbyeol",
+      "to": "taeyeong",
+      "type": "work",
+      "label": "second-year rep",
+      "short": "council",
+      "evidence": "권윤별 역 - 2학년 과대",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taehui",
+      "to": "taeyeong",
+      "type": "work",
+      "label": "council treasurer",
+      "short": "council",
+      "evidence": "김태희 역 - 학생회 총무",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yena",
+      "to": "taeyeong",
+      "type": "work",
+      "label": "council editorial",
+      "short": "council",
+      "evidence": "고예나 역 - 학생회 편집부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongho",
+      "to": "yunbyeol",
+      "type": "friend",
+      "label": "'17",
+      "short": "senior",
+      "evidence": "송정호 역 - 화학과 17학번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "mina",
+      "to": "yunbyeol",
+      "type": "friend",
+      "label": "'17",
+      "short": "senior",
+      "evidence": "민아 역 - 화학과 17학번",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "mirae",
+      "gyeongseok",
+      "sua",
+      "uyeong",
+      "hyesung",
+      "sangwon",
+      "gyeonghui",
+      "yujin",
+      "yeongmo",
+      "taesik",
+      "eunsin",
+      "hyeonjeong",
+      "yooeun",
+      "jeongbun",
+      "jihyo",
+      "wonho",
+      "seongun",
+      "dongwon"
+    ],
+    "blocks": {
+      "Gyeong Seok's family": [
+        0,
+        0
+      ],
+      "Mi Rae's family": [
+        2,
+        0
+      ],
+      "Chemistry department": [
+        1,
+        2
+      ],
+      "Seniors & student council": [
+        0,
+        2
+      ]
+    },
+    "center": [
+      "mirae",
+      "gyeongseok"
+    ]
+  }
+}

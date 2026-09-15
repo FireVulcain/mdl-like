@@ -1,0 +1,461 @@
+{
+  "version": 1,
+  "mdlSlug": "746993-my-demon",
+  "title": "My Demon",
+  "native": "마이데몬",
+  "year": 2023,
+  "country": "KR",
+  "sources": [
+    "MDL cast (17 roles, 2 main)",
+    "MDL synopsis",
+    "en.wikipedia Cast (names)",
+    "ko.wikipedia (not found; ties inferred)"
+  ],
+  "main": [
+    "dohee",
+    "guwon"
+  ],
+  "people": [
+    {
+      "id": "dohee",
+      "name": "Do Do Hee / Wolsim",
+      "actor": "Kim You Jung",
+      "image": "https://i.mydramalist.com/nOZLQ8_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Heir of the Mirae Group; trusts no one, cynical about love"
+    },
+    {
+      "id": "guwon",
+      "name": "Jung Gu Won",
+      "actor": "Song Kang",
+      "image": "https://i.mydramalist.com/Dkjb4y_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "A demon of 200 years, making sweet deals with the desperate — until his power passes to her"
+    },
+    {
+      "id": "seokhoon",
+      "name": "Joo Seok Hoon",
+      "actor": "Lee Sang Yi",
+      "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
+      "group": "Mirae Group (the Joo family)",
+      "inCast": true
+    },
+    {
+      "id": "chunsook",
+      "name": "Joo Chun Sook",
+      "actor": "Kim Hae Sook",
+      "image": "https://i.mydramalist.com/Z8gXdk_5m.jpg",
+      "group": "Mirae Group (the Joo family)",
+      "inCast": true,
+      "note": "Chairwoman of Mirae Group"
+    },
+    {
+      "id": "sukmin",
+      "name": "Noh Suk Min",
+      "actor": "Kim Tae Hoon",
+      "image": "https://i.mydramalist.com/JBe7ej_5m.jpg",
+      "group": "Mirae Group (the Joo family)",
+      "inCast": true
+    },
+    {
+      "id": "sera",
+      "name": "Kim Se Ra",
+      "actor": "Jo Yun Hee",
+      "image": "https://i.mydramalist.com/2EQRP_5m.jpg",
+      "group": "Mirae Group (the Joo family)",
+      "inCast": true
+    },
+    {
+      "id": "dokyung",
+      "name": "Noh Do Kyung",
+      "actor": "Kang Seung Ho",
+      "image": "https://i.mydramalist.com/YYzO3A_5m.jpg",
+      "group": "Mirae Group (the Joo family)",
+      "inCast": true
+    },
+    {
+      "id": "sooan",
+      "name": "Noh Soo An",
+      "actor": "Lee Yoon Ji",
+      "image": "https://i.mydramalist.com/qRJXK_5m.jpg",
+      "group": "Mirae Group (the Joo family)",
+      "inCast": true
+    },
+    {
+      "id": "gayeong",
+      "name": "Jin Ga Yeong",
+      "actor": "Jo Hye Joo",
+      "image": "https://i.mydramalist.com/YYnnxK_5m.jpg",
+      "group": "Sunwol Foundation",
+      "inCast": true,
+      "note": "Star performer of Sunwol"
+    },
+    {
+      "id": "bokkyu",
+      "name": "Park Bok Kyu",
+      "actor": "Heo Jung Do",
+      "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
+      "group": "Sunwol Foundation",
+      "inCast": true,
+      "note": "Gu Won's butler; runs Sunwol"
+    },
+    {
+      "id": "dajeong",
+      "name": "Shin Da Jeong",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "group": "Do Hee's people",
+      "inCast": true,
+      "note": "Secretary"
+    },
+    {
+      "id": "hansung",
+      "name": "Lee Han Sung",
+      "actor": "Hong Jin Ki",
+      "image": "https://i.mydramalist.com/RNolV_5m.jpg",
+      "group": "Do Hee's people",
+      "inCast": true
+    },
+    {
+      "id": "minsoo",
+      "name": "Han Min Soo",
+      "actor": "Park Jin U",
+      "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
+      "group": "Do Hee's people",
+      "inCast": true
+    },
+    {
+      "id": "jungmi",
+      "name": "Choi Jung Mi",
+      "actor": "Lee Ji Won",
+      "image": "https://i.mydramalist.com/kqKrb_5m.jpg",
+      "group": "Do Hee's people",
+      "inCast": true
+    },
+    {
+      "id": "sooknyeo",
+      "name": "Noh Sook Nyeo",
+      "actor": "Cha Chung Hwa",
+      "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
+      "group": "Beyond",
+      "inCast": true,
+      "note": "The homeless woman"
+    },
+    {
+      "id": "kwangchol",
+      "name": "Ki Kwang Chol",
+      "actor": "Kim Seol Jin",
+      "image": "https://i.mydramalist.com/2AKWw_5m.jpg",
+      "group": "Beyond",
+      "inCast": true,
+      "note": "Killer"
+    },
+    {
+      "id": "no2",
+      "name": "No. 2",
+      "actor": "Jung Soon Won",
+      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
+      "group": "Beyond",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "dohee",
+      "to": "guwon",
+      "type": "romance",
+      "label": "a contract marriage with a demon",
+      "short": "contract marriage",
+      "evidence": "Do Do Hee gets involved with a demon named Jung Gu Won and makes a contract marriage with him",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "guwon",
+      "to": "dohee",
+      "type": "bond",
+      "label": "his power passed to her wrist — he must protect her to survive",
+      "short": "holds his power",
+      "evidence": "To prevent his own extinction, he must protect Do Do Hee who has taken all of his power",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dohee",
+      "to": "guwon",
+      "type": "bond",
+      "label": "Wolsim, the girl he loved as a man, two hundred years ago",
+      "short": "Wolsim",
+      "evidence": "Kim You-jung as Do Do-hee and Wolsim",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "chunsook",
+      "to": "dohee",
+      "type": "family",
+      "label": "the chairwoman who raised the orphaned girl; names her heir",
+      "short": "raised her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seokhoon",
+      "to": "dohee",
+      "type": "romance",
+      "label": "the cousin-by-adoption who loves her",
+      "short": "loves her",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "seokhoon",
+      "to": "chunsook",
+      "type": "family",
+      "label": "nephew",
+      "short": "nephew",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sukmin",
+      "to": "chunsook",
+      "type": "family",
+      "label": "eldest son",
+      "short": "son",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sooan",
+      "to": "chunsook",
+      "type": "family",
+      "label": "daughter",
+      "short": "daughter",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sukmin",
+      "to": "dohee",
+      "type": "rivalry",
+      "label": "the heir passed over — the one behind the killings",
+      "short": "the villain",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sera",
+      "to": "sukmin",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false
+    },
+    {
+      "from": "dokyung",
+      "to": "sukmin",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "kwangchol",
+      "to": "dohee",
+      "type": "rivalry",
+      "label": "the masked intruder sent to kill her",
+      "short": "the killer",
+      "evidence": "[Killer] / Gi Gwang-chol (Masked Intruder)",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "kwangchol",
+      "to": "sukmin",
+      "type": "work",
+      "label": "hired by him",
+      "short": "hired by",
+      "evidence": null,
+      "source": null,
+      "reveal": true,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "gayeong",
+      "to": "guwon",
+      "type": "romance",
+      "label": "Sunwol's star, in love with him",
+      "short": "loves him",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "bokkyu",
+      "to": "guwon",
+      "type": "work",
+      "label": "his butler and Sunwol's manager",
+      "short": "butler",
+      "evidence": "허정도 : 박복규 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "dajeong",
+      "to": "dohee",
+      "type": "work",
+      "label": "her secretary",
+      "short": "secretary",
+      "evidence": "[Do Hee's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hansung",
+      "to": "dohee",
+      "type": "work",
+      "label": "her people at Mirae F&B",
+      "short": "staff",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "minsoo",
+      "to": "dohee",
+      "type": "work",
+      "label": "her people at Mirae F&B",
+      "short": "staff",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "jungmi",
+      "to": "dohee",
+      "type": "work",
+      "label": "her people at Mirae F&B",
+      "short": "staff",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "sooknyeo",
+      "to": "guwon",
+      "type": "bond",
+      "label": "the homeless woman — God, as it turns out",
+      "short": "God",
+      "evidence": "Cha Chung-hwa as a homeless woman who was later revealed as the God",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "no2",
+      "to": "guwon",
+      "type": "work",
+      "label": "the gangster who becomes his follower",
+      "short": "follower",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "dohee",
+      "guwon",
+      "seokhoon",
+      "chunsook",
+      "sukmin",
+      "sera",
+      "dokyung",
+      "sooan",
+      "gayeong",
+      "bokkyu",
+      "dajeong",
+      "hansung",
+      "minsoo",
+      "jungmi",
+      "sooknyeo",
+      "kwangchol",
+      "no2"
+    ],
+    "blocks": {
+      "Mirae Group (the Joo family)": [
+        0,
+        0
+      ],
+      "Sunwol Foundation": [
+        2,
+        0
+      ],
+      "Do Hee's people": [
+        0,
+        2
+      ],
+      "Beyond": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "dohee",
+      "guwon"
+    ]
+  }
+}

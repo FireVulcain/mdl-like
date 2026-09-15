@@ -1,0 +1,552 @@
+{
+  "version": 1,
+  "mdlSlug": "766179-the-number-you-have-dialed",
+  "title": "When the Phone Rings",
+  "native": "지금 거신 전화는",
+  "year": 2024,
+  "country": "KR",
+  "sources": [
+    "MDL cast (21 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물"
+  ],
+  "main": [
+    "saeon",
+    "huiju"
+  ],
+  "people": [
+    {
+      "id": "saeon",
+      "name": "Baek Sa Eon / Baek Yu Yeon",
+      "actor": "Yoo Yeon Seok",
+      "image": "https://i.mydramalist.com/p31Py_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "The youngest presidential spokesman; war correspondent, negotiator, anchor — living under a dead boy's name"
+    },
+    {
+      "id": "huiju",
+      "name": "Hong Hui Ju",
+      "actor": "Chae Soo Bin",
+      "image": "https://i.mydramalist.com/JBXVnw_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Sign-language interpreter with selective mutism; married three years, coldly"
+    },
+    {
+      "id": "sangu",
+      "name": "Ji Sang U",
+      "actor": "Heo Nam Jun",
+      "image": "https://i.mydramalist.com/3o7wNe_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Psychiatrist"
+    },
+    {
+      "id": "yuri",
+      "name": "Na Yu Ri",
+      "actor": "Jang Gyu Ri",
+      "image": "https://i.mydramalist.com/kA7r7w_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Anchor at Sa Eon's old station"
+    },
+    {
+      "id": "jangho",
+      "name": "Baek Jang Ho",
+      "actor": "Jung Dong Hwan",
+      "image": "https://i.mydramalist.com/01kAkm.jpg",
+      "group": "The Baek family",
+      "inCast": true,
+      "note": "Political giant; did everything but president (deceased)"
+    },
+    {
+      "id": "euiyong",
+      "name": "Baek Eui Yong",
+      "actor": "Yoo Sung Joo",
+      "image": "https://i.mydramalist.com/evdBdm.jpg",
+      "group": "The Baek family",
+      "inCast": true,
+      "note": "Presidential candidate"
+    },
+    {
+      "id": "gyujin",
+      "name": "Sim Gyu Jin",
+      "actor": "Chu Sang Mi",
+      "image": "https://i.mydramalist.com/O84ywy_5m.jpg",
+      "group": "The Baek family",
+      "inCast": true,
+      "note": "Criminal psychologist, negotiation expert"
+    },
+    {
+      "id": "dogi",
+      "name": "Min Do Gi",
+      "actor": "Hong Seo Joon",
+      "image": "https://i.mydramalist.com/v5dPD_5m.jpg",
+      "group": "The Baek family",
+      "inCast": true,
+      "note": "The family's butler"
+    },
+    {
+      "id": "ilgyeong",
+      "name": "Hong Il Gyeong",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "group": "The Hong family",
+      "inCast": true,
+      "note": "Chairman of Cheongwoon Ilbo"
+    },
+    {
+      "id": "yeonhui",
+      "name": "Kim Yeon Hui",
+      "actor": "Oh Hyun Kyung",
+      "image": "https://i.mydramalist.com/E5Pdr0_5m.jpg",
+      "group": "The Hong family",
+      "inCast": true,
+      "note": "Former club singer"
+    },
+    {
+      "id": "ina",
+      "name": "Hong In A",
+      "actor": "Han Jae Yi",
+      "image": "https://i.mydramalist.com/2Ozkwm.jpg",
+      "group": "The Hong family",
+      "inCast": true
+    },
+    {
+      "id": "yeongu",
+      "name": "Kang Yeong U",
+      "actor": "Im Chul Soo",
+      "image": "https://i.mydramalist.com/RJRZom.jpg",
+      "group": "Presidential office",
+      "inCast": true,
+      "note": "Office manager"
+    },
+    {
+      "id": "dojae",
+      "name": "Park Do Jae / Yun Min Seong",
+      "actor": "Choi Woo Jin",
+      "image": "https://i.mydramalist.com/JBexQJ_5m.jpg",
+      "group": "Presidential office",
+      "inCast": true,
+      "note": "Special administrative officer"
+    },
+    {
+      "id": "suyeong",
+      "name": "Kim Su Yeong",
+      "actor": "Park Sun Young",
+      "image": "https://i.mydramalist.com/2AVdE_5m.jpg",
+      "group": "Presidential office",
+      "inCast": true
+    },
+    {
+      "id": "jinhui",
+      "name": "An Jin Hui",
+      "actor": "Song Jin Hee",
+      "image": "https://i.mydramalist.com/4n3Vk_5m.jpg",
+      "group": "Presidential office",
+      "inCast": true
+    },
+    {
+      "id": "wonbin",
+      "name": "Jung Won Bin",
+      "actor": "Jung Ji Hwan",
+      "image": "https://i.mydramalist.com/rEWwpm.jpg",
+      "group": "Presidential office",
+      "inCast": true,
+      "note": "Sign-language interpreter"
+    },
+    {
+      "id": "hyeokjin",
+      "name": "Jang Hyeok Jin",
+      "actor": "Ko Sang Ho",
+      "image": "https://i.mydramalist.com/xYwlqm.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Reporter; former war correspondent"
+    },
+    {
+      "id": "sanghun",
+      "name": "Jung Sang Hun / Jung Jin Seok",
+      "actor": "Kim Tae Han",
+      "image": "https://i.mydramalist.com/mjV41m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Lonely fishing-spot owner"
+    },
+    {
+      "id": "hanjin",
+      "name": "Han Jin",
+      "actor": "Yang Jo Ah",
+      "image": "https://i.mydramalist.com/ABXYJE_5m.jpg",
+      "group": "Around them",
+      "inCast": true,
+      "note": "Interpretation centre director"
+    },
+    {
+      "id": "hijacker",
+      "name": "The kidnapper / the real Baek Sa Eon",
+      "actor": "Park Jae Yun",
+      "image": "https://i.mydramalist.com/738j4n_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    },
+    {
+      "id": "taeyeong",
+      "name": "Lee Tae Yeong",
+      "actor": "Kang Hyeon U",
+      "image": "https://i.mydramalist.com/JBbjWy_5m.jpg",
+      "group": "Around them",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "saeon",
+      "to": "huiju",
+      "type": "romance",
+      "label": "married three years, by convenience, cold — until she is kidnapped",
+      "short": "husband",
+      "evidence": "Three years ago, he married Hong Hui Ju [...] Their marriage, based on convenience, has been distant and cold. However, when Hui Ju is kidnapped, their lives and relationship are changed",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hijacker",
+      "to": "saeon",
+      "type": "bond",
+      "label": "the real Baek Sa Eon — the kidnapper; Sa Eon is Yu Yeon, who took his name",
+      "short": "the real Sa Eon",
+      "evidence": "납치범/진짜 백사언 역 (†) / 가짜 백사언/백유연 역",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "sangu",
+      "to": "huiju",
+      "type": "friend",
+      "label": "her university senior",
+      "short": "senior",
+      "evidence": "지상우 역 - 정신의학과 전문의, 희주의 대학선배",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangu",
+      "to": "yuri",
+      "type": "romance",
+      "label": "husband and wife",
+      "short": "husband",
+      "evidence": "유리의 남편 / 상우의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yuri",
+      "to": "saeon",
+      "type": "work",
+      "label": "anchor at the station he came from",
+      "short": "old colleague",
+      "evidence": "나유리 역 - 사언이 몸담았던 방송국 아나운서",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jangho",
+      "to": "saeon",
+      "type": "family",
+      "label": "birth father — 'grandfather' to the world",
+      "short": "birth father",
+      "evidence": "백장호 역 - 죽은 사언의 조부 [...] 유연의 친아버지",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "euiyong",
+      "to": "saeon",
+      "type": "family",
+      "label": "'father' — in truth his older brother",
+      "short": "brother, in truth",
+      "evidence": "[Baek Sa Eon's father] / 백의용 역 - 죽은 사언의 아버지 [...] 유연의 형",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "euiyong",
+      "to": "jangho",
+      "type": "family",
+      "label": "son",
+      "short": "son",
+      "evidence": "의용의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gyujin",
+      "to": "euiyong",
+      "type": "romance",
+      "label": "wife",
+      "short": "wife",
+      "evidence": "심규진 역 - 의용의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "gyujin",
+      "to": "saeon",
+      "type": "family",
+      "label": "'mother' — the dead boy's mother, his sister-in-law",
+      "short": "sister-in-law",
+      "evidence": "[Baek Sa Eon's mother] / 죽은 사언의 어머니 [...] 유연의 형수",
+      "source": "MDL cast",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dogi",
+      "to": "euiyong",
+      "type": "work",
+      "label": "butler and personal secretary",
+      "short": "butler",
+      "evidence": "[Baek Eui Yong's butler and personal secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilgyeong",
+      "to": "huiju",
+      "type": "family",
+      "label": "stepfather; the newspaper chairman",
+      "short": "stepfather",
+      "evidence": "홍일경 역 - 청운일보 회장, 희주의 계부",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonhui",
+      "to": "huiju",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "김연희 역 - 희주의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeonhui",
+      "to": "ilgyeong",
+      "type": "romance",
+      "label": "second wife",
+      "short": "wife",
+      "evidence": "[Hong Il Gyeong's 2nd wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "ina",
+      "to": "huiju",
+      "type": "family",
+      "label": "stepsister, the elder",
+      "short": "stepsister",
+      "evidence": "홍인아 역 - 희주의 의붓언니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "ilgyeong",
+      "to": "ina",
+      "type": "family",
+      "label": "father",
+      "short": "father",
+      "evidence": "[Hong Il Gyeong's eldest daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "yeongu",
+      "to": "saeon",
+      "type": "work",
+      "label": "office manager of the spokesperson's office",
+      "short": "office manager",
+      "evidence": "[Spokesperson Office manager]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "dojae",
+      "to": "saeon",
+      "type": "work",
+      "label": "special officer at the office",
+      "short": "officer",
+      "evidence": "[Spokesperson Office special admin. officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyeong",
+      "to": "saeon",
+      "type": "work",
+      "label": "administrative officer",
+      "short": "officer",
+      "evidence": "[Spokesperson Office admin. officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jinhui",
+      "to": "saeon",
+      "type": "work",
+      "label": "administrative officer",
+      "short": "officer",
+      "evidence": "[Spokesperson Office admin. officer]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wonbin",
+      "to": "huiju",
+      "type": "work",
+      "label": "interpreter at the presidential office",
+      "short": "colleague",
+      "evidence": "[Sign language interpreter for President Office]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeokjin",
+      "to": "saeon",
+      "type": "work",
+      "label": "reporter on the office; war correspondent like him",
+      "short": "reporter",
+      "evidence": "[Reporter covering presidential office / Former war correspondent]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghun",
+      "to": "saeon",
+      "type": "bond",
+      "label": "the lonely man at the fishing spot",
+      "short": "the fishing spot",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    },
+    {
+      "from": "hanjin",
+      "to": "huiju",
+      "type": "work",
+      "label": "director of her interpretation centre",
+      "short": "director",
+      "evidence": "[Sign language interpretation center director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "taeyeong",
+      "to": "saeon",
+      "type": "work",
+      "label": "on the office's side",
+      "short": "staff",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "saeon",
+      "huiju",
+      "sangu",
+      "yuri",
+      "jangho",
+      "euiyong",
+      "gyujin",
+      "dogi",
+      "ilgyeong",
+      "yeonhui",
+      "ina",
+      "yeongu",
+      "dojae",
+      "suyeong",
+      "jinhui",
+      "wonbin",
+      "hyeokjin",
+      "sanghun",
+      "hanjin",
+      "hijacker",
+      "taeyeong"
+    ],
+    "blocks": {
+      "The Baek family": [
+        0,
+        0
+      ],
+      "The Hong family": [
+        2,
+        0
+      ],
+      "Presidential office": [
+        0,
+        2
+      ],
+      "Around them": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "saeon",
+      "huiju"
+    ]
+  }
+}
