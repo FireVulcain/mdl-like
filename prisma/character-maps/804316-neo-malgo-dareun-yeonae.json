@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "mdlSlug": "804316-neo-malgo-dareun-yeonae",
+  "title": "A Love Other than Yours",
+  "native": "너 말고 다른 연애",
+  "year": 2026,
+  "country": "South Korea",
+  "sources": [
+    "MDL cast (26 roles, 4 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia character list"
+  ],
+  "main": [
+    "namgungho",
+    "mido",
+    "taeseung",
+    "sua"
+  ],
+  "people": [
+    {
+      "id": "namgungho",
+      "name": "Namgung Ho",
+      "actor": "Seo Kang Jun",
+      "image": "https://i.mydramalist.com/l0d8zE_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Cheerful assistant manager at Hunmin Confectionery hiding a difficult past.",
+      "alsoPlayedBy": [
+        {
+          "name": "Kang Ye Chan",
+          "image": "https://i.mydramalist.com/3ogePV_5m.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Lee Su Ho",
+          "image": "https://i.mydramalist.com/73OKZR_5m.jpg",
+          "era": "child"
+        }
+      ]
+    },
+    {
+      "id": "mido",
+      "name": "Lee Mi Do",
+      "actor": "Ahn Eun Jin",
+      "image": "https://i.mydramalist.com/LwPlPy_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Once-promising film director whose career has stalled."
+    },
+    {
+      "id": "taeseung",
+      "name": "Han Tae Seung",
+      "actor": "Lee Joo Ahn",
+      "image": "https://i.mydramalist.com/JBOPkl_5m.jpg",
+      "group": "Jaegang Law Firm",
+      "inCast": true,
+      "note": "A relentless lawyer at Jaegang Law Firm."
+    },
+    {
+      "id": "sua",
+      "name": "Park Su A",
+      "actor": "Jo A Ram",
+      "image": "https://i.mydramalist.com/jQbRKd_5m.jpg",
+      "group": "Hunmin Confectionery",
+      "inCast": true,
+      "note": "New employee on Namgung Ho's team at Hunmin Confectionery."
+    },
+    {
+      "id": "yeongdo",
+      "name": "Lee Yeong Do",
+      "actor": "Kim Nam Hee",
+      "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "group": "Mi Do's family",
+      "inCast": true,
+      "note": "CEO of a cleaning company; Mi Do's older brother."
+    },
+    {
+      "id": "sukhui",
+      "name": "Ma Suk Hui",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "group": "Mi Do's family",
+      "inCast": true,
+      "note": "Mi Do's mother; owns the building housing Queens Hair Salon."
+    },
+    {
+      "id": "wando",
+      "name": "Lee Wan Do",
+      "actor": "Lee Min Jae",
+      "image": "https://i.mydramalist.com/yWK7rd_5m.jpg",
+      "group": "Mi Do's family",
+      "inCast": true,
+      "note": "Runs a karaoke bar; Mi Do's younger brother."
+    },
+    {
+      "id": "munyeong",
+      "name": "Ko Mun Yeong",
+      "actor": "Heo Ji Na",
+      "image": "https://i.mydramalist.com/0wmBke_5m.jpg",
+      "group": "Mi Do's family",
+      "inCast": true,
+      "note": "A top math instructor; Yeong Do's ex-wife."
+    },
+    {
+      "id": "sangsu",
+      "name": "Lee Sang Su",
+      "actor": "Lee Joo Won",
+      "image": "https://i.mydramalist.com/ABe0VE_5m.jpg",
+      "group": "Mi Do's family",
+      "inCast": true,
+      "note": "A short-form obsessed middle schooler dreaming of ten million followers."
+    },
+    {
+      "id": "hosik",
+      "name": "Eom Ho Sik",
+      "actor": "Lee Joon Hyuk",
+      "image": "https://i.mydramalist.com/dWxog_5m.jpg",
+      "group": "Hunmin Confectionery",
+      "inCast": true,
+      "note": "A career section chief quietly surviving in Namgung Ho's shadow."
+    },
+    {
+      "id": "sanghun",
+      "name": "Baek Sang Hun",
+      "actor": "Kim Hyun Mok",
+      "image": "https://i.mydramalist.com/pXQ68_5m.jpg",
+      "group": "Hunmin Confectionery",
+      "inCast": true
+    },
+    {
+      "id": "juhyeok",
+      "name": "Seo Ju Hyeok",
+      "actor": "Kwak Shi Yang",
+      "image": "https://i.mydramalist.com/g0bJzq_5m.jpg",
+      "group": "Jaegang Law Firm",
+      "inCast": true,
+      "note": "Head of the Jaegang Law Firm."
+    },
+    {
+      "id": "suyeon",
+      "name": "Ji Su Yeon",
+      "actor": "Kim Li Ye",
+      "image": "https://i.mydramalist.com/RBYNyV_5m.jpg",
+      "group": "Su A's circle",
+      "inCast": true
+    },
+    {
+      "id": "yeonju",
+      "name": "O Yeon Ju",
+      "actor": "Cheon Yi Seul",
+      "image": "https://i.mydramalist.com/0wAlKk_5m.jpg",
+      "group": "Film industry",
+      "inCast": true,
+      "note": "A veteran PD at Nobu Film who handles every crisis on set."
+    },
+    {
+      "id": "haena",
+      "name": "Song Hae Na",
+      "actor": "Song Ji Woo",
+      "image": "https://i.mydramalist.com/BdwYZq_5m.jpg",
+      "group": "Film industry",
+      "inCast": true,
+      "note": "An arrogant top actress."
+    },
+    {
+      "id": "jangmi",
+      "name": "Hong Jang Mi",
+      "actor": "Jeong Yu Jin",
+      "image": "https://i.mydramalist.com/KpWL0n_5m.jpg",
+      "group": "Film industry",
+      "inCast": true
+    },
+    {
+      "id": "gukjin",
+      "name": "Kim Guk Jin",
+      "actor": "Kang Pil Jun",
+      "image": "https://i.mydramalist.com/4ew17Y_5m.jpg",
+      "group": "Film industry",
+      "inCast": true
+    },
+    {
+      "id": "yeonho",
+      "name": "Jung Yeon Ho",
+      "actor": "Lee Chang Min",
+      "image": "https://i.mydramalist.com/ABVNLL_5m.jpg",
+      "group": "Other",
+      "inCast": true
+    }
+  ],
+  "links": [
+    {
+      "from": "mido",
+      "to": "namgungho",
+      "type": "romance",
+      "label": "a couple for ten years, their passion has faded though loyalty remains",
+      "short": "long-time couple",
+      "evidence": "his girlfriend of 10 years, Lee Mi-do... has always been his anchor.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeongdo",
+      "to": "mido",
+      "type": "family",
+      "label": "Mi Do's older brother",
+      "short": "older brother",
+      "evidence": "[Mi Do’s older brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sukhui",
+      "to": "mido",
+      "type": "family",
+      "label": "Mi Do's mother",
+      "short": "mother",
+      "evidence": "[Mi Do’s mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "wando",
+      "to": "mido",
+      "type": "family",
+      "label": "Mi Do's younger brother",
+      "short": "younger brother",
+      "evidence": "[Mi Do’s younger brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "munyeong",
+      "to": "yeongdo",
+      "type": "romance",
+      "label": "Yeong Do's ex-wife",
+      "short": "ex-wife",
+      "evidence": "[Yeong Do's ex-wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangsu",
+      "to": "yeongdo",
+      "type": "family",
+      "label": "Yeong Do's son",
+      "short": "son",
+      "evidence": "[Yeong Do & Mun Yeong's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sangsu",
+      "to": "munyeong",
+      "type": "family",
+      "label": "Mun Yeong's son",
+      "short": "son",
+      "evidence": "[Yeong Do & Mun Yeong's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hosik",
+      "to": "namgungho",
+      "type": "work",
+      "label": "Namgung Ho's superior at Hunmin Confectionery",
+      "short": "his superior",
+      "evidence": "[Namgung Ho’s superior]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "sanghun",
+      "to": "namgungho",
+      "type": "work",
+      "label": "Namgung Ho's right-hand man",
+      "short": "right-hand man",
+      "evidence": "[Namgung Ho's right-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "juhyeok",
+      "to": "haena",
+      "type": "romance",
+      "label": "Song Hae Na's secret lover",
+      "short": "secret lover",
+      "evidence": "해나의 내연남",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "suyeon",
+      "to": "sua",
+      "type": "friend",
+      "label": "Su A's friend",
+      "short": "friend",
+      "evidence": "[Su A's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "yeonju",
+      "to": "mido",
+      "type": "friend",
+      "label": "Mi Do's high school classmate and industry colleague",
+      "short": "old friend",
+      "evidence": "미도의 고등학교 동창이자 업계 동료",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jangmi",
+      "to": "mido",
+      "type": "work",
+      "label": "Mi Do's junior",
+      "short": "junior",
+      "evidence": "[Mi Do's junior]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gukjin",
+      "to": "mido",
+      "type": "work",
+      "label": "Mi Do's junior",
+      "short": "junior",
+      "evidence": "[Mi Do's junior]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    }
+  ],
+  "compact": {
+    "people": [
+      "namgungho",
+      "mido",
+      "taeseung",
+      "sua",
+      "yeongdo",
+      "sukhui",
+      "wando",
+      "munyeong",
+      "sangsu",
+      "hosik",
+      "sanghun",
+      "juhyeok",
+      "yeonju",
+      "haena",
+      "jangmi",
+      "gukjin"
+    ],
+    "blocks": {
+      "Film industry": [
+        2,
+        2
+      ],
+      "Mi Do's family": [
+        0,
+        0
+      ],
+      "Jaegang Law Firm": [
+        0,
+        2
+      ],
+      "Hunmin Confectionery": [
+        2,
+        0
+      ]
+    },
+    "center": [
+      "namgungho",
+      "mido"
+    ]
+  }
+}

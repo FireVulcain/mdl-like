@@ -1,0 +1,449 @@
+{
+  "version": 1,
+  "mdlSlug": "795728-four-hands",
+  "title": "Four Hands, Two Sonatas",
+  "native": "포핸즈",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (35 roles, 3 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "en.wikipedia Four Hands, Two Sonatas"
+  ],
+  "main": [
+    "bio",
+    "jeongyo",
+    "jaein"
+  ],
+  "people": [
+    {
+      "id": "bio",
+      "name": "Kang Bi O",
+      "actor": "Song Kang",
+      "image": "https://i.mydramalist.com/Dkjb4y_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Illegitimate son of a wealthy family; piano prodigy ranked first at school.",
+      "alsoPlayedBy": [
+        {
+          "name": "Jung Min Joon",
+          "image": "https://i.mydramalist.com/jQbVYz_5m.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Park Hoo",
+          "image": "https://i.mydramalist.com/KpOgY0_5m.jpg",
+          "era": "child"
+        }
+      ]
+    },
+    {
+      "id": "jeongyo",
+      "name": "Choi Jeong Yo",
+      "actor": "Lee Jun Young",
+      "image": "https://i.mydramalist.com/v2yzZ_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Abandoned his talent after a difficult childhood; rediscovers his passion for piano.",
+      "alsoPlayedBy": [
+        {
+          "name": "Han Ji An",
+          "image": "https://i.mydramalist.com/NdKP4Y_5m.jpg",
+          "era": "child"
+        }
+      ]
+    },
+    {
+      "id": "jaein",
+      "name": "Hong Jae In",
+      "actor": "Jang Gyu Ri",
+      "image": "https://i.mydramalist.com/kA7r7w_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Viola major with unusually sensitive hearing; discovers Jeong Yo's talent."
+    },
+    {
+      "id": "jihye",
+      "name": "Kang Ji Hye",
+      "actor": "Yoon Se Ah",
+      "image": "https://i.mydramalist.com/1wzYX5_5m.jpg",
+      "group": "Bi O's family",
+      "inCast": true,
+      "note": "Former ballerina; single mother devoted to Bi O's success."
+    },
+    {
+      "id": "seungun",
+      "name": "Kang Seung Un",
+      "actor": "Jung Jin Young",
+      "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
+      "group": "Bi O's family",
+      "inCast": true,
+      "note": "World-renowned conductor; despises Bi O as his illegitimate grandson."
+    },
+    {
+      "id": "seonju",
+      "name": "Yun Seon Ju",
+      "actor": "Seo Jae Hee",
+      "image": "https://i.mydramalist.com/06YzE_5m.jpg",
+      "group": "Bi O's family",
+      "inCast": true,
+      "note": "Chairperson of Korea Arts High School; Seung Un's wife."
+    },
+    {
+      "id": "hyeonjeong",
+      "name": "Han Hyeon Jeong",
+      "actor": "Kim Hye Hwa",
+      "image": "https://i.mydramalist.com/QB7xW_5m.jpg",
+      "group": "Jae In's family",
+      "inCast": true,
+      "note": "CEO of a classical artists' management agency; Ji Hye's friend."
+    },
+    {
+      "id": "gitaek",
+      "name": "Choi Gi Taek",
+      "actor": "Seong No Jin",
+      "image": "https://i.mydramalist.com/73b48L_5m.jpg",
+      "group": "Jeong Yo's family",
+      "inCast": true,
+      "note": "Alcoholic former piano tuner who resents his son."
+    },
+    {
+      "id": "hyeoncheol",
+      "name": "Cho Hyeon Cheol",
+      "actor": "Lee Myeong Ro",
+      "image": "https://i.mydramalist.com/l0AW7v_5m.jpg",
+      "group": "Jeong Yo's family",
+      "inCast": true,
+      "note": "Became close to Jeong Yo during his time living on the streets."
+    },
+    {
+      "id": "kimdirector",
+      "name": "Director Kim",
+      "actor": "Kim Min",
+      "image": "https://i.mydramalist.com/QJ5mZ6_5m.jpg",
+      "group": "Jeong Yo's family",
+      "inCast": true,
+      "note": "A loan shark who preys on delinquent street youths, including Jeong Yo."
+    },
+    {
+      "id": "jeongyomom",
+      "name": "Jeong Yo's Mother",
+      "actor": "Unknown",
+      "image": null,
+      "group": "Jeong Yo's family",
+      "inCast": false,
+      "note": "Jeong Yo's absent mother."
+    },
+    {
+      "id": "hyeonsu",
+      "name": "Do Hyeon Su",
+      "actor": "Kim Joo Heon",
+      "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
+      "group": "Korea Arts High School",
+      "inCast": true,
+      "note": "Pianist who mentors both Bi O and Jeong Yo."
+    },
+    {
+      "id": "seokhwan",
+      "name": "Jang Seok Hwan",
+      "actor": "Yoo Tae Joo",
+      "image": "https://i.mydramalist.com/b3o01w_5m.jpg",
+      "group": "Korea Arts High School",
+      "inCast": true,
+      "note": "Cello major; Bi O's classmate."
+    },
+    {
+      "id": "hanrim",
+      "name": "Yun Han Rim",
+      "actor": "Lee Sang Jun",
+      "image": "https://i.mydramalist.com/PxNKBw_5m.jpg",
+      "group": "Korea Arts High School",
+      "inCast": true,
+      "note": "Piano major; Bi O's classmate."
+    }
+  ],
+  "links": [
+    {
+      "from": "bio",
+      "to": "jaein",
+      "type": "romance",
+      "label": "Secretly lovers, drawn together since childhood by Bi O's playing",
+      "short": "lover",
+      "evidence": "강비오: ... 재인의 연인. / 홍재인: ... 비오의 연인.",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bio",
+      "to": "jeongyo",
+      "type": "rivalry",
+      "label": "Unexpected rivals whose competition reignites Jeong Yo's buried passion for piano",
+      "short": "rival",
+      "evidence": "his steady path begins to shake when he encounters an unexpected rival. That rival, Choi Jeong Yo, is a gifted pianist who abandoned his talent after a difficult childhood.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "bio",
+      "to": "jeongyo",
+      "type": "friend",
+      "label": "Rivalry that grows into friendship through their shared passion for music",
+      "short": "friend",
+      "evidence": "forming friendships born from rivalry, emotions shaped by ambition, and a powerful harmony created through their shared passion.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "jaein",
+      "to": "bio",
+      "type": "friend",
+      "label": "Close friend and devoted supporter of Bi O, captivated by his playing since childhood",
+      "short": "supporter",
+      "evidence": "Constantly searching for music that truly moves her, she becomes a close friend and devoted supporter of Kang Bi O, whose playing has captivated her since childhood.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jaein",
+      "to": "jeongyo",
+      "type": "work",
+      "label": "Recognized his natural talent and guided him to enroll at Korea Arts High School",
+      "short": "discovered him",
+      "evidence": "she hears Jeong-yo playing the piano and recognizes his natural talent, guiding him to enroll at Korea Arts High School.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihye",
+      "to": "bio",
+      "type": "family",
+      "label": "Bi O's mother",
+      "short": "mother",
+      "evidence": "[Bi O's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungun",
+      "to": "bio",
+      "type": "family",
+      "label": "Bi O's grandfather",
+      "short": "grandfather",
+      "evidence": "[Bi O's grandfather]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seungun",
+      "to": "jihye",
+      "type": "family",
+      "label": "Ji Hye's father",
+      "short": "father",
+      "evidence": "지혜의 아버지.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seonju",
+      "to": "seungun",
+      "type": "family",
+      "label": "Married couple; Seung Un's wife",
+      "short": "wife",
+      "evidence": "[Seung Un's wife]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "seonju",
+      "to": "bio",
+      "type": "family",
+      "label": "Bi O's grandmother",
+      "short": "grandmother",
+      "evidence": "비오의 외할머니.",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "gitaek",
+      "to": "jeongyo",
+      "type": "family",
+      "label": "Jeong Yo's father",
+      "short": "father",
+      "evidence": "[Jeong Yo's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jeongyomom",
+      "to": "jeongyo",
+      "type": "family",
+      "label": "Jeong Yo's mother",
+      "short": "mother",
+      "evidence": "정요의 엄마 역",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeoncheol",
+      "to": "jeongyo",
+      "type": "friend",
+      "label": "Jeong Yo's close older brother figure from his life on the streets",
+      "short": "big brother",
+      "evidence": "[Jeong Yo's close brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hyeonjeong",
+      "to": "jaein",
+      "type": "family",
+      "label": "Jae In's mother",
+      "short": "mother",
+      "evidence": "[Jae In's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "jihye",
+      "to": "hyeonjeong",
+      "type": "friend",
+      "label": "Childhood friends; Han Hyeon Jeong runs an artists' management agency",
+      "short": "friend",
+      "evidence": "지혜의 친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "kimdirector",
+      "to": "jeongyo",
+      "type": "rivalry",
+      "label": "Loan shark who preyed on Jeong Yo during his time on the streets",
+      "short": "loan shark",
+      "evidence": "정요의 주변 인물 (최기택, 조현철, 김 실장)",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonsu",
+      "to": "bio",
+      "type": "work",
+      "label": "Bi O's piano teacher who urges him to play with sincerity",
+      "short": "teacher",
+      "evidence": "[Pianist / Bi O & Jeong Yo's teacher]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "hyeonsu",
+      "to": "jeongyo",
+      "type": "work",
+      "label": "Becomes a mentor to Jeong Yo, offering him free piano lessons and a practice room",
+      "short": "mentor",
+      "evidence": "He later becomes a supportive mentor to Jeong-yo, recognizing him as an unpolished gem after hearing him play, and offers him his practice room and free piano lessons.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true
+    },
+    {
+      "from": "seokhwan",
+      "to": "bio",
+      "type": "friend",
+      "label": "Bi O's classmate at Korea Arts High School",
+      "short": "classmate",
+      "evidence": "[Bi O's classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    },
+    {
+      "from": "hanrim",
+      "to": "bio",
+      "type": "friend",
+      "label": "Bi O's classmate at Korea Arts High School",
+      "short": "classmate",
+      "evidence": "[Bi O's classmate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false
+    }
+  ],
+  "compact": {
+    "people": [
+      "bio",
+      "jeongyo",
+      "jaein",
+      "jihye",
+      "seungun",
+      "seonju",
+      "hyeonjeong",
+      "gitaek",
+      "hyeoncheol",
+      "kimdirector",
+      "jeongyomom",
+      "hyeonsu",
+      "seokhwan",
+      "hanrim"
+    ],
+    "blocks": {
+      "Bi O's family": [
+        0,
+        0
+      ],
+      "Jae In's family": [
+        2,
+        0
+      ],
+      "Jeong Yo's family": [
+        0,
+        2
+      ],
+      "Korea Arts High School": [
+        2,
+        2
+      ]
+    },
+    "center": [
+      "bio",
+      "jeongyo",
+      "jaein"
+    ]
+  }
+}

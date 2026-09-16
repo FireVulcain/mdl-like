@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem, Pencil } from "lucide-react";
+import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem, Pencil, Image as ImageIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { JobView } from "@/lib/character-map-jobs";
 import type { Preflight } from "@/app/api/admin/character-maps/preflight/route";
@@ -16,6 +16,12 @@ import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "
  * warnings the run kept. Polls the job row every two seconds while a run
  * goes; a run found active on load (a reload mid-run) opens straight onto
  * its console.
+ *
+ * Stills come from asianwiki, which only a browser may read: the page asks
+ * the extension (`trackr:chart` on window, with the MDL slug) when a run
+ * lands and on load for a chart with none yet, and hears back through
+ * `trackr:stills`. Without the extension nothing is asked, and nothing lost
+ * — the chart shows the MDL headshots.
  *
  * Only rendered for the admin; the route is the actual guard.
  */
@@ -45,13 +51,23 @@ function costOf(job: JobView): string | null {
     return `$${usd.toFixed(2)}`;
 }
 
+/** What the extension reported about the stills for this chart. */
+type StillsState = { status: "started" } | { status: "done"; page: string; matched: number; people: number; unmatched: string[] } | { status: "failed"; error: string; seen?: string[] } | { status: "skipped"; reason: string };
+
+function askForStills(mdlSlug: string, force = false) {
+    if (typeof document === "undefined" || document.documentElement.dataset.trackrStills !== "1") return false;
+    window.dispatchEvent(new CustomEvent("trackr:chart", { detail: JSON.stringify({ mdlSlug, force }) }));
+    return true;
+}
+
 function clock(ms: number): string {
     const s = Math.max(0, Math.round(ms / 1000));
     return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 }
 
-export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { mdlSlug: string; hasChart: boolean; initialJob: JobView | null }) {
+export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, needsStills = false }: { mdlSlug: string; hasChart: boolean; initialJob: JobView | null; needsStills?: boolean }) {
     const [job, setJob] = useState<JobView | null>(initialJob);
+    const [stills, setStills] = useState<StillsState | null>(null);
     const [open, setOpen] = useState(false);
     // "choose" is the model panel; "run" the console for `job`
     const [view, setView] = useState<"choose" | "run">(initialJob && ACTIVE.has(initialJob.status) ? "run" : "choose");
@@ -81,14 +97,37 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                 setJob(next);
                 if (!ACTIVE.has(next.status)) {
                     clearInterval(timer);
-                    if (next.status === "done") router.refresh();
+                    if (next.status === "done") {
+                        router.refresh();
+                        // a fresh chart has no stills; the extension, if there, dresses it now
+                        if (!askForStills(mdlSlug, true)) setStills(null);
+                    }
                 }
             } catch {
                 // a missed poll is fine; the next one catches up
             }
         }, 2000);
         return () => clearInterval(timer);
-    }, [active, job, router]);
+    }, [active, job, router, mdlSlug]);
+
+    // Hear the extension about the stills; on load, ask for a chart that has none
+    useEffect(() => {
+        const onStills = (e: Event) => {
+            let detail: (StillsState & { mdlSlug?: string }) | null = null;
+            try {
+                const raw = (e as CustomEvent).detail;
+                detail = typeof raw === "string" ? JSON.parse(raw) : raw;
+            } catch {
+                return;
+            }
+            if (!detail || detail.mdlSlug !== mdlSlug) return;
+            setStills(detail);
+            if (detail.status === "done") router.refresh();
+        };
+        window.addEventListener("trackr:stills", onStills);
+        if (needsStills) askForStills(mdlSlug);
+        return () => window.removeEventListener("trackr:stills", onStills);
+    }, [mdlSlug, needsStills, router]);
 
     // The clock in the console header ticks every second while a run goes
     useEffect(() => {
@@ -370,6 +409,19 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob }: { 
                                         {cost && <Stat value={cost} label={job.model?.replace(/^claude-/, "") ?? ""} />}
                                         <Stat value={clock(elapsed)} label="min" />
                                     </div>
+                                    {stills && stills.status !== "skipped" && (
+                                        <p className={`flex items-center gap-2 text-xs ${stills.status === "failed" ? "text-amber-400/90" : "text-fg-muted"}`}>
+                                            {stills.status === "started" ? <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> : stills.status === "done" ? <ImageIcon className="h-3.5 w-3.5 text-emerald-400/80" /> : <AlertTriangle className="h-3.5 w-3.5" />}
+                                            {stills.status === "started" && <span>Fetching the stills from asianwiki…</span>}
+                                            {stills.status === "done" && (
+                                                <span>
+                                                    {stills.matched}/{stills.people} faces from asianwiki · {stills.page}
+                                                    {stills.unmatched.length > 0 && <span className="text-fg-dim"> · missing {stills.unmatched.join(", ")}</span>}
+                                                </span>
+                                            )}
+                                            {stills.status === "failed" && <span>Stills: {stills.error}{stills.seen?.length ? ` (search saw: ${stills.seen.slice(0, 3).join(" · ")})` : ""}</span>}
+                                        </p>
+                                    )}
                                     {job.warnings.length > 0 && (
                                         <ul className="space-y-1 text-xs text-amber-400/90">
                                             {job.warnings.map((w, i) => (

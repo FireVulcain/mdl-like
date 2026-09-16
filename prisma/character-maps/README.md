@@ -45,8 +45,8 @@ below, so a pull that changed nothing leaves no diff. Nobody has to think
 of it: `npm run dev` runs it on start (quietly; a database out of reach
 does not stop the server) and the seed runs it first — so a chart
 generated in production is in the checkout the next time the dev server
-starts, and goes out with the next commit. Fetch stills on localhost after
-that start, so they land in the file as well as the row.
+starts, and goes out with the next commit — stills included, since the
+extension has by then written them to the row from the production page.
 
 ## Reading rules
 
@@ -113,12 +113,18 @@ that start, so they land in the file as well as the row.
   Sun and Geum Myeong): those stay two people, and a `note` says so.
 - **`still`** is the character in costume, a photo from asianwiki, drawn in
   place of the MDL headshot when present. It is never written by hand:
-  asianwiki turns servers away and lets a browser in, so the Chrome
-  extension's "Fetch character stills" button walks the Korean charts from
-  the reader's own browser, reads each page's cast tables and posts them to
+  asianwiki turns servers away (a Cloudflare challenge, whatever the
+  user agent) and lets a browser in, so the Chrome extension reads it. Two
+  ways: on the app's own pages, a content script answers the admin's
+  generate button — the moment a chart lands, or on opening a chart with no
+  still yet — reads the cast tables through the extension's service worker
+  and posts them to the page's origin, so production gets its stills with
+  no click and no dev server; and the popup's "Fetch character stills"
+  button walks every Korean chart without one, for backfills. Both post to
   `/api/ext/character-maps/stills`, which matches actors by a folded
-  romanisation ("Cho Jung-Seok" is "Jo Jung Suk") and writes the files. See
-  `extension/stills.js` and `src/lib/character-map-stills.ts`. When asianwiki
+  romanisation ("Cho Jung-Seok" is "Jo Jung Suk") and writes the row (and
+  the file, on a dev server). See `extension/stills.js`, `content.js`,
+  `background.js` and `src/lib/character-map-stills.ts`. When asianwiki
   names the page by a title MDL does not carry, write it in `asianwiki`
   ("W - Two Worlds" for "W") and the run looks there first.
 - `compact.people` is the cut the Compact view shows: the leads, their

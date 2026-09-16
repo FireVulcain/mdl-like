@@ -1,5 +1,6 @@
 import { isAdminUser } from "@/lib/admin";
 import { latestJob } from "@/lib/character-map-jobs";
+import { getCharacterMap } from "@/lib/character-map-store";
 import { CharacterMapGenerateButton } from "./character-map-generate-button";
 
 /**
@@ -9,8 +10,10 @@ import { CharacterMapGenerateButton } from "./character-map-generate-button";
  */
 export async function CharacterMapAdmin({ mdlSlug, hasChart }: { mdlSlug: string | null | undefined; hasChart: boolean }) {
     if (!mdlSlug || !(await isAdminUser())) return null;
-    const job = await latestJob(mdlSlug);
-    return <CharacterMapGenerateButton mdlSlug={mdlSlug} hasChart={hasChart} initialJob={job} />;
+    const [job, map] = await Promise.all([latestJob(mdlSlug), hasChart ? getCharacterMap(mdlSlug) : null]);
+    // A chart with no still yet is one the extension can dress on this visit
+    const needsStills = !!map && !map.people.some((p) => p.still);
+    return <CharacterMapGenerateButton mdlSlug={mdlSlug} hasChart={hasChart} initialJob={job} needsStills={needsStills} />;
 }
 
 /** The section a media page shows the admin when there is no chart yet: just the button. */
