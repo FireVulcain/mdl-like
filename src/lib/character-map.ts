@@ -90,6 +90,10 @@ export type CharacterMapData = {
     title: string;
     /** the asianwiki page, when its title is not the MDL one ("W - Two Worlds" for "W") */
     asianwiki?: string;
+    native?: string;
+    year?: number | null;
+    /** KR / CN / JP… — the stills run only looks at Korean and Japanese charts */
+    country?: string;
     sources: string[];
     /** the leads — drawn in the middle */
     main: string[];

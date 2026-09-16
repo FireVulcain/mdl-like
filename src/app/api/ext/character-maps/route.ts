@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getCurrentUserId } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import type { CharacterMapData } from "@/lib/character-map";
+import { countryCode } from "@/lib/character-map-inputs";
 
 export const dynamic = "force-dynamic";
 
@@ -34,8 +35,8 @@ export async function GET(request: Request) {
     }
     const rows = await prisma.characterMap.findMany({ select: { mdlSlug: true, dataJson: true } });
     const charts = rows
-        .map((r) => r.dataJson as unknown as CharacterMapData & { year?: number; country?: string })
-        .filter((d) => d.country === "KR" || d.country === "JP")
+        .map((r) => r.dataJson as unknown as CharacterMapData)
+        .filter((d) => ["KR", "JP"].includes(countryCode(d.country ?? "")))
         .map((d) => ({
             mdlSlug: d.mdlSlug,
             title: d.title,

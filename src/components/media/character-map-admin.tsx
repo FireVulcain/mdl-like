@@ -1,6 +1,7 @@
 import { isAdminUser } from "@/lib/admin";
 import { latestJob } from "@/lib/character-map-jobs";
 import { getCharacterMap } from "@/lib/character-map-store";
+import { countryCode } from "@/lib/character-map-inputs";
 import { CharacterMapGenerateButton } from "./character-map-generate-button";
 
 /**
@@ -11,8 +12,9 @@ import { CharacterMapGenerateButton } from "./character-map-generate-button";
 export async function CharacterMapAdmin({ mdlSlug, hasChart }: { mdlSlug: string | null | undefined; hasChart: boolean }) {
     if (!mdlSlug || !(await isAdminUser())) return null;
     const [job, map] = await Promise.all([latestJob(mdlSlug), hasChart ? getCharacterMap(mdlSlug) : null]);
-    // A chart with no still yet is one the extension can dress on this visit
-    const needsStills = !!map && !map.people.some((p) => p.still);
+    // A Korean or Japanese chart with no still yet is one the extension can
+    // dress on this visit — asianwiki barely covers China, so those are not asked
+    const needsStills = !!map && ["KR", "JP"].includes(countryCode(map.country ?? "")) && !map.people.some((p) => p.still);
     return <CharacterMapGenerateButton mdlSlug={mdlSlug} hasChart={hasChart} initialJob={job} needsStills={needsStills} />;
 }
 

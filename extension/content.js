@@ -52,9 +52,10 @@
         if (typeof detail.mdlSlug === "string") void handle(detail.mdlSlug, !!detail.force, typeof detail.page === "string" && detail.page.trim() ? detail.page.trim() : null);
     });
 
-    // So the page knows a listener is there: a mark it can read at any time,
-    // and a word for a page that mounted first — this runs before or after
-    // the page's own scripts, and whichever is second must not miss the other
-    document.documentElement.dataset.trackrStills = "1";
-    window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true }) }));
+    // So the page knows a listener is there. This runs before or after the
+    // page's own scripts, so it both announces itself and answers a ping —
+    // whichever of the two came second does not miss the other.
+    const announce = () => window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true }) }));
+    window.addEventListener("trackr:ping", announce);
+    announce();
 })();

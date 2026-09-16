@@ -55,9 +55,7 @@ function costOf(job: JobView): string | null {
 type StillsState = { status: "started" } | { status: "done"; page: string; matched: number; people: number; unmatched: string[] } | { status: "failed"; error: string; seen?: string[] } | { status: "skipped"; reason: string };
 
 function askForStills(mdlSlug: string, force = false, page?: string) {
-    if (typeof document === "undefined" || document.documentElement.dataset.trackrStills !== "1") return false;
     window.dispatchEvent(new CustomEvent("trackr:chart", { detail: JSON.stringify({ mdlSlug, force, page }) }));
-    return true;
 }
 
 function clock(ms: number): string {
@@ -102,7 +100,8 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                     if (next.status === "done") {
                         router.refresh();
                         // a fresh chart has no stills; the extension, if there, dresses it now
-                        if (!askForStills(mdlSlug, true)) setStills(null);
+                        setStills(null);
+                        askForStills(mdlSlug, true);
                     }
                 }
             } catch {
@@ -113,13 +112,14 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     }, [active, job, router, mdlSlug]);
 
     // Hear the extension about the stills; on load, ask for a chart that has
-    // none — now if the extension is already there, or when it announces
-    // itself, since its content script may land after this mounts
-    const [extension, setExtension] = useState(false);
+    // none. The extension announces itself when its script lands and answers
+    // a ping — whichever of the two mounted second still meets the other.
     useEffect(() => {
+        let asked = false;
         const onExtension = () => {
-            setExtension(true);
-            if (needsStills) askForStills(mdlSlug);
+            if (asked || !needsStills) return;
+            asked = true;
+            askForStills(mdlSlug);
         };
         const onStills = (e: Event) => {
             let detail: (StillsState & { mdlSlug?: string }) | null = null;
@@ -135,7 +135,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
         };
         window.addEventListener("trackr:stills", onStills);
         window.addEventListener("trackr:extension", onExtension);
-        if (document.documentElement.dataset.trackrStills === "1") onExtension();
+        window.dispatchEvent(new CustomEvent("trackr:ping"));
         return () => {
             window.removeEventListener("trackr:stills", onStills);
             window.removeEventListener("trackr:extension", onExtension);
@@ -222,12 +222,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
     const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
 
-    const stillsLine =
-        stills && stills.status !== "skipped" ? (
-            <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} />
-        ) : needsStills && !extension ? (
-            <p className="text-xs text-fg-dim">Stills come with the Drama Calendar extension in this browser</p>
-        ) : null;
+    const stillsLine = stills ? <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} /> : null;
 
     return (
         <div className="flex flex-col items-end gap-1.5">
@@ -504,6 +499,9 @@ function StillsLine({ stills, page, onPage, onRetry }: { stills: StillsState; pa
                 </span>
             </p>
         );
+    }
+    if (stills.status === "skipped") {
+        return <p className="text-xs text-fg-dim">Stills: {stills.reason}</p>;
     }
     if (stills.status === "failed") {
         return (

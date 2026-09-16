@@ -3,7 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { prisma } from "@/lib/prisma";
 import type { CharacterMapData, Era, MapLink, MapPerson } from "@/lib/character-map";
-import type { ChartInputs } from "@/lib/character-map-inputs";
+import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
 import type { Prisma } from "@prisma/client";
 
 /**
@@ -222,12 +222,11 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         compact: { people: draft.compact.people, blocks, center: draft.compact.center },
     };
     // the fields the hand-written files carry beside the typed ones
-    Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: draft.country || countryCode(inputs.country) });
+    // The country is MDL's, as a code: the model has written "South Korea",
+    // and everything downstream (the stills list, the reading rules) keys on
+    // KR / CN / JP.
+    Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: countryCode(inputs.country) || draft.country });
     return { map, warnings };
-}
-
-function countryCode(country: string): string {
-    return country.includes("Korea") ? "KR" : country.includes("China") ? "CN" : country.includes("Japan") ? "JP" : country.includes("Taiwan") ? "TW" : country.includes("Thai") ? "TH" : country;
 }
 
 /* ------------------------------------------------------------ the call */

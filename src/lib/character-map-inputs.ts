@@ -123,6 +123,12 @@ async function wikipedia(lang: string, title: string | undefined, query: string,
     return { lang, title: page, text: section ? cleanWikitext(section) : null };
 }
 
+/** MDL's country as the code the charts key on — "South Korea" is KR; a code is left alone. */
+export function countryCode(country: string): string {
+    if (/^[A-Z]{2}$/.test(country)) return country;
+    return country.includes("Korea") ? "KR" : country.includes("China") ? "CN" : country.includes("Japan") ? "JP" : country.includes("Taiwan") ? "TW" : country.includes("Thai") ? "TH" : country;
+}
+
 /** The pinned Wikipedia titles for a slug, from wiki-titles.json — empty when none. */
 export function pinnedWikiTitles(mdlSlug: string): Record<string, string> {
     const file = path.join(process.cwd(), "prisma", "character-maps", "wiki-titles.json");
