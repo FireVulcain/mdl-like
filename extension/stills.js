@@ -19,7 +19,7 @@ const TrackrStills = (() => {
     const AW = "https://asianwiki.com";
     const PAUSE_MS = 1000;
 
-    const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
+    const norm = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
 
     // api.php answers 500 on asianwiki, so this is the search page a reader
     // uses. MediaWiki redirects straight to the article on an exact title match;
@@ -168,7 +168,16 @@ const TrackrStills = (() => {
     return { stillsForChart, runStills, directFetchHtml };
 })();
 
-// The popup's button, when this file is loaded there
+// The popup's button, when this file is loaded there. Its app field starts
+// on the calendar's App URL — the site itself, where the row is written and
+// a dev server later pulls it — and falls back to a dev server here.
+const stillsApp = document.getElementById("stills-app");
+if (stillsApp) {
+    chrome.storage?.local?.get("settings", ({ settings }) => {
+        if (settings?.appUrl && !stillsApp.dataset.touched) stillsApp.value = settings.appUrl;
+    });
+    stillsApp.addEventListener("input", () => { stillsApp.dataset.touched = "1"; });
+}
 document.getElementById("btn-stills")?.addEventListener("click", async (e) => {
     const btn = e.currentTarget;
     const out = document.getElementById("stills-out");
@@ -188,7 +197,7 @@ document.getElementById("btn-stills")?.addEventListener("click", async (e) => {
     try {
         await TrackrStills.runStills(TrackrStills.directFetchHtml, appUrl, redo, report);
     } catch (err) {
-        report(`failed — ${err.message}`);
+        report(err instanceof TypeError ? `failed — ${appUrl} did not answer. Is that the running app (the site, or a dev server on this machine)?` : `failed — ${err.message}`);
     } finally {
         btn.disabled = false;
     }

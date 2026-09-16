@@ -61,6 +61,9 @@ export async function POST(request: Request) {
     if (!map) return NextResponse.json({ error: "No chart" }, { status: 404, headers: corsHeaders(origin) });
 
     const result = applyStills(map, rows);
+    // The page that took, kept on the chart when asianwiki names it otherwise
+    // than MDL does — the next run, and a redo, look there first
+    if (body.page && body.page !== map.title && body.page !== map.asianwiki) result.map.asianwiki = body.page;
     const dataJson = result.map as unknown as Prisma.InputJsonValue;
     await prisma.characterMap.update({ where: { mdlSlug: body.mdlSlug }, data: { dataJson } });
     if (file) fs.writeFileSync(file, JSON.stringify(result.map, null, 2) + "\n", "utf-8");

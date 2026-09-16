@@ -27,7 +27,7 @@
 
     const tell = (detail) => window.dispatchEvent(new CustomEvent("trackr:stills", { detail: JSON.stringify(detail) }));
 
-    async function handle(mdlSlug, force) {
+    async function handle(mdlSlug, force, page) {
         if (done.has(mdlSlug) && !force) return;
         done.add(mdlSlug);
         tell({ mdlSlug, status: "started" });
@@ -38,7 +38,7 @@
             const chart = charts.find((c) => c.mdlSlug === mdlSlug);
             if (!chart) return tell({ mdlSlug, status: "skipped", reason: "not a Korean or Japanese chart" });
             if (chart.withStill > 0 && !force) return tell({ mdlSlug, status: "skipped", reason: "already has stills" });
-            const out = await TrackrStills.stillsForChart(fetchHtml, appUrl, chart);
+            const out = await TrackrStills.stillsForChart(fetchHtml, appUrl, page ? { ...chart, asianwiki: page } : chart);
             if (out.error) tell({ mdlSlug, status: "failed", error: out.error, seen: out.seen });
             else tell({ mdlSlug, status: "done", page: out.page, matched: out.matched, people: out.people, unmatched: out.unmatched });
         } catch (e) {
@@ -49,7 +49,7 @@
     window.addEventListener("trackr:chart", (e) => {
         let detail = {};
         try { detail = typeof e.detail === "string" ? JSON.parse(e.detail) : e.detail ?? {}; } catch { return; }
-        if (typeof detail.mdlSlug === "string") void handle(detail.mdlSlug, !!detail.force);
+        if (typeof detail.mdlSlug === "string") void handle(detail.mdlSlug, !!detail.force, typeof detail.page === "string" && detail.page.trim() ? detail.page.trim() : null);
     });
 
     // So the page knows a listener is there — a mark it can read at any time,

@@ -54,9 +54,9 @@ function costOf(job: JobView): string | null {
 /** What the extension reported about the stills for this chart. */
 type StillsState = { status: "started" } | { status: "done"; page: string; matched: number; people: number; unmatched: string[] } | { status: "failed"; error: string; seen?: string[] } | { status: "skipped"; reason: string };
 
-function askForStills(mdlSlug: string, force = false) {
+function askForStills(mdlSlug: string, force = false, page?: string) {
     if (typeof document === "undefined" || document.documentElement.dataset.trackrStills !== "1") return false;
-    window.dispatchEvent(new CustomEvent("trackr:chart", { detail: JSON.stringify({ mdlSlug, force }) }));
+    window.dispatchEvent(new CustomEvent("trackr:chart", { detail: JSON.stringify({ mdlSlug, force, page }) }));
     return true;
 }
 
@@ -68,6 +68,8 @@ function clock(ms: number): string {
 export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, needsStills = false }: { mdlSlug: string; hasChart: boolean; initialJob: JobView | null; needsStills?: boolean }) {
     const [job, setJob] = useState<JobView | null>(initialJob);
     const [stills, setStills] = useState<StillsState | null>(null);
+    // The asianwiki page given by hand when the search has no exact title
+    const [stillsPage, setStillsPage] = useState("");
     const [open, setOpen] = useState(false);
     // "choose" is the model panel; "run" the console for `job`
     const [view, setView] = useState<"choose" | "run">(initialJob && ACTIVE.has(initialJob.status) ? "run" : "choose");
@@ -209,8 +211,10 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
     const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
 
+    const stillsLine = stills && stills.status !== "skipped" ? <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} /> : null;
+
     return (
-        <>
+        <div className="flex flex-col items-end gap-1.5">
             <button
                 type="button"
                 onClick={openPanel}
@@ -220,6 +224,8 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                 {active ? <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> : <Sparkles className="h-3.5 w-3.5" />}
                 {label}
             </button>
+            {/* The stills the extension fetched on its own, when the panel is not there to say so */}
+            {!open && stillsLine}
 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent showCloseButton={false} className="gap-0 border-line-strong bg-panel p-0 sm:max-w-lg">
@@ -409,19 +415,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                         {cost && <Stat value={cost} label={job.model?.replace(/^claude-/, "") ?? ""} />}
                                         <Stat value={clock(elapsed)} label="min" />
                                     </div>
-                                    {stills && stills.status !== "skipped" && (
-                                        <p className={`flex items-center gap-2 text-xs ${stills.status === "failed" ? "text-amber-400/90" : "text-fg-muted"}`}>
-                                            {stills.status === "started" ? <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> : stills.status === "done" ? <ImageIcon className="h-3.5 w-3.5 text-emerald-400/80" /> : <AlertTriangle className="h-3.5 w-3.5" />}
-                                            {stills.status === "started" && <span>Fetching the stills from asianwiki…</span>}
-                                            {stills.status === "done" && (
-                                                <span>
-                                                    {stills.matched}/{stills.people} faces from asianwiki · {stills.page}
-                                                    {stills.unmatched.length > 0 && <span className="text-fg-dim"> · missing {stills.unmatched.join(", ")}</span>}
-                                                </span>
-                                            )}
-                                            {stills.status === "failed" && <span>Stills: {stills.error}{stills.seen?.length ? ` (search saw: ${stills.seen.slice(0, 3).join(" · ")})` : ""}</span>}
-                                        </p>
-                                    )}
+                                    {stillsLine}
                                     {job.warnings.length > 0 && (
                                         <ul className="space-y-1 text-xs text-amber-400/90">
                                             {job.warnings.map((w, i) => (
@@ -467,8 +461,65 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                     )}
                 </DialogContent>
             </Dialog>
-        </>
+        </div>
     );
+}
+
+/**
+ * What the extension said about the stills — a spinner while it reads
+ * asianwiki, the count that took, or why nothing did, with the field for
+ * the page's exact name when the search had no title for it.
+ */
+function StillsLine({ stills, page, onPage, onRetry }: { stills: StillsState; page: string; onPage: (v: string) => void; onRetry: () => void }) {
+    if (stills.status === "started") {
+        return (
+            <p className="flex items-center gap-2 text-xs text-fg-muted">
+                <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Fetching the stills from asianwiki…
+            </p>
+        );
+    }
+    if (stills.status === "done") {
+        return (
+            <p className="flex items-center gap-2 text-xs text-fg-muted">
+                <ImageIcon className="h-3.5 w-3.5 text-emerald-400/80" />
+                <span>
+                    {stills.matched}/{stills.people} faces from asianwiki · {stills.page}
+                    {stills.unmatched.length > 0 && <span className="text-fg-dim"> · missing {stills.unmatched.join(", ")}</span>}
+                </span>
+            </p>
+        );
+    }
+    if (stills.status === "failed") {
+        return (
+            <div className="flex flex-col items-end gap-1.5 text-xs">
+                <p className="flex items-center gap-2 text-amber-400/90">
+                    <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
+                    <span>
+                        Stills: {stills.error}
+                        {stills.seen?.length ? <span className="text-fg-dim"> · search saw {stills.seen.slice(0, 3).join(" · ")}</span> : null}
+                    </span>
+                </p>
+                <form
+                    className="flex items-center gap-1.5"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        if (page.trim()) onRetry();
+                    }}
+                >
+                    <input
+                        value={page}
+                        onChange={(e) => onPage(e.target.value)}
+                        placeholder="asianwiki page, e.g. Run On (Korean Drama)"
+                        className="w-64 rounded-md bg-surface-2 px-2 py-1 text-fg outline-none placeholder:text-fg-faint"
+                    />
+                    <button type="submit" disabled={!page.trim()} className="rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4 disabled:opacity-50">
+                        Fetch
+                    </button>
+                </form>
+            </div>
+        );
+    }
+    return null;
 }
 
 function Stat({ value, label }: { value: string | number; label: string }) {
