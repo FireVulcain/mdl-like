@@ -22,6 +22,7 @@
       "name": "Kang Bi O",
       "actor": "Song Kang",
       "image": "https://i.mydramalist.com/Dkjb4y_5m.jpg",
+      "still": "https://asianwiki.com/images/9/9e/Four_Hands_Two_Sonatas-Song_Kang.jpg",
       "group": "Leads",
       "inCast": true,
       "note": "Illegitimate son of a wealthy family; piano prodigy ranked first at school.",
@@ -29,11 +30,13 @@
         {
           "name": "Jung Min Joon",
           "image": "https://i.mydramalist.com/jQbVYz_5m.jpg",
+          "still": "https://asianwiki.com/images/6/60/Four_Hands_Two_Sonatas-Jung_Min-Joon.jpg",
           "era": "child"
         },
         {
           "name": "Park Hoo",
           "image": "https://i.mydramalist.com/KpOgY0_5m.jpg",
+          "still": "https://asianwiki.com/images/a/ab/Four_Hands_Two_Sonatas-Park_Hoo01.jpg",
           "era": "child"
         }
       ]
@@ -43,6 +46,7 @@
       "name": "Choi Jeong Yo",
       "actor": "Lee Jun Young",
       "image": "https://i.mydramalist.com/v2yzZ_5m.jpg",
+      "still": "https://asianwiki.com/images/9/92/Four_Hands_Two_Sonatas-Lee_Jun-Young.jpg",
       "group": "Leads",
       "inCast": true,
       "note": "Abandoned his talent after a difficult childhood; rediscovers his passion for piano.",
@@ -50,6 +54,7 @@
         {
           "name": "Han Ji An",
           "image": "https://i.mydramalist.com/NdKP4Y_5m.jpg",
+          "still": "https://asianwiki.com/images/f/f3/Four_Hands_Two_Sonatas-Han_Ji-An1.jpg",
           "era": "child"
         }
       ]
@@ -59,6 +64,7 @@
       "name": "Hong Jae In",
       "actor": "Jang Gyu Ri",
       "image": "https://i.mydramalist.com/kA7r7w_5m.jpg",
+      "still": "https://asianwiki.com/images/0/0e/Four_Hands_Two_Sonatas-Jang_Gyu-Ri.jpg",
       "group": "Leads",
       "inCast": true,
       "note": "Viola major with unusually sensitive hearing; discovers Jeong Yo's talent."
@@ -68,6 +74,7 @@
       "name": "Kang Ji Hye",
       "actor": "Yoon Se Ah",
       "image": "https://i.mydramalist.com/1wzYX5_5m.jpg",
+      "still": "https://asianwiki.com/images/5/55/Four_Hands_Two_Sonatas-Yoon_Se-Ah.jpg",
       "group": "Bi O's family",
       "inCast": true,
       "note": "Former ballerina; single mother devoted to Bi O's success."
@@ -77,6 +84,7 @@
       "name": "Kang Seung Un",
       "actor": "Jung Jin Young",
       "image": "https://i.mydramalist.com/ABAQr8_5m.jpg",
+      "still": "https://asianwiki.com/images/f/fd/Four_Hands_Two_Sonatas-Jung_Jin-Young01.jpg",
       "group": "Bi O's family",
       "inCast": true,
       "note": "World-renowned conductor; despises Bi O as his illegitimate grandson."
@@ -86,6 +94,7 @@
       "name": "Yun Seon Ju",
       "actor": "Seo Jae Hee",
       "image": "https://i.mydramalist.com/06YzE_5m.jpg",
+      "still": "https://asianwiki.com/images/4/45/Four_Hands_Two_Sonatas-Seo_Jae-Hee001.jpg",
       "group": "Bi O's family",
       "inCast": true,
       "note": "Chairperson of Korea Arts High School; Seung Un's wife."
@@ -95,6 +104,7 @@
       "name": "Han Hyeon Jeong",
       "actor": "Kim Hye Hwa",
       "image": "https://i.mydramalist.com/QB7xW_5m.jpg",
+      "still": "https://asianwiki.com/images/5/5d/Four_Hands_Two_Sonatas-Kim_Hye-Hwa.jpg",
       "group": "Jae In's family",
       "inCast": true,
       "note": "CEO of a classical artists' management agency; Ji Hye's friend."
@@ -104,6 +114,7 @@
       "name": "Choi Gi Taek",
       "actor": "Seong No Jin",
       "image": "https://i.mydramalist.com/73b48L_5m.jpg",
+      "still": "https://asianwiki.com/images/2/2e/Four_Hands_Two_Sonatas-Sung_No-Jin.jpg",
       "group": "Jeong Yo's family",
       "inCast": true,
       "note": "Alcoholic former piano tuner who resents his son."
@@ -113,6 +124,7 @@
       "name": "Cho Hyeon Cheol",
       "actor": "Lee Myeong Ro",
       "image": "https://i.mydramalist.com/l0AW7v_5m.jpg",
+      "still": "https://asianwiki.com/images/9/9c/Four_Hands_Two_Sonatas-Lee_Myeong-Ro.jpg",
       "group": "Jeong Yo's family",
       "inCast": true,
       "note": "Became close to Jeong Yo during his time living on the streets."
@@ -122,6 +134,7 @@
       "name": "Director Kim",
       "actor": "Kim Min",
       "image": "https://i.mydramalist.com/QJ5mZ6_5m.jpg",
+      "still": "https://asianwiki.com/images/2/23/Four_Hands_Two_Sonatas-Kim_Min.jpg",
       "group": "Jeong Yo's family",
       "inCast": true,
       "note": "A loan shark who preys on delinquent street youths, including Jeong Yo."
@@ -140,6 +153,7 @@
       "name": "Do Hyeon Su",
       "actor": "Kim Joo Heon",
       "image": "https://i.mydramalist.com/zB1eNe_5m.jpg",
+      "still": "https://asianwiki.com/images/e/ef/Four_Hands_Two_Sonatas-Kim_Ju-Hun.jpg",
       "group": "Korea Arts High School",
       "inCast": true,
       "note": "Pianist who mentors both Bi O and Jeong Yo."
@@ -149,6 +163,7 @@
       "name": "Jang Seok Hwan",
       "actor": "Yoo Tae Joo",
       "image": "https://i.mydramalist.com/b3o01w_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d1/Four_Hands_Two_Sonatas-Yoo_Tae-Joo.jpg",
       "group": "Korea Arts High School",
       "inCast": true,
       "note": "Cello major; Bi O's classmate."
@@ -158,6 +173,7 @@
       "name": "Yun Han Rim",
       "actor": "Lee Sang Jun",
       "image": "https://i.mydramalist.com/PxNKBw_5m.jpg",
+      "still": "https://asianwiki.com/images/9/92/Four_Hands_Two_Sonatas-Lee_Sang_Jun.jpg",
       "group": "Korea Arts High School",
       "inCast": true,
       "note": "Piano major; Bi O's classmate."
