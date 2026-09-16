@@ -52,7 +52,9 @@
         if (typeof detail.mdlSlug === "string") void handle(detail.mdlSlug, !!detail.force, typeof detail.page === "string" && detail.page.trim() ? detail.page.trim() : null);
     });
 
-    // So the page knows a listener is there — a mark it can read at any time,
-    // since this runs before or after the page's own scripts
+    // So the page knows a listener is there: a mark it can read at any time,
+    // and a word for a page that mounted first — this runs before or after
+    // the page's own scripts, and whichever is second must not miss the other
     document.documentElement.dataset.trackrStills = "1";
+    window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true }) }));
 })();

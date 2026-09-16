@@ -112,8 +112,15 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
         return () => clearInterval(timer);
     }, [active, job, router, mdlSlug]);
 
-    // Hear the extension about the stills; on load, ask for a chart that has none
+    // Hear the extension about the stills; on load, ask for a chart that has
+    // none — now if the extension is already there, or when it announces
+    // itself, since its content script may land after this mounts
+    const [extension, setExtension] = useState(false);
     useEffect(() => {
+        const onExtension = () => {
+            setExtension(true);
+            if (needsStills) askForStills(mdlSlug);
+        };
         const onStills = (e: Event) => {
             let detail: (StillsState & { mdlSlug?: string }) | null = null;
             try {
@@ -127,8 +134,12 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             if (detail.status === "done") router.refresh();
         };
         window.addEventListener("trackr:stills", onStills);
-        if (needsStills) askForStills(mdlSlug);
-        return () => window.removeEventListener("trackr:stills", onStills);
+        window.addEventListener("trackr:extension", onExtension);
+        if (document.documentElement.dataset.trackrStills === "1") onExtension();
+        return () => {
+            window.removeEventListener("trackr:stills", onStills);
+            window.removeEventListener("trackr:extension", onExtension);
+        };
     }, [mdlSlug, needsStills, router]);
 
     // The clock in the console header ticks every second while a run goes
@@ -211,7 +222,12 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
     const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
 
-    const stillsLine = stills && stills.status !== "skipped" ? <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} /> : null;
+    const stillsLine =
+        stills && stills.status !== "skipped" ? (
+            <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} />
+        ) : needsStills && !extension ? (
+            <p className="text-xs text-fg-dim">Stills come with the Drama Calendar extension in this browser</p>
+        ) : null;
 
     return (
         <div className="flex flex-col items-end gap-1.5">
