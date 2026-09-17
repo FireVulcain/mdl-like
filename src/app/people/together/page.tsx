@@ -7,7 +7,9 @@ import { mdlTitleFromLink, type KuryanaWorkItem } from "@/lib/kuryana";
 import { loadPersonWorks, extractMdlId, extractFullMdlSlug, sortWorks, type PersonData } from "@/lib/person-works";
 import { resolveWorkLinks, internalHref } from "@/lib/mdl-work-links";
 import { getWatchlistSeasonKeys, getWatchlistPosters } from "@/actions/user-media";
-import { PersonPicker, type PickedPerson } from "@/components/people/person-picker";
+import { PairPendingHint, PersonPicker, type PickedPerson } from "@/components/people/person-picker";
+import { TogetherSuggestions } from "@/components/people/together-suggestions";
+import { Suspense } from "react";
 
 type Params = Promise<{ a?: string; b?: string }>;
 
@@ -62,6 +64,49 @@ function Avatar({ src, name }: { src: string | null; name: string }) {
 // "(Ep. 21)", "(Ep. 150-151)" — and "as (Ep. 21)" is not a sentence. Those
 // read as the episode instead.
 const EPISODE_NOTE = /^\(?\s*ep(?:isode)?s?\.?\s*[\d\s,\-–&]+\)?$/i;
+
+/**
+ * The episodes an appearance note names — "Ep. 7", "Ep. 1-3", "Ep. 81, 135",
+ * "Ep. 21 & 22" — or null when the credit carries no such note.
+ *
+ * Null is the important case. A host or a regular is credited on the show,
+ * not on episodes, and is taken to be in all of them; a guest is credited on
+ * the episodes they came for. So two guests share the show only if their
+ * episode lists cross, while a guest and a host always do.
+ */
+function episodesOf(credit: Credit): Set<number> | null {
+    const raw = credit.work.role?.name;
+    if (!raw) return null;
+    // Every "Ep. …" group, wherever it sits: MDL joins several appearances on
+    // one show with " | " — "(Ep. 586, 588-589) | [Callee] (Ep. 582)" — and
+    // a note that fails to parse would read as a regular, which is the one
+    // mistake that puts two strangers in the same room.
+    const episodes = new Set<number>();
+    for (const [, list] of raw.matchAll(/ep(?:isode)?s?\.?\s*([\d\s,\-–&]+)/gi)) {
+        for (const part of list.split(/[,&]/)) {
+            const range = part.match(/(\d+)\s*[-–]\s*(\d+)/);
+            if (range) {
+                const [lo, hi] = [Number(range[1]), Number(range[2])].sort((x, y) => x - y);
+                // A run of hundreds of episodes is a regular slot written as a
+                // guest one; cap the expansion rather than allocate for it.
+                for (let n = lo; n <= Math.min(hi, lo + 500); n++) episodes.add(n);
+                continue;
+            }
+            const single = part.match(/\d+/);
+            if (single) episodes.add(Number(single[0]));
+        }
+    }
+    return episodes.size > 0 ? episodes : null;
+}
+
+/** Whether two credits on one title put the two people in the same episodes. */
+function inSameEpisodes(a: Credit, b: Credit): boolean {
+    const ea = episodesOf(a);
+    const eb = episodesOf(b);
+    if (!ea || !eb) return true;
+    for (const n of ea) if (eb.has(n)) return true;
+    return false;
+}
 
 function RoleLine({ person, credit }: { person: PickedPerson; credit: Credit }) {
     const raw = credit.work.role?.name || null;
@@ -123,7 +168,10 @@ export default async function TogetherPage({ searchParams }: { searchParams: Par
             return { id, a: byA.get(id)!, b: byB.get(id)! };
         });
 
-        const years = rows.map((r) => r.a.work.year).filter((y): y is number => typeof y === "number");
+        const years = rows
+            .filter((r) => inSameEpisodes(r.a, r.b))
+            .map((r) => r.a.work.year)
+            .filter((y): y is number => typeof y === "number");
         firstYear = years.length > 0 ? Math.min(...years) : null;
 
         const [links, watchlistKeys, pickedPosters] = await Promise.all([
@@ -173,7 +221,89 @@ export default async function TogetherPage({ searchParams }: { searchParams: Par
         };
     }
 
+    const renderRow = ({ id, a: ca, b: cb }: (typeof rows)[number]) => {
+        if (!personA || !personB) return null; // rows only exist once both are picked
+        const work = ca.work;
+        const title = work.title.name || mdlTitleFromLink(work.title.link);
+        const year = typeof work.year === "number" ? work.year : "TBA";
+        const href = hrefFor(id, work);
+        const external = href.startsWith("http");
+        const poster = posterFor(id, work, cb.work);
+        const rating = ratingFor(id, work);
+        const tracked = inWatchlist(id);
+        const category = work.type ?? ca.category;
+        const meta = [category, year, work.episodes && work.episodes > 0 ? `${work.episodes} episode${work.episodes === 1 ? "" : "s"}` : null]
+            .filter(Boolean)
+            .join(" · ");
+        const TitleLink = ({ children, className }: { children: React.ReactNode; className: string }) =>
+            external ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+                    {children}
+                </a>
+            ) : (
+                <Link href={href} className={className}>
+                    {children}
+                </Link>
+            );
+
+        return (
+            <article
+                key={id}
+                className="group flex gap-3 rounded-xl border border-line-soft bg-surface-1 p-3 transition-colors hover:bg-surface-2 md:gap-4 md:p-4"
+            >
+                <TitleLink className="relative aspect-2/3 w-20 shrink-0 overflow-hidden rounded-lg bg-surface-2 sm:w-24">
+                    {poster ? (
+                        <Image
+                            unoptimized
+                            src={poster}
+                            alt={title}
+                            fill
+                            sizes="96px"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                    ) : (
+                        <span className="absolute inset-0 flex items-center justify-center text-xs text-fg-muted">No Image</span>
+                    )}
+                    {rating !== null && (
+                        <span className="absolute left-1.5 top-1.5">
+                            <Badge className="bg-sky-500/90 px-1.5 text-xs text-white">
+                                <Star className="mr-0.5 h-3 w-3 fill-current" />
+                                {rating.toFixed(1)}
+                            </Badge>
+                        </span>
+                    )}
+                    {tracked && (
+                        <span className="absolute bottom-1.5 left-1.5">
+                            <Badge className="bg-emerald-500/90 px-1.5 text-xs text-white backdrop-blur-sm">
+                                <Bookmark className="h-3 w-3 fill-current" />
+                            </Badge>
+                        </span>
+                    )}
+                </TitleLink>
+
+                <div className="min-w-0 flex-1">
+                    <TitleLink className="font-display text-base font-semibold text-sky-300 transition-colors hover:text-sky-200 md:text-lg">
+                        {title}
+                    </TitleLink>
+                    <p className="mt-0.5 text-xs text-fg-muted md:text-sm">{meta}</p>
+
+                    <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                        <RoleLine person={personA} credit={ca} />
+                        <RoleLine person={personB} credit={cb} />
+                    </div>
+                </div>
+            </article>
+        );
+    };
+
     const bothPicked = !!(personA && personB);
+
+    // A variety show credits every guest it ever had. Two people on its cast
+    // list may never have been in the studio on the same day, and counting
+    // that as a title together is what made the number lie. Their episodes
+    // decide: the crossing ones count, the rest are shown but set apart.
+    const together = rows.filter((r) => inSameEpisodes(r.a, r.b));
+    const apart = rows.filter((r) => !inSameEpisodes(r.a, r.b));
 
     return (
         <div className="container py-8 space-y-8 m-auto px-4 md:px-6 max-w-4xl">
@@ -195,6 +325,8 @@ export default async function TogetherPage({ searchParams }: { searchParams: Par
                 <PersonPicker slot="b" selected={personB} autoFocus={!!personA && !personB} />
             </div>
 
+            <PairPendingHint a={personA?.name ?? null} b={personB?.name ?? null} />
+
             {sameSlug && <p className="text-sm text-amber-400">That is the same person twice — pick someone else for the second slot.</p>}
             {a && !dataA && !sameSlug && <p className="text-sm text-fg-dim">Could not load the first person from MDL right now.</p>}
             {b && !dataB && !sameSlug && <p className="text-sm text-fg-dim">Could not load the second person from MDL right now.</p>}
@@ -203,107 +335,50 @@ export default async function TogetherPage({ searchParams }: { searchParams: Par
                 <section className="space-y-4">
                     <div className="flex items-center gap-3">
                         <h2 className="font-display text-lg font-semibold text-fg">
-                            {rows.length === 0
+                            {together.length === 0
                                 ? "Nothing in common"
-                                : `${rows.length} title${rows.length !== 1 ? "s" : ""} together`}
+                                : `${together.length} title${together.length !== 1 ? "s" : ""} together`}
                         </h2>
-                        {firstYear !== null && rows.length > 1 && <span className="text-sm text-fg-muted">since {firstYear}</span>}
+                        {firstYear !== null && together.length > 1 && <span className="text-sm text-fg-muted">since {firstYear}</span>}
                         <div className="h-px flex-1 bg-surface-3" />
                     </div>
 
-                    {rows.length === 0 ? (
+                    {together.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-16 text-center">
                             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-line-strong bg-surface-2">
                                 <Users className="h-7 w-7 text-fg-faint" />
                             </div>
                             <p className="text-sm font-medium text-fg-dim">
-                                {personA.name} and {personB.name} have no shared credits on MDL.
+                                {apart.length > 0
+                                    ? `${personA.name} and ${personB.name} were never in the same episode.`
+                                    : `${personA.name} and ${personB.name} have no shared credits on MDL.`}
                             </p>
                         </div>
                     ) : (
                         <div className="flex flex-col gap-3">
-                            {rows.map(({ id, a: ca, b: cb }) => {
-                                const work = ca.work;
-                                const title = work.title.name || mdlTitleFromLink(work.title.link);
-                                const year = typeof work.year === "number" ? work.year : "TBA";
-                                const href = hrefFor(id, work);
-                                const external = href.startsWith("http");
-                                const poster = posterFor(id, work, cb.work);
-                                const rating = ratingFor(id, work);
-                                const tracked = inWatchlist(id);
-                                const category = work.type ?? ca.category;
-                                const meta = [category, year, work.episodes && work.episodes > 0 ? `${work.episodes} episode${work.episodes === 1 ? "" : "s"}` : null]
-                                    .filter(Boolean)
-                                    .join(" · ");
-                                const TitleLink = ({ children, className }: { children: React.ReactNode; className: string }) =>
-                                    external ? (
-                                        <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
-                                            {children}
-                                        </a>
-                                    ) : (
-                                        <Link href={href} className={className}>
-                                            {children}
-                                        </Link>
-                                    );
+                            {together.map((row) => renderRow(row))}
+                        </div>
+                    )}
 
-                                return (
-                                    <article
-                                        key={id}
-                                        className="group flex gap-3 rounded-xl border border-line-soft bg-surface-1 p-3 transition-colors hover:bg-surface-2 md:gap-4 md:p-4"
-                                    >
-                                        <TitleLink className="relative aspect-2/3 w-20 shrink-0 overflow-hidden rounded-lg bg-surface-2 sm:w-24">
-                                            {poster ? (
-                                                <Image
-                                                    unoptimized
-                                                    src={poster}
-                                                    alt={title}
-                                                    fill
-                                                    sizes="96px"
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                />
-                                            ) : (
-                                                <span className="absolute inset-0 flex items-center justify-center text-xs text-fg-muted">No Image</span>
-                                            )}
-                                            {rating !== null && (
-                                                <span className="absolute left-1.5 top-1.5">
-                                                    <Badge className="bg-sky-500/90 px-1.5 text-xs text-white">
-                                                        <Star className="mr-0.5 h-3 w-3 fill-current" />
-                                                        {rating.toFixed(1)}
-                                                    </Badge>
-                                                </span>
-                                            )}
-                                            {tracked && (
-                                                <span className="absolute bottom-1.5 left-1.5">
-                                                    <Badge className="bg-emerald-500/90 px-1.5 text-xs text-white backdrop-blur-sm">
-                                                        <Bookmark className="h-3 w-3 fill-current" />
-                                                    </Badge>
-                                                </span>
-                                            )}
-                                        </TitleLink>
-
-                                        <div className="min-w-0 flex-1">
-                                            <TitleLink className="font-display text-base font-semibold text-sky-300 transition-colors hover:text-sky-200 md:text-lg">
-                                                {title}
-                                            </TitleLink>
-                                            <p className="mt-0.5 text-xs text-fg-muted md:text-sm">{meta}</p>
-
-                                            <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-                                                <RoleLine person={personA} credit={ca} />
-                                                <RoleLine person={personB} credit={cb} />
-                                            </div>
-                                        </div>
-                                    </article>
-                                );
-                            })}
+                    {apart.length > 0 && (
+                        <div className="space-y-4 pt-4">
+                            <div className="flex items-center gap-3">
+                                <h2 className="font-display text-base font-semibold text-fg-muted">Same show, different episodes</h2>
+                                <span className="text-sm text-fg-dim">{apart.length}</span>
+                                <div className="h-px flex-1 bg-surface-3" />
+                            </div>
+                            <div className="flex flex-col gap-3 opacity-75">{apart.map((row) => renderRow(row))}</div>
                         </div>
                     )}
                 </section>
             )}
 
             {!bothPicked && !sameSlug && (
-                <p className="text-sm text-fg-faint">
-                    {personA ? `Now pick someone to compare with ${personA.name}.` : "Start with anyone — an actor, a director, a writer."}
-                </p>
+                // Streamed: the suggestions are a couple of DB reads over the
+                // cast cache, and the slots should not wait on them.
+                <Suspense fallback={null}>
+                    <TogetherSuggestions a={personA} />
+                </Suspense>
             )}
         </div>
     );

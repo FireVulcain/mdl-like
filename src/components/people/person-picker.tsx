@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search, X, Loader2, User } from "lucide-react";
@@ -8,10 +8,50 @@ import type { PersonSearchHit } from "@/app/api/people/search/route";
 
 export type PickedPerson = { slug: string; name: string; image: string | null };
 
-function Avatar({ src, name, size = "h-9 w-9" }: { src: string | null; name: string; size?: string }) {
+/**
+ * Whether a pick is on its way to the server. Module scope, because the two
+ * pickers and the hint under them are siblings with no parent of their own
+ * to hold it — and a provider around the page for one boolean is more code
+ * than this.
+ */
+let pairPending = false;
+const pendingListeners = new Set<() => void>();
+function setPairPending(next: boolean) {
+    if (pairPending === next) return;
+    pairPending = next;
+    pendingListeners.forEach((fn) => fn());
+}
+function usePairPending() {
+    return useSyncExternalStore(
+        (fn) => {
+            pendingListeners.add(fn);
+            return () => pendingListeners.delete(fn);
+        },
+        () => pairPending,
+        () => false,
+    );
+}
+
+/**
+ * Where the answer is about to appear, a line saying so. The picked face shows
+ * in its slot at once; this is what fills the second or two before the shared
+ * titles arrive, in the place they will arrive.
+ */
+export function PairPendingHint({ a, b }: { a: string | null; b: string | null }) {
+    const pending = usePairPending();
+    if (!pending) return null;
+    return (
+        <p className="flex items-center gap-2 text-sm text-fg-dim">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            {a && b ? `Finding what ${a} and ${b} share…` : "Loading…"}
+        </p>
+    );
+}
+
+function Avatar({ src, name, size = "h-9 w-9", className = "" }: { src: string | null; name: string; size?: string; className?: string }) {
     const large = size.includes("28");
     return (
-        <span className={`relative block ${size} shrink-0 overflow-hidden rounded-full bg-surface-3`}>
+        <span className={`relative block ${size} shrink-0 overflow-hidden rounded-full bg-surface-3 ${className}`}>
             {src ? (
                 <Image unoptimized src={src} alt={name} fill sizes={large ? "112px" : "40px"} className="object-cover" />
             ) : (
@@ -39,7 +79,8 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
     const [results, setResults] = useState<PersonSearchHit[]>([]);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
-    const [pending, setPending] = useState(false);
+    // The pick, shown in the slot before the server has confirmed it
+    const [optimistic, setOptimistic] = useState<PickedPerson | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -73,9 +114,11 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
     }, []);
 
     // The server props catch up once the navigation lands; until then the slot
-    // would still show the search box, as if the click had missed.
+    // shows the pick as if it had already landed, and the hint below the slots
+    // says the rest is on its way.
     useEffect(() => {
-        setPending(false);
+        setOptimistic(null);
+        setPairPending(false);
     }, [selected]);
 
     function navigate(slug: string | null) {
@@ -89,38 +132,43 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
     function pick(hit: PersonSearchHit) {
         setQuery("");
         setOpen(false);
-        setPending(true);
+        setOptimistic({ slug: hit.slug, name: hit.name, image: hit.image });
+        setPairPending(true);
         navigate(hit.slug);
     }
 
-    // No card around either state: the portrait is the slot, with the name
-    // under it. Both stack the same way, so the two stay level whether one is
-    // filled or not and the ampersand between them stays put.
-    if (selected) {
+    const shown = selected ?? optimistic;
+
+    // The portrait is the slot, with a name under it — or, while empty, the
+    // slot's own label in the name's place, so the two sides stay level and
+    // the ampersand between them stays put whichever is filled.
+    if (shown) {
         return (
             <div className="flex flex-col items-center gap-3 py-2">
                 <span className="relative block">
-                    <Avatar src={selected.image} name={selected.name} size="h-28 w-28" />
+                    <Avatar src={shown.image} name={shown.name} size="h-28 w-28" className="ring-2 ring-line-strong shadow-xl shadow-black/30" />
                     <button
                         type="button"
                         onClick={() => navigate(null)}
-                        aria-label={`Remove ${selected.name}`}
+                        aria-label={`Remove ${shown.name}`}
                         title="Change"
                         className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full border border-line-strong bg-surface-2 text-fg-dim shadow-md transition-colors hover:bg-surface-3 hover:text-fg cursor-pointer"
                     >
                         <X className="h-3.5 w-3.5" />
                     </button>
                 </span>
-                <span className="max-w-full truncate font-display text-lg font-semibold text-fg">{selected.name}</span>
+                <span className="max-w-full truncate font-display text-lg font-semibold text-fg">{shown.name}</span>
             </div>
         );
     }
 
     return (
         <div className="relative flex flex-col items-center gap-3 py-2" ref={containerRef}>
-            <Avatar src={null} name="" size="h-28 w-28" />
-            <div className="flex w-full items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-3 py-2 focus-within:border-sky-500/50">
-                {loading || pending ? (
+            {/* Dashed, and lighter than a portrait: a place waiting to be filled */}
+            <Avatar src={null} name="" size="h-28 w-28" className="border-2 border-dashed border-line-strong !bg-surface-1" />
+            <span className="font-display text-lg font-semibold text-fg-faint">{slot === "a" ? "First person" : "Second person"}</span>
+            <div className="flex w-full max-w-xs items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-3 py-2 focus-within:border-sky-500/50">
+                {loading ? (
                     <Loader2 className="h-4 w-4 shrink-0 animate-spin text-fg-dim" />
                 ) : (
                     <Search className="h-4 w-4 shrink-0 text-fg-dim" />
@@ -131,7 +179,7 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
                     autoFocus={autoFocus}
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => results.length > 0 && setOpen(true)}
-                    placeholder={slot === "a" ? "First person…" : "Second person…"}
+                    placeholder="Search a name…"
                     className="w-full bg-transparent text-sm text-fg placeholder:text-fg-faint outline-none"
                 />
                 {query && (
@@ -149,7 +197,7 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
             </div>
 
             {open && results.length > 0 && (
-                <div className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-line-strong bg-panel/95 shadow-2xl shadow-black/40 backdrop-blur-xl">
+                <div className="absolute left-1/2 top-full z-30 mt-1 w-full max-w-xs -translate-x-1/2 overflow-hidden rounded-lg border border-line-strong bg-panel/95 shadow-2xl shadow-black/40 backdrop-blur-xl">
                     {results.map((hit) => (
                         <button
                             key={hit.slug}
@@ -160,7 +208,13 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
                             <Avatar src={hit.image} name={hit.name} size="h-8 w-8" />
                             <span className="min-w-0 flex-1">
                                 <span className="block truncate text-sm text-fg">{hit.name}</span>
-                                {hit.nationality && <span className="block truncate text-xs text-fg-dim">{hit.nationality}</span>}
+                                {(hit.nationality || hit.knownFor) && (
+                                    <span className="block truncate text-xs text-fg-dim">
+                                        {hit.nationality}
+                                        {hit.nationality && hit.knownFor && " · "}
+                                        {hit.knownFor && <span className="text-fg-muted">{hit.knownFor}</span>}
+                                    </span>
+                                )}
                             </span>
                         </button>
                     ))}
@@ -168,7 +222,7 @@ export function PersonPicker({ slot, selected, autoFocus = false }: { slot: "a" 
             )}
 
             {open && !loading && results.length === 0 && query.trim().length >= 2 && (
-                <div className="absolute left-0 right-0 top-full z-30 mt-1 rounded-lg border border-line-strong bg-panel/95 px-3 py-2 text-xs text-fg-dim shadow-2xl shadow-black/40 backdrop-blur-xl">
+                <div className="absolute left-1/2 top-full z-30 mt-1 w-full max-w-xs -translate-x-1/2 rounded-lg border border-line-strong bg-panel/95 px-3 py-2 text-xs text-fg-dim shadow-2xl shadow-black/40 backdrop-blur-xl">
                     No one found
                 </div>
             )}
