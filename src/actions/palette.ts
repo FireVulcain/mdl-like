@@ -4,8 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
 import { ActivityAction } from "@/types/activity";
 import { updateUserMedia } from "@/actions/media";
-import { getScheduleEntries } from "@/actions/schedule";
-import { getDashboardStats } from "@/actions/stats";
 import { mdlPersonSlug, personHref } from "@/lib/person-links";
 import { mediaService } from "@/services/media.service";
 import { getNativeTitles, prefillNativeTitles } from "@/lib/native-titles";
@@ -215,58 +213,54 @@ export async function undoLastProgress(): Promise<{ ok: boolean; message: string
 
 export type PaletteAiringEntry = { key: string; title: string; poster: string | null; href: string; detail: string };
 
-/**
- * Today's episodes, for the palette's airing menu.
- *
- * The date key comes from the client because "today" is a question about the
- * user's clock, not the server's — a Vercel box in UTC and a viewer in KST
- * disagree for nine hours a day.
- */
-export async function getAiringToday(dateKey: string): Promise<PaletteAiringEntry[]> {
-    const entries = await getScheduleEntries();
-    return entries
-        .filter((entry) => entry.airDate === dateKey)
-        .sort((a, b) => a.title.localeCompare(b.title))
-        .map((entry) => ({
-            key: `${entry.mediaId}-${entry.seasonNumber}-${entry.episodeNumber}`,
-            title: entry.title,
-            poster: entry.poster,
-            href: `/media/${entry.mediaId}?season=${entry.seasonNumber}`,
-            detail: entry.episodeName ? `Episode ${entry.episodeNumber} · ${entry.episodeName}` : `Episode ${entry.episodeNumber}`,
-        }));
+// MDL fills a missing episode title with "<Show> Episode 23", TVmaze with a bare
+// "Episode 23" — next to "Episode 23" that says the same thing twice.
+function realEpisodeName(name: string | null | undefined): string | undefined {
+    const trimmed = name?.trim();
+    if (!trimmed) return undefined;
+    return /episode\s*\d+$/i.test(trimmed) ? undefined : trimmed;
 }
 
-export type PaletteStat = { key: string; label: string };
-
 /**
- * The handful of numbers worth answering without leaving the page.
+ * Today's episodes from the shows being watched, for the palette's empty state.
  *
- * Built on getDashboardStats rather than a leaner query of its own, so the
- * palette can never quote a figure the /stats page disagrees with.
+ * Read from the episode cache only. getScheduleEntries would be the complete
+ * answer, but it goes to TMDB for any show it has never looked up, and the
+ * palette opens far too often to wait on that — the calendar page is where a
+ * missing show gets fetched. An episode the cache has not seen yet is simply
+ * not listed tonight.
+ *
+ * The date key comes from the client because "today" is a question about the
+ * user's clock, not the server's — a box in UTC and a viewer in KST disagree
+ * for nine hours a day.
  */
-export async function getPaletteStats(): Promise<PaletteStat[]> {
-    const stats = await getDashboardStats();
+export async function getAiringToday(dateKey: string): Promise<PaletteAiringEntry[]> {
+    const userId = await getCurrentUserId();
+    const items = await prisma.userMedia.findMany({
+        where: { userId, status: { in: ["Watching", "Plan to Watch"] }, mediaType: "TV", source: "TMDB" },
+        select: { externalId: true, title: true, poster: true },
+    });
+    if (items.length === 0) return [];
 
-    const rated = stats.ratingDistribution.filter((r) => r.rating > 0);
-    const ratedCount = rated.reduce((acc, r) => acc + r.count, 0);
-    const average = ratedCount > 0 ? rated.reduce((acc, r) => acc + r.rating * r.count, 0) / ratedCount : null;
+    const byMediaId = new Map(items.map((i) => [`tmdb-${i.externalId}`, i]));
+    const episodes = await prisma.cachedEpisode.findMany({
+        where: { mediaId: { in: [...byMediaId.keys()] }, airDate: dateKey, episodeNumber: { gt: 0 } },
+        select: { mediaId: true, seasonNumber: true, episodeNumber: true, episodeName: true },
+    });
 
-    // Floor, like the stats dashboard and the watchlist header — two surfaces
-    // quoting different totals for the same thing is worse than either being
-    // slightly low. Locale pinned for the same reason: the server's default
-    // would group digits differently from every other number in the app.
-    const hours = Math.floor(stats.watchTimeMinutes / 60);
-    const days = (stats.watchTimeMinutes / (60 * 24)).toFixed(1);
-    const n = (value: number) => value.toLocaleString("en-US");
-
-    return [
-        { key: "titles", label: `${stats.totalMovies + stats.totalTV} titles watched — ${stats.totalTV} series, ${stats.totalMovies} movies` },
-        { key: "episodes", label: `${n(stats.totalEpisodes)} episodes watched` },
-        { key: "time", label: `${n(hours)} hours watched — about ${days} days of your life` },
-        ...(average !== null ? [{ key: "average", label: `Average rating ${average.toFixed(1)} across ${ratedCount} rated titles` }] : []),
-        ...(stats.topGenres[0] ? [{ key: "genre", label: `Most watched genre: ${stats.topGenres[0].name}` }] : []),
-        { key: "completion", label: `${Math.round(stats.completionRate)}% completion of everything started` },
-    ];
+    return episodes
+        .map((ep) => {
+            const item = byMediaId.get(ep.mediaId)!;
+            const name = realEpisodeName(ep.episodeName);
+            return {
+                key: `${ep.mediaId}-${ep.seasonNumber}-${ep.episodeNumber}`,
+                title: item.title || "Unknown",
+                poster: item.poster,
+                href: `/media/${ep.mediaId}?season=${ep.seasonNumber}`,
+                detail: name ? `Episode ${ep.episodeNumber} · ${name}` : `Episode ${ep.episodeNumber}`,
+            };
+        })
+        .sort((a, b) => a.title.localeCompare(b.title));
 }
 
 export type PalettePersonShow = {

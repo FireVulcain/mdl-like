@@ -7,7 +7,6 @@ import { toast } from "sonner";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
     getAiringToday,
-    getPaletteStats,
     getPalettePeople,
     getPaletteWatchlist,
     searchPaletteRemote,
@@ -16,7 +15,6 @@ import {
     type PaletteItem,
     type PalettePerson,
     type PaletteRemoteItem,
-    type PaletteStat,
 } from "@/actions/palette";
 import { updateUserMedia, deleteUserMedia } from "@/actions/media";
 import { fuzzyScore, VERBATIM_MATCH_FLOOR, ANCHORED_MATCH_FLOOR } from "@/lib/fuzzy";
@@ -26,14 +24,10 @@ import {
     BarChart3,
     Bookmark,
     CalendarDays,
-    ChevronRight,
     Clapperboard,
     CheckCheck,
-    CircleQuestionMark,
-    CornerDownLeft,
     History,
     Home,
-    ListChecks,
     Play,
     RotateCcw,
     Search,
@@ -52,7 +46,7 @@ const PAGES: PageEntry[] = [
     { label: "Watchlist", href: "/watchlist", icon: Bookmark, keywords: "watchlist collection my list" },
     { label: "Browse dramas", href: "/dramas", icon: Clapperboard, keywords: "dramas browse discover filter" },
     { label: "Calendar", href: "/calendar", icon: CalendarDays, keywords: "calendar schedule airing episodes" },
-    { label: "Stats", href: "/stats", icon: BarChart3, keywords: "stats statistics charts activity" },
+    { label: "Stats", href: "/stats", icon: BarChart3, keywords: "stats statistics charts activity hours episodes" },
     { label: "History", href: "/history", icon: History, keywords: "history activity log" },
     { label: "Settings", href: "/settings", icon: Settings, keywords: "settings preferences options" },
 ];
@@ -72,29 +66,26 @@ const REMOTE_DEBOUNCE_MS = 400;
 const MAX_MEDIA_ROWS = 7;
 const MAX_PEOPLE_ROWS = 5;
 const MAX_PAGE_ROWS = 4;
+const MAX_CONTINUE_ROWS = 5;
+const MAX_TONIGHT_ROWS = 3;
 
 /**
- * Three levels, in the sense the palette is usually built:
- *   root    — search everything
- *   item    — one title's actions, reached with → or Tab
- *   prompt  — a value the action still needs (which episode, which score), or a
- *             confirmation for something destructive
+ * Two levels and a few leaves. The palette is for finding a title in the list
+ * and acting on it in three keystrokes; everything past that lives on a page.
+ *
+ *   root    — search everything; empty, it shows what to continue and what airs
+ *   item    — one title's four actions, reached with Tab
+ *   status  — pick one, for "Change status…"
+ *   prompt  — a score, for "Rate…"
+ *   confirm — the one destructive action asks twice
+ *   help    — a page of text, reached with "?"
  */
-/**
- * The three menus keep the root list short: one row each, none of which appears
- * until the query asks for it. Ten "Show my …" rows would be the same features
- * and a worse palette.
- */
-type MenuId = "list" | "airing" | "stats" | "help";
-
 type Mode =
     | { kind: "root" }
-    | { kind: "menu"; menu: MenuId }
+    | { kind: "help" }
     | { kind: "item"; item: PaletteItem }
-    | { kind: "person"; person: PalettePerson }
-    | { kind: "cast"; item: PaletteItem }
     | { kind: "status"; item: PaletteItem }
-    | { kind: "prompt"; item: PaletteItem; field: "episode" | "score" }
+    | { kind: "prompt"; item: PaletteItem }
     | { kind: "confirm"; item: PaletteItem };
 
 type Row = { key: string; section: string | null } & (
@@ -107,7 +98,6 @@ type Row = { key: string; section: string | null } & (
     | { kind: "airing"; entry: PaletteAiringEntry }
     | { kind: "person"; person: PalettePerson }
     | { kind: "remote"; entry: PaletteRemoteItem }
-    | { kind: "fact"; label: string }
 );
 
 /**
@@ -183,6 +173,25 @@ function progressLabel(item: PaletteItem): string {
     return parts.join(" · ");
 }
 
+/** Poster-shaped slot, the same for a show, an episode, a person or a remote hit. */
+function Artwork({ src, person = false }: { src: string | null; person?: boolean }) {
+    return (
+        <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
+            {src ? (
+                <Image unoptimized src={src} alt="" width={28} height={40} className="w-full h-full object-cover" />
+            ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                    {person ? <User className="h-3 w-3 text-fg-faint" /> : <Tv className="h-3 w-3 text-fg-faint" />}
+                </div>
+            )}
+        </div>
+    );
+}
+
+function Kbd({ children }: { children: React.ReactNode }) {
+    return <kbd className="font-sans text-fg-dim">{children}</kbd>;
+}
+
 export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shortcuts?: string[] }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -193,50 +202,60 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     const [query, setQuery] = useState("");
     const [items, setItems] = useState<PaletteItem[] | null>(null);
     const [people, setPeople] = useState<PalettePerson[]>([]);
+    const [airing, setAiring] = useState<PaletteAiringEntry[]>([]);
     const [active, setActive] = useState(0);
     const [busy, setBusy] = useState(false);
-    const [airing, setAiring] = useState<PaletteAiringEntry[] | null>(null);
     const [remote, setRemote] = useState<{ query: string; items: PaletteRemoteItem[] } | null>(null);
     const [searchingRemote, setSearchingRemote] = useState(false);
-    // Answers already paid for. Backspacing through a word re-visits queries that
-    // were just asked, and none of them should cost a second request.
     const remoteCache = useRef(new Map<string, PaletteRemoteItem[]>());
-    const [facts, setFacts] = useState<PaletteStat[] | null>(null);
+
     const listRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     // The index is fetched once per session, not per open — a second ⌘K should
-    // never show a spinner for a list that has not changed.
+    // never show a skeleton for a list that has not changed.
     const loadingRef = useRef(false);
-    const itemsRef = useRef<PaletteItem[] | null>(null);
-    itemsRef.current = items;
     const queryRef = useRef("");
     queryRef.current = query;
     const modeRef = useRef<Mode>(mode);
     modeRef.current = mode;
-    // Where each level came from and what was typed to get there. A stack rather
-    // than a parent-per-kind mapping because the levels genuinely nest: a show's
-    // cast leads to a person, whose shows lead back to another show.
+    // Where each level came from and what was typed to get there, so backing
+    // out of "Change status…" lands on the title's actions with the query intact.
     const historyStack = useRef<{ mode: Mode; query: string }[]>([]);
 
     const load = useCallback(async () => {
         if (loadingRef.current) return;
         loadingRef.current = true;
         // Deliberately not awaited together: titles are what the palette is for,
-        // and holding them until the cast index lands would make every open as
-        // slow as the slower of the two. The cast is also allowed to fail on its
-        // own — a palette without actors is still a palette.
+        // and holding them until the others land would make every open as slow
+        // as the slowest of the three. Each is allowed to fail on its own — a
+        // palette without actors or tonight's episodes is still a palette.
         void getPalettePeople()
             .then(setPeople)
             .catch(() => {});
+        void getAiringToday(new Date().toLocaleDateString("en-CA"))
+            .then(setAiring)
+            .catch(() => {});
 
         try {
-            const fetched = await getPaletteWatchlist();
-            itemsRef.current = fetched;
-            setItems(fetched);
+            setItems(await getPaletteWatchlist());
         } catch {
             setItems([]); // pages and global search still work without the index
         }
     }, []);
+
+    // Fetched once the page has settled, not on the first ⌘K: the index is a
+    // few DB reads, and pulling it during idle time means the palette almost
+    // always opens on the real list rather than a placeholder for it.
+    useEffect(() => {
+        // Safari has no requestIdleCallback; a short delay does the same job.
+        // Typed as always present, hence the runtime check on the function itself.
+        if (typeof window.requestIdleCallback === "function") {
+            const id = window.requestIdleCallback(() => void load(), { timeout: 2000 });
+            return () => window.cancelIdleCallback(id);
+        }
+        const id = window.setTimeout(() => void load(), 500);
+        return () => window.clearTimeout(id);
+    }, [load]);
 
     /**
      * The watchlist row for the media page currently on screen, if any.
@@ -260,20 +279,6 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         setMode({ kind: "root" });
         setOpen(true);
         void load();
-    }, [load]);
-
-    // Fetched once the page has settled, not on the first ⌘K: the index is a
-    // single DB read, and pulling it during idle time means the palette almost
-    // always opens on the real list rather than a placeholder for it.
-    useEffect(() => {
-        // Safari has no requestIdleCallback; a short delay does the same job.
-        // Typed as always present, hence the runtime check on the function itself.
-        if (typeof window.requestIdleCallback === "function") {
-            const id = window.requestIdleCallback(() => void load(), { timeout: 2000 });
-            return () => window.cancelIdleCallback(id);
-        }
-        const id = window.setTimeout(() => void load(), 500);
-        return () => window.clearTimeout(id);
     }, [load]);
 
     // Ctrl+P is the browser's print dialog and Ctrl+K its address-bar search,
@@ -310,8 +315,8 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
     //
     // Clearing here meant the emptied root menu rendered *inside* the dialog
     // while it was still on screen: DialogContent animates out over 200ms, so
-    // pressing Enter on a result replaced it with "Recently watched" and let
-    // that fade away instead of the thing that had just been chosen.
+    // pressing Enter on a result replaced it with the empty state and let that
+    // fade away instead of the thing that had just been chosen.
     const close = useCallback(() => {
         setOpen(false);
     }, []);
@@ -370,7 +375,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             close();
             void commit(
                 item,
-                { progress: episode },
+                { progress: episode, watchedAt: new Date().toISOString() },
                 () => updateUserMedia(item.id, { progress: episode }),
                 `${item.title} · episode ${episode} watched`,
             );
@@ -436,58 +441,45 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         inputRef.current?.focus();
     }, []);
 
-    // Both menus fetch on entry rather than on open: the schedule and the stats
-    // are the two most expensive things the app computes, and most palette
-    // visits never ask for either.
-    const openMenu = useCallback(
-        (menu: MenuId) => {
-            enterMode({ kind: "menu", menu });
-            if (menu === "airing" && airing === null) {
-                void getAiringToday(new Date().toLocaleDateString("en-CA"))
-                    .then(setAiring)
-                    .catch(() => setAiring([]));
-            }
-            if (menu === "stats" && facts === null) {
-                void getPaletteStats()
-                    .then(setFacts)
-                    .catch(() => setFacts([]));
-            }
-        },
-        [enterMode, airing, facts],
-    );
+    const back = useCallback(() => {
+        const parent = historyStack.current.pop();
+        if (!parent) {
+            close(); // already at the top level
+            return;
+        }
+        setMode(parent.mode);
+        setQuery(parent.query);
+        setActive(0);
+        inputRef.current?.focus();
+    }, [close]);
 
-    // One definition, used by the root list and by help. Two lists of the same
-    // commands would drift the first time one is added.
+    /**
+     * Everything the palette does that is not a title or a page, as one flat
+     * list. It used to hide behind "My list…" and "What's airing…" submenus;
+     * flat, "dropped" finds the Dropped filter directly and nothing needs a
+     * second Enter.
+     */
     const globalCommands = useCallback(
         (): Row[] => [
+            ...WATCH_STATUSES.map(
+                (status): Row => ({
+                    kind: "command",
+                    key: `list-${status}`,
+                    section: null,
+                    label: `Watchlist · ${status}`,
+                    icon: Bookmark,
+                    keywords: `show my list filter ${status}`,
+                    run: () => goTo(`/watchlist?status=${encodeURIComponent(status)}`),
+                }),
+            ),
             {
                 kind: "command",
-                key: "menu-list",
+                key: "list-airing",
                 section: null,
-                label: "My list…",
-                icon: Bookmark,
-                // Every status is a keyword, so typing "dropped" finds the menu
-                // without the menu having to spell out one row per status.
-                keywords: "show my list watchlist watching completed plan to watch on hold dropped airing filter",
-                run: () => openMenu("list"),
-            },
-            {
-                kind: "command",
-                key: "menu-airing",
-                section: null,
-                label: "What's airing today…",
+                label: "Watchlist · Currently airing",
                 icon: CalendarDays,
-                keywords: "airing today episodes releases schedule calendar tonight new",
-                run: () => openMenu("airing"),
-            },
-            {
-                kind: "command",
-                key: "menu-stats",
-                section: null,
-                label: "My stats…",
-                icon: BarChart3,
-                keywords: "stats how many hours episodes watched average rating genre completion",
-                run: () => openMenu("stats"),
+                keywords: "show my list filter airing ongoing running now",
+                run: () => goTo("/watchlist?airing=1"),
             },
             {
                 kind: "command",
@@ -508,137 +500,40 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 run: () => void undo(),
             },
         ],
-        [openMenu, undo, goTo],
+        [goTo, undo],
     );
 
-    const menuRows = useCallback(
-        (menu: MenuId): Row[] => {
-            if (menu === "list") {
+    /**
+     * Four actions, and the input as the fifth. Typing a number here means an
+     * episode — "7" offers "Mark episode 7 watched", the last number offers the
+     * whole run — so neither "a specific episode…" nor "mark all…" needs a row
+     * of its own to be found under.
+     */
+    const itemActions = useCallback(
+        (item: PaletteItem, typed: string): Row[] => {
+            const next = item.progress + 1;
+            const remaining = item.totalEp ? item.totalEp - item.progress : null;
+
+            const wanted = typed === "all" && item.totalEp ? item.totalEp : /^\d+$/.test(typed) ? Number(typed) : null;
+            if (wanted !== null) {
+                if (item.totalEp && wanted > item.totalEp) {
+                    return [];
+                }
+                const whole = item.totalEp !== null && wanted === item.totalEp && wanted > 1;
                 return [
-                    ...WATCH_STATUSES.map((status) => ({
-                        kind: "command" as const,
-                        key: `list-${status}`,
-                        section: null,
-                        label: status,
-                        icon: Bookmark,
-                        keywords: `show my ${status} list`,
-                        run: () => goTo(`/watchlist?status=${encodeURIComponent(status)}`),
-                    })),
                     {
-                        kind: "command" as const,
-                        key: "list-airing",
+                        kind: "command",
+                        key: `ep-${wanted}`,
                         section: null,
-                        label: "Currently airing",
-                        icon: CalendarDays,
-                        keywords: "airing ongoing running now",
-                        run: () => goTo("/watchlist?airing=1"),
+                        label: whole ? `Mark all ${item.totalEp} episodes watched` : `Mark episode ${wanted} watched`,
+                        icon: whole ? CheckCheck : Play,
+                        keywords: "",
+                        run: () => setProgress(item, wanted),
                     },
                 ];
             }
 
-            if (menu === "help") return globalCommands();
-
-            if (menu === "airing") {
-                const rows: Row[] = (airing ?? []).map((entry) => ({ kind: "airing", entry, key: entry.key, section: null }));
-                rows.push({
-                    kind: "command",
-                    key: "airing-calendar",
-                    section: null,
-                    label: "Open the calendar",
-                    icon: CalendarDays,
-                    keywords: "calendar month schedule all",
-                    run: () => goTo("/calendar"),
-                });
-                return rows;
-            }
-
-            const rows: Row[] = (facts ?? []).map((fact) => ({ kind: "fact", label: fact.label, key: fact.key, section: null }));
-            rows.push({
-                kind: "command",
-                key: "stats-page",
-                section: null,
-                label: "Open the stats page",
-                icon: BarChart3,
-                keywords: "stats page charts open all",
-                run: () => goTo("/stats"),
-            });
-            return rows;
-        },
-        [airing, facts, goTo, globalCommands],
-    );
-
-    const castFor = useCallback(
-        (item: PaletteItem): PalettePerson[] =>
-            people
-                .filter((person) => person.shows.some((show) => show.externalId === item.externalId))
-                // Billed order, which is why the index carries the position: an
-                // alphabetical cast list puts the lead wherever their name falls.
-                .sort(
-                    (a, b) =>
-                        (a.shows.find((s) => s.externalId === item.externalId)?.order ?? 99) -
-                        (b.shows.find((s) => s.externalId === item.externalId)?.order ?? 99),
-                ),
-        [people],
-    );
-
-    const personActions = useCallback(
-        (person: PalettePerson): Row[] => {
-            const rows: Row[] = [
-                {
-                    kind: "command",
-                    key: "person-open",
-                    section: null,
-                    label: "Open page",
-                    icon: ChevronRight,
-                    keywords: "open go to page view profile",
-                    run: () => goTo(`/people/${person.slug}`),
-                },
-                {
-                    kind: "command",
-                    key: "person-together",
-                    section: null,
-                    label: "Worked with…",
-                    icon: Users,
-                    keywords: "worked with together co-star costar shared credits compare pair",
-                    run: () => goTo(`/people/together?a=${encodeURIComponent(person.slug)}`),
-                },
-            ];
-            // The index query already knew these, so the answer to "what have I
-            // watched with them?" is here rather than a scrape away.
-            person.shows.forEach((show, i) => {
-                rows.push({
-                    kind: "command",
-                    key: `person-show-${show.href}`,
-                    // Their filmography intersected with the watchlist — which
-                    // includes Plan to Watch, so "watched" would be wrong too.
-                    section: i === 0 ? `${person.shows.length} ${person.shows.length === 1 ? "show" : "shows"} in your list` : null,
-                    label: show.title,
-                    icon: Tv,
-                    keywords: show.title,
-                    run: () => goTo(show.href),
-                });
-            });
-            return rows;
-        },
-        [goTo],
-    );
-
-    const itemActions = useCallback(
-        (item: PaletteItem): Row[] => {
             const rows: Row[] = [];
-            const next = item.progress + 1;
-            const remaining = item.totalEp ? item.totalEp - item.progress : null;
-
-            rows.push({
-                kind: "command",
-                key: "open",
-                section: null,
-                label: "Open page",
-                icon: ChevronRight,
-                keywords: "open go to page view",
-                run: () => goTo(item.href),
-            });
-
             if (remaining === null || remaining > 0) {
                 rows.push({
                     kind: "command",
@@ -650,79 +545,39 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     run: () => setProgress(item, next),
                 });
             }
-
-            if (remaining !== null && remaining > 1) {
-                rows.push({
+            rows.push(
+                {
                     kind: "command",
-                    key: "all-eps",
+                    key: "rate",
                     section: null,
-                    label: `Mark all ${item.totalEp} episodes watched`,
-                    icon: CheckCheck,
-                    keywords: "mark all episodes watched season finish complete",
-                    run: () => setProgress(item, item.totalEp!),
-                });
-            }
-
-            rows.push({
-                kind: "command",
-                key: "pick-ep",
-                section: null,
-                label: "Mark a specific episode…",
-                icon: ListChecks,
-                keywords: "mark episode number specific set progress",
-                run: () => enterMode({ kind: "prompt", item, field: "episode" }),
-            });
-
-            const cast = castFor(item);
-            if (cast.length > 0) {
-                rows.push({
+                    label: "Rate…",
+                    icon: Star,
+                    keywords: "rate rating score",
+                    run: () => enterMode({ kind: "prompt", item }),
+                },
+                {
                     kind: "command",
-                    key: "cast",
+                    key: "status",
                     section: null,
-                    // "Main cast", not "cast": the index holds main roles only,
-                    // and offering two names out of twenty under the wider word
-                    // would read as missing data rather than a deliberate cut.
-                    label: `See the main cast (${cast.length})`,
-                    icon: Users,
-                    keywords: "cast actors people starring who is in main role",
-                    run: () => enterMode({ kind: "cast", item }),
-                });
-            }
-
-            rows.push({
-                kind: "command",
-                key: "status",
-                section: null,
-                label: "Change status…",
-                icon: Bookmark,
-                keywords: "status watching completed dropped hold plan move",
-                run: () => enterMode({ kind: "status", item }),
-            });
-
-            rows.push({
-                kind: "command",
-                key: "rate",
-                section: null,
-                label: "Rate…",
-                icon: Star,
-                keywords: "rate rating score",
-                run: () => enterMode({ kind: "prompt", item, field: "score" }),
-            });
-
-            rows.push({
-                kind: "command",
-                key: "remove",
-                section: null,
-                label: "Remove from my list",
-                icon: Trash2,
-                keywords: "remove delete drop off list",
-                danger: true,
-                run: () => enterMode({ kind: "confirm", item }),
-            });
-
+                    label: "Change status…",
+                    icon: Bookmark,
+                    keywords: "status watching completed dropped hold plan move",
+                    run: () => enterMode({ kind: "status", item }),
+                },
+                {
+                    kind: "command",
+                    key: "remove",
+                    section: null,
+                    label: "Remove from my list",
+                    icon: Trash2,
+                    keywords: "remove delete drop off list",
+                    danger: true,
+                    run: () => enterMode({ kind: "confirm", item }),
+                },
+            );
             return rows;
         },
-        [goTo, setProgress, enterMode, castFor],
+        [setProgress, enterMode],
     );
 
     // How well the local index is doing, which is the deciding gate below.
@@ -786,7 +641,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
 
         // Returns the surviving rows plus the group's best score, so groups can
         // be ranked against each other rather than sitting in a fixed order.
-        const filterByQuery = (group: Row[]): { rows: Row[]; best: number } => {
+        const filterCommands = (group: Row[]): { rows: Row[]; best: number } => {
             if (trimmed.length === 0) return { rows: group, best: 0 };
             const scored = group
                 .map((row) => ({ row, score: row.kind === "command" ? fuzzyScore(trimmed, `${row.label} ${row.keywords}`) : 0 }))
@@ -794,6 +649,9 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 .sort((a, b) => b.score - a.score);
             return { rows: scored.map((r) => r.row), best: scored[0]?.score ?? -Infinity };
         };
+
+        const airingRows = (entries: PaletteAiringEntry[]): Row[] =>
+            entries.map((entry) => ({ kind: "airing", entry, key: entry.key, section: null }));
 
         if (mode.kind === "confirm") {
             return [
@@ -814,7 +672,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                     label: "Cancel",
                     icon: RotateCcw,
                     keywords: "no cancel back",
-                    run: () => enterMode({ kind: "item", item: mode.item }),
+                    run: () => back(),
                 },
             ];
         }
@@ -831,42 +689,34 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             })).filter((row) => (trimmed ? fuzzyScore(trimmed, row.label) !== null : true));
         }
 
-        if (mode.kind === "prompt") return []; // the input is the whole interface
+        if (mode.kind === "prompt" || mode.kind === "help") return []; // the input, or the text, is the whole interface
 
-        if (mode.kind === "menu") return filterByQuery(menuRows(mode.menu)).rows;
-
-        if (mode.kind === "cast") {
-            const cast = castFor(mode.item);
-            const rows: Row[] = cast.map((person) => ({ kind: "person", person, key: person.slug, section: null }));
-            if (trimmed.length === 0) return rows;
-            return rows.filter((row) => row.kind === "person" && fuzzyScore(trimmed, row.person.name) !== null);
+        if (mode.kind === "item") {
+            const actions = itemActions(mode.item, trimmed.toLowerCase());
+            // A number was typed: the one row it produced is the answer, and
+            // fuzzy-matching "7" against "Mark episode 7 watched" is beside the point.
+            if (actions.length === 1 && actions[0].kind === "command" && actions[0].keywords === "") return actions;
+            return filterCommands(actions).rows;
         }
 
-        if (mode.kind === "person") return filterByQuery(personActions(mode.person)).rows;
-
-        if (mode.kind === "item") return filterByQuery(itemActions(mode.item)).rows;
-
         if (trimmed.length === 0) {
-            // Empty state is the last thing touched, which is the single most
-            // likely destination — the palette opens already useful.
-            // Only rows that were actually watched. The rest stay in the index
-            // for searching, but padding "Recently watched" with titles added
-            // and never opened would be a lie.
-            const recent: Row[] = media
-                .filter((item) => item.watchedAt !== null && item.id !== currentItem?.id)
-                .slice(0, 5)
-                .map((item) => ({ kind: "media" as const, item, key: item.id, section: null }));
-            const pages: Row[] = PAGES.slice(0, MAX_PAGE_ROWS).map((page) => ({
-                kind: "page" as const,
-                page,
-                key: page.href,
-                section: null,
-            }));
+            // The empty state is the palette's argument for existing: what you
+            // were in the middle of, one Tab from the next episode, and what airs
+            // tonight. Pages are a click away in the header and are found by
+            // typing; listing them here said nothing.
             const here: Row[] = currentItem ? [{ kind: "media", item: currentItem, key: currentItem.id, section: null }] : [];
+            const watching: Row[] = media
+                .filter((item) => item.status === "Watching" && item.id !== currentItem?.id)
+                // Last touched first; never touched last, in whatever order they came
+                .sort((a, b) => (b.watchedAt ?? "").localeCompare(a.watchedAt ?? ""))
+                .slice(0, MAX_CONTINUE_ROWS)
+                .map((item) => ({ kind: "media" as const, item, key: item.id, section: null }));
+            const undoRow = globalCommands().filter((row) => row.key === "undo");
             return [
                 ...withSection(here, "On this page"),
-                ...withSection(recent, "Recently watched"),
-                ...withSection(pages, "Go to"),
+                ...withSection(watching, "Continue watching"),
+                ...withSection(airingRows(airing.slice(0, MAX_TONIGHT_ROWS)), "Tonight"),
+                ...withSection(undoRow, "Commands"),
             ];
         }
 
@@ -892,18 +742,16 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             .sort((a, b) => b.score - a.score)
             .slice(0, MAX_PAGE_ROWS);
 
-        const commands = filterByQuery([
-            ...globalCommands(),
-            {
-                kind: "command",
-                key: "menu-help",
-                section: null,
-                label: "Help — everything the palette can do",
-                icon: CircleQuestionMark,
-                keywords: "help commands list what can i do keyboard shortcuts guide",
-                run: () => openMenu("help"),
-            },
-        ]);
+        // Tonight's episodes answer to the word as well as to their titles:
+        // "tonight" or "airing" brings the whole evening, a show's name brings
+        // its episode.
+        const wholeEvening = fuzzyScore(trimmed, "airing tonight today episodes");
+        const scoredAiring = airing
+            .map((entry) => ({ entry, score: wholeEvening ?? fuzzyScore(trimmed, entry.title) }))
+            .filter((a): a is { entry: PaletteAiringEntry; score: number } => a.score !== null)
+            .sort((a, b) => b.score - a.score);
+
+        const commands = filterCommands(globalCommands());
 
         // Every group is ranked by its own best match, so whichever one holds
         // the strongest hit leads. Typing "stats" must not bury the Stats page
@@ -927,6 +775,11 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 heading: "People",
             },
             {
+                rows: airingRows(scoredAiring.map((a) => a.entry)),
+                best: scoredAiring[0]?.score ?? -Infinity,
+                heading: "Tonight",
+            },
+            {
                 rows: scoredPages.map(({ page }) => ({ kind: "page", page, key: page.href, section: null })),
                 best: scoredPages[0]?.score ?? -Infinity,
                 heading: "Go to",
@@ -942,9 +795,17 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         // Always last, never ranked against the rest: what you already track
         // outranks what you do not, whatever the scores say. Only shown for the
         // query it was fetched for, so a stale answer never sits under new text.
+        //
+        // The remote search does not know the list, so a tracked show comes back
+        // in its results too — "Not in your list" then contradicted the row just
+        // above it. Matched on the page path: a season's href carries a query
+        // string, the remote hit never does.
+        const tracked = new Set(media.map((item) => item.href.split("?")[0]));
         const remoteRows: Row[] =
             remote?.query === trimmed
-                ? remote.items.map((entry) => ({ kind: "remote" as const, entry, key: `remote-${entry.key}`, section: null }))
+                ? remote.items
+                      .filter((entry) => !tracked.has(entry.href))
+                      .map((entry) => ({ kind: "remote" as const, entry, key: `remote-${entry.key}`, section: null }))
                 : [];
 
         return [
@@ -952,7 +813,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             ...withSection(remoteRows, "Not in your list"),
             { kind: "search", query: trimmed, key: "search", section: null },
         ];
-    }, [query, items, people, currentItem, remote, mode, itemActions, personActions, castFor, menuRows, openMenu, globalCommands, remove, setStatus, enterMode]);
+    }, [query, items, people, airing, currentItem, remote, mode, itemActions, globalCommands, remove, setStatus, back]);
 
     const clampedActive = rows.length === 0 ? 0 : Math.min(active, rows.length - 1);
 
@@ -964,39 +825,22 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             else if (row.kind === "remote") goTo(row.entry.href);
             else if (row.kind === "person") goTo(`/people/${row.person.slug}`);
             else if (row.kind === "search") goTo(`/search?q=${encodeURIComponent(row.query)}`);
-            else if (row.kind === "fact") goTo("/stats"); // a number is not a destination; its page is
             else row.run();
         },
         [goTo],
     );
 
-    const back = useCallback(() => {
-        const parent = historyStack.current.pop();
-        if (!parent) {
-            close(); // already at the top level
-            return;
-        }
-        setMode(parent.mode);
-        setQuery(parent.query);
-        setActive(0);
-        inputRef.current?.focus();
-    }, [close]);
-
-    const submitPrompt = () => {
+    const submitScore = () => {
         if (mode.kind !== "prompt") return;
         const value = Number(query.trim().replace(",", "."));
-        if (!Number.isFinite(value)) return;
-
-        if (mode.field === "episode") {
-            const max = mode.item.totalEp ?? Number.MAX_SAFE_INTEGER;
-            if (value < 0 || value > max || !Number.isInteger(value)) return;
-            setProgress(mode.item, value);
-        } else {
-            if (value < 0 || value > 10) return;
-            setScore(mode.item, value);
-        }
+        if (!Number.isFinite(value) || value < 0 || value > 10) return;
+        setScore(mode.item, value);
     };
 
+    // Three keys, three meanings, the same at every level: Enter does the row,
+    // Tab goes into a title's actions, Escape comes back out. Backspace on an
+    // empty field is Escape by another name, which is what every other palette
+    // taught people to expect.
     const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "ArrowDown") {
             e.preventDefault();
@@ -1006,33 +850,16 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
             setActive((i) => (rows.length === 0 ? 0 : (i - 1 + rows.length) % rows.length));
         } else if (e.key === "Enter") {
             e.preventDefault();
-            if (mode.kind === "prompt") submitPrompt();
+            if (mode.kind === "prompt") submitScore();
             else {
                 const row = rows[clampedActive];
                 if (row) runRow(row);
             }
-        } else if (e.key === "Tab" || (e.key === "ArrowRight" && query.length === 0)) {
-            // Tab always means forward: one level deeper where there is a level,
-            // and the action itself where there is not. Enter does the same
-            // thing — having two keys that both mean "yes" is worth more than
-            // reserving one of them for a distinction nobody asked for.
-            // → is the same key but only from an empty field, so it stays a
-            // cursor key while there is text to move through.
+        } else if (e.key === "Tab") {
             e.preventDefault();
-            if (mode.kind === "prompt") {
-                submitPrompt();
-                return;
-            }
             const row = rows[clampedActive];
-            if (!row) return;
-            if (mode.kind === "root" && row.kind === "media") enterMode({ kind: "item", item: row.item });
-            else if (row.kind === "person" && (mode.kind === "root" || mode.kind === "cast"))
-                enterMode({ kind: "person", person: row.person });
-            else runRow(row);
+            if (mode.kind === "root" && row?.kind === "media") enterMode({ kind: "item", item: row.item });
         } else if (e.key === "Backspace" && query.length === 0 && mode.kind !== "root") {
-            e.preventDefault();
-            back();
-        } else if (e.key === "ArrowLeft" && query.length === 0 && mode.kind !== "root") {
             e.preventDefault();
             back();
         }
@@ -1046,26 +873,22 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         listRef.current?.querySelector('[data-active="true"]')?.scrollIntoView({ block: "nearest" });
     }, [active, rows]);
 
-    const scopedItem = mode.kind === "root" || mode.kind === "menu" || mode.kind === "person" ? null : mode.item;
-    const inCast = mode.kind === "cast";
-    const MENU_TITLES: Record<MenuId, string> = { list: "My list", airing: "Airing today", stats: "My stats", help: "Help" };
-    const crumb = scopedItem ? scopedItem.title : mode.kind === "person" ? mode.person.name : mode.kind === "menu" ? MENU_TITLES[mode.menu] : null;
+    const scopedItem = mode.kind === "root" || mode.kind === "help" ? null : mode.item;
+    const crumb = scopedItem ? scopedItem.title : mode.kind === "help" ? "Help" : null;
     const placeholder =
         mode.kind === "prompt"
-            ? mode.field === "episode"
-                ? `Episode number${mode.item.totalEp ? ` (1–${mode.item.totalEp})` : ""}…`
-                : "Score out of 10…"
+            ? "Score out of 10…"
             : mode.kind === "status"
               ? "Pick a status…"
               : mode.kind === "confirm"
                 ? "This cannot be undone"
-                : inCast
-                  ? "Filter the main cast…"
-                  : mode.kind === "item" || mode.kind === "person"
-                    ? "What would you like to do?"
-                  : mode.kind === "menu"
-                    ? "Filter this list…"
+                : mode.kind === "item"
+                  ? "Pick an action, or type an episode number…"
+                  : mode.kind === "help"
+                    ? ""
                     : "Search your watchlist, or jump to a page…";
+
+    const loading = items === null && mode.kind === "root" && query.trim().length === 0;
 
     return (
         <Dialog
@@ -1106,12 +929,12 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         autoComplete="off"
                         autoFocus
                         value={query}
-                        inputMode={mode.kind === "prompt" ? "decimal" : "text"}
+                        inputMode={mode.kind === "prompt" || mode.kind === "item" ? "decimal" : "text"}
                         onChange={(e) => {
                             // "?" is the one character that is a question rather
                             // than a search term.
                             if (e.target.value === "?" && mode.kind === "root") {
-                                openMenu("help");
+                                enterMode({ kind: "help" });
                                 return;
                             }
                             setQuery(e.target.value);
@@ -1119,7 +942,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                         }}
                         onKeyDown={onInputKeyDown}
                         placeholder={placeholder}
-                        aria-label={placeholder}
+                        aria-label={placeholder || "Help"}
                         className="flex-1 min-w-0 bg-transparent text-sm text-fg placeholder:text-fg-dim outline-none"
                     />
                     {(busy || searchingRemote) && (
@@ -1128,13 +951,13 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 </div>
 
                 <div ref={listRef} className="max-h-[min(60vh,26rem)] overflow-y-auto py-2">
-                    {items === null && mode.kind === "root" && query.trim().length === 0 && (
+                    {loading && (
                         // The shape of the rows about to land — same heading, same
                         // poster slot, same two lines — so their arrival changes
                         // the pixels and not the layout.
                         <div aria-hidden>
                             <p className="px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-fg-faint">
-                                Recently watched
+                                Continue watching
                             </p>
                             {[0, 1, 2, 3, 4].map((i) => (
                                 <div key={i} className="flex items-center gap-3 px-4 py-2">
@@ -1150,46 +973,56 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
 
                     {mode.kind === "prompt" && (
                         <p className="px-4 py-6 text-center text-xs text-fg-dim">
-                            {mode.field === "episode"
-                                ? `Currently at ${mode.item.progress}${mode.item.totalEp ? ` of ${mode.item.totalEp}` : ""}. Type a number and press Enter.`
-                                : "Type a score from 1 to 10 — decimals allowed — and press Enter."}
+                            Type a score from 1 to 10 — decimals allowed — and press Enter.
                         </p>
                     )}
 
-                    {mode.kind === "menu" && mode.menu === "airing" && airing === null && (
-                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Checking today&rsquo;s schedule…</p>
-                    )}
-                    {mode.kind === "menu" && mode.menu === "airing" && airing?.length === 0 && (
-                        <p className="px-4 pt-4 pb-2 text-center text-xs text-fg-dim">Nothing from your list airs today.</p>
-                    )}
-                    {mode.kind === "menu" && mode.menu === "stats" && facts === null && (
-                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Counting…</p>
-                    )}
-
-                    {mode.kind === "menu" && mode.menu === "help" && (
-                        <div className="px-4 pb-2 space-y-1 text-xs text-fg-dim">
+                    {mode.kind === "help" && (
+                        <div className="px-4 py-2 space-y-3 text-xs text-fg-dim">
                             <p>
-                                Type to search your watchlist. <kbd className="font-sans text-fg-muted">tab</kbd> or{" "}
-                                <kbd className="font-sans text-fg-muted">→</kbd> opens a title&rsquo;s actions,{" "}
-                                <kbd className="font-sans text-fg-muted">esc</kbd> goes back a level.
+                                Type to search your watchlist by title, native title or a main character&rsquo;s name. People,
+                                pages and commands turn up alongside; what you don&rsquo;t track yet is looked up further down.
+                            </p>
+                            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5">
+                                <Kbd>↵</Kbd>
+                                <span>open the highlighted row</span>
+                                <Kbd>tab</Kbd>
+                                <span>a title&rsquo;s actions: next episode, rate, status, remove</span>
+                                <Kbd>esc</Kbd>
+                                <span>back a level, then close</span>
+                            </div>
+                            <p>
+                                Inside a title, typing a number marks that episode; the last number marks them all. Opening
+                                the palette from a title&rsquo;s own page puts that title first.
                             </p>
                             <p>
-                                On a title: mark the next episode, mark them all, pick a specific one, change status, rate
-                                it, or remove it. Opening the palette from a title&rsquo;s own page starts there.
+                                Commands worth knowing: <span className="text-fg-muted">undo</span> takes back the last episode,{" "}
+                                <span className="text-fg-muted">dropped</span> or any status filters the watchlist,{" "}
+                                <span className="text-fg-muted">tonight</span> lists today&rsquo;s episodes.
                             </p>
                         </div>
                     )}
 
-                    {items !== null && rows.length === 0 && mode.kind !== "prompt" && mode.kind !== "menu" && (
-                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Nothing matches that.</p>
+                    {mode.kind === "item" && rows.length === 0 && (
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">
+                            {mode.item.totalEp ? `This one has ${mode.item.totalEp} episodes.` : "Nothing matches that."}
+                        </p>
+                    )}
+
+                    {!loading && rows.length === 0 && mode.kind !== "prompt" && mode.kind !== "help" && mode.kind !== "item" && (
+                        <p className="px-4 py-6 text-center text-xs text-fg-dim">
+                            {mode.kind === "root" && query.trim().length === 0
+                                ? "Nothing in progress. Search your watchlist, or jump to a page."
+                                : "Nothing matches that."}
+                        </p>
                     )}
 
                     {rows.map((row, i) => {
                         const isActive = i === clampedActive;
-                        const RowIcon = row.kind === "page" ? row.page.icon : row.kind === "command" ? row.icon : null;
                         const danger = row.kind === "command" && row.danger;
                         const hasArtwork =
                             row.kind === "media" || row.kind === "airing" || row.kind === "person" || row.kind === "remote";
+                        const Icon = row.kind === "page" ? row.page.icon : row.kind === "command" ? row.icon : Search;
 
                         return (
                             <div key={row.key}>
@@ -1209,28 +1042,25 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         hasArtwork ? "py-2" : "py-1.5"
                                     } ${isActive ? "bg-surface-3" : "hover:bg-surface-2"}`}
                                 >
-                                    {row.kind === "remote" ? (
+                                    {row.kind === "media" ? (
                                         <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
-                                                {row.entry.image ? (
-                                                    <Image
-                                                        unoptimized
-                                                        src={row.entry.image}
-                                                        alt=""
-                                                        width={28}
-                                                        height={40}
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        {row.entry.kind === "person" ? (
-                                                            <User className="h-3 w-3 text-fg-faint" />
-                                                        ) : (
-                                                            <Tv className="h-3 w-3 text-fg-faint" />
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
+                                            <Artwork src={row.item.poster} />
+                                            <span className="flex-1 min-w-0">
+                                                <span className="block text-sm text-fg truncate">{row.item.title}</span>
+                                                <span className="block text-xs text-fg-dim truncate">
+                                                    {/* Why this row is here, when the title
+                                                        is not what was typed. */}
+                                                    {row.character && <span className="text-sky-400">{row.character} · </span>}
+                                                    {progressLabel(row.item)}
+                                                </span>
+                                            </span>
+                                        </>
+                                    ) : row.kind === "airing" || row.kind === "remote" ? (
+                                        <>
+                                            <Artwork
+                                                src={row.kind === "airing" ? row.entry.poster : row.entry.image}
+                                                person={row.kind === "remote" && row.entry.kind === "person"}
+                                            />
                                             <span className="flex-1 min-w-0">
                                                 <span className="block text-sm text-fg truncate">{row.entry.title}</span>
                                                 <span className="block text-xs text-fg-dim truncate">{row.entry.detail}</span>
@@ -1238,22 +1068,7 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                         </>
                                     ) : row.kind === "person" ? (
                                         <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
-                                                {row.person.image ? (
-                                                    <Image
-                                                        unoptimized
-                                                        src={row.person.image}
-                                                        alt=""
-                                                        width={28}
-                                                        height={40}
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <User className="h-3 w-3 text-fg-faint" />
-                                                    </div>
-                                                )}
-                                            </div>
+                                            <Artwork src={row.person.image} person />
                                             <span className="flex-1 min-w-0">
                                                 <span className="block text-sm text-fg truncate">{row.person.name}</span>
                                                 <span className="block text-xs text-fg-dim truncate">
@@ -1263,74 +1078,10 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                 </span>
                                             </span>
                                         </>
-                                    ) : row.kind === "airing" ? (
-                                        <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
-                                                {row.entry.poster ? (
-                                                    <Image
-                                                        unoptimized
-                                                        src={row.entry.poster}
-                                                        alt=""
-                                                        width={28}
-                                                        height={40}
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <Tv className="h-3 w-3 text-fg-faint" />
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <span className="flex-1 min-w-0">
-                                                <span className="block text-sm text-fg truncate">{row.entry.title}</span>
-                                                <span className="block text-xs text-fg-dim truncate">{row.entry.detail}</span>
-                                            </span>
-                                        </>
-                                    ) : row.kind === "fact" ? (
-                                        <>
-                                            <span className="shrink-0 w-7 flex items-center justify-center">
-                                                <BarChart3 className="h-4 w-4 text-fg-faint" />
-                                            </span>
-                                            <span className="flex-1 min-w-0 text-sm text-fg-soft truncate">{row.label}</span>
-                                        </>
-                                    ) : row.kind === "media" ? (
-                                        <>
-                                            <div className="shrink-0 w-7 h-10 rounded overflow-hidden bg-surface-2">
-                                                {row.item.poster ? (
-                                                    <Image
-                                                        unoptimized
-                                                        src={row.item.poster}
-                                                        alt=""
-                                                        width={28}
-                                                        height={40}
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <Tv className="h-3 w-3 text-fg-faint" />
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <span className="flex-1 min-w-0">
-                                                <span className="block text-sm text-fg truncate">{row.item.title}</span>
-                                                <span className="block text-xs text-fg-dim truncate">
-                                                    {/* Why this row is here, when the title
-                                                        is not what was typed. */}
-                                                    {row.character && (
-                                                        <span className="text-sky-400">{row.character} · </span>
-                                                    )}
-                                                    {progressLabel(row.item)}
-                                                </span>
-                                            </span>
-                                        </>
                                     ) : (
                                         <>
                                             <span className="shrink-0 w-7 flex items-center justify-center">
-                                                {RowIcon ? (
-                                                    <RowIcon className={`h-4 w-4 ${danger ? "text-rose-400/80" : "text-fg-dim"}`} />
-                                                ) : (
-                                                    <Search className="h-4 w-4 text-fg-dim" />
-                                                )}
+                                                <Icon className={`h-4 w-4 ${danger ? "text-rose-400/80" : "text-fg-dim"}`} />
                                             </span>
                                             <span className={`flex-1 min-w-0 text-sm truncate ${danger ? "text-rose-300" : "text-fg"}`}>
                                                 {row.kind === "search" ? (
@@ -1340,14 +1091,28 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                                                     </>
                                                 ) : row.kind === "page" ? (
                                                     row.page.label
-                                                ) : row.kind === "command" ? (
+                                                ) : (
                                                     row.label
-                                                ) : null}
+                                                )}
                                             </span>
                                         </>
                                     )}
 
-                                    {isActive && <CornerDownLeft className="h-3.5 w-3.5 text-fg-dim shrink-0" />}
+                                    {/* The keys, on the row they apply to. A title at
+                                        the root has two, and the second is the one
+                                        nobody finds unless it is written down. */}
+                                    {isActive && (
+                                        <span className="shrink-0 flex items-center gap-2.5 text-[11px] text-fg-faint">
+                                            <span>
+                                                <Kbd>↵</Kbd> {mode.kind === "root" ? "open" : "run"}
+                                            </span>
+                                            {mode.kind === "root" && row.kind === "media" && (
+                                                <span>
+                                                    <Kbd>tab</Kbd> actions
+                                                </span>
+                                            )}
+                                        </span>
+                                    )}
                                 </button>
                             </div>
                         );
@@ -1356,25 +1121,35 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
 
                 <div className="flex items-center gap-4 px-4 h-9 border-t border-line text-[11px] text-fg-faint">
                     <span>
-                        <kbd className="font-sans text-fg-dim">↑↓</kbd> navigate
+                        <Kbd>↑↓</Kbd> navigate
                     </span>
-                    <span>
-                        <kbd className="font-sans text-fg-dim">↵</kbd> {mode.kind === "root" ? "open" : "run"}
-                    </span>
-                    <span>
-                        <kbd className="font-sans text-fg-dim">tab</kbd> {mode.kind === "root" ? "actions" : "forward"}
-                    </span>
-                    {mode.kind !== "root" && (
-                        <span>
-                            <kbd className="font-sans text-fg-dim">esc</kbd> back
-                        </span>
+                    {mode.kind === "root" ? (
+                        <>
+                            <span>
+                                <Kbd>↵</Kbd> open
+                            </span>
+                            <span>
+                                <Kbd>tab</Kbd> actions
+                            </span>
+                            <button
+                                onClick={() => enterMode({ kind: "help" })}
+                                className="text-fg-faint hover:text-fg-soft transition-colors cursor-pointer"
+                            >
+                                <Kbd>?</Kbd> help
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            {mode.kind !== "help" && (
+                                <span>
+                                    <Kbd>↵</Kbd> run
+                                </span>
+                            )}
+                            <span>
+                                <Kbd>esc</Kbd> back
+                            </span>
+                        </>
                     )}
-                    <button
-                        onClick={() => openMenu("help")}
-                        className="text-fg-faint hover:text-fg-soft transition-colors cursor-pointer"
-                    >
-                        <kbd className="font-sans text-fg-dim">?</kbd> help
-                    </button>
                     {mode.kind === "root" && items !== null && items.length > 0 && (
                         <span className="ml-auto">{items.length} titles indexed</span>
                     )}
