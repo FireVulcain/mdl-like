@@ -262,6 +262,20 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
         void load();
     }, [load]);
 
+    // Fetched once the page has settled, not on the first ⌘K: the index is a
+    // single DB read, and pulling it during idle time means the palette almost
+    // always opens on the real list rather than a placeholder for it.
+    useEffect(() => {
+        // Safari has no requestIdleCallback; a short delay does the same job.
+        // Typed as always present, hence the runtime check on the function itself.
+        if (typeof window.requestIdleCallback === "function") {
+            const id = window.requestIdleCallback(() => void load(), { timeout: 2000 });
+            return () => window.cancelIdleCallback(id);
+        }
+        const id = window.setTimeout(() => void load(), 500);
+        return () => window.clearTimeout(id);
+    }, [load]);
+
     // Ctrl+P is the browser's print dialog and Ctrl+K its address-bar search,
     // and a page is allowed to claim both with preventDefault. What a page
     // cannot claim is a browser-level binding — Firefox's Ctrl+Shift+P opens a
@@ -1114,8 +1128,24 @@ export function CommandPalette({ shortcuts = DEFAULT_PALETTE_SHORTCUTS }: { shor
                 </div>
 
                 <div ref={listRef} className="max-h-[min(60vh,26rem)] overflow-y-auto py-2">
-                    {items === null && mode.kind === "root" && (
-                        <p className="px-4 py-6 text-center text-xs text-fg-dim">Loading your watchlist…</p>
+                    {items === null && mode.kind === "root" && query.trim().length === 0 && (
+                        // The shape of the rows about to land — same heading, same
+                        // poster slot, same two lines — so their arrival changes
+                        // the pixels and not the layout.
+                        <div aria-hidden>
+                            <p className="px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-fg-faint">
+                                Recently watched
+                            </p>
+                            {[0, 1, 2, 3, 4].map((i) => (
+                                <div key={i} className="flex items-center gap-3 px-4 py-2">
+                                    <div className="shrink-0 w-7 h-10 rounded bg-surface-2 animate-pulse" />
+                                    <div className="flex-1 space-y-1.5">
+                                        <div className="h-3 rounded bg-surface-2 animate-pulse" style={{ width: `${[56, 40, 48, 64, 36][i]}%` }} />
+                                        <div className="h-2.5 w-28 rounded bg-surface-2/70 animate-pulse" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     )}
 
                     {mode.kind === "prompt" && (
