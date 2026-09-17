@@ -48,9 +48,9 @@ function shape(r: Raw): RowExtras {
 }
 
 /**
- * Bulk version of what used to be fetched for the spotlight lead alone. Every
- * card in the row can be promoted to the lead, so every card needs the data —
- * but as three set-based queries, not three per show.
+ * Set-based lookup: three queries for any number of slugs, not three per show.
+ * The home rows only ask for their lead today, but callers with a full row
+ * pay the same three round trips.
  *
  * The three steps mirror the single-row lookup they replace: MDL slugs drift
  * when a title changes, so a miss is retried through the alias table and then

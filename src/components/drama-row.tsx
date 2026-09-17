@@ -188,11 +188,10 @@ export async function DramaRow({
 
     const isSpotlight = variant === "spotlight";
 
-    // Any card in a spotlight row can be promoted to the lead, so the MDL
-    // enrichment is fetched for the whole row rather than for the first item.
-    // Three set-based queries — see getRowExtras for why that stays cheap.
+    // Only the lead shows the MDL enrichment (genres, cast, ranking), so it is
+    // the only card fetched for.
     const extrasBySlug = isSpotlight
-        ? await getRowExtras(items.map((m) => mdlSlugFromUrl(m.id.replace(/^mdl-/, ""))))
+        ? await getRowExtras([mdlSlugFromUrl(items[0].id.replace(/^mdl-/, ""))])
         : null;
 
     const premiereFor = (media: UnifiedMedia, cacheKey: string) => {
@@ -210,9 +209,10 @@ export async function DramaRow({
                   poster: media.poster,
                   year: media.year,
                   rating: media.rating,
-                  // Clamped to four lines on screen; the rest would be payload
-                  // shipped to the browser for nothing.
-                  synopsis: media.synopsis ? media.synopsis.slice(0, 320) : undefined,
+                  // The lead clamps it to four lines and the popover to six; past
+                  // that it would be payload shipped to the browser for nothing.
+                  synopsis: media.synopsis ? media.synopsis.slice(0, 480) : undefined,
+                  slug: mdlSlugFromUrl(media.id.replace(/^mdl-/, "")),
                   href: resolved.href,
                   bookmarked: resolved.bookmarked,
                   unlinkedSlug: resolved.unlinkedSlug,
