@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
-import { DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
+import { ChartError, DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
 import { listRecaps } from "@/lib/character-map-recaps";
 import type { CharacterMapJob } from "@prisma/client";
 
@@ -43,7 +43,10 @@ function stepWriter(id: string, initial: { status: string; step: string }) {
         if (data.status) status = data.status;
         const step = data.step ?? log[log.length - 1].step;
         const last = log[log.length - 1];
-        const ticking = /…\s*\d+K characters$/.test(step) && /…\s*\d+K characters$/.test(last.step);
+        // A growing count replaces the last line rather than adding one — but
+        // thinking and writing are two lines, each with its own start time
+        const tick = (s: string) => s.match(/^(.*…)\s*\d+K characters$/)?.[1];
+        const ticking = !!tick(step) && tick(step) === tick(last.step);
         if (ticking) log[log.length - 1] = { t: last.t, status, step };
         else if (last.step !== step || last.status !== status) log.push({ t: new Date().toISOString(), status, step });
         await prisma.characterMapJob.update({ where: { id }, data: { status, step, log } }).catch(() => undefined);
@@ -169,10 +172,12 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         });
     } catch (e) {
         const message = e instanceof Error ? e.message : String(e);
+        // what a run that got an answer still cost, so a failure is not free-looking
+        const spent = e instanceof ChartError && e.usage ? { model: e.model, inputTokens: e.usage.inputTokens, outputTokens: e.usage.outputTokens, cacheRead: e.usage.cacheRead } : {};
         await set({ status: "failed", step: "Failed" });
         await prisma.characterMapJob.update({
             where: { id },
-            data: { step: "", error: message, finishedAt: new Date() },
+            data: { step: "", error: message, finishedAt: new Date(), ...spent },
         }).catch(() => undefined);
     }
 }

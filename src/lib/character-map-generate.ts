@@ -53,7 +53,7 @@ EPISODES (only when the inputs carry "=== dramabeans · Episodes N-M ===" recap 
 COMPACT
 - compact.people: the cut the compact view shows — the leads, their households, and whoever the story turns on; whole groups, never half of one. A big school class or a village can be left out of the cut and stays in the full view.
 - compact.blocks: each group other than Leads gets a cell of a 3x3 grid, [column, row]: [0,0] top-left, [2,0] top-right, [0,2] bottom-left, [2,2] bottom-right, [1,0] top-middle, [1,2] bottom-middle. The leads own [1,1]. Every group that has a person in compact.people must have a cell.
-- compact.center: the two leads (or three when MDL lists three co-leads).
+- compact.center: the two leads (or three when MDL lists three co-leads). Always at least two: a story with one hero pairs them with whoever the story turns on — the antagonist, the partner, the love interest.
 - main: the ids of MDL's Main roles, leads first.
 
 OUTPUT
@@ -192,7 +192,16 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     for (const id of [...draft.main, ...draft.compact.center, ...draft.compact.people]) {
         if (!ids.has(id)) throw new Error(`"${id}" is listed but is not a person`);
     }
-    if (draft.compact.center.length < 2) throw new Error("fewer than two leads in compact.center");
+    // A story with one hero gets one lead in the centre; the layout wants
+    // two, so the next of MDL's main roles (then anyone) joins them — a run
+    // is too long to throw away over that.
+    if (draft.compact.center.length < 2) {
+        const pool = [...draft.main, ...draft.people.map((p) => p.id)].filter((id) => !draft.compact.center.includes(id));
+        const added = [...new Set(pool)].slice(0, 2 - draft.compact.center.length);
+        draft.compact.center = [...draft.compact.center, ...added];
+        warnings.push(`compact.center had ${draft.compact.center.length - added.length} lead${added.length === 1 ? "" : "s"}; ${added.join(", ")} added from main`);
+    }
+    if (draft.compact.center.length < 2) throw new Error("fewer than two people to put in the centre");
 
     const blocks: Record<string, [number, number]> = {};
     for (const b of draft.compact.blocks) blocks[b.group] = [b.column, b.row];
@@ -251,6 +260,13 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
 
 /* ------------------------------------------------------------ the call */
 
+/** What a run that failed after the model answered still cost. */
+export class ChartError extends Error {
+    constructor(message: string, public usage?: GenerateResult["usage"], public model?: string) {
+        super(message);
+    }
+}
+
 export type GenerateResult = Validation & { usage: { inputTokens: number; outputTokens: number; cacheRead: number }; model: string };
 
 /**
@@ -273,28 +289,36 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
         system: [{ type: "text", text: RULES, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: user }],
     });
+    // The model thinks first — minutes, on a long input with the recaps —
+    // and the line under the button says so, or the run looks stuck
+    let thought = 0;
+    stream.on("thinking", (delta) => {
+        thought += delta.length;
+        if (onProgress && thought % 2000 < delta.length) onProgress(`Thinking it over… ${Math.round(thought / 1000)}K characters`);
+    });
     stream.on("text", (delta) => {
         chars += delta.length;
         if (onProgress && chars % 2000 < delta.length) onProgress(`Writing the chart… ${Math.round(chars / 1000)}K characters`);
     });
     const message = await stream.finalMessage();
-    if (message.stop_reason === "refusal") throw new Error(`the model declined: ${message.stop_details?.explanation ?? "refusal"}`);
-    if (message.stop_reason === "max_tokens") throw new Error("the chart did not fit in the output limit");
+    const usage = { inputTokens: message.usage.input_tokens, outputTokens: message.usage.output_tokens, cacheRead: message.usage.cache_read_input_tokens ?? 0 };
+    const fail = (why: string) => new ChartError(why, usage, message.model);
+    if (message.stop_reason === "refusal") throw fail(`the model declined: ${message.stop_details?.explanation ?? "refusal"}`);
+    if (message.stop_reason === "max_tokens") throw fail("the chart did not fit in the output limit");
     const text = message.content.filter((b): b is Anthropic.TextBlock => b.type === "text").map((b) => b.text).join("");
     let draft: Draft;
     try {
         draft = JSON.parse(text) as Draft;
     } catch {
-        throw new Error("the model's output was not JSON");
+        throw fail("the model's output was not JSON");
     }
     onProgress?.("Checking the chart");
-    const { map, warnings } = validateChart(draft, inputs);
-    return {
-        map,
-        warnings,
-        model: message.model,
-        usage: { inputTokens: message.usage.input_tokens, outputTokens: message.usage.output_tokens, cacheRead: message.usage.cache_read_input_tokens ?? 0 },
-    };
+    try {
+        const { map, warnings } = validateChart(draft, inputs);
+        return { map, warnings, model: message.model, usage };
+    } catch (e) {
+        throw fail(e instanceof Error ? e.message : String(e));
+    }
 }
 
 /* ------------------------------------------------------------ the save */
