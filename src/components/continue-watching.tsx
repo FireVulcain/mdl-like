@@ -134,8 +134,14 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                     />
                                 </div>
                                 <p className="text-sm text-fg-muted">
-                                    Episode {selectedShow.progress} of {selectedShow.totalEp}
-                                    {remaining > 0 && ` · ${remaining} left`}
+                                    {selectedShow.progress === 0 ? (
+                                        <>Not started · {selectedShow.totalEp} episodes</>
+                                    ) : (
+                                        <>
+                                            Episode {selectedShow.progress} of {selectedShow.totalEp}
+                                            {remaining > 0 && ` · ${remaining} left`}
+                                        </>
+                                    )}
                                 </p>
                             </div>
 
@@ -148,7 +154,7 @@ export function ContinueWatching({ items }: ContinueWatchingProps) {
                                     className="flex items-center gap-2.5 px-5 py-2.5 bg-fg hover:bg-fg/90 text-page text-sm font-semibold rounded-lg transition-colors"
                                 >
                                     <Play className="h-4 w-4 fill-current" />
-                                    <span>Continue</span>
+                                    <span>{selectedShow.progress === 0 ? "Start" : "Continue"}</span>
                                 </Link>
                                 <Link
                                     href="/watchlist"

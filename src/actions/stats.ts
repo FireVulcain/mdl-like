@@ -332,7 +332,6 @@ export async function getContinueWatching() {
             userId,
             mediaType: "TV",
             status: "Watching",
-            progress: { gt: 0 },
         },
         orderBy: [
             { lastWatchedAt: { sort: "desc", nulls: "last" } },

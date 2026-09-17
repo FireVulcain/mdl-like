@@ -2,6 +2,7 @@
   "version": 1,
   "mdlSlug": "804316-neo-malgo-dareun-yeonae",
   "title": "A Love Other than Yours",
+  "asianwiki": "A Love Other Than Yours",
   "native": "너 말고 다른 연애",
   "year": 2026,
   "country": "KR",
@@ -23,6 +24,7 @@
       "name": "Namgung Ho",
       "actor": "Seo Kang Jun",
       "image": "https://i.mydramalist.com/l0d8zE_5m.jpg",
+      "still": "https://asianwiki.com/images/9/9e/A_Love_Other_Than_Yours-Seo_Kang-Joon.jpg",
       "group": "Leads",
       "inCast": true,
       "note": "Cheerful assistant manager at Hunmin Confectionery hiding a difficult past.",
@@ -30,11 +32,13 @@
         {
           "name": "Kang Ye Chan",
           "image": "https://i.mydramalist.com/3ogePV_5m.jpg",
+          "still": "https://asianwiki.com/images/7/78/A_Love_Other_Than_Yours-Kang_Ye-Chan.jpg",
           "era": "teen"
         },
         {
           "name": "Lee Su Ho",
           "image": "https://i.mydramalist.com/73OKZR_5m.jpg",
+          "still": "https://asianwiki.com/images/8/81/A_Love_Other_than_Yours-Lee_Su-Ho.jpeg",
           "era": "child"
         }
       ]
@@ -44,6 +48,7 @@
       "name": "Lee Mi Do",
       "actor": "Ahn Eun Jin",
       "image": "https://i.mydramalist.com/LwPlPy_5m.jpg",
+      "still": "https://asianwiki.com/images/7/73/A_Love_Other_Than_Yours-Ahn_Eun-Jin.jpg",
       "group": "Leads",
       "inCast": true,
       "note": "Once-promising film director whose career has stalled."
@@ -53,6 +58,7 @@
       "name": "Han Tae Seung",
       "actor": "Lee Joo Ahn",
       "image": "https://i.mydramalist.com/JBOPkl_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a8/A_Love_Other_Than_Yours-Lee_Joo-Ahn1.jpg",
       "group": "Jaegang Law Firm",
       "inCast": true,
       "note": "A relentless lawyer at Jaegang Law Firm."
@@ -62,6 +68,7 @@
       "name": "Park Su A",
       "actor": "Jo A Ram",
       "image": "https://i.mydramalist.com/jQbRKd_5m.jpg",
+      "still": "https://asianwiki.com/images/6/64/A_Love_Other_Than_Yours-Jo_A-Ram1.jpg",
       "group": "Hunmin Confectionery",
       "inCast": true,
       "note": "New employee on Namgung Ho's team at Hunmin Confectionery."
@@ -71,6 +78,7 @@
       "name": "Lee Yeong Do",
       "actor": "Kim Nam Hee",
       "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "still": "https://asianwiki.com/images/3/32/A_Love_Other_Than_Yours-Kim_Nam-Hee.jpg",
       "group": "Mi Do's family",
       "inCast": true,
       "note": "CEO of a cleaning company; Mi Do's older brother."
@@ -80,6 +88,7 @@
       "name": "Ma Suk Hui",
       "actor": "Kim Mi Kyung",
       "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a1/A_Love_Other_Than_Yours-Kim_Mi-Kyung.jpg",
       "group": "Mi Do's family",
       "inCast": true,
       "note": "Mi Do's mother; owns the building housing Queens Hair Salon."
@@ -89,6 +98,7 @@
       "name": "Lee Wan Do",
       "actor": "Lee Min Jae",
       "image": "https://i.mydramalist.com/yWK7rd_5m.jpg",
+      "still": "https://asianwiki.com/images/d/db/A_Love_Other_Than_Yours-Lee_Min-Jae.jpg",
       "group": "Mi Do's family",
       "inCast": true,
       "note": "Runs a karaoke bar; Mi Do's younger brother."
@@ -98,6 +108,7 @@
       "name": "Ko Mun Yeong",
       "actor": "Heo Ji Na",
       "image": "https://i.mydramalist.com/0wmBke_5m.jpg",
+      "still": "https://asianwiki.com/images/c/c9/A_Love_Other_Than_Yours-Hur_Ji-Na1.jpg",
       "group": "Mi Do's family",
       "inCast": true,
       "note": "A top math instructor; Yeong Do's ex-wife."
@@ -107,6 +118,7 @@
       "name": "Lee Sang Su",
       "actor": "Lee Joo Won",
       "image": "https://i.mydramalist.com/ABe0VE_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f2/A_Love_Other_Than_Yours-Lee_Joo-Won.jpg",
       "group": "Mi Do's family",
       "inCast": true,
       "note": "A short-form obsessed middle schooler dreaming of ten million followers."
@@ -116,6 +128,7 @@
       "name": "Eom Ho Sik",
       "actor": "Lee Joon Hyuk",
       "image": "https://i.mydramalist.com/dWxog_5m.jpg",
+      "still": "https://asianwiki.com/images/d/dc/A_Love_Other_Than_Yours-Lee_Joon-Hyuk01.jpg",
       "group": "Hunmin Confectionery",
       "inCast": true,
       "note": "A career section chief quietly surviving in Namgung Ho's shadow."
@@ -125,6 +138,7 @@
       "name": "Baek Sang Hun",
       "actor": "Kim Hyun Mok",
       "image": "https://i.mydramalist.com/pXQ68_5m.jpg",
+      "still": "https://asianwiki.com/images/9/90/A_Love_Other_Than_Yours-Kim_Hyun-Mok1.jpg",
       "group": "Hunmin Confectionery",
       "inCast": true
     },
@@ -133,6 +147,7 @@
       "name": "Seo Ju Hyeok",
       "actor": "Kwak Shi Yang",
       "image": "https://i.mydramalist.com/g0bJzq_5m.jpg",
+      "still": "https://asianwiki.com/images/1/1c/A_Love_Other_Than_Yours-Kwak_Si-Yang1.jpg",
       "group": "Jaegang Law Firm",
       "inCast": true,
       "note": "Head of the Jaegang Law Firm."
@@ -142,6 +157,7 @@
       "name": "Ji Su Yeon",
       "actor": "Kim Li Ye",
       "image": "https://i.mydramalist.com/RBYNyV_5m.jpg",
+      "still": "https://asianwiki.com/images/b/bc/A_Love_Other_Than_Yours-Kim_Seung-Hee.jpg",
       "group": "Su A's circle",
       "inCast": true
     },
@@ -150,6 +166,7 @@
       "name": "O Yeon Ju",
       "actor": "Cheon Yi Seul",
       "image": "https://i.mydramalist.com/0wAlKk_5m.jpg",
+      "still": "https://asianwiki.com/images/b/b5/A_Love_Other_Than_Yours-Chun_Yi-Seul1.jpg",
       "group": "Film industry",
       "inCast": true,
       "note": "A veteran PD at Nobu Film who handles every crisis on set."
@@ -159,6 +176,7 @@
       "name": "Song Hae Na",
       "actor": "Song Ji Woo",
       "image": "https://i.mydramalist.com/BdwYZq_5m.jpg",
+      "still": "https://asianwiki.com/images/3/35/A_Love_Other_Than_Yours-Song_Ji-Woo.jpg",
       "group": "Film industry",
       "inCast": true,
       "note": "An arrogant top actress."
@@ -168,6 +186,7 @@
       "name": "Hong Jang Mi",
       "actor": "Jeong Yu Jin",
       "image": "https://i.mydramalist.com/KpWL0n_5m.jpg",
+      "still": "https://asianwiki.com/images/e/e9/A_Love_Other_Than_Yours-Jeong_Saet-Byeol.jpg",
       "group": "Film industry",
       "inCast": true
     },
@@ -176,6 +195,7 @@
       "name": "Kim Guk Jin",
       "actor": "Kang Pil Jun",
       "image": "https://i.mydramalist.com/4ew17Y_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a1/A_Love_Other_Than_Yours-Kang_Pil-Jun.jpg",
       "group": "Film industry",
       "inCast": true
     },
@@ -184,6 +204,7 @@
       "name": "Jung Yeon Ho",
       "actor": "Lee Chang Min",
       "image": "https://i.mydramalist.com/ABVNLL_5m.jpg",
+      "still": "https://asianwiki.com/images/3/32/A_Love_Other_Than_Yours-Lee_Chang-Min.jpg",
       "group": "Other",
       "inCast": true
     }
