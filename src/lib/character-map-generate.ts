@@ -209,7 +209,8 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     const keep = new Set(draft.compact.people);
     for (const p of draft.people) {
         if (center.has(p.id) || !keep.has(p.id)) continue;
-        if (!(p.group in blocks)) throw new Error(`group "${p.group}" is in the compact cut but has no cell`);
+        // the layout gives a group without a cell the shorter column; a warning, not a lost run
+        if (!(p.group in blocks) && !warnings.some((w) => w.startsWith(`group "${p.group}"`))) warnings.push(`group "${p.group}" is in the compact cut but has no cell; placed by the layout`);
     }
 
     const people: MapPerson[] = draft.people.map((p) => {
@@ -290,17 +291,25 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
         messages: [{ role: "user", content: user }],
     });
     // The model thinks first — minutes, on a long input with the recaps —
-    // and the line under the button says so, or the run looks stuck
-    let thought = 0;
-    stream.on("thinking", (delta) => {
-        thought += delta.length;
-        if (onProgress && thought % 2000 < delta.length) onProgress(`Thinking it over… ${Math.round(thought / 1000)}K characters`);
-    });
+    // and the line under the button counts them off, or the run looks stuck.
+    // By the clock, not by thinking deltas: a run showed none of those.
+    const began = Date.now();
+    const clock = () => {
+        const s = Math.round((Date.now() - began) / 1000);
+        return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+    };
+    const thinking = setInterval(() => onProgress?.(`Thinking it over… ${clock()}`), 10_000);
     stream.on("text", (delta) => {
+        if (chars === 0) clearInterval(thinking);
         chars += delta.length;
         if (onProgress && chars % 2000 < delta.length) onProgress(`Writing the chart… ${Math.round(chars / 1000)}K characters`);
     });
-    const message = await stream.finalMessage();
+    let message: Anthropic.Message;
+    try {
+        message = await stream.finalMessage();
+    } finally {
+        clearInterval(thinking);
+    }
     const usage = { inputTokens: message.usage.input_tokens, outputTokens: message.usage.output_tokens, cacheRead: message.usage.cache_read_input_tokens ?? 0 };
     const fail = (why: string) => new ChartError(why, usage, message.model);
     if (message.stop_reason === "refusal") throw fail(`the model declined: ${message.stop_details?.explanation ?? "refusal"}`);

@@ -39,17 +39,24 @@ export function jobView(job: CharacterMapJob): JobView {
 function stepWriter(id: string, initial: { status: string; step: string }) {
     const log: JobLogEntry[] = [{ t: new Date().toISOString(), ...initial }];
     let status = initial.status;
-    return async (data: { status?: string; step?: string }) => {
+    // Writes land in the order they were asked, one at a time: the progress
+    // ticks are fired without waiting, and one of them arriving after the
+    // "failed" write once left a run "generating" forever, spinner and all.
+    let queue: Promise<unknown> = Promise.resolve();
+    return (data: { status?: string; step?: string }) => {
         if (data.status) status = data.status;
         const step = data.step ?? log[log.length - 1].step;
         const last = log[log.length - 1];
-        // A growing count replaces the last line rather than adding one — but
+        // A growing count ("Writing the chart… 12K characters", "Thinking it
+        // over… 1:30") replaces the last line rather than adding one — but
         // thinking and writing are two lines, each with its own start time
-        const tick = (s: string) => s.match(/^(.*…)\s*\d+K characters$/)?.[1];
+        const tick = (s: string) => s.match(/^(.*…)\s*\S.*$/)?.[1];
         const ticking = !!tick(step) && tick(step) === tick(last.step);
         if (ticking) log[log.length - 1] = { t: last.t, status, step };
         else if (last.step !== step || last.status !== status) log.push({ t: new Date().toISOString(), status, step });
-        await prisma.characterMapJob.update({ where: { id }, data: { status, step, log } }).catch(() => undefined);
+        const snapshot = { status, step, log: [...log] };
+        queue = queue.then(() => prisma.characterMapJob.update({ where: { id }, data: snapshot }).catch(() => undefined));
+        return queue;
     };
 }
 
