@@ -13,6 +13,16 @@ interface Props {
 const LINK_CLASS =
     "absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/20 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors";
 
+/** The badge itself, for a poster whose MDL page is already known (people). */
+export function MdlPosterBadge({ href }: { href: string }) {
+    return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+            <ExternalLink className="size-3" />
+            MDL
+        </a>
+    );
+}
+
 // Async server component — streams in a direct MDL link once the slug is resolved.
 // getMdlData uses React cache(), so this is free if MdlSection already fetched the data.
 // For seasons 2+, checks MdlSeasonLink first to point to the correct season page.
@@ -32,25 +42,10 @@ export async function MdlPosterLink({ externalId, title, year, nativeTitle, seas
         ? `https://mydramalist.com/${slug}`
         : `https://mydramalist.com/search?q=${encodeURIComponent(title)}`;
 
-    return (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
-            <ExternalLink className="size-3" />
-            MDL
-        </a>
-    );
+    return <MdlPosterBadge href={href} />;
 }
 
 // Static fallback rendered immediately while MdlPosterLink is pending.
 export function MdlPosterLinkFallback({ title }: { title: string }) {
-    return (
-        <a
-            href={`https://mydramalist.com/search?q=${encodeURIComponent(title)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={LINK_CLASS}
-        >
-            <ExternalLink className="size-3" />
-            MDL
-        </a>
-    );
+    return <MdlPosterBadge href={`https://mydramalist.com/search?q=${encodeURIComponent(title)}`} />;
 }

@@ -2,12 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Bookmark, ExternalLink, Star, Users } from "lucide-react";
+import { ArrowLeft, Bookmark, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { mdlTitleFromLink, KuryanaWorkItem } from "@/lib/kuryana";
 import { loadPersonWorks, extractMdlId, extractFullMdlSlug, sortWorks } from "@/lib/person-works";
 import { resolveWorkLinks } from "@/lib/mdl-work-links";
 import { MdlPersonImage } from "@/components/media/mdl-person-image";
+import { MdlPosterBadge } from "@/components/media/mdl-poster-link";
+import { WorkedWithCard } from "@/components/people/worked-with-card";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import { MediaNav, NavSection } from "@/components/media/media-nav";
 import { PersonPhotosSection } from "@/components/people/person-photos-section";
@@ -342,27 +344,34 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             ) : (
                                 <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted text-xs">No Image</div>
                             )}
+                            <MdlPosterBadge href={data.link} />
                         </div>
                         <div className="flex flex-col gap-2 min-w-0 py-0.5">
                             <h1 className="text-base font-bold leading-snug text-fg">{data.name}</h1>
                             <div className="flex flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground items-center">
                                 <span className="text-fg-muted">{allWorks.length} works</span>
                             </div>
-                            <a
-                                href={data.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-xs text-fg-muted hover:text-fg transition-colors"
-                            >
-                                View on MDL
-                                <ExternalLink className="h-3 w-3" />
-                            </a>
                         </div>
+                    </div>
+                    <div className="mb-6 md:hidden">
+                        <Suspense fallback={<div className="h-44 rounded-xl border border-line-strong animate-pulse" style={{ background: "var(--panel-soft)" }} />}>
+                            <WorkedWithCard slug={slug} name={data.name} />
+                        </Suspense>
                     </div>
                     {/* Desktop sidebar: Photo + Info */}
                     <div className="hidden md:block">
                     <StickySidebar>
-                        <MdlPersonImage src={data.profile ?? ""} alt={data.name} />
+                        <div className="relative">
+                            <MdlPersonImage src={data.profile ?? ""} alt={data.name} />
+                            <MdlPosterBadge href={data.link} />
+                        </div>
+
+                        {/* Streamed: one more DB read, and the page should not
+                            wait on it. Its height is roughly the empty card's, so
+                            Personal Info below does not jump when it lands. */}
+                        <Suspense fallback={<div className="h-44 rounded-xl border border-line-strong animate-pulse" style={{ background: "var(--panel-soft)" }} />}>
+                            <WorkedWithCard slug={slug} name={data.name} />
+                        </Suspense>
 
                         <div
                             className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
@@ -422,27 +431,6 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             <h1 className="font-display text-4xl font-bold mb-2 text-fg">{data.name}</h1>
                             <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
                                 <span className="text-fg-muted">{allWorks.length} works</span>
-                                <span className="text-fg-dim">·</span>
-                                <a
-                                    href={data.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors"
-                                >
-                                    View on MDL
-                                    <ExternalLink className="h-3 w-3" />
-                                </a>
-                                <span className="text-fg-dim">·</span>
-                                {/* Opens the co-star lookup with this person in the
-                                    first slot: the question is nearly always asked
-                                    from a fiche, so half the input is already known. */}
-                                <Link
-                                    href={`/people/together?a=${encodeURIComponent(slug)}`}
-                                    className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors"
-                                >
-                                    <Users className="h-3 w-3" />
-                                    Worked with…
-                                </Link>
                             </div>
                         </div>
 
