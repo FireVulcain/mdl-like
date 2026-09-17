@@ -32,10 +32,11 @@ const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
 // The order the hand-written files use; keys not listed follow, as they come
 const ORDER: Record<string, string[]> = {
-    "": ["version", "mdlSlug", "title", "asianwiki", "native", "year", "country", "sources", "main", "people", "links", "compact"],
+    "": ["version", "mdlSlug", "title", "asianwiki", "native", "year", "country", "sources", "main", "recaps", "people", "links", "compact"],
+    recaps: ["source", "episodes", "count"],
     people: ["id", "name", "actor", "image", "still", "group", "inCast", "note", "alsoPlayedBy"],
     alsoPlayedBy: ["name", "image", "still", "era"],
-    links: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed"],
+    links: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since"],
     compact: ["people", "blocks", "center"],
 };
 

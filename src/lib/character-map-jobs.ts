@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
 import { DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
+import { listRecaps } from "@/lib/character-map-recaps";
 import type { CharacterMapJob } from "@prisma/client";
 
 /**
@@ -74,7 +75,7 @@ async function reapStale() {
  * row, when the server has no API key — the button then says so instead of
  * spinning. Returns the row to poll.
  */
-export async function startJob(mdlSlug: string, startedBy: string | null, titles: Record<string, string> = {}, model: GeneratorModel = DEFAULT_GENERATOR_MODEL): Promise<JobView> {
+export async function startJob(mdlSlug: string, startedBy: string | null, titles: Record<string, string> = {}, model: GeneratorModel = DEFAULT_GENERATOR_MODEL, withRecaps = false): Promise<JobView> {
     await reapStale();
     const running = await prisma.characterMapJob.findFirst({ where: { mdlSlug, status: { in: [...ACTIVE] } } });
     if (running) return jobView(running);
@@ -95,7 +96,7 @@ export async function startJob(mdlSlug: string, startedBy: string | null, titles
         return jobView(failed);
     }
     // detached on purpose: the route returns now, the run goes on in the process
-    void run(job.id, mdlSlug, titles, model);
+    void run(job.id, mdlSlug, titles, model, withRecaps);
     return jobView(job);
 }
 
@@ -135,13 +136,17 @@ async function simulate(id: string, model: GeneratorModel) {
     }).catch(() => undefined);
 }
 
-async function run(id: string, mdlSlug: string, titles: Record<string, string>, model: GeneratorModel) {
+async function run(id: string, mdlSlug: string, titles: Record<string, string>, model: GeneratorModel, withRecaps: boolean) {
     const set = stepWriter(id, { status: "queued", step: "Starting" });
     try {
         await set({ status: "gathering", step: "Reading the MDL entry" });
-        const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }));
+        // the recaps the extension left in the table, when the run asked for them
+        const recaps = withRecaps ? await listRecaps(mdlSlug) : [];
+        if (withRecaps) await set({ step: recaps.length ? `Reading ${recaps.length} Dramabeans recap${recaps.length === 1 ? "" : "s"}` : "No recaps kept for this entry — reading without" });
+        const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }), recaps);
         const found = inputs.wiki.filter((w) => w.text).map((w) => w.lang);
-        await set({ status: "generating", step: `Writing the chart from the cast${found.length ? ` and ${found.join(", ")}.wikipedia` : " alone (no article found)"}` });
+        const read = [found.length ? `${found.join(", ")}.wikipedia` : null, recaps.length ? `${recaps.length} recaps` : null].filter(Boolean);
+        await set({ status: "generating", step: `Writing the chart from the cast${read.length ? ` and ${read.join(" and ")}` : " alone (no article found)"}` });
         const result = await generateChart(inputs, model, (step) => void set({ step }));
         await set({ status: "validating", step: "Saving" });
         const { file } = await saveChart(result.map, "claude");

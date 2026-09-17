@@ -40,21 +40,24 @@ export const resolveMdlSlug = cache(async (id: string, season: number): Promise<
 });
 
 /**
- * Whether the reader has finished this media, by the watchlist. A finished
+ * Where the reader stands with this media, by the watchlist: whether they
+ * have finished it, and how many episodes they have watched. A finished
  * show gets the chart with everything open — inferred links and reveals —
- * since there is nothing left to spoil; anything else opens guarded. An MDL
- * page also checks the TMDB entry it is linked to, and the other way round,
- * the way the media page finds its watchlist row.
+ * since there is nothing left to spoil; anything else opens guarded, and a
+ * chart dated by episode opens on the reader's episode. An MDL page also
+ * checks the TMDB entry it is linked to, and the other way round, the way
+ * the media page finds its watchlist row.
  */
-export const isCompleted = cache(async (id: string, season: number): Promise<boolean> => {
+export const watchState = cache(async (id: string, season: number): Promise<{ completed: boolean; progress: number | null }> => {
+    const none = { completed: false, progress: null };
     let userId: string;
     try {
         userId = await getCurrentUserId();
     } catch {
-        return false;
+        return none;
     }
     const source = id.startsWith("mdl-") ? "MDL" : id.startsWith("tmdb-") ? "TMDB" : null;
-    if (!source) return false;
+    if (!source) return none;
     const externalId = id.slice(source === "MDL" ? 4 : 5);
     const keys: { externalId: string; source: string }[] = [{ externalId, source }];
     try {
@@ -65,10 +68,10 @@ export const isCompleted = cache(async (id: string, season: number): Promise<boo
             const cached = await prisma.cachedMdlData.findUnique({ where: { tmdbExternalId: externalId }, select: { mdlSlug: true } });
             if (cached) keys.push({ externalId: cached.mdlSlug, source: "MDL" });
         }
-        const row = await prisma.userMedia.findFirst({ where: { userId, season, OR: keys }, select: { status: true } });
-        return row?.status === "Completed";
+        const row = await prisma.userMedia.findFirst({ where: { userId, season, OR: keys }, select: { status: true, progress: true } });
+        return row ? { completed: row.status === "Completed", progress: row.progress } : none;
     } catch {
-        return false;
+        return none;
     }
 });
 

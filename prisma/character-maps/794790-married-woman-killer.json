@@ -2,6 +2,7 @@
   "version": 1,
   "mdlSlug": "794790-married-woman-killer",
   "title": "A Bona Fide Killer",
+  "asianwiki": "A Bona fide Killer",
   "native": "유부녀 킬러",
   "year": 2026,
   "country": "KR",
@@ -9,192 +10,248 @@
     "MDL cast (105 roles, 3 main)",
     "MDL synopsis",
     "ko.wikipedia 등장인물 (1.7k chars)",
-    "en.wikipedia Cast (0.7k chars — one entry filed under the wrong name)"
+    "en.wikipedia Cast (0.7k chars)",
+    "dramabeans recaps, ep 1–14 (7 posts, 9.1k words)"
   ],
   "main": [
     "bona",
     "taeseong"
   ],
+  "recaps": {
+    "source": "dramabeans",
+    "episodes": 14,
+    "count": 7
+  },
   "people": [
     {
       "id": "bona",
       "name": "Yoo Bo Na / Kingfisher",
       "actor": "Kong Hyo Jin",
       "image": "https://i.mydramalist.com/4k0oZm.jpg",
+      "still": "https://asianwiki.com/images/2/20/A_Bona_fide_Killer-Kong_Hyo-Jin.jpg",
       "group": "Leads",
       "inCast": true,
       "alsoPlayedBy": [
         {
           "name": "Gi So Yoo",
           "image": "https://i.mydramalist.com/QJNnQA_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/f/fa/A_Bona_fide_Killer-Ki_So-Yu1.jpg"
+          "still": "https://asianwiki.com/images/f/fa/A_Bona_fide_Killer-Ki_So-Yu1.jpg",
+          "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/2/20/A_Bona_fide_Killer-Kong_Hyo-Jin.jpg"
+      ]
     },
     {
       "id": "taeseong",
       "name": "Kwon Tae Seong",
       "actor": "Jung Jun Won",
       "image": "https://i.mydramalist.com/LwjK4B_5m.jpg",
+      "still": "https://asianwiki.com/images/1/1c/A_Bona_fide_Killer-Jung_Joon-Won.jpg",
       "group": "Leads",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/1/1c/A_Bona_fide_Killer-Jung_Joon-Won.jpg"
+      "inCast": true
     },
     {
       "id": "dongjin",
       "name": "Lee Dong Jin",
       "actor": "Lee Sang Yi",
       "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
+      "still": "https://asianwiki.com/images/5/55/A_Bona_fide_Killer-Lee_Sang-Yi.jpg",
       "group": "Police",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/5/55/A_Bona_fide_Killer-Lee_Sang-Yi.jpg"
+      "inCast": true
     },
     {
       "id": "seonghun",
       "name": "Beom Seong Hun",
       "actor": "Choi Woo Sung",
       "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4d/A_Bona_fide_Killer-Choi_Woo-Sung.jpg",
       "group": "Police",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/4d/A_Bona_fide_Killer-Choi_Woo-Sung.jpg"
+      "inCast": true
     },
     {
       "id": "seulgi",
       "name": "Seul Gi / Sergei Volansky",
       "actor": "Shin Hyun Soo",
       "image": "https://i.mydramalist.com/zB1K27_5m.jpg",
-      "group": "Others",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/b/b5/A_Bona_fide_Killer-Shin_Hyun-Soo01.jpg"
+      "still": "https://asianwiki.com/images/b/b5/A_Bona_fide_Killer-Shin_Hyun-Soo01.jpg",
+      "group": "Beyond the team",
+      "inCast": true
     },
     {
       "id": "bongpal",
       "name": "Kim Bong Pal",
       "actor": "Sung Dong Il",
       "image": "https://i.mydramalist.com/XOo6p_5m.jpg",
+      "still": "https://asianwiki.com/images/b/bc/A_Bona_fide_Killer-Sung_Dong-Il.jpg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/b/bc/A_Bona_fide_Killer-Sung_Dong-Il.jpg"
+      "inCast": true
     },
     {
       "id": "yunok",
       "name": "Bae Yun Ok",
       "actor": "Seo Jung Yeon",
       "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "still": "https://asianwiki.com/images/1/14/A_Bona_fide_Killer-Seo_Jung-Yeon.jpg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/1/14/A_Bona_fide_Killer-Seo_Jung-Yeon.jpg"
+      "inCast": true
     },
     {
       "id": "yeonggap",
       "name": "Ko Yeong Gap",
       "actor": "Heo Jae Ho",
       "image": "https://i.mydramalist.com/Rng7z_5m.jpg",
+      "still": "https://asianwiki.com/images/7/7b/A_Bona_fide_Killer-Heo_Jae-Ho.jpg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/7/7b/A_Bona_fide_Killer-Heo_Jae-Ho.jpg"
+      "inCast": true
     },
     {
       "id": "taemin",
       "name": "Bong Tae Min",
       "actor": "Kim Nam Hee",
       "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d4/A_Bona_fide_Killer-Kim_Nam-Hee1.jpg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/d/d4/A_Bona_fide_Killer-Kim_Nam-Hee1.jpg"
+      "inCast": true
     },
     {
       "id": "yeongdo",
       "name": "Ki Yeong Do",
       "actor": "Moo Jin Sung",
       "image": "https://i.mydramalist.com/VXdnpE_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4e/A_Bona_fide_Killer-Mu_Jin-Sung.jpg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/4e/A_Bona_fide_Killer-Mu_Jin-Sung.jpg"
+      "inCast": true
     },
     {
       "id": "hyeonnam",
       "name": "O Hyeon Nam",
       "actor": "Ha Yul Ri",
       "image": "https://i.mydramalist.com/x4YL6X_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f6/A_Bona_fide_Killer-Ha_Yul-Ri1.jpeg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/f/f6/A_Bona_fide_Killer-Ha_Yul-Ri1.jpeg"
+      "inCast": true
     },
     {
       "id": "yesul",
       "name": "Yang Ye Sul",
       "actor": "Kim Ga Hee",
       "image": "https://i.mydramalist.com/RRgl6_5m.jpg",
+      "still": "https://asianwiki.com/images/4/45/A_Bona_fide_Killer-Kim_Ga-Hee.jpg",
       "group": "Sales Team 3",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/45/A_Bona_fide_Killer-Kim_Ga-Hee.jpg"
+      "inCast": true
     },
     {
       "id": "haena",
       "name": "Koo Hae Na",
       "actor": "Han Chae Rin",
       "image": "https://i.mydramalist.com/DkBAZy_5m.jpg",
+      "still": "https://asianwiki.com/images/c/cb/A_Bona_fide_Killer-Han_Chae-Rin001.jpg",
       "group": "Newsroom",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/c/cb/A_Bona_fide_Killer-Han_Chae-Rin001.jpg"
+      "inCast": true
     },
     {
       "id": "gukjin",
       "name": "Na Guk Jin",
       "actor": "Choi Duk Moon",
       "image": "https://i.mydramalist.com/YYj5lK_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4b/A_Bona_fide_Killer-Choi_Duk-Moon1.jpeg",
       "group": "Newsroom",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/4b/A_Bona_fide_Killer-Choi_Duk-Moon1.jpeg"
+      "inCast": true
     },
     {
       "id": "seonja",
       "name": "Ok Seon Ja",
       "actor": "Cha Mi Kyung",
       "image": "https://i.mydramalist.com/Xbllqm.jpg",
+      "still": "https://asianwiki.com/images/0/02/A_Bona_fide_Killer-Cha_Mi-Kyung.jpg",
       "group": "Tae Seong's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/0/02/A_Bona_fide_Killer-Cha_Mi-Kyung.jpg"
+      "inCast": true
     },
     {
       "id": "sunil",
       "name": "Kwon Sun Il",
       "actor": "Lee Seon Hee",
       "image": "https://i.mydramalist.com/w2NXYm.jpg",
+      "still": "https://asianwiki.com/images/8/8b/A_Bona_fide_Killer-Lee_Sun-Hee1.jpg",
       "group": "Tae Seong's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/8/8b/A_Bona_fide_Killer-Lee_Sun-Hee1.jpg"
+      "inCast": true
     },
     {
       "id": "duri",
       "name": "Kwon Du Ri",
       "actor": "Kim Yun Jeong",
       "image": "https://i.mydramalist.com/3oABDD_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d0/A_Bona_fide_Killer-Kim_Youn-Jeong0.jpg",
       "group": "Tae Seong's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/d/d0/A_Bona_fide_Killer-Kim_Youn-Jeong0.jpg"
+      "inCast": true
     },
     {
       "id": "sea",
       "name": "Kwon Se A",
       "actor": "Lee Eun Saem",
       "image": "https://i.mydramalist.com/eWngY_5m.jpg",
+      "still": "https://asianwiki.com/images/b/ba/A_Bona_fide_Killer-Lee_Eun-Saem.jpg",
       "group": "Tae Seong's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/b/ba/A_Bona_fide_Killer-Lee_Eun-Saem.jpg"
+      "inCast": true
     },
     {
       "id": "yul",
       "name": "Kwon Yul",
       "actor": "Hwang Bom I",
       "image": null,
+      "still": "https://asianwiki.com/images/b/b1/A_Bona_fide_Killer-Hwang_Bom-E.jpg",
       "group": "Tae Seong's family",
       "inCast": false,
-      "note": "The daughter — named on ko.wikipedia, absent from MDL's cast",
-      "still": "https://asianwiki.com/images/b/b1/A_Bona_fide_Killer-Hwang_Bom-E.jpg"
+      "note": "The daughter — named on ko.wikipedia, absent from MDL's cast"
+    },
+    {
+      "id": "miran",
+      "name": "Yoo Mi Ran",
+      "actor": "Seo Eun Oh",
+      "image": null,
+      "still": "https://asianwiki.com/images/e/e5/A_Bona_fide_Killer-Seo_Eun-O1.jpg",
+      "group": "Police",
+      "inCast": false,
+      "note": "Bo Na's working-mom friend, a celebrity cop on the Kingfisher task force — named by Dramabeans (ep 11-12), absent from MDL's cast"
+    },
+    {
+      "id": "eunhak",
+      "name": "Jang Eun Hak",
+      "actor": "Kim Min Sang",
+      "image": "https://i.mydramalist.com/2kqL7_5m.jpg",
+      "still": "https://asianwiki.com/images/1/18/A_Bona_fide_Killer-Kim_Min-Sang1.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "MDL guest role, ep 9-10"
+    },
+    {
+      "id": "darae",
+      "name": "Moon Da Rae",
+      "actor": "Moon Seung You",
+      "image": "https://i.mydramalist.com/WLZdD_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4b/A_Bona_fide_Killer-Moon_Seung-You.jpg",
+      "group": "Beyond the team",
+      "inCast": true,
+      "note": "MDL guest role, ep 5-6"
+    },
+    {
+      "id": "mama",
+      "name": "Mama",
+      "actor": "Moon Jung Hee",
+      "image": null,
+      "still": "https://asianwiki.com/images/3/39/A_Bona_fide_Killer-Moon_Jeong-Hee.jpg",
+      "group": "Beyond the team",
+      "inCast": false,
+      "note": "Named by Dramabeans (ep 13-14), absent from MDL's cast"
+    },
+    {
+      "id": "layla",
+      "name": "Layla",
+      "actor": "Lee Elijah",
+      "image": null,
+      "still": "https://asianwiki.com/images/b/bb/A_Bona_fide_Killer-Lee_Elijah001.jpg",
+      "group": "Beyond the team",
+      "inCast": false,
+      "note": "Named by Dramabeans (ep 13-14), absent from MDL's cast"
     }
   ],
   "links": [
@@ -202,13 +259,14 @@
       "from": "bona",
       "to": "taeseong",
       "type": "romance",
-      "label": "married",
+      "label": "married — a daughter, a sunny morning routine",
       "short": "married",
-      "evidence": "태성의 아내 / 보나의 남편 — juggling family life with her husband and daughter",
-      "source": "ko.wikipedia",
+      "evidence": "She and her husband, KWON TAE-SUNG, have an adorable little daughter named Yul and a sunny morning routine consisting of cuddles, laughter…",
+      "source": "dramabeans ep 1",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
     },
     {
       "from": "bona",
@@ -216,11 +274,12 @@
       "type": "family",
       "label": "daughter",
       "short": "daughter",
-      "evidence": "보나와 태성의 딸",
-      "source": "ko.wikipedia",
+      "evidence": "보나와 태성의 딸 / an adorable little daughter named Yul",
+      "source": "ko.wikipedia · dramabeans ep 1",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "taeseong",
@@ -228,155 +287,90 @@
       "type": "family",
       "label": "daughter",
       "short": "daughter",
-      "evidence": "보나와 태성의 딸",
-      "source": "ko.wikipedia",
+      "evidence": "보나와 태성의 딸 / an adorable little daughter named Yul",
+      "source": "ko.wikipedia · dramabeans ep 1",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "taeseong",
-      "to": "bona",
-      "type": "rivalry",
-      "label": "investigative journalist closing in on Kingfisher — not knowing it is her",
-      "short": "closing in on her",
-      "evidence": "her investigative journalist husband Kwon Tae Seong unknowingly inches closer to discovering Kingfisher's true identity",
-      "source": "MDL synopsis",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "dongjin",
-      "to": "bona",
-      "type": "rivalry",
-      "label": "the detective hunting Kingfisher",
-      "short": "hunts Kingfisher",
-      "evidence": "determined detective Lee Dong Jin relentlessly pursues the elusive vigilante",
-      "source": "MDL synopsis",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "dongjin",
-      "to": "taeseong",
-      "type": "friend",
-      "label": "best friends",
-      "short": "best friends",
-      "evidence": "태성의 둘도 없는 친구이자, 늘 범죄 검거율 상위를 달리는 에이스 형사",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "seonghun",
-      "to": "dongjin",
-      "type": "work",
-      "label": "same violent-crimes squad",
-      "short": "same squad",
-      "evidence": "남부서 형사과 강력1팀 (both entries)",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "seonghun",
-      "to": "sea",
-      "type": "friend",
-      "label": "Se A's friend",
-      "short": "friends",
-      "evidence": "[Police officer / Se A's friend] / 세아의 친구",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1
     },
     {
       "from": "bongpal",
       "to": "bona",
       "type": "work",
-      "label": "team leader and loyal ally — fakes accidental deaths",
-      "short": "loyal ally",
-      "evidence": "With the help of her loyal ally Kim Bong Pal / 팀장 / 사고사 위장 전문",
-      "source": "MDL synopsis",
+      "label": "team leader and head strategist — hands her a hit on her first day back",
+      "short": "team leader",
+      "evidence": "Team Leader KIM BONG-PAL welcomes Bo-na warmly, then apologizes for needing to assign her a client meeting on her very first day back.",
+      "source": "dramabeans ep 1",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "yunok",
-      "to": "bongpal",
-      "type": "work",
-      "label": "his predecessor as team leader — now a florist",
-      "short": "predecessor",
-      "evidence": "전 영업3팀 팀장 / 현 꽃집 주인",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "yeonggap",
-      "to": "bona",
-      "type": "work",
-      "label": "Sales Team 3 — medical-malpractice specialist, a real surgeon",
-      "short": "medical malpractice",
-      "evidence": "과장 / 의료사고 전문 — 별명이 아니라 진짜 의사다",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "taemin",
-      "to": "bona",
-      "type": "work",
-      "label": "Sales Team 3 — weapons",
-      "short": "weapons",
-      "evidence": "과장 / 무기 전문",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "yeongdo",
       "to": "bona",
       "type": "work",
-      "label": "Sales Team 3 — hacker",
+      "label": "Sales Team 3 — the genius hacker",
       "short": "hacker",
-      "evidence": "대리 / 천재 해커",
-      "source": "ko.wikipedia",
+      "evidence": "Young-do is the requisite genius hacker.",
+      "source": "dramabeans ep 2-4",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "hyeonnam",
+      "from": "yeonggap",
       "to": "bona",
       "type": "work",
-      "label": "Sales Team 3 — poisoning, new hire",
-      "short": "poisoning",
-      "evidence": "신입사원 / 독살 전문",
-      "source": "ko.wikipedia",
+      "label": "Sales Team 3 — medical support, a real surgeon",
+      "short": "medical",
+      "evidence": "GO YOUNG-GAP and YANG YE-SOL offer medical and administrative (read: forgery) support, respectively.",
+      "source": "dramabeans ep 2-4",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 2
     },
     {
       "from": "yesul",
       "to": "bona",
       "type": "work",
-      "label": "Sales Team 3 — admin",
+      "label": "Sales Team 3 — admin and forgery",
       "short": "admin",
-      "evidence": "대리 / 행정 사무 담당",
-      "source": "ko.wikipedia",
+      "evidence": "GO YOUNG-GAP and YANG YE-SOL offer medical and administrative (read: forgery) support, respectively.",
+      "source": "dramabeans ep 2-4",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "taemin",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — weapons, from a filthy hidden room",
+      "short": "weapons",
+      "evidence": "The scruffy man in the filthy hidden room is weapons specialist BONG TAE-MIN.",
+      "source": "dramabeans ep 2-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "hyeonnam",
+      "to": "bona",
+      "type": "work",
+      "label": "Sales Team 3 — poison expert, hired in episode 2",
+      "short": "poison",
+      "evidence": "신입사원 / 독살 전문 — the new hire, a poison expert",
+      "source": "ko.wikipedia · dramabeans ep 2-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
     },
     {
       "from": "haena",
@@ -388,19 +382,21 @@
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "gukjin",
       "to": "taeseong",
       "type": "work",
-      "label": "his editor — nags, but on his side",
+      "label": "his editor — begs him to take the Kingfisher story",
       "short": "his editor",
-      "evidence": "국장… 내심은 같은 기자로서 태성의 진심을 잘 알아주는 속 깊은 직장 상사",
-      "source": "ko.wikipedia",
+      "evidence": "Never mind that his boss is begging him to take the assignment.",
+      "source": "dramabeans ep 2-4",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 2
     },
     {
       "from": "seonja",
@@ -412,19 +408,8 @@
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "seonja",
-      "to": "bona",
-      "type": "family",
-      "label": "mother-in-law",
-      "short": "mother-in-law",
-      "evidence": "[Bo Na's mother-in-law]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sunil",
@@ -436,7 +421,8 @@
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "duri",
@@ -448,7 +434,8 @@
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sea",
@@ -460,19 +447,411 @@
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seonghun",
+      "to": "dongjin",
+      "type": "work",
+      "label": "his rookie partner",
+      "short": "rookie partner",
+      "evidence": "BEOM SUNG-HOON is Dong-jin's rookie partner",
+      "source": "dramabeans ep 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "taeseong",
+      "to": "bona",
+      "type": "work",
+      "label": "refuses the Kingfisher story he once chased — he knows something",
+      "short": "won't cover her",
+      "evidence": "He can't seem to tear himself away from investigation updates, but he also refuses to cover the Kingfisher story himself.",
+      "source": "dramabeans ep 2-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "dongjin",
+      "to": "bona",
+      "type": "rivalry",
+      "label": "the righteous cop on Kingfisher's tail; every lead slips through his fingers",
+      "short": "hunts Kingfisher",
+      "evidence": "Dong-jin is determined to catch Kingfisher, one way or another. The trouble is, every time he gets any sort of lead, it slips right through his fingers.",
+      "source": "dramabeans ep 2-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "dongjin",
+      "to": "taeseong",
+      "type": "friend",
+      "label": "friends practically all their lives; Tae Seong was there when Dong Jin's parents were murdered",
+      "short": "lifelong friends",
+      "evidence": "He and Tae-sung have been friends practically all their lives. Tae-sung was there for Dong-jin during their school years when Dong-jin's parents were murdered",
+      "source": "dramabeans ep 7-8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7
+    },
+    {
+      "from": "seonghun",
+      "to": "sea",
+      "type": "romance",
+      "label": "her friend — with a crush he does not see; judo athletes both",
+      "short": "secret crush",
+      "evidence": "BEOM SUNG-HOON is Dong-jin's rookie partner, and he doesn't seem to realize he has a bit of a crush on his best friend.",
+      "source": "dramabeans ep 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "yunok",
+      "to": "bona",
+      "type": "work",
+      "label": "her mentor, now a florist",
+      "short": "her mentor",
+      "evidence": "…a direct trail from the kid whose father Seul-gi shot to the flower shop Bo-na's mentor owns to Bo-na herself.",
+      "source": "dramabeans ep 11-12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "seonja",
+      "to": "bona",
+      "type": "family",
+      "label": "mother-in-law who makes her do the memorial table alone and calls her 'the orphan'",
+      "short": "mother-in-law",
+      "evidence": "Sun-ja calls Bo-na to help prepare the family memorial table. And by 'help,' I mean Bo-na does all the work while Sun-ja looks for things to criticize.",
+      "source": "dramabeans ep 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
     },
     {
       "from": "seulgi",
       "to": "bona",
       "type": "bond",
-      "label": "protects her — a killer and former Russian mercenary",
-      "short": "protects her",
-      "evidence": "A killer and former Russian mercenary who protects Bo-na. (en.wikipedia files this line under Kwon Tae-seong, which the synopsis and ko.wikipedia both contradict; the description fits Seul Gi / Sergei Volansky)",
-      "source": "en.wikipedia",
+      "label": "childhood friend from Russia; fired in front of a child on her hit — she banished him",
+      "short": "banished",
+      "evidence": "Seul-gi smooth-talked her into letting him 'line up the shot' and then pulled the trigger before she could stop him. Furious, Bo-na told him to leave and never come back.",
+      "source": "dramabeans ep 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "hyeonnam",
+      "to": "bona",
+      "type": "bond",
+      "label": "the girl Bo Na saved from her father on Christmas, fifteen years ago; tests her with a fake poisoning, then devoted",
+      "short": "the girl she saved",
+      "evidence": "Remember the girl Bo-na saved from her abusive father fifteen years ago? That's Hyun-nam.",
+      "source": "dramabeans ep 2-4",
       "reveal": true,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "yeongdo",
+      "to": "bona",
+      "type": "romance",
+      "label": "in love with her since the day she held a 'gun' to his head",
+      "short": "in love with her",
+      "evidence": "Assistant Manager KI YOUNG-DO is nursing an obvious crush… He's carried a torch for Bo-na since the moment he first laid eyes on her",
+      "source": "dramabeans ep 1 · 7-8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "taeseong",
+      "to": "seonja",
+      "type": "family",
+      "label": "stands up to his mother for Bo Na; the memorial rite is abolished",
+      "short": "takes Bo Na's side",
+      "evidence": "He rebukes his mother, calling her and his sisters out for making Bo-na do their work, and declares that Bo-na is every bit as precious to him as he is to them.",
+      "source": "dramabeans ep 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "darae",
+      "to": "bona",
+      "type": "work",
+      "label": "operative of another vigilante team, met over a double target at the casino",
+      "short": "other team",
+      "evidence": "…they all work for the same vigilante organization, with each team assigned to a different region… their volatile part-timer MOON DA-RAE",
+      "source": "dramabeans ep 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "bona",
+      "to": "taeseong",
+      "type": "bond",
+      "label": "found him bleeding in a stairwell eight years ago and called the ambulance — he never knew; then the hospital roof, then the snowed-in lodge",
+      "short": "his unknown savior",
+      "evidence": "She used his phone to call an ambulance, and to this day Tae-sung remains unaware he later married his anonymous savior.",
+      "source": "dramabeans ep 7-8",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "yeongdo",
+      "to": "sea",
+      "type": "romance",
+      "label": "a jealous, spur-of-the-moment date; a judo throw wins him over; they part in the end",
+      "short": "brief romance",
+      "evidence": "He asks Se-ah on a date. It's a very spur-of-the-moment, jealousy-induced kind of decision",
+      "source": "dramabeans ep 7-8 · 13-14",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7
+    },
+    {
+      "from": "seulgi",
+      "to": "taeseong",
+      "type": "rivalry",
+      "label": "the 'Kingfisher' who kidnapped him four years ago and threatened his wife and child — the reason he stopped chasing the story",
+      "short": "kidnapped him",
+      "evidence": "…he confesses that he knows who Kingfisher is: a tall man who kidnapped him and threatened harm to Tae-sung's wife and child if Tae-sung didn't back off Kingfisher's case for good.",
+      "source": "dramabeans ep 7-8 · 9-10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "eunhak",
+      "to": "dongjin",
+      "type": "rivalry",
+      "label": "murdered his parents; paroled early; shot by Kingfisher while Dong Jin hesitates",
+      "short": "killed his parents",
+      "evidence": "Eun-hak is his name, and his victims were Dong-jin's parents… And while he hesitates, Kingfisher does it for him.",
+      "source": "dramabeans ep 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "dongjin",
+      "to": "bona",
+      "type": "rivalry",
+      "label": "Kingfisher shoots his parents' killer in front of him — he stakes his career on the task force",
+      "short": "stakes his career",
+      "evidence": "Seeing Eun-hak get gunned down completely wrecks Dong-jin… Dong-jin seizes upon a singular goal — to catch and punish Kingfisher — and stakes his entire career on it.",
+      "source": "dramabeans ep 9-10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "taeseong",
+      "to": "bona",
+      "type": "rivalry",
+      "label": "connects the dots — the flower shop, a soda can, her voice on an old recording; 'do you really love me?'",
+      "short": "knows",
+      "evidence": "Bo-na's voice on that old recording is just the final nail in the coffin. Once that connection is made, there's no way for Tae-sung to stop his journalist brain from connecting all the remaining dots.",
+      "source": "dramabeans ep 11-12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "taemin",
+      "to": "bona",
+      "type": "bond",
+      "label": "children of the same abuse compound, taken away by the same woman",
+      "short": "same compound",
+      "evidence": "…we get flashbacks to a whole compound of abused kids, Bo-na and Tae-min among them.",
+      "source": "dramabeans ep 11-12",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 11
+    },
+    {
+      "from": "miran",
+      "to": "bona",
+      "type": "work",
+      "label": "her new working-mom friend — a celebrity cop on the Kingfisher task force",
+      "short": "mom friend, task force",
+      "evidence": "Mi-ran happens to be Bo-na's new working mom friend, but up till now we've been led to believe she was an ordinary office worker.",
+      "source": "dramabeans ep 11-12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "miran",
+      "to": "dongjin",
+      "type": "work",
+      "label": "the Kingfisher task force, together",
+      "short": "task force",
+      "evidence": "This year, however, something is different: they have Dong-jin and celebrity cop YOO MI-RAN.",
+      "source": "dramabeans ep 11-12",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 11
+    },
+    {
+      "from": "seonja",
+      "to": "bona",
+      "type": "family",
+      "label": "comes around after Bo Na stops the scammer who nearly took her savings",
+      "short": "comes around",
+      "evidence": "Sun-ja doesn't quite get a verbal 'thank you' out, but she does give Bo-na extra meat at dinner and even lets Tae-sung do the dishes.",
+      "source": "dramabeans ep 11-12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "hyeonnam",
+      "to": "taemin",
+      "type": "romance",
+      "label": "a thing, on the side",
+      "short": "a thing",
+      "evidence": "…the Hyun-nam/Tae-min thing",
+      "source": "dramabeans ep 11-12",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 11
+    },
+    {
+      "from": "taeseong",
+      "to": "bona",
+      "type": "bond",
+      "label": "chooses her side — a family outing with a flawless alibi; a half-truth to Dong Jin",
+      "short": "chooses her",
+      "evidence": "As for Tae-sung, he's chosen a side. He suggests a family outing that weekend, and his smile returns.",
+      "source": "dramabeans ep 11-12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12
+    },
+    {
+      "from": "mama",
+      "to": "bona",
+      "type": "family",
+      "label": "raised her after the compound; heads a Russian vigilante group; never gave up on her",
+      "short": "raised her",
+      "evidence": "Bo-na was raised by her savior: a woman known simply as MAMA, A.K.A. Seul-gi's actual mother.",
+      "source": "dramabeans ep 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "mama",
+      "to": "seulgi",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "a woman known simply as MAMA, A.K.A. Seul-gi's actual mother",
+      "source": "dramabeans ep 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "seulgi",
+      "to": "bona",
+      "type": "bond",
+      "label": "her unseen guardian angel, appointed by Mama — back to stop Layla",
+      "short": "guardian angel",
+      "evidence": "Mama freely let Bo-na go, but never gave up on her and appointed Seul-gi as Bo-na's unseen guardian angel.",
+      "source": "dramabeans ep 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "layla",
+      "to": "bona",
+      "type": "rivalry",
+      "label": "kicked out of Mama's fold; the copycat sniper out for revenge — shoots her in the park",
+      "short": "copycat sniper",
+      "evidence": "Layla hates that Bo-na is living happily on the moral high ground… Bo-na throws herself in front, taking the bullet in her shoulder.",
+      "source": "dramabeans ep 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "dongjin",
+      "to": "bona",
+      "type": "bond",
+      "label": "lets Kingfisher 'die' with Layla rather than reopen the case — friendship wins",
+      "short": "lets her go",
+      "evidence": "…friendship wins out in the end, as he chooses to let Kingfisher die with Layla rather than keep looking for evidence that might reopen the case.",
+      "source": "dramabeans ep 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 14
+    },
+    {
+      "from": "taeseong",
+      "to": "bona",
+      "type": "romance",
+      "label": "finds her in the mountains, over the field he once showed her; wants to know all of her now",
+      "short": "all of her",
+      "evidence": "He wants to know everything now — the good, the bad, the frightening — so he can come to love every last part of her.",
+      "source": "dramabeans ep 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 14
+    },
+    {
+      "from": "bona",
+      "to": "seonja",
+      "type": "family",
+      "label": "secretly buys her the chicken shop",
+      "short": "buys her the shop",
+      "evidence": "Sun-ja finally gets to own her chicken shop instead of renting it, though I wonder if she'll ever find out the generous landlord was Bo-na.",
+      "source": "dramabeans ep 13-14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 14
     }
   ],
   "compact": {
@@ -495,6 +874,8 @@
       "sunil",
       "duri",
       "sea",
+      "eunhak",
+      "darae",
       "yul"
     ],
     "blocks": {
@@ -506,17 +887,17 @@
         2,
         0
       ],
-      "Others": [
+      "Sales Team 3": [
+        1,
+        2
+      ],
+      "Beyond the team": [
         0,
         1
       ],
       "Tae Seong's family": [
         2,
         1
-      ],
-      "Sales Team 3": [
-        1,
-        2
       ]
     },
     "center": [

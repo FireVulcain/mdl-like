@@ -82,6 +82,7 @@ extension has by then written them to the row from the production page.
   "title": "When Life Gives You Tangerines", "native": "폭싹 속았수다", "year": 2025, "country": "KR",
   "sources": ["MDL cast (…)", "MDL synopsis", "ko.wikipedia 등장인물"],
   "main": ["aesun", "gwansik"],
+  "recaps": { "source": "dramabeans", "episodes": 16, "count": 8 },
   "people": [
     { "id": "aesun", "name": "O Ae Sun", "actor": "IU", "image": "https://i.mydramalist.com/….jpg",
       "group": "Ae Sun & Gwan Sik", "inCast": true, "note": "optional",
@@ -90,7 +91,7 @@ extension has by then written them to the row from the production page.
   "links": [
     { "from": "gwangrye", "to": "aesun", "type": "family", "label": "mother", "short": "mother",
       "evidence": "[Ae Sun's mother]", "source": "MDL cast",
-      "reveal": false, "inferred": false, "directed": true }
+      "reveal": false, "inferred": false, "directed": true, "since": 1 }
   ],
   "compact": {
     "people": ["aesun", "gwansik", "…"],
@@ -127,12 +128,59 @@ extension has by then written them to the row from the production page.
   `background.js` and `src/lib/character-map-stills.ts`. When asianwiki
   names the page by a title MDL does not carry, write it in `asianwiki`
   ("W - Two Worlds" for "W") and the run looks there first.
-- `compact.people` is the cut the Compact view shows: the leads, their
-  families, and whoever the story turns on — keep whole households, never
-  half of one. Everything else is still drawn in the Everyone view.
+- `compact.people` is the closest cut: the leads, their families, and
+  whoever the story turns on — keep whole households, never half of one.
+  The chart draws everyone; the media page's inline row picks from this cut.
 - `compact.blocks` maps each group to a cell of a 3×3 grid: column 0 / 2 for
   the left / right column, row 0 / 2 in column 1 for the top / bottom band.
   The leads own the middle cell. A group without a cell goes to the shorter
   column.
 - `compact.center` is who sits in the middle — defaults to the first two of
   `main`. Use it when MDL lists more than two main roles.
+
+## Episode recaps, and links dated by episode
+
+A chart read from the cast list and Wikipedia is an organisation chart: who
+is whose mother, who works where. The story — who found out what, who fell
+for whom, when — is in the episode recaps, and Dramabeans writes one per
+episode or pair of episodes for most K-dramas. A chart read with them dates
+every link:
+
+- **`since`** on a link is the episode it is first seen in — the first
+  episode of the recap it was read from. A link from the cast list or
+  Wikipedia has `since: 1` (or none: an undated link is always drawn). A
+  reveal is dated by the episode it is revealed in, not the one it is about.
+  A tie that changes is two links: "hunts Kingfisher" from episode 2, and
+  "lets her go" from episode 14, each with its own sentence.
+- **`recaps`** on the chart says how far the recaps went: `episodes` is the
+  last episode covered, and the "By episode" view's slider runs to it.
+
+The chart page then has two views: **Everyone**, the chart as it stands at
+the end, and **By episode**, a slider that shows it as of episode N — a link
+first seen later is not drawn, nor a person none of whose links have
+happened yet, and a reveal that has happened by then is out from behind the
+spoiler toggle. The slider opens on the reader's own progress, or at the end
+for a show they have finished. A chart with no dated link has one view.
+
+The recaps are kept in the `CharacterMapRecap` table, one row per recap
+page, and read again on every run for that slug — they are not in git (they
+are Dramabeans' text). Dramabeans turns servers away (Cloudflare), so they
+are fetched by the extension from the admin's browser: tick "Also read the
+Dramabeans recaps" in the generate panel and the content script looks the
+drama up by title in Dramabeans' WordPress API (`/wp-json/wp/v2/tags?search=`,
+then the tagged posts titled "…: Episodes N-M"), posts the texts to
+`/api/ext/character-maps/recaps`, and the panel's Sources block lists what
+is kept. When the tag is not the MDL title, give the tag's name or any
+recap's URL in the field under the checkbox. See `extension/recaps.js`.
+
+When even the browser is turned away, or the extension is not there, the
+panel takes the recaps pasted as JSON, and this snippet — run in the console
+on any Dramabeans recap page of the drama, with the tag id from the page's
+`?tags=` links — writes that file:
+
+```js
+(async()=>{const TAG=4257;const posts=await(await fetch(`/wp-json/wp/v2/posts?tags=${TAG}&per_page=100&_fields=id,title,link,date`)).json();const recaps=posts.filter(p=>/:\s*Episodes?\s+\d+/i.test(p.title.rendered)).reverse();const out=[];for(const p of recaps){const one=await(await fetch(`/wp-json/wp/v2/posts/${p.id}?_fields=content`)).json();const doc=new DOMParser().parseFromString(one.content.rendered,"text/html");doc.querySelectorAll("ul").forEach(el=>{if(/News bites|dramabeans\.com\/cast/.test(el.innerHTML))el.remove();});let text=(doc.body.textContent||"").replace(/[ \t]+/g," ").replace(/\n{3,}/g,"\n\n").trim();const cut=text.indexOf("RELATED POSTS");if(cut>0)text=text.slice(0,cut).trim();const m=p.title.rendered.match(/Episodes?\s+(\d+)(?:-(\d+))?/i);out.push({title:p.title.rendered,url:p.link,from:+m[1],to:m[2]?+m[2]:+m[1],text});await new Promise(r=>setTimeout(r,400));}const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:"application/json"}));a.download="dramabeans.json";a.click();})();
+```
+
+The same file loads from the command line with
+`npx tsx scripts/seed-character-map-recaps.ts <slug> <file.json>`.

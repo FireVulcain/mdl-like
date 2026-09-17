@@ -44,6 +44,12 @@ LINKS
 - label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated.
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
 
+EPISODES (only when the inputs carry "=== dramabeans · Episodes N-M ===" recap sections)
+- The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "dramabeans ep. 5-6" (the range of the recap the sentence is in).
+- since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
+- A tie that changes over the run is two links, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them.
+- With recaps, prefer links a reader of the show would recognise as its turns; a chart of forty links is fine when the recaps carry them.
+
 COMPACT
 - compact.people: the cut the compact view shows — the leads, their households, and whoever the story turns on; whole groups, never half of one. A big school class or a village can be left out of the cut and stays in the full view.
 - compact.blocks: each group other than Leads gets a cell of a 3x3 grid, [column, row]: [0,0] top-left, [2,0] top-right, [0,2] bottom-left, [2,2] bottom-right, [1,0] top-middle, [1,2] bottom-middle. The leads own [1,1]. Every group that has a person in compact.people must have a cell.
@@ -53,7 +59,7 @@ COMPACT
 OUTPUT
 - version is always 1. mdlSlug, title, native, year and country are given. sources lists what was read, e.g. ["MDL cast (21 roles, 4 main)", "MDL synopsis", "ko.wikipedia 등장인물"].
 - Write everything in English except evidence, which is quoted in the language it was read in.
-- Do not write still or asianwiki fields.`;
+- Do not write still or asianwiki fields. Do not write a recaps field.`;
 
 /* ---------------------------------------------------------- the schema */
 
@@ -105,7 +111,7 @@ export const CHART_SCHEMA = {
             items: {
                 type: "object",
                 additionalProperties: false,
-                required: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed"],
+                required: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since"],
                 properties: {
                     from: { type: "string" },
                     to: { type: "string" },
@@ -117,6 +123,7 @@ export const CHART_SCHEMA = {
                     reveal: { type: "boolean" },
                     inferred: { type: "boolean" },
                     directed: { type: "boolean" },
+                    since: nullable("integer"),
                 },
             },
         },
@@ -209,7 +216,15 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         if (p.note) person.note = p.note;
         return person;
     });
-    const links: MapLink[] = draft.links.map((l) => ({ ...l }));
+    // since only means something when recaps were read; a model's stray
+    // number on a run without them would put an episode on every link
+    const withRecaps = inputs.recaps.length > 0;
+    const lastEp = withRecaps ? Math.max(...inputs.recaps.map((r) => r.toEp)) : 0;
+    const links: MapLink[] = draft.links.map((l) => {
+        const link: MapLink = { ...l, since: withRecaps && l.since != null && l.since >= 1 ? Math.min(l.since, lastEp) : null };
+        if (!withRecaps) delete link.since;
+        return link;
+    });
 
     const map: CharacterMapData = {
         version: 1,
@@ -226,6 +241,11 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     // and everything downstream (the stills list, the reading rules) keys on
     // KR / CN / JP.
     Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: countryCode(inputs.country) || draft.country });
+    if (withRecaps) {
+        map.recaps = { source: inputs.recaps[0].source, episodes: lastEp, count: inputs.recaps.length };
+        const undated = links.filter((l) => l.since == null).length;
+        if (undated) warnings.push(`${undated} link${undated === 1 ? "" : "s"} without an episode — always shown in the episode view`);
+    }
     return { map, warnings };
 }
 

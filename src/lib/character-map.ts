@@ -82,6 +82,13 @@ export type MapLink = {
     /** no sentence backs it; drawn faded */
     inferred: boolean;
     directed: boolean;
+    /**
+     * The episode the tie is first seen in, when the chart was read with
+     * episode recaps; the "as of episode N" view hides links past N. A link
+     * without one — every chart read from the cast and Wikipedia alone — is
+     * always shown.
+     */
+    since?: number | null;
 };
 
 export type CharacterMapData = {
@@ -94,6 +101,8 @@ export type CharacterMapData = {
     year?: number | null;
     /** KR / CN / JP… — the stills run only looks at Korean and Japanese charts */
     country?: string;
+    /** the episode recaps the chart was read with, when it was: how far they go */
+    recaps?: { source: string; episodes: number; count: number };
     sources: string[];
     /** the leads — drawn in the middle */
     main: string[];
@@ -134,6 +143,8 @@ export type LayoutOptions = {
     ghosts?: boolean;
     /** links to leave out entirely (hidden reveals, say) */
     hideLink?: (l: MapLink) => boolean;
+    /** people to leave out entirely, by id (those not yet met, as of an episode) */
+    hidePerson?: (id: string) => boolean;
 };
 
 /**
@@ -152,7 +163,7 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
     const center = new Set(map.compact.center ?? map.main.slice(0, 2));
 
     const people: LaidOutPerson[] = map.people
-        .filter((p) => keep.has(p.id) && ((opts.ghosts ?? true) || p.inCast))
+        .filter((p) => keep.has(p.id) && ((opts.ghosts ?? true) || p.inCast) && !(opts.hidePerson?.(p.id) ?? false))
         .map((p) => ({ ...p, x: 0, y: 0, lead: center.has(p.id), captions: [] }));
     const byId = new Map(people.map((p) => [p.id, p]));
 

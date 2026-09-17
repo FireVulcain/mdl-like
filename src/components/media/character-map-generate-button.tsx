@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem, Pencil, Image as ImageIcon } from "lucide-react";
+import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem, Pencil, Image as ImageIcon, BookOpen, RefreshCw } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { JobView } from "@/lib/character-map-jobs";
 import type { Preflight } from "@/app/api/admin/character-maps/preflight/route";
@@ -22,6 +22,12 @@ import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "
  * lands and on load for a chart with none yet, and hears back through
  * `trackr:stills`. Without the extension nothing is asked, and nothing lost
  * — the chart shows the MDL headshots.
+ *
+ * The Dramabeans recaps go the same way: Dramabeans turns servers away too,
+ * so when the box is ticked the page asks the extension (`trackr:recaps-ask`)
+ * to read them and post them to the app, and hears back on `trackr:recaps`;
+ * without the extension they can be pasted as JSON. A run with recaps dates
+ * its links by episode, which is what the chart's "By episode" view shows.
  *
  * Only rendered for the admin; the route is the actual guard.
  */
@@ -58,6 +64,16 @@ function askForStills(mdlSlug: string, force = false, page?: string) {
     window.dispatchEvent(new CustomEvent("trackr:chart", { detail: JSON.stringify({ mdlSlug, force, page }) }));
 }
 
+/** What the extension reported about the recaps: reading, kept, or why not. */
+type RecapsState = { status: "started" } | { status: "done"; count: number; fromEp: number; toEp: number; words: number; tag?: string } | { status: "failed"; error: string; seen?: string[] };
+
+function askForRecaps(mdlSlug: string, title: string, hint?: string) {
+    window.dispatchEvent(new CustomEvent("trackr:recaps-ask", { detail: JSON.stringify({ mdlSlug, title, hint }) }));
+}
+
+/** One pasted recap, as the console snippet in the README writes them. */
+type PastedRecap = { title?: string; url?: string; from?: number; to?: number; text?: string };
+
 function clock(ms: number): string {
     const s = Math.max(0, Math.round(ms / 1000));
     return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -81,6 +97,15 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const [preflight, setPreflight] = useState<Preflight | null>(null);
     const [checking, setChecking] = useState(false);
     const [checkError, setCheckError] = useState<string | null>(null);
+    // bumped when the kept recaps change, so the sources are read again
+    const [sourcesTick, setSourcesTick] = useState(0);
+    const [withRecaps, setWithRecaps] = useState(false);
+    const [recapsHint, setRecapsHint] = useState("");
+    const [recaps, setRecaps] = useState<RecapsState | null>(null);
+    const [extension, setExtension] = useState(false);
+    const [pasting, setPasting] = useState(false);
+    const [pasted, setPasted] = useState("");
+    const [pasteError, setPasteError] = useState<string | null>(null);
     const [now, setNow] = useState(() => Date.now());
     const router = useRouter();
     const active = !!job && ACTIVE.has(job.status);
@@ -117,9 +142,22 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     useEffect(() => {
         let asked = false;
         const onExtension = () => {
+            setExtension(true);
             if (asked || !needsStills) return;
             asked = true;
             askForStills(mdlSlug);
+        };
+        const onRecaps = (e: Event) => {
+            let detail: (RecapsState & { mdlSlug?: string }) | null = null;
+            try {
+                const raw = (e as CustomEvent).detail;
+                detail = typeof raw === "string" ? JSON.parse(raw) : raw;
+            } catch {
+                return;
+            }
+            if (!detail || detail.mdlSlug !== mdlSlug) return;
+            setRecaps(detail);
+            if (detail.status === "done") setSourcesTick((t) => t + 1);
         };
         const onStills = (e: Event) => {
             let detail: (StillsState & { mdlSlug?: string }) | null = null;
@@ -134,10 +172,12 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             if (detail.status === "done") router.refresh();
         };
         window.addEventListener("trackr:stills", onStills);
+        window.addEventListener("trackr:recaps", onRecaps);
         window.addEventListener("trackr:extension", onExtension);
         window.dispatchEvent(new CustomEvent("trackr:ping"));
         return () => {
             window.removeEventListener("trackr:stills", onStills);
+            window.removeEventListener("trackr:recaps", onRecaps);
             window.removeEventListener("trackr:extension", onExtension);
         };
     }, [mdlSlug, needsStills, router]);
@@ -184,7 +224,54 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             controller.abort();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open, view, mdlSlug, titlesKey]);
+    }, [open, view, mdlSlug, titlesKey, sourcesTick]);
+
+    // The recap tag on Dramabeans is the drama's title — MDL's, without the year
+    const dramaTitle = preflight?.title.replace(/ [(][0-9]{4}[)]$/, "") ?? "";
+    const recapsKept = preflight?.recaps ?? null;
+
+    // Ticking the box reads the recaps when none are kept; a set already kept is used as it is
+    function tickRecaps(on: boolean) {
+        setWithRecaps(on);
+        if (on && !recapsKept && extension && recaps?.status !== "started" && dramaTitle) askForRecaps(mdlSlug, dramaTitle, recapsHint.trim() || undefined);
+    }
+
+    // The paste fallback: the JSON array the README's console snippet writes
+    async function savePasted() {
+        setPasteError(null);
+        let list: PastedRecap[];
+        try {
+            const parsed = JSON.parse(pasted) as unknown;
+            list = Array.isArray(parsed) ? (parsed as PastedRecap[]) : [];
+        } catch {
+            setPasteError("That is not JSON");
+            return;
+        }
+        const ok = list.filter((r) => r && typeof r.text === "string" && r.text.trim() && Number.isInteger(r.from));
+        if (ok.length === 0) {
+            setPasteError("No recap in there — each needs a `from` episode and a `text`");
+            return;
+        }
+        setRecaps({ status: "started" });
+        try {
+            const res = await fetch("/api/ext/character-maps/recaps", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mdlSlug, recaps: ok.map((r) => ({ title: r.title, url: r.url, from: r.from, to: r.to, text: r.text })) }),
+            });
+            const data = (await res.json().catch(() => ({}))) as { summary?: { count: number; fromEp: number; toEp: number; words: number } | null; error?: string };
+            if (!res.ok || !data.summary) {
+                setRecaps({ status: "failed", error: data.error ?? `HTTP ${res.status}` });
+                return;
+            }
+            setRecaps({ status: "done", ...data.summary });
+            setPasting(false);
+            setPasted("");
+            setSourcesTick((t) => t + 1);
+        } catch (e) {
+            setRecaps({ status: "failed", error: e instanceof Error ? e.message : "failed" });
+        }
+    }
 
     async function start() {
         setStarting(true);
@@ -193,7 +280,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             const res = await fetch("/api/admin/character-maps/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug, model, titles }),
+                body: JSON.stringify({ mdlSlug, model, titles, recaps: withRecaps && !!recapsKept }),
             });
             const data = (await res.json().catch(() => ({}))) as { job?: JobView; error?: string };
             if (!res.ok || !data.job) {
@@ -221,6 +308,8 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const cost = job?.status === "done" ? costOf(job) : null;
     const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
     const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
+    // With the box ticked, the run waits for the recaps to be kept
+    const recapsPending = withRecaps && !recapsKept;
 
     const stillsLine = stills ? <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} /> : null;
 
@@ -338,6 +427,97 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                 ) : (
                                     <p className="mt-1.5 text-xs text-fg-dim">Checking what the run would read…</p>
                                 )}
+                                {preflight && (
+                                    <div className="mt-2 border-t border-line pt-2 text-xs">
+                                        <label className="flex cursor-pointer items-center gap-2 text-fg-muted">
+                                            <input type="checkbox" checked={withRecaps} onChange={(e) => tickRecaps(e.target.checked)} className="h-3.5 w-3.5 accent-sky-500" />
+                                            <span>
+                                                Also read the Dramabeans recaps
+                                                <span className="text-fg-dim"> · every link dated by episode, for the chart&apos;s &ldquo;By episode&rdquo; view</span>
+                                            </span>
+                                        </label>
+                                        {withRecaps && (
+                                            <div className="ml-5 mt-1.5 space-y-1.5">
+                                                {recaps?.status === "started" ? (
+                                                    <p className="flex items-center gap-2 text-fg-muted">
+                                                        <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Reading the recaps on Dramabeans…
+                                                    </p>
+                                                ) : recapsKept ? (
+                                                    <p className="flex items-center gap-2 text-fg-muted">
+                                                        <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
+                                                        <span className="min-w-0 flex-1 truncate">
+                                                            Dramabeans · {recapsKept.count} recap{recapsKept.count > 1 ? "s" : ""} · ep {recapsKept.fromEp}–{recapsKept.toEp} · {Math.round(recapsKept.words / 1000)}K words
+                                                            {recaps?.status === "done" && recaps.tag && <span className="text-fg-dim"> · tag &ldquo;{recaps.tag}&rdquo;</span>}
+                                                        </span>
+                                                        {extension && dramaTitle && (
+                                                            <button type="button" onClick={() => askForRecaps(mdlSlug, dramaTitle, recapsHint.trim() || undefined)} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
+                                                                <RefreshCw className="h-3 w-3" />
+                                                            </button>
+                                                        )}
+                                                    </p>
+                                                ) : (
+                                                    <>
+                                                        {recaps?.status === "failed" && (
+                                                            <p className="flex items-start gap-1.5 text-amber-400/90">
+                                                                <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
+                                                                <span>
+                                                                    {recaps.error}
+                                                                    {recaps.seen?.length ? <span className="text-fg-dim"> · tags seen: {recaps.seen.slice(0, 4).join(" · ")}</span> : null}
+                                                                </span>
+                                                            </p>
+                                                        )}
+                                                        {extension ? (
+                                                            <form
+                                                                className="flex items-center gap-1.5"
+                                                                onSubmit={(e) => {
+                                                                    e.preventDefault();
+                                                                    if (dramaTitle) askForRecaps(mdlSlug, dramaTitle, recapsHint.trim() || undefined);
+                                                                }}
+                                                            >
+                                                                <input
+                                                                    value={recapsHint}
+                                                                    onChange={(e) => setRecapsHint(e.target.value)}
+                                                                    placeholder={`Dramabeans tag or a recap's URL, if not "${dramaTitle}"`}
+                                                                    className="min-w-0 flex-1 rounded-md bg-surface-2 px-2 py-1 text-fg outline-none placeholder:text-fg-faint"
+                                                                />
+                                                                <button type="submit" className="inline-flex items-center gap-1 rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4">
+                                                                    <BookOpen className="h-3 w-3" /> Read
+                                                                </button>
+                                                            </form>
+                                                        ) : !pasting ? (
+                                                            <p className="text-fg-dim">
+                                                                Dramabeans turns servers away; the extension reads the recaps from this browser.{" "}
+                                                                <button type="button" onClick={() => setPasting(true)} className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
+                                                                    Paste them instead
+                                                                </button>
+                                                            </p>
+                                                        ) : null}
+                                                        {pasting && (
+                                                            <div className="space-y-1.5">
+                                                                <textarea
+                                                                    value={pasted}
+                                                                    onChange={(e) => setPasted(e.target.value)}
+                                                                    placeholder={'[{ "title": "…: Episode 1", "from": 1, "to": 1, "text": "…" }, …] — the README has the console snippet that writes this'}
+                                                                    rows={4}
+                                                                    className="w-full rounded-md bg-surface-2 px-2 py-1.5 font-mono text-[11px] text-fg outline-none placeholder:text-fg-faint"
+                                                                />
+                                                                {pasteError && <p className="text-amber-400/90">{pasteError}</p>}
+                                                                <div className="flex items-center gap-2">
+                                                                    <button type="button" onClick={savePasted} disabled={!pasted.trim()} className="rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4 disabled:opacity-50">
+                                                                        Keep these recaps
+                                                                    </button>
+                                                                    <button type="button" onClick={() => setPasting(false)} className="text-fg-dim transition-colors hover:text-fg">
+                                                                        Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </div>
                             {error && (
                                 <p className="inline-flex items-center gap-1.5 px-6 pt-3 text-xs text-amber-400">
@@ -361,9 +541,9 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                     <button
                                         type="button"
                                         onClick={start}
-                                        disabled={starting || checking || (!preflight && !checkError)}
+                                        disabled={starting || checking || (!preflight && !checkError) || recapsPending}
                                         className="inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-sky-400 disabled:opacity-60"
-                                        title={checking ? "Checking the sources" : undefined}
+                                        title={checking ? "Checking the sources" : recapsPending ? "Waiting for the recaps" : undefined}
                                     >
                                         {starting || checking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                                         {hasChart ? "Rewrite with " : "Write with "}

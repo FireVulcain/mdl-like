@@ -309,6 +309,25 @@ model CharacterMap {
   updatedAt DateTime @updatedAt
 }
 
+// An episode recap read for a chart — from Dramabeans, fetched by the
+// extension (the site turns servers away) and kept here so a regeneration
+// does not fetch it again. One row per recap page; a range of episodes.
+model CharacterMapRecap {
+  id        String   @id @default(cuid())
+  mdlSlug   String
+  source    String   @default("dramabeans")
+  url       String
+  title     String
+  fromEp    Int
+  toEp      Int
+  words     Int
+  text      String
+  fetchedAt DateTime @default(now())
+
+  @@unique([mdlSlug, url])
+  @@index([mdlSlug, fromEp])
+}
+
 model CachedKuryanaPerson {
   slug     String   @id
   dataJson Json

@@ -19,6 +19,8 @@ const UA = "trackr/character-map-inputs";
 export type CastMember = { name: string; role: { name: string }; profile_image?: string };
 /** `rejected` names the article a search found that turned out to be about something else. */
 export type WikiSection = { lang: string; title: string | null; text: string | null; rejected?: string };
+/** One episode recap, as the extension fetched it and the table keeps it. */
+export type Recap = { source: string; title: string; url: string; fromEp: number; toEp: number; words: number; text: string };
 export type ChartInputs = {
     mdlSlug: string;
     title: string;
@@ -28,6 +30,8 @@ export type ChartInputs = {
     synopsis: string;
     cast: { main: CastMember[]; support: CastMember[]; guest: CastMember[] };
     wiki: WikiSection[];
+    /** the episode recaps read with the rest, when the run asked for them; in episode order */
+    recaps: Recap[];
     /** the whole thing as one text, the way inputs/<slug>.txt is written */
     text: string;
 };
@@ -149,6 +153,7 @@ export async function gatherChartInputs(
     mdlSlug: string,
     titles: Record<string, string> = {},
     onStep?: (step: string) => void,
+    recaps: Recap[] = [],
 ): Promise<ChartInputs> {
     const given = { ...pinnedWikiTitles(mdlSlug), ...titles };
 
@@ -183,5 +188,10 @@ export async function gatherChartInputs(
         out.push("", `=== ${lang}.wikipedia${w.title ? ` · ${w.title}` : ""} ===`, w.text ?? (w.title ? "(no character section found)" : w.rejected ? `(search found "${w.rejected}", which is not this drama)` : "(nothing found)"));
     }
 
-    return { mdlSlug, title: d.title, native, year, country, synopsis: d.synopsis ?? "", cast: casts, wiki, text: out.join("\n") + "\n" };
+    // The recaps last, in episode order, each headed by its range: the model
+    // dates a link by the recap it reads it in.
+    const ordered = [...recaps].sort((a, b) => a.fromEp - b.fromEp || a.toEp - b.toEp);
+    for (const r of ordered) out.push("", `=== ${r.source} · Episode${r.fromEp === r.toEp ? ` ${r.fromEp}` : `s ${r.fromEp}-${r.toEp}`} · ${r.title} ===`, r.text);
+
+    return { mdlSlug, title: d.title, native, year, country, synopsis: d.synopsis ?? "", cast: casts, wiki, recaps: ordered, text: out.join("\n") + "\n" };
 }

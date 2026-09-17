@@ -1,61 +1,97 @@
 "use strict";
 
 /**
- * Stills for one chart, the moment the app's page asks. The page (the
- * admin's generate button) dispatches `trackr:chart` on window with the
- * chart's MDL slug — when a run lands, and on load for a chart with no
- * still yet. This script reads asianwiki through the service worker and
- * posts the cast rows to the page's own origin, so in production the row
- * gets its stills without a dev server or a click; then it tells the page
- * what happened with `trackr:stills`.
+ * What the app's page can ask this extension for, on the chart pages:
+ *
+ * - stills for one chart: `trackr:chart` on window with the chart's MDL
+ *   slug — when a run lands, and on load for a chart with no still yet.
+ *   This script reads asianwiki through the service worker and posts the
+ *   cast rows to the page's own origin, so in production the row gets its
+ *   stills without a dev server or a click; then it tells the page what
+ *   happened with `trackr:stills`.
+ * - the Dramabeans recaps for one drama: `trackr:recaps` with the slug and
+ *   the title (and a hint — the tag's name or a recap's URL — when the
+ *   title is not the tag's name). The recaps are read through the worker,
+ *   posted to the app, which keeps them for the chart's next run, and the
+ *   page hears back with `trackr:recaps`.
  *
  * Event details cross the page/extension boundary as JSON strings — a
  * plain object from the page is not always readable from here.
  */
 (() => {
-    if (typeof TrackrStills === "undefined") return;
+    if (typeof TrackrStills === "undefined" || typeof TrackrRecaps === "undefined") return;
     const appUrl = location.origin;
     const done = new Set();
 
-    const fetchHtml = (url) =>
+    const ask = (type, url) =>
         new Promise((resolve) => {
-            chrome.runtime.sendMessage({ type: "fetch-html", url }, (res) => {
-                if (chrome.runtime.lastError || !res) resolve({ ok: false, status: 0, url, text: "", error: chrome.runtime.lastError?.message ?? "no response" });
+            chrome.runtime.sendMessage({ type, url }, (res) => {
+                if (chrome.runtime.lastError || !res) resolve({ ok: false, status: 0, url, text: "", data: null, error: chrome.runtime.lastError?.message ?? "no response" });
                 else resolve(res);
             });
         });
+    const fetchHtml = (url) => ask("fetch-html", url);
+    const fetchJson = (url) => ask("fetch-json", url);
 
-    const tell = (detail) => window.dispatchEvent(new CustomEvent("trackr:stills", { detail: JSON.stringify(detail) }));
+    const tell = (event, detail) => window.dispatchEvent(new CustomEvent(event, { detail: JSON.stringify(detail) }));
 
-    async function handle(mdlSlug, force, page) {
+    async function stills(mdlSlug, force, page) {
         if (done.has(mdlSlug) && !force) return;
         done.add(mdlSlug);
-        tell({ mdlSlug, status: "started" });
+        tell("trackr:stills", { mdlSlug, status: "started" });
         try {
             const list = await fetch(`${appUrl}/api/ext/character-maps`, { credentials: "include" });
-            if (!list.ok) return tell({ mdlSlug, status: "failed", error: `app ${list.status}` });
+            if (!list.ok) return tell("trackr:stills", { mdlSlug, status: "failed", error: `app ${list.status}` });
             const { charts } = await list.json();
             const chart = charts.find((c) => c.mdlSlug === mdlSlug);
-            if (!chart) return tell({ mdlSlug, status: "skipped", reason: "not a Korean or Japanese chart" });
-            if (chart.withStill > 0 && !force) return tell({ mdlSlug, status: "skipped", reason: "already has stills" });
+            if (!chart) return tell("trackr:stills", { mdlSlug, status: "skipped", reason: "not a Korean or Japanese chart" });
+            if (chart.withStill > 0 && !force) return tell("trackr:stills", { mdlSlug, status: "skipped", reason: "already has stills" });
             const out = await TrackrStills.stillsForChart(fetchHtml, appUrl, page ? { ...chart, asianwiki: page } : chart);
-            if (out.error) tell({ mdlSlug, status: "failed", error: out.error, seen: out.seen });
-            else tell({ mdlSlug, status: "done", page: out.page, matched: out.matched, people: out.people, unmatched: out.unmatched });
+            if (out.error) tell("trackr:stills", { mdlSlug, status: "failed", error: out.error, seen: out.seen });
+            else tell("trackr:stills", { mdlSlug, status: "done", page: out.page, matched: out.matched, people: out.people, unmatched: out.unmatched });
         } catch (e) {
-            tell({ mdlSlug, status: "failed", error: e.message });
+            tell("trackr:stills", { mdlSlug, status: "failed", error: e.message });
         }
     }
 
+    async function recaps(mdlSlug, title, hint) {
+        tell("trackr:recaps", { mdlSlug, status: "started" });
+        try {
+            const out = await TrackrRecaps.recapsFor(fetchJson, title, hint);
+            if (out.error) return tell("trackr:recaps", { mdlSlug, status: "failed", error: out.error, seen: out.seen });
+            if (out.recaps.length === 0) return tell("trackr:recaps", { mdlSlug, status: "failed", error: `no readable recap under "${out.tag}"` });
+            const res = await fetch(`${appUrl}/api/ext/character-maps/recaps`, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mdlSlug, recaps: out.recaps }),
+            });
+            if (!res.ok) return tell("trackr:recaps", { mdlSlug, status: "failed", error: `app ${res.status}` });
+            const { summary } = await res.json();
+            tell("trackr:recaps", { mdlSlug, status: "done", tag: out.tag, ...summary });
+        } catch (e) {
+            tell("trackr:recaps", { mdlSlug, status: "failed", error: e.message });
+        }
+    }
+
+    const detailOf = (e) => {
+        try { return typeof e.detail === "string" ? JSON.parse(e.detail) : e.detail ?? {}; } catch { return null; }
+    };
+    const str = (v) => (typeof v === "string" && v.trim() ? v.trim() : null);
+
     window.addEventListener("trackr:chart", (e) => {
-        let detail = {};
-        try { detail = typeof e.detail === "string" ? JSON.parse(e.detail) : e.detail ?? {}; } catch { return; }
-        if (typeof detail.mdlSlug === "string") void handle(detail.mdlSlug, !!detail.force, typeof detail.page === "string" && detail.page.trim() ? detail.page.trim() : null);
+        const d = detailOf(e);
+        if (d && str(d.mdlSlug)) void stills(d.mdlSlug, !!d.force, str(d.page));
+    });
+    window.addEventListener("trackr:recaps-ask", (e) => {
+        const d = detailOf(e);
+        if (d && str(d.mdlSlug) && str(d.title)) void recaps(d.mdlSlug, d.title, str(d.hint));
     });
 
     // So the page knows a listener is there. This runs before or after the
     // page's own scripts, so it both announces itself and answers a ping —
     // whichever of the two came second does not miss the other.
-    const announce = () => window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true }) }));
+    const announce = () => window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true, recaps: true }) }));
     window.addEventListener("trackr:ping", announce);
     announce();
 })();

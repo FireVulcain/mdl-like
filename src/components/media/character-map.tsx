@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Crosshair, Minus, Plus } from "lucide-react";
-import { actorLine, ERA_LABEL, layoutCompact, linkPath, portrait, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType } from "@/lib/character-map";
+import { actorLine, ERA_LABEL, layoutCompact, linkPath, portrait, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType, type MapLink } from "@/lib/character-map";
 
 // Colour follows meaning, the way it does across the app: family is the quiet
 // one, romance rose, rivalry amber; teal for work and loyalty, lime for
@@ -89,13 +89,29 @@ function Face({ person, size = "sm" }: { person: { image: string | null; still?:
  * a link (or a caption) to read the sentence it was taken from — the chart is
  * read out of text, and the sentence is what lets a reader check it.
  *
- * The filters are the questions a reader has about a chart like this: the
- * compact cut or everyone, which kinds of link, whether to show the twists
- * (on only for a show the reader has finished), the links no sentence
- * backs, and the people MDL's cast does not carry.
+ * The filters are the questions a reader has about a chart like this: which
+ * kinds of link, whether to show the twists (on only for a show the reader
+ * has finished), the links no sentence backs, and the people MDL's cast does
+ * not carry.
+ *
+ * A chart read with the episode recaps dates its links (`since`), and gets
+ * a second view: "By episode", a slider that shows the chart as it stood
+ * after episode N — a link first seen later is not drawn, nor a person none
+ * of whose links have happened yet, and a reveal that has happened by then
+ * is no longer behind the spoiler toggle. A dated chart opens in that view,
+ * the slider where the reader is (`progress`), or at the end for a show
+ * they have finished.
  */
-export function CharacterMap({ map, completed = false }: { map: CharacterMapData; completed?: boolean }) {
-    const [everyone, setEveryone] = useState(true);
+export function CharacterMap({ map, completed = false, progress = null }: { map: CharacterMapData; completed?: boolean; progress?: number | null }) {
+    // Episodes the chart can be read up to: as far as the recaps went, or
+    // the last dated link; nothing when no link is dated
+    const episodes = useMemo(() => {
+        const last = Math.max(0, ...map.links.map((l) => l.since ?? 0));
+        return last > 0 ? Math.max(last, map.recaps?.episodes ?? 0) : 0;
+    }, [map]);
+    // A dated chart opens by episode — where the reader is, not the whole story
+    const [byEpisode, setByEpisode] = useState(() => episodes > 0);
+    const [episode, setEpisode] = useState(() => Math.min(episodes, Math.max(1, completed ? episodes : (progress ?? 1))));
     const [types, setTypes] = useState<Set<LinkType>>(() => new Set(TYPES));
     // A show the reader has finished opens with everything on the table: the
     // reveals, and the links no sentence backs — which are mostly what the
@@ -126,9 +142,22 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
     const ZMIN = 0.45, ZMAX = 2.2;
     const drag = useRef<{ x: number; y: number; vx: number; vy: number; moved: boolean } | null>(null);
 
+    // As of episode N, a dated link has happened or not; only the undated
+    // ones — the organisation chart's — still answer to the reveals toggle
+    const happened = (l: MapLink) => !byEpisode || l.since == null || l.since <= episode;
+    const hideLink = (l: MapLink) => !happened(l) || (!reveals && l.reveal && !(byEpisode && l.since != null));
     const layout = useMemo(
-        () => layoutCompact(map, { width: W, everyone, types, inferred, ghosts, hideLink: (l) => !reveals && l.reveal }),
-        [map, everyone, types, inferred, ghosts, reveals],
+        () => {
+            const hidePerson = byEpisode
+                ? (id: string) => {
+                      const own = map.links.filter((l) => l.from === id || l.to === id);
+                      return own.length > 0 && !own.some(happened);
+                  }
+                : undefined;
+            return layoutCompact(map, { width: W, everyone: true, types, inferred, ghosts, hideLink, hidePerson });
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [map, types, inferred, ghosts, reveals, byEpisode, episode],
     );
 
     useLayoutEffect(() => {
@@ -221,17 +250,20 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
     };
 
     const counts = useMemo(() => {
-        const keep = new Set(everyone ? map.people.map((p) => p.id) : map.compact.people);
-        const inCut = map.links.filter((l) => keep.has(l.from) && keep.has(l.to));
+        // What the toggles count, as of the episode when that view is on
+        const inCut = map.links.filter(happened);
         return {
             // Each toggle counts the links it alone decides: a reveal that is
-            // also inferred is the reveals toggle's (see layoutCompact).
-            reveals: inCut.filter((l) => l.reveal).length,
+            // also inferred is the reveals toggle's (see layoutCompact); as of
+            // an episode, a dated reveal is the slider's
+            reveals: inCut.filter((l) => l.reveal && !(byEpisode && l.since != null)).length,
             inferred: inCut.filter((l) => l.inferred && !l.reveal).length,
-            ghosts: map.people.filter((p) => keep.has(p.id) && !p.inCast).length,
+            ghosts: map.people.filter((p) => !p.inCast).length,
             byType: Object.fromEntries(TYPES.map((t) => [t, inCut.filter((l) => l.type === t && !l.inferred).length])) as Record<LinkType, number>,
+            asOf: inCut.length,
         };
-    }, [map, everyone]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [map, byEpisode, episode]);
 
     const byId = useMemo(() => new Map(layout.people.map((p) => [p.id, p])), [layout]);
     const focus = hover ?? (selected?.kind === "person" ? selected.id : null);
@@ -281,24 +313,49 @@ export function CharacterMap({ map, completed = false }: { map: CharacterMapData
         <div className="space-y-3">
             {/* Filters */}
             <div className="flex flex-wrap items-center gap-2">
-                <div className="flex items-center rounded-lg border border-line-strong bg-surface-1 p-0.5">
-                    {([true, false] as const).map((all) => (
-                        <button
-                            key={String(all)}
-                            type="button"
-                            onClick={() => {
-                                setEveryone(all);
-                                setSelected(null);
-                            }}
-                            aria-pressed={everyone === all}
-                            className={`rounded-md px-2 py-1 text-xs transition-all cursor-pointer ${everyone === all ? "bg-surface-3 text-fg" : "text-fg-dim hover:bg-surface-2 hover:text-fg"}`}
-                        >
-                            {all ? `Everyone · ${map.people.length}` : `Compact · ${map.compact.people.length}`}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="h-4 w-px bg-surface-3" />
+                {episodes > 0 && (
+                    <>
+                        <div className="flex items-center rounded-lg border border-line-strong bg-surface-1 p-0.5">
+                            {([false, true] as const).map((on) => (
+                                <button
+                                    key={String(on)}
+                                    type="button"
+                                    onClick={() => {
+                                        setByEpisode(on);
+                                        setSelected(null);
+                                    }}
+                                    aria-pressed={byEpisode === on}
+                                    className={`rounded-md px-2 py-1 text-xs transition-all cursor-pointer ${byEpisode === on ? "bg-surface-3 text-fg" : "text-fg-dim hover:bg-surface-2 hover:text-fg"}`}
+                                >
+                                    {on ? "By episode" : `Everyone · ${map.people.length}`}
+                                </button>
+                            ))}
+                        </div>
+                        {byEpisode && (
+                            <label className="flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-2 py-1 text-xs text-fg-soft">
+                                <span className="tabular-nums">
+                                    Ep <span className="font-semibold text-fg">{episode}</span>
+                                    <span className="text-fg-dim"> / {episodes}</span>
+                                </span>
+                                <input
+                                    type="range"
+                                    min={1}
+                                    max={episodes}
+                                    step={1}
+                                    value={episode}
+                                    onChange={(e) => {
+                                        setEpisode(Number(e.target.value));
+                                        setSelected(null);
+                                    }}
+                                    className="h-1 w-32 cursor-pointer accent-sky-500 sm:w-44"
+                                    aria-label="As of episode"
+                                />
+                                <span className="tabular-nums text-fg-dim">{counts.asOf} links</span>
+                            </label>
+                        )}
+                        <div className="h-4 w-px bg-surface-3" />
+                    </>
+                )}
 
                 {TYPES.map((t) => (
                     <button key={t} type="button" onClick={() => toggleType(t)} aria-pressed={types.has(t)} className={pill(types.has(t))} disabled={counts.byType[t] === 0}>

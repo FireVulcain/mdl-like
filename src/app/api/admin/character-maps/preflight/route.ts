@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminUser } from "@/lib/admin";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
+import { recapSummary, type RecapSummary } from "@/lib/character-map-recaps";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +17,8 @@ export type Preflight = {
     cast: { main: number; support: number; guest: number };
     synopsis: boolean;
     wiki: { lang: string; title: string | null; found: boolean; chars: number; rejected?: string }[];
+    /** the episode recaps kept for the entry, if the extension has read any */
+    recaps: RecapSummary;
 };
 
 export async function POST(request: Request) {
@@ -26,8 +29,9 @@ export async function POST(request: Request) {
     const titles: Record<string, string> = {};
     for (const [lang, title] of Object.entries(body?.titles ?? {})) if (/^(ko|zh|en|ja)$/.test(lang) && typeof title === "string" && title.trim()) titles[lang] = title.trim();
     try {
-        const inputs = await gatherChartInputs(mdlSlug, titles);
+        const [inputs, recaps] = await Promise.all([gatherChartInputs(mdlSlug, titles), recapSummary(mdlSlug)]);
         const preflight: Preflight = {
+            recaps,
             title: inputs.title,
             cast: { main: inputs.cast.main.length, support: inputs.cast.support.length, guest: inputs.cast.guest.length },
             synopsis: inputs.synopsis.trim().length > 0,
