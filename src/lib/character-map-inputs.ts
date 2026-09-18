@@ -133,6 +133,21 @@ export function countryCode(country: string): string {
     return country.includes("Korea") ? "KR" : country.includes("China") ? "CN" : country.includes("Japan") ? "JP" : country.includes("Taiwan") ? "TW" : country.includes("Thai") ? "TH" : country;
 }
 
+/**
+ * A page title as the API wants it, from a title or from the article's URL
+ * — the admin pastes whichever is under the hand: "W (드라마)", or
+ * https://ko.wikipedia.org/wiki/W_(%EB%93%9C%EB%9D%BC%EB%A7%88).
+ */
+export function wikiPageTitle(given: string): string {
+    const m = given.trim().match(/^https?:\/\/[a-z-]+\.(?:m\.)?wikipedia\.org\/wiki\/([^?#]+)/i);
+    if (!m) return given.trim();
+    try {
+        return decodeURIComponent(m[1]).replace(/_/g, " ");
+    } catch {
+        return m[1].replace(/_/g, " ");
+    }
+}
+
 /** The pinned Wikipedia titles for a slug, from wiki-titles.json — empty when none. */
 export function pinnedWikiTitles(mdlSlug: string): Record<string, string> {
     const file = path.join(process.cwd(), "prisma", "character-maps", "wiki-titles.json");
@@ -155,7 +170,7 @@ export async function gatherChartInputs(
     onStep?: (step: string) => void,
     recaps: Recap[] = [],
 ): Promise<ChartInputs> {
-    const given = { ...pinnedWikiTitles(mdlSlug), ...titles };
+    const given = Object.fromEntries(Object.entries({ ...pinnedWikiTitles(mdlSlug), ...titles }).map(([lang, t]) => [lang, wikiPageTitle(t)]));
 
     onStep?.("Reading the MDL entry");
     const details = await json<{ data: { title: string; sub_title?: string; synopsis?: string; details?: { country?: string } } }>(`${KURYANA}/id/${mdlSlug}`);

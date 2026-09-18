@@ -415,7 +415,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                                             <input
                                                                 value={titles[w.lang] ?? ""}
                                                                 onChange={(e) => setTitles((t) => ({ ...t, [w.lang]: e.target.value }))}
-                                                                placeholder="exact Wikipedia page title, e.g. 내일 (2022년 드라마)"
+                                                                placeholder="the article's URL, or its exact title — 내일 (2022년 드라마)"
                                                                 className="min-w-0 flex-1 bg-transparent text-fg outline-none placeholder:text-fg-faint"
                                                             />
                                                         </label>
