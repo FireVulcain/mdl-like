@@ -10,7 +10,7 @@
     "MDL cast (26 roles, 4 main)",
     "MDL synopsis",
     "ko.wikipedia 등장인물",
-    "en.wikipedia character list"
+    "dramabeans recap (Episodes 1-2)"
   ],
   "main": [
     "namgungho",
@@ -18,6 +18,17 @@
     "taeseung",
     "sua"
   ],
+  "recaps": {
+    "source": "dramabeans",
+    "episodes": 2,
+    "count": 1,
+    "ranges": [
+      [
+        1,
+        2
+      ]
+    ]
+  },
   "people": [
     {
       "id": "namgungho",
@@ -27,7 +38,7 @@
       "still": "https://asianwiki.com/images/9/9e/A_Love_Other_Than_Yours-Seo_Kang-Joon.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Cheerful assistant manager at Hunmin Confectionery hiding a difficult past.",
+      "note": "Assistant manager at Hunmin Confectionery, hiding a difficult past.",
       "alsoPlayedBy": [
         {
           "name": "Kang Ye Chan",
@@ -51,7 +62,7 @@
       "still": "https://asianwiki.com/images/7/73/A_Love_Other_Than_Yours-Ahn_Eun-Jin.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Once-promising film director whose career has stalled."
+      "note": "Film director whose career has stalled."
     },
     {
       "id": "taeseung",
@@ -61,7 +72,7 @@
       "still": "https://asianwiki.com/images/a/a8/A_Love_Other_Than_Yours-Lee_Joo-Ahn1.jpg",
       "group": "Jaegang Law Firm",
       "inCast": true,
-      "note": "A relentless lawyer at Jaegang Law Firm."
+      "note": "Lawyer at Jaegang Law Firm, aggressively pursuing a settlement against Mi Do."
     },
     {
       "id": "sua",
@@ -81,7 +92,7 @@
       "still": "https://asianwiki.com/images/3/32/A_Love_Other_Than_Yours-Kim_Nam-Hee.jpg",
       "group": "Mi Do's family",
       "inCast": true,
-      "note": "CEO of a cleaning company; Mi Do's older brother."
+      "note": "Mi Do's older brother, runs Brother Cleaning."
     },
     {
       "id": "sukhui",
@@ -91,7 +102,7 @@
       "still": "https://asianwiki.com/images/a/a1/A_Love_Other_Than_Yours-Kim_Mi-Kyung.jpg",
       "group": "Mi Do's family",
       "inCast": true,
-      "note": "Mi Do's mother; owns the building housing Queens Hair Salon."
+      "note": "Mi Do's mother, owns the building housing Queen's Beauty Salon."
     },
     {
       "id": "wando",
@@ -101,7 +112,7 @@
       "still": "https://asianwiki.com/images/d/db/A_Love_Other_Than_Yours-Lee_Min-Jae.jpg",
       "group": "Mi Do's family",
       "inCast": true,
-      "note": "Runs a karaoke bar; Mi Do's younger brother."
+      "note": "Mi Do's younger brother, runs a karaoke bar."
     },
     {
       "id": "munyeong",
@@ -111,7 +122,7 @@
       "still": "https://asianwiki.com/images/c/c9/A_Love_Other_Than_Yours-Hur_Ji-Na1.jpg",
       "group": "Mi Do's family",
       "inCast": true,
-      "note": "A top math instructor; Yeong Do's ex-wife."
+      "note": "Yeong Do's ex-wife, a top math instructor."
     },
     {
       "id": "sangsu",
@@ -121,7 +132,7 @@
       "still": "https://asianwiki.com/images/f/f2/A_Love_Other_Than_Yours-Lee_Joo-Won.jpg",
       "group": "Mi Do's family",
       "inCast": true,
-      "note": "A short-form obsessed middle schooler dreaming of ten million followers."
+      "note": "Yeong Do and Mun Yeong's son, a middle schooler obsessed with going viral."
     },
     {
       "id": "hosik",
@@ -131,7 +142,7 @@
       "still": "https://asianwiki.com/images/d/dc/A_Love_Other_Than_Yours-Lee_Joon-Hyuk01.jpg",
       "group": "Hunmin Confectionery",
       "inCast": true,
-      "note": "A career section chief quietly surviving in Namgung Ho's shadow."
+      "note": "Namgung Ho's section chief at Hunmin Confectionery."
     },
     {
       "id": "sanghun",
@@ -150,7 +161,7 @@
       "still": "https://asianwiki.com/images/1/1c/A_Love_Other_Than_Yours-Kwak_Si-Yang1.jpg",
       "group": "Jaegang Law Firm",
       "inCast": true,
-      "note": "Head of the Jaegang Law Firm."
+      "note": "Representative attorney at Jaegang Law Firm."
     },
     {
       "id": "suyeon",
@@ -158,7 +169,7 @@
       "actor": "Kim Li Ye",
       "image": "https://i.mydramalist.com/RBYNyV_5m.jpg",
       "still": "https://asianwiki.com/images/b/bc/A_Love_Other_Than_Yours-Kim_Seung-Hee.jpg",
-      "group": "Su A's circle",
+      "group": "Su A's friends",
       "inCast": true
     },
     {
@@ -169,7 +180,7 @@
       "still": "https://asianwiki.com/images/b/b5/A_Love_Other_Than_Yours-Chun_Yi-Seul1.jpg",
       "group": "Film industry",
       "inCast": true,
-      "note": "A veteran PD at Nobu Film who handles every crisis on set."
+      "note": "Producer at Nobu Film, Mi Do's old friend."
     },
     {
       "id": "haena",
@@ -179,7 +190,7 @@
       "still": "https://asianwiki.com/images/3/35/A_Love_Other_Than_Yours-Song_Ji-Woo.jpg",
       "group": "Film industry",
       "inCast": true,
-      "note": "An arrogant top actress."
+      "note": "A temperamental top actress."
     },
     {
       "id": "jangmi",
@@ -205,22 +216,62 @@
       "actor": "Lee Chang Min",
       "image": "https://i.mydramalist.com/ABVNLL_5m.jpg",
       "still": "https://asianwiki.com/images/3/32/A_Love_Other_Than_Yours-Lee_Chang-Min.jpg",
-      "group": "Other",
+      "group": "Others",
       "inCast": true
     }
   ],
   "links": [
     {
-      "from": "mido",
-      "to": "namgungho",
+      "from": "namgungho",
+      "to": "mido",
       "type": "romance",
-      "label": "a couple for ten years, their passion has faded though loyalty remains",
-      "short": "long-time couple",
-      "evidence": "his girlfriend of 10 years, Lee Mi-do... has always been his anchor.",
+      "label": "a couple for ten years, now questioning whether to marry or break up",
+      "short": "girlfriend of 10 years",
+      "evidence": "his girlfriend of 10 years, Lee Mi-do, a once-promising film director whose career has hit rock bottom, has always been his anchor.",
       "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "namgungho",
+      "to": "mido",
+      "type": "romance",
+      "label": "breaks up after ten years together, worn down by resentment and shame",
+      "short": "breaks up",
+      "evidence": "they actually break up... Mi-do keeps confirming that she wants to break up. Finally, he agrees and walks out the door.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 2
+    },
+    {
+      "from": "namgungho",
+      "to": "mido",
+      "type": "romance",
+      "label": "proposes marriage to Mi Do right after their breakup",
+      "short": "proposes marriage",
+      "evidence": "Then he proposes marriage and she stares in surprise, as our premiere week ends and the credits roll.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "namgungho",
+      "to": "yeongdo",
+      "type": "friend",
+      "label": "confides in Mi Do's brother that the passion has faded even though he still loves her",
+      "short": "confidant",
+      "evidence": "he had told her brother that his heart no longer flutters for Mi-do but she's the compass that keeps him on track at work.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "yeongdo",
@@ -228,23 +279,12 @@
       "type": "family",
       "label": "Mi Do's older brother",
       "short": "older brother",
-      "evidence": "[Mi Do’s older brother]",
+      "evidence": "[Mi Do's older brother]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sukhui",
-      "to": "mido",
-      "type": "family",
-      "label": "Mi Do's mother",
-      "short": "mother",
-      "evidence": "[Mi Do’s mother]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "wando",
@@ -252,11 +292,51 @@
       "type": "family",
       "label": "Mi Do's younger brother",
       "short": "younger brother",
-      "evidence": "[Mi Do’s younger brother]",
+      "evidence": "[Mi Do's younger brother]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sukhui",
+      "to": "mido",
+      "type": "family",
+      "label": "Mi Do's mother",
+      "short": "mother",
+      "evidence": "[Mi Do's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sukhui",
+      "to": "yeongdo",
+      "type": "family",
+      "label": "Yeong Do's mother",
+      "short": "mother",
+      "evidence": "영도&미도&완도의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sukhui",
+      "to": "wando",
+      "type": "family",
+      "label": "Wan Do's mother",
+      "short": "mother",
+      "evidence": "영도&미도&완도의 어머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "munyeong",
@@ -268,43 +348,99 @@
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sangsu",
       "to": "yeongdo",
       "type": "family",
-      "label": "Yeong Do's son",
-      "short": "son",
+      "label": "Yeong Do and Mun Yeong's son",
+      "short": "father",
       "evidence": "[Yeong Do & Mun Yeong's son]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sangsu",
       "to": "munyeong",
       "type": "family",
-      "label": "Mun Yeong's son",
-      "short": "son",
+      "label": "Yeong Do and Mun Yeong's son",
+      "short": "mother",
       "evidence": "[Yeong Do & Mun Yeong's son]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sangsu",
+      "to": "sukhui",
+      "type": "family",
+      "label": "Sang Su's paternal grandmother",
+      "short": "grandmother",
+      "evidence": "상수의 친할머니",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sangsu",
+      "to": "mido",
+      "type": "family",
+      "label": "Mi Do's nephew",
+      "short": "nephew",
+      "evidence": "미도와 완도의 조카",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sangsu",
+      "to": "wando",
+      "type": "family",
+      "label": "Wan Do's nephew",
+      "short": "nephew",
+      "evidence": "미도와 완도의 조카",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "mido",
+      "to": "munyeong",
+      "type": "family",
+      "label": "Mun Yeong's former sister-in-law",
+      "short": "ex-sister-in-law",
+      "evidence": "문영의 전 시누이",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "hosik",
       "to": "namgungho",
       "type": "work",
       "label": "Namgung Ho's superior at Hunmin Confectionery",
-      "short": "his superior",
-      "evidence": "[Namgung Ho’s superior]",
+      "short": "boss",
+      "evidence": "[Namgung Ho's superior]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sanghun",
@@ -316,75 +452,144 @@
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "juhyeok",
-      "to": "haena",
-      "type": "romance",
-      "label": "Song Hae Na's secret lover",
-      "short": "secret lover",
-      "evidence": "해나의 내연남",
-      "source": "ko.wikipedia",
-      "reveal": true,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "suyeon",
-      "to": "sua",
-      "type": "friend",
-      "label": "Su A's friend",
-      "short": "friend",
-      "evidence": "[Su A's friend]",
-      "source": "MDL cast",
+      "from": "sua",
+      "to": "namgungho",
+      "type": "work",
+      "label": "colleague who draws him into a struggling snack product, working closely together",
+      "short": "colleague",
+      "evidence": "there's a woman at the office, PARK SOO-AH..., who has her eye on Namgung, inviting him to lunch to talk over a product that's not working.",
+      "source": "dramabeans ep. 1-2",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sua",
+      "to": "namgungho",
+      "type": "romance",
+      "label": "develops feelings for Namgung Ho and pulls him closer despite his relationship",
+      "short": "has feelings for him",
+      "evidence": "there's a woman at the office, PARK SOO-AH (Jo Ah-ram), who has her eye on Namgung Ho",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "yeonju",
       "to": "mido",
       "type": "friend",
-      "label": "Mi Do's high school classmate and industry colleague",
+      "label": "Mi Do's high school classmate and colleague in the film industry",
       "short": "old friend",
       "evidence": "미도의 고등학교 동창이자 업계 동료",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "haena",
+      "to": "mido",
+      "type": "rivalry",
+      "label": "clashes with Mi Do over a stalled film shoot, sabotaging it after being threatened with exposure",
+      "short": "rival",
+      "evidence": "Hae-na is vengeful to the core, 'falling' off a platform to the pool below and injuring herself so that the movie shoot ends and Mi-do is in big trouble with the production company.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "haena",
+      "to": "juhyeok",
+      "type": "romance",
+      "label": "having a secret affair with the Jaegang Law Firm's representative attorney",
+      "short": "secret lover",
+      "evidence": "해나의 내연남",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "juhyeok",
+      "to": "taeseung",
+      "type": "work",
+      "label": "the representative attorney over Han Tae Seung at Jaegang Law Firm",
+      "short": "boss",
+      "evidence": "재강로펌 대표변호사 / 재강로펌 변호사",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "taeseung",
+      "to": "mido",
+      "type": "rivalry",
+      "label": "enforces the studio's harsh settlement on Mi Do, their conflict escalating to a broken phone and shattered windshield",
+      "short": "adversary",
+      "evidence": "where antagonisms have escalated to him breaking her phone and then her throwing a brick through his windshield.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "sua",
+      "to": "suyeon",
+      "type": "friend",
+      "label": "Su A's close friend",
+      "short": "friend",
+      "evidence": "[Su A's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
     },
     {
       "from": "jangmi",
       "to": "mido",
       "type": "work",
-      "label": "Mi Do's junior",
+      "label": "Mi Do's junior, part of the loyal trio who follows her",
       "short": "junior",
-      "evidence": "[Mi Do's junior]",
-      "source": "MDL cast",
+      "evidence": "미도 후배1... 미도를 따르는 장국영 트리오",
+      "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "gukjin",
       "to": "mido",
       "type": "work",
-      "label": "Mi Do's junior",
+      "label": "Mi Do's junior, part of the loyal trio who follows her",
       "short": "junior",
-      "evidence": "[Mi Do's junior]",
-      "source": "MDL cast",
+      "evidence": "미도 후배2... 미도를 따르는 장국영 트리오",
+      "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     }
   ],
   "compact": {
     "people": [
       "namgungho",
       "mido",
-      "taeseung",
-      "sua",
       "yeongdo",
       "sukhui",
       "wando",
@@ -392,6 +597,8 @@
       "sangsu",
       "hosik",
       "sanghun",
+      "sua",
+      "taeseung",
       "juhyeok",
       "yeonju",
       "haena",

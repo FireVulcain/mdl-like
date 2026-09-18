@@ -66,7 +66,10 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ mdlSlug, recaps: out.recaps }),
             });
-            if (!res.ok) return tell("trackr:recaps", { mdlSlug, status: "failed", error: `app ${res.status}` });
+            if (!res.ok) {
+                const body = await res.json().catch(() => ({}));
+                return tell("trackr:recaps", { mdlSlug, status: "failed", error: body.error ?? `app ${res.status}`, seen: out.tag ? [out.tag] : undefined });
+            }
             const { summary } = await res.json();
             tell("trackr:recaps", { mdlSlug, status: "done", tag: out.tag, ...summary });
         } catch (e) {

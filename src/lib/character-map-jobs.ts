@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
 import { ChartError, DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
-import { listRecaps } from "@/lib/character-map-recaps";
+import { listRecaps, recapsProblem } from "@/lib/character-map-recaps";
 import type { CharacterMapJob } from "@prisma/client";
 
 /**
@@ -152,6 +152,9 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         await set({ status: "gathering", step: "Reading the MDL entry" });
         // the recaps the extension left in the table, when the run asked for them
         const recaps = withRecaps ? await listRecaps(mdlSlug) : [];
+        // a set kept before the guard existed is still checked before it costs anything
+        const problem = recaps.length ? recapsProblem(recaps) : null;
+        if (problem) throw new Error(`${problem}; read the recaps again with the drama's tag or a recap's URL`);
         if (withRecaps) await set({ step: recaps.length ? `Reading ${recaps.length} Dramabeans recap${recaps.length === 1 ? "" : "s"}` : "No recaps kept for this entry — reading without" });
         const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }), recaps);
         const found = inputs.wiki.filter((w) => w.text).map((w) => w.lang);

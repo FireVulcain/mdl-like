@@ -45,7 +45,12 @@ export async function POST(request: Request) {
             toEp: Number.isInteger(r.to) ? (r.to as number) : (r.from as number),
             text: (r.text as string).slice(0, 60_000),
         }));
-    const count = await saveRecaps(mdlSlug, recaps);
+    let count: number;
+    try {
+        count = await saveRecaps(mdlSlug, recaps);
+    } catch (e) {
+        return NextResponse.json({ error: e instanceof Error ? e.message : "refused" }, { status: 422, headers: corsHeaders(origin) });
+    }
     const summary = await recapSummary(mdlSlug);
     return NextResponse.json({ count, summary }, { headers: corsHeaders(origin) });
 }

@@ -42,17 +42,24 @@ const TrackrRecaps = (() => {
     async function recapsFor(fetchJson, title, hint) {
         let tag = null, seen = [];
         const wanted = hint && !/^https?:/.test(hint) ? hint : title;
-        // A recap's URL given by hand: its post carries the tag
+        // A recap's URL given by hand: its post carries the drama's tag, and
+        // the post's slug names it — "w-two-worlds-episode-1" is under the
+        // tag whose slug is "w-two-worlds". Never the post's first tag: that
+        // was once "first impressions", and 44 dramas' first episodes went
+        // into one chart.
         if (hint && /^https?:\/\/(www\.)?dramabeans\.com\//.test(hint)) {
             const slug = new URL(hint).pathname.replace(/\/+$/, "").split("/").pop();
+            const stem = slug.replace(/-episodes?-\d+.*$/, "");
             const posts = await fetchJson(`${DB}/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=id,tags`);
             const ids = posts.ok && posts.data?.[0]?.tags ? posts.data[0].tags : [];
+            const tags = [];
             for (const id of ids) {
-                const t = await fetchJson(`${DB}/wp-json/wp/v2/tags/${id}?_fields=id,name,count`);
-                if (t.ok && t.data && norm(t.data.name) === norm(title)) { tag = t.data; break; }
-                if (t.ok && t.data) seen.push(t.data.name);
+                const t = await fetchJson(`${DB}/wp-json/wp/v2/tags/${id}?_fields=id,name,slug,count`);
+                if (t.ok && t.data) tags.push(t.data);
             }
-            if (!tag && ids.length) { const t = await fetchJson(`${DB}/wp-json/wp/v2/tags/${ids[0]}?_fields=id,name,count`); if (t.ok && t.data) tag = t.data; }
+            tag = tags.find((t) => t.slug === stem) ?? tags.find((t) => norm(t.name) === norm(title)) ?? tags.find((t) => stem.startsWith(t.slug + "-") || t.slug.startsWith(stem)) ?? null;
+            seen = tags.map((t) => t.name);
+            if (!tag) return { error: `no tag for "${stem}" on that post`, seen };
         }
         if (!tag) {
             const res = await fetchJson(`${DB}/wp-json/wp/v2/tags?search=${encodeURIComponent(wanted)}&per_page=20&_fields=id,name,count`);
@@ -67,6 +74,10 @@ const TrackrRecaps = (() => {
         if (!list.ok) return { error: `dramabeans ${list.status}` };
         const posts = (list.data || []).map((p) => ({ ...p, plain: (p.title?.rendered || "").replace(/&#8217;|&rsquo;/g, "’").replace(/&amp;/g, "&") })).filter((p) => rangeOf(p.plain));
         if (posts.length === 0) return { error: `tag "${tag.name}" has no episode recaps`, seen: [tag.name] };
+        // One drama's recaps share the title before the colon; a tag that
+        // mixes several is a generic one, not the drama's
+        const shows = [...new Set(posts.map((p) => norm(p.plain.split(/:\s*Episode/i)[0])))];
+        if (shows.length > 1) return { error: `tag "${tag.name}" mixes ${shows.length} dramas' recaps — give the drama's own tag or a recap's URL`, seen: [tag.name] };
         posts.sort((a, b) => rangeOf(a.plain).from - rangeOf(b.plain).from);
 
         const recaps = [];
