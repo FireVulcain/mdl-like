@@ -252,7 +252,7 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     // KR / CN / JP.
     Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: countryCode(inputs.country) || draft.country });
     if (withRecaps) {
-        map.recaps = { source: inputs.recaps[0].source, episodes: lastEp, count: inputs.recaps.length };
+        map.recaps = { source: inputs.recaps[0].source, episodes: lastEp, count: inputs.recaps.length, ranges: inputs.recaps.map((r) => [r.fromEp, r.toEp]) };
         const undated = links.filter((l) => l.since == null).length;
         if (undated) warnings.push(`${undated} link${undated === 1 ? "" : "s"} without an episode — always shown in the episode view`);
     }

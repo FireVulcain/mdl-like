@@ -82,7 +82,7 @@ extension has by then written them to the row from the production page.
   "title": "When Life Gives You Tangerines", "native": "폭싹 속았수다", "year": 2025, "country": "KR",
   "sources": ["MDL cast (…)", "MDL synopsis", "ko.wikipedia 등장인물"],
   "main": ["aesun", "gwansik"],
-  "recaps": { "source": "dramabeans", "episodes": 16, "count": 8 },
+  "recaps": { "source": "dramabeans", "episodes": 16, "count": 8, "ranges": [[1, 2], [3, 4], "…"] },
   "people": [
     { "id": "aesun", "name": "O Ae Sun", "actor": "IU", "image": "https://i.mydramalist.com/….jpg",
       "group": "Ae Sun & Gwan Sik", "inCast": true, "note": "optional",
@@ -153,14 +153,19 @@ every link:
   A tie that changes is two links: "hunts Kingfisher" from episode 2, and
   "lets her go" from episode 14, each with its own sentence.
 - **`recaps`** on the chart says how far the recaps went: `episodes` is the
-  last episode covered, and the "By episode" view's slider runs to it.
+  last episode covered, and `ranges` the episodes each recap covers, in
+  order. A recap of episodes 11-12 does not say which of the two a thing
+  happens in, so a link is dated no finer than its recap — and the slider
+  only stops where a recap ends (1, 4, 6, 8… for A Bona Fide Killer): a
+  reader at episode 11 stands at the "9–10" stop and sees nothing of 11-12.
 
-The chart page then has two views: **Everyone**, the chart as it stands at
-the end, and **By episode**, a slider that shows it as of episode N — a link
-first seen later is not drawn, nor a person none of whose links have
-happened yet, and a reveal that has happened by then is out from behind the
-spoiler toggle. The slider opens on the reader's own progress, or at the end
-for a show they have finished. A chart with no dated link has one view.
+The chart page then has two views: **By episode** (the default for a dated
+chart), a slider that shows it as of a recap's end — a link first seen
+later is not drawn, nor a person none of whose links have happened yet, and
+a reveal that has happened by then is out from behind the spoiler toggle —
+and **Everyone**, the chart as it stands at the end. The slider opens on
+the last stop the reader has passed, or at the end for a show they have
+finished. A chart with no dated link has one view.
 
 The recaps are kept in the `CharacterMapRecap` table, one row per recap
 page, and read again on every run for that slug — they are not in git (they

@@ -84,7 +84,10 @@ export type MapLink = {
     directed: boolean;
     /**
      * The episode the tie is first seen in, when the chart was read with
-     * episode recaps; the "as of episode N" view hides links past N. A link
+     * episode recaps — the first episode of the recap it was read from,
+     * since a recap of episodes 11-12 does not say which of the two. So the
+     * "By episode" view only stops at the ends of the recaps' ranges
+     * (`recaps.ranges`): at 10 the link is not there, at 12 it is. A link
      * without one — every chart read from the cast and Wikipedia alone — is
      * always shown.
      */
@@ -101,8 +104,13 @@ export type CharacterMapData = {
     year?: number | null;
     /** KR / CN / JP… — the stills run only looks at Korean and Japanese charts */
     country?: string;
-    /** the episode recaps the chart was read with, when it was: how far they go */
-    recaps?: { source: string; episodes: number; count: number };
+    /**
+     * The episode recaps the chart was read with, when it was: how far they
+     * go, and the episodes each one covers ([from, to], in order) — the
+     * stops of the "By episode" slider, since a link is dated no finer than
+     * the recap it comes from.
+     */
+    recaps?: { source: string; episodes: number; count: number; ranges?: [number, number][] };
     sources: string[];
     /** the leads — drawn in the middle */
     main: string[];

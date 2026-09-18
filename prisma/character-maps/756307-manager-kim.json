@@ -2,473 +2,977 @@
   "version": 1,
   "mdlSlug": "756307-manager-kim",
   "title": "Agent Kim Reactivated",
-  "native": "김부장 이야기",
-  "year": 2025,
+  "native": "김부장",
+  "year": 2026,
   "country": "KR",
   "sources": [
-    "MDL cast (16 roles, 5 main)",
+    "MDL cast (77 roles, 5 main)",
     "MDL synopsis",
-    "ko.wikipedia 등장인물"
+    "ko.wikipedia 등장인물",
+    "en.wikipedia character list",
+    "dramabeans recaps (Episodes 1-10)"
   ],
   "main": [
     "kim",
+    "hansu",
+    "jincheol",
+    "gangchan",
     "sanga"
   ],
+  "recaps": {
+    "source": "dramabeans",
+    "episodes": 10,
+    "count": 5,
+    "ranges": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        9,
+        10
+      ]
+    ]
+  },
   "people": [
     {
       "id": "kim",
       "name": "Manager Kim",
       "actor": "So Ji Sub",
       "image": "https://i.mydramalist.com/nO7JzE_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f0/Agent_Kim_Reactivated-So_Ji-Sub.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Accounting manager at Sangsaeng Savings Bank; a single father — and a former spy on North Korea's blacklist",
-      "still": "https://asianwiki.com/images/f/f0/Agent_Kim_Reactivated-So_Ji-Sub.jpg"
-    },
-    {
-      "id": "sanga",
-      "name": "Jung Sang A",
-      "actor": "Son Na Eun",
-      "image": "https://i.mydramalist.com/eZenK_5m.jpg",
-      "group": "Leads",
-      "inCast": true,
-      "note": "Assistant manager at the bank",
-      "still": "https://asianwiki.com/images/c/c7/Agent_Kim_Reactivated-Son_Na-Eun.jpg"
-    },
-    {
-      "id": "minji",
-      "name": "Kim Min Ji",
-      "actor": "Seo Su Min",
-      "image": "https://i.mydramalist.com/nOXEqL_5m.jpg",
-      "group": "Kim's family",
-      "inCast": true,
-      "note": "Second year at Songin High",
-      "still": "https://asianwiki.com/images/7/7c/Agent_Kim_Reactivated-Seo_Su-Min1.jpeg"
-    },
-    {
-      "id": "yujin",
-      "name": "Rim Yu Jin",
-      "actor": "Seo Ji Hye",
-      "image": null,
-      "group": "Kim's family",
-      "inCast": false,
-      "note": "Kim's wife (deceased)",
-      "still": "https://asianwiki.com/images/2/21/Agent_Kim_Reactivated-Seo_Ji-Hye.jpg"
+      "note": "Former North Korean and South Korean black-ops agent, coded 'Agent 66', posing as an ordinary bank manager.",
+      "alsoPlayedBy": [
+        {
+          "name": "Hong Dong Young",
+          "image": "https://i.mydramalist.com/pP1pB_5m.jpg",
+          "still": "https://asianwiki.com/images/4/45/Agent_Kim_Reactivated-Hong_Dong-Young.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "hansu",
       "name": "Seong Han Su",
       "actor": "Choi Dae Hoon",
       "image": "https://i.mydramalist.com/X85nqm.jpg",
-      "group": "Kim's friends",
+      "still": "https://asianwiki.com/images/8/8e/Agent_Kim_Reactivated-Choi_Dae-Hoon.jpg",
+      "group": "Leads",
       "inCast": true,
-      "note": "Taekwondo studio master",
-      "still": "https://asianwiki.com/images/8/8e/Agent_Kim_Reactivated-Choi_Dae-Hoon.jpg"
+      "note": "Former Olympic taekwondo champion who runs a dojo; Kim's old comrade."
     },
     {
       "id": "jincheol",
       "name": "Park Jin Cheol",
       "actor": "Yoon Kyung Ho",
       "image": "https://i.mydramalist.com/WK0oR_5m.jpg",
-      "group": "Kim's friends",
+      "still": "https://asianwiki.com/images/3/3e/Agent_Kim_Reactivated-Yoon_Kyung-Ho.jpg",
+      "group": "Leads",
       "inCast": true,
-      "still": "https://asianwiki.com/images/3/3e/Agent_Kim_Reactivated-Yoon_Kyung-Ho.jpg"
+      "note": "Marine Corps veteran of the Cheonsan special forces unit; Kim's old comrade."
     },
     {
-      "id": "im",
-      "name": "Mr. Im (Im Ho Won)",
+      "id": "minji",
+      "name": "Kim Min Ji",
+      "actor": "Seo Su Min",
+      "image": "https://i.mydramalist.com/nOXEqL_5m.jpg",
+      "still": "https://asianwiki.com/images/7/7c/Agent_Kim_Reactivated-Seo_Su-Min1.jpeg",
+      "group": "Kim's family",
+      "inCast": true,
+      "note": "Kim's teenage daughter, a bullied sophomore at Songin High School.",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Ha Yoon",
+          "image": "https://i.mydramalist.com/b3DPqx_5m.jpg",
+          "still": "https://asianwiki.com/images/c/cd/Agent_Kim_Reactivated-Choi_Ha-Yoon.jpeg",
+          "era": "child"
+        }
+      ]
+    },
+    {
+      "id": "yujin",
+      "name": "Im Yu Jin",
+      "actor": "Suh Jie Hye",
+      "image": "https://i.mydramalist.com/XEdgpm.jpg",
+      "still": "https://asianwiki.com/images/2/21/Agent_Kim_Reactivated-Seo_Ji-Hye.jpg",
+      "group": "Kim's family",
+      "inCast": true,
+      "note": "Kim's wife, who died giving birth to Min Ji."
+    },
+    {
+      "id": "sanga",
+      "name": "Jung Sang A",
+      "actor": "Son Na Eun",
+      "image": "https://i.mydramalist.com/eZenK_5m.jpg",
+      "still": "https://asianwiki.com/images/c/c7/Agent_Kim_Reactivated-Son_Na-Eun.jpg",
+      "group": "Special Missions Directorate",
+      "inCast": true,
+      "note": "SMD agent undercover as Kim's bank coworker."
+    },
+    {
+      "id": "imhowon",
+      "name": "Mr. Im",
       "actor": "Park Jin U",
       "image": "https://i.mydramalist.com/rzXb7_5m.jpg",
-      "group": "Kim's friends",
+      "still": "https://asianwiki.com/images/9/91/Agent_Kim_Reactivated-Park_Jin-Woo.jpg",
+      "group": "Special Missions Directorate",
       "inCast": true,
-      "note": "Owner of the neighbourhood laundry",
-      "still": "https://asianwiki.com/images/9/91/Agent_Kim_Reactivated-Park_Jin-Woo.jpg"
+      "note": "Laundromat owner near Kim's home, secretly an SMD agent monitoring him."
     },
     {
-      "id": "gangchan",
-      "name": "Ju Gang Chan",
-      "actor": "Joo Sang Wook",
-      "image": "https://i.mydramalist.com/NdqP4o_5m.jpg",
-      "group": "Juhak Construction",
-      "inCast": true,
-      "note": "CEO of Juhak Construction",
-      "still": "https://asianwiki.com/images/d/d7/Agent_Kim_Reactivated-Joo_Sang-Wook1.jpg"
-    },
-    {
-      "id": "hyeri",
-      "name": "Ju Hye Ri",
-      "actor": "Yu Ji Ahn",
-      "image": "https://i.mydramalist.com/PxQWOX_5m.jpg",
-      "group": "Juhak Construction",
-      "inCast": true,
-      "note": "Second year at Songin High",
-      "still": "https://asianwiki.com/images/e/e2/Agent_Kim_Reactivated-Yoo_Ji-An.jpg"
-    },
-    {
-      "id": "nam",
-      "name": "Director Nam",
-      "actor": "Lee Dong Ha",
-      "image": "https://i.mydramalist.com/Xd8krw_5m.jpg",
-      "group": "Juhak Construction",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/4e/Agent_Kim_Reactivated-Lee_Dong-Ha1.jpg"
-    },
-    {
-      "id": "goldteeth",
-      "name": "\"Golden Teeth\"",
-      "actor": "Jo Bok Rae",
-      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
-      "group": "Juhak Construction",
-      "inCast": true,
-      "note": "Gangster, 'service company' representative",
-      "still": "https://asianwiki.com/images/9/95/Agent_Kim_Reactivated-Jo_Bok-Rae.jpg"
-    },
-    {
-      "id": "sangman",
-      "name": "Kim Sang Man",
-      "actor": "Kim Dae Han",
-      "image": "https://i.mydramalist.com/W7d4l_5m.jpg",
-      "group": "Juhak Construction",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/d/d1/Agent_Kim_Reactivated-Kim_Dae-Han1.jpg"
-    },
-    {
-      "id": "gangmin",
-      "name": "Park Gang Min",
-      "actor": "Kim Yun Bae",
-      "image": "https://i.mydramalist.com/wJ0mx8_5m.jpg",
-      "group": "Juhak Construction",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/0/09/Agent_Kim_Reactivated-Kim_Yoon-Bae1.jpg"
-    },
-    {
-      "id": "gukcheol",
-      "name": "Kang Guk Cheol / \"Mole Cricket\"",
+      "id": "molecricket",
+      "name": "Kang Guk Cheol / Mole Cricket",
       "actor": "Won Hyun Joon",
       "image": "https://i.mydramalist.com/6Yldj_5m.jpg",
-      "group": "South Korean intelligence",
+      "still": "https://asianwiki.com/images/6/68/Agent_Kim_Reactivated-Won_Hyun-Joon.jpg",
+      "group": "Special Missions Directorate",
       "inCast": true,
-      "note": "Director of the Special Mission Bureau",
-      "still": "https://asianwiki.com/images/6/68/Agent_Kim_Reactivated-Won_Hyun-Joon.jpg"
+      "note": "Director of the Special Missions Directorate, coded 'Mole Cricket'."
     },
     {
       "id": "jang",
       "name": "General Jang",
       "actor": "Choi Bum Ho",
       "image": "https://i.mydramalist.com/4Ny1d_5m.jpg",
-      "group": "South Korean intelligence",
+      "still": "https://asianwiki.com/images/2/2e/Agent_Kim_Reactivated-Choi_Beom-Ho.jpg",
+      "group": "Special Missions Directorate",
       "inCast": true,
-      "note": "Major general of the Cheonsan special forces unit",
-      "still": "https://asianwiki.com/images/2/2e/Agent_Kim_Reactivated-Choi_Beom-Ho.jpg"
+      "note": "General overseeing the 'Cheonsan' special forces unit; one of few who values Kim's service."
     },
     {
       "id": "gangseong",
       "name": "Park Gang Seong",
       "actor": "Kim Sung Kyu",
       "image": "https://i.mydramalist.com/yWDewn_5m.jpg",
-      "group": "North Korean intelligence",
+      "still": "https://asianwiki.com/images/9/9a/Agent_Kim_Reactivated-Kim_Sung-Kyu.jpg",
+      "group": "North Korea",
       "inCast": true,
-      "note": "Agent sent to the South",
-      "still": "https://asianwiki.com/images/9/9a/Agent_Kim_Reactivated-Kim_Sung-Kyu.jpg"
+      "note": "North Korean operative sent to capture Kim; Park Yeong Gwang's younger brother.",
+      "alsoPlayedBy": [
+        {
+          "name": "Yang Hui Sang",
+          "image": "https://i.mydramalist.com/mOvEkQ_5m.jpg",
+          "still": "https://asianwiki.com/images/5/57/Agent_Kim_Reactivated-Yang_Hee-Sang.jpeg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "eungryeong",
       "name": "Ri Eung Ryeong",
       "actor": "Lee Jae Yong",
       "image": "https://i.mydramalist.com/jx21z_5m.jpg",
-      "group": "North Korean intelligence",
+      "still": "https://asianwiki.com/images/a/ab/Agent_Kim_Reactivated-Lee_Jae-Yong.jpg",
+      "group": "North Korea",
       "inCast": true,
-      "note": "Head of the North's intelligence bureau for the South",
-      "still": "https://asianwiki.com/images/a/ab/Agent_Kim_Reactivated-Lee_Jae-Yong.jpg"
+      "note": "Director General of North Korea's intelligence bureau on the South."
+    },
+    {
+      "id": "yeonggwang",
+      "name": "Park Yeong Gwang",
+      "actor": "Ok Taec Yeon",
+      "image": "https://i.mydramalist.com/eQwkY_5m.jpg",
+      "still": "https://asianwiki.com/images/4/49/Agent_Kim_Reactivated-TaecYeon.jpeg",
+      "group": "North Korea",
+      "inCast": true,
+      "note": "Kim's closest comrade in the North, killed in a betrayed mission; Gang Seong's older brother.",
+      "alsoPlayedBy": [
+        {
+          "name": "Kang Ye Chan",
+          "image": "https://i.mydramalist.com/3ogePV_5m.jpg",
+          "still": "https://asianwiki.com/images/a/aa/Agent_Kim_Reactivated-Kang_Ye-Chan1.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "gangchan",
+      "name": "Ju Gang Chan",
+      "actor": "Joo Sang Wook",
+      "image": "https://i.mydramalist.com/NdqP4o_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d7/Agent_Kim_Reactivated-Joo_Sang-Wook1.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "President of Juhak Construction who rules through corruption and violence."
+    },
+    {
+      "id": "hyeri",
+      "name": "Ju Hye Ri",
+      "actor": "Yu Ji Ahn",
+      "image": "https://i.mydramalist.com/PxQWOX_5m.jpg",
+      "still": "https://asianwiki.com/images/e/e2/Agent_Kim_Reactivated-Yoo_Ji-An.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Gang Chan's daughter, Min Ji's classmate and bully."
+    },
+    {
+      "id": "nam",
+      "name": "Director Nam",
+      "actor": "Lee Dong Ha",
+      "image": "https://i.mydramalist.com/Xd8krw_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4e/Agent_Kim_Reactivated-Lee_Dong-Ha1.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Gang Chan's chief of staff and enforcer."
+    },
+    {
+      "id": "goldteeth",
+      "name": "Golden Teeth",
+      "actor": "Jo Bok Rae",
+      "image": "https://i.mydramalist.com/4rvv1_5m.jpg",
+      "still": "https://asianwiki.com/images/9/95/Agent_Kim_Reactivated-Jo_Bok-Rae.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Gangster with an old score to settle against Gang Chan, who once tore out his teeth."
+    },
+    {
+      "id": "sangman",
+      "name": "Kim Sang Man",
+      "actor": "Kim Dae Han",
+      "image": "https://i.mydramalist.com/W7d4l_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d1/Agent_Kim_Reactivated-Kim_Dae-Han1.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Subordinate of Golden Teeth."
+    },
+    {
+      "id": "gangmin",
+      "name": "Park Gang Min",
+      "actor": "Kim Yun Bae",
+      "image": "https://i.mydramalist.com/wJ0mx8_5m.jpg",
+      "still": "https://asianwiki.com/images/0/09/Agent_Kim_Reactivated-Kim_Yoon-Bae1.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Subordinate of Golden Teeth."
+    },
+    {
+      "id": "gangchanwife",
+      "name": "Gang Chan's wife",
+      "actor": "Moon Bo Ryung",
+      "image": "https://i.mydramalist.com/kRxQd_5m.jpg",
+      "still": "https://asianwiki.com/images/2/2c/Agent_Kim_Reactivated-Moon_Bo-Ryung01.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true
+    },
+    {
+      "id": "simjongseon",
+      "name": "Sim Jong Seon",
+      "actor": "Kim Kyung Ryong",
+      "image": "https://i.mydramalist.com/6n342m.jpg",
+      "still": "https://asianwiki.com/images/7/79/Agent_Kim_Reactivated-Kim_Kyeong-Ryong1.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "National Assembly member and political ally of Gang Chan."
+    },
+    {
+      "id": "dohyeon",
+      "name": "Im Do Hyeon",
+      "actor": "Im Chul Hyung",
+      "image": "https://i.mydramalist.com/qgwnz_5m.jpg",
+      "still": "https://asianwiki.com/images/7/73/Agent_Kim_Reactivated-Lim_Chul-Hyung1.jpg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Vice Minister of National Security, swayed by Gang Chan's influence."
+    },
+    {
+      "id": "minho",
+      "name": "Seong Min Ho",
+      "actor": "Hwang Sung Bin",
+      "image": "https://i.mydramalist.com/2L3LE_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a6/Agent_Kim_Reactivated-Hwang_Sung-Bin01.jpeg",
+      "group": "Ju Gang Chan's people",
+      "inCast": true,
+      "note": "Hye Ri's gangster friend who helped orchestrate the ambush on Min Ji."
+    },
+    {
+      "id": "taehun",
+      "name": "Sung Tae Hun",
+      "actor": "Yang Joon Seok",
+      "image": "https://i.mydramalist.com/RBAPyg_5m.jpg",
+      "still": "https://asianwiki.com/images/e/ee/Agent_Kim_Reactivated-Yang_Joon-Seok.jpg",
+      "group": "The trio's families",
+      "inCast": true,
+      "note": "Han Su's son."
+    },
+    {
+      "id": "jiyeong",
+      "name": "Ji Yeong",
+      "actor": "Kim Ji Young",
+      "image": "https://i.mydramalist.com/YYq3Oo_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a9/Agent_Kim_Reactivated-Kim_Ji-Young1.jpg",
+      "group": "The trio's families",
+      "inCast": true,
+      "note": "Jin Cheol's wife, a former Marine Corps brigadier general."
+    },
+    {
+      "id": "dabin",
+      "name": "Park Da Bin",
+      "actor": "Lee Na Yeon",
+      "image": "https://i.mydramalist.com/25R1O_5m.jpg",
+      "still": "https://asianwiki.com/images/9/98/Agent_Kim_Reactivated-Lee_Na-Yeon1.jpg",
+      "group": "The trio's families",
+      "inCast": true,
+      "note": "Jin Cheol's daughter."
+    },
+    {
+      "id": "namhoon",
+      "name": "Kim Nam Hoon",
+      "actor": "Chael",
+      "image": "https://i.mydramalist.com/Xdwj7q_5m.jpg",
+      "still": "https://asianwiki.com/images/b/bc/Agent_Kim_Reactivated-Chael.jpg",
+      "group": "Min Ji's school",
+      "inCast": true,
+      "note": "Min Ji's crush; the one classmate who was kind to her."
     }
   ],
   "links": [
     {
       "from": "kim",
-      "to": "minji",
-      "type": "family",
-      "label": "father — a single father raising her",
-      "short": "father",
-      "evidence": "He seems like an ordinary single father, raising his daughter Min Ji",
-      "source": "MDL synopsis",
+      "to": "hansu",
+      "type": "friend",
+      "label": "Longtime friend and former fellow special-forces agent",
+      "short": "best friend",
+      "evidence": "A long-time friend and comrade of Kim.",
+      "source": "en.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 1
     },
     {
-      "from": "yujin",
-      "to": "kim",
-      "type": "family",
-      "label": "wife, deceased",
-      "short": "wife",
-      "evidence": "림유진 역 (†) – 김부장의 아내, 민지의 어머니",
-      "source": "ko.wikipedia",
+      "from": "kim",
+      "to": "jincheol",
+      "type": "friend",
+      "label": "Longtime friend and former fellow special-forces agent",
+      "short": "best friend",
+      "evidence": "He's also a long-time friend and comrade of Kim, and a volunteer member of the Marine Corps Veterans Association.",
+      "source": "en.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "yujin",
-      "to": "minji",
-      "type": "family",
-      "label": "mother",
-      "short": "mother",
-      "evidence": "김부장의 아내, 민지의 어머니",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 1
     },
     {
       "from": "hansu",
-      "to": "kim",
+      "to": "jincheol",
       "type": "friend",
-      "label": "old friend; runs the taekwondo studio",
-      "short": "old friend",
-      "evidence": "하얀 태권도 관장, 김부장의 오랜 친구",
-      "source": "ko.wikipedia",
+      "label": "Fellow ex-agent and inseparable friend",
+      "short": "comrade",
+      "evidence": "Once a year, Kim meets up with his friends and fellow ex-agents Sung Han-soo and Park Jin-chul.",
+      "source": "dramabeans ep. 1-2",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
     },
     {
-      "from": "jincheol",
-      "to": "kim",
-      "type": "friend",
-      "label": "friend from the neighbourhood",
-      "short": "friend",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "im",
-      "to": "kim",
-      "type": "friend",
-      "label": "the laundry owner of Kim's neighbourhood",
-      "short": "laundry owner",
-      "evidence": "도원세탁소 사장, 김부장 동네 세탁소 사장",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sanga",
-      "to": "kim",
-      "type": "work",
-      "label": "works with him at Sangsaeng Savings Bank",
-      "short": "colleague",
-      "evidence": "정상아 역 – 상생저축은행 대리 / 김부장 역 – 상생저축은행 회계팀 부장",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "sanga",
-      "to": "kim",
-      "type": "romance",
-      "label": "drawn to him",
-      "short": "drawn to him",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "gangchan",
-      "to": "hyeri",
-      "type": "family",
-      "label": "father",
-      "short": "father",
-      "evidence": "[Gang Chan's daughter]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "hyeri",
+      "from": "kim",
       "to": "minji",
-      "type": "friend",
-      "label": "classmates at Songin High, same year",
-      "short": "classmate",
-      "evidence": "주혜리 역 – 강찬의 딸, 송인고등학교 2학년 재학중 / 김민지 역 – 송인고등학교 2학년 재학중",
+      "type": "family",
+      "label": "Min Ji's father, raising her alone as a single dad",
+      "short": "father",
+      "evidence": "He seems like an ordinary single father, raising his daughter Min Ji.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "yujin",
+      "to": "minji",
+      "type": "family",
+      "label": "Min Ji's mother, who died giving birth to her",
+      "short": "mother",
+      "evidence": "김부장과 죽은 유진의 딸.",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "nam",
-      "to": "gangchan",
-      "type": "work",
-      "label": "chief secretary — his right-hand man",
-      "short": "right-hand man",
-      "evidence": "[Gang Chan's right-hand man]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "goldteeth",
-      "to": "gangchan",
-      "type": "work",
-      "label": "gangster, Gang Chan's henchman",
-      "short": "henchman",
-      "evidence": "조직폭력배, 강찬의 하수인",
+      "from": "kim",
+      "to": "yujin",
+      "type": "family",
+      "label": "Kim's late wife, who died the day Min Ji was born, asking him to live only as her father",
+      "short": "late wife",
+      "evidence": "두 사람의 사랑의 결실인 민지를 낳던 날, 세상을 떠나며 김부장에게 과거는 전부 잊고 민지의 아빠로 살아달라는 유언을 남겼다.",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 1
     },
     {
-      "from": "sangman",
-      "to": "goldteeth",
-      "type": "work",
-      "label": "subordinate",
-      "short": "subordinate",
-      "evidence": "[Golden Teeth's subordinate]",
-      "source": "MDL cast",
-      "reveal": false,
+      "from": "kim",
+      "to": "yeonggwang",
+      "type": "bond",
+      "label": "Kim's closest comrade from the orphanage, who made him promise to survive after their unit was betrayed",
+      "short": "fallen comrade",
+      "evidence": "Kim and Park Young-gwang — the elder brother — remembered each other's names even when they forgot their own... Young-gwang made him promise to survive, no matter what.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 5
     },
     {
-      "from": "gangmin",
-      "to": "goldteeth",
-      "type": "work",
-      "label": "subordinate",
-      "short": "subordinate",
-      "evidence": "[Golden Teeth's subordinate]",
-      "source": "MDL cast",
-      "reveal": false,
+      "from": "gangseong",
+      "to": "yeonggwang",
+      "type": "family",
+      "label": "Park Gang Seong's older brother, killed on a betrayed mission",
+      "short": "brother",
+      "evidence": "Park Young-gwang — the elder brother...",
+      "source": "dramabeans ep. 5-6",
+      "reveal": true,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "gangchan",
-      "to": "kim",
-      "type": "rivalry",
-      "label": "the developer whose men come after Kim's neighbourhood",
-      "short": "enemy",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "gukcheol",
-      "to": "kim",
-      "type": "work",
-      "label": "the South's Special Mission Bureau director; Kim's former side",
-      "short": "former boss",
-      "evidence": "[South Korean's secret agent] / 대한민국 특수임무국 국장",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jang",
-      "to": "kim",
-      "type": "work",
-      "label": "special forces general who knows Kim's past",
-      "short": "knows his past",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": true
-    },
-    {
-      "from": "eungryeong",
-      "to": "gangseong",
-      "type": "work",
-      "label": "head of the bureau that sent him south",
-      "short": "his chief",
-      "evidence": "리응령 역 – 조선인민공화국 대남첩보총국 총국장 / 박강성 역 – 남파 공작원",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 5
     },
     {
       "from": "gangseong",
       "to": "kim",
       "type": "rivalry",
-      "label": "the North's agent sent after the man on its blacklist",
+      "label": "Sent to hunt down and kill Kim, believing he murdered his own brother",
       "short": "hunts him",
-      "evidence": "He is on North Korea's most wanted blacklist [...] [North Korean's secret agent]",
-      "source": "MDL synopsis",
+      "evidence": "Director General Ri Eung-ryeong secretly commissions the new Agent 66 — younger brother of Kim's direct replacement, who Kim allegedly killed — to find and assassinate Kim.",
+      "source": "dramabeans ep. 1-2",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "gangseong",
+      "to": "kim",
+      "type": "bond",
+      "label": "Learns the truth about his brother's death and later vows, alongside Kim, to live in his honor",
+      "short": "reconciled ally",
+      "evidence": "Both Agents 66 vow to live in honor of Young-gwang, after which Kang-seong does get his revenge.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 9
+    },
+    {
+      "from": "eungryeong",
+      "to": "yeonggwang",
+      "type": "rivalry",
+      "label": "Sent Young-gwang and Kim's unit on a suicide mission just to get his predecessor fired and himself promoted",
+      "short": "betrayed unit",
+      "evidence": "Only later, in South Korean custody, did Kim learn that Director General Ri sent their unit on a suicide mission to get the previous Director General fired and himself promoted.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5
     },
     {
       "from": "eungryeong",
       "to": "kim",
       "type": "rivalry",
-      "label": "wants the blacklisted former spy",
-      "short": "wants him",
-      "evidence": null,
-      "source": null,
+      "label": "Orchestrated the betrayal that killed Kim's unit and drove him into South Korean custody",
+      "short": "betrayed him",
+      "evidence": "Only later, in South Korean custody, did Kim learn that Director General Ri sent their unit on a suicide mission...",
+      "source": "dramabeans ep. 5-6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "jang",
+      "to": "kim",
+      "type": "work",
+      "label": "Assigns Kim one final mission — protect a North Korean fugitive — in exchange for freedom with Min Ji",
+      "short": "his handler",
+      "evidence": "Now that he's passed, he's given an offer: freedom and a new life with Min-ji on the successful completion of one final mission.",
+      "source": "dramabeans ep. 7-8",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "kim",
+      "to": "eungryeong",
+      "type": "work",
+      "label": "Ordered to smuggle and protect the very man who betrayed him and got Young-gwang killed",
+      "short": "assigned to protect",
+      "evidence": "now Kim has to protect the very person who betrayed him and got Young-gwang killed.",
+      "source": "dramabeans ep. 7-8",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "gangseong",
+      "to": "eungryeong",
+      "type": "rivalry",
+      "label": "Takes his revenge on Ri Eung Ryeong for causing his brother's death",
+      "short": "takes revenge",
+      "evidence": "Both Agents 66 vow to live in honor of Young-gwang, after which Kang-seong does get his revenge.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "molecricket",
+      "to": "kim",
+      "type": "work",
+      "label": "Kim's former superior at the SMD, now leading the hunt after his cover is blown",
+      "short": "former boss",
+      "evidence": "Mole Cricket (Won Hyun-joon)... they used to work under him.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3
+    },
+    {
+      "from": "molecricket",
+      "to": "minji",
+      "type": "work",
+      "label": "Holds Min Ji as leverage against Kim, first as a hostage and then interrogating her",
+      "short": "holds hostage",
+      "evidence": "Back at SMB headquarters, Mole Cricket interrogates Min-ji about how all of this started.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "sanga",
+      "to": "kim",
+      "type": "work",
+      "label": "SMD plant assigned to monitor Kim while posing as his bank coworker",
+      "short": "his handler",
+      "evidence": "Kim isn't at all surprised to learn these two have been plants all along.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "imhowon",
+      "to": "kim",
+      "type": "work",
+      "label": "SMD plant posing as the laundromat owner near Kim's home to keep watch on him",
+      "short": "watches him",
+      "evidence": "Kim isn't at all surprised to learn these two have been plants all along.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sanga",
+      "to": "hansu",
+      "type": "friend",
+      "label": "Eventually sides with the trio, helping rescue Min Ji against her own agency's orders",
+      "short": "turns ally",
+      "evidence": "Sang-ah and Mr. Lim have slipped in through the back and whisked Min-ji away.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 5
+    },
+    {
+      "from": "sanga",
+      "to": "jincheol",
+      "type": "friend",
+      "label": "Eventually sides with the trio, helping rescue Min Ji against her own agency's orders",
+      "short": "turns ally",
+      "evidence": "With additional help from Sang-ah and Mr. Lim, they plan and launch the operation.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 9
+    },
+    {
+      "from": "sanga",
+      "to": "minji",
+      "type": "bond",
+      "label": "Becomes like a doting older sister to Min Ji by the end",
+      "short": "like an unnie",
+      "evidence": "She has Sang-ah for a doting unnie.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 10
+    },
+    {
+      "from": "gangchan",
+      "to": "kim",
+      "type": "rivalry",
+      "label": "Crime boss whose empire Kim tears through to save Min Ji, revealed as Hye Ri's father",
+      "short": "nemesis",
+      "evidence": "Because Hye-ri's dad? He's the infamous Chairman Joo Kang-chan, final boss of the gangster web Kim has only just begun bludgeoning his way into.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 2
+    },
+    {
+      "from": "gangchan",
+      "to": "hyeri",
+      "type": "family",
+      "label": "Hye Ri's father",
+      "short": "daughter",
+      "evidence": "[Gang Chan's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "gangchan",
+      "to": "nam",
+      "type": "work",
+      "label": "Gang Chan's chief of staff and enforcer",
+      "short": "right-hand man",
+      "evidence": "[Gang Chan's right-hand man]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "gangchan",
+      "to": "goldteeth",
+      "type": "rivalry",
+      "label": "Forcibly pulled out all of Gold Teeth's teeth, leaving him scarred and vengeful",
+      "short": "old feud",
+      "evidence": "He has an old score to settle with Hye-ri's father (we'll come back to him)",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "goldteeth",
+      "to": "gangchan",
+      "type": "rivalry",
+      "label": "Finally stabs Gang Chan on camera as his empire collapses, settling their old score",
+      "short": "kills him",
+      "evidence": "Gold Teeth shows up again to stab Chairman Joo live on camera right after Chairman Joo learns that Hye-ri has been arrested.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 10
+    },
+    {
+      "from": "goldteeth",
+      "to": "minji",
+      "type": "rivalry",
+      "label": "Kidnaps Min Ji to dangle her 'murder' in front of Chairman Joo, nearly killing her",
+      "short": "kidnapper",
+      "evidence": "So he stashes her in a climate-controlled shipping container and waits for the chairman to call so he can gloat.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3
+    },
+    {
+      "from": "hyeri",
+      "to": "minji",
+      "type": "rivalry",
+      "label": "Bullies Min Ji and nearly kills her in the fight that sets the story in motion",
+      "short": "bully",
+      "evidence": "teenage bully Joo Hye-ri (Yoo Ji-ahn) accuses Min-ji of assaulting her when, in actuality, it was the other way around.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "minho",
+      "to": "hyeri",
+      "type": "work",
+      "label": "Helps ambush and lure Min Ji as Hye Ri's gangster friend",
+      "short": "helps Hye Ri",
+      "evidence": "the bullies and their gangster friends waylaid Nam-hoon after school and used his phone to lure Min-ji into a trap.",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "namhoon",
+      "to": "minji",
+      "type": "romance",
+      "label": "Min Ji's crush at school, the only one who was ever kind to her",
+      "short": "first crush",
+      "evidence": "she gets to leave her old name in the care of the only person at her old school who was genuinely nice to her.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "simjongseon",
+      "to": "gangchan",
+      "type": "work",
+      "label": "National Assembly member serving as a political ally of Gang Chan",
+      "short": "political ally",
+      "evidence": "A member of South Korea's National Assembly and a close political aid to Gang-chan.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "dohyeon",
+      "to": "gangchan",
+      "type": "work",
+      "label": "Vice Minister of National Security who intervenes on Gang Chan's behalf, forcing SMD agents to stand down",
+      "short": "corrupt official",
+      "evidence": "Chairman Joo plays his trump card — a call to the Vice Minister of National Security — and the agents are forced to clear out.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "kim",
+      "to": "dohyeon",
+      "type": "rivalry",
+      "label": "Holds him hostage with razor wire to force Min Ji's release from SMD headquarters",
+      "short": "takes hostage",
+      "evidence": "Kim is standing above him, holding him with razor wire like a macabre puppeteer.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6
+    },
+    {
+      "from": "jang",
+      "to": "molecricket",
+      "type": "work",
+      "label": "Secretly orders Mole Cricket to hand Ri over while pretending to betray Kim",
+      "short": "gives secret orders",
+      "evidence": "it seems Mole Cricket isn't quite the traitor this makes him out to be, because he's acting under secret orders from Director Jang.",
+      "source": "dramabeans ep. 9-10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "hansu",
+      "to": "taehun",
+      "type": "family",
+      "label": "Han Su's son, prone to picking fights",
+      "short": "son",
+      "evidence": "Han-soo's son has been going around picking fights and thinking himself invincible.",
+      "source": "dramabeans ep. 7-8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "jincheol",
+      "to": "jiyeong",
+      "type": "family",
+      "label": "Jin Cheol's wife, a former Marine Corps brigadier general",
+      "short": "wife",
+      "evidence": "강지영 역 - 경비단장, 박진철의 아내",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 5
+    },
+    {
+      "from": "jincheol",
+      "to": "dabin",
+      "type": "family",
+      "label": "Jin Cheol's daughter",
+      "short": "daughter",
+      "evidence": "[Jin Cheol's daughter]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "goldteeth",
+      "to": "nam",
+      "type": "rivalry",
+      "label": "Owes Director Nam yet another tooth extraction after this latest mess",
+      "short": "at odds",
+      "evidence": "now he owes Chairman Joo's assistant, Director Nam, for yet another tooth extraction.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "sangman",
+      "to": "goldteeth",
+      "type": "work",
+      "label": "Subordinate of Golden Teeth",
+      "short": "subordinate",
+      "evidence": "[Golden Teeth's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "gangmin",
+      "to": "goldteeth",
+      "type": "work",
+      "label": "Subordinate of Golden Teeth",
+      "short": "subordinate",
+      "evidence": "[Golden Teeth's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "hansu",
+      "to": "minji",
+      "type": "bond",
+      "label": "Becomes like an honorary uncle to Min Ji after helping rescue her",
+      "short": "honorary uncle",
+      "evidence": "she also gets to know the truth about her dad's past and his awesome friends.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "jincheol",
+      "to": "minji",
+      "type": "bond",
+      "label": "Becomes like an honorary uncle to Min Ji after helping rescue her",
+      "short": "honorary uncle",
+      "evidence": "she also gets to know the truth about her dad's past and his awesome friends.",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "molecricket",
+      "to": "sanga",
+      "type": "work",
+      "label": "Sang A's superior at the Special Missions Directorate",
+      "short": "her boss",
+      "evidence": "two of Mole Cricket's agents catch up.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3
+    },
+    {
+      "from": "molecricket",
+      "to": "imhowon",
+      "type": "work",
+      "label": "Mr. Im's superior at the Special Missions Directorate",
+      "short": "his boss",
+      "evidence": "two of Mole Cricket's agents catch up... Mr. Lim (Park Jin-woo) owns the dry cleaner business right below Kim's apartment.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3
     }
   ],
   "compact": {
     "people": [
       "kim",
-      "sanga",
-      "minji",
-      "yujin",
       "hansu",
       "jincheol",
-      "im",
+      "minji",
+      "yujin",
+      "sanga",
+      "imhowon",
+      "molecricket",
+      "jang",
+      "gangseong",
+      "eungryeong",
+      "yeonggwang",
       "gangchan",
       "hyeri",
       "nam",
       "goldteeth",
       "sangman",
       "gangmin",
-      "gukcheol",
-      "jang",
-      "gangseong",
-      "eungryeong"
+      "gangchanwife",
+      "simjongseon",
+      "dohyeon",
+      "minho"
     ],
     "blocks": {
+      "North Korea": [
+        0,
+        2
+      ],
       "Kim's family": [
         0,
         0
       ],
-      "Kim's friends": [
-        0,
-        2
-      ],
-      "Juhak Construction": [
-        2,
-        0
-      ],
-      "South Korean intelligence": [
-        1,
-        0
-      ],
-      "North Korean intelligence": [
+      "Ju Gang Chan's people": [
         2,
         2
+      ],
+      "Special Missions Directorate": [
+        2,
+        0
       ]
     },
     "center": [
       "kim",
-      "sanga"
+      "hansu",
+      "jincheol"
     ]
   }
 }

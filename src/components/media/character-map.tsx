@@ -98,20 +98,42 @@ function Face({ person, size = "sm" }: { person: { image: string | null; still?:
  * a second view: "By episode", a slider that shows the chart as it stood
  * after episode N — a link first seen later is not drawn, nor a person none
  * of whose links have happened yet, and a reveal that has happened by then
- * is no longer behind the spoiler toggle. A dated chart opens in that view,
- * the slider where the reader is (`progress`), or at the end for a show
- * they have finished.
+ * is no longer behind the spoiler toggle. The slider only stops where a
+ * recap ends (episodes 1, 4, 6, 8… when the recaps cover pairs): a link
+ * from the recap of 11-12 is dated 11, and a reader at 11 must not see it,
+ * so 11 is not a stop — 10 is, and 12 is. A dated chart opens in that view,
+ * the slider at the last stop the reader has passed (`progress`), or at
+ * the end for a show they have finished.
  */
 export function CharacterMap({ map, completed = false, progress = null }: { map: CharacterMapData; completed?: boolean; progress?: number | null }) {
-    // Episodes the chart can be read up to: as far as the recaps went, or
-    // the last dated link; nothing when no link is dated
-    const episodes = useMemo(() => {
+    // Where the slider stops: the end of each recap's range, or every
+    // episode up to the last dated link when the chart does not say; none
+    // when no link is dated
+    const stops = useMemo<[number, number][]>(() => {
         const last = Math.max(0, ...map.links.map((l) => l.since ?? 0));
-        return last > 0 ? Math.max(last, map.recaps?.episodes ?? 0) : 0;
+        if (last === 0) return [];
+        const ranges = map.recaps?.ranges?.filter((r) => r[1] >= r[0]).sort((a, b) => a[0] - b[0]) ?? [];
+        if (ranges.length && ranges[ranges.length - 1][1] >= last) return ranges;
+        const end = Math.max(last, map.recaps?.episodes ?? 0);
+        return Array.from({ length: end }, (_, i) => [i + 1, i + 1]);
     }, [map]);
+    const episodes = stops.length ? stops[stops.length - 1][1] : 0;
     // A dated chart opens by episode — where the reader is, not the whole story
     const [byEpisode, setByEpisode] = useState(() => episodes > 0);
-    const [episode, setEpisode] = useState(() => Math.min(episodes, Math.max(1, completed ? episodes : (progress ?? 1))));
+    // The slider's position is an index into the stops; the last one the reader has passed
+    const [stop, setStop] = useState(() => {
+        if (completed || progress == null) return Math.max(0, stops.length - 1);
+        const passed = stops.filter((r) => r[1] <= progress).length;
+        return Math.max(0, passed - 1);
+    });
+    const stopIdx = Math.min(stop, Math.max(0, stops.length - 1));
+    const range = stops[stopIdx] ?? [0, 0];
+    const episode = range[1];
+    const goTo = (i: number) => {
+        setStop(Math.max(0, Math.min(stops.length - 1, i)));
+        setSelected(null);
+    };
+    const stepBtn = "inline-flex h-6 w-6 items-center justify-center rounded-md text-fg-dim transition-colors hover:bg-surface-4 hover:text-fg disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-default";
     const [types, setTypes] = useState<Set<LinkType>>(() => new Set(TYPES));
     // A show the reader has finished opens with everything on the table: the
     // reveals, and the links no sentence backs — which are mostly what the
@@ -311,52 +333,61 @@ export function CharacterMap({ map, completed = false, progress = null }: { map:
 
     return (
         <div className="space-y-3">
-            {/* Filters */}
-            <div className="flex flex-wrap items-center gap-2">
-                {episodes > 0 && (
-                    <>
-                        <div className="flex items-center rounded-lg border border-line-strong bg-surface-1 p-0.5">
-                            {([false, true] as const).map((on) => (
-                                <button
-                                    key={String(on)}
-                                    type="button"
-                                    onClick={() => {
-                                        setByEpisode(on);
-                                        setSelected(null);
-                                    }}
-                                    aria-pressed={byEpisode === on}
-                                    className={`rounded-md px-2 py-1 text-xs transition-all cursor-pointer ${byEpisode === on ? "bg-surface-3 text-fg" : "text-fg-dim hover:bg-surface-2 hover:text-fg"}`}
-                                >
-                                    {on ? "By episode" : `Everyone · ${map.people.length}`}
+            {/* Two rows of controls: when (the moment of the story, for a dated
+                chart) and what (which links to draw). One row of everything
+                wrapped wherever it liked and read as a mess. */}
+            {episodes > 0 && (
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                    <div className="flex items-center rounded-lg bg-surface-2 p-0.5">
+                        {([true, false] as const).map((on) => (
+                            <button
+                                key={String(on)}
+                                type="button"
+                                onClick={() => {
+                                    setByEpisode(on);
+                                    setSelected(null);
+                                }}
+                                aria-pressed={byEpisode === on}
+                                className={`h-6 rounded-md px-2.5 text-xs font-medium transition-all cursor-pointer ${byEpisode === on ? "bg-surface-4 text-fg ring-1 ring-line-strong" : "text-fg-dim hover:text-fg"}`}
+                            >
+                                {on ? "By episode" : "Everyone"}
+                            </button>
+                        ))}
+                    </div>
+                    {byEpisode ? (
+                        <div className="flex items-center gap-2">
+                            {/* A stepper, one recap at a time: a drag crosses a stop per
+                                pixel or so, and the chart lays out again at every one */}
+                            <div className="flex items-center rounded-lg bg-surface-2 p-0.5">
+                                <button type="button" onClick={() => goTo(stopIdx - 1)} disabled={stopIdx <= 0} className={stepBtn} aria-label="One recap earlier">
+                                    <Minus className="h-3 w-3" />
                                 </button>
-                            ))}
-                        </div>
-                        {byEpisode && (
-                            <label className="flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-2 py-1 text-xs text-fg-soft">
-                                <span className="tabular-nums">
-                                    Ep <span className="font-semibold text-fg">{episode}</span>
-                                    <span className="text-fg-dim"> / {episodes}</span>
+                                <span className="min-w-[4.5rem] px-1 text-center text-xs tabular-nums text-fg-dim">
+                                    Ep <span className="font-semibold text-fg">{range[0] === range[1] ? range[1] : `${range[0]}–${range[1]}`}</span>
                                 </span>
-                                <input
-                                    type="range"
-                                    min={1}
-                                    max={episodes}
-                                    step={1}
-                                    value={episode}
-                                    onChange={(e) => {
-                                        setEpisode(Number(e.target.value));
-                                        setSelected(null);
-                                    }}
-                                    className="h-1 w-32 cursor-pointer accent-sky-500 sm:w-44"
-                                    aria-label="As of episode"
-                                />
-                                <span className="tabular-nums text-fg-dim">{counts.asOf} links</span>
-                            </label>
-                        )}
-                        <div className="h-4 w-px bg-surface-3" />
-                    </>
-                )}
-
+                                <button type="button" onClick={() => goTo(stopIdx + 1)} disabled={stopIdx >= stops.length - 1} className={stepBtn} aria-label="One recap later">
+                                    <Plus className="h-3 w-3" />
+                                </button>
+                            </div>
+                            <input
+                                type="range"
+                                min={0}
+                                max={stops.length - 1}
+                                step={1}
+                                value={stopIdx}
+                                onChange={(e) => goTo(Number(e.target.value))}
+                                className="h-1 w-28 cursor-pointer accent-sky-500 sm:w-44"
+                                aria-label="As of episode"
+                            />
+                            <span className="text-xs tabular-nums text-fg-dim">of {episodes}</span>
+                        </div>
+                    ) : null}
+                    <span className="ml-auto text-xs tabular-nums text-fg-dim">
+                        {layout.people.length} people · {counts.asOf} links
+                    </span>
+                </div>
+            )}
+            <div className="flex flex-wrap items-center gap-2">
                 {TYPES.map((t) => (
                     <button key={t} type="button" onClick={() => toggleType(t)} aria-pressed={types.has(t)} className={pill(types.has(t))} disabled={counts.byType[t] === 0}>
                         <span className={`inline-block h-0.5 w-3 rounded ${types.has(t) ? "bg-current " + TYPE_CLASS[t] : "bg-fg-faint"}`} />
@@ -376,7 +407,7 @@ export function CharacterMap({ map, completed = false, progress = null }: { map:
                 <button type="button" onClick={() => setGhosts((v) => !v)} aria-pressed={ghosts} className={pill(ghosts)} disabled={counts.ghosts === 0}>
                     Not in cast <span className="opacity-50">{counts.ghosts}</span>
                 </button>
-                <button type="button" onClick={() => setLabels((v) => !v)} aria-pressed={labels} className={pill(labels)}>
+                <button type="button" onClick={() => setLabels((v) => !v)} aria-pressed={labels} className={`${pill(labels)} ml-auto`}>
                     Labels
                 </button>
             </div>
