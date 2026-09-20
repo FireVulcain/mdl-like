@@ -543,7 +543,12 @@ export function CharacterMap({
                                                 // captions that slid up to close a gap would make
                                                 // the whole chart twitch under the pointer.
                                                 style={{ opacity: speaks ? 1 : 0, transition: "opacity .15s", pointerEvents: speaks ? undefined : "none" }}
-                                                onClick={unlessDragged(() => pickLink(c.linkIndex))}
+                                                // The caption is inside the face's group: without this the
+                                                // click picked the link, then bubbled up and picked the person
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    unlessDragged(() => pickLink(c.linkIndex))(e);
+                                                }}
                                                 onHover={(on) => setHoverLink((v) => (on ? c.linkIndex : v === c.linkIndex ? null : v))}
                                             />
                                         );
