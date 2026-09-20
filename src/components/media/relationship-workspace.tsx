@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { episodeStops, initialStop, type CharacterMapData, type StoryView } from "@/lib/character-map";
+import { episodeStops, initialStop, type CharacterMapData } from "@/lib/character-map";
 import { rememberReveals } from "@/actions/character-map-view";
 import { CharacterMap } from "./character-map";
 import { RelationshipManager } from "./relationship-manager";
@@ -55,15 +55,15 @@ export function RelationshipWorkspace({
 
     // And one place in the story: the chart's slider and the list's select
     // are two handles on it. A dated chart opens as of the last stop the
-    // reader has passed; an undated one has only the "Everyone" view.
+    // reader has passed; an undated one has no stops and shows everything.
     const stops = useMemo(() => episodeStops(map), [map]);
-    const [story, setStory] = useState<StoryView>(() => ({ byEpisode: stops.length > 0, stop: initialStop(stops, completed, progress) }));
+    const [stop, setStop] = useState(() => initialStop(stops, completed, progress));
 
     return (
         <div className="space-y-8">
-            <CharacterMap map={map} completed={completed} progress={progress} reveals={reveals} onReveals={changeReveals} story={story} onStory={setStory} />
+            <CharacterMap map={map} completed={completed} progress={progress} reveals={reveals} onReveals={changeReveals} stop={stop} onStop={setStop} />
             <div className="h-px bg-linear-to-r from-transparent via-line to-transparent" />
-            <RelationshipManager map={map} mdlSlug={mdlSlug} mediaId={mediaId} canEdit={canEdit} reveals={reveals} onReveals={changeReveals} stops={stops} story={story} onStory={setStory} onMap={setMap} />
+            <RelationshipManager map={map} mdlSlug={mdlSlug} mediaId={mediaId} canEdit={canEdit} reveals={reveals} onReveals={changeReveals} stops={stops} stop={stop} onStop={setStop} onMap={setMap} />
         </div>
     );
 }

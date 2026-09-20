@@ -20,7 +20,6 @@ import {
     type LaidOutLink,
     type LinkType,
     type MapLink,
-    type StoryView,
 } from "@/lib/character-map";
 import { Face, pill } from "@/components/media/character-map-bits";
 
@@ -74,16 +73,16 @@ const R = PORTRAIT_R;
  * has finished), the links no sentence backs, and the people MDL's cast does
  * not carry.
  *
- * A chart read with the episode recaps dates its links (`since`), and gets
- * a second view: "By episode", a slider that shows the chart as it stood
- * after episode N — a link first seen later is not drawn, nor a person none
- * of whose links have happened yet, and a reveal that has happened by then
- * is no longer behind the spoiler toggle. The slider only stops where a
- * recap ends (episodes 1, 4, 6, 8… when the recaps cover pairs): a link
- * from the recap of 11-12 is dated 11, and a reader at 11 must not see it,
- * so 11 is not a stop — 10 is, and 12 is. A dated chart opens in that view,
- * the slider at the last stop the reader has passed (`progress`), or at
- * the end for a show they have finished.
+ * A chart read with the episode recaps dates its links (`since`), and is
+ * read as of an episode: a slider shows the chart as it stood after
+ * episode N — a link first seen later is not drawn, nor a person none of
+ * whose links have happened yet, and a reveal that has happened by then is
+ * no longer behind the spoiler toggle. The slider only stops where a recap
+ * ends (episodes 1, 4, 6, 8… when the recaps cover pairs): a link from the
+ * recap of 11-12 is dated 11, and a reader at 11 must not see it, so 11 is
+ * not a stop — 10 is, and 12 is. It opens at the last stop the reader has
+ * passed (`progress`), or at the end for a show they have finished — which
+ * is also the whole story, so there is no separate view of it.
  */
 export function CharacterMap({
     map,
@@ -91,8 +90,8 @@ export function CharacterMap({
     progress = null,
     reveals: revealsProp,
     onReveals,
-    story: storyProp,
-    onStory,
+    stop: stopProp,
+    onStop,
 }: {
     map: CharacterMapData;
     completed?: boolean;
@@ -105,27 +104,29 @@ export function CharacterMap({
      */
     reveals?: boolean;
     onReveals?: (next: boolean) => void;
-    /** The place in the story, shared the same way: a step here moves the list, and the list's select moves the slider. */
-    story?: StoryView;
-    onStory?: (next: StoryView) => void;
+    /** The slider's stop, shared the same way: a step here moves the list, and the list's select moves the slider. */
+    stop?: number;
+    onStop?: (next: number) => void;
 }) {
     const stops = useMemo(() => episodeStops(map), [map]);
     const episodes = stops.length ? stops[stops.length - 1][1] : 0;
-    // A dated chart opens by episode — where the reader is, not the whole
-    // story — on the last stop the reader has passed. The page may hold
-    // this instead, for the list under the chart to share it.
-    const [ownStory, setOwnStory] = useState<StoryView>(() => ({ byEpisode: episodes > 0, stop: initialStop(stops, completed, progress) }));
-    const story = storyProp ?? ownStory;
-    const setStory = onStory ?? setOwnStory;
-    const byEpisode = story.byEpisode;
-    const setByEpisode = (on: boolean) => setStory({ ...story, byEpisode: on });
-    const stopIdx = Math.min(story.stop, Math.max(0, stops.length - 1));
+    // A dated chart is read as of an episode, and opens on the last stop the
+    // reader has passed — there is no view of the whole story at once, that
+    // is the last stop. An undated chart has no stops and draws everything.
+    // The page may hold the stop instead, for the list under the chart.
+    const byEpisode = episodes > 0;
+    const [ownStop, setOwnStop] = useState(() => initialStop(stops, completed, progress));
+    const stop = stopProp ?? ownStop;
+    const setStop = onStop ?? setOwnStop;
+    const stopIdx = Math.min(stop, Math.max(0, stops.length - 1));
     const range = stops[stopIdx] ?? [0, 0];
     const episode = range[1];
     const goTo = (i: number) => {
-        setStory({ ...story, stop: Math.max(0, Math.min(stops.length - 1, i)) });
+        setStop(Math.max(0, Math.min(stops.length - 1, i)));
         setSelected(null);
     };
+    // How far along the track the handle stands, for the fill and the label riding it
+    const sliderPct = stops.length > 1 ? (stopIdx / (stops.length - 1)) * 100 : 100;
     const stepBtn = "inline-flex h-6 w-6 items-center justify-center rounded-md text-fg-dim transition-colors hover:bg-surface-4 hover:text-fg disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-default";
     const [types, setTypes] = useState<Set<LinkType>>(() => new Set(TYPES));
     // A show the reader has finished opens with everything on the table: the
@@ -330,53 +331,56 @@ export function CharacterMap({
         <div className="space-y-3">
             {/* Two rows of controls: when (the moment of the story, for a dated
                 chart) and what (which links to draw). One row of everything
-                wrapped wherever it liked and read as a mess. */}
+                wrapped wherever it liked and read as a mess. The slider wears
+                what the rating filter wears on the dramas page — one handle
+                instead of two — with a tick for every stop, so a drama
+                recapped in pairs shows on the track where it can stand, and
+                the episode riding the handle. */}
             {episodes > 0 && (
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                    <div className="flex items-center rounded-lg bg-surface-2 p-0.5">
-                        {([true, false] as const).map((on) => (
-                            <button
-                                key={String(on)}
-                                type="button"
-                                onClick={() => {
-                                    setByEpisode(on);
-                                    setSelected(null);
-                                }}
-                                aria-pressed={byEpisode === on}
-                                className={`h-6 rounded-md px-2.5 text-xs font-medium transition-all cursor-pointer ${byEpisode === on ? "bg-surface-4 text-fg ring-1 ring-line-strong" : "text-fg-dim hover:text-fg"}`}
-                            >
-                                {on ? "By episode" : "Everyone"}
-                            </button>
-                        ))}
-                    </div>
-                    {byEpisode ? (
-                        <div className="flex items-center gap-2">
-                            {/* A stepper, one recap at a time: a drag crosses a stop per
-                                pixel or so, and the chart lays out again at every one */}
-                            <div className="flex items-center rounded-lg bg-surface-2 p-0.5">
-                                <button type="button" onClick={() => goTo(stopIdx - 1)} disabled={stopIdx <= 0} className={stepBtn} aria-label="One recap earlier">
-                                    <Minus className="h-3 w-3" />
-                                </button>
-                                <span className="min-w-[4.5rem] px-1 text-center text-xs tabular-nums text-fg-dim">
-                                    Ep <span className="font-semibold text-fg">{range[0] === range[1] ? range[1] : `${range[0]}–${range[1]}`}</span>
-                                </span>
-                                <button type="button" onClick={() => goTo(stopIdx + 1)} disabled={stopIdx >= stops.length - 1} className={stepBtn} aria-label="One recap later">
-                                    <Plus className="h-3 w-3" />
-                                </button>
-                            </div>
-                            <input
-                                type="range"
-                                min={0}
-                                max={stops.length - 1}
-                                step={1}
-                                value={stopIdx}
-                                onChange={(e) => goTo(Number(e.target.value))}
-                                className="h-1 w-28 cursor-pointer accent-sky-500 sm:w-44"
-                                aria-label="As of episode"
-                            />
-                            <span className="text-xs tabular-nums text-fg-dim">of {episodes}</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-fg-dim">Episode</span>
+                    <div className="relative mt-3.5 h-5 w-64 sm:w-80">
+                        <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-surface-4" />
+                        <div className="absolute left-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-sky-400" style={{ width: `${sliderPct}%` }} />
+                        {/* one tick per stop, along the path the thumb's centre travels (8px in from each end) */}
+                        <div aria-hidden className="pointer-events-none absolute inset-x-2 top-1/2 h-1 -translate-y-1/2">
+                            {stops.map((_, i) => (
+                                <span
+                                    key={i}
+                                    className="absolute top-1/2 -ml-px h-0.5 w-0.5 -translate-y-1/2 rounded-full bg-fg-faint opacity-70"
+                                    style={{ left: `${stops.length > 1 ? (i / (stops.length - 1)) * 100 : 50}%` }}
+                                />
+                            ))}
                         </div>
-                    ) : null}
+                        <span
+                            aria-hidden
+                            className="pointer-events-none absolute -translate-x-1/2 whitespace-nowrap rounded-md border border-line-strong bg-panel px-1.5 py-px text-[11px] font-semibold tabular-nums text-fg"
+                            style={{ left: `calc(8px + (100% - 16px) * ${sliderPct / 100})`, bottom: "calc(100% - 2px)" }}
+                        >
+                            Ep {range[0] === range[1] ? range[1] : `${range[0]}–${range[1]}`}
+                        </span>
+                        <input
+                            type="range"
+                            min={0}
+                            max={stops.length - 1}
+                            step={1}
+                            value={stopIdx}
+                            onChange={(e) => goTo(Number(e.target.value))}
+                            className="range-thumb absolute inset-0 w-full appearance-none bg-transparent"
+                            aria-label="As of episode"
+                        />
+                    </div>
+                    <span className="text-xs tabular-nums text-fg-faint">{episodes}</span>
+                    {/* A stepper, one recap at a time: a drag crosses a stop per
+                        pixel or so, and the chart lays out again at every one */}
+                    <div className="flex items-center rounded-lg bg-surface-2 p-0.5">
+                        <button type="button" onClick={() => goTo(stopIdx - 1)} disabled={stopIdx <= 0} className={stepBtn} aria-label="One recap earlier">
+                            <Minus className="h-3 w-3" />
+                        </button>
+                        <button type="button" onClick={() => goTo(stopIdx + 1)} disabled={stopIdx >= stops.length - 1} className={stepBtn} aria-label="One recap later">
+                            <Plus className="h-3 w-3" />
+                        </button>
+                    </div>
                     <span className="ml-auto text-xs tabular-nums text-fg-dim">
                         {layout.people.length} people · {counts.asOf} links
                     </span>

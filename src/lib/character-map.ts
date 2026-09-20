@@ -160,24 +160,17 @@ export function initialStop(stops: [number, number][], completed: boolean, progr
     return Math.max(0, passed - 1);
 }
 
-/**
- * The page's place in the story, shared by the chart and the list under it:
- * whether it is read as of an episode, and which stop. One object, so a
- * step on the slider moves the list and the list's select moves the slider.
- */
-export type StoryView = { byEpisode: boolean; stop: number };
-
-/** Whether a link has happened as of the view; every link has in the "Everyone" view. */
+/** Whether a link has happened as of the stop; on an undated chart (`byEpisode` false) every link has. */
 export function linkHappened(l: MapLink, byEpisode: boolean, episode: number): boolean {
     return !byEpisode || linkActiveAt(l, episode);
 }
 
 /**
- * Whether the reveals toggle decides this link. As of an episode, a dated
+ * Whether the reveals toggle decides this link. On a dated chart a dated
  * reveal is the slider's: it has happened or it has not, and a reader at
  * episode 10 has seen episode 7's twist. Only the undated ones — the
  * organisation chart's — still answer to the toggle, as does every reveal
- * in the "Everyone" view, where there is no episode to have passed.
+ * on an undated chart, where there is no episode to have passed.
  */
 export function doorGoverns(l: MapLink, byEpisode: boolean): boolean {
     return l.reveal && !(byEpisode && l.since != null);

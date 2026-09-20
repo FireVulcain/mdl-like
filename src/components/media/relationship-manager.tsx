@@ -15,7 +15,6 @@ import {
     type LinkType,
     type MapLink,
     type MapPerson,
-    type StoryView,
 } from "@/lib/character-map";
 import { draftFrom, emptyDraft, fingerprint, linkFrom, type LinkDraft } from "@/lib/character-map-links";
 import { deleteRelationship, saveRelationship } from "@/actions/character-map-links";
@@ -43,9 +42,8 @@ import { RelationshipEditor, type EditorMode } from "./relationship-editor";
  * The place in the story is shared the same way, and so is the rule that
  * follows from it (`doorGoverns`, in the lib): as of an episode, a dated
  * twist is the slider's — it has happened or not — and only the undated
- * ones answer to the door; in the "Everyone" view every twist does. The
- * list showing "10 behind the reveals" under a chart saying "Reveals 0" was
- * the two halves reading two rules.
+ * ones answer to the door. The list showing "10 behind the reveals" under a
+ * chart saying "Reveals 0" was the two halves reading two rules.
  */
 
 type Row = { link: MapLink; index: number };
@@ -70,8 +68,8 @@ export function RelationshipManager({
     reveals,
     onReveals,
     stops,
-    story,
-    onStory,
+    stop,
+    onStop,
     onMap,
 }: {
     map: CharacterMapData;
@@ -81,10 +79,10 @@ export function RelationshipManager({
     /** the page's spoiler door, shared with the chart above */
     reveals: boolean;
     onReveals: (next: boolean) => void;
-    /** the page's place in the story, shared the same way; `stops` is where the slider can stand */
+    /** the page's place in the story, shared the same way: the slider's stops, and which one */
     stops: [number, number][];
-    story: StoryView;
-    onStory: (next: StoryView) => void;
+    stop: number;
+    onStop: (next: number) => void;
     onMap: (next: CharacterMapData) => void;
 }) {
     const router = useRouter();
@@ -101,9 +99,10 @@ export function RelationshipManager({
     const byId = useMemo(() => new Map(map.people.map((p) => [p.id, p])), [map]);
     const name = (id: string) => byId.get(id)?.name ?? id;
 
-    // As of the page's place in the story, by the chart's own rule
-    const byEpisode = story.byEpisode && stops.length > 0;
-    const stopIdx = Math.min(story.stop, Math.max(0, stops.length - 1));
+    // As of the page's place in the story, by the chart's own rule: a dated
+    // chart is always read as of a stop, an undated one has none
+    const byEpisode = stops.length > 0;
+    const stopIdx = Math.min(stop, Math.max(0, stops.length - 1));
     const episode = stops[stopIdx]?.[1] ?? 0;
     const happened = useMemo<Row[]>(() => map.links.map((link, index) => ({ link, index })).filter(({ link }) => linkHappened(link, byEpisode, episode)), [map, byEpisode, episode]);
     const all = useMemo<Row[]>(() => happened.filter(({ link }) => reveals || !doorGoverns(link, byEpisode)), [happened, reveals, byEpisode]);
@@ -272,17 +271,14 @@ export function RelationshipManager({
 
                 {/* The same stops as the slider above, and the same state:
                     picking one here moves the slider, and a step there moves
-                    this. "Everyone" is the chart's other view. */}
+                    this. */}
                 {stops.length > 0 && (
                     <select
-                        value={byEpisode ? String(stopIdx) : ""}
-                        onChange={(e) => onStory(e.target.value === "" ? { ...story, byEpisode: false } : { byEpisode: true, stop: Number(e.target.value) })}
-                        className={`h-7 cursor-pointer rounded-lg px-2 text-xs outline-none transition-colors [&>option]:bg-panel ${
-                            byEpisode ? "bg-surface-4 text-fg ring-1 ring-line-strong" : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
-                        }`}
+                        value={String(stopIdx)}
+                        onChange={(e) => onStop(Number(e.target.value))}
+                        className="h-7 cursor-pointer rounded-lg bg-surface-2 px-2 text-xs text-fg-dim outline-none transition-colors hover:bg-surface-3 hover:text-fg [&>option]:bg-panel"
                         aria-label="As of episode"
                     >
-                        <option value="">Everyone</option>
                         {stops.map(([from, to], i) => (
                             <option key={i} value={i}>
                                 As of ep {from === to ? to : `${from}–${to}`}

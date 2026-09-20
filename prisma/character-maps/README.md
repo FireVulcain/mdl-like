@@ -165,13 +165,14 @@ every link:
   only stops where a recap ends (1, 4, 6, 8… for A Bona Fide Killer): a
   reader at episode 11 stands at the "9–10" stop and sees nothing of 11-12.
 
-The chart page then has two views: **By episode** (the default for a dated
-chart), a slider that shows it as of a recap's end — a link first seen
-later is not drawn, nor a person none of whose links have happened yet, and
-a reveal that has happened by then is out from behind the spoiler toggle —
-and **Everyone**, the chart as it stands at the end. The slider opens on
-the last stop the reader has passed, or at the end for a show they have
-finished. A chart with no dated link has one view.
+A dated chart is then read **as of an episode**: a slider shows it as of a
+recap's end — a link first seen later is not drawn, nor a person none of
+whose links have happened yet, and a reveal that has happened by then is
+out from behind the spoiler toggle. It opens on the last stop the reader
+has passed, or at the end for a show they have finished — which is also
+the whole story, so there is no separate view of it. The list under the
+chart stands at the same stop. A chart with no dated link has no slider
+and draws everything.
 
 ## Carrying a chart forward
 
