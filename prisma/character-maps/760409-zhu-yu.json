@@ -8,13 +8,181 @@
   "sources": [
     "MDL cast (91 roles, 2 main)",
     "MDL synopsis",
-    "zh.wikipedia 主要演員 (table, broken into lines; 4k chars)",
-    "en.wikipedia (not used)"
+    "zh.wikipedia 主要演員",
+    "en.wikipedia Cast",
+    "cpophome recaps (Episodes 1-40)"
   ],
   "main": [
     "changyu",
     "xiezheng"
   ],
+  "recaps": {
+    "source": "cpophome",
+    "episodes": 40,
+    "count": 40,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        15,
+        15
+      ],
+      [
+        16,
+        16
+      ],
+      [
+        17,
+        17
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        19,
+        19
+      ],
+      [
+        20,
+        20
+      ],
+      [
+        21,
+        21
+      ],
+      [
+        22,
+        22
+      ],
+      [
+        23,
+        23
+      ],
+      [
+        24,
+        24
+      ],
+      [
+        25,
+        25
+      ],
+      [
+        26,
+        26
+      ],
+      [
+        27,
+        27
+      ],
+      [
+        28,
+        28
+      ],
+      [
+        29,
+        29
+      ],
+      [
+        30,
+        30
+      ],
+      [
+        31,
+        31
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        33,
+        33
+      ],
+      [
+        34,
+        34
+      ],
+      [
+        35,
+        35
+      ],
+      [
+        36,
+        36
+      ],
+      [
+        37,
+        37
+      ],
+      [
+        38,
+        38
+      ],
+      [
+        39,
+        39
+      ],
+      [
+        40,
+        40
+      ]
+    ]
+  },
   "people": [
     {
       "id": "changyu",
@@ -23,7 +191,7 @@
       "image": "https://i.mydramalist.com/eYv4Vd_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "A butcher's daughter with a butcher's knife"
+      "note": "Lin'an's pig butcher, then the 'Butcher Lady of Jizhou', Flower-Pinned General, Grand General of Huaihua"
     },
     {
       "id": "xiezheng",
@@ -32,24 +200,14 @@
       "image": "https://i.mydramalist.com/YY1bQP_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "A fallen noble hiding as 'Xie Jiu Heng', seeking revenge"
-    },
-    {
-      "id": "qianqian",
-      "name": "Yu Qian Qian",
-      "actor": "Snow Kong",
-      "image": "https://i.mydramalist.com/3ojD3j_5m.jpg",
-      "group": "Lin'an",
-      "inCast": true,
-      "note": "Owner of the Yixiang tavern; fled Qi Min"
-    },
-    {
-      "id": "baoer",
-      "name": "Yu Bao Er",
-      "actor": "Wu Jia Jun",
-      "image": "https://i.mydramalist.com/l0zRqJ_5m.jpg",
-      "group": "Lin'an",
-      "inCast": true
+      "note": "Hides as 'Yan Zheng', a refugee, in her house; son of General Xie Lin Shan, dead at Jinzhou; Prince Regent at the end",
+      "alsoPlayedBy": [
+        {
+          "name": "Zhou Yi Ge",
+          "image": "https://i.mydramalist.com/l01bLJ_5m.jpg",
+          "era": "teen"
+        }
+      ]
     },
     {
       "id": "changning",
@@ -58,7 +216,16 @@
       "image": "https://i.mydramalist.com/KpykED_5m.jpg",
       "group": "Lin'an",
       "inCast": true,
-      "note": "'Ning Niang'"
+      "note": "'Ning Niang', the frail little sister"
+    },
+    {
+      "id": "weiqilin",
+      "name": "Wei Qi Lin / Fan Er Niu",
+      "actor": "Kou Shan Wen",
+      "image": "https://i.mydramalist.com/jQEvZy_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true,
+      "note": "The butcher father, dead before the story; once one of the 'Two Tigers of the Wei Family'"
     },
     {
       "id": "zhao",
@@ -66,7 +233,8 @@
       "actor": "Yue Yang",
       "image": "https://i.mydramalist.com/l0LyV6_5m.jpg",
       "group": "Lin'an",
-      "inCast": true
+      "inCast": true,
+      "note": "Doctor for people and livestock; drafted as the army's vet"
     },
     {
       "id": "mrszhao",
@@ -77,13 +245,31 @@
       "inCast": true
     },
     {
-      "id": "zhaoxun",
-      "name": "Zhao Xun",
-      "actor": "Guan Zi Jing",
-      "image": "https://i.mydramalist.com/085pN_5m.jpg",
+      "id": "qianqian",
+      "name": "Yu Qian Qian",
+      "actor": "Snow Kong",
+      "image": "https://i.mydramalist.com/3ojD3j_5m.jpg",
       "group": "Lin'an",
       "inCast": true,
-      "note": "Rice shop manager"
+      "note": "Owner of the Yixiang restaurant; Empress Dowager Mingde at the end"
+    },
+    {
+      "id": "baoer",
+      "name": "Yu Bao Er",
+      "actor": "Wu Jia Jun",
+      "image": "https://i.mydramalist.com/l0zRqJ_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true,
+      "note": "The imperial great-grandson, hidden in a cellar; crowned Qi Yu at the end"
+    },
+    {
+      "id": "songyan",
+      "name": "Song Yan",
+      "actor": "Zhu Zan Jin",
+      "image": "https://i.mydramalist.com/0gd67_5m.jpg",
+      "group": "Lin'an",
+      "inCast": true,
+      "note": "The scholar next door; two actors play him, one the face, one the body"
     },
     {
       "id": "jin",
@@ -103,78 +289,57 @@
       "inCast": true
     },
     {
-      "id": "mancang",
-      "name": "Man Cang",
-      "actor": "Sun Kai",
-      "image": "https://i.mydramalist.com/6A14W_5m.jpg",
-      "group": "Pig Butcher Squad",
-      "inCast": true
-    },
-    {
       "id": "mandi",
       "name": "Man Di",
       "actor": "Nine Kornchid Boonsathitpakdee",
       "image": "https://i.mydramalist.com/nOorP8_5m.jpg",
       "group": "Pig Butcher Squad",
-      "inCast": true
+      "inCast": true,
+      "note": "The one who does not come home"
+    },
+    {
+      "id": "gongsun",
+      "name": "Gongsun Yin",
+      "actor": "Li Qing",
+      "image": "https://i.mydramalist.com/5vwzn4_5m.jpg",
+      "group": "Xie Zheng's camp",
+      "inCast": true,
+      "note": "Headmaster of Luyuan Academy; the army's strategist"
+    },
+    {
+      "id": "taoyi",
+      "name": "Tao Yi",
+      "actor": "Li Jian Yi",
+      "image": "https://i.mydramalist.com/VX3AV0_5m.jpg",
+      "group": "Xie Zheng's camp",
+      "inCast": true,
+      "note": "Grand Tutor, former Minister of Works — met as an old quarry labourer"
     },
     {
       "id": "xiewu",
       "name": "Xie Wu",
       "actor": "Zhang Shu Lun",
       "image": "https://i.mydramalist.com/1ww2Xd_5m.jpg",
-      "group": "Blood-Robed Cavalry",
+      "group": "Xie Zheng's camp",
       "inCast": true
     },
     {
-      "id": "xieqi",
-      "name": "Xie Qi",
-      "actor": "Li Yu Wei",
-      "image": "https://i.mydramalist.com/d0QW2z_5m.jpg",
-      "group": "Blood-Robed Cavalry",
-      "inCast": true
-    },
-    {
-      "id": "xieshiyi",
-      "name": "Xie Shi Yi",
-      "actor": "Yang He Wen",
-      "image": "https://i.mydramalist.com/5vVQNy_5m.jpg",
-      "group": "Blood-Robed Cavalry",
-      "inCast": true
-    },
-    {
-      "id": "qimin",
-      "name": "Qi Min / Sui Yuan Huai",
-      "actor": "Deng Kai",
-      "image": "https://i.mydramalist.com/yWjNVN_5m.jpg",
-      "group": "The court of Yin",
+      "id": "hejingyuan",
+      "name": "He Jing Yuan",
+      "actor": "Lu Yong",
+      "image": "https://i.mydramalist.com/oQzwmv_5m.jpg",
+      "group": "Jizhou",
       "inCast": true,
-      "note": "Raised as Sui Yuan Huai — the crown prince's true son, swapped at the palace fire"
+      "note": "Prefect and general of Jizhou; falls holding Lucheng"
     },
     {
-      "id": "yuanqing",
-      "name": "Sui Yuan Qing",
-      "actor": "Lin Mu Ran",
-      "image": "https://i.mydramalist.com/g0dZLd_5m.jpg",
-      "group": "The court of Yin",
-      "inCast": true
-    },
-    {
-      "id": "weiyan",
-      "name": "Wei Yan",
-      "actor": "Yan Yi Kuan",
-      "image": "https://i.mydramalist.com/Nd63Qn_5m.jpg",
-      "group": "The court of Yin",
+      "id": "huaian",
+      "name": "Li Huai An / Wen Kan",
+      "actor": "Ren Hao",
+      "image": "https://i.mydramalist.com/X7zRg_5m.jpg",
+      "group": "Jizhou",
       "inCast": true,
-      "note": "Prime minister of Yin"
-    },
-    {
-      "id": "weisheng",
-      "name": "Wei Sheng",
-      "actor": "Cheng Qi Meng",
-      "image": "https://i.mydramalist.com/yWeqx3_5m.jpg",
-      "group": "The court of Yin",
-      "inCast": true
+      "note": "Zhenwei Commandant of Jizhou, the Grand Tutor Li's eldest grandson"
     },
     {
       "id": "qisheng",
@@ -183,7 +348,7 @@
       "image": "https://i.mydramalist.com/22Xjk_5m.jpg",
       "group": "The court of Yin",
       "inCast": true,
-      "note": "Emperor of Yin"
+      "note": "Emperor of Yin, a puppet between the Wei and Li clans; ends mad behind his throne"
     },
     {
       "id": "qishu",
@@ -192,7 +357,34 @@
       "image": "https://i.mydramalist.com/4e0J0Q_5m.jpg",
       "group": "The court of Yin",
       "inCast": true,
-      "note": "Grand princess"
+      "note": "Grand princess; a scholar 'An Xu' at Luyuan, a physician at the front"
+    },
+    {
+      "id": "weiyan",
+      "name": "Wei Yan",
+      "actor": "Yan Yi Kuan",
+      "image": "https://i.mydramalist.com/Nd63Qn_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "Chancellor of Yin, courtesy name Yi Gui; put the emperor on the throne seventeen years ago; his assistant Wei Sheng fires the cold arrow at the end"
+    },
+    {
+      "id": "weixuan",
+      "name": "Wei Xuan",
+      "actor": "Gao Ming Chen",
+      "image": "https://i.mydramalist.com/DklZ22_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "The Chancellor's son, a reckless commander in the northwest"
+    },
+    {
+      "id": "qirongyin",
+      "name": "Qi Rong Yin / Consort Shu",
+      "actor": "Zhong Ling Er",
+      "image": "https://i.mydramalist.com/ABlJW3_5m.jpg",
+      "group": "The court of Yin",
+      "inCast": true,
+      "note": "The late emperor's consort, dead before the story"
     },
     {
       "id": "lijing",
@@ -201,66 +393,187 @@
       "image": "https://i.mydramalist.com/jQ2LXb_5m.jpg",
       "group": "The court of Yin",
       "inCast": true,
-      "note": "Grand tutor of Yin"
+      "note": "Grand Tutor of Yin, head of the Li clan; sold the East Palace's secret to the late emperor"
     },
     {
-      "id": "jianjia",
-      "name": "Jian Jia",
-      "actor": "Wang Ting Wen",
-      "image": "https://i.mydramalist.com/B6w2l_5m.jpg",
-      "group": "The court of Yin",
-      "inCast": true
-    },
-    {
-      "id": "huaian",
-      "name": "Li Huai An / Wen Kan",
-      "actor": "Ren Hao",
-      "image": "https://i.mydramalist.com/X7zRg_5m.jpg",
-      "group": "Heijian",
-      "inCast": true
-    },
-    {
-      "id": "zhuoran",
-      "name": "Zhuo Ran",
-      "actor": "Han Yi Ting",
-      "image": "https://i.mydramalist.com/kA3B3r_5m.jpg",
-      "group": "Heijian",
-      "inCast": true
-    },
-    {
-      "id": "gongsun",
-      "name": "Gongsun Yin",
-      "actor": "Li Qing",
-      "image": "https://i.mydramalist.com/5vwzn4_5m.jpg",
-      "group": "Heijian",
+      "id": "qimin",
+      "name": "Qi Min / Sui Yuan Huai",
+      "actor": "Deng Kai",
+      "image": "https://i.mydramalist.com/yWjNVN_5m.jpg",
+      "group": "Changxin's rebels",
       "inCast": true,
-      "note": "Headmaster of Liu Yuan Academy"
+      "note": "Prince Changxin's eldest son, met as 'Master Qi' the rice merchant; afraid of fire, never lights a lamp"
+    },
+    {
+      "id": "yuanqing",
+      "name": "Sui Yuan Qing",
+      "actor": "Lin Mu Ran",
+      "image": "https://i.mydramalist.com/g0dZLd_5m.jpg",
+      "group": "Changxin's rebels",
+      "inCast": true,
+      "note": "Prince Changxin's second son and heir"
+    },
+    {
+      "id": "suituo",
+      "name": "Sui Tuo / Prince Changxin",
+      "actor": "Tan Kai",
+      "image": "https://i.mydramalist.com/DkDjwr_5m.jpg",
+      "group": "Changxin's rebels",
+      "inCast": true,
+      "note": "The rebel lord of Chongzhou"
+    },
+    {
+      "id": "shisanniang",
+      "name": "Shi San Niang",
+      "actor": "Lin Si Yi",
+      "image": "https://i.mydramalist.com/dgK0z_5m.jpg",
+      "group": "Changxin's rebels",
+      "inCast": true,
+      "note": "Chief of the Qingfeng Fort bandits"
+    },
+    {
+      "id": "lanmomo",
+      "name": "Nanny Lan",
+      "actor": "Jia Shu Yi",
+      "image": "https://i.mydramalist.com/ABd35X_5m.jpg",
+      "group": "Changxin's rebels",
+      "inCast": true,
+      "note": "Once the crown princess's maid"
+    },
+    {
+      "id": "zhaoxun",
+      "name": "Zhao Xun",
+      "actor": "Guan Zi Jing",
+      "image": "https://i.mydramalist.com/085pN_5m.jpg",
+      "group": "Changxin's rebels",
+      "inCast": true,
+      "note": "The Lin'an rice shop manager — Qi Min's man, keeper of the East Palace seal"
     }
   ],
   "links": [
     {
       "from": "changyu",
       "to": "xiezheng",
-      "type": "romance",
-      "label": "a fake marriage that became a real one; war parts them",
-      "short": "married",
-      "evidence": "Their fake marriage turns into true love, but war tears them apart",
-      "source": "MDL synopsis",
+      "type": "bond",
+      "label": "found him dying in the snow, holding a jade hairpin like her mother's, and carried him home",
+      "short": "saved his life",
+      "evidence": "she notices he is holding a jade hairpin identical to one her mother once owned. Sensing this might be a sign from her mother's spirit, she decides to save him",
+      "source": "cpophome ep. 1",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1,
+      "until": 3
     },
     {
       "from": "changyu",
       "to": "xiezheng",
-      "type": "work",
-      "label": "takes her knife to the battlefield to find him",
-      "short": "goes to war for him",
-      "evidence": "Fan Chang Yu wields her butcher's knife on the battlefield, searching for justice and her husband",
-      "source": "MDL synopsis",
+      "type": "family",
+      "label": "a matrilocal marriage to keep the house from her uncle — fake, and the whole lane fooled",
+      "short": "married",
+      "evidence": "The wedding ceremony proceeded with traditional rituals, including the \"sharing of the meal\" (Tonglao) and drinking wine together",
+      "source": "cpophome ep. 4",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 4,
+      "until": 16
+    },
+    {
+      "from": "changyu",
+      "to": "xiezheng",
+      "type": "bond",
+      "label": "sent him off to war with a divorce letter — then went to the front and found him in a tent",
+      "short": "the divorce letter",
+      "evidence": "Changyu, having anticipated his departure, presented him with travel essentials and a divorce letter, suggesting a clean break would allow him more freedom",
+      "source": "cpophome ep. 17",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 17,
+      "until": 24
+    },
+    {
+      "from": "xiezheng",
+      "to": "changyu",
+      "type": "romance",
+      "label": "the kiss she returns, in the tent where she nurses him",
+      "short": "in love",
+      "evidence": "Xie Zheng leaned in to kiss her, and after a brief surprise, Changyu warmly returned the gesture",
+      "source": "cpophome ep. 25",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 25,
+      "until": 35
+    },
+    {
+      "from": "changyu",
+      "to": "xiezheng",
+      "type": "bond",
+      "label": "drugged his medicine and took his place in the line, and killed Shi Hu there",
+      "short": "fought in his place",
+      "evidence": "she drugged his medicine, knocking him unconscious... Dressing herself in a soldier's uniform, Changyu took his place as a swordsman in the Left Guard",
+      "source": "cpophome ep. 26",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 26,
+      "until": 26
+    },
+    {
+      "from": "xiezheng",
+      "to": "changyu",
+      "type": "bond",
+      "label": "the frail 'Yan Zheng' she married was the Marquis of Wu'an all along — she learns it when the army cheers him",
+      "short": "hid who he was",
+      "evidence": "Watching the man she knew as Yan Zheng receive the army's ultimate respect, Changyu was struck with the realization that he was the Marquis",
+      "source": "cpophome ep. 26",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 26
+    },
+    {
+      "from": "xiezheng",
+      "to": "changyu",
+      "type": "bond",
+      "label": "forged her a pair of twin blades and tempered them in his own blood",
+      "short": "forged her blades",
+      "evidence": "Xie Zheng cut his own hand to offer his blood to the forge. He knew that only Fan Changyu possessed the strength and spirit to truly master these blades",
+      "source": "cpophome ep. 28",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 28,
+      "until": 28
+    },
+    {
+      "from": "changyu",
+      "to": "xiezheng",
+      "type": "romance",
+      "label": "at his parents' graves, bleeding from his uncle's lashes, he names her his lifelong partner; she calls herself the Lady Marquis",
+      "short": "his Lady Marquis",
+      "evidence": "Changyu declared herself the Lady Marquis... He then formally introduced Changyu to his parents' spirits, swearing that she was his lifelong partner",
+      "source": "cpophome ep. 36",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 36,
+      "until": 39
+    },
+    {
+      "from": "changyu",
+      "to": "xiezheng",
+      "type": "family",
+      "label": "Prince Regent and Grand General; five years on, parents of two, riding out together against the Beijue",
+      "short": "married in truth",
+      "evidence": "Fan Changyu, now a mother of two but with her skills undiminished, donned her armor once more. She and Xie Zheng prepared to ride out together",
+      "source": "cpophome ep. 40",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 40
     },
     {
       "from": "changning",
@@ -272,79 +585,88 @@
       "source": "MDL cast · zh.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "changning",
-      "to": "baoer",
-      "type": "friend",
-      "label": "playmates",
-      "short": "playmates",
-      "evidence": "俞寶兒玩伴",
-      "source": "zh.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "qianqian",
-      "to": "baoer",
+      "from": "xiezheng",
+      "to": "changning",
       "type": "family",
-      "label": "son",
-      "short": "son",
-      "evidence": "[Qian Qian's son] / 育有一子俞寶兒",
-      "source": "MDL cast · zh.wikipedia",
+      "label": "carries her through the lantern festival like the other fathers do; she calls him brother-in-law in front of an army",
+      "short": "brother-in-law",
+      "evidence": "Xie Zheng insisted on carrying the girl, noting that all the other children were being carried by their fathers or brothers",
+      "source": "cpophome ep. 14",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 14
     },
     {
-      "from": "qianqian",
-      "to": "qimin",
-      "type": "romance",
-      "label": "his concubine, who fled him",
-      "short": "fled him",
-      "evidence": "齊旻逃妾",
-      "source": "zh.wikipedia",
+      "from": "weiqilin",
+      "to": "changyu",
+      "type": "family",
+      "label": "her father, the butcher who taught her his glaive technique",
+      "short": "father",
+      "evidence": "[Chang Yu's father]",
+      "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1,
+      "until": 29
     },
     {
-      "from": "qimin",
-      "to": "qianqian",
-      "type": "romance",
-      "label": "loves her; dies for her at the end",
-      "short": "loves her",
-      "evidence": "喜歡俞淺淺。最後為救俞淺淺墜下城樓被賜毒酒而死",
-      "source": "zh.wikipedia",
+      "from": "weiqilin",
+      "to": "changyu",
+      "type": "family",
+      "label": "was Wei Qi Lin, the general branded Jinzhou's traitor — she learns it from He Jing Yuan's last letter, and beats the Drum of Appeal for him",
+      "short": "the traitor's daughter",
+      "evidence": "The contents confirm her fears: her father was indeed Wei Qilin, the man infamous for betraying the army at Jinzhou",
+      "source": "cpophome ep. 30",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 30
     },
     {
-      "from": "qianqian",
-      "to": "changyu",
+      "from": "weiqilin",
+      "to": "weiyan",
+      "type": "work",
+      "label": "his most loyal subordinate, sent with the real tiger seal for reinforcements — then framed as Jinzhou's traitor to save the Wei family",
+      "short": "framed by him",
+      "evidence": "Wei Yan had entrusted the real Tiger Seal to his most loyal subordinate, Wei Qilin... To save the Wei family from execution, Wei Yan was forced to frame Wei Qilin as a traitor",
+      "source": "cpophome ep. 40",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 40
+    },
+    {
+      "from": "weiqilin",
+      "to": "hejingyuan",
       "type": "friend",
-      "label": "the tavern owner who takes her in",
-      "short": "friend",
-      "evidence": "溢香樓的東家、掌櫃",
-      "source": "zh.wikipedia",
-      "reveal": false,
-      "inferred": true,
-      "directed": false
+      "label": "old comrades — He pressed him to suicide on Wei Yan's orders, and kept his daughters safe after",
+      "short": "old comrade",
+      "evidence": "He Jingyuan admitted that Fan Erniu was his former comrade and had committed suicide after being pressured by He Jingyuan himself, who was acting under Wei Yan's orders",
+      "source": "cpophome ep. 20",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 20
     },
     {
       "from": "zhao",
       "to": "changyu",
       "type": "friend",
-      "label": "neighbour",
+      "label": "the neighbours who nurse her stranger, defend her gate with brooms and call themselves the guardians of Xigu Lane",
       "short": "neighbour",
       "evidence": "[Chang Yu's neighbor]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1,
+      "until": 39
     },
     {
       "from": "mrszhao",
@@ -356,67 +678,594 @@
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "mrszhao",
+      "to": "changyu",
+      "type": "friend",
+      "label": "washes her floor mat so she has to share her husband's bed",
+      "short": "matchmaker",
+      "evidence": "She intentionally washed the floor mat Changyu usually slept on, leaving her with no choice but to share the bed with her husband",
+      "source": "cpophome ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "until": 8
+    },
+    {
+      "from": "changyu",
+      "to": "zhao",
+      "type": "family",
+      "label": "back in Lin'an, she calls the Zhaos her foster parents",
+      "short": "foster parents",
+      "evidence": "she reunited with Mister and Madam Zhao, officially calling them her foster parents and promising to care for them",
+      "source": "cpophome ep. 40",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 40
+    },
+    {
+      "from": "songyan",
+      "to": "changyu",
+      "type": "romance",
+      "label": "the ex-fiancé whose family lived off hers for ten years, then called off the match over a fortune-teller",
+      "short": "ex-fiancé",
+      "evidence": "The Song family had unilaterally called off the engagement after a fortune teller labeled Changyu a \"star of ill omen\"",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 13
+    },
+    {
+      "from": "changyu",
+      "to": "songyan",
+      "type": "rivalry",
+      "label": "wipes his name off the lanterns, then sacks him in an alley with Xie Zheng",
+      "short": "beat him up",
+      "evidence": "They threw a sack over the scholar's head and gave him a thorough beating, fleeing before Changning could even finish counting to seven",
+      "source": "cpophome ep. 14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 14,
+      "until": 14
+    },
+    {
+      "from": "qianqian",
+      "to": "changyu",
+      "type": "work",
+      "label": "the restaurant owner who takes her braised meat, then opens a shop with her",
+      "short": "business partner",
+      "evidence": "Yu Qianqian expressed interest in doing business with Changyu's braised meat, as she had been secretly testing the quality of Changyu's products for ten days",
+      "source": "cpophome ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 8
+    },
+    {
+      "from": "qianqian",
+      "to": "baoer",
+      "type": "family",
+      "label": "her son, kept hidden in a locked cellar",
+      "short": "son",
+      "evidence": "[Qian Qian's son] / 育有一子俞寶兒",
+      "source": "MDL cast · zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "changning",
+      "to": "baoer",
+      "type": "friend",
+      "label": "playmates — hide-and-seek in a chest, a pendant and a woven grasshopper exchanged",
+      "short": "playmates",
+      "evidence": "Changning and Yu Qianqian's son, Baoer, become friends and hide inside a large chest in Qi Min's room during a game of hide-and-seek",
+      "source": "cpophome ep. 12",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 12,
+      "until": 39
+    },
+    {
+      "from": "baoer",
+      "to": "changning",
+      "type": "bond",
+      "label": "the boy emperor pinky-swears to make her his Empress, the whole world as betrothal gift",
+      "short": "promised her the world",
+      "evidence": "He even made a pinky swear to make her his Empress one day, promising the entire world as her betrothal gift",
+      "source": "cpophome ep. 40",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 40
+    },
+    {
+      "from": "qimin",
+      "to": "qianqian",
+      "type": "romance",
+      "label": "the concubine who fled him six years ago — he finds her at the Yixiang, and she knows his voice before his face",
+      "short": "hunted her for years",
+      "evidence": "Qi Min reveals to his subordinate Zhao Xun that he has been searching for her for six years",
+      "source": "cpophome ep. 12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12
+    },
+    {
+      "from": "qimin",
+      "to": "baoer",
+      "type": "family",
+      "label": "his son — whom he terrorises, and would kill out of jealousy of his place in her heart",
+      "short": "son",
+      "evidence": "This confirmed Qi Min's suspicion that Baoer was indeed his son",
+      "source": "cpophome ep. 14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 14
+    },
+    {
+      "from": "qianqian",
+      "to": "qimin",
+      "type": "rivalry",
+      "label": "drugs him and flees; later steals the tiger tally from his neck",
+      "short": "fled him",
+      "evidence": "Taking advantage of the moment, Yu Qianqian drugged Qi Min and fled the villa toward the outskirts of Lucheng",
+      "source": "cpophome ep. 29",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 29,
+      "until": 39
+    },
+    {
+      "from": "qianqian",
+      "to": "qimin",
+      "type": "bond",
+      "label": "brings him the poisoned soup in his cell; he drinks it from her hand, saying she alone never feared his face",
+      "short": "his last soup",
+      "evidence": "Knowing it was poisoned, Qi Min drank it willingly, even asking her to feed him... he died in her arms",
+      "source": "cpophome ep. 40",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 40
+    },
+    {
+      "from": "qimin",
+      "to": "qisheng",
+      "type": "family",
+      "label": "the crown prince's true son — swapped at the East Palace fire and raised as Changxin's heir",
+      "short": "the imperial grandson",
+      "evidence": "That son, the true Imperial Grandson, was alive and living as Lord Changxin's eldest son, Sui Yuanhuai",
+      "source": "cpophome ep. 28",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 28
+    },
+    {
+      "from": "qimin",
+      "to": "yuanqing",
+      "type": "family",
+      "label": "raised as brothers, Changxin's two sons",
+      "short": "brother",
+      "evidence": "The two brothers, Sui Yuanhuai and Sui Yuanqing, met shortly after",
+      "source": "cpophome ep. 18",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 12,
+      "until": 28
+    },
+    {
+      "from": "qimin",
+      "to": "yuanqing",
+      "type": "rivalry",
+      "label": "lured him to Lin'an so the Marquis would kill the heir; later stabs him in a derelict temple",
+      "short": "wants him dead",
+      "evidence": "Qi Min, twisted by trauma, had lured Sui Yuanqing to Lin'an, hoping Xie Zheng would kill the heir and clear Qi Min's path to the throne",
+      "source": "cpophome ep. 29",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 29
+    },
+    {
+      "from": "qimin",
+      "to": "suituo",
+      "type": "family",
+      "label": "the eldest son he never loved, told the throne would never be his",
+      "short": "unloved son",
+      "evidence": "He coldly declared that even if something happened to Yuanqing, the throne would never belong to Yuanhuai",
+      "source": "cpophome ep. 28",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 28
+    },
+    {
+      "from": "qimin",
+      "to": "lanmomo",
+      "type": "rivalry",
+      "label": "kills the nanny who raised him when she turns to take Bao'er to Xie Zheng",
+      "short": "killed her",
+      "evidence": "In a fit of cold-blooded rage, Qi Min killed the woman who had raised him",
+      "source": "cpophome ep. 23",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 23
+    },
+    {
+      "from": "qimin",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "poses as an East Palace survivor to buy the Marquis's alliance — 200,000 shi of grain as deposit",
+      "short": "courted his alliance",
+      "evidence": "Instead of turning Xie Zheng over to the Wei family, Qi Min decided to use his East Palace seal to lure the Marquis into an alliance",
+      "source": "cpophome ep. 13",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 13,
+      "until": 27
+    },
+    {
+      "from": "xiezheng",
+      "to": "qimin",
+      "type": "rivalry",
+      "label": "exposes his pact with the Beijue at the Xuan Gate; the usurper falls from the wall",
+      "short": "brought him down",
+      "evidence": "Xie Zheng publicly exposes Qi Min's secret alliance with the Beijue tribes, revealing that the prince was willing to hand over the dynasty's lands to barbarians",
+      "source": "cpophome ep. 39",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 39
+    },
+    {
+      "from": "qimin",
+      "to": "lijing",
+      "type": "work",
+      "label": "the Li clan's secret candidate for the throne — the alliance the grandson finds unfit",
+      "short": "the Li clan's man",
+      "evidence": "Qi Min warns him that their alliance is the only way for the Li family to survive the struggle against Wei Yan",
+      "source": "cpophome ep. 33",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 33
     },
     {
       "from": "zhaoxun",
-      "to": "changyu",
+      "to": "qimin",
       "type": "work",
-      "label": "the rice shop",
-      "short": "rice shop",
-      "evidence": "[Lin'an Rice Shop manager]",
-      "source": "MDL cast",
+      "label": "his man in Lin'an, behind the rice shop counter",
+      "short": "his man",
+      "evidence": "Qi Min reveals to his subordinate Zhao Xun that he has been searching for her for six years",
+      "source": "cpophome ep. 12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "until": 27
+    },
+    {
+      "from": "zhaoxun",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "flees with Bao'er and the East Palace seal, and tells the Marquis who set the fire",
+      "short": "told him the truth",
+      "evidence": "Zhao Xun revealed a shocking truth to Xie Zheng: the fire at the East Palace years ago had been set by the Crown Princess herself",
+      "source": "cpophome ep. 28",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 28
+    },
+    {
+      "from": "lanmomo",
+      "to": "zhaoxun",
+      "type": "family",
+      "label": "mother",
+      "short": "mother",
+      "evidence": "he locks Yu Qianqian in a woodshed and interrogates Granny Lan's son, Zhao Xun",
+      "source": "cpophome ep. 22",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 22
+    },
+    {
+      "from": "lanmomo",
+      "to": "baoer",
+      "type": "work",
+      "label": "the nanny who smuggles the imperial great-grandson out of Baxia",
+      "short": "smuggled him out",
+      "evidence": "In the Sui manor, Yu Qianqian coordinates with Granny Lan to smuggle her son, Bao'er, to safety",
+      "source": "cpophome ep. 22",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 22
+    },
+    {
+      "from": "yuanqing",
+      "to": "xiezheng",
+      "type": "rivalry",
+      "label": "the rebel heir the Marquis shoots off a cliff, then baits into a flood with a thousand men",
+      "short": "the rebel heir",
+      "evidence": "an enraged Xie Zheng shot him, sending him plummeting off the cliff into the water",
+      "source": "cpophome ep. 16",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 16
+    },
+    {
+      "from": "yuanqing",
+      "to": "changyu",
+      "type": "rivalry",
+      "label": "buys the Qingfeng bandits to massacre Lin'an and corner her — she jumps",
+      "short": "burned her town",
+      "evidence": "The pursuit of Changyu ended at the edge of a cliff, where Sui Yuanqing cornered her and demanded her submission. Changyu responded with a defiant smile and threw herself into the abyss",
+      "source": "cpophome ep. 18",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 18
+    },
+    {
+      "from": "yuanqing",
+      "to": "changning",
+      "type": "rivalry",
+      "label": "holds her hostage as 'Xie Zheng's daughter', for the territory of Yanzhou",
+      "short": "held her hostage",
+      "evidence": "Sui Yuanqing was delighted, seeing the girl as the perfect leverage to use against Xie Zheng",
+      "source": "cpophome ep. 19",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 19,
+      "until": 22
+    },
+    {
+      "from": "yuanqing",
+      "to": "suituo",
+      "type": "family",
+      "label": "second son and named heir",
+      "short": "heir",
+      "evidence": "The second-born son of rebel Prince Changxin, he is the crown prince of the rebel faction",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "shisanniang",
+      "to": "yuanqing",
+      "type": "romance",
+      "label": "the bandit chief who fell for him after one kiss; dying, he admits he never loved her",
+      "short": "loved him",
+      "evidence": "In a bold move, he kissed the female chief, causing Shi Sanniang—who was impressed by his strength and handsome looks—to fall for him",
+      "source": "cpophome ep. 18",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 18
+    },
+    {
+      "from": "shisanniang",
+      "to": "changyu",
+      "type": "bond",
+      "label": "brings her Sui Yuan Qing's head and a tiger seal, as he asked",
+      "short": "brought the seal",
+      "evidence": "Shi Sanniang brought Sui Yuanqing's head and another Tiger Seal",
+      "source": "cpophome ep. 38",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 38
+    },
+    {
+      "from": "changyu",
+      "to": "suituo",
+      "type": "rivalry",
+      "label": "slays the rebel lord in a duel, with her father's technique he recognises too late",
+      "short": "slew him",
+      "evidence": "Fan Changyu combines these refined movements with her own butcher's knife skills to finally slay the rebel Lord",
+      "source": "cpophome ep. 30",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 30
     },
     {
       "from": "jin",
       "to": "changyu",
       "type": "rivalry",
-      "label": "the thug who kept picking on her — then a soldier beside her",
+      "label": "the gambling-den thug her uncle brings to seize the house — beaten twice, then calling her 'Great-Auntie Fan'",
       "short": "old nuisance",
-      "evidence": "本是林安镇的地痞，经常找长玉的麻烦，后为鎮西北殺豬小隊的成员之一",
-      "source": "zh.wikipedia",
+      "evidence": "Changyu's uncle, Fan Daniu, has brought a group of gambling den thugs led by Jin Yuanbao to her home to seize the house deed",
+      "source": "cpophome ep. 2",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 2,
+      "until": 20
     },
     {
-      "from": "manwu",
+      "from": "jin",
       "to": "changyu",
       "type": "work",
-      "label": "Pig Butcher Squad",
+      "label": "the Northwest Pig Butcher Squad, formed in a stone quarry",
       "short": "her squad",
-      "evidence": "[Northwest Pig Butcher Squad]",
-      "source": "MDL cast",
+      "evidence": "Jin Yuanbao and his followers—Man Di, Man Cang, and Man Wu—arrived just in time to defend her",
+      "source": "cpophome ep. 21",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 21
     },
     {
-      "from": "mancang",
+      "from": "jin",
       "to": "changyu",
-      "type": "work",
-      "label": "Pig Butcher Squad",
-      "short": "her squad",
-      "evidence": "[Northwest Pig Butcher Squad]",
-      "source": "MDL cast",
+      "type": "romance",
+      "label": "loves her in silence; sees her leave the tent flushed and knows",
+      "short": "unrequited",
+      "evidence": "Jin Yuanbao remains bitter, harboring his own feelings for her",
+      "source": "cpophome ep. 24",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 24
     },
     {
       "from": "mandi",
       "to": "changyu",
-      "type": "work",
-      "label": "Pig Butcher Squad",
-      "short": "her squad",
-      "evidence": "[Northwest Pig Butcher Squad]",
-      "source": "MDL cast",
+      "type": "bond",
+      "label": "tries to leave her his savings before the battle, for his sister",
+      "short": "his savings",
+      "evidence": "he tried to entrust his life savings to her, asking her to deliver the money to his sister if he fell",
+      "source": "cpophome ep. 26",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 26,
+      "until": 29
+    },
+    {
+      "from": "mandi",
+      "to": "manwu",
+      "type": "family",
+      "label": "dies shielding his brother from Sui Yuan Qing's blade",
+      "short": "died for him",
+      "evidence": "Man Di lunges forward to shield his brother and is fatally wounded by the blade",
+      "source": "cpophome ep. 30",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 30
+    },
+    {
+      "from": "gongsun",
+      "to": "xiezheng",
+      "type": "friend",
+      "label": "his strategist and closest friend — walks into the yamen with Luyuan's papers to save him",
+      "short": "closest friend",
+      "evidence": "Gongsun Yin arrives just in time, presenting official documents proving Xie Zheng's affiliation with the prestigious Luyuan Academy",
+      "source": "cpophome ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7
+    },
+    {
+      "from": "gongsun",
+      "to": "changyu",
+      "type": "friend",
+      "label": "paints the three of them as a family; in camp, hides the Marquis from her",
+      "short": "painted the family",
+      "evidence": "Moved by the sight, he painted a portrait of them and presented it to Changyu as a New Year's gift",
+      "source": "cpophome ep. 14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 14
+    },
+    {
+      "from": "gongsun",
+      "to": "qishu",
+      "type": "romance",
+      "label": "the princess who came to his academy as a scholar, and the stranger he played chess with at Guangling Temple — one woman; he sends her away for the gap between them",
+      "short": "in love",
+      "evidence": "Gongsun Yin realized with a shock that the woman he had felt a spiritual connection with through chess was actually the Princess",
+      "source": "cpophome ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 11,
+      "until": 32
+    },
+    {
+      "from": "gongsun",
+      "to": "qishu",
+      "type": "romance",
+      "label": "proposes a quiet life in Hejian; she asks for his family's library as betrothal gift",
+      "short": "engaged",
+      "evidence": "He proposes to Qi Shu, asking her to live a quiet life with him in Hejian once the conflict with Wei Yan and the Li family is resolved. Qi Shu eventually accepts",
+      "source": "cpophome ep. 33",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 33
+    },
+    {
+      "from": "gongsun",
+      "to": "qishu",
+      "type": "bond",
+      "label": "walks into the burning Qingyuan Palace and breathes her back to life",
+      "short": "saved her from the fire",
+      "evidence": "Gongsun Yin doused himself in water and charged into the flames to rescue Qi Shu. Finding that she had stopped breathing, he used an emergency resuscitation method",
+      "source": "cpophome ep. 37",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 37,
+      "until": 37
+    },
+    {
+      "from": "taoyi",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "the Grand Tutor searching the quarries for his disciple 'Jiu Heng'",
+      "short": "his master",
+      "evidence": "Tao described his disciple, Jiuheng, as a handsome and composed man",
+      "source": "cpophome ep. 21",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 21
+    },
+    {
+      "from": "taoyi",
+      "to": "changyu",
+      "type": "bond",
+      "label": "swaps his lot for hers so she leaves the dam that is meant to drown",
+      "short": "swapped the death lot",
+      "evidence": "Knowing that staying at the dam is a death sentence, Tao Yi tricks Changyu into swapping lots with him",
+      "source": "cpophome ep. 22",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 22,
+      "until": 27
+    },
+    {
+      "from": "taoyi",
+      "to": "changyu",
+      "type": "family",
+      "label": "adopts her as his sworn daughter and names her 'Shan Jun' — the tiger of the mountains",
+      "short": "sworn father",
+      "evidence": "she knelt and formally accepted him as her sworn father. As a gift, he bestowed upon her the courtesy name \"Shanjun\"",
+      "source": "cpophome ep. 28",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 28
     },
     {
       "from": "xiewu",
@@ -428,213 +1277,385 @@
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "xieqi",
-      "to": "xiezheng",
-      "type": "work",
-      "label": "Blood-Robed Cavalry guard",
-      "short": "his guard",
-      "evidence": "[Blood-Robed Cavalry guard]",
-      "source": "MDL cast",
+      "from": "xiewu",
+      "to": "changyu",
+      "type": "bond",
+      "label": "takes Sui Tuo's spear for her; may never hold a blade again",
+      "short": "took the spear for her",
+      "evidence": "Xie Wu intervenes and takes the blow, suffering a shattered shoulder bone to save her life",
+      "source": "cpophome ep. 30",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 30
     },
     {
-      "from": "xieshiyi",
-      "to": "xiezheng",
+      "from": "hejingyuan",
+      "to": "changyu",
+      "type": "bond",
+      "label": "her father's old friend, who sends Wei Yan a tiger seal to keep the sisters safe",
+      "short": "her father's friend",
+      "evidence": "He Jingyuan sent an urgent message and a mysterious item to Chancellor Wei, acknowledging that the time had come to fulfill a long-held promise regarding the protection of his old friend's daughters",
+      "source": "cpophome ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "until": 28
+    },
+    {
+      "from": "hejingyuan",
+      "to": "changyu",
       "type": "work",
-      "label": "Blood-Robed Cavalry guard",
-      "short": "his guard",
-      "evidence": "[Blood-Robed Cavalry guard]",
-      "source": "MDL cast",
+      "label": "spars with her, recognises her father's blade work, gives her armor — his last farewell",
+      "short": "her father's blades",
+      "evidence": "He promised to reveal the full truth once the siege of Lucheng was over and presented her with a suit of custom-made armor",
+      "source": "cpophome ep. 29",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 29
     },
     {
-      "from": "qimin",
-      "to": "qisheng",
+      "from": "hejingyuan",
+      "to": "huaian",
+      "type": "work",
+      "label": "his mentor and commander; leaves him Jizhou and the Fan sisters to protect",
+      "short": "mentor",
+      "evidence": "He urged Li Huai'an to promise that if he were to pass away, Li would protect the Fan sisters",
+      "source": "cpophome ep. 10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "hejingyuan",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "his father's old general; the dam at Wu River is their plan",
+      "short": "old general",
+      "evidence": "Xie Zheng and Gongsun Yin met with He Jingyuan to propose a drowning strategy",
+      "source": "cpophome ep. 20",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 20
+    },
+    {
+      "from": "huaian",
+      "to": "xiezheng",
+      "type": "work",
+      "label": "trained beside him as boys; recognises the 'matrilocal husband' and asks whether he serves the Li or the Wei",
+      "short": "old classmate",
+      "evidence": "Having studied martial arts and strategy alongside Xie Zheng years ago, he felt certain he recognized him despite the passage of time",
+      "source": "cpophome ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 9
+    },
+    {
+      "from": "huaian",
+      "to": "changyu",
+      "type": "romance",
+      "label": "the commandant who keeps saving her, and whose feelings the princess teases",
+      "short": "fond of her",
+      "evidence": "He develops feelings for Fan Changyu.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "until": 31
+    },
+    {
+      "from": "huaian",
+      "to": "changyu",
       "type": "family",
-      "label": "the crown prince's true son, swapped seventeen years ago at the palace fire",
-      "short": "the true heir",
-      "evidence": "十七年前東宮大火，與長信王長子互換身分，實為大胤王承德太子嫡子、皇长孙",
-      "source": "zh.wikipedia",
-      "reveal": true,
+      "label": "sworn siblings, declared before both armies",
+      "short": "sworn brother",
+      "evidence": "He publicly declared that he and Fan Changyu had become sworn siblings",
+      "source": "cpophome ep. 32",
+      "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 32
     },
     {
-      "from": "qimin",
-      "to": "yuanqing",
-      "type": "rivalry",
-      "label": "kills him, and the woman who raised them, when he reveals himself",
-      "short": "kills him",
-      "evidence": "後自爆身份殺害養母與隨元青",
-      "source": "zh.wikipedia",
-      "reveal": true,
+      "from": "huaian",
+      "to": "lijing",
+      "type": "family",
+      "label": "eldest grandson of the Grand Tutor — put under house arrest by him before the banquet",
+      "short": "grandson",
+      "evidence": "The Grand Tutor of the realm, he is also the grandfather of Li Huaian",
+      "source": "en.wikipedia",
+      "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "lijing",
+      "from": "huaian",
       "to": "qimin",
-      "type": "work",
-      "label": "the grand tutor who puts him on the throne",
-      "short": "makes him emperor",
-      "evidence": "李太傅則助他成功回到大胤皇朝稱帝",
-      "source": "zh.wikipedia",
-      "reveal": true,
+      "type": "rivalry",
+      "label": "his grandfather's ally, whom he finds unfit to rule",
+      "short": "unfit to rule",
+      "evidence": "Li Huai'an and his subordinate, Xiao Zhu, lament that such a heartless man could never be a just ruler",
+      "source": "cpophome ep. 33",
+      "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 33
     },
     {
       "from": "weiyan",
       "to": "xiezheng",
       "type": "family",
-      "label": "maternal uncle — and the prime minister who destroyed the Fan family",
+      "label": "maternal uncle — the Wei family's 'proper successor'",
       "short": "uncle",
       "evidence": "大胤丞相，謝征舅舅",
       "source": "zh.wikipedia",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 17
+    },
+    {
+      "from": "weiyan",
+      "to": "xiezheng",
+      "type": "rivalry",
+      "label": "a hundred and eight lashes at his parents' graves, to buy the nephew free of the uncle",
+      "short": "108 lashes",
+      "evidence": "According to the family rules, an unfilial son must endure one hundred and eight lashes. Xie Zheng accepted the punishment willingly",
+      "source": "cpophome ep. 36",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 36,
+      "until": 38
+    },
+    {
+      "from": "xiezheng",
+      "to": "weiyan",
+      "type": "rivalry",
+      "label": "exposes him as Jinzhou's true traitor with his mother's hidden letter, disarms him at the Xuan Gate, and hands him the poisoned wine himself",
+      "short": "brought him down",
+      "evidence": "Xie Zheng accuses Wei Yan of being the true traitor of the Battle of Jinzhou, asserting that the Chancellor abandoned his soldiers at the front lines",
+      "source": "cpophome ep. 39",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 39
     },
     {
       "from": "weiyan",
       "to": "changyu",
       "type": "rivalry",
-      "label": "framed her father over the Jinzhou massacre; the family was wiped out",
-      "short": "ruined her family",
-      "evidence": "被當朝丞相魏嚴构陷，導致家族滅門",
-      "source": "zh.wikipedia",
+      "label": "sends the Mystic Iron Assassins to kill the Fan women and take a letter",
+      "short": "sent assassins",
+      "evidence": "the man confessed he was a Mystic Iron Assassin sent by Chancellor Wei to kill the women of the Fan family and retrieve a specific letter",
+      "source": "cpophome ep. 9",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 9
     },
     {
-      "from": "weisheng",
-      "to": "weiyan",
-      "type": "work",
-      "label": "assistant",
-      "short": "assistant",
-      "evidence": "[Wei Yan's assistant]",
-      "source": "MDL cast",
+      "from": "weiyan",
+      "to": "qirongyin",
+      "type": "romance",
+      "label": "his childhood love, forced into the palace by decree — a plea in her forged hand drew him from Jinzhou",
+      "short": "his lost love",
+      "evidence": "The note revealed that Wei Yan had once been in a forbidden relationship with Qi Rongyin, who later became Consort Shu",
+      "source": "cpophome ep. 36",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 36
+    },
+    {
+      "from": "weiyan",
+      "to": "lijing",
+      "type": "rivalry",
+      "label": "the Wei clan and the Li clan, the two factions the emperor hangs between",
+      "short": "rival faction",
+      "evidence": "After the session, the rivalry between the Chancellor and the Grand Tutor remains tense. Both sides are secretly searching for the missing Marquis",
+      "source": "cpophome ep. 3",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 3
+    },
+    {
+      "from": "weiyan",
+      "to": "qisheng",
+      "type": "work",
+      "label": "put him on the throne seventeen years ago and slaps him for scheming",
+      "short": "the puppet's master",
+      "evidence": "He confronted Qi Sheng, slapping the Emperor across the face and warning him that this would be the last time he tolerated such schemes",
+      "source": "cpophome ep. 37",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 32
+    },
+    {
+      "from": "weixuan",
+      "to": "weiyan",
+      "type": "family",
+      "label": "raised as his son — not by blood, his mother confesses at the end",
+      "short": "son",
+      "evidence": "Wei Xuan, the son of Chancellor Wei, arrived to deliver a military order to He Jingyuan",
+      "source": "cpophome ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "weixuan",
+      "to": "xiezheng",
+      "type": "rivalry",
+      "label": "resents the cousin the Wei family calls its proper successor",
+      "short": "resents him",
+      "evidence": "Wei Xuan's resentment toward Xie Zheng led to a confrontation with Wei Yan",
+      "source": "cpophome ep. 17",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 17,
+      "until": 38
+    },
+    {
+      "from": "weixuan",
+      "to": "xiezheng",
+      "type": "bond",
+      "label": "takes Wei Sheng's arrow for him, for the mother Xie Zheng saved",
+      "short": "took the arrow",
+      "evidence": "Unexpectedly, Wei Xuan throws himself in the way, taking the hit to repay Xie Zheng for saving his mother earlier",
+      "source": "cpophome ep. 39",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 39
+    },
+    {
+      "from": "qisheng",
+      "to": "qishu",
+      "type": "family",
+      "label": "her brother, the emperor she threatens with a stick",
+      "short": "brother",
+      "evidence": "The Grand Princess of the realm, she is the sister to the current emperor",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "qishu",
       "to": "xiezheng",
-      "type": "family",
-      "label": "the grand princess",
-      "short": "court",
-      "evidence": "[Grand Princess]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": true,
-      "directed": true
-    },
-    {
-      "from": "jianjia",
-      "to": "qishu",
-      "type": "work",
-      "label": "maidservant",
-      "short": "maidservant",
-      "evidence": "[Qi Shu's maidservant]",
-      "source": "MDL cast",
+      "type": "romance",
+      "label": "a marriage decreed for them by her brother — refused by both, the eunuch's ear cut off for it",
+      "short": "decreed, refused",
+      "evidence": "Furious, Qi Shu accused the eunuchs of manipulating her brother and flatly rejected the proposal",
+      "source": "cpophome ep. 32",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 32,
+      "until": 34
     },
     {
-      "from": "huaian",
-      "to": "xiezheng",
-      "type": "rivalry",
-      "label": "Heijian against Yin",
-      "short": "the other side",
-      "evidence": "李懷安／溫侃",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": true,
-      "directed": true
-    },
-    {
-      "from": "zhuoran",
+      "from": "qishu",
       "to": "huaian",
-      "type": "work",
-      "label": "guard",
-      "short": "guard",
-      "evidence": "[Huai An's guard]",
-      "source": "MDL cast",
+      "type": "romance",
+      "label": "the match their elders arrange; neither wants it, so they plan their freedom together",
+      "short": "arranged, unwanted",
+      "evidence": "Both admitted they were uninterested in the marriage arranged by their elders, and the Princess suggested a plan that would allow them both to maintain their freedom",
+      "source": "cpophome ep. 14",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 14,
+      "until": 32
     },
     {
-      "from": "gongsun",
-      "to": "huaian",
-      "type": "work",
-      "label": "headmaster of Liu Yuan Academy in Heijian",
-      "short": "headmaster",
-      "evidence": "[Headmaster of Liu Yuan Academy of Heijian]",
-      "source": "MDL cast",
+      "from": "qishu",
+      "to": "changyu",
+      "type": "friend",
+      "label": "the physician 'Qi Bengong' who keeps the Marquis's secret and dresses the general in silks",
+      "short": "friend",
+      "evidence": "Misunderstanding Qi Shu's royal self-reference, Changyu believes the physician's name is \"Qi Bengong\"",
+      "source": "cpophome ep. 24",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 24
+    },
+    {
+      "from": "qisheng",
+      "to": "changyu",
+      "type": "romance",
+      "label": "means to make her his Noble Consort, until she describes a pig's slaughter to him",
+      "short": "wanted her as consort",
+      "evidence": "When summoned to the palace, Qi Sheng attempts to woo her with poetry, but Changyu retaliates by graphically describing the process of slaughtering a pig",
+      "source": "cpophome ep. 35",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 35,
+      "until": 35
     }
   ],
   "compact": {
     "people": [
       "changyu",
       "xiezheng",
+      "changning",
       "qianqian",
       "baoer",
-      "changning",
-      "zhao",
-      "mrszhao",
-      "zhaoxun",
+      "weiqilin",
       "jin",
       "manwu",
-      "mancang",
       "mandi",
-      "xiewu",
-      "xieqi",
-      "xieshiyi",
-      "qimin",
-      "yuanqing",
-      "weiyan",
-      "weisheng",
-      "qisheng",
-      "qishu",
-      "lijing",
-      "jianjia",
+      "gongsun",
+      "taoyi",
+      "hejingyuan",
       "huaian",
-      "zhuoran",
-      "gongsun"
+      "qishu",
+      "weiyan",
+      "qimin",
+      "yuanqing"
     ],
     "blocks": {
       "Lin'an": [
         0,
         0
       ],
-      "Pig Butcher Squad": [
-        0,
-        2
+      "Xie Zheng's camp": [
+        1,
+        0
       ],
       "The court of Yin": [
         2,
         0
       ],
-      "Heijian": [
-        2,
+      "Pig Butcher Squad": [
+        0,
         2
       ],
-      "Blood-Robed Cavalry": [
+      "Changxin's rebels": [
         1,
+        2
+      ],
+      "Jizhou": [
+        2,
         2
       ]
     },

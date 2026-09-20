@@ -43,12 +43,15 @@ LINKS
 - reveal: true for a twist the story keeps for later — a hidden parent, a true identity, a killer, an affair. When in doubt, mark it.
 - label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated.
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
+- A tie that only says "is in this block" — his guard, her squad, his assistant, a murdered sibling, a maid — is drawn once at most per person, and never for more than two members of the same block: the block's name already says it. A support role whose only tie would be such a membership, whom no source names for anything else, is left out; the ones the story names (the guard who took the spear, the assistant who became a confidant) stay, with that tie.
 
 EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans for Korean dramas, cpophome for Chinese ones)
 - The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "cpophome ep. 12".
 - since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
-- A tie that changes over the run is two links, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them.
-- With recaps, prefer links a reader of the show would recognise as its turns; a chart of forty links is fine when the recaps carry them.
+- A tie that changes over the run is two links, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
+- until: the last episode a tie still holds. Every link that is replaced, undone or over gets one — the fake marriage ends where the real one starts, "his secretary" ends when she is fired, "forgot her" ends when he remembers, a mentor's tie ends the episode he dies. A moment — a rescue, a slap, a kidnapping resolved next episode, a gift — is since and until the same episode. Only what still holds at the end has no until: a marriage that lasts, a sibling, a love that is not undone, a reveal the ending stands on.
+- The chart is read as of an episode, and at the end it draws every link without an until: keep that end view sparse. Between two people, at most two links without an until, and never two of the same type. Twelve links between the leads is right when ten of them end; twelve that all hold is a knot.
+- With recaps, prefer links a reader of the show would recognise as its turns; a chart of forty links is fine when the recaps carry them and most of them end.
 
 COMPACT
 - compact.people: the cut the compact view shows — the leads, their households, and whoever the story turns on; whole groups, never half of one. A big school class or a village can be left out of the cut and stays in the full view.
@@ -111,7 +114,7 @@ export const CHART_SCHEMA = {
             items: {
                 type: "object",
                 additionalProperties: false,
-                required: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since"],
+                required: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"],
                 properties: {
                     from: { type: "string" },
                     to: { type: "string" },
@@ -124,6 +127,7 @@ export const CHART_SCHEMA = {
                     inferred: { type: "boolean" },
                     directed: { type: "boolean" },
                     since: nullable("integer"),
+                    until: nullable("integer"),
                 },
             },
         },
@@ -231,10 +235,26 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     const withRecaps = inputs.recaps.length > 0;
     const lastEp = withRecaps ? Math.max(...inputs.recaps.map((r) => r.toEp)) : 0;
     const links: MapLink[] = draft.links.map((l) => {
-        const link: MapLink = { ...l, since: withRecaps && l.since != null && l.since >= 1 ? Math.min(l.since, lastEp) : null };
+        const since = withRecaps && l.since != null && l.since >= 1 ? Math.min(l.since, lastEp) : null;
+        // an until before its since, or past the recaps, is a stray number: the tie holds
+        const until = withRecaps && since != null && l.until != null && l.until >= since && l.until <= lastEp ? l.until : null;
+        const link: MapLink = { ...l, since };
+        if (until != null) link.until = until;
+        else delete link.until;
         if (!withRecaps) delete link.since;
         return link;
     });
+    // The end view draws every link without an until. A pair the model
+    // kept piling open links on is what made a 40-episode chart a knot.
+    if (withRecaps) {
+        const open = new Map<string, number>();
+        for (const l of links) {
+            if (l.until != null) continue;
+            const key = [l.from, l.to].sort().join(" · ");
+            open.set(key, (open.get(key) ?? 0) + 1);
+        }
+        for (const [pair, n] of open) if (n > 2) warnings.push(`${pair}: ${n} links that never end — the end view draws them all; most should carry an until`);
+    }
 
     const map: CharacterMapData = {
         version: 1,

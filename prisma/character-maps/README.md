@@ -158,9 +158,21 @@ every link:
 - **`until`** is the last episode a tie still holds, for one that stops
   holding: the "bond" of episodes 1-4 gets `since: 1, until: 4` and the
   romance that replaces it `since: 5`, so the slider shows one or the other
-  and never both. Absent — which it is on every generated link — means it
-  never stops. Only `since` moves the slider's stops; an `until` past the
-  recaps costs their granularity nothing.
+  and never both. Absent means it never stops. Only `since` moves the
+  slider's stops; an `until` past the recaps costs their granularity
+  nothing.
+- **The end view draws every link without an `until`**, so `until` is not
+  optional bookkeeping: it is what keeps a 40-episode chart readable. A
+  tie that is replaced, undone or over ends (the fake marriage where the
+  real one starts, "his secretary" when she is fired, a mentor the episode
+  he dies); a moment (a rescue, a slap, a gift) is `since` and `until` the
+  same episode; only what still holds at the end stays open. Between two
+  people, at most two open links, never two of the same type — Pursuit of
+  Jade's leads carry twelve links, ten of which end, and the end view shows
+  two. The generator is told the same, and warns on a pair with three open
+  links. Ties that only say "is in this block" (his guard, her squad, his
+  assistant) are drawn for two members of a block at most, and a support
+  role with nothing but such a membership is left out.
 - **`recaps`** on the chart says how far the recaps went: `episodes` is the
   last episode covered, and `ranges` the episodes each recap covers, in
   order. A recap of episodes 11-12 does not say which of the two a thing

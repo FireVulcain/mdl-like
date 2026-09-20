@@ -26,6 +26,8 @@ const CONTINUE_RULES = `You carry a Korean or Chinese drama's character relation
 
 HOW THE CHART IS DATED — this is the rule everything else follows
 - A tie that changes over the run is TWO links, each with its own since and its own sentence, not one link rewritten. Rivals in episode 2 who become allies in episode 10 are "rivalry, since 2" and "friend, since 10". Give the first one until: 9 so the chart stops drawing it where the second takes over, and add the second. Never change the first one's type.
+- A moment the new episodes bring — a rescue, a slap, a kidnapping resolved next episode, a gift — is a link with since and until the same episode. A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks. The chart's end view draws every link without an until, and it must stay sparse: at most two open links between two people, never two of the same type. When you add a third, end one.
+- Do not add a tie that only says "is in this block" (his guard, her squad, his assistant) for a face the chart has, or for a new face no sentence names for anything else.
 - So the ordinary work of a continue run is addLinks. updateLinks and removeLinks are for a chart that was WRONG, not for a story that moved on.
 
 WHAT TO ADD (addLinks)

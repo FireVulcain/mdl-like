@@ -314,7 +314,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "until": 3
     },
     {
       "from": "kangchul",
@@ -327,7 +328,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 3
+      "since": 4,
+      "until": 7
     },
     {
       "from": "yeonju",
@@ -392,7 +394,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "until": 4
     },
     {
       "from": "seongmu",
@@ -496,7 +499,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 13
+      "since": 13,
+      "until": 13
     },
     {
       "from": "doyun",
@@ -509,7 +513,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "until": 4
     },
     {
       "from": "doyun",
@@ -535,7 +540,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "until": 3
     },
     {
       "from": "suhui",
@@ -561,7 +567,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 4
+      "since": 4,
+      "until": 7
     },
     {
       "from": "kangchul",
@@ -574,7 +581,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 8
+      "since": 8,
+      "until": 8
     },
     {
       "from": "cheolho",
@@ -613,7 +621,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 15
+      "since": 15,
+      "until": 15
     },
     {
       "from": "kangchul",
@@ -652,7 +661,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "until": 10
     },
     {
       "from": "seongmu",
@@ -769,7 +779,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6
+      "since": 6,
+      "until": 6
     },
     {
       "from": "kangyun",
@@ -834,7 +845,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6
+      "since": 6,
+      "until": 7
     },
     {
       "from": "nursejung",
@@ -848,6 +860,19 @@
       "inferred": true,
       "directed": false,
       "since": null
+    },
+    {
+      "from": "kangchul",
+      "to": "yeonju",
+      "type": "romance",
+      "label": "With no memory of their first love, Kang Chul falls for Yeon-joo a second time in her world, and refuses to become a memory to her again",
+      "short": "loves her again",
+      "evidence": "he has no intention of living that same life all over again, or of becoming nothing but a memory to her",
+      "source": "dramabeans ep. 12",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 12
     }
   ],
   "compact": {
