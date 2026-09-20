@@ -1,38 +1,113 @@
 {
   "version": 1,
   "mdlSlug": "16589-w",
-  "title": "W",
+  "title": "W (2016)",
   "asianwiki": "W: Two Worlds Apart",
   "native": "더블유",
   "year": 2016,
   "country": "KR",
   "sources": [
-    "MDL cast (38 roles, 2 main)",
+    "MDL cast (37 roles, 2 main)",
     "MDL synopsis",
     "ko.wikipedia 등장인물",
-    "en.wikipedia Cast (one entry filed under the wrong name)"
+    "en.wikipedia Cast",
+    "dramabeans recaps (Episodes 1-16)"
   ],
   "main": [
-    "kangcheol",
+    "kangchul",
     "yeonju"
   ],
+  "recaps": {
+    "source": "dramabeans",
+    "episodes": 16,
+    "count": 16,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        15,
+        15
+      ],
+      [
+        16,
+        16
+      ]
+    ]
+  },
   "people": [
     {
-      "id": "kangcheol",
-      "name": "Kang Cheol",
+      "id": "kangchul",
+      "name": "Kang Chul",
       "actor": "Lee Jong Suk",
       "image": "https://i.mydramalist.com/NdXbQv_5m.jpg",
+      "still": "https://asianwiki.com/images/e/ed/W_%28Korean_Drama%29-Lee_Jong-Suk.jpg",
       "group": "Leads",
       "inCast": true,
-      "still": "https://asianwiki.com/images/e/ed/W_%28Korean_Drama%29-Lee_Jong-Suk.jpg"
+      "note": "CEO of JN Global and hero of the webtoon W, hunting his family's killer"
     },
     {
       "id": "yeonju",
       "name": "O Yeon Ju",
       "actor": "Han Hyo Joo",
       "image": "https://i.mydramalist.com/R6W7x_5m.jpg",
+      "still": "https://asianwiki.com/images/2/2a/W_%28Korean_Drama%29-Han_Hyo-Joo.jpg",
       "group": "Leads",
       "inCast": true,
+      "note": "Second-year cardiothoracic surgery resident at Myungse Hospital",
       "alsoPlayedBy": [
         {
           "name": "Jung Ji So",
@@ -44,481 +119,769 @@
           "image": "https://i.mydramalist.com/6xgKW_5m.jpg",
           "era": "young"
         }
-      ],
-      "still": "https://asianwiki.com/images/2/2a/W_%28Korean_Drama%29-Han_Hyo-Joo.jpg"
+      ]
     },
     {
       "id": "seongmu",
       "name": "O Seong Mu",
       "actor": "Kim Eui Sung",
       "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
-      "group": "Yeon Ju's family",
+      "still": "https://asianwiki.com/images/9/96/W_%28Korean_Drama%29-Kim_Eui-Sung.jpg",
+      "group": "Yeon-joo's Family",
       "inCast": true,
-      "note": "Author of the webtoon W — Kang Cheol's world is his drawing",
-      "still": "https://asianwiki.com/images/9/96/W_%28Korean_Drama%29-Kim_Eui-Sung.jpg"
+      "note": "Webtoon artist; Kim Eui-sung also plays the faceless killer Han Sang-hoon inside the story"
     },
     {
       "id": "suseon",
       "name": "Kil Su Seon",
       "actor": "Nam Gi Ae",
       "image": "https://i.mydramalist.com/O8e2kd_5m.jpg",
-      "group": "Yeon Ju's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/3/35/W_%28Korean_Drama%29-Nam_Gi-Ae.jpg"
+      "still": "https://asianwiki.com/images/3/35/W_%28Korean_Drama%29-Nam_Gi-Ae.jpg",
+      "group": "Yeon-joo's Family",
+      "inCast": true
     },
     {
       "id": "suyeong",
       "name": "Kil Su Yeong",
       "actor": "Lee Se Rang",
       "image": "https://i.mydramalist.com/QXBeWm.jpg",
-      "group": "Yeon Ju's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/0/03/W_%28Korean_Drama%29-Lee_Se-Rang.jpg"
-    },
-    {
-      "id": "sanghoon",
-      "name": "Han Sang Hoon",
-      "actor": "Kim Eui Sung",
-      "image": null,
-      "group": "Kang Cheol's world",
-      "inCast": false,
-      "note": "The faceless killer of the webtoon — a double role for Kim Eui Sung, whom MDL lists only as O Seong Mu",
-      "still": "https://asianwiki.com/images/9/96/W_%28Korean_Drama%29-Kim_Eui-Sung.jpg"
-    },
-    {
-      "id": "doyun",
-      "name": "Seo Do Yun",
-      "actor": "Lee Tae Hwan",
-      "image": "https://i.mydramalist.com/0w11PK_5m.jpg",
-      "group": "Kang Cheol's world",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/d/d4/W_%28Korean_Drama%29-Lee_Tae-Hwan.jpg"
-    },
-    {
-      "id": "sohee",
-      "name": "Yun Su Hui",
-      "actor": "Jung Eugene",
-      "image": "https://i.mydramalist.com/O8PXDk_5m.jpg",
-      "group": "Kang Cheol's world",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/8/8e/W_%28Korean_Drama%29-Jeong_Eu-Gene.jpg"
-    },
-    {
-      "id": "cheolho",
-      "name": "Han Cheol Ho",
-      "actor": "Park Won Sang",
-      "image": "https://i.mydramalist.com/DkJoJq_5m.jpg",
-      "group": "Kang Cheol's world",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/0/0c/W_%28Korean_Drama%29-Park_Won-Sang.jpg"
-    },
-    {
-      "id": "hyeonseok",
-      "name": "Son Hyeon Seok",
-      "actor": "Cha Kwang Soo",
-      "image": "https://i.mydramalist.com/RR0LV_5m.jpg",
-      "group": "Kang Cheol's world",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/d/d7/W_%28Korean_Drama%29-Cha_Kwang-Soo.jpg"
-    },
-    {
-      "id": "kangyun",
-      "name": "Kang Yun",
-      "actor": "Park Choong Seon",
-      "image": "https://i.mydramalist.com/Bx6p7m.jpg",
-      "group": "Kang Cheol's family",
-      "inCast": true,
-      "note": "MDL Guest Role: Kang Yun [Kang Cheol's father] (Ep. 1)"
-    },
-    {
-      "id": "miho",
-      "name": "Yun Mi Ho",
-      "actor": "Kim Na Woon",
-      "image": "https://i.mydramalist.com/0wKOZK_5m.jpg",
-      "group": "Kang Cheol's family",
-      "inCast": true,
-      "note": "MDL Guest Role: Yun Mi Ho [Kang Cheol's mother] (Ep. 1)"
-    },
-    {
-      "id": "junseok",
-      "name": "Kang Jun Seok",
-      "actor": "Choi Min Yeong",
-      "image": "https://i.mydramalist.com/vXN682_5m.jpg",
-      "group": "Kang Cheol's family",
-      "inCast": true,
-      "note": "MDL Guest Role: Jun Seok [Kang Cheol's younger brother] (Ep. 1)"
-    },
-    {
-      "id": "suyeon",
-      "name": "Kang Su Yeon",
-      "actor": "Seo Shin Ae",
-      "image": "https://i.mydramalist.com/pdkdBV_5m.jpg",
-      "group": "Kang Cheol's family",
-      "inCast": true,
-      "note": "MDL Guest Role: Kang Su Yeon [Kang Cheol's younger sister] (Ep. 1)"
+      "still": "https://asianwiki.com/images/0/03/W_%28Korean_Drama%29-Lee_Se-Rang.jpg",
+      "group": "Yeon-joo's Family",
+      "inCast": true
     },
     {
       "id": "subong",
       "name": "Park Su Bong",
       "actor": "Lee Si Eon",
       "image": "https://i.mydramalist.com/PxZ3pX_5m.jpg",
-      "group": "Seong Mu's studio",
+      "still": "https://asianwiki.com/images/6/68/W_%28Korean_Drama%29-Lee_Si-Un.jpg",
+      "group": "W Webtoon Workshop",
       "inCast": true,
-      "still": "https://asianwiki.com/images/6/68/W_%28Korean_Drama%29-Lee_Si-Un.jpg"
+      "note": "Seong Mu's studio assistant, becomes Yeon-joo's loyal confidant"
     },
     {
       "id": "seonmi",
       "name": "Seon Mi",
       "actor": "Ryu Hye Rin",
       "image": "https://i.mydramalist.com/xkrYXm.jpg",
-      "group": "Seong Mu's studio",
+      "still": "https://asianwiki.com/images/9/9a/W_%28Korean_Drama%29-Ryoo_Hye-Rin.jpg",
+      "group": "W Webtoon Workshop",
       "inCast": true,
-      "still": "https://asianwiki.com/images/9/9a/W_%28Korean_Drama%29-Ryoo_Hye-Rin.jpg"
+      "note": "Seong Mu's studio assistant"
     },
     {
       "id": "yunhui",
       "name": "Yun Hui",
       "actor": "Yang Hye Ji",
       "image": "https://i.mydramalist.com/zP0Ydm.jpg",
-      "group": "Seong Mu's studio",
+      "still": "https://asianwiki.com/images/e/e7/W_%28Korean_Drama%29-Yang_Hye-Ji.jpg",
+      "group": "W Webtoon Workshop",
       "inCast": true,
-      "still": "https://asianwiki.com/images/e/e7/W_%28Korean_Drama%29-Yang_Hye-Ji.jpg"
-    },
-    {
-      "id": "seokbeom",
-      "name": "Kang Seok Beom",
-      "actor": "Kang Ki Young",
-      "image": "https://i.mydramalist.com/EeKV5_5m.jpg",
-      "group": "Myung-sei Hospital",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/4b/W_%28Korean_Drama%29-Kang_Ki-Young.jpg"
+      "note": "Seong Mu's studio assistant"
     },
     {
       "id": "minsu",
       "name": "Park Min Su",
       "actor": "Heo Jung Do",
       "image": "https://i.mydramalist.com/rZ7Oy_5m.jpg",
-      "group": "Myung-sei Hospital",
+      "still": "https://asianwiki.com/images/f/f6/W_%28Korean_Drama%29-Heo_Jung-Do.jpg",
+      "group": "Myungse Hospital",
       "inCast": true,
-      "still": "https://asianwiki.com/images/f/f6/W_%28Korean_Drama%29-Heo_Jung-Do.jpg"
+      "note": "Yeon-joo's professor, nicknamed 'Crazy Dog'; obsessive fan of W"
+    },
+    {
+      "id": "seokbeom",
+      "name": "Kang Seok Beom",
+      "actor": "Kang Ki Young",
+      "image": "https://i.mydramalist.com/EeKV5_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4b/W_%28Korean_Drama%29-Kang_Ki-Young.jpg",
+      "group": "Myungse Hospital",
+      "inCast": true,
+      "note": "Yeon-joo's fellow resident and friend"
+    },
+    {
+      "id": "nursejung",
+      "name": "Nurse Jung",
+      "actor": "Lee Chae Kyung",
+      "image": "https://i.mydramalist.com/e3n6pm.jpg",
+      "group": "Myungse Hospital",
+      "inCast": true
+    },
+    {
+      "id": "poongho",
+      "name": "Kim Pung Ho",
+      "actor": "Ahn Se Ha",
+      "image": "https://i.mydramalist.com/XODjZ_5m.jpg",
+      "group": "Myungse Hospital",
+      "inCast": true,
+      "note": "Yeon-joo's comically unwanted blind date"
+    },
+    {
+      "id": "doyun",
+      "name": "Seo Do Yun",
+      "actor": "Lee Tae Hwan",
+      "image": "https://i.mydramalist.com/0w11PK_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d4/W_%28Korean_Drama%29-Lee_Tae-Hwan.jpg",
+      "group": "Kang Chul's Circle",
+      "inCast": true,
+      "note": "Kang Chul's bodyguard and closest friend"
+    },
+    {
+      "id": "suhui",
+      "name": "Yun Su Hui",
+      "actor": "Jung Eugene",
+      "image": "https://i.mydramalist.com/O8PXDk_5m.jpg",
+      "still": "https://asianwiki.com/images/8/8e/W_%28Korean_Drama%29-Jeong_Eu-Gene.jpg",
+      "group": "Kang Chul's Circle",
+      "inCast": true,
+      "note": "Kang Chul's secretary and childhood friend"
+    },
+    {
+      "id": "hyeonseok",
+      "name": "Son Hyeon Seok",
+      "actor": "Cha Kwang Soo",
+      "image": "https://i.mydramalist.com/RR0LV_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d7/W_%28Korean_Drama%29-Cha_Kwang-Soo.jpg",
+      "group": "Kang Chul's Circle",
+      "inCast": true,
+      "note": "Kang Chul's late father's friend, called 'Ajusshi'; runs his crime show W"
+    },
+    {
+      "id": "cheolho",
+      "name": "Han Cheol Ho",
+      "actor": "Park Won Sang",
+      "image": "https://i.mydramalist.com/DkJoJq_5m.jpg",
+      "still": "https://asianwiki.com/images/0/0c/W_%28Korean_Drama%29-Park_Won-Sang.jpg",
+      "group": "Kang Chul's Circle",
+      "inCast": true,
+      "note": "Prosecutor turned Assemblyman who has hunted Kang Chul for a decade"
+    },
+    {
+      "id": "kangyun",
+      "name": "Kang Yun",
+      "actor": "Park Choong Seon",
+      "image": "https://i.mydramalist.com/Bx6p7m.jpg",
+      "group": "Kang Chul's Murdered Family",
+      "inCast": true,
+      "note": "Kang Chul's father, murdered in 2006"
+    },
+    {
+      "id": "miho",
+      "name": "Yun Mi Ho",
+      "actor": "Kim Na Woon",
+      "image": "https://i.mydramalist.com/0wKOZK_5m.jpg",
+      "group": "Kang Chul's Murdered Family",
+      "inCast": true,
+      "note": "Kang Chul's mother, murdered in 2006"
+    },
+    {
+      "id": "junseok",
+      "name": "Jun Seok",
+      "actor": "Choi Min Yeong",
+      "image": "https://i.mydramalist.com/vXN682_5m.jpg",
+      "group": "Kang Chul's Murdered Family",
+      "inCast": true,
+      "note": "Kang Chul's younger brother, murdered in 2006"
+    },
+    {
+      "id": "suyeon",
+      "name": "Kang Su Yeon",
+      "actor": "Seo Shin Ae",
+      "image": "https://i.mydramalist.com/pdkdBV_5m.jpg",
+      "group": "Kang Chul's Murdered Family",
+      "inCast": true,
+      "note": "Kang Chul's younger sister, murdered in 2006"
+    },
+    {
+      "id": "detectivepark",
+      "name": "Detective Park",
+      "actor": "Park Sung Taek",
+      "image": "https://i.mydramalist.com/2z0xW_5m.jpg",
+      "group": "Police",
+      "inCast": true,
+      "note": "Investigates Seong Mu's shooting"
     }
   ],
   "links": [
     {
-      "from": "kangcheol",
-      "to": "yeonju",
-      "type": "romance",
-      "label": "fall in love — she saves his life on the rooftop",
-      "short": "in love",
-      "evidence": "he meets Oh Yeon-joo who saves his life and with whom he falls in love",
-      "source": "en.wikipedia",
+      "from": "yeonju",
+      "to": "kangchul",
+      "type": "bond",
+      "label": "Yeon-joo saves Kang Chul's life after being pulled into the webtoon world where he lies bleeding from a stab wound",
+      "short": "saved his life",
+      "evidence": "She quickly checks to make sure he's still alive... She grabs a towel and a pair of scissors and runs back up to put pressure on the stab wounds",
+      "source": "dramabeans ep. 1",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "kangcheol",
+      "from": "kangchul",
+      "to": "yeonju",
+      "type": "romance",
+      "label": "Kang Chul and Yeon-joo fall in love across two worlds, kiss, and eventually marry",
+      "short": "true love",
+      "evidence": "He marches over to her and tilts her face up to meet his in a kiss",
+      "source": "dramabeans ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 3
+    },
+    {
+      "from": "yeonju",
+      "to": "kangchul",
+      "type": "bond",
+      "label": "As a teenager, Yeon-joo unknowingly sketched the character who would become Kang Chul, based on her ideal man",
+      "short": "his teenage creator",
+      "evidence": "That night she began to sketch out his characteristics: He was a national sports shooter... she decided he'd be 185cm tall",
+      "source": "dramabeans ep. 7",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "kangchul",
       "to": "yeonju",
       "type": "bond",
-      "label": "she enters and leaves his world on his feelings",
-      "short": "pulls her into his world",
-      "evidence": "Yeon Ju later discovers she can only enter and leave the webtoon depending on Kang Cheol's feelings.",
+      "label": "The manhwa is rewritten as a dream so Kang Chul forgets Yeon-joo completely, forcing her to carry their love alone",
+      "short": "forgot her",
+      "evidence": "He asks her to draw him waking up from a dream... to make it so that everything from meeting her on the roof is all one long dream",
+      "source": "dramabeans ep. 8",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 8
+    },
+    {
+      "from": "kangchul",
+      "to": "yeonju",
+      "type": "family",
+      "label": "Kang Chul and Yeon-joo register a marriage, first as a cover story and later in truth",
+      "short": "married",
+      "evidence": "the lawyer explains... they'd already registered their marriage in the U.S. last year",
+      "source": "dramabeans ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7
+    },
+    {
+      "from": "seongmu",
+      "to": "kangchul",
+      "type": "bond",
+      "label": "O Seong Mu is Kang Chul's creator, the webtoon artist who drew him into existence",
+      "short": "his creator",
+      "evidence": "the father of cardiothoracic surgeon O Yeon Ju, mysteriously goes missing while writing the last chapter of his webtoon 'W'",
       "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seongmu",
+      "to": "kangchul",
+      "type": "rivalry",
+      "label": "Seong Mu repeatedly tries to kill off Kang Chul in the webtoon, wanting to end the series and his own torment",
+      "short": "tries to kill him",
+      "evidence": "He's sick and tired of Kang Chul and wanted to kill him in the manhwa's final scene",
+      "source": "dramabeans ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seongmu",
+      "to": "kangchul",
+      "type": "rivalry",
+      "label": "It's revealed that Seong Mu was the second, unseen attacker who stabbed Kang Chul on the rooftop the night they first met",
+      "short": "his other attacker",
+      "evidence": "Kneeling over Chul's body, Dad had said in a shaky voice, 'Let's end this,' and stabbed him right in the gut",
+      "source": "dramabeans ep. 5",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "kangchul",
+      "to": "seongmu",
+      "type": "rivalry",
+      "label": "Enraged at learning the truth of his creation, Kang Chul shoots Seong Mu in his workshop",
+      "short": "shot his creator",
+      "evidence": "In one swift motion, he pulls his gun out as he whirls around again... He shoots, and Dad looks down at his bleeding chest in shock",
+      "source": "dramabeans ep. 5-6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "kangchul",
+      "to": "seongmu",
+      "type": "family",
+      "label": "Kang Chul comes to think of Seong Mu as his own family, the father of his wife Yeon-joo",
+      "short": "sees him as family",
+      "evidence": "Not because you're the god who made me, but because you're the father of my wife. You're already my family.",
+      "source": "dramabeans ep. 14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 14
+    },
+    {
+      "from": "seongmu",
+      "to": "kangchul",
+      "type": "family",
+      "label": "Seong Mu sacrifices his own existence inside the webtoon to give Kang Chul and Yeon-joo their happy ending",
+      "short": "sacrificed himself",
+      "evidence": "He reaches out a hand, but she's too far away, and he just says quietly, 'I love you, my daughter. Goodbye.' He shuts his eyes and accepts his fate, and then he fades away.",
+      "source": "dramabeans ep. 16",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 16
     },
     {
       "from": "seongmu",
       "to": "yeonju",
       "type": "family",
-      "label": "father",
-      "short": "father",
-      "evidence": "[Yeon Ju's father] / 연주의 아버지, 인기 웹툰 'W' 연재, 유명 만화가",
+      "label": "O Seong Mu is Yeon-joo's father, the famous webtoon artist behind W",
+      "short": "her father",
+      "evidence": "[Yeon Ju's father]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "seongmu",
-      "to": "kangcheol",
-      "type": "bond",
-      "label": "his author — Kang Cheol is the hero of Seong Mu's webtoon",
-      "short": "draws him",
-      "evidence": "he is Kang Cheol, the main character of her father's webtoon",
-      "source": "MDL synopsis",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sanghoon",
-      "to": "kangcheol",
-      "type": "rivalry",
-      "label": "the real killer of his family",
-      "short": "killed his family",
-      "evidence": "강철 일가족 살인사건의 진범. / The real killer of Kang Cheol's family. His identity is not revealed until much later",
-      "source": "ko.wikipedia",
-      "reveal": true,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sanghoon",
-      "to": "seongmu",
-      "type": "bond",
-      "label": "wears Seong Mu's face — the author drew the killer as himself",
-      "short": "wears his face",
-      "evidence": "his face resembles the comic series's author Oh Seong-moo. Before Seong-moo gives him a name and face, he mostly appears as a shadowy, faceless human form.",
-      "source": "en.wikipedia",
-      "reveal": true,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "doyun",
-      "to": "kangcheol",
-      "type": "work",
-      "label": "bodyguard — a martial-arts instructor",
-      "short": "bodyguard",
-      "evidence": "[Kang Cheol's bodyguard] / 강철의 경호원, 격투기 사범",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sohee",
-      "to": "kangcheol",
-      "type": "work",
-      "label": "secretary, and his friend since high school",
-      "short": "secretary, old friend",
-      "evidence": "[Kang Cheol's secretary] / 강철의 비서, 친구 / his friend since they were in high school",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sohee",
-      "to": "kangcheol",
-      "type": "romance",
-      "label": "in love with him, never said",
-      "short": "loves him, unsaid",
-      "evidence": "Her romantic feelings for Kang Cheol are subtly alluded to throughout the series through her actions and behavior around him",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "cheolho",
-      "to": "kangcheol",
-      "type": "rivalry",
-      "label": "his rival — a prosecutor turned presidential hopeful",
-      "short": "his rival",
-      "evidence": "[Prosecutor / Kang Cheol's rival] / 검사 출신 국회의원, 신민당 차기 대선 유력 후보",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "hyeonseok",
-      "to": "kangcheol",
-      "type": "work",
-      "label": "runs Channel W, the station Kang Cheol owns",
-      "short": "runs his channel",
-      "evidence": "범죄수사 프로그램 전문 연출자, 현재 채널 W의 총책임자 / 방송국 채널 W의 소유주",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "kangyun",
-      "to": "kangcheol",
-      "type": "family",
-      "label": "father — murdered",
-      "short": "father, murdered",
-      "evidence": "[Kang Cheol's father] / 강철의 아버지(1회) / His family was murdered by an elusive murderer",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "miho",
-      "to": "kangcheol",
-      "type": "family",
-      "label": "mother — murdered",
-      "short": "mother, murdered",
-      "evidence": "[Kang Cheol's mother] / 강철의 어머니(1회)",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "junseok",
-      "to": "kangcheol",
-      "type": "family",
-      "label": "younger brother — murdered",
-      "short": "younger brother",
-      "evidence": "[Kang Cheol's younger brother] / 강철의 남동생(1회)",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "suyeon",
-      "to": "kangcheol",
-      "type": "family",
-      "label": "younger sister — murdered",
-      "short": "younger sister",
-      "evidence": "[Kang Cheol's younger sister] / 강철의 여동생(1회)",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "subong",
-      "to": "seongmu",
-      "type": "work",
-      "label": "apprentice",
-      "short": "apprentice",
-      "evidence": "[Seong Mu's subordinate] / 성무의 문하생",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "seonmi",
-      "to": "seongmu",
-      "type": "work",
-      "label": "apprentice",
-      "short": "apprentice",
-      "evidence": "[Seong Mu's subordinate] / 성무의 문하생",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "yunhui",
-      "to": "seongmu",
-      "type": "work",
-      "label": "apprentice",
-      "short": "apprentice",
-      "evidence": "[Seong Mu's subordinate] / 성무의 문하생",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "seokbeom",
-      "to": "yeonju",
-      "type": "friend",
-      "label": "fellow resident and friend",
-      "short": "colleague, friend",
-      "evidence": "[Yeon Ju's co-worker] / Second-year resident cardiothoracic surgeon at Myung-sei Hospital and Yeon-joo's friend.",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "minsu",
-      "to": "yeonju",
-      "type": "work",
-      "label": "her boss — a professor, and a W superfan",
-      "short": "her boss",
-      "evidence": "[Yeon Ju's boss] / 명세병원 흉부외과 전문의, 교수 / He is a passionate fan of W.",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "suseon",
       "to": "yeonju",
       "type": "family",
-      "label": "mother",
-      "short": "mother",
-      "evidence": "[Yeon Ju's mother] / 연주의 어머니",
+      "label": "Kil Su Seon is Yeon-joo's mother, divorced from Seong Mu",
+      "short": "her mother",
+      "evidence": "[Yeon Ju's mother]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "suseon",
-      "to": "seongmu",
-      "type": "romance",
-      "label": "ex-wife",
-      "short": "ex-wife",
-      "evidence": "Yeon-joo's mother and Seong-moo's ex-wife.",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1
     },
     {
       "from": "suyeong",
       "to": "yeonju",
       "type": "family",
-      "label": "aunt",
-      "short": "aunt",
-      "evidence": "[Yeon Ju's aunt] / 연주의 이모",
+      "label": "Kil Su Yeong is Yeon-joo's aunt",
+      "short": "her aunt",
+      "evidence": "[Yeon Ju's aunt]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seongmu",
+      "to": "yeonju",
+      "type": "bond",
+      "label": "Possessed by the killer he drew a face for, Seong Mu nearly strangles his own daughter",
+      "short": "attacks her",
+      "evidence": "Dad is strangling her and ranting like a psycho that he shot her already and doesn't know why she's not dead",
+      "source": "dramabeans ep. 13",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "doyun",
+      "to": "kangchul",
+      "type": "work",
+      "label": "Seo Do Yun serves as Kang Chul's personal bodyguard",
+      "short": "his bodyguard",
+      "evidence": "[Kang Cheol's bodyguard]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "doyun",
+      "to": "kangchul",
+      "type": "friend",
+      "label": "Do Yun trains Kang Chul in martial arts and becomes his closest, most trusted friend",
+      "short": "closest friend",
+      "evidence": "Chul sought out top fighter Do-yoon for martial arts lessons... the boys developed a natural friendship as they trained",
+      "source": "dramabeans ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 5
+    },
+    {
+      "from": "suhui",
+      "to": "kangchul",
+      "type": "work",
+      "label": "Yun Su Hui works as Kang Chul's longtime secretary",
+      "short": "his secretary",
+      "evidence": "[Kang Cheol's secretary]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "suhui",
+      "to": "kangchul",
+      "type": "romance",
+      "label": "So-hee has secretly loved Kang Chul since high school, though he never returns her feelings",
+      "short": "unrequited love",
+      "evidence": "What am I? What was I to you?",
+      "source": "dramabeans ep. 8",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 8
+    },
+    {
+      "from": "kangchul",
+      "to": "suhui",
+      "type": "work",
+      "label": "Kang Chul fires So-hee after she turns Yeon-joo over to the police to protect him",
+      "short": "fired her",
+      "evidence": "That means you don't have the right to be my assistant. Just remain as my friend. You're fired.",
+      "source": "dramabeans ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 4
+    },
+    {
+      "from": "kangchul",
+      "to": "suhui",
+      "type": "bond",
+      "label": "Kang Chul insists So-hee is irreplaceable to him, saving her from vanishing as her narrative purpose fades",
+      "short": "saved her from fading",
+      "evidence": "You're important to me. You're the person closest to me. I need you for the rest of my life.",
+      "source": "dramabeans ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8
+    },
+    {
+      "from": "cheolho",
+      "to": "kangchul",
+      "type": "rivalry",
+      "label": "Prosecutor-turned-Assemblyman Han Cheol Ho has hunted Kang Chul for a decade, convinced he murdered his own family",
+      "short": "his prosecutor",
+      "evidence": "[Prosecutor / Kang Cheol's rival]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "cheolho",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Assemblyman Han conspires with the faceless killer, not knowing he shares Seong Mu's face, to bring down Kang Chul together",
+      "short": "conspires with killer",
+      "evidence": "New-Face says he knows everything that's about to happen to them... he offers to help make Assemblyman Han the next president",
+      "source": "dramabeans ep. 7",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 7
+    },
+    {
+      "from": "cheolho",
+      "to": "doyun",
+      "type": "rivalry",
+      "label": "Assemblyman Han kidnaps and tortures Do Yun to lure Kang Chul into a trap",
+      "short": "kidnapped him",
+      "evidence": "He yanks the hostage's head up, and it's Do-yoon",
+      "source": "dramabeans ep. 15",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 15
+    },
+    {
+      "from": "kangchul",
+      "to": "cheolho",
+      "type": "rivalry",
+      "label": "Kang Chul threatens to expose Assemblyman Han's crimes on tape in exchange for Do Yun's freedom",
+      "short": "exposed him",
+      "evidence": "Chul warns him that he has multiple copies, and threatens to turn it over to the police if Assemblyman Han ever attacks one of his people again",
+      "source": "dramabeans ep. 16",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 16
+    },
+    {
+      "from": "seongmu",
+      "to": "cheolho",
+      "type": "rivalry",
+      "label": "Seong Mu forces Assemblyman Han to shoot himself, erasing the dangerous knowledge he has gained about the two worlds",
+      "short": "forced his death",
+      "evidence": "Assemblyman Han's hand starts to flicker and pull the gun up to his own temple, against his will",
+      "source": "dramabeans ep. 16",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 16
+    },
+    {
+      "from": "hyeonseok",
+      "to": "kangchul",
+      "type": "work",
+      "label": "Son Hyeon Seok, Kang Chul's late father's best friend, mentors him and runs his crime-investigation show W",
+      "short": "his mentor",
+      "evidence": "His name is Sohn Hyun-seok, and he's Chul's dad's best friend, who now runs that crime investigation TV show",
+      "source": "dramabeans ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seongmu",
+      "to": "hyeonseok",
+      "type": "rivalry",
+      "label": "Possessed by the killer wearing Seong Mu's face, he shoots Ajusshi during a staged confession",
+      "short": "killed him",
+      "evidence": "a bullet comes out of nowhere and shoots Ajusshi right in the heart. He flatlines immediately",
+      "source": "dramabeans ep. 10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 10
+    },
+    {
+      "from": "subong",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Park Su Bong works as Seong Mu's webtoon studio assistant",
+      "short": "his assistant",
+      "evidence": "[Seong Mu's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "subong",
+      "to": "yeonju",
+      "type": "friend",
+      "label": "Su Bong becomes Yeon-joo's steadfast confidant, helping her navigate both worlds throughout her ordeal",
+      "short": "loyal confidant",
+      "evidence": "Su-bong drags his feet as he returns to Dad's workshop... he sits next to her quietly, letting her cry",
+      "source": "dramabeans ep. 9-16",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "subong",
+      "to": "kangchul",
+      "type": "friend",
+      "label": "Once merely a fanboy of the webtoon, Su Bong becomes personally devoted to helping Kang Chul survive in the real world",
+      "short": "devoted fan",
+      "evidence": "Kang hyung... can I shake your hand? I've been your fan for a long time.",
+      "source": "dramabeans ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "seonmi",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Seon Mi is one of Seong Mu's webtoon studio assistants",
+      "short": "his assistant",
+      "evidence": "[Seong Mu's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "yunhui",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Yun Hui is one of Seong Mu's webtoon studio assistants",
+      "short": "his assistant",
+      "evidence": "[Seong Mu's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "minsu",
+      "to": "yeonju",
+      "type": "work",
+      "label": "Park Min Su, nicknamed 'Crazy Dog,' is Yeon-joo's demanding supervising professor and an obsessive fan of W",
+      "short": "her boss",
+      "evidence": "[Yeon Ju's boss]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seokbeom",
+      "to": "yeonju",
+      "type": "friend",
+      "label": "Kang Seok Beom is Yeon-joo's fellow resident and close friend at the hospital",
+      "short": "her friend",
+      "evidence": "[Yeon Ju's co-worker]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "poongho",
+      "to": "yeonju",
+      "type": "romance",
+      "label": "Kim Pung Ho is set up on an awkward blind date with Yeon-joo, who vanishes mid-date when pulled back into Kang Chul's world",
+      "short": "failed blind date",
+      "evidence": "Yeon-joo decides that she's been ignoring her love life too much lately... suddenly the line goes dead on both sides",
+      "source": "dramabeans ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6
+    },
+    {
+      "from": "kangyun",
+      "to": "kangchul",
+      "type": "family",
+      "label": "Kang Yun, Kang Chul's father, was murdered along with the rest of the family in 2006",
+      "short": "murdered father",
+      "evidence": "[Kang Cheol's father]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "miho",
+      "to": "kangchul",
+      "type": "family",
+      "label": "Yun Mi Ho, Kang Chul's mother, was gunned down in the family's home in 2006",
+      "short": "murdered mother",
+      "evidence": "[Kang Cheol's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "junseok",
+      "to": "kangchul",
+      "type": "family",
+      "label": "Jun Seok, Kang Chul's younger brother, was among the family murdered in 2006",
+      "short": "murdered brother",
+      "evidence": "[Kang Cheol's younger brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "suyeon",
+      "to": "kangchul",
+      "type": "family",
+      "label": "Kang Su Yeon, Kang Chul's younger sister, was among the family murdered in 2006",
+      "short": "murdered sister",
+      "evidence": "[Kang Cheol's younger sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "detectivepark",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Detective Park investigates the shooting of Seong Mu",
+      "short": "investigates him",
+      "evidence": "they speak with the detective on Dad's case, who tells them that there are a lot of anomalies that he can't account for",
+      "source": "dramabeans ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6
+    },
+    {
+      "from": "nursejung",
+      "to": "yeonju",
+      "type": "work",
+      "label": "Nurse Jung works alongside Yeon-joo at Myungse Hospital",
+      "short": "colleague",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": false,
+      "since": null
     }
   ],
   "compact": {
     "people": [
-      "kangcheol",
+      "kangchul",
       "yeonju",
       "seongmu",
       "suseon",
-      "sanghoon",
-      "doyun",
-      "sohee",
-      "cheolho",
-      "hyeonseok",
-      "kangyun",
-      "miho",
+      "suyeong",
       "subong",
-      "seokbeom",
-      "minsu"
+      "seonmi",
+      "yunhui",
+      "doyun",
+      "suhui",
+      "hyeonseok",
+      "cheolho"
     ],
     "blocks": {
-      "Yeon Ju's family": [
+      "Yeon-joo's Family": [
         0,
         0
       ],
-      "Seong Mu's studio": [
-        0,
-        1
-      ],
-      "Myung-sei Hospital": [
-        0,
+      "Kang Chul's Circle": [
+        1,
         2
       ],
-      "Kang Cheol's family": [
+      "W Webtoon Workshop": [
         2,
         0
-      ],
-      "Kang Cheol's world": [
-        2,
-        1
       ]
-    }
+    },
+    "center": [
+      "kangchul",
+      "yeonju"
+    ]
   }
 }
