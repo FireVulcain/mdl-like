@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { Copy, Filter, Loader2, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
-    lastDatedEpisode,
-    linkActiveAt,
+    doorGoverns,
+    linkHappened,
     LINK_TYPES,
     TYPE_CLASS,
     TYPE_GLYPH,
@@ -15,6 +15,7 @@ import {
     type LinkType,
     type MapLink,
     type MapPerson,
+    type StoryView,
 } from "@/lib/character-map";
 import { draftFrom, emptyDraft, fingerprint, linkFrom, type LinkDraft } from "@/lib/character-map-links";
 import { deleteRelationship, saveRelationship } from "@/actions/character-map-links";
@@ -38,6 +39,13 @@ import { RelationshipEditor, type EditorMode } from "./relationship-editor";
  * text here — it must not be the one place on the page that gives it away,
  * and that holds for the admin reading their own site as much as for anyone
  * else.
+ *
+ * The place in the story is shared the same way, and so is the rule that
+ * follows from it (`doorGoverns`, in the lib): as of an episode, a dated
+ * twist is the slider's — it has happened or not — and only the undated
+ * ones answer to the door; in the "Everyone" view every twist does. The
+ * list showing "10 behind the reveals" under a chart saying "Reveals 0" was
+ * the two halves reading two rules.
  */
 
 type Row = { link: MapLink; index: number };
@@ -61,6 +69,9 @@ export function RelationshipManager({
     canEdit,
     reveals,
     onReveals,
+    stops,
+    story,
+    onStory,
     onMap,
 }: {
     map: CharacterMapData;
@@ -70,12 +81,15 @@ export function RelationshipManager({
     /** the page's spoiler door, shared with the chart above */
     reveals: boolean;
     onReveals: (next: boolean) => void;
+    /** the page's place in the story, shared the same way; `stops` is where the slider can stand */
+    stops: [number, number][];
+    story: StoryView;
+    onStory: (next: StoryView) => void;
     onMap: (next: CharacterMapData) => void;
 }) {
     const router = useRouter();
     const [query, setQuery] = useState("");
     const [types, setTypes] = useState<Set<LinkType>>(new Set());
-    const [episode, setEpisode] = useState<number | null>(null);
     const [flags, setFlags] = useState<{ inferred: boolean; directed: boolean }>({ inferred: false, directed: false });
     const [editing, setEditing] = useState<{ mode: EditorMode; index: number | null; expect: string | null; original: MapLink | null; draft: LinkDraft } | null>(null);
     const [saving, setSaving] = useState(false);
@@ -85,21 +99,21 @@ export function RelationshipManager({
     const [confirming, setConfirming] = useState<number | null>(null);
 
     const byId = useMemo(() => new Map(map.people.map((p) => [p.id, p])), [map]);
-    const episodes = useMemo(() => lastDatedEpisode(map.links), [map]);
     const name = (id: string) => byId.get(id)?.name ?? id;
 
-    const all = useMemo<Row[]>(
-        () => map.links.map((link, index) => ({ link, index })).filter(({ link }) => reveals || !link.reveal),
-        [map, reveals],
-    );
-    const revealCount = useMemo(() => map.links.filter((l) => l.reveal).length, [map]);
+    // As of the page's place in the story, by the chart's own rule
+    const byEpisode = story.byEpisode && stops.length > 0;
+    const stopIdx = Math.min(story.stop, Math.max(0, stops.length - 1));
+    const episode = stops[stopIdx]?.[1] ?? 0;
+    const happened = useMemo<Row[]>(() => map.links.map((link, index) => ({ link, index })).filter(({ link }) => linkHappened(link, byEpisode, episode)), [map, byEpisode, episode]);
+    const all = useMemo<Row[]>(() => happened.filter(({ link }) => reveals || !doorGoverns(link, byEpisode)), [happened, reveals, byEpisode]);
+    const revealCount = useMemo(() => happened.filter(({ link }) => doorGoverns(link, byEpisode)).length, [happened, byEpisode]);
 
     const rows = useMemo<Row[]>(() => {
         const q = query.trim().toLowerCase();
         return all
             .filter(({ link }) => {
                 if (types.size && !types.has(link.type)) return false;
-                if (episode != null && !linkActiveAt(link, episode)) return false;
                 if (flags.inferred && !link.inferred) return false;
                 if (flags.directed && !link.directed) return false;
                 if (!q) return true;
@@ -107,9 +121,9 @@ export function RelationshipManager({
                 const hay = [link.label, link.short, link.evidence, link.source, ...people.flatMap((p) => [p.name, p.actor])];
                 return hay.some((s) => s?.toLowerCase().includes(q));
             });
-    }, [all, byId, query, types, episode, flags]);
+    }, [all, byId, query, types, flags]);
 
-    const filtering = !!query.trim() || types.size > 0 || episode != null || flags.inferred || flags.directed;
+    const filtering = !!query.trim() || types.size > 0 || flags.inferred || flags.directed;
     const counts = useMemo(() => Object.fromEntries(LINK_TYPES.map((t) => [t, all.filter(({ link }) => link.type === t).length])) as Record<LinkType, number>, [all]);
 
     const toggleType = (t: LinkType) =>
@@ -122,7 +136,6 @@ export function RelationshipManager({
     const clearFilters = () => {
         setQuery("");
         setTypes(new Set());
-        setEpisode(null);
         setFlags({ inferred: false, directed: false });
     };
 
@@ -257,17 +270,22 @@ export function RelationshipManager({
                     </PopoverContent>
                 </Popover>
 
-                {episodes > 0 && (
+                {/* The same stops as the slider above, and the same state:
+                    picking one here moves the slider, and a step there moves
+                    this. "Everyone" is the chart's other view. */}
+                {stops.length > 0 && (
                     <select
-                        value={episode ?? ""}
-                        onChange={(e) => setEpisode(e.target.value === "" ? null : Number(e.target.value))}
-                        className="h-7 cursor-pointer rounded-lg bg-surface-2 px-2 text-xs text-fg-dim outline-none transition-colors hover:bg-surface-3 hover:text-fg [&>option]:bg-panel"
+                        value={byEpisode ? String(stopIdx) : ""}
+                        onChange={(e) => onStory(e.target.value === "" ? { ...story, byEpisode: false } : { byEpisode: true, stop: Number(e.target.value) })}
+                        className={`h-7 cursor-pointer rounded-lg px-2 text-xs outline-none transition-colors [&>option]:bg-panel ${
+                            byEpisode ? "bg-surface-4 text-fg ring-1 ring-line-strong" : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
+                        }`}
                         aria-label="As of episode"
                     >
-                        <option value="">Any episode</option>
-                        {Array.from({ length: episodes }, (_, i) => i + 1).map((n) => (
-                            <option key={n} value={n}>
-                                As of episode {n}
+                        <option value="">Everyone</option>
+                        {stops.map(([from, to], i) => (
+                            <option key={i} value={i}>
+                                As of ep {from === to ? to : `${from}–${to}`}
                             </option>
                         ))}
                     </select>

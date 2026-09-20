@@ -135,6 +135,54 @@ export function lastDatedEpisode(links: MapLink[]): number {
     return Math.max(0, ...links.flatMap((l) => [l.since ?? 0, l.until ?? 0]));
 }
 
+/* ---------------------------------------------------------- the view */
+
+/**
+ * Where the "By episode" slider stops: the end of each recap's range, or
+ * every episode up to the last dated link when the chart does not say;
+ * none when no link is dated. Where the links begin, not where they end:
+ * an `until` past the recaps says a tie stopped holding, and needs no stop
+ * of its own — it must not cost the slider the recaps' granularity.
+ */
+export function episodeStops(map: Pick<CharacterMapData, "links" | "recaps">): [number, number][] {
+    const last = Math.max(0, ...map.links.map((l) => l.since ?? 0));
+    if (last === 0) return [];
+    const ranges = map.recaps?.ranges?.filter((r) => r[1] >= r[0]).sort((a, b) => a[0] - b[0]) ?? [];
+    if (ranges.length && ranges[ranges.length - 1][1] >= last) return ranges;
+    const end = Math.max(last, map.recaps?.episodes ?? 0);
+    return Array.from({ length: end }, (_, i) => [i + 1, i + 1]);
+}
+
+/** The stop a reader opens on: the last one they have passed, or the end for a show they have finished. */
+export function initialStop(stops: [number, number][], completed: boolean, progress: number | null): number {
+    if (completed || progress == null) return Math.max(0, stops.length - 1);
+    const passed = stops.filter((r) => r[1] <= progress).length;
+    return Math.max(0, passed - 1);
+}
+
+/**
+ * The page's place in the story, shared by the chart and the list under it:
+ * whether it is read as of an episode, and which stop. One object, so a
+ * step on the slider moves the list and the list's select moves the slider.
+ */
+export type StoryView = { byEpisode: boolean; stop: number };
+
+/** Whether a link has happened as of the view; every link has in the "Everyone" view. */
+export function linkHappened(l: MapLink, byEpisode: boolean, episode: number): boolean {
+    return !byEpisode || linkActiveAt(l, episode);
+}
+
+/**
+ * Whether the reveals toggle decides this link. As of an episode, a dated
+ * reveal is the slider's: it has happened or it has not, and a reader at
+ * episode 10 has seen episode 7's twist. Only the undated ones — the
+ * organisation chart's — still answer to the toggle, as does every reveal
+ * in the "Everyone" view, where there is no episode to have passed.
+ */
+export function doorGoverns(l: MapLink, byEpisode: boolean): boolean {
+    return l.reveal && !(byEpisode && l.since != null);
+}
+
 export type CharacterMapData = {
     version: 1;
     mdlSlug: string;

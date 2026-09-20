@@ -5,8 +5,11 @@ import { Crosshair, Minus, Plus } from "lucide-react";
 import {
     actorLine,
     ERA_LABEL,
+    doorGoverns,
+    episodeStops,
+    initialStop,
     layoutCompact,
-    linkActiveAt,
+    linkHappened,
     linkPath,
     LINK_TYPES as TYPES,
     portrait,
@@ -17,6 +20,7 @@ import {
     type LaidOutLink,
     type LinkType,
     type MapLink,
+    type StoryView,
 } from "@/lib/character-map";
 import { Face, pill } from "@/components/media/character-map-bits";
 
@@ -87,6 +91,8 @@ export function CharacterMap({
     progress = null,
     reveals: revealsProp,
     onReveals,
+    story: storyProp,
+    onStory,
 }: {
     map: CharacterMapData;
     completed?: boolean;
@@ -99,35 +105,25 @@ export function CharacterMap({
      */
     reveals?: boolean;
     onReveals?: (next: boolean) => void;
+    /** The place in the story, shared the same way: a step here moves the list, and the list's select moves the slider. */
+    story?: StoryView;
+    onStory?: (next: StoryView) => void;
 }) {
-    // Where the slider stops: the end of each recap's range, or every
-    // episode up to the last dated link when the chart does not say; none
-    // when no link is dated
-    const stops = useMemo<[number, number][]>(() => {
-        // Where the links begin, not where they end: an `until` past the
-        // recaps says a tie stopped holding, and needs no stop of its own —
-        // it must not cost the slider the recaps' granularity.
-        const last = Math.max(0, ...map.links.map((l) => l.since ?? 0));
-        if (last === 0) return [];
-        const ranges = map.recaps?.ranges?.filter((r) => r[1] >= r[0]).sort((a, b) => a[0] - b[0]) ?? [];
-        if (ranges.length && ranges[ranges.length - 1][1] >= last) return ranges;
-        const end = Math.max(last, map.recaps?.episodes ?? 0);
-        return Array.from({ length: end }, (_, i) => [i + 1, i + 1]);
-    }, [map]);
+    const stops = useMemo(() => episodeStops(map), [map]);
     const episodes = stops.length ? stops[stops.length - 1][1] : 0;
-    // A dated chart opens by episode — where the reader is, not the whole story
-    const [byEpisode, setByEpisode] = useState(() => episodes > 0);
-    // The slider's position is an index into the stops; the last one the reader has passed
-    const [stop, setStop] = useState(() => {
-        if (completed || progress == null) return Math.max(0, stops.length - 1);
-        const passed = stops.filter((r) => r[1] <= progress).length;
-        return Math.max(0, passed - 1);
-    });
-    const stopIdx = Math.min(stop, Math.max(0, stops.length - 1));
+    // A dated chart opens by episode — where the reader is, not the whole
+    // story — on the last stop the reader has passed. The page may hold
+    // this instead, for the list under the chart to share it.
+    const [ownStory, setOwnStory] = useState<StoryView>(() => ({ byEpisode: episodes > 0, stop: initialStop(stops, completed, progress) }));
+    const story = storyProp ?? ownStory;
+    const setStory = onStory ?? setOwnStory;
+    const byEpisode = story.byEpisode;
+    const setByEpisode = (on: boolean) => setStory({ ...story, byEpisode: on });
+    const stopIdx = Math.min(story.stop, Math.max(0, stops.length - 1));
     const range = stops[stopIdx] ?? [0, 0];
     const episode = range[1];
     const goTo = (i: number) => {
-        setStop(Math.max(0, Math.min(stops.length - 1, i)));
+        setStory({ ...story, stop: Math.max(0, Math.min(stops.length - 1, i)) });
         setSelected(null);
     };
     const stepBtn = "inline-flex h-6 w-6 items-center justify-center rounded-md text-fg-dim transition-colors hover:bg-surface-4 hover:text-fg disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-default";
@@ -165,8 +161,8 @@ export function CharacterMap({
 
     // As of episode N, a dated link has happened or not; only the undated
     // ones — the organisation chart's — still answer to the reveals toggle
-    const happened = (l: MapLink) => !byEpisode || linkActiveAt(l, episode);
-    const hideLink = (l: MapLink) => !happened(l) || (!reveals && l.reveal && !(byEpisode && l.since != null));
+    const happened = (l: MapLink) => linkHappened(l, byEpisode, episode);
+    const hideLink = (l: MapLink) => !happened(l) || (!reveals && doorGoverns(l, byEpisode));
     const layout = useMemo(
         () => {
             const hidePerson = byEpisode
@@ -277,7 +273,7 @@ export function CharacterMap({
             // Each toggle counts the links it alone decides: a reveal that is
             // also inferred is the reveals toggle's (see layoutCompact); as of
             // an episode, a dated reveal is the slider's
-            reveals: inCut.filter((l) => l.reveal && !(byEpisode && l.since != null)).length,
+            reveals: inCut.filter((l) => doorGoverns(l, byEpisode)).length,
             inferred: inCut.filter((l) => l.inferred && !l.reveal).length,
             ghosts: map.people.filter((p) => !p.inCast).length,
             byType: Object.fromEntries(TYPES.map((t) => [t, inCut.filter((l) => l.type === t && !l.inferred).length])) as Record<LinkType, number>,
