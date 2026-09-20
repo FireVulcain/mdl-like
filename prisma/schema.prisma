@@ -342,9 +342,10 @@ model CharacterMap {
   updatedAt DateTime @updatedAt
 }
 
-// An episode recap read for a chart — from Dramabeans, fetched by the
-// extension (the site turns servers away) and kept here so a regeneration
-// does not fetch it again. One row per recap page; a range of episodes.
+// An episode recap read for a chart — from Dramabeans (Korean dramas) or
+// CPOPHome (Chinese ones), fetched by the extension (both sites turn
+// servers away) and kept here so a regeneration does not fetch it again.
+// One row per recap page; a range of episodes, one episode on CPOPHome.
 model CharacterMapRecap {
   id        String   @id @default(cuid())
   mdlSlug   String

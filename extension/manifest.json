@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Drama Calendar",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Your personal drama airing calendar — shows from your watchlist.",
   "permissions": [
     "storage",
@@ -23,7 +23,18 @@
       "js": [
         "stills.js",
         "recaps.js",
+        "recaps-cpophome.js",
         "content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.cpophome.com/*",
+        "https://cpophome.com/*"
+      ],
+      "js": [
+        "cpophome-tab.js"
       ],
       "run_at": "document_idle"
     }

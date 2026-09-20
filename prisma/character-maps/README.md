@@ -142,8 +142,11 @@ extension has by then written them to the row from the production page.
 
 A chart read from the cast list and Wikipedia is an organisation chart: who
 is whose mother, who works where. The story — who found out what, who fell
-for whom, when — is in the episode recaps, and Dramabeans writes one per
-episode or pair of episodes for most K-dramas. A chart read with them dates
+for whom, when — is in the episode recaps. Dramabeans writes one per
+episode or pair of episodes for most K-dramas; CPOPHome one per episode
+for most C-dramas. The site is chosen by the entry's MDL country — Korea
+reads Dramabeans, China CPOPHome, never the other way round, and a drama
+from anywhere else is written undated. A chart read with recaps dates
 every link:
 
 - **`since`** on a link is the episode it is first seen in — the first
@@ -207,24 +210,51 @@ written without recaps, or when a merge went wrong — the file in git is
 the backup: `git checkout` it and re-seed.
 
 The recaps are kept in the `CharacterMapRecap` table, one row per recap
-page, and read again on every run for that slug — they are not in git (they
-are Dramabeans' text). Dramabeans turns servers away (Cloudflare), so they
-are fetched by the extension from the admin's browser: tick "Also read the
-Dramabeans recaps" in the generate panel and the content script looks the
-drama up by title in Dramabeans' WordPress API (`/wp-json/wp/v2/tags?search=`,
-then the tagged posts titled "…: Episodes N-M"), posts the texts to
-`/api/ext/character-maps/recaps`, and the panel's Sources block lists what
-is kept. When the tag is not the MDL title, give the tag's name or any
-recap's URL in the field under the checkbox. See `extension/recaps.js`.
+page with its `source`, and read again on every run for that slug — they
+are not in git (they are the sites' text). Both sites turn servers away
+(Cloudflare), so they are fetched by the extension from the admin's
+browser: tick "Also read the … recaps" in the generate panel, the content
+script reads them, posts the texts to `/api/ext/character-maps/recaps`,
+and the panel's Sources block lists what is kept.
+
+- **Dramabeans** (`extension/recaps.js`): the drama is a tag, looked up by
+  title in the WordPress API (`/wp-json/wp/v2/tags?search=`), then the
+  tagged posts titled "…: Episodes N-M". When the tag is not the MDL
+  title, give the tag's name or any recap's URL in the field under the
+  checkbox.
+- **CPOPHome** (`extension/recaps-cpophome.js`): the drama is a page,
+  `/<slug>/`, whose slug is the title as it was when the page was made
+  plus the leads' names, so it is found by the site's search (`/?s=`) on
+  the MDL title and its "also known as" names, exact title only. The
+  page's `ul.recap_selector` lists every recap, `/<slug>/recap/<n>/`, one
+  per episode; the text is the paragraphs of its `div.entry-content`.
+  When the search misses, paste the drama's page (or any recap) URL in
+  the field. CPOPHome's Cloudflare is a managed challenge that turns the
+  extension's own fetches away even once passed, so the pages are fetched
+  by a cpophome.com tab (`extension/cpophome-tab.js`, asked by the
+  worker): open the site, tick its box, keep the tab open, and read. The
+  panel says so, with the link, when no such tab is there. MDL's "Part 2" of a split airing (Love Like the Galaxy) is
+  the same page there: the preflight adds up the parts before it from
+  MDL's related content, and recaps 28–56 are read as episodes 1–29.
 
 When even the browser is turned away, or the extension is not there, the
-panel takes the recaps pasted as JSON, and this snippet — run in the console
-on any Dramabeans recap page of the drama, with the tag id from the page's
-`?tags=` links — writes that file:
+panel takes the recaps pasted as JSON. On Dramabeans, this snippet — run
+in the console on any recap page of the drama, with the tag id from the
+page's `?tags=` links — writes that file:
 
 ```js
 (async()=>{const TAG=4257;const posts=await(await fetch(`/wp-json/wp/v2/posts?tags=${TAG}&per_page=100&_fields=id,title,link,date`)).json();const recaps=posts.filter(p=>/:\s*Episodes?\s+\d+/i.test(p.title.rendered)).reverse();const out=[];for(const p of recaps){const one=await(await fetch(`/wp-json/wp/v2/posts/${p.id}?_fields=content`)).json();const doc=new DOMParser().parseFromString(one.content.rendered,"text/html");doc.querySelectorAll("ul").forEach(el=>{if(/News bites|dramabeans\.com\/cast/.test(el.innerHTML))el.remove();});let text=(doc.body.textContent||"").replace(/[ \t]+/g," ").replace(/\n{3,}/g,"\n\n").trim();const cut=text.indexOf("RELATED POSTS");if(cut>0)text=text.slice(0,cut).trim();const m=p.title.rendered.match(/Episodes?\s+(\d+)(?:-(\d+))?/i);out.push({title:p.title.rendered,url:p.link,from:+m[1],to:m[2]?+m[2]:+m[1],text});await new Promise(r=>setTimeout(r,400));}const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:"application/json"}));a.download="dramabeans.json";a.click();})();
 ```
 
-The same file loads from the command line with
-`npx tsx scripts/seed-character-map-recaps.ts <slug> <file.json>`.
+On CPOPHome, this one — run in the console on the drama's page there,
+with `OFFSET` the episodes of the parts before (0 for a whole drama) —
+writes the same file:
+
+```js
+(async()=>{const OFFSET=0;const slug=location.pathname.split("/").filter(Boolean)[0];const nums=[...new Set([...document.querySelectorAll("ul.recap_selector a[href]")].map(a=>+(a.getAttribute("href").match(/\/recap\/(\d+)\/?$/)||[])[1]).filter(n=>n>OFFSET))].sort((a,b)=>a-b);const out=[];for(const n of nums){const url=`/${slug}/recap/${n}/`;const doc=new DOMParser().parseFromString(await(await fetch(url)).text(),"text/html");const name=(doc.title.match(/^(.*?)\s+Episode\s+\d+\s+Recap/i)||[])[1]||slug;const text=[...doc.querySelectorAll("div.entry-content > p")].map(p=>p.textContent.replace(/\s+/g," ").trim()).filter(Boolean).join("
+
+");if(text.length>200)out.push({source:"cpophome",title:`${name}: Episode ${n}`,url:location.origin+url,from:n-OFFSET,to:n-OFFSET,text});await new Promise(r=>setTimeout(r,400));}const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:"application/json"}));a.download="cpophome.json";a.click();})();
+```
+
+Either file loads from the command line with
+`npx tsx scripts/seed-character-map-recaps.ts <slug> <file.json> [--source=cpophome]`.

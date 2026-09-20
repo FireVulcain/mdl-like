@@ -23,11 +23,13 @@ import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "
  * `trackr:stills`. Without the extension nothing is asked, and nothing lost
  * — the chart shows the MDL headshots.
  *
- * The Dramabeans recaps go the same way: Dramabeans turns servers away too,
+ * The episode recaps go the same way: the recap sites turn servers away too,
  * so when the box is ticked the page asks the extension (`trackr:recaps-ask`)
  * to read them and post them to the app, and hears back on `trackr:recaps`;
- * without the extension they can be pasted as JSON. A run with recaps dates
- * its links by episode, which is what the chart's "By episode" view shows.
+ * without the extension they can be pasted as JSON. Which site is the
+ * preflight's call, by country — Dramabeans for a K-drama, CPOPHome for a
+ * C-drama — never the reader's. A run with recaps dates its links by
+ * episode, which is what the chart's "By episode" view shows.
  *
  * Only rendered for the admin; the route is the actual guard.
  */
@@ -64,11 +66,20 @@ function askForStills(mdlSlug: string, force = false, page?: string) {
     window.dispatchEvent(new CustomEvent("trackr:chart", { detail: JSON.stringify({ mdlSlug, force, page }) }));
 }
 
-/** What the extension reported about the recaps: reading, kept, or why not. */
-type RecapsState = { status: "started" } | { status: "done"; count: number; fromEp: number; toEp: number; words: number; tag?: string } | { status: "failed"; error: string; seen?: string[] };
+/**
+ * What the extension reported about the recaps: reading, kept, or why not.
+ * `tag` is where it found them (a Dramabeans tag, a CPOPHome page);
+ * `needsTab` is a page the reader must open and keep open — CPOPHome's
+ * Cloudflare wants a human to tick its box, and the extension then reads
+ * through that tab.
+ */
+type RecapsState = { status: "started"; read?: number; of?: number } | { status: "done"; count: number; fromEp: number; toEp: number; words: number; tag?: string; listed?: string; skipped?: string } | { status: "failed"; error: string; seen?: string[]; needsTab?: string };
 
-function askForRecaps(mdlSlug: string, title: string, hint?: string) {
-    window.dispatchEvent(new CustomEvent("trackr:recaps-ask", { detail: JSON.stringify({ mdlSlug, title, hint }) }));
+/** What the extension needs to find the drama on its site: the preflight's drama block, and a hint given by hand. */
+type RecapAsk = Pick<Preflight["drama"], "year" | "episodes" | "akas" | "episodeOffset"> & { source: string; title: string; hint?: string };
+
+function askForRecaps(mdlSlug: string, ask: RecapAsk) {
+    window.dispatchEvent(new CustomEvent("trackr:recaps-ask", { detail: JSON.stringify({ mdlSlug, ...ask }) }));
 }
 
 /** One pasted recap, as the console snippet in the README writes them. */
@@ -226,14 +237,21 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open, view, mdlSlug, titlesKey, sourcesTick]);
 
-    // The recap tag on Dramabeans is the drama's title — MDL's, without the year
+    // The drama's title on the recap sites is MDL's, without the year
     const dramaTitle = preflight?.title.replace(/ [(][0-9]{4}[)]$/, "") ?? "";
     const recapsKept = preflight?.recaps ?? null;
+    // Where this drama's recaps are read, by its country; null when no site covers it
+    const recapSource = preflight?.drama.source ?? null;
+    const ask = () => {
+        if (!preflight || !recapSource || !dramaTitle) return;
+        const { year, episodes, akas, episodeOffset } = preflight.drama;
+        askForRecaps(mdlSlug, { source: recapSource.id, title: dramaTitle, year, episodes, akas, episodeOffset, hint: recapsHint.trim() || undefined });
+    };
 
     // Ticking the box reads the recaps when none are kept; a set already kept is used as it is
     function tickRecaps(on: boolean) {
         setWithRecaps(on);
-        if (on && !recapsKept && extension && recaps?.status !== "started" && dramaTitle) askForRecaps(mdlSlug, dramaTitle, recapsHint.trim() || undefined);
+        if (on && !recapsKept && extension && recaps?.status !== "started") ask();
     }
 
     // The paste fallback: the JSON array the README's console snippet writes
@@ -257,7 +275,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             const res = await fetch("/api/ext/character-maps/recaps", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug, recaps: ok.map((r) => ({ title: r.title, url: r.url, from: r.from, to: r.to, text: r.text })) }),
+                body: JSON.stringify({ mdlSlug, source: recapSource?.id, recaps: ok.map((r) => ({ title: r.title, url: r.url, from: r.from, to: r.to, text: r.text })) }),
             });
             const data = (await res.json().catch(() => ({}))) as { summary?: { count: number; fromEp: number; toEp: number; words: number } | null; error?: string };
             if (!res.ok || !data.summary) {
@@ -332,7 +350,9 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             {!open && stillsLine}
 
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent showCloseButton={false} className="gap-0 border-line-strong bg-panel p-0 sm:max-w-lg">
+                {/* The content is a grid; its rows must be allowed to shrink (min-w-0), or a long
+                    nowrap line in the sources (a rejected article's title) widens every row past the box */}
+                <DialogContent showCloseButton={false} className="gap-0 border-line-strong bg-panel p-0 sm:max-w-lg [&>*]:min-w-0">
                     {view === "choose" || !job ? (
                         <>
                             <DialogHeader className="px-6 pt-6">
@@ -431,9 +451,9 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                             const thin = w.found && w.chars < 1000;
                                             return (
                                                 <li key={w.lang} className="space-y-1">
-                                                    <div className={`flex items-center gap-2 ${w.found ? "text-fg-muted" : "text-amber-400/90"}`}>
-                                                        {w.found ? <Check className={`h-3.5 w-3.5 shrink-0 ${thin ? "text-fg-dim" : "text-emerald-400/80"}`} /> : <AlertTriangle className="h-3.5 w-3.5 shrink-0" />}
-                                                        <span className="min-w-0 flex-1 truncate">
+                                                    <div className={`flex items-start gap-2 ${w.found ? "text-fg-muted" : "text-amber-400/90"}`}>
+                                                        {w.found ? <Check className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${thin ? "text-fg-dim" : "text-emerald-400/80"}`} /> : <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
+                                                        <span className="min-w-0 flex-1 break-words">
                                                             {w.lang}.wikipedia
                                                             {w.found ? (
                                                                 <> · {w.title} · {thin ? `names only, ${(w.chars / 1000).toFixed(1)}K` : `${Math.round(w.chars / 1000)}K`} characters</>
@@ -469,57 +489,80 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                 ) : (
                                     <p className="mt-1.5 text-xs text-fg-dim">Checking what the run would read…</p>
                                 )}
-                                {preflight && (
+                                {preflight && !recapSource && (
+                                    <p className="mt-2 border-t border-line pt-2 text-xs text-fg-dim">
+                                        No recap site for a drama from {preflight.drama.country || "there"} — Dramabeans covers Korean dramas, CPOPHome Chinese ones. The chart is written undated.
+                                    </p>
+                                )}
+                                {preflight && recapSource && (
                                     <div className="mt-2 border-t border-line pt-2 text-xs">
                                         <label className="flex cursor-pointer items-center gap-2 text-fg-muted">
                                             <input type="checkbox" checked={withRecaps} onChange={(e) => tickRecaps(e.target.checked)} className="h-3.5 w-3.5 accent-sky-500" />
                                             <span>
-                                                Also read the Dramabeans recaps
+                                                Also read the {recapSource.name} recaps
                                                 <span className="text-fg-dim"> · every link dated by episode, for the chart&apos;s &ldquo;By episode&rdquo; view</span>
                                             </span>
                                         </label>
                                         {withRecaps && (
                                             <div className="ml-5 mt-1.5 space-y-1.5">
+                                                {preflight.drama.episodeOffset > 0 && (
+                                                    <p className="text-fg-dim">
+                                                        A part of a split airing: {recapSource.name}&apos;s recaps {preflight.drama.episodeOffset + 1}–{preflight.drama.episodeOffset + (preflight.drama.episodes ?? 0)} are read as episodes 1–{preflight.drama.episodes ?? "…"} here.
+                                                    </p>
+                                                )}
                                                 {recaps?.status === "started" ? (
                                                     <p className="flex items-center gap-2 text-fg-muted">
-                                                        <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Reading the recaps on Dramabeans…
-                                                    </p>
-                                                ) : recapsKept ? (
-                                                    <p className="flex items-center gap-2 text-fg-muted">
-                                                        <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
-                                                        <span className="min-w-0 flex-1 truncate">
-                                                            Dramabeans · {recapsKept.count} recap{recapsKept.count > 1 ? "s" : ""} · ep {recapsKept.fromEp}–{recapsKept.toEp} · {Math.round(recapsKept.words / 1000)}K words
-                                                            {recaps?.status === "done" && recaps.tag && <span className="text-fg-dim"> · tag &ldquo;{recaps.tag}&rdquo;</span>}
-                                                        </span>
-                                                        {extension && dramaTitle && (
-                                                            <button type="button" onClick={() => askForRecaps(mdlSlug, dramaTitle, recapsHint.trim() || undefined)} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
-                                                                <RefreshCw className="h-3 w-3" />
-                                                            </button>
-                                                        )}
+                                                        <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Reading the recaps on {recapSource.name}…
+                                                        {recaps.of ? <span className="text-fg-dim">{recaps.read ?? 0}/{recaps.of}</span> : null}
                                                     </p>
                                                 ) : (
                                                     <>
+                                                        {recapsKept && (
+                                                            <p className="flex items-start gap-2 text-fg-muted">
+                                                                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
+                                                                <span className="min-w-0 flex-1 break-words">
+                                                                    {recapsKept.source} · {recapsKept.count} recap{recapsKept.count > 1 ? "s" : ""} · ep {recapsKept.fromEp}–{recapsKept.toEp} · {Math.round(recapsKept.words / 1000)}K words
+                                                                    {recaps?.status === "done" && recaps.tag && <span className="text-fg-dim"> · &ldquo;{recaps.tag}&rdquo;</span>}
+                                                                    {recaps?.status === "done" && recaps.listed && <span className="text-fg-dim"> · site lists {recaps.listed}</span>}
+                                                                    {recaps?.status === "done" && recaps.skipped && <span className="text-amber-400/80"> · not read: {recaps.skipped}</span>}
+                                                                </span>
+                                                                {extension && dramaTitle && (
+                                                                    <button type="button" onClick={ask} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
+                                                                        <RefreshCw className="h-3 w-3" />
+                                                                    </button>
+                                                                )}
+                                                            </p>
+                                                        )}
                                                         {recaps?.status === "failed" && (
                                                             <p className="flex items-start gap-1.5 text-amber-400/90">
                                                                 <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
                                                                 <span>
                                                                     {recaps.error}
-                                                                    {recaps.seen?.length ? <span className="text-fg-dim"> · tags seen: {recaps.seen.slice(0, 4).join(" · ")}</span> : null}
+                                                                    {recaps.seen?.length ? <span className="text-fg-dim"> · seen: {recaps.seen.slice(0, 4).join(" · ")}</span> : null}
+                                                                    {recaps.needsTab && (
+                                                                        <>
+                                                                            {" "}
+                                                                            <a href={recaps.needsTab} target="_blank" rel="noreferrer" className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
+                                                                                Open it
+                                                                            </a>
+                                                                            , pass the check, keep that tab open, then Read again.
+                                                                        </>
+                                                                    )}
                                                                 </span>
                                                             </p>
                                                         )}
-                                                        {extension ? (
+                                                        {recapsKept && recaps?.status !== "failed" ? null : extension ? (
                                                             <form
                                                                 className="flex items-center gap-1.5"
                                                                 onSubmit={(e) => {
                                                                     e.preventDefault();
-                                                                    if (dramaTitle) askForRecaps(mdlSlug, dramaTitle, recapsHint.trim() || undefined);
+                                                                    ask();
                                                                 }}
                                                             >
                                                                 <input
                                                                     value={recapsHint}
                                                                     onChange={(e) => setRecapsHint(e.target.value)}
-                                                                    placeholder={`Dramabeans tag or a recap's URL, if not "${dramaTitle}"`}
+                                                                    placeholder={recapSource.id === "cpophome" ? `The drama's CPOPHome URL, if the search misses "${dramaTitle}"` : `Dramabeans tag or a recap's URL, if not "${dramaTitle}"`}
                                                                     className="min-w-0 flex-1 rounded-md bg-surface-2 px-2 py-1 text-fg outline-none placeholder:text-fg-faint"
                                                                 />
                                                                 <button type="submit" className="inline-flex items-center gap-1 rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4">
@@ -528,13 +571,13 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                                             </form>
                                                         ) : !pasting ? (
                                                             <p className="text-fg-dim">
-                                                                Dramabeans turns servers away; the extension reads the recaps from this browser.{" "}
+                                                                {recapSource.name} turns servers away; the extension reads the recaps from this browser.{" "}
                                                                 <button type="button" onClick={() => setPasting(true)} className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
                                                                     Paste them instead
                                                                 </button>
                                                             </p>
                                                         ) : null}
-                                                        {pasting && (
+                                                        {pasting && !recapsKept && (
                                                             <div className="space-y-1.5">
                                                                 <textarea
                                                                     value={pasted}

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminUser } from "@/lib/admin";
-import { gatherChartInputs } from "@/lib/character-map-inputs";
-import { listRecaps, recapSummary, type RecapSummary } from "@/lib/character-map-recaps";
+import { gatherChartInputs, recapEpisodeOffset } from "@/lib/character-map-inputs";
+import { listRecaps, recapSourceFor, recapSummary, type RecapSource, type RecapSummary } from "@/lib/character-map-recaps";
 import { planRun, readContext, type RunMode } from "@/lib/character-map-patch";
 import { prisma } from "@/lib/prisma";
 import type { CharacterMapData } from "@/lib/character-map";
@@ -17,6 +17,17 @@ export const dynamic = "force-dynamic";
  */
 export type Preflight = {
     title: string;
+    /** what the recap site is asked for: the country decides the site, the rest finds the drama there */
+    drama: {
+        country: string;
+        year: number | null;
+        episodes: number | null;
+        akas: string[];
+        /** where this entry's recaps come from, by country; null for a country no site covers */
+        source: RecapSource | null;
+        /** recaps counted before this entry's episode 1 on the site — "Part 2" of a split airing */
+        episodeOffset: number;
+    };
     cast: { main: number; support: number; guest: number };
     synopsis: boolean;
     wiki: { lang: string; title: string | null; found: boolean; chars: number; rejected?: string }[];
@@ -59,8 +70,17 @@ export async function POST(request: Request) {
         ]);
         const map = (row?.dataJson as unknown as CharacterMapData) ?? null;
         const plan = planRun(map, kept, readContext(row?.contextJson));
+        const source = recapSourceFor(inputs.country);
         const preflight: Preflight = {
             recaps,
+            drama: {
+                country: inputs.country,
+                year: inputs.year,
+                episodes: inputs.episodes,
+                akas: inputs.akas,
+                source,
+                episodeOffset: source ? await recapEpisodeOffset(inputs) : 0,
+            },
             editedAt: row?.editedAt?.toISOString() ?? null,
             plan: {
                 mode: plan.mode,

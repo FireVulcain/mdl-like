@@ -44,8 +44,8 @@ LINKS
 - label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated.
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
 
-EPISODES (only when the inputs carry "=== dramabeans · Episodes N-M ===" recap sections)
-- The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "dramabeans ep. 5-6" (the range of the recap the sentence is in).
+EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans for Korean dramas, cpophome for Chinese ones)
+- The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "cpophome ep. 12".
 - since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
 - A tie that changes over the run is two links, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them.
 - With recaps, prefer links a reader of the show would recognise as its turns; a chart of forty links is fine when the recaps carry them.

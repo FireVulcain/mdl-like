@@ -17,6 +17,16 @@ const KURYANA = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 const UA = "trackr/character-map-inputs";
 
 export type CastMember = { name: string; role: { name: string }; profile_image?: string };
+/** The part of the scraper's detail page the inputs are read from. */
+type MdlDetails = {
+    data: {
+        title: string;
+        sub_title?: string;
+        synopsis?: string;
+        details?: { country?: string; episodes?: string };
+        others?: { also_known_as?: string[]; related_content?: { name: string; id: string; link: string; note: string }[] };
+    };
+};
 /** `rejected` names the article a search found that turned out to be about something else. */
 export type WikiSection = { lang: string; title: string | null; text: string | null; rejected?: string };
 /** One episode recap, as the extension fetched it and the table keeps it. */
@@ -27,6 +37,12 @@ export type ChartInputs = {
     native: string;
     year: number | null;
     country: string;
+    /** MDL's episode count, when it says one */
+    episodes: number | null;
+    /** MDL's "also known as" — the other titles a recap site may file the drama under */
+    akas: string[];
+    /** MDL's related content: prequels, sequels, spin-offs; `id` is the slug */
+    related: { name: string; id: string; note: string }[];
     synopsis: string;
     cast: { main: CastMember[]; support: CastMember[]; guest: CastMember[] };
     wiki: WikiSection[];
@@ -173,7 +189,7 @@ export async function gatherChartInputs(
     const given = Object.fromEntries(Object.entries({ ...pinnedWikiTitles(mdlSlug), ...titles }).map(([lang, t]) => [lang, wikiPageTitle(t)]));
 
     onStep?.("Reading the MDL entry");
-    const details = await json<{ data: { title: string; sub_title?: string; synopsis?: string; details?: { country?: string } } }>(`${KURYANA}/id/${mdlSlug}`);
+    const details = await json<MdlDetails>(`${KURYANA}/id/${mdlSlug}`);
     const cast = await json<{ data: { casts: Record<string, CastMember[]> } }>(`${KURYANA}/id/${mdlSlug}/cast`);
     if (!details?.data || !cast?.data) throw new Error(`could not read ${mdlSlug} from the scraper`);
     const d = details.data;
@@ -181,6 +197,9 @@ export async function gatherChartInputs(
     const yearMatch = d.title.match(/\((\d{4})\)/);
     const year = yearMatch ? parseInt(yearMatch[1]) : null;
     const country = d.details?.country ?? "";
+    const episodes = parseInt(d.details?.episodes ?? "") || null;
+    const akas = (d.others?.also_known_as ?? []).filter((t) => typeof t === "string" && t.trim());
+    const related = (d.others?.related_content ?? []).map((r) => ({ name: r.name, id: r.id, note: r.note }));
     const casts = { main: cast.data.casts["Main Role"] ?? [], support: cast.data.casts["Support Role"] ?? [], guest: cast.data.casts["Guest Role"] ?? [] };
 
     const out: string[] = [];
@@ -208,5 +227,29 @@ export async function gatherChartInputs(
     const ordered = [...recaps].sort((a, b) => a.fromEp - b.fromEp || a.toEp - b.toEp);
     for (const r of ordered) out.push("", `=== ${r.source} · Episode${r.fromEp === r.toEp ? ` ${r.fromEp}` : `s ${r.fromEp}-${r.toEp}`} · ${r.title} ===`, r.text);
 
-    return { mdlSlug, title: d.title, native, year, country, synopsis: d.synopsis ?? "", cast: casts, wiki, recaps: ordered, text: out.join("\n") + "\n" };
+    return { mdlSlug, title: d.title, native, year, country, episodes, akas, related, synopsis: d.synopsis ?? "", cast: casts, wiki, recaps: ordered, text: out.join("\n") + "\n" };
+}
+
+/**
+ * How many episodes a recap site counts before this entry's episode 1. MDL
+ * splits one airing into "Love Like the Galaxy: Part 1" (27 episodes) and
+ * "Part 2" (29); CPOPHome has the one drama, 56 recaps — so Part 2's
+ * episode 1 is recap 28 there, and the offset is the parts before it added
+ * up. Only a title with "Part N" is treated so: a true prequel ("Season 2",
+ * a spin-off) has its own page on the recap sites. The parts before are
+ * MDL's related content named as parts of the same title, each read for
+ * its episode count.
+ */
+export async function recapEpisodeOffset(inputs: Pick<ChartInputs, "title" | "related">): Promise<number> {
+    const m = inputs.title.match(/:\s*Part\s+(\d+)\b/i);
+    if (!m || +m[1] < 2) return 0;
+    const part = +m[1];
+    let offset = 0;
+    for (const r of inputs.related) {
+        const pm = r.name.match(/:\s*Part\s+(\d+)\b/i);
+        if (!pm || +pm[1] >= part) continue;
+        const d = await json<MdlDetails>(`${KURYANA}/id/${r.id}`);
+        offset += parseInt(d?.data?.details?.episodes ?? "") || 0;
+    }
+    return offset;
 }

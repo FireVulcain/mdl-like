@@ -5,10 +5,12 @@ import { recapSummary, saveRecaps } from "@/lib/character-map-recaps";
 export const dynamic = "force-dynamic";
 
 /**
- * Receives the episode recaps of one entry — read on Dramabeans by the
- * extension from the reader's browser, or pasted by hand — and keeps them
- * for the chart's next run. A post replaces the set. GET says what is kept.
- * Admin only: this is the generate button's material.
+ * Receives the episode recaps of one entry — read on Dramabeans or CPOPHome
+ * by the extension from the reader's browser, or pasted by hand — and keeps
+ * them for the chart's next run. A post replaces the set; `source` on the
+ * body names the site for recaps that do not say it themselves (a pasted
+ * set). GET says what is kept. Admin only: this is the generate button's
+ * material.
  */
 function corsHeaders(origin: string | null) {
     const headers: Record<string, string> = {
@@ -29,16 +31,18 @@ type RecapIn = { source?: string; title?: string; url?: string; from?: number; t
 export async function POST(request: Request) {
     const origin = request.headers.get("origin");
     if (!(await isAdminUser())) return NextResponse.json({ error: "Forbidden" }, { status: 403, headers: corsHeaders(origin) });
-    const body = (await request.json().catch(() => null)) as { mdlSlug?: string; recaps?: RecapIn[] } | null;
+    const body = (await request.json().catch(() => null)) as { mdlSlug?: string; source?: string; recaps?: RecapIn[] } | null;
     const mdlSlug = body?.mdlSlug?.trim();
     if (!mdlSlug || !/^[0-9]+-[a-z0-9-]+$/.test(mdlSlug) || !Array.isArray(body?.recaps)) {
         return NextResponse.json({ error: "Invalid body" }, { status: 400, headers: corsHeaders(origin) });
     }
+    const sourceOf = (s: unknown) => (typeof s === "string" && /^[a-z0-9-]{1,40}$/.test(s.trim()) ? s.trim() : null);
+    const source = sourceOf(body.source) ?? "dramabeans";
     const recaps = body.recaps
         .filter((r) => r && typeof r.text === "string" && Number.isInteger(r.from))
         // A pasted recap has no URL; the range stands in, so the set still keys on it
         .map((r) => ({
-            source: typeof r.source === "string" && r.source.trim() ? r.source.trim().slice(0, 40) : "dramabeans",
+            source: sourceOf(r.source) ?? source,
             title: (typeof r.title === "string" ? r.title : "").slice(0, 200),
             url: (typeof r.url === "string" && r.url.trim() ? r.url.trim() : `pasted#ep${r.from}-${Number.isInteger(r.to) ? r.to : r.from}`).slice(0, 500),
             fromEp: r.from as number,
@@ -47,7 +51,7 @@ export async function POST(request: Request) {
         }));
     let count: number;
     try {
-        count = await saveRecaps(mdlSlug, recaps);
+        count = await saveRecaps(mdlSlug, recaps, source);
     } catch (e) {
         return NextResponse.json({ error: e instanceof Error ? e.message : "refused" }, { status: 422, headers: corsHeaders(origin) });
     }

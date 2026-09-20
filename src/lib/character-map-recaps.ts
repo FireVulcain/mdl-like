@@ -1,12 +1,29 @@
 import { prisma } from "@/lib/prisma";
-import type { Recap } from "@/lib/character-map-inputs";
+import { countryCode, type Recap } from "@/lib/character-map-inputs";
 
 /**
- * The episode recaps kept for a chart — Dramabeans, read by the extension
- * from the reader's browser (the site turns servers away) and posted here.
- * Kept per recap page, so a regeneration reads them again without a fetch,
- * and the preflight can say what a run would read.
+ * The episode recaps kept for a chart — read by the extension from the
+ * reader's browser (both sites turn servers away) and posted here. Kept per
+ * recap page, so a regeneration reads them again without a fetch, and the
+ * preflight can say what a run would read.
  */
+
+/**
+ * Where a drama's recaps are read from — decided by its country, never by
+ * hand. Dramabeans writes for K-dramas only, and its tag search would find
+ * a C-drama's title on an unrelated post; CPOPHome writes one recap per
+ * episode for C-dramas. A drama from anywhere else has no source, and the
+ * panel says so instead of offering the box.
+ */
+export type RecapSource = { id: "dramabeans" | "cpophome"; name: string; host: string };
+const SOURCES: Record<string, RecapSource> = {
+    KR: { id: "dramabeans", name: "Dramabeans", host: "dramabeans.com" },
+    CN: { id: "cpophome", name: "CPOPHome", host: "www.cpophome.com" },
+};
+export function recapSourceFor(country: string): RecapSource | null {
+    return SOURCES[countryCode(country)] ?? null;
+}
+
 export type RecapSummary = { source: string; count: number; fromEp: number; toEp: number; words: number; fetchedAt: string } | null;
 
 export async function listRecaps(mdlSlug: string): Promise<Recap[]> {
@@ -27,8 +44,8 @@ export async function recapSummary(mdlSlug: string): Promise<RecapSummary> {
     };
 }
 
-/** The most one drama's recaps can weigh — 24 episodes at ~2.5K words is 60K. */
-export const MAX_RECAP_WORDS = 90_000;
+/** The most one drama's recaps can weigh — 24 Dramabeans episodes at ~2.5K words is 60K; a 56-episode C-drama at ~2K is 110K. */
+export const MAX_RECAP_WORDS = 150_000;
 
 /**
  * Why a set of recaps is not one drama's, or null when it looks like one.
@@ -48,11 +65,15 @@ export function recapsProblem(recaps: { title: string; fromEp: number; toEp: num
     return null;
 }
 
-/** Replaces what is kept for the entry with these recaps — a fresh read is the whole set. Throws on a set that is not one drama's. */
-export async function saveRecaps(mdlSlug: string, recaps: Omit<Recap, "words">[]): Promise<number> {
+/**
+ * Replaces what is kept for the entry with these recaps — a fresh read is
+ * the whole set. `source` names where a recap came from when it does not
+ * say itself (a pasted set). Throws on a set that is not one drama's.
+ */
+export async function saveRecaps(mdlSlug: string, recaps: Omit<Recap, "words">[], source = "dramabeans"): Promise<number> {
     const rows = recaps
         .filter((r) => r.url && r.text.trim() && r.fromEp >= 1 && r.toEp >= r.fromEp)
-        .map((r) => ({ mdlSlug, source: r.source || "dramabeans", url: r.url, title: r.title, fromEp: r.fromEp, toEp: r.toEp, words: r.text.trim().split(/\s+/).length, text: r.text.trim() }));
+        .map((r) => ({ mdlSlug, source: r.source || source, url: r.url, title: r.title, fromEp: r.fromEp, toEp: r.toEp, words: r.text.trim().split(/\s+/).length, text: r.text.trim() }));
     const problem = recapsProblem(rows);
     if (problem) throw new Error(problem);
     await prisma.$transaction([

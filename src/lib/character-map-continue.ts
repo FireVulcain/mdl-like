@@ -30,7 +30,7 @@ HOW THE CHART IS DATED — this is the rule everything else follows
 
 WHAT TO ADD (addLinks)
 - Ties the new recaps show that the chart does not have: a rescue, a betrayal, a marriage, a parent revealed, a debt, a new colleague.
-- since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: "dramabeans ep. 13-14".
+- since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "cpophome ep. 12".
 - reveal: true when the new episodes reveal something the story had kept — a hidden parent, a true identity, a killer. The episode of the REVEAL is the since, not the episode it is about.
 - A new face the recaps name: addPeople, taking name, actor and the img= URL from the MDL cast list given below. Someone the recaps name whom the cast list does not carry gets inCast false and image null. Put anyone who matters to the leads in addToCompact, and give their group a cell in blocks if it is a new group.
 

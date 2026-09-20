@@ -166,7 +166,7 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         // a set kept before the guard existed is still checked before it costs anything
         const problem = recaps.length ? recapsProblem(recaps) : null;
         if (problem) throw new Error(`${problem}; read the recaps again with the drama's tag or a recap's URL`);
-        if (withRecaps) await set({ step: recaps.length ? `Reading ${recaps.length} Dramabeans recap${recaps.length === 1 ? "" : "s"}` : "No recaps kept for this entry — reading without" });
+        if (withRecaps) await set({ step: recaps.length ? `Reading ${recaps.length} ${recaps[0].source} recap${recaps.length === 1 ? "" : "s"}` : "No recaps kept for this entry — reading without" });
         const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }), recaps);
         const found = inputs.wiki.filter((w) => w.text).map((w) => w.lang);
         const read = [found.length ? `${found.join(", ")}.wikipedia` : null, recaps.length ? `${recaps.length} recaps` : null].filter(Boolean);

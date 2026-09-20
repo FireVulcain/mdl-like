@@ -1,13 +1,14 @@
 /**
  * Loads one drama's episode recaps into CharacterMapRecap — the JSON array
- * the console snippet in prisma/character-maps/README.md writes, for when
- * the extension could not read Dramabeans (Cloudflare had a bad day) and
- * the recaps were saved by hand. Replaces what is kept for the slug.
+ * the console snippets in prisma/character-maps/README.md write, for when
+ * the extension could not read the site (Cloudflare had a bad day) and the
+ * recaps were saved by hand. Replaces what is kept for the slug.
  *
- *   npx tsx scripts/seed-character-map-recaps.ts <mdlSlug> <file.json>
+ *   npx tsx scripts/seed-character-map-recaps.ts <mdlSlug> <file.json> [--source=cpophome]
  *
- * Each item: { title, from, to?, text, url? }. The recaps are not in git —
- * they are Dramabeans' text — only the row keeps them.
+ * Each item: { title, from, to?, text, url?, source? }. The source is
+ * dramabeans unless the item or the flag says otherwise. The recaps are not
+ * in git — they are the site's text — only the row keeps them.
  */
 import { PrismaClient } from "@prisma/client";
 import { Pool } from "pg";
@@ -20,17 +21,19 @@ dotenv.config({ path: ".env" });
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
-type Item = { title?: string; url?: string; from: number; to?: number; text: string };
+type Item = { title?: string; url?: string; from: number; to?: number; text: string; source?: string };
 
 async function main() {
-    const [mdlSlug, file] = process.argv.slice(2);
-    if (!mdlSlug || !file) throw new Error("usage: seed-character-map-recaps <mdlSlug> <file.json>");
+    const args = process.argv.slice(2);
+    const source = args.find((a) => a.startsWith("--source="))?.slice("--source=".length) || "dramabeans";
+    const [mdlSlug, file] = args.filter((a) => !a.startsWith("--"));
+    if (!mdlSlug || !file) throw new Error("usage: seed-character-map-recaps <mdlSlug> <file.json> [--source=cpophome]");
     const items = JSON.parse(fs.readFileSync(file, "utf-8")) as Item[];
     const rows = items
         .filter((r) => Number.isInteger(r.from) && typeof r.text === "string" && r.text.trim())
         .map((r) => ({
             mdlSlug,
-            source: "dramabeans",
+            source: r.source?.trim() || source,
             title: (r.title ?? "").slice(0, 200),
             url: r.url?.trim() || `pasted#ep${r.from}-${r.to ?? r.from}`,
             fromEp: r.from,
