@@ -327,6 +327,17 @@ model CharacterMap {
   mdlSlug   String   @id
   dataJson  Json
   source    String   @default("session")
+  // What a later run needs to pick the story up without paying to read the
+  // old recaps again: one short digest per recap already read, keyed by the
+  // recap's URL. Derived and disposable — dataJson is the source of truth,
+  // and a lost context only means the next run reads the recaps in full.
+  // Out of dataJson on purpose: it is Dramabeans' story, so it reaches
+  // neither the frontend nor the file in git, exactly like the recaps.
+  contextJson Json?
+  // When a link was last written by hand from the relationships editor. A
+  // full regeneration replaces every link, so the button can say what it
+  // would throw away; a continue run keeps them and leaves this alone.
+  editedAt  DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

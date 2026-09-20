@@ -173,6 +173,38 @@ and **Everyone**, the chart as it stands at the end. The slider opens on
 the last stop the reader has passed, or at the end for a show they have
 finished. A chart with no dated link has one view.
 
+## Carrying a chart forward
+
+A drama still airing gets four more episodes every few weeks. Writing the
+chart again from scratch reads every old recap a second time, makes the
+model re-emit all forty links, and — since the run replaces the row —
+throws away the stills, the `asianwiki` pin and every link corrected by
+hand in the relationships editor.
+
+So when a chart has a `recaps` block and the table holds recaps past it,
+the generate panel offers **Continue** instead: the model is given the
+chart (its people, and its links numbered, each with the sentence it was
+read from), a digest of the episodes already read, and only the new
+recaps in full. It answers with a patch — `addLinks`, `updateLinks`,
+`removeLinks`, `addPeople`, `digests` — and the merge keeps everything the
+patch does not name. New material is decided by **range**: a recap of
+episodes 11-12 is new only when no covered range holds it whole.
+
+The digests live in `CharacterMap.contextJson`, one per recap URL, out of
+`dataJson` on purpose — they are Dramabeans' story, so they reach neither
+the frontend nor this folder, exactly like the recaps themselves. They are
+derived and disposable: `dataJson` is the source of truth, and a lost
+context only costs the next run one full read of the recaps, which is what
+the first Continue on an older chart does anyway ("read once to
+summarise"). The ordinary operation is `addLinks` — a tie that changes is
+a second dated link, by the rule above, not a rewrite — and a patch that
+would delete more than a fifth of the chart is refused outright.
+
+**Rewrite instead** stays one click away, and is the answer when the
+sources changed (a pinned Wikipedia title, a recast), when the chart was
+written without recaps, or when a merge went wrong — the file in git is
+the backup: `git checkout` it and re-seed.
+
 The recaps are kept in the `CharacterMapRecap` table, one row per recap
 page, and read again on every run for that slug — they are not in git (they
 are Dramabeans' text). Dramabeans turns servers away (Cloudflare), so they

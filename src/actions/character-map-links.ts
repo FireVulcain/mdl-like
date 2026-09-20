@@ -76,7 +76,10 @@ export async function saveRelationship({ mdlSlug, mediaId, index, expect, link }
     if (first) return { ok: false, error: first };
 
     const next = withLink(chart.map, index, link);
-    await saveChart(next, chart.source);
+    // The hand-written mark: a full regeneration replaces every link, so the
+    // generate panel warns about what it would throw away. A continue run
+    // leaves both the links and this alone.
+    await saveChart(next, chart.source, { editedAt: new Date() });
     revalidateMedia(mediaId);
     return { ok: true, map: next };
 }
@@ -91,7 +94,7 @@ export async function deleteRelationship({ mdlSlug, mediaId, index, expect }: { 
     if (fingerprint(current) !== expect) return { ok: false, error: "The chart changed while you were editing — reload the page." };
 
     const next = withoutLink(chart.map, index);
-    await saveChart(next, chart.source);
+    await saveChart(next, chart.source, { editedAt: new Date() });
     revalidateMedia(mediaId);
     return { ok: true, map: next };
 }

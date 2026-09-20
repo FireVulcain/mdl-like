@@ -273,14 +273,14 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
         }
     }
 
-    async function start() {
+    async function start(mode: "full" | "continue" = "full") {
         setStarting(true);
         setError(null);
         try {
             const res = await fetch("/api/admin/character-maps/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug, model, titles, recaps: withRecaps && !!recapsKept }),
+                body: JSON.stringify({ mdlSlug, model, titles, recaps: withRecaps && !!recapsKept, mode }),
             });
             const data = (await res.json().catch(() => ({}))) as { job?: JobView; error?: string };
             if (!res.ok || !data.job) {
@@ -306,7 +306,11 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const ended = job?.finishedAt ? new Date(job.finishedAt).getTime() : now;
     const elapsed = job ? ended - started : 0;
     const cost = job?.status === "done" ? costOf(job) : null;
-    const label = active ? "Generating…" : hasChart ? "Regenerate chart" : "Generate chart";
+    // What the panel offers: carrying the chart forward over the episodes it
+    // has not read, when the preflight found some, or writing it again.
+    const plan = preflight?.plan ?? null;
+    const canContinue = plan?.mode === "continue";
+    const label = active ? "Generating…" : canContinue ? "Update chart" : hasChart ? "Regenerate chart" : "Generate chart";
     const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
     // With the box ticked, the run waits for the recaps to be kept
     const recapsPending = withRecaps && !recapsKept;
@@ -335,7 +339,11 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                 <DialogTitle className="font-display text-lg font-semibold text-fg">{hasChart ? "Rewrite the relationship chart" : "Write the relationship chart"}</DialogTitle>
                                 <DialogDescription className="text-sm text-fg-muted">
                                     Claude reads the MDL cast, the synopsis and the Wikipedia character sections, and writes the chart with the sentence behind every link.
-                                    {hasChart && <span className="block pt-1 text-fg-dim">The current chart is replaced when the run lands.</span>}
+                                    {hasChart && (
+                                        <span className="block pt-1 text-fg-dim">
+                                            {canContinue ? "The chart is kept and the new episodes are folded into it." : "The current chart is replaced when the run lands."}
+                                        </span>
+                                    )}
                                 </DialogDescription>
                             </DialogHeader>
                             <div className="grid gap-2 px-6 pt-5 sm:grid-cols-2" role="radiogroup" aria-label="Model">
@@ -366,6 +374,40 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                 })}
                             </div>
                             <div className="mx-6 mt-4 rounded-lg border border-line bg-surface-1 px-3 py-2.5">
+                                {/* What this run would do, before anything is spent: a chart
+                                    that has read to episode N and has recaps past it is carried
+                                    forward instead of written again, which keeps the stills, the
+                                    asianwiki pin and every link corrected by hand. */}
+                                {plan && plan.mode !== "full" && (
+                                    <div className={`mb-4 rounded-lg border px-3 py-2.5 text-xs ${canContinue ? "border-sky-500/30 bg-sky-500/5" : "border-line bg-surface-2"}`}>
+                                        <div className="flex items-center gap-1.5 font-medium text-fg">
+                                            <BookOpen className="h-3.5 w-3.5 text-sky-400" />
+                                            {canContinue ? "New episodes to add" : "Nothing new to read"}
+                                        </div>
+                                        <p className="mt-1 text-fg-muted">
+                                            The chart reads to episode {plan.coveredTo}.{" "}
+                                            {canContinue
+                                                ? `Episode${plan.freshFrom === plan.freshTo ? ` ${plan.freshFrom}` : `s ${plan.freshFrom}–${plan.freshTo}`} are kept but not in it yet.`
+                                                : "Every recap kept for this entry is already in it."}
+                                        </p>
+                                        {canContinue && (
+                                            <p className="mt-1 text-fg-dim">
+                                                Continuing reads only those, and changes only what they say — the stills, the asianwiki page and any link you
+                                                corrected by hand are kept.
+                                                {plan.undigested > 0 && ` This first one also reads the ${plan.undigested} earlier recaps once, to summarise them; later updates will not.`}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+                                {preflight?.editedAt && (
+                                    <p className="mb-4 flex items-start gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-xs text-amber-400/90">
+                                        <AlertTriangle className="mt-px h-3.5 w-3.5 shrink-0" />
+                                        <span>
+                                            You edited this chart by hand on {new Date(preflight.editedAt).toLocaleDateString()}. Rewriting it replaces every
+                                            link and throws those edits away{canContinue ? " — continuing keeps them." : "."}
+                                        </span>
+                                    </p>
+                                )}
                                 <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-wide text-fg-dim">
                                     Sources
                                     {checking && <Loader2 className="h-3 w-3 animate-spin text-sky-400" />}
@@ -538,15 +580,28 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                     <button type="button" onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg">
                                         Cancel
                                     </button>
+                                    {/* With new episodes to add, carrying on is the action and
+                                        rewriting steps back to a quiet one: it costs more and
+                                        throws the hand-written links away. */}
+                                    {canContinue && (
+                                        <button
+                                            type="button"
+                                            onClick={() => start("full")}
+                                            disabled={starting || checking || recapsPending}
+                                            className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg disabled:opacity-60"
+                                        >
+                                            Rewrite instead
+                                        </button>
+                                    )}
                                     <button
                                         type="button"
-                                        onClick={start}
+                                        onClick={() => start(canContinue ? "continue" : "full")}
                                         disabled={starting || checking || (!preflight && !checkError) || recapsPending}
                                         className="inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-sky-400 disabled:opacity-60"
                                         title={checking ? "Checking the sources" : recapsPending ? "Waiting for the recaps" : undefined}
                                     >
                                         {starting || checking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
-                                        {hasChart ? "Rewrite with " : "Write with "}
+                                        {canContinue ? "Continue with " : hasChart ? "Rewrite with " : "Write with "}
                                         {GENERATOR_MODELS[model].label}
                                     </button>
                                 </div>

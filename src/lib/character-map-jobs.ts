@@ -2,7 +2,10 @@ import { prisma } from "@/lib/prisma";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
 import { ChartError, DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
 import { listRecaps, recapsProblem } from "@/lib/character-map-recaps";
-import type { CharacterMapJob } from "@prisma/client";
+import { ContinueError, continueChart } from "@/lib/character-map-continue";
+import { planRun, readContext, withDigests, type RunMode } from "@/lib/character-map-patch";
+import type { CharacterMapData } from "@/lib/character-map";
+import type { Prisma, CharacterMapJob } from "@prisma/client";
 
 /**
  * The chart generator as a job: one row per run, progressed step by step,
@@ -85,7 +88,15 @@ async function reapStale() {
  * row, when the server has no API key — the button then says so instead of
  * spinning. Returns the row to poll.
  */
-export async function startJob(mdlSlug: string, startedBy: string | null, titles: Record<string, string> = {}, model: GeneratorModel = DEFAULT_GENERATOR_MODEL, withRecaps = false): Promise<JobView> {
+export async function startJob(
+    mdlSlug: string,
+    startedBy: string | null,
+    titles: Record<string, string> = {},
+    model: GeneratorModel = DEFAULT_GENERATOR_MODEL,
+    withRecaps = false,
+    /** "continue" carries the chart forward over the new recaps instead of writing it again */
+    mode: RunMode = "full",
+): Promise<JobView> {
     await reapStale();
     const running = await prisma.characterMapJob.findFirst({ where: { mdlSlug, status: { in: [...ACTIVE] } } });
     if (running) return jobView(running);
@@ -106,7 +117,7 @@ export async function startJob(mdlSlug: string, startedBy: string | null, titles
         return jobView(failed);
     }
     // detached on purpose: the route returns now, the run goes on in the process
-    void run(job.id, mdlSlug, titles, model, withRecaps);
+    void (mode === "continue" ? carryOn(job.id, mdlSlug, model) : run(job.id, mdlSlug, titles, model, withRecaps));
     return jobView(job);
 }
 
@@ -162,7 +173,7 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         await set({ status: "generating", step: `Writing the chart from the cast${read.length ? ` and ${read.join(" and ")}` : " alone (no article found)"}` });
         const result = await generateChart(inputs, model, (step) => void set({ step }));
         await set({ status: "validating", step: "Saving" });
-        const { file } = await saveChart(result.map, "claude");
+        const { file } = await saveChart(result.map, "claude", { editedAt: null });
         const warnings = [...result.warnings];
         for (const w of inputs.wiki) if (!w.text) warnings.push(`${w.lang}.wikipedia: ${w.title ? `no character section in "${w.title}"` : w.rejected ? `the search found "${w.rejected}", which is not this drama` : "no article found"} — pin a title in wiki-titles.json and regenerate`);
         if (!file) warnings.push("the chart file was not written (folder missing or read-only); the row is the only copy");
@@ -184,6 +195,76 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
         const message = e instanceof Error ? e.message : String(e);
         // what a run that got an answer still cost, so a failure is not free-looking
         const spent = e instanceof ChartError && e.usage ? { model: e.model, inputTokens: e.usage.inputTokens, outputTokens: e.usage.outputTokens, cacheRead: e.usage.cacheRead } : {};
+        await set({ status: "failed", step: "Failed" });
+        await prisma.characterMapJob.update({
+            where: { id },
+            data: { step: "", error: message, finishedAt: new Date(), ...spent },
+        }).catch(() => undefined);
+    }
+}
+
+/**
+ * A continue run: the chart as it stands, plus the recaps it has not read,
+ * folded together by a patch. Unlike `run` above it never replaces the
+ * chart — the people keep their stills, the asianwiki pin stays, and a link
+ * the admin corrected by hand is left alone unless the new episodes say
+ * something about that very link. `editedAt` is therefore untouched.
+ */
+async function carryOn(id: string, mdlSlug: string, model: GeneratorModel) {
+    const set = stepWriter(id, { status: "queued", step: "Starting" });
+    try {
+        await set({ status: "gathering", step: "Reading the chart and the recaps" });
+        const row = await prisma.characterMap.findUnique({ where: { mdlSlug } });
+        if (!row) throw new Error("there is no chart to carry forward — write one first");
+        const map = row.dataJson as unknown as CharacterMapData;
+        const recaps = await listRecaps(mdlSlug);
+        const problem = recaps.length ? recapsProblem(recaps) : null;
+        if (problem) throw new Error(`${problem}; read the recaps again with the drama's tag or a recap's URL`);
+        const context = readContext(row.contextJson);
+        const plan = planRun(map, recaps, context);
+        if (plan.mode !== "continue") throw new Error(plan.reason);
+
+        // The cast is read again: a face that first appears in episode 13 is
+        // usually a guest role, and its portrait and spelling come from MDL.
+        await set({ step: "Reading the MDL cast" });
+        const inputs = await gatherChartInputs(mdlSlug, {}, undefined, []);
+
+        const fresh = plan.fresh.length;
+        await set({
+            status: "generating",
+            step: `Carrying the chart forward over ${fresh} new recap${fresh === 1 ? "" : "s"}${plan.undigested.length ? `, and summarising ${plan.undigested.length} older one${plan.undigested.length === 1 ? "" : "s"}` : ""}`,
+        });
+        const result = await continueChart(map, plan, context, inputs.cast, recaps, model, (step) => void set({ step }));
+
+        await set({ status: "validating", step: "Saving" });
+        const nextContext = withDigests(context, result.digests);
+        const { file } = await saveChart(result.map, row.source || "claude", { context: nextContext as unknown as Prisma.InputJsonValue });
+        const warnings = [...result.warnings];
+        if (!file) warnings.push("the chart file was not written (folder missing or read-only); the row is the only copy");
+        const { added, updated, removed, people } = result.summary;
+        const said = [
+            `${added} link${added === 1 ? "" : "s"} added`,
+            updated ? `${updated} changed` : null,
+            removed ? `${removed} removed` : null,
+            people ? `${people} new ${people === 1 ? "person" : "people"}` : null,
+        ].filter(Boolean).join(", ");
+        await set({ status: "done", step: `${said} — read to episode ${result.map.recaps?.episodes ?? "?"}` });
+        await prisma.characterMapJob.update({
+            where: { id },
+            data: {
+                model: result.model,
+                inputTokens: result.usage.inputTokens,
+                outputTokens: result.usage.outputTokens,
+                cacheRead: result.usage.cacheRead,
+                peopleCount: result.map.people.length,
+                linkCount: result.map.links.length,
+                warnings,
+                finishedAt: new Date(),
+            },
+        });
+    } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        const spent = e instanceof ContinueError && e.usage ? { model: e.model, inputTokens: e.usage.inputTokens, outputTokens: e.usage.outputTokens, cacheRead: e.usage.cacheRead } : {};
         await set({ status: "failed", step: "Failed" });
         await prisma.characterMapJob.update({
             where: { id },

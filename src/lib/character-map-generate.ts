@@ -337,12 +337,25 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
  * the charts folder is there and writable, which it is on the server as in
  * development. The file keeps the repo the source of truth; commit it.
  */
-export async function saveChart(map: CharacterMapData, source: string): Promise<{ file: string | null }> {
+export async function saveChart(
+    map: CharacterMapData,
+    source: string,
+    /**
+     * `context` replaces the digests kept for a later continue run;
+     * `editedAt` is passed as null by a full run, which throws every
+     * hand-written link away and so has nothing left to warn about.
+     */
+    extra?: { context?: Prisma.InputJsonValue; editedAt?: Date | null },
+): Promise<{ file: string | null }> {
     const dataJson = map as unknown as Prisma.InputJsonValue;
+    const rest = {
+        ...(extra?.context !== undefined ? { contextJson: extra.context } : {}),
+        ...(extra?.editedAt !== undefined ? { editedAt: extra.editedAt } : {}),
+    };
     await prisma.characterMap.upsert({
         where: { mdlSlug: map.mdlSlug },
-        create: { mdlSlug: map.mdlSlug, dataJson, source },
-        update: { dataJson, source },
+        create: { mdlSlug: map.mdlSlug, dataJson, source, ...rest },
+        update: { dataJson, source, ...rest },
     });
     const dir = path.join(process.cwd(), "prisma", "character-maps");
     let file: string | null = null;
