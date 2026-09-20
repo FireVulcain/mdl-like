@@ -173,6 +173,15 @@ every link:
   links. Ties that only say "is in this block" (his guard, her squad, his
   assistant) are drawn for two members of a block at most, and a support
   role with nothing but such a membership is left out.
+- **`source` names the recap the sentence is in**, and the sentence decides
+  the date: an event (an alliance, a kiss, a betrayal) happens in the
+  episode its sentence is in, a reveal is dated by the recap that reveals
+  it, and only a standing tie (a mother, a job) may be older than the
+  sentence describing it. The generator once wrote "dramabeans ep. 7" over
+  a sentence from episode 10 and dated the villains' alliance three
+  episodes early; the checks now find every sentence back in the recaps
+  (`src/lib/character-map-sources.ts`), correct a source that names another
+  episode, and move a reveal dated before its recap.
 - **`recaps`** on the chart says how far the recaps went: `episodes` is the
   last episode covered, and `ranges` the episodes each recap covers, in
   order. A recap of episodes 11-12 does not say which of the two a thing

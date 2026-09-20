@@ -3,6 +3,7 @@ import type { CharacterMapData } from "@/lib/character-map";
 import type { CastMember, Recap } from "@/lib/character-map-inputs";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 import { applyPatch, type ChartPatch, type GenerationContext, type GenerationPlan, type MergeResult } from "@/lib/character-map-patch";
+import { checkSources } from "@/lib/character-map-sources";
 
 /**
  * Carrying a chart forward over the episodes that have aired since it was
@@ -32,7 +33,7 @@ HOW THE CHART IS DATED — this is the rule everything else follows
 
 WHAT TO ADD (addLinks)
 - Ties the new recaps show that the chart does not have: a rescue, a betrayal, a marriage, a parent revealed, a debt, a new colleague.
-- since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "cpophome ep. 12".
+- since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "cpophome ep. 12" — the recap the sentence is in, and no other: the checks find the sentence back and correct a wrong number. An event happens in the episode its sentence is in, never earlier because it "was coming"; a reveal is dated by the recap that reveals it.
 - reveal: true when the new episodes reveal something the story had kept — a hidden parent, a true identity, a killer. The episode of the REVEAL is the since, not the episode it is about.
 - A new face the recaps name: addPeople, taking name, actor and the img= URL from the MDL cast list given below. Someone the recaps name whom the cast list does not carry gets inCast false and image null. Put anyone who matters to the leads in addToCompact, and give their group a cell in blocks if it is a new group.
 
@@ -261,6 +262,11 @@ export async function continueChart(
     onProgress?.("Folding the changes in");
     try {
         const merged = applyPatch(map, patch, recaps);
+        // Each sentence found back in its recap: a source that names another
+        // episode is corrected, a reveal dated before its recap is moved to it
+        const sourced = checkSources(merged.map.links, recaps);
+        merged.map.links = sourced.links;
+        merged.warnings.push(...sourced.warnings);
         // A run that read new episodes and found nothing is worth saying out
         // loud: either the recaps carry no tie, or the chart already had them.
         if (merged.summary.added === 0 && merged.summary.updated === 0) merged.warnings.push("the new episodes added no link — nothing in them was a tie the chart did not have");

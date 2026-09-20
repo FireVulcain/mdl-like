@@ -321,14 +321,14 @@
       "from": "kangchul",
       "to": "yeonju",
       "type": "romance",
-      "label": "Kang Chul and Yeon-joo fall in love across two worlds, kiss",
+      "label": "Yeon-joo kisses Kang Chul in a clothing store, hoping a kiss is enough of a cliffhanger to end the episode — and it is",
       "short": "First kiss",
-      "evidence": "He marches over to her and tilts her face up to meet his in a kiss",
-      "source": "dramabeans ep. 3",
+      "evidence": "And then she lurches forward and kisses him. Time slows, and Chul's eyes widen in surprise.",
+      "source": "dramabeans ep. 2",
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 3,
+      "since": 2,
       "until": 7
     },
     {
@@ -417,11 +417,12 @@
       "label": "Enraged at learning the truth of his creation, Kang Chul shoots Seong Mu in his workshop",
       "short": "shot his creator",
       "evidence": "In one swift motion, he pulls his gun out as he whirls around again... He shoots, and Dad looks down at his bleeding chest in shock",
-      "source": "dramabeans ep. 5-6",
+      "source": "dramabeans ep. 5",
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "until": null
     },
     {
       "from": "kangchul",
@@ -495,12 +496,12 @@
       "label": "Possessed by the killer he drew a face for, Seong Mu nearly strangles his own daughter",
       "short": "attacks her",
       "evidence": "Dad is strangling her and ranting like a psycho that he shot her already and doesn't know why she's not dead",
-      "source": "dramabeans ep. 13",
+      "source": "dramabeans ep. 15",
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 13,
-      "until": 13
+      "since": 15,
+      "until": 15
     },
     {
       "from": "doyun",
@@ -604,11 +605,11 @@
       "label": "Assemblyman Han conspires with the faceless killer, not knowing he shares Seong Mu's face, to bring down Kang Chul together",
       "short": "conspires with killer",
       "evidence": "New-Face says he knows everything that's about to happen to them... he offers to help make Assemblyman Han the next president",
-      "source": "dramabeans ep. 7",
+      "source": "dramabeans ep. 10",
       "reveal": true,
       "inferred": false,
       "directed": false,
-      "since": 7
+      "since": 10
     },
     {
       "from": "cheolho",
@@ -697,7 +698,7 @@
       "label": "Su Bong becomes Yeon-joo's steadfast confidant, helping her navigate both worlds throughout her ordeal",
       "short": "loyal confidant",
       "evidence": "Su-bong drags his feet as he returns to Dad's workshop... he sits next to her quietly, letting her cry",
-      "source": "dramabeans ep. 9-16",
+      "source": "dramabeans ep. 11",
       "reveal": false,
       "inferred": false,
       "directed": true,
@@ -710,11 +711,11 @@
       "label": "Once merely a fanboy of the webtoon, Su Bong becomes personally devoted to helping Kang Chul survive in the real world",
       "short": "devoted fan",
       "evidence": "Kang hyung... can I shake your hand? I've been your fan for a long time.",
-      "source": "dramabeans ep. 11",
+      "source": "dramabeans ep. 12",
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 11
+      "since": 12
     },
     {
       "from": "seonmi",

@@ -4,6 +4,7 @@ import * as path from "path";
 import { prisma } from "@/lib/prisma";
 import type { CharacterMapData, Era, MapLink, MapPerson } from "@/lib/character-map";
 import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
+import { checkSources } from "@/lib/character-map-sources";
 import type { Prisma } from "@prisma/client";
 
 /**
@@ -48,6 +49,7 @@ LINKS
 EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans for Korean dramas, cpophome for Chinese ones)
 - The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "cpophome ep. 12".
 - since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
+- source names the recap the evidence sentence is in — that one and no other. The checks find the sentence back in the recaps and correct a source that names another episode. An event — an alliance, a betrayal, a rescue, a kiss — happens in the episode its sentence is in, and its since is that episode: never an earlier one because the event "was coming", never a later one. A reveal's since is the episode of the recap that reveals it, even when the thing revealed is older. Only a standing tie (a mother, a job, a marriage from before the story) may have a since earlier than the sentence that describes it.
 - A tie that changes over the run is two links, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
 - until: the last episode a tie still holds. Every link that is replaced, undone or over gets one — the fake marriage ends where the real one starts, "his secretary" ends when she is fired, "forgot her" ends when he remembers, a mentor's tie ends the episode he dies. A moment — a rescue, a slap, a kidnapping resolved next episode, a gift — is since and until the same episode. Only what still holds at the end has no until: a marriage that lasts, a sibling, a love that is not undone, a reveal the ending stands on.
 - The chart is read as of an episode, and at the end it draws every link without an until: keep that end view sparse. Between two people, at most two links without an until, and never two of the same type. Twelve links between the leads is right when ten of them end; twelve that all hold is a knot.
@@ -255,6 +257,10 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         }
         for (const [pair, n] of open) if (n > 2) warnings.push(`${pair}: ${n} links that never end — the end view draws them all; most should carry an until`);
     }
+    // Each sentence found back in its recap: a source that names another
+    // episode is corrected, a reveal dated before its recap is moved to it
+    const sourced = checkSources(links, inputs.recaps);
+    warnings.push(...sourced.warnings);
 
     const map: CharacterMapData = {
         version: 1,
@@ -263,7 +269,7 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         sources: draft.sources,
         main: draft.main,
         people,
-        links,
+        links: sourced.links,
         compact: { people: draft.compact.people, blocks, center: draft.compact.center },
     };
     // the fields the hand-written files carry beside the typed ones
