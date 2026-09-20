@@ -57,9 +57,9 @@ export default async function RelationshipsPage({ params, searchParams }: { para
                             <span>•</span>
                             <span>{media.year}</span>
                             <span>•</span>
-                            <span>
-                                {map.compact.people.length} of {map.people.length} people
-                            </span>
+                            {/* Everyone, because that is what this page draws:
+                                the compact cut is the media page's row, not this. */}
+                            <span>{map.people.length} people</span>
                         </div>
                     </div>
                 </div>
