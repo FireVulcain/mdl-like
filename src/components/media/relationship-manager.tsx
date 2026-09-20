@@ -335,11 +335,15 @@ export function RelationshipManager({
 
                 {/* The door first, then the two filters — the same order, and the
                     same separator, as the row of pills over the chart. */}
-                <button type="button" onClick={() => onReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)} disabled={revealCount === 0}>
-                    Reveals <span className="opacity-50">{revealCount}</span>
-                </button>
-
-                <div className="h-4 w-px bg-surface-3" />
+                {/* The door only when it holds something — a dated chart's twists are the slider's */}
+                {revealCount > 0 && (
+                    <>
+                        <button type="button" onClick={() => onReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)}>
+                            Reveals <span className="opacity-50">{revealCount}</span>
+                        </button>
+                        <div className="h-4 w-px bg-surface-3" />
+                    </>
+                )}
 
                 {(["inferred", "directed"] as const).map((f) => (
                     <button key={f} type="button" onClick={() => setFlags((v) => ({ ...v, [f]: !v[f] }))} aria-pressed={flags[f]} className={pill(flags[f])}>

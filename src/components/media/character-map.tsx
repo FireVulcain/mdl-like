@@ -415,9 +415,14 @@ export function CharacterMap({
 
                 <div className="h-4 w-px bg-surface-3" />
 
-                <button type="button" onClick={() => setReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)} disabled={counts.reveals === 0}>
-                    Reveals <span className="opacity-50">{counts.reveals}</span>
-                </button>
+                {/* The spoiler door, only when it holds something: on a chart dated
+                    episode by episode every twist is the slider's, and a door with
+                    nothing behind it read as a filter that did not work. */}
+                {counts.reveals > 0 && (
+                    <button type="button" onClick={() => setReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)}>
+                        Reveals <span className="opacity-50">{counts.reveals}</span>
+                    </button>
+                )}
                 <button type="button" onClick={() => setInferred((v) => !v)} aria-pressed={inferred} className={pill(inferred)} disabled={counts.inferred === 0}>
                     Inferred <span className="opacity-50">{counts.inferred}</span>
                 </button>
