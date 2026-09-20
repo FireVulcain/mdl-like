@@ -7,6 +7,8 @@ import { auth } from "@/lib/auth";
 import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { CommandPalette } from "@/components/command-palette";
+import { ScrollToTop } from "@/components/scroll-to-top";
+import { Suspense } from "react";
 import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences, getThemePreference, getViewPreferences, getSearchView } from "@/actions/preferences";
 
 // Back on Geist, for both roles. font-display still exists as its own variable
@@ -60,6 +62,11 @@ export default async function RootLayout({
         className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-app text-fg font-sans`}
       >
         <Providers initialTheme={theme}>
+          {/* Under Suspense because it reads the query: without one, Next would
+              hold the whole layout back to client rendering for that read. */}
+          <Suspense fallback={null}>
+            <ScrollToTop />
+          </Suspense>
           <div className="relative flex min-h-screen flex-col">
             {isAuthenticated && <SiteHeader mdlProfileUrl={mdlProfileUrl} paletteShortcut={shortcuts[0] ?? null} />}
             {isAuthenticated && <CommandPalette shortcuts={shortcuts} />}
