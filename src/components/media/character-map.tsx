@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Crosshair, Minus, Plus } from "lucide-react";
+import { Crosshair, Minus, Plus, X } from "lucide-react";
 import {
     actorLine,
     ERA_LABEL,
@@ -449,10 +449,16 @@ export function CharacterMap({
                         </g>
                     ))}
 
-                    {/* Links, under the faces */}
-                    {layout.links.map((l) => {
+                    {/* Links, under the faces. A link with a word on it (the leads') is
+                        drawn over the others, so its line sits where its word does — a
+                        "first kiss" whose line ran under "her father" while its word
+                        ran over it read as two different links. The selected link is
+                        drawn last of all. */}
+                    {[...layout.links]
+                        .map((l) => ({ l, active: (selected?.kind === "link" && selected.index === l.index) || (selected?.kind === "person" && linkTouches(l, selected.id)) }))
+                        .sort((a, b) => (a.active ? 2 : a.l.onLine ? 1 : 0) - (b.active ? 2 : b.l.onLine ? 1 : 0))
+                        .map(({ l, active }) => {
                         const faded = linkFaded(l);
-                        const active = (selected?.kind === "link" && selected.index === l.index) || (selected?.kind === "person" && linkTouches(l, selected.id));
                         const lit = hoverLink === l.index || picked?.index === l.index;
                         return (
                             <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : l.inferred ? 0.4 : 1, transition: "opacity .15s" }}>
@@ -617,6 +623,9 @@ export function CharacterMap({
                         <span className="font-semibold text-fg">{byId.get(selectedLink.to)?.name ?? selectedLink.to}</span>
                         <Face person={byId.get(selectedLink.to) ?? null} />
                         <span className={`ml-1 text-xs font-medium ${TYPE_CLASS[selectedLink.type]}`}>{selectedLink.label}</span>
+                        <button type="button" onClick={() => setSelected(null)} className="ml-auto -mr-1 cursor-pointer rounded-md p-1 text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg" title="Close" aria-label="Close">
+                            <X className="h-3.5 w-3.5" />
+                        </button>
                     </div>
                     {selectedLink.evidence && !CJK.test(selectedLink.evidence) ? (
                         <blockquote className="mt-2 border-l-2 border-line-strong pl-3 text-fg-soft">
@@ -655,8 +664,11 @@ export function CharacterMap({
                                 </span>
                             ))}
                         </div>
-                        <span className="ml-auto text-xs text-fg-dim">
+                        <span className="ml-auto flex items-center gap-2 text-xs text-fg-dim">
                             {personLinks.length} link{personLinks.length === 1 ? "" : "s"}
+                            <button type="button" onClick={() => setSelected(null)} className="-mr-1 cursor-pointer rounded-md p-1 text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg" title="Close" aria-label="Close">
+                                <X className="h-3.5 w-3.5" />
+                            </button>
                         </span>
                     </div>
                     {selectedPerson.note && <p className="mt-2 text-xs text-fg-dim">{selectedPerson.note}</p>}

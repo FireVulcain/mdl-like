@@ -405,11 +405,11 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         // A→B and one B→A took the same side and their arcs lay on each other.
         const bend = n > 1 ? (i - (n - 1) / 2) * 34 * (l.from < l.to ? 1 : -1) : 0;
         const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
-        // Three or more leads sit in one row, so a link between the outer two
-        // runs straight through the middle face — and its word lands on it.
-        // That one arcs over the row instead. Only leads: the households'
-        // faces are never between two ends of a link on a straight line.
-        const over = a.lead && b.lead && people.some((p) => p.lead && p !== a && p !== b && Math.abs(p.y - a.y) < 1 && (p.x - a.x) * (p.x - b.x) < 0);
+        // A link between two faces of one row runs straight through every
+        // face between them — three leads in a row, or, on the full chart, a
+        // father two seats left of the lead his daughter sits beside. That
+        // one arcs over the row instead, and its word sits at the apex.
+        const over = people.some((p) => p !== a && p !== b && Math.abs(p.y - a.y) < 1 && Math.abs(p.y - b.y) < 1 && (p.x - a.x) * (p.x - b.x) < 0);
         const cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2;
         const cy = (a.y + b.y) / 2 + (dx / len) * bend * 2 - (over ? OVER * 2 : 0);
         // The word sits at the line's middle: a straight line's midpoint, or an
