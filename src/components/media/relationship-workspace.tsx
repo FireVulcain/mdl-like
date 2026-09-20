@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { CharacterMapData } from "@/lib/character-map";
+import { rememberReveals } from "@/actions/character-map-view";
 import { CharacterMap } from "./character-map";
 import { RelationshipManager } from "./relationship-manager";
 
@@ -21,6 +22,7 @@ export function RelationshipWorkspace({
     canEdit,
     completed = false,
     progress = null,
+    openedBefore = null,
 }: {
     map: CharacterMapData;
     mdlSlug: string;
@@ -28,6 +30,8 @@ export function RelationshipWorkspace({
     canEdit: boolean;
     completed?: boolean;
     progress?: number | null;
+    /** the spoiler door as this reader last left it on this chart, or null */
+    openedBefore?: boolean | null;
 }) {
     // The chart being shown, and the server's own copy beside it: when a new
     // render brings a different one, it wins — the way React adjusts state on
@@ -39,14 +43,21 @@ export function RelationshipWorkspace({
 
     // One spoiler door for the page. The twists are the same twists in the
     // picture and in the list, so opening them in either opens both — two
-    // pills a scroll apart that disagreed read as a bug.
-    const [reveals, setReveals] = useState(completed);
+    // pills a scroll apart that disagreed read as a bug. It opens where the
+    // reader last left it, or, the first time, by whether they have
+    // finished the show; working it is remembered against their account, so
+    // it survives the page and the machine.
+    const [reveals, setReveals] = useState(openedBefore ?? completed);
+    const changeReveals = (next: boolean) => {
+        setReveals(next);
+        void rememberReveals(mdlSlug, next);
+    };
 
     return (
         <div className="space-y-8">
-            <CharacterMap map={map} completed={completed} progress={progress} reveals={reveals} onReveals={setReveals} />
+            <CharacterMap map={map} completed={completed} progress={progress} reveals={reveals} onReveals={changeReveals} />
             <div className="h-px bg-linear-to-r from-transparent via-line to-transparent" />
-            <RelationshipManager map={map} mdlSlug={mdlSlug} mediaId={mediaId} canEdit={canEdit} reveals={reveals} onReveals={setReveals} onMap={setMap} />
+            <RelationshipManager map={map} mdlSlug={mdlSlug} mediaId={mediaId} canEdit={canEdit} reveals={reveals} onReveals={changeReveals} onMap={setMap} />
         </div>
     );
 }

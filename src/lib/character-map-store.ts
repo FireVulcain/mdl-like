@@ -75,6 +75,23 @@ export const watchState = cache(async (id: string, season: number): Promise<{ co
     }
 });
 
+/**
+ * Whether this reader has opened the twists on this chart before, or null
+ * when they have never worked the door — then it opens the way it always
+ * did, by whether they have finished the show. Signed out, there is nobody
+ * to remember, so it is null as well.
+ */
+export const revealsOpened = cache(async (mdlSlug: string | null | undefined): Promise<boolean | null> => {
+    if (!mdlSlug) return null;
+    try {
+        const userId = await getCurrentUserId();
+        const row = await prisma.characterMapView.findUnique({ where: { userId_mdlSlug: { userId, mdlSlug } }, select: { reveals: true } });
+        return row?.reveals ?? null;
+    } catch {
+        return null;
+    }
+});
+
 export type Closest = { person: MapPerson; lead: MapPerson; link: MapLink };
 
 /**

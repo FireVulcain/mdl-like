@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { mediaService } from "@/services/media.service";
 import { mediaMetadata } from "@/lib/page-metadata";
-import { getCharacterMap, resolveMdlSlug, watchState } from "@/lib/character-map-store";
+import { getCharacterMap, resolveMdlSlug, revealsOpened, watchState } from "@/lib/character-map-store";
 import { isAdminUser } from "@/lib/admin";
 import { RelationshipWorkspace } from "@/components/media/relationship-workspace";
 
@@ -35,7 +35,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
         isAdminUser(),
     ]);
     if (!media) notFound();
-    const map = await getCharacterMap(slug);
+    const [map, openedBefore] = await Promise.all([getCharacterMap(slug), revealsOpened(slug)]);
     if (!map || !slug) notFound();
 
     const back = selectedSeason > 1 ? `/media/${id}?season=${selectedSeason}` : `/media/${id}`;
@@ -66,7 +66,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
 
                 <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
-                <RelationshipWorkspace map={map} mdlSlug={slug} mediaId={id} canEdit={canEdit} completed={completed} progress={progress} />
+                <RelationshipWorkspace map={map} mdlSlug={slug} mediaId={id} canEdit={canEdit} completed={completed} progress={progress} openedBefore={openedBefore} />
             </div>
         </div>
     );

@@ -49,7 +49,29 @@ model User {
   recFeedback   RecommendationFeedback[]
   radarExclusions ActorRadarExclusion[]
   radarPins     ActorRadarPin[]
+  chartViews    CharacterMapView[]
   lastSeenSync  DateTime?
+}
+
+// What one reader has opened on one drama's relationship chart. Today that
+// is the spoiler door the chart and the list under it share; the row is
+// written only when they work it, so a chart left as it opens — shut, or
+// open by itself for a show they have finished — costs nothing.
+//
+// Per drama on purpose, and not a line in UserPreferences: a twist is that
+// show's twist, and a door opened on one story must not stand open on the
+// next. Keyed by MDL slug, the chart's own key, so it follows the entry
+// rather than whichever media page led to it.
+model CharacterMapView {
+  id        String   @id @default(cuid())
+  userId    String
+  mdlSlug   String
+  reveals   Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, mdlSlug])
+  @@index([userId])
 }
 
 // Actors the user manually added to the "From Actors You Watch" radar —
