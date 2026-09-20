@@ -207,7 +207,7 @@ export type CharacterMapData = {
 export const PORTRAIT_R = 28;
 
 export type LaidOutPerson = MapPerson & { x: number; y: number; lead: boolean; captions: Caption[] };
-export type Caption = { text: string; type: LinkType; reveal: boolean; linkIndex: number };
+export type Caption = { text: string; type: LinkType; reveal: boolean; linkIndex: number; since: number };
 export type LaidOutLink = MapLink & {
     index: number;
     x1: number; y1: number; x2: number; y2: number;
@@ -283,8 +283,13 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         const a = byId.get(l.from)!, b = byId.get(l.to)!;
         const carrier = spoke(l) ? (center.has(l.from) ? b : a) : a;
         const other = carrier === a ? b : a;
-        carrier.captions.push({ text: `${l.short} · ${firstName(other)}`, type: l.type, reveal: l.reveal, linkIndex: index });
+        carrier.captions.push({ text: `${l.short} · ${firstName(other)}`, type: l.type, reveal: l.reveal, linkIndex: index, since: l.since ?? 0 });
     }
+    // Under a face, the story's order: what was there from the start first,
+    // then each tie the episode it appears — "her father" above "his other
+    // attacker", not after it because the file lists it later. Links from
+    // one episode keep the file's order.
+    for (const p of people) p.captions.sort((a, b) => a.since - b.since);
 
     // Households, each sized to what it holds: as many faces across as its
     // count suggests, a pitch wide enough for its widest caption, a line

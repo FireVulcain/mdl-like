@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Crosshair, Minus, Plus, X } from "lucide-react";
+import { Crosshair, ListChecks, Minus, Plus, X } from "lucide-react";
 import {
     actorLine,
     ERA_LABEL,
@@ -92,6 +92,8 @@ export function CharacterMap({
     onReveals,
     stop: stopProp,
     onStop,
+    onPickLink,
+    onEditLink,
 }: {
     map: CharacterMapData;
     completed?: boolean;
@@ -107,6 +109,16 @@ export function CharacterMap({
     /** The slider's stop, shared the same way: a step here moves the list, and the list's select moves the slider. */
     stop?: number;
     onStop?: (next: number) => void;
+    /**
+     * The link picked in the chart, told to the page as it changes (null
+     * when none is): the list under the chart marks its row, so the reader
+     * who clicked a line finds it without reading forty. `onEditLink` puts
+     * an "Edit in the list" button on the picked link's panel — the page
+     * passes it when the reader may edit, and it scrolls to the row and
+     * opens it.
+     */
+    onPickLink?: (index: number | null) => void;
+    onEditLink?: (index: number) => void;
 }) {
     const stops = useMemo(() => episodeStops(map), [map]);
     const episodes = stops.length ? stops[stops.length - 1][1] : 0;
@@ -144,6 +156,12 @@ export function CharacterMap({
     // every link they have. A face stays isolated while it is selected.
     const [selected, setSelected] = useState<{ kind: "link"; index: number } | { kind: "person"; id: string } | null>(null);
     const pickLink = (index: number) => setSelected((s) => (s?.kind === "link" && s.index === index ? null : { kind: "link", index }));
+    const pickedIndex = selected?.kind === "link" ? selected.index : null;
+    useEffect(() => {
+        onPickLink?.(pickedIndex);
+        // onPickLink is the page's setter, stable by construction
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pickedIndex]);
     const pickPerson = (id: string) => setSelected((s) => (s?.kind === "person" && s.id === id ? null : { kind: "person", id }));
     const [hover, setHover] = useState<string | null>(null);
     // The link under the pointer, from its line or its chip: it thickens and
@@ -628,9 +646,21 @@ export function CharacterMap({
                         <span className="font-semibold text-fg">{byId.get(selectedLink.to)?.name ?? selectedLink.to}</span>
                         <Face person={byId.get(selectedLink.to) ?? null} />
                         <span className={`ml-1 text-xs font-medium ${TYPE_CLASS[selectedLink.type]}`}>{selectedLink.label}</span>
-                        <button type="button" onClick={() => setSelected(null)} className="ml-auto -mr-1 cursor-pointer rounded-md p-1 text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg" title="Close" aria-label="Close">
-                            <X className="h-3.5 w-3.5" />
-                        </button>
+                        <span className="ml-auto flex items-center gap-1">
+                            {onEditLink && selected?.kind === "link" && (
+                                <button
+                                    type="button"
+                                    onClick={() => onEditLink(selected.index)}
+                                    className="inline-flex cursor-pointer items-center gap-1 rounded-md px-1.5 py-1 text-xs text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg"
+                                    title="Scroll to this link in the list and open it"
+                                >
+                                    <ListChecks className="h-3.5 w-3.5" /> Edit in the list ↓
+                                </button>
+                            )}
+                            <button type="button" onClick={() => setSelected(null)} className="-mr-1 cursor-pointer rounded-md p-1 text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg" title="Close" aria-label="Close">
+                                <X className="h-3.5 w-3.5" />
+                            </button>
+                        </span>
                     </div>
                     {selectedLink.evidence && !CJK.test(selectedLink.evidence) ? (
                         <blockquote className="mt-2 border-l-2 border-line-strong pl-3 text-fg-soft">

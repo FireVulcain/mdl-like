@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Copy, Filter, Loader2, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -71,6 +71,8 @@ export function RelationshipManager({
     stop,
     onStop,
     onMap,
+    highlight = null,
+    editRequest = null,
 }: {
     map: CharacterMapData;
     mdlSlug: string;
@@ -84,6 +86,10 @@ export function RelationshipManager({
     stop: number;
     onStop: (next: number) => void;
     onMap: (next: CharacterMapData) => void;
+    /** the link picked in the chart above: its row is marked, so it is found without reading the list */
+    highlight?: number | null;
+    /** the chart's "Edit in the list": scroll to that row, out from under the filters if need be, and open it */
+    editRequest?: { index: number; at: number } | null;
 }) {
     const router = useRouter();
     const [query, setQuery] = useState("");
@@ -137,6 +143,46 @@ export function RelationshipManager({
         setTypes(new Set());
         setFlags({ inferred: false, directed: false });
     };
+
+    // The chart asked for a row: filters that hide it are cleared, the
+    // reveals opened if it sits behind them, then the row is scrolled to —
+    // on the next frame, once it exists — and opened when the scroll lands,
+    // so the reader sees the page travel to the row before the editor
+    // covers it. `scrollend` says when; browsers without it get a timer.
+    useEffect(() => {
+        if (!editRequest) return;
+        const { index } = editRequest;
+        const link = map.links[index];
+        if (!link) return;
+        if (!rows.some((r) => r.index === index)) clearFilters();
+        if (!reveals && doorGoverns(link, byEpisode)) onReveals(true);
+        let timer = 0;
+        let done = false;
+        const open = () => {
+            if (done) return;
+            done = true;
+            window.removeEventListener("scrollend", open);
+            window.clearTimeout(timer);
+            if (canEdit) openEdit(index);
+        };
+        const frame = requestAnimationFrame(() => {
+            const row = document.getElementById(`relationship-${index}`);
+            if (!row) return open();
+            const { top, bottom } = row.getBoundingClientRect();
+            // already in view: nothing scrolls, so nothing ends
+            if (top >= 0 && bottom <= window.innerHeight) return open();
+            window.addEventListener("scrollend", open, { once: true });
+            timer = window.setTimeout(open, 900);
+            row.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+        return () => {
+            cancelAnimationFrame(frame);
+            window.removeEventListener("scrollend", open);
+            window.clearTimeout(timer);
+        };
+        // only a new request should run this, not every render the filters change
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [editRequest]);
 
     /* ------------------------------------------------------------ writing */
 
@@ -319,14 +365,15 @@ export function RelationshipManager({
                     return (
                         <li
                             key={index}
+                            id={`relationship-${index}`}
                             onClick={open}
                             onKeyDown={open && ((e) => { if (e.key === "Enter") open(); })}
                             role={canEdit ? "button" : undefined}
                             tabIndex={canEdit ? 0 : undefined}
                             title={link.evidence ?? undefined}
-                            className={`group relative flex items-center gap-3 overflow-hidden rounded-xl border border-line-soft bg-surface-1 py-2.5 pl-4 pr-2.5 transition-colors ${
-                                canEdit ? "cursor-pointer hover:border-line hover:bg-surface-2" : ""
-                            } ${busy === index ? "opacity-50" : ""}`}
+                            className={`group relative flex items-center gap-3 overflow-hidden rounded-xl border bg-surface-1 py-2.5 pl-4 pr-2.5 transition-colors ${
+                                highlight === index ? "border-sky-400/60 ring-1 ring-sky-400/40" : "border-line-soft"
+                            } ${canEdit ? "cursor-pointer hover:border-line hover:bg-surface-2" : ""} ${busy === index ? "opacity-50" : ""}`}
                         >
                             <span aria-hidden className={`absolute inset-y-0 left-0 w-[3px] bg-current ${TYPE_CLASS[link.type]} ${link.inferred ? "opacity-40" : ""}`} />
 

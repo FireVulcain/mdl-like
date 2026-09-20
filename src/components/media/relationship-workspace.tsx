@@ -59,11 +59,40 @@ export function RelationshipWorkspace({
     const stops = useMemo(() => episodeStops(map), [map]);
     const [stop, setStop] = useState(() => initialStop(stops, completed, progress));
 
+    // The link picked in the chart is marked in the list, and "Edit in the
+    // list" on its panel asks the list to scroll there and open it — a
+    // request stamped with a time, so asking twice for the same link works.
+    const [picked, setPicked] = useState<number | null>(null);
+    const [editRequest, setEditRequest] = useState<{ index: number; at: number } | null>(null);
+
     return (
         <div className="space-y-8">
-            <CharacterMap map={map} completed={completed} progress={progress} reveals={reveals} onReveals={changeReveals} stop={stop} onStop={setStop} />
+            <CharacterMap
+                map={map}
+                completed={completed}
+                progress={progress}
+                reveals={reveals}
+                onReveals={changeReveals}
+                stop={stop}
+                onStop={setStop}
+                onPickLink={setPicked}
+                onEditLink={canEdit ? (index) => setEditRequest({ index, at: Date.now() }) : undefined}
+            />
             <div className="h-px bg-linear-to-r from-transparent via-line to-transparent" />
-            <RelationshipManager map={map} mdlSlug={mdlSlug} mediaId={mediaId} canEdit={canEdit} reveals={reveals} onReveals={changeReveals} stops={stops} stop={stop} onStop={setStop} onMap={setMap} />
+            <RelationshipManager
+                map={map}
+                mdlSlug={mdlSlug}
+                mediaId={mediaId}
+                canEdit={canEdit}
+                reveals={reveals}
+                onReveals={changeReveals}
+                stops={stops}
+                stop={stop}
+                onStop={setStop}
+                onMap={setMap}
+                highlight={picked}
+                editRequest={editRequest}
+            />
         </div>
     );
 }
