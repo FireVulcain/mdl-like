@@ -152,6 +152,12 @@ every link:
   reveal is dated by the episode it is revealed in, not the one it is about.
   A tie that changes is two links: "hunts Kingfisher" from episode 2, and
   "lets her go" from episode 14, each with its own sentence.
+- **`until`** is the last episode a tie still holds, for one that stops
+  holding: the "bond" of episodes 1-4 gets `since: 1, until: 4` and the
+  romance that replaces it `since: 5`, so the slider shows one or the other
+  and never both. Absent — which it is on every generated link — means it
+  never stops. Only `since` moves the slider's stops; an `until` past the
+  recaps costs their granularity nothing.
 - **`recaps`** on the chart says how far the recaps went: `episodes` is the
   last episode covered, and `ranges` the episodes each recap covers, in
   order. A recap of episodes 11-12 does not say which of the two a thing

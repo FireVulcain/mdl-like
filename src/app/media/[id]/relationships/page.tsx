@@ -5,7 +5,8 @@ import type { Metadata } from "next";
 import { mediaService } from "@/services/media.service";
 import { mediaMetadata } from "@/lib/page-metadata";
 import { getCharacterMap, resolveMdlSlug, watchState } from "@/lib/character-map-store";
-import { CharacterMap } from "@/components/media/character-map";
+import { isAdminUser } from "@/lib/admin";
+import { RelationshipWorkspace } from "@/components/media/relationship-workspace";
 
 type Params = Promise<{ id: string }>;
 type Search = Promise<{ season?: string }>;
@@ -27,10 +28,15 @@ export default async function RelationshipsPage({ params, searchParams }: { para
     const [{ id }, { season }] = await Promise.all([params, searchParams]);
     const selectedSeason = season ? parseInt(season) || 1 : 1;
 
-    const [media, slug, { completed, progress }] = await Promise.all([mediaService.getDetails(id), resolveMdlSlug(id, selectedSeason), watchState(id, selectedSeason)]);
+    const [media, slug, { completed, progress }, canEdit] = await Promise.all([
+        mediaService.getDetails(id),
+        resolveMdlSlug(id, selectedSeason),
+        watchState(id, selectedSeason),
+        isAdminUser(),
+    ]);
     if (!media) notFound();
     const map = await getCharacterMap(slug);
-    if (!map) notFound();
+    if (!map || !slug) notFound();
 
     const back = selectedSeason > 1 ? `/media/${id}?season=${selectedSeason}` : `/media/${id}`;
 
@@ -60,7 +66,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
 
                 <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
-                <CharacterMap map={map} completed={completed} progress={progress} />
+                <RelationshipWorkspace map={map} mdlSlug={slug} mediaId={id} canEdit={canEdit} completed={completed} progress={progress} />
             </div>
         </div>
     );

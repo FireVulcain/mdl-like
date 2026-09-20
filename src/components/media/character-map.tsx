@@ -1,23 +1,24 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import { Crosshair, Minus, Plus } from "lucide-react";
-import { actorLine, ERA_LABEL, layoutCompact, linkPath, portrait, PORTRAIT_R, type CharacterMapData, type LaidOutLink, type LinkType, type MapLink } from "@/lib/character-map";
-
-// Colour follows meaning, the way it does across the app: family is the quiet
-// one, romance rose, rivalry amber; teal for work and loyalty, lime for
-// friendship, violet for the bonds a story invents (a soul in the wrong body).
-const TYPE_CLASS: Record<LinkType, string> = {
-    family: "text-slate-500 dark:text-slate-400",
-    romance: "text-pink-600 dark:text-pink-400",
-    rivalry: "text-amber-600 dark:text-amber-400",
-    work: "text-teal-600 dark:text-teal-400",
-    friend: "text-lime-600 dark:text-lime-400",
-    bond: "text-violet-600 dark:text-violet-400",
-};
-const TYPES: LinkType[] = ["family", "romance", "rivalry", "work", "friend", "bond"];
-const TYPE_LABEL: Record<LinkType, string> = { family: "Family", romance: "Romance", rivalry: "Rivalry", work: "Work", friend: "Friends", bond: "Bond" };
+import {
+    actorLine,
+    ERA_LABEL,
+    layoutCompact,
+    linkActiveAt,
+    linkPath,
+    LINK_TYPES as TYPES,
+    portrait,
+    PORTRAIT_R,
+    TYPE_CLASS,
+    TYPE_LABEL,
+    type CharacterMapData,
+    type LaidOutLink,
+    type LinkType,
+    type MapLink,
+} from "@/lib/character-map";
+import { Face, pill } from "@/components/media/character-map-bits";
 
 // A relationship's words go on a chip, the way a broadcaster's chart tags its
 // lines: an opaque ground, a hairline border with a hint of the line's colour,
@@ -56,31 +57,6 @@ const CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/;
 const W = 1100;
 const R = PORTRAIT_R;
 
-// Same filter chrome as the search page: a flat fill, and a ring only on the
-// one that is on.
-const pill = (on: boolean, tone = "") =>
-    `inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-        on ? `bg-surface-4 text-fg ring-1 ring-line-strong ${tone}` : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
-    }`;
-
-// Two sizes: the small one rides inside a line of text, the large one matches
-// the portrait the chart draws (2 × PORTRAIT_R). A face in the panel is what
-// the reader came down here to look at, so it should never be the smaller of
-// the two pictures of the same person on screen.
-function Face({ person, size = "sm" }: { person: { image: string | null; still?: string | null; name: string; inCast: boolean } | null; size?: "sm" | "lg" }) {
-    if (!person) return null;
-    const px = size === "lg" ? 2 * PORTRAIT_R : 32;
-    const src = portrait(person);
-    return (
-        <span
-            className={`relative shrink-0 overflow-hidden rounded-full bg-surface-2 ${person.inCast ? "" : "border border-dashed border-fg-dim"}`}
-            style={{ width: px, height: px }}
-        >
-            {src && <Image unoptimized src={src} alt="" fill sizes={`${px}px`} className="object-cover" />}
-        </span>
-    );
-}
-
 /**
  * The relationship chart, on its own page.
  *
@@ -105,11 +81,32 @@ function Face({ person, size = "sm" }: { person: { image: string | null; still?:
  * the slider at the last stop the reader has passed (`progress`), or at
  * the end for a show they have finished.
  */
-export function CharacterMap({ map, completed = false, progress = null }: { map: CharacterMapData; completed?: boolean; progress?: number | null }) {
+export function CharacterMap({
+    map,
+    completed = false,
+    progress = null,
+    reveals: revealsProp,
+    onReveals,
+}: {
+    map: CharacterMapData;
+    completed?: boolean;
+    progress?: number | null;
+    /**
+     * The spoiler door, when a page holds it for more than this chart — the
+     * relationships page shares it with the list under the chart, so opening
+     * the twists in one place opens them in both. Left out, the chart keeps
+     * its own.
+     */
+    reveals?: boolean;
+    onReveals?: (next: boolean) => void;
+}) {
     // Where the slider stops: the end of each recap's range, or every
     // episode up to the last dated link when the chart does not say; none
     // when no link is dated
     const stops = useMemo<[number, number][]>(() => {
+        // Where the links begin, not where they end: an `until` past the
+        // recaps says a tie stopped holding, and needs no stop of its own —
+        // it must not cost the slider the recaps' granularity.
         const last = Math.max(0, ...map.links.map((l) => l.since ?? 0));
         if (last === 0) return [];
         const ranges = map.recaps?.ranges?.filter((r) => r[1] >= r[0]).sort((a, b) => a[0] - b[0]) ?? [];
@@ -140,7 +137,9 @@ export function CharacterMap({ map, completed = false, progress = null }: { map:
     // story is known to do. Anything else keeps both behind their toggles,
     // whatever the site-wide spoiler preference says: a chart is one place
     // where a twist is a caption under a face, read before it is meant to be.
-    const [reveals, setReveals] = useState(completed);
+    const [ownReveals, setOwnReveals] = useState(completed);
+    const reveals = revealsProp ?? ownReveals;
+    const setReveals = onReveals ?? setOwnReveals;
     const [inferred, setInferred] = useState(completed);
     const [ghosts, setGhosts] = useState(true);
     const [labels, setLabels] = useState(true);
@@ -166,7 +165,7 @@ export function CharacterMap({ map, completed = false, progress = null }: { map:
 
     // As of episode N, a dated link has happened or not; only the undated
     // ones — the organisation chart's — still answer to the reveals toggle
-    const happened = (l: MapLink) => !byEpisode || l.since == null || l.since <= episode;
+    const happened = (l: MapLink) => !byEpisode || linkActiveAt(l, episode);
     const hideLink = (l: MapLink) => !happened(l) || (!reveals && l.reveal && !(byEpisode && l.since != null));
     const layout = useMemo(
         () => {
@@ -398,7 +397,7 @@ export function CharacterMap({ map, completed = false, progress = null }: { map:
 
                 <div className="h-4 w-px bg-surface-3" />
 
-                <button type="button" onClick={() => setReveals((v) => !v)} aria-pressed={reveals} className={pill(reveals)} disabled={counts.reveals === 0}>
+                <button type="button" onClick={() => setReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)} disabled={counts.reveals === 0}>
                     Reveals <span className="opacity-50">{counts.reveals}</span>
                 </button>
                 <button type="button" onClick={() => setInferred((v) => !v)} aria-pressed={inferred} className={pill(inferred)} disabled={counts.inferred === 0}>

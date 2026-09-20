@@ -9,6 +9,26 @@
  */
 export type LinkType = "family" | "romance" | "rivalry" | "work" | "friend" | "bond";
 
+/** Every kind of tie, in the order the chart's filters and the editor list them. */
+export const LINK_TYPES: LinkType[] = ["family", "romance", "rivalry", "work", "friend", "bond"];
+export const TYPE_LABEL: Record<LinkType, string> = { family: "Family", romance: "Romance", rivalry: "Rivalry", work: "Work", friend: "Friends", bond: "Bond" };
+
+// Colour follows meaning, the way it does across the app: family is the quiet
+// one, romance rose, rivalry amber; teal for work and loyalty, lime for
+// friendship, violet for the bonds a story invents (a soul in the wrong body).
+// One table, read by the chart and by the editor that writes into it.
+export const TYPE_CLASS: Record<LinkType, string> = {
+    family: "text-slate-500 dark:text-slate-400",
+    romance: "text-pink-600 dark:text-pink-400",
+    rivalry: "text-amber-600 dark:text-amber-400",
+    work: "text-teal-600 dark:text-teal-400",
+    friend: "text-lime-600 dark:text-lime-400",
+    bond: "text-violet-600 dark:text-violet-400",
+};
+
+/** A mark for a kind of tie, where a line of text cannot draw one. */
+export const TYPE_GLYPH: Record<LinkType, string> = { family: "⌂", romance: "♡", rivalry: "⚔", work: "◆", friend: "●", bond: "↔" };
+
 /**
  * Which stretch of a life an actor covers. MDL tags its own cast that way —
  * "Ha I Chan [Older]", "O Ae Sun [Child]" — so the vocabulary is theirs, and
@@ -92,7 +112,28 @@ export type MapLink = {
      * always shown.
      */
     since?: number | null;
+    /**
+     * The last episode the tie still holds, for one that stops holding. A
+     * story that turns a bond into a romance is two links — the README's
+     * rule — and this is what takes the first one off the chart when the
+     * second arrives: `since: 1, until: 4` and `since: 5`. Absent, which is
+     * every link written so far, means it never stops.
+     */
+    until?: number | null;
 };
+
+/**
+ * Whether a link is on the chart as of an episode. An undated link is always
+ * there; a dated one from `since` until `until`, both inclusive.
+ */
+export function linkActiveAt(l: MapLink, episode: number): boolean {
+    return (l.since ?? 0) <= episode && (l.until == null || episode <= l.until);
+}
+
+/** The last episode any link names — the far end of the "By episode" slider. */
+export function lastDatedEpisode(links: MapLink[]): number {
+    return Math.max(0, ...links.flatMap((l) => [l.since ?? 0, l.until ?? 0]));
+}
 
 export type CharacterMapData = {
     version: 1;
