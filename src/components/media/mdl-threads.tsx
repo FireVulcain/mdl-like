@@ -28,7 +28,21 @@ function buildTree(comments: MdlComment[]): CommentNode[] {
         }
     }
 
-    return roots;
+    return prune(roots);
+}
+
+/**
+ * Removed comments are dropped rather than drawn as "[Comment removed]" — a
+ * row that says nothing, in a list that is already long. The one exception
+ * is a removed comment with replies still under it: those replies answer
+ * something, and pulling their parent out would leave them answering the
+ * comment above. So a removed comment stays only as long as it holds a
+ * thread, and goes once the pruning has emptied it.
+ */
+function prune(nodes: CommentNode[]): CommentNode[] {
+    return nodes
+        .map((node) => ({ ...node, children: prune(node.children) }))
+        .filter((node) => !node.deleted || node.children.length > 0);
 }
 
 /**
