@@ -7,6 +7,7 @@ import { Heart, ChevronDown, RefreshCw, MessageSquare, Eye } from "lucide-react"
 import { MdlComment } from "@/lib/kuryana";
 import { loadMoreComments, type ThreadKind } from "@/actions/mdl-threads";
 import { mdlUserHref } from "@/lib/mdl-user-link";
+import { SectionHeader } from "@/components/media/section-header";
 
 type CommentNode = MdlComment & { children: CommentNode[] };
 
@@ -221,13 +222,22 @@ interface MdlThreadsProps {
     // Person threads live at a different path but return the same payload, so
     // the same list serves both — only the loader changes.
     kind?: ThreadKind;
+    /**
+     * How many threads the page shows before asking. MDL's first page is
+     * fifty root comments, replies included — on a media page that was nine
+     * thousand pixels, seventy percent of the whole, under sections the
+     * reader had come for. The rest of the page is still here, one click
+     * away; "Load more" only appears once it has been shown.
+     */
+    previewLimit?: number;
 }
 
-export function MdlThreads({ initialComments, total, hasMore: initialHasMore, mdlId, kind = "media" }: MdlThreadsProps) {
+export function MdlThreads({ initialComments, total, hasMore: initialHasMore, mdlId, kind = "media", previewLimit }: MdlThreadsProps) {
     const [allComments, setAllComments] = useState(initialComments);
     const [hasMore, setHasMore] = useState(initialHasMore);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [showAll, setShowAll] = useState(!previewLimit);
 
     // The first page as the server last sent it. Props arrive again whenever
     // the page's server tree re-renders — and the live refresh does exactly that
@@ -254,6 +264,8 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
     const [collapsed, setCollapsed] = useState<Set<number>>(new Set());
 
     const tree = useMemo(() => buildTree(allComments), [allComments]);
+    const shown = showAll ? tree : tree.slice(0, previewLimit);
+    const held = tree.length - shown.length;
 
     // Every comment that has anything under it, at any depth — the set
     // "Collapse all" writes, and the set it compares against to know its label.
@@ -297,35 +309,45 @@ export function MdlThreads({ initialComments, total, hasMore: initialHasMore, md
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                    <h3 className="font-display text-lg font-semibold text-fg">Comments</h3>
-                    <span className="text-xs text-fg-dim">{total.toLocaleString()}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                    {foldableIds.length > 0 && (
-                        <button
-                            onClick={() => setCollapsed(allFolded ? new Set() : new Set(foldableIds))}
-                            className="cursor-pointer text-xs text-fg-dim hover:text-fg-soft transition-colors"
-                        >
-                            {allFolded ? "Expand all" : "Collapse all"}
-                        </button>
-                    )}
-                    <MessageSquare className="size-4 text-fg-faint" />
-                </div>
-            </div>
+            <SectionHeader
+                title="Comments"
+                count={total}
+                right={
+                    <>
+                        {foldableIds.length > 0 && (
+                            <button
+                                onClick={() => setCollapsed(allFolded ? new Set() : new Set(foldableIds))}
+                                className="cursor-pointer text-xs text-fg-dim hover:text-fg-soft transition-colors"
+                            >
+                                {allFolded ? "Expand all" : "Collapse all"}
+                            </button>
+                        )}
+                        <MessageSquare className="size-4 text-fg-faint" />
+                    </>
+                }
+            />
 
             {/* Same treatment as the reviews and the episode list: a stack of the
                 same thing, separated by a rule rather than each drawn as a box. */}
             <div className="flex flex-col divide-y divide-line">
-                {tree.map((comment) => (
+                {shown.map((comment) => (
                     <div key={comment.id} className="py-3.5">
                         <CommentCard comment={comment} collapsed={collapsed} onToggle={toggleFold} />
                     </div>
                 ))}
             </div>
 
-            {hasMore && (
+            {held > 0 && (
+                // The same control the episode list uses to open past its fold.
+                <button
+                    onClick={() => setShowAll(true)}
+                    className="mt-3 flex w-full items-center justify-center gap-1.5 py-2.5 text-sm text-fg-muted hover:text-fg transition-colors cursor-pointer"
+                >
+                    Show all {total.toLocaleString()} comments <ChevronDown className="size-4" />
+                </button>
+            )}
+
+            {held === 0 && hasMore && (
                 <button
                     onClick={handleLoadMore}
                     disabled={loading}

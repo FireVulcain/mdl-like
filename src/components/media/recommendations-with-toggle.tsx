@@ -9,6 +9,7 @@ import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
 import type { UnifiedMedia } from "@/services/media.service";
 import type { KuryanaRecommendation } from "@/lib/kuryana";
 import { SourceToggle } from "@/components/media/source-toggle";
+import { SectionHeader } from "@/components/media/section-header";
 
 interface Props {
     tmdbRecs: UnifiedMedia[];
@@ -31,12 +32,11 @@ export function RecsWithToggle({ tmdbRecs, mdlRecs, watchlistIds, linkedMap, tmd
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold">Recs</h3>
-                {hasMdl && tmdbRecs.length > 0 && (
-                    <SourceToggle value={source} onChange={setSource} />
-                )}
-            </div>
+            <SectionHeader
+                title="Recommendations"
+                count={source === "tmdb" || !hasMdl ? tmdbRecs.length : mdlRecs!.length}
+                right={hasMdl && tmdbRecs.length > 0 ? <SourceToggle value={source} onChange={setSource} /> : undefined}
+            />
 
             {source === "tmdb" || !hasMdl ? (
                 tmdbRecs.length > 0 ? (

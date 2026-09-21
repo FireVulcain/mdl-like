@@ -16,9 +16,9 @@ import { MdlAiredRow } from "@/components/media/mdl-aired-row";
 import { MdlDurationRow } from "@/components/media/mdl-duration-row";
 import { MdlLiveRefresh } from "@/components/media/mdl-live-refresh";
 import { LinkToTmdbButton } from "@/components/media/link-to-tmdb-button";
-import { MdlSection } from "@/components/media/mdl-section";
+import { MdlAboutSection, MdlCastSection } from "@/components/media/mdl-section";
 import { MdlRelatedContent } from "@/components/media/mdl-related-content";
-import { SynopsisBlock } from "@/components/media/synopsis-block";
+import { AboutBlock } from "@/components/media/about-block";
 import { TrailerButton } from "@/components/trailer-button";
 import { MdlCountdown } from "@/components/media/mdl-countdown";
 import { EpisodeGuide } from "@/components/media/episode-guide";
@@ -35,7 +35,7 @@ import { MdlRecsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { PosterZoom } from "@/components/media/poster-zoom";
 import { prisma } from "@/lib/prisma";
-import { MediaNav, NavSection } from "@/components/media/media-nav";
+import { MediaSections } from "@/components/media/media-sections";
 import { WatchProvidersRow } from "@/components/media/watch-providers-row";
 import { getCurrentUserId } from "@/lib/session";
 import { MdlLinkEditor } from "@/components/media/mdl-link-editor";
@@ -44,10 +44,15 @@ import { CharacterMapSection } from "@/components/media/character-map-section";
 import { CharacterMapAdmin, CharacterMapEmptyAdmin } from "@/components/media/character-map-admin";
 import { getCharacterMap } from "@/lib/character-map-store";
 import { StickySidebar } from "@/components/media/sticky-sidebar";
-import { MetaLinkList, GENRE_LIST, TAG_LIST } from "@/components/media/meta-link-list";
-import { GenreBlock } from "@/components/media/genre-block";
 import type { Metadata } from "next";
 import { mediaMetadata } from "@/lib/page-metadata";
+
+/**
+ * Comment threads shown on the overview before "Show all". MDL's first page
+ * is fifty, replies included; five is a taste of the conversation, and the
+ * whole thread is one click away.
+ */
+const COMMENTS_PREVIEW = 5;
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     return mediaMetadata((await params).id);
@@ -129,16 +134,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             mdlCast.guest = normalize(roles["Guest Role"]);
             mdlCast.cameo = normalize(roles["Cameo"]);
         }
-
-        const navSections: NavSection[] = [
-            { id: "section-cast", label: "Cast" },
-            ...(characterMap ? [{ id: "section-relationships", label: "Relationships" }] : []),
-            ...(media.type === "TV" ? [{ id: "section-episodes", label: "Episodes" }] : []),
-            { id: "section-photos", label: "Photos" },
-            { id: "section-reviews", label: "Reviews" },
-            { id: "section-recommendations", label: "Recs" },
-            { id: "section-comments", label: "Comments" },
-        ];
 
         return (
             <div className="min-h-screen bg-linear-to-b -mt-24">
@@ -255,25 +250,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             }}
                         >
                             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+                            {/* Title, type, country and episode count are the
+                                line under the heading, a hundred pixels up; the
+                                box holds what that line does not. */}
                             <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
-                                <span className="text-fg-muted font-medium">Title</span>
-                                <span className="text-fg">{media.title}</span>
-
-                                <span className="text-fg-muted font-medium">Type</span>
-                                <span className="text-fg">{media.type === "TV" ? "TV Show" : "Movie"}</span>
-
-                                {/* The code was printed twice, once plain and once
-                                    in a badge right beside it */}
-                                <span className="text-fg-muted font-medium">Country</span>
-                                <span className="text-fg">{media.originCountry}</span>
-
-                                {media.totalEp && (
-                                    <>
-                                        <span className="text-fg-muted font-medium">Episodes</span>
-                                        <span className="text-fg">{media.totalEp}</span>
-                                    </>
-                                )}
-
                                 {media.aired && (
                                     <>
                                         <span className="text-fg-muted font-medium">Aired</span>
@@ -415,124 +395,138 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </div>
                         )}
 
-                        <MediaNav sections={navSections} />
-
-                        <div id="section-cast" className="space-y-4">
-                            <SynopsisBlock text={media.synopsis || ""} />
-                            <Suspense fallback={null}>
-                                <MdlRelatedContent mdlSlug={media.externalId} />
-                            </Suspense>
-                            {media.genres && media.genres.length > 0 && (
-                                <div className="mt-6">
-                                    <h3 className="font-display text-lg font-semibold mb-2">Genres</h3>
-                                    <MetaLinkList
-                                        {...GENRE_LIST}
-                                        items={media.genres.map((g) => ({
-                                            key: g,
-                                            label: g,
-                                            href: `/dramas?genre=${encodeURIComponent(g)}`,
-                                        }))}
-                                    />
-                                </div>
-                            )}
-                            {media.tags && media.tags.length > 0 && (
-                                <div className="mt-6">
-                                    <h3 className="font-display text-lg font-semibold mb-2">Tags</h3>
-                                    <MetaLinkList
-                                        {...TAG_LIST}
-                                        items={media.tags.map((t) => ({
-                                            key: String(t.id),
-                                            label: t.name,
-                                            href: `/dramas?tag=${t.id}&tag_name=${encodeURIComponent(t.name)}`,
-                                        }))}
-                                    />
-                                </div>
-                            )}
-                            <div className="mt-2">
-                                <MdlCastScroll cast={mdlCast} tmdbCast={[]} mediaId={media.id} />
-                            </div>
-                        </div>
-
-                        {characterMap ? (
-                            <div id="section-relationships" className="border-t border-line pt-8">
-                                <CharacterMapSection
-                                    map={characterMap}
-                                    href={`/media/${media.id}/relationships`}
-                                    completed={userMedia?.status === "Completed"}
-                                    admin={<CharacterMapAdmin mdlSlug={media.externalId} hasChart />}
-                                />
-                            </div>
-                        ) : (
-                            <CharacterMapEmptyAdmin mdlSlug={media.externalId} />
-                        )}
-
-                        {media.type === "TV" && (
-                            <div id="section-episodes" className="border-t border-line pt-8">
-                                <Suspense fallback={<EpisodeGuide episodes={[]} season={1} poster={media.poster} />}>
-                                    <MdlEpisodeGuideSection
-                                        tmdbEpisodes={[]}
-                                        season={1}
-                                        poster={media.poster}
-                                        externalId={media.externalId}
-                                        mdlSlug={media.externalId}
-                                        mediaId={id}
-                                        watchedProgress={userMedia?.progress}
-                                        hideSpoilers={displayPrefs.hideSpoilers}
-                                    />
-                                </Suspense>
-                            </div>
-                        )}
-
-                        {/* An MDL-native page has no TMDB backdrops, so it had no
-                            photo section at all. MDL has the gallery, so it gets
-                            one — same component, one source. */}
-                        <div id="section-rating" className="border-t border-line pt-8 empty:hidden">
-                            <Suspense fallback={null}>
-                                <MdlRatingChartSection mdlSlug={media.externalId} />
-                            </Suspense>
-                        </div>
-
-                        <div id="section-photos" className="border-t border-line pt-8">
-                            <Suspense fallback={null}>
-                                <MdlPhotosSection
-                                    backdrops={[]}
-                                    externalId={media.externalId}
-                                    season={1}
-                                    mediaId={media.id}
-                                    mdlSlug={media.externalId}
-                                />
-                            </Suspense>
-                        </div>
-
-                        <div id="section-reviews" className="border-t border-line pt-8">
-                            <Suspense fallback={null}>
-                                <MdlReviewsSection
-                                    externalId={media.externalId}
-                                    title={media.title}
-                                    year={media.year}
-                                    mediaId={media.id}
-                                    mdlSlug={media.externalId}
-                                />
-                            </Suspense>
-                        </div>
-
-                        <div id="section-recommendations" className="border-t border-line pt-8">
-                            <Suspense fallback={<div className="h-6 w-40 rounded bg-surface-2 animate-pulse mb-4" />}>
-                                <MdlRecsSection
-                                    tmdbRecs={[]}
-                                    externalId={media.externalId}
-                                    season={1}
-                                    watchlistIds={watchlistExternalIds}
-                                    mdlSlug={media.externalId}
-                                />
-                            </Suspense>
-                        </div>
-
-                        <div id="section-comments" className="border-t border-line pt-8">
-                            <Suspense fallback={null}>
-                                <MdlThreadsSection externalId={media.externalId} title={media.title} year={media.year} mdlSlug={media.externalId} />
-                            </Suspense>
-                        </div>
+                        {/* The page below the title, as one list: the nav reads it, and every
+                            section gets the same wrapper. Add a section here and nowhere else. */}
+                        <MediaSections
+                            tiers={[
+                                {
+                                    key: "about",
+                                    sections: [
+                                        {
+                                            id: "section-about",
+                                            node: (
+                                                <AboutBlock
+                                                    synopsis={media.synopsis || ""}
+                                                    related={
+                                                        <Suspense fallback={null}>
+                                                            <MdlRelatedContent mdlSlug={media.externalId} />
+                                                        </Suspense>
+                                                    }
+                                                    genres={(media.genres ?? []).map((g) => ({ key: g, label: g, href: `/dramas?genre=${encodeURIComponent(g)}` }))}
+                                                    tags={(media.tags ?? []).map((t) => ({
+                                                        key: String(t.id),
+                                                        label: t.name,
+                                                        href: `/dramas?tag=${t.id}&tag_name=${encodeURIComponent(t.name)}`,
+                                                    }))}
+                                                />
+                                            ),
+                                        },
+                                    ],
+                                },
+                                {
+                                    key: "content",
+                                    sections: [
+                                        { id: "section-cast", label: "Cast", node: <MdlCastScroll cast={mdlCast} tmdbCast={[]} mediaId={media.id} /> },
+                                        characterMap
+                                            ? {
+                                                  id: "section-relationships",
+                                                  label: "Relationships",
+                                                  node: (
+                                                      <CharacterMapSection
+                                                          map={characterMap}
+                                                          href={`/media/${media.id}/relationships`}
+                                                          completed={userMedia?.status === "Completed"}
+                                                          admin={<CharacterMapAdmin mdlSlug={media.externalId} hasChart />}
+                                                      />
+                                                  ),
+                                              }
+                                            : // Admin only, and nothing at all for anyone else — no jump either way.
+                                              { id: "section-relationships", node: <CharacterMapEmptyAdmin mdlSlug={media.externalId} /> },
+                                        ...(media.type === "TV"
+                                            ? [
+                                                  {
+                                                      id: "section-episodes",
+                                                      label: "Episodes",
+                                                      node: (
+                                                          <Suspense fallback={<EpisodeGuide episodes={[]} season={1} poster={media.poster} />}>
+                                                              <MdlEpisodeGuideSection
+                                                                  tmdbEpisodes={[]}
+                                                                  season={1}
+                                                                  poster={media.poster}
+                                                                  externalId={media.externalId}
+                                                                  mdlSlug={media.externalId}
+                                                                  mediaId={id}
+                                                                  watchedProgress={userMedia?.progress}
+                                                                  hideSpoilers={displayPrefs.hideSpoilers}
+                                                              />
+                                                          </Suspense>
+                                                      ),
+                                                  },
+                                              ]
+                                            : []),
+                                        {
+                                            id: "section-photos",
+                                            label: "Photos",
+                                            // An MDL-native page has no TMDB backdrops, so it had no
+                                            // photo section at all. MDL has the gallery, so it gets
+                                            // one — same component, one source.
+                                            node: (
+                                                <Suspense fallback={null}>
+                                                    <MdlPhotosSection backdrops={[]} externalId={media.externalId} season={1} mediaId={media.id} mdlSlug={media.externalId} />
+                                                </Suspense>
+                                            ),
+                                        },
+                                    ],
+                                },
+                                {
+                                    key: "community",
+                                    sections: [
+                                        {
+                                            id: "section-rating",
+                                            label: "Rating",
+                                            node: (
+                                                <Suspense fallback={null}>
+                                                    <MdlRatingChartSection mdlSlug={media.externalId} />
+                                                </Suspense>
+                                            ),
+                                        },
+                                        {
+                                            id: "section-reviews",
+                                            label: "Reviews",
+                                            node: (
+                                                <Suspense fallback={null}>
+                                                    <MdlReviewsSection externalId={media.externalId} title={media.title} year={media.year} mediaId={media.id} mdlSlug={media.externalId} />
+                                                </Suspense>
+                                            ),
+                                        },
+                                        {
+                                            id: "section-recommendations",
+                                            label: "Recs",
+                                            node: (
+                                                <Suspense fallback={<div className="h-6 w-40 rounded bg-surface-2 animate-pulse mb-4" />}>
+                                                    <MdlRecsSection tmdbRecs={[]} externalId={media.externalId} season={1} watchlistIds={watchlistExternalIds} mdlSlug={media.externalId} />
+                                                </Suspense>
+                                            ),
+                                        },
+                                        {
+                                            id: "section-comments",
+                                            label: "Comments",
+                                            node: (
+                                                <Suspense fallback={null}>
+                                                    <MdlThreadsSection
+                                                        externalId={media.externalId}
+                                                        title={media.title}
+                                                        year={media.year}
+                                                        mdlSlug={media.externalId}
+                                                        previewLimit={COMMENTS_PREVIEW}
+                                                    />
+                                                </Suspense>
+                                            ),
+                                        },
+                                    ],
+                                },
+                            ]}
+                        />
                     </div>
                 </div>
             </div>
@@ -616,6 +610,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
     }
 
     const displayCast = seasonCast ?? media.cast ?? [];
+    // TMDB's genres, unlinked: /dramas browses MDL, which has nothing for them.
+    const tmdbGenreItems = (media.genres ?? []).map((genre) => ({ key: genre, label: genre }));
 
     const [userId, watchlistExternalIds, cached, existingSeasonLink] = await contextPromise;
     // The chart belongs to the MDL entry, so it follows the season the way
@@ -822,20 +818,15 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         }}
                     >
                         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+                        {/* Title, type, country and the season's episode count
+                            are the line under the heading, a hundred pixels up;
+                            the box holds what that line does not. The show's
+                            total stays where it differs from the season's. */}
                         <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
-                            <span className="text-fg-muted font-medium">Title</span>
-                            <span className="text-fg">{media.title}</span>
-
-                            <span className="text-fg-muted font-medium">Type</span>
-                            <span className="text-fg">{media.type === "TV" ? "TV Show" : "Movie"}</span>
-
-                            <span className="text-fg-muted font-medium">Country</span>
-                            <span className="text-fg">{media.originCountry}</span>
-
-                            {media.totalEp && (
+                            {media.totalEp && (media.seasons?.length ?? 0) > 1 && (
                                 <>
                                     <span className="text-fg-muted font-medium">Episodes</span>
-                                    <span className="text-fg">{media.totalEp}</span>
+                                    <span className="text-fg">{media.totalEp} total</span>
                                 </>
                             )}
 
@@ -1086,166 +1077,223 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                         </div>
                     )}
 
-                    {/* In-page navigation */}
-                    {(() => {
-                        const navSections: NavSection[] = [
-                            { id: "section-cast", label: "Cast" },
-                            ...(characterMap ? [{ id: "section-relationships", label: "Relationships" }] : []),
-                            ...(media.type === "TV" && episodes.length > 0 ? [{ id: "section-episodes", label: "Episodes" }] : []),
-                            // MDL can supply photos where TMDB has no backdrops,
-                            // but that set only resolves after this renders — so
-                            // the entry follows "could have photos" rather than
-                            // "has backdrops", which was hiding the jump on
-                            // titles whose gallery is entirely MDL's.
-                            ...((media.images?.backdrops?.length ?? 0) > 0 || isMdlRelevant
-                                ? [{ id: "section-photos", label: "Photos" }]
-                                : []),
-                            ...(isMdlRelevant ? [{ id: "section-reviews", label: "Reviews" }] : []),
-                            { id: "section-recommendations", label: "Recs" },
-                            ...(isMdlRelevant ? [{ id: "section-comments", label: "Comments" }] : []),
-                        ];
-                        return <MediaNav sections={navSections} />;
-                    })()}
-
-                    {/* MDL Tags + Cast — streams in after TMDB synopsis + cast (fallback) */}
-                    <div id="section-cast">
-                        {isMdlRelevant ? (
-                            <Suspense
-                                fallback={
-                                    <div className="space-y-4">
-                                        <SynopsisBlock text={seasonOverview || media.synopsis || ""} />
-                                        <div className="flex items-center gap-2">
-                                            <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-                                            <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
-                                        </div>
-                                        <CastScroll cast={displayCast} mediaId={media.id} />
-                                    </div>
-                                }
-                            >
-                                <MdlSection
-                                    externalId={media.externalId}
-                                    title={media.title}
-                                    year={media.year}
-                                    nativeTitle={media.nativeTitle}
-                                    tmdbCast={displayCast}
-                                    mediaId={media.id}
-                                    season={selectedSeason}
-                                    tmdbSynopsis={seasonOverview || media.synopsis || ""}
-                                    originCountry={media.originCountry}
-                                    tmdbGenres={media.genres ?? []}
-                                />
-                            </Suspense>
-                        ) : (
-                            <>
-                                <SynopsisBlock text={seasonOverview || media.synopsis || ""} />
-                                {/* Unlinked: /dramas browses MDL, which has nothing
-                                    for a show outside the countries it covers. */}
-                                <GenreBlock genres={media.genres ?? []} />
-                                <div className={media.genres?.length ? "mt-10" : undefined}>
-                                    <CastScroll cast={displayCast} mediaId={media.id} />
-                                </div>
-                            </>
-                        )}
-                    </div>
-
-                    {characterMap ? (
-                        <div id="section-relationships" className="border-t border-line pt-8">
-                            <CharacterMapSection
-                                map={characterMap}
-                                href={`/media/${media.id}/relationships${selectedSeason > 1 ? `?season=${selectedSeason}` : ""}`}
-                                completed={userMedia?.status === "Completed"}
-                                admin={<CharacterMapAdmin mdlSlug={chartSlug} hasChart />}
-                            />
-                        </div>
-                    ) : (
-                        <CharacterMapEmptyAdmin mdlSlug={chartSlug} />
-                    )}
-
-                    {/* Episode Guide */}
-                    {media.type === "TV" && episodes.length > 0 && (
-                        <div id="section-episodes" className="border-t border-line pt-8">
-                            {isMdlRelevant ? (
-                                <Suspense fallback={<EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} hideSpoilers={displayPrefs.hideSpoilers} />}>
-                                    <MdlEpisodeGuideSection
-                                        tmdbEpisodes={episodes}
-                                        season={selectedSeason}
-                                        poster={media.poster}
-                                        externalId={media.externalId}
-                                        mediaId={id}
-                                        watchedProgress={userMedia?.progress}
-                                        hideSpoilers={displayPrefs.hideSpoilers}
-                                    />
-                                </Suspense>
-                            ) : (
-                                <EpisodeGuide episodes={episodes} season={selectedSeason} poster={media.poster} watchedProgress={userMedia?.progress} hideSpoilers={displayPrefs.hideSpoilers} />
-                            )}
-                        </div>
-                    )}
-
-                    {/* Photos. The TMDB backdrops arrive with the details call
-                        and cost nothing; the MDL set is a scrape, so it streams
-                        in its own boundary and the fallback is the section as it
-                        was before — backdrops, no toggle. */}
-                    {mdlSlugForSeason && (
-                        <div id="section-rating" className="border-t border-line pt-8 empty:hidden">
-                            <Suspense fallback={null}>
-                                <MdlRatingChartSection mdlSlug={mdlSlugForSeason} />
-                            </Suspense>
-                        </div>
-                    )}
-
-                    <div id="section-photos" className="border-t border-line pt-8">
-                        <Suspense fallback={<PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />}>
-                            <MdlPhotosSection
-                                backdrops={media.images?.backdrops || []}
-                                externalId={media.externalId}
-                                season={selectedSeason}
-                                mediaId={media.id}
-                            />
-                        </Suspense>
-                    </div>
-
-                    {/* MDL Reviews */}
-                    {isMdlRelevant && (
-                        <div id="section-reviews" className="border-t border-line pt-8">
-                            <Suspense fallback={null}>
-                                <MdlReviewsSection
-                                    externalId={media.externalId}
-                                    title={media.title}
-                                    year={media.year}
-                                    nativeTitle={media.nativeTitle}
-                                    mediaId={media.id}
-                                />
-                            </Suspense>
-                        </div>
-                    )}
-
-                    {/* Recommendations */}
-                    <div id="section-recommendations" className="border-t border-line pt-8">
-                        <Suspense fallback={<div className="h-6 w-40 rounded bg-surface-2 animate-pulse mb-4" />}>
-                            <MdlRecsSection
-                                tmdbRecs={media.recommendations || []}
-                                externalId={media.externalId}
-                                season={selectedSeason}
-                                watchlistIds={watchlistExternalIds}
-                            />
-                        </Suspense>
-                    </div>
-
-                    {/* MDL Comments */}
-                    {isMdlRelevant && (
-                        <div id="section-comments" className="border-t border-line pt-8">
-                            <Suspense fallback={null}>
-                                <MdlThreadsSection
-                                    externalId={media.externalId}
-                                    title={media.title}
-                                    year={media.year}
-                                    nativeTitle={media.nativeTitle}
-                                    season={selectedSeason}
-                                />
-                            </Suspense>
-                        </div>
-                    )}
+                    {/* The page below the title, as one list: the nav reads it, and every
+                        section gets the same wrapper. Add a section here and nowhere else.
+                        Photos is listed on "could have photos" rather than "has backdrops":
+                        MDL can supply a gallery where TMDB has none, and that set only
+                        resolves after this renders. */}
+                    <MediaSections
+                        tiers={[
+                            {
+                                key: "about",
+                                sections: [
+                                    {
+                                        id: "section-about",
+                                        // MDL's synopsis, genres and tags stream in over TMDB's;
+                                        // a show outside MDL's countries gets TMDB's, unlinked,
+                                        // since /dramas browses MDL and has nothing for them.
+                                        node: isMdlRelevant ? (
+                                            <Suspense
+                                                fallback={
+                                                    <div className="space-y-4">
+                                                        <AboutBlock synopsis={seasonOverview || media.synopsis || ""} genres={tmdbGenreItems} />
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
+                                                            <span className="text-xs text-sky-400/60 animate-pulse">Fetching MDL data…</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            >
+                                                <MdlAboutSection
+                                                    externalId={media.externalId}
+                                                    title={media.title}
+                                                    year={media.year}
+                                                    nativeTitle={media.nativeTitle}
+                                                    season={selectedSeason}
+                                                    tmdbSynopsis={seasonOverview || media.synopsis || ""}
+                                                    originCountry={media.originCountry}
+                                                    tmdbGenres={media.genres ?? []}
+                                                />
+                                            </Suspense>
+                                        ) : (
+                                            <AboutBlock synopsis={seasonOverview || media.synopsis || ""} genres={tmdbGenreItems} />
+                                        ),
+                                    },
+                                ],
+                            },
+                            {
+                                key: "content",
+                                sections: [
+                                    {
+                                        id: "section-cast",
+                                        label: "Cast",
+                                        node: isMdlRelevant ? (
+                                            <Suspense fallback={<CastScroll cast={displayCast} mediaId={media.id} />}>
+                                                <MdlCastSection
+                                                    externalId={media.externalId}
+                                                    title={media.title}
+                                                    year={media.year}
+                                                    nativeTitle={media.nativeTitle}
+                                                    season={selectedSeason}
+                                                    tmdbCast={displayCast}
+                                                    mediaId={media.id}
+                                                />
+                                            </Suspense>
+                                        ) : (
+                                            <CastScroll cast={displayCast} mediaId={media.id} />
+                                        ),
+                                    },
+                                    characterMap
+                                        ? {
+                                              id: "section-relationships",
+                                              label: "Relationships",
+                                              node: (
+                                                  <CharacterMapSection
+                                                      map={characterMap}
+                                                      href={`/media/${media.id}/relationships${selectedSeason > 1 ? `?season=${selectedSeason}` : ""}`}
+                                                      completed={userMedia?.status === "Completed"}
+                                                      admin={<CharacterMapAdmin mdlSlug={chartSlug} hasChart />}
+                                                  />
+                                              ),
+                                          }
+                                        : // Admin only, and nothing at all for anyone else — no jump either way.
+                                          { id: "section-relationships", node: <CharacterMapEmptyAdmin mdlSlug={chartSlug} /> },
+                                    ...(media.type === "TV" && episodes.length > 0
+                                        ? [
+                                              {
+                                                  id: "section-episodes",
+                                                  label: "Episodes",
+                                                  node: isMdlRelevant ? (
+                                                      <Suspense
+                                                          fallback={
+                                                              <EpisodeGuide
+                                                                  episodes={episodes}
+                                                                  season={selectedSeason}
+                                                                  poster={media.poster}
+                                                                  watchedProgress={userMedia?.progress}
+                                                                  hideSpoilers={displayPrefs.hideSpoilers}
+                                                              />
+                                                          }
+                                                      >
+                                                          <MdlEpisodeGuideSection
+                                                              tmdbEpisodes={episodes}
+                                                              season={selectedSeason}
+                                                              poster={media.poster}
+                                                              externalId={media.externalId}
+                                                              mediaId={id}
+                                                              watchedProgress={userMedia?.progress}
+                                                              hideSpoilers={displayPrefs.hideSpoilers}
+                                                          />
+                                                      </Suspense>
+                                                  ) : (
+                                                      <EpisodeGuide
+                                                          episodes={episodes}
+                                                          season={selectedSeason}
+                                                          poster={media.poster}
+                                                          watchedProgress={userMedia?.progress}
+                                                          hideSpoilers={displayPrefs.hideSpoilers}
+                                                      />
+                                                  ),
+                                              },
+                                          ]
+                                        : []),
+                                    ...((media.images?.backdrops?.length ?? 0) > 0 || isMdlRelevant
+                                        ? [
+                                              {
+                                                  id: "section-photos",
+                                                  label: "Photos",
+                                                  // The TMDB backdrops arrive with the details call
+                                                  // and cost nothing; the MDL set is a scrape, so it
+                                                  // streams in its own boundary and the fallback is
+                                                  // the section as it was before — backdrops, no toggle.
+                                                  node: (
+                                                      <Suspense fallback={<PhotosScroll backdrops={media.images?.backdrops || []} mediaId={media.id} />}>
+                                                          <MdlPhotosSection
+                                                              backdrops={media.images?.backdrops || []}
+                                                              externalId={media.externalId}
+                                                              season={selectedSeason}
+                                                              mediaId={media.id}
+                                                          />
+                                                      </Suspense>
+                                                  ),
+                                              },
+                                          ]
+                                        : []),
+                                ],
+                            },
+                            {
+                                key: "community",
+                                sections: [
+                                    ...(mdlSlugForSeason
+                                        ? [
+                                              {
+                                                  id: "section-rating",
+                                                  label: "Rating",
+                                                  node: (
+                                                      <Suspense fallback={null}>
+                                                          <MdlRatingChartSection mdlSlug={mdlSlugForSeason} />
+                                                      </Suspense>
+                                                  ),
+                                              },
+                                          ]
+                                        : []),
+                                    ...(isMdlRelevant
+                                        ? [
+                                              {
+                                                  id: "section-reviews",
+                                                  label: "Reviews",
+                                                  node: (
+                                                      <Suspense fallback={null}>
+                                                          <MdlReviewsSection
+                                                              externalId={media.externalId}
+                                                              title={media.title}
+                                                              year={media.year}
+                                                              nativeTitle={media.nativeTitle}
+                                                              mediaId={media.id}
+                                                          />
+                                                      </Suspense>
+                                                  ),
+                                              },
+                                          ]
+                                        : []),
+                                    {
+                                        id: "section-recommendations",
+                                        label: "Recs",
+                                        node: (
+                                            <Suspense fallback={<div className="h-6 w-40 rounded bg-surface-2 animate-pulse mb-4" />}>
+                                                <MdlRecsSection
+                                                    tmdbRecs={media.recommendations || []}
+                                                    externalId={media.externalId}
+                                                    season={selectedSeason}
+                                                    watchlistIds={watchlistExternalIds}
+                                                />
+                                            </Suspense>
+                                        ),
+                                    },
+                                    ...(isMdlRelevant
+                                        ? [
+                                              {
+                                                  id: "section-comments",
+                                                  label: "Comments",
+                                                  node: (
+                                                      <Suspense fallback={null}>
+                                                          <MdlThreadsSection
+                                                              externalId={media.externalId}
+                                                              title={media.title}
+                                                              year={media.year}
+                                                              nativeTitle={media.nativeTitle}
+                                                              season={selectedSeason}
+                                                              previewLimit={COMMENTS_PREVIEW}
+                                                          />
+                                                      </Suspense>
+                                                  ),
+                                              },
+                                          ]
+                                        : []),
+                                ],
+                            },
+                        ]}
+                    />
                 </div>
             </div>
         </div>

@@ -424,6 +424,15 @@
     display: none;
 }
 
+/* A tier of a media page: a hairline between neighbouring sections, and only
+   between the ones that drew something. Most sections stream in and resolve
+   to nothing when MDL has nothing for them, and a rule above an empty section
+   — or above the first section that isn't — is a rule around a gap. */
+.media-tier > section:not(:empty) ~ section:not(:empty) {
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+}
+
 @layer base {
     * {
         @apply border-border outline-ring/50;

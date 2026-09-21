@@ -6,6 +6,7 @@ import { Star, ChevronDown, ChevronUp, ExternalLink, RefreshCw, TriangleAlert } 
 import { KuryanaReview } from "@/lib/kuryana";
 import { loadMoreReviews } from "@/actions/mdl-reviews";
 import { mdlUserFromProfileUrl, mdlUserHref } from "@/lib/mdl-user-link";
+import { SectionHeader, SectionLink } from "@/components/media/section-header";
 
 const TRUNCATE_LENGTH = 280;
 
@@ -201,17 +202,21 @@ export function MdlReviews({ initialReviews, mdlSlug, mdlLink, previewLimit, all
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-fg">Reviews</h3>
-                <a
-                    href={mdlLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs text-fg-muted hover:text-fg transition-colors"
-                >
-                    All reviews <ExternalLink className="size-3" />
-                </a>
-            </div>
+            {/* On the media page the header link goes where every other
+                section's does — the page here that holds the rest. The link
+                out to MDL belongs on that page, not on the overview. */}
+            <SectionHeader
+                title="Reviews"
+                right={
+                    allReviewsHref ? (
+                        <SectionLink href={allReviewsHref} />
+                    ) : (
+                        <a href={mdlLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs text-fg-muted hover:text-fg transition-colors">
+                            On MDL <ExternalLink className="size-3" />
+                        </a>
+                    )
+                }
+            />
 
             {/* A hairline between reviews rather than a box around each: they are
                 a stack of the same thing, and the rule is enough to separate them. */}

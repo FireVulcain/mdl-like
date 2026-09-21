@@ -4,6 +4,7 @@ import { User } from "lucide-react";
 import { portrait, type CharacterMapData } from "@/lib/character-map";
 import { closestRelations } from "@/lib/character-map-store";
 import type { ReactNode } from "react";
+import { SectionHeader, SectionLink } from "./section-header";
 
 /**
  * The "Relationships" section of a media page: who is who around the leads,
@@ -31,19 +32,17 @@ export function CharacterMapSection({
 
     return (
         <div className="space-y-4">
-            {/* The same header as Cast and Photos: the name on the left, the link on the right, nothing between. */}
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <h2 className="font-display text-lg font-semibold text-fg">Relationships</h2>
-                    <span className="text-sm text-fg-muted">({map.people.length})</span>
-                </div>
-                <div className="flex items-center gap-4">
-                    {admin}
-                    <Link href={href} className="text-sm font-medium text-sky-400 transition-colors hover:text-sky-300">
-                        Open the map →
-                    </Link>
-                </div>
-            </div>
+            <SectionHeader
+                title="Relationships"
+                count={map.people.length}
+                className=""
+                right={
+                    <>
+                        {admin}
+                        <SectionLink href={href}>Open the map →</SectionLink>
+                    </>
+                }
+            />
 
             {/* One chip per person: portrait, name, and what they are to which lead.
                 The same words the chart writes under each face. */}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { tmdbPersonHref } from "@/lib/person-links";
+import { SectionHeader, SectionLink } from "@/components/media/section-header";
 
 interface Actor {
     id: number;
@@ -93,12 +94,7 @@ export function CastScroll({ cast, mediaId }: CastScrollProps) {
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-fg">Cast</h3>
-                <Link href={`/media/${mediaId}/cast`} className="text-sm text-sky-400 hover:text-sky-300 transition-colors font-medium">
-                    View all →
-                </Link>
-            </div>
+            <SectionHeader title="Cast" count={cast.length} right={<SectionLink href={`/media/${mediaId}/cast`} />} />
 
             <ScrollArea className="w-full whitespace-nowrap" viewportStyle={{ overflowY: "hidden" }}>
                 <div className="flex gap-4 pb-4">

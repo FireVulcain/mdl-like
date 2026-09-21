@@ -7,6 +7,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { MdlCast, MdlCastMember } from "@/actions/mdl";
 import { mdlPersonHref, tmdbPersonHref } from "@/lib/person-links";
 import { SourceToggle } from "@/components/media/source-toggle";
+import { SectionHeader, SectionLink } from "@/components/media/section-header";
 
 interface TmdbActor {
     id: number;
@@ -88,17 +89,16 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-fg">Cast</h3>
-                <div className="flex items-center gap-3">
-                    {tmdbCast.length > 0 && (
-                        <SourceToggle value={source} onChange={setSource} />
-                    )}
-                    <Link href={`/media/${mediaId}/cast`} className="text-sm text-sky-400 hover:text-sky-300 transition-colors font-medium">
-                        View all →
-                    </Link>
-                </div>
-            </div>
+            <SectionHeader
+                title="Cast"
+                count={source === "tmdb" ? tmdbCast.length : main.length + totalSupport}
+                right={
+                    <>
+                        {tmdbCast.length > 0 && <SourceToggle value={source} onChange={setSource} />}
+                        <SectionLink href={`/media/${mediaId}/cast`} />
+                    </>
+                }
+            />
 
             {/* TMDB view */}
             {source === "tmdb" && (

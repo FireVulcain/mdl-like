@@ -1,5 +1,6 @@
 import { getMdlRatingHistory } from "@/lib/mdl-rating-history";
 import { MdlRatingChart, type ChartPoint } from "./mdl-rating-chart";
+import { SectionHeader } from "./section-header";
 
 /**
  * The rating history as a section of its own, rather than the glance the badge
@@ -43,19 +44,19 @@ export async function MdlRatingChartSection({ mdlSlug }: { mdlSlug: string }) {
 
     return (
         <div>
-            <div className="mb-4 flex items-baseline justify-between gap-3">
-                <div className="flex items-baseline gap-2">
-                    <h3 className="font-display text-lg font-semibold text-fg">Rating history</h3>
-                    <span className="text-xs tabular-nums text-sky-400">
-                        {sign}
-                        {Math.abs(delta).toFixed(1)}
+            {/* The delta is the count's slot: it is the one number the
+                heading needs. A flat "0.0" said nothing and looked like a
+                bug, so a score that has not moved shows no figure at all. */}
+            <SectionHeader
+                title="Rating history"
+                count={delta !== 0 ? `${sign}${Math.abs(delta).toFixed(1)}` : null}
+                right={
+                    <span className="text-[11px] text-fg-dim">
+                        {rated.length} readings
+                        {withWatchers > 1 ? " · audience shaded" : ""}
                     </span>
-                </div>
-                <span className="text-[11px] text-fg-dim">
-                    {rated.length} readings
-                    {withWatchers > 1 ? " · audience shaded" : ""}
-                </span>
-            </div>
+                }
+            />
 
             <MdlRatingChart points={points} />
 

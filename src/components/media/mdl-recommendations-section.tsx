@@ -3,6 +3,7 @@ import { kuryanaGetRecommendations } from "@/lib/kuryana";
 import { RecsWithToggle } from "./recommendations-with-toggle";
 import { getMdlRatingsForTmdbIds } from "@/actions/person";
 import type { UnifiedMedia } from "@/services/media.service";
+import { SectionHeader } from "./section-header";
 
 interface Props {
     tmdbRecs: UnifiedMedia[];
@@ -63,7 +64,7 @@ export async function MdlRecsSection({ tmdbRecs, externalId, season, watchlistId
     if ((!tmdbRecs || tmdbRecs.length === 0) && (!mdlRecs || mdlRecs.length === 0)) {
         return (
             <div>
-                <h3 className="font-display text-lg font-semibold mb-4">Recs</h3>
+                <SectionHeader title="Recommendations" />
                 <div className="text-center py-12 text-fg-muted">No recommendations available.</div>
             </div>
         );

@@ -9,11 +9,13 @@ interface Props {
     nativeTitle?: string;
     season?: number;
     mdlSlug?: string; // When provided, skips the TMDB→MDL slug lookup (for MDL-native pages)
+    /** Threads shown before "Show all"; every one of the first page otherwise. */
+    previewLimit?: number;
 }
 
 // Async server component — streams in MDL live comments.
 // getMdlData uses React cache(), so the slug lookup is free if other MDL components resolved it first.
-export async function MdlThreadsSection({ externalId, title, year, nativeTitle, season, mdlSlug: directSlug }: Props) {
+export async function MdlThreadsSection({ externalId, title, year, nativeTitle, season, mdlSlug: directSlug, previewLimit }: Props) {
     let slug = directSlug;
     if (!slug) {
         const mdlData = season && season > 1
@@ -38,6 +40,7 @@ export async function MdlThreadsSection({ externalId, title, year, nativeTitle, 
             total={result.total}
             hasMore={result.has_more}
             mdlId={mdlId}
+            previewLimit={previewLimit}
         />
     );
 }

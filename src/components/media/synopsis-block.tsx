@@ -7,15 +7,17 @@ const COLLAPSE_THRESHOLD = 300; // characters, or more than 4 newlines
 
 interface Props {
     text: string;
+    /** Off in the media page's lede, where the position already says what it is. */
+    heading?: boolean;
 }
 
-export function SynopsisBlock({ text }: Props) {
+export function SynopsisBlock({ text, heading = true }: Props) {
     const [expanded, setExpanded] = useState(false);
     const isLong = text.length > COLLAPSE_THRESHOLD || text.split("\n").length > 4;
 
     return (
         <div className="prose prose-invert max-w-none">
-            <h3 className="font-display text-lg font-semibold mb-2">Synopsis</h3>
+            {heading && <h3 className="font-display text-lg font-semibold mb-2">Synopsis</h3>}
             <p
                 className={`leading-relaxed text-muted-foreground whitespace-pre-line ${
                     !expanded && isLong ? "line-clamp-5" : ""

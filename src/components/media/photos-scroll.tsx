@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { DragScroll } from "@/components/drag-scroll";
 import { PhotoLightbox } from "@/components/media/photo-lightbox";
 import { SourceToggle, type MediaSource } from "@/components/media/source-toggle";
 import type { KuryanaPhoto } from "@/lib/kuryana";
+import { SectionHeader, SectionLink } from "@/components/media/section-header";
 
 interface PhotosScrollProps {
     backdrops: string[];
@@ -53,30 +53,26 @@ export function PhotosScroll({ backdrops, mdlPhotos, mediaId, season }: PhotosSc
 
     return (
         <div>
-            {/* Same header as Cast and Recs: title on the left, controls
-                gathered on the right with the toggle ahead of the link. */}
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-lg font-semibold text-fg">Photos</h3>
-                <div className="flex items-center gap-3">
-                    {hasMdl && hasTmdb && (
-                        <SourceToggle
-                            value={source}
-                            // The two sets have different lengths, so a stale
-                            // index would open the wrong photo — or none.
-                            onChange={(next) => {
-                                setLightboxIndex(null);
-                                setSource(next);
-                            }}
-                        />
-                    )}
-                    <Link
-                        href={viewAllHref}
-                        className="text-sm text-sky-400 hover:text-sky-300 transition-colors font-medium shrink-0"
-                    >
-                        View all →
-                    </Link>
-                </div>
-            </div>
+            <SectionHeader
+                title="Photos"
+                count={full.length}
+                right={
+                    <>
+                        {hasMdl && hasTmdb && (
+                            <SourceToggle
+                                value={source}
+                                // The two sets have different lengths, so a stale
+                                // index would open the wrong photo — or none.
+                                onChange={(next) => {
+                                    setLightboxIndex(null);
+                                    setSource(next);
+                                }}
+                            />
+                        )}
+                        <SectionLink href={viewAllHref} />
+                    </>
+                }
+            />
 
             {/* Click-and-drag panning, same as the rows on the home page. The
                 threshold inside it is what keeps a plain click on a tile opening

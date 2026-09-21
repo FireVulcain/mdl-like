@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Star, Clock, Check } from "lucide-react";
 import { SourceToggle } from "@/components/media/source-toggle";
+import { SectionHeader, SectionLink } from "@/components/media/section-header";
 
 function isReleased(airDate: string | null | undefined): boolean {
     if (!airDate) return true;
@@ -275,33 +276,27 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
 
     return (
         <div>
-            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-4">
-                <div className="flex items-center gap-2 min-w-0">
-                    <h3 className="font-display text-lg font-semibold text-fg shrink-0">Episodes</h3>
-                    {mediaId && (
-                        <Link
-                            href={`/media/${mediaId}/episodes?season=${season}`}
-                            className="shrink-0 text-sm text-sky-400 hover:text-sky-300 transition-colors font-medium"
-                        >
-                            View all →
-                        </Link>
-                    )}
-                </div>
-                <div className="flex items-center gap-3 shrink-0">
-                    {mdlEpisodes && episodes.length > 0 && (
-                        <SourceToggle
-                            value={source}
-                            onChange={(next) => {
-                                setSource(next);
-                                setShowAll(false);
-                            }}
-                        />
-                    )}
-                    <span className="whitespace-nowrap text-sm text-fg-muted">
-                        Season {season} · {count} episodes
-                    </span>
-                </div>
-            </div>
+            {/* The season is in the title above and the count sits by the
+                heading, so the "Season 1 · 16 episodes" note that closed this
+                row said nothing twice. */}
+            <SectionHeader
+                title="Episodes"
+                count={count}
+                right={
+                    <>
+                        {mdlEpisodes && episodes.length > 0 && (
+                            <SourceToggle
+                                value={source}
+                                onChange={(next) => {
+                                    setSource(next);
+                                    setShowAll(false);
+                                }}
+                            />
+                        )}
+                        {mediaId && <SectionLink href={`/media/${mediaId}/episodes?season=${season}`} />}
+                    </>
+                }
+            />
 
             {/* List with fade overlay when collapsed */}
             <div className="relative">

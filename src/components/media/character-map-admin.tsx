@@ -3,6 +3,7 @@ import { latestJob } from "@/lib/character-map-jobs";
 import { getCharacterMap } from "@/lib/character-map-store";
 import { countryCode } from "@/lib/character-map-inputs";
 import { CharacterMapGenerateButton } from "./character-map-generate-button";
+import { SectionHeader } from "./section-header";
 
 /**
  * Server half of the generate button: decides whether the reader is the
@@ -22,15 +23,6 @@ export async function CharacterMapAdmin({ mdlSlug, hasChart }: { mdlSlug: string
 export async function CharacterMapEmptyAdmin({ mdlSlug }: { mdlSlug: string | null | undefined }) {
     if (!mdlSlug || !(await isAdminUser())) return null;
     const job = await latestJob(mdlSlug);
-    return (
-        <div id="section-relationships" className="border-t border-line pt-8">
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <h2 className="font-display text-lg font-semibold text-fg">Relationships</h2>
-                    <span className="text-sm text-fg-muted">none yet</span>
-                </div>
-                <CharacterMapGenerateButton mdlSlug={mdlSlug} hasChart={false} initialJob={job} />
-            </div>
-        </div>
-    );
+    // The page wraps this in its section; only the header is drawn here.
+    return <SectionHeader title="Relationships" count="none yet" className="" right={<CharacterMapGenerateButton mdlSlug={mdlSlug} hasChart={false} initialJob={job} />} />;
 }
