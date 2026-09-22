@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Crosshair, ListChecks, Minus, Plus, X } from "lucide-react";
+import { Crosshair, ListChecks, Maximize2, Minimize2, Minus, Plus, X } from "lucide-react";
 import {
     actorLine,
     ERA_LABEL,
@@ -220,6 +220,27 @@ export function CharacterMap({
     // zooms into it. Nothing but the SVG's viewBox moves.
     const frameRef = useRef<HTMLDivElement>(null);
     const [frame, setFrame] = useState({ w: 1100, h: 760 });
+    // Full screen takes the whole block — the slider and the filters with the
+    // picture — since a chart read without them is a chart you cannot move
+    // through. The browser owns the state, so the button reads it back rather
+    // than keeping its own: Escape and F11 change it without asking us.
+    const blockRef = useRef<HTMLDivElement>(null);
+    const [full, setFull] = useState(false);
+    // Safari on iOS gives full screen to a <video> and to nothing else, so the
+    // button would be a dead key there. Read on mount, not at module scope:
+    // the server renders this too.
+    const [canFull, setCanFull] = useState(false);
+    useEffect(() => {
+        setCanFull(typeof document !== "undefined" && document.fullscreenEnabled && !!blockRef.current?.requestFullscreen);
+        const read = () => setFull(document.fullscreenElement === blockRef.current);
+        document.addEventListener("fullscreenchange", read);
+        return () => document.removeEventListener("fullscreenchange", read);
+    }, []);
+    const toggleFull = () => {
+        // A refused request (no gesture, a policy) leaves the button as it was
+        if (document.fullscreenElement) void document.exitFullscreen().catch(() => undefined);
+        else void blockRef.current?.requestFullscreen().catch(() => undefined);
+    };
     // x, y: the top-left of the window in chart units; z: chart units per screen pixel, inverted (2 = twice as big)
     const [view, setView] = useState({ x: 0, y: 0, z: 1 });
     const ZMIN = 0.45, ZMAX = 2.2;
@@ -247,7 +268,9 @@ export function CharacterMap({
     useLayoutEffect(() => {
         const el = frameRef.current;
         if (!el) return;
-        const measure = () => setFrame({ w: el.clientWidth, h: Math.min(760, Math.max(420, Math.round(el.clientWidth * 0.62))) });
+        // Out of full screen the frame takes a share of its width; in it, the
+        // room the controls leave, which is the element's own height.
+        const measure = () => setFrame({ w: el.clientWidth, h: el.dataset.full ? el.clientHeight : Math.min(760, Math.max(420, Math.round(el.clientWidth * 0.62))) });
         measure();
         const ro = new ResizeObserver(measure);
         ro.observe(el);
@@ -407,7 +430,7 @@ export function CharacterMap({
         const textStroke = { paintOrder: "stroke" as const, stroke: GROUND, strokeWidth: 3, strokeLinejoin: "round" as const };
 
     return (
-        <div className="space-y-3">
+        <div ref={blockRef} className={`space-y-3 ${full ? "flex flex-col bg-app p-4" : ""}`}>
             {/* Two rows of controls: when (the moment of the story, for a dated
                 chart) and what (which links to draw). One row of everything
                 wrapped wherever it liked and read as a mess. The slider wears
@@ -500,7 +523,7 @@ export function CharacterMap({
             </div>
 
             {/* The window onto the chart: drag to move around, the leads in the middle to start. */}
-            <div ref={frameRef} className="relative overflow-hidden rounded-xl border border-line-soft bg-surface-1">
+            <div ref={frameRef} data-full={full || undefined} className={`relative overflow-hidden rounded-xl border border-line-soft bg-surface-1 ${full ? "min-h-0 flex-1" : ""}`}>
                 <svg
                     viewBox={`${view.x} ${view.y} ${frame.w / view.z} ${frame.h / view.z}`}
                     width={frame.w}
@@ -672,6 +695,7 @@ export function CharacterMap({
                             ["Zoom in", <Plus key="in" className="h-4 w-4" />, () => zoomAt(1.25, frame.w / 2, frame.h / 2), view.z >= ZMAX],
                             ["Zoom out", <Minus key="out" className="h-4 w-4" />, () => zoomAt(0.8, frame.w / 2, frame.h / 2), view.z <= ZMIN],
                             ["Fit the whole chart", <Crosshair key="c" className="h-4 w-4" />, fit, false],
+                            ...(canFull ? [[full ? "Leave full screen" : "Full screen", full ? <Minimize2 key="f" className="h-4 w-4" /> : <Maximize2 key="f" className="h-4 w-4" />, toggleFull, false] as const] : []),
                         ] as const
                     ).map(([title, icon, run, off]) => (
                         <button
@@ -689,7 +713,7 @@ export function CharacterMap({
             </div>
 
             {/* Under the chart: the line styles, and the sentence behind the selected link */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-fg-dim">
+            <div className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-fg-dim ${full ? "shrink-0" : ""}`}>
                 <span className="inline-flex items-center gap-1.5">
                     <span className="inline-block w-5 border-t-2 border-dashed border-fg-dim" />
                     reveal
