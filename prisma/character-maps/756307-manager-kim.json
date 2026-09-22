@@ -111,7 +111,7 @@
       "still": "https://asianwiki.com/images/2/21/Agent_Kim_Reactivated-Seo_Ji-Hye.jpg",
       "group": "Kim's family",
       "inCast": true,
-      "note": "Kim's wife, who died giving birth to Min Ji."
+      "note": "Kim's wife, who died giving birth to Min Ji.; Min Ji's mother"
     },
     {
       "id": "namhoon",
@@ -364,19 +364,6 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 1
-    },
-    {
-      "from": "yujin",
-      "to": "minji",
-      "type": "family",
-      "label": "The mother she never met",
-      "short": "her mother",
-      "evidence": "Kim's wife, who dies right after giving birth to Min-ji",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
       "since": 1
     },
     {
@@ -817,7 +804,8 @@
       "inferred": false,
       "directed": true,
       "since": 5,
-      "until": 10
+      "until": 10,
+      "wholeStory": false
     },
     {
       "from": "sanga",
@@ -897,7 +885,7 @@
       "inferred": false,
       "directed": true,
       "since": 5,
-      "until": 8
+      "kind": "event"
     },
     {
       "from": "molecricket",
@@ -1064,7 +1052,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "wholeStory": false
     },
     {
       "from": "gangseong",
@@ -1091,7 +1080,7 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 9
+      "until": 8
     },
     {
       "from": "gangseong",
@@ -1104,7 +1093,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "wholeStory": false
     },
     {
       "from": "eungryeong",
@@ -1131,7 +1121,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "gangseong",
@@ -1283,7 +1274,8 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 10
+      "until": 10,
+      "wholeStory": false
     },
     {
       "from": "sangman",
