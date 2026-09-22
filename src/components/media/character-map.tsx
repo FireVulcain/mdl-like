@@ -74,6 +74,9 @@ const ARROW_GAP = R + 3;
  * of piling onto the face, and an arrow into a lead stops at its edge.
  */
 const MOAT = 14;
+/** A block's ties to a lead share one line from this many members up, and two such lines leave the block this far apart */
+const TRUNK_MIN = 3;
+const TRUNK_GAP = 22;
 
 /**
  * What happened between two people, or around one, in the story's order:
@@ -310,6 +313,63 @@ export function CharacterMap({
     // A face none of whose ties still holds — the mentor after he dies, the
     // ex after the break — is drawn quieter: on the chart, out of the story.
     const inactive = useMemo(() => new Set(asOf ? layout.people.filter((p) => !personActiveAt(map.links, p.id, episode)).map((p) => p.id) : []), [asOf, layout, map, episode]);
+
+    // Trunks: when three or more members of one block have the same kind of
+    // tie to the same lead, pointing the same way (a murdered family's four
+    // "murdered father / mother / brother / sister" to Kang Chul), they
+    // share one line from the block's edge to the lead, and each face
+    // reaches that edge by a short twig. Four grey lines across the chart
+    // become one. Every link keeps its caption, its click and its panel.
+    const trunks = useMemo(() => {
+        const people = new Map(layout.people.map((p) => [p.id, p]));
+        const blocks = new Map(layout.blocks.map((b) => [b.name, b]));
+        const groups = new Map<string, LaidOutLink[]>();
+        for (const l of layout.links) {
+            const a = people.get(l.from), b = people.get(l.to);
+            if (!a || !b || a.lead === b.lead || l.onLine) continue;
+            const [member, lead] = a.lead ? [b, a] : [a, b];
+            if (!blocks.has(member.group)) continue;
+            const dir = !l.directed ? "both" : l.to === lead.id ? "in" : "out";
+            const key = [member.group, lead.id, l.type, dir].join("|");
+            groups.set(key, [...(groups.get(key) ?? []), l]);
+        }
+        const out: { key: string; links: LaidOutLink[]; lead: { x: number; y: number }; port: { x: number; y: number }; members: Map<number, { x: number; y: number }>; dir: string }[] = [];
+        for (const [key, links] of groups) {
+            const [group, leadId, , dir] = key.split("|");
+            const faces = new Set(links.map((l) => (l.from === leadId ? l.to : l.from)));
+            // Two lines are not a knot, and a two-member trunk sharing its
+            // block with another one crossed it (Kang Chul's circle)
+            if (faces.size < TRUNK_MIN) continue;
+            const block = blocks.get(group)!, lead = people.get(leadId)!;
+            // The port: where a line from the block's centre to the lead leaves the block
+            const cx = block.x + block.w / 2, cy = block.y + block.h / 2;
+            const dx = lead.x - cx, dy = lead.y - cy;
+            const t = Math.min(dx ? block.w / 2 / Math.abs(dx) : Infinity, dy ? block.h / 2 / Math.abs(dy) : Infinity);
+            const port = { x: cx + dx * Math.min(t, 1), y: cy + dy * Math.min(t, 1) };
+            const members = new Map(links.map((l) => {
+                const m = people.get(l.from === leadId ? l.to : l.from)!;
+                return [l.index, { x: m.x, y: m.y }] as const;
+            }));
+            out.push({ key, links, lead: { x: lead.x, y: lead.y }, port, members, dir });
+        }
+        // Two trunks from one block to one lead would leave by the same port
+        // and lie on each other: spread them along the block's edge
+        const byEnds = new Map<string, typeof out>();
+        for (const t of out) {
+            const k = t.key.split("|").slice(0, 2).join("|");
+            byEnds.set(k, [...(byEnds.get(k) ?? []), t]);
+        }
+        for (const list of byEnds.values()) {
+            if (list.length < 2) continue;
+            list.forEach((t, i) => {
+                const dx = t.lead.x - t.port.x, dy = t.lead.y - t.port.y, len = Math.hypot(dx, dy) || 1;
+                const off = (i - (list.length - 1) / 2) * TRUNK_GAP;
+                t.port = { x: t.port.x + (-dy / len) * off, y: t.port.y + (dx / len) * off };
+            });
+        }
+        return out;
+    }, [layout]);
+    const trunked = useMemo(() => new Set(trunks.flatMap((t) => t.links.map((l) => l.index))), [trunks]);
 
     useLayoutEffect(() => {
         const el = frameRef.current;
@@ -618,6 +678,7 @@ export function CharacterMap({
                         ran over it read as two different links. The selected link is
                         drawn last of all. */}
                     {[...layout.links]
+                        .filter((l) => !trunked.has(l.index))
                         .map((l) => ({ l, active: (selected?.kind === "link" && selected.index === l.index) || (selected?.kind === "person" && linkTouches(l, selected.id)) }))
                         .sort((a, b) => (a.active ? 2 : a.l.onLine ? 1 : 0) - (b.active ? 2 : b.l.onLine ? 1 : 0))
                         .map(({ l, active }) => {
@@ -672,6 +733,60 @@ export function CharacterMap({
                                     onMouseEnter={() => setHoverLink(l.index)}
                                     onMouseLeave={() => setHoverLink((v) => (v === l.index ? null : v))}
                                 />
+                            </g>
+                        );
+                    })}
+
+                    {/* Trunks: one line from a block's edge to a lead, and a twig from
+                        each member to that edge */}
+                    {trunks.map((t) => {
+                        const on = (l: LaidOutLink) => hoverLink === l.index || picked?.index === l.index || (selected?.kind === "link" && selected.index === l.index);
+                        const touched = (l: LaidOutLink) => selected?.kind === "person" && linkTouches(l, selected.id);
+                        const anyOn = t.links.some(on) || t.links.some(touched);
+                        const allFaded = t.links.every(linkFaded);
+                        const asked = anyOn || (!allFaded && (!!near || !!picked));
+                        const tier = asked ? 1 : SPOKE_OPACITY;
+                        const width = anyOn ? 3 : 2;
+                        const type = t.links[0].type;
+                        const dash = t.links.every((l) => l.reveal) ? "6 5" : t.links.every((l) => l.inferred) ? "2 4" : undefined;
+                        // the trunk's arrow, mid-line, pointing the way the ties read
+                        const [ax, ay, bx, by] = t.dir === "out" ? [t.lead.x, t.lead.y, t.port.x, t.port.y] : [t.port.x, t.port.y, t.lead.x, t.lead.y];
+                        const deg = (Math.atan2(by - ay, bx - ax) * 180) / Math.PI;
+                        return (
+                            <g key={t.key} className={TYPE_CLASS[type]} style={{ opacity: allFaded ? 0.08 : tier, transition: "opacity .15s" }}>
+                                <path d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`} fill="none" stroke="currentColor" strokeWidth={width} strokeLinecap="round" strokeDasharray={dash} style={{ transition: "stroke-width .15s" }} />
+                                {t.dir !== "both" && (
+                                    <path d="M-4,-4L4,0L-4,4Z" fill="currentColor" transform={`translate(${(t.port.x + t.lead.x) / 2},${(t.port.y + t.lead.y) / 2}) rotate(${deg}) scale(${width * 0.875})`} pointerEvents="none" />
+                                )}
+                                <path
+                                    d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`}
+                                    fill="none"
+                                    stroke="transparent"
+                                    strokeWidth={14}
+                                    className="cursor-pointer"
+                                    onClick={unlessDragged(() => pickLink(t.links[0].index))}
+                                    onMouseEnter={() => setHoverLink(t.links[0].index)}
+                                    onMouseLeave={() => setHoverLink((v) => (v === t.links[0].index ? null : v))}
+                                />
+                                {t.links.map((l) => {
+                                    const m = t.members.get(l.index)!;
+                                    const d = `M${m.x},${m.y}L${t.port.x},${t.port.y}`;
+                                    return (
+                                        <g key={l.index} style={{ opacity: linkFaded(l) ? 0.3 : 1 }}>
+                                            <path d={d} fill="none" stroke="currentColor" strokeWidth={on(l) ? 3 : 1.5} strokeLinecap="round" strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined} />
+                                            <path
+                                                d={d}
+                                                fill="none"
+                                                stroke="transparent"
+                                                strokeWidth={14}
+                                                className="cursor-pointer"
+                                                onClick={unlessDragged(() => pickLink(l.index))}
+                                                onMouseEnter={() => setHoverLink(l.index)}
+                                                onMouseLeave={() => setHoverLink((v) => (v === l.index ? null : v))}
+                                            />
+                                        </g>
+                                    );
+                                })}
                             </g>
                         );
                     })}
