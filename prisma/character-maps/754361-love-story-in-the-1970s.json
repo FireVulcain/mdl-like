@@ -6,23 +6,158 @@
   "year": 2026,
   "country": "CN",
   "sources": [
-    "MDL cast (43 roles, 2 main) — names only; households read from surnames, every line inferred",
+    "MDL cast (43 roles, 2 main)",
     "MDL synopsis",
-    "zh.wikipedia (no article yet)"
+    "cpophome recaps ep. 1-29"
   ],
   "main": [
-    "muyang",
+    "fangmuyang",
     "feini"
   ],
+  "recaps": {
+    "source": "cpophome",
+    "episodes": 29,
+    "count": 29,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        15,
+        15
+      ],
+      [
+        16,
+        16
+      ],
+      [
+        17,
+        17
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        19,
+        19
+      ],
+      [
+        20,
+        20
+      ],
+      [
+        21,
+        21
+      ],
+      [
+        22,
+        22
+      ],
+      [
+        23,
+        23
+      ],
+      [
+        24,
+        24
+      ],
+      [
+        25,
+        25
+      ],
+      [
+        26,
+        26
+      ],
+      [
+        27,
+        27
+      ],
+      [
+        28,
+        28
+      ],
+      [
+        29,
+        29
+      ]
+    ]
+  },
   "people": [
     {
-      "id": "muyang",
+      "id": "fangmuyang",
       "name": "Fang Mu Yang",
       "actor": "Arthur Chen",
       "image": "https://i.mydramalist.com/ABdAvP_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Hurt saving lives; a hero of the seventies"
+      "note": "Sent-down youth turned hero and illustrator; loved Fei Ni since childhood",
+      "alsoPlayedBy": [
+        {
+          "name": "Gu Heng Rui",
+          "image": "https://i.mydramalist.com/RBbXZz_5m.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Wang Hong Li",
+          "image": "https://i.mydramalist.com/3oZbJA_5m.jpg",
+          "era": "teen"
+        }
+      ]
     },
     {
       "id": "feini",
@@ -31,322 +166,977 @@
       "image": "https://i.mydramalist.com/YYZAkW_5m.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Hat-factory worker who wants college"
+      "note": "Textile factory worker chasing a university recommendation",
+      "alsoPlayedBy": [
+        {
+          "name": "Feng Xue Ya",
+          "image": "https://i.mydramalist.com/NdK1ey_5m.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
-      "id": "quhua",
-      "name": "Qu Hua",
-      "actor": "Wang Tian Chen",
-      "image": "https://i.mydramalist.com/yWv1KR_5m.jpg",
-      "group": "Around them",
-      "inCast": true
-    },
-    {
-      "id": "mujing",
-      "name": "Fang Mu Jing",
-      "actor": "Cristy Guo",
-      "image": "https://i.mydramalist.com/QwnD4_5m.jpg",
-      "group": "The Fang family",
-      "inCast": true
-    },
-    {
-      "id": "hongqi",
-      "name": "Xu Hong Qi",
-      "actor": "Liu Min Tao",
-      "image": "https://i.mydramalist.com/nO2e72_5m.jpg",
-      "group": "The Fang family",
-      "inCast": true
-    },
-    {
-      "id": "qingyuan",
-      "name": "Fang Qing Yuan",
-      "actor": "Hou Chang Rong",
-      "image": "https://i.mydramalist.com/zB3WZy_5m.jpg",
-      "group": "The Fang family",
-      "inCast": true
-    },
-    {
-      "id": "mingde",
+      "id": "feimingde",
       "name": "Fei Ming De",
       "actor": "Wu Yue",
       "image": "https://i.mydramalist.com/XgrzJm.jpg",
-      "group": "The Fei family",
-      "inCast": true
+      "group": "Fei Ni's family",
+      "inCast": true,
+      "note": "Fei Ni's father, a Tai Chi hobbyist"
     },
     {
-      "id": "baoying",
+      "id": "wubaoying",
       "name": "Wu Bao Ying",
       "actor": "Hao Wen Ting",
       "image": "https://i.mydramalist.com/oQz5Av_5m.jpg",
-      "group": "The Fei family",
-      "inCast": true
+      "group": "Fei Ni's family",
+      "inCast": true,
+      "note": "Fei Ni's mother"
     },
     {
       "id": "feiting",
       "name": "Fei Ting",
       "actor": "Shi Yun Peng",
       "image": "https://i.mydramalist.com/ABqKoP_5m.jpg",
-      "group": "The Fei family",
-      "inCast": true
-    },
-    {
-      "id": "shanhe",
-      "name": "Mu Shan He",
-      "actor": "Kong Lin",
-      "image": "https://i.mydramalist.com/qpXXz_5m.jpg",
-      "group": "Around them",
-      "inCast": true
-    },
-    {
-      "id": "yefeng",
-      "name": "Ye Feng",
-      "actor": "Xia Hao Ran",
-      "image": "https://i.mydramalist.com/O82kgY_5m.jpg",
-      "group": "Around them",
-      "inCast": true
+      "group": "Fei Ni's family",
+      "inCast": true,
+      "note": "Fei Ni's older brother, a sent-down youth turned cook"
     },
     {
       "id": "linmei",
       "name": "Lin Mei",
       "actor": "Guo Wei Jie",
       "image": "https://i.mydramalist.com/0pRLNm.jpg",
-      "group": "The factory",
-      "inCast": true
+      "group": "Fei Ni's family",
+      "inCast": true,
+      "note": "Fei Ni's close friend, later Fei Ting's wife"
+    },
+    {
+      "id": "masterli",
+      "name": "MasterLi",
+      "actor": "Yuan Man",
+      "image": "https://i.mydramalist.com/nOXK8N_5m.jpg",
+      "group": "Fei Ni's family",
+      "inCast": true,
+      "note": "Fei Ting's catering mentor"
+    },
+    {
+      "id": "fangmujing",
+      "name": "Fang Mu Jing",
+      "actor": "Cristy Guo",
+      "image": "https://i.mydramalist.com/QwnD4_5m.jpg",
+      "group": "Fang Muyang's family",
+      "inCast": true,
+      "note": "Fang Muyang's sister, a mathematician"
+    },
+    {
+      "id": "quhua",
+      "name": "Qu Hua",
+      "actor": "Wang Tian Chen",
+      "image": "https://i.mydramalist.com/yWv1KR_5m.jpg",
+      "group": "Fang Muyang's family",
+      "inCast": true,
+      "note": "Neurosurgeon from a military family; Fang Mujing's husband"
+    },
+    {
+      "id": "fangqingyuan",
+      "name": "Fang Qing Yuan",
+      "actor": "Hou Chang Rong",
+      "image": "https://i.mydramalist.com/zB3WZy_5m.jpg",
+      "group": "Fang Muyang's family",
+      "inCast": true,
+      "note": "Fang Muyang's father, returned from re-education in Yunnan"
+    },
+    {
+      "id": "mushanhe",
+      "name": "Mu Shan He",
+      "actor": "Kong Lin",
+      "image": "https://i.mydramalist.com/qpXXz_5m.jpg",
+      "group": "Fang Muyang's family",
+      "inCast": true,
+      "note": "Fang Muyang's mother, a professor"
+    },
+    {
+      "id": "professorwu",
+      "name": "Professor Wu",
+      "actor": "Xiu Qing",
+      "image": "https://i.mydramalist.com/mOd5Qm_5m.jpg",
+      "group": "Fang Muyang's family",
+      "inCast": true,
+      "note": "Fang Mujing's research mentor"
+    },
+    {
+      "id": "liuwei",
+      "name": "Liu Wei",
+      "actor": "Zheng Zhong Yu",
+      "image": "https://i.mydramalist.com/Ee5o5_5m.jpg",
+      "group": "Fang Muyang's family",
+      "inCast": true,
+      "note": "Fang Mujing's ex-boyfriend, now a resentful colleague"
+    },
+    {
+      "id": "xuhongqi",
+      "name": "Xu Hong Qi",
+      "actor": "Liu Min Tao",
+      "image": "https://i.mydramalist.com/nO2e72_5m.jpg",
+      "group": "Xu Hongqi's household",
+      "inCast": true,
+      "note": "Factory Publicity Division director; Ye Feng's mother"
+    },
+    {
+      "id": "yefeng",
+      "name": "Ye Feng",
+      "actor": "Xia Hao Ran",
+      "image": "https://i.mydramalist.com/O82kgY_5m.jpg",
+      "group": "Xu Hongqi's household",
+      "inCast": true,
+      "note": "Xu Hongqi's son, factory basketball star"
     },
     {
       "id": "lingyi",
       "name": "Ling Yi",
       "actor": "Li Shu Man",
       "image": "https://i.mydramalist.com/O8QPOL_5m.jpg",
-      "group": "The factory",
-      "inCast": true
+      "group": "Xu Hongqi's household",
+      "inCast": true,
+      "note": "Fang Muyang's middle school classmate; university student turned journalist"
+    },
+    {
+      "id": "chendonghua",
+      "name": "Chen Dong Hua",
+      "actor": "Guan Zi Jing",
+      "image": "https://i.mydramalist.com/085pN_5m.jpg",
+      "group": "Xu Hongqi's household",
+      "inCast": true,
+      "note": "Textile Bureau secretary who preys on Ling Yi's ambition"
+    },
+    {
+      "id": "wangxiaoman",
+      "name": "Wang Xiao Man",
+      "actor": "Yu Xin He",
+      "image": "https://i.mydramalist.com/6Y4JO_5m.jpg",
+      "group": "Xu Hongqi's household",
+      "inCast": true,
+      "note": "Section Chief in the Publicity Division"
+    },
+    {
+      "id": "chenjiansheng",
+      "name": "Chen Jian Sheng",
+      "actor": "Liu Ling Zhi",
+      "image": "https://i.mydramalist.com/YYNAXg_5m.jpg",
+      "group": "Xu Hongqi's household",
+      "inCast": true,
+      "note": "New Vice Director focused on production efficiency"
     },
     {
       "id": "fenglin",
       "name": "Feng Lin",
       "actor": "Wu You You",
       "image": "https://i.mydramalist.com/81ezjN_5m.jpg",
-      "group": "The factory",
+      "group": "Factory rivals",
+      "inCast": true,
+      "note": "Factory assistant, Fei Ni's longtime rival"
+    },
+    {
+      "id": "wangdefa",
+      "name": "Wang De Fa",
+      "actor": "Qiang Guo Ming",
+      "image": "https://i.mydramalist.com/ABo2ZZ_5m.jpg",
+      "group": "Factory rivals",
+      "inCast": true,
+      "note": "Feng Lin's boyfriend, later a college graduate"
+    },
+    {
+      "id": "linfather",
+      "name": "Lin's Father",
+      "actor": "Lan Cheng",
+      "image": "https://i.mydramalist.com/l0Knke_5m.jpg",
+      "group": "Lin Mei's family",
       "inCast": true
     },
     {
-      "id": "xiaoman",
-      "name": "Wang Xiao Man",
-      "actor": "Yu Xin He",
-      "image": "https://i.mydramalist.com/6Y4JO_5m.jpg",
-      "group": "The factory",
+      "id": "linmother",
+      "name": "Lin's Mother",
+      "actor": "Tian Miao",
+      "image": "https://i.mydramalist.com/73JrAN_5m.jpg",
+      "group": "Lin Mei's family",
       "inCast": true
+    },
+    {
+      "id": "linsong",
+      "name": "Lin Song",
+      "actor": "Chai Juan Zhe",
+      "image": "https://i.mydramalist.com/w47qA_5m.jpg",
+      "group": "Lin Mei's family",
+      "inCast": true,
+      "note": "Lin Mei's troubled younger brother"
+    },
+    {
+      "id": "aihong",
+      "name": "Fang Ai Hong",
+      "actor": "Wang Ting",
+      "image": "https://i.mydramalist.com/3onNVR_5m.jpg",
+      "group": "Lin Mei's family",
+      "inCast": true,
+      "note": "Lin Mei's sister-in-law, favored by her mother"
+    },
+    {
+      "id": "linjianshe",
+      "name": "Lin Jian She",
+      "actor": "Ding Yi",
+      "image": "https://i.mydramalist.com/3oY5zj_5m.jpg",
+      "group": "Lin Mei's family",
+      "inCast": true,
+      "note": "Lin Mei's nephew"
+    },
+    {
+      "id": "fuboquan",
+      "name": "Fu Boquan / President Fu",
+      "actor": "Ma Yue",
+      "image": "https://i.mydramalist.com/YYzNme_5m.jpg",
+      "group": "Publishing circle",
+      "inCast": true,
+      "note": "Newspaper head and old family friend of Fang Muyang"
+    },
+    {
+      "id": "yuanjiashang",
+      "name": "Yuan Jiashang / Teacher Yuan",
+      "actor": "Wu Chao",
+      "image": "https://i.mydramalist.com/ZYp7q_5m.jpg",
+      "group": "Publishing circle",
+      "inCast": true,
+      "note": "Renowned lianhuanhua artist, Fang Muyang's mentor and rival"
+    },
+    {
+      "id": "liaobanji",
+      "name": "Liao Ban Ji",
+      "actor": "Zhang Zhen Lei",
+      "image": "https://i.mydramalist.com/Bdrv2z_5m.jpg",
+      "group": "Publishing circle",
+      "inCast": true,
+      "note": "Fellow illustrator/reporter at the newspaper"
     }
   ],
   "links": [
     {
       "from": "feini",
-      "to": "muyang",
-      "type": "romance",
-      "label": "junior-high classmates; she nursed the hero back, hoping for a recommendation — and got more",
-      "short": "in love",
-      "evidence": "Fei Ni's junior high school classmate, Fang Mu Yang, became a hero… Fei Ni took the initiative to take care of him",
-      "source": "MDL synopsis",
+      "to": "fangmuyang",
+      "type": "bond",
+      "label": "Former middle-school deskmates bound by a childhood debt over a keepsake box",
+      "short": "childhood ties",
+      "evidence": "Years ago, before he was sent to the countryside, Fei Ni had lent him 1.5 yuan—most of her lunch money—in exchange for a precious metal box he left in her care.",
+      "source": "cpophome ep. 1",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1,
+      "until": 9
     },
     {
-      "from": "mujing",
-      "to": "muyang",
-      "type": "family",
-      "label": "sister",
-      "short": "sister",
-      "evidence": null,
-      "source": null,
+      "from": "feini",
+      "to": "fangmuyang",
+      "type": "work",
+      "label": "Cares for the comatose hero, hoping it will earn her a university recommendation",
+      "short": "caretaker",
+      "evidence": "She stepped forward and volunteered to care for the hero until his recovery, a gesture Ms. Xu highly praised as a display of true proletarian spirit.",
+      "source": "cpophome ep. 1",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 6
     },
     {
-      "from": "hongqi",
-      "to": "muyang",
-      "type": "family",
-      "label": "mother",
-      "short": "mother",
-      "evidence": null,
-      "source": null,
+      "from": "feini",
+      "to": "fangmuyang",
+      "type": "romance",
+      "label": "Marries him in a fake arrangement to secure factory housing",
+      "short": "fake marriage",
+      "evidence": "Fei Ni proposed a radical solution: they should obtain a marriage certificate through a \"fake marriage.\"",
+      "source": "cpophome ep. 7",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 7,
+      "until": 17
     },
     {
-      "from": "qingyuan",
-      "to": "muyang",
-      "type": "family",
-      "label": "father",
-      "short": "father",
-      "evidence": null,
-      "source": null,
+      "from": "feini",
+      "to": "fangmuyang",
+      "type": "romance",
+      "label": "Falls genuinely in love and becomes his true wife",
+      "short": "true love",
+      "evidence": "under the warmth of a single blanket, the two finally became a true husband and wife.",
+      "source": "cpophome ep. 17",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 17
     },
     {
-      "from": "mingde",
+      "from": "feini",
+      "to": "fangmuyang",
+      "type": "bond",
+      "label": "Each becomes the other's steadiest champion in pursuing their dreams",
+      "short": "champions each other",
+      "evidence": "Fang Muyang warmly encouraged her, expressing his unwavering belief in her talent.",
+      "source": "cpophome ep. 15",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 15
+    },
+    {
+      "from": "feimingde",
       "to": "feini",
       "type": "family",
-      "label": "father",
+      "label": "Fei Ni's father",
       "short": "father",
-      "evidence": null,
-      "source": null,
+      "evidence": "bringing a portion of braised pork from the factory canteen to her father, Fei Mingde.",
+      "source": "cpophome ep. 1",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "baoying",
+      "from": "wubaoying",
       "to": "feini",
       "type": "family",
-      "label": "mother",
+      "label": "Fei Ni's mother",
       "short": "mother",
-      "evidence": null,
-      "source": null,
+      "evidence": "her mother, Wu Baoying, pointed out his lack of a job and a home",
+      "source": "cpophome ep. 8",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "feiting",
       "to": "feini",
       "type": "family",
-      "label": "sibling",
-      "short": "sibling",
-      "evidence": null,
-      "source": null,
+      "label": "Fei Ni's older brother",
+      "short": "brother",
+      "evidence": "volunteering for the Great Northern Wilderness so she could take their mother's job at the factory.",
+      "source": "cpophome ep. 5",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "feiting",
+      "to": "linmei",
+      "type": "romance",
+      "label": "Childhood sweethearts who marry",
+      "short": "husband/wife",
+      "evidence": "After a heartfelt speech from Fei Ting promising to cherish Lin Mei more than anyone else, the couple celebrated a joyous wedding.",
+      "source": "cpophome ep. 15",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "fangmuyang",
+      "to": "fangmujing",
+      "type": "family",
+      "label": "Fang Muyang's sister",
+      "short": "sister",
+      "evidence": "his sister, Fang Mujing, arrived.",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "fangmujing",
+      "to": "quhua",
+      "type": "romance",
+      "label": "Marries pragmatically for political protection and career advancement",
+      "short": "arranged marriage",
+      "evidence": "He admitted pragmatically that she wasn't his \"best\" option socially, but he chose her anyway.",
+      "source": "cpophome ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 8,
+      "until": 12
+    },
+    {
+      "from": "fangmujing",
+      "to": "quhua",
+      "type": "bond",
+      "label": "Haunted by being a stand-in for Qu Hua's late love, Yan",
+      "short": "shadow of Yan",
+      "evidence": "Realizing she was merely a substitute for Qu Hua's late ex-girlfriend—whom she strikingly resembled—Mujing was heartbroken.",
+      "source": "cpophome ep. 14",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 14,
+      "until": 25
+    },
+    {
+      "from": "fangmujing",
+      "to": "quhua",
+      "type": "romance",
+      "label": "Grows into deep, genuine love",
+      "short": "true love",
+      "evidence": "He declares his true love for her and formally says goodbye to his past.",
+      "source": "cpophome ep. 25",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 25
+    },
+    {
+      "from": "mushanhe",
+      "to": "fangmujing",
+      "type": "family",
+      "label": "Estranged mother, hurt by Mujing's public break with the family",
+      "short": "estranged mother",
+      "evidence": "Fang Mujing makes the difficult decision to formally cut ties with her parents",
+      "source": "cpophome ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "until": 28
+    },
+    {
+      "from": "mushanhe",
+      "to": "fangmujing",
+      "type": "family",
+      "label": "Mother and daughter finally reconcile",
+      "short": "reconciled",
+      "evidence": "Mu Shanhe eventually reached out to Mujing, returning an old mirror... The mother and daughter finally reconciled.",
+      "source": "cpophome ep. 28",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 28
+    },
+    {
+      "from": "fangqingyuan",
+      "to": "fangmuyang",
+      "type": "family",
+      "label": "His father",
+      "short": "father",
+      "evidence": "he has an emotional reunion with his parents, Fang Qingyuan and Mu Shanhe.",
+      "source": "cpophome ep. 24",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "mushanhe",
+      "to": "fangmuyang",
+      "type": "family",
+      "label": "His mother",
+      "short": "mother",
+      "evidence": "he has an emotional reunion with his parents, Fang Qingyuan and Mu Shanhe.",
+      "source": "cpophome ep. 24",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "quhua",
-      "to": "feini",
-      "type": "romance",
-      "label": "the other suitor",
-      "short": "suitor",
-      "evidence": null,
-      "source": null,
+      "to": "fangmuyang",
+      "type": "family",
+      "label": "Brothers-in-law",
+      "short": "brother-in-law",
+      "evidence": "Qu Hua introduced himself as a doctor from a military family, noting that his grandfather was a Red Army veteran",
+      "source": "cpophome ep. 12",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 12
+    },
+    {
+      "from": "quhua",
+      "to": "fangmuyang",
+      "type": "bond",
+      "label": "Forge a deep bond working side by side during earthquake relief",
+      "short": "brothers in crisis",
+      "evidence": "they worked tirelessly by day and found brief moments at night to gaze at the full moon, sharing their quiet longing for their wives.",
+      "source": "cpophome ep. 22",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 22
+    },
+    {
+      "from": "xuhongqi",
+      "to": "yefeng",
+      "type": "family",
+      "label": "Her son",
+      "short": "son",
+      "evidence": "Ye Feng, Xu Hongqi's handsome son and the star forward of the factory's basketball team",
+      "source": "cpophome ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "yefeng",
-      "to": "muyang",
-      "type": "friend",
-      "label": "friend",
-      "short": "friend",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "shanhe",
-      "to": "muyang",
-      "type": "work",
-      "label": "at the factory",
-      "short": "colleague",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": true
-    },
-    {
-      "from": "linmei",
       "to": "feini",
-      "type": "work",
-      "label": "at the hat factory",
-      "short": "colleague",
-      "evidence": null,
-      "source": null,
+      "type": "romance",
+      "label": "Pursues her as a suitor but is rejected in favor of Fang Muyang",
+      "short": "rejected suitor",
+      "evidence": "Ye Feng was devastated and begged his mother for help.",
+      "source": "cpophome ep. 8",
       "reveal": false,
-      "inferred": true,
-      "directed": false
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "until": 8
     },
     {
-      "from": "lingyi",
-      "to": "feini",
-      "type": "work",
-      "label": "at the hat factory",
-      "short": "colleague",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
+      "from": "yefeng",
+      "to": "lingyi",
+      "type": "romance",
+      "label": "Marries her, then divorces after her scheming affair",
+      "short": "married then divorced",
+      "evidence": "The two finalized their divorce at the subdistrict office shortly after.",
+      "source": "cpophome ep. 27",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 27,
+      "until": 27
+    },
+    {
+      "from": "chendonghua",
+      "to": "lingyi",
+      "type": "romance",
+      "label": "Seduces her with promises of a transfer, then betrays her",
+      "short": "betrays her",
+      "evidence": "Chen immediately betrayed Ling Yi, claiming he had no relationship with her and that she had been the one seducing him for a job transfer.",
+      "source": "cpophome ep. 27",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 27,
+      "until": 27
     },
     {
       "from": "fenglin",
       "to": "feini",
-      "type": "work",
-      "label": "at the hat factory",
-      "short": "colleague",
-      "evidence": null,
-      "source": null,
+      "type": "rivalry",
+      "label": "Long-running rival at the factory who repeatedly tries to expose and sabotage her",
+      "short": "rival",
+      "evidence": "Alongside a coworker named Feng Lin, Ms. Xu scrutinized Fei Ni's latest thought report, accusing her of using overly sophisticated words",
+      "source": "cpophome ep. 1",
       "reveal": false,
-      "inferred": true,
-      "directed": false
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 28
     },
     {
-      "from": "xiaoman",
+      "from": "fenglin",
+      "to": "wangdefa",
+      "type": "romance",
+      "label": "Boyfriend who dumps her once he graduates college",
+      "short": "boyfriend",
+      "evidence": "she intended to recommend Fei Ni for university instead of Feng's boyfriend, Wang Defa.",
+      "source": "cpophome ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 4,
+      "until": 28
+    },
+    {
+      "from": "fangmuyang",
+      "to": "fenglin",
+      "type": "rivalry",
+      "label": "Blackmails her into surrendering her housing unit by threatening to expose her past scandal",
+      "short": "blackmails her",
+      "evidence": "as long as she never troubled Fei Ni again, he would ensure his \"memories\" of her past stayed forgotten.",
+      "source": "cpophome ep. 10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "until": 10
+    },
+    {
+      "from": "linmei",
+      "to": "feini",
+      "type": "friend",
+      "label": "Close friends since youth",
+      "short": "best friend",
+      "evidence": "Fei Ni's close friend, Lin Mei, paid her a visit",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "linsong",
+      "to": "linmei",
+      "type": "family",
+      "label": "Siblings whose trust is strained by his gambling debts and theft",
+      "short": "troubled brother",
+      "evidence": "Lin Mei grew furious when her brother claimed he only took the extra work to pay her back, reminding him that the money he was \"returning\" was actually money he had stolen from their parents.",
+      "source": "cpophome ep. 28",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 28,
+      "until": 29
+    },
+    {
+      "from": "linjianshe",
+      "to": "linmei",
+      "type": "family",
+      "label": "Nephew who reveals the family's scheme to marry her off for connections",
+      "short": "reveals family plot",
+      "evidence": "he overheard her nephew, Lin Jianshe, revealing that the family wanted Lin Mei to marry someone with better connections to help her brother's career.",
+      "source": "cpophome ep. 14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 14,
+      "until": 14
+    },
+    {
+      "from": "aihong",
+      "to": "linmei",
+      "type": "family",
+      "label": "Favored by Lin Mei's mother, leaving Lin Mei to do all the housework",
+      "short": "favored sister-in-law",
+      "evidence": "Her mother favored her sister-in-law, Aihong, leaving Lin Mei to do all the household chores after her shift at the supply cooperative.",
+      "source": "cpophome ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 4
+    },
+    {
+      "from": "linfather",
+      "to": "linmei",
+      "type": "family",
+      "label": "Father who repeatedly rejects Fei Ting for lacking a stable job",
+      "short": "skeptical father",
+      "evidence": "Lin Mei's parents set a hard line: they will only consider the marriage once Fei Ting secures a stable job.",
+      "source": "cpophome ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "linmother",
+      "to": "linmei",
+      "type": "family",
+      "label": "Mother who looks down on Fei Ting's prospects",
+      "short": "snobbish mother",
+      "evidence": "Lin Mei's mother is dismissive of Fei Ting because he lacks a stable job, boasting about a bus driver named Chen Yunguo",
+      "source": "cpophome ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11
+    },
+    {
+      "from": "fuboquan",
+      "to": "fangmuyang",
+      "type": "work",
+      "label": "Family friend and mentor who opens doors for his career",
+      "short": "mentor",
+      "evidence": "he visited an old family friend, Fu Boquan, at an editorial office. Fu Boquan offered him a spot in a two-month editor training course",
+      "source": "cpophome ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "yuanjiashang",
+      "to": "fangmuyang",
+      "type": "work",
+      "label": "Artistic mentor whose demand for cliché revisions clashes with his devotion to authenticity",
+      "short": "creative rival",
+      "evidence": "Mr. Yuan criticizes his latest comic draft for being too crowded and lacking a clear protagonist.",
+      "source": "cpophome ep. 19",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 19,
+      "until": 26
+    },
+    {
+      "from": "yuanjiashang",
+      "to": "fangmuyang",
+      "type": "work",
+      "label": "Reconciles and offers him a new collaboration, which he declines for his independence",
+      "short": "reconciled, declined",
+      "evidence": "Yuan offered him a chance to return to the publishing house to collaborate on a series of novels... However, Muyang declined.",
+      "source": "cpophome ep. 27",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 27,
+      "until": 27
+    },
+    {
+      "from": "liaobanji",
+      "to": "fangmuyang",
+      "type": "work",
+      "label": "Fellow illustrator and reporter at the newspaper",
+      "short": "colleague",
+      "evidence": "he ran into Liao, who was interning as a reporter, but he politely noted that their work likely wouldn't overlap.",
+      "source": "cpophome ep. 18",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 18
+    },
+    {
+      "from": "masterli",
+      "to": "feiting",
+      "type": "work",
+      "label": "Teaches him catering on the side, and takes the fall with him when caught moonlighting",
+      "short": "catering mentor",
+      "evidence": "a terrified Chef Li pleaded for his job, citing his responsibility as his family's sole provider.",
+      "source": "cpophome ep. 20",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 20,
+      "until": 20
+    },
+    {
+      "from": "wangxiaoman",
+      "to": "feiting",
+      "type": "work",
+      "label": "Section Chief who eventually secures him a proper cadre post",
+      "short": "boss",
+      "evidence": "Chief Wang fulfilled her promise and helped secure Fei Ting a position as a regular cadre in the Publicity Department",
+      "source": "cpophome ep. 14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 14,
+      "until": 14
+    },
+    {
+      "from": "xuhongqi",
       "to": "feini",
       "type": "work",
-      "label": "at the hat factory",
-      "short": "colleague",
-      "evidence": null,
-      "source": null,
+      "label": "Factory director who repeatedly blocks and grants her university recommendation",
+      "short": "gatekeeper",
+      "evidence": "Ms. Xu remained critical.",
+      "source": "cpophome ep. 1",
       "reveal": false,
-      "inferred": true,
-      "directed": false
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 23
+    },
+    {
+      "from": "xuhongqi",
+      "to": "feini",
+      "type": "bond",
+      "label": "Comes to respect her selflessness after the earthquake",
+      "short": "earns her respect",
+      "evidence": "Xu Hongqi observed a profound change in Fei Ni... fueled by her deep devotion to Fang Muyang.",
+      "source": "cpophome ep. 23",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 23
+    },
+    {
+      "from": "fenglin",
+      "to": "xuhongqi",
+      "type": "work",
+      "label": "Assistant who publicly denounces her former mentor for personal advancement",
+      "short": "betrays her",
+      "evidence": "Feng Lin publicly denounced her, accusing her of using her influence to secure a position for Ling Yi.",
+      "source": "cpophome ep. 23",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 23,
+      "until": 23
+    },
+    {
+      "from": "professorwu",
+      "to": "fangmujing",
+      "type": "work",
+      "label": "Research mentor who champions her career, including a path to study in Germany",
+      "short": "mentor",
+      "evidence": "Professor Wu informed her that she was the top candidate for a two-year stint to study in Germany.",
+      "source": "cpophome ep. 29",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 29
+    },
+    {
+      "from": "liuwei",
+      "to": "fangmujing",
+      "type": "romance",
+      "label": "Ex-boyfriend who abandoned her for his own career, now resentful of her success",
+      "short": "bitter ex",
+      "evidence": "Liu Wei, who once left her to protect his career prospects due to her family background, is resentful of her presence on the project team.",
+      "source": "cpophome ep. 16",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 16
+    },
+    {
+      "from": "wubaoying",
+      "to": "fangmuyang",
+      "type": "family",
+      "label": "Skeptical mother-in-law, questioning his stability and prospects",
+      "short": "skeptical mother-in-law",
+      "evidence": "her mother, Wu Baoying, pointed out his lack of a job and a home",
+      "source": "cpophome ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "until": 15
+    },
+    {
+      "from": "wubaoying",
+      "to": "fangmuyang",
+      "type": "bond",
+      "label": "Comes to appreciate her son-in-law's talent and devotion",
+      "short": "comes to approve",
+      "evidence": "Seeing his talent and dedication, Fei Ni's mother finally began to appreciate her son-in-law.",
+      "source": "cpophome ep. 15",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 15
+    },
+    {
+      "from": "feimingde",
+      "to": "fangmuyang",
+      "type": "bond",
+      "label": "Father-in-law won over by his sincerity, skill, and devotion to Fei Ni",
+      "short": "wins over father-in-law",
+      "evidence": "Fang Muyang's sincerity and intelligence eventually convinced Mr. Fei to support the union.",
+      "source": "cpophome ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8
+    },
+    {
+      "from": "chenjiansheng",
+      "to": "xuhongqi",
+      "type": "work",
+      "label": "New Vice Director who reassigns her from leadership to the shop floor",
+      "short": "demotes her",
+      "evidence": "Xu Hongqi was reassigned from her administrative post back to the production line in Workshop One.",
+      "source": "cpophome ep. 23",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 23,
+      "until": 23
+    },
+    {
+      "from": "chenjiansheng",
+      "to": "xuhongqi",
+      "type": "work",
+      "label": "Later vindicates her against false accusations of nepotism",
+      "short": "vindicates her",
+      "evidence": "He vindicated Xu Hongqi, recalling her past as a model worker who could manage a dozen looms with ease.",
+      "source": "cpophome ep. 23",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 23
+    },
+    {
+      "from": "chenjiansheng",
+      "to": "yefeng",
+      "type": "work",
+      "label": "Disbands his basketball team and pushes him into ordinary labor",
+      "short": "reassigns him",
+      "evidence": "Left with only the cafeteria or gate security as options, Ye Feng turns to his mother.",
+      "source": "cpophome ep. 24",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 24,
+      "until": 24
+    },
+    {
+      "from": "chenjiansheng",
+      "to": "feiting",
+      "type": "work",
+      "label": "Grants him a fast-track to permanent employment as a cook after his honesty is rewarded",
+      "short": "rewards his honesty",
+      "evidence": "Vice Director Chen of the Jiangcheng No. 1 Textile Factory officially announced that Fei Ting would be given a fast-track to permanent employment as a cook.",
+      "source": "cpophome ep. 27",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 27
     }
   ],
   "compact": {
     "people": [
-      "muyang",
       "feini",
-      "quhua",
-      "mujing",
-      "hongqi",
-      "qingyuan",
-      "mingde",
-      "baoying",
+      "fangmuyang",
+      "feimingde",
+      "wubaoying",
       "feiting",
-      "shanhe",
-      "yefeng",
       "linmei",
+      "masterli",
+      "fangmujing",
+      "quhua",
+      "fangqingyuan",
+      "mushanhe",
+      "professorwu",
+      "liuwei",
+      "xuhongqi",
+      "yefeng",
       "lingyi",
+      "chendonghua",
+      "wangxiaoman",
+      "chenjiansheng",
       "fenglin",
-      "xiaoman"
+      "wangdefa"
     ],
     "blocks": {
-      "The Fang family": [
+      "Factory rivals": [
+        2,
+        2
+      ],
+      "Fei Ni's family": [
         0,
         0
       ],
-      "The Fei family": [
+      "Fang Muyang's family": [
         2,
         0
       ],
-      "The factory": [
-        1,
-        2
-      ],
-      "Around them": [
+      "Xu Hongqi's household": [
         0,
         2
       ]
     },
     "center": [
-      "muyang",
-      "feini"
+      "feini",
+      "fangmuyang"
     ]
   }
 }
