@@ -48,9 +48,10 @@ async function main() {
     const doubtful: Link[] = [];
     const links = chart.links.map((l) => {
         if (l.since != null && l.until != null && l.until === l.since) {
-            const { until: _until, ...rest } = l;
+            // kind goes third, after from and to, the order the files keep
+            const { from, to, until: _until, ...rest } = l;
             void _until;
-            const next: Link = { from: rest.from, to: rest.to, kind: "event", ...rest };
+            const next: Link = { from, to, kind: "event", ...rest };
             moved.push(next);
             return next;
         }
