@@ -64,8 +64,16 @@ const CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/;
 
 const W = 1100;
 const R = PORTRAIT_R;
+/** How far a line steps back when it is not between two leads: a support role's line to a lead, and one between two support roles */
+const SPOKE_OPACITY = 0.6;
+const OUTER_OPACITY = 0.4;
 /** How far from a face's centre an arrow's tip stops: just outside the ring */
 const ARROW_GAP = R + 3;
+/**
+ * The clear ring round a lead: the lines coming in fade out over it instead
+ * of piling onto the face, and an arrow into a lead stops at its edge.
+ */
+const MOAT = 14;
 
 /**
  * What happened between two people, or around one, in the story's order:
@@ -583,6 +591,10 @@ export function CharacterMap({
                                 <path d="M0,-4L8,0L0,4Z" fill="currentColor" />
                             </marker>
                         ))}
+                        <radialGradient id="cm-moat">
+                            <stop offset={R / (R + MOAT)} style={{ stopColor: GROUND, stopOpacity: 1 }} />
+                            <stop offset={1} style={{ stopColor: GROUND, stopOpacity: 0 }} />
+                        </radialGradient>
                         {layout.people.map((p) => (
                             <clipPath key={p.id} id={`cm-clip-${p.id}`}>
                                 <circle r={R - 2} />
@@ -611,21 +623,45 @@ export function CharacterMap({
                         .map(({ l, active }) => {
                         const faded = linkFaded(l);
                         const lit = hoverLink === l.index || picked?.index === l.index;
+                        // The core first: a line between two leads is drawn full and a
+                        // shade thicker, a support role's line to a lead steps back, and
+                        // a line between two support roles further still — until a
+                        // hover, a pick or a focus asks for it, when it comes back whole.
+                        const leads = Number(!!byId.get(l.from)?.lead) + Number(!!byId.get(l.to)?.lead);
+                        const asked = active || lit || (!faded && (!!near || !!picked));
+                        const tier = asked ? 1 : leads === 2 ? 1 : leads === 1 ? SPOKE_OPACITY : OUTER_OPACITY;
                         // A directed line stops at the ring, so its arrow sits on it; the others run under the faces
-                        const d = linkPath(l, l.directed ? ARROW_GAP : 0);
+                        // A support role's arrow into a lead rides the middle of its line:
+                        // a dozen of them at the lead's ring piled into one smudge. The
+                        // leads' own arrows, and arrows into a support role, stay at the end.
+                        const midArrow = l.directed && leads === 1 && !!byId.get(l.to)?.lead;
+                        const endArrow = l.directed && !midArrow;
+                        const d = linkPath(l, !endArrow ? 0 : byId.get(l.to)?.lead ? R + MOAT : ARROW_GAP);
+                        const width = active ? 3.5 : lit ? 3 : leads === 2 ? 2.5 : 2;
+                        // The curve's middle and its direction there — for a quadratic,
+                        // the chord's direction
+                        const mid = midArrow ? { x: (l.x1 + 2 * l.cx + l.x2) / 4, y: (l.y1 + 2 * l.cy + l.y2) / 4, deg: (Math.atan2(l.y2 - l.y1, l.x2 - l.x1) * 180) / Math.PI } : null;
                         return (
-                            <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : l.inferred ? 0.4 : 1, transition: "opacity .15s" }}>
+                            <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : tier * (l.inferred ? 0.4 : 1), transition: "opacity .15s" }}>
                                 <path d={d} fill="none" stroke="currentColor" strokeWidth={12} strokeLinecap="round" strokeOpacity={picked?.index === l.index ? 0.3 : lit ? 0.18 : 0} style={{ transition: "stroke-opacity .15s" }} />
                                 <path
                                     d={d}
                                     fill="none"
                                     stroke="currentColor"
-                                    strokeWidth={active ? 3.5 : lit ? 3 : 2}
+                                    strokeWidth={width}
                                     strokeLinecap="round"
                                     strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined}
-                                    markerEnd={l.directed ? `url(#cm-arrow-${l.type})` : undefined}
+                                    markerEnd={endArrow ? `url(#cm-arrow-${l.type})` : undefined}
                                     style={{ transition: "stroke-width .15s" }}
                                 />
+                                {mid && (
+                                    <path
+                                        d="M-4,-4L4,0L-4,4Z"
+                                        fill="currentColor"
+                                        transform={`translate(${mid.x},${mid.y}) rotate(${mid.deg}) scale(${width * 0.875})`}
+                                        pointerEvents="none"
+                                    />
+                                )}
                                 <path
                                     d={d}
                                     fill="none"
@@ -639,6 +675,14 @@ export function CharacterMap({
                             </g>
                         );
                     })}
+
+                    {/* The moat: round each lead, the lines coming in fade into the
+                        ground before they reach the face */}
+                    {layout.people
+                        .filter((p) => p.lead)
+                        .map((p) => (
+                            <circle key={p.id} cx={p.x} cy={p.y} r={R + MOAT} fill="url(#cm-moat)" style={{ opacity: faceFaded(p.id) ? 0 : 1, transition: "opacity .15s" }} pointerEvents="none" />
+                        ))}
 
                     {/* Faces */}
                     {layout.people.map((p) => {
