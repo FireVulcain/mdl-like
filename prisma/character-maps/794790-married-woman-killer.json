@@ -207,7 +207,7 @@
       "actor": "Lee Sang Yi",
       "image": "https://i.mydramalist.com/5vWEnL_5m.jpg",
       "still": "https://asianwiki.com/images/5/55/A_Bona_fide_Killer-Lee_Sang-Yi.jpg",
-      "group": "Police",
+      "group": "Leads",
       "inCast": true,
       "note": "Violent crimes lieutenant, Tae Seong's oldest friend, and the man who will not stop chasing Kingfisher"
     },
@@ -219,7 +219,7 @@
       "still": "https://asianwiki.com/images/4/4d/A_Bona_fide_Killer-Choi_Woo-Sung.jpg",
       "group": "Police",
       "inCast": true,
-      "note": "Dong Jin's rookie partner, and Se A's friend"
+      "note": "Dong Jin's rookie partner in violent crimes, and Se A's friend"
     },
     {
       "id": "miran",
@@ -229,7 +229,7 @@
       "still": "https://asianwiki.com/images/e/e5/A_Bona_fide_Killer-Seo_Eun-O1.jpg",
       "group": "Police",
       "inCast": false,
-      "note": "Bo Na's working-mom friend — a celebrity cop on the Kingfisher task force; named by Dramabeans, absent from MDL's cast"
+      "note": "Bo Na's working-mom friend — a celebrity cop on Dong Jin's Kingfisher task force; named by Dramabeans, absent from MDL's cast"
     },
     {
       "id": "eunhak",
@@ -341,7 +341,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 11
+      "since": 11,
+      "wholeStory": false
     },
     {
       "from": "bona",
@@ -561,7 +562,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 11
+      "since": 11,
+      "wholeStory": false
     },
     {
       "from": "sunil",
@@ -607,14 +609,15 @@
       "to": "yeongdo",
       "type": "romance",
       "label": "She engineers a fateful meeting; he asks her out out of jealousy, and they part as friends",
-      "short": "went on a date",
+      "short": "brief romance",
       "evidence": "He asks Se-ah on a date.",
       "source": "dramabeans ep. 7-8",
       "reveal": false,
       "inferred": false,
       "directed": true,
       "since": 7,
-      "until": 14
+      "until": 14,
+      "wholeStory": false
     },
     {
       "from": "sea",
@@ -722,7 +725,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "wholeStory": false
     },
     {
       "from": "yeongdo",
@@ -748,6 +752,20 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
+      "since": 2,
+      "wholeStory": false
+    },
+    {
+      "from": "hyeonnam",
+      "to": "bona",
+      "type": "work",
+      "label": "The newest hire, who introduces herself as a poison expert after handing out the coffees",
+      "short": "the team's poisoner",
+      "evidence": "they don’t even flinch when Hyun-nam introduces herself as a poison expert after she’s handed out coffees",
+      "source": "dramabeans ep. 2-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
       "since": 2
     },
     {
@@ -761,7 +779,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 11
+      "since": 11,
+      "wholeStory": false
     },
     {
       "from": "taemin",
@@ -801,19 +820,6 @@
       "inferred": false,
       "directed": true,
       "since": 2
-    },
-    {
-      "from": "yunok",
-      "to": "bongpal",
-      "type": "work",
-      "label": "Once a specialist in sudden death, now a florist",
-      "short": "led the team before him",
-      "evidence": "the flower shop Bo-na’s mentor owns",
-      "source": "dramabeans ep. 11-12",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1
     },
     {
       "from": "bona",
@@ -969,19 +975,6 @@
       "until": 14
     },
     {
-      "from": "seonghun",
-      "to": "dongjin",
-      "type": "work",
-      "label": "[Violent crimes detective / Se A's friend]",
-      "short": "his rookie partner",
-      "evidence": "[Violent crimes detective / Se A's friend]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1
-    },
-    {
       "from": "miran",
       "to": "bona",
       "type": "friend",
@@ -995,24 +988,11 @@
       "since": 11
     },
     {
-      "from": "miran",
-      "to": "dongjin",
-      "type": "work",
-      "label": "The one who says Kingfisher need not be an adult male",
-      "short": "on the task force with him",
-      "evidence": "the focus is Kingfisher, whom Mi-ran astutely points out might not fall into the expected (read: adult male) demographic",
-      "source": "dramabeans ep. 11-12",
-      "reveal": false,
-      "inferred": false,
-      "directed": false,
-      "since": 11
-    },
-    {
       "from": "eunhak",
       "to": "dongjin",
       "type": "rivalry",
       "label": "Out on parole after a disproportionately short term for the murder of a pair of shop owners",
-      "short": "killed his parents",
+      "short": "his parents' killer",
       "evidence": "his victims were Dong-jin’s parents",
       "source": "dramabeans ep. 9-10",
       "reveal": true,
@@ -1265,7 +1245,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 13
+      "since": 13,
+      "wholeStory": false
     },
     {
       "from": "layla",
@@ -1469,7 +1450,8 @@
     },
     "center": [
       "bona",
-      "taeseong"
+      "taeseong",
+      "dongjin"
     ]
   }
 }
