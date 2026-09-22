@@ -105,6 +105,8 @@
       "image": "https://i.mydramalist.com/R6W7x_5m.jpg",
       "still": "https://asianwiki.com/images/2/2a/W_%28Korean_Drama%29-Han_Hyo-Joo.jpg",
       "group": "Leads",
+      "inCast": true,
+      "note": "Second-year cardiothoracic surgery resident at Myungse Hospital; the webtoon's author is her father",
       "alsoPlayedBy": [
         {
           "name": "Jung Ji So",
@@ -116,9 +118,7 @@
           "image": "https://i.mydramalist.com/6xgKW_5m.jpg",
           "era": "young"
         }
-      ],
-      "inCast": true,
-      "note": "Second-year cardiothoracic surgery resident at Myungse Hospital; the webtoon's author is her father"
+      ]
     },
     {
       "id": "seongmu",
@@ -367,7 +367,6 @@
     {
       "from": "yeonju",
       "to": "kangchul",
-      "kind": "event",
       "type": "bond",
       "label": "Pulled into the webtoon, Yeon-joo finds Kang Chul bleeding out on a hotel rooftop and keeps him alive until the ambulance",
       "short": "saved his life",
@@ -376,12 +375,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "yeonju",
       "to": "kangchul",
-      "kind": "event",
       "type": "romance",
       "label": "She kisses him in a clothing store, hoping a kiss is enough of a cliffhanger to end the episode — and it is",
       "short": "first kiss",
@@ -390,12 +389,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 2
+      "since": 2,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "yeonju",
-      "kind": "event",
       "type": "rivalry",
       "label": "To prove she is not of his world, he shoots her in the shoulder — the bullet passes through and she does not bleed",
       "short": "shot her",
@@ -404,12 +403,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "yeonju",
       "to": "kangchul",
-      "kind": "event",
       "type": "bond",
       "label": "In the prison visiting booth she tells him his world is inside a manhwa, and he is its hero — and his world freezes",
       "short": "told him the truth",
@@ -418,12 +417,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 4
+      "since": 4,
+      "kind": "event"
     },
     {
       "from": "yeonju",
       "to": "kangchul",
-      "kind": "event",
       "type": "bond",
       "label": "After he drowns himself, she learns to draw and rescues him out of the river, two months later for her, an instant for him",
       "short": "drew him back to life",
@@ -432,12 +431,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "yeonju",
       "to": "kangchul",
-      "kind": "event",
       "type": "romance",
       "label": "Her third \"I love you\" is the real one, and it sends her home the moment she says it",
       "short": "I love you",
@@ -446,12 +445,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "He asks her to draw everything since the rooftop as a dream, and jumps — waking with no memory of her",
       "short": "forgot her",
@@ -460,12 +459,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 8
+      "since": 8,
+      "kind": "event"
     },
     {
       "from": "yeonju",
       "to": "kangchul",
-      "kind": "event",
       "type": "bond",
       "label": "From her father's tablet she erases his hotel door, the blood, the camera, and draws him the supplies to treat his own wound",
       "short": "saved him from afar",
@@ -474,12 +473,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 11
+      "since": 11,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "On the run, he reads the volume she left behind and learns from a book that he was her husband",
       "short": "read their story",
@@ -488,12 +487,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 11
+      "since": 11,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "Shot in his world and brain-dead in hers, she is moved back into the webtoon, where a character can be drawn back to life",
       "short": "carried her into the manhwa",
@@ -502,12 +501,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 14
+      "since": 14,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "yeonju",
-      "kind": "event",
       "type": "romance",
       "label": "Her husband had never said it; on the run in the final episode, he does",
       "short": "said it first",
@@ -516,12 +515,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "Two years of prison in his world, a week in hers: he is at her bedside when she wakes",
       "short": "came back to her",
@@ -530,7 +529,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "seongmu",
@@ -575,7 +575,6 @@
     {
       "from": "seongmu",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "Pulled into his own webtoon, Seong Mu was the second attacker on the rooftop the night Yeon-joo saved Kang Chul",
       "short": "stabbed him on the roof",
@@ -584,12 +583,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "seongmu",
-      "kind": "event",
       "type": "rivalry",
       "label": "Told he can never step outside his settings, Kang Chul shoots Seong Mu in his workshop to prove his will is his own",
       "short": "shot his creator",
@@ -598,12 +597,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "seongmu",
-      "kind": "event",
       "type": "bond",
       "label": "A letter on a flash drive: no apology for the shooting, and a plan for Seong Mu to give the killer a face so the story can end",
       "short": "asked him for a happy ending",
@@ -612,12 +611,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "seongmu",
-      "kind": "event",
       "type": "bond",
       "label": "Crushed by the killer's memories of shooting his daughter, Seong Mu tries to jump; Kang Chul hauls him back and tells him to save her",
       "short": "pulled him off the ledge",
@@ -626,12 +625,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 14
+      "since": 14,
+      "kind": "event"
     },
     {
       "from": "seongmu",
       "to": "kangchul",
-      "kind": "event",
       "type": "bond",
       "label": "Unable to keep the killer out of his own head, Seong Mu begs Kang Chul to bury him in the webtoon before the happy ending",
       "short": "asked to die in the manhwa",
@@ -640,12 +639,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 15
+      "since": 15,
+      "kind": "event"
     },
     {
       "from": "seongmu",
       "to": "kangchul",
-      "kind": "event",
       "type": "bond",
       "label": "With his last strokes, Seong Mu sends the police the proof of Kang Chul's innocence and leaves him a letter",
       "short": "cleared his name",
@@ -654,7 +653,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "seongmu",
@@ -711,7 +711,6 @@
     {
       "from": "seongmu",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "She has become the webtoon's heroine — and she is a real person, his daughter — so he ends it",
       "short": "told her why W must end",
@@ -720,12 +719,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6
+      "since": 6,
+      "kind": "event"
     },
     {
       "from": "seongmu",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "With the tablet recovered, Seong Mu draws his dead daughter awake in the webtoon",
       "short": "drew her back to life",
@@ -734,12 +733,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 14
+      "since": 14,
+      "kind": "event"
     },
     {
       "from": "seongmu",
       "to": "yeonju",
-      "kind": "event",
       "type": "rivalry",
       "label": "The killer's memories take him over in the manhwa world, and he attacks his own daughter",
       "short": "strangled her",
@@ -748,12 +747,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 15
+      "since": 15,
+      "kind": "event"
     },
     {
       "from": "seongmu",
       "to": "yeonju",
-      "kind": "event",
       "type": "family",
       "label": "He gives the killer's role away to save the hero, and fades from the webtoon in sight of his daughter",
       "short": "said goodbye",
@@ -762,7 +761,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "subong",
@@ -832,7 +832,6 @@
     {
       "from": "subong",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "He remembers her father saying W was built on stories Yeon-joo made up as a girl",
       "short": "told her she created Kang Chul",
@@ -841,12 +840,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "subong",
       "to": "cheolho",
-      "kind": "event",
       "type": "bond",
       "label": "Assemblyman Han is summoned into the hospital room with the tablet, and Su Bong dives for it",
       "short": "grabbed the tablet",
@@ -855,7 +854,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 14
+      "since": 14,
+      "kind": "event"
     },
     {
       "from": "minsu",
@@ -892,14 +892,13 @@
       "evidence": null,
       "source": null,
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": false,
       "since": 1
     },
     {
       "from": "minsu",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "Her hair was washed, so she is the substitute for his friend's blind date",
       "short": "set her up on a blind date",
@@ -908,12 +907,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6
+      "since": 6,
+      "kind": "event"
     },
     {
       "from": "poongho",
       "to": "yeonju",
-      "kind": "event",
       "type": "romance",
       "label": "Kim Pung Ho's blind date with Yeon-joo ends when she is pulled into the river of Kang Chul's world mid-date",
       "short": "failed blind date",
@@ -922,12 +921,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6
+      "since": 6,
+      "kind": "event"
     },
     {
       "from": "minsu",
       "to": "yeonju",
-      "kind": "event",
       "type": "bond",
       "label": "Stunned to find her wailing in the emergency room, Crazy Dog turns kind",
       "short": "gave her his handkerchief",
@@ -936,7 +935,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "doyun",
@@ -967,7 +967,6 @@
     {
       "from": "kangchul",
       "to": "doyun",
-      "kind": "event",
       "type": "bond",
       "label": "Kang Chul tells the one man he trusts that the corpse in his hideout is his, and to let the world believe it",
       "short": "faked his death to him",
@@ -976,12 +975,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 12
+      "since": 12,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "doyun",
-      "kind": "event",
       "type": "bond",
       "label": "Kang Chul hands himself to Assemblyman Han to get the tortured Do Yun out",
       "short": "traded himself for him",
@@ -990,7 +989,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "suhui",
@@ -1036,7 +1036,6 @@
     {
       "from": "suhui",
       "to": "yeonju",
-      "kind": "event",
       "type": "rivalry",
       "label": "So Hui hands Yeon-joo to the police, sure that Kang Chul cannot go on living with a suspect",
       "short": "turned her in",
@@ -1045,12 +1044,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 4
+      "since": 4,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "suhui",
-      "kind": "event",
       "type": "work",
       "label": "For turning Yeon-joo in, he takes away her job and keeps her friendship",
       "short": "fired her",
@@ -1059,12 +1058,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 4
+      "since": 4,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "suhui",
-      "kind": "event",
       "type": "bond",
       "label": "A character with no purpose left vanishes; he tells her she is the person closest to him, and she is solid again",
       "short": "saved her from fading",
@@ -1073,7 +1072,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 8
+      "since": 8,
+      "kind": "event"
     },
     {
       "from": "hyeonseok",
@@ -1092,7 +1092,6 @@
     {
       "from": "hyeonseok",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "A fabricated recording makes Ajusshi suspect, for the first time in ten years, that Kang Chul went home the night his family died",
       "short": "doubted him",
@@ -1101,7 +1100,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 10
+      "since": 10,
+      "kind": "event"
     },
     {
       "from": "cheolho",
@@ -1120,7 +1120,6 @@
     {
       "from": "cheolho",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "Prosecutor Han asks for the death penalty for the seventeen-year-old gold medallist",
       "short": "prosecuted him",
@@ -1129,12 +1128,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "cheolho",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "With the tablet in hand and a hostage tied to a chair, Assemblyman Han beats Kang Chul with a pipe for answers",
       "short": "tortured him",
@@ -1143,12 +1142,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 14
+      "since": 14,
+      "kind": "event"
     },
     {
       "from": "cheolho",
       "to": "doyun",
-      "kind": "event",
       "type": "rivalry",
       "label": "Assemblyman Han takes Do Yun to bring Kang Chul to him",
       "short": "kidnapped him",
@@ -1157,12 +1156,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 15
+      "since": 15,
+      "kind": "event"
     },
     {
       "from": "cheolho",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "Told the story ends only when one of them dies, Assemblyman Han shoots Kang Chul in the chest",
       "short": "shot him",
@@ -1171,12 +1170,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "cheolho",
-      "kind": "event",
       "type": "rivalry",
       "label": "Kang Chul trades the footage of his own torture for Do Yun, and warns Han never to touch his people again",
       "short": "exposed him",
@@ -1185,12 +1184,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "seongmu",
       "to": "cheolho",
-      "kind": "event",
       "type": "rivalry",
       "label": "The creator takes his villain with him: Han's own hand raises the gun to his temple",
       "short": "made him shoot himself",
@@ -1199,7 +1198,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 16
+      "since": 16,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
@@ -1246,7 +1246,6 @@
     {
       "from": "sanghoon",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "The hooded figure of the final chapter stabs Kang Chul on the hotel rooftop",
       "short": "stabbed him",
@@ -1255,12 +1254,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "The faceless assassin is at Kang Chul's bedroom door with a gun, and vanishes from an elevator",
       "short": "attacked the penthouse",
@@ -1269,12 +1268,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
       "to": "kangchul",
-      "kind": "event",
       "type": "rivalry",
       "label": "From the real world, the killer calls: Kang Chul has a new family now, and it is her turn",
       "short": "threatened his wife",
@@ -1283,12 +1282,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
       "to": "yeonju",
-      "kind": "event",
       "type": "rivalry",
       "label": "In her own world the bullet is headed for her forehead when she vanishes",
       "short": "shot at her",
@@ -1297,12 +1296,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 8
+      "since": 8,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
       "to": "seongmu",
-      "kind": "event",
       "type": "rivalry",
       "label": "Seong Mu lifts his head from the desk and there is nothing there",
       "short": "took his face",
@@ -1311,12 +1310,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 10
+      "since": 10,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
       "to": "hyeonseok",
-      "kind": "event",
       "type": "rivalry",
       "label": "A bullet from nowhere, and a drawn gun in Kang Chul's hand: Ajusshi dies and Kang Chul is framed a second time",
       "short": "killed him",
@@ -1325,12 +1324,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 10
+      "since": 10,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "sanghoon",
-      "kind": "event",
       "type": "rivalry",
       "label": "Summoning himself into the manhwa, Kang Chul beats the killer down in his apartment and calls the police",
       "short": "caught him",
@@ -1339,12 +1338,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 12
+      "since": 12,
+      "kind": "event"
     },
     {
       "from": "sanghoon",
       "to": "yeonju",
-      "kind": "event",
       "type": "rivalry",
       "label": "Wearing her father's face, the killer shoots Yeon-joo as she runs",
       "short": "shot her in the back",
@@ -1353,12 +1352,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 13
+      "since": 13,
+      "kind": "event"
     },
     {
       "from": "kangchul",
       "to": "sanghoon",
-      "kind": "event",
       "type": "rivalry",
       "label": "A head-on collision and a hail of bullets: the killer dies, and Seong Mu's face comes back",
       "short": "killed him",
@@ -1367,7 +1366,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 13
+      "since": 13,
+      "kind": "event"
     },
     {
       "from": "kangyun",
@@ -1424,7 +1424,6 @@
     {
       "from": "detectivepark",
       "to": "seongmu",
-      "kind": "event",
       "type": "work",
       "label": "The detective on Seong Mu's case finds a shooting with no gun, no bullet and no one on the CCTV",
       "short": "investigated his shooting",
@@ -1433,7 +1432,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6
+      "since": 6,
+      "kind": "event"
     }
   ],
   "compact": {
@@ -1453,16 +1453,16 @@
       "sanghoon"
     ],
     "blocks": {
-      "Yeon-joo's Family": [
-        0,
-        0
-      ],
       "The Killer": [
         0,
         2
       ],
-      "Kang Chul's Murdered Family": [
-        1,
+      "Myungse Hospital": [
+        2,
+        2
+      ],
+      "Yeon-joo's Family": [
+        0,
         0
       ],
       "Kang Chul's Circle": [
@@ -1473,9 +1473,9 @@
         2,
         0
       ],
-      "Myungse Hospital": [
-        2,
-        2
+      "Kang Chul's Murdered Family": [
+        1,
+        0
       ]
     },
     "center": [
