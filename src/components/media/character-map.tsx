@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Crosshair, ListChecks, Maximize2, Minimize2, Minus, Plus, X } from "lucide-react";
+import { Crosshair, ListChecks, Maximize2, Minimize2, Minus, Pencil, Plus, X } from "lucide-react";
 import {
     actorLine,
     ERA_LABEL,
@@ -132,6 +132,7 @@ export function CharacterMap({
     onStop,
     onPickLink,
     onEditLink,
+    onEditPerson,
 }: {
     map: CharacterMapData;
     completed?: boolean;
@@ -157,6 +158,8 @@ export function CharacterMap({
      */
     onPickLink?: (index: number | null) => void;
     onEditLink?: (index: number) => void;
+    /** an "Edit character" button on a person's panel, the same way */
+    onEditPerson?: (id: string) => void;
 }) {
     const stops = useMemo(() => episodeStops(map), [map]);
     const episodes = stops.length ? stops[stops.length - 1][1] : 0;
@@ -833,6 +836,16 @@ export function CharacterMap({
                         </div>
                         <span className="ml-auto flex items-center gap-2 text-xs text-fg-dim">
                             {personLinks.length} link{personLinks.length === 1 ? "" : "s"}
+                            {onEditPerson && (
+                                <button
+                                    type="button"
+                                    onClick={() => onEditPerson(selectedPerson.id)}
+                                    className="inline-flex cursor-pointer items-center gap-1 rounded-md px-1.5 py-1 text-xs text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg"
+                                    title="Edit this character"
+                                >
+                                    <Pencil className="h-3.5 w-3.5" /> Edit character
+                                </button>
+                            )}
                             <button type="button" onClick={() => setSelected(null)} className="-mr-1 cursor-pointer rounded-md p-1 text-fg-dim transition-colors hover:bg-surface-2 hover:text-fg" title="Close" aria-label="Close">
                                 <X className="h-3.5 w-3.5" />
                             </button>

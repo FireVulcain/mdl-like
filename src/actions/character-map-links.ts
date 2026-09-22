@@ -8,6 +8,7 @@ import { prisma } from "@/lib/prisma";
 import { saveChart } from "@/lib/character-map-generate";
 import type { CharacterMapData, MapLink } from "@/lib/character-map";
 import { draftFrom, fingerprint, validateDraft, withLink, withoutLink } from "@/lib/character-map-links";
+import { linksOf, personFingerprint, personFrom, personId, validatePersonDraft, withoutPerson, withPerson, type PersonDraft } from "@/lib/character-map-people";
 
 /**
  * Writing one relationship of a chart, from the editor under the chart page.
@@ -94,6 +95,66 @@ export async function deleteRelationship({ mdlSlug, mediaId, index, expect }: { 
     if (fingerprint(current) !== expect) return { ok: false, error: "The chart changed while you were editing — reload the page." };
 
     const next = withoutLink(chart.map, index);
+    await saveChart(next, chart.source, { editedAt: new Date() });
+    revalidateMedia(mediaId);
+    return { ok: true, map: next };
+}
+
+/* ---------------------------------------------------------- the people */
+
+/**
+ * One person, added or rewritten — mostly someone MDL's cast does not carry,
+ * since that import is where everyone else comes from. `id` null adds; the
+ * id is then made from the name here, not in the browser, so two tabs
+ * cannot hand out the same one.
+ */
+export async function savePerson({
+    mdlSlug,
+    mediaId,
+    id,
+    expect,
+    draft,
+}: {
+    mdlSlug: string;
+    mediaId: string;
+    id: string | null;
+    expect: string | null;
+    draft: PersonDraft;
+}): Promise<LinkResult> {
+    if (!(await isAdminUser())) return { ok: false, error: "Only the admin can edit characters." };
+    const chart = await readChart(mdlSlug);
+    if (!chart) return { ok: false, error: "No chart for this entry." };
+
+    const current = id == null ? null : chart.map.people.find((p) => p.id === id);
+    if (id != null) {
+        if (!current) return { ok: false, error: "That character is no longer there — reload the page." };
+        if (expect && personFingerprint(current) !== expect) return { ok: false, error: "The chart changed while you were editing — reload the page." };
+    }
+
+    const errors = validatePersonDraft(draft, chart.map, id);
+    const first = Object.values(errors)[0];
+    if (first) return { ok: false, error: first };
+
+    const person = personFrom(draft, id ?? personId(draft.name, chart.map), current);
+    const next = withPerson(chart.map, person);
+    await saveChart(next, chart.source, { editedAt: new Date() });
+    revalidateMedia(mediaId);
+    return { ok: true, map: next };
+}
+
+/** A person with no links left. One who still has some is refused: the links would point at nobody. */
+export async function deletePerson({ mdlSlug, mediaId, id, expect }: { mdlSlug: string; mediaId: string; id: string; expect: string }): Promise<LinkResult> {
+    if (!(await isAdminUser())) return { ok: false, error: "Only the admin can edit characters." };
+    const chart = await readChart(mdlSlug);
+    if (!chart) return { ok: false, error: "No chart for this entry." };
+
+    const current = chart.map.people.find((p) => p.id === id);
+    if (!current) return { ok: false, error: "That character is no longer there — reload the page." };
+    if (personFingerprint(current) !== expect) return { ok: false, error: "The chart changed while you were editing — reload the page." };
+    const count = linksOf(chart.map, id);
+    if (count > 0) return { ok: false, error: `${current.name} still has ${count} relationship${count === 1 ? "" : "s"} — delete ${count === 1 ? "it" : "them"} first.` };
+
+    const next = withoutPerson(chart.map, id);
     await saveChart(next, chart.source, { editedAt: new Date() });
     revalidateMedia(mediaId);
     return { ok: true, map: next };

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Copy, Filter, Loader2, Pencil, Plus, Search, Trash2 } from "lucide-react";
+import { Copy, Filter, Loader2, Pencil, Plus, Search, Trash2, UserPlus } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
     doorGoverns,
@@ -75,6 +75,7 @@ export function RelationshipManager({
     onMap,
     highlight = null,
     editRequest = null,
+    onAddPerson,
 }: {
     map: CharacterMapData;
     mdlSlug: string;
@@ -92,6 +93,8 @@ export function RelationshipManager({
     highlight?: number | null;
     /** the chart's "Edit in the list": scroll to that row, out from under the filters if need be, and open it */
     editRequest?: { index: number; at: number } | null;
+    /** opens the character editor, for someone MDL's cast does not carry; the admin's only */
+    onAddPerson?: () => void;
 }) {
     const router = useRouter();
     const [query, setQuery] = useState("");
@@ -276,14 +279,26 @@ export function RelationshipManager({
                     </p>
                 </div>
                 {canEdit && (
-                    <button
-                        type="button"
-                        onClick={openCreate}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-sky-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-sky-400 cursor-pointer"
-                    >
-                        <Plus className="h-4 w-4" />
-                        Add relationship
-                    </button>
+                    <div className="flex items-center gap-2">
+                        {onAddPerson && (
+                            <button
+                                type="button"
+                                onClick={onAddPerson}
+                                className="inline-flex items-center gap-1.5 rounded-lg bg-surface-2 px-3 py-2 text-sm font-medium text-fg-soft transition-colors hover:bg-surface-3 hover:text-fg cursor-pointer"
+                            >
+                                <UserPlus className="h-4 w-4" />
+                                Add character
+                            </button>
+                        )}
+                        <button
+                            type="button"
+                            onClick={openCreate}
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-sky-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-sky-400 cursor-pointer"
+                        >
+                            <Plus className="h-4 w-4" />
+                            Add relationship
+                        </button>
+                    </div>
                 )}
             </div>
 

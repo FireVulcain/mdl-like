@@ -1,9 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { episodeStops, initialStop, type CharacterMapData } from "@/lib/character-map";
+import { useRouter } from "next/navigation";
+import { episodeStops, initialStop, type CharacterMapData, type MapPerson } from "@/lib/character-map";
+import { draftFromPerson, emptyPersonDraft, personFingerprint, type PersonDraft } from "@/lib/character-map-people";
 import { rememberReveals } from "@/actions/character-map-view";
+import { deletePerson, savePerson, type LinkResult } from "@/actions/character-map-links";
 import { CharacterMap } from "./character-map";
+import { PersonEditor } from "./person-editor";
 import { RelationshipManager } from "./relationship-manager";
 
 /**
@@ -65,6 +69,37 @@ export function RelationshipWorkspace({
     const [picked, setPicked] = useState<number | null>(null);
     const [editRequest, setEditRequest] = useState<{ index: number; at: number } | null>(null);
 
+    // The characters, written here rather than in the list: a new one is
+    // asked for from the list, an existing one from their panel in the chart.
+    const router = useRouter();
+    const [personEdit, setPersonEdit] = useState<{ person: MapPerson | null; expect: string | null; draft: PersonDraft } | null>(null);
+    const [personSaving, setPersonSaving] = useState(false);
+    const [personError, setPersonError] = useState<string | null>(null);
+    const openPerson = (id: string | null) => {
+        const person = id == null ? null : (map.people.find((p) => p.id === id) ?? null);
+        if (id != null && !person) return;
+        setPersonError(null);
+        setPersonEdit({ person, expect: person ? personFingerprint(person) : null, draft: person ? draftFromPerson(person) : emptyPersonDraft() });
+    };
+    const writePerson = async (write: () => Promise<LinkResult>) => {
+        setPersonSaving(true);
+        setPersonError(null);
+        try {
+            const res = await write();
+            if (!res.ok) {
+                setPersonError(res.error);
+                return;
+            }
+            setMap(res.map);
+            setPersonEdit(null);
+            router.refresh();
+        } catch {
+            setPersonError("The save did not go through.");
+        } finally {
+            setPersonSaving(false);
+        }
+    };
+
     return (
         <div className="space-y-8">
             <CharacterMap
@@ -77,6 +112,7 @@ export function RelationshipWorkspace({
                 onStop={setStop}
                 onPickLink={setPicked}
                 onEditLink={canEdit ? (index) => setEditRequest({ index, at: Date.now() }) : undefined}
+                onEditPerson={canEdit ? openPerson : undefined}
             />
             <div className="h-px bg-linear-to-r from-transparent via-line to-transparent" />
             <RelationshipManager
@@ -92,7 +128,21 @@ export function RelationshipWorkspace({
                 onMap={setMap}
                 highlight={picked}
                 editRequest={editRequest}
+                onAddPerson={canEdit ? () => openPerson(null) : undefined}
             />
+            {personEdit && (
+                <PersonEditor
+                    key={personEdit.person?.id ?? "new"}
+                    map={map}
+                    person={personEdit.person}
+                    initial={personEdit.draft}
+                    saving={personSaving}
+                    error={personError}
+                    onCancel={() => setPersonEdit(null)}
+                    onSave={(draft) => writePerson(() => savePerson({ mdlSlug, mediaId, id: personEdit.person?.id ?? null, expect: personEdit.expect, draft }))}
+                    onDelete={personEdit.person && personEdit.expect ? () => writePerson(() => deletePerson({ mdlSlug, mediaId, id: personEdit.person!.id, expect: personEdit.expect! })) : undefined}
+                />
+            )}
         </div>
     );
 }
