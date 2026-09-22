@@ -357,7 +357,7 @@
       "image": "https://i.mydramalist.com/X7zRg_5m.jpg",
       "group": "Jizhou",
       "inCast": true,
-      "note": "Zhenwei Commandant of Jizhou, the Grand Tutor Li's eldest grandson"
+      "note": "Zhenwei Commandant of Jizhou, the Grand Tutor Li's eldest grandson; trained with Xie Zheng under He Jing Yuan"
     },
     {
       "id": "qisheng",
@@ -384,7 +384,7 @@
       "image": "https://i.mydramalist.com/Nd63Qn_5m.jpg",
       "group": "The court of Yin",
       "inCast": true,
-      "note": "Chancellor of Yin, courtesy name Yi Gui; put the emperor on the throne seventeen years ago; his assistant Wei Sheng fires the cold arrow at the end"
+      "note": "Chancellor of Yin, courtesy name Yi Gui; put Qi Sheng on the throne seventeen years ago and rules through him, against Li Jing's clan; his assistant Wei Sheng fires the cold arrow at the end"
     },
     {
       "id": "weixuan",
@@ -420,7 +420,7 @@
       "image": "https://i.mydramalist.com/jQ2LXb_5m.jpg",
       "group": "The court of Yin",
       "inCast": true,
-      "note": "Grand Tutor of Yin, head of the Li clan; sold the East Palace's secret to the late emperor"
+      "note": "Grand Tutor of Yin, head of the Li clan and the Chancellor's rival at court; sold the East Palace's secret to the late emperor"
     },
     {
       "id": "qimin",
@@ -465,7 +465,7 @@
       "image": "https://i.mydramalist.com/ABd35X_5m.jpg",
       "group": "Changxin's rebels",
       "inCast": true,
-      "note": "Once the crown princess's maid"
+      "note": "Once the crown princess's maid; Qi Min's nanny and agent"
     },
     {
       "id": "zhaoxun",
@@ -474,7 +474,7 @@
       "image": "https://i.mydramalist.com/085pN_5m.jpg",
       "group": "Changxin's rebels",
       "inCast": true,
-      "note": "The Lin'an rice shop manager — Qi Min's man, keeper of the East Palace seal"
+      "note": "The Lin'an rice shop manager — Qi Min's man, keeper of the East Palace seal; Nanny Lan's son"
     }
   ],
   "links": [
@@ -497,14 +497,15 @@
       "to": "changyu",
       "type": "bond",
       "label": "The frail 'Yan Zheng' she married was the Marquis of Wu'an all along; she learns it when the army cheers him",
-      "short": "hid who he was",
+      "short": "hides who he is",
       "evidence": "he hides his identity and claims his name is Yan Zheng, a refugee from Chongzhou",
       "source": "cpophome ep. 1",
       "reveal": true,
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 26
+      "until": 26,
+      "wholeStory": false
     },
     {
       "from": "changyu",
@@ -530,7 +531,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 36
+      "since": 36,
+      "wholeStory": false
     },
     {
       "from": "changyu",
@@ -870,19 +872,6 @@
     {
       "from": "xiezheng",
       "to": "changning",
-      "type": "family",
-      "label": "The live-in husband she is not afraid of, who carries her at the lantern festival",
-      "short": "her brother-in-law",
-      "evidence": "Changning whispered to him that he should not be afraid of her sister",
-      "source": "cpophome ep. 6",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 6
-    },
-    {
-      "from": "xiezheng",
-      "to": "changning",
       "kind": "event",
       "type": "bond",
       "label": "In the snowy woods, wounded, he holds off the Wei family's assassins until her sister comes",
@@ -1096,7 +1085,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 12
+      "since": 12,
+      "wholeStory": false
     },
     {
       "from": "baoer",
@@ -1187,7 +1177,7 @@
       "to": "changyu",
       "type": "work",
       "label": "Madam Kang's grandson, avenging his grandmother, goes back into Lucheng with her",
-      "short": "stood by her",
+      "short": "her ally",
       "evidence": "Even Kang Xiaodan, seeking to avenge his grandmother, chose to stand by her side.",
       "source": "cpophome ep. 29",
       "reveal": false,
@@ -1219,7 +1209,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 24
+      "since": 24,
+      "wholeStory": false
     },
     {
       "from": "jin",
@@ -1356,7 +1347,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 11
+      "since": 11,
+      "until": 32
     },
     {
       "from": "gongsun",
@@ -1369,7 +1361,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 33
+      "since": 33,
+      "wholeStory": false
     },
     {
       "from": "gongsun",
@@ -1624,14 +1617,15 @@
       "to": "xiezheng",
       "type": "work",
       "label": "The general of Jizhou; Xie Zheng knows his glaive style from childhood, and the Fan girl's father's from him",
-      "short": "sparred with him as a boy",
+      "short": "his old sparring partner",
       "evidence": "a general he had sparred with as a child",
       "source": "cpophome ep. 6",
       "reveal": false,
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 30
+      "until": 30,
+      "wholeStory": false
     },
     {
       "from": "hejingyuan",
@@ -1715,7 +1709,8 @@
       "inferred": false,
       "directed": true,
       "since": 9,
-      "until": 32
+      "until": 32,
+      "wholeStory": false
     },
     {
       "from": "huaian",
@@ -1732,19 +1727,6 @@
     },
     {
       "from": "huaian",
-      "to": "xiezheng",
-      "type": "work",
-      "label": "Fellow disciples under He Jingyuan; the first to recognise the Marquis in the butcher's husband",
-      "short": "trained together",
-      "evidence": "Having studied martial arts and strategy alongside Xie Zheng years ago",
-      "source": "cpophome ep. 9",
-      "reveal": false,
-      "inferred": false,
-      "directed": false,
-      "since": 1
-    },
-    {
-      "from": "huaian",
       "to": "hejingyuan",
       "type": "work",
       "label": "He promises the dying general to keep the Fan sisters out of the storms",
@@ -1755,7 +1737,8 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 30
+      "until": 30,
+      "wholeStory": false
     },
     {
       "from": "lijing",
@@ -1934,7 +1917,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 24
+      "since": 24,
+      "wholeStory": false
     },
     {
       "from": "qishu",
@@ -2087,33 +2071,8 @@
       "inferred": false,
       "directed": false,
       "since": 13,
-      "until": 40
-    },
-    {
-      "from": "weiyan",
-      "to": "qisheng",
-      "type": "work",
-      "label": "The puppet between the Wei and the Li; a slap when he schemes",
-      "short": "put him on the throne",
-      "evidence": "if Wei Yan could put the Emperor on the throne seventeen years ago",
-      "source": "cpophome ep. 32",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1
-    },
-    {
-      "from": "lijing",
-      "to": "weiyan",
-      "type": "rivalry",
-      "label": "Chancellor against Grand Tutor over every decree",
-      "short": "the two factions",
-      "evidence": "the rivalry between the Chancellor and the Grand Tutor remains tense",
-      "source": "cpophome ep. 3",
-      "reveal": false,
-      "inferred": false,
-      "directed": false,
-      "since": 3
+      "until": 40,
+      "wholeStory": false
     },
     {
       "from": "weiyan",
@@ -2127,7 +2086,7 @@
       "inferred": false,
       "directed": true,
       "since": 9,
-      "until": 10
+      "kind": "event"
     },
     {
       "from": "weiyan",
@@ -2136,19 +2095,6 @@
       "label": "The reckless commander of the northwest; not his blood, his wife confesses at the end",
       "short": "his son",
       "evidence": "[Wei Yan's son]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1
-    },
-    {
-      "from": "madamewei",
-      "to": "weiyan",
-      "type": "family",
-      "label": "A marriage of convenience that saved her from execution",
-      "short": "his wife",
-      "evidence": "[Wei Yan's wife]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
@@ -2180,20 +2126,22 @@
       "inferred": false,
       "directed": true,
       "since": 17,
-      "until": 39
+      "until": 39,
+      "wholeStory": false
     },
     {
       "from": "weiyan",
       "to": "qirongyin",
       "type": "romance",
-      "label": "Deeply in love before an edict took her into the palace; her forged plea drew him from Jinzhou",
-      "short": "forbidden lovers",
+      "label": "Deeply in love before an edict took her into the palace; her forged plea drew him from Jinzhou — the secret comes out in episode 36",
+      "short": "revealed: his forbidden love",
       "evidence": "Wei Yan had once been in a forbidden relationship with Qi Rongyin, who later became Consort Shu.",
       "source": "cpophome ep. 36",
       "reveal": true,
       "inferred": false,
       "directed": false,
-      "since": 36
+      "since": 36,
+      "kind": "event"
     },
     {
       "from": "weiyan",
@@ -2449,20 +2397,6 @@
     },
     {
       "from": "qimin",
-      "to": "yuanqing",
-      "type": "family",
-      "label": "Raised as brothers; the elder lures the younger to Lin'an to be killed, and stabs him in a temple",
-      "short": "brothers",
-      "evidence": "The two brothers, Sui Yuanhuai and Sui Yuanqing, met shortly after.",
-      "source": "cpophome ep. 18",
-      "reveal": false,
-      "inferred": false,
-      "directed": false,
-      "since": 1,
-      "until": 33
-    },
-    {
-      "from": "qimin",
       "to": "qianqian",
       "type": "romance",
       "label": "Six years searching for the concubine who fled him; an empress's crown for her at the end",
@@ -2490,20 +2424,6 @@
     },
     {
       "from": "lanmomo",
-      "to": "qimin",
-      "type": "work",
-      "label": "The crown princess's maid, who carried the swapped boy out of the fire and now probes children for him",
-      "short": "his nanny and agent",
-      "evidence": "Granny Lan reported back to her master, Qi Min.",
-      "source": "cpophome ep. 14",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 14,
-      "until": 23
-    },
-    {
-      "from": "lanmomo",
       "to": "zhaoxun",
       "type": "family",
       "label": "Nanny Lan's son, Qi Min's man, keeper of the East Palace seal",
@@ -2514,20 +2434,6 @@
       "inferred": false,
       "directed": true,
       "since": 1
-    },
-    {
-      "from": "zhaoxun",
-      "to": "qimin",
-      "type": "work",
-      "label": "The Lin'an rice shop manager who reports to 'Master Qi' — until he flees with the child",
-      "short": "his man",
-      "evidence": "Qi Min reveals to his subordinate Zhao Xun",
-      "source": "cpophome ep. 12",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 12,
-      "until": 22
     },
     {
       "from": "shisanniang",
@@ -2555,7 +2461,8 @@
       "inferred": false,
       "directed": true,
       "since": 16,
-      "until": 33
+      "until": 33,
+      "wholeStory": false
     },
     {
       "from": "qimin",
@@ -2821,7 +2728,8 @@
       "inferred": false,
       "directed": false,
       "since": 35,
-      "until": 39
+      "until": 39,
+      "wholeStory": false
     },
     {
       "from": "qimin",
