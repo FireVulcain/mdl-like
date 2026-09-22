@@ -220,26 +220,55 @@ export function CharacterMap({
     // zooms into it. Nothing but the SVG's viewBox moves.
     const frameRef = useRef<HTMLDivElement>(null);
     const [frame, setFrame] = useState({ w: 1100, h: 760 });
-    // Full screen takes the whole block — the slider and the filters with the
-    // picture — since a chart read without them is a chart you cannot move
-    // through. The browser owns the state, so the button reads it back rather
-    // than keeping its own: Escape and F11 change it without asking us.
+    /**
+     * Full screen takes the whole block — the slider and the filters with the
+     * picture — since a chart read without them is a chart you cannot move
+     * through.
+     *
+     * Two ways there, and the reader is not told which one they got. The
+     * browser's own full screen is the one worth having: it takes the URL bar,
+     * the tabs and the dock as well, and Escape and F11 work without a line of
+     * code. Safari on iOS gives it to a <video> and to nothing else, and a
+     * request can be refused outright, so the fallback is the oldest trick
+     * there is — the block pinned over the page. That one keeps the browser's
+     * chrome, which is the ~100px it costs, and needs Escape wired by hand.
+     *
+     * `full` is what the picture is drawn at; `pinned` says which of the two
+     * is holding it, so leaving takes the right door.
+     */
     const blockRef = useRef<HTMLDivElement>(null);
-    const [full, setFull] = useState(false);
-    // Safari on iOS gives full screen to a <video> and to nothing else, so the
-    // button would be a dead key there. Read on mount, not at module scope:
-    // the server renders this too.
-    const [canFull, setCanFull] = useState(false);
+    // "native" is the browser's, and the browser owns that state: it is read
+    // back from the event rather than kept, or Escape and F11 would leave the
+    // button lying. "pinned" is ours, and ours to end.
+    const [mode, setMode] = useState<"none" | "native" | "pinned">("none");
+    const full = mode !== "none";
     useEffect(() => {
-        setCanFull(typeof document !== "undefined" && document.fullscreenEnabled && !!blockRef.current?.requestFullscreen);
-        const read = () => setFull(document.fullscreenElement === blockRef.current);
+        const read = () => setMode((m) => (document.fullscreenElement === blockRef.current ? "native" : m === "native" ? "none" : m));
         document.addEventListener("fullscreenchange", read);
         return () => document.removeEventListener("fullscreenchange", read);
     }, []);
-    const toggleFull = () => {
-        // A refused request (no gesture, a policy) leaves the button as it was
-        if (document.fullscreenElement) void document.exitFullscreen().catch(() => undefined);
-        else void blockRef.current?.requestFullscreen().catch(() => undefined);
+    // Pinned over the page, Escape is ours to honour — there is no full screen
+    // for the browser to leave — and the page under it must not scroll away.
+    useEffect(() => {
+        if (mode !== "pinned") return;
+        const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMode("none");
+        document.addEventListener("keydown", onKey);
+        const { overflow } = document.body.style;
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.removeEventListener("keydown", onKey);
+            document.body.style.overflow = overflow;
+        };
+    }, [mode]);
+    const toggleFull = async () => {
+        if (mode === "pinned") return setMode("none");
+        if (mode === "native") return void (await document.exitFullscreen().catch(() => undefined));
+        try {
+            await blockRef.current!.requestFullscreen();
+        } catch {
+            // No element full screen here (Safari on iOS), or a refused request
+            setMode("pinned");
+        }
     };
     // x, y: the top-left of the window in chart units; z: chart units per screen pixel, inverted (2 = twice as big)
     const [view, setView] = useState({ x: 0, y: 0, z: 1 });
@@ -271,6 +300,8 @@ export function CharacterMap({
         // Out of full screen the frame takes a share of its width; in it, the
         // room the controls leave, which is the element's own height.
         const measure = () => setFrame({ w: el.clientWidth, h: el.dataset.full ? el.clientHeight : Math.min(760, Math.max(420, Math.round(el.clientWidth * 0.62))) });
+        // The pinned block lands its size in one paint; the observer below
+        // catches the rest.
         measure();
         const ro = new ResizeObserver(measure);
         ro.observe(el);
@@ -430,7 +461,7 @@ export function CharacterMap({
         const textStroke = { paintOrder: "stroke" as const, stroke: GROUND, strokeWidth: 3, strokeLinejoin: "round" as const };
 
     return (
-        <div ref={blockRef} className={`space-y-3 ${full ? "flex flex-col bg-app p-4" : ""}`}>
+        <div ref={blockRef} className={`space-y-3 ${full ? "flex flex-col bg-app p-4" : ""} ${mode === "pinned" ? "fixed inset-0 z-50 overflow-auto" : ""}`}>
             {/* Two rows of controls: when (the moment of the story, for a dated
                 chart) and what (which links to draw). One row of everything
                 wrapped wherever it liked and read as a mess. The slider wears
@@ -695,7 +726,7 @@ export function CharacterMap({
                             ["Zoom in", <Plus key="in" className="h-4 w-4" />, () => zoomAt(1.25, frame.w / 2, frame.h / 2), view.z >= ZMAX],
                             ["Zoom out", <Minus key="out" className="h-4 w-4" />, () => zoomAt(0.8, frame.w / 2, frame.h / 2), view.z <= ZMIN],
                             ["Fit the whole chart", <Crosshair key="c" className="h-4 w-4" />, fit, false],
-                            ...(canFull ? [[full ? "Leave full screen" : "Full screen", full ? <Minimize2 key="f" className="h-4 w-4" /> : <Maximize2 key="f" className="h-4 w-4" />, toggleFull, false] as const] : []),
+                            [full ? "Leave full screen" : "Full screen", full ? <Minimize2 key="f" className="h-4 w-4" /> : <Maximize2 key="f" className="h-4 w-4" />, toggleFull, false],
                         ] as const
                     ).map(([title, icon, run, off]) => (
                         <button
