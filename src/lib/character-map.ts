@@ -139,7 +139,19 @@ export type MapLink = {
      * never stops. A moment has none: it is over the episode it happens.
      */
     until?: number | null;
+    /**
+     * `false` keeps the link out of the "Whole story" view — a tie that the
+     * panorama would only clutter, the first reading of a pair that a later
+     * one replaces. Absent means it is in. The slider does not read it: as
+     * of an episode, the link is there when it holds.
+     */
+    wholeStory?: boolean;
 };
+
+/** Whether a link is in the "Whole story" view. */
+export function inWholeStory(l: Pick<MapLink, "wholeStory">): boolean {
+    return l.wholeStory !== false;
+}
 
 /** A moment — something that happened once between two people, never drawn as a line. */
 export function isEvent(l: Pick<MapLink, "kind">): boolean {
@@ -500,7 +512,37 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
     return { width, height, people, links: laid, blocks };
 }
 
-export function linkPath(l: LaidOutLink): string {
+/**
+ * The link's line, from face centre to face centre — or, with `trimEnd`,
+ * stopping that far short of the second face, on the curve itself. An arrow
+ * hung on the end of a curve cannot be pushed back by the marker's own
+ * offset: that moves it along the tangent, which leaves the curve, so the
+ * arrow of a bent link floated beside its line. Cutting the curve where it
+ * crosses the ring puts the arrow's tip on the line and pointing along it.
+ */
+export function linkPath(l: LaidOutLink, trimEnd = 0): string {
     const straight = Math.abs(l.cx - (l.x1 + l.x2) / 2) < 0.01 && Math.abs(l.cy - (l.y1 + l.y2) / 2) < 0.01;
-    return straight ? `M${l.x1},${l.y1}L${l.x2},${l.y2}` : `M${l.x1},${l.y1}Q${l.cx},${l.cy} ${l.x2},${l.y2}`;
+    if (straight) {
+        const len = Math.hypot(l.x2 - l.x1, l.y2 - l.y1);
+        const k = len > trimEnd ? (len - trimEnd) / len : 0;
+        return `M${l.x1},${l.y1}L${l.x1 + (l.x2 - l.x1) * k},${l.y1 + (l.y2 - l.y1) * k}`;
+    }
+    if (trimEnd <= 0) return `M${l.x1},${l.y1}Q${l.cx},${l.cy} ${l.x2},${l.y2}`;
+    // The t where the curve is `trimEnd` from its end, by halving: the
+    // distance only grows walking back from the end along a single bend.
+    const at = (t: number) => {
+        const u = 1 - t;
+        return [u * u * l.x1 + 2 * u * t * l.cx + t * t * l.x2, u * u * l.y1 + 2 * u * t * l.cy + t * t * l.y2];
+    };
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 24; i++) {
+        const mid = (lo + hi) / 2;
+        const [x, y] = at(mid);
+        if (Math.hypot(l.x2 - x, l.y2 - y) > trimEnd) lo = mid;
+        else hi = mid;
+    }
+    // The first part of the curve, cut at t: same start, control pulled in, end on the curve
+    const [ex, ey] = at(lo);
+    const qx = l.x1 + (l.cx - l.x1) * lo, qy = l.y1 + (l.cy - l.y1) * lo;
+    return `M${l.x1},${l.y1}Q${qx},${qy} ${ex},${ey}`;
 }

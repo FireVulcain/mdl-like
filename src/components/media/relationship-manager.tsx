@@ -438,6 +438,7 @@ export function RelationshipManager({
                                     {link.reveal && <Badge tone="text-amber-400/90">Reveal</Badge>}
                                     {link.inferred && <Badge>Inferred</Badge>}
                                     {link.directed && <Badge>Directed</Badge>}
+                                    {link.wholeStory === false && <Badge>Not in whole story</Badge>}
                                 </div>
                             </div>
 

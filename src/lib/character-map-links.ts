@@ -4,7 +4,7 @@
 // every keystroke and the server action runs the same ones before it writes,
 // so the browser and the route never disagree about what a valid link is.
 
-import { isEvent, LINK_TYPES, type CharacterMapData, type LinkKind, type LinkType, type MapLink } from "@/lib/character-map";
+import { inWholeStory, isEvent, LINK_TYPES, type CharacterMapData, type LinkKind, type LinkType, type MapLink } from "@/lib/character-map";
 
 /**
  * One relationship as the form holds it: the text fields as strings (an
@@ -26,10 +26,12 @@ export type LinkDraft = {
     directed: boolean;
     since: number | null;
     until: number | null;
+    /** in the chart's "Whole story" view */
+    wholeStory: boolean;
 };
 
 /** The keys the editor owns. Anything else a link carries is kept untouched. */
-const KNOWN = new Set(["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"]);
+const KNOWN = new Set(["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until", "wholeStory"]);
 
 export function draftFrom(link: MapLink): LinkDraft {
     return {
@@ -46,6 +48,7 @@ export function draftFrom(link: MapLink): LinkDraft {
         directed: !!link.directed,
         since: link.since ?? null,
         until: link.until ?? null,
+        wholeStory: inWholeStory(link),
     };
 }
 
@@ -54,7 +57,7 @@ export function emptyDraft(map: CharacterMapData): LinkDraft {
     const counts = new Map<string, number>();
     for (const l of map.links) if (l.source) counts.set(l.source, (counts.get(l.source) ?? 0) + 1);
     const source = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
-    return { from: "", to: "", kind: "tie", type: "family", label: "", short: "", evidence: "", source, reveal: false, inferred: false, directed: false, since: null, until: null };
+    return { from: "", to: "", kind: "tie", type: "family", label: "", short: "", evidence: "", source, reveal: false, inferred: false, directed: false, since: null, until: null, wholeStory: true };
 }
 
 /**
@@ -82,6 +85,8 @@ export function linkFrom(draft: LinkDraft, original?: MapLink | null): MapLink {
     if (draft.kind === "event") link.kind = "event";
     if (draft.since != null || (original && "since" in original)) link.since = draft.since;
     if (draft.kind !== "event" && (draft.until != null || (original && "until" in original))) link.until = draft.until;
+    // Written only when it says no: every link is in the whole story unless told otherwise.
+    if (!draft.wholeStory) link.wholeStory = false;
     for (const [key, value] of Object.entries(original ?? {})) {
         if (!KNOWN.has(key)) (link as unknown as Record<string, unknown>)[key] = value;
     }

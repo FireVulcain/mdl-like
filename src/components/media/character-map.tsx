@@ -10,6 +10,7 @@ import {
     initialStop,
     isEvent,
     layoutCompact,
+    inWholeStory,
     linkHappened,
     linkPath,
     pairEvents,
@@ -63,6 +64,8 @@ const CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/;
 
 const W = 1100;
 const R = PORTRAIT_R;
+/** How far from a face's centre an arrow's tip stops: just outside the ring */
+const ARROW_GAP = R + 3;
 
 /**
  * What happened between two people, or around one, in the story's order:
@@ -174,6 +177,9 @@ export function CharacterMap({
     // reader has finished opens on it: there is nothing left to keep.
     const [whole, setWhole] = useState(completed);
     const asOf = byEpisode && !whole;
+    // What the view takes in: as of an episode, what has happened by then;
+    // in the whole story, every link but the ones kept out of it.
+    const inView = (l: MapLink) => (asOf ? (l.since ?? 0) <= episode : !byEpisode || inWholeStory(l));
     const [ownStop, setOwnStop] = useState(() => initialStop(stops, completed, progress));
     const stop = stopProp ?? ownStop;
     const setStop = onStop ?? setOwnStop;
@@ -280,7 +286,7 @@ export function CharacterMap({
 
     // As of episode N, a dated link has happened or not; only the undated
     // ones — the organisation chart's — still answer to the reveals toggle
-    const happened = (l: MapLink) => linkHappened(l, asOf, episode);
+    const happened = (l: MapLink) => linkHappened(l, asOf, episode) && (asOf || !byEpisode || inWholeStory(l));
     const hideLink = (l: MapLink) => !happened(l) || (!reveals && doorGoverns(l, asOf));
     const layout = useMemo(
         () => {
@@ -404,7 +410,7 @@ export function CharacterMap({
             ghosts: map.people.filter((p) => !p.inCast).length,
             byType: Object.fromEntries(TYPES.map((t) => [t, inCut.filter((l) => l.type === t && !l.inferred).length])) as Record<LinkType, number>,
             asOf: inCut.length,
-            moments: map.links.filter((l) => isEvent(l) && (!asOf || (l.since ?? 0) <= episode)).length,
+            moments: map.links.filter((l) => isEvent(l) && inView(l)).length,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [map, asOf, episode]);
@@ -457,9 +463,9 @@ export function CharacterMap({
         map.links
             .map((link, index) => ({ link, index }))
             .filter(({ link }) => isEvent(link) && (b ? (link.from === a && link.to === b) || (link.from === b && link.to === a) : link.from === a || link.to === a))
-            .filter(({ link }) => (!asOf || (link.since ?? 0) <= episode) && (reveals || !doorGoverns(link, asOf)))
+            .filter(({ link }) => inView(link) && (reveals || !doorGoverns(link, asOf)))
             .sort((x, y) => (x.link.since ?? 0) - (y.link.since ?? 0));
-    const selectedMoments = selectedLink && !isEvent(selectedLink) ? pairEvents(map.links, selectedLink.from, selectedLink.to).filter(({ link }) => (!asOf || (link.since ?? 0) <= episode) && (reveals || !doorGoverns(link, asOf))) : selectedPerson ? momentsOf(selectedPerson.id) : [];
+    const selectedMoments = selectedLink && !isEvent(selectedLink) ? pairEvents(map.links, selectedLink.from, selectedLink.to).filter(({ link }) => inView(link) && (reveals || !doorGoverns(link, asOf))) : selectedPerson ? momentsOf(selectedPerson.id) : [];
     const episodeOf = (l: MapLink) => (l.since == null ? null : isEvent(l) || l.until == null ? `Ep ${l.since}` : l.until === l.since ? `Ep ${l.since}` : `Ep ${l.since}–${l.until}`);
         const textStroke = { paintOrder: "stroke" as const, stroke: GROUND, strokeWidth: 3, strokeLinejoin: "round" as const };
 
@@ -573,7 +579,7 @@ export function CharacterMap({
                 >
                     <defs>
                         {TYPES.map((t) => (
-                            <marker key={t} id={`cm-arrow-${t}`} viewBox="0 -4 8 8" refX={8 + R} refY={0} markerWidth={7} markerHeight={7} orient="auto" className={TYPE_CLASS[t]}>
+                            <marker key={t} id={`cm-arrow-${t}`} viewBox="0 -4 8 8" refX={8} refY={0} markerWidth={7} markerHeight={7} orient="auto" className={TYPE_CLASS[t]}>
                                 <path d="M0,-4L8,0L0,4Z" fill="currentColor" />
                             </marker>
                         ))}
@@ -605,11 +611,13 @@ export function CharacterMap({
                         .map(({ l, active }) => {
                         const faded = linkFaded(l);
                         const lit = hoverLink === l.index || picked?.index === l.index;
+                        // A directed line stops at the ring, so its arrow sits on it; the others run under the faces
+                        const d = linkPath(l, l.directed ? ARROW_GAP : 0);
                         return (
                             <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : l.inferred ? 0.4 : 1, transition: "opacity .15s" }}>
-                                <path d={linkPath(l)} fill="none" stroke="currentColor" strokeWidth={12} strokeLinecap="round" strokeOpacity={picked?.index === l.index ? 0.3 : lit ? 0.18 : 0} style={{ transition: "stroke-opacity .15s" }} />
+                                <path d={d} fill="none" stroke="currentColor" strokeWidth={12} strokeLinecap="round" strokeOpacity={picked?.index === l.index ? 0.3 : lit ? 0.18 : 0} style={{ transition: "stroke-opacity .15s" }} />
                                 <path
-                                    d={linkPath(l)}
+                                    d={d}
                                     fill="none"
                                     stroke="currentColor"
                                     strokeWidth={active ? 3.5 : lit ? 3 : 2}
@@ -619,7 +627,7 @@ export function CharacterMap({
                                     style={{ transition: "stroke-width .15s" }}
                                 />
                                 <path
-                                    d={linkPath(l)}
+                                    d={d}
                                     fill="none"
                                     stroke="transparent"
                                     strokeWidth={14}

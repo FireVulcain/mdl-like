@@ -234,6 +234,7 @@ export function RelationshipPreview({ draft, map }: { draft: LinkDraft; map: Cha
                     <FlagDot on={draft.directed} label="Directed" />
                     <FlagDot on={draft.inferred} label="Inferred" />
                     <FlagDot on={draft.reveal} label="Reveal" />
+                    <FlagDot on={draft.wholeStory} label="Whole story" />
                 </div>
             </div>
         </div>
@@ -426,6 +427,15 @@ export function RelationshipEditor({
                                     onChange={(v) => set("inferred", v)}
                                     label={draft.inferred ? "Inferred" : "Explicit"}
                                     hint="No sentence in the sources backs it — the chart draws it faded."
+                                />
+                            </div>
+                            <div className="space-y-1">
+                                <span className="text-xs font-semibold uppercase tracking-wide text-fg-dim">Whole story</span>
+                                <SettingToggle
+                                    checked={draft.wholeStory}
+                                    onChange={(v) => set("wholeStory", v)}
+                                    label={draft.wholeStory ? "In the whole story" : "Left out of the whole story"}
+                                    hint="Off keeps it out of the chart's “Whole story” view. The episode slider still shows it while it holds."
                                 />
                             </div>
                         </div>
