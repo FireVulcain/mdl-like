@@ -177,8 +177,11 @@ export function CharacterMap({
     const stopIdx = Math.min(stop, Math.max(0, stops.length - 1));
     const range = stops[stopIdx] ?? [0, 0];
     const episode = range[1];
+    // Moving in the story leaves the whole-story view: the slider is the
+    // other way of looking, and a drag is asking for it.
     const goTo = (i: number) => {
         setStop(Math.max(0, Math.min(stops.length - 1, i)));
+        setWhole(false);
         setSelected(null);
     };
     // How far along the track the handle stands, for the fill and the label riding it
@@ -415,7 +418,8 @@ export function CharacterMap({
             {episodes > 0 && (
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                     <span className="text-xs font-semibold uppercase tracking-wider text-fg-dim">Episode</span>
-                    <div className="relative mt-3.5 h-5 w-64 sm:w-80">
+                    {/* Quieter while the whole story is up: the stop is kept, not looked at */}
+                    <div className={`relative mt-3.5 h-5 w-64 transition-opacity sm:w-80 ${whole ? "opacity-50" : ""}`}>
                         <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-surface-4" />
                         <div className="absolute left-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-sky-400" style={{ width: `${sliderPct}%` }} />
                         {/* one tick per stop, along the path the thumb's centre travels (8px in from each end) */}
@@ -442,8 +446,7 @@ export function CharacterMap({
                             step={1}
                             value={stopIdx}
                             onChange={(e) => goTo(Number(e.target.value))}
-                            disabled={whole}
-                            className="range-thumb absolute inset-0 w-full appearance-none bg-transparent disabled:opacity-40"
+                            className="range-thumb absolute inset-0 w-full appearance-none bg-transparent"
                             aria-label="As of episode"
                         />
                     </div>
