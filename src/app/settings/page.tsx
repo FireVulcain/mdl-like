@@ -23,6 +23,7 @@ import { MdlProfileSetting } from "@/components/settings/mdl-profile-setting";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
 import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-tabs";
 import { CronStatusPanel } from "@/components/settings/cron-status";
+import { ChartPreview } from "@/components/settings/chart-preview";
 import { getCronStatus } from "@/actions/cron-status";
 import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
@@ -81,6 +82,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         { id: "profile", label: "Public profile", description: "What visitors can see on your profile page" },
         { id: "notifications", label: "Notifications", description: "In-app banners and reminders" },
         { id: "jobs", label: "Background jobs", description: "The three scheduled runs that keep MDL figures and rating history current" },
+        { id: "chart-preview", label: "Chart preview", description: "Draw a relationship chart from a JSON file of your own" },
     ];
 
     const panels: Record<string, React.ReactNode> = {
@@ -137,6 +139,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             <p className="text-sm text-fg-dim">Sign in to manage your public profile.</p>
         ),
         notifications: <NotificationSettings initialPrefs={notifPrefs} />,
+        "chart-preview": <ChartPreview />,
     };
 
     return (
