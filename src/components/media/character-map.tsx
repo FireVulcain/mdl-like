@@ -167,8 +167,9 @@ export function CharacterMap({
     const byEpisode = episodes > 0;
     // The whole story at once: every tie the chart ever had, ended ones
     // too, and everyone. The panorama a broadcaster's chart is — the end
-    // stop is not it, since a tie that ended is off it by then.
-    const [whole, setWhole] = useState(false);
+    // stop is not it, since a tie that ended is off it by then. A show the
+    // reader has finished opens on it: there is nothing left to keep.
+    const [whole, setWhole] = useState(completed);
     const asOf = byEpisode && !whole;
     const [ownStop, setOwnStop] = useState(() => initialStop(stops, completed, progress));
     const stop = stopProp ?? ownStop;
