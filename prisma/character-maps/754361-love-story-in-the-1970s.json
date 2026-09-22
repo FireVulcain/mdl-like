@@ -430,7 +430,8 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 6
+      "until": 6,
+      "wholeStory": false
     },
     {
       "from": "feini",
@@ -470,7 +471,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 18
+      "since": 18,
+      "wholeStory": false
     },
     {
       "from": "feini",
@@ -817,7 +819,8 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 15
+      "until": 14,
+      "wholeStory": false
     },
     {
       "from": "feiting",
@@ -856,7 +859,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 18
+      "since": 18,
+      "wholeStory": false
     },
     {
       "from": "feini",
@@ -1142,14 +1146,15 @@
       "inferred": false,
       "directed": true,
       "since": 25,
-      "until": 28
+      "until": 27,
+      "wholeStory": false
     },
     {
       "from": "mushanhe",
       "to": "fangmujing",
       "type": "family",
       "label": "The mirror from a perfect exam score, given back",
-      "short": "her mother again",
+      "short": "her mother",
       "evidence": "The mother and daughter finally reconciled, letting go of years of bitterness.",
       "source": "cpophome ep. 28",
       "reveal": false,
@@ -1181,7 +1186,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 28
+      "since": 28,
+      "wholeStory": false
     },
     {
       "from": "professorwu",
@@ -1390,7 +1396,8 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 23
+      "until": 23,
+      "wholeStory": false
     },
     {
       "from": "xuhongqi",
@@ -1417,7 +1424,8 @@
       "inferred": false,
       "directed": true,
       "since": 5,
-      "until": 8
+      "until": 8,
+      "wholeStory": false
     },
     {
       "from": "yefeng",
@@ -1493,7 +1501,7 @@
       "to": "xuhongqi",
       "type": "work",
       "label": "The new Vice Director who sends the director back to the looms of Workshop One",
-      "short": "took her post",
+      "short": "her successor",
       "evidence": "Xu Hongqi was reassigned from her administrative post back to the production line in Workshop One",
       "source": "cpophome ep. 23",
       "reveal": false,
@@ -1931,7 +1939,8 @@
       "inferred": false,
       "directed": true,
       "since": 25,
-      "until": 27
+      "until": 27,
+      "wholeStory": false
     },
     {
       "from": "yuanjiashang",
