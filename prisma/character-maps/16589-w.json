@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "mdlSlug": "16589-w",
   "title": "W (2016)",
   "asianwiki": "W: Two Worlds Apart",
@@ -492,6 +492,7 @@
     {
       "from": "seongmu",
       "to": "yeonju",
+      "kind": "event",
       "type": "bond",
       "label": "Possessed by the killer he drew a face for, Seong Mu nearly strangles his own daughter",
       "short": "attacks her",
@@ -500,8 +501,7 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 15,
-      "until": 15
+      "since": 15
     },
     {
       "from": "doyun",
@@ -542,7 +542,7 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 3
+      "until": 16
     },
     {
       "from": "suhui",
@@ -574,6 +574,7 @@
     {
       "from": "kangchul",
       "to": "suhui",
+      "kind": "event",
       "type": "bond",
       "label": "Kang Chul insists So-hee is irreplaceable to him, saving her from vanishing as her narrative purpose fades",
       "short": "saved her from fading",
@@ -582,8 +583,7 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 8,
-      "until": 8
+      "since": 8
     },
     {
       "from": "cheolho",
@@ -614,6 +614,7 @@
     {
       "from": "cheolho",
       "to": "doyun",
+      "kind": "event",
       "type": "rivalry",
       "label": "Assemblyman Han kidnaps and tortures Do Yun to lure Kang Chul into a trap",
       "short": "kidnapped him",
@@ -622,8 +623,7 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 15,
-      "until": 15
+      "since": 15
     },
     {
       "from": "kangchul",
@@ -663,13 +663,13 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 10
+      "until": 16
     },
     {
       "from": "seongmu",
       "to": "hyeonseok",
       "type": "rivalry",
-      "label": "Possessed by the killer wearing Seong Mu's face, he shoots Ajusshi during a staged confession",
+      "label": "Possessed by the faceless killer wearing Seong Mu's face, he shoots Hyeon Seok during a staged confession",
       "short": "killed him",
       "evidence": "a bullet comes out of nowhere and shoots Ajusshi right in the heart. He flatlines immediately",
       "source": "dramabeans ep. 10",
@@ -761,7 +761,7 @@
       "to": "yeonju",
       "type": "friend",
       "label": "Kang Seok Beom is Yeon-joo's fellow resident and close friend at the hospital",
-      "short": "her friend",
+      "short": "her friend & colleague",
       "evidence": "[Yeon Ju's co-worker]",
       "source": "MDL cast",
       "reveal": false,
@@ -772,6 +772,7 @@
     {
       "from": "poongho",
       "to": "yeonju",
+      "kind": "event",
       "type": "romance",
       "label": "Kim Pung Ho is set up on an awkward blind date with Yeon-joo, who vanishes mid-date when pulled back into Kang Chul's world",
       "short": "failed blind date",
@@ -780,8 +781,7 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6,
-      "until": 6
+      "since": 6
     },
     {
       "from": "kangyun",
@@ -838,6 +838,7 @@
     {
       "from": "detectivepark",
       "to": "seongmu",
+      "kind": "event",
       "type": "work",
       "label": "Detective Park investigates the shooting of Seong Mu",
       "short": "investigates him",
@@ -846,8 +847,7 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 6,
-      "until": 6
+      "since": 6
     },
     {
       "from": "nursejung",
@@ -858,7 +858,7 @@
       "evidence": null,
       "source": null,
       "reveal": false,
-      "inferred": true,
+      "inferred": false,
       "directed": false,
       "since": null
     },

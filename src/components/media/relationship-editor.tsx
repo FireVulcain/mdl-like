@@ -202,7 +202,9 @@ export function RelationshipPreview({ draft, map }: { draft: LinkDraft; map: Cha
     const from = map.people.find((p) => p.id === draft.from) ?? null;
     const to = map.people.find((p) => p.id === draft.to) ?? null;
     const episodes =
-        draft.since == null && draft.until == null
+        draft.kind === "event"
+            ? draft.since == null ? "A moment — which episode?" : `Moment · episode ${draft.since}`
+            : draft.since == null && draft.until == null
             ? "Always shown"
             : draft.until == null
               ? `From episode ${draft.since}`
@@ -340,6 +342,23 @@ export function RelationshipEditor({
                     </Section>
 
                     <Section title="Relationship">
+                        <Field label="Kind" hint="what lasts is drawn; what happened once is read">
+                            <div className="flex gap-1.5">
+                                {(["tie", "event"] as const).map((k) => (
+                                    <button
+                                        key={k}
+                                        type="button"
+                                        onClick={() => set("kind", k)}
+                                        aria-pressed={draft.kind === k}
+                                        className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all cursor-pointer ${
+                                            draft.kind === k ? "bg-surface-4 text-fg ring-1 ring-line-strong" : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg"
+                                        }`}
+                                    >
+                                        {k === "tie" ? "Tie — a line on the chart" : "Moment — one episode, read in the panel"}
+                                    </button>
+                                ))}
+                            </div>
+                        </Field>
                         <Field label="Type">
                             <div className="flex flex-wrap gap-1.5">
                                 {LINK_TYPES.map((t) => (
@@ -373,15 +392,19 @@ export function RelationshipEditor({
                                 : "This chart has no recaps yet — dating a link turns on the chart's “By episode” view."}
                         </p>
                         <div className="grid grid-cols-2 gap-3">
-                            <Field label="First appearance" error={shown.since}>
-                                <EpisodeInput value={draft.since} onChange={(n) => set("since", n)} max={Math.max(covered, 999)} placeholder="always" />
+                            <Field label={draft.kind === "event" ? "Episode" : "First appearance"} error={shown.since}>
+                                <EpisodeInput value={draft.since} onChange={(n) => set("since", n)} max={Math.max(covered, 999)} placeholder={draft.kind === "event" ? "which" : "always"} />
                             </Field>
-                            <Field label="Active until" error={shown.until}>
-                                <EpisodeInput value={draft.until} onChange={(n) => set("until", n)} max={Math.max(covered, 999)} placeholder="never ends" />
-                            </Field>
+                            {draft.kind === "tie" && (
+                                <Field label="Active until" error={shown.until}>
+                                    <EpisodeInput value={draft.until} onChange={(n) => set("until", n)} max={Math.max(covered, 999)} placeholder="never ends" />
+                                </Field>
+                            )}
                         </div>
                         <p className="text-[11px] text-fg-faint">
-                            A tie that changes is two links: the first one ends where the second begins — &ldquo;bond, 1 to 4&rdquo;, then &ldquo;romance, from 5&rdquo;.
+                            {draft.kind === "event"
+                                ? "A moment is over the episode it happens in. What it changed between the two is a tie of its own, from that episode."
+                                : "A tie that changes is two links: the first one ends where the second begins — “bond, 1 to 4”, then “romance, from 5”."}
                         </p>
                     </Section>
 

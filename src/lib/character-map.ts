@@ -6,6 +6,16 @@
  * A drama's character relationship chart — 인물관계도 — as stored in
  * CharacterMap.dataJson. Read from the MDL cast list and the drama's
  * Wikipedia character section; every link keeps the sentence it came from.
+ *
+ * Three things live in it, and the chart keeps them apart:
+ * - people: the cast. Once met, a person stays on the chart to the end,
+ *   whether or not any tie of theirs still holds.
+ * - ties: what lasts between two people (a mother, a marriage, a rivalry),
+ *   drawn as lines, each holding from `since` to `until`.
+ * - moments: what happened between two people once (a rescue, a kiss, a
+ *   betrayal), never drawn as a line — read in the panel of the pair, and in
+ *   the list under the chart in the story's order. A moment is a link with
+ *   `kind: "event"`; a tie has no `kind`, or `kind: "tie"`.
  */
 export type LinkType = "family" | "romance" | "rivalry" | "work" | "friend" | "bond";
 
@@ -86,9 +96,18 @@ export function actorLine(p: MapPerson): string {
     return others.length === 1 ? `${p.actor} · ${others[0].name}` : p.actor;
 }
 
+/**
+ * A tie lasts and is drawn; a moment happened once and is read. Absent
+ * means tie — every chart written before the distinction is all ties, and
+ * `chartVersion` says whether a chart was ever sorted into the two.
+ */
+export type LinkKind = "tie" | "event";
+
 export type MapLink = {
     from: string;
     to: string;
+    /** a moment (`event`) or a lasting tie (absent, or `tie`) */
+    kind?: LinkKind;
     type: LinkType;
     /** the full reading, for the detail line */
     label: string;
@@ -116,18 +135,59 @@ export type MapLink = {
      * The last episode the tie still holds, for one that stops holding. A
      * story that turns a bond into a romance is two links — the README's
      * rule — and this is what takes the first one off the chart when the
-     * second arrives: `since: 1, until: 4` and `since: 5`. Absent, which is
-     * every link written so far, means it never stops.
+     * second arrives: `since: 1, until: 4` and `since: 5`. Absent means it
+     * never stops. A moment has none: it is over the episode it happens.
      */
     until?: number | null;
 };
 
+/** A moment — something that happened once between two people, never drawn as a line. */
+export function isEvent(l: Pick<MapLink, "kind">): boolean {
+    return l.kind === "event";
+}
+
 /**
  * Whether a link is on the chart as of an episode. An undated link is always
- * there; a dated one from `since` until `until`, both inclusive.
+ * there; a dated tie from `since` until `until`, both inclusive; a moment
+ * only in the episode it happens.
  */
 export function linkActiveAt(l: MapLink, episode: number): boolean {
+    if (isEvent(l)) return l.since == null || l.since === episode;
     return (l.since ?? 0) <= episode && (l.until == null || episode <= l.until);
+}
+
+/**
+ * Whether a link has begun by an episode: a tie that has started, held or
+ * ended, a moment that has happened. What the list under the chart shows as
+ * of a stop, and what says a person has been met.
+ */
+export function linkBegunBy(l: MapLink, episode: number): boolean {
+    return (l.since ?? 0) <= episode;
+}
+
+/**
+ * Whether a person is on the chart as of an episode: yes from the first
+ * episode one of their links begins, and from then on — a mentor who dies
+ * in episode 6 is still on the chart in episode 16, his tie ended. Someone
+ * with no dated link at all is always there.
+ */
+export function personMetBy(links: MapLink[], id: string, episode: number): boolean {
+    const own = links.filter((l) => l.from === id || l.to === id);
+    return own.length === 0 || own.some((l) => linkBegunBy(l, episode));
+}
+
+/** Whether a person has a tie that still holds as of an episode — drawn full when so, faded when not. */
+export function personActiveAt(links: MapLink[], id: string, episode: number): boolean {
+    const own = links.filter((l) => (l.from === id || l.to === id) && !isEvent(l));
+    return own.length === 0 || own.some((l) => linkActiveAt(l, episode));
+}
+
+/** The moments between two people, in the story's order. */
+export function pairEvents(links: MapLink[], a: string, b: string): { link: MapLink; index: number }[] {
+    return links
+        .map((link, index) => ({ link, index }))
+        .filter(({ link }) => isEvent(link) && ((link.from === a && link.to === b) || (link.from === b && link.to === a)))
+        .sort((x, y) => (x.link.since ?? 0) - (y.link.since ?? 0));
 }
 
 /** The last episode any link names — the far end of the "By episode" slider. */
@@ -160,9 +220,18 @@ export function initialStop(stops: [number, number][], completed: boolean, progr
     return Math.max(0, passed - 1);
 }
 
-/** Whether a link has happened as of the stop; on an undated chart (`byEpisode` false) every link has. */
+/**
+ * Whether a link is on the chart as of the stop: a tie that holds, a moment
+ * in its episode. On an undated chart, or in the whole-story view
+ * (`byEpisode` false), every link is.
+ */
 export function linkHappened(l: MapLink, byEpisode: boolean, episode: number): boolean {
     return !byEpisode || linkActiveAt(l, episode);
+}
+
+/** Whether a link is in the list as of the stop: begun by then, whether or not it still holds. */
+export function linkListed(l: MapLink, byEpisode: boolean, episode: number): boolean {
+    return !byEpisode || linkBegunBy(l, episode);
 }
 
 /**
@@ -177,7 +246,8 @@ export function doorGoverns(l: MapLink, byEpisode: boolean): boolean {
 }
 
 export type CharacterMapData = {
-    version: 1;
+    /** 1: every link is a tie; 2: the links are sorted into ties and moments (`kind`) */
+    version: 1 | 2;
     mdlSlug: string;
     title: string;
     /** the asianwiki page, when its title is not the MDL one ("W - Two Worlds" for "W") */
@@ -257,8 +327,11 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         .map((p) => ({ ...p, x: 0, y: 0, lead: center.has(p.id), captions: [] }));
     const byId = new Map(people.map((p) => [p.id, p]));
 
+    // Moments are never lines: the chart draws what lasts, and a rescue in
+    // episode 3 is read in the panel of the pair, not hung between two faces.
     const links = map.links
         .map((l, index) => ({ l, index }))
+        .filter(({ l }) => !isEvent(l))
         .filter(({ l }) => byId.has(l.from) && byId.has(l.to) && !(opts.hideLink?.(l) ?? false))
         .filter(({ l }) => !opts.types || opts.types.has(l.type))
         // A link that is both a reveal and inferred is a reveal first: the

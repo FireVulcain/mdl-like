@@ -8,9 +8,13 @@ import {
     doorGoverns,
     episodeStops,
     initialStop,
+    isEvent,
     layoutCompact,
     linkHappened,
     linkPath,
+    pairEvents,
+    personActiveAt,
+    personMetBy,
     LINK_TYPES as TYPES,
     portrait,
     PORTRAIT_R,
@@ -59,6 +63,40 @@ const CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/;
 
 const W = 1100;
 const R = PORTRAIT_R;
+
+/**
+ * What happened between two people, or around one, in the story's order:
+ * the moments the chart never draws. Each is a link, so picking one opens
+ * its sentence the way a line's does.
+ */
+function MomentList({ moments, byId, onPick, about }: {
+    moments: { link: MapLink; index: number }[];
+    byId: Map<string, { name: string }>;
+    onPick: (index: number) => void;
+    /** the person the list is about, when it is about one: the other end is named */
+    about?: string;
+}) {
+    return (
+        <div className="mt-3 border-t border-line-soft pt-2">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-fg-dim">What happened</p>
+            <ol className="mt-1 space-y-0.5">
+                {moments.map(({ link, index }) => {
+                    const other = about ? byId.get(link.from === about ? link.to : link.from)?.name : null;
+                    return (
+                        <li key={index}>
+                            <button type="button" onClick={() => onPick(index)} className="flex w-full items-baseline gap-2.5 rounded px-1 py-0.5 text-left transition-colors hover:bg-surface-2 cursor-pointer">
+                                <span className="w-10 shrink-0 font-mono text-[11px] tabular-nums text-fg-dim">Ep {link.since}</span>
+                                <span className={`text-xs ${TYPE_CLASS[link.type]} ${link.reveal ? "italic" : ""}`}>{link.short}</span>
+                                {other && <span className="text-xs text-fg-dim">· {other}</span>}
+                                <span className="min-w-0 flex-1 truncate text-xs text-fg-soft">{link.label}</span>
+                            </button>
+                        </li>
+                    );
+                })}
+            </ol>
+        </div>
+    );
+}
 
 /**
  * The relationship chart, on its own page.
@@ -127,6 +165,11 @@ export function CharacterMap({
     // is the last stop. An undated chart has no stops and draws everything.
     // The page may hold the stop instead, for the list under the chart.
     const byEpisode = episodes > 0;
+    // The whole story at once: every tie the chart ever had, ended ones
+    // too, and everyone. The panorama a broadcaster's chart is — the end
+    // stop is not it, since a tie that ended is off it by then.
+    const [whole, setWhole] = useState(false);
+    const asOf = byEpisode && !whole;
     const [ownStop, setOwnStop] = useState(() => initialStop(stops, completed, progress));
     const stop = stopProp ?? ownStop;
     const setStop = onStop ?? setOwnStop;
@@ -180,21 +223,22 @@ export function CharacterMap({
 
     // As of episode N, a dated link has happened or not; only the undated
     // ones — the organisation chart's — still answer to the reveals toggle
-    const happened = (l: MapLink) => linkHappened(l, byEpisode, episode);
-    const hideLink = (l: MapLink) => !happened(l) || (!reveals && doorGoverns(l, byEpisode));
+    const happened = (l: MapLink) => linkHappened(l, asOf, episode);
+    const hideLink = (l: MapLink) => !happened(l) || (!reveals && doorGoverns(l, asOf));
     const layout = useMemo(
         () => {
-            const hidePerson = byEpisode
-                ? (id: string) => {
-                      const own = map.links.filter((l) => l.from === id || l.to === id);
-                      return own.length > 0 && !own.some(happened);
-                  }
-                : undefined;
+            // As of an episode, a person is there from the first link of theirs
+            // that begins, and stays — a tie that ended does not take a face
+            // off the chart. Only someone not yet met is left out.
+            const hidePerson = asOf ? (id: string) => !personMetBy(map.links, id, episode) : undefined;
             return layoutCompact(map, { width: W, everyone: true, types, inferred, ghosts, hideLink, hidePerson });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [map, types, inferred, ghosts, reveals, byEpisode, episode],
+        [map, types, inferred, ghosts, reveals, asOf, episode],
     );
+    // A face none of whose ties still holds — the mentor after he dies, the
+    // ex after the break — is drawn quieter: on the chart, out of the story.
+    const inactive = useMemo(() => new Set(asOf ? layout.people.filter((p) => !personActiveAt(map.links, p.id, episode)).map((p) => p.id) : []), [asOf, layout, map, episode]);
 
     useLayoutEffect(() => {
         const el = frameRef.current;
@@ -286,20 +330,23 @@ export function CharacterMap({
     };
 
     const counts = useMemo(() => {
-        // What the toggles count, as of the episode when that view is on
-        const inCut = map.links.filter(happened);
+        // What the toggles count, as of the episode when that view is on —
+        // the ties, since those are what the toggles draw; the moments are
+        // counted apart, for the line beside the slider
+        const inCut = map.links.filter((l) => !isEvent(l) && happened(l));
         return {
             // Each toggle counts the links it alone decides: a reveal that is
             // also inferred is the reveals toggle's (see layoutCompact); as of
             // an episode, a dated reveal is the slider's
-            reveals: inCut.filter((l) => doorGoverns(l, byEpisode)).length,
+            reveals: inCut.filter((l) => doorGoverns(l, asOf)).length,
             inferred: inCut.filter((l) => l.inferred && !l.reveal).length,
             ghosts: map.people.filter((p) => !p.inCast).length,
             byType: Object.fromEntries(TYPES.map((t) => [t, inCut.filter((l) => l.type === t && !l.inferred).length])) as Record<LinkType, number>,
             asOf: inCut.length,
+            moments: map.links.filter((l) => isEvent(l) && (!asOf || (l.since ?? 0) <= episode)).length,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [map, byEpisode, episode]);
+    }, [map, asOf, episode]);
 
     const byId = useMemo(() => new Map(layout.people.map((p) => [p.id, p])), [layout]);
     const focus = hover ?? (selected?.kind === "person" ? selected.id : null);
@@ -343,6 +390,16 @@ export function CharacterMap({
     const selectedLink = selected?.kind === "link" ? map.links[selected.index] : null;
     const selectedPerson = selected?.kind === "person" ? (byId.get(selected.id) ?? null) : null;
     const personLinks = selectedPerson ? layout.links.filter((l) => l.from === selectedPerson.id || l.to === selectedPerson.id) : [];
+    // The moments of a person, or of the picked pair, as of the stop, in the
+    // story's order — what the chart does not draw and the panel tells.
+    const momentsOf = (a: string, b?: string) =>
+        map.links
+            .map((link, index) => ({ link, index }))
+            .filter(({ link }) => isEvent(link) && (b ? (link.from === a && link.to === b) || (link.from === b && link.to === a) : link.from === a || link.to === a))
+            .filter(({ link }) => (!asOf || (link.since ?? 0) <= episode) && (reveals || !doorGoverns(link, asOf)))
+            .sort((x, y) => (x.link.since ?? 0) - (y.link.since ?? 0));
+    const selectedMoments = selectedLink && !isEvent(selectedLink) ? pairEvents(map.links, selectedLink.from, selectedLink.to).filter(({ link }) => (!asOf || (link.since ?? 0) <= episode) && (reveals || !doorGoverns(link, asOf))) : selectedPerson ? momentsOf(selectedPerson.id) : [];
+    const episodeOf = (l: MapLink) => (l.since == null ? null : isEvent(l) || l.until == null ? `Ep ${l.since}` : l.until === l.since ? `Ep ${l.since}` : `Ep ${l.since}–${l.until}`);
         const textStroke = { paintOrder: "stroke" as const, stroke: GROUND, strokeWidth: 3, strokeLinejoin: "round" as const };
 
     return (
@@ -384,7 +441,8 @@ export function CharacterMap({
                             step={1}
                             value={stopIdx}
                             onChange={(e) => goTo(Number(e.target.value))}
-                            className="range-thumb absolute inset-0 w-full appearance-none bg-transparent"
+                            disabled={whole}
+                            className="range-thumb absolute inset-0 w-full appearance-none bg-transparent disabled:opacity-40"
                             aria-label="As of episode"
                         />
                     </div>
@@ -399,8 +457,11 @@ export function CharacterMap({
                             <Plus className="h-3 w-3" />
                         </button>
                     </div>
+                    <button type="button" onClick={() => setWhole((v) => !v)} aria-pressed={whole} className={pill(whole)} title="Every tie the story had, ended ones too, and everyone">
+                        Whole story
+                    </button>
                     <span className="ml-auto text-xs tabular-nums text-fg-dim">
-                        {layout.people.length} people · {counts.asOf} links
+                        {layout.people.length} people · {counts.asOf} ties{counts.moments > 0 && ` · ${counts.moments} moments`}
                     </span>
                 </div>
             )}
@@ -522,7 +583,7 @@ export function CharacterMap({
                             <g
                                 key={p.id}
                                 transform={`translate(${p.x},${p.y})`}
-                                style={{ opacity: faded ? 0.18 : 1, transition: "opacity .15s" }}
+                                style={{ opacity: faded ? 0.18 : inactive.has(p.id) ? 0.55 : 1, transition: "opacity .15s" }}
                                 onMouseEnter={() => setHover(p.id)}
                                 // Released on leaving the face, not the frame: otherwise the
                                 // last face hovered kept the chart dimmed while the pointer
@@ -651,6 +712,12 @@ export function CharacterMap({
                         <span className="font-semibold text-fg">{byId.get(selectedLink.to)?.name ?? selectedLink.to}</span>
                         <Face person={byId.get(selectedLink.to) ?? null} />
                         <span className={`ml-1 text-xs font-medium ${TYPE_CLASS[selectedLink.type]}`}>{selectedLink.label}</span>
+                        {episodeOf(selectedLink) && (
+                            <span className="font-mono text-[11px] tabular-nums text-fg-dim">
+                                {isEvent(selectedLink) ? "moment · " : ""}
+                                {episodeOf(selectedLink)}
+                            </span>
+                        )}
                         <span className="ml-auto flex items-center gap-1">
                             {onEditLink && selected?.kind === "link" && (
                                 <button
@@ -677,6 +744,7 @@ export function CharacterMap({
                     ) : (
                         <p className="mt-2 text-xs text-fg-dim">No sentence in the sources says this — it is known from the show, not from the text.</p>
                     )}
+                    {selectedMoments.length > 0 && <MomentList moments={selectedMoments} byId={byId} onPick={pickLink} />}
                 </div>
             ) : selectedPerson ? (
                 <div className="rounded-xl border border-line-soft bg-surface-1 px-4 py-3 text-sm">
@@ -712,6 +780,7 @@ export function CharacterMap({
                         </span>
                     </div>
                     {selectedPerson.note && <p className="mt-2 text-xs text-fg-dim">{selectedPerson.note}</p>}
+                    {selectedMoments.length > 0 && <MomentList moments={selectedMoments} byId={byId} onPick={pickLink} about={selectedPerson.id} />}
                     {personLinks.length > 0 && (
                         <ul className="mt-2 divide-y divide-line-soft">
                             {personLinks.map((l) => {

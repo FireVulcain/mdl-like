@@ -6,7 +6,8 @@ import { Copy, Filter, Loader2, Pencil, Plus, Search, Trash2 } from "lucide-reac
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
     doorGoverns,
-    linkHappened,
+    isEvent,
+    linkListed,
     LINK_TYPES,
     TYPE_CLASS,
     TYPE_GLYPH,
@@ -55,6 +56,7 @@ function Badge({ children, tone = "" }: { children: React.ReactNode; tone?: stri
 
 function episodeText(l: MapLink): string | null {
     if (l.since == null && l.until == null) return null;
+    if (isEvent(l)) return `Ep ${l.since}`;
     if (l.until == null) return `Ep ${l.since}+`;
     if (l.since == null) return `to ep ${l.until}`;
     return l.since === l.until ? `Ep ${l.since}` : `Ep ${l.since}–${l.until}`;
@@ -95,6 +97,9 @@ export function RelationshipManager({
     const [query, setQuery] = useState("");
     const [types, setTypes] = useState<Set<LinkType>>(new Set());
     const [flags, setFlags] = useState<{ inferred: boolean; directed: boolean }>({ inferred: false, directed: false });
+    // Ties or moments, or both (the default). Moments are listed in the
+    // story's order — that is what a list of them is for.
+    const [kind, setKind] = useState<"all" | "tie" | "event">("all");
     const [editing, setEditing] = useState<{ mode: EditorMode; index: number | null; expect: string | null; original: MapLink | null; draft: LinkDraft } | null>(null);
     const [saving, setSaving] = useState(false);
     const [editorError, setEditorError] = useState<string | null>(null);
@@ -106,18 +111,21 @@ export function RelationshipManager({
     const name = (id: string) => byId.get(id)?.name ?? id;
 
     // As of the page's place in the story, by the chart's own rule: a dated
-    // chart is always read as of a stop, an undated one has none
+    // chart is always read as of a stop, an undated one has none. The list
+    // keeps what has begun by the stop, ended or not — a tie that ended is
+    // still part of the story a reader at that stop knows.
     const byEpisode = stops.length > 0;
     const stopIdx = Math.min(stop, Math.max(0, stops.length - 1));
     const episode = stops[stopIdx]?.[1] ?? 0;
-    const happened = useMemo<Row[]>(() => map.links.map((link, index) => ({ link, index })).filter(({ link }) => linkHappened(link, byEpisode, episode)), [map, byEpisode, episode]);
+    const happened = useMemo<Row[]>(() => map.links.map((link, index) => ({ link, index })).filter(({ link }) => linkListed(link, byEpisode, episode)), [map, byEpisode, episode]);
     const all = useMemo<Row[]>(() => happened.filter(({ link }) => reveals || !doorGoverns(link, byEpisode)), [happened, reveals, byEpisode]);
     const revealCount = useMemo(() => happened.filter(({ link }) => doorGoverns(link, byEpisode)).length, [happened, byEpisode]);
 
     const rows = useMemo<Row[]>(() => {
         const q = query.trim().toLowerCase();
-        return all
+        const kept = all
             .filter(({ link }) => {
+                if (kind !== "all" && (kind === "event") !== isEvent(link)) return false;
                 if (types.size && !types.has(link.type)) return false;
                 if (flags.inferred && !link.inferred) return false;
                 if (flags.directed && !link.directed) return false;
@@ -126,9 +134,11 @@ export function RelationshipManager({
                 const hay = [link.label, link.short, link.evidence, link.source, ...people.flatMap((p) => [p.name, p.actor])];
                 return hay.some((s) => s?.toLowerCase().includes(q));
             });
-    }, [all, byId, query, types, flags]);
+        return kind === "event" ? [...kept].sort((a, b) => (a.link.since ?? 0) - (b.link.since ?? 0)) : kept;
+    }, [all, byId, query, types, flags, kind]);
 
-    const filtering = !!query.trim() || types.size > 0 || flags.inferred || flags.directed;
+    const filtering = !!query.trim() || types.size > 0 || flags.inferred || flags.directed || kind !== "all";
+    const momentCount = useMemo(() => all.filter(({ link }) => isEvent(link)).length, [all]);
     const counts = useMemo(() => Object.fromEntries(LINK_TYPES.map((t) => [t, all.filter(({ link }) => link.type === t).length])) as Record<LinkType, number>, [all]);
 
     const toggleType = (t: LinkType) =>
@@ -142,6 +152,7 @@ export function RelationshipManager({
         setQuery("");
         setTypes(new Set());
         setFlags({ inferred: false, directed: false });
+        setKind("all");
     };
 
     // The chart asked for a row: filters that hide it are cleared, the
@@ -258,7 +269,8 @@ export function RelationshipManager({
                 <div>
                     <h2 className="font-display text-lg font-semibold text-fg">All relationships</h2>
                     <p className="text-sm text-fg-muted">
-                        {all.length} relationship{all.length === 1 ? "" : "s"}
+                        {all.length - momentCount} tie{all.length - momentCount === 1 ? "" : "s"}
+                        {momentCount > 0 && <span> · {momentCount} moment{momentCount === 1 ? "" : "s"}</span>}
                         {filtering && <span className="text-fg-dim"> · {rows.length} shown</span>}
                         {!reveals && revealCount > 0 && <span className="text-fg-dim"> · {revealCount} behind the reveals</span>}
                     </p>
@@ -345,6 +357,17 @@ export function RelationshipManager({
                     </>
                 )}
 
+                {momentCount > 0 && (
+                    <>
+                        {(["tie", "event"] as const).map((k) => (
+                            <button key={k} type="button" onClick={() => setKind((v) => (v === k ? "all" : k))} aria-pressed={kind === k} className={pill(kind === k)}>
+                                {k === "tie" ? "Ties" : "Moments"}
+                            </button>
+                        ))}
+                        <div className="h-4 w-px bg-surface-3" />
+                    </>
+                )}
+
                 {(["inferred", "directed"] as const).map((f) => (
                     <button key={f} type="button" onClick={() => setFlags((v) => ({ ...v, [f]: !v[f] }))} aria-pressed={flags[f]} className={pill(flags[f])}>
                         Only {f === "inferred" ? "inferred" : "directed"}
@@ -396,6 +419,7 @@ export function RelationshipManager({
                                     <TypeMark type={link.type} />
                                     <span className="truncate text-xs text-fg-soft">{link.short || link.label}</span>
                                     {eps && <span className="shrink-0 font-mono text-[11px] tabular-nums text-fg-dim">{eps}</span>}
+                                    {isEvent(link) && <Badge tone="text-sky-400/90">Moment</Badge>}
                                     {link.reveal && <Badge tone="text-amber-400/90">Reveal</Badge>}
                                     {link.inferred && <Badge>Inferred</Badge>}
                                     {link.directed && <Badge>Directed</Badge>}

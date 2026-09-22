@@ -11,7 +11,7 @@
 // The shapes and the merge live here, with no server imports: the job runs
 // them, and a test can run them over a chart on disk.
 
-import type { CharacterMapData, LinkType, MapLink, MapPerson } from "@/lib/character-map";
+import { isEvent, type CharacterMapData, type LinkType, type MapLink, type MapPerson } from "@/lib/character-map";
 import type { Recap } from "@/lib/character-map-inputs";
 import { linkFrom, draftFrom } from "@/lib/character-map-links";
 
@@ -185,6 +185,7 @@ export function applyPatch(map: CharacterMapData, patch: ChartPatch, recaps: Rec
         else if (set.from) draft.from = set.from;
         if (set.to && !ids.has(set.to)) warnings.push(`change to link #${edit.link}: "${set.to}" is not a person, left alone`);
         else if (set.to) draft.to = set.to;
+        if (set.kind === "event" || set.kind === "tie") draft.kind = set.kind;
         if (set.type) draft.type = set.type as LinkType;
         if (set.label != null) draft.label = set.label;
         if (set.short != null) draft.short = set.short;
@@ -225,6 +226,10 @@ export function applyPatch(map: CharacterMapData, patch: ChartPatch, recaps: Rec
         }
         if (l.from === l.to) {
             warnings.push(`new link ${l.from} → itself, dropped`);
+            continue;
+        }
+        if (isEvent(l) && l.since == null) {
+            warnings.push(`new moment ${l.from} → ${l.to} "${l.short}" names no episode, dropped`);
             continue;
         }
         kept.push(linkFrom(draftFrom(l)));

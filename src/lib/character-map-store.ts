@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
-import type { CharacterMapData, MapLink, MapPerson } from "@/lib/character-map";
+import { isEvent, type CharacterMapData, type MapLink, type MapPerson } from "@/lib/character-map";
 
 /** The chart stored for an MDL entry, or null. Cached per request. */
 export const getCharacterMap = cache(async (mdlSlug: string | null | undefined): Promise<CharacterMapData | null> => {
@@ -111,10 +111,12 @@ export function closestRelations(map: CharacterMapData, hideSpoilers: boolean, l
     const seen = new Set<string>();
     const out: Closest[] = [];
     const candidates = map.links
-        .filter((l) => l.type in rank && (!hideSpoilers || !l.reveal))
+        // ties only — a moment is not what someone is to a lead — and the
+        // ones that still hold before the ones that ended
+        .filter((l) => !isEvent(l) && l.type in rank && (!hideSpoilers || !l.reveal))
         .filter((l) => leads.has(l.from) !== leads.has(l.to) && keep.has(l.from) && keep.has(l.to))
         // sourced before inferred; within each, the closer kinds of tie first
-        .sort((a, b) => Number(a.inferred) - Number(b.inferred) || rank[a.type] - rank[b.type]);
+        .sort((a, b) => Number(a.inferred) - Number(b.inferred) || Number(a.until != null) - Number(b.until != null) || rank[a.type] - rank[b.type]);
     for (const link of candidates) {
         const personId = leads.has(link.from) ? link.to : link.from;
         if (seen.has(personId)) continue;

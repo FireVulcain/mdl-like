@@ -48,6 +48,40 @@ generated in production is in the checkout the next time the dev server
 starts, and goes out with the next commit — stills included, since the
 extension has by then written them to the row from the production page.
 
+## What a chart is
+
+Three things, kept apart — the chart is a picture of the first two and a
+record of the third:
+
+- **People** are the cast. Once met, a person stays on the chart to the
+  end: a mentor who dies in episode 6 is still there in episode 16, drawn
+  quieter, his tie ended. Being on the chart and having a tie that still
+  holds are two different things.
+- **Ties** are what lasts between two people — a mother, a marriage, a
+  rivalry, a job. They are the lines. A tie holds from `since` to `until`,
+  and a tie that changes is two ties.
+- **Moments** are what happened once between two people — a rescue, a
+  kiss, a betrayal, a reveal, a death at someone's hand. They are never
+  lines: they are read in the panel of the pair and in the list under the
+  chart, in the story's order. A moment is a link with `"kind": "event"`
+  and a `since`; a tie has no `kind`. The test is "does this still
+  describe them next episode?" — yes is a tie, no is a moment, and a
+  moment that changes what two people are to each other is written with
+  the tie it opens.
+
+`version` says whether a chart tells the two apart: `1` is every chart
+written before the distinction (all ties, some of them one-episode
+"moments in all but name"), `2` a chart sorted into ties and moments. The
+page draws both; a `1` is carried to `2` by
+`npx tsx scripts/reclassify-character-map.ts <slug>` (one-episode ties
+become moments; check its report) or by a rewrite.
+
+Three views read the same links: **as of an episode** (the slider — the
+ties that hold, the people met so far), **whole story** (every tie the
+story had, ended ones too, and everyone — the panorama a broadcaster
+prints), and the **list**, which as of a stop keeps what has begun,
+ended or not, and lists moments in the story's order.
+
 ## Reading rules
 
 - **People come from the MDL cast** — main, support and guest roles. Someone
@@ -153,24 +187,24 @@ every link:
   episode of the recap it was read from. A link from the cast list or
   Wikipedia has `since: 1` (or none: an undated link is always drawn). A
   reveal is dated by the episode it is revealed in, not the one it is about.
-  A tie that changes is two links: "hunts Kingfisher" from episode 2, and
-  "lets her go" from episode 14, each with its own sentence.
+  A tie that changes is two ties: "hunts Kingfisher" from episode 2, and
+  "lets her go" from episode 14, each with its own sentence. A moment's
+  `since` is the episode it happens in, and it has no `until`.
 - **`until`** is the last episode a tie still holds, for one that stops
   holding: the "bond" of episodes 1-4 gets `since: 1, until: 4` and the
   romance that replaces it `since: 5`, so the slider shows one or the other
   and never both. Absent means it never stops. Only `since` moves the
   slider's stops; an `until` past the recaps costs their granularity
   nothing.
-- **The end view draws every link without an `until`**, so `until` is not
-  optional bookkeeping: it is what keeps a 40-episode chart readable. A
-  tie that is replaced, undone or over ends (the fake marriage where the
+- **As of an episode the chart draws every tie that holds**, so `until` is
+  not optional bookkeeping: it is what keeps a 40-episode chart readable.
+  A tie that is replaced, undone or over ends (the fake marriage where the
   real one starts, "his secretary" when she is fired, a mentor the episode
-  he dies); a moment (a rescue, a slap, a gift) is `since` and `until` the
-  same episode; only what still holds at the end stays open. Between two
-  people, at most two open links, never two of the same type — Pursuit of
-  Jade's leads carry twelve links, ten of which end, and the end view shows
-  two. The generator is told the same, and warns on a pair with three open
-  links. Ties that only say "is in this block" (his guard, her squad, his
+  he dies); a rescue, a slap, a gift is a moment, not a one-episode tie;
+  only what still holds at the end stays open. Between two people, at most
+  two open ties, never two of the same type — the leads may share a dozen
+  moments, not a dozen ties. The generator is told the same, and warns on
+  a pair with three open ties and on a tie of one episode. Ties that only say "is in this block" (his guard, her squad, his
   assistant) are drawn for two members of a block at most, and a support
   role with nothing but such a membership is left out.
 - **`source` names the recap the sentence is in**, and the sentence decides
@@ -190,13 +224,15 @@ every link:
   reader at episode 11 stands at the "9–10" stop and sees nothing of 11-12.
 
 A dated chart is then read **as of an episode**: a slider shows it as of a
-recap's end — a link first seen later is not drawn, nor a person none of
-whose links have happened yet, and a reveal that has happened by then is
-out from behind the spoiler toggle. It opens on the last stop the reader
-has passed, or at the end for a show they have finished — which is also
-the whole story, so there is no separate view of it. The list under the
-chart stands at the same stop. A chart with no dated link has no slider
-and draws everything.
+recap's end — a tie first seen later is not drawn, nor a person none of
+whose links have begun yet, and a reveal that has happened by then is
+out from behind the spoiler toggle. A person met stays, drawn quieter
+once no tie of theirs holds. It opens on the last stop the reader has
+passed, or at the end for a show they have finished. "Whole story" beside
+the slider draws every tie the story had, ended ones too — the end stop
+is not that, since what ended is off it. The list under the chart stands
+at the same stop and keeps what has begun by it. A chart with no dated
+link has no slider and draws everything.
 
 ## Carrying a chart forward
 
@@ -221,8 +257,9 @@ the frontend nor this folder, exactly like the recaps themselves. They are
 derived and disposable: `dataJson` is the source of truth, and a lost
 context only costs the next run one full read of the recaps, which is what
 the first Continue on an older chart does anyway ("read once to
-summarise"). The ordinary operation is `addLinks` — a tie that changes is
-a second dated link, by the rule above, not a rewrite — and a patch that
+summarise"). The ordinary operation is `addLinks` — mostly moments, and
+the ties the story opens; a tie that changes is a second dated tie, by
+the rule above, not a rewrite — and a patch that
 would delete more than a fifth of the chart is refused outright.
 
 **Rewrite instead** stays one click away, and is the answer when the

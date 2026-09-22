@@ -4,7 +4,7 @@
 // every keystroke and the server action runs the same ones before it writes,
 // so the browser and the route never disagree about what a valid link is.
 
-import { LINK_TYPES, type CharacterMapData, type LinkType, type MapLink } from "@/lib/character-map";
+import { isEvent, LINK_TYPES, type CharacterMapData, type LinkKind, type LinkType, type MapLink } from "@/lib/character-map";
 
 /**
  * One relationship as the form holds it: the text fields as strings (an
@@ -14,6 +14,8 @@ import { LINK_TYPES, type CharacterMapData, type LinkType, type MapLink } from "
 export type LinkDraft = {
     from: string;
     to: string;
+    /** a lasting tie, drawn; or a moment, read in the panel and the list */
+    kind: LinkKind;
     type: LinkType;
     label: string;
     short: string;
@@ -27,12 +29,13 @@ export type LinkDraft = {
 };
 
 /** The keys the editor owns. Anything else a link carries is kept untouched. */
-const KNOWN = new Set(["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"]);
+const KNOWN = new Set(["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"]);
 
 export function draftFrom(link: MapLink): LinkDraft {
     return {
         from: link.from,
         to: link.to,
+        kind: isEvent(link) ? "event" : "tie",
         type: link.type,
         label: link.label ?? "",
         short: link.short ?? "",
@@ -51,7 +54,7 @@ export function emptyDraft(map: CharacterMapData): LinkDraft {
     const counts = new Map<string, number>();
     for (const l of map.links) if (l.source) counts.set(l.source, (counts.get(l.source) ?? 0) + 1);
     const source = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
-    return { from: "", to: "", type: "family", label: "", short: "", evidence: "", source, reveal: false, inferred: false, directed: false, since: null, until: null };
+    return { from: "", to: "", kind: "tie", type: "family", label: "", short: "", evidence: "", source, reveal: false, inferred: false, directed: false, since: null, until: null };
 }
 
 /**
@@ -74,8 +77,11 @@ export function linkFrom(draft: LinkDraft, original?: MapLink | null): MapLink {
         inferred: draft.inferred,
         directed: draft.directed,
     };
+    // A tie has no kind written — every chart from before the distinction
+    // reads that way — and a moment has no until: it is over when it happens.
+    if (draft.kind === "event") link.kind = "event";
     if (draft.since != null || (original && "since" in original)) link.since = draft.since;
-    if (draft.until != null || (original && "until" in original)) link.until = draft.until;
+    if (draft.kind !== "event" && (draft.until != null || (original && "until" in original))) link.until = draft.until;
     for (const [key, value] of Object.entries(original ?? {})) {
         if (!KNOWN.has(key)) (link as unknown as Record<string, unknown>)[key] = value;
     }
@@ -99,6 +105,7 @@ export function validateDraft(draft: LinkDraft, map: CharacterMapData): DraftErr
     if (draft.since != null && (!Number.isInteger(draft.since) || draft.since < 1)) errors.since = "An episode number, from 1.";
     if (draft.until != null && (!Number.isInteger(draft.until) || draft.until < 1)) errors.until = "An episode number, from 1.";
     if (draft.since != null && draft.until != null && draft.until < draft.since) errors.until = "The last episode comes before the first.";
+    if (draft.kind === "event" && draft.since == null) errors.since = "A moment happens in an episode — say which.";
     return errors;
 }
 
@@ -110,6 +117,7 @@ export function draftWarnings(draft: LinkDraft, map: CharacterMapData): string[]
     const out: string[] = [];
     if (draft.inferred && draft.evidence.trim()) out.push("Marked inferred, but it carries a sentence — inferred means no sentence backs it.");
     if (!draft.inferred && !draft.evidence.trim()) out.push("No sentence backs this. Either quote one, or mark it inferred so the chart draws it faded.");
+    if (draft.kind === "tie" && draft.since != null && draft.until === draft.since) out.push("A tie that holds for one episode is usually a moment — something that happened, not something that lasts. Moments are read in the panel, not drawn.");
     // Only the first episode moves the slider's stops: they are the ends of
     // the recaps' ranges, and one that no recap covers drops the slider back
     // to counting episode by episode. An `until` past them costs nothing.

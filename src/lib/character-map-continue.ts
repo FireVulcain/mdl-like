@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-import type { CharacterMapData } from "@/lib/character-map";
+import { isEvent, type CharacterMapData } from "@/lib/character-map";
 import type { CastMember, Recap } from "@/lib/character-map-inputs";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 import { applyPatch, type ChartPatch, type GenerationContext, type GenerationPlan, type MergeResult } from "@/lib/character-map-patch";
@@ -25,14 +25,18 @@ import { checkSources } from "@/lib/character-map-sources";
 
 const CONTINUE_RULES = `You carry a Korean or Chinese drama's character relationship chart forward over the episodes that have aired since it was last read. You are given the chart as it stands, a digest of the episodes already read, the recaps of the new episodes in full, and the MDL cast list. You answer with a patch — what to add and what to change — never with a whole chart.
 
-HOW THE CHART IS DATED — this is the rule everything else follows
-- A tie that changes over the run is TWO links, each with its own since and its own sentence, not one link rewritten. Rivals in episode 2 who become allies in episode 10 are "rivalry, since 2" and "friend, since 10". Give the first one until: 9 so the chart stops drawing it where the second takes over, and add the second. Never change the first one's type.
-- A moment the new episodes bring — a rescue, a slap, a kidnapping resolved next episode, a gift — is a link with since and until the same episode. A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks. The chart's end view draws every link without an until, and it must stay sparse: at most two open links between two people, never two of the same type. When you add a third, end one.
+TWO KINDS OF LINK — this is the rule everything else follows
+- kind "tie": what LASTS between two people (a mother, a marriage, a rivalry, a job). Drawn as a line, holding from since to until.
+- kind "event": what HAPPENED ONCE (a rescue, a kiss, a betrayal, a confession, a reveal, a death at someone's hand). Never drawn; read in the panel and in a list in the story's order. An event has since and no until.
+- The test: "does this still describe them next episode?" Yes → tie. No → event. When an event changes what two people are to each other, write both: the event, and the tie it opens (or the until on the tie it ends).
+- A tie that changes over the run is TWO ties, each with its own since and its own sentence, not one link rewritten. Rivals in episode 2 who become allies in episode 10 are "rivalry, since 2" and "friend, since 10". Give the first one until: 9 so the chart stops drawing it where the second takes over, and add the second. Never change the first one's type.
+- A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks. The chart draws every tie that holds as of an episode, and it must stay sparse: at most two open ties between two people, never two of the same type. When you add a third, end one — or ask whether it is an event.
 - Do not add a tie that only says "is in this block" (his guard, her squad, his assistant) for a face the chart has, or for a new face no sentence names for anything else.
-- So the ordinary work of a continue run is addLinks. updateLinks and removeLinks are for a chart that was WRONG, not for a story that moved on.
+- So the ordinary work of a continue run is addLinks — mostly events, and the few ties that stand behind them. updateLinks and removeLinks are for a chart that was WRONG, not for a story that moved on.
+- A link in the chart marked "moment" is an event; every other one is a tie. On a chart written before the two were told apart, a tie of one episode ("since ep 6, until ep 6") is a moment in all but name — leave it alone.
 
 WHAT TO ADD (addLinks)
-- Ties the new recaps show that the chart does not have: a rescue, a betrayal, a marriage, a parent revealed, a debt, a new colleague.
+- Events the new recaps bring that a viewer would remember: a rescue, a betrayal, a kiss, a parent revealed, a death. Ties the new recaps open: a marriage, a new colleague, an alliance, a debt.
 - since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "cpophome ep. 12" — the recap the sentence is in, and no other: the checks find the sentence back and correct a wrong number. An event happens in the episode its sentence is in, never earlier because it "was coming"; a reveal is dated by the recap that reveals it.
 - reveal: true when the new episodes reveal something the story had kept — a hidden parent, a true identity, a killer. The episode of the REVEAL is the since, not the episode it is about.
 - A new face the recaps name: addPeople, taking name, actor and the img= URL from the MDL cast list given below. Someone the recaps name whom the cast list does not carry gets inCast false and image null. Put anyone who matters to the leads in addToCompact, and give their group a cell in blocks if it is a new group.
@@ -58,6 +62,7 @@ const nullable = (type: string) => ({ type: [type, "null"] });
 const LINK_PROPS = {
     from: { type: "string" },
     to: { type: "string" },
+    kind: { type: "string", enum: ["tie", "event"] },
     type: { type: "string", enum: LINK_TYPES },
     label: { type: "string" },
     short: { type: "string" },
@@ -155,7 +160,7 @@ export function chartAsText(map: CharacterMapData): string {
     out.push("", "LINKS (use the number to change one):");
     map.links.forEach((l, i) => {
         const marks = [l.directed ? "directed" : null, l.reveal ? "reveal" : null, l.inferred ? "inferred" : null].filter(Boolean).join(", ");
-        const when = l.since == null ? "from the start" : `since ep ${l.since}${l.until != null ? `, until ep ${l.until}` : ""}`;
+        const when = isEvent(l) ? `moment, ep ${l.since ?? "?"}` : l.since == null ? "from the start" : `since ep ${l.since}${l.until != null ? `, until ep ${l.until}` : ""}`;
         out.push(`#${i} ${l.from} → ${l.to} | ${l.type} | "${l.short}" | ${l.label} | ${when}${marks ? ` | ${marks}` : ""}`);
         if (l.evidence) out.push(`     evidence: ${l.evidence}${l.source ? ` — ${l.source}` : ""}`);
     });

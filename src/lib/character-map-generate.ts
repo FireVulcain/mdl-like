@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import * as fs from "fs";
 import * as path from "path";
 import { prisma } from "@/lib/prisma";
-import type { CharacterMapData, Era, MapLink, MapPerson } from "@/lib/character-map";
+import { isEvent, type CharacterMapData, type Era, type MapLink, type MapPerson } from "@/lib/character-map";
 import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
 import { checkSources } from "@/lib/character-map-sources";
 import type { Prisma } from "@prisma/client";
@@ -35,14 +35,18 @@ PEOPLE
 - id: a short lowercase ascii slug of the given name (e.g. "aesun", "gwansik", "jiwook"); unique. name: the romanised name as MDL writes it, "/" between aliases ("Ryan Gold / Heo Yun Je"). actor: the actor exactly as MDL writes it. image: the img= URL from the cast line (null when absent). note: one short line only when it says something a caption cannot (a job, a condition, a second role by the same actor).
 - group: the household or circle, named the way a broadcaster's chart would ("Ae Sun's family", "Cheum Museum", "The palace"). The two leads use the group "Leads". Six groups or fewer beyond Leads.
 
-LINKS
+LINKS — a link is one of two kinds, and the chart treats them differently
+- kind "tie": what LASTS between two people — a mother, a marriage, a rivalry, a job, a friendship, a creator and his creation. Drawn as a line on the chart, holding from since to until.
+- kind "event": what HAPPENED ONCE between two people — a rescue, a kiss, a slap, a betrayal, a confession, a reveal, a death at someone's hand, a kidnapping. Never drawn as a line: read in the panel of the pair and in a list in the story's order. An event has since (the episode) and no until.
+- The question to ask: "does this still describe them next episode?" Yes → tie. No → event. "married" is a tie; "saved his life" is an event; "in love since the rooftop" is a tie that an event began. When an event changes what the two are to each other, write both: the event, and the tie it opens (or the until on the tie it ends).
+- Ties carry the chart: keep them few and standing. Events carry the story: write the ones a viewer would remember, with their sentence.
 - Every link keeps the sentence it was read from in evidence, and where in source: "MDL cast" for a [bracket] note (quote the bracket, e.g. "[Ae Sun's mother]"), "MDL synopsis", "ko.wikipedia", "zh.wikipedia", "en.wikipedia". Brackets are the most reliable source of all.
 - A link with no sentence behind it is inferred: true, with evidence and source null. Keep these rare — only what any viewer of the show would know — and never invent a fact the inputs contradict.
 - When sources disagree, the MDL synopsis wins, then the native-language Wikipedia, then en.wikipedia.
 - type: family, romance, rivalry, work (also loyalty, mentors, servants, colleagues), friend, bond (what the story invents: a soul in the wrong body, a ghost and its host, a past life, a fan and an idol).
 - directed: false for symmetric ties (married, friends, rivals, siblings); true when the label reads from "from" to "to" ("mother" = from is to's mother; "loves him" = from loves to).
 - reveal: true for a twist the story keeps for later — a hidden parent, a true identity, a killer, an affair. When in doubt, mark it.
-- label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated.
+- label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated. For an event, short names the act ("saved his life", "first kiss", "shot him") and label says it in a sentence.
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
 - A tie that only says "is in this block" — his guard, her squad, his assistant, a murdered sibling, a maid — is drawn once at most per person, and never for more than two members of the same block: the block's name already says it. A support role whose only tie would be such a membership, whom no source names for anything else, is left out; the ones the story names (the guard who took the spear, the assistant who became a confidant) stay, with that tie.
 
@@ -50,10 +54,11 @@ EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sect
 - The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "cpophome ep. 12".
 - since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
 - source names the recap the evidence sentence is in — that one and no other. The checks find the sentence back in the recaps and correct a source that names another episode. An event — an alliance, a betrayal, a rescue, a kiss — happens in the episode its sentence is in, and its since is that episode: never an earlier one because the event "was coming", never a later one. A reveal's since is the episode of the recap that reveals it, even when the thing revealed is older. Only a standing tie (a mother, a job, a marriage from before the story) may have a since earlier than the sentence that describes it.
-- A tie that changes over the run is two links, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
-- until: the last episode a tie still holds. Every link that is replaced, undone or over gets one — the fake marriage ends where the real one starts, "his secretary" ends when she is fired, "forgot her" ends when he remembers, a mentor's tie ends the episode he dies. A moment — a rescue, a slap, a kidnapping resolved next episode, a gift — is since and until the same episode. Only what still holds at the end has no until: a marriage that lasts, a sibling, a love that is not undone, a reveal the ending stands on.
-- The chart is read as of an episode, and at the end it draws every link without an until: keep that end view sparse. Between two people, at most two links without an until, and never two of the same type. Twelve links between the leads is right when ten of them end; twelve that all hold is a knot.
-- With recaps, prefer links a reader of the show would recognise as its turns; a chart of forty links is fine when the recaps carry them and most of them end.
+- A tie that changes over the run is two ties, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
+- until: the last episode a tie still holds. Every tie that is replaced, undone or over gets one — the fake marriage ends where the real one starts, "his secretary" ends when she is fired, "forgot her" ends when he remembers, a mentor's tie ends the episode he dies. Only what still holds at the end has no until: a marriage that lasts, a sibling, a love that is not undone. An event never has an until.
+- A thing that is over the episode it happens in is an event, not a one-episode tie: a rescue, a slap, a kidnapping resolved next episode, a gift, a confession, a shooting. Write it with kind "event".
+- The chart is read as of an episode, and it draws every tie that holds then: keep the ties sparse. Between two people, at most two ties without an until, and never two of the same type. The leads may share a dozen events; they should not share a dozen ties.
+- With recaps, write the events a reader of the show would recognise as its turns — a chart with thirty events is fine when the recaps carry them — and only the ties that stand behind them.
 
 COMPACT
 - compact.people: the cut the compact view shows — the leads, their households, and whoever the story turns on; whole groups, never half of one. A big school class or a village can be left out of the cut and stays in the full view.
@@ -62,7 +67,7 @@ COMPACT
 - main: the ids of MDL's Main roles, leads first.
 
 OUTPUT
-- version is always 1. mdlSlug, title, native, year and country are given. sources lists what was read, e.g. ["MDL cast (21 roles, 4 main)", "MDL synopsis", "ko.wikipedia 등장인물"].
+- version is always 2. mdlSlug, title, native, year and country are given. sources lists what was read, e.g. ["MDL cast (21 roles, 4 main)", "MDL synopsis", "ko.wikipedia 등장인물"].
 - Write everything in English except evidence, which is quoted in the language it was read in.
 - Do not write still or asianwiki fields. Do not write a recaps field.`;
 
@@ -77,7 +82,7 @@ export const CHART_SCHEMA = {
     additionalProperties: false,
     required: ["version", "mdlSlug", "title", "native", "year", "country", "sources", "main", "people", "links", "compact"],
     properties: {
-        version: { type: "integer", enum: [1] },
+        version: { type: "integer", enum: [2] },
         mdlSlug: { type: "string" },
         title: { type: "string" },
         native: { type: "string" },
@@ -116,10 +121,11 @@ export const CHART_SCHEMA = {
             items: {
                 type: "object",
                 additionalProperties: false,
-                required: ["from", "to", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"],
+                required: ["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"],
                 properties: {
                     from: { type: "string" },
                     to: { type: "string" },
+                    kind: { type: "string", enum: ["tie", "event"] },
                     type: { type: "string", enum: LINK_TYPES },
                     label: { type: "string" },
                     short: { type: "string" },
@@ -236,26 +242,38 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     // number on a run without them would put an episode on every link
     const withRecaps = inputs.recaps.length > 0;
     const lastEp = withRecaps ? Math.max(...inputs.recaps.map((r) => r.toEp)) : 0;
-    const links: MapLink[] = draft.links.map((l) => {
+    const links: MapLink[] = draft.links.flatMap((l) => {
         const since = withRecaps && l.since != null && l.since >= 1 ? Math.min(l.since, lastEp) : null;
         // an until before its since, or past the recaps, is a stray number: the tie holds
         const until = withRecaps && since != null && l.until != null && l.until >= since && l.until <= lastEp ? l.until : null;
         const link: MapLink = { ...l, since };
-        if (until != null) link.until = until;
+        // A tie has no kind written; a moment has no until, and needs an
+        // episode — one written without the recaps has nothing to happen in,
+        // and is dropped rather than drawn as a tie it is not.
+        if (link.kind !== "event") delete link.kind;
+        if (isEvent(link)) {
+            if (since == null) {
+                warnings.push(`${l.from} → ${l.to} "${l.short}": a moment with no episode, dropped`);
+                return [];
+            }
+            delete link.until;
+        } else if (until != null) link.until = until;
         else delete link.until;
         if (!withRecaps) delete link.since;
-        return link;
+        return [link];
     });
-    // The end view draws every link without an until. A pair the model
-    // kept piling open links on is what made a 40-episode chart a knot.
+    // The as-of view draws every tie that holds. A pair the model kept
+    // piling open ties on is what made a 40-episode chart a knot.
     if (withRecaps) {
         const open = new Map<string, number>();
         for (const l of links) {
+            if (isEvent(l)) continue;
+            if (l.since != null && l.until === l.since) warnings.push(`${l.from} → ${l.to} "${l.short}": a tie of one episode — usually a moment`);
             if (l.until != null) continue;
             const key = [l.from, l.to].sort().join(" · ");
             open.set(key, (open.get(key) ?? 0) + 1);
         }
-        for (const [pair, n] of open) if (n > 2) warnings.push(`${pair}: ${n} links that never end — the end view draws them all; most should carry an until`);
+        for (const [pair, n] of open) if (n > 2) warnings.push(`${pair}: ${n} ties that never end — the end view draws them all; most should carry an until, or be moments`);
     }
     // Each sentence found back in its recap: a source that names another
     // episode is corrected, a reveal dated before its recap is moved to it
@@ -263,7 +281,7 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     warnings.push(...sourced.warnings);
 
     const map: CharacterMapData = {
-        version: 1,
+        version: 2,
         mdlSlug: inputs.mdlSlug,
         title: draft.title || inputs.title.replace(/ \(\d{4}\)$/, ""),
         sources: draft.sources,
@@ -280,6 +298,8 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     if (withRecaps) {
         map.recaps = { source: inputs.recaps[0].source, episodes: lastEp, count: inputs.recaps.length, ranges: inputs.recaps.map((r) => [r.fromEp, r.toEp]) };
         const undated = links.filter((l) => l.since == null).length;
+        const moments = links.filter(isEvent).length;
+        if (moments === 0) warnings.push("no moments — the recaps were read, and every link is a tie; the story's turns are usually moments");
         if (undated) warnings.push(`${undated} link${undated === 1 ? "" : "s"} without an episode — always shown in the episode view`);
     }
     return { map, warnings };
