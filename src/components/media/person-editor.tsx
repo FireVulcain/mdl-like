@@ -113,7 +113,7 @@ export function PersonEditor({
                             checked={draft.inCast}
                             onChange={(v) => set("inCast", v)}
                             label={draft.inCast ? "In MDL's cast" : "Not in MDL's cast"}
-                            hint="Outside the cast, the face gets a dashed ring and answers to the chart's “Not in cast” filter."
+                            hint="Outside the cast, the face gets a dashed ring."
                         />
                     </div>
                     <Field label="Headshot" hint="a picture URL — the placeholder when empty" error={shown.image}>

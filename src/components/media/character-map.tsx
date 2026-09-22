@@ -70,6 +70,12 @@ const OUTER_OPACITY = 0.4;
 /** How far from a face's centre an arrow's tip stops: just outside the ring */
 const ARROW_GAP = R + 3;
 /**
+ * An arrow's size in the chart's own units, whatever its line's width: sized
+ * by the stroke, the leads' thicker lines grew arrows a size up, and a
+ * hovered line's arrow swelled with it.
+ */
+const ARROW_SIZE = 14;
+/**
  * The clear ring round a lead: the lines coming in fade out over it instead
  * of piling onto the face, and an arrow into a lead stops at its edge.
  */
@@ -122,8 +128,8 @@ function MomentList({ moments, byId, onPick, about }: {
  *
  * The filters are the questions a reader has about a chart like this: which
  * kinds of link, whether to show the twists (on only for a show the reader
- * has finished), the links no sentence backs, and the people MDL's cast does
- * not carry.
+ * has finished), and the links no sentence backs. Someone MDL's cast does
+ * not carry is always drawn — the dashed ring round the face says so.
  *
  * A chart read with the episode recaps dates its links (`since`), and is
  * read as of an episode: a slider shows the chart as it stood after
@@ -217,7 +223,6 @@ export function CharacterMap({
     const reveals = revealsProp ?? ownReveals;
     const setReveals = onReveals ?? setOwnReveals;
     const [inferred, setInferred] = useState(completed);
-    const [ghosts, setGhosts] = useState(true);
     const [labels, setLabels] = useState(true);
     // What the panel under the chart is about: one link, or one person and
     // every link they have. A face stays isolated while it is selected.
@@ -305,10 +310,10 @@ export function CharacterMap({
             // that begins, and stays — a tie that ended does not take a face
             // off the chart. Only someone not yet met is left out.
             const hidePerson = asOf ? (id: string) => !personMetBy(map.links, id, episode) : undefined;
-            return layoutCompact(map, { width: W, everyone: true, types, inferred, ghosts, hideLink, hidePerson });
+            return layoutCompact(map, { width: W, everyone: true, types, inferred, hideLink, hidePerson });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [map, types, inferred, ghosts, reveals, asOf, episode],
+        [map, types, inferred, reveals, asOf, episode],
     );
     // A face none of whose ties still holds — the mentor after he dies, the
     // ex after the break — is drawn quieter: on the chart, out of the story.
@@ -475,7 +480,6 @@ export function CharacterMap({
             // an episode, a dated reveal is the slider's
             reveals: inCut.filter((l) => doorGoverns(l, asOf)).length,
             inferred: inCut.filter((l) => l.inferred && !l.reveal).length,
-            ghosts: map.people.filter((p) => !p.inCast).length,
             byType: Object.fromEntries(TYPES.map((t) => [t, inCut.filter((l) => l.type === t && !l.inferred).length])) as Record<LinkType, number>,
             asOf: inCut.length,
             moments: map.links.filter((l) => isEvent(l) && inView(l)).length,
@@ -622,9 +626,6 @@ export function CharacterMap({
                 <button type="button" onClick={() => setInferred((v) => !v)} aria-pressed={inferred} className={pill(inferred)} disabled={counts.inferred === 0}>
                     Inferred <span className="opacity-50">{counts.inferred}</span>
                 </button>
-                <button type="button" onClick={() => setGhosts((v) => !v)} aria-pressed={ghosts} className={pill(ghosts)} disabled={counts.ghosts === 0}>
-                    Not in cast <span className="opacity-50">{counts.ghosts}</span>
-                </button>
                 <button type="button" onClick={() => setLabels((v) => !v)} aria-pressed={labels} className={`${pill(labels)} ml-auto`}>
                     Labels
                 </button>
@@ -647,7 +648,7 @@ export function CharacterMap({
                 >
                     <defs>
                         {TYPES.map((t) => (
-                            <marker key={t} id={`cm-arrow-${t}`} viewBox="0 -4 8 8" refX={8} refY={0} markerWidth={7} markerHeight={7} orient="auto" className={TYPE_CLASS[t]}>
+                            <marker key={t} id={`cm-arrow-${t}`} viewBox="0 -4 8 8" refX={8} refY={0} markerUnits="userSpaceOnUse" markerWidth={ARROW_SIZE} markerHeight={ARROW_SIZE} orient="auto" className={TYPE_CLASS[t]}>
                                 <path d="M0,-4L8,0L0,4Z" fill="currentColor" />
                             </marker>
                         ))}
