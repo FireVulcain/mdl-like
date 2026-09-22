@@ -485,6 +485,8 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
     // How far above the row a lead↔lead link rises when a third lead sits
     // between its ends: enough for its line and its word to clear that face.
     const OVER = PORTRAIT_R + 28;
+    // How close a line that is not a lead's own may pass to a lead's face
+    const CLEAR = PORTRAIT_R + 26;
 
     const laid: LaidOutLink[] = links.map(({ l, index }) => {
         const a = byId.get(l.from)!, b = byId.get(l.to)!;
@@ -500,8 +502,34 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         // father two seats left of the lead his daughter sits beside. That
         // one arcs over the row instead, and its word sits at the apex.
         const over = people.some((p) => p !== a && p !== b && Math.abs(p.y - a.y) < 1 && Math.abs(p.y - b.y) < 1 && (p.x - a.x) * (p.x - b.x) < 0);
-        const cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2;
-        const cy = (a.y + b.y) / 2 + (dx / len) * bend * 2 - (over ? OVER * 2 : 0);
+        let cx = (a.x + b.x) / 2 + (-dy / len) * bend * 2;
+        let cy = (a.y + b.y) / 2 + (dx / len) * bend * 2 - (over ? OVER * 2 : 0);
+        // A line that is not a lead's own runs round the leads instead of
+        // through them: where it passes closer than CLEAR to a lead's face,
+        // its bend is pushed away from that face until it clears. The leads'
+        // row is where the story is read, and a support role's line crossing
+        // it read as one more tie of theirs.
+        if (!over) {
+            for (let pass = 0; pass < 3; pass++) {
+                let worst: { p: LaidOutPerson; d: number; t: number } | null = null;
+                for (const p of people) {
+                    if (!p.lead || p === a || p === b) continue;
+                    for (let t = 0.1; t <= 0.9; t += 0.05) {
+                        const u = 1 - t;
+                        const x = u * u * a.x + 2 * u * t * cx + t * t * b.x, y = u * u * a.y + 2 * u * t * cy + t * t * b.y;
+                        const d = Math.hypot(p.x - x, p.y - y);
+                        if (d < CLEAR && (!worst || d < worst.d)) worst = { p, d, t };
+                    }
+                }
+                if (!worst) break;
+                // away from the face, across the line's own direction
+                const nx = -dy / len, ny = dx / len;
+                const side = Math.sign((worst.p.x - (a.x + b.x) / 2) * nx + (worst.p.y - (a.y + b.y) / 2) * ny) || 1;
+                const move = Math.min((CLEAR - worst.d + 4) / (2 * worst.t * (1 - worst.t)), CLEAR * 3);
+                cx -= side * nx * move;
+                cy -= side * ny * move;
+            }
+        }
         // The word sits at the line's middle: a straight line's midpoint, or an
         // arc's apex — between two faces on the compact chart, that is the one
         // spot with no face under it.
