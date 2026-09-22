@@ -54,6 +54,8 @@
       "image": "https://i.mydramalist.com/nO7JzE_5m.jpg",
       "still": "https://asianwiki.com/images/f/f0/Agent_Kim_Reactivated-So_Ji-Sub.jpg",
       "group": "Leads",
+      "inCast": true,
+      "note": "Former North Korean and South Korean black-ops agent, coded 'Agent 66', posing as an ordinary bank manager.",
       "alsoPlayedBy": [
         {
           "name": "Hong Dong Young",
@@ -61,9 +63,7 @@
           "still": "https://asianwiki.com/images/4/45/Agent_Kim_Reactivated-Hong_Dong-Young.jpg",
           "era": "young"
         }
-      ],
-      "inCast": true,
-      "note": "Former North Korean and South Korean black-ops agent, coded 'Agent 66', posing as an ordinary bank manager."
+      ]
     },
     {
       "id": "hansu",
@@ -92,6 +92,8 @@
       "image": "https://i.mydramalist.com/nOXEqL_5m.jpg",
       "still": "https://asianwiki.com/images/7/7c/Agent_Kim_Reactivated-Seo_Su-Min1.jpeg",
       "group": "Kim's family",
+      "inCast": true,
+      "note": "Kim's teenage daughter, a bullied sophomore at Songin High School.",
       "alsoPlayedBy": [
         {
           "name": "Choi Ha Yoon",
@@ -99,9 +101,7 @@
           "still": "https://asianwiki.com/images/c/cd/Agent_Kim_Reactivated-Choi_Ha-Yoon.jpeg",
           "era": "child"
         }
-      ],
-      "inCast": true,
-      "note": "Kim's teenage daughter, a bullied sophomore at Songin High School."
+      ]
     },
     {
       "id": "yujin",
@@ -200,6 +200,8 @@
       "image": "https://i.mydramalist.com/yWDewn_5m.jpg",
       "still": "https://asianwiki.com/images/9/9a/Agent_Kim_Reactivated-Kim_Sung-Kyu.jpg",
       "group": "North Korea",
+      "inCast": true,
+      "note": "North Korean operative sent to capture Kim; Park Yeong Gwang's younger brother.",
       "alsoPlayedBy": [
         {
           "name": "Yang Hui Sang",
@@ -207,9 +209,7 @@
           "still": "https://asianwiki.com/images/5/57/Agent_Kim_Reactivated-Yang_Hee-Sang.jpeg",
           "era": "child"
         }
-      ],
-      "inCast": true,
-      "note": "North Korean operative sent to capture Kim; Park Yeong Gwang's younger brother."
+      ]
     },
     {
       "id": "eungryeong",
@@ -228,6 +228,8 @@
       "image": "https://i.mydramalist.com/eQwkY_5m.jpg",
       "still": "https://asianwiki.com/images/4/49/Agent_Kim_Reactivated-TaecYeon.jpeg",
       "group": "North Korea",
+      "inCast": true,
+      "note": "Kim's closest comrade in the North, killed in a betrayed mission; Gang Seong's older brother.",
       "alsoPlayedBy": [
         {
           "name": "Kang Ye Chan",
@@ -235,9 +237,7 @@
           "still": "https://asianwiki.com/images/a/aa/Agent_Kim_Reactivated-Kang_Ye-Chan1.jpg",
           "era": "young"
         }
-      ],
-      "inCast": true,
-      "note": "Kim's closest comrade in the North, killed in a betrayed mission; Gang Seong's older brother."
+      ]
     },
     {
       "id": "gangchan",
@@ -382,7 +382,6 @@
     {
       "from": "kim",
       "to": "hyeri",
-      "kind": "event",
       "type": "rivalry",
       "label": "On his knees to the bully, promising to move his daughter away — and not for the first time",
       "short": "knelt to her",
@@ -391,12 +390,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "minji",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "Betrayed by his kneeling, she stays out and threatens to run if he calls",
       "short": "would not come home",
@@ -405,12 +404,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "minji",
-      "kind": "event",
       "type": "family",
       "label": "Stayed up all night for a daughter who never came home",
       "short": "made her birthday breakfast",
@@ -419,12 +418,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "minji",
-      "kind": "event",
       "type": "family",
       "label": "Blood on his hands and a Vice Minister held by razor wire, said tenderly across a room of guns",
       "short": "'let's go home'",
@@ -433,12 +432,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "minji",
-      "kind": "event",
       "type": "family",
       "label": "Before he surrenders: both of them trying to be brave for the other",
       "short": "one last meal",
@@ -447,12 +446,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "minji",
-      "kind": "event",
       "type": "family",
       "label": "'Manager Kim' is declared dead on both sides of the border, and the two of them start again",
       "short": "a new name, a new life",
@@ -461,7 +460,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "kim",
@@ -505,7 +505,6 @@
     {
       "from": "jincheol",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "'Your funeral,' he tells the assassin, then breaks out of the station to reach his friend first",
       "short": "gave up his address, then ran to warn him",
@@ -514,12 +513,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "hansu",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "A van fitted with everything three former agents would need",
       "short": "opened the bunker",
@@ -528,12 +527,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "hansu",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "Calm logic, over a gang boss Kim was about to kill before he had the information",
       "short": "stopped his rage",
@@ -542,12 +541,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "hansu",
       "to": "minji",
-      "kind": "event",
       "type": "bond",
       "label": "Mop strings, a water bottle, a blackout, and an air duct out of SMD headquarters",
       "short": "got her out through the ducts",
@@ -556,12 +555,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "jincheol",
       "to": "minji",
-      "kind": "event",
       "type": "bond",
       "label": "Rock music and blanks — which nearly works",
       "short": "came in with guns blazing",
@@ -570,12 +569,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "hansu",
-      "kind": "event",
       "type": "bond",
       "label": "Their children against his life: he attacks first to make it easier for them, then signals the way out",
       "short": "made them beat him",
@@ -584,12 +583,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "hansu",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "At his signal, they pummel him into the side of the cage until it gives",
       "short": "broke the cage with him",
@@ -598,12 +597,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "hansu",
-      "kind": "event",
       "type": "work",
       "label": "The final mission, on the condition that his friends walk",
       "short": "traded his freedom for theirs",
@@ -612,7 +611,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "taehun",
@@ -656,7 +656,6 @@
     {
       "from": "hansu",
       "to": "taehun",
-      "kind": "event",
       "type": "family",
       "label": "His boy picking fights and thinking himself invincible — and a lesson that may not have landed",
       "short": "tried to teach him about pain",
@@ -665,12 +664,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "gangchan",
       "to": "taehun",
-      "kind": "event",
       "type": "rivalry",
       "label": "Han Su and Jin Cheol's kids as the hidden ace",
       "short": "took the children",
@@ -679,12 +678,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "jincheol",
       "to": "jiyeong",
-      "kind": "event",
       "type": "bond",
       "label": "After explaining himself to a very intimidating, very irked, very loving wife",
       "short": "raided his own stockpile",
@@ -693,12 +692,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "jincheol",
       "to": "dabin",
-      "kind": "event",
       "type": "family",
       "label": "The children parked in the safest place the three of them know",
       "short": "left them with his wife",
@@ -707,7 +706,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "hyeri",
@@ -739,7 +739,6 @@
     {
       "from": "minho",
       "to": "namhoon",
-      "kind": "event",
       "type": "rivalry",
       "label": "Waylaid after school so his phone could lure Min Ji into the trap",
       "short": "took his phone",
@@ -748,12 +747,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "hyeri",
       "to": "minji",
-      "kind": "event",
       "type": "rivalry",
       "label": "Min Ji fell and hit her head again, and the whole group thought they had killed her",
       "short": "hit her with a brick",
@@ -762,12 +761,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "minji",
       "to": "hyeri",
-      "kind": "event",
       "type": "bond",
       "label": "Her terms, after her father was made to stop: the chairman and his daughter confess",
       "short": "made them turn themselves in",
@@ -776,12 +775,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "minji",
       "to": "namhoon",
-      "kind": "event",
       "type": "bond",
       "label": "The only person at that school who never wished her harm",
       "short": "left him her old name",
@@ -790,7 +789,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "molecricket",
@@ -848,7 +848,6 @@
     {
       "from": "sanga",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "He is not at all surprised: he knew he would be watched from the day he left the force",
       "short": "was a plant all along",
@@ -857,7 +856,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "jang",
@@ -902,7 +902,6 @@
     {
       "from": "molecricket",
       "to": "hansu",
-      "kind": "event",
       "type": "rivalry",
       "label": "To force the dojo master's cooperation; the kid squirms free",
       "short": "held a kid hostage",
@@ -911,12 +910,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "sanga",
-      "kind": "event",
       "type": "work",
       "label": "Once Min Ji is safe — and he keeps it",
       "short": "promised to turn himself in",
@@ -925,12 +924,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "sanga",
       "to": "minji",
-      "kind": "event",
       "type": "bond",
       "label": "Out of the chairman's house while the agents argued at the door, then handed to Mole Cricket",
       "short": "took her out the back",
@@ -939,12 +938,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "dohyeon",
-      "kind": "event",
       "type": "rivalry",
       "label": "A Vice Minister as a macabre puppet, and every gun in the room lowered",
       "short": "held him with razor wire",
@@ -953,12 +952,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "molecricket",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "Not North Korea at all: a test to see whether he would break and give up the South's secrets",
       "short": "the torture chamber was a test",
@@ -967,12 +966,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "molecricket",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "Kim's mole was the man who gave him the job",
       "short": "sprang the trap he set",
@@ -981,12 +980,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "sanga",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "So he could get the fugitive out when the location leaked",
       "short": "played decoy at the safe house",
@@ -995,12 +994,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "jang",
       "to": "kim",
-      "kind": "event",
       "type": "bond",
       "label": "A body in the woods with Kim's ID card, and freedom on both sides of the border",
       "short": "declared him dead",
@@ -1009,12 +1008,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "molecricket",
       "to": "minji",
-      "kind": "event",
       "type": "bond",
       "label": "They agree not to meet again",
       "short": "a parting gift, and no apology",
@@ -1023,7 +1022,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "yeonggwang",
@@ -1042,7 +1042,6 @@
     {
       "from": "kim",
       "to": "yeonggwang",
-      "kind": "event",
       "type": "bond",
       "label": "Recruited out of the same orphanage, they remembered each other's names when they had forgotten their own",
       "short": "they kept each other's names",
@@ -1051,7 +1050,8 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kim",
@@ -1136,7 +1136,6 @@
     {
       "from": "gangseong",
       "to": "jincheol",
-      "kind": "event",
       "type": "rivalry",
       "label": "A frying pan, a refrigerator door, and aging knees that cannot follow him over the balcony",
       "short": "a draw in Kim's kitchen",
@@ -1145,12 +1144,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "gangseong",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "And is as dumbfounded as anyone to see who he has hit",
       "short": "ran him down with a car",
@@ -1159,12 +1158,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "gangseong",
-      "kind": "event",
       "type": "bond",
       "label": "The mission was sold; the account rings too true to ignore",
       "short": "told him who betrayed them",
@@ -1173,12 +1172,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "gangseong",
-      "kind": "event",
       "type": "bond",
       "label": "At the roadblock: let us go, and you get your shot",
       "short": "promised him his revenge",
@@ -1187,12 +1186,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "gangseong",
       "to": "eungryeong",
-      "kind": "event",
       "type": "rivalry",
       "label": "No easy death: the chip cut out of him, and a North Korean shore",
       "short": "left him on a beach",
@@ -1201,12 +1200,12 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "eungryeong",
-      "kind": "event",
       "type": "work",
       "label": "The fugitive he must keep alive is the one who sold Young Gwang's unit",
       "short": "guarded the man who killed his friend",
@@ -1215,12 +1214,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "eungryeong",
       "to": "jang",
-      "kind": "event",
       "type": "work",
       "label": "For safe passage to Macau, and a chip worth a bank account",
       "short": "traded the missile intel",
@@ -1229,7 +1228,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "gangchan",
@@ -1341,7 +1341,6 @@
     {
       "from": "goldteeth",
       "to": "hyeri",
-      "kind": "event",
       "type": "work",
       "label": "A favour done to hold over her father's head",
       "short": "cleared the 'body' for free",
@@ -1350,12 +1349,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "kind": "event"
     },
     {
       "from": "goldteeth",
       "to": "minji",
-      "kind": "event",
       "type": "rivalry",
       "label": "A climate-controlled shipping container, while he waits for the chairman to call",
       "short": "shut her in a freezer",
@@ -1364,12 +1363,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 3
+      "since": 3,
+      "kind": "event"
     },
     {
       "from": "minji",
       "to": "goldteeth",
-      "kind": "event",
       "type": "bond",
       "label": "A dark container, a crowbar, and a trap he suspected but walked into anyway",
       "short": "knocked him out with a crowbar",
@@ -1378,12 +1377,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "gangchan",
       "to": "minji",
-      "kind": "event",
       "type": "rivalry",
       "label": "Out of the freezer and into the car of the man who wants her silent",
       "short": "picked her up off the road",
@@ -1392,12 +1391,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 5
+      "since": 5,
+      "kind": "event"
     },
     {
       "from": "gangchan",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "A car surrounded, bolted shut and lifted into a truck in the space of one red light",
       "short": "had them forklifted away",
@@ -1406,12 +1405,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "jincheol",
       "to": "nam",
-      "kind": "event",
       "type": "rivalry",
       "label": "Six and a half episodes in the making",
       "short": "gave him the beating",
@@ -1420,12 +1419,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "gangchan",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "They are not so different, he says: both have done unspeakable things for a daughter",
       "short": "offered him a job",
@@ -1434,12 +1433,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "gangchan",
-      "kind": "event",
       "type": "rivalry",
       "label": "Slowly, mercilessly — and stopped only by his daughter's voice",
       "short": "beat him bloody",
@@ -1448,12 +1447,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "gangchan",
       "to": "eungryeong",
-      "kind": "event",
       "type": "rivalry",
       "label": "Out of spite, which is enough to blow the fugitive's cover",
       "short": "leaked the safe house",
@@ -1462,12 +1461,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 7
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "gangchan",
       "to": "kim",
-      "kind": "event",
       "type": "rivalry",
       "label": "Kill him, or the children die in front of them",
       "short": "made his friends fight him",
@@ -1476,12 +1475,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "kim",
       "to": "gangchan",
-      "kind": "event",
       "type": "rivalry",
       "label": "One phone call, and the avalanche",
       "short": "brought his empire down",
@@ -1490,12 +1489,12 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
     },
     {
       "from": "goldteeth",
       "to": "gangchan",
-      "kind": "event",
       "type": "rivalry",
       "label": "Live, right after the chairman learns his daughter has been arrested",
       "short": "stabbed him on camera",
@@ -1504,7 +1503,21 @@
       "reveal": true,
       "inferred": false,
       "directed": true,
-      "since": 9
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "minho",
+      "to": "hyeri",
+      "type": "work",
+      "label": "gangster associate -  Hye-ri's gangster associate who helps her navigate her trouble with local thugs.",
+      "short": "gangster associate",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     }
   ],
   "compact": {
@@ -1531,6 +1544,10 @@
       "dabin"
     ],
     "blocks": {
+      "North Korea": [
+        2,
+        0
+      ],
       "Kim's family": [
         0,
         0
@@ -1543,16 +1560,12 @@
         1,
         0
       ],
-      "North Korea": [
-        2,
-        0
+      "Ju Gang Chan's people": [
+        1,
+        2
       ],
       "Special Missions Directorate": [
         2,
-        2
-      ],
-      "Ju Gang Chan's people": [
-        1,
         2
       ]
     },
