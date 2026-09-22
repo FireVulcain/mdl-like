@@ -107,6 +107,56 @@ ended or not, and lists moments in the story's order.
 - **`directed`**: false for symmetric links (married, friends, rivals);
   true when the label reads from `from` to `to` ("mother" = from is to's mother).
 
+## Density: what is a line
+
+A chart goes to a knot fast — every fact a reader finds is true, and most of
+them are not worth a line. Every fact is sorted into one of three levels
+before it is written:
+
+| Level | The test | Where it goes |
+|---|---|---|
+| **Identity** | what one answers to "who is he to her?" — family, friends, boss or team leader, fan, ex, first love, the couple | a tie; the pair's defining one is in the whole story |
+| **Arc** | a state that changes from one part of the story to the next — the phases of a romance, a passing rivalry, a suspicion, an alliance, a deal | a dated tie (`since` / `until`), `wholeStory: false`: the slider shows it, the panorama does not |
+| **Detail** | a job title, a backstory, a business arrangement, a subplot role, a gesture | never a line: the person's `note`, or a moment if it happened once between the two |
+
+- **Never a tie**: membership the block already says (a bandmate in the
+  band's block, a colleague in the company's); a contract or a business
+  partnership unless it is what the pair *is*; a misunderstanding ("thinks
+  she is a spy", "thinks he loves Chan") — that is a moment.
+- **Pace of the arcs**: an arc tie starts only when the relationship changes
+  enough that a viewer would call it something else — strangers, in love,
+  broken up. Not one per recap by default: the same state in new words is
+  the old tie, and a gesture on the way is a moment. One state per episode
+  is possible when it is meant (W's leads, written by hand); those ties are
+  kept out of the whole story, and the one-episode warning leaves them be.
+- **`short`** is a noun or a state, seen from the person it is written under
+  ("her mother", "his rival", "obsessive ex") — never a past-tense verb:
+  "shot him", "told her" are moments. **`label`** is one sentence that says
+  why, not an episode summary.
+- **Budgets**, counted by `densityWarnings` in `src/lib/character-map-rules.ts`
+  (the generator and the continue run report them; the numbers live there):
+  - between two people, at most **2 ties holding at any stop** of the slider
+    (**3** between two leads);
+  - in the whole story, **1 tie per pair** (**2** between two leads) and at
+    most **2 per person** who is not a lead;
+  - the whole story as a whole, about **1.3 ties per person** on the chart;
+  - at any stop of the slider, at most **3 ties holding on one person** who
+    is not a lead, and about **1.3 ties per person** met by then. A support
+    role over that at every stop is a lead nobody declared — put them in
+    `compact.center` (Chan in My Bias, My Boss, Seong Mu in W) — or is
+    carrying a job or a deal that belongs in the note.
+  A support role with no identity tie is left out; what they did goes in
+  someone's note or in a moment.
+- **`wholeStory`** — "Whole story" is the panorama: every tie the story had,
+  at once, so it keeps only the tie that *defines* each pair. The defining
+  tie is the one a viewer would name, not the latest state: the romance that
+  makes the couple ("falling for her"), not the final "engaged"; the
+  friendship, not the months it broke. Every arc is `false`; a pair that only
+  has arcs has nothing in the panorama. The key is written only when it
+  says no. The generator marks it, and `settleWholeStory` trims a pair that
+  keeps too many (the longest-standing sourced tie wins); a pair with none
+  is left with none. The editor's "Whole story" switch sets it by hand.
+
 ## Shape
 
 ```json
@@ -202,9 +252,10 @@ every link:
   real one starts, "his secretary" when she is fired, a mentor the episode
   he dies); a rescue, a slap, a gift is a moment, not a one-episode tie;
   only what still holds at the end stays open. Between two people, at most
-  two open ties, never two of the same type — the leads may share a dozen
-  moments, not a dozen ties. The generator is told the same, and warns on
-  a pair with three open ties and on a tie of one episode. Ties that only say "is in this block" (his guard, her squad, his
+  two ties holding at any stop (three between two leads), never two of the
+  same type — the leads may share a dozen moments, not a dozen ties. See
+  "Density" above; the generator is told the same, and warns on a crowded
+  pair and on a tie of one episode. Ties that only say "is in this block" (his guard, her squad, his
   assistant) are drawn for two members of a block at most, and a support
   role with nothing but such a membership is left out.
 - **`source` names the recap the sentence is in**, and the sentence decides

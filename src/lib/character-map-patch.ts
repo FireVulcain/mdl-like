@@ -196,6 +196,7 @@ export function applyPatch(map: CharacterMapData, patch: ChartPatch, recaps: Rec
         if (set.directed != null) draft.directed = set.directed;
         if (set.since !== undefined) draft.since = set.since ?? null;
         if (set.until !== undefined) draft.until = set.until ?? null;
+        if (set.wholeStory != null) draft.wholeStory = set.wholeStory;
         if (draft.from === draft.to) {
             warnings.push(`change to link #${edit.link} would point it at itself, skipped`);
             continue;

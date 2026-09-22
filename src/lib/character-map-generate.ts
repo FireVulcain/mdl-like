@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { isEvent, type CharacterMapData, type Era, type MapLink, type MapPerson } from "@/lib/character-map";
 import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
 import { checkSources } from "@/lib/character-map-sources";
+import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP, WHOLE_PER_PERSON } from "@/lib/character-map-rules";
 import type { Prisma } from "@prisma/client";
 
 /**
@@ -50,6 +51,20 @@ LINKS — a link is one of two kinds, and the chart treats them differently
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
 - A tie that only says "is in this block" — his guard, her squad, his assistant, a murdered sibling, a maid — is drawn once at most per person, and never for more than two members of the same block: the block's name already says it. A support role whose only tie would be such a membership, whom no source names for anything else, is left out; the ones the story names (the guard who took the spear, the assistant who became a confidant) stay, with that tie.
 
+WHAT IS A LINE — three levels, decide one for every fact before writing it
+- identity: what a viewer answers to "who is he to her?" — family, friends, boss or team leader, fan, ex, first love, the couple. A tie, and a candidate for the whole story.
+- arc: a state that changes from one part of the story to the next — the phases of a romance (strangers, attraction, dating, broken up), a passing rivalry, a suspicion, an alliance, a deal. A dated tie with its since and until, and wholeStory false.
+- detail: a job title, a backstory, a business arrangement, a one-off role in a subplot, a gesture. Never a tie: it goes in the person's note, or it is an event if it happened once between the two.
+- Never a tie: membership the block already says (a bandmate inside the band's block, a colleague inside the company's block); a contract or a business partnership, unless it is what the pair IS to each other; a misunderstanding (he thinks she is a spy, she thinks he loves his friend) — that is an event where it starts, or a note.
+- short is a noun or a state seen from the person it is written under ("her mother", "his rival", "in love", "obsessive ex"), never a verb in the past tense — "shot him", "told her" are events. label is one sentence that says why, not an episode summary.
+- Budgets, which the checks count: between two people, at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads). A support role draws at most ${WHOLE_PER_PERSON} ties in the whole story. A support role with no identity tie is left out of the chart; what it did goes in someone's note or in an event.
+
+WHOLE STORY — the chart's panorama, one line per pair
+- "Whole story" draws every tie the story had at once, so it keeps only the tie that DEFINES each pair: wholeStory true on exactly one tie per pair (two between two leads — e.g. "her boss" and the romance), false on every other tie of that pair.
+- The defining tie is the one a viewer would name to describe the two, not the latest state: for the leads' romance it is the romance that makes the pair ("falling for her", "in love"), not the final "engaged"; for a friendship broken and repaired, the friendship.
+- Every arc tie is false. A pair that only has arcs (a passing rivalry, an alliance) gets none in the whole story: all false.
+- On an event, wholeStory is ignored; write false.
+
 EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans for Korean dramas, cpophome for Chinese ones)
 - The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "cpophome ep. 12".
 - since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
@@ -57,7 +72,9 @@ EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sect
 - A tie that changes over the run is two ties, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
 - until: the last episode a tie still holds. Every tie that is replaced, undone or over gets one — the fake marriage ends where the real one starts, "his secretary" ends when she is fired, "forgot her" ends when he remembers, a mentor's tie ends the episode he dies. Only what still holds at the end has no until: a marriage that lasts, a sibling, a love that is not undone. An event never has an until.
 - A thing that is over the episode it happens in is an event, not a one-episode tie: a rescue, a slap, a kidnapping resolved next episode, a gift, a confession, a shooting. Write it with kind "event".
-- The chart is read as of an episode, and it draws every tie that holds then: keep the ties sparse. Between two people, at most two ties without an until, and never two of the same type. The leads may share a dozen events; they should not share a dozen ties.
+- The chart is read as of an episode, and it draws every tie that holds then: keep the ties sparse. Between two people, at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads), never two of the same type at once. The leads may share a dozen events; they should not share a dozen ties.
+- An arc tie starts only when the relationship changes enough that a viewer would call it something else — strangers, then in love, then broken up. Not one per recap by default: the same state in new words ("growing closer", "closer still") is the old tie, and a gesture on the way is an event.
+- Across the chart, at any episode: at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on one support role, and about ${TIES_PER_HEAD_AT_STOP} ties per person the chart has met by then. A support role that needs more is a lead — put them in compact.center — or is carrying a job or a deal that belongs in the note.
 - With recaps, write the events a reader of the show would recognise as its turns — a chart with thirty events is fine when the recaps carry them — and only the ties that stand behind them.
 
 COMPACT
@@ -121,7 +138,7 @@ export const CHART_SCHEMA = {
             items: {
                 type: "object",
                 additionalProperties: false,
-                required: ["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"],
+                required: ["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until", "wholeStory"],
                 properties: {
                     from: { type: "string" },
                     to: { type: "string" },
@@ -136,6 +153,7 @@ export const CHART_SCHEMA = {
                     directed: { type: "boolean" },
                     since: nullable("integer"),
                     until: nullable("integer"),
+                    wholeStory: { type: "boolean" },
                 },
             },
         },
@@ -262,19 +280,6 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         if (!withRecaps) delete link.since;
         return [link];
     });
-    // The as-of view draws every tie that holds. A pair the model kept
-    // piling open ties on is what made a 40-episode chart a knot.
-    if (withRecaps) {
-        const open = new Map<string, number>();
-        for (const l of links) {
-            if (isEvent(l)) continue;
-            if (l.since != null && l.until === l.since) warnings.push(`${l.from} → ${l.to} "${l.short}": a tie of one episode — usually a moment`);
-            if (l.until != null) continue;
-            const key = [l.from, l.to].sort().join(" · ");
-            open.set(key, (open.get(key) ?? 0) + 1);
-        }
-        for (const [pair, n] of open) if (n > 2) warnings.push(`${pair}: ${n} ties that never end — the end view draws them all; most should carry an until, or be moments`);
-    }
     // Each sentence found back in its recap: a source that names another
     // episode is corrected, a reveal dated before its recap is moved to it
     const sourced = checkSources(links, inputs.recaps);
@@ -297,6 +302,13 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: countryCode(inputs.country) || draft.country });
     if (withRecaps) {
         map.recaps = { source: inputs.recaps[0].source, episodes: lastEp, count: inputs.recaps.length, ranges: inputs.recaps.map((r) => [r.fromEp, r.toEp]) };
+    }
+    // The density rules: the whole story trimmed to one defining tie per
+    // pair, then what the slider and the panorama would still find crowded
+    const whole = settleWholeStory(map);
+    map.links = whole.links;
+    warnings.push(...whole.warnings, ...densityWarnings(map));
+    if (withRecaps) {
         const undated = links.filter((l) => l.since == null).length;
         const moments = links.filter(isEvent).length;
         if (moments === 0) warnings.push("no moments — the recaps were read, and every link is a tie; the story's turns are usually moments");

@@ -4,6 +4,7 @@ import type { CastMember, Recap } from "@/lib/character-map-inputs";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 import { applyPatch, type ChartPatch, type GenerationContext, type GenerationPlan, type MergeResult } from "@/lib/character-map-patch";
 import { checkSources } from "@/lib/character-map-sources";
+import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP } from "@/lib/character-map-rules";
 
 /**
  * Carrying a chart forward over the episodes that have aired since it was
@@ -30,7 +31,11 @@ TWO KINDS OF LINK — this is the rule everything else follows
 - kind "event": what HAPPENED ONCE (a rescue, a kiss, a betrayal, a confession, a reveal, a death at someone's hand). Never drawn; read in the panel and in a list in the story's order. An event has since and no until.
 - The test: "does this still describe them next episode?" Yes → tie. No → event. When an event changes what two people are to each other, write both: the event, and the tie it opens (or the until on the tie it ends).
 - A tie that changes over the run is TWO ties, each with its own since and its own sentence, not one link rewritten. Rivals in episode 2 who become allies in episode 10 are "rivalry, since 2" and "friend, since 10". Give the first one until: 9 so the chart stops drawing it where the second takes over, and add the second. Never change the first one's type.
-- A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks. The chart draws every tie that holds as of an episode, and it must stay sparse: at most two open ties between two people, never two of the same type. When you add a third, end one — or ask whether it is an event.
+- A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks. The chart draws every tie that holds as of an episode, and it must stay sparse: at most ${TIES_PER_PAIR} ties holding at once between two people (${TIES_PER_LEAD_PAIR} between two leads), never two of the same type. When you add one more, end one — or ask whether it is an event.
+- An arc tie starts only when the relationship changes enough that a viewer would call it something else — strangers, then in love, then broken up. Not one per recap by default: the same state in new words ("growing closer", "closer still") is the old tie, and a gesture on the way is an event.
+- Across the chart, at any episode: at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on one support role, and about ${TIES_PER_HEAD_AT_STOP} ties per person the chart has met by then. A support role that needs more is a lead — put them in compact.center — or is carrying a job or a deal that belongs in the note.
+- Three levels. identity (who he is to her: family, friends, boss, fan, ex, the couple) is a tie and may be in the whole story. arc (a phase of a romance, a passing rivalry, a suspicion, an alliance, a deal) is a dated tie with wholeStory false. detail (a job, a backstory, a business arrangement, a subplot role) is never a tie: a note, or an event. A misunderstanding is an event, not a tie. short is a noun or a state, never a past-tense verb.
+- wholeStory: the chart's "Whole story" view keeps one defining tie per pair (two between leads) — the one a viewer would name, not the latest state. A new tie is wholeStory false unless it is the first identity tie of a pair the whole story does not show yet. Leave the whole-story marks of existing links alone. On an event, write false.
 - Do not add a tie that only says "is in this block" (his guard, her squad, his assistant) for a face the chart has, or for a new face no sentence names for anything else.
 - So the ordinary work of a continue run is addLinks — mostly events, and the few ties that stand behind them. updateLinks and removeLinks are for a chart that was WRONG, not for a story that moved on.
 - A link in the chart marked "moment" is an event; every other one is a tie. On a chart written before the two were told apart, a tie of one episode ("since ep 6, until ep 6") is a moment in all but name — leave it alone.
@@ -73,6 +78,7 @@ const LINK_PROPS = {
     directed: { type: "boolean" },
     since: nullable("integer"),
     until: nullable("integer"),
+    wholeStory: { type: "boolean" },
 } as const;
 
 export const PATCH_SCHEMA = {
@@ -159,7 +165,7 @@ export function chartAsText(map: CharacterMapData): string {
     out.push("", `LEADS: ${(map.compact.center ?? map.main.slice(0, 2)).join(", ")}`);
     out.push("", "LINKS (use the number to change one):");
     map.links.forEach((l, i) => {
-        const marks = [l.directed ? "directed" : null, l.reveal ? "reveal" : null, l.inferred ? "inferred" : null].filter(Boolean).join(", ");
+        const marks = [l.directed ? "directed" : null, l.reveal ? "reveal" : null, l.inferred ? "inferred" : null, !isEvent(l) && l.wholeStory === false ? "not in whole story" : null].filter(Boolean).join(", ");
         const when = isEvent(l) ? `moment, ep ${l.since ?? "?"}` : l.since == null ? "from the start" : `since ep ${l.since}${l.until != null ? `, until ep ${l.until}` : ""}`;
         out.push(`#${i} ${l.from} → ${l.to} | ${l.type} | "${l.short}" | ${l.label} | ${when}${marks ? ` | ${marks}` : ""}`);
         if (l.evidence) out.push(`     evidence: ${l.evidence}${l.source ? ` — ${l.source}` : ""}`);
@@ -272,6 +278,10 @@ export async function continueChart(
         const sourced = checkSources(merged.map.links, recaps);
         merged.map.links = sourced.links;
         merged.warnings.push(...sourced.warnings);
+        // The density rules, over the chart as it now stands
+        const whole = settleWholeStory(merged.map);
+        merged.map.links = whole.links;
+        merged.warnings.push(...whole.warnings, ...densityWarnings(merged.map));
         // A run that read new episodes and found nothing is worth saying out
         // loud: either the recaps carry no tie, or the chart already had them.
         if (merged.summary.added === 0 && merged.summary.updated === 0) merged.warnings.push("the new episodes added no link — nothing in them was a tie the chart did not have");

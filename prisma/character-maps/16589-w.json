@@ -126,7 +126,7 @@
       "actor": "Kim Eui Sung",
       "image": "https://i.mydramalist.com/JBXwbJ_5m.jpg",
       "still": "https://asianwiki.com/images/9/96/W_%28Korean_Drama%29-Kim_Eui-Sung.jpg",
-      "group": "Yeon-joo's Family",
+      "group": "Leads",
       "inCast": true,
       "note": "Webtoon artist, creator of W; divorced, drinks; the faceless killer wears his face from episode 10"
     },
@@ -755,7 +755,8 @@
       "inferred": false,
       "directed": true,
       "since": 1,
-      "until": 5
+      "until": 5,
+      "wholeStory": false
     },
     {
       "from": "kangchul",
@@ -768,7 +769,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 14
+      "since": 14,
+      "wholeStory": false
     },
     {
       "from": "seongmu",
@@ -891,7 +893,8 @@
       "reveal": false,
       "inferred": false,
       "directed": false,
-      "since": 1
+      "since": 1,
+      "wholeStory": false
     },
     {
       "from": "suyeong",
@@ -999,33 +1002,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 12
-    },
-    {
-      "from": "seonmi",
-      "to": "seongmu",
-      "type": "work",
-      "label": "Seon Mi is one of Seong Mu's studio assistants",
-      "short": "his assistant",
-      "evidence": "[Seong Mu's subordinate]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1
-    },
-    {
-      "from": "yunhui",
-      "to": "seongmu",
-      "type": "work",
-      "label": "Yun Hui is one of Seong Mu's studio assistants",
-      "short": "his assistant",
-      "evidence": "[Seong Mu's subordinate]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1
+      "since": 12,
+      "wholeStory": false
     },
     {
       "from": "subong",
@@ -1054,6 +1032,32 @@
       "directed": true,
       "since": 14,
       "kind": "event"
+    },
+    {
+      "from": "seonmi",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Seon Mi is one of Seong Mu's studio assistants",
+      "short": "his assistant",
+      "evidence": "[Seong Mu's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "yunhui",
+      "to": "seongmu",
+      "type": "work",
+      "label": "Yun Hui is one of Seong Mu's studio assistants",
+      "short": "his assistant",
+      "evidence": "[Seong Mu's subordinate]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "minsu",
@@ -1147,7 +1151,8 @@
       "reveal": false,
       "inferred": false,
       "directed": true,
-      "since": 1
+      "since": 1,
+      "wholeStory": false
     },
     {
       "from": "doyun",
@@ -1193,20 +1198,6 @@
     {
       "from": "suhui",
       "to": "kangchul",
-      "type": "work",
-      "label": "Yun Su Hui has been Kang Chul's secretary for years; she quits, a year before the end",
-      "short": "his secretary",
-      "evidence": "[Kang Cheol's secretary]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true,
-      "since": 1,
-      "until": 15
-    },
-    {
-      "from": "suhui",
-      "to": "kangchul",
       "type": "friend",
       "label": "Friends since high school — the webtoon's readers expected them to marry",
       "short": "childhood friend",
@@ -1229,7 +1220,8 @@
       "inferred": false,
       "directed": true,
       "since": 8,
-      "until": 15
+      "until": 15,
+      "wholeStory": false
     },
     {
       "from": "suhui",
@@ -1425,21 +1417,22 @@
       "inferred": false,
       "directed": true,
       "since": 10,
-      "until": 13
+      "until": 13,
+      "wholeStory": false
     },
     {
       "from": "cheolho",
       "to": "sanghoon",
       "type": "work",
       "label": "The killer offers Assemblyman Han the presidency for Kang Chul's head",
-      "short": "allied with the killer",
+      "short": "struck a deal with the killer",
       "evidence": "offers to help make Assemblyman Han the next president",
       "source": "dramabeans ep. 10",
       "reveal": true,
       "inferred": false,
       "directed": false,
       "since": 10,
-      "until": 13
+      "kind": "event"
     },
     {
       "from": "sanghoon",
@@ -1678,7 +1671,8 @@
     },
     "center": [
       "kangchul",
-      "yeonju"
+      "yeonju",
+      "seongmu"
     ]
   }
 }
