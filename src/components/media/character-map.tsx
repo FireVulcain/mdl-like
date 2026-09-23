@@ -65,8 +65,10 @@ function Tag({ x, y, text, lit, className, style, onClick, onHover }: {
 // a column of buttons heavier than the name above them. The text is haloed in
 // the chart's ground, as the name and the actor are, so a line passing under
 // does not cut it.
-function CaptionRow({ x, y, anchor, caption, lit, className, style, onClick, onHover }: {
+function CaptionRow({ x, y, anchor, caption, lit, tone, className, style, onClick, onHover }: {
     x: number; y: number; anchor: "start" | "middle" | "end"; caption: Caption; lit?: boolean;
+    /** the opacity its line rests at: the dot is the line's key, so it steps back with it */
+    tone: number;
     className: string; style?: React.CSSProperties; onClick?: React.MouseEventHandler<SVGGElement>; onHover?: (on: boolean) => void;
 }) {
     const w = captionWidth(caption);
@@ -77,7 +79,7 @@ function CaptionRow({ x, y, anchor, caption, lit, className, style, onClick, onH
         <g className={className} style={style} onClick={onClick} onMouseEnter={onHover && (() => onHover(true))} onMouseLeave={onHover && (() => onHover(false))}>
             {/* The whole row takes the pointer, not just the glyphs */}
             <rect x={left - 3} y={y - CAPTION_STEP / 2} width={w + 6} height={CAPTION_STEP} fill="transparent" />
-            <circle cx={left + 3} cy={y} r={lit ? 3.5 : 3} className="fill-current" style={{ transition: "r .15s" }} />
+            <circle cx={left + 3} cy={y} r={lit ? 3.5 : 3} className="fill-current" style={{ opacity: lit ? 1 : tone, transition: "r .15s, opacity .15s" }} />
             <text x={left + CAPTION_DOT} y={y} dy={CHIP_FONT * 0.36} style={{ fontSize: CHIP_FONT, ...halo }}>
                 <tspan className={`${lit ? "fill-fg" : "fill-fg-soft"} font-medium`} style={{ transition: "fill .15s" }}>
                     {capitalize(caption.text)}
@@ -97,8 +99,8 @@ const CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/;
 const W = 1100;
 const R = PORTRAIT_R;
 /** How far a line steps back when it is not between two leads: a support role's line to a lead, and one between two support roles */
-const SPOKE_OPACITY = 0.6;
-const OUTER_OPACITY = 0.4;
+const SPOKE_OPACITY = 0.45;
+const OUTER_OPACITY = 0.3;
 /** How far from a face's centre an arrow's tip stops: just outside the ring */
 const ARROW_GAP = R + 3;
 /**
@@ -734,7 +736,9 @@ export function CharacterMap({
                         const midArrow = l.directed && leads === 1 && !!byId.get(l.to)?.lead;
                         const endArrow = l.directed && !midArrow;
                         const d = linkPath(l, !endArrow ? 0 : byId.get(l.to)?.lead ? R + MOAT : ARROW_GAP);
-                        const width = active ? 3.5 : lit ? 3 : leads === 2 ? 2.5 : 2;
+                        // Thinner as it steps back, so the leads' lines carry the chart and the
+                        // long spokes crossing it stop outshouting them
+                        const width = active ? 3.5 : lit ? 3 : leads === 2 ? 2.5 : leads === 1 ? 1.5 : 1.25;
                         // The curve's middle and its direction there — for a quadratic,
                         // the chord's direction
                         const mid = midArrow ? { x: (l.x1 + 2 * l.cx + l.x2) / 4, y: (l.y1 + 2 * l.cy + l.y2) / 4, deg: (Math.atan2(l.y2 - l.y1, l.x2 - l.x1) * 180) / Math.PI } : null;
@@ -755,7 +759,7 @@ export function CharacterMap({
                                     <path
                                         d="M-4,-4L4,0L-4,4Z"
                                         fill="currentColor"
-                                        transform={`translate(${mid.x},${mid.y}) rotate(${mid.deg}) scale(${width * 0.875})`}
+                                        transform={`translate(${mid.x},${mid.y}) rotate(${mid.deg}) scale(${Math.max(width, 2) * 0.875})`}
                                         pointerEvents="none"
                                     />
                                 )}
@@ -782,7 +786,7 @@ export function CharacterMap({
                         const allFaded = t.links.every(linkFaded);
                         const asked = anyOn || (!allFaded && (!!near || !!picked));
                         const tier = asked ? 1 : SPOKE_OPACITY;
-                        const width = anyOn ? 3 : 2;
+                        const width = anyOn ? 3 : 1.5;
                         const type = t.links[0].type;
                         const dash = t.links.every((l) => l.reveal) ? "6 5" : t.links.every((l) => l.inferred) ? "2 4" : undefined;
                         // the trunk's arrow, mid-line, pointing the way the ties read
@@ -792,7 +796,7 @@ export function CharacterMap({
                             <g key={t.key} className={TYPE_CLASS[type]} style={{ opacity: allFaded ? 0.08 : tier, transition: "opacity .15s" }}>
                                 <path d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`} fill="none" stroke="currentColor" strokeWidth={width} strokeLinecap="round" strokeDasharray={dash} style={{ transition: "stroke-width .15s" }} />
                                 {t.dir !== "both" && (
-                                    <path d="M-4,-4L4,0L-4,4Z" fill="currentColor" transform={`translate(${(t.port.x + t.lead.x) / 2},${(t.port.y + t.lead.y) / 2}) rotate(${deg}) scale(${width * 0.875})`} pointerEvents="none" />
+                                    <path d="M-4,-4L4,0L-4,4Z" fill="currentColor" transform={`translate(${(t.port.x + t.lead.x) / 2},${(t.port.y + t.lead.y) / 2}) rotate(${deg}) scale(${Math.max(width, 2) * 0.875})`} pointerEvents="none" />
                                 )}
                                 <path
                                     d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`}
@@ -809,7 +813,7 @@ export function CharacterMap({
                                     const d = `M${m.x},${m.y}L${t.port.x},${t.port.y}`;
                                     return (
                                         <g key={l.index} style={{ opacity: linkFaded(l) ? 0.3 : 1 }}>
-                                            <path d={d} fill="none" stroke="currentColor" strokeWidth={on(l) ? 3 : 1.5} strokeLinecap="round" strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined} />
+                                            <path d={d} fill="none" stroke="currentColor" strokeWidth={on(l) ? 3 : 1.25} strokeLinecap="round" strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined} />
                                             <path
                                                 d={d}
                                                 fill="none"
@@ -878,6 +882,8 @@ export function CharacterMap({
                                 {labels &&
                                     p.captions.map((c, i) => {
                                         const speaks = captionSpeaks(c.linkIndex);
+                                        const link = map.links[c.linkIndex];
+                                        const tone = byId.get(link.from)?.lead || byId.get(link.to)?.lead ? SPOKE_OPACITY : OUTER_OPACITY;
                                         return (
                                             <CaptionRow
                                                 key={i}
@@ -885,6 +891,7 @@ export function CharacterMap({
                                                 y={R + 42 + i * CAPTION_STEP}
                                                 anchor={anchor}
                                                 caption={c}
+                                                tone={tone}
                                                 lit={hoverLink === c.linkIndex || picked?.index === c.linkIndex}
                                                 className={`cursor-pointer ${TYPE_CLASS[c.type]} ${c.reveal ? "italic" : ""}`}
                                                 // The lines keep their places while some go quiet:
