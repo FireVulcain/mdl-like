@@ -864,7 +864,10 @@ export function CharacterMap({
                             >
                                 <circle
                                     r={R}
-                                    className={p.lead ? "fill-surface-2 stroke-sky-400" : p.inCast ? "fill-surface-2 stroke-line-strong" : "fill-surface-1 stroke-fg-dim"}
+                                    // A support role's ring in fg-faint: at line-strong (10%) it vanished
+                                    // against the photo, and a face with no edge sat loose on the chart
+                                    className={p.lead ? "fill-surface-2 stroke-sky-400" : p.inCast ? "fill-surface-2" : "fill-surface-1 stroke-fg-dim"}
+                                    style={p.lead || !p.inCast ? undefined : { stroke: "var(--color-fg-faint)" }}
                                     strokeWidth={selected?.kind === "person" && selected.id === p.id ? 3.5 : p.lead ? 2.5 : 1.5}
                                     strokeDasharray={p.inCast ? undefined : "4 3"}
                                 />
