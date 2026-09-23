@@ -106,9 +106,11 @@ const ARROW_GAP = R + 3;
 /**
  * An arrow's size in the chart's own units, whatever its line's width: sized
  * by the stroke, the leads' thicker lines grew arrows a size up, and a
- * hovered line's arrow swelled with it.
+ * hovered line's arrow swelled with it. The arrows mid-line (a support role's
+ * into a lead, a trunk's) are drawn at the same size. Ten, not fourteen: a
+ * triangle as wide as a chip outweighed the lines it sat on.
  */
-const ARROW_SIZE = 14;
+const ARROW_SIZE = 10;
 /**
  * The clear ring round a lead: the lines coming in fade out over it instead
  * of piling onto the face, and an arrow into a lead stops at its edge.
@@ -759,7 +761,7 @@ export function CharacterMap({
                                     <path
                                         d="M-4,-4L4,0L-4,4Z"
                                         fill="currentColor"
-                                        transform={`translate(${mid.x},${mid.y}) rotate(${mid.deg}) scale(${Math.max(width, 2) * 0.875})`}
+                                        transform={`translate(${mid.x},${mid.y}) rotate(${mid.deg}) scale(${ARROW_SIZE / 8})`}
                                         pointerEvents="none"
                                     />
                                 )}
@@ -796,7 +798,7 @@ export function CharacterMap({
                             <g key={t.key} className={TYPE_CLASS[type]} style={{ opacity: allFaded ? 0.08 : tier, transition: "opacity .15s" }}>
                                 <path d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`} fill="none" stroke="currentColor" strokeWidth={width} strokeLinecap="round" strokeDasharray={dash} style={{ transition: "stroke-width .15s" }} />
                                 {t.dir !== "both" && (
-                                    <path d="M-4,-4L4,0L-4,4Z" fill="currentColor" transform={`translate(${(t.port.x + t.lead.x) / 2},${(t.port.y + t.lead.y) / 2}) rotate(${deg}) scale(${Math.max(width, 2) * 0.875})`} pointerEvents="none" />
+                                    <path d="M-4,-4L4,0L-4,4Z" fill="currentColor" transform={`translate(${(t.port.x + t.lead.x) / 2},${(t.port.y + t.lead.y) / 2}) rotate(${deg}) scale(${ARROW_SIZE / 8})`} pointerEvents="none" />
                                 )}
                                 <path
                                     d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`}
