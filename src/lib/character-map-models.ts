@@ -9,7 +9,7 @@
  */
 export const GENERATOR_MODELS = {
     sonnet: { id: "claude-sonnet-5", label: "Sonnet 5", input: 2, output: 10, cacheRead: 0.2 },
-    opus: { id: "claude-opus-5", label: "Opus 5", input: 5, output: 25, cacheRead: 0.5 },
+    opus: { id: "claude-opus-5-5", label: "Opus 5.5", input: 4, output: 20, cacheRead: 0.2 },
 } as const;
 export type GeneratorModel = keyof typeof GENERATOR_MODELS;
 export const DEFAULT_GENERATOR_MODEL: GeneratorModel = "sonnet";
