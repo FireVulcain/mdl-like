@@ -111,11 +111,15 @@ const ARROW_GAP = R + 3;
  * triangle as wide as a chip outweighed the lines it sat on.
  */
 const ARROW_SIZE = 10;
+/** How far the line runs under the arrow's base, so no seam shows between them */
+const ARROW_OVERLAP = 1;
 /**
  * The clear ring round a lead: the lines coming in fade out over it instead
  * of piling onto the face, and an arrow into a lead stops at its edge.
  */
-const MOAT = 14;
+// Eight, not fourteen: the arrows stop at its edge, and at fourteen they
+// hung well clear of the face they point at.
+const MOAT = 8;
 /** A block's ties to a lead share one line from this many members up, and two such lines leave the block this far apart */
 const TRUNK_MIN = 3;
 const TRUNK_GAP = 22;
@@ -687,7 +691,7 @@ export function CharacterMap({
                 >
                     <defs>
                         {TYPES.map((t) => (
-                            <marker key={t} id={`cm-arrow-${t}`} viewBox="0 -4 8 8" refX={8} refY={0} markerUnits="userSpaceOnUse" markerWidth={ARROW_SIZE} markerHeight={ARROW_SIZE} orient="auto" className={TYPE_CLASS[t]}>
+                            <marker key={t} id={`cm-arrow-${t}`} viewBox="0 -4 8 8" refX={(ARROW_OVERLAP * 8) / ARROW_SIZE} refY={0} markerUnits="userSpaceOnUse" markerWidth={ARROW_SIZE} markerHeight={ARROW_SIZE} orient="auto" className={TYPE_CLASS[t]}>
                                 <path d="M0,-4L8,0L0,4Z" fill="currentColor" />
                             </marker>
                         ))}
@@ -737,7 +741,9 @@ export function CharacterMap({
                         // leads' own arrows, and arrows into a support role, stay at the end.
                         const midArrow = l.directed && leads === 1 && !!byId.get(l.to)?.lead;
                         const endArrow = l.directed && !midArrow;
-                        const d = linkPath(l, !endArrow ? 0 : byId.get(l.to)?.lead ? R + MOAT : ARROW_GAP);
+                        // The line stops at the arrow's base, not its tip: run to the tip, its
+                        // round cap and its width stuck out round the point and blunted it
+                        const d = linkPath(l, !endArrow ? 0 : (byId.get(l.to)?.lead ? R + MOAT : ARROW_GAP) + ARROW_SIZE - ARROW_OVERLAP);
                         // Thinner as it steps back, so the leads' lines carry the chart and the
                         // long spokes crossing it stop outshouting them
                         const width = active ? 3.5 : lit ? 3 : leads === 2 ? 2.5 : leads === 1 ? 1.5 : 1.25;
