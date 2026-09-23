@@ -123,6 +123,10 @@ const MOAT = 8;
 /** A block's ties to a lead share one line from this many members up, and two such lines leave the block this far apart */
 const TRUNK_MIN = 3;
 const TRUNK_GAP = 22;
+/** How far outside its block's edge a trunk's knot sits */
+const TRUNK_OUT = 16;
+/** The most a twig's turn into its trunk reaches back from the knot */
+const TWIG_BEND = 60;
 
 /**
  * What happened between two people, or around one, in the story's order:
@@ -390,7 +394,11 @@ export function CharacterMap({
             const cx = block.x + block.w / 2, cy = block.y + block.h / 2;
             const dx = lead.x - cx, dy = lead.y - cy;
             const t = Math.min(dx ? block.w / 2 / Math.abs(dx) : Infinity, dy ? block.h / 2 / Math.abs(dy) : Infinity);
-            const port = { x: cx + dx * Math.min(t, 1), y: cy + dy * Math.min(t, 1) };
+            // …then a step further out, into the gap between blocks: on the edge
+            // itself the knot sat among the captions of the faces nearest it
+            const len = Math.hypot(dx, dy) || 1;
+            const step = t < 1 ? TRUNK_OUT : 0;
+            const port = { x: cx + dx * Math.min(t, 1) + (dx / len) * step, y: cy + dy * Math.min(t, 1) + (dy / len) * step };
             const members = new Map(links.map((l) => {
                 const m = people.get(l.from === leadId ? l.to : l.from)!;
                 return [l.index, { x: m.x, y: m.y }] as const;
@@ -794,12 +802,24 @@ export function CharacterMap({
                         const allFaded = t.links.every(linkFaded);
                         const asked = anyOn || (!allFaded && (!!near || !!picked));
                         const tier = asked ? 1 : SPOKE_OPACITY;
-                        const width = anyOn ? 3 : 1.5;
+                        // The trunk a shade heavier than its twigs, so many-into-one reads at a glance
+                        const width = anyOn ? 3 : 2;
                         const type = t.links[0].type;
                         const dash = t.links.every((l) => l.reveal) ? "6 5" : t.links.every((l) => l.inferred) ? "2 4" : undefined;
                         // the trunk's arrow, mid-line, pointing the way the ties read
                         const [ax, ay, bx, by] = t.dir === "out" ? [t.lead.x, t.lead.y, t.port.x, t.port.y] : [t.port.x, t.port.y, t.lead.x, t.lead.y];
                         const deg = (Math.atan2(by - ay, bx - ax) * 180) / Math.PI;
+                        // The trunk's direction, knot to lead, and how far back from the knot a twig starts to turn
+                        const tl = Math.hypot(t.lead.x - t.port.x, t.lead.y - t.port.y) || 1;
+                        const ux = (t.lead.x - t.port.x) / tl, uy = (t.lead.y - t.port.y) / tl;
+                        // Full for a face upstream of the knot, none for one beside or behind
+                        // it: forced to arrive along the trunk, a face off to the side
+                        // looped round the knot to get there (Yun Hui in W's workshop)
+                        const bend = (m: { x: number; y: number }) => {
+                            const dist = Math.hypot(m.x - t.port.x, m.y - t.port.y) || 1;
+                            const along = ((t.port.x - m.x) * ux + (t.port.y - m.y) * uy) / dist;
+                            return Math.min(dist * 0.5, TWIG_BEND) * Math.max(0, (along - 0.3) / 0.7);
+                        };
                         return (
                             <g key={t.key} className={TYPE_CLASS[type]} style={{ opacity: allFaded ? 0.08 : tier, transition: "opacity .15s" }}>
                                 <path d={`M${t.port.x},${t.port.y}L${t.lead.x},${t.lead.y}`} fill="none" stroke="currentColor" strokeWidth={width} strokeLinecap="round" strokeDasharray={dash} style={{ transition: "stroke-width .15s" }} />
@@ -818,10 +838,13 @@ export function CharacterMap({
                                 />
                                 {t.links.map((l) => {
                                     const m = t.members.get(l.index)!;
-                                    const d = `M${m.x},${m.y}L${t.port.x},${t.port.y}`;
+                                    // A twig bends into the trunk's own direction before the knot,
+                                    // so the ties flow into one line like streams into a river
+                                    // instead of meeting it at an angle
+                                    const d = `M${m.x},${m.y}Q${t.port.x - ux * bend(m)},${t.port.y - uy * bend(m)} ${t.port.x},${t.port.y}`;
                                     return (
-                                        <g key={l.index} style={{ opacity: linkFaded(l) ? 0.3 : 1 }}>
-                                            <path d={d} fill="none" stroke="currentColor" strokeWidth={on(l) ? 3 : 1.25} strokeLinecap="round" strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined} />
+                                        <g key={l.index} style={{ opacity: linkFaded(l) ? 0.3 : on(l) ? 1 : 0.7 }}>
+                                            <path d={d} fill="none" stroke="currentColor" strokeWidth={on(l) ? 3 : 1} strokeLinecap="round" strokeDasharray={l.reveal ? "6 5" : l.inferred ? "2 4" : undefined} />
                                             <path
                                                 d={d}
                                                 fill="none"
@@ -835,6 +858,11 @@ export function CharacterMap({
                                         </g>
                                     );
                                 })}
+                                {/* The knot, marked: without it the twigs meeting read as lines
+                                    crossing by chance, not as ties gathered into one. A ring, the
+                                    way a metro map marks an interchange: a filled dot is what the
+                                    captions use, and read as one more label. */}
+                                <circle cx={t.port.x} cy={t.port.y} r={anyOn ? 4.5 : 3.5} fill={GROUND} stroke="currentColor" strokeWidth={1.5} pointerEvents="none" style={{ transition: "r .15s" }} />
                             </g>
                         );
                     })}
