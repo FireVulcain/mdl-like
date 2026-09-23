@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { episodeStops, initialStop, type CharacterMapData, type MapPerson } from "@/lib/character-map";
 import { draftFromPerson, emptyPersonDraft, personFingerprint, type PersonDraft } from "@/lib/character-map-people";
 import { rememberReveals } from "@/actions/character-map-view";
@@ -9,6 +9,7 @@ import { deletePerson, savePerson, type LinkResult } from "@/actions/character-m
 import { CharacterMap } from "./character-map";
 import { PersonEditor } from "./person-editor";
 import { RelationshipManager } from "./relationship-manager";
+import { findLink } from "@/lib/character-map-warnings";
 
 /**
  * The relationships page's two halves, over one copy of the chart: the
@@ -67,7 +68,15 @@ export function RelationshipWorkspace({
     // list" on its panel asks the list to scroll there and open it — a
     // request stamped with a time, so asking twice for the same link works.
     const [picked, setPicked] = useState<number | null>(null);
-    const [editRequest, setEditRequest] = useState<{ index: number; at: number } | null>(null);
+    // A run's warning opens here on the link it names (?from=&to=&short=):
+    // the list scrolls to it and its editor opens, for the admin
+    const search = useSearchParams();
+    const [editRequest, setEditRequest] = useState<{ index: number; at: number } | null>(() => {
+        const from = search.get("from"), to = search.get("to");
+        if (!canEdit || !from || !to) return null;
+        const index = findLink(initial.links, from, to, search.get("short"));
+        return index >= 0 ? { index, at: 0 } : null;
+    });
 
     // The characters, written here rather than in the list: a new one is
     // asked for from the list, an existing one from their panel in the chart.

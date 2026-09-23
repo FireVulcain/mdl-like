@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import type { JobView } from "@/lib/character-map-jobs";
 import type { Preflight } from "@/app/api/admin/character-maps/preflight/route";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
+import { editLinkHref, sortWarnings } from "@/lib/character-map-warnings";
 
 /**
  * The admin's way to have a chart written: one button in the section
@@ -740,16 +741,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                         <Stat value={clock(elapsed)} label="min" />
                                     </div>
                                     {stillsLine}
-                                    {job.warnings.length > 0 && (
-                                        <ul className="space-y-1 text-xs text-amber-400/90">
-                                            {job.warnings.map((w, i) => (
-                                                <li key={i} className="flex gap-2">
-                                                    <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
-                                                    <span>{w}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                                    {job.warnings.length > 0 && <RunWarnings warnings={job.warnings} />}
                                     <div className="flex items-center justify-end gap-2 pt-1">
                                         <button type="button" onClick={() => setView("choose")} className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg">
                                             Run again
@@ -847,6 +839,59 @@ function StillsLine({ stills, page, onPage, onRetry }: { stills: StillsState; pa
         );
     }
     return null;
+}
+
+/**
+ * What the run's checks said, in two piles: what is left to look at, each
+ * line that names a link opening it in the relationships editor, and —
+ * folded away — what the checks already put right. One list of fifteen
+ * amber lines once hid the only one that mattered: a husband drawn as his
+ * wife's wife, said as a density note.
+ */
+function RunWarnings({ warnings }: { warnings: string[] }) {
+    const { fixed, check } = sortWarnings(warnings);
+    return (
+        <div className="space-y-2 text-xs">
+            {check.length > 0 && (
+                <div className="space-y-1">
+                    <p className="font-medium text-amber-400">To check · {check.length}</p>
+                    <ul className="space-y-1 text-amber-400/90">
+                        {check.map((w, i) => (
+                            <li key={i} className="flex gap-2">
+                                <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
+                                <span className="min-w-0 flex-1 wrap-break-word">{w.text}</span>
+                                {w.link && (
+                                    <a
+                                        href={editLinkHref(window.location, w.link)}
+                                        className="shrink-0 text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg"
+                                        title="Open this link in the relationships editor"
+                                    >
+                                        Open
+                                    </a>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            {fixed.length > 0 && (
+                <details className="group">
+                    <summary className="cursor-pointer list-none text-fg-dim transition-colors hover:text-fg-muted">
+                        <Check className="mr-1 inline h-3 w-3 text-emerald-400/80" />
+                        Fixed by the checks · {fixed.length}
+                        <span className="group-open:hidden"> — show</span>
+                    </summary>
+                    <ul className="mt-1 space-y-1 text-fg-dim">
+                        {fixed.map((w, i) => (
+                            <li key={i} className="wrap-break-word pl-4">
+                                {w.text}
+                            </li>
+                        ))}
+                    </ul>
+                </details>
+            )}
+        </div>
+    );
 }
 
 function Stat({ value, label }: { value: string | number; label: string }) {
