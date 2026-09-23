@@ -409,7 +409,7 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         const dx = g === "__center" ? 210 : Math.max(150, Math.max(...members.map(textWidth)) + 16);
         // Room for two captions under every face, and one more row for each
         // caption past that.
-        const dy = 132 + CAPTION_STEP * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
+        const dy = 129 + CAPTION_STEP * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
         shapes.set(g, { name: g, members, perRow, rows, dx, dy, w: perRow * dx + 12, h: rows * dy + 44, x: 0, y: 0 });
     }
 

@@ -893,7 +893,7 @@ export function CharacterMap({
                                             <CaptionRow
                                                 key={i}
                                                 x={tx}
-                                                y={R + 42 + i * CAPTION_STEP}
+                                                y={R + 39 + i * CAPTION_STEP}
                                                 anchor={anchor}
                                                 caption={c}
                                                 tone={tone}
