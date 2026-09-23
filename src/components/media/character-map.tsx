@@ -90,6 +90,28 @@ function CaptionRow({ x, y, anchor, caption, lit, tone, className, style, onClic
     );
 }
 
+/**
+ * The rest of the legend: the line styles, which are switches too. A
+ * reveal's line is dashed and an inferred one dotted, so each is keyed by a
+ * stroke drawn that way — the legend then explains what a dashed line means
+ * as well as hiding it. Labels, keyed by a small chip, read the same way.
+ * On and off as the types: the key dims and the word is struck through.
+ */
+function LegendToggle({ on, onChange, mark, children }: { on: boolean; onChange: () => void; mark: "dash" | "dot" | "chip"; children: React.ReactNode }) {
+    return (
+        <button type="button" aria-pressed={on} onClick={onChange} className={`group inline-flex h-7 cursor-pointer items-center gap-2 text-[12.5px] font-medium transition-colors ${on ? "text-fg-soft" : "text-fg-faint"}`}>
+            <svg aria-hidden width={18} height={10} className={`text-fg-muted transition-opacity ${on ? "" : "opacity-30"}`}>
+                {mark === "chip" ? (
+                    <rect x={1} y={1.5} width={16} height={7} rx={2.5} fill="currentColor" fillOpacity={0.35} />
+                ) : (
+                    <line x1={1.25} y1={5} x2={16.75} y2={5} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeDasharray={mark === "dash" ? "4 3.5" : "0.1 3.8"} />
+                )}
+            </svg>
+            <span className={`group-hover:text-fg ${on ? "" : "line-through decoration-fg-faint"}`}>{children}</span>
+        </button>
+    );
+}
+
 // A source sentence is quoted only when the reader can read it. The Korean
 // and Chinese ones are what the link was read from, but to someone who reads
 // neither they are noise under a label that already says the same thing in
@@ -347,6 +369,10 @@ export function CharacterMap({
     // As of episode N, a dated link has happened or not; only the undated
     // ones — the organisation chart's — still answer to the reveals toggle
     const happened = (l: MapLink) => linkHappened(l, asOf, episode) && (asOf || !byEpisode || inWholeStory(l));
+    // Drawn faint as a guess: an inferred link, unless it is also a reveal.
+    // A reveal is the reveals switch's (see the counts), shown because the
+    // reader asked for the twist, and at 40% "the lost child" read as a ghost.
+    const guessed = (l: MapLink) => l.inferred && !l.reveal;
     const hideLink = (l: MapLink) => !happened(l) || (!reveals && doorGoverns(l, asOf));
     const layout = useMemo(
         () => {
@@ -652,31 +678,48 @@ export function CharacterMap({
                     </span>
                 </div>
             )}
-            <div className="flex flex-wrap items-center gap-2">
-                {TYPES.map((t) => (
-                    <button key={t} type="button" onClick={() => toggleType(t)} aria-pressed={types.has(t)} className={pill(types.has(t))} disabled={counts.byType[t] === 0}>
-                        <span className={`inline-block h-0.5 w-3 rounded ${types.has(t) ? "bg-current " + TYPE_CLASS[t] : "bg-fg-faint"}`} />
-                        {TYPE_LABEL[t]}
-                        <span className="opacity-50">{counts.byType[t]}</span>
-                    </button>
-                ))}
+            {/* The types are the chart's legend, so they are written as one: a
+                stroke in the colour and weight of its lines, the name, the count.
+                Off, the stroke dims and the name is struck through — as grey
+                buttons, on and off were two greys five points apart. */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+                {TYPES.map((t) => {
+                    const on = types.has(t), empty = counts.byType[t] === 0;
+                    return (
+                        <button
+                            key={t}
+                            type="button"
+                            onClick={() => toggleType(t)}
+                            aria-pressed={on}
+                            disabled={empty}
+                            className={`group inline-flex h-7 items-center gap-2 text-[12.5px] font-medium transition-colors disabled:cursor-default disabled:opacity-40 ${on ? "text-fg-soft" : "text-fg-faint"} cursor-pointer`}
+                        >
+                            <span className={`h-[2.5px] w-[18px] rounded-full bg-current transition-opacity ${TYPE_CLASS[t]} ${on ? "" : "opacity-25"}`} />
+                            <span className={`group-hover:text-fg ${on ? "" : "line-through decoration-fg-faint"}`}>{TYPE_LABEL[t]}</span>
+                            <span className="text-[11.5px] tabular-nums text-fg-dim">{counts.byType[t]}</span>
+                        </button>
+                    );
+                })}
 
-                <div className="h-4 w-px bg-surface-3" />
-
-                {/* The spoiler door, only when it holds something: on a chart dated
-                    episode by episode every twist is the slider's, and a door with
-                    nothing behind it read as a filter that did not work. */}
-                {counts.reveals > 0 && (
-                    <button type="button" onClick={() => setReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)}>
-                        Reveals <span className="opacity-50">{counts.reveals}</span>
-                    </button>
-                )}
-                <button type="button" onClick={() => setInferred((v) => !v)} aria-pressed={inferred} className={pill(inferred)} disabled={counts.inferred === 0}>
-                    Inferred <span className="opacity-50">{counts.inferred}</span>
-                </button>
-                <button type="button" onClick={() => setLabels((v) => !v)} aria-pressed={labels} className={`${pill(labels)} ml-auto`}>
-                    Labels
-                </button>
+                <div className="ml-auto flex items-center gap-5">
+                    {/* The spoiler door, only when it holds something: on a chart dated
+                        episode by episode every twist is the slider's, and a door with
+                        nothing behind it read as a filter that did not work. */}
+                    {counts.reveals > 0 && (
+                        <LegendToggle on={reveals} onChange={() => setReveals(!reveals)} mark="dash">
+                            Reveals <span className="text-[11.5px] tabular-nums text-fg-dim">{counts.reveals}</span>
+                        </LegendToggle>
+                    )}
+                    {/* Likewise the inferred ties: a switch that can only be off is noise */}
+                    {counts.inferred > 0 && (
+                        <LegendToggle on={inferred} onChange={() => setInferred((v) => !v)} mark="dot">
+                            Inferred <span className="text-[11.5px] tabular-nums text-fg-dim">{counts.inferred}</span>
+                        </LegendToggle>
+                    )}
+                    <LegendToggle on={labels} onChange={() => setLabels((v) => !v)} mark="chip">
+                        Labels
+                    </LegendToggle>
+                </div>
             </div>
 
             {/* The window onto the chart: drag to move around, the leads in the middle to start.
@@ -759,7 +802,7 @@ export function CharacterMap({
                         // the chord's direction
                         const mid = midArrow ? { x: (l.x1 + 2 * l.cx + l.x2) / 4, y: (l.y1 + 2 * l.cy + l.y2) / 4, deg: (Math.atan2(l.y2 - l.y1, l.x2 - l.x1) * 180) / Math.PI } : null;
                         return (
-                            <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : tier * (l.inferred ? 0.4 : 1), transition: "opacity .15s" }}>
+                            <g key={l.index} className={TYPE_CLASS[l.type]} style={{ opacity: faded ? 0.08 : tier * (guessed(l) ? 0.4 : 1), transition: "opacity .15s" }}>
                                 <path d={d} fill="none" stroke="currentColor" strokeWidth={12} strokeLinecap="round" strokeOpacity={picked?.index === l.index ? 0.3 : lit ? 0.18 : 0} style={{ transition: "stroke-opacity .15s" }} />
                                 <path
                                     d={d}
@@ -965,7 +1008,7 @@ export function CharacterMap({
                                         text={l.short}
                                         lit={hoverLink === l.index || picked?.index === l.index}
                                         className={`cursor-pointer ${TYPE_CLASS[l.type]} ${l.reveal ? "italic" : ""}`}
-                                        style={{ opacity: faded ? 0.08 : l.inferred ? 0.4 : 1, transition: "opacity .15s", pointerEvents: faded ? "none" : undefined }}
+                                        style={{ opacity: faded ? 0.08 : guessed(l) ? 0.4 : 1, transition: "opacity .15s", pointerEvents: faded ? "none" : undefined }}
                                         onClick={unlessDragged(() => pickLink(l.index))}
                                         onHover={(on) => setHoverLink((v) => (on ? l.index : v === l.index ? null : v))}
                                     />
