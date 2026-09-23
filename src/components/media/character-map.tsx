@@ -21,6 +21,10 @@ import {
     PORTRAIT_R,
     TYPE_CLASS,
     TYPE_LABEL,
+    CAPTION_DOT,
+    CAPTION_STEP,
+    captionWidth,
+    type Caption,
     type CharacterMapData,
     type LaidOutLink,
     type LinkType,
@@ -28,29 +32,57 @@ import {
 } from "@/lib/character-map";
 import { Face, pill } from "@/components/media/character-map-bits";
 
-// A relationship's words go on a chip, the way a broadcaster's chart tags its
-// lines: an opaque ground, a hairline border with a hint of the line's colour,
-// and quiet text. The colour stays on the line, not the words, or a busy
-// chart reads as confetti. The width is estimated the way the layout
-// estimates its own; on narrow glyphs the chip runs a touch wide. The ground
-// has to be an opaque token: the surfaces are white at 3% and would let the
-// line straight through.
+// The words between two leads go on a chip tinted with the line's colour,
+// the way /stats tints its theme chips: no border, the words in the colour,
+// so the chip reads as the line's own label rather than a button laid over
+// it. The tint is mixed into an opaque token, since the surfaces are white at
+// 3% and would let the line straight through. The width is estimated the way
+// the layout estimates its own; on narrow glyphs the chip runs a touch wide.
 const GROUND = "var(--color-panel)";
-const CHIP_H = 18, CHIP_PAD = 8, CHIP_FONT = 10.5, CHIP_CHAR = 5.9;
+const CHIP_H = 18, CHIP_PAD = 7, CHIP_FONT = 10.5, CHIP_CHAR = 5.9;
 const chipWidth = (text: string) => text.length * CHIP_CHAR + 2 * CHIP_PAD;
-function Tag({ x, y, anchor = "middle", text, lit, className, style, onClick, onHover }: {
-    x: number; y: number; anchor?: "start" | "middle" | "end"; text: string;
-    /** its line is under the pointer: the border takes the full colour */
+const tint = (pct: number) => `color-mix(in srgb, currentColor ${pct}%, ${GROUND})`;
+const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+function Tag({ x, y, text, lit, className, style, onClick, onHover }: {
+    x: number; y: number; text: string;
+    /** its line is under the pointer: the tint deepens */
     lit?: boolean;
     className: string; style?: React.CSSProperties; onClick?: React.MouseEventHandler<SVGGElement>; onHover?: (on: boolean) => void;
 }) {
     const w = chipWidth(text);
-    const left = anchor === "start" ? x - CHIP_PAD : anchor === "end" ? x - w + CHIP_PAD : x - w / 2;
     return (
         <g className={className} style={style} onClick={onClick} onMouseEnter={onHover && (() => onHover(true))} onMouseLeave={onHover && (() => onHover(false))}>
-            <rect x={left} y={y - CHIP_H / 2} width={w} height={CHIP_H} rx={CHIP_H / 2} fill={GROUND} stroke="currentColor" strokeOpacity={lit ? 1 : 0.4} style={{ transition: "stroke-opacity .15s" }} />
-            <text x={x} y={y} dy={CHIP_FONT * 0.36} textAnchor={anchor} className={`${lit ? "fill-fg" : "fill-fg-soft"} font-medium`} style={{ fontSize: CHIP_FONT }}>
-                {text.charAt(0).toUpperCase() + text.slice(1)}
+            <rect x={x - w / 2} y={y - CHIP_H / 2} width={w} height={CHIP_H} rx={5} style={{ fill: tint(lit ? 30 : 16), transition: "fill .15s" }} />
+            <text x={x} y={y} dy={CHIP_FONT * 0.36} textAnchor="middle" className="fill-current font-semibold" style={{ fontSize: CHIP_FONT }}>
+                {capitalize(text)}
+            </text>
+        </g>
+    );
+}
+
+// Under a face the ties are a legend, not a stack of chips: a dot in the tie's
+// colour, the words, and the name they point to set back. Boxes there read as
+// a column of buttons heavier than the name above them. The text is haloed in
+// the chart's ground, as the name and the actor are, so a line passing under
+// does not cut it.
+function CaptionRow({ x, y, anchor, caption, lit, className, style, onClick, onHover }: {
+    x: number; y: number; anchor: "start" | "middle" | "end"; caption: Caption; lit?: boolean;
+    className: string; style?: React.CSSProperties; onClick?: React.MouseEventHandler<SVGGElement>; onHover?: (on: boolean) => void;
+}) {
+    const w = captionWidth(caption);
+    // "start" and "end" hang from the face's edge, the way the name does
+    const left = anchor === "start" ? x : anchor === "end" ? x - w : x - w / 2;
+    const halo = { paintOrder: "stroke" as const, stroke: GROUND, strokeWidth: 3, strokeLinejoin: "round" as const };
+    return (
+        <g className={className} style={style} onClick={onClick} onMouseEnter={onHover && (() => onHover(true))} onMouseLeave={onHover && (() => onHover(false))}>
+            {/* The whole row takes the pointer, not just the glyphs */}
+            <rect x={left - 3} y={y - CAPTION_STEP / 2} width={w + 6} height={CAPTION_STEP} fill="transparent" />
+            <circle cx={left + 3} cy={y} r={lit ? 3.5 : 3} className="fill-current" style={{ transition: "r .15s" }} />
+            <text x={left + CAPTION_DOT} y={y} dy={CHIP_FONT * 0.36} style={{ fontSize: CHIP_FONT, ...halo }}>
+                <tspan className={`${lit ? "fill-fg" : "fill-fg-soft"} font-medium`} style={{ transition: "fill .15s" }}>
+                    {capitalize(caption.text)}
+                </tspan>
+                <tspan className="fill-fg-dim">{" " + caption.target}</tspan>
             </text>
         </g>
     );
@@ -805,7 +837,7 @@ export function CharacterMap({
                         const faded = faceFaded(p.id);
                         // Text is centred under the face unless that would run it off the
                         // frame's edge; then it hangs from the face's near side instead.
-                        const widest = Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => chipWidth(c.text)));
+                        const widest = Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map(captionWidth));
                         const anchor = p.x - widest / 2 < 8 ? "start" : p.x + widest / 2 > layout.width - 8 ? "end" : "middle";
                         const tx = anchor === "start" ? -R : anchor === "end" ? R : 0;
                         return (
@@ -844,12 +876,12 @@ export function CharacterMap({
                                     p.captions.map((c, i) => {
                                         const speaks = captionSpeaks(c.linkIndex);
                                         return (
-                                            <Tag
+                                            <CaptionRow
                                                 key={i}
                                                 x={tx}
-                                                y={R + 42 + i * (CHIP_H + 4)}
+                                                y={R + 42 + i * CAPTION_STEP}
                                                 anchor={anchor}
-                                                text={c.text}
+                                                caption={c}
                                                 lit={hoverLink === c.linkIndex || picked?.index === c.linkIndex}
                                                 className={`cursor-pointer ${TYPE_CLASS[c.type]} ${c.reveal ? "italic" : ""}`}
                                                 // The lines keep their places while some go quiet:

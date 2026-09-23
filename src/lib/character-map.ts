@@ -289,7 +289,18 @@ export type CharacterMapData = {
 export const PORTRAIT_R = 28;
 
 export type LaidOutPerson = MapPerson & { x: number; y: number; lead: boolean; captions: Caption[] };
-export type Caption = { text: string; type: LinkType; reveal: boolean; linkIndex: number; since: number };
+/** A tie written under the face that carries it: what it is, and to whom. */
+export type Caption = { text: string; target: string; type: LinkType; reveal: boolean; linkIndex: number; since: number };
+
+/**
+ * The captions under a face are a small legend, not a stack of chips: a dot
+ * in the tie's colour, then the words. Rows this far apart, and a caption this
+ * wide — the dot, its gap, the words and the two spaces before the name. The
+ * chart draws them and the layout sizes its blocks from the same numbers.
+ */
+export const CAPTION_STEP = 16;
+export const CAPTION_DOT = 11;
+export const captionWidth = (c: Caption) => (c.text.length + 2 + c.target.length) * 5.9 + CAPTION_DOT;
 export type LaidOutLink = MapLink & {
     index: number;
     x1: number; y1: number; x2: number; y2: number;
@@ -368,7 +379,7 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         const a = byId.get(l.from)!, b = byId.get(l.to)!;
         const carrier = spoke(l) ? (center.has(l.from) ? b : a) : a;
         const other = carrier === a ? b : a;
-        carrier.captions.push({ text: `${l.short} · ${firstName(other)}`, type: l.type, reveal: l.reveal, linkIndex: index, since: l.since ?? 0 });
+        carrier.captions.push({ text: l.short, target: firstName(other), type: l.type, reveal: l.reveal, linkIndex: index, since: l.since ?? 0 });
     }
     // Under a face, the story's order: what was there from the start first,
     // then each tie the episode it appears — "her father" above "his other
@@ -386,7 +397,7 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         if (!groups.has(g)) groups.set(g, []);
         groups.get(g)!.push(p);
     }
-    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map((c) => c.text.length * 5.9 + 16));
+    const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map(captionWidth));
     type Shape = { name: string; members: LaidOutPerson[]; perRow: number; rows: number; dx: number; dy: number; w: number; h: number; x: number; y: number };
     const shapes = new Map<string, Shape>();
     for (const [g, members] of groups) {
@@ -396,9 +407,9 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         const perRow = g === "__center" ? n : n <= 2 ? (side ? 1 : n) : n === 4 ? 2 : n >= 10 ? 5 : n >= 7 ? 4 : 3;
         const rows = Math.ceil(n / perRow);
         const dx = g === "__center" ? 210 : Math.max(150, Math.max(...members.map(textWidth)) + 16);
-        // Room for two chips under every face (the chart's component draws them 22
-        // apart), and one more row for each caption past that.
-        const dy = 138 + 22 * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
+        // Room for two captions under every face, and one more row for each
+        // caption past that.
+        const dy = 132 + CAPTION_STEP * Math.max(0, Math.max(...members.map((m) => m.captions.length)) - 2);
         shapes.set(g, { name: g, members, perRow, rows, dx, dy, w: perRow * dx + 12, h: rows * dy + 44, x: 0, y: 0 });
     }
 
