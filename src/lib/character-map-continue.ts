@@ -233,9 +233,10 @@ export async function continueChart(
 
     const stream = client.messages.stream({
         model: GENERATOR_MODELS[model].id,
-        max_tokens: 32000,
+        // Thinking counts against this too; see generateChart
+        max_tokens: 128000,
         thinking: { type: "adaptive" },
-        output_config: { effort: "high", format: { type: "json_schema", schema: PATCH_SCHEMA } },
+        output_config: { effort: "medium", format: { type: "json_schema", schema: PATCH_SCHEMA } },
         system: [{ type: "text", text: CONTINUE_RULES, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: continueMessage(map, plan, context, cast) }],
     });

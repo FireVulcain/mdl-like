@@ -342,9 +342,14 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
     let chars = 0;
     const stream = client.messages.stream({
         model: GENERATOR_MODELS[model].id,
-        max_tokens: 64000,
+        // The ceiling covers the thinking as well as the chart: a run on 8
+        // recaps thought for nine and a half minutes, then ran out 12K
+        // characters into writing at 64K. Both models stream up to 128K, and
+        // only what is used is billed. Effort medium: at high the thinking
+        // alone ran to nine minutes and most of the bill.
+        max_tokens: 128000,
         thinking: { type: "adaptive" },
-        output_config: { effort: "high", format: { type: "json_schema", schema: CHART_SCHEMA } },
+        output_config: { effort: "medium", format: { type: "json_schema", schema: CHART_SCHEMA } },
         system: [{ type: "text", text: RULES, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: user }],
     });
