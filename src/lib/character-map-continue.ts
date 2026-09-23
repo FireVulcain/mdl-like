@@ -42,7 +42,7 @@ TWO KINDS OF LINK — this is the rule everything else follows
 
 WHAT TO ADD (addLinks)
 - Events the new recaps bring that a viewer would remember: a rescue, a betrayal, a kiss, a parent revealed, a death. Ties the new recaps open: a marriage, a new colleague, an alliance, a debt.
-- since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "cpophome ep. 12" — the recap the sentence is in, and no other: the checks find the sentence back and correct a wrong number. An event happens in the episode its sentence is in, never earlier because it "was coming"; a reveal is dated by the recap that reveals it.
+- since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "thereviewgeek ep. 13", "cpophome ep. 12" — the recap the sentence is in, and no other: the checks find the sentence back and correct a wrong number. An event happens in the episode its sentence is in, never earlier because it "was coming"; a reveal is dated by the recap that reveals it.
 - reveal: true when the new episodes reveal something the story had kept — a hidden parent, a true identity, a killer. The episode of the REVEAL is the since, not the episode it is about.
 - A new face the recaps name: addPeople, taking name, actor and the img= URL from the MDL cast list given below. Someone the recaps name whom the cast list does not carry gets inCast false and image null. Put anyone who matters to the leads in addToCompact, and give their group a cell in blocks if it is a new group.
 

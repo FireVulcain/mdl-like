@@ -11,7 +11,7 @@
 // The shapes and the merge live here, with no server imports: the job runs
 // them, and a test can run them over a chart on disk.
 
-import { isEvent, type CharacterMapData, type LinkType, type MapLink, type MapPerson } from "@/lib/character-map";
+import { isEvent, recapsBlock, type CharacterMapData, type LinkType, type MapLink, type MapPerson } from "@/lib/character-map";
 import type { Recap } from "@/lib/character-map-inputs";
 import { linkFrom, draftFrom } from "@/lib/character-map-links";
 
@@ -87,7 +87,10 @@ export function planRun(map: CharacterMapData | null, recaps: Recap[], context: 
         };
     }
     const covered: [number, number][] = (block.ranges?.length ? block.ranges : [[1, block.episodes]]).map((r) => [r[0], r[1]] as [number, number]).sort((a, b) => a[0] - b[0]);
-    const holds = (r: Recap) => covered.some(([from, to]) => from <= r.fromEp && r.toEp <= to);
+    // Every episode of the recap inside some covered range: a recap of 1-2
+    // is read when the chart stops at 1 and at 2, as it does after one-episode
+    // recaps from the other site
+    const holds = (r: Recap) => Array.from({ length: r.toEp - r.fromEp + 1 }, (_, i) => r.fromEp + i).every((ep) => covered.some(([from, to]) => from <= ep && ep <= to));
     const fresh = recaps.filter((r) => !holds(r)).sort((a, b) => a.fromEp - b.fromEp || a.toEp - b.toEp);
     const old = recaps.filter(holds);
     const digestedUrls = new Set((context?.digests ?? []).map((d) => d.url));
@@ -257,12 +260,7 @@ export function applyPatch(map: CharacterMapData, patch: ChartPatch, recaps: Rec
         compact: { ...map.compact, people: compactPeople, blocks },
     };
     if (ordered.length) {
-        next.recaps = {
-            source: ordered[0].source,
-            episodes: Math.max(...ordered.map((r) => r.toEp)),
-            count: ordered.length,
-            ranges: ordered.map((r) => [r.fromEp, r.toEp] as [number, number]),
-        };
+        next.recaps = recapsBlock(ordered);
     }
 
     const groups = new Set(next.people.filter((p) => compactPeople.includes(p.id)).map((p) => p.group));

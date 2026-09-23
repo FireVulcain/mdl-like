@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import * as fs from "fs";
 import * as path from "path";
 import { prisma } from "@/lib/prisma";
-import { isEvent, type CharacterMapData, type Era, type MapLink, type MapPerson } from "@/lib/character-map";
+import { isEvent, recapsBlock, type CharacterMapData, type Era, type MapLink, type MapPerson } from "@/lib/character-map";
 import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
 import { checkSources } from "@/lib/character-map-sources";
 import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP, WHOLE_PER_PERSON } from "@/lib/character-map-rules";
@@ -65,8 +65,9 @@ WHOLE STORY — the chart's panorama, one line per pair
 - Every arc tie is false. A pair that only has arcs (a passing rivalry, an alliance) gets none in the whole story: all false.
 - On an event, wholeStory is ignored; write false.
 
-EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans for Korean dramas, cpophome for Chinese ones)
-- The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "cpophome ep. 12".
+EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans or thereviewgeek for Korean dramas, cpophome for Chinese ones)
+- The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "thereviewgeek ep. 5", "cpophome ep. 12".
+- A Korean drama may come with both sites' recaps of the same episodes: two tellings of one story, not two stories. A thing both tell is one link. Quote the recap that dates it closer — a one-episode recap over a two-episode one — and date it by that recap.
 - since: the first episode a link is seen in, as an integer — the first episode of the recap's range when the recap does not say more ("Episodes 5-6" → 5). A tie that is there from the start (a marriage, a mother) has since 1. A tie the story reveals later (a hidden identity, a killer) has the episode of the reveal, and reveal true. Without recaps, since is null on every link.
 - source names the recap the evidence sentence is in — that one and no other. The checks find the sentence back in the recaps and correct a source that names another episode. An event — an alliance, a betrayal, a rescue, a kiss — happens in the episode its sentence is in, and its since is that episode: never an earlier one because the event "was coming", never a later one. A reveal's since is the episode of the recap that reveals it, even when the thing revealed is older. Only a standing tie (a mother, a job, a marriage from before the story) may have a since earlier than the sentence that describes it.
 - A tie that changes over the run is two ties, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
@@ -301,7 +302,7 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     // KR / CN / JP.
     Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: countryCode(inputs.country) || draft.country });
     if (withRecaps) {
-        map.recaps = { source: inputs.recaps[0].source, episodes: lastEp, count: inputs.recaps.length, ranges: inputs.recaps.map((r) => [r.fromEp, r.toEp]) };
+        map.recaps = recapsBlock(inputs.recaps);
     }
     // The density rules: the whole story trimmed to one defining tie per
     // pair, then what the slider and the panorama would still find crowded

@@ -26,10 +26,12 @@ import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "
  * The episode recaps go the same way: the recap sites turn servers away too,
  * so when the box is ticked the page asks the extension (`trackr:recaps-ask`)
  * to read them and post them to the app, and hears back on `trackr:recaps`;
- * without the extension they can be pasted as JSON. Which site is the
- * preflight's call, by country — Dramabeans for a K-drama, CPOPHome for a
- * C-drama — never the reader's. A run with recaps dates its links by
- * episode, which is what the chart's "By episode" view shows.
+ * without the extension they can be pasted as JSON. Which sites are
+ * offered is the preflight's call, by country — Dramabeans and
+ * TheReviewGeek for a K-drama, CPOPHome for a C-drama; a K-drama's run
+ * reads the one or the two ticked. Each site is read, kept and reported on
+ * its own. A run with recaps dates its links by episode, which is what the
+ * chart's "By episode" view shows.
  *
  * Only rendered for the admin; the route is the actual guard.
  */
@@ -48,7 +50,7 @@ const STATUS_LABEL: Record<string, string> = {
 // Roughly what a chart costs on each model — a typical run is 30K in, 10K out
 const MODEL_HINT: Record<GeneratorModel, { icon: typeof Zap; blurb: string; cost: string }> = {
     sonnet: { icon: Zap, blurb: "Disciplined extraction at a fraction of the price. Right for most dramas.", cost: "about 15¢ a chart" },
-    opus: { icon: Gem, blurb: "Holds the rules over a long input. For the big Chinese casts and long articles.", cost: "about 40¢ a chart" },
+    opus: { icon: Gem, blurb: "Holds the rules over a long input. For the big Chinese casts and long articles.", cost: "about 30¢ a chart" },
 };
 
 // List price of the model that ran, to say what a run cost
@@ -75,8 +77,18 @@ function askForStills(mdlSlug: string, force = false, page?: string) {
  */
 type RecapsState = { status: "started"; read?: number; of?: number } | { status: "done"; count: number; fromEp: number; toEp: number; words: number; tag?: string; listed?: string; skipped?: string } | { status: "failed"; error: string; seen?: string[]; needsTab?: string };
 
+/** The recap sites' states, by site id. */
+type RecapsBySource = Record<string, RecapsState>;
+
 /** What the extension needs to find the drama on its site: the preflight's drama block, and a hint given by hand. */
 type RecapAsk = Pick<Preflight["drama"], "year" | "episodes" | "akas" | "episodeOffset"> & { source: string; title: string; hint?: string };
+
+// What the field under a site's checkbox takes when its search misses the drama
+const HINT_PLACEHOLDER: Record<string, (title: string) => string> = {
+    dramabeans: (title) => `Dramabeans tag or a recap's URL, if not "${title}"`,
+    thereviewgeek: (title) => `Another title, or a recap's URL on TheReviewGeek, if not "${title}"`,
+    cpophome: (title) => `The drama's CPOPHome URL, if the search misses "${title}"`,
+};
 
 function askForRecaps(mdlSlug: string, ask: RecapAsk) {
     window.dispatchEvent(new CustomEvent("trackr:recaps-ask", { detail: JSON.stringify({ mdlSlug, ...ask }) }));
@@ -110,11 +122,13 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const [checkError, setCheckError] = useState<string | null>(null);
     // bumped when the kept recaps change, so the sources are read again
     const [sourcesTick, setSourcesTick] = useState(0);
-    const [withRecaps, setWithRecaps] = useState(false);
-    const [recapsHint, setRecapsHint] = useState("");
-    const [recaps, setRecaps] = useState<RecapsState | null>(null);
+    // the recap sites ticked, and each one's hint and read state
+    const [picked, setPicked] = useState<string[]>([]);
+    const [recapsHint, setRecapsHint] = useState<Record<string, string>>({});
+    const [recaps, setRecaps] = useState<RecapsBySource>({});
     const [extension, setExtension] = useState(false);
-    const [pasting, setPasting] = useState(false);
+    // the site whose recaps are being pasted, if any
+    const [pasting, setPasting] = useState<string | null>(null);
     const [pasted, setPasted] = useState("");
     const [pasteError, setPasteError] = useState<string | null>(null);
     const [now, setNow] = useState(() => Date.now());
@@ -159,7 +173,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             askForStills(mdlSlug);
         };
         const onRecaps = (e: Event) => {
-            let detail: (RecapsState & { mdlSlug?: string }) | null = null;
+            let detail: (RecapsState & { mdlSlug?: string; source?: string }) | null = null;
             try {
                 const raw = (e as CustomEvent).detail;
                 detail = typeof raw === "string" ? JSON.parse(raw) : raw;
@@ -167,7 +181,9 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                 return;
             }
             if (!detail || detail.mdlSlug !== mdlSlug) return;
-            setRecaps(detail);
+            // an older extension does not name the site; it only read Dramabeans or CPOPHome
+            const source = detail.source ?? "dramabeans";
+            setRecaps((r) => ({ ...r, [source]: detail }));
             if (detail.status === "done") setSourcesTick((t) => t + 1);
         };
         const onStills = (e: Event) => {
@@ -208,6 +224,8 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     // Check the sources whenever the choice is on screen and a title changes
     // — a moment after the last keystroke, so typing does not hammer Wikipedia
     const titlesKey = JSON.stringify(titles);
+    // the plan depends on the recap sites ticked
+    const pickedKey = picked.join(",");
     useEffect(() => {
         if (!open || view !== "choose") return;
         const controller = new AbortController();
@@ -218,7 +236,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                 const res = await fetch("/api/admin/character-maps/preflight", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ mdlSlug, titles: JSON.parse(titlesKey) }),
+                    body: JSON.stringify({ mdlSlug, titles: JSON.parse(titlesKey), sources: pickedKey ? pickedKey.split(",") : [] }),
                     signal: controller.signal,
                 });
                 const data = (await res.json().catch(() => ({}))) as { preflight?: Preflight; error?: string };
@@ -235,27 +253,29 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             controller.abort();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open, view, mdlSlug, titlesKey, sourcesTick]);
+    }, [open, view, mdlSlug, titlesKey, pickedKey, sourcesTick]);
 
     // The drama's title on the recap sites is MDL's, without the year
     const dramaTitle = preflight?.title.replace(/ [(][0-9]{4}[)]$/, "") ?? "";
-    const recapsKept = preflight?.recaps ?? null;
-    // Where this drama's recaps are read, by its country; null when no site covers it
-    const recapSource = preflight?.drama.source ?? null;
-    const ask = () => {
-        if (!preflight || !recapSource || !dramaTitle) return;
+    const recapsKept = preflight?.recaps ?? {};
+    // Where this drama's recaps can be read, by its country; empty when no site covers it
+    const recapSources = preflight?.drama.sources ?? [];
+    const ask = (source: string) => {
+        if (!preflight || !dramaTitle) return;
         const { year, episodes, akas, episodeOffset } = preflight.drama;
-        askForRecaps(mdlSlug, { source: recapSource.id, title: dramaTitle, year, episodes, akas, episodeOffset, hint: recapsHint.trim() || undefined });
+        askForRecaps(mdlSlug, { source, title: dramaTitle, year, episodes, akas, episodeOffset, hint: recapsHint[source]?.trim() || undefined });
     };
 
-    // Ticking the box reads the recaps when none are kept; a set already kept is used as it is
-    function tickRecaps(on: boolean) {
-        setWithRecaps(on);
-        if (on && !recapsKept && extension && recaps?.status !== "started") ask();
+    // Ticking a site reads its recaps when none are kept; a set already kept is used as it is
+    function tickRecaps(source: string, on: boolean) {
+        setPicked((p) => (on ? [...p.filter((s) => s !== source), source] : p.filter((s) => s !== source)));
+        if (on && !recapsKept[source] && extension && recaps[source]?.status !== "started") ask(source);
     }
 
-    // The paste fallback: the JSON array the README's console snippet writes
+    // The paste fallback: the JSON array the README's console snippets write, for the site being pasted
     async function savePasted() {
+        const source = pasting;
+        if (!source) return;
         setPasteError(null);
         let list: PastedRecap[];
         try {
@@ -270,24 +290,25 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             setPasteError("No recap in there — each needs a `from` episode and a `text`");
             return;
         }
-        setRecaps({ status: "started" });
+        const report = (state: RecapsState) => setRecaps((r) => ({ ...r, [source]: state }));
+        report({ status: "started" });
         try {
             const res = await fetch("/api/ext/character-maps/recaps", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug, source: recapSource?.id, recaps: ok.map((r) => ({ title: r.title, url: r.url, from: r.from, to: r.to, text: r.text })) }),
+                body: JSON.stringify({ mdlSlug, source, recaps: ok.map((r) => ({ title: r.title, url: r.url, from: r.from, to: r.to, text: r.text })) }),
             });
             const data = (await res.json().catch(() => ({}))) as { summary?: { count: number; fromEp: number; toEp: number; words: number } | null; error?: string };
             if (!res.ok || !data.summary) {
-                setRecaps({ status: "failed", error: data.error ?? `HTTP ${res.status}` });
+                report({ status: "failed", error: data.error ?? `HTTP ${res.status}` });
                 return;
             }
-            setRecaps({ status: "done", ...data.summary });
-            setPasting(false);
+            report({ status: "done", ...data.summary });
+            setPasting(null);
             setPasted("");
             setSourcesTick((t) => t + 1);
         } catch (e) {
-            setRecaps({ status: "failed", error: e instanceof Error ? e.message : "failed" });
+            report({ status: "failed", error: e instanceof Error ? e.message : "failed" });
         }
     }
 
@@ -298,7 +319,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             const res = await fetch("/api/admin/character-maps/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mdlSlug, model, titles, recaps: withRecaps && !!recapsKept, mode }),
+                body: JSON.stringify({ mdlSlug, model, titles, recaps: picked.filter((id) => recapsKept[id]), mode }),
             });
             const data = (await res.json().catch(() => ({}))) as { job?: JobView; error?: string };
             if (!res.ok || !data.job) {
@@ -330,8 +351,8 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const canContinue = plan?.mode === "continue";
     const label = active ? "Generating…" : canContinue ? "Update chart" : hasChart ? "Regenerate chart" : "Generate chart";
     const sourcesOk = !!preflight && preflight.wiki.every((w) => w.found);
-    // With the box ticked, the run waits for the recaps to be kept
-    const recapsPending = withRecaps && !recapsKept;
+    // With a site ticked, the run waits for its recaps to be kept
+    const recapsPending = picked.some((id) => !recapsKept[id]);
 
     const stillsLine = stills ? <StillsLine stills={stills} page={stillsPage} onPage={setStillsPage} onRetry={() => askForStills(mdlSlug, true, stillsPage)} /> : null;
 
@@ -489,118 +510,132 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                 ) : (
                                     <p className="mt-1.5 text-xs text-fg-dim">Checking what the run would read…</p>
                                 )}
-                                {preflight && !recapSource && (
+                                {preflight && recapSources.length === 0 && (
                                     <p className="mt-2 border-t border-line pt-2 text-xs text-fg-dim">
-                                        No recap site for a drama from {preflight.drama.country || "there"} — Dramabeans covers Korean dramas, CPOPHome Chinese ones. The chart is written undated.
+                                        No recap site for a drama from {preflight.drama.country || "there"} — Dramabeans and TheReviewGeek cover Korean dramas, CPOPHome Chinese ones. The chart is written undated.
                                     </p>
                                 )}
-                                {preflight && recapSource && (
-                                    <div className="mt-2 border-t border-line pt-2 text-xs">
-                                        <label className="flex cursor-pointer items-center gap-2 text-fg-muted">
-                                            <input type="checkbox" checked={withRecaps} onChange={(e) => tickRecaps(e.target.checked)} className="h-3.5 w-3.5 accent-sky-500" />
-                                            <span>
-                                                Also read the {recapSource.name} recaps
-                                                <span className="text-fg-dim"> · every link dated by episode, for the chart&apos;s &ldquo;By episode&rdquo; view</span>
-                                            </span>
-                                        </label>
-                                        {withRecaps && (
-                                            <div className="ml-5 mt-1.5 space-y-1.5">
-                                                {preflight.drama.episodeOffset > 0 && (
-                                                    <p className="text-fg-dim">
-                                                        A part of a split airing: {recapSource.name}&apos;s recaps {preflight.drama.episodeOffset + 1}–{preflight.drama.episodeOffset + (preflight.drama.episodes ?? 0)} are read as episodes 1–{preflight.drama.episodes ?? "…"} here.
-                                                    </p>
-                                                )}
-                                                {recaps?.status === "started" ? (
-                                                    <p className="flex items-center gap-2 text-fg-muted">
-                                                        <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Reading the recaps on {recapSource.name}…
-                                                        {recaps.of ? <span className="text-fg-dim">{recaps.read ?? 0}/{recaps.of}</span> : null}
-                                                    </p>
-                                                ) : (
-                                                    <>
-                                                        {recapsKept && (
-                                                            <p className="flex items-start gap-2 text-fg-muted">
-                                                                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
-                                                                <span className="min-w-0 flex-1 break-words">
-                                                                    {recapsKept.source} · {recapsKept.count} recap{recapsKept.count > 1 ? "s" : ""} · ep {recapsKept.fromEp}–{recapsKept.toEp} · {Math.round(recapsKept.words / 1000)}K words
-                                                                    {recaps?.status === "done" && recaps.tag && <span className="text-fg-dim"> · &ldquo;{recaps.tag}&rdquo;</span>}
-                                                                    {recaps?.status === "done" && recaps.listed && <span className="text-fg-dim"> · site lists {recaps.listed}</span>}
-                                                                    {recaps?.status === "done" && recaps.skipped && <span className="text-amber-400/80"> · not read: {recaps.skipped}</span>}
-                                                                </span>
-                                                                {extension && dramaTitle && (
-                                                                    <button type="button" onClick={ask} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
-                                                                        <RefreshCw className="h-3 w-3" />
-                                                                    </button>
-                                                                )}
-                                                            </p>
-                                                        )}
-                                                        {recaps?.status === "failed" && (
-                                                            <p className="flex items-start gap-1.5 text-amber-400/90">
-                                                                <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
-                                                                <span>
-                                                                    {recaps.error}
-                                                                    {recaps.seen?.length ? <span className="text-fg-dim"> · seen: {recaps.seen.slice(0, 4).join(" · ")}</span> : null}
-                                                                    {recaps.needsTab && (
-                                                                        <>
-                                                                            {" "}
-                                                                            <a href={recaps.needsTab} target="_blank" rel="noreferrer" className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
-                                                                                Open it
-                                                                            </a>
-                                                                            , pass the check, keep that tab open, then Read again.
-                                                                        </>
+                                {preflight && recapSources.length > 0 && (
+                                    <div className="mt-2 space-y-2 border-t border-line pt-2 text-xs">
+                                        {recapSources.length > 1 && <p className="text-fg-dim">Episode recaps date every link, for the chart&apos;s &ldquo;By episode&rdquo; view — read one site or both.</p>}
+                                        {recapSources.map((src) => {
+                                            const kept = recapsKept[src.id] ?? null;
+                                            const state = recaps[src.id] ?? null;
+                                            const on = picked.includes(src.id);
+                                            return (
+                                                <div key={src.id}>
+                                                    <label className="flex cursor-pointer items-center gap-2 text-fg-muted">
+                                                        <input type="checkbox" checked={on} onChange={(e) => tickRecaps(src.id, e.target.checked)} className="h-3.5 w-3.5 accent-sky-500" />
+                                                        <span>
+                                                            Also read the {src.name} recaps
+                                                            {recapSources.length === 1 ? (
+                                                                <span className="text-fg-dim"> · every link dated by episode, for the chart&apos;s &ldquo;By episode&rdquo; view</span>
+                                                            ) : kept && !on ? (
+                                                                <span className="text-fg-dim"> · {kept.count} kept, ep {kept.fromEp}–{kept.toEp}</span>
+                                                            ) : null}
+                                                        </span>
+                                                    </label>
+                                                    {on && (
+                                                        <div className="ml-5 mt-1.5 space-y-1.5">
+                                                            {preflight.drama.episodeOffset > 0 && (
+                                                                <p className="text-fg-dim">
+                                                                    A part of a split airing: {src.name}&apos;s recaps {preflight.drama.episodeOffset + 1}–{preflight.drama.episodeOffset + (preflight.drama.episodes ?? 0)} are read as episodes 1–{preflight.drama.episodes ?? "…"} here.
+                                                                </p>
+                                                            )}
+                                                            {state?.status === "started" ? (
+                                                                <p className="flex items-center gap-2 text-fg-muted">
+                                                                    <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Reading the recaps on {src.name}…
+                                                                    {state.of ? <span className="text-fg-dim">{state.read ?? 0}/{state.of}</span> : null}
+                                                                </p>
+                                                            ) : (
+                                                                <>
+                                                                    {kept && (
+                                                                        <p className="flex items-start gap-2 text-fg-muted">
+                                                                            <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
+                                                                            <span className="min-w-0 flex-1 break-words">
+                                                                                {kept.source} · {kept.count} recap{kept.count > 1 ? "s" : ""} · ep {kept.fromEp}–{kept.toEp} · {Math.round(kept.words / 1000)}K words
+                                                                                {state?.status === "done" && state.tag && <span className="text-fg-dim"> · &ldquo;{state.tag}&rdquo;</span>}
+                                                                                {state?.status === "done" && state.listed && <span className="text-fg-dim"> · site lists {state.listed}</span>}
+                                                                                {state?.status === "done" && state.skipped && <span className="text-amber-400/80"> · not read: {state.skipped}</span>}
+                                                                            </span>
+                                                                            {extension && dramaTitle && (
+                                                                                <button type="button" onClick={() => ask(src.id)} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
+                                                                                    <RefreshCw className="h-3 w-3" />
+                                                                                </button>
+                                                                            )}
+                                                                        </p>
                                                                     )}
-                                                                </span>
-                                                            </p>
-                                                        )}
-                                                        {recapsKept && recaps?.status !== "failed" ? null : extension ? (
-                                                            <form
-                                                                className="flex items-center gap-1.5"
-                                                                onSubmit={(e) => {
-                                                                    e.preventDefault();
-                                                                    ask();
-                                                                }}
-                                                            >
-                                                                <input
-                                                                    value={recapsHint}
-                                                                    onChange={(e) => setRecapsHint(e.target.value)}
-                                                                    placeholder={recapSource.id === "cpophome" ? `The drama's CPOPHome URL, if the search misses "${dramaTitle}"` : `Dramabeans tag or a recap's URL, if not "${dramaTitle}"`}
-                                                                    className="min-w-0 flex-1 rounded-md bg-surface-2 px-2 py-1 text-fg outline-none placeholder:text-fg-faint"
-                                                                />
-                                                                <button type="submit" className="inline-flex items-center gap-1 rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4">
-                                                                    <BookOpen className="h-3 w-3" /> Read
-                                                                </button>
-                                                            </form>
-                                                        ) : !pasting ? (
-                                                            <p className="text-fg-dim">
-                                                                {recapSource.name} turns servers away; the extension reads the recaps from this browser.{" "}
-                                                                <button type="button" onClick={() => setPasting(true)} className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
-                                                                    Paste them instead
-                                                                </button>
-                                                            </p>
-                                                        ) : null}
-                                                        {pasting && !recapsKept && (
-                                                            <div className="space-y-1.5">
-                                                                <textarea
-                                                                    value={pasted}
-                                                                    onChange={(e) => setPasted(e.target.value)}
-                                                                    placeholder={'[{ "title": "…: Episode 1", "from": 1, "to": 1, "text": "…" }, …] — the README has the console snippet that writes this'}
-                                                                    rows={4}
-                                                                    className="w-full rounded-md bg-surface-2 px-2 py-1.5 font-mono text-[11px] text-fg outline-none placeholder:text-fg-faint"
-                                                                />
-                                                                {pasteError && <p className="text-amber-400/90">{pasteError}</p>}
-                                                                <div className="flex items-center gap-2">
-                                                                    <button type="button" onClick={savePasted} disabled={!pasted.trim()} className="rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4 disabled:opacity-50">
-                                                                        Keep these recaps
-                                                                    </button>
-                                                                    <button type="button" onClick={() => setPasting(false)} className="text-fg-dim transition-colors hover:text-fg">
-                                                                        Cancel
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        )}
-                                                    </>
-                                                )}
-                                            </div>
-                                        )}
+                                                                    {state?.status === "failed" && (
+                                                                        <p className="flex items-start gap-1.5 text-amber-400/90">
+                                                                            <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
+                                                                            <span>
+                                                                                {state.error}
+                                                                                {state.seen?.length ? <span className="text-fg-dim"> · seen: {state.seen.slice(0, 4).join(" · ")}</span> : null}
+                                                                                {state.needsTab && (
+                                                                                    <>
+                                                                                        {" "}
+                                                                                        <a href={state.needsTab} target="_blank" rel="noreferrer" className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
+                                                                                            Open it
+                                                                                        </a>
+                                                                                        , pass the check, keep that tab open, then Read again.
+                                                                                    </>
+                                                                                )}
+                                                                            </span>
+                                                                        </p>
+                                                                    )}
+                                                                    {kept && state?.status !== "failed" ? null : extension ? (
+                                                                        <form
+                                                                            className="flex items-center gap-1.5"
+                                                                            onSubmit={(e) => {
+                                                                                e.preventDefault();
+                                                                                ask(src.id);
+                                                                            }}
+                                                                        >
+                                                                            <input
+                                                                                value={recapsHint[src.id] ?? ""}
+                                                                                onChange={(e) => setRecapsHint((h) => ({ ...h, [src.id]: e.target.value }))}
+                                                                                placeholder={HINT_PLACEHOLDER[src.id]?.(dramaTitle) ?? `A URL on ${src.name}, if the search misses "${dramaTitle}"`}
+                                                                                className="min-w-0 flex-1 rounded-md bg-surface-2 px-2 py-1 text-fg outline-none placeholder:text-fg-faint"
+                                                                            />
+                                                                            <button type="submit" className="inline-flex items-center gap-1 rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4">
+                                                                                <BookOpen className="h-3 w-3" /> Read
+                                                                            </button>
+                                                                        </form>
+                                                                    ) : pasting !== src.id ? (
+                                                                        <p className="text-fg-dim">
+                                                                            {src.name} turns servers away; the extension reads the recaps from this browser.{" "}
+                                                                            <button type="button" onClick={() => setPasting(src.id)} className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
+                                                                                Paste them instead
+                                                                            </button>
+                                                                        </p>
+                                                                    ) : null}
+                                                                    {pasting === src.id && !kept && (
+                                                                        <div className="space-y-1.5">
+                                                                            <textarea
+                                                                                value={pasted}
+                                                                                onChange={(e) => setPasted(e.target.value)}
+                                                                                placeholder={'[{ "title": "…: Episode 1", "from": 1, "to": 1, "text": "…" }, …] — the README has the console snippet that writes this'}
+                                                                                rows={4}
+                                                                                className="w-full rounded-md bg-surface-2 px-2 py-1.5 font-mono text-[11px] text-fg outline-none placeholder:text-fg-faint"
+                                                                            />
+                                                                            {pasteError && <p className="text-amber-400/90">{pasteError}</p>}
+                                                                            <div className="flex items-center gap-2">
+                                                                                <button type="button" onClick={savePasted} disabled={!pasted.trim()} className="rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4 disabled:opacity-50">
+                                                                                    Keep these recaps
+                                                                                </button>
+                                                                                <button type="button" onClick={() => setPasting(null)} className="text-fg-dim transition-colors hover:text-fg">
+                                                                                    Cancel
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                </>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 )}
                             </div>

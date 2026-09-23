@@ -4,7 +4,7 @@
  * the extension could not read the site (Cloudflare had a bad day) and the
  * recaps were saved by hand. Replaces what is kept for the slug.
  *
- *   npx tsx scripts/seed-character-map-recaps.ts <mdlSlug> <file.json> [--source=cpophome]
+ *   npx tsx scripts/seed-character-map-recaps.ts <mdlSlug> <file.json> [--source=cpophome|thereviewgeek]
  *
  * Each item: { title, from, to?, text, url?, source? }. The source is
  * dramabeans unless the item or the flag says otherwise. The recaps are not
@@ -27,7 +27,7 @@ async function main() {
     const args = process.argv.slice(2);
     const source = args.find((a) => a.startsWith("--source="))?.slice("--source=".length) || "dramabeans";
     const [mdlSlug, file] = args.filter((a) => !a.startsWith("--"));
-    if (!mdlSlug || !file) throw new Error("usage: seed-character-map-recaps <mdlSlug> <file.json> [--source=cpophome]");
+    if (!mdlSlug || !file) throw new Error("usage: seed-character-map-recaps <mdlSlug> <file.json> [--source=cpophome|thereviewgeek]");
     const items = JSON.parse(fs.readFileSync(file, "utf-8")) as Item[];
     const rows = items
         .filter((r) => Number.isInteger(r.from) && typeof r.text === "string" && r.text.trim())

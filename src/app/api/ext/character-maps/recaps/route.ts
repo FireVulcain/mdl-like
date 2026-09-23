@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import { isAdminUser } from "@/lib/admin";
-import { recapSummary, saveRecaps } from "@/lib/character-map-recaps";
+import { recapSummaries, recapSummary, saveRecaps } from "@/lib/character-map-recaps";
 
 export const dynamic = "force-dynamic";
 
 /**
- * Receives the episode recaps of one entry — read on Dramabeans or CPOPHome
- * by the extension from the reader's browser, or pasted by hand — and keeps
- * them for the chart's next run. A post replaces the set; `source` on the
- * body names the site for recaps that do not say it themselves (a pasted
- * set). GET says what is kept. Admin only: this is the generate button's
+ * Receives the episode recaps of one entry — read on Dramabeans,
+ * TheReviewGeek or CPOPHome by the extension from the reader's browser, or
+ * pasted by hand — and keeps them for the chart's next run. A post replaces
+ * that site's set and leaves the other site's; `source` on the body names
+ * the site for recaps that do not say it themselves (a pasted set). GET
+ * says what is kept, per site. Admin only: this is the generate button's
  * material.
  */
 function corsHeaders(origin: string | null) {
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
     } catch (e) {
         return NextResponse.json({ error: e instanceof Error ? e.message : "refused" }, { status: 422, headers: corsHeaders(origin) });
     }
-    const summary = await recapSummary(mdlSlug);
+    const summary = await recapSummary(mdlSlug, source);
     return NextResponse.json({ count, summary }, { headers: corsHeaders(origin) });
 }
 
@@ -64,5 +65,5 @@ export async function GET(request: Request) {
     if (!(await isAdminUser())) return NextResponse.json({ error: "Forbidden" }, { status: 403, headers: corsHeaders(origin) });
     const mdlSlug = new URL(request.url).searchParams.get("mdlSlug")?.trim();
     if (!mdlSlug) return NextResponse.json({ error: "mdlSlug" }, { status: 400, headers: corsHeaders(origin) });
-    return NextResponse.json({ summary: await recapSummary(mdlSlug) }, { headers: corsHeaders(origin) });
+    return NextResponse.json({ summaries: await recapSummaries(mdlSlug) }, { headers: corsHeaders(origin) });
 }

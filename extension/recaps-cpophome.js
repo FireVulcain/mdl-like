@@ -5,7 +5,7 @@
  * own browser. Its Cloudflare is stricter than Dramabeans': a managed
  * challenge that only a human passes, in a tab, and that turns the service
  * worker's own fetch away even afterwards. So the pages are fetched by
- * that tab (see background.js and cpophome-tab.js): the reader opens
+ * that tab (see background.js and tab-fetch.js): the reader opens
  * cpophome.com, ticks the box, keeps the tab open, and every fetch here
  * goes through it. No tab, or a tab still on the challenge, and the caller
  * is told which page to open. The site also rate-limits a browser that

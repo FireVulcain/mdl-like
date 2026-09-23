@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Drama Calendar",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Your personal drama airing calendar — shows from your watchlist.",
   "permissions": [
     "storage",
@@ -24,6 +24,7 @@
         "stills.js",
         "recaps.js",
         "recaps-cpophome.js",
+        "recaps-reviewgeek.js",
         "content.js"
       ],
       "run_at": "document_idle"
@@ -31,10 +32,12 @@
     {
       "matches": [
         "https://www.cpophome.com/*",
-        "https://cpophome.com/*"
+        "https://cpophome.com/*",
+        "https://www.thereviewgeek.com/*",
+        "https://thereviewgeek.com/*"
       ],
       "js": [
-        "cpophome-tab.js"
+        "tab-fetch.js"
       ],
       "run_at": "document_idle"
     }

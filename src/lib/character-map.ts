@@ -225,6 +225,31 @@ export function episodeStops(map: Pick<CharacterMapData, "links" | "recaps">): [
     return Array.from({ length: end }, (_, i) => [i + 1, i + 1]);
 }
 
+/**
+ * The chart's `recaps` block from the recaps a run read. One site's ranges
+ * are its recaps', as they come. Two sites cut the story differently —
+ * Dramabeans by pairs of episodes, TheReviewGeek one by one — and a link is
+ * dated no finer than the recap it was read in, so the slider stops only
+ * where no recap straddles: with "Episodes 1-2" read beside "Episode 1" and
+ * "Episode 2", the stop is 1–2, since a line from the pair's recap may be
+ * about episode 2. Past the episodes the coarser site covers, the finer
+ * one's stops come back.
+ */
+export function recapsBlock(recaps: { source: string; fromEp: number; toEp: number }[]): NonNullable<CharacterMapData["recaps"]> {
+    const ordered = [...recaps].sort((a, b) => a.fromEp - b.fromEp || a.toEp - b.toEp);
+    const sources = [...new Set(ordered.map((r) => r.source))];
+    const episodes = Math.max(0, ...ordered.map((r) => r.toEp));
+    let ranges: [number, number][];
+    if (sources.length < 2) {
+        ranges = ordered.map((r) => [r.fromEp, r.toEp]);
+    } else {
+        const ends = [...new Set(ordered.map((r) => r.toEp))].sort((a, b) => a - b).filter((e) => !ordered.some((r) => r.fromEp <= e && e < r.toEp));
+        const first = Math.min(...ordered.map((r) => r.fromEp));
+        ranges = ends.map((e, i) => [i === 0 ? first : ends[i - 1] + 1, e]);
+    }
+    return { source: sources.join(","), episodes, count: ordered.length, ranges };
+}
+
 /** The stop a reader opens on: the last one they have passed, or the end for a show they have finished. */
 export function initialStop(stops: [number, number][], completed: boolean, progress: number | null): number {
     if (completed || progress == null) return Math.max(0, stops.length - 1);
@@ -272,7 +297,8 @@ export type CharacterMapData = {
      * The episode recaps the chart was read with, when it was: how far they
      * go, and the episodes each one covers ([from, to], in order) — the
      * stops of the "By episode" slider, since a link is dated no finer than
-     * the recap it comes from.
+     * the recap it comes from. `source` is the site, or the sites joined by
+     * a comma when the chart read two ("dramabeans,thereviewgeek").
      */
     recaps?: { source: string; episodes: number; count: number; ranges?: [number, number][] };
     sources: string[];

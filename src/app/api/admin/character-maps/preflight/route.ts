@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminUser } from "@/lib/admin";
 import { gatherChartInputs, recapEpisodeOffset } from "@/lib/character-map-inputs";
-import { listRecaps, recapSourceFor, recapSummary, type RecapSource, type RecapSummary } from "@/lib/character-map-recaps";
+import { listRecaps, recapSourcesFor, recapsToRead, recapSummaries, RECAP_SOURCE_IDS, type RecapSource, type RecapSummary } from "@/lib/character-map-recaps";
 import { planRun, readContext, type RunMode } from "@/lib/character-map-patch";
 import { prisma } from "@/lib/prisma";
 import type { CharacterMapData } from "@/lib/character-map";
@@ -23,16 +23,16 @@ export type Preflight = {
         year: number | null;
         episodes: number | null;
         akas: string[];
-        /** where this entry's recaps come from, by country; null for a country no site covers */
-        source: RecapSource | null;
+        /** where this entry's recaps can come from, by country — two sites for a K-drama; empty for a country no site covers */
+        sources: RecapSource[];
         /** recaps counted before this entry's episode 1 on the site — "Part 2" of a split airing */
         episodeOffset: number;
     };
     cast: { main: number; support: number; guest: number };
     synopsis: boolean;
     wiki: { lang: string; title: string | null; found: boolean; chars: number; rejected?: string }[];
-    /** the episode recaps kept for the entry, if the extension has read any */
-    recaps: RecapSummary;
+    /** the episode recaps kept for the entry, per site, for the sites the extension has read */
+    recaps: Record<string, NonNullable<RecapSummary>>;
     /**
      * What a run would do: write the chart, carry it forward over the recaps
      * it has not read, or nothing. Worked out here so the panel can say it
@@ -56,21 +56,23 @@ export type Preflight = {
 
 export async function POST(request: Request) {
     if (!(await isAdminUser())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    const body = (await request.json().catch(() => null)) as { mdlSlug?: string; titles?: Record<string, string> } | null;
+    // `sources`: the recap sites ticked in the panel — the plan is what a run reading those would do
+    const body = (await request.json().catch(() => null)) as { mdlSlug?: string; titles?: Record<string, string>; sources?: unknown } | null;
     const mdlSlug = body?.mdlSlug?.trim();
     if (!mdlSlug || !/^[0-9]+-[a-z0-9-]+$/.test(mdlSlug)) return NextResponse.json({ error: "Invalid mdlSlug" }, { status: 400 });
     const titles: Record<string, string> = {};
     for (const [lang, title] of Object.entries(body?.titles ?? {})) if (/^(ko|zh|en|ja)$/.test(lang) && typeof title === "string" && title.trim()) titles[lang] = title.trim();
+    const ticked = Array.isArray(body?.sources) ? RECAP_SOURCE_IDS.filter((id) => (body.sources as unknown[]).includes(id)) : null;
     try {
         const [inputs, recaps, kept, row] = await Promise.all([
             gatherChartInputs(mdlSlug, titles),
-            recapSummary(mdlSlug),
+            recapSummaries(mdlSlug),
             listRecaps(mdlSlug),
             prisma.characterMap.findUnique({ where: { mdlSlug }, select: { dataJson: true, contextJson: true, editedAt: true } }).catch(() => null),
         ]);
         const map = (row?.dataJson as unknown as CharacterMapData) ?? null;
-        const plan = planRun(map, kept, readContext(row?.contextJson));
-        const source = recapSourceFor(inputs.country);
+        const plan = planRun(map, recapsToRead(kept, ticked, map?.recaps?.source), readContext(row?.contextJson));
+        const sources = recapSourcesFor(inputs.country);
         const preflight: Preflight = {
             recaps,
             drama: {
@@ -78,8 +80,8 @@ export async function POST(request: Request) {
                 year: inputs.year,
                 episodes: inputs.episodes,
                 akas: inputs.akas,
-                source,
-                episodeOffset: source ? await recapEpisodeOffset(inputs) : 0,
+                sources,
+                episodeOffset: sources.length ? await recapEpisodeOffset(inputs) : 0,
             },
             editedAt: row?.editedAt?.toISOString() ?? null,
             plan: {

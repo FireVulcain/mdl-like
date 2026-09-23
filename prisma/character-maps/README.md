@@ -227,11 +227,14 @@ before it is written:
 A chart read from the cast list and Wikipedia is an organisation chart: who
 is whose mother, who works where. The story — who found out what, who fell
 for whom, when — is in the episode recaps. Dramabeans writes one per
-episode or pair of episodes for most K-dramas; CPOPHome one per episode
-for most C-dramas. The site is chosen by the entry's MDL country — Korea
-reads Dramabeans, China CPOPHome, never the other way round, and a drama
-from anywhere else is written undated. A chart read with recaps dates
-every link:
+episode or pair of episodes for most K-dramas, TheReviewGeek one per
+episode for many K-dramas (often ones Dramabeans skips); CPOPHome one per
+episode for most C-dramas. The sites are chosen by the entry's MDL
+country — Korea offers Dramabeans and TheReviewGeek, China CPOPHome, never
+the other way round, and a drama from anywhere else is written undated. A
+K-drama's run reads the one site or the two ticked in the panel; each
+site's recaps are read, kept and replaced on their own. A chart read with
+recaps dates every link:
 
 - **`since`** on a link is the episode it is first seen in — the first
   episode of the recap it was read from. A link from the cast list or
@@ -273,6 +276,13 @@ every link:
   happens in, so a link is dated no finer than its recap — and the slider
   only stops where a recap ends (1, 4, 6, 8… for A Bona Fide Killer): a
   reader at episode 11 stands at the "9–10" stop and sees nothing of 11-12.
+  With two sites, `source` is both, joined by a comma
+  (`"dramabeans,thereviewgeek"`), and `ranges` stop only where no recap
+  straddles: Dramabeans' "Episodes 1-2" beside TheReviewGeek's 1 and 2 is
+  one stop, 1–2, since a line read in the pair's recap may be about
+  episode 2 (`recapsBlock` in `src/lib/character-map.ts`). Where only the
+  per-episode site goes, its stops come back. The model is told to quote
+  the finer recap when both tell the same thing.
 
 A dated chart is then read **as of an episode**: a slider shows it as of a
 recap's end — a tie first seen later is not drawn, nor a person none of
@@ -320,17 +330,29 @@ the backup: `git checkout` it and re-seed.
 
 The recaps are kept in the `CharacterMapRecap` table, one row per recap
 page with its `source`, and read again on every run for that slug — they
-are not in git (they are the sites' text). Both sites turn servers away
-(Cloudflare), so they are fetched by the extension from the admin's
-browser: tick "Also read the … recaps" in the generate panel, the content
-script reads them, posts the texts to `/api/ext/character-maps/recaps`,
-and the panel's Sources block lists what is kept.
+are not in git (they are the sites' text). A fresh read replaces that
+site's rows only. The sites turn servers away (Cloudflare), so they are
+fetched by the extension from the admin's browser: tick "Also read the …
+recaps" in the generate panel, the content script reads them, posts the
+texts to `/api/ext/character-maps/recaps`, and the panel's Sources block
+lists what is kept, per site. A continue run reads the sites ticked; with
+none ticked, the sites the chart's `recaps.source` names.
 
 - **Dramabeans** (`extension/recaps.js`): the drama is a tag, looked up by
   title in the WordPress API (`/wp-json/wp/v2/tags?search=`), then the
   tagged posts titled "…: Episodes N-M". When the tag is not the MDL
   title, give the tag's name or any recap's URL in the field under the
   checkbox.
+- **TheReviewGeek** (`extension/recaps-reviewgeek.js`): no drama page nor
+  tag, so the drama is found by the site's search (`/?s=`, then
+  `/page/N/?s=`): the posts titled "<Title> – K-drama Episode N Recap &
+  Review" whose title before the dash is the MDL title or an "also known
+  as" are the recaps. The text is the paragraphs of `div.entry-content`
+  up to the `<hr>` — what follows is "The Episode Review", the writer's
+  opinion. The service worker fetches it first; when Cloudflare answers
+  with its challenge, a thereviewgeek.com tab fetches instead, as for
+  CPOPHome. The field under the checkbox takes another title or any
+  recap's URL, whose heading names the show as the site writes it.
 - **CPOPHome** (`extension/recaps-cpophome.js`): the drama is a page,
   `/<slug>/`, whose slug is the title as it was when the page was made
   plus the leads' names, so it is found by the site's search (`/?s=`) on
@@ -340,7 +362,7 @@ and the panel's Sources block lists what is kept.
   When the search misses, paste the drama's page (or any recap) URL in
   the field. CPOPHome's Cloudflare is a managed challenge that turns the
   extension's own fetches away even once passed, so the pages are fetched
-  by a cpophome.com tab (`extension/cpophome-tab.js`, asked by the
+  by a cpophome.com tab (`extension/tab-fetch.js`, asked by the
   worker): open the site, tick its box, keep the tab open, and read. The
   panel says so, with the link, when no such tab is there. MDL's "Part 2" of a split airing (Love Like the Galaxy) is
   the same page there: the preflight adds up the parts before it from
@@ -366,4 +388,4 @@ writes the same file:
 ```
 
 Either file loads from the command line with
-`npx tsx scripts/seed-character-map-recaps.ts <slug> <file.json> [--source=cpophome]`.
+`npx tsx scripts/seed-character-map-recaps.ts <slug> <file.json> [--source=cpophome|thereviewgeek]`.

@@ -10,8 +10,8 @@
  *   stills without a dev server or a click; then it tells the page what
  *   happened with `trackr:stills`.
  * - the episode recaps for one drama: `trackr:recaps-ask` with the slug,
- *   the source the page chose by country — dramabeans for a K-drama,
- *   cpophome for a C-drama — the title and what else finds the drama there
+ *   the source the page asks for — dramabeans or thereviewgeek for a
+ *   K-drama (one ask per site ticked), cpophome for a C-drama — the title and what else finds the drama there
  *   (other titles, episode count, the offset of a split airing), and a hint
  *   given by hand when the title alone does not find it. The recaps are
  *   read through the worker, posted to the app, which keeps them for the
@@ -21,7 +21,7 @@
  * plain object from the page is not always readable from here.
  */
 (() => {
-    if (typeof TrackrStills === "undefined" || typeof TrackrRecaps === "undefined" || typeof TrackrCpophome === "undefined") return;
+    if (typeof TrackrStills === "undefined" || typeof TrackrRecaps === "undefined" || typeof TrackrCpophome === "undefined" || typeof TrackrReviewGeek === "undefined") return;
     const appUrl = location.origin;
     const done = new Set();
 
@@ -58,12 +58,16 @@
 
     async function recaps(drama) {
         const { mdlSlug, source } = drama;
-        tell("trackr:recaps", { mdlSlug, status: "started" });
+        // every answer names the site, so the page can tell two reads apart
+        const say = (detail) => tell("trackr:recaps", { mdlSlug, source, ...detail });
+        say({ status: "started" });
         try {
-            const progress = (read, of) => tell("trackr:recaps", { mdlSlug, status: "started", read, of });
-            const out = source === "cpophome" ? await TrackrCpophome.recapsFor(fetchHtml, drama, progress) : await TrackrRecaps.recapsFor(fetchJson, drama.title, drama.hint);
-            if (out.error) return tell("trackr:recaps", { mdlSlug, status: "failed", error: out.error, seen: out.seen, needsTab: out.needsTab });
-            if (out.recaps.length === 0) return tell("trackr:recaps", { mdlSlug, status: "failed", error: `no readable recap under "${out.tag}"` });
+            const progress = (read, of) => say({ status: "started", read, of });
+            const out = source === "cpophome" ? await TrackrCpophome.recapsFor(fetchHtml, drama, progress)
+                : source === "thereviewgeek" ? await TrackrReviewGeek.recapsFor(fetchHtml, drama, progress)
+                : await TrackrRecaps.recapsFor(fetchJson, drama.title, drama.hint);
+            if (out.error) return say({ status: "failed", error: out.error, seen: out.seen, needsTab: out.needsTab });
+            if (out.recaps.length === 0) return say({ status: "failed", error: `no readable recap under "${out.tag}"` });
             const res = await fetch(`${appUrl}/api/ext/character-maps/recaps`, {
                 method: "POST",
                 credentials: "include",
@@ -72,12 +76,12 @@
             });
             if (!res.ok) {
                 const body = await res.json().catch(() => ({}));
-                return tell("trackr:recaps", { mdlSlug, status: "failed", error: body.error ?? `app ${res.status}`, seen: out.tag ? [out.tag] : undefined });
+                return say({ status: "failed", error: body.error ?? `app ${res.status}`, seen: out.tag ? [out.tag] : undefined });
             }
             const { summary } = await res.json();
-            tell("trackr:recaps", { mdlSlug, status: "done", tag: out.tag, listed: out.listed ?? undefined, skipped: out.skipped ?? undefined, ...summary });
+            say({ status: "done", tag: out.tag, listed: out.listed ?? undefined, skipped: out.skipped ?? undefined, ...summary });
         } catch (e) {
-            tell("trackr:recaps", { mdlSlug, status: "failed", error: e.message });
+            say({ status: "failed", error: e.message });
         }
     }
 
@@ -95,7 +99,7 @@
         if (!d || !str(d.mdlSlug) || !str(d.title)) return;
         void recaps({
             mdlSlug: d.mdlSlug,
-            source: str(d.source) === "cpophome" ? "cpophome" : "dramabeans",
+            source: ["cpophome", "thereviewgeek"].includes(str(d.source)) ? str(d.source) : "dramabeans",
             title: d.title,
             hint: str(d.hint),
             akas: Array.isArray(d.akas) ? d.akas.filter((t) => typeof t === "string") : [],
@@ -107,7 +111,7 @@
     // So the page knows a listener is there. This runs before or after the
     // page's own scripts, so it both announces itself and answers a ping —
     // whichever of the two came second does not miss the other.
-    const announce = () => window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true, recaps: ["dramabeans", "cpophome"] }) }));
+    const announce = () => window.dispatchEvent(new CustomEvent("trackr:extension", { detail: JSON.stringify({ stills: true, recaps: ["dramabeans", "thereviewgeek", "cpophome"] }) }));
     window.addEventListener("trackr:ping", announce);
     announce();
 })();

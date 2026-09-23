@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { gatherChartInputs } from "@/lib/character-map-inputs";
 import { ChartError, DEFAULT_GENERATOR_MODEL, generateChart, saveChart, type GeneratorModel } from "@/lib/character-map-generate";
-import { listRecaps, recapsProblem } from "@/lib/character-map-recaps";
+import { listRecaps, recapsProblem, recapsToRead } from "@/lib/character-map-recaps";
 import { ContinueError, continueChart } from "@/lib/character-map-continue";
 import { planRun, readContext, withDigests, type RunMode } from "@/lib/character-map-patch";
 import type { CharacterMapData } from "@/lib/character-map";
@@ -93,7 +93,8 @@ export async function startJob(
     startedBy: string | null,
     titles: Record<string, string> = {},
     model: GeneratorModel = DEFAULT_GENERATOR_MODEL,
-    withRecaps = false,
+    /** the recap sites to read, as ticked in the panel; none reads without recaps (a continue run then reads the chart's own) */
+    recapSources: string[] = [],
     /** "continue" carries the chart forward over the new recaps instead of writing it again */
     mode: RunMode = "full",
 ): Promise<JobView> {
@@ -117,7 +118,7 @@ export async function startJob(
         return jobView(failed);
     }
     // detached on purpose: the route returns now, the run goes on in the process
-    void (mode === "continue" ? carryOn(job.id, mdlSlug, model) : run(job.id, mdlSlug, titles, model, withRecaps));
+    void (mode === "continue" ? carryOn(job.id, mdlSlug, model, recapSources) : run(job.id, mdlSlug, titles, model, recapSources));
     return jobView(job);
 }
 
@@ -157,16 +158,17 @@ async function simulate(id: string, model: GeneratorModel) {
     }).catch(() => undefined);
 }
 
-async function run(id: string, mdlSlug: string, titles: Record<string, string>, model: GeneratorModel, withRecaps: boolean) {
+async function run(id: string, mdlSlug: string, titles: Record<string, string>, model: GeneratorModel, recapSources: string[]) {
+    const withRecaps = recapSources.length > 0;
     const set = stepWriter(id, { status: "queued", step: "Starting" });
     try {
         await set({ status: "gathering", step: "Reading the MDL entry" });
         // the recaps the extension left in the table, when the run asked for them
-        const recaps = withRecaps ? await listRecaps(mdlSlug) : [];
+        const recaps = withRecaps ? await listRecaps(mdlSlug, recapSources) : [];
         // a set kept before the guard existed is still checked before it costs anything
         const problem = recaps.length ? recapsProblem(recaps) : null;
         if (problem) throw new Error(`${problem}; read the recaps again with the drama's tag or a recap's URL`);
-        if (withRecaps) await set({ step: recaps.length ? `Reading ${recaps.length} ${recaps[0].source} recap${recaps.length === 1 ? "" : "s"}` : "No recaps kept for this entry — reading without" });
+        if (withRecaps) await set({ step: recaps.length ? `Reading ${recaps.length} ${[...new Set(recaps.map((r) => r.source))].join(" + ")} recap${recaps.length === 1 ? "" : "s"}` : "No recaps kept for this entry — reading without" });
         const inputs = await gatherChartInputs(mdlSlug, titles, (step) => void set({ step }), recaps);
         const found = inputs.wiki.filter((w) => w.text).map((w) => w.lang);
         const read = [found.length ? `${found.join(", ")}.wikipedia` : null, recaps.length ? `${recaps.length} recaps` : null].filter(Boolean);
@@ -210,14 +212,14 @@ async function run(id: string, mdlSlug: string, titles: Record<string, string>, 
  * the admin corrected by hand is left alone unless the new episodes say
  * something about that very link. `editedAt` is therefore untouched.
  */
-async function carryOn(id: string, mdlSlug: string, model: GeneratorModel) {
+async function carryOn(id: string, mdlSlug: string, model: GeneratorModel, recapSources: string[]) {
     const set = stepWriter(id, { status: "queued", step: "Starting" });
     try {
         await set({ status: "gathering", step: "Reading the chart and the recaps" });
         const row = await prisma.characterMap.findUnique({ where: { mdlSlug } });
         if (!row) throw new Error("there is no chart to carry forward — write one first");
         const map = row.dataJson as unknown as CharacterMapData;
-        const recaps = await listRecaps(mdlSlug);
+        const recaps = recapsToRead(await listRecaps(mdlSlug), recapSources, map.recaps?.source);
         const problem = recaps.length ? recapsProblem(recaps) : null;
         if (problem) throw new Error(`${problem}; read the recaps again with the drama's tag or a recap's URL`);
         const context = readContext(row.contextJson);
