@@ -397,6 +397,37 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         if (!groups.has(g)) groups.set(g, []);
         groups.get(g)!.push(p);
     }
+    // The leads, left to right, in the order that brings each side block
+    // nearest the leads it is tied to. The block's side is the generator's
+    // choice, but it never knew which lead would be drawn on the left: that
+    // was only the file's order, and a family on the left of the lead on the
+    // right sent all its lines across the chart (38% of a side block's ties
+    // went to the far lead). The file's order stands unless another is
+    // strictly better.
+    const leads = groups.get("__center");
+    if (leads && leads.length >= 2 && leads.length <= 6) {
+        const ties: { col: number; lead: string }[] = [];
+        for (const { l } of links) {
+            const a = byId.get(l.from)!, b = byId.get(l.to)!;
+            if (a.lead === b.lead) continue;
+            const [member, lead] = a.lead ? [b, a] : [a, b];
+            const col = map.compact.blocks[member.group]?.[0];
+            if (col === 0 || col === 2) ties.push({ col, lead: lead.id });
+        }
+        const cost = (order: LaidOutPerson[]) =>
+            ties.reduce((sum, t) => {
+                const i = order.findIndex((p) => p.id === t.lead);
+                return sum + (t.col === 0 ? i : order.length - 1 - i);
+            }, 0);
+        const orders = (list: LaidOutPerson[]): LaidOutPerson[][] =>
+            list.length <= 1 ? [list] : list.flatMap((p, i) => orders([...list.slice(0, i), ...list.slice(i + 1)]).map((rest) => [p, ...rest]));
+        let best = leads, bestCost = cost(leads);
+        for (const order of orders(leads)) {
+            const c = cost(order);
+            if (c < bestCost) [best, bestCost] = [order, c];
+        }
+        groups.set("__center", best);
+    }
     const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map(captionWidth));
     type Shape = { name: string; members: LaidOutPerson[]; perRow: number; rows: number; dx: number; dy: number; w: number; h: number; x: number; y: number };
     const shapes = new Map<string, Shape>();
