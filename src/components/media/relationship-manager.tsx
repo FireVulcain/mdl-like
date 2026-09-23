@@ -2,16 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Copy, Filter, Loader2, Pencil, Plus, Search, Trash2, UserPlus } from "lucide-react";
+import { ChevronRight, Copy, Loader2, Pencil, Plus, Search, Trash2, UserPlus } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
     doorGoverns,
     isEvent,
     linkListed,
     LINK_TYPES,
-    TYPE_CLASS,
-    TYPE_GLYPH,
-    TYPE_LABEL,
     type CharacterMapData,
     type LinkType,
     type MapLink,
@@ -19,7 +16,7 @@ import {
 } from "@/lib/character-map";
 import { draftFrom, emptyDraft, fingerprint, linkFrom, type LinkDraft } from "@/lib/character-map-links";
 import { deleteRelationship, saveRelationship } from "@/actions/character-map-links";
-import { Face, pill, TypeMark } from "./character-map-bits";
+import { Face, LegendToggle, LegendType, TieMark } from "./character-map-bits";
 import { RelationshipEditor, type EditorMode } from "./relationship-editor";
 
 /**
@@ -48,11 +45,6 @@ import { RelationshipEditor, type EditorMode } from "./relationship-editor";
  */
 
 type Row = { link: MapLink; index: number };
-
-/** What the row says about a link in three words, in the type's colour. */
-function Badge({ children, tone = "" }: { children: React.ReactNode; tone?: string }) {
-    return <span className={`rounded bg-surface-3 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${tone || "text-fg-dim"}`}>{children}</span>;
-}
 
 function episodeText(l: MapLink): string | null {
     if (l.since == null && l.until == null) return null;
@@ -98,8 +90,8 @@ export function RelationshipManager({
 }) {
     const router = useRouter();
     const [query, setQuery] = useState("");
-    const [types, setTypes] = useState<Set<LinkType>>(new Set());
-    const [flags, setFlags] = useState<{ inferred: boolean; directed: boolean }>({ inferred: false, directed: false });
+    // The kinds switched off in the legend; none, and every kind shows
+    const [hidden, setHidden] = useState<Set<LinkType>>(new Set());
     // Ties or moments, or both (the default). Moments are listed in the
     // story's order — that is what a list of them is for.
     const [kind, setKind] = useState<"all" | "tie" | "event">("all");
@@ -109,6 +101,22 @@ export function RelationshipManager({
     const [busy, setBusy] = useState<number | null>(null);
     const [listError, setListError] = useState<string | null>(null);
     const [confirming, setConfirming] = useState<number | null>(null);
+    // The pairs opened by hand. Folded, a card is one line — who, and where
+    // they stand now — so the list reads as its cast before its detail.
+    const [opened, setOpened] = useState<Set<string>>(new Set());
+    const pairKey = (l: MapLink) => [l.from, l.to].sort().join("|");
+    const togglePair = (key: string) =>
+        setOpened((prev) => {
+            const next = new Set(prev);
+            if (!next.delete(key)) next.add(key);
+            return next;
+        });
+    const openPair = (key: string) => setOpened((prev) => (prev.has(key) ? prev : new Set(prev).add(key)));
+    // A link picked in the chart is found in the list: its pair opens
+    useEffect(() => {
+        const link = highlight == null ? null : map.links[highlight];
+        if (link) openPair(pairKey(link));
+    }, [highlight, map]);
 
     const byId = useMemo(() => new Map(map.people.map((p) => [p.id, p])), [map]);
     const name = (id: string) => byId.get(id)?.name ?? id;
@@ -129,23 +137,41 @@ export function RelationshipManager({
         const kept = all
             .filter(({ link }) => {
                 if (kind !== "all" && (kind === "event") !== isEvent(link)) return false;
-                if (types.size && !types.has(link.type)) return false;
-                if (flags.inferred && !link.inferred) return false;
-                if (flags.directed && !link.directed) return false;
+                if (hidden.has(link.type)) return false;
                 if (!q) return true;
                 const people = [byId.get(link.from), byId.get(link.to)].filter(Boolean) as MapPerson[];
                 const hay = [link.label, link.short, link.evidence, link.source, ...people.flatMap((p) => [p.name, p.actor])];
                 return hay.some((s) => s?.toLowerCase().includes(q));
             });
         return kind === "event" ? [...kept].sort((a, b) => (a.link.since ?? 0) - (b.link.since ?? 0)) : kept;
-    }, [all, byId, query, types, flags, kind]);
+    }, [all, byId, query, hidden, kind]);
 
-    const filtering = !!query.trim() || types.size > 0 || flags.inferred || flags.directed || kind !== "all";
+    const filtering = !!query.trim() || hidden.size > 0 || kind !== "all";
     const momentCount = useMemo(() => all.filter(({ link }) => isEvent(link)).length, [all]);
     const counts = useMemo(() => Object.fromEntries(LINK_TYPES.map((t) => [t, all.filter(({ link }) => link.type === t).length])) as Record<LinkType, number>, [all]);
 
+    // The rows by pair of people, leads first
+    const leads = useMemo(() => new Set(map.compact.center ?? map.main.slice(0, 2)), [map]);
+    const pairs = useMemo(() => {
+        const groups = new Map<string, Row[]>();
+        for (const row of rows) {
+            const key = [row.link.from, row.link.to].sort().join("|");
+            groups.set(key, [...(groups.get(key) ?? []), row]);
+        }
+        const leadsIn = (key: string) => key.split("|").filter((id) => leads.has(id)).length;
+        return [...groups.entries()]
+            .sort(([ka, ra], [kb, rb]) => leadsIn(kb) - leadsIn(ka) || rb.length - ra.length || ra[0].index - rb[0].index)
+            .map(([key, pairRows]) => {
+                // a lead named first
+                const [a, b] = key.split("|").sort((x, y) => Number(leads.has(y)) - Number(leads.has(x)));
+                // the story's order: by episode, a tie before a moment of the same one
+                const ordered = [...pairRows].sort((x, y) => (x.link.since ?? 0) - (y.link.since ?? 0) || Number(isEvent(x.link)) - Number(isEvent(y.link)) || x.index - y.index);
+                return { key, a, b, rows: ordered };
+            });
+    }, [rows, leads]);
+
     const toggleType = (t: LinkType) =>
-        setTypes((prev) => {
+        setHidden((prev) => {
             const next = new Set(prev);
             if (!next.delete(t)) next.add(t);
             return next;
@@ -153,8 +179,7 @@ export function RelationshipManager({
 
     const clearFilters = () => {
         setQuery("");
-        setTypes(new Set());
-        setFlags({ inferred: false, directed: false });
+        setHidden(new Set());
         setKind("all");
     };
 
@@ -169,6 +194,7 @@ export function RelationshipManager({
         const link = map.links[index];
         if (!link) return;
         if (!rows.some((r) => r.index === index)) clearFilters();
+        openPair(pairKey(link));
         if (!reveals && doorGoverns(link, byEpisode)) onReveals(true);
         let timer = 0;
         let done = false;
@@ -264,7 +290,11 @@ export function RelationshipManager({
     /* --------------------------------------------------------------- view */
 
     const iconBtn =
-        "inline-flex h-7 w-7 items-center justify-center rounded-md text-fg-dim opacity-70 transition-all hover:bg-surface-3 hover:text-fg group-hover:opacity-100 focus-visible:opacity-100 disabled:opacity-40 cursor-pointer";
+        "inline-flex h-6 w-6 items-center justify-center rounded-md text-fg-dim opacity-0 transition-all hover:bg-surface-3 hover:text-fg group-hover:opacity-100 focus-visible:opacity-100 disabled:opacity-40 cursor-pointer";
+
+    // A search opens every pair it finds: the matches are what was asked for
+    const searching = !!query.trim();
+    const allOpen = pairs.length > 0 && pairs.every((pr) => opened.has(pr.key));
 
     return (
         <section className="space-y-4">
@@ -275,37 +305,54 @@ export function RelationshipManager({
                         {all.length - momentCount} tie{all.length - momentCount === 1 ? "" : "s"}
                         {momentCount > 0 && <span> · {momentCount} moment{momentCount === 1 ? "" : "s"}</span>}
                         {filtering && <span className="text-fg-dim"> · {rows.length} shown</span>}
+                        {pairs.length > 1 && (
+                            <>
+                                <span className="text-fg-dim"> · </span>
+                                <button
+                                    type="button"
+                                    onClick={() => setOpened(allOpen ? new Set() : new Set(pairs.map((pr) => pr.key)))}
+                                    className="text-fg-dim underline-offset-2 transition-colors hover:text-fg hover:underline cursor-pointer"
+                                >
+                                    {allOpen ? "Collapse all" : "Expand all"}
+                                </button>
+                            </>
+                        )}
                         {!reveals && revealCount > 0 && <span className="text-fg-dim"> · {revealCount} behind the reveals</span>}
                     </p>
                 </div>
                 {canEdit && (
-                    <div className="flex items-center gap-2">
+                    // The admin's tools, not the page's call to action: text, in the
+                    // site's link colour so it reads as something to click, instead
+                    // of a bright filled button shouting over a page most people
+                    // only read
+                    <div className="flex items-center gap-4">
                         {onAddPerson && (
                             <button
                                 type="button"
                                 onClick={onAddPerson}
-                                className="inline-flex items-center gap-1.5 rounded-lg bg-surface-2 px-3 py-2 text-sm font-medium text-fg-soft transition-colors hover:bg-surface-3 hover:text-fg cursor-pointer"
+                                className="inline-flex h-8 items-center gap-1 text-[13px] font-medium text-sky-400 underline-offset-4 transition-colors hover:text-sky-300 hover:underline cursor-pointer"
                             >
-                                <UserPlus className="h-4 w-4" />
-                                Add character
+                                <UserPlus className="h-3.5 w-3.5" />
+                                Character
                             </button>
                         )}
                         <button
                             type="button"
                             onClick={openCreate}
-                            className="inline-flex items-center gap-1.5 rounded-lg bg-sky-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-sky-400 cursor-pointer"
+                            className="inline-flex h-8 items-center gap-1 text-[13px] font-medium text-sky-400 underline-offset-4 transition-colors hover:text-sky-300 hover:underline cursor-pointer"
                         >
-                            <Plus className="h-4 w-4" />
-                            Add relationship
+                            <Plus className="h-3.5 w-3.5" />
+                            Relationship
                         </button>
                     </div>
                 )}
             </div>
 
             {/* Filters: the questions asked of a list like this — who, what
-                kind, when, and which of the three marks. They combine. */}
-            <div className="flex flex-wrap items-center gap-2">
-                <div className="relative min-w-[12rem] flex-1 sm:max-w-xs">
+                kind, when. The kinds are the chart's legend, the same entries
+                that filter the chart above, so the page speaks one language. */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                <div className="relative min-w-[12rem] flex-1 sm:max-w-64">
                     <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-faint" />
                     <input
                         value={query}
@@ -315,32 +362,29 @@ export function RelationshipManager({
                     />
                 </div>
 
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <button type="button" className={pill(types.size > 0)}>
-                            <Filter className="h-3 w-3" />
-                            {types.size === 0 ? "Type" : types.size === 1 ? TYPE_LABEL[[...types][0]] : `${types.size} types`}
-                        </button>
-                    </PopoverTrigger>
-                    <PopoverContent align="start" className="w-52 p-1.5">
-                        {LINK_TYPES.map((t) => (
+                <div className="flex flex-wrap items-center gap-x-4">
+                    {LINK_TYPES.map((t) => (
+                        <LegendType key={t} type={t} on={!hidden.has(t)} count={counts[t]} onChange={() => toggleType(t)} />
+                    ))}
+                </div>
+
+                {/* Ties, moments, or both — one choice, written as three words:
+                    the one in force underlined */}
+                {momentCount > 0 && (
+                    <div className="inline-flex h-7 items-center gap-2.5 text-[12.5px]">
+                        {(["all", "tie", "event"] as const).map((k) => (
                             <button
-                                key={t}
+                                key={k}
                                 type="button"
-                                onClick={() => toggleType(t)}
-                                className={`flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-xs transition-colors cursor-pointer ${
-                                    types.has(t) ? "bg-surface-3 text-fg" : "text-fg-dim hover:bg-surface-2 hover:text-fg"
-                                }`}
+                                onClick={() => setKind(k)}
+                                aria-pressed={kind === k}
+                                className={`transition-colors cursor-pointer ${kind === k ? "text-fg underline decoration-sky-400 decoration-2 underline-offset-4" : "text-fg-dim hover:text-fg"}`}
                             >
-                                <span aria-hidden className={TYPE_CLASS[t]}>
-                                    {TYPE_GLYPH[t]}
-                                </span>
-                                {TYPE_LABEL[t]}
-                                <span className="ml-auto tabular-nums text-fg-faint">{counts[t]}</span>
+                                {k === "all" ? "All" : k === "tie" ? "Ties" : "Moments"}
                             </button>
                         ))}
-                    </PopoverContent>
-                </Popover>
+                    </div>
+                )}
 
                 {/* The same stops as the slider above, and the same state:
                     picking one here moves the slider, and a step there moves
@@ -349,7 +393,7 @@ export function RelationshipManager({
                     <select
                         value={String(stopIdx)}
                         onChange={(e) => onStop(Number(e.target.value))}
-                        className="h-7 cursor-pointer rounded-lg bg-surface-2 px-2 text-xs text-fg-dim outline-none transition-colors hover:bg-surface-3 hover:text-fg [&>option]:bg-panel"
+                        className="h-7 cursor-pointer bg-transparent text-[12.5px] text-fg-dim outline-none transition-colors hover:text-fg focus-visible:text-fg [&>option]:bg-panel"
                         aria-label="As of episode"
                     >
                         {stops.map(([from, to], i) => (
@@ -360,131 +404,139 @@ export function RelationshipManager({
                     </select>
                 )}
 
-                {/* The door first, then the two filters — the same order, and the
-                    same separator, as the row of pills over the chart. */}
-                {/* The door only when it holds something — a dated chart's twists are the slider's */}
-                {revealCount > 0 && (
-                    <>
-                        <button type="button" onClick={() => onReveals(!reveals)} aria-pressed={reveals} className={pill(reveals)}>
-                            Reveals <span className="opacity-50">{revealCount}</span>
+                <div className="flex flex-wrap items-center gap-x-4">
+                    {/* The door only when it holds something — a dated chart's twists are the slider's */}
+                    {revealCount > 0 && (
+                        <LegendToggle on={reveals} onChange={() => onReveals(!reveals)} mark="dash">
+                            Reveals <span className="text-[11.5px] tabular-nums text-fg-dim">{revealCount}</span>
+                        </LegendToggle>
+                    )}
+                    {filtering && (
+                        <button type="button" onClick={clearFilters} className="h-7 text-xs text-fg-faint transition-colors hover:text-fg cursor-pointer">
+                            Clear
                         </button>
-                        <div className="h-4 w-px bg-surface-3" />
-                    </>
-                )}
-
-                {momentCount > 0 && (
-                    <>
-                        {(["tie", "event"] as const).map((k) => (
-                            <button key={k} type="button" onClick={() => setKind((v) => (v === k ? "all" : k))} aria-pressed={kind === k} className={pill(kind === k)}>
-                                {k === "tie" ? "Ties" : "Moments"}
-                            </button>
-                        ))}
-                        <div className="h-4 w-px bg-surface-3" />
-                    </>
-                )}
-
-                {(["inferred", "directed"] as const).map((f) => (
-                    <button key={f} type="button" onClick={() => setFlags((v) => ({ ...v, [f]: !v[f] }))} aria-pressed={flags[f]} className={pill(flags[f])}>
-                        Only {f === "inferred" ? "inferred" : "directed"}
-                    </button>
-                ))}
-
-                {filtering && (
-                    <button type="button" onClick={clearFilters} className="text-xs text-fg-faint transition-colors hover:text-fg cursor-pointer">
-                        Clear
-                    </button>
-                )}
+                    )}
+                </div>
             </div>
 
             {listError && <p className="rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-400">{listError}</p>}
 
-            <ul className="space-y-1.5">
-                {rows.map(({ link, index }) => {
-                    const from = byId.get(link.from) ?? null;
-                    const to = byId.get(link.to) ?? null;
-                    const eps = episodeText(link);
-                    const open = canEdit ? () => openEdit(index) : undefined;
+            {/* One card a pair, not one a link: the same two people used to fill
+                sixteen cards in a row with the same faces and names. Their ties
+                are listed under them in the story's order, so the card reads as
+                what happened between them. The leads' pairs first, then the
+                busiest. */}
+            <div className="space-y-2.5">
+                {pairs.map(({ key, a, b, rows: pairRows }) => {
+                    const ties = pairRows.filter(({ link }) => !isEvent(link)).length,
+                        moments = pairRows.length - ties;
+                    const isOpen = searching || opened.has(key);
+                    // Where they stand: the latest tie, the line a folded card shows
+                    const now = [...pairRows].reverse().find(({ link }) => !isEvent(link))?.link ?? pairRows[pairRows.length - 1].link;
                     return (
-                        <li
-                            key={index}
-                            id={`relationship-${index}`}
-                            onClick={open}
-                            onKeyDown={open && ((e) => { if (e.key === "Enter") open(); })}
-                            role={canEdit ? "button" : undefined}
-                            tabIndex={canEdit ? 0 : undefined}
-                            title={link.evidence ?? undefined}
-                            className={`group relative flex items-center gap-3 overflow-hidden rounded-xl border bg-surface-1 py-2.5 pl-4 pr-2.5 transition-colors ${
-                                highlight === index ? "border-sky-400/60 ring-1 ring-sky-400/40" : "border-line-soft"
-                            } ${canEdit ? "cursor-pointer hover:border-line hover:bg-surface-2" : ""} ${busy === index ? "opacity-50" : ""}`}
-                        >
-                            <span aria-hidden className={`absolute inset-y-0 left-0 w-[3px] bg-current ${TYPE_CLASS[link.type]} ${link.inferred ? "opacity-40" : ""}`} />
-
-                            <span className="flex shrink-0 items-center -space-x-2">
-                                <Face person={from} size="md" />
-                                <Face person={to} size="md" />
-                            </span>
-
-                            <div className="min-w-0 flex-1 space-y-1">
-                                <div className="flex items-center gap-1.5 text-sm">
-                                    <span className="truncate font-medium text-fg">{name(link.from)}</span>
-                                    <span className={`shrink-0 ${TYPE_CLASS[link.type]}`}>{link.directed ? "→" : "↔"}</span>
-                                    <span className="truncate font-medium text-fg">{name(link.to)}</span>
-                                </div>
-                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                                    <TypeMark type={link.type} />
-                                    <span className="truncate text-xs text-fg-soft">{link.short || link.label}</span>
-                                    {eps && <span className="shrink-0 font-mono text-[11px] tabular-nums text-fg-dim">{eps}</span>}
-                                    {isEvent(link) && <Badge tone="text-sky-400/90">Moment</Badge>}
-                                    {link.reveal && <Badge tone="text-amber-400/90">Reveal</Badge>}
-                                    {link.inferred && <Badge>Inferred</Badge>}
-                                    {link.directed && <Badge>Directed</Badge>}
-                                    {link.wholeStory === false && <Badge>Not in whole story</Badge>}
-                                </div>
-                            </div>
-
-                            {canEdit && (
-                                <div className="flex shrink-0 items-center gap-0.5" onClick={(e) => e.stopPropagation()}>
-                                    <button type="button" onClick={() => openEdit(index)} className={iconBtn} title="Edit" aria-label="Edit relationship">
-                                        <Pencil className="h-3.5 w-3.5" />
-                                    </button>
-                                    <button type="button" onClick={() => openDuplicate(index)} className={iconBtn} title="Duplicate" aria-label="Duplicate relationship">
-                                        <Copy className="h-3.5 w-3.5" />
-                                    </button>
-                                    <Popover open={confirming === index} onOpenChange={(o) => setConfirming(o ? index : null)}>
-                                        <PopoverTrigger asChild>
-                                            <button type="button" disabled={busy === index} className={`${iconBtn} hover:text-red-400`} title="Delete" aria-label="Delete relationship">
-                                                {busy === index ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />}
-                                            </button>
-                                        </PopoverTrigger>
-                                        <PopoverContent align="end" className="w-64 space-y-2.5">
-                                            <p className="text-sm font-medium text-fg">Delete relationship?</p>
-                                            <p className="text-xs text-fg-dim">
-                                                {name(link.from)} {link.directed ? "→" : "↔"} {name(link.to)} · {link.short || link.label}
-                                            </p>
-                                            <div className="flex justify-end gap-2 pt-0.5">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setConfirming(null)}
-                                                    className="rounded-md px-2 py-1 text-xs text-fg-dim transition-colors hover:bg-surface-3 hover:text-fg cursor-pointer"
-                                                >
-                                                    Cancel
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => remove(index)}
-                                                    className="rounded-md bg-red-500/90 px-2.5 py-1 text-xs font-medium text-white transition-colors hover:bg-red-500 cursor-pointer"
-                                                >
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </PopoverContent>
-                                    </Popover>
-                                </div>
+                        <div key={key} className="overflow-hidden rounded-xl border border-line-soft bg-surface-1">
+                            <button
+                                type="button"
+                                onClick={() => togglePair(key)}
+                                aria-expanded={isOpen}
+                                className={`flex w-full items-center gap-3 px-3.5 text-left transition-colors hover:bg-surface-2 cursor-pointer ${isOpen ? "pb-1.5 pt-2.5" : "py-2.5"}`}
+                            >
+                                <span className="flex shrink-0 items-center -space-x-2">
+                                    <Face person={byId.get(a) ?? null} size="sm" />
+                                    <Face person={byId.get(b) ?? null} size="sm" />
+                                </span>
+                                <span className="min-w-0 shrink truncate text-sm font-semibold text-fg">
+                                    {name(a)} <span className="font-normal text-fg-faint">&amp;</span> {name(b)}
+                                </span>
+                                {!isOpen && (
+                                    <span className="hidden min-w-0 flex-1 items-center gap-2 sm:flex">
+                                        <TieMark type={now.type} reveal={now.reveal} inferred={now.inferred} moment={isEvent(now)} />
+                                        <span className={`truncate text-[13px] text-fg-dim ${now.reveal ? "italic" : ""}`}>{now.short || now.label}</span>
+                                    </span>
+                                )}
+                                <span className="ml-auto shrink-0 text-xs tabular-nums text-fg-dim">
+                                    {ties > 0 && `${ties} tie${ties === 1 ? "" : "s"}`}
+                                    {ties > 0 && moments > 0 && " · "}
+                                    {moments > 0 && `${moments} moment${moments === 1 ? "" : "s"}`}
+                                </span>
+                                <ChevronRight className={`h-4 w-4 shrink-0 text-fg-dim transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                            </button>
+                            {isOpen && (
+                                <ul className="pb-1.5 pl-3 pr-1.5 sm:pl-[3.25rem]">
+                                    {pairRows.map(({ link, index }) => {
+                                        const eps = episodeText(link);
+                                        const moment = isEvent(link);
+                                        const open = canEdit ? () => openEdit(index) : undefined;
+                                        return (
+                                            <li
+                                                key={index}
+                                                id={`relationship-${index}`}
+                                                onClick={open}
+                                                onKeyDown={open && ((e) => { if (e.key === "Enter") open(); })}
+                                                role={canEdit ? "button" : undefined}
+                                                tabIndex={canEdit ? 0 : undefined}
+                                                title={[link.evidence, link.wholeStory === false ? "Not in the whole story" : null].filter(Boolean).join(" · ") || undefined}
+                                                className={`group flex min-h-8 items-center gap-2.5 rounded-lg px-2 text-[13px] transition-colors ${
+                                                    highlight === index ? "bg-sky-400/10 ring-1 ring-sky-400/40" : ""
+                                                } ${canEdit ? "cursor-pointer hover:bg-surface-2" : ""} ${busy === index ? "opacity-50" : ""}`}
+                                            >
+                                                <TieMark type={link.type} reveal={link.reveal} inferred={link.inferred} moment={moment} />
+                                                <span className={`min-w-0 flex-1 truncate ${moment ? "text-fg-muted" : "text-fg-soft"} ${link.reveal ? "italic" : ""}`}>{link.short || link.label}</span>
+                                                {/* The way it points, only when it points: an undirected tie needs no arrow */}
+                                                {link.directed && (
+                                                    <span className="hidden shrink-0 text-xs text-fg-dim sm:inline">
+                                                        {name(link.from)} → {name(link.to)}
+                                                    </span>
+                                                )}
+                                                <span className="w-16 shrink-0 text-right font-mono text-[11px] tabular-nums text-fg-dim">{eps}</span>
+                                                {canEdit && (
+                                                    <div className="flex shrink-0 items-center gap-0.5" onClick={(e) => e.stopPropagation()}>
+                                                        <button type="button" onClick={() => openEdit(index)} className={iconBtn} title="Edit" aria-label="Edit relationship">
+                                                            <Pencil className="h-3.5 w-3.5" />
+                                                        </button>
+                                                        <button type="button" onClick={() => openDuplicate(index)} className={iconBtn} title="Duplicate" aria-label="Duplicate relationship">
+                                                            <Copy className="h-3.5 w-3.5" />
+                                                        </button>
+                                                        <Popover open={confirming === index} onOpenChange={(o) => setConfirming(o ? index : null)}>
+                                                            <PopoverTrigger asChild>
+                                                                <button type="button" disabled={busy === index} className={`${iconBtn} hover:text-red-400`} title="Delete" aria-label="Delete relationship">
+                                                                    {busy === index ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />}
+                                                                </button>
+                                                            </PopoverTrigger>
+                                                            <PopoverContent align="end" className="w-64 space-y-2.5">
+                                                                <p className="text-sm font-medium text-fg">Delete relationship?</p>
+                                                                <p className="text-xs text-fg-dim">
+                                                                    {name(link.from)} {link.directed ? "→" : "↔"} {name(link.to)} · {link.short || link.label}
+                                                                </p>
+                                                                <div className="flex justify-end gap-2 pt-0.5">
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => setConfirming(null)}
+                                                                        className="rounded-md px-2 py-1 text-xs text-fg-dim transition-colors hover:bg-surface-3 hover:text-fg cursor-pointer"
+                                                                    >
+                                                                        Cancel
+                                                                    </button>
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => remove(index)}
+                                                                        className="rounded-md bg-red-500/90 px-2.5 py-1 text-xs font-medium text-white transition-colors hover:bg-red-500 cursor-pointer"
+                                                                    >
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
+                                                            </PopoverContent>
+                                                        </Popover>
+                                                    </div>
+                                                )}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
                             )}
-                        </li>
+                        </div>
                     );
                 })}
-            </ul>
+            </div>
 
             {rows.length === 0 && (
                 <p className="rounded-xl border border-dashed border-line py-10 text-center text-sm text-fg-dim">

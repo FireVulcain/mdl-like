@@ -59,3 +59,68 @@ export function TypeMark({ type, words = true, className = "" }: { type: LinkTyp
         </span>
     );
 }
+
+/**
+ * The rest of the legend: the line styles, which are switches too. A
+ * reveal's line is dashed and an inferred one dotted, so each is keyed by a
+ * stroke drawn that way — the legend then explains what a dashed line means
+ * as well as hiding it. Labels, keyed by a small chip, read the same way.
+ * On and off as the types: the key dims and the word is struck through.
+ */
+export function LegendToggle({ on, onChange, mark, children }: { on: boolean; onChange: () => void; mark: "dash" | "dot" | "chip"; children: React.ReactNode }) {
+    return (
+        <button type="button" aria-pressed={on} onClick={onChange} className={`group inline-flex h-7 cursor-pointer items-center gap-2 text-[12.5px] font-medium transition-colors ${on ? "text-fg-soft" : "text-fg-faint"}`}>
+            <svg aria-hidden width={18} height={10} className={`text-fg-muted transition-opacity ${on ? "" : "opacity-30"}`}>
+                {mark === "chip" ? (
+                    <rect x={1} y={1.5} width={16} height={7} rx={2.5} fill="currentColor" fillOpacity={0.35} />
+                ) : (
+                    <line x1={1.25} y1={5} x2={16.75} y2={5} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeDasharray={mark === "dash" ? "4 3.5" : "0.1 3.8"} />
+                )}
+            </svg>
+            <span className={`group-hover:text-fg ${on ? "" : "line-through decoration-fg-faint"}`}>{children}</span>
+        </button>
+    );
+}
+
+/**
+ * A kind of tie as an entry of the legend, which is also its filter: a
+ * stroke in the colour and weight of its lines, the name, the count. Off,
+ * the stroke dims and the name is struck through. The chart and the list
+ * under it both filter with it, so the two read as one page.
+ */
+export function LegendType({ type, on, count, onChange }: { type: LinkType; on: boolean; count: number; onChange: () => void }) {
+    return (
+        <button
+            type="button"
+            onClick={onChange}
+            aria-pressed={on}
+            disabled={count === 0}
+            className={`group inline-flex h-7 cursor-pointer items-center gap-2 text-[12.5px] font-medium transition-colors disabled:cursor-default disabled:opacity-40 ${on ? "text-fg-soft" : "text-fg-faint"}`}
+        >
+            <span className={`h-[2.5px] w-[18px] rounded-full bg-current transition-opacity ${TYPE_CLASS[type]} ${on ? "" : "opacity-25"}`} />
+            <span className={`group-hover:text-fg ${on ? "" : "line-through decoration-fg-faint"}`}>{TYPE_LABEL[type]}</span>
+            <span className="text-[11.5px] tabular-nums text-fg-dim">{count}</span>
+        </button>
+    );
+}
+
+/**
+ * One tie's mark in a line of text, drawn as the chart draws its line: a
+ * stroke in the type's colour, dashed for a reveal, dotted for an inferred
+ * tie; a moment, which the chart never draws as a line, is a small ring.
+ */
+export function TieMark({ type, reveal, inferred, moment }: { type: LinkType; reveal?: boolean; inferred?: boolean; moment?: boolean }) {
+    if (moment) {
+        return (
+            <span aria-hidden className={`flex h-2.5 w-3.5 shrink-0 items-center justify-center ${TYPE_CLASS[type]}`}>
+                <span className="h-2 w-2 rounded-full border-[1.5px] border-current" />
+            </span>
+        );
+    }
+    const style: React.CSSProperties = reveal
+        ? { background: "repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 8px)" }
+        : inferred
+          ? { background: "radial-gradient(circle, currentColor 1.3px, transparent 1.6px) 0 50% / 4.5px 3px repeat-x", height: 3 }
+          : { background: "currentColor" };
+    return <span aria-hidden className={`h-[2.5px] w-3.5 shrink-0 rounded-full ${TYPE_CLASS[type]}`} style={style} />;
+}

@@ -20,7 +20,6 @@ import {
     portrait,
     PORTRAIT_R,
     TYPE_CLASS,
-    TYPE_LABEL,
     CAPTION_DOT,
     CAPTION_STEP,
     captionWidth,
@@ -30,7 +29,7 @@ import {
     type LinkType,
     type MapLink,
 } from "@/lib/character-map";
-import { Face, pill } from "@/components/media/character-map-bits";
+import { Face, LegendToggle, LegendType, pill } from "@/components/media/character-map-bits";
 
 // The words between two leads go on a chip tinted with the line's colour,
 // the way /stats tints its theme chips: no border, the words in the colour,
@@ -90,28 +89,6 @@ function CaptionRow({ x, y, anchor, caption, lit, tone, className, style, onClic
                 <tspan className="fill-fg-dim">{" " + caption.target}</tspan>
             </text>
         </g>
-    );
-}
-
-/**
- * The rest of the legend: the line styles, which are switches too. A
- * reveal's line is dashed and an inferred one dotted, so each is keyed by a
- * stroke drawn that way — the legend then explains what a dashed line means
- * as well as hiding it. Labels, keyed by a small chip, read the same way.
- * On and off as the types: the key dims and the word is struck through.
- */
-function LegendToggle({ on, onChange, mark, children }: { on: boolean; onChange: () => void; mark: "dash" | "dot" | "chip"; children: React.ReactNode }) {
-    return (
-        <button type="button" aria-pressed={on} onClick={onChange} className={`group inline-flex h-7 cursor-pointer items-center gap-2 text-[12.5px] font-medium transition-colors ${on ? "text-fg-soft" : "text-fg-faint"}`}>
-            <svg aria-hidden width={18} height={10} className={`text-fg-muted transition-opacity ${on ? "" : "opacity-30"}`}>
-                {mark === "chip" ? (
-                    <rect x={1} y={1.5} width={16} height={7} rx={2.5} fill="currentColor" fillOpacity={0.35} />
-                ) : (
-                    <line x1={1.25} y1={5} x2={16.75} y2={5} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeDasharray={mark === "dash" ? "4 3.5" : "0.1 3.8"} />
-                )}
-            </svg>
-            <span className={`group-hover:text-fg ${on ? "" : "line-through decoration-fg-faint"}`}>{children}</span>
-        </button>
     );
 }
 
@@ -689,23 +666,9 @@ export function CharacterMap({
                 Off, the stroke dims and the name is struck through — as grey
                 buttons, on and off were two greys five points apart. */}
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-                {TYPES.map((t) => {
-                    const on = types.has(t), empty = counts.byType[t] === 0;
-                    return (
-                        <button
-                            key={t}
-                            type="button"
-                            onClick={() => toggleType(t)}
-                            aria-pressed={on}
-                            disabled={empty}
-                            className={`group inline-flex h-7 items-center gap-2 text-[12.5px] font-medium transition-colors disabled:cursor-default disabled:opacity-40 ${on ? "text-fg-soft" : "text-fg-faint"} cursor-pointer`}
-                        >
-                            <span className={`h-[2.5px] w-[18px] rounded-full bg-current transition-opacity ${TYPE_CLASS[t]} ${on ? "" : "opacity-25"}`} />
-                            <span className={`group-hover:text-fg ${on ? "" : "line-through decoration-fg-faint"}`}>{TYPE_LABEL[t]}</span>
-                            <span className="text-[11.5px] tabular-nums text-fg-dim">{counts.byType[t]}</span>
-                        </button>
-                    );
-                })}
+                {TYPES.map((t) => (
+                    <LegendType key={t} type={t} on={types.has(t)} count={counts.byType[t]} onChange={() => toggleType(t)} />
+                ))}
 
                 <div className="ml-auto flex items-center gap-5">
                     {/* The spoiler door, only when it holds something: on a chart dated
