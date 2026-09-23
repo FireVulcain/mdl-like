@@ -663,8 +663,11 @@ export function CharacterMap({
                 </button>
             </div>
 
-            {/* The window onto the chart: drag to move around, the leads in the middle to start. */}
-            <div ref={frameRef} data-full={full || undefined} className={`relative overflow-hidden rounded-xl border border-line-soft bg-surface-1 ${full ? "min-h-0 flex-1" : ""}`}>
+            {/* The window onto the chart: drag to move around, the leads in the middle to start.
+                Its ground is GROUND itself, opaque: the halos round the text and the
+                fade round the leads are painted in that colour, and on a translucent
+                surface over the page's gradient they showed as discs and outlines. */}
+            <div ref={frameRef} data-full={full || undefined} className={`relative overflow-hidden rounded-xl border border-line-soft bg-panel ${full ? "min-h-0 flex-1" : ""}`}>
                 <svg
                     viewBox={`${view.x} ${view.y} ${frame.w / view.z} ${frame.h / view.z}`}
                     width={frame.w}
