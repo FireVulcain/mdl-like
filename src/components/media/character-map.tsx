@@ -35,13 +35,12 @@ import { Face, pill } from "@/components/media/character-map-bits";
 // The words between two leads go on a chip tinted with the line's colour,
 // the way /stats tints its theme chips: no border, the words in the colour,
 // so the chip reads as the line's own label rather than a button laid over
-// it. The tint is mixed into an opaque token, since the surfaces are white at
+// it. The tint sits on an opaque token, since the surfaces are white at
 // 3% and would let the line straight through. The width is estimated the way
 // the layout estimates its own; on narrow glyphs the chip runs a touch wide.
 const GROUND = "var(--color-panel)";
 const CHIP_H = 18, CHIP_PAD = 7, CHIP_FONT = 10.5, CHIP_CHAR = 5.9;
 const chipWidth = (text: string) => text.length * CHIP_CHAR + 2 * CHIP_PAD;
-const tint = (pct: number) => `color-mix(in srgb, currentColor ${pct}%, ${GROUND})`;
 const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 function Tag({ x, y, text, lit, className, style, onClick, onHover }: {
     x: number; y: number; text: string;
@@ -52,7 +51,11 @@ function Tag({ x, y, text, lit, className, style, onClick, onHover }: {
     const w = chipWidth(text);
     return (
         <g className={className} style={style} onClick={onClick} onMouseEnter={onHover && (() => onHover(true))} onMouseLeave={onHover && (() => onHover(false))}>
-            <rect x={x - w / 2} y={y - CHIP_H / 2} width={w} height={CHIP_H} rx={5} style={{ fill: tint(lit ? 30 : 16), transition: "fill .15s" }} />
+            {/* The ground, then the tint over it at an opacity. A transition between two
+                color-mix() fills built on currentColor dropped the chip's fill for a
+                moment in Chrome; an opacity eases cleanly. */}
+            <rect x={x - w / 2} y={y - CHIP_H / 2} width={w} height={CHIP_H} rx={5} fill={GROUND} />
+            <rect x={x - w / 2} y={y - CHIP_H / 2} width={w} height={CHIP_H} rx={5} fill="currentColor" fillOpacity={lit ? 0.3 : 0.16} style={{ transition: "fill-opacity .15s" }} />
             <text x={x} y={y} dy={CHIP_FONT * 0.36} textAnchor="middle" className="fill-current font-semibold" style={{ fontSize: CHIP_FONT }}>
                 {capitalize(text)}
             </text>
