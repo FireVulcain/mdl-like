@@ -654,8 +654,8 @@
       "directed": true
     },
     {
-      "from": "taesoo",
-      "to": "hayoung",
+      "from": "hayoung",
+      "to": "taesoo",
       "type": "family",
       "label": "Tae Soo's daughter",
       "short": "daughter",

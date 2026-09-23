@@ -328,8 +328,8 @@
       "directed": false
     },
     {
-      "from": "sumi",
-      "to": "sanghyeon",
+      "from": "sanghyeon",
+      "to": "sumi",
       "type": "family",
       "label": "son",
       "short": "son",

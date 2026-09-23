@@ -1,16 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "mdlSlug": "768853-the-b-team",
   "title": "The WONDERfools",
-  "asianwiki": "The Wonderfools",
   "native": "원더풀스",
   "year": 2026,
   "country": "KR",
   "sources": [
-    "MDL cast (55 roles, 5 main)",
+    "MDL cast (58 roles, 5 main)",
     "MDL synopsis",
-    "ko.wikipedia 원더풀스 (names only)",
-    "en.wikipedia The Wonderfools (two leads described; the Wunderkinder are inferred)"
+    "ko.wikipedia 주요/주변 인물",
+    "en.wikipedia Main characters",
+    "thereviewgeek ep. 1",
+    "thereviewgeek ep. 2",
+    "thereviewgeek ep. 3",
+    "thereviewgeek ep. 4",
+    "thereviewgeek ep. 5",
+    "thereviewgeek ep. 6",
+    "thereviewgeek ep. 7",
+    "thereviewgeek ep. 8"
   ],
   "main": [
     "chaeni",
@@ -19,401 +26,1132 @@
     "gyeongun",
     "robin"
   ],
+  "recaps": {
+    "source": "thereviewgeek",
+    "episodes": 8,
+    "count": 8,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ]
+    ]
+  },
   "people": [
     {
       "id": "chaeni",
       "name": "Eun Chae Ni",
       "actor": "Park Eun Bin",
       "image": "https://i.mydramalist.com/v7Evg_5m.jpg",
+      "still": "https://asianwiki.com/images/5/57/The_Wonderfools-Park_Eun-Bin01.jpeg",
       "group": "Leads",
       "inCast": true,
-      "note": "Haeseong's trainwreck, with a failing heart; teleports when her pulse spikes",
+      "note": "Terminally ill until she gains the power to teleport whenever her heart rate spikes.",
       "alsoPlayedBy": [
         {
           "name": "Kim Si On",
           "image": "https://i.mydramalist.com/dmK3K_5m.jpg",
           "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/5/57/The_Wonderfools-Park_Eun-Bin01.jpeg"
+      ]
     },
     {
       "id": "unjeong",
       "name": "Lee Un Jeong",
       "actor": "Cha Eun Woo",
       "image": "https://i.mydramalist.com/JBLjqX_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4d/The_Wonderfools-Cha_Eun_Woo1.jpeg",
       "group": "Leads",
       "inCast": true,
-      "note": "Rule-abiding civil servant from Seoul, secretly telekinetic",
+      "note": "A civil servant with telekinetic powers, secretly Patient Number 3972 from the Wunderkinder experiments.",
       "alsoPlayedBy": [
         {
           "name": "Han Ji An",
           "image": "https://i.mydramalist.com/NdKP4Y_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/f/f1/The_Wonderfools-Han_Ji-An1.jpg"
+          "still": "https://asianwiki.com/images/f/f1/The_Wonderfools-Han_Ji-An1.jpg",
+          "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/4/4d/The_Wonderfools-Cha_Eun_Woo1.jpeg"
+      ]
     },
     {
       "id": "jeonbok",
       "name": "Kim Jeon Bok",
       "actor": "Kim Hae Sook",
       "image": "https://i.mydramalist.com/Z8gXdk_5m.jpg",
-      "group": "Chae Ni's household",
+      "still": "https://asianwiki.com/images/d/d0/The_Wonderfools-Kim_Hae-Sook1.jpg",
+      "group": "Chae Ni's family",
       "inCast": true,
-      "still": "https://asianwiki.com/images/d/d0/The_Wonderfools-Kim_Hae-Sook1.jpg"
-    },
-    {
-      "id": "junmo",
-      "name": "Koo Jun Mo",
-      "actor": "Cha Seo Won",
-      "image": "https://i.mydramalist.com/Xv7Znm.jpg",
-      "group": "Chae Ni's household",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/5/5a/The_Wonderfools-Cha_Seo-Won1.jpeg"
+      "note": "Chae Ni's grandmother, who runs the Hearty House restaurant and once funded the Wunderkinder project as 'Madame King.'"
     },
     {
       "id": "gyeongun",
       "name": "Son Gyeong Un",
       "actor": "Choi Dae Hoon",
       "image": "https://i.mydramalist.com/X85nqm.jpg",
-      "group": "The neighbours",
+      "still": "https://asianwiki.com/images/7/78/The_Wonderfools-Choi_Dae-Hoon01.jpeg",
+      "group": "The WONDERfools",
       "inCast": true,
-      "still": "https://asianwiki.com/images/7/78/The_Wonderfools-Choi_Dae-Hoon01.jpeg"
-    },
-    {
-      "id": "mihui",
-      "name": "Moon Mi Hui",
-      "actor": "Kim Jung Yeon",
-      "image": "https://i.mydramalist.com/QBR67_5m.jpg",
-      "group": "The neighbours",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/f/f9/The_Wonderfools-Jung_Yeon1.jpg"
-    },
-    {
-      "id": "cheong",
-      "name": "Son Cheong",
-      "actor": "Park Ye Rin",
-      "image": "https://i.mydramalist.com/73lpRr_5m.jpg",
-      "group": "The neighbours",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/45/The_Wonderfools-Park_Ye-Rin1.jpg"
+      "note": "Gains the power to stick to whatever he touches when he lies or panics."
     },
     {
       "id": "robin",
       "name": "Kang Ro Bin",
       "actor": "Im Sung Jae",
       "image": "https://i.mydramalist.com/nOR1WW_5m.jpg",
-      "group": "The neighbours",
+      "still": "https://asianwiki.com/images/5/51/The_Wonderfools-Im_Sung-Jae2-2.jpeg",
+      "group": "The WONDERfools",
       "inCast": true,
-      "still": "https://asianwiki.com/images/5/51/The_Wonderfools-Im_Sung-Jae2-2.jpeg"
+      "note": "Gains super strength when emotionally overwhelmed."
     },
     {
-      "id": "wondo",
+      "id": "hawondo",
       "name": "Ha Won Do",
       "actor": "Son Hyun Joo",
       "image": "https://i.mydramalist.com/5vJnlB_5m.jpg",
-      "group": "The Wunderkinder",
+      "still": "https://asianwiki.com/images/d/d9/The_Wonderfools-Son_Hyun-Joo.jpeg",
+      "group": "Wunderkinder",
       "inCast": true,
-      "note": "Composed, rational — and hiding something darker",
-      "still": "https://asianwiki.com/images/d/d9/The_Wonderfools-Son_Hyun-Joo.jpeg"
+      "note": "Wunderkinder leader who created the experiments that gave the group their powers."
     },
     {
       "id": "palho",
       "name": "Kim Pal Ho",
       "actor": "Bae Na Ra",
       "image": "https://i.mydramalist.com/RB3vjz_5m.jpg",
-      "group": "The Wunderkinder",
+      "still": "https://asianwiki.com/images/c/c8/The_Wonderfools-Bae_Na-Ra01.jpeg",
+      "group": "Wunderkinder",
       "inCast": true,
+      "note": "A Wunderkinder who calls Dr Ha 'Father' and hunts down defective variants.",
       "alsoPlayedBy": [
         {
           "name": "Shin Tae Yang",
           "image": "https://i.mydramalist.com/jQrzEr_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/c/c7/The_Wonderfools-Shin_Tae-Yang.jpeg"
+          "still": "https://asianwiki.com/images/c/c7/The_Wonderfools-Shin_Tae-Yang.jpeg",
+          "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/c/c8/The_Wonderfools-Bae_Na-Ra01.jpeg"
+      ]
     },
     {
       "id": "juran",
       "name": "Seok Ju Ran",
       "actor": "Jeong E Suh",
       "image": "https://i.mydramalist.com/BnYl5_5m.jpg",
-      "group": "The Wunderkinder",
+      "still": "https://asianwiki.com/images/7/7f/The_Wonderfools-Jung_Yi_Seo1.jpeg",
+      "group": "Wunderkinder",
       "inCast": true,
+      "note": "Uses brainwashing and hearing-based powers on Dr Ha's orders.",
       "alsoPlayedBy": [
         {
           "name": "Oh Ji Yul",
           "image": "https://i.mydramalist.com/03nK6_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/9/9b/The_Wonderfools-Oh_Ji-Yul.jpeg"
+          "still": "https://asianwiki.com/images/9/9b/The_Wonderfools-Oh_Ji-Yul.jpeg",
+          "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/7/7f/The_Wonderfools-Jung_Yi_Seo1.jpeg"
+      ]
     },
     {
       "id": "horan",
       "name": "Seok Ho Ran",
       "actor": "Choi Yun Ji",
       "image": "https://i.mydramalist.com/Lwrpl3_5m.jpg",
-      "group": "The Wunderkinder",
+      "still": "https://asianwiki.com/images/5/56/The_Wonderfools-Choi_Yoon-Ji01.jpeg",
+      "group": "Wunderkinder",
       "inCast": true,
+      "note": "Uses hallucination powers and has secretly loved Un Jeong since childhood.",
       "alsoPlayedBy": [
         {
           "name": "Choi So Yool",
           "image": "https://i.mydramalist.com/b3rVex_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/c/cb/The_Wonderfools-Choi_So-Yool.jpg"
+          "still": "https://asianwiki.com/images/c/cb/The_Wonderfools-Choi_So-Yool.jpg",
+          "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/5/56/The_Wonderfools-Choi_Yoon-Ji01.jpeg"
+      ]
     },
     {
       "id": "seoku",
       "name": "Yang Seok U",
       "actor": "Kang Gi Doong",
       "image": "https://i.mydramalist.com/YYZ8yd_5m.jpg",
-      "group": "City hall",
+      "still": "https://asianwiki.com/images/9/97/The_Wonderfools-Kang_Ki-Doong.jpg",
+      "group": "City Hall",
       "inCast": true,
-      "note": "Civil servant",
-      "still": "https://asianwiki.com/images/9/97/The_Wonderfools-Kang_Ki-Doong.jpg"
+      "note": "Civil servant and Un Jeong's supervisor at City Hall."
     },
     {
       "id": "nayeong",
       "name": "Kim Na Yeong",
       "actor": "Lee Soo Bin",
       "image": "https://i.mydramalist.com/d86Le_5m.jpg",
-      "group": "City hall",
+      "still": "https://asianwiki.com/images/6/64/The_Wonderfools-Lee_Soo-Bin1.jpg",
+      "group": "City Hall",
       "inCast": true,
-      "still": "https://asianwiki.com/images/6/64/The_Wonderfools-Lee_Soo-Bin1.jpg"
+      "note": "Seok U's junior colleague at the Civil Complaints office."
     },
     {
-      "id": "yunhui",
-      "name": "Jang Yun Hui",
-      "actor": "Lee Il Hwa",
-      "image": "https://i.mydramalist.com/nODnn4_5m.jpg",
-      "group": "Un Jeong's past",
+      "id": "mihui",
+      "name": "Moon Mi Hui",
+      "actor": "Kim Jung Yeon",
+      "image": "https://i.mydramalist.com/QBR67_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f9/The_Wonderfools-Jung_Yeon1.jpg",
+      "group": "Gyeong Un's family",
       "inCast": true,
-      "note": "Ep. 2, 6, 8",
-      "still": "https://asianwiki.com/images/4/48/The_Wonderfools-Lee_Il-Hwa.jpeg"
+      "note": "Gyeong Un's wife, who runs their flower shop."
+    },
+    {
+      "id": "cheong",
+      "name": "Son Cheong",
+      "actor": "Park Ye Rin",
+      "image": "https://i.mydramalist.com/73lpRr_5m.jpg",
+      "still": "https://asianwiki.com/images/4/45/The_Wonderfools-Park_Ye-Rin1.jpg",
+      "group": "Gyeong Un's family",
+      "inCast": true,
+      "note": "Gyeong Un's daughter."
+    },
+    {
+      "id": "elderyun",
+      "name": "Elder Yun",
+      "actor": "Park Sung Geun",
+      "image": "https://i.mydramalist.com/k3JNm_5m.jpg",
+      "still": "https://asianwiki.com/images/2/2b/The_Wonderfools-Park_Sung-Geun1.jpg",
+      "group": "Wunderkinder",
+      "inCast": true,
+      "note": "Elder of the Church of Eternal Salvation."
+    },
+    {
+      "id": "seungryeol",
+      "name": "Park Seung Ryeol",
+      "actor": "Lee Soon Won",
+      "image": "https://i.mydramalist.com/wJK7jY_5m.jpg",
+      "still": "https://asianwiki.com/images/3/37/The_Wonderfools-Lee_Soon-Won.jpg",
+      "group": "City Hall",
+      "inCast": true,
+      "note": "A police officer investigating disappearances tied to the church."
+    },
+    {
+      "id": "junmo",
+      "name": "Koo Jun Mo",
+      "actor": "Cha Seo Won",
+      "image": "https://i.mydramalist.com/Xv7Znm.jpg",
+      "still": "https://asianwiki.com/images/5/5a/The_Wonderfools-Cha_Seo-Won1.jpeg",
+      "group": "Chae Ni's family",
+      "inCast": true,
+      "note": "Jeon Bok's accomplice, a former cop who helps search for Chae Ni."
     },
     {
       "id": "sangmu",
       "name": "Ko Sang Mu",
       "actor": "Kim Ki Cheon",
       "image": "https://i.mydramalist.com/YY1OAK_5m.jpg",
+      "still": "https://asianwiki.com/images/1/14/The_Wonderfools-Kim_Ki_Cheon.jpg",
       "group": "Un Jeong's past",
       "inCast": true,
-      "note": "Former orphanage janitor",
-      "still": "https://asianwiki.com/images/1/14/The_Wonderfools-Kim_Ki_Cheon.jpg"
+      "note": "A former orphanage janitor who once saved young Un Jeong from the lab fire."
+    },
+    {
+      "id": "bongpal",
+      "name": "Kim Bong Pal",
+      "actor": "Hong Min Soo",
+      "image": "https://i.mydramalist.com/RBPYbg_5m.jpg",
+      "still": "https://asianwiki.com/images/0/04/The_Wonderfools-Hong_Min-Soo.jpg",
+      "group": "Wunderkinder",
+      "inCast": true,
+      "note": "A rag picker whose disappearance kicks off the mystery; a failed Wunderkinder experiment."
+    },
+    {
+      "id": "choiyeongjun",
+      "name": "Choi Yeong Jun",
+      "actor": "Choi Kwang Il",
+      "image": "https://i.mydramalist.com/x4W1xq_5m.jpg",
+      "still": "https://asianwiki.com/images/e/eb/The_Wonderfools-Choi_Kwang-Il.jpg",
+      "group": "Wunderkinder",
+      "inCast": true,
+      "note": "Former director of Hawondo Lab and sponsor of its experiments."
+    },
+    {
+      "id": "sunggyu",
+      "name": "Nam Sun Gyu",
+      "actor": "Jeong Bo Seok",
+      "image": "https://i.mydramalist.com/Wpd7W_5m.jpg",
+      "still": "https://asianwiki.com/images/e/ed/The_Wonderfools-Jung_Bo-Suk.jpg",
+      "group": "Wunderkinder",
+      "inCast": true,
+      "note": "A wealthy old contact of Dr Ha's, hoping to be reborn as the Child of Eternity."
+    },
+    {
+      "id": "jangyunhui",
+      "name": "Jang Yun Hui",
+      "actor": "Lee Il Hwa",
+      "image": "https://i.mydramalist.com/nODnn4_5m.jpg",
+      "still": "https://asianwiki.com/images/4/48/The_Wonderfools-Lee_Il-Hwa.jpeg",
+      "group": "Un Jeong's past",
+      "inCast": true,
+      "note": "Un Jeong's mother, whom he has long searched for."
+    },
+    {
+      "id": "childofeternity",
+      "name": "\"Child of Eternity\"",
+      "actor": "Seo Woo Jin",
+      "image": "https://i.mydramalist.com/nOrj7E_5m.jpg",
+      "still": "https://asianwiki.com/images/0/0b/The_Wonderfools-Seo_Woo-Jin.jpeg",
+      "group": "Un Jeong's past",
+      "inCast": true,
+      "note": "An orphan who could never die from the lab's experiments; his heart was transplanted into Chae Ni after he died."
     }
   ],
   "links": [
     {
       "from": "unjeong",
       "to": "chaeni",
-      "type": "bond",
-      "label": "joins forces with her, and ends up guiding her and her friends through their powers",
-      "short": "guides her",
-      "evidence": "they join forces with Lee Un Jeong, a principled yet socially distant civil servant from Seoul / his plans are disrupted when he is forced to guide Chae-ni and her friends in mastering their newly acquired powers.",
-      "source": "MDL synopsis; en.wikipedia",
+      "type": "work",
+      "label": "Un Jeong hires Chae Ni as a temporary paid volunteer at City Hall and trains her, Gyeong Un and Ro Bin to control their powers",
+      "short": "his volunteer",
+      "evidence": "Un-jeong hires Chae-ni as a temporary paid volunteer.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 3,
+      "until": 6,
+      "wholeStory": false
+    },
+    {
+      "from": "chaeni",
+      "to": "unjeong",
+      "type": "romance",
+      "label": "The two grow close while surviving Haeseong's mysteries together, falling in love despite his betrayal",
+      "short": "in love",
+      "evidence": "The two continue bonding, and Chae-ni reassures Un-jeong that she will always stay by his side.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 5
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Un Jeong secretly uses his powers to protect Chae Ni from the sharp objects in her suitcase",
+      "short": "secretly protects her",
+      "evidence": "a flashback from earlier that day reveals that Un-jeong used his special powers to protect Chae-ni from being injured by the sharp objects inside her suitcase",
+      "source": "thereviewgeek ep. 1",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Believing she may be immortal, Un Jeong tries to kill Chae Ni to test his theory",
+      "short": "tries to kill her",
+      "evidence": "Believing that Chae-ni may be immortal, he decides to test his theory by trying to kill her.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Un Jeong arrives just in time to save Chae Ni from Pal Ho's attack",
+      "short": "saves her",
+      "evidence": "Just as Pal-ho prepares to attack Chae-ni, Un-jeong arrives in time to save her.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Chae Ni dies from blood loss beneath the Northern Lights, and Un Jeong desperately resurrects her",
+      "short": "resurrects her",
+      "evidence": "Un-jeong desperately tries to resurrect Chae-ni. Moments later, Chae-ni suddenly wakes up.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Un Jeong reveals that Chae Ni is the Child of Eternity's heart recipient, who can never truly die",
+      "short": "reveals her secret",
+      "evidence": "he asks whether she ever underwent a heart transplant as a child.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Un Jeong betrays Chae Ni, drugging her and handing her to Dr Ha's followers in exchange for information about his mother",
+      "short": "betrays her",
+      "evidence": "Un-jeong suddenly betrays her by injecting her with a drug. Chae-ni loses consciousness and is taken captive by Dr Ha's followers.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "Un Jeong helps rescue Chae Ni from Dr Ha's surgery and kisses her to trigger her powers",
+      "short": "rescues her",
+      "evidence": "He begs for forgiveness before kissing her to raise her heart rate and trigger her powers.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "chaeni",
+      "to": "unjeong",
+      "type": "bond",
+      "label": "Chae Ni disappears for three weeks after saving the town, then reunites with Un Jeong at her own memorial",
+      "short": "reunion",
+      "evidence": "Chae-ni suddenly appears and reunites with her family and friends. Un-jeong learns that she has returned and immediately goes looking for her.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 8,
+      "kind": "event"
     },
     {
       "from": "jeonbok",
       "to": "chaeni",
       "type": "family",
-      "label": "grandmother she lives with — and tried to con for travel money",
-      "short": "grandmother",
-      "evidence": "a spirited and unpredictable young woman living with her grandmother Kim Jeon Bok / attempts to fake her own kidnapping to obtain travel money from her grandmother",
-      "source": "MDL synopsis; en.wikipedia",
+      "label": "Her grandmother who raised her and runs the Hearty House restaurant",
+      "short": "her grandmother",
+      "evidence": "a spirited and unpredictable young woman living with her grandmother Kim Jeon Bok",
+      "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "junmo",
-      "to": "jeonbok",
-      "type": "work",
-      "label": "her accomplice",
-      "short": "accomplice",
-      "evidence": "[Jeon Bok's accomplice]",
-      "source": "MDL cast",
+      "from": "jeonbok",
+      "to": "chaeni",
+      "type": "family",
+      "label": "Jeon Bok refuses to lend Chae Ni money to travel, driving her to stage a fake kidnapping",
+      "short": "refuses her",
+      "evidence": "Chae-ni once again asks her grandmother to let her travel, but Jeon-bok refuses.",
+      "source": "thereviewgeek ep. 1",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "chaeni",
+      "to": "jeonbok",
+      "type": "family",
+      "label": "Learning her heart came from the Child of Eternity, Chae Ni refuses to forgive Jeon Bok",
+      "short": "refuses to forgive",
+      "evidence": "she tells her grandmother that both of them must spend the rest of their lives repenting for what happened.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "kind": "event"
+    },
+    {
+      "from": "jeonbok",
+      "to": "hawondo",
+      "type": "rivalry",
+      "label": "Former funder and current tormentor of Haeseong's children, now at odds over the Wunderkinder's fate",
+      "short": "her rival",
+      "evidence": "Dr Ha blames Jeon-bok, also known as Madame King, for what happened years ago and claims that she funded the experiments.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 4,
+      "until": 8
+    },
+    {
+      "from": "juran",
+      "to": "jeonbok",
+      "type": "bond",
+      "label": "Ju Ran forces information about the Child of Eternity out of Jeon Bok on Dr Ha's orders",
+      "short": "interrogates her",
+      "evidence": "Ju-ran uses her powers to force information out of Jeon-bok.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "jeonbok",
+      "to": "unjeong",
+      "type": "bond",
+      "label": "She unknowingly funded the experiments at Hawondo Lab that scarred him as a child",
+      "short": "guilty benefactor",
+      "evidence": "Dr Ha blames Jeon-bok, also known as Madame King, for what happened years ago and claims that she funded the experiments.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4
+    },
+    {
+      "from": "jeonbok",
+      "to": "unjeong",
+      "type": "bond",
+      "label": "Jeon Bok apologizes to Un Jeong for what happened at Hawondo Lab and asks him to save Chae Ni",
+      "short": "apologizes to him",
+      "evidence": "Jeon-bok apologises for everything that happened to him at Hawondo Lab and asks him where Chae-ni is being held.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
     },
     {
       "from": "gyeongun",
-      "to": "chaeni",
-      "type": "bond",
-      "label": "neighbour caught in the same incident, with powers as unstable as hers",
-      "short": "same powers",
-      "evidence": "she and her neighbors, Son Gyeong Un and Kang Ro Bin, become entangled in a mysterious incident that grants them supernatural abilities. However, their newfound powers are unstable and far from perfect.",
+      "to": "robin",
+      "type": "friend",
+      "label": "Neighbours and friends who gain their powers together and stand by each other",
+      "short": "his friend",
+      "evidence": "she and her neighbors, Son Gyeong Un and Kang Ro Bin, become entangled in a mysterious incident that grants them supernatural abilities",
       "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "robin",
-      "to": "chaeni",
-      "type": "bond",
-      "label": "neighbour caught in the same incident, with powers as unstable as hers",
-      "short": "same powers",
-      "evidence": "she and her neighbors, Son Gyeong Un and Kang Ro Bin, become entangled in a mysterious incident that grants them supernatural abilities.",
-      "source": "MDL synopsis",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
     },
     {
       "from": "robin",
       "to": "gyeongun",
       "type": "friend",
-      "label": "neighbours, the trio's other two",
-      "short": "neighbours",
-      "evidence": "she and her neighbors, Son Gyeong Un and Kang Ro Bin […] the trio must navigate their limitations",
+      "label": "Ro Bin pulls Gyeong Un free just before the wrecked police car explodes",
+      "short": "saves him",
+      "evidence": "Ro-bin uses his super strength to pull Gyeon-un away moments before the car explodes.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "chaeni",
+      "to": "gyeongun",
+      "type": "friend",
+      "label": "Neighbors who become powered allies together",
+      "short": "her friend",
+      "evidence": "she and her neighbors, Son Gyeong Un and Kang Ro Bin, become entangled in a mysterious incident that grants them supernatural abilities",
       "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "chaeni",
+      "to": "gyeongun",
+      "type": "friend",
+      "label": "Chae Ni recruits Gyeong Un to help stage her fake kidnapping",
+      "short": "recruits him",
+      "evidence": "Chae-ni arrives and offers to pay them if they help him with something.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "chaeni",
+      "to": "robin",
+      "type": "friend",
+      "label": "Neighbors who become powered allies together",
+      "short": "her friend",
+      "evidence": "she and her neighbors, Son Gyeong Un and Kang Ro Bin, become entangled in a mysterious incident that grants them supernatural abilities",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "robin",
+      "to": "chaeni",
+      "type": "friend",
+      "label": "Ro Bin recalls that Chae Ni once stood up for him against school bullies",
+      "short": "defended him at school",
+      "evidence": "A flashback shows Chae-ni standing up for Ro-bin against bullies at school.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
     },
     {
       "from": "mihui",
       "to": "gyeongun",
       "type": "family",
-      "label": "wife",
-      "short": "wife",
+      "label": "His wife, who runs their flower shop and grows suspicious of his strange behavior",
+      "short": "his wife",
       "evidence": "[Gyeong Un's wife]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "cheong",
       "to": "gyeongun",
       "type": "family",
-      "label": "daughter",
-      "short": "daughter",
+      "label": "His daughter, embarrassed by him until she sees him fight to protect the city",
+      "short": "his daughter",
       "evidence": "[Gyeong Un's daughter]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "wondo",
+      "from": "cheong",
+      "to": "gyeongun",
+      "type": "family",
+      "label": "Cheong watches her father battle the brainwashed crowd and realizes he is a real superhero",
+      "short": "sees him as hero",
+      "evidence": "Cheong watches everything unfold and finally realises that her father is a real superhero.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "jangyunhui",
       "to": "unjeong",
-      "type": "rivalry",
-      "label": "the calm, rational man behind the disappearances",
-      "short": "the threat",
-      "evidence": "they encounter Ha Un Do, a composed and rational figure concealing darker intentions. / [Wunderkinder leader]",
-      "source": "MDL synopsis; MDL cast",
+      "type": "family",
+      "label": "His mother, whom he has spent years secretly searching for",
+      "short": "his mother",
+      "evidence": "[Un Jeong's mother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "unjeong",
+      "to": "jangyunhui",
+      "type": "family",
+      "label": "Un Jeong dreams of finally reuniting with his mother",
+      "short": "dreams of her",
+      "evidence": "An epilogue shows Un-jeong dreaming about reuniting with his mother.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "sangmu",
+      "to": "unjeong",
+      "type": "bond",
+      "label": "The orphanage janitor who once pulled young Un Jeong from the burning lab",
+      "short": "his childhood rescuer",
+      "evidence": "The man recalls saving a young boy, Patient Number 3972, from a fire.",
+      "source": "thereviewgeek ep. 2",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "sangmu",
+      "to": "unjeong",
+      "type": "bond",
+      "label": "Sang Mu drags an injured Un Jeong out of the burning lab",
+      "short": "saves him again",
+      "evidence": "Sang-moo drags an injured Un-jeong out of the burning lab and urges him to escape.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "hawondo",
+      "type": "rivalry",
+      "label": "The scientist who experimented on him as a child and now hunts the Wunderkinder he made",
+      "short": "his nemesis",
+      "evidence": "Un-jeong mocks Pal-ho for calling Dr Ha “Father” and accuses the scientist of using defective variants like them for his own benefit.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 3,
+      "until": 8
+    },
+    {
+      "from": "hawondo",
+      "to": "unjeong",
+      "type": "bond",
+      "label": "Dr Ha blackmails Un Jeong with information about his mother in exchange for betraying Chae Ni",
+      "short": "blackmails him",
+      "evidence": "Dr Ha blackmailed Un-jeong by promising information about his family and mother in exchange for cooperation.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "unjeong",
+      "to": "hawondo",
+      "type": "rivalry",
+      "label": "Un Jeong turns the guards' bullets back on Dr Ha, killing him and setting the lab on fire",
+      "short": "kills him",
+      "evidence": "Using his powers, Un-jeong controls the bullets and turns them back on Dr Ha, killing him while also setting the lab on fire.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "hawondo",
+      "to": "chaeni",
+      "type": "rivalry",
+      "label": "The cult leader who hunts her for the immortal heart she carries",
+      "short": "her hunter",
+      "evidence": "Dr Ha instructs them to capture a new variant, Chae-ni, before she becomes a bigger problem for him.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "until": 8
+    },
+    {
+      "from": "hawondo",
+      "to": "chaeni",
+      "type": "rivalry",
+      "label": "Dr Ha kidnaps Chae Ni and begins surgery to remove her immortal heart",
+      "short": "operates on her",
+      "evidence": "Dr Ha prepares Chae-ni for surgery and instructs the surgeons to sedate her so he can remove her heart.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "hawondo",
+      "to": "chaeni",
+      "type": "rivalry",
+      "label": "Dr Ha injects Chae Ni's blood into Nam Sun Gyu, and demands more of it after the botched experiment",
+      "short": "experiments on her blood",
+      "evidence": "He demands more of Chae-ni's blood, which terrifies her.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "palho",
-      "to": "wondo",
+      "to": "hawondo",
       "type": "work",
-      "label": "one of his Wunderkinder",
-      "short": "Wunderkind",
-      "evidence": null,
-      "source": null,
+      "label": "A Wunderkinder follower raised by their leader to call him 'Father'",
+      "short": "follows him",
+      "evidence": "Meanwhile, Seok Ju-ran, Seok Ho-ran, and Kim Pal-ho, who are all loyal followers of Dr Ha, discuss Un-jeong’s return to Haeseong.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "until": 7
+    },
+    {
+      "from": "unjeong",
+      "to": "palho",
+      "type": "rivalry",
+      "label": "Childhood rivals raised together in Dr Ha's lab, now fighting on opposite sides",
+      "short": "his rival",
+      "evidence": "Ho-ran recalls how jealous Pal-ho used to be of Un-jeong while the trio talk about his sudden reappearance.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 3,
+      "until": 7
+    },
+    {
+      "from": "unjeong",
+      "to": "palho",
+      "type": "rivalry",
+      "label": "Un Jeong and Pal Ho fight to the death in a massive explosion",
+      "short": "fatal fight",
+      "evidence": "The fight between Un-jeong and Pal-ho becomes increasingly violent and eventually ends in a massive explosion.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "juran",
-      "to": "wondo",
+      "to": "hawondo",
       "type": "work",
-      "label": "one of his Wunderkinder",
-      "short": "Wunderkind",
-      "evidence": null,
-      "source": null,
+      "label": "The leader she serves loyally, using her brainwashing powers on his orders",
+      "short": "follows him",
+      "evidence": "Meanwhile, Seok Ju-ran, Seok Ho-ran, and Kim Pal-ho, who are all loyal followers of Dr Ha, discuss Un-jeong’s return to Haeseong.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 3
+    },
+    {
+      "from": "juran",
+      "to": "hawondo",
+      "type": "work",
+      "label": "Ju Ran realizes Dr Ha does not trust her either, after learning he gave Pal Ho a device to resist her powers",
+      "short": "loses faith in him",
+      "evidence": "Ju-ran realises that Dr Ha does not trust her either and becomes upset.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "horan",
-      "to": "juran",
-      "type": "family",
-      "label": "sisters",
-      "short": "sister",
-      "evidence": null,
-      "source": null,
+      "to": "hawondo",
+      "type": "work",
+      "label": "The leader she has followed since the lab, until she feels abandoned by everyone",
+      "short": "follows him",
+      "evidence": "Meanwhile, Seok Ju-ran, Seok Ho-ran, and Kim Pal-ho, who are all loyal followers of Dr Ha, discuss Un-jeong’s return to Haeseong.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
-      "inferred": true,
-      "directed": false
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "until": 8
     },
     {
-      "from": "juran",
+      "from": "horan",
       "to": "unjeong",
-      "type": "bond",
-      "label": "the children of the flashbacks — the person from his past he is looking for is among them",
-      "short": "from his past",
-      "evidence": null,
-      "source": null,
+      "type": "romance",
+      "label": "Grew up beside Un Jeong in the lab and has quietly loved him ever since, growing jealous as he draws closer to Chae Ni",
+      "short": "unrequited love",
+      "evidence": "Ho-ran recalls bonding with Un-jeong when they were younger.",
+      "source": "thereviewgeek ep. 5",
       "reveal": true,
-      "inferred": true,
-      "directed": false
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "until": 8
+    },
+    {
+      "from": "horan",
+      "to": "unjeong",
+      "type": "romance",
+      "label": "Ho Ran disguises herself as Chae Ni to kill Un Jeong, but is accidentally stabbed and dies in his arms",
+      "short": "dies in his arms",
+      "evidence": "The illusion fades, and Ho-ran dies in Un-jeong's arms while Ju-ran watches in horror.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "elderyun",
+      "to": "horan",
+      "type": "bond",
+      "label": "Elder Yun accidentally stabs Ho Ran, who was disguised as Chae Ni, during the chaos",
+      "short": "fatally stabs her",
+      "evidence": "a church elder unknowingly stabs Ho-ran during the confusion.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "choiyeongjun",
+      "to": "hawondo",
+      "type": "work",
+      "label": "The director of Hawondo Lab, who ran Dr Ha's experiments until Dr Ha killed him",
+      "short": "his lab director",
+      "evidence": "the episode ends with Dr Ha Won-do visiting Director Choi, his former employee, and killing him.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 2
+    },
+    {
+      "from": "hawondo",
+      "to": "choiyeongjun",
+      "type": "work",
+      "label": "Dr Ha visits and kills his former employee, Director Choi",
+      "short": "kills him",
+      "evidence": "the episode ends with Dr Ha Won-do visiting Director Choi, his former employee, and killing him.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "jeonbok",
+      "to": "choiyeongjun",
+      "type": "bond",
+      "label": "The former lab director she called to discuss Chae Ni's miraculous recovery",
+      "short": "her old contact",
+      "evidence": "Jeon-bok later returns home and calls a man named Choi Yeon-jun to discuss Chae-ni's condition.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1,
+      "until": 2
+    },
+    {
+      "from": "sunggyu",
+      "to": "hawondo",
+      "type": "work",
+      "label": "An old contact who breaks him out of prison, hoping to be reborn as the Child of Eternity",
+      "short": "his backer",
+      "evidence": "Sun-gyu helps Won-do escape from prison so he can search for Un-jeong.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "until": 7
+    },
+    {
+      "from": "hawondo",
+      "to": "sunggyu",
+      "type": "work",
+      "label": "Dr Ha injects Chae Ni's blood into Sun Gyu, causing him to rapidly age and die",
+      "short": "kills him in the experiment",
+      "evidence": "his body begins reversing in age...until his body rots away and he dies instantly.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
+    },
+    {
+      "from": "bongpal",
+      "to": "hawondo",
+      "type": "work",
+      "label": "A failed test subject whose disappearance triggers the mystery, killed on Dr Ha's orders",
+      "short": "his failed subject",
+      "evidence": "Dr Ha learns that the experiment involving Bong-pal has failed and orders the scientists to kill him.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 4
     },
     {
       "from": "seoku",
       "to": "unjeong",
       "type": "work",
-      "label": "fellow civil servant",
-      "short": "colleague",
-      "evidence": "[Civil servant] / a principled yet socially distant civil servant from Seoul",
-      "source": "MDL cast; MDL synopsis",
+      "label": "His supervisor at City Hall's Civil Complaints office",
+      "short": "his boss",
+      "evidence": "Un-jeong's superior, Seok-u, pressures him for updates on the investigation.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1,
+      "until": 6
     },
     {
       "from": "nayeong",
       "to": "seoku",
       "type": "work",
-      "label": "his junior",
-      "short": "junior",
+      "label": "His junior colleague at the Civil Complaints office",
+      "short": "his junior",
       "evidence": "[Seok U's junior]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "yunhui",
+      "from": "unjeong",
+      "to": "seoku",
+      "type": "work",
+      "label": "Un Jeong asks Seok U for a favor to help plan the rescue at the church",
+      "short": "asks for his help",
+      "evidence": "visits City Hall to ask Seok-u for a favour.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "chaeni",
+      "to": "seungryeol",
+      "type": "bond",
+      "label": "Chae Ni, Ro Bin and Gyeong Un rescue police officer Seung Ryeol from the wreckage of an exploding car",
+      "short": "rescues him",
+      "evidence": "They manage to pull Seung-ryeol out safely.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "junmo",
+      "to": "jeonbok",
+      "type": "work",
+      "label": "Her private investigator, hired to track down Chae Ni and uncover the truth",
+      "short": "her accomplice",
+      "evidence": "[Jeon Bok's accomplice]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "junmo",
       "to": "unjeong",
-      "type": "family",
-      "label": "the birth mother he is searching for",
-      "short": "birth mother",
-      "evidence": "[Un Jeong's mother] / While operating alone to find a person from his past and locate his birth mother",
-      "source": "MDL cast; en.wikipedia",
+      "type": "bond",
+      "label": "Jun Mo reveals he was one of the orphans saved by the fire Un Jeong caused years ago",
+      "short": "reveals shared past",
+      "evidence": "Jun-mo thanks Un-jeong and reveals that he was also one of the orphan children saved from experimentation because of the fire Un-jeong caused years ago.",
+      "source": "thereviewgeek ep. 6",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 6,
+      "kind": "event"
     },
     {
-      "from": "sangmu",
-      "to": "unjeong",
-      "type": "work",
-      "label": "janitor of the orphanage of his childhood",
-      "short": "old janitor",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": true
+      "from": "childofeternity",
+      "to": "chaeni",
+      "type": "bond",
+      "label": "His transplanted heart lives on inside her, giving her the power to never truly die",
+      "short": "his heart lives in her",
+      "evidence": "his heart was transplanted into Chae-ni, who was terminally ill at the time.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 5
+    },
+    {
+      "from": "unjeong",
+      "to": "childofeternity",
+      "type": "bond",
+      "label": "Un Jeong triggers the fire during the lab's experiment on the Child of Eternity while trying to stop his suffering",
+      "short": "triggers the fire",
+      "evidence": "Unable to tolerate it any longer, Un-jeong uses his powers to stop the experiment, ultimately triggering the fire that destroys the lab.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "childofeternity",
+      "to": "hawondo",
+      "type": "bond",
+      "label": "The immortal specimen Dr Ha created and could never let go of",
+      "short": "his creation",
+      "evidence": "He asks the scientist about the Child of Eternity and tells him that Un-jeong has returned to Haeseong.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 3
     }
   ],
   "compact": {
@@ -421,40 +1159,50 @@
       "chaeni",
       "unjeong",
       "jeonbok",
-      "junmo",
       "gyeongun",
-      "mihui",
-      "cheong",
       "robin",
-      "wondo",
+      "hawondo",
       "palho",
       "juran",
       "horan",
       "seoku",
       "nayeong",
-      "yunhui",
-      "sangmu"
+      "mihui",
+      "cheong",
+      "elderyun",
+      "seungryeol",
+      "junmo",
+      "sangmu",
+      "bongpal",
+      "choiyeongjun",
+      "sunggyu",
+      "jangyunhui",
+      "childofeternity"
     ],
     "blocks": {
-      "Chae Ni's household": [
-        0,
-        0
-      ],
-      "The neighbours": [
+      "City Hall": [
         0,
         2
       ],
-      "The Wunderkinder": [
+      "Wunderkinder": [
         2,
-        0
+        1
+      ],
+      "The WONDERfools": [
+        0,
+        1
       ],
       "Un Jeong's past": [
         2,
         2
       ],
-      "City hall": [
-        1,
-        2
+      "Chae Ni's family": [
+        0,
+        0
+      ],
+      "Gyeong Un's family": [
+        2,
+        0
       ]
     },
     "center": [
