@@ -369,10 +369,13 @@ export function CharacterMap({
     // As of episode N, a dated link has happened or not; only the undated
     // ones — the organisation chart's — still answer to the reveals toggle
     const happened = (l: MapLink) => linkHappened(l, asOf, episode) && (asOf || !byEpisode || inWholeStory(l));
-    // Drawn faint as a guess: an inferred link, unless it is also a reveal.
-    // A reveal is the reveals switch's (see the counts), shown because the
-    // reader asked for the twist, and at 40% "the lost child" read as a ghost.
-    const guessed = (l: MapLink) => l.inferred && !l.reveal;
+    // Drawn faint as a guess: an inferred link, unless it is also a reveal —
+    // a reveal is the reveals switch's (see the counts), shown because the
+    // reader asked for the twist, and at 40% "the lost child" read as a ghost
+    // — or it joins two leads: that is the chart's heart, often its only
+    // line there (Fight for My Way's "lovers"), and its dotted stroke already
+    // says it was inferred.
+    const guessed = (l: MapLink) => l.inferred && !l.reveal && !(byId.get(l.from)?.lead && byId.get(l.to)?.lead);
     const hideLink = (l: MapLink) => !happened(l) || (!reveals && doorGoverns(l, asOf));
     const layout = useMemo(
         () => {
