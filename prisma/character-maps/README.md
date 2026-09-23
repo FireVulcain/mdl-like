@@ -106,6 +106,29 @@ ended or not, and lists moments in the story's order.
   body, an author and his character).
 - **`directed`**: false for symmetric links (married, friends, rivals);
   true when the label reads from `from` to `to` ("mother" = from is to's mother).
+- **`from` is who `short` describes**: the chart writes it under `from`'s
+  face, then `to`'s name — "his wife · Gyeong Un" under the wife. A
+  bracket is carried by the person it describes, so "[Gyeong Un's wife]"
+  on Mi Hui's line is a link from Mi Hui; the generator turns round a
+  directed tie whose `short` repeats its bracket from the wrong end.
+
+## Checks after the model
+
+`src/lib/character-map-checks.ts`, run by the generator and by a continue
+run (on the links it adds), in code — no tokens:
+
+- **Bracket direction** (repairs): a directed tie whose `from` is the X of
+  its "[X's Y]" bracket and whose `short` says Y is turned round —
+  "his wife" from Gyeong Un with "[Gyeong Un's wife]". A `short` that says
+  the other side ("mother" with "[Hyeon U's son]") is right and is left.
+- **A sentence that misses a name** (warns): a tie's recap sentence must
+  name both people, a moment's at least one ("he gives an interview"
+  names nobody).
+- **A past act written as a tie** (warns): "saved him as a child" is a
+  moment, or a noun ("his rescuer").
+
+`npx tsx scripts/audit-character-maps.ts [slug…]` runs the same checks
+over every file and prints what they find; it writes nothing.
 
 ## Density: what is a line
 

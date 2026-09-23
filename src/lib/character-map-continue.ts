@@ -4,6 +4,7 @@ import type { CastMember, Recap } from "@/lib/character-map-inputs";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 import { applyPatch, type ChartPatch, type GenerationContext, type GenerationPlan, type MergeResult } from "@/lib/character-map-patch";
 import { checkSources } from "@/lib/character-map-sources";
+import { linkWarnings, turnBrackets } from "@/lib/character-map-checks";
 import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP } from "@/lib/character-map-rules";
 
 /**
@@ -274,11 +275,16 @@ export async function continueChart(
     onProgress?.("Folding the changes in");
     try {
         const merged = applyPatch(map, patch, recaps);
+        // The links this run added are the last ones: only they are checked,
+        // the rest were checked when they were written (or by hand)
+        const added = merged.map.links.slice(merged.map.links.length - merged.summary.added);
+        merged.warnings.push(...turnBrackets(added, merged.map.people));
         // Each sentence found back in its recap: a source that names another
         // episode is corrected, a reveal dated before its recap is moved to it
         const sourced = checkSources(merged.map.links, recaps);
         merged.map.links = sourced.links;
         merged.warnings.push(...sourced.warnings);
+        merged.warnings.push(...linkWarnings(sourced.links.slice(sourced.links.length - merged.summary.added), merged.map.people));
         // The density rules, over the chart as it now stands
         const whole = settleWholeStory(merged.map);
         merged.map.links = whole.links;

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { isEvent, recapsBlock, type CharacterMapData, type Era, type MapLink, type MapPerson } from "@/lib/character-map";
 import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
 import { checkSources } from "@/lib/character-map-sources";
+import { linkWarnings, turnBrackets } from "@/lib/character-map-checks";
 import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP, WHOLE_PER_PERSON } from "@/lib/character-map-rules";
 import type { Prisma } from "@prisma/client";
 
@@ -41,11 +42,13 @@ LINKS — a link is one of two kinds, and the chart treats them differently
 - kind "event": what HAPPENED ONCE between two people — a rescue, a kiss, a slap, a betrayal, a confession, a reveal, a death at someone's hand, a kidnapping. Never drawn as a line: read in the panel of the pair and in a list in the story's order. An event has since (the episode) and no until.
 - The question to ask: "does this still describe them next episode?" Yes → tie. No → event. "married" is a tie; "saved his life" is an event; "in love since the rooftop" is a tie that an event began. When an event changes what the two are to each other, write both: the event, and the tie it opens (or the until on the tie it ends).
 - Ties carry the chart: keep them few and standing. Events carry the story: write the ones a viewer would remember, with their sentence.
+- evidence is a sentence that names the two people — both for a tie, at least one for an event. A sentence that says only "he" and "she" proves nothing to a reader of the chart: take the one nearby that names them.
 - Every link keeps the sentence it was read from in evidence, and where in source: "MDL cast" for a [bracket] note (quote the bracket, e.g. "[Ae Sun's mother]"), "MDL synopsis", "ko.wikipedia", "zh.wikipedia", "en.wikipedia". Brackets are the most reliable source of all.
 - A link with no sentence behind it is inferred: true, with evidence and source null. Keep these rare — only what any viewer of the show would know — and never invent a fact the inputs contradict.
 - When sources disagree, the MDL synopsis wins, then the native-language Wikipedia, then en.wikipedia.
 - type: family, romance, rivalry, work (also loyalty, mentors, servants, colleagues), friend, bond (what the story invents: a soul in the wrong body, a ghost and its host, a past life, a fan and an idol).
 - directed: false for symmetric ties (married, friends, rivals, siblings); true when the label reads from "from" to "to" ("mother" = from is to's mother; "loves him" = from loves to).
+- from is the person the short describes. The chart writes short under from's face, then to's name: a link from Ae Sun's mother to Ae Sun reads "her mother · Ae Sun" under the mother. So "his wife" goes from the wife to the husband, "his daughter" from the daughter to the father, "his junior" from the junior, "his creation" from the creation, "failed subject" from the subject — never from the one they belong to. A [bracket] note is carried by the person it describes: "[Gyeong Un's wife]" on Moon Mi Hui's cast line is a link from Mi Hui to Gyeong Un.
 - reveal: true for a twist the story keeps for later — a hidden parent, a true identity, a killer, an affair. When in doubt, mark it.
 - label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated. For an event, short names the act ("saved his life", "first kiss", "shot him") and label says it in a sentence.
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
@@ -56,7 +59,7 @@ WHAT IS A LINE — three levels, decide one for every fact before writing it
 - arc: a state that changes from one part of the story to the next — the phases of a romance (strangers, attraction, dating, broken up), a passing rivalry, a suspicion, an alliance, a deal. A dated tie with its since and until, and wholeStory false.
 - detail: a job title, a backstory, a business arrangement, a one-off role in a subplot, a gesture. Never a tie: it goes in the person's note, or it is an event if it happened once between the two.
 - Never a tie: membership the block already says (a bandmate inside the band's block, a colleague inside the company's block); a contract or a business partnership, unless it is what the pair IS to each other; a misunderstanding (he thinks she is a spy, she thinks he loves his friend) — that is an event where it starts, or a note.
-- short is a noun or a state seen from the person it is written under ("her mother", "his rival", "in love", "obsessive ex"), never a verb in the past tense — "shot him", "told her" are events. label is one sentence that says why, not an episode summary.
+- short is a noun or a state that says what from is to to ("her mother", "his rival", "in love", "obsessive ex"), never a verb in the past tense — "shot him", "told her" are events. label is one sentence that says why, not an episode summary.
 - Budgets, which the checks count: between two people, at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads). A support role draws at most ${WHOLE_PER_PERSON} ties in the whole story. A support role with no identity tie is left out of the chart; what it did goes in someone's note or in an event.
 
 WHOLE STORY — the chart's panorama, one line per pair
@@ -281,10 +284,17 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         if (!withRecaps) delete link.since;
         return [link];
     });
+    // A tie read from a "[X's Y]" bracket goes from the one it describes,
+    // never from X: the model wrote "his wife" from the husband, and the
+    // chart then called him her wife.
+    warnings.push(...turnBrackets(links, people));
     // Each sentence found back in its recap: a source that names another
     // episode is corrected, a reveal dated before its recap is moved to it
     const sourced = checkSources(links, inputs.recaps);
     warnings.push(...sourced.warnings);
+    // What code can see and the model missed: a sentence that does not name
+    // the pair, a past act written as a tie
+    warnings.push(...linkWarnings(sourced.links, people));
 
     const map: CharacterMapData = {
         version: 2,
