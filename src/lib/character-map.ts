@@ -428,12 +428,63 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
         }
         groups.set("__center", best);
     }
+
+    // With three leads or more, a side block tied mostly to a lead between
+    // the two ends has no good side: whichever it takes, its lines pass in
+    // front of an end lead. It goes to the band above or below the leads
+    // instead — at least two such ties and more than half of its own; it
+    // keeps its band if it had one, else takes the emptier.
+    //
+    // A side block tied mostly to the far lead changes sides, once the
+    // leads' order has done what it can: two households of one lead's, one
+    // on each side, cannot both be fixed by ordering. Only a clear case moves
+    // — at least two ties, twice as many to the far half of the leads as to
+    // the near one — and only while the two sides stay within two blocks of
+    // each other. The strongest cases go first.
+    const slots: Record<string, [number, number]> = { ...map.compact.blocks };
+    const order = groups.get("__center") ?? [];
+    if (order.length >= 2) {
+        const pull = new Map<string, { near: number; far: number; mid: number }>();
+        for (const { l } of links) {
+            const a = byId.get(l.from)!, b = byId.get(l.to)!;
+            if (a.lead === b.lead) continue;
+            const [member, lead] = a.lead ? [b, a] : [a, b];
+            const col = slots[member.group]?.[0];
+            if (col !== 0 && col !== 2) continue;
+            // Where the lead sits, from -1 (the left end) to 1 (the right end)
+            const at = (2 * order.findIndex((p) => p.id === lead.id)) / (order.length - 1) - 1;
+            const toward = col === 0 ? -at : at;
+            const c = pull.get(member.group) ?? { near: 0, far: 0, mid: 0 };
+            // A lead between the ends is neither side's
+            if (Math.abs(at) < 1) c.mid++;
+            else if (toward > 0) c.near++;
+            else c.far++;
+            pull.set(member.group, c);
+        }
+        for (const [g, c] of pull) {
+            if (c.mid < 2 || 2 * c.mid <= c.near + c.far + c.mid) continue;
+            const row = slots[g][1];
+            const inBand = (r: number) => Object.entries(slots).filter(([h, sl]) => sl[0] === 1 && sl[1] === r && groups.has(h)).length;
+            slots[g] = [1, row === 0 || row === 2 ? row : inBand(0) <= inBand(2) ? 0 : 2];
+            pull.delete(g);
+        }
+        const count = (col: number) => Object.entries(slots).filter(([g, sl]) => sl[0] === col && groups.has(g)).length;
+        const movers = [...pull.entries()]
+            .filter(([, c]) => c.far >= 2 && c.far >= 2 * c.near)
+            .sort((x, y) => y[1].far - y[1].near - (x[1].far - x[1].near));
+        for (const [g] of movers) {
+            const [col, row] = slots[g];
+            const to = 2 - col;
+            if (Math.abs(count(to) + 1 - (count(col) - 1)) > 2) continue;
+            slots[g] = [to, row];
+        }
+    }
     const textWidth = (p: LaidOutPerson) => Math.max(p.name.length * 6.8, actorLine(p).length * 5.7, ...p.captions.map(captionWidth));
     type Shape = { name: string; members: LaidOutPerson[]; perRow: number; rows: number; dx: number; dy: number; w: number; h: number; x: number; y: number };
     const shapes = new Map<string, Shape>();
     for (const [g, members] of groups) {
         const n = members.length;
-        const slot = map.compact.blocks[g];
+        const slot = slots[g];
         const side = g !== "__center" && slot !== undefined && slot[0] !== 1;
         const perRow = g === "__center" ? n : n <= 2 ? (side ? 1 : n) : n === 4 ? 2 : n >= 10 ? 5 : n >= 7 ? 4 : 3;
         const rows = Math.ceil(n / perRow);
@@ -452,13 +503,13 @@ export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layou
     const centerShape = shapes.get("__center");
     const region = { left: [] as Shape[], right: [] as Shape[], top: [] as Shape[], bottom: [] as Shape[] };
     const ordered = [...shapes.values()].filter((sh) => sh.name !== "__center").sort((a, b) => {
-        const sa = map.compact.blocks[a.name] ?? [9, 9], sb = map.compact.blocks[b.name] ?? [9, 9];
+        const sa = slots[a.name] ?? [9, 9], sb = slots[b.name] ?? [9, 9];
         return sa[1] - sb[1] || sa[0] - sb[0];
     });
     const GAP = 28, PAD = 24;
     const colHeight = (col: Shape[]) => col.reduce((t, sh) => t + sh.h, 0) + Math.max(0, col.length - 1) * GAP;
     for (const sh of ordered) {
-        const slot = map.compact.blocks[sh.name];
+        const slot = slots[sh.name];
         if (slot && slot[0] === 0) region.left.push(sh);
         else if (slot && slot[0] === 2) region.right.push(sh);
         else if (slot && slot[1] === 0) region.top.push(sh);
