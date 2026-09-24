@@ -6,14 +6,23 @@ import { isEvent, recapsBlock, type CharacterMapData, type Era, type MapLink, ty
 import { countryCode, type ChartInputs } from "@/lib/character-map-inputs";
 import { checkSources } from "@/lib/character-map-sources";
 import { linkWarnings, turnBrackets } from "@/lib/character-map-checks";
-import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP, WHOLE_PER_PERSON } from "@/lib/character-map-rules";
+import { MOMENTS_PER_PAIR, MOMENTS_PER_STOP, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP } from "@/lib/character-map-rules";
+import { defaultCompact } from "@/lib/character-map-layout";
+import { passLine, settleChart, type Pass, type PassUsage } from "@/lib/character-map-review";
 import type { Prisma } from "@prisma/client";
 
 /**
  * Writes a relationship chart from the gathered inputs, the way the
  * hand-written ones were: the same reading rules, the same shape, one call
- * to Claude with the output held to the chart's JSON schema, then the same
- * checks the scratch generator ran before a file was written.
+ * to Claude that reads the sources and writes the people and the links,
+ * then the checks in code, then a short second call over the chart alone
+ * (character-map-review.ts) for what only the whole chart shows — the
+ * budgets, the direction of each tie, the layout.
+ *
+ * The first call no longer writes the whole-story marks nor the compact
+ * layout: it says for each tie whether it is identity or arc, and code
+ * derives the rest (`level` → `wholeStory`, `defaultCompact`). Those were
+ * the decisions it made worst, in the same breath as reading forty recaps.
  *
  * Nothing here is clever about the drama — the rules below are the README's,
  * and the model reads the cast and the articles the way a session did.
@@ -49,6 +58,7 @@ LINKS — a link is one of two kinds, and the chart treats them differently
 - type: family, romance, rivalry, work (also loyalty, mentors, servants, colleagues), friend, bond (what the story invents: a soul in the wrong body, a ghost and its host, a past life, a fan and an idol).
 - directed: false for symmetric ties (married, friends, rivals, siblings); true when the label reads from "from" to "to" ("mother" = from is to's mother; "loves him" = from loves to).
 - from is the person the short describes. The chart writes short under from's face, then to's name: a link from Ae Sun's mother to Ae Sun reads "her mother · Ae Sun" under the mother. So "his wife" goes from the wife to the husband, "his daughter" from the daughter to the father, "his junior" from the junior, "his creation" from the creation, "failed subject" from the subject — never from the one they belong to. A [bracket] note is carried by the person it describes: "[Gyeong Un's wife]" on Moon Mi Hui's cast line is a link from Mi Hui to Gyeong Un.
+- Read every directed tie back before writing it: "<from> is <to>'s <short>". A father and his son: from the father, short "his father"; or from the son, short "his son" — never from the father with "his son". The possessive in short points at to.
 - reveal: true for a twist the story keeps for later — a hidden parent, a true identity, a killer, an affair. When in doubt, mark it.
 - label: the full reading, a short phrase. short: one to three words the chart draws under a face ("mother", "first love", "rival", "his secretary") — written, never truncated. For an event, short names the act ("saved his life", "first kiss", "shot him") and label says it in a sentence.
 - Give each lead at least three or four links with a sentence behind them when the inputs allow it: the media page shows the leads' closest ties, sourced ones first.
@@ -60,13 +70,12 @@ WHAT IS A LINE — three levels, decide one for every fact before writing it
 - detail: a job title, a backstory, a business arrangement, a one-off role in a subplot, a gesture. Never a tie: it goes in the person's note, or it is an event if it happened once between the two.
 - Never a tie: membership the block already says (a bandmate inside the band's block, a colleague inside the company's block); a contract or a business partnership, unless it is what the pair IS to each other; a misunderstanding (he thinks she is a spy, she thinks he loves his friend) — that is an event where it starts, or a note.
 - short is a noun or a state that says what from is to to ("her mother", "his rival", "in love", "obsessive ex"), never a verb in the past tense — "shot him", "told her" are events. label is one sentence that says why, not an episode summary.
-- Budgets, which the checks count: between two people, at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads). A support role draws at most ${WHOLE_PER_PERSON} ties in the whole story. A support role with no identity tie is left out of the chart; what it did goes in someone's note or in an event.
+- Budgets, which the checks count: between two people, at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads). Family ties do not count against one person's budget: a patriarch with four children has four ties, all of them lines. A support role with no identity tie is left out of the chart; what it did goes in someone's note or in an event.
 
-WHOLE STORY — the chart's panorama, one line per pair
-- "Whole story" draws every tie the story had at once, so it keeps only the tie that DEFINES each pair: wholeStory true on exactly one tie per pair (two between two leads — e.g. "her boss" and the romance), false on every other tie of that pair.
-- The defining tie is the one a viewer would name to describe the two, not the latest state: for the leads' romance it is the romance that makes the pair ("falling for her", "in love"), not the final "engaged"; for a friendship broken and repaired, the friendship.
-- Every arc tie is false. A pair that only has arcs (a passing rivalry, an alliance) gets none in the whole story: all false.
-- On an event, wholeStory is ignored; write false.
+LEVEL — on every tie, say which of the two it is; code builds the "Whole story" view from it
+- level "identity": what defines the pair, the tie a viewer would name to describe the two — the mother, the marriage, the romance that makes the couple ("falling for her", "in love"), the friendship even if it breaks for a while. At most one per pair (two between the leads: e.g. "her boss" and the romance).
+- level "arc": a phase or a state that the story moves through — the fake marriage before the real one, "broken up", a passing rivalry, a suspicion, an alliance, a deal, the final "engaged" when the romance is already the identity tie.
+- On an event, write "arc"; it is ignored.
 
 EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sections — the site is dramabeans or thereviewgeek for Korean dramas, cpophome for Chinese ones)
 - The recaps are the richest source of ties and turns: a rescue years earlier, a kidnapping, a betrayal, a change of heart. Read them for links the cast and the articles do not say, and for the sentence behind links they only imply. Their source is "<site> ep. 5-6" — the site as the section heads it, and the range of the recap the sentence is in: "dramabeans ep. 5-6", "thereviewgeek ep. 5", "cpophome ep. 12".
@@ -75,22 +84,20 @@ EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sect
 - source names the recap the evidence sentence is in — that one and no other. The checks find the sentence back in the recaps and correct a source that names another episode. An event — an alliance, a betrayal, a rescue, a kiss — happens in the episode its sentence is in, and its since is that episode: never an earlier one because the event "was coming", never a later one. A reveal's since is the episode of the recap that reveals it, even when the thing revealed is older. Only a standing tie (a mother, a job, a marriage from before the story) may have a since earlier than the sentence that describes it.
 - A tie that changes over the run is two ties, each with its own since and sentence: "hunts Kingfisher" from 2, "lets Kingfisher die, for friendship" from 14 — never one link that averages them. The first one gets until: 13, the episode before the second takes over.
 - until: the last episode a tie still holds. Every tie that is replaced, undone or over gets one — the fake marriage ends where the real one starts, "his secretary" ends when she is fired, "forgot her" ends when he remembers, a mentor's tie ends the episode he dies. Only what still holds at the end has no until: a marriage that lasts, a sibling, a love that is not undone. An event never has an until.
+- A family tie never has an until: kinship does not end. A mother who dies is still his mother — her death is an event; a father who disowns his son is still his father — the disowning is an event. What a death ends is a job, a mentorship, a romance, an alliance.
 - A thing that is over the episode it happens in is an event, not a one-episode tie: a rescue, a slap, a kidnapping resolved next episode, a gift, a confession, a shooting. Write it with kind "event".
 - The chart is read as of an episode, and it draws every tie that holds then: keep the ties sparse. Between two people, at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads), never two of the same type at once. The leads may share a dozen events; they should not share a dozen ties.
 - An arc tie starts only when the relationship changes enough that a viewer would call it something else — strangers, then in love, then broken up. Not one per recap by default: the same state in new words ("growing closer", "closer still") is the old tie, and a gesture on the way is an event.
-- Across the chart, at any episode: at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on one support role, and about ${TIES_PER_HEAD_AT_STOP} ties per person the chart has met by then. A support role that needs more is a lead — put them in compact.center — or is carrying a job or a deal that belongs in the note.
-- With recaps, write the events a reader of the show would recognise as its turns — a chart with thirty events is fine when the recaps carry them — and only the ties that stand behind them.
+- Across the chart, at any episode: at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on one support role (family aside), and about ${TIES_PER_HEAD_AT_STOP} ties per person the chart has met by then. A support role that needs more is either a lead the review will put in the centre, or is carrying a job or a deal that belongs in the note.
+- With recaps, write the events a reader of the show would recognise as its turns — a death, a reveal, a betrayal, a first kiss, a rescue that changes them — and only the ties that stand behind them. Not every gesture: about ${MOMENTS_PER_STOP} events per recap across the whole chart, and at most ${MOMENTS_PER_PAIR} between two people who are not both leads. The leads may have more; keep theirs to the turns too.
 
-COMPACT
-- compact.people: the cut the compact view shows — the leads, their households, and whoever the story turns on; whole groups, never half of one. A big school class or a village can be left out of the cut and stays in the full view.
-- compact.blocks: each group other than Leads gets a cell of a 3x3 grid, [column, row]: [0,0] top-left, [2,0] top-right, [0,2] bottom-left, [2,2] bottom-right, [1,0] top-middle, [1,2] bottom-middle. The leads own [1,1]. Every group that has a person in compact.people must have a cell.
-- compact.center: the two leads (or three when MDL lists three co-leads). Always at least two: a story with one hero pairs them with whoever the story turns on — the antagonist, the partner, the love interest.
-- main: the ids of MDL's Main roles, leads first.
+MAIN
+- main: the ids of MDL's Main roles, leads first — the first two are the pair the chart is drawn around, so when MDL lists three or four main roles, put the two the story turns on first. The layout is worked out from the chart afterwards; do not write one.
 
 OUTPUT
 - version is always 2. mdlSlug, title, native, year and country are given. sources lists what was read, e.g. ["MDL cast (21 roles, 4 main)", "MDL synopsis", "ko.wikipedia 등장인물"].
 - Write everything in English except evidence, which is quoted in the language it was read in.
-- Do not write still or asianwiki fields. Do not write a recaps field.`;
+- Do not write still or asianwiki fields. Do not write a recaps field, a wholeStory field or a compact layout.`;
 
 /* ---------------------------------------------------------- the schema */
 
@@ -101,7 +108,7 @@ const nullable = (type: string) => ({ type: [type, "null"] });
 export const CHART_SCHEMA = {
     type: "object",
     additionalProperties: false,
-    required: ["version", "mdlSlug", "title", "native", "year", "country", "sources", "main", "people", "links", "compact"],
+    required: ["version", "mdlSlug", "title", "native", "year", "country", "sources", "main", "people", "links"],
     properties: {
         version: { type: "integer", enum: [2] },
         mdlSlug: { type: "string" },
@@ -142,11 +149,12 @@ export const CHART_SCHEMA = {
             items: {
                 type: "object",
                 additionalProperties: false,
-                required: ["from", "to", "kind", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until", "wholeStory"],
+                required: ["from", "to", "kind", "level", "type", "label", "short", "evidence", "source", "reveal", "inferred", "directed", "since", "until"],
                 properties: {
                     from: { type: "string" },
                     to: { type: "string" },
                     kind: { type: "string", enum: ["tie", "event"] },
+                    level: { type: "string", enum: ["identity", "arc"] },
                     type: { type: "string", enum: LINK_TYPES },
                     label: { type: "string" },
                     short: { type: "string" },
@@ -157,38 +165,19 @@ export const CHART_SCHEMA = {
                     directed: { type: "boolean" },
                     since: nullable("integer"),
                     until: nullable("integer"),
-                    wholeStory: { type: "boolean" },
                 },
-            },
-        },
-        compact: {
-            type: "object",
-            additionalProperties: false,
-            required: ["people", "blocks", "center"],
-            properties: {
-                people: { type: "array", items: { type: "string" } },
-                blocks: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        additionalProperties: false,
-                        required: ["group", "column", "row"],
-                        properties: { group: { type: "string" }, column: { type: "integer", enum: [0, 1, 2] }, row: { type: "integer", enum: [0, 1, 2] } },
-                    },
-                },
-                center: { type: "array", items: { type: "string" } },
             },
         },
     },
 } as const;
 
-/** What the model writes: the chart, with blocks as a list (a schema cannot say "any key") and nulls where the chart has absences. */
-type Draft = Omit<CharacterMapData, "compact" | "people"> & {
+/** What the model writes: the chart without its layout, each tie with its level, and nulls where the chart has absences. */
+type Draft = Omit<CharacterMapData, "compact" | "people" | "links"> & {
     native: string;
     year: number | null;
     country: string;
     people: (Omit<MapPerson, "note" | "alsoPlayedBy" | "still"> & { note: string | null; alsoPlayedBy: { name: string; image: string | null; era: string }[] })[];
-    compact: { people: string[]; blocks: { group: string; column: number; row: number }[]; center: string[] };
+    links: (MapLink & { level?: "identity" | "arc" })[];
 };
 
 /* ------------------------------------------------------- the checks */
@@ -197,9 +186,11 @@ export type Validation = { map: CharacterMapData; warnings: string[] };
 
 /**
  * The checks the scratch generator ran on every hand-written chart, plus
- * the ones a model needs: ids unique and referenced, every group placed,
- * images taken from the cast and not invented, the leads present. A failed
- * check throws; a doubtful one is a warning the job keeps.
+ * the ones a model needs: ids unique and referenced, images taken from the
+ * cast and not invented, the leads present. A failed check throws; a
+ * doubtful one is a warning the job keeps. The whole-story marks come from
+ * each tie's level and the layout from `defaultCompact`; the budgets and
+ * the review are `settleChart`'s, after this.
  */
 export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     const warnings: string[] = [];
@@ -223,28 +214,8 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         if (l.inferred && l.evidence) warnings.push(`link ${l.from} → ${l.to} is inferred but carries evidence`);
         if (!l.inferred && !l.evidence) warnings.push(`link ${l.from} → ${l.to} has no evidence and is not inferred`);
     }
-    for (const id of [...draft.main, ...draft.compact.center, ...draft.compact.people]) {
+    for (const id of draft.main) {
         if (!ids.has(id)) throw new Error(`"${id}" is listed but is not a person`);
-    }
-    // A story with one hero gets one lead in the centre; the layout wants
-    // two, so the next of MDL's main roles (then anyone) joins them — a run
-    // is too long to throw away over that.
-    if (draft.compact.center.length < 2) {
-        const pool = [...draft.main, ...draft.people.map((p) => p.id)].filter((id) => !draft.compact.center.includes(id));
-        const added = [...new Set(pool)].slice(0, 2 - draft.compact.center.length);
-        draft.compact.center = [...draft.compact.center, ...added];
-        warnings.push(`compact.center had ${draft.compact.center.length - added.length} lead${added.length === 1 ? "" : "s"}; ${added.join(", ")} added from main`);
-    }
-    if (draft.compact.center.length < 2) throw new Error("fewer than two people to put in the centre");
-
-    const blocks: Record<string, [number, number]> = {};
-    for (const b of draft.compact.blocks) blocks[b.group] = [b.column, b.row];
-    const center = new Set(draft.compact.center);
-    const keep = new Set(draft.compact.people);
-    for (const p of draft.people) {
-        if (center.has(p.id) || !keep.has(p.id)) continue;
-        // the layout gives a group without a cell the shorter column; a warning, not a lost run
-        if (!(p.group in blocks) && !warnings.some((w) => w.startsWith(`group "${p.group}"`))) warnings.push(`group "${p.group}" is in the compact cut but has no cell; placed by the layout`);
     }
 
     const people: MapPerson[] = draft.people.map((p) => {
@@ -268,7 +239,11 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         const since = withRecaps && l.since != null && l.since >= 1 ? Math.min(l.since, lastEp) : null;
         // an until before its since, or past the recaps, is a stray number: the tie holds
         const until = withRecaps && since != null && l.until != null && l.until >= since && l.until <= lastEp ? l.until : null;
-        const link: MapLink = { ...l, since };
+        const { level, ...rest } = l;
+        const link: MapLink = { ...rest, since };
+        // An arc is in the slider, never in the panorama; the key is written only when it says no
+        if (level === "arc") link.wholeStory = false;
+        else delete link.wholeStory;
         // A tie has no kind written; a moment has no until, and needs an
         // episode — one written without the recaps has nothing to happen in,
         // and is dropped rather than drawn as a tie it is not.
@@ -304,7 +279,7 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
         main: draft.main,
         people,
         links: sourced.links,
-        compact: { people: draft.compact.people, blocks, center: draft.compact.center },
+        compact: defaultCompact({ main: draft.main, people, links: sourced.links }),
     };
     // the fields the hand-written files carry beside the typed ones
     // The country is MDL's, as a code: the model has written "South Korea",
@@ -314,11 +289,6 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     if (withRecaps) {
         map.recaps = recapsBlock(inputs.recaps);
     }
-    // The density rules: the whole story trimmed to one defining tie per
-    // pair, then what the slider and the panorama would still find crowded
-    const whole = settleWholeStory(map);
-    map.links = whole.links;
-    warnings.push(...whole.warnings, ...densityWarnings(map));
     if (withRecaps) {
         const undated = links.filter((l) => l.since == null).length;
         const moments = links.filter(isEvent).length;
@@ -337,15 +307,41 @@ export class ChartError extends Error {
     }
 }
 
-export type GenerateResult = Validation & { usage: { inputTokens: number; outputTokens: number; cacheRead: number }; model: string };
+export type GenerateResult = Validation & { usage: PassUsage; model: string; passes: Pass[] };
+
+export type Effort = "low" | "medium" | "high";
 
 /**
- * One streaming call: the rules as a cached system prompt, the inputs as the
- * message, the schema on the output. `onProgress` hears the output grow, for
- * the line under the button. Throws when the key is missing, when the API
- * fails, or when the chart fails a check.
+ * The first pass's effort. Medium by default: at high the thinking alone
+ * ran to nine minutes and most of the bill. Thinking is three quarters of
+ * what a run is billed for, so low is worth measuring now that the pass no
+ * longer settles the budgets, the whole story and the layout — set
+ * CHARACTER_MAP_EFFORT=low, or pass it.
  */
-export async function generateChart(inputs: ChartInputs, model: GeneratorModel = DEFAULT_GENERATOR_MODEL, onProgress?: (step: string) => void): Promise<GenerateResult> {
+export function defaultEffort(): Effort {
+    const e = process.env.CHARACTER_MAP_EFFORT;
+    return e === "low" || e === "high" ? e : "medium";
+}
+
+const sum = (passes: PassUsage[]): PassUsage => ({
+    inputTokens: passes.reduce((n, p) => n + p.inputTokens, 0),
+    outputTokens: passes.reduce((n, p) => n + p.outputTokens, 0),
+    cacheRead: passes.reduce((n, p) => n + p.cacheRead, 0),
+});
+
+/**
+ * The first pass — one streaming call: the rules as a cached system prompt,
+ * the inputs as the message, the schema on the output — then the checks,
+ * then `settleChart`: the whole story, the review, the budgets. `onProgress`
+ * hears the output grow, for the line under the button. Throws when the key
+ * is missing, when the API fails, or when the chart fails a check.
+ */
+export async function generateChart(
+    inputs: ChartInputs,
+    model: GeneratorModel = DEFAULT_GENERATOR_MODEL,
+    onProgress?: (step: string) => void,
+    opts: { effort?: Effort; review?: boolean } = {},
+): Promise<GenerateResult> {
     if (!process.env.ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY is not set on the server");
     const client = new Anthropic();
 
@@ -356,11 +352,10 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
         // The ceiling covers the thinking as well as the chart: a run on 8
         // recaps thought for nine and a half minutes, then ran out 12K
         // characters into writing at 64K. Both models stream up to 128K, and
-        // only what is used is billed. Effort medium: at high the thinking
-        // alone ran to nine minutes and most of the bill.
+        // only what is used is billed.
         max_tokens: 128000,
         thinking: { type: "adaptive" },
-        output_config: { effort: "medium", format: { type: "json_schema", schema: CHART_SCHEMA } },
+        output_config: { effort: opts.effort ?? defaultEffort(), format: { type: "json_schema", schema: CHART_SCHEMA } },
         system: [{ type: "text", text: RULES, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: user }],
     });
@@ -389,6 +384,8 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
     if (message.stop_reason === "refusal") throw fail(`the model declined: ${message.stop_details?.explanation ?? "refusal"}`);
     if (message.stop_reason === "max_tokens") throw fail("the chart did not fit in the output limit");
     const text = message.content.filter((b): b is Anthropic.TextBlock => b.type === "text").map((b) => b.text).join("");
+    const first: Pass = { name: "chart", model: message.model, usage, chars: text.length };
+    onProgress?.(passLine(first));
     let draft: Draft;
     try {
         draft = JSON.parse(text) as Draft;
@@ -396,12 +393,22 @@ export async function generateChart(inputs: ChartInputs, model: GeneratorModel =
         throw fail("the model's output was not JSON");
     }
     onProgress?.("Checking the chart");
+    let validation: Validation;
     try {
-        const { map, warnings } = validateChart(draft, inputs);
-        return { map, warnings, model: message.model, usage };
+        validation = validateChart(draft, inputs);
     } catch (e) {
         throw fail(e instanceof Error ? e.message : String(e));
     }
+    const settled = await settleChart(validation.map, { model, review: opts.review ?? true, onProgress });
+    for (const p of settled.passes) onProgress?.(passLine(p));
+    const passes = [first, ...settled.passes];
+    return {
+        map: settled.map,
+        warnings: [...validation.warnings, ...settled.warnings],
+        model: message.model,
+        passes,
+        usage: sum([...passes.map((p) => p.usage), ...(settled.failed ? [settled.failed] : [])]),
+    };
 }
 
 /* ------------------------------------------------------------ the save */

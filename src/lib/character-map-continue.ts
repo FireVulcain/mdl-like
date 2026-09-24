@@ -1,11 +1,12 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { isEvent, type CharacterMapData } from "@/lib/character-map";
+import type { CharacterMapData } from "@/lib/character-map";
 import type { CastMember, Recap } from "@/lib/character-map-inputs";
 import { DEFAULT_GENERATOR_MODEL, GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 import { applyPatch, type ChartPatch, type GenerationContext, type GenerationPlan, type MergeResult } from "@/lib/character-map-patch";
 import { checkSources } from "@/lib/character-map-sources";
 import { linkWarnings, turnBrackets } from "@/lib/character-map-checks";
-import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP } from "@/lib/character-map-rules";
+import { MOMENTS_PER_PAIR, MOMENTS_PER_STOP, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD_PAIR, TIES_PER_PAIR, TIES_PER_PERSON_AT_STOP } from "@/lib/character-map-rules";
+import { chartAsText, passLine, settleChart, type Pass } from "@/lib/character-map-review";
 
 /**
  * Carrying a chart forward over the episodes that have aired since it was
@@ -23,6 +24,9 @@ import { densityWarnings, settleWholeStory, TIES_PER_HEAD_AT_STOP, TIES_PER_LEAD
  * carries, for each established tie, the words it was read from and the
  * episode it was seen in. The digests cover what that leaves out — an
  * event that made no link, and who knows what.
+ *
+ * After the merge, the same review a full run gets (character-map-review.ts),
+ * told which links are new: the budgets, the direction of the new ties.
  */
 
 const CONTINUE_RULES = `You carry a Korean or Chinese drama's character relationship chart forward over the episodes that have aired since it was last read. You are given the chart as it stands, a digest of the episodes already read, the recaps of the new episodes in full, and the MDL cast list. You answer with a patch — what to add and what to change — never with a whole chart.
@@ -32,9 +36,9 @@ TWO KINDS OF LINK — this is the rule everything else follows
 - kind "event": what HAPPENED ONCE (a rescue, a kiss, a betrayal, a confession, a reveal, a death at someone's hand). Never drawn; read in the panel and in a list in the story's order. An event has since and no until.
 - The test: "does this still describe them next episode?" Yes → tie. No → event. When an event changes what two people are to each other, write both: the event, and the tie it opens (or the until on the tie it ends).
 - A tie that changes over the run is TWO ties, each with its own since and its own sentence, not one link rewritten. Rivals in episode 2 who become allies in episode 10 are "rivalry, since 2" and "friend, since 10". Give the first one until: 9 so the chart stops drawing it where the second takes over, and add the second. Never change the first one's type.
-- A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks. The chart draws every tie that holds as of an episode, and it must stay sparse: at most ${TIES_PER_PAIR} ties holding at once between two people (${TIES_PER_LEAD_PAIR} between two leads), never two of the same type. When you add one more, end one — or ask whether it is an event.
+- A tie the new episodes end (a death, a firing, a parting) gets its until in updateLinks — never a family tie: kinship does not end, a mother who dies is still his mother, and her death is an event. The chart draws every tie that holds as of an episode, and it must stay sparse: at most ${TIES_PER_PAIR} ties holding at once between two people (${TIES_PER_LEAD_PAIR} between two leads), never two of the same type. When you add one more, end one — or ask whether it is an event.
 - An arc tie starts only when the relationship changes enough that a viewer would call it something else — strangers, then in love, then broken up. Not one per recap by default: the same state in new words ("growing closer", "closer still") is the old tie, and a gesture on the way is an event.
-- Across the chart, at any episode: at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on one support role, and about ${TIES_PER_HEAD_AT_STOP} ties per person the chart has met by then. A support role that needs more is a lead — put them in compact.center — or is carrying a job or a deal that belongs in the note.
+- Across the chart, at any episode: at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on one support role (family aside), and about ${TIES_PER_HEAD_AT_STOP} ties per person the chart has met by then. A support role that needs more is a lead — put them in compact.center — or is carrying a job or a deal that belongs in the note.
 - Three levels. identity (who he is to her: family, friends, boss, fan, ex, the couple) is a tie and may be in the whole story. arc (a phase of a romance, a passing rivalry, a suspicion, an alliance, a deal) is a dated tie with wholeStory false. detail (a job, a backstory, a business arrangement, a subplot role) is never a tie: a note, or an event. A misunderstanding is an event, not a tie. short is a noun or a state, never a past-tense verb.
 - wholeStory: the chart's "Whole story" view keeps one defining tie per pair (two between leads) — the one a viewer would name, not the latest state. A new tie is wholeStory false unless it is the first identity tie of a pair the whole story does not show yet. Leave the whole-story marks of existing links alone. On an event, write false.
 - Do not add a tie that only says "is in this block" (his guard, her squad, his assistant) for a face the chart has, or for a new face no sentence names for anything else.
@@ -42,7 +46,8 @@ TWO KINDS OF LINK — this is the rule everything else follows
 - A link in the chart marked "moment" is an event; every other one is a tie. On a chart written before the two were told apart, a tie of one episode ("since ep 6, until ep 6") is a moment in all but name — leave it alone.
 
 WHAT TO ADD (addLinks)
-- Events the new recaps bring that a viewer would remember: a rescue, a betrayal, a kiss, a parent revealed, a death. Ties the new recaps open: a marriage, a new colleague, an alliance, a debt.
+- Events the new recaps bring that a viewer would remember: a rescue, a betrayal, a kiss, a parent revealed, a death — the turns, not every gesture: about ${MOMENTS_PER_STOP} per new recap across the chart, and at most ${MOMENTS_PER_PAIR} in all between two people who are not both leads. Ties the new recaps open: a marriage, a new colleague, an alliance, a debt.
+- Read every new directed tie back before writing it: "<from> is <to>'s <short>". From the father, "his father"; from the son, "his son" — the possessive in short points at to.
 - since: the first episode of the recap the sentence is in ("Episodes 13-14" → 13). evidence: the sentence itself, quoted. source: the site as the recap's section heads it, and its range — "dramabeans ep. 13-14", "thereviewgeek ep. 13", "cpophome ep. 12" — the recap the sentence is in, and no other: the checks find the sentence back and correct a wrong number. An event happens in the episode its sentence is in, never earlier because it "was coming"; a reveal is dated by the recap that reveals it.
 - reveal: true when the new episodes reveal something the story had kept — a hidden parent, a true identity, a killer. The episode of the REVEAL is the since, not the episode it is about.
 - A new face the recaps name: addPeople, taking name, actor and the img= URL from the MDL cast list given below. Someone the recaps name whom the cast list does not carry gets inCast false and image null. Put anyone who matters to the leads in addToCompact, and give their group a cell in blocks if it is a new group.
@@ -152,28 +157,6 @@ export const PATCH_SCHEMA = {
 const episodes = (from: number, to: number) => (from === to ? `Episode ${from}` : `Episodes ${from}-${to}`);
 const ofRecap = (r: { fromEp: number; toEp: number }) => episodes(r.fromEp, r.toEp);
 
-/**
- * The chart written out for the model: the people it can name, and the
- * links numbered, since a change is addressed by number. One line each —
- * the JSON would cost twice as much for the same facts, and the image URLs
- * say nothing to a reader of the story.
- */
-export function chartAsText(map: CharacterMapData): string {
-    const out: string[] = [];
-    out.push(`CHART: ${map.title}${map.year ? ` (${map.year})` : ""} — read to episode ${map.recaps?.episodes ?? "?"}`);
-    out.push("", "PEOPLE (id | name | actor | group):");
-    for (const p of map.people) out.push(`- ${p.id} | ${p.name} | ${p.actor} | ${p.group}${p.inCast ? "" : " | not in MDL's cast"}${p.note ? ` | ${p.note}` : ""}`);
-    out.push("", `LEADS: ${(map.compact.center ?? map.main.slice(0, 2)).join(", ")}`);
-    out.push("", "LINKS (use the number to change one):");
-    map.links.forEach((l, i) => {
-        const marks = [l.directed ? "directed" : null, l.reveal ? "reveal" : null, l.inferred ? "inferred" : null, !isEvent(l) && l.wholeStory === false ? "not in whole story" : null].filter(Boolean).join(", ");
-        const when = isEvent(l) ? `moment, ep ${l.since ?? "?"}` : l.since == null ? "from the start" : `since ep ${l.since}${l.until != null ? `, until ep ${l.until}` : ""}`;
-        out.push(`#${i} ${l.from} → ${l.to} | ${l.type} | "${l.short}" | ${l.label} | ${when}${marks ? ` | ${marks}` : ""}`);
-        if (l.evidence) out.push(`     evidence: ${l.evidence}${l.source ? ` — ${l.source}` : ""}`);
-    });
-    return out.join("\n");
-}
-
 /** Everything the model reads for a continue run, as one message. */
 export function continueMessage(map: CharacterMapData, plan: GenerationPlan, context: GenerationContext | null, cast: { main: CastMember[]; support: CastMember[]; guest: CastMember[] }): string {
     const out: string[] = [chartAsText(map)];
@@ -213,6 +196,7 @@ export type ContinueResult = MergeResult & {
     digests: { url: string; from: number; to: number; text: string }[];
     usage: { inputTokens: number; outputTokens: number; cacheRead: number };
     model: string;
+    passes: Pass[];
 };
 
 /**
@@ -272,9 +256,12 @@ export async function continueChart(
         throw fail("the model's output was not JSON");
     }
 
+    const first: Pass = { name: "changes", model: message.model, usage, chars: text.length };
+    onProgress?.(passLine(first));
     onProgress?.("Folding the changes in");
+    let merged: MergeResult;
     try {
-        const merged = applyPatch(map, patch, recaps);
+        merged = applyPatch(map, patch, recaps);
         // The links this run added are the last ones: only they are checked,
         // the rest were checked when they were written (or by hand)
         const added = merged.map.links.slice(merged.map.links.length - merged.summary.added);
@@ -285,10 +272,12 @@ export async function continueChart(
         merged.map.links = sourced.links;
         merged.warnings.push(...sourced.warnings);
         merged.warnings.push(...linkWarnings(sourced.links.slice(sourced.links.length - merged.summary.added), merged.map.people));
-        // The density rules, over the chart as it now stands
-        const whole = settleWholeStory(merged.map);
-        merged.map.links = whole.links;
-        merged.warnings.push(...whole.warnings, ...densityWarnings(merged.map));
+        // The whole story, the review of what is new, the budgets — over the chart as it now stands
+        const newFrom = merged.map.links.length - merged.summary.added;
+        const settled = await settleChart(merged.map, { model, review: true, focus: { from: newFrom }, onProgress });
+        merged.map = settled.map;
+        merged.warnings.push(...settled.warnings);
+        for (const p of settled.passes) onProgress?.(passLine(p));
         // A run that read new episodes and found nothing is worth saying out
         // loud: either the recaps carry no tie, or the chart already had them.
         if (merged.summary.added === 0 && merged.summary.updated === 0) merged.warnings.push("the new episodes added no link — nothing in them was a tie the chart did not have");
@@ -296,7 +285,20 @@ export async function continueChart(
         const digests = (patch.digests ?? []).filter((d) => known.has(d.url));
         const strays = (patch.digests ?? []).length - digests.length;
         if (strays > 0) merged.warnings.push(`${strays} digest${strays === 1 ? "" : "s"} named a recap that is not kept for this entry, dropped`);
-        return { ...merged, patch, digests, model: message.model, usage };
+        const passes = [first, ...settled.passes];
+        const spent = [...passes.map((p) => p.usage), ...(settled.failed ? [settled.failed] : [])];
+        return {
+            ...merged,
+            patch,
+            digests,
+            model: message.model,
+            passes,
+            usage: {
+                inputTokens: spent.reduce((n, u) => n + u.inputTokens, 0),
+                outputTokens: spent.reduce((n, u) => n + u.outputTokens, 0),
+                cacheRead: spent.reduce((n, u) => n + u.cacheRead, 0),
+            },
+        };
     } catch (e) {
         throw fail(e instanceof Error ? e.message : String(e));
     }

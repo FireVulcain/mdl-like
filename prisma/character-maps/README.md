@@ -110,7 +110,44 @@ ended or not, and lists moments in the story's order.
   face, then `to`'s name — "his wife · Gyeong Un" under the wife. A
   bracket is carried by the person it describes, so "[Gyeong Un's wife]"
   on Mi Hui's line is a link from Mi Hui; the generator turns round a
-  directed tie whose `short` repeats its bracket from the wrong end.
+  directed tie whose `short` repeats its bracket from the wrong end. Read
+  a directed tie back as "<from> is <to>'s <short>": the possessive in
+  `short` points at `to`, which is where the model went wrong without a
+  bracket to hold it — "his son" from Kang Pil Beom to his own son.
+- **A family tie never ends.** A mother who dies is still his mother,
+  drawn quieter; her death is a moment, and so is a disowning. What a
+  death ends is a job, a mentorship, a romance, an alliance.
+
+## Two passes
+
+A run is two calls, then code:
+
+1. **The chart** (`generateChart`, or the continue run's patch): the one
+   call that reads the sources — the people, the ties and the moments,
+   their dates, reveals, directions and sentences, and for each tie its
+   `level`, identity or arc. It writes neither the whole-story marks nor
+   the layout: an arc is `wholeStory: false`, an identity tie is in, and
+   `defaultCompact` (`src/lib/character-map-layout.ts`) places the groups
+   around the first two of `main`.
+2. **The checks** below, in code.
+3. **The review** (`src/lib/character-map-review.ts`): a short call over
+   the chart alone — never the recaps — with the problems the checks still
+   find and every directed tie read back as a sentence ("Kang Pil Beom is
+   Kang Myeong Hui's son"). It answers with edits and may only end a tie,
+   make a tie a moment or a moment a tie, take a tie out of the whole
+   story, turn a tie round, write a note, and move the layout; it never
+   adds nor removes a link, and never ends a family tie. It runs at low
+   effort, about a tenth of the first call; when it fails the chart is
+   kept as the first pass wrote it. After it, the bracket check and the
+   whole-story settlement run once more.
+
+Each pass writes a line in the run's console: what it read, what it
+wrote, and how much of the writing was thinking — about three quarters of
+the bill, which is what `CHARACTER_MAP_EFFORT=low` on the server is for.
+`npx tsx scripts/eval-character-map.ts <slug> [--effort=low] [--no-review]`
+runs the generator without saving, to measure a change before it reaches
+a row; `--offline` spends nothing and takes the committed chart through
+the code half.
 
 ## Checks after the model
 
@@ -167,7 +204,14 @@ before it is written:
     is not a lead, and about **1.3 ties per person** met by then. A support
     role over that at every stop is a lead nobody declared — put them in
     `compact.center` (Chan in My Bias, My Boss, Seong Mu in W) — or is
-    carrying a job or a deal that belongs in the note.
+    carrying a job or a deal that belongs in the note;
+  - **family ties do not count** against one person's budgets: a patriarch
+    with a wife, two sons and a grandson has five identity ties, all of
+    them lines — the budget is there for jobs and deals, not households;
+  - **moments**: at most **4 between two people** who are not both leads,
+    and about **2 per recap stop** across the chart — the turns a viewer
+    remembers, not every gesture. Moments were most of what a run wrote
+    (61 of 96 links in Miss Undercover Boss) and most of what it cost.
   A support role with no identity tie is left out; what they did goes in
   someone's note or in a moment.
 - **`wholeStory`** — "Whole story" is the panorama: every tie the story had,
@@ -176,9 +220,12 @@ before it is written:
   makes the couple ("falling for her"), not the final "engaged"; the
   friendship, not the months it broke. Every arc is `false`; a pair that only
   has arcs has nothing in the panorama. The key is written only when it
-  says no. The generator marks it, and `settleWholeStory` trims a pair that
-  keeps too many (the longest-standing sourced tie wins); a pair with none
-  is left with none. The editor's "Whole story" switch sets it by hand.
+  says no. The generator derives it from each tie's `level` — asked of the
+  model directly, it wrote `false` on one tie in thirty — and
+  `settleWholeStory` trims a pair that keeps too many (the longest-standing
+  sourced tie wins), then a person who is not a lead to two besides family
+  (a tie with a lead first); a pair with none is left with none. The
+  editor's "Whole story" switch sets it by hand.
 
 ## Shape
 
@@ -244,6 +291,11 @@ before it is written:
   column.
 - `compact.center` is who sits in the middle — defaults to the first two of
   `main`. Use it when MDL lists more than two main roles.
+- A generated chart gets all three from `defaultCompact`, worked out from
+  the links once they are written: groups ranked by their ties to the two
+  leads, each on the side of the lead it is closer to, whole households
+  into the cut until it holds about fourteen. The review may move a group
+  or declare a lead; the editor and a hand-written file may say otherwise.
 
 ## Episode recaps, and links dated by episode
 

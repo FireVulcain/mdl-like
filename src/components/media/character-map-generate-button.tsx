@@ -48,10 +48,11 @@ const STATUS_LABEL: Record<string, string> = {
     failed: "Failed",
 };
 
-// Roughly what a chart costs on each model — a typical run is 30K in, 10K out
+// Roughly what a chart costs on each model, from the runs of September 2026:
+// 5–50K in, 20–50K out, three quarters of the output thinking
 const MODEL_HINT: Record<GeneratorModel, { icon: typeof Zap; blurb: string; cost: string }> = {
-    sonnet: { icon: Zap, blurb: "Disciplined extraction at a fraction of the price. Right for most dramas.", cost: "about 15¢ a chart" },
-    opus: { icon: Gem, blurb: "Holds the rules over a long input. For the big Chinese casts and long articles.", cost: "about 30¢ a chart" },
+    sonnet: { icon: Zap, blurb: "Disciplined extraction at a fraction of the price. Right for most dramas.", cost: "about 20¢ a chart, 50¢ with recaps" },
+    opus: { icon: Gem, blurb: "Holds the rules over a long input. For the big Chinese casts and long articles.", cost: "about 40¢ a chart, $1 with recaps" },
 };
 
 // List price of the model that ran, to say what a run cost

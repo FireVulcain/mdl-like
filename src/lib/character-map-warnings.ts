@@ -15,7 +15,7 @@ export type RunWarning = {
 };
 
 // How a check says it acted: the rest is for the admin to decide
-const FIXED = /(— corrected|— moved to \d+|— turned round|— kept .+|, dropped|, skipped|, left alone|kept as it was|added from main|placed by the layout)$/;
+const FIXED = /(— corrected|— moved to \d+|— turned round|— kept .+|, dropped|, skipped|, left alone|kept as it was|added from main|placed by the layout|— reviewed(?:: .+)?)$/;
 
 const NAMED = /^(?:new (?:link|moment) |link )?([a-z0-9_]+) → ([a-z0-9_]+)(?: "([^"]*)")?/;
 

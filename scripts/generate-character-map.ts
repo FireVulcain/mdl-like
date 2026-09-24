@@ -6,7 +6,7 @@
  * written together. For carrying a chart series by series to the tie /
  * moment shape without a browser in the loop.
  *
- *   npx tsx scripts/generate-character-map.ts <mdlSlug> [--model=opus|sonnet] [--no-recaps] [--ko "제목"] [--en "Title"] [--zh "标题"]
+ *   npx tsx scripts/generate-character-map.ts <mdlSlug> [--model=opus|sonnet] [--effort=low|medium|high] [--no-review] [--no-recaps] [--ko "제목"] [--en "Title"] [--zh "标题"]
  *
  * Needs DATABASE_URL and ANTHROPIC_API_KEY (from .env, or the shell). Like
  * the button's full run, it replaces the row: hand-edited links are lost,
@@ -24,6 +24,8 @@ async function main() {
     if (!slug) throw new Error("usage: generate-character-map <mdlSlug> [--model=opus] [--no-recaps] [--ko \"제목\"]");
     const model = (args.find((a) => a.startsWith("--model="))?.slice("--model=".length) ?? "sonnet") as "sonnet" | "opus";
     const withRecaps = !args.includes("--no-recaps");
+    const effort = args.find((a) => a.startsWith("--effort="))?.slice("--effort=".length) as "low" | "medium" | "high" | undefined;
+    const review = !args.includes("--no-review");
     const titles: Record<string, string> = {};
     for (const lang of ["ko", "en", "zh"]) {
         const i = args.indexOf(`--${lang}`);
@@ -45,7 +47,7 @@ async function main() {
         say(recaps.length ? `${recaps.length} ${recaps[0].source} recaps kept for ${slug}` : "no recaps — reading the cast and the articles alone");
         const inputs = await gatherChartInputs(slug, titles, say, recaps);
         say(`writing the chart with ${model}`);
-        const result = await generateChart(inputs, model, say);
+        const result = await generateChart(inputs, model, say, { effort, review });
         const { file } = await saveChart(result.map, "claude", { editedAt: null });
         const { people, links } = result.map;
         const moments = links.filter((l) => l.kind === "event").length;
