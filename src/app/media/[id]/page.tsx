@@ -288,30 +288,29 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     </>
                                 )}
                             </div>
+                            {media.type === "TV" && (
+                                <Suspense fallback={null}>
+                                    <MdlCountdown
+                                        slug={media.externalId}
+                                        season={1}
+                                        fallbackEpisode={spoilerSafe(media.nextEpisode)}
+                                        totalEpisodes={media.totalEp}
+                                        airedRange={media.aired}
+                                        originCountry={media.originCountry}
+                                        // The calendar is built from tracked TMDB
+                                        // rows, so an MDL-native page can only point
+                                        // at it once the title is both linked and on
+                                        // the list. Anything else would link to a
+                                        // grid that cannot contain this show.
+                                        calendarHref={
+                                            userMedia && linkedTmdb?.tmdbExternalId
+                                                ? `/calendar?show=tmdb-${linkedTmdb.tmdbExternalId}`
+                                                : undefined
+                                        }
+                                    />
+                                </Suspense>
+                            )}
                         </div>
-
-                        {media.type === "TV" && (
-                            <Suspense fallback={null}>
-                                <MdlCountdown
-                                    slug={media.externalId}
-                                    season={1}
-                                    fallbackEpisode={spoilerSafe(media.nextEpisode)}
-                                    totalEpisodes={media.totalEp}
-                                    airedRange={media.aired}
-                                    originCountry={media.originCountry}
-                                    // The calendar is built from tracked TMDB
-                                    // rows, so an MDL-native page can only point
-                                    // at it once the title is both linked and on
-                                    // the list. Anything else would link to a
-                                    // grid that cannot contain this show.
-                                    calendarHref={
-                                        userMedia && linkedTmdb?.tmdbExternalId
-                                            ? `/calendar?show=tmdb-${linkedTmdb.tmdbExternalId}`
-                                            : undefined
-                                    }
-                                />
-                            </Suspense>
-                        )}
                     </StickySidebar>
                     </div>
 
@@ -899,29 +898,28 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 <WatchProvidersRow type={media.type === "TV" ? "tv" : "movie"} id={media.externalId} />
                             </Suspense>
                         </div>
+                        {/* Next episode, for ongoing shows: the foot of this box. */}
+                        {media.type === "TV" && (
+                            <Suspense fallback={null}>
+                                <MdlCountdown
+                                    slug={mdlSlugForSeason}
+                                    season={selectedSeason}
+                                    fallbackEpisode={spoilerSafe(media.nextEpisode)}
+                                    currentSeason={currentSeasonData}
+                                    totalEpisodes={episodeCount ?? undefined}
+                                    status={media.status}
+                                    firstAirDate={media.firstAirDate}
+                                    airedRange={mdlAiredRange}
+                                    originCountry={media.originCountry}
+                                    calendarHref={
+                                        userMedia && media.source === "TMDB"
+                                            ? `/calendar?show=tmdb-${media.externalId}`
+                                            : undefined
+                                    }
+                                />
+                            </Suspense>
+                        )}
                     </div>
-
-                    {/* Next Episode Countdown (for ongoing TV shows) */}
-                    {media.type === "TV" && (
-                        <Suspense fallback={null}>
-                            <MdlCountdown
-                                slug={mdlSlugForSeason}
-                                season={selectedSeason}
-                                fallbackEpisode={spoilerSafe(media.nextEpisode)}
-                                currentSeason={currentSeasonData}
-                                totalEpisodes={episodeCount ?? undefined}
-                                status={media.status}
-                                firstAirDate={media.firstAirDate}
-                                airedRange={mdlAiredRange}
-                                originCountry={media.originCountry}
-                                calendarHref={
-                                    userMedia && media.source === "TMDB"
-                                        ? `/calendar?show=tmdb-${media.externalId}`
-                                        : undefined
-                                }
-                            />
-                        </Suspense>
-                    )}
                 </StickySidebar>
                 </div>
 

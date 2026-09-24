@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Calendar, CalendarRange } from 'lucide-react';
 import { getAirDateTime, resolveAirMoment } from '@/lib/air-moment';
 import { hasFinishedAiring } from '@/lib/format-aired';
 
@@ -179,27 +178,22 @@ function formatAirDate(airDate: string, airDateTime?: string | null): string {
     const airMoment = resolveAirMoment(airDate, airDateTime);
 
     return airMoment.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
+        weekday: 'short',
+        month: 'short',
         day: 'numeric',
-    }) + ' ' + airMoment.toLocaleTimeString('en-US', {
+    }) + ' · ' + airMoment.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
     });
 }
 
-function CountdownUnit({ value, label }: { value: number; label: string }) {
-    return (
-        <div className="flex flex-col items-center">
-            <div className="text-2xl md:text-3xl font-bold text-fg tabular-nums">
-                {value.toString().padStart(2, '0')}
-            </div>
-            <div className="text-[10px] md:text-xs text-fg-muted uppercase tracking-wider">
-                {label}
-            </div>
-        </div>
-    );
+// A clock on one line — days, then hh:mm:ss — rather than four ticking blocks.
+// Tabular figures keep its width still as the seconds turn.
+function formatTimeLeft({ days, hours, minutes, seconds }: TimeLeft): string {
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    const clock = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    return days > 0 ? `${days}d ${clock}` : clock;
 }
 
 export function NextEpisodeCountdown({
@@ -308,65 +302,32 @@ export function NextEpisodeCountdown({
         ? `Episode ${episodeData.episodeNumber} of ${effectiveTotalEpisodes}`
         : `Episode ${episodeData.episodeNumber}`;
 
-    return (
-        <div
-            className="relative overflow-hidden rounded-xl border border-line-strong p-5 shadow-lg"
-            style={{
-                background: 'var(--panel-soft)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: "var(--panel-shadow)",
-            }}
-        >
-            {/* Top highlight */}
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+    const body = (
+        <>
+            <span className="flex min-w-0 flex-col">
+                <span className="text-[13px] font-medium text-fg">{episodeText}</span>
+                <span
+                    className="truncate text-xs text-fg-dim"
+                    title={episodeData.isPredicted ? 'Estimated from the usual two-episodes-a-week Korean schedule' : undefined}
+                >
+                    {formatAirDate(episodeData.airDate, episodeData.airDateTime)}
+                    {episodeData.isPredicted && ', estimated'}
+                </span>
+            </span>
+            <span className="whitespace-nowrap text-lg font-semibold text-watching tabular-nums">{formatTimeLeft(timeLeft)}</span>
+        </>
+    );
 
-            <div className="flex flex-col gap-4">
-                {/* Header with Calendar Icon and Episode Info */}
-                <div className="flex items-center gap-3">
-                    <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-primary/20 text-primary">
-                        <Calendar className="w-5 h-5" />
-                    </div>
-                    <div className="min-w-0">
-                        <div className="text-sm font-medium text-fg">
-                            {episodeText} {episodeData.isPredicted ? 'estimated on' : 'airing on'}
-                        </div>
-                        <div className="text-xs text-fg-muted mt-0.5">
-                            {formatAirDate(episodeData.airDate, episodeData.airDateTime)}
-                            {episodeData.isPredicted && (
-                                <span className="ml-1 text-yellow-500/70">*</span>
-                            )}
-                        </div>
-                    </div>
-                </div>
+    // The foot of the sidebar's info box, not a card of its own: the next
+    // airing is a fact about the broadcast, beside Aired and Network. The
+    // negative margins cancel the box's padding so the rule runs edge to edge.
+    const footClass = '-mx-4 -mb-4 flex items-center justify-between gap-3 rounded-b-lg border-t border-line-soft bg-surface-1 px-4 py-3';
 
-                {/* Countdown */}
-                <div className="flex items-center justify-between px-2">
-                    <CountdownUnit value={timeLeft.days} label="days" />
-                    <div className="text-lg text-fg-dim font-light">:</div>
-                    <CountdownUnit value={timeLeft.hours} label="hours" />
-                    <div className="text-lg text-fg-dim font-light">:</div>
-                    <CountdownUnit value={timeLeft.minutes} label="mins" />
-                    <div className="text-lg text-fg-dim font-light">:</div>
-                    <CountdownUnit value={timeLeft.seconds} label="sec" />
-                </div>
-
-                {/* Prediction disclaimer */}
-                {episodeData.isPredicted && (
-                    <div className="text-[10px] text-fg-dim text-center -mt-2">
-                        * Estimated from the usual two-episodes-a-week Korean schedule
-                    </div>
-                )}
-
-                {calendarHref && (
-                    <Link
-                        href={calendarHref}
-                        className="flex items-center justify-center gap-1.5 border-t border-line-soft pt-3 text-xs text-fg-muted transition-colors hover:text-fg"
-                    >
-                        <CalendarRange className="h-3.5 w-3.5" />
-                        See the full schedule
-                    </Link>
-                )}
-            </div>
-        </div>
+    return calendarHref ? (
+        <Link href={calendarHref} title="See the full schedule" className={`${footClass} transition-colors hover:bg-surface-2`}>
+            {body}
+        </Link>
+    ) : (
+        <div className={footClass}>{body}</div>
     );
 }
