@@ -224,73 +224,59 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                             )}
                         </div>
 
-                        {/* Personal Info Card */}
-                        <div
-                            className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
-                            style={{
-                                background: "var(--panel-soft)",
-                                backdropFilter: "blur(20px)",
-                                boxShadow: "var(--panel-shadow)",
-                            }}
-                        >
-                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+                        {/* Same box as the info block on /media and /people: a
+                            light fill and no border, bevel, shadow or heading.
+                            The labels say what the rows are. */}
+                        <div className="rounded-lg bg-surface-1 p-4">
+                            <div className="grid grid-cols-[76px_1fr] gap-x-3 gap-y-1.5 text-[13px]">
+                                {person.known_for_department && (
+                                    <>
+                                        <span className="text-fg-dim">Known for</span>
+                                        <span className="text-fg-soft">{person.known_for_department}</span>
+                                    </>
+                                )}
 
-                            <h3 className="font-display font-bold text-lg text-fg mb-4">Personal Info</h3>
-
-                            <div className="space-y-4">
-                                <div>
-                                    <span className="text-fg-muted text-sm font-medium block mb-1">Known For</span>
-                                    <span className="text-fg">{person.known_for_department}</span>
-                                </div>
-
-                                <div>
-                                    <span className="text-fg-muted text-sm font-medium block mb-1">Gender</span>
-                                    <span className="text-fg">{getGenderLabel(person.gender)}</span>
-                                </div>
+                                <span className="text-fg-dim">Gender</span>
+                                <span className="text-fg-soft">{getGenderLabel(person.gender)}</span>
 
                                 {person.birthday && (
-                                    <div>
-                                        <span className="text-fg-muted text-sm font-medium block mb-1">Birthday</span>
-                                        <span className="text-fg">
+                                    <>
+                                        <span className="text-fg-dim">Born</span>
+                                        <span className="text-fg-soft">
                                             {formatDate(person.birthday)}
-                                            {age !== null && !person.deathday && ` (${age})`}
+                                            {age !== null && !person.deathday && ` (age ${age})`}
                                         </span>
-                                    </div>
+                                    </>
                                 )}
 
                                 {person.deathday && (
-                                    <div>
-                                        <span className="text-fg-muted text-sm font-medium block mb-1">Died</span>
-                                        <span className="text-fg">
+                                    <>
+                                        <span className="text-fg-dim">Died</span>
+                                        <span className="text-fg-soft">
                                             {formatDate(person.deathday)}
-                                            {age !== null && ` (${age})`}
+                                            {age !== null && ` (age ${age})`}
                                         </span>
-                                    </div>
+                                    </>
                                 )}
 
                                 {person.place_of_birth && (
-                                    <div>
-                                        <span className="text-fg-muted text-sm font-medium block mb-1">Place of Birth</span>
-                                        <span className="text-fg">{person.place_of_birth}</span>
-                                    </div>
+                                    <>
+                                        <span className="text-fg-dim">Birthplace</span>
+                                        <span className="text-fg-soft">{person.place_of_birth}</span>
+                                    </>
                                 )}
 
                                 {person.also_known_as && person.also_known_as.length > 0 && (
-                                    <div>
-                                        <span className="text-fg-muted text-sm font-medium block mb-1">Also Known As</span>
-                                        <div className="flex flex-wrap gap-1">
-                                            {person.also_known_as.slice(0, 5).map((name, index) => (
-                                                <Badge key={index} variant="secondary" className="text-xs bg-surface-4 text-fg-soft border-line-strong">
-                                                    {name}
-                                                </Badge>
-                                            ))}
+                                    <>
+                                        <span className="text-fg-dim">Also known as</span>
+                                        {/* A list of names, written as one, as on /people. */}
+                                        <p className="text-fg-soft">
+                                            {person.also_known_as.slice(0, 5).join(" · ")}
                                             {person.also_known_as.length > 5 && (
-                                                <Badge variant="secondary" className="text-xs bg-surface-4 text-fg-muted border-line-strong">
-                                                    +{person.also_known_as.length - 5} more
-                                                </Badge>
+                                                <span className="text-fg-dim"> +{person.also_known_as.length - 5} more</span>
                                             )}
-                                        </div>
-                                    </div>
+                                        </p>
+                                    </>
                                 )}
                             </div>
                         </div>

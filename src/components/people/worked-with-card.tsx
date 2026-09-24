@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, User, Users } from "lucide-react";
+import { ArrowRight, User } from "lucide-react";
 import { getCachedCoStars } from "@/lib/person-costars";
 
 /**
@@ -21,29 +21,19 @@ export async function WorkedWithCard({ slug, name }: { slug: string; name: strin
         `/people/together?a=${encodeURIComponent(slug)}${b ? `&b=${encodeURIComponent(b)}` : ""}`;
 
     return (
-        <div
-            className="relative overflow-hidden rounded-xl border border-line-strong p-5 shadow-lg space-y-4"
-            style={{
-                background: "var(--panel-soft)",
-                backdropFilter: "blur(20px)",
-                boxShadow: "var(--panel-shadow)",
-            }}
-        >
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
-
+        // The same box as the info block on /media: a light fill, no border,
+        // bevel or shadow.
+        <div className="rounded-lg bg-surface-1 p-4 space-y-3.5">
             <div className="space-y-1">
-                <h3 className="font-display font-semibold text-lg text-fg flex items-center gap-2">
-                    <Users className="h-4 w-4 text-sky-400" />
-                    Worked with…
-                </h3>
-                <p className="text-sm text-fg-muted leading-relaxed">
+                <h3 className="font-semibold text-[15px] text-fg">Worked with…</h3>
+                <p className="text-[13px] text-fg-muted leading-relaxed">
                     Pick a second person and see every title they share with {name}.
                 </p>
             </div>
 
             {coStars.length > 0 && (
                 <div className="space-y-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-fg-faint">From titles you know</p>
+                    <p className="text-[11px] font-medium uppercase tracking-wider text-fg-dim">From titles you know</p>
                     <ul className="space-y-1">
                         {coStars.map((c) => (
                             <li key={c.slug}>
@@ -73,7 +63,7 @@ export async function WorkedWithCard({ slug, name }: { slug: string; name: strin
 
             <Link
                 href={pairHref()}
-                className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg bg-surface-3 hover:bg-surface-4 text-sm font-medium text-fg transition-colors"
+                className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg bg-surface-2 hover:bg-surface-3 text-sm font-medium text-fg transition-colors"
             >
                 {coStars.length > 0 ? "Someone else…" : "Choose a person"}
                 <ArrowRight className="h-3.5 w-3.5" />

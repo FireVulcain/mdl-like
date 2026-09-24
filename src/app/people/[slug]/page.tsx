@@ -354,7 +354,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         </div>
                     </div>
                     <div className="mb-6 md:hidden">
-                        <Suspense fallback={<div className="h-44 rounded-xl border border-line-strong animate-pulse" style={{ background: "var(--panel-soft)" }} />}>
+                        <Suspense fallback={<div className="h-44 rounded-lg bg-surface-1 animate-pulse" />}>
                             <WorkedWithCard slug={slug} name={data.name} />
                         </Suspense>
                     </div>
@@ -366,62 +366,54 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             <MdlPosterBadge href={data.link} />
                         </div>
 
+                        {/* Same box as the info block on /media: a light fill and
+                            no border, bevel, shadow or heading. The labels say
+                            what the rows are. */}
+                        {(details.gender || details.born || details.nationality || alsoKnownAs.length > 0) && (
+                            <div className="rounded-lg bg-surface-1 p-4">
+                                <div className="grid grid-cols-[76px_1fr] gap-x-3 gap-y-1.5 text-[13px]">
+                                    {details.gender && (
+                                        <>
+                                            <span className="text-fg-dim">Gender</span>
+                                            <span className="text-fg-soft">{details.gender}</span>
+                                        </>
+                                    )}
+                                    {details.born && (
+                                        <>
+                                            <span className="text-fg-dim">Born</span>
+                                            <span className="text-fg-soft">
+                                                {details.born}
+                                                {details.age && ` (age ${details.age})`}
+                                            </span>
+                                        </>
+                                    )}
+                                    {details.nationality && (
+                                        <>
+                                            <span className="text-fg-dim">Nationality</span>
+                                            <span className="text-fg-soft">{details.nationality}</span>
+                                        </>
+                                    )}
+                                    {alsoKnownAs.length > 0 && (
+                                        <>
+                                            <span className="text-fg-dim">Also known as</span>
+                                            <p className="text-fg-soft">
+                                                {alsoKnownAs.slice(0, 6).join(" · ")}
+                                                {alsoKnownAs.length > 6 && (
+                                                    <span className="text-fg-dim"> +{alsoKnownAs.length - 6} more</span>
+                                                )}
+                                            </p>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
                         {/* Streamed: one more DB read, and the page should not
-                            wait on it. Its height is roughly the empty card's, so
-                            Personal Info below does not jump when it lands. */}
-                        <Suspense fallback={<div className="h-44 rounded-xl border border-line-strong animate-pulse" style={{ background: "var(--panel-soft)" }} />}>
+                            wait on it. Last in the sidebar, so nothing sits below
+                            it to jump when it lands. */}
+                        <Suspense fallback={<div className="h-44 rounded-lg bg-surface-1 animate-pulse" />}>
                             <WorkedWithCard slug={slug} name={data.name} />
                         </Suspense>
-
-                        <div
-                            className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
-                            style={{
-                                background: "var(--panel-soft)",
-                                backdropFilter: "blur(20px)",
-                                boxShadow: "var(--panel-shadow)",
-                            }}
-                        >
-                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
-                            <h3 className="font-display font-semibold text-lg text-fg mb-4">Personal Info</h3>
-
-                            <div className="space-y-4 text-sm">
-                                {details.gender && (
-                                    <div>
-                                        <span className="text-fg-muted font-medium block mb-1">Gender</span>
-                                        <span className="text-fg">{details.gender}</span>
-                                    </div>
-                                )}
-                                {details.born && (
-                                    <div>
-                                        <span className="text-fg-muted font-medium block mb-1">Born</span>
-                                        <span className="text-fg">
-                                            {details.born}
-                                            {details.age && ` (age ${details.age})`}
-                                        </span>
-                                    </div>
-                                )}
-                                {details.nationality && (
-                                    <div>
-                                        <span className="text-fg-muted font-medium block mb-1">Nationality</span>
-                                        <span className="text-fg">{details.nationality}</span>
-                                    </div>
-                                )}
-                                {alsoKnownAs.length > 0 && (
-                                    <div>
-                                        <span className="text-fg-muted font-medium block mb-1">Also Known As</span>
-                                        {/* A list of names, written as one. Every
-                                            other row of this table is plain text;
-                                            only this one was a run of chips. */}
-                                        <p className="text-fg">
-                                            {alsoKnownAs.slice(0, 6).join(" · ")}
-                                            {alsoKnownAs.length > 6 && (
-                                                <span className="text-fg-dim"> +{alsoKnownAs.length - 6} more</span>
-                                            )}
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
                     </StickySidebar>
                     </div>
 
