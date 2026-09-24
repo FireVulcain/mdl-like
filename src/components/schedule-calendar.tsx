@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { getScheduleRefreshTargets, refreshScheduleChunk, refreshSingleShow } from "@/actions/schedule";
@@ -15,6 +15,7 @@ export type { ScheduleEntry };
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const DAY_HEADERS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+const WEEKDAY_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 function toDateStr(year: number, month: number, day: number) {
     return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -204,6 +205,32 @@ export function ScheduleCalendar({
     const thisMonthPrefix = `${year}-${String(month + 1).padStart(2, "0")}`;
     const episodesThisMonth = filteredEntries.filter((e) => e.airDate.startsWith(thisMonthPrefix)).length;
 
+    // What the filter box says under the title: the show's broadcast days, taken
+    // from its whole run, and which episodes fall in the month on screen. That is
+    // what following a link to one show's schedule comes here to learn.
+    const filterSummary = (() => {
+        if (!filteredShow) return null;
+        const mine = entries.filter((e) => e.mediaId === showFilter);
+        const weekdays = [...new Set(mine.map((e) => {
+            const [y, m, d] = e.airDate.split("-").map(Number);
+            return (new Date(y, m - 1, d).getDay() + 6) % 7; // Monday first
+        }))].sort((a, b) => a - b);
+        const names = weekdays.map((d) => WEEKDAY_SHORT[d]);
+        const days =
+            names.length === 0 ? null
+            : names.length === 1 ? names[0]
+            : names.length <= 3 ? `${names.slice(0, -1).join(", ")} & ${names[names.length - 1]}`
+            : "Several days a week";
+
+        const eps = mine.filter((e) => e.airDate.startsWith(thisMonthPrefix)).map((e) => e.episodeNumber).sort((a, b) => a - b);
+        const inMonth =
+            eps.length === 0 ? "nothing this month"
+            : eps.length === 1 || eps[0] === eps[eps.length - 1] ? `episode ${eps[0]} this month`
+            : `episodes ${eps[0]} to ${eps[eps.length - 1]} this month`;
+
+        return days ? `${days} · ${inMonth}` : inMonth;
+    })();
+
     return (
         <div className="min-h-screen bg-linear-to-b ">
             <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
@@ -311,35 +338,31 @@ export function ScheduleCalendar({
                     </div>
                 </div>
 
-                {/* The active show filter, when there is one. Stated as a bar
+                {/* The active show filter, when there is one. Stated in a box
                     rather than a chip tucked in the header: arriving here from a
                     show's page means the grid is deliberately near-empty, and
                     that needs saying somewhere the eye lands before it reads the
-                    emptiness as a bug. */}
+                    emptiness as a bug. The same box as the panels on /media: a
+                    light fill, no border or tint. */}
                 {showFilter && (
-                    <div className="flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2">
-                        {filteredShow?.poster ? (
-                            <div className="relative h-9 w-6.5 shrink-0 overflow-hidden rounded bg-surface-3">
-                                <Image unoptimized={true} src={filteredShow.poster} alt="" fill sizes="26px" className="object-cover" />
+                    <div className="flex items-center gap-3.5 rounded-lg bg-surface-1 px-4 py-3">
+                        {filteredShow?.poster && (
+                            <div className="relative h-10.5 w-7.5 shrink-0 overflow-hidden rounded bg-surface-3">
+                                <Image unoptimized={true} src={filteredShow.poster} alt="" fill sizes="30px" className="object-cover" />
                             </div>
-                        ) : (
-                            <Filter className="h-4 w-4 shrink-0 text-primary" />
                         )}
                         <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-fg">
+                            <p className="truncate text-[15px] font-semibold text-fg">
                                 {filteredShow?.title ?? "This show"}
                             </p>
-                            <p className="text-xs text-fg-muted">
-                                {filteredShow
-                                    ? "Showing this show only"
-                                    : "Not on your list — nothing to show here yet"}
+                            <p className="text-[13px] text-fg-dim">
+                                {filterSummary ?? "Not on your list, so nothing to show here yet"}
                             </p>
                         </div>
                         <button
                             onClick={() => applyShowFilter(null)}
-                            className="cursor-pointer flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg"
+                            className="cursor-pointer shrink-0 text-[13px] text-fg-dim transition-colors hover:text-fg"
                         >
-                            <X className="h-3.5 w-3.5" />
                             Show all
                         </button>
                     </div>
