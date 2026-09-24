@@ -1,8 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { UnifiedMedia } from "@/services/media.service";
-import { Plus, Eye, CheckCircle, Clock, XCircle, PauseCircle, Star } from "lucide-react";
+import { Plus, Star } from "lucide-react";
 import { useState } from "react";
 import { EditMediaDialog, WatchlistItem } from "@/components/edit-media-dialog";
 
@@ -16,14 +15,22 @@ interface AddToListButtonProps {
     defaultStatus?: string;
 }
 
-const STATUS_CONFIG: Record<string, { label: string; icon: React.ElementType; text: string; bg: string; border: string; hover: string }> = {
-    Watching:       { label: "Watching",      icon: Eye,         text: "text-blue-400",    bg: "bg-blue-500/15",    border: "border-blue-500/30",    hover: "hover:bg-blue-500/25" },
-    Completed:      { label: "Completed",     icon: CheckCircle, text: "text-emerald-400", bg: "bg-emerald-500/15", border: "border-emerald-500/30", hover: "hover:bg-emerald-500/25" },
-    "Plan to Watch":{ label: "Plan to Watch", icon: Clock,       text: "text-slate-400",   bg: "bg-slate-500/15",   border: "border-slate-500/30",   hover: "hover:bg-slate-500/25" },
-    Dropped:        { label: "Dropped",       icon: XCircle,     text: "text-rose-400",    bg: "bg-rose-500/15",    border: "border-rose-500/30",    hover: "hover:bg-rose-500/25" },
-    "On Hold":      { label: "On Hold",       icon: PauseCircle, text: "text-amber-400",   bg: "bg-amber-500/15",   border: "border-amber-500/30",   hover: "hover:bg-amber-500/25" },
+// The status hue lives in the progress hairline only. The label stays in the
+// page's ink: a tinted fill with a tinted border and tinted text was three
+// coats of the same colour on one button.
+const STATUS_CONFIG: Record<string, { label: string; line: string }> = {
+    Watching:        { label: "Watching",      line: "bg-watching" },
+    Completed:       { label: "Completed",     line: "bg-watched" },
+    "Plan to Watch": { label: "Plan to Watch", line: "bg-planned" },
+    Dropped:         { label: "Dropped",       line: "bg-dropped" },
+    "On Hold":       { label: "On Hold",       line: "bg-onhold" },
 };
 
+// One segment of the action bar under the poster. The bar itself — its fill,
+// its corners, the trailer segment beside it — belongs to the page, which
+// docks it to the poster on desktop and lets it stand alone on mobile. The bar
+// must be `relative`: the progress hairline is positioned against it, so it
+// runs across the trailer segment too instead of stopping at this one's edge.
 export function AddToListButton({ media, userMedia, season, totalEp, className, defaultStatus }: AddToListButtonProps) {
     const [open, setOpen] = useState(false);
 
@@ -46,42 +53,41 @@ export function AddToListButton({ media, userMedia, season, totalEp, className, 
         : null;
 
     const statusCfg = userMedia ? (STATUS_CONFIG[userMedia.status] ?? null) : null;
-    const StatusIcon = statusCfg?.icon;
+    const total = totalEp ?? userMedia?.totalEp ?? null;
+    const progress = statusCfg && total
+        ? userMedia.status === "Completed" ? 1 : Math.min(1, (userMedia.progress ?? 0) / total)
+        : 0;
 
     return (
         <>
+            {/* pt-0.5 is the progress hairline's height: the text centres in
+                what is left under the line, not in the whole bar. */}
             {userMedia && statusCfg ? (
-                <Button
-                    variant="ghost"
+                <button
+                    type="button"
                     onClick={() => setOpen(true)}
-                    // Keeps its tint: unlike the two beside it, this colour means
-                    // something — it is the status itself. Only the radius comes
-                    // down to the page's one value.
-                    className={`h-10 px-4 gap-2 ${statusCfg.bg} border ${statusCfg.border} rounded-lg ${statusCfg.text} ${statusCfg.hover} transition-colors cursor-pointer ${className ?? ""}`}
+                    className={`flex flex-1 min-w-0 items-center gap-2 px-3 pt-0.5 text-sm font-medium text-fg hover:bg-surface-2 transition-colors cursor-pointer ${className ?? ""}`}
                 >
-                    {StatusIcon && <StatusIcon className="h-4 w-4 shrink-0" />}
-                    <span>{statusCfg.label}</span>
-                    {userMedia.score > 0 && (
-                        <>
-                            <span className="opacity-30 mx-0.5">|</span>
-                            <Star className="h-3.5 w-3.5 shrink-0 fill-current opacity-80" />
-                            <span className="font-semibold tabular-nums">{userMedia.score % 1 === 0 ? userMedia.score : userMedia.score.toFixed(1)}</span>
-                        </>
+                    {progress > 0 && (
+                        <span className={`absolute left-0 top-0 z-10 h-0.5 ${statusCfg.line}`} style={{ width: `${progress * 100}%` }} />
                     )}
-                </Button>
+                    <span className="truncate">{statusCfg.label}</span>
+                    {userMedia.score > 0 && (
+                        <span className="ml-auto flex items-center gap-1 text-[13px] text-fg-soft">
+                            <Star className="h-3.5 w-3.5 shrink-0 fill-current text-yellow-400" />
+                            <span className="tabular-nums">{userMedia.score % 1 === 0 ? userMedia.score : userMedia.score.toFixed(1)}</span>
+                        </span>
+                    )}
+                </button>
             ) : (
-                // Solid white, no gradient and no drop shadow. A two-stop gradient
-                // fill under a shadow is the stock call-to-action of a generated
-                // page, and the colour was a third blue on a page that already
-                // spends sky on links and a state hue on the button beside it.
-                // Same treatment as the Continue button on the home hero.
-                <Button
+                <button
+                    type="button"
                     onClick={() => setOpen(true)}
-                    className={`h-10 px-4 gap-2 bg-fg text-page hover:bg-fg/90 rounded-lg font-semibold transition-colors cursor-pointer ${className ?? ""}`}
+                    className={`flex flex-1 min-w-0 items-center justify-center gap-2 px-3 pt-0.5 text-sm font-semibold text-fg hover:bg-surface-2 transition-colors cursor-pointer ${className ?? ""}`}
                 >
                     <Plus className="h-4 w-4 shrink-0" />
-                    <span>Add to Watchlist</span>
-                </Button>
+                    <span className="truncate">Add to Watchlist</span>
+                </button>
             )}
 
             {open && <EditMediaDialog open={open} onOpenChange={setOpen} item={item} media={media} season={season} totalEp={totalEp} defaultStatus={defaultStatus} />}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Play, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -29,18 +30,23 @@ export function TrailerButton({ trailer, className }: TrailerButtonProps) {
 
     return (
         <>
-            {/* A text action, not a second filled block. Stacked under the status
-                button at the same height, width and weight, the two read as a pair
-                of equals — but one is what you do with the show and the other is a
-                video you might glance at. The hierarchy is now in the shape. */}
+            {/* The square that closes the action bar under the poster, beside
+                the status. A trailer is a video you might glance at, not what
+                you do with the show, so it gets an icon, not a label. */}
             <button
+                type="button"
                 onClick={handleOpen}
-                className={`flex items-center gap-2 py-2 text-sm text-fg-muted hover:text-fg transition-colors cursor-pointer ${className ?? ""}`}
+                aria-label="Watch trailer"
+                title="Watch trailer"
+                className={`flex w-12 shrink-0 items-center justify-center border-l border-line text-fg-soft hover:text-fg hover:bg-surface-2 transition-colors cursor-pointer ${className ?? ""}`}
             >
-                <Play className="w-3.5 h-3.5 shrink-0 fill-current" />
-                <span>Watch trailer</span>
+                <Play className="w-3.5 h-3.5 fill-current" />
             </button>
 
+            {/* Portalled to the body. Rendered in place, the modal sat inside the
+                sidebar's stacking context, and every later section of the page —
+                the tab bar, the cast, the episodes — painted over it. */}
+            {typeof document !== 'undefined' && createPortal(
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -89,7 +95,9 @@ export function TrailerButton({ trailer, className }: TrailerButtonProps) {
                         </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence>,
+            document.body,
+            )}
         </>
     );
 }

@@ -33,8 +33,8 @@ export async function MdlAiredRow({ externalId, title, year, nativeTitle, season
 
     return (
         <>
-            <span className="text-fg-muted font-medium">Aired</span>
-            <span className="text-fg">{aired}</span>
+            <span className="text-fg-dim">Aired</span>
+            <span className="text-fg-soft">{aired}</span>
         </>
     );
 }

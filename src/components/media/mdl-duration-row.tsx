@@ -33,8 +33,8 @@ export async function MdlDurationRow({ externalId, title, year, nativeTitle, sea
 
     return (
         <>
-            <span className="text-fg-muted font-medium">Duration</span>
-            <span className="text-fg">{duration}</span>
+            <span className="text-fg-dim">Duration</span>
+            <span className="text-fg-soft">{duration}</span>
         </>
     );
 }

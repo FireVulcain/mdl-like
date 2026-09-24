@@ -50,7 +50,7 @@ export async function WatchProvidersRow({ type, id }: { type: "movie" | "tv"; id
 
     return (
         <>
-            <span className="text-fg-muted font-medium self-center">Watch</span>
+            <span className="text-fg-dim self-center">Watch</span>
             <div className="flex flex-wrap gap-1.5 items-center">
                 {unique.slice(0, 6).map((p) => (
                     <a

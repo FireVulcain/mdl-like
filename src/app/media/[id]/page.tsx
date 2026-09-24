@@ -11,7 +11,7 @@ import { PhotosScroll } from "@/components/media/photos-scroll";
 import { MdlPhotosSection } from "@/components/media/mdl-photos-section";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
-import { MdlRankRow } from "@/components/media/mdl-rank-row";
+import { MdlRankStats, RankStats, RankStatsFallback } from "@/components/media/mdl-rank-stats";
 import { MdlAiredRow } from "@/components/media/mdl-aired-row";
 import { MdlDurationRow } from "@/components/media/mdl-duration-row";
 import { MdlLiveRefresh } from "@/components/media/mdl-live-refresh";
@@ -173,129 +173,120 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     {media.rating > 0 && <span className="text-sky-400 font-semibold">MDL {media.rating.toFixed(1)}</span>}
                                 </div>
                             </div>
-                            <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
-                                media={{
-                                    id: media.id,
-                                    externalId: media.externalId,
-                                    source: media.source,
-                                    type: media.type,
-                                    title: media.title,
-                                    poster: media.poster,
-                                    backdrop: media.backdrop,
-                                    year: media.year,
-                                    originCountry: media.originCountry,
-                                    status: media.status,
-                                    totalEp: media.totalEp,
-                                    genres: media.genres,
-                                    synopsis: "",
-                                    rating: 0,
-                                }}
-                                userMedia={userMedia}
-                                season={1}
-                                totalEp={media.totalEp ?? null}
-                                className="w-full justify-center"
-                            />
+                            <div className="relative flex h-10 overflow-hidden rounded-lg bg-surface-1">
+                                <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
+                                    media={{
+                                        id: media.id,
+                                        externalId: media.externalId,
+                                        source: media.source,
+                                        type: media.type,
+                                        title: media.title,
+                                        poster: media.poster,
+                                        backdrop: media.backdrop,
+                                        year: media.year,
+                                        originCountry: media.originCountry,
+                                        status: media.status,
+                                        totalEp: media.totalEp,
+                                        genres: media.genres,
+                                        synopsis: "",
+                                        rating: 0,
+                                    }}
+                                    userMedia={userMedia}
+                                    season={1}
+                                    totalEp={media.totalEp ?? null}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="hidden md:block">
                     <StickySidebar>
-                        <div className="relative aspect-2/3 overflow-hidden rounded-lg">
-                            {displayPoster ? (
-                                <PosterZoom src={displayPoster} alt={media.title} />
-                            ) : (
-                                <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted">
-                                    No Poster
-                                </div>
-                            )}
-                            <a
-                                href={`https://mydramalist.com/${media.externalId}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/20 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
-                            >
-                                <ExternalLink className="size-3" />
-                                MDL
-                            </a>
+                        {/* The action bar is docked to the poster: one object with the
+                            cover, not a button floating under it. */}
+                        <div>
+                            <div className="relative aspect-2/3 overflow-hidden rounded-t-lg">
+                                {displayPoster ? (
+                                    <PosterZoom src={displayPoster} alt={media.title} />
+                                ) : (
+                                    <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted">
+                                        No Poster
+                                    </div>
+                                )}
+                                <a
+                                    href={`https://mydramalist.com/${media.externalId}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-lg bg-black/60 backdrop-blur-sm border border-white/20 text-xs font-medium text-white/70 hover:text-white hover:bg-black/80 transition-colors"
+                                >
+                                    <ExternalLink className="size-3" />
+                                    MDL
+                                </a>
+                            </div>
+                            <div className="relative flex h-11 overflow-hidden rounded-b-lg bg-surface-1">
+                                <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
+                                    media={{
+                                        id: media.id,
+                                        externalId: media.externalId,
+                                        source: media.source,
+                                        type: media.type,
+                                        title: media.title,
+                                        poster: media.poster,
+                                        backdrop: media.backdrop,
+                                        year: media.year,
+                                        originCountry: media.originCountry,
+                                        status: media.status,
+                                        totalEp: media.totalEp,
+                                        genres: media.genres,
+                                        synopsis: "",
+                                        rating: 0,
+                                    }}
+                                    userMedia={userMedia}
+                                    season={1}
+                                    totalEp={media.totalEp ?? null}
+                                />
+                            </div>
                         </div>
 
-                        <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
-                            media={{
-                                id: media.id,
-                                externalId: media.externalId,
-                                source: media.source,
-                                type: media.type,
-                                title: media.title,
-                                poster: media.poster,
-                                backdrop: media.backdrop,
-                                year: media.year,
-                                originCountry: media.originCountry,
-                                status: media.status,
-                                totalEp: media.totalEp,
-                                genres: media.genres,
-                                synopsis: "",
-                                rating: 0,
-                            }}
-                            userMedia={userMedia}
-                            season={1}
-                            totalEp={media.totalEp ?? null}
-                            className="w-full justify-center"
-                        />
-
-                        <div
-                            className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
-                            style={{
-                                background: "var(--panel-soft)",
-                                backdropFilter: "blur(20px)",
-                                boxShadow: "var(--panel-shadow)",
-                            }}
-                        >
-                            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+                        {/* A lighter fill and nothing else: no border, bevel or shadow.
+                            The status bar above already stands out as the object here. */}
+                        <div className="rounded-lg bg-surface-1 p-4 flex flex-col gap-3.5">
+                            {(media.mdlRanking || media.mdlWatchers) ? (
+                                <RankStats
+                                    rank={media.mdlRanking || null}
+                                    // Explicit locale: the server's own would group with spaces
+                                    watchers={media.mdlWatchers ? media.mdlWatchers.toLocaleString("en-US") : null}
+                                />
+                            ) : null}
                             {/* Title, type, country and episode count are the
                                 line under the heading, a hundred pixels up; the
                                 box holds what that line does not. */}
-                            <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
+                            <div className="grid grid-cols-[76px_1fr] gap-x-3 gap-y-1.5 text-[13px]">
                                 {media.aired && (
                                     <>
-                                        <span className="text-fg-muted font-medium">Aired</span>
-                                        <span className="text-fg">{media.aired}</span>
+                                        <span className="text-fg-dim">Aired</span>
+                                        <span className="text-fg-soft">{media.aired}</span>
                                     </>
                                 )}
 
                                 {media.network && (
                                     <>
-                                        <span className="text-fg-muted font-medium">Network</span>
-                                        <span className="text-fg">{media.network}</span>
+                                        <span className="text-fg-dim">Network</span>
+                                        <span className="text-fg-soft">{media.network}</span>
                                     </>
                                 )}
 
                                 {media.duration && (
                                     <>
-                                        <span className="text-fg-muted font-medium">Duration</span>
-                                        <span className="text-fg">{media.duration}</span>
+                                        <span className="text-fg-dim">Duration</span>
+                                        <span className="text-fg-soft">{media.duration}</span>
                                     </>
                                 )}
 
                                 {media.rating > 0 && (
                                     <>
-                                        <span className="text-fg-muted font-medium">MDL Score</span>
+                                        <span className="text-fg-dim">MDL Score</span>
                                         <span className="text-sky-400 font-medium">MDL {media.rating.toFixed(1)}</span>
                                     </>
                                 )}
-
-                                {media.mdlRanking && (
-                                    <>
-                                        <span className="text-fg-muted font-medium">MDL Rank</span>
-                                        <span className="text-sky-400 font-medium">{media.mdlRanking}</span>
-                                    </>
-                                )}
-
-                                {media.mdlWatchers ? (
-                                    <>
-                                        <span className="text-fg-muted font-medium">Watchers</span>
-                                        {/* Explicit locale: the server's own would group with spaces */}
-                                        <span className="text-fg">{media.mdlWatchers.toLocaleString("en-US")}</span>
-                                    </>
-                                ) : null}
                             </div>
                         </div>
 
@@ -376,20 +367,20 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <div className="md:hidden grid grid-cols-[80px_1fr] gap-x-4 gap-y-1.5 text-sm">
                                 {media.aired && (
                                     <>
-                                        <span className="text-fg-muted">Aired</span>
-                                        <span className="text-fg">{media.aired}</span>
+                                        <span className="text-fg-dim">Aired</span>
+                                        <span className="text-fg-soft">{media.aired}</span>
                                     </>
                                 )}
                                 {media.network && (
                                     <>
-                                        <span className="text-fg-muted">Network</span>
-                                        <span className="text-fg">{media.network}</span>
+                                        <span className="text-fg-dim">Network</span>
+                                        <span className="text-fg-soft">{media.network}</span>
                                     </>
                                 )}
                                 {media.duration && (
                                     <>
-                                        <span className="text-fg-muted">Duration</span>
-                                        <span className="text-fg">{media.duration}</span>
+                                        <span className="text-fg-dim">Duration</span>
+                                        <span className="text-fg-soft">{media.duration}</span>
                                     </>
                                 )}
                             </div>
@@ -722,52 +713,104 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 )}
                             </div>
                         </div>
-                        <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
-                            media={{
-                                id: media.id,
-                                externalId: media.externalId,
-                                source: media.source,
-                                type: media.type,
-                                title: media.title,
-                                poster: media.poster,
-                                backdrop: media.backdrop,
-                                year: media.year,
-                                originCountry: media.originCountry,
-                                status: media.status,
-                                totalEp: media.totalEp,
-                                genres: media.genres,
-                                seasons: media.seasons?.map((s) => ({
-                                    seasonNumber: s.seasonNumber,
-                                    poster: s.poster,
-                                    episodeCount: s.episodeCount,
-                                    name: s.name,
-                                    airDate: s.airDate,
-                                })),
-                                synopsis: "",
-                                rating: 0,
-                            }}
-                            userMedia={userMedia}
-                            season={selectedSeason}
-                            totalEp={episodeCount}
-                            className="w-full justify-center"
-                        />
-                        {media.trailer && <TrailerButton trailer={media.trailer} className="w-full justify-center" />}
+                        <div className="relative flex h-10 overflow-hidden rounded-lg bg-surface-1">
+                            <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
+                                media={{
+                                    id: media.id,
+                                    externalId: media.externalId,
+                                    source: media.source,
+                                    type: media.type,
+                                    title: media.title,
+                                    poster: media.poster,
+                                    backdrop: media.backdrop,
+                                    year: media.year,
+                                    originCountry: media.originCountry,
+                                    status: media.status,
+                                    totalEp: media.totalEp,
+                                    genres: media.genres,
+                                    seasons: media.seasons?.map((s) => ({
+                                        seasonNumber: s.seasonNumber,
+                                        poster: s.poster,
+                                        episodeCount: s.episodeCount,
+                                        name: s.name,
+                                        airDate: s.airDate,
+                                    })),
+                                    synopsis: "",
+                                    rating: 0,
+                                }}
+                                userMedia={userMedia}
+                                season={selectedSeason}
+                                totalEp={episodeCount}
+                            />
+                            {media.trailer && <TrailerButton trailer={media.trailer} />}
+                        </div>
                     </div>
                 </div>
                 {/* Poster & Actions */}
                 <div className="hidden md:block">
                 <StickySidebar>
-                    <div className="relative aspect-2/3 overflow-hidden rounded-lg">
-                        {displayPoster ? (
-                            <PosterZoom src={displayPoster} alt={media.title} />
-                        ) : (
-                            <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted">
-                                No Poster
-                            </div>
-                        )}
-                        {showMdlPosterLink && (
-                            <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
-                                <MdlPosterLink
+                    {/* The action bar is docked to the poster: one object with the
+                        cover, not a button floating under it. */}
+                    <div>
+                        <div className="relative aspect-2/3 overflow-hidden rounded-t-lg">
+                            {displayPoster ? (
+                                <PosterZoom src={displayPoster} alt={media.title} />
+                            ) : (
+                                <div className="flex h-full items-center justify-center bg-linear-to-br from-surface-3 to-surface-2 text-fg-muted">
+                                    No Poster
+                                </div>
+                            )}
+                            {showMdlPosterLink && (
+                                <Suspense fallback={<MdlPosterLinkFallback title={media.title} />}>
+                                    <MdlPosterLink
+                                        externalId={media.externalId}
+                                        title={media.title}
+                                        year={media.year}
+                                        nativeTitle={media.nativeTitle}
+                                        season={selectedSeason}
+                                    />
+                                </Suspense>
+                            )}
+                        </div>
+                        <div className="relative flex h-11 overflow-hidden rounded-b-lg bg-surface-1">
+                            <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
+                                media={{
+                                    id: media.id,
+                                    externalId: media.externalId,
+                                    source: media.source,
+                                    type: media.type,
+                                    title: media.title,
+                                    poster: media.poster,
+                                    backdrop: media.backdrop,
+                                    year: media.year,
+                                    originCountry: media.originCountry,
+                                    status: media.status,
+                                    totalEp: media.totalEp,
+                                    genres: media.genres,
+                                    seasons: media.seasons?.map((s) => ({
+                                        seasonNumber: s.seasonNumber,
+                                        poster: s.poster,
+                                        episodeCount: s.episodeCount,
+                                        name: s.name,
+                                        airDate: s.airDate,
+                                    })),
+                                    synopsis: "",
+                                    rating: 0,
+                                }}
+                                userMedia={userMedia}
+                                season={selectedSeason}
+                                totalEp={episodeCount}
+                            />
+                            {media.trailer && <TrailerButton trailer={media.trailer} />}
+                        </div>
+                    </div>
+
+                    {/* A lighter fill and nothing else: no border, bevel or shadow.
+                        The status bar above already stands out as the object here. */}
+                    <div className="rounded-lg bg-surface-1 p-4 flex flex-col gap-3.5">
+                        {isMdlRelevant && (
+                            <Suspense fallback={<RankStatsFallback />}>
+                                <MdlRankStats
                                     externalId={media.externalId}
                                     title={media.title}
                                     year={media.year}
@@ -776,65 +819,23 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 />
                             </Suspense>
                         )}
-                    </div>
-
-                    <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
-                        media={{
-                            id: media.id,
-                            externalId: media.externalId,
-                            source: media.source,
-                            type: media.type,
-                            title: media.title,
-                            poster: media.poster,
-                            backdrop: media.backdrop,
-                            year: media.year,
-                            originCountry: media.originCountry,
-                            status: media.status,
-                            totalEp: media.totalEp,
-                            genres: media.genres,
-                            seasons: media.seasons?.map((s) => ({
-                                seasonNumber: s.seasonNumber,
-                                poster: s.poster,
-                                episodeCount: s.episodeCount,
-                                name: s.name,
-                                airDate: s.airDate,
-                            })),
-                            synopsis: "",
-                            rating: 0,
-                        }}
-                        userMedia={userMedia}
-                        season={selectedSeason}
-                        totalEp={episodeCount}
-                        className="w-full justify-center"
-                    />
-                    {media.trailer && <TrailerButton trailer={media.trailer} className="w-full justify-center" />}
-
-                    <div
-                        className="relative overflow-hidden rounded-xl border border-line-strong p-6 shadow-lg space-y-3"
-                        style={{
-                            background: "var(--panel-soft)",
-                            backdropFilter: "blur(20px)",
-                            boxShadow: "var(--panel-shadow)",
-                        }}
-                    >
-                        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
                         {/* Title, type, country and the season's episode count
                             are the line under the heading, a hundred pixels up;
                             the box holds what that line does not. The show's
                             total stays where it differs from the season's. */}
-                        <div className="grid grid-cols-[90px_1fr] gap-x-3 gap-y-2.5 text-sm">
+                        <div className="grid grid-cols-[76px_1fr] gap-x-3 gap-y-1.5 text-[13px]">
                             {media.totalEp && (media.seasons?.length ?? 0) > 1 && (
                                 <>
-                                    <span className="text-fg-muted font-medium">Episodes</span>
-                                    <span className="text-fg">{media.totalEp} total</span>
+                                    <span className="text-fg-dim">Episodes</span>
+                                    <span className="text-fg-soft">{media.totalEp} total</span>
                                 </>
                             )}
 
                             <Suspense
                                 fallback={
                                     <>
-                                        <span className="text-fg-muted font-medium">Aired</span>
-                                        <span className="text-fg">{media.aired}</span>
+                                        <span className="text-fg-dim">Aired</span>
+                                        <span className="text-fg-soft">{media.aired}</span>
                                     </>
                                 }
                             >
@@ -850,8 +851,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                             {media.network && (
                                 <>
-                                    <span className="text-fg-muted font-medium">Network</span>
-                                    <span className="text-fg">{media.network}</span>
+                                    <span className="text-fg-dim">Network</span>
+                                    <span className="text-fg-soft">{media.network}</span>
                                 </>
                             )}
 
@@ -863,8 +864,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     fallback={
                                         media.duration ? (
                                             <>
-                                                <span className="text-fg-muted font-medium">Duration</span>
-                                                <span className="text-fg">{media.duration}</span>
+                                                <span className="text-fg-dim">Duration</span>
+                                                <span className="text-fg-soft">{media.duration}</span>
                                             </>
                                         ) : null
                                     }
@@ -881,36 +882,17 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             ) : (
                                 media.duration && (
                                     <>
-                                        <span className="text-fg-muted font-medium">Duration</span>
-                                        <span className="text-fg">{media.duration}</span>
+                                        <span className="text-fg-dim">Duration</span>
+                                        <span className="text-fg-soft">{media.duration}</span>
                                     </>
                                 )
                             )}
 
                             {media.contentRating && (
                                 <>
-                                    <span className="text-fg-muted font-medium">Rating</span>
+                                    <span className="text-fg-dim">Rating</span>
                                     <span className="text-fg-soft">{media.contentRating}</span>
                                 </>
-                            )}
-
-                            {isMdlRelevant && (
-                                <Suspense
-                                    fallback={
-                                        <>
-                                            <span className="text-fg-muted font-medium">MDL Rank</span>
-                                            <span className="inline-block h-4 w-10 rounded bg-sky-500/20 animate-pulse" />
-                                        </>
-                                    }
-                                >
-                                    <MdlRankRow
-                                        externalId={media.externalId}
-                                        title={media.title}
-                                        year={media.year}
-                                        nativeTitle={media.nativeTitle}
-                                        season={selectedSeason}
-                                    />
-                                </Suspense>
                             )}
 
                             <Suspense fallback={null}>
@@ -1020,8 +1002,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             <Suspense
                                 fallback={
                                     <>
-                                        <span className="text-fg-muted">Aired</span>
-                                        <span className="text-fg">{media.aired}</span>
+                                        <span className="text-fg-dim">Aired</span>
+                                        <span className="text-fg-soft">{media.aired}</span>
                                     </>
                                 }
                             >
@@ -1036,8 +1018,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             </Suspense>
                             {media.network && (
                                 <>
-                                    <span className="text-fg-muted">Network</span>
-                                    <span className="text-fg">{media.network}</span>
+                                    <span className="text-fg-dim">Network</span>
+                                    <span className="text-fg-soft">{media.network}</span>
                                 </>
                             )}
                             {isMdlRelevant ? (
@@ -1045,8 +1027,8 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     fallback={
                                         media.duration ? (
                                             <>
-                                                <span className="text-fg-muted">Duration</span>
-                                                <span className="text-fg">{media.duration}</span>
+                                                <span className="text-fg-dim">Duration</span>
+                                                <span className="text-fg-soft">{media.duration}</span>
                                             </>
                                         ) : null
                                     }
@@ -1063,14 +1045,14 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             ) : (
                                 media.duration && (
                                     <>
-                                        <span className="text-fg-muted">Duration</span>
-                                        <span className="text-fg">{media.duration}</span>
+                                        <span className="text-fg-dim">Duration</span>
+                                        <span className="text-fg-soft">{media.duration}</span>
                                     </>
                                 )
                             )}
                             {media.contentRating && (
                                 <>
-                                    <span className="text-fg-muted">Rating</span>
+                                    <span className="text-fg-dim">Rating</span>
                                     <span className="text-fg-soft">{media.contentRating}</span>
                                 </>
                             )}
