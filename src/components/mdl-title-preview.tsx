@@ -73,8 +73,7 @@ function Body({ data }: { data: MdlPreview }) {
 
                 {/* The same component and the same destination the media pages
                     use, so a genre goes to the same place wherever it is read.
-                    Sized down: GENRE_LIST runs a size up because it sits under a
-                    heading, and here it sits under a synopsis. */}
+                    Sized down to match the preview's text-xs synopsis. */}
                 {data.genres.length > 0 && (
                     <MetaLinkList
                         {...GENRE_LIST}

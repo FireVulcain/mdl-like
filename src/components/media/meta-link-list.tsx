@@ -48,13 +48,13 @@ export function MetaLinkList({
 }
 
 // Genres classify the show and there are only ever a handful, so they carry the
-// full link colour, a size up, and an underline at rest. Tags qualify it and run
-// to a dozen: same hue, dialled down, with the underline held back for hover —
-// twelve underlined items in a row reads as a link farm.
+// full link colour, the same as the Related row above them. Tags qualify it and
+// run to a dozen: same hue, dialled down. Same size for both, underline on hover
+// only: a size up and an underline at rest made four common words the loudest
+// line of the block.
 export const GENRE_LIST = {
-    className: "text-base",
-    linkClassName:
-        "font-medium text-sky-300 underline decoration-sky-400/30 underline-offset-4 hover:text-sky-200 hover:decoration-sky-300",
+    className: "text-sm",
+    linkClassName: "text-sky-300 hover:text-sky-200 hover:underline hover:underline-offset-4",
 };
 
 export const TAG_LIST = {
