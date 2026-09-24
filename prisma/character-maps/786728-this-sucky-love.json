@@ -1,415 +1,784 @@
 {
-  "version": 1,
+  "version": 2,
   "mdlSlug": "786728-this-sucky-love",
   "title": "Our Sticky Love",
   "native": "이런 엿같은 사랑",
   "year": 2026,
   "country": "KR",
   "sources": [
-    "MDL cast (20 roles, 3 main)",
+    "MDL cast (59 roles, 3 main)",
     "MDL synopsis",
-    "ko.wikipedia (no character section; village ties inferred)"
+    "en.wikipedia character list",
+    "thereviewgeek episode recaps (Ep 1-12)"
   ],
   "main": [
     "taeha",
-    "eunsae"
+    "eunsae",
+    "sanggil"
   ],
+  "recaps": {
+    "source": "thereviewgeek",
+    "episodes": 12,
+    "count": 12,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ]
+    ]
+  },
   "people": [
     {
       "id": "taeha",
       "name": "Jang Tae Ha",
       "actor": "Jung Hae In",
       "image": "https://i.mydramalist.com/PxZeJ0_5m.jpg",
+      "still": "https://asianwiki.com/images/d/db/Our_Sticky_Love-Jung_Hae-In.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Former boxer, now a boxing coach in the village",
-      "still": "https://asianwiki.com/images/d/db/Our_Sticky_Love-Jung_Hae-In.jpg"
+      "note": "A former boxing champion and ex-gang member turned small-town coach.",
+      "alsoPlayedBy": [
+        {
+          "name": "Ha Min Hyeok",
+          "image": "https://i.mydramalist.com/81kW6d_5m.jpg",
+          "still": "https://asianwiki.com/images/5/52/Our_Sticky_Love-Ha_Min-Hyeok1.jpg",
+          "era": "teen"
+        }
+      ]
     },
     {
       "id": "eunsae",
       "name": "Ko Eun Sae",
       "actor": "Ha Young",
       "image": "https://i.mydramalist.com/ABmJOP_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f6/Our_Sticky_Love-Ha-Young.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Ambitious prosecutor who wakes up in a village with no memory",
-      "still": "https://asianwiki.com/images/f/f6/Our_Sticky_Love-Ha-Young.jpg"
+      "note": "A prosecutor secretly named Go Ji Won, who loses her memory after investigating Sang Gil's syndicate.",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Myung Bin",
+          "image": "https://i.mydramalist.com/4emLPw_5m.jpg",
+          "still": "https://asianwiki.com/images/7/73/Our_Sticky_Love-Choi_Myung-Bin.jpeg",
+          "era": "teen"
+        },
+        {
+          "name": "Lee Ha Yun",
+          "image": "https://i.mydramalist.com/WPmxW3_5m.jpg",
+          "still": "https://asianwiki.com/images/a/a2/Our_Sticky_Love-Lee_Ha-Yun1.jpg",
+          "era": "teen"
+        },
+        {
+          "name": "Shin Chae Rin",
+          "image": "https://i.mydramalist.com/NdOmYn_5m.jpg",
+          "still": "https://asianwiki.com/images/e/e4/Our_Sticky_Love-Shin_Chae-Rin1.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "sanggil",
       "name": "Baek Sang Gil",
       "actor": "Heo Sung Tae",
       "image": "https://i.mydramalist.com/3oNjDW_5m.jpg",
-      "group": "The syndicate",
+      "still": "https://asianwiki.com/images/d/d3/Our_Sticky_Love-Heo_Sung-Tae.jpg",
+      "group": "Sang Gil's circle",
       "inCast": true,
-      "note": "The crime syndicate she was investigating",
-      "still": "https://asianwiki.com/images/d/d3/Our_Sticky_Love-Heo_Sung-Tae.jpg"
-    },
-    {
-      "id": "yeonhong",
-      "name": "Ko Yeon Hong",
-      "actor": "Kim Young Ok",
-      "image": "https://i.mydramalist.com/5vYdBB_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/5/5b/Our_Sticky_Love-Kim_Young-Ok.jpg"
-    },
-    {
-      "id": "hyesu",
-      "name": "Jang Hye Su",
-      "actor": "Lee Ji Won",
-      "image": "https://i.mydramalist.com/2wQ152_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/4/4b/Our_Sticky_Love-Lee_Ji-Won.jpg"
-    },
-    {
-      "id": "doyeop",
-      "name": "Hong Do Yeop",
-      "actor": "Jeon Bae Soo",
-      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "note": "Boxing coach",
-      "still": "https://asianwiki.com/images/6/6e/Our_Sticky_Love-Jeon_Bae-Su1.jpg"
-    },
-    {
-      "id": "jeonghwa",
-      "name": "Do Jeong Hwa",
-      "actor": "Seo Jung Yeon",
-      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/a/a8/Our_Sticky_Love-Seo_Jung-Yeon01.jpeg"
-    },
-    {
-      "id": "gangrok",
-      "name": "Kim Gang Rok",
-      "actor": "Jung Soon Won",
-      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/6/6d/Our_Sticky_Love-Jung_Soon-Won01.jpg"
-    },
-    {
-      "id": "gijun",
-      "name": "An Gi Jun",
-      "actor": "Lee Jae Won",
-      "image": "https://i.mydramalist.com/By7eb_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/6/68/Our_Sticky_Love-Lee_Jae-Won01.jpg"
-    },
-    {
-      "id": "suji",
-      "name": "Min Su Ji",
-      "actor": "Choi Yu Ju",
-      "image": "https://i.mydramalist.com/2w4zNw_5m.jpg",
-      "group": "Tae Ha's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/f/f0/Our_Sticky_Love-Yu_Ju.jpg"
-    },
-    {
-      "id": "hyojin",
-      "name": "Park Hyo Jin",
-      "actor": "Oh Kyung Hwa",
-      "image": "https://i.mydramalist.com/YYqdyo_5m.jpg",
-      "group": "Eun Sae's people",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/f/f0/Our_Sticky_Love-Oh_Gyeong-Hwa.jpg"
-    },
-    {
-      "id": "geumhyang",
-      "name": "Na Geum Hyang",
-      "actor": "Kim Mi Hwa",
-      "image": "https://i.mydramalist.com/wJK7rb_5m.jpg",
-      "group": "The village",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/c/c7/Our_Sticky_Love-Kim_Mi-Hwa.jpg"
-    },
-    {
-      "id": "gyeongpyo",
-      "name": "Gyeong Pyo",
-      "actor": "Eun Jong Geon",
-      "image": "https://i.mydramalist.com/Bbngqm.jpg",
-      "group": "The village",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/5/5f/Our_Sticky_Love-Eun_Jong-Gun.jpg"
-    },
-    {
-      "id": "songwol",
-      "name": "Kim Song Wol",
-      "actor": "Yang Jo Ah",
-      "image": "https://i.mydramalist.com/ABXYJE_5m.jpg",
-      "group": "The village",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/d/db/Our_Sticky_Love-Yang_Jo-A1.jpg"
-    },
-    {
-      "id": "huija",
-      "name": "Paeng Hui Ja",
-      "actor": "Jang Hye Jin",
-      "image": "https://i.mydramalist.com/2OnqEm.jpg",
-      "group": "The village",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/b/be/Our_Sticky_Love-Jang_Hye-Jin1.jpg"
-    },
-    {
-      "id": "pilseung",
-      "name": "Kim Pil Seung",
-      "actor": "Moon Seong Hyun",
-      "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
-      "group": "The village",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/a/ae/Our_Sticky_Love-Moon_Sung-Hyun1.jpg"
-    },
-    {
-      "id": "maengsuk",
-      "name": "Cho Maeng Suk",
-      "actor": "Cha Chung Hwa",
-      "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
-      "group": "The village",
-      "inCast": true,
-      "note": "Shaman",
-      "still": "https://asianwiki.com/images/7/71/Our_Sticky_Love-Cha_Chung-Hwa001.jpg"
-    },
-    {
-      "id": "minjong",
-      "name": "Ju Min Jong",
-      "actor": "Kim Jong Tae",
-      "image": "https://i.mydramalist.com/j3qOv_5m.jpg",
-      "group": "The village",
-      "inCast": true,
-      "note": "Mayor",
-      "still": "https://asianwiki.com/images/e/e7/Our_Sticky_Love-Kim_Jong-Tae.jpg"
+      "note": "Founder of Mirae Eden, formerly leader of the Geukrakpa gang.",
+      "alsoPlayedBy": [
+        {
+          "name": "Song Geon Hee",
+          "image": "https://i.mydramalist.com/73EJbD_5m.jpg",
+          "still": "https://asianwiki.com/images/3/3e/Our_Sticky_Love-Song_Geon-Hee1.jpg",
+          "era": "young"
+        }
+      ]
     },
     {
       "id": "chihyeon",
       "name": "Kwak Chi Hyeon",
       "actor": "Kim Seo Ha",
       "image": "https://i.mydramalist.com/yWOBB1_5m.jpg",
-      "group": "The village",
+      "still": "https://asianwiki.com/images/4/4d/Our_Sticky_Love-Kim_Seo-Ha1.jpg",
+      "group": "Sang Gil's circle",
       "inCast": true,
-      "note": "The mayor's aide",
-      "still": "https://asianwiki.com/images/4/4d/Our_Sticky_Love-Kim_Seo-Ha1.jpg"
+      "note": "Secretly a mole for Sang Gil inside the mayor's office."
+    },
+    {
+      "id": "minjong",
+      "name": "Ju Min Jong",
+      "actor": "Kim Jong Tae",
+      "image": "https://i.mydramalist.com/j3qOv_5m.jpg",
+      "still": "https://asianwiki.com/images/e/e7/Our_Sticky_Love-Kim_Jong-Tae.jpg",
+      "group": "Sang Gil's circle",
+      "inCast": true,
+      "note": "The mayor, colluding with Sang Gil's bribery scheme."
+    },
+    {
+      "id": "haksu",
+      "name": "Baek Hak Su",
+      "actor": "Ryu Seong Hyeon",
+      "image": "https://i.mydramalist.com/YYBZLe_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d4/Our_Sticky_Love-Ryoo_Sung-Hyun.jpg",
+      "group": "Sang Gil's circle",
+      "inCast": true,
+      "note": "Sang Gil's abusive father, seen in flashback."
+    },
+    {
+      "id": "hyesu",
+      "name": "Jang Hye Su",
+      "actor": "Lee Ji Won",
+      "image": "https://i.mydramalist.com/2wQ152_5m.jpg",
+      "still": "https://asianwiki.com/images/4/4b/Our_Sticky_Love-Lee_Ji-Won.jpg",
+      "group": "Tae Ha's family",
+      "inCast": true,
+      "note": "Tae Ha's late mother, once Sang Gil's lover."
+    },
+    {
+      "id": "yeonhong",
+      "name": "Ko Yeon Hong",
+      "actor": "Kim Young Ok",
+      "image": "https://i.mydramalist.com/5vYdBB_5m.jpg",
+      "still": "https://asianwiki.com/images/5/5b/Our_Sticky_Love-Kim_Young-Ok.jpg",
+      "group": "Tae Ha's family",
+      "inCast": true,
+      "note": "Runs the taffy cottage; raised Tae Ha after his mother's death.",
+      "alsoPlayedBy": [
+        {
+          "name": "Oh Min Ae",
+          "image": "https://i.mydramalist.com/r7Kz2_5m.jpg",
+          "still": "https://asianwiki.com/images/5/54/Our_Sticky_Love-Oh_Min-Ae.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "doyeop",
+      "name": "Hong Do Yeop",
+      "actor": "Jeon Bae Soo",
+      "image": "https://i.mydramalist.com/jJb0w_5m.jpg",
+      "still": "https://asianwiki.com/images/6/6e/Our_Sticky_Love-Jeon_Bae-Su1.jpg",
+      "group": "Hong Boxing Gym",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Nam Hee",
+          "image": "https://i.mydramalist.com/KpL1RR_5m.jpg",
+          "still": "https://asianwiki.com/images/0/0e/Our_Sticky_Love-Kim_Nam-Hee1.jpg",
+          "era": "young"
+        }
+      ]
+    },
+    {
+      "id": "jeonghwa",
+      "name": "Do Jeong Hwa",
+      "actor": "Seo Jung Yeon",
+      "image": "https://i.mydramalist.com/73dV0b_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a8/Our_Sticky_Love-Seo_Jung-Yeon01.jpeg",
+      "group": "Hong Boxing Gym",
+      "inCast": true
+    },
+    {
+      "id": "gangrok",
+      "name": "Kim Gang Rok",
+      "actor": "Jung Soon Won",
+      "image": "https://i.mydramalist.com/mO1gVP_5m.jpg",
+      "still": "https://asianwiki.com/images/6/6d/Our_Sticky_Love-Jung_Soon-Won01.jpg",
+      "group": "Hong Boxing Gym",
+      "inCast": true
+    },
+    {
+      "id": "kaito",
+      "name": "Kaito",
+      "actor": "Lee Jun Young",
+      "image": "https://i.mydramalist.com/v2yzZ_5m.jpg",
+      "still": "https://asianwiki.com/images/1/19/Our_Sticky_Love-Lee_Jun-Young1.jpg",
+      "group": "Hong Boxing Gym",
+      "inCast": true,
+      "note": "Later revealed to be Tae Ha's brother."
+    },
+    {
+      "id": "huija",
+      "name": "Paeng Hui Ja",
+      "actor": "Jang Hye Jin",
+      "image": "https://i.mydramalist.com/2OnqEm.jpg",
+      "still": "https://asianwiki.com/images/b/be/Our_Sticky_Love-Jang_Hye-Jin1.jpg",
+      "group": "Gujin village",
+      "inCast": true
+    },
+    {
+      "id": "pilseung",
+      "name": "Kim Pil Seung",
+      "actor": "Moon Seong Hyun",
+      "image": "https://i.mydramalist.com/jKJzv_5m.jpg",
+      "still": "https://asianwiki.com/images/a/ae/Our_Sticky_Love-Moon_Sung-Hyun1.jpg",
+      "group": "Gujin village",
+      "inCast": true
+    },
+    {
+      "id": "maengsuk",
+      "name": "Cho Maeng Suk",
+      "actor": "Cha Chung Hwa",
+      "image": "https://i.mydramalist.com/AB66gL_5m.jpg",
+      "still": "https://asianwiki.com/images/7/71/Our_Sticky_Love-Cha_Chung-Hwa001.jpg",
+      "group": "Gujin village",
+      "inCast": true
+    },
+    {
+      "id": "gijun",
+      "name": "An Gi Jun",
+      "actor": "Lee Jae Won",
+      "image": "https://i.mydramalist.com/By7eb_5m.jpg",
+      "still": "https://asianwiki.com/images/6/68/Our_Sticky_Love-Lee_Jae-Won01.jpg",
+      "group": "Hospital",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Lee Woo Joo",
+          "image": "https://i.mydramalist.com/nO6y5B_5m.jpg",
+          "still": "https://asianwiki.com/images/a/a0/Our_Sticky_Love-Lee_Woo-Joo.jpg",
+          "era": "teen"
+        }
+      ]
+    },
+    {
+      "id": "suji",
+      "name": "Min Su Ji",
+      "actor": "Choi Yu Ju",
+      "image": "https://i.mydramalist.com/2w4zNw_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f0/Our_Sticky_Love-Yu_Ju.jpg",
+      "group": "Hospital",
+      "inCast": true,
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Jae Eun",
+          "image": "https://i.mydramalist.com/YYJlZz_5m.jpg",
+          "still": "https://asianwiki.com/images/5/5e/Our_Sticky_Love-Kim_Jae-Eun.jpeg",
+          "era": "teen"
+        }
+      ]
+    },
+    {
+      "id": "hyojin",
+      "name": "Park Hyo Jin",
+      "actor": "Oh Kyung Hwa",
+      "image": "https://i.mydramalist.com/YYqdyo_5m.jpg",
+      "still": "https://asianwiki.com/images/f/f0/Our_Sticky_Love-Oh_Gyeong-Hwa.jpg",
+      "group": "Eun Sae's past",
+      "inCast": true
     }
   ],
   "links": [
     {
+      "from": "eunsae",
+      "to": "taeha",
+      "type": "romance",
+      "label": "Tae Ha lies that Eun Sae is his fiancée to keep her safe after she loses her memory.",
+      "short": "fake fiancée",
+      "evidence": "Tae-ha tells Eun-sae that they have been dating for the past two years and are about to get married.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 7,
+      "wholeStory": false
+    },
+    {
       "from": "taeha",
       "to": "eunsae",
       "type": "romance",
-      "label": "greets the amnesiac prosecutor insisting he is her boyfriend",
-      "short": "'her boyfriend'",
-      "evidence": "only to be greeted by Jang Tae Ha, a former boxer turned boxing coach who insists he is her boyfriend",
-      "source": "MDL synopsis",
+      "label": "Tae Ha and Eun Sae fall genuinely in love and eventually marry.",
+      "short": "in love",
+      "evidence": "Eun-sae promises that her feelings will never change, and the two profess their love for each other.",
+      "source": "thereviewgeek ep. 7",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 7
     },
     {
-      "from": "sanggil",
+      "from": "eunsae",
+      "to": "taeha",
+      "type": "romance",
+      "label": "Eun Sae kisses Tae Ha to test whether they have any real connection.",
+      "short": "first kiss",
+      "evidence": "She calls him out for lying to her and kisses him to test whether they have any romantic connection as the episode comes to an end.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "eunsae",
+      "to": "taeha",
+      "type": "bond",
+      "label": "A flashback reveals Eun Sae saved Tae Ha from a Japanese mob eight years earlier.",
+      "short": "saved his life",
+      "evidence": "She tells Tae-ha in Korean to get on her bike and helps him escape.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "taeha",
       "to": "eunsae",
-      "type": "rivalry",
-      "label": "the syndicate she was investigating when she lost her memory",
-      "short": "her target",
-      "evidence": "loses all her memories after a mysterious accident while investigating a powerful crime syndicate",
-      "source": "MDL synopsis",
+      "type": "romance",
+      "label": "Tae Ha is stabbed defending Eun Sae as she is smuggled onto a boat.",
+      "short": "protects her, stabbed",
+      "evidence": "Despite being stabbed, Tae-ha starts a fire to prevent the goons from reaching Eun-sae.",
+      "source": "thereviewgeek ep. 8",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "taeha",
+      "to": "eunsae",
+      "type": "romance",
+      "label": "Tae Ha proposes marriage to Eun Sae.",
+      "short": "proposes marriage",
+      "evidence": "Tae-ha asks Eun-sae to marry him.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "sanggil",
+      "to": "taeha",
+      "type": "work",
+      "label": "Tae Ha worked as a gangster under Sang Gil before trying to leave the organisation.",
+      "short": "his boss",
+      "evidence": "He praises Tae-ha for helping transform his local gang, Geukrakpa, into Mirae Eden.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 8,
+      "wholeStory": false
+    },
+    {
+      "from": "sanggil",
+      "to": "taeha",
+      "type": "family",
+      "label": "Sang Gil is revealed to be Tae Ha's biological father.",
+      "short": "his father",
+      "evidence": "Sang-gil is shocked to realise that Tae-ha is his son and that Hye-su is dead.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 11
     },
     {
       "from": "sanggil",
       "to": "taeha",
       "type": "rivalry",
-      "label": "comes to the village after her",
-      "short": "enemy",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "yeonhong",
-      "to": "taeha",
-      "type": "family",
-      "label": "grandmother",
-      "short": "grandmother",
-      "evidence": "[Tae Ha's grandmother]",
-      "source": "MDL cast",
+      "label": "Sang Gil tortures Tae Ha's former friends to threaten him.",
+      "short": "tortures his friends",
+      "evidence": "He forces Tae-ha to watch as he cuts the men’s Achilles tendons to threaten him.",
+      "source": "thereviewgeek ep. 8",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 8,
+      "kind": "event"
     },
     {
-      "from": "hyesu",
+      "from": "sanggil",
       "to": "taeha",
       "type": "family",
-      "label": "mother",
-      "short": "mother",
-      "evidence": "[Tae Ha's mother]",
-      "source": "MDL cast",
+      "label": "Sang Gil ends their feud by shooting himself rather than harming his son.",
+      "short": "shoots himself",
+      "evidence": "Sang-gil recalls holding Tae-ha as a child and decides to end their rivalry for good. He ends up shooting himself and pushes Tae-ha away as he dies.",
+      "source": "thereviewgeek ep. 12",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 12,
+      "kind": "event"
     },
     {
       "from": "doyeop",
       "to": "taeha",
       "type": "work",
-      "label": "his boxing coach",
-      "short": "coach",
-      "evidence": "[Tae Ha's boxing coach]",
+      "label": "Coach Hong trains and looks after Tae Ha like family.",
+      "short": "his coach",
+      "evidence": "Tae-ha meets boxing coach Hong Do-yeop and discusses Eun-sae’s condition.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "yeonhong",
+      "to": "taeha",
+      "type": "family",
+      "label": "Grandma Go took in Tae Ha and his mother, raising him like her own after his mother died.",
+      "short": "raised him",
+      "evidence": "After Tae-ha's mother died, Grandma Go raised him like her own child, which is why he is so close to her despite not being related to her.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "hyesu",
+      "to": "taeha",
+      "type": "family",
+      "label": "Hye Su was Tae Ha's mother, who raised him alone in Gujin.",
+      "short": "his mother",
+      "evidence": "[Tae Ha's mother]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "hyesu",
+      "to": "sanggil",
+      "type": "romance",
+      "label": "Hye Su is revealed to have once been Sang Gil's lover and the secret mother of his son.",
+      "short": "former lover revealed",
+      "evidence": "Sang-gil is shocked to realise that Tae-ha is his son and that Hye-su is dead.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 11,
+      "kind": "event"
     },
     {
       "from": "jeonghwa",
       "to": "doyeop",
       "type": "romance",
-      "label": "wife",
-      "short": "wife",
-      "evidence": "[Do Yeop's wife]",
-      "source": "MDL cast",
+      "label": "Jeong Hwa is Coach Hong's wife.",
+      "short": "his wife",
+      "evidence": "Only to interrupt Coach Hong and his wife, Jeong-hwa, during a romantic moment.",
+      "source": "thereviewgeek ep. 2",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
     },
     {
-      "from": "gangrok",
-      "to": "taeha",
-      "type": "work",
-      "label": "his subordinate at the gym",
-      "short": "subordinate",
-      "evidence": "[Tae Ha's subordinate]",
-      "source": "MDL cast",
+      "from": "taeha",
+      "to": "jeonghwa",
+      "type": "bond",
+      "label": "Tae Ha unknowingly rams a car in which Sang Gil's men have trapped Jeong Hwa, critically injuring her.",
+      "short": "accidentally injures her",
+      "evidence": "Tae-ha suddenly realises that Sang-gil and his men have placed Jeong-hwa in the car he has been unknowingly ramming into.",
+      "source": "thereviewgeek ep. 9",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 9,
+      "kind": "event"
     },
     {
-      "from": "gijun",
-      "to": "taeha",
-      "type": "friend",
-      "label": "high-school classmate",
-      "short": "classmate",
-      "evidence": "[Tae Ha's high school classmate]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "suji",
-      "to": "gijun",
-      "type": "romance",
-      "label": "girlfriend",
-      "short": "girlfriend",
-      "evidence": "[Gi Jun's girlfriend]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "hyojin",
+      "from": "chihyeon",
       "to": "eunsae",
-      "type": "friend",
-      "label": "friend",
-      "short": "friend",
-      "evidence": "[Eun Sae's friend]",
-      "source": "MDL cast",
-      "reveal": false,
+      "type": "romance",
+      "label": "Chi Hyeon posed as Ji Won's boyfriend, secretly working as Sang Gil's mole to stall the investigation.",
+      "short": "her boyfriend",
+      "evidence": "Mayor Ju tells him to stop pretending to be in love with her because he only dated Ji-won (Eun-sae) to delay the investigation into Sang-gil.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": true,
       "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "huija",
-      "to": "pilseung",
-      "type": "family",
-      "label": "mother",
-      "short": "mother",
-      "evidence": "[Pil Seung's mother] / [Hui Ja's son]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 2,
+      "until": 2,
+      "wholeStory": false
     },
     {
       "from": "chihyeon",
       "to": "minjong",
       "type": "work",
-      "label": "the mayor's aide",
-      "short": "aide",
-      "evidence": "[Min Jong's aide] / [Mayor]",
+      "label": "Chi Hyeon works as Mayor Ju's aide while secretly spying for Sang Gil.",
+      "short": "his aide",
+      "evidence": "[Min Jong's aide]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1,
+      "until": 10
     },
     {
-      "from": "geumhyang",
-      "to": "taeha",
-      "type": "friend",
-      "label": "the village",
-      "short": "villager",
-      "evidence": null,
-      "source": null,
+      "from": "minjong",
+      "to": "sanggil",
+      "type": "work",
+      "label": "Mayor Ju colludes with Sang Gil's corruption scheme.",
+      "short": "corrupt ally",
+      "evidence": "Sang-gil threatens the mayor and demands that he cooperate in an upcoming project based on their previous agreement.",
+      "source": "thereviewgeek ep. 1",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 1,
+      "until": 10
     },
     {
-      "from": "gyeongpyo",
-      "to": "taeha",
-      "type": "friend",
-      "label": "the village",
-      "short": "villager",
-      "evidence": null,
-      "source": null,
+      "from": "haksu",
+      "to": "sanggil",
+      "type": "family",
+      "label": "Baek Hak Su is Sang Gil's abusive father.",
+      "short": "his father",
+      "evidence": "Sang-gil recalls being brutally beaten by his father from time to time.",
+      "source": "thereviewgeek ep. 10",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "songwol",
-      "to": "taeha",
-      "type": "friend",
-      "label": "the village",
-      "short": "villager",
-      "evidence": null,
-      "source": null,
+      "from": "haksu",
+      "to": "sanggil",
+      "type": "family",
+      "label": "Sang Gil's father dies, and he refuses to attend the funeral.",
+      "short": "dies",
+      "evidence": "Upon his father’s death, Sang-gil refuses to go to the funeral home.",
+      "source": "thereviewgeek ep. 10",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "kind": "event"
+    },
+    {
+      "from": "suji",
+      "to": "gijun",
+      "type": "romance",
+      "label": "Su Ji secretly dates Gi Jun, though he won't tell his parents about her.",
+      "short": "his girlfriend",
+      "evidence": "Su-ji says they should break up if he cannot be honest with his parents about their relationship.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1,
+      "until": 9,
+      "wholeStory": false
+    },
+    {
+      "from": "suji",
+      "to": "gijun",
+      "type": "romance",
+      "label": "Gi Jun decides to let Su Ji go for good.",
+      "short": "breaks up",
+      "evidence": "Gi-jun has a serious discussion with Su-ji and decides to let her go for good.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "suji",
+      "to": "gijun",
+      "type": "romance",
+      "label": "Su Ji and Gi Jun reconcile after his heartfelt confession.",
+      "short": "his girlfriend",
+      "evidence": "Su-ji is touched by Gi-jun's heartfelt confession and takes him back.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 12
+    },
+    {
+      "from": "gijun",
+      "to": "eunsae",
+      "type": "work",
+      "label": "Gi Jun treats Eun Sae as her psychiatrist, trying to recover her memories.",
+      "short": "her doctor",
+      "evidence": "Eun-sae is surprised to discover that Gi-jun is the psychiatrist she came to see.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "huija",
+      "to": "pilseung",
+      "type": "family",
+      "label": "Hui Ja is Pil Seung's mother, wary of him boxing.",
+      "short": "his mother",
+      "evidence": "[Hui Ja's son]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "pilseung",
+      "to": "taeha",
+      "type": "work",
+      "label": "Tae Ha secretly coaches Pil Seung against his mother's wishes.",
+      "short": "secret student",
+      "evidence": "Tae-ha tells Eun-sae about Pil-seung, a young boy discreetly learning boxing because his mother, Hee-ja, disapproves of the sport.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "wholeStory": false
     },
     {
       "from": "maengsuk",
       "to": "eunsae",
-      "type": "bond",
-      "label": "the village shaman who reads her",
-      "short": "reads her",
-      "evidence": null,
-      "source": null,
+      "type": "friend",
+      "label": "Maeng Suk becomes fond of Eun Sae after their rocky start.",
+      "short": "village friend",
+      "evidence": "Maeng-suk returns the money and apologises to her. Eun-sae accepts the apology and apologises in return.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": false,
+      "since": 3
     },
     {
-      "from": "minjong",
+      "from": "maengsuk",
+      "to": "eunsae",
+      "type": "friend",
+      "label": "Eun Sae stalls the shaman's ritual to keep Maeng Suk from injuring herself on knives.",
+      "short": "saves her during ritual",
+      "evidence": "Eun-sae brings a snake to the “gut” ritual and stalls it to stop Maeng-suk from standing on the knives.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "kind": "event"
+    },
+    {
+      "from": "gangrok",
       "to": "taeha",
       "type": "work",
-      "label": "the mayor of the village",
-      "short": "mayor",
-      "evidence": null,
-      "source": null,
+      "label": "Gang Rok, Tae Ha's former subordinate in the gang, stays loyal to him and moves in with him.",
+      "short": "his subordinate",
+      "evidence": "Tae-ha meets his former colleague Kim Gang-rok, who worked under him at Mirae Eden.",
+      "source": "thereviewgeek ep. 4",
       "reveal": false,
-      "inferred": true,
-      "directed": true
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "wholeStory": false
+    },
+    {
+      "from": "kaito",
+      "to": "taeha",
+      "type": "family",
+      "label": "Kaito is revealed to be Tae Ha's brother.",
+      "short": "his brother",
+      "evidence": "Kaito escapes with Eun-sae on the other boat while... introducing himself as Tae-ha's brother.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 8
+    },
+    {
+      "from": "hyojin",
+      "to": "eunsae",
+      "type": "friend",
+      "label": "Hyo Jin is Eun Sae's oldest friend, despite a past falling out.",
+      "short": "her friend",
+      "evidence": "[Eun Sae's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "hyojin",
+      "to": "eunsae",
+      "type": "friend",
+      "label": "Hyo Jin reveals that Eun Sae was cruel to her before losing her memory.",
+      "short": "reveals her past cruelty",
+      "evidence": "Hyo-jin reveals that they fell out because Eun-sae was not a good person in the past.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "hyojin",
+      "to": "eunsae",
+      "type": "friend",
+      "label": "Eun Sae and Hyo Jin reconcile after both apologise for the past.",
+      "short": "reconciles with her",
+      "evidence": "Eun-sae apologises to Hyo-jin, who breaks into tears and apologises for her behaviour.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
     }
   ],
   "compact": {
@@ -417,39 +786,43 @@
       "taeha",
       "eunsae",
       "sanggil",
-      "yeonhong",
-      "hyesu",
+      "chihyeon",
+      "minjong",
+      "haksu",
       "doyeop",
       "jeonghwa",
       "gangrok",
-      "gijun",
-      "suji",
-      "hyojin",
-      "geumhyang",
-      "gyeongpyo",
-      "songwol",
+      "kaito",
       "huija",
       "pilseung",
       "maengsuk",
-      "minjong",
-      "chihyeon"
+      "hyesu",
+      "yeonhong"
     ],
     "blocks": {
-      "Tae Ha's people": [
+      "Hospital": [
+        2,
+        1
+      ],
+      "Gujin village": [
+        0,
+        2
+      ],
+      "Eun Sae's past": [
+        2,
+        2
+      ],
+      "Hong Boxing Gym": [
+        0,
+        1
+      ],
+      "Tae Ha's family": [
+        2,
+        0
+      ],
+      "Sang Gil's circle": [
         0,
         0
-      ],
-      "Eun Sae's people": [
-        2,
-        0
-      ],
-      "The syndicate": [
-        2,
-        2
-      ],
-      "The village": [
-        1,
-        2
       ]
     },
     "center": [

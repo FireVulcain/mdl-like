@@ -14,7 +14,7 @@ import { foldName } from "@/lib/character-map-stills";
  */
 
 // What a recap puts before a surname said alone: "Dr Ha", "Director Choi", "Elder Yun"
-const TITLED = /\b(?:dr|doctor|director|elder|mr|mrs|ms|miss|madame|chairman|chairwoman|ceo|president|detective|officer|professor|teacher|captain|chief|manager|lawyer|prosecutor|judge|nurse|general|lord|lady|prince|princess|king|queen|master)\.?\s+([A-Z][a-z]+)/gi;
+const TITLED = /\b(?:dr|doctor|director|elder|mr|mrs|ms|miss|madame|chairman|chairwoman|ceo|president|detective|officer|professor|teacher|captain|chief|manager|lawyer|prosecutor|judge|nurse|general|lord|lady|prince|princess|king|queen|master|coach|mayor|grandma|grandpa|grandmother|grandfather|auntie|aunt|uncle|granny|team leader|leader|boss|sergeant|inspector)\.?\s+([A-Z][a-z]+)/gi;
 
 const bare = (name: string) => name.replace(/["“”]/g, "").replace(/\s*\(.*?\)\s*/g, " ").trim();
 
@@ -35,12 +35,29 @@ function namesOf(p: MapPerson): { keys: string[]; surnames: string[] } {
     return { keys: [...keys].filter((k) => k.length >= 3), surnames: [...surnames].filter(Boolean) };
 }
 
+/**
+ * The ways a sentence could name someone, folded: every run of one to three
+ * words, each folded on its own. Folding the whole sentence at once let one
+ * word run into the next ("Kaito escapes" folded past "Kaito"), and
+ * `foldName` drops what is in brackets — "Ji-won (Eun-sae)" lost Eun-sae.
+ */
+function namings(sentence: string): string[] {
+    const words = sentence
+        .replace(/[()[\]{}"“”]/g, " ")
+        .split(/\s+/)
+        .map((w) => w.replace(/['’]s$/i, "").replace(/[^\p{L}\p{N}-]/gu, ""))
+        .filter(Boolean);
+    const out: string[] = [];
+    for (let i = 0; i < words.length; i++) for (let n = 1; n <= 3 && i + n <= words.length; n++) out.push(foldName(words.slice(i, i + n).join("")));
+    return out;
+}
+
 /** Whether a sentence names the person — by name, by a recap's misspelling of it, or by title and surname. */
 export function names(p: MapPerson, sentence: string): boolean {
-    const folded = foldName(sentence);
+    const runs = namings(sentence);
     const { keys, surnames } = namesOf(p);
     // a long name spelt a letter off ("Gyeon-un") still starts the same
-    if (keys.some((k) => folded.includes(k) || (k.length >= 6 && folded.includes(k.slice(0, 5))))) return true;
+    if (keys.some((k) => runs.some((r) => r === k || (k.length >= 6 && r.length >= 5 && r.startsWith(k.slice(0, 5)))))) return true;
     for (const m of sentence.matchAll(TITLED)) if (surnames.includes(foldName(m[1]))) return true;
     return false;
 }
