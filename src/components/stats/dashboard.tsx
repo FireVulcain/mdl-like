@@ -3,7 +3,6 @@
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { type DashboardStats } from "@/types/stats";
 import { Counter } from "./counter";
-import { HomeRowLabel } from "@/components/home-section-header";
 import { mdlPersonHref } from "@/lib/person-links";
 import { ACTION_COLOR, formatPayloadText, mediaHref } from "@/lib/activity-format";
 import { getActivityForDay, type DayActivityEntry } from "@/actions/stats";
@@ -101,19 +100,13 @@ function cellColor(count: number) {
     return HEAT_RAMP[4];
 }
 
-// Block header: accent dot + bold label, thin hairline, optional meta on the right
-// One hue for the page, the same one the data wears. Each of the eight blocks
-// used to pick its own — emerald, rose, yellow, fuchsia, violet, blue — and none
-// of them meant anything: Top Genres was not greener than By Country was pink.
-// The charts were unified on DATA_MARK a while back; these headings were missed.
+// Block header: the title and, on the right, what it counts. The dot before
+// it and the rule under it were the page's last ornaments.
 function BlockHeader({ label, meta }: { label: string; meta?: string }) {
     return (
-        <div className="space-y-2.5 mb-5">
-            <div className="flex items-baseline justify-between gap-3">
-                <HomeRowLabel dotClass={DATA_MARK} label={label} />
-                {meta && <span className="text-xs text-fg-dim">{meta}</span>}
-            </div>
-            <div className="h-px w-full bg-surface-3" />
+        <div className="mb-4 flex items-baseline justify-between gap-3">
+            <h2 className="text-base font-semibold text-fg">{label}</h2>
+            {meta && <span className="text-xs text-fg-dim">{meta}</span>}
         </div>
     );
 }
@@ -173,9 +166,6 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
         }
     }
 
-    const listCount = Math.min(stats.topGenres.length, stats.countryBreakdown.length, 8);
-    const maxCountry = stats.countryBreakdown[0]?.count ?? 1;
-
     // Rating: only 1–10, no zero
     const ratingBars = stats.ratingDistribution.filter((r) => r.rating > 0);
     const maxRatingCount = Math.max(...ratingBars.map((r) => r.count), 1);
@@ -185,230 +175,141 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
     const maxYearCount = Math.max(...recentYears.map((y) => y.count), 1);
 
     return (
-        <div className="space-y-14 animate-in fade-in duration-500">
-            {/* Hero numbers — bare figures, no cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-6">
-                {([
-                    {
-                        label: "Total watched",
-                        value: <Counter value={stats.totalMovies + stats.totalTV} />,
-                        sub: `${stats.totalMovies} movies · ${stats.totalTV} series`,
-                    },
-                    {
-                        label: "Watch time",
-                        value: <Counter value={watchTimeHours} suffix="h" />,
-                        sub: `≈ ${(stats.watchTimeMinutes / (60 * 24)).toFixed(1)} days`,
-                    },
-                    {
-                        label: "Average rating",
-                        value: (
-                            <span className="inline-flex items-baseline gap-2">
-                                {avgRating}
-                                <Star className="h-4 w-4 text-yellow-500 fill-yellow-500 self-center" />
-                            </span>
-                        ),
-                        sub: `${ratedItems} titles rated`,
-                    },
-                    {
-                        label: "Completion",
-                        value: <Counter value={Math.round(stats.completionRate)} suffix="%" />,
-                        sub: "of everything started",
-                    },
-                ] as const).map(({ label, value, sub }, i) => (
-                    <div key={label} className={`min-w-0 ${i > 0 ? "lg:border-l lg:border-line lg:pl-8" : ""}`}>
-                        <p className="text-[11px] font-semibold uppercase tracking-wider text-fg-dim">{label}</p>
-                        {/* No tabular-nums here — Counter turns it on only while it
-                            counts, and a large settled figure wants proportional digits */}
-                        <p className="text-3xl md:text-4xl font-black tracking-tight text-fg mt-1.5">{value}</p>
-                        <p className="text-xs text-fg-dim mt-1">{sub}</p>
-                    </div>
-                ))}
-            </div>
-
-            {/* Activity heatmap */}
-            <div>
-                <BlockHeader
-                    label="Activity"
-                    meta={`${totalHeatmapActions} action${totalHeatmapActions !== 1 ? "s" : ""} this past year`}
-                />
-                <div className="flex gap-0.5 mb-1 h-4">
-                    {weeks.map((_week, wi) => {
-                        const ml = monthLabels.find((m) => m.col === wi);
-                        return (
-                            <div key={wi} className="flex-1 relative">
-                                {ml && (
-                                    <span className="absolute text-[10px] text-fg-dim whitespace-nowrap" style={{ left: 0 }}>
-                                        {ml.label}
-                                    </span>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-                <div className="flex gap-0.5">
-                    {weeks.map((week, wi) => (
-                        <div key={wi} className="flex-1 flex flex-col gap-0.5">
-                            {week.map((day, di) =>
-                                day.count < 0 ? (
-                                    <div key={di} className="w-full aspect-square" />
-                                ) : (
-                                    <div key={di} className="relative group/day w-full aspect-square">
-                                        <button
-                                            type="button"
-                                            disabled={day.count === 0}
-                                            onClick={() => toggleDay(day.date, day.label)}
-                                            aria-label={`${day.count} actions on ${day.label}`}
-                                            // block + aspect-square, not h-full: a button is inline-block
-                                            // with native appearance, so a percentage height doesn't
-                                            // resolve against the wrapper the way the old div's did
-                                            className={`block w-full aspect-square ${CELL_CAP} ring-white/60 group-hover/day:ring-1 ${cellColor(day.count)} ${
-                                                day.count === 0 ? "cursor-default" : "cursor-pointer"
-                                            } ${openDay?.date === day.date ? "ring-1 ring-white" : ""}`}
-                                        />
-                                        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-20 hidden group-hover/day:block whitespace-nowrap rounded-md border border-line-strong bg-panel px-2 py-1 text-[11px] shadow-lg shadow-black/50">
-                                            <span className="font-semibold text-fg tabular-nums">
-                                                {day.count} action{day.count !== 1 ? "s" : ""}
-                                            </span>
-                                            <span className="text-fg-muted"> · {day.label}</span>
-                                        </span>
-                                    </div>
-                                ),
-                            )}
+        // The media and profile pages' layout: a column on the left with the
+        // figures and the two lists that read as label and count, the charts
+        // on the right where they have the width.
+        <div className="animate-in fade-in duration-500 space-y-10 md:space-y-0 md:grid md:grid-cols-[250px_1fr] md:gap-8 md:items-start">
+            <aside className="space-y-3.5">
+                <div className="grid grid-cols-2 gap-4 rounded-lg bg-box p-4">
+                    {([
+                        { label: "titles", value: <Counter value={stats.totalMovies + stats.totalTV} />, sub: `${stats.totalMovies} movies, ${stats.totalTV} series` },
+                        { label: "watched", value: <Counter value={watchTimeHours} suffix="h" />, sub: `about ${(stats.watchTimeMinutes / (60 * 24)).toFixed(1)} days` },
+                        {
+                            label: "average",
+                            value: (
+                                <span className="inline-flex items-center gap-1.5">
+                                    <Star className="h-3.5 w-3.5 fill-current text-yellow-400" />
+                                    {avgRating}
+                                </span>
+                            ),
+                            sub: `${ratedItems} rated`,
+                        },
+                        { label: "completion", value: <Counter value={Math.round(stats.completionRate)} suffix="%" />, sub: "of what was started" },
+                    ] as const).map(({ label, value, sub }) => (
+                        <div key={label} className="min-w-0" title={sub}>
+                            {/* No tabular-nums here — Counter turns it on only while it
+                                counts, and a large settled figure wants proportional digits */}
+                            <div className="text-[22px] font-semibold leading-tight tracking-tight text-fg">{value}</div>
+                            <div className="mt-0.5 text-xs text-fg-dim">{label}</div>
                         </div>
                     ))}
                 </div>
-                {openDay && (
-                    <div className="mt-4 rounded-lg border border-line-strong bg-surface-1 p-4">
-                        <div className="flex items-center justify-between gap-3 mb-3">
-                            <span className="text-sm font-semibold text-fg">{openDay.label}</span>
-                            <div className="flex items-center gap-3 shrink-0">
-                                <Link href="/history" className="text-xs text-sky-400 hover:text-sky-300 transition-colors">
-                                    View all history
-                                </Link>
-                                <button
-                                    type="button"
-                                    onClick={() => setOpenDay(null)}
-                                    aria-label="Close"
-                                    className="text-fg-dim hover:text-fg transition-colors"
-                                >
-                                    <X className="h-4 w-4" />
-                                </button>
-                            </div>
-                        </div>
-                        {loadingDay && !dayCache[openDay.date] ? (
-                            <p className="text-sm text-fg-dim">Loading…</p>
-                        ) : (dayCache[openDay.date]?.length ?? 0) === 0 ? (
-                            <p className="text-sm text-fg-dim">No activity on this day.</p>
-                        ) : (
-                            <ul className="space-y-2">
-                                {dayCache[openDay.date].map((e) => (
-                                    <li key={e.id}>
-                                        <Link
-                                            href={mediaHref(e.source, e.externalId)}
-                                            className="flex items-center gap-3 rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface-2 transition-colors"
-                                        >
-                                            {e.poster ? (
-                                                <Image
-                                                    unoptimized
-                                                    src={e.poster}
-                                                    alt=""
-                                                    width={28}
-                                                    height={42}
-                                                    className="h-10.5 w-7 rounded-md object-cover shrink-0"
-                                                />
-                                            ) : (
-                                                <span className="h-10.5 w-7 rounded-md bg-surface-2 shrink-0" />
-                                            )}
-                                            <span
-                                                className={`text-sm min-w-0 flex-1 ${ACTION_COLOR[e.action] ?? "text-fg-soft"}`}
-                                                dangerouslySetInnerHTML={{
-                                                    __html: formatPayloadText(e.action, e.payload, e.title),
-                                                }}
-                                            />
-                                            <span className="text-xs text-fg-dim tabular-nums shrink-0">
-                                                {new Date(e.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
-                                            </span>
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
+
+                <div className="rounded-lg bg-box p-4">
+                    <h2 className="mb-2.5 text-sm font-semibold text-fg">Top genres</h2>
+                    {stats.topGenres.length > 0 ? (
+                        <ul className="space-y-1.5 text-[13px]">
+                            {stats.topGenres.slice(0, 8).map((genre) => (
+                                <li key={genre.name}>
+                                    <Link
+                                        href={`/watchlist?genre=${encodeURIComponent(genre.name)}`}
+                                        className="flex justify-between gap-3 text-fg-soft transition-colors hover:text-fg"
+                                    >
+                                        <span className="truncate">{genre.name}</span>
+                                        <span className="tabular-nums text-fg-dim">{genre.count}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="text-[13px] text-fg-dim">No genre data yet</p>
+                    )}
+                </div>
+
+                {stats.countryBreakdown.length > 0 && (
+                    <div className="rounded-lg bg-box p-4">
+                        <h2 className="mb-2.5 text-sm font-semibold text-fg">By country</h2>
+                        <ul className="space-y-1.5 text-[13px]">
+                            {stats.countryBreakdown.slice(0, 8).map(({ country, count }) => (
+                                <li key={country}>
+                                    <Link
+                                        href={`/watchlist?country=${encodeURIComponent(country)}`}
+                                        className="flex justify-between gap-3 text-fg-soft transition-colors hover:text-fg"
+                                    >
+                                        <span className="truncate">{COUNTRY_LABELS[country] ?? country}</span>
+                                        <span className="tabular-nums text-fg-dim">{count}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 )}
-                <div className="flex items-center gap-1.5 mt-3 justify-end">
-                    <span className="text-[10px] text-fg-faint">Less</span>
-                    {HEAT_RAMP.map((c) => (
-                        <div key={c} className={`w-2.5 h-2.5 ${CELL_CAP} ${c}`} />
-                    ))}
-                    <span className="text-[10px] text-fg-faint">More</span>
-                </div>
-            </div>
+            </aside>
 
-            {/* Most seen actors */}
-            {stats.topActors.length > 0 && (
+            <div className="min-w-0 space-y-10">
+                {/* Activity heatmap */}
                 <div>
-                    <BlockHeader label="Most Seen Actors" />
-                    {/* The whole tile opens the breakdown rather than the profile: the
-                        count alone was a 10px target nested inside the link, and the
-                        number is easier to trust when you can see what makes it up.
-                        The profile link moves into the panel, where it has room. */}
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-3 gap-y-5">
-                        {stats.topActors.map((actor) => {
-                            const open = openActor === actor.slug;
+                    <BlockHeader
+                        label="Activity"
+                        meta={`${totalHeatmapActions} action${totalHeatmapActions !== 1 ? "s" : ""} this past year`}
+                    />
+                    <div className="flex gap-0.5 mb-1 h-4">
+                        {weeks.map((_week, wi) => {
+                            const ml = monthLabels.find((m) => m.col === wi);
                             return (
-                                <button
-                                    key={actor.slug}
-                                    type="button"
-                                    onClick={() => setOpenActor(open ? null : actor.slug)}
-                                    aria-expanded={open}
-                                    className="group flex flex-col items-center gap-2 text-center cursor-pointer"
-                                >
-                                    <div
-                                        className={`relative w-14 h-14 rounded-full overflow-hidden bg-surface-2 ring-2 transition-all ${
-                                            open ? "ring-sky-400" : "ring-line-strong group-hover:ring-sky-400/50"
-                                        }`}
-                                    >
-                                        {actor.profileImage ? (
-                                            <Image
-                                                unoptimized
-                                                src={actor.profileImage}
-                                                alt={actor.name}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                            />
-                                        ) : (
-                                            <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
-                                                <Users className="h-5 w-5" />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div>
-                                        <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-sky-300" : "text-fg group-hover:text-sky-300"}`}>
-                                            {actor.name}
-                                        </p>
-                                        <p className="text-xs text-fg-dim">
-                                            {actor.count} show{actor.count !== 1 ? "s" : ""}
-                                        </p>
-                                    </div>
-                                </button>
+                                <div key={wi} className="flex-1 relative">
+                                    {ml && (
+                                        <span className="absolute text-[10px] text-fg-dim whitespace-nowrap" style={{ left: 0 }}>
+                                            {ml.label}
+                                        </span>
+                                    )}
+                                </div>
                             );
                         })}
                     </div>
-
-                    {openActorData && (
-                        <div className="mt-5 rounded-lg border border-line-strong bg-surface-1 p-4">
+                    <div className="flex gap-0.5">
+                        {weeks.map((week, wi) => (
+                            <div key={wi} className="flex-1 flex flex-col gap-0.5">
+                                {week.map((day, di) =>
+                                    day.count < 0 ? (
+                                        <div key={di} className="w-full aspect-square" />
+                                    ) : (
+                                        <div key={di} className="relative group/day w-full aspect-square">
+                                            <button
+                                                type="button"
+                                                disabled={day.count === 0}
+                                                onClick={() => toggleDay(day.date, day.label)}
+                                                aria-label={`${day.count} actions on ${day.label}`}
+                                                // block + aspect-square, not h-full: a button is inline-block
+                                                // with native appearance, so a percentage height doesn't
+                                                // resolve against the wrapper the way the old div's did
+                                                className={`block w-full aspect-square ${CELL_CAP} ring-white/60 group-hover/day:ring-1 ${cellColor(day.count)} ${
+                                                    day.count === 0 ? "cursor-default" : "cursor-pointer"
+                                                } ${openDay?.date === day.date ? "ring-1 ring-white" : ""}`}
+                                            />
+                                            <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-20 hidden group-hover/day:block whitespace-nowrap rounded-md border border-line-strong bg-panel px-2 py-1 text-[11px] shadow-lg shadow-black/50">
+                                                <span className="font-semibold text-fg tabular-nums">
+                                                    {day.count} action{day.count !== 1 ? "s" : ""}
+                                                </span>
+                                                <span className="text-fg-muted"> · {day.label}</span>
+                                            </span>
+                                        </div>
+                                    ),
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    {openDay && (
+                        <div className="mt-4 rounded-lg bg-box p-4">
                             <div className="flex items-center justify-between gap-3 mb-3">
-                                <span className="text-sm font-semibold text-fg">{openActorData.name}</span>
+                                <span className="text-sm font-semibold text-fg">{openDay.label}</span>
                                 <div className="flex items-center gap-3 shrink-0">
-                                    <Link
-                                        href={mdlPersonHref(openActorData.slug) ?? "#"}
-                                        className="text-xs text-sky-300 hover:text-sky-200 transition-colors"
-                                    >
-                                        View profile
+                                    <Link href="/history" className="text-xs text-fg-dim hover:text-fg transition-colors">
+                                        View all history
                                     </Link>
                                     <button
                                         type="button"
-                                        onClick={() => setOpenActor(null)}
+                                        onClick={() => setOpenDay(null)}
                                         aria-label="Close"
                                         className="text-fg-dim hover:text-fg transition-colors"
                                     >
@@ -416,102 +317,81 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                     </button>
                                 </div>
                             </div>
-                            <ul className="flex flex-wrap gap-3">
-                                {openActorData.shows.map((s) => (
-                                    <li key={s.href + s.title} className="w-20">
-                                        <Link href={s.href} className="group/show block">
-                                            <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-surface-2 ring-1 ring-line-strong group-hover/show:ring-sky-400/50 transition-all">
-                                                {s.poster ? (
+                            {loadingDay && !dayCache[openDay.date] ? (
+                                <p className="text-sm text-fg-dim">Loading…</p>
+                            ) : (dayCache[openDay.date]?.length ?? 0) === 0 ? (
+                                <p className="text-sm text-fg-dim">No activity on this day.</p>
+                            ) : (
+                                <ul className="space-y-2">
+                                    {dayCache[openDay.date].map((e) => (
+                                        <li key={e.id}>
+                                            <Link
+                                                href={mediaHref(e.source, e.externalId)}
+                                                className="flex items-center gap-3 rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface-2 transition-colors"
+                                            >
+                                                {e.poster ? (
                                                     <Image
                                                         unoptimized
-                                                        src={s.poster}
-                                                        alt={s.title}
-                                                        fill
-                                                        sizes="80px"
-                                                        className="object-cover group-hover/show:scale-105 transition-transform duration-300"
+                                                        src={e.poster}
+                                                        alt=""
+                                                        width={28}
+                                                        height={42}
+                                                        className="h-10.5 w-7 rounded-md object-cover shrink-0"
                                                     />
                                                 ) : (
-                                                    <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
-                                                        <ImageOff className="h-4 w-4" />
-                                                    </div>
+                                                    <span className="h-10.5 w-7 rounded-md bg-surface-2 shrink-0" />
                                                 )}
-                                            </div>
-                                            <p className="mt-1.5 text-[11px] leading-snug text-fg-muted line-clamp-2 group-hover/show:text-fg transition-colors">
-                                                {s.title}
-                                            </p>
-                                            {/* The year is what the list is ordered by, so it earns its place */}
-                                            {s.year && <p className="text-[10px] text-fg-faint tabular-nums">{s.year}</p>}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                                                <span
+                                                    className={`text-sm min-w-0 flex-1 ${ACTION_COLOR[e.action] ?? "text-fg-soft"}`}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: formatPayloadText(e.action, e.payload, e.title),
+                                                    }}
+                                                />
+                                                <span className="text-xs text-fg-dim tabular-nums shrink-0">
+                                                    {new Date(e.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+                                                </span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
                     )}
-                </div>
-            )}
-
-            {/* Ratings + Years */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-14">
-                <div>
-                    <BlockHeader label="Your Ratings" meta={`${ratedItems} rated`} />
-                    <div className="flex items-stretch gap-1.5 h-36 border-b border-line">
-                        {ratingBars.map(({ rating, count }) => (
-                            <Link
-                                key={rating}
-                                href={`/watchlist?score=${rating}`}
-                                aria-disabled={count === 0}
-                                className={`flex-1 flex flex-col group ${count === 0 ? "pointer-events-none" : ""}`}
-                                title={`${count} title${count !== 1 ? "s" : ""} rated ${rating}`}
-                            >
-                                {/* Fixed label slot, outside the plot area — otherwise the labelled
-                                    bar gets squeezed and renders shorter than shorter neighbours */}
-                                <div className="h-4 text-center text-[11px] leading-4 text-fg-muted tabular-nums">
-                                    <span className="group-hover:hidden">{count === maxRatingCount && count > 0 ? count : ""}</span>
-                                    <span className="hidden group-hover:inline">{count}</span>
-                                </div>
-                                <div className="relative flex-1">
-                                    {/* Capped at 24px and centred, so the band's leftover is air.
-                                        A bar that fills its slot reads as a thick saturated block. */}
-                                    <div
-                                        className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 ${BAR_CAP} ${DATA_MARK} transition-opacity group-hover:opacity-80`}
-                                        style={{
-                                            height: `${Math.max((count / maxRatingCount) * 100, count > 0 ? 3 : 0)}%`,
-                                            opacity: count === 0 ? 0.12 : undefined,
-                                        }}
-                                    />
-                                </div>
-                            </Link>
+                    <div className="flex items-center gap-1.5 mt-3 justify-end">
+                        <span className="text-[10px] text-fg-faint">Less</span>
+                        {HEAT_RAMP.map((c) => (
+                            <div key={c} className={`w-2.5 h-2.5 ${CELL_CAP} ${c}`} />
                         ))}
-                    </div>
-                    <div className="flex gap-1.5 mt-1.5">
-                        {ratingBars.map(({ rating }) => (
-                            <span key={rating} className="flex-1 text-center text-[10px] text-fg-dim tabular-nums">{rating}</span>
-                        ))}
+                        <span className="text-[10px] text-fg-faint">More</span>
                     </div>
                 </div>
 
-                {recentYears.length > 0 && (
+                {/* Ratings + Years */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
                     <div>
-                        <BlockHeader label="By Release Year" />
-                        <div className="flex items-stretch gap-1 h-36 border-b border-line">
-                            {recentYears.map(({ year, count }) => (
+                        <BlockHeader label="Your ratings" meta={`${ratedItems} rated`} />
+                        <div className="flex items-stretch gap-1.5 h-36 border-b border-line">
+                            {ratingBars.map(({ rating, count }) => (
                                 <Link
-                                    key={year}
-                                    href={`/watchlist?year=${year}`}
+                                    key={rating}
+                                    href={`/watchlist?score=${rating}`}
                                     aria-disabled={count === 0}
                                     className={`flex-1 flex flex-col group ${count === 0 ? "pointer-events-none" : ""}`}
-                                    title={`${count} title${count !== 1 ? "s" : ""} from ${year}`}
+                                    title={`${count} title${count !== 1 ? "s" : ""} rated ${rating}`}
                                 >
+                                    {/* Fixed label slot, outside the plot area — otherwise the labelled
+                                        bar gets squeezed and renders shorter than shorter neighbours */}
                                     <div className="h-4 text-center text-[11px] leading-4 text-fg-muted tabular-nums">
-                                        <span className="group-hover:hidden">{count === maxYearCount && count > 0 ? count : ""}</span>
+                                        <span className="group-hover:hidden">{count === maxRatingCount && count > 0 ? count : ""}</span>
                                         <span className="hidden group-hover:inline">{count}</span>
                                     </div>
                                     <div className="relative flex-1">
-                                        {/* Same 24px cap as Your Ratings — see the note there */}
+                                        {/* Capped at 24px and centred, so the band's leftover is air.
+                                            A bar that fills its slot reads as a thick saturated block. */}
                                         <div
                                             className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 ${BAR_CAP} ${DATA_MARK} transition-opacity group-hover:opacity-80`}
                                             style={{
-                                                height: `${Math.max((count / maxYearCount) * 100, count > 0 ? 3 : 0)}%`,
+                                                height: `${Math.max((count / maxRatingCount) * 100, count > 0 ? 3 : 0)}%`,
                                                 opacity: count === 0 ? 0.12 : undefined,
                                             }}
                                         />
@@ -519,134 +399,216 @@ export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardP
                                 </Link>
                             ))}
                         </div>
-                        <div className="flex gap-1 mt-1.5">
-                            {recentYears.map(({ year }) => (
-                                <span key={year} className="flex-1 text-center text-[10px] text-fg-dim tabular-nums">
-                                    {String(year).slice(2)}
-                                </span>
+                        <div className="flex gap-1.5 mt-1.5">
+                            {ratingBars.map(({ rating }) => (
+                                <span key={rating} className="flex-1 text-center text-[10px] text-fg-dim tabular-nums">{rating}</span>
                             ))}
                         </div>
                     </div>
-                )}
-            </div>
 
-            {/* Genres + Countries */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-14">
-                <div>
-                    <BlockHeader label="Top Genres" />
-                    <div className="space-y-3.5">
-                        {stats.topGenres.length > 0 ? (
-                            stats.topGenres.slice(0, listCount).map((genre) => (
-                                <Link
-                                    key={genre.name}
-                                    href={`/watchlist?genre=${encodeURIComponent(genre.name)}`}
-                                    className="block space-y-1.5 group -mx-2 px-2 py-1 rounded-lg hover:bg-surface-2 transition-colors"
-                                >
-                                    <div className="flex justify-between items-baseline text-sm">
-                                        <span className="font-medium text-fg group-hover:text-sky-300 transition-colors">
-                                            {genre.name}
-                                        </span>
-                                        <span className="text-xs text-fg-dim tabular-nums">{genre.count}</span>
-                                    </div>
-                                    <div className="relative h-1 w-full bg-surface-2 rounded-full overflow-hidden">
-                                        <div className={`h-full rounded-full ${DATA_MARK}`} style={{ width: `${genre.percentage}%` }} />
-                                    </div>
-                                </Link>
-                            ))
-                        ) : (
-                            <p className="text-sm text-fg-dim py-8">No genre data yet</p>
-                        )}
-                    </div>
+                    {recentYears.length > 0 && (
+                        <div>
+                            <BlockHeader label="By release year" />
+                            <div className="flex items-stretch gap-1 h-36 border-b border-line">
+                                {recentYears.map(({ year, count }) => (
+                                    <Link
+                                        key={year}
+                                        href={`/watchlist?year=${year}`}
+                                        aria-disabled={count === 0}
+                                        className={`flex-1 flex flex-col group ${count === 0 ? "pointer-events-none" : ""}`}
+                                        title={`${count} title${count !== 1 ? "s" : ""} from ${year}`}
+                                    >
+                                        <div className="h-4 text-center text-[11px] leading-4 text-fg-muted tabular-nums">
+                                            <span className="group-hover:hidden">{count === maxYearCount && count > 0 ? count : ""}</span>
+                                            <span className="hidden group-hover:inline">{count}</span>
+                                        </div>
+                                        <div className="relative flex-1">
+                                            {/* Same 24px cap as Your Ratings — see the note there */}
+                                            <div
+                                                className={`absolute inset-x-0 bottom-0 mx-auto w-full max-w-6 ${BAR_CAP} ${DATA_MARK} transition-opacity group-hover:opacity-80`}
+                                                style={{
+                                                    height: `${Math.max((count / maxYearCount) * 100, count > 0 ? 3 : 0)}%`,
+                                                    opacity: count === 0 ? 0.12 : undefined,
+                                                }}
+                                            />
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="flex gap-1 mt-1.5">
+                                {recentYears.map(({ year }) => (
+                                    <span key={year} className="flex-1 text-center text-[10px] text-fg-dim tabular-nums">
+                                        {String(year).slice(2)}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
 
-                {stats.countryBreakdown.length > 0 && (
+                {/* Most seen actors */}
+                {stats.topActors.length > 0 && (
                     <div>
-                        <BlockHeader label="By Country" />
-                        <div className="space-y-3.5">
-                            {stats.countryBreakdown.slice(0, listCount).map(({ country, count }) => (
-                                <div key={country} className="space-y-1.5 px-2 -mx-2 py-1">
-                                    <div className="flex justify-between items-baseline text-sm">
-                                        <span className="font-medium text-fg">{COUNTRY_LABELS[country] ?? country}</span>
-                                        <span className="text-xs text-fg-dim tabular-nums">{count}</span>
-                                    </div>
-                                    <div className="relative h-1 w-full bg-surface-2 rounded-full overflow-hidden">
-                                        <div className={`h-full rounded-full ${DATA_MARK}`} style={{ width: `${(count / maxCountry) * 100}%` }} />
+                        <BlockHeader label="Most seen actors" />
+                        {/* The whole tile opens the breakdown rather than the profile: the
+                            count alone was a 10px target nested inside the link, and the
+                            number is easier to trust when you can see what makes it up.
+                            The profile link moves into the panel, where it has room. */}
+                        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-5">
+                            {stats.topActors.map((actor) => {
+                                const open = openActor === actor.slug;
+                                return (
+                                    <button
+                                        key={actor.slug}
+                                        type="button"
+                                        onClick={() => setOpenActor(open ? null : actor.slug)}
+                                        aria-expanded={open}
+                                        className="group flex flex-col items-center gap-2 text-center cursor-pointer"
+                                    >
+                                        <div
+                                            className={`relative w-14 h-14 rounded-full overflow-hidden bg-surface-2 ring-2 transition-all ${
+                                                open ? "ring-fg-muted" : "ring-transparent group-hover:ring-line-strong"
+                                            }`}
+                                        >
+                                            {actor.profileImage ? (
+                                                <Image
+                                                    unoptimized
+                                                    src={actor.profileImage}
+                                                    alt={actor.name}
+                                                    fill
+                                                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                                />
+                                            ) : (
+                                                <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
+                                                    <Users className="h-5 w-5" />
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <p className={`text-xs font-medium line-clamp-1 transition-colors ${open ? "text-fg" : "text-fg-soft group-hover:text-fg"}`}>
+                                                {actor.name}
+                                            </p>
+                                            <p className="text-xs text-fg-dim">
+                                                {actor.count} show{actor.count !== 1 ? "s" : ""}
+                                            </p>
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        {openActorData && (
+                            <div className="mt-5 rounded-lg bg-box p-4">
+                                <div className="flex items-center justify-between gap-3 mb-3">
+                                    <span className="text-sm font-semibold text-fg">{openActorData.name}</span>
+                                    <div className="flex items-center gap-3 shrink-0">
+                                        <Link
+                                            href={mdlPersonHref(openActorData.slug) ?? "#"}
+                                            className="text-xs text-fg-dim hover:text-fg transition-colors"
+                                        >
+                                            View profile
+                                        </Link>
+                                        <button
+                                            type="button"
+                                            onClick={() => setOpenActor(null)}
+                                            aria-label="Close"
+                                            className="text-fg-dim hover:text-fg transition-colors"
+                                        >
+                                            <X className="h-4 w-4" />
+                                        </button>
                                     </div>
                                 </div>
+                                <ul className="flex flex-wrap gap-3">
+                                    {openActorData.shows.map((s) => (
+                                        <li key={s.href + s.title} className="w-20">
+                                            <Link href={s.href} className="group/show block">
+                                                <div className="relative w-20 aspect-2/3 rounded-lg overflow-hidden bg-surface-2 transition-all">
+                                                    {s.poster ? (
+                                                        <Image
+                                                            unoptimized
+                                                            src={s.poster}
+                                                            alt={s.title}
+                                                            fill
+                                                            sizes="80px"
+                                                            className="object-cover group-hover/show:scale-105 transition-transform duration-300"
+                                                        />
+                                                    ) : (
+                                                        <div className="absolute inset-0 flex items-center justify-center text-fg-faint">
+                                                            <ImageOff className="h-4 w-4" />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <p className="mt-1.5 text-[11px] leading-snug text-fg-muted line-clamp-2 group-hover/show:text-fg transition-colors">
+                                                    {s.title}
+                                                </p>
+                                                {/* The year is what the list is ordered by, so it earns its place */}
+                                                {s.year && <p className="text-[10px] text-fg-faint tabular-nums">{s.year}</p>}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Themes: a run of text, each one a link with its count beside it,
+                    spaced rather than dotted — a dot would start the wrapped lines.
+                    The tinted pills sized by weight were the page's loudest thing. */}
+                {stats.topThemes.length > 0 && (
+                    <div>
+                        <BlockHeader label="Top themes" />
+                        <p className="flex flex-wrap items-baseline gap-x-5 gap-y-1 text-sm leading-7 text-fg-soft">
+                            {stats.topThemes.map((theme) => (
+                                <span key={theme.name} className="whitespace-nowrap">
+                                    <Link href={`/watchlist?theme=${encodeURIComponent(theme.name)}`} className="transition-colors hover:text-fg">
+                                        {theme.name}
+                                    </Link>
+                                    <span className="ml-1 text-xs tabular-nums text-fg-dim">{theme.count}</span>
+                                </span>
                             ))}
-                        </div>
+                        </p>
+                    </div>
+                )}
+
+                {/* Continue watching: rows, with the watchlist's cells per episode. */}
+                {continueWatching.length > 0 && (
+                    <div>
+                        <BlockHeader label="Continue watching" />
+                        <ul className="divide-y divide-line-soft">
+                            {continueWatching.slice(0, 6).map((show) => (
+                                <li key={show.id}>
+                                    <Link
+                                        href={`/media/${show.source.toLowerCase()}-${show.externalId}`}
+                                        className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-surface-2"
+                                    >
+                                        {show.poster ? (
+                                            <Image unoptimized src={show.poster} alt="" width={28} height={40} className="h-10 w-7 shrink-0 rounded object-cover" />
+                                        ) : (
+                                            <span className="h-10 w-7 shrink-0 rounded bg-surface-3" />
+                                        )}
+                                        <span className="min-w-0 flex-1 truncate text-sm font-medium text-fg">{show.title}</span>
+                                        {show.totalEp <= 40 ? (
+                                            <span className="hidden w-40 shrink-0 gap-0.5 sm:grid" style={{ gridTemplateColumns: `repeat(${show.totalEp}, minmax(0, 1fr))` }} aria-hidden>
+                                                {Array.from({ length: show.totalEp }, (_, i) => (
+                                                    <span key={i} className={`h-1 rounded-[1px] ${i < show.progress ? DATA_MARK : "bg-surface-3"}`} />
+                                                ))}
+                                            </span>
+                                        ) : (
+                                            <span className="hidden h-1 w-40 shrink-0 overflow-hidden rounded-full bg-surface-3 sm:block" aria-hidden>
+                                                <span className={`block h-full ${DATA_MARK}`} style={{ width: `${(show.progress / show.totalEp) * 100}%` }} />
+                                            </span>
+                                        )}
+                                        <span className="w-14 shrink-0 text-right text-[13px] tabular-nums text-fg-dim">
+                                            {show.progress} / {show.totalEp}
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 )}
             </div>
-
-            {/* Themes */}
-            {stats.topThemes.length > 0 && (
-                <div>
-                    <BlockHeader label="Top Themes" />
-                    <div className="flex flex-wrap gap-2">
-                        {stats.topThemes.map((theme) => {
-                            const intensity = theme.count / stats.topThemes[0].count;
-                            return (
-                                <Link
-                                    key={theme.name}
-                                    href={`/watchlist?theme=${encodeURIComponent(theme.name)}`}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-[var(--chip-ink)] border hover:brightness-135 transition-all"
-                                    style={{
-                                        backgroundColor: `rgb(var(--chip-rgb) / ${0.08 + intensity * 0.22})`,
-                                        borderColor: `rgb(var(--chip-rgb) / ${0.15 + intensity * 0.35})`,
-                                    }}
-                                >
-                                    {theme.name}
-                                    <span className="text-xs text-[var(--chip-ink-soft)]">{theme.count}</span>
-                                </Link>
-                            );
-                        })}
-                    </div>
-                </div>
-            )}
-
-            {/* Continue watching */}
-            {continueWatching.length > 0 && (
-                <div>
-                    <BlockHeader label="Continue Watching" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {continueWatching.slice(0, 6).map((show) => {
-                            const progressPercent = (show.progress / show.totalEp) * 100;
-                            return (
-                                <Link key={show.id} href={`/media/${show.source.toLowerCase()}-${show.externalId}`} className="group">
-                                    <div className="relative aspect-video rounded-lg overflow-hidden bg-black/20">
-                                        {(show.backdrop || show.poster) && (
-                                            <Image
-                                                unoptimized
-                                                src={show.backdrop || show.poster}
-                                                alt={show.title ?? ""}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                            />
-                                        )}
-                                        <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
-                                        <div className="absolute bottom-0 left-0 right-0 p-3">
-                                            <p className="text-white font-semibold text-sm mb-2 line-clamp-1">{show.title}</p>
-                                            <div className="space-y-1">
-                                                <div className="flex justify-between text-xs text-white/80">
-                                                    <span>Ep {show.progress} / {show.totalEp}</span>
-                                                    <span>{Math.round(progressPercent)}%</span>
-                                                </div>
-                                                <div className="relative h-1 bg-white/20 rounded-full overflow-hidden">
-                                                    <div
-                                                        className={`absolute inset-y-0 left-0 ${DATA_MARK} rounded-full`}
-                                                        style={{ width: `${progressPercent}%` }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

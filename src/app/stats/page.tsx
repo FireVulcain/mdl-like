@@ -22,7 +22,7 @@ export default async function StatsPage() {
     return (
         <div className="relative min-h-screen overflow-hidden">
 
-            <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
+            <div className="container py-8 px-4 mx-auto max-w-6xl relative z-10">
                 <div className="mb-8">
                     <h1 className="font-display text-3xl font-bold tracking-tight">My Stats</h1>
                     <p className="text-muted-foreground mt-1">A breakdown of your watching habits</p>
