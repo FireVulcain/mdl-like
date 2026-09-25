@@ -137,7 +137,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
         return (
             <div className="min-h-screen bg-linear-to-b -mt-24">
-                <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
+                <div className="relative h-[25vh] min-h-44 w-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_40%,transparent)]">
                     <div className="h-full w-full bg-linear-to-br from-surface-3 to-surface-2" />
                 </div>
 
@@ -645,7 +645,10 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
             <MdlLiveRefresh externalId={media.externalId} season={selectedSeason} />
 
             {/* Backdrop */}
-            <div className="relative h-[25vh] min-h-44 w-full overflow-hidden">
+            {/* The image fades out through a mask rather than into a painted colour:
+                the page behind is the shared backdrop, lighter at the top than its
+                base, so a fade to a flat colour left a dark band under the hero. */}
+            <div className="relative h-[25vh] min-h-44 w-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_40%,transparent)]">
                 {heroBackdrop ? (
                     <>
                         <Image
@@ -657,11 +660,9 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             priority
                         />
                         {/* Top gradient for header readability on bright images */}
-                        {/* One gradient, not three. A top scrim for the header, a
-                            bottom fade to the page, and a third that repeated the
-                            second's job were stacked here — the same pile the hero
-                            carried. This single stop does both ends. */}
-                        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-app" />
+                        {/* The top scrim, for the header on a bright image. The
+                            bottom fade is the mask on the container. */}
+                        <div className="absolute inset-0 bg-linear-to-b from-black/60 to-transparent to-50%" />
                     </>
                 ) : (
                     <div className="h-full w-full bg-linear-to-br from-surface-3 to-surface-2" />

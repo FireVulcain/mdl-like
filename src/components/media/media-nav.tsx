@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 export interface NavSection {
     id: string;
@@ -37,6 +37,11 @@ export function MediaNav({ sections, groups }: { sections?: NavSection[]; groups
     // that is not there is a jump to nowhere. Unknown until the client runs,
     // so the server draws every entry and the empties fall away on arrival.
     const [absent, setAbsent] = useState<Set<string>>(() => new Set());
+    // Whether the strip is pinned under the header. Only then does it need a
+    // ground of its own, to hide what scrolls beneath; at rest it sits on the
+    // page's backdrop, and a solid strip there read as a black band.
+    const navRef = useRef<HTMLElement>(null);
+    const [stuck, setStuck] = useState(false);
 
     // Spy on scroll, not with an observer: the question is "which section's
     // top is the last one above the line", and that is one pass over a dozen
@@ -48,6 +53,8 @@ export function MediaNav({ sections, groups }: { sections?: NavSection[]; groups
         let raf = 0;
         const update = () => {
             raf = 0;
+            const nav = navRef.current;
+            if (nav) setStuck(nav.getBoundingClientRect().top <= STICKY_TOP + 1);
             let current: string | null = null;
             const gone = new Set<string>();
             for (const id of targets) {
@@ -89,12 +96,12 @@ export function MediaNav({ sections, groups }: { sections?: NavSection[]; groups
     }
 
     return (
-        // The page's own ground behind it, opaque and with no blur: a blurred
-        // strip would be one more layer composited on every scroll frame, and
-        // /media paints no backdrop of its own, so a flat wash of the body
-        // colour is the same surface. The negative margin lets the strip cover
-        // the content's full width while the items keep their left edge.
-        <nav className="sticky z-20 -mx-2 px-2 pt-3 bg-app" style={{ top: STICKY_TOP }} aria-label="Sections">
+        // Transparent at rest, so the page's backdrop shows through as it does
+        // everywhere else. Pinned, it takes the page colour, opaque and with no
+        // blur: a blurred strip would be one more layer composited on every
+        // scroll frame. The negative margin lets the strip cover the content's
+        // full width while the items keep their left edge.
+        <nav ref={navRef} className={`sticky z-20 -mx-2 px-2 pt-3 transition-colors ${stuck ? "bg-app" : "bg-transparent"}`} style={{ top: STICKY_TOP }} aria-label="Sections">
             <div className="flex items-center gap-5 overflow-x-auto scrollbar-hide border-b border-line">
                 {resolved
                     .map((group) => group.filter(({ id }) => !absent.has(id)))
