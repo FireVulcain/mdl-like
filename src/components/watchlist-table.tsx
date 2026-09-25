@@ -1080,8 +1080,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             key={status}
                                             onClick={() => toggleStatus(status)}
                                             aria-pressed={isSelected}
-                                            className={`h-7.5 px-2.5 rounded-md text-[13px] whitespace-nowrap transition-colors cursor-pointer ${
-                                                isSelected ? "bg-surface-4 font-medium text-fg" : "text-fg-muted hover:text-fg"
+                                            className={`h-7.5 px-2.5 rounded-md text-sm font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                                                isSelected ? "bg-surface-4 text-fg" : "text-fg-muted hover:text-fg"
                                             }`}
                                         >
                                             {status === "Plan to Watch" ? (
