@@ -363,10 +363,10 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             <button
                 type="button"
                 onClick={openPanel}
-                className="inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-fg-soft transition-colors hover:bg-surface-3 hover:text-fg"
+                className="inline-flex items-center gap-1.5 text-[13px] text-fg-dim transition-colors hover:text-fg cursor-pointer"
                 title="Write the relationship chart with Claude (admin)"
             >
-                {active ? <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> : <Sparkles className="h-3.5 w-3.5" />}
+                {active && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
                 {label}
             </button>
             {/* The stills the extension fetched on its own, when the panel is not there to say so */}
