@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getActivityLog, deleteActivityLog, backfillActivityLog } from "@/actions/history";
 import { ActivityAction } from "@/types/activity";
 import { formatPayloadText } from "@/lib/activity-format";
-import { Plus, Trash2, Play, RefreshCw, Star, FileText, Clock, X, RotateCcw, Search } from "lucide-react";
+import { X, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -14,29 +14,15 @@ import { cn } from "@/lib/utils";
 // the feed feels like it is keeping up.
 const SEARCH_DEBOUNCE_MS = 250;
 
-// All filterable action types with their display config
+// The filterable action types. No colour per action: the same rail as the
+// watchlist's status filter, the chosen ones lit.
 const FILTER_OPTIONS = [
-    {
-        action: ActivityAction.PROGRESS,
-        label: "Watched",
-        color: "text-violet-400",
-        activeClass: "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30",
-    },
-    { action: ActivityAction.ADDED, label: "Added", color: "text-blue-400", activeClass: "bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30" },
-    {
-        action: ActivityAction.SCORED,
-        label: "Rated",
-        color: "text-yellow-400",
-        activeClass: "bg-yellow-500/20 text-yellow-400 ring-1 ring-yellow-500/30",
-    },
-    {
-        action: ActivityAction.STATUS_CHANGED,
-        label: "Status",
-        color: "text-amber-400",
-        activeClass: "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30",
-    },
-    { action: ActivityAction.NOTED, label: "Noted", color: "text-slate-400", activeClass: "bg-slate-500/20 text-slate-400 ring-1 ring-slate-500/30" },
-    { action: ActivityAction.REMOVED, label: "Removed", color: "text-rose-400", activeClass: "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30" },
+    { action: ActivityAction.PROGRESS, label: "Watched" },
+    { action: ActivityAction.ADDED, label: "Added" },
+    { action: ActivityAction.SCORED, label: "Rated" },
+    { action: ActivityAction.STATUS_CHANGED, label: "Status" },
+    { action: ActivityAction.NOTED, label: "Noted" },
+    { action: ActivityAction.REMOVED, label: "Removed" },
 ];
 
 type ActivityLogItem = {
@@ -59,38 +45,17 @@ type Props = {
     initialNextCursor: string | null;
 };
 
-const ACTION_CONFIG: Record<string, { icon: React.ElementType; color: string; label: string }> = {
-    [ActivityAction.ADDED]: { icon: Plus, color: "text-blue-400", label: "Added" },
-    [ActivityAction.REMOVED]: { icon: Trash2, color: "text-rose-400", label: "Removed" },
-    [ActivityAction.PROGRESS]: { icon: Play, color: "text-violet-400", label: "Watched" },
-    [ActivityAction.STATUS_CHANGED]: { icon: RefreshCw, color: "text-amber-400", label: "Status" },
-    [ActivityAction.SCORED]: { icon: Star, color: "text-yellow-400", label: "Rated" },
-    [ActivityAction.NOTED]: { icon: FileText, color: "text-slate-400", label: "Noted" },
-};
-
 function buildMediaHref(source: string, externalId: string) {
     return `/media/${source.toLowerCase()}-${externalId}`;
 }
 
-function formatRelativeTime(date: Date): string {
-    const now = new Date();
-    const diffMs = now.getTime() - new Date(date).getTime();
-    const diffSec = Math.floor(diffMs / 1000);
-    const diffMin = Math.floor(diffSec / 60);
-    const diffHour = Math.floor(diffMin / 60);
-    const diffDay = Math.floor(diffHour / 24);
+// The exact time of day: the date is already in the column on the left.
+function formatClock(date: Date): string {
+    return new Date(date).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+}
 
-    if (diffSec < 60) return "just now";
-    if (diffMin < 60) return `${diffMin}m ago`;
-    if (diffHour < 24) return `${diffHour}h ago`;
-    if (diffDay === 1) return "yesterday";
-    if (diffDay < 7) return `${diffDay}d ago`;
-
-    return new Date(date).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: new Date(date).getFullYear() !== now.getFullYear() ? "numeric" : undefined,
-    });
+function formatShortDate(date: Date): string {
+    return new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 function isSameDay(a: Date, b: Date): boolean {
@@ -122,9 +87,10 @@ function groupByDate(items: ActivityLogItem[]): [string, ActivityLogItem[]][] {
     return Array.from(groups.entries());
 }
 
+// One entry, as on the public profile's feed: a small poster, the sentence with
+// its title in bold, the time on the right. The icon in a bordered tile repeated
+// the sentence's verb in one of six colours.
 function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (id: string) => void }) {
-    const config = ACTION_CONFIG[item.action] ?? ACTION_CONFIG[ActivityAction.ADDED];
-    const Icon = config.icon;
     const href = buildMediaHref(item.source, item.externalId);
     const text = formatPayloadText(item.action, item.payload, item.title);
     const [deleting, setDeleting] = useState(false);
@@ -142,60 +108,36 @@ function ActivityEntry({ item, onDelete }: { item: ActivityLogItem; onDelete: (i
     };
 
     return (
-        <div
-            className={cn(
-                "flex items-start gap-3 py-3 px-4 hover:bg-surface-1 transition-all group",
-                deleting && "opacity-0 scale-95 pointer-events-none",
-            )}
-        >
-            {/* Poster */}
-            <div className="shrink-0 w-8 h-12 rounded-md overflow-hidden bg-surface-2 border border-line-strong">
-                {item.poster ? (
-                    <Image unoptimized={true} src={item.poster} alt={item.title} width={32} height={48} className="w-full h-full object-cover" />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                        <Icon className={cn("h-3 w-3", config.color)} />
-                    </div>
-                )}
-            </div>
+        <div className={cn("flex items-center gap-3 py-2 group transition-opacity", deleting && "opacity-0 pointer-events-none")}>
+            <span className="w-10 shrink-0 font-mono text-xs tabular-nums text-fg-faint">{formatClock(new Date(item.createdAt))}</span>
+            <Link href={href} className="shrink-0">
+                <div className="relative h-9.5 w-6.5 rounded overflow-hidden bg-surface-3">
+                    {item.poster && (
+                        <Image unoptimized={true} src={item.poster} alt={item.title} fill sizes="26px" className="object-cover" />
+                    )}
+                </div>
+            </Link>
 
-            {/* Icon badge */}
-            <div className={cn("shrink-0 mt-0.5 p-1.5 rounded-lg bg-surface-2 border border-line-strong", config.color)}>
-                <Icon className="h-3.5 w-3.5" />
-            </div>
-
-            {/* Text */}
-            <div className="flex-1 min-w-0">
-                <p
-                    className="text-sm text-muted-foreground leading-relaxed"
+            <p className="flex-1 min-w-0 text-sm text-fg-soft leading-relaxed">
+                <span
                     dangerouslySetInnerHTML={{
                         __html: text.replace(
                             /<b>(.*?)<\/b>/g,
-                            `<a href="${href}" class="font-semibold text-fg hover:text-primary transition-colors">$1</a>`,
+                            `<a href="${href}" class="font-medium text-fg hover:underline underline-offset-2">$1</a>`,
                         ),
                     }}
                 />
-                {item.isBackfill && (
-                    <span className="inline-flex items-center gap-1 mt-0.5 text-xs text-fg-faint">
-                        <Clock className="h-2.5 w-2.5" />
-                        historical
-                    </span>
-                )}
-            </div>
+                {item.isBackfill && <span className="ml-1.5 text-xs text-fg-faint">historical</span>}
+            </p>
 
-            {/* Timestamp + delete */}
-            <div className="shrink-0 flex items-center gap-1.5 mt-0.5">
-                <span className="text-xs text-fg-faint group-hover:text-fg-dim transition-colors">
-                    {formatRelativeTime(new Date(item.createdAt))}
-                </span>
-                <button
-                    onClick={handleDelete}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded text-fg-faint hover:text-rose-400 hover:bg-rose-400/10"
-                    aria-label="Delete entry"
-                >
-                    <X className="h-3.5 w-3.5" />
-                </button>
-            </div>
+            
+            <button
+                onClick={handleDelete}
+                className="shrink-0 grid h-6 w-6 place-items-center rounded-md text-fg-faint opacity-0 group-hover:opacity-100 hover:bg-surface-3 hover:text-fg transition-opacity cursor-pointer"
+                aria-label="Delete entry"
+            >
+                <X className="h-3.5 w-3.5" />
+            </button>
         </div>
     );
 }
@@ -305,9 +247,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
     if (isEmpty && filterActions.length === 0 && search.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-24 text-center">
-                <div className="h-16 w-16 rounded-2xl bg-surface-2 border border-line-strong flex items-center justify-center mb-4">
-                    <Clock className="h-8 w-8 text-fg-faint" />
-                </div>
+                
                 <p className="text-lg font-semibold text-fg-muted">No activity yet</p>
                 <p className="text-sm text-fg-faint mt-1">Your actions will appear here as you use the app.</p>
             </div>
@@ -342,28 +282,30 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                 </div>
 
                 <div className="flex items-center justify-between gap-3 flex-wrap">
-                    <div className="flex items-center gap-1.5 flex-wrap">
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <div className="inline-flex flex-wrap gap-0.5 rounded-lg bg-surface-2 p-0.75">
                         {FILTER_OPTIONS.map((opt) => {
                             const isActive = filterActions.includes(opt.action);
                             return (
                                 <button
                                     key={opt.action}
                                     onClick={() => toggleFilter(opt.action)}
+                                    aria-pressed={isActive}
                                     className={cn(
-                                        "h-7 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer",
-                                        isActive ? opt.activeClass : "bg-surface-2 text-fg-dim hover:bg-surface-3 hover:text-fg",
+                                        "h-7 px-2.5 rounded-md text-[13px] transition-colors cursor-pointer",
+                                        isActive ? "bg-surface-4 font-medium text-fg" : "text-fg-muted hover:text-fg",
                                     )}
                                 >
                                     {opt.label}
                                 </button>
                             );
                         })}
+                        </div>
                         {filterActions.length > 0 && (
                             <button
                                 onClick={() => setFilterActions([])}
-                                className="h-7 px-2 rounded-lg text-xs text-fg-faint hover:text-fg transition-colors flex items-center gap-1"
+                                className="text-[13px] text-fg-dim hover:text-fg transition-colors cursor-pointer"
                             >
-                                <X className="h-3 w-3" />
                                 Clear
                             </button>
                         )}
@@ -371,9 +313,8 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                     <button
                         onClick={handleRegenerate}
                         disabled={isRegenerating}
-                        className="flex items-center gap-1.5 text-xs text-fg-faint hover:text-fg-dim transition-colors disabled:opacity-50 shrink-0"
+                        className="text-[13px] text-fg-dim hover:text-fg transition-colors disabled:opacity-50 shrink-0 cursor-pointer"
                     >
-                        <RotateCcw className={cn("h-3 w-3", isRegenerating && "animate-spin")} />
                         {isRegenerating ? "Regenerating…" : "Regenerate historical data"}
                     </button>
                 </div>
@@ -387,14 +328,18 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
                 </div>
             )}
 
+            {/* Each day as a row of two columns: the date on the left, its entries
+                on the right with their time of day. Reads like a diary. */}
             {groups.map(([label, groupItems]) => (
-                <div key={label}>
-                    <div className="flex items-center gap-3 mb-2 px-4">
-                        <span className="text-xs font-semibold text-fg-dim uppercase tracking-wider">{label}</span>
-                        <div className="flex-1 h-px bg-surface-2" />
-                        <span className="text-xs text-fg-faint">{groupItems.length}</span>
-                    </div>
-                    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] divide-y divide-white/[0.04] overflow-hidden">
+                <div key={label} className="grid gap-x-5 gap-y-1 border-t border-line-soft pt-3 md:grid-cols-[110px_1fr]">
+                    <h2 className="text-sm font-semibold leading-snug text-fg md:pt-2">
+                        {label}
+                        <span className="block text-xs font-normal text-fg-dim tabular-nums">
+                            {label === "Today" || label === "Yesterday" ? `${formatShortDate(new Date(groupItems[0].createdAt))} · ` : ""}
+                            {groupItems.length} {groupItems.length === 1 ? "entry" : "entries"}
+                        </span>
+                    </h2>
+                    <div className="divide-y divide-line-soft min-w-0">
                         {groupItems.map((item) => (
                             <ActivityEntry key={item.id} item={item} onDelete={handleDelete} />
                         ))}
@@ -407,7 +352,7 @@ export function HistoryFeed({ initialItems, initialNextCursor }: Props) {
 
             {isLoading && (
                 <div className="flex justify-center py-4">
-                    <div className="h-5 w-5 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                    <div className="h-5 w-5 rounded-full border-2 border-line-strong border-t-fg-muted animate-spin" />
                 </div>
             )}
 
