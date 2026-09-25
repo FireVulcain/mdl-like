@@ -95,5 +95,5 @@ export async function MdlAboutSection({ tmdbSynopsis, originCountry, tmdbGenres,
 /** The cast of a TMDB page once MDL has answered: MDL's grouped list, TMDB's behind a toggle. */
 export async function MdlCastSection({ tmdbCast, mediaId, ...look }: MdlLookup & { tmdbCast: Actor[]; mediaId: string }) {
     const data = await lookup(look);
-    return data?.cast ? <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} mediaId={mediaId} /> : <CastScroll cast={tmdbCast} mediaId={mediaId} />;
+    return data?.cast ? <MdlCastScroll cast={data.cast} tmdbCast={tmdbCast} mediaId={mediaId} season={look.season} /> : <CastScroll cast={tmdbCast} mediaId={mediaId} />;
 }

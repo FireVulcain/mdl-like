@@ -20,6 +20,7 @@ interface MdlCastScrollProps {
     cast: MdlCast;
     tmdbCast: TmdbActor[];
     mediaId: string;
+    season?: number;
 }
 
 // One shape for both sources, so the two views draw the same rows.
@@ -105,7 +106,7 @@ function RoleGroup({ label, people }: { label: string; people: Person[] }) {
     );
 }
 
-export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
+export function MdlCastScroll({ cast, tmdbCast, mediaId, season }: MdlCastScrollProps) {
     const [showAll, setShowAll] = useState(false);
     const [source, setSource] = useState<"mdl" | "tmdb">("mdl");
     const { main, support, guest, cameo } = cast;
@@ -136,7 +137,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                 right={
                     <>
                         {tmdbCast.length > 0 && <SourceToggle value={source} onChange={setSource} />}
-                        <SectionLink href={`/media/${mediaId}/cast`} />
+                        <SectionLink href={`/media/${mediaId}/cast${season && season > 1 ? `?season=${season}` : ""}`} />
                     </>
                 }
             />
