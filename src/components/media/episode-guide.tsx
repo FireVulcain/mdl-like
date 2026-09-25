@@ -298,18 +298,18 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
                 }
             />
 
-            {/* List with fade overlay when collapsed */}
-            <div className="relative">
+            {/* Collapsed, the last rows fade out through a mask. An overlay
+                painted in --panel read as a pale blue band on the page's
+                backdrop, which is a different colour. */}
+            <div
+                className={`relative ${needsToggle && !showAll ? "[mask-image:linear-gradient(to_bottom,black_calc(100%_-_7rem),transparent)]" : ""}`}
+            >
                 <div className="flex flex-col divide-y divide-line">
                     {source === "mdl" && activeEpisodes
                         ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)
                         : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)}
                 </div>
 
-                {/* Fade gradient — only when collapsed and there are more episodes */}
-                {needsToggle && !showAll && (
-                    <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-panel to-transparent pointer-events-none" />
-                )}
             </div>
 
             {needsToggle && (
