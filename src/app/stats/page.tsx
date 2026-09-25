@@ -1,6 +1,5 @@
 import { getDashboardStats, getContinueWatching, getTopActors } from "@/actions/stats";
 import { StatsDashboard } from "@/components/stats/dashboard";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,7 +21,6 @@ export default async function StatsPage() {
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <PageBackground />
 
             <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
                 <div className="mb-8">

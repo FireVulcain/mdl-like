@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Loader2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { PageBackground } from "@/components/page-background";
 const fadeUp = {
     hidden: { opacity: 0, y: 16 },
     show: (i: number) => ({
@@ -79,7 +78,6 @@ export default function LoginPage() {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center -mt-24">
-            <PageBackground />
 
             <div className="relative z-10 w-full max-w-sm mx-4">
                 <motion.div

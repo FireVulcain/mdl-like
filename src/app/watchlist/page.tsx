@@ -5,7 +5,6 @@ import { getWatchlist } from "@/actions/media";
 import { getWatchlistHeaderStats } from "@/actions/stats";
 import { getViewPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,7 +33,6 @@ export default async function WatchlistPage() {
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <PageBackground />
 
             {/* Content */}
             <div className="container py-6 m-auto md:max-w-[80%] relative z-10 space-y-4 px-4">

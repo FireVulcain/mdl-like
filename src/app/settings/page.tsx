@@ -25,7 +25,6 @@ import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-t
 import { CronStatusPanel } from "@/components/settings/cron-status";
 import { ChartPreview } from "@/components/settings/chart-preview";
 import { getCronStatus } from "@/actions/cron-status";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -144,7 +143,6 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <PageBackground />
 
             <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
                 <div className="mb-8">

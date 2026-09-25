@@ -14,7 +14,6 @@ import { ClosingDetails } from "@/components/dramas/closing-details";
 import { TagSearchFilter } from "@/components/dramas/tag-search-filter";
 import { DramaListItem } from "@/components/dramas/drama-list-item";
 import { DramasViewToggle } from "@/components/dramas/view-toggle";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -320,7 +319,6 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
 
     return (
         <div className="relative min-h-screen">
-            <PageBackground />
 
             <div className="container py-6 md:py-10 max-w-[95%] md:max-w-[90%] mx-auto px-2 md:px-0 relative z-10">
                 {/* Breadcrumb */}

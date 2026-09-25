@@ -4,7 +4,6 @@ import { ActorRadarData } from "@/components/actor-radar-data";
 import { DramaUniverseSection } from "@/components/drama-universe-section";
 import { TrendingData } from "@/components/trending-data";
 import { getHomeSections } from "@/actions/preferences";
-import { PageBackground } from "@/components/page-background";
 
 export const dynamic = "force-dynamic";
 
@@ -92,7 +91,6 @@ export default async function Home() {
 
     return (
         <div className="relative min-h-screen">
-            <PageBackground />
 
             {/* Hero — ContinueWatching: DB-only fetch, resolves in ~10ms */}
             <Suspense fallback={<HeroSkeleton />}>

@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { ExternalLink } from "lucide-react";
 import { kuryanaGetDramaList, type KuryanaDramaListSection } from "@/lib/kuryana";
 import { MdlUserList, type ListSection } from "@/components/mdl-user-list";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -102,7 +101,6 @@ export default async function MdlUserPage({ params, searchParams }: { params: Pa
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <PageBackground />
 
             {/* Capped rather than proportional. The grid pages take 80% and fill
                 it with posters; 80% of a wide monitor is two thousand pixels of

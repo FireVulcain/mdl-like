@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { CommandPalette } from "@/components/command-palette";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { PageBackground } from "@/components/page-background";
 import { Suspense } from "react";
 import { getNotificationPreferences, getMdlProfileUrl, getShortcutPreferences, getThemePreference, getViewPreferences, getSearchView } from "@/actions/preferences";
 
@@ -62,6 +63,10 @@ export default async function RootLayout({
         className={`${sans.variable} ${display.variable} ${geistMono.variable} antialiased min-h-screen bg-app text-fg font-sans`}
       >
         <Providers initialTheme={theme}>
+          {/* One backdrop for every page, drawn here so no page can forget it.
+              Nine pages used to import it and the rest showed the bare body,
+              a lighter and bluer grey, so the ground changed as you navigated. */}
+          <PageBackground />
           {/* Under Suspense because it reads the query: without one, Next would
               hold the whole layout back to client rendering for that read. */}
           <Suspense fallback={null}>

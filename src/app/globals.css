@@ -164,12 +164,12 @@
        it covers, so it stops the page rather than tinting it. */
     --panel: #111827;
 
-    /* The <body>'s own ground, which is NOT --page-bg. Pages that draw
-       PageBackground paint #101219 over this; those that do not — /media among
-       them — show it directly, and it was gray-900 for the site's whole life.
-       Migrating the body onto --page-bg darkened exactly those pages, which was
-       a change nobody asked for. */
-    --app-bg: #111827;
+    /* The <body>'s own ground: the same as --page-bg now that every page draws
+       PageBackground from the layout. It was gray-900, and the pages that did
+       not draw the backdrop (/media, /calendar, /people...) showed it bare, so
+       the site had two grounds. Kept as its own token because solid strips that
+       sit on the page (the media nav, the hero fade) read it. */
+    --app-bg: #101219;
 
     /* The floating header, in its three states. Named per theme rather than
        written as opacity modifiers on --panel, because the two themes do not

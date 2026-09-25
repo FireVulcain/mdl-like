@@ -8,7 +8,6 @@ import { PublicActivityFeed } from "@/components/public-activity-feed";
 import { PodiumSection } from "@/components/podium-section";
 import { Star } from "lucide-react";
 import { auth } from "@/lib/auth";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -65,7 +64,6 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <PageBackground />
 
             {/* The media and people pages' layout: a column on the left with who
                 this is and the figures, in the same box as the media page's info

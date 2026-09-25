@@ -1,6 +1,5 @@
 import { getActivityLog, backfillActivityLog } from "@/actions/history";
 import { HistoryFeed } from "@/components/history-feed";
-import { PageBackground } from "@/components/page-background";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -32,7 +31,6 @@ export default async function HistoryPage() {
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            <PageBackground />
 
             <div className="container py-8 px-4 mx-auto max-w-4xl relative z-10">
                 <div className="mb-8">
