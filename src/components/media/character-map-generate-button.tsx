@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Sparkles, AlertTriangle, Check, X, Zap, Gem, Pencil, Image as ImageIcon, BookOpen, RefreshCw } from "lucide-react";
+import { Loader2, AlertTriangle, Check, X, Pencil, Image as ImageIcon, RefreshCw, ExternalLink } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { JobView } from "@/lib/character-map-jobs";
 import type { Preflight } from "@/app/api/admin/character-maps/preflight/route";
@@ -50,9 +50,9 @@ const STATUS_LABEL: Record<string, string> = {
 
 // Roughly what a chart costs on each model, from the runs of September 2026:
 // 5–50K in, 20–50K out, three quarters of the output thinking
-const MODEL_HINT: Record<GeneratorModel, { icon: typeof Zap; blurb: string; cost: string }> = {
-    sonnet: { icon: Zap, blurb: "Disciplined extraction at a fraction of the price. Right for most dramas.", cost: "about 20¢ a chart, 50¢ with recaps" },
-    opus: { icon: Gem, blurb: "Holds the rules over a long input. For the big Chinese casts and long articles.", cost: "about 40¢ a chart, $1 with recaps" },
+const MODEL_HINT: Record<GeneratorModel, { blurb: string; cost: string }> = {
+    sonnet: { blurb: "Disciplined extraction at a fraction of the price. Right for most dramas.", cost: "about 20¢ a chart, 50¢ with recaps" },
+    opus: { blurb: "Holds the rules over a long input. For the big Chinese casts and long articles.", cost: "about 40¢ a chart, $1 with recaps" },
 };
 
 // List price of the model that ran, to say what a run cost
@@ -121,6 +121,9 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     const [editing, setEditing] = useState<Set<string>>(new Set());
     const [preflight, setPreflight] = useState<Preflight | null>(null);
     const [checking, setChecking] = useState(false);
+    // A recap site ticked, or recaps read: only the plan and the kept recaps are
+    // asked for again, and it is step 2 that shows it working.
+    const [planning, setPlanning] = useState(false);
     const [checkError, setCheckError] = useState<string | null>(null);
     // bumped when the kept recaps change, so the sources are read again
     const [sourcesTick, setSourcesTick] = useState(0);
@@ -226,8 +229,6 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
     // Check the sources whenever the choice is on screen and a title changes
     // — a moment after the last keystroke, so typing does not hammer Wikipedia
     const titlesKey = JSON.stringify(titles);
-    // the plan depends on the recap sites ticked
-    const pickedKey = picked.join(",");
     useEffect(() => {
         if (!open || view !== "choose") return;
         const controller = new AbortController();
@@ -238,7 +239,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                 const res = await fetch("/api/admin/character-maps/preflight", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ mdlSlug, titles: JSON.parse(titlesKey), sources: pickedKey ? pickedKey.split(",") : [] }),
+                    body: JSON.stringify({ mdlSlug, titles: JSON.parse(titlesKey), sources: pickedRef.current }),
                     signal: controller.signal,
                 });
                 const data = (await res.json().catch(() => ({}))) as { preflight?: Preflight; error?: string };
@@ -255,7 +256,40 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
             controller.abort();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open, view, mdlSlug, titlesKey, pickedKey, sourcesTick]);
+    }, [open, view, mdlSlug, titlesKey]);
+
+    // The plan depends on the recap sites ticked and on the recaps kept; neither
+    // touches the MDL entry or Wikipedia, so a tick does not check the sources again.
+    const pickedKey = picked.join(",");
+    const pickedRef = useRef<string[]>([]);
+    pickedRef.current = pickedKey ? pickedKey.split(",") : [];
+    const planKey = `${pickedKey}|${sourcesTick}`;
+    const lastPlanKey = useRef(planKey);
+    useEffect(() => {
+        if (!open || view !== "choose" || !preflight) return;
+        if (lastPlanKey.current === planKey) return;
+        lastPlanKey.current = planKey;
+        const controller = new AbortController();
+        (async () => {
+            setPlanning(true);
+            try {
+                const res = await fetch("/api/admin/character-maps/preflight", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mdlSlug, sources: pickedKey ? pickedKey.split(",") : [], planOnly: true }),
+                    signal: controller.signal,
+                });
+                const data = (await res.json().catch(() => ({}))) as { plan?: Preflight["plan"]; recaps?: Preflight["recaps"] };
+                if (res.ok && data.plan) setPreflight((p) => (p ? { ...p, plan: data.plan!, recaps: data.recaps ?? p.recaps } : p));
+            } catch {
+                // the plan stays as it was; the run itself works it out again
+            } finally {
+                if (!controller.signal.aborted) setPlanning(false);
+            }
+        })();
+        return () => controller.abort();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open, view, mdlSlug, planKey, !!preflight]);
 
     // The drama's title on the recap sites is MDL's, without the year
     const dramaTitle = preflight?.title.replace(/ [(][0-9]{4}[)]$/, "") ?? "";
@@ -379,277 +413,278 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                     {view === "choose" || !job ? (
                         <>
                             <DialogHeader className="px-6 pt-6">
-                                <DialogTitle className="font-display text-lg font-semibold text-fg">{hasChart ? "Rewrite the relationship chart" : "Write the relationship chart"}</DialogTitle>
-                                <DialogDescription className="text-sm text-fg-muted">
+                                <DialogTitle className="text-lg font-semibold text-fg">{hasChart ? "Rewrite the relationship chart" : "Write the relationship chart"}</DialogTitle>
+                                <DialogDescription className="text-[13px] text-fg-dim">
                                     Claude reads the MDL cast, the synopsis and the Wikipedia character sections, and writes the chart with the sentence behind every link.
-                                    {hasChart && (
-                                        <span className="block pt-1 text-fg-dim">
-                                            {canContinue ? "The chart is kept and the new episodes are folded into it." : "The current chart is replaced when the run lands."}
-                                        </span>
-                                    )}
+                                    {hasChart && (canContinue ? " The chart is kept and the new episodes are folded into it." : " The current chart is replaced when the run lands.")}
                                 </DialogDescription>
                             </DialogHeader>
-                            <div className="grid gap-2 px-6 pt-5 sm:grid-cols-2" role="radiogroup" aria-label="Model">
-                                {(Object.keys(GENERATOR_MODELS) as GeneratorModel[]).map((k) => {
-                                    const hint = MODEL_HINT[k];
-                                    const Icon = hint.icon;
-                                    const selected = model === k;
-                                    return (
-                                        <button
-                                            key={k}
-                                            type="button"
-                                            role="radio"
-                                            aria-checked={selected}
-                                            onClick={() => setModel(k)}
-                                            className={`group flex flex-col gap-2 rounded-xl border p-4 text-left transition-colors ${
-                                                selected ? "border-sky-400/60 bg-sky-400/10" : "border-line bg-surface-1 hover:border-line-strong hover:bg-surface-2"
-                                            }`}
-                                        >
-                                            <span className="flex items-center gap-2">
-                                                <Icon className={`h-4 w-4 ${selected ? "text-sky-400" : "text-fg-dim group-hover:text-fg-soft"}`} />
-                                                <span className="text-sm font-semibold text-fg">{GENERATOR_MODELS[k].label}</span>
-                                                {k === DEFAULT_GENERATOR_MODEL && <span className="ml-auto rounded-full bg-surface-3 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-fg-dim">default</span>}
-                                            </span>
-                                            <span className="text-xs leading-relaxed text-fg-muted">{hint.blurb}</span>
-                                            <span className="font-mono text-[11px] text-fg-dim">{hint.cost}</span>
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                            <div className="mx-6 mt-4 rounded-lg border border-line bg-surface-1 px-3 py-2.5">
-                                {/* What this run would do, before anything is spent: a chart
-                                    that has read to episode N and has recaps past it is carried
-                                    forward instead of written again, which keeps the stills, the
-                                    asianwiki pin and every link corrected by hand. */}
-                                {plan && plan.mode !== "full" && (
-                                    <div className={`mb-4 rounded-lg border px-3 py-2.5 text-xs ${canContinue ? "border-sky-500/30 bg-sky-500/5" : "border-line bg-surface-2"}`}>
-                                        <div className="flex items-center gap-1.5 font-medium text-fg">
-                                            <BookOpen className="h-3.5 w-3.5 text-sky-400" />
-                                            {canContinue ? "New episodes to add" : "Nothing new to read"}
-                                        </div>
-                                        <p className="mt-1 text-fg-muted">
-                                            The chart reads to episode {plan.coveredTo}.{" "}
-                                            {canContinue
-                                                ? `Episode${plan.freshFrom === plan.freshTo ? ` ${plan.freshFrom}` : `s ${plan.freshFrom}–${plan.freshTo}`} are kept but not in it yet.`
-                                                : "Every recap kept for this entry is already in it."}
-                                        </p>
-                                        {canContinue && (
-                                            <p className="mt-1 text-fg-dim">
-                                                Continuing reads only those, and changes only what they say — the stills, the asianwiki page and any link you
-                                                corrected by hand are kept.
-                                                {plan.undigested > 0 && ` This first one also reads the ${plan.undigested} earlier recaps once, to summarise them; later updates will not.`}
-                                            </p>
-                                        )}
-                                    </div>
-                                )}
+
+                            {/* The work in the order it is done: check what the run would
+                                read, choose the recaps, pick the model. Numbered because the
+                                order is real — a wrong article is fixed before a run is paid for. */}
+                            <div className="space-y-5 px-6 pt-5 text-[13px]">
                                 {preflight?.editedAt && (
-                                    <p className="mb-4 flex items-start gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-xs text-amber-400/90">
-                                        <AlertTriangle className="mt-px h-3.5 w-3.5 shrink-0" />
+                                    <p className="flex items-start gap-2 text-amber-400/90">
+                                        <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                                         <span>
                                             You edited this chart by hand on {new Date(preflight.editedAt).toLocaleDateString()}. Rewriting it replaces every
                                             link and throws those edits away{canContinue ? " — continuing keeps them." : "."}
                                         </span>
                                     </p>
                                 )}
-                                <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-wide text-fg-dim">
-                                    Sources
-                                    {checking && <Loader2 className="h-3 w-3 animate-spin text-sky-400" />}
-                                </div>
-                                {checkError && !preflight ? (
-                                    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-amber-400">
-                                        <AlertTriangle className="h-3 w-3" /> Could not check the sources: {checkError}
-                                    </p>
-                                ) : preflight ? (
-                                    <ul className="mt-1.5 space-y-1 text-xs">
-                                        <li className="flex items-center gap-2 text-fg-muted">
-                                            <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
-                                            <span>
-                                                MDL cast · {preflight.cast.main} main, {preflight.cast.support} support, {preflight.cast.guest} guest
-                                                {preflight.synopsis ? " · synopsis" : ""}
-                                            </span>
-                                        </li>
-                                        {preflight.wiki.map((w) => {
-                                            const shown = editing.has(w.lang) || !w.found;
-                                            // A section this short is a list of names — households, no sentences
-                                            const thin = w.found && w.chars < 1000;
-                                            return (
-                                                <li key={w.lang} className="space-y-1">
-                                                    <div className={`flex items-start gap-2 ${w.found ? "text-fg-muted" : "text-amber-400/90"}`}>
-                                                        {w.found ? <Check className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${thin ? "text-fg-dim" : "text-emerald-400/80"}`} /> : <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
-                                                        <span className="min-w-0 flex-1 break-words">
-                                                            {w.lang}.wikipedia
-                                                            {w.found ? (
-                                                                <> · {w.title} · {thin ? `names only, ${(w.chars / 1000).toFixed(1)}K` : `${Math.round(w.chars / 1000)}K`} characters</>
-                                                            ) : w.rejected ? (
-                                                                <> · the search found &ldquo;{w.rejected}&rdquo;, which is not this drama</>
-                                                            ) : w.title ? (
-                                                                <> · &ldquo;{w.title}&rdquo; has no character section</>
-                                                            ) : (
-                                                                <> · no article found</>
-                                                            )}
-                                                        </span>
-                                                        {w.found && !shown && (
-                                                            <button type="button" onClick={() => setEditing((e) => new Set(e).add(w.lang))} className="text-fg-dim transition-colors hover:text-fg" title="Give another page title">
-                                                                <Pencil className="h-3 w-3" />
-                                                            </button>
-                                                        )}
-                                                    </div>
-                                                    {shown && (
-                                                        <label className="ml-5 flex items-center gap-2 rounded-md bg-surface-2 px-2 py-1.5">
-                                                            <span className="shrink-0 font-mono text-fg-dim">{w.lang}</span>
-                                                            <input
-                                                                value={titles[w.lang] ?? ""}
-                                                                onChange={(e) => setTitles((t) => ({ ...t, [w.lang]: e.target.value }))}
-                                                                placeholder="the article's URL, or its exact title — 내일 (2022년 드라마)"
-                                                                className="min-w-0 flex-1 bg-transparent text-fg outline-none placeholder:text-fg-faint"
-                                                            />
-                                                        </label>
-                                                    )}
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-                                ) : (
-                                    <p className="mt-1.5 text-xs text-fg-dim">Checking what the run would read…</p>
-                                )}
-                                {preflight && recapSources.length === 0 && (
-                                    <p className="mt-2 border-t border-line pt-2 text-xs text-fg-dim">
-                                        No recap site for a drama from {preflight.drama.country || "there"} — Dramabeans and TheReviewGeek cover Korean dramas, CPOPHome Chinese ones. The chart is written undated.
-                                    </p>
-                                )}
-                                {preflight && recapSources.length > 0 && (
-                                    <div className="mt-2 space-y-2 border-t border-line pt-2 text-xs">
-                                        {recapSources.length > 1 && <p className="text-fg-dim">Episode recaps date every link, for the chart&apos;s &ldquo;By episode&rdquo; view — read one site or both.</p>}
-                                        {recapSources.map((src) => {
-                                            const kept = recapsKept[src.id] ?? null;
-                                            const state = recaps[src.id] ?? null;
-                                            const on = picked.includes(src.id);
-                                            return (
-                                                <div key={src.id}>
-                                                    <label className="flex cursor-pointer items-center gap-2 text-fg-muted">
-                                                        <input type="checkbox" checked={on} onChange={(e) => tickRecaps(src.id, e.target.checked)} className="h-3.5 w-3.5 accent-sky-500" />
-                                                        <span>
-                                                            Also read the {src.name} recaps
-                                                            {recapSources.length === 1 ? (
-                                                                <span className="text-fg-dim"> · every link dated by episode, for the chart&apos;s &ldquo;By episode&rdquo; view</span>
-                                                            ) : kept && !on ? (
-                                                                <span className="text-fg-dim"> · {kept.count} kept, ep {kept.fromEp}–{kept.toEp}</span>
-                                                            ) : null}
-                                                        </span>
-                                                    </label>
-                                                    {on && (
-                                                        <div className="ml-5 mt-1.5 space-y-1.5">
-                                                            {preflight.drama.episodeOffset > 0 && (
-                                                                <p className="text-fg-dim">
-                                                                    A part of a split airing: {src.name}&apos;s recaps {preflight.drama.episodeOffset + 1}–{preflight.drama.episodeOffset + (preflight.drama.episodes ?? 0)} are read as episodes 1–{preflight.drama.episodes ?? "…"} here.
-                                                                </p>
-                                                            )}
-                                                            {state?.status === "started" ? (
-                                                                <p className="flex items-center gap-2 text-fg-muted">
-                                                                    <Loader2 className="h-3.5 w-3.5 animate-spin text-sky-400" /> Reading the recaps on {src.name}…
-                                                                    {state.of ? <span className="text-fg-dim">{state.read ?? 0}/{state.of}</span> : null}
-                                                                </p>
-                                                            ) : (
-                                                                <>
-                                                                    {kept && (
-                                                                        <p className="flex items-start gap-2 text-fg-muted">
-                                                                            <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400/80" />
-                                                                            <span className="min-w-0 flex-1 break-words">
-                                                                                {kept.source} · {kept.count} recap{kept.count > 1 ? "s" : ""} · ep {kept.fromEp}–{kept.toEp} · {Math.round(kept.words / 1000)}K words
-                                                                                {state?.status === "done" && state.tag && <span className="text-fg-dim"> · &ldquo;{state.tag}&rdquo;</span>}
-                                                                                {state?.status === "done" && state.listed && <span className="text-fg-dim"> · site lists {state.listed}</span>}
-                                                                                {state?.status === "done" && state.skipped && <span className="text-amber-400/80"> · not read: {state.skipped}</span>}
-                                                                            </span>
-                                                                            {extension && dramaTitle && (
-                                                                                <button type="button" onClick={() => ask(src.id)} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
-                                                                                    <RefreshCw className="h-3 w-3" />
-                                                                                </button>
-                                                                            )}
-                                                                        </p>
+
+                                <Step n={1} title="Check the sources" busy={checking}>
+                                    {checkError && !preflight ? (
+                                        <p className="flex items-center gap-2 text-amber-400">
+                                            <AlertTriangle className="h-3.5 w-3.5" /> Could not check the sources: {checkError}
+                                        </p>
+                                    ) : preflight ? (
+                                        <ul className="space-y-1.5">
+                                            <li className="flex items-center gap-2 text-fg-soft">
+                                                <Check className="h-3.5 w-3.5 shrink-0 text-fg-dim" />
+                                                <span>
+                                                    MDL cast{" "}
+                                                    <span className="text-fg-dim">
+                                                        · {preflight.cast.main} main, {preflight.cast.support} support, {preflight.cast.guest} guest
+                                                        {preflight.synopsis ? " · synopsis" : ""}
+                                                    </span>
+                                                </span>
+                                            </li>
+                                                {preflight.wiki.map((w) => {
+                                                    const shown = editing.has(w.lang) || !w.found;
+                                                    // A section this short is a list of names — households, no sentences
+                                                    const thin = w.found && w.chars < 1000;
+                                                    return (
+                                                        <li key={w.lang} className="space-y-1">
+                                                            <div className={`flex items-start gap-2 ${w.found ? "text-fg-soft" : "text-amber-400/90"}`}>
+                                                                {w.found ? <Check className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${thin ? "text-fg-faint" : "text-fg-dim"}`} /> : <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
+                                                                <span className="min-w-0 flex-1 break-words">
+                                                                    {w.lang}.wikipedia
+                                                                    {w.found ? (
+                                                                        <> · <WikiLink lang={w.lang} title={w.title} /> · {thin ? `names only, ${(w.chars / 1000).toFixed(1)}K` : `${Math.round(w.chars / 1000)}K`} characters</>
+                                                                    ) : w.failed ? (
+                                                                        <> · Wikipedia did not answer, it is asked again on the next check</>
+                                                                    ) : w.rejected ? (
+                                                                        <> · the search found &ldquo;<WikiLink lang={w.lang} title={w.rejected} />&rdquo;, which is not this drama</>
+                                                                    ) : w.title ? (
+                                                                        <> · &ldquo;<WikiLink lang={w.lang} title={w.title} />&rdquo; has no character section</>
+                                                                    ) : (
+                                                                        <> · no article found</>
                                                                     )}
-                                                                    {state?.status === "failed" && (
-                                                                        <p className="flex items-start gap-1.5 text-amber-400/90">
-                                                                            <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
-                                                                            <span>
-                                                                                {state.error}
-                                                                                {state.seen?.length ? <span className="text-fg-dim"> · seen: {state.seen.slice(0, 4).join(" · ")}</span> : null}
-                                                                                {state.needsTab && (
-                                                                                    <>
-                                                                                        {" "}
-                                                                                        <a href={state.needsTab} target="_blank" rel="noreferrer" className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
-                                                                                            Open it
-                                                                                        </a>
-                                                                                        , pass the check, keep that tab open, then Read again.
-                                                                                    </>
-                                                                                )}
-                                                                            </span>
-                                                                        </p>
-                                                                    )}
-                                                                    {kept && state?.status !== "failed" ? null : extension ? (
-                                                                        <form
-                                                                            className="flex items-center gap-1.5"
-                                                                            onSubmit={(e) => {
-                                                                                e.preventDefault();
-                                                                                ask(src.id);
-                                                                            }}
-                                                                        >
-                                                                            <input
-                                                                                value={recapsHint[src.id] ?? ""}
-                                                                                onChange={(e) => setRecapsHint((h) => ({ ...h, [src.id]: e.target.value }))}
-                                                                                placeholder={HINT_PLACEHOLDER[src.id]?.(dramaTitle) ?? `A URL on ${src.name}, if the search misses "${dramaTitle}"`}
-                                                                                className="min-w-0 flex-1 rounded-md bg-surface-2 px-2 py-1 text-fg outline-none placeholder:text-fg-faint"
-                                                                            />
-                                                                            <button type="submit" className="inline-flex items-center gap-1 rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4">
-                                                                                <BookOpen className="h-3 w-3" /> Read
-                                                                            </button>
-                                                                        </form>
-                                                                    ) : pasting !== src.id ? (
-                                                                        <p className="text-fg-dim">
-                                                                            {src.name} turns servers away; the extension reads the recaps from this browser.{" "}
-                                                                            <button type="button" onClick={() => setPasting(src.id)} className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
-                                                                                Paste them instead
-                                                                            </button>
-                                                                        </p>
+                                                                </span>
+                                                                {w.found && !shown && (
+                                                                    <button type="button" onClick={() => setEditing((e) => new Set(e).add(w.lang))} className="text-fg-dim transition-colors hover:text-fg" title="Give another page title">
+                                                                        <Pencil className="h-3 w-3" />
+                                                                    </button>
+                                                                )}
+                                                            </div>
+                                                            {shown && (
+                                                                <label className="ml-5 flex items-center gap-2 rounded-lg bg-surface-2 px-2.5 py-2">
+                                                                    <span className="shrink-0 font-mono text-fg-dim">{w.lang}</span>
+                                                                    <input
+                                                                        value={titles[w.lang] ?? ""}
+                                                                        onChange={(e) => setTitles((t) => ({ ...t, [w.lang]: e.target.value }))}
+                                                                        placeholder="the article's URL, or its exact title — 내일 (2022년 드라마)"
+                                                                        className="min-w-0 flex-1 bg-transparent text-fg outline-none placeholder:text-fg-faint"
+                                                                    />
+                                                                </label>
+                                                            )}
+                                                        </li>
+                                                    );
+                                                })}
+                                        </ul>
+                                    ) : (
+                                        <p className="text-fg-dim">Checking what the run would read…</p>
+                                    )}
+                                </Step>
+
+                                <Step
+                                    n={2}
+                                    title="Episode recaps"
+                                    busy={planning}
+                                    aside={
+                                        plan && plan.mode !== "full"
+                                            ? canContinue
+                                                ? `read to ep ${plan.coveredTo}, ${plan.freshFrom === plan.freshTo ? `episode ${plan.freshFrom}` : `episodes ${plan.freshFrom}–${plan.freshTo}`} new`
+                                                : `read to ep ${plan.coveredTo}, nothing new`
+                                            : undefined
+                                    }
+                                >
+                                    {/* What this run would do, before anything is spent: a chart
+                                        that has read to episode N and has recaps past it is carried
+                                        forward instead of written again, which keeps the stills, the
+                                        asianwiki pin and every link corrected by hand. */}
+                                    {canContinue && plan && (
+                                        <p className="text-fg-dim">
+                                            Continuing reads only those, and changes only what they say — the stills, the asianwiki page and any link you
+                                            corrected by hand are kept.
+                                            {plan.undigested > 0 && ` This first one also reads the ${plan.undigested} earlier recaps once, to summarise them; later updates will not.`}
+                                        </p>
+                                    )}
+                                    {!preflight ? (
+                                        <p className="text-fg-dim">After the sources.</p>
+                                    ) : recapSources.length === 0 ? (
+                                        <p className="text-fg-dim">
+                                            No recap site for a drama from {preflight.drama.country || "there"} — Dramabeans and TheReviewGeek cover Korean dramas, CPOPHome Chinese ones. The chart is written undated.
+                                        </p>
+                                    ) : (
+                                        <div className="space-y-2">
+                                            <p className="text-fg-dim">Recaps date every link, for the chart&apos;s &ldquo;By episode&rdquo; view{recapSources.length > 1 ? " — read one site or both" : ""}.</p>
+                                                {recapSources.map((src) => {
+                                                    const kept = recapsKept[src.id] ?? null;
+                                                    const state = recaps[src.id] ?? null;
+                                                    const on = picked.includes(src.id);
+                                                    return (
+                                                        <div key={src.id}>
+                                                            <label className="flex cursor-pointer items-center gap-2 text-fg-soft">
+                                                                <input type="checkbox" checked={on} onChange={(e) => tickRecaps(src.id, e.target.checked)} className="h-3.5 w-3.5 accent-fg-muted" />
+                                                                <span>
+                                                                    {src.name}
+                                                                    {recapSources.length === 1 ? (
+                                                                        <span className="text-fg-dim"> · every link dated by episode, for the chart&apos;s &ldquo;By episode&rdquo; view</span>
+                                                                    ) : kept && !on ? (
+                                                                        <span className="text-fg-dim"> · {kept.count} kept, ep {kept.fromEp}–{kept.toEp}</span>
                                                                     ) : null}
-                                                                    {pasting === src.id && !kept && (
-                                                                        <div className="space-y-1.5">
-                                                                            <textarea
-                                                                                value={pasted}
-                                                                                onChange={(e) => setPasted(e.target.value)}
-                                                                                placeholder={'[{ "title": "…: Episode 1", "from": 1, "to": 1, "text": "…" }, …] — the README has the console snippet that writes this'}
-                                                                                rows={4}
-                                                                                className="w-full rounded-md bg-surface-2 px-2 py-1.5 font-mono text-[11px] text-fg outline-none placeholder:text-fg-faint"
-                                                                            />
-                                                                            {pasteError && <p className="text-amber-400/90">{pasteError}</p>}
-                                                                            <div className="flex items-center gap-2">
-                                                                                <button type="button" onClick={savePasted} disabled={!pasted.trim()} className="rounded-full bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4 disabled:opacity-50">
-                                                                                    Keep these recaps
-                                                                                </button>
-                                                                                <button type="button" onClick={() => setPasting(null)} className="text-fg-dim transition-colors hover:text-fg">
-                                                                                    Cancel
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
+                                                                </span>
+                                                            </label>
+                                                            {on && (
+                                                                <div className="ml-5 mt-1.5 space-y-1.5">
+                                                                    {preflight.drama.episodeOffset > 0 && (
+                                                                        <p className="text-fg-dim">
+                                                                            A part of a split airing: {src.name}&apos;s recaps {preflight.drama.episodeOffset + 1}–{preflight.drama.episodeOffset + (preflight.drama.episodes ?? 0)} are read as episodes 1–{preflight.drama.episodes ?? "…"} here.
+                                                                        </p>
                                                                     )}
-                                                                </>
+                                                                    {state?.status === "started" ? (
+                                                                        <p className="flex items-center gap-2 text-fg-muted">
+                                                                            <Loader2 className="h-3.5 w-3.5 animate-spin" /> Reading the recaps on {src.name}…
+                                                                            {state.of ? <span className="text-fg-dim">{state.read ?? 0}/{state.of}</span> : null}
+                                                                        </p>
+                                                                    ) : (
+                                                                        <>
+                                                                            {kept && (
+                                                                                <p className="flex items-start gap-2 text-fg-muted">
+                                                                                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fg-dim" />
+                                                                                    <span className="min-w-0 flex-1 break-words">
+                                                                                        {kept.source} · {kept.count} recap{kept.count > 1 ? "s" : ""} · ep {kept.fromEp}–{kept.toEp} · {Math.round(kept.words / 1000)}K words
+                                                                                        {state?.status === "done" && state.tag && <span className="text-fg-dim"> · &ldquo;{state.tag}&rdquo;</span>}
+                                                                                        {state?.status === "done" && state.listed && <span className="text-fg-dim"> · site lists {state.listed}</span>}
+                                                                                        {state?.status === "done" && state.skipped && <span className="text-amber-400/80"> · not read: {state.skipped}</span>}
+                                                                                    </span>
+                                                                                    {extension && dramaTitle && (
+                                                                                        <button type="button" onClick={() => ask(src.id)} className="text-fg-dim transition-colors hover:text-fg" title="Read them again — new episodes since">
+                                                                                            <RefreshCw className="h-3 w-3" />
+                                                                                        </button>
+                                                                                    )}
+                                                                                </p>
+                                                                            )}
+                                                                            {state?.status === "failed" && (
+                                                                                <p className="flex items-start gap-1.5 text-amber-400/90">
+                                                                                    <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
+                                                                                    <span>
+                                                                                        {state.error}
+                                                                                        {state.seen?.length ? <span className="text-fg-dim"> · seen: {state.seen.slice(0, 4).join(" · ")}</span> : null}
+                                                                                        {state.needsTab && (
+                                                                                            <>
+                                                                                                {" "}
+                                                                                                <a href={state.needsTab} target="_blank" rel="noreferrer" className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
+                                                                                                    Open it
+                                                                                                </a>
+                                                                                                , pass the check, keep that tab open, then Read again.
+                                                                                            </>
+                                                                                        )}
+                                                                                    </span>
+                                                                                </p>
+                                                                            )}
+                                                                            {kept && state?.status !== "failed" ? null : extension ? (
+                                                                                <form
+                                                                                    className="flex items-center gap-1.5"
+                                                                                    onSubmit={(e) => {
+                                                                                        e.preventDefault();
+                                                                                        ask(src.id);
+                                                                                    }}
+                                                                                >
+                                                                                    <input
+                                                                                        value={recapsHint[src.id] ?? ""}
+                                                                                        onChange={(e) => setRecapsHint((h) => ({ ...h, [src.id]: e.target.value }))}
+                                                                                        placeholder={HINT_PLACEHOLDER[src.id]?.(dramaTitle) ?? `A URL on ${src.name}, if the search misses "${dramaTitle}"`}
+                                                                                        className="min-w-0 flex-1 rounded-md bg-surface-2 px-2 py-1.5 text-fg outline-none placeholder:text-fg-faint"
+                                                                                    />
+                                                                                    <button type="submit" className="rounded-md bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4">
+                                                                                        Read
+                                                                                    </button>
+                                                                                </form>
+                                                                            ) : pasting !== src.id ? (
+                                                                                <p className="text-fg-dim">
+                                                                                    {src.name} turns servers away; the extension reads the recaps from this browser.{" "}
+                                                                                    <button type="button" onClick={() => setPasting(src.id)} className="text-fg-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-fg">
+                                                                                        Paste them instead
+                                                                                    </button>
+                                                                                </p>
+                                                                            ) : null}
+                                                                            {pasting === src.id && !kept && (
+                                                                                <div className="space-y-1.5">
+                                                                                    <textarea
+                                                                                        value={pasted}
+                                                                                        onChange={(e) => setPasted(e.target.value)}
+                                                                                        placeholder={'[{ "title": "…: Episode 1", "from": 1, "to": 1, "text": "…" }, …] — the README has the console snippet that writes this'}
+                                                                                        rows={4}
+                                                                                        className="w-full rounded-md bg-surface-2 px-2 py-1.5 font-mono text-[11px] text-fg outline-none placeholder:text-fg-faint"
+                                                                                    />
+                                                                                    {pasteError && <p className="text-amber-400/90">{pasteError}</p>}
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <button type="button" onClick={savePasted} disabled={!pasted.trim()} className="rounded-md bg-surface-3 px-2.5 py-1 font-medium text-fg transition-colors hover:bg-surface-4 disabled:opacity-50">
+                                                                                            Keep these recaps
+                                                                                        </button>
+                                                                                        <button type="button" onClick={() => setPasting(null)} className="text-fg-dim transition-colors hover:text-fg">
+                                                                                            Cancel
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            )}
+                                                                        </>
+                                                                    )}
+                                                                </div>
                                                             )}
                                                         </div>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
+                                                    );
+                                                })}
+                                        </div>
+                                    )}
+                                </Step>
+
+                                <Step n={3} title="Model">
+                                    <div className="grid grid-cols-2 gap-0.5 rounded-lg bg-surface-2 p-0.75" role="radiogroup" aria-label="Model">
+                                        {(Object.keys(GENERATOR_MODELS) as GeneratorModel[]).map((k) => (
+                                            <button
+                                                key={k}
+                                                type="button"
+                                                role="radio"
+                                                aria-checked={model === k}
+                                                onClick={() => setModel(k)}
+                                                className={`h-8 rounded-md text-sm transition-colors cursor-pointer ${model === k ? "bg-surface-4 font-medium text-fg" : "text-fg-muted hover:text-fg"}`}
+                                            >
+                                                {GENERATOR_MODELS[k].label}
+                                                {k === DEFAULT_GENERATOR_MODEL && <span className="ml-1.5 text-xs font-normal text-fg-dim">default</span>}
+                                            </button>
+                                        ))}
                                     </div>
+                                    <p className="text-fg-muted">
+                                        {MODEL_HINT[model].blurb} <span className="text-fg-dim">{MODEL_HINT[model].cost[0].toUpperCase() + MODEL_HINT[model].cost.slice(1)}.</span>
+                                    </p>
+                                </Step>
+
+                                {error && (
+                                    <p className="flex items-center gap-2 text-amber-400">
+                                        <AlertTriangle className="h-3.5 w-3.5" /> {error}
+                                    </p>
                                 )}
                             </div>
-                            {error && (
-                                <p className="inline-flex items-center gap-1.5 px-6 pt-3 text-xs text-amber-400">
-                                    <AlertTriangle className="h-3.5 w-3.5" /> {error}
-                                </p>
-                            )}
-                            <div className="flex items-center justify-between gap-3 px-6 pb-6 pt-5">
-                                <div className="text-xs text-fg-dim">
+
+                            <div className="mt-5 flex items-center justify-between gap-3 border-t border-line-soft px-6 py-4">
+                                <div className="text-[13px] text-fg-dim">
                                     {job && !active ? (
-                                        <button type="button" onClick={() => setView("run")} className="transition-colors hover:text-fg">
+                                        <button type="button" onClick={() => setView("run")} className="transition-colors hover:text-fg cursor-pointer">
                                             Last run · {STATUS_LABEL[job.status] ?? job.status}
                                         </button>
                                     ) : !sourcesOk && preflight ? (
@@ -657,7 +692,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                     ) : null}
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <button type="button" onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg">
+                                    <button type="button" onClick={() => setOpen(false)} className="h-9 rounded-lg px-3.5 text-sm text-fg-muted transition-colors hover:bg-surface-2 hover:text-fg cursor-pointer">
                                         Cancel
                                     </button>
                                     {/* With new episodes to add, carrying on is the action and
@@ -668,7 +703,7 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                             type="button"
                                             onClick={() => start("full")}
                                             disabled={starting || checking || recapsPending}
-                                            className="rounded-full px-3 py-1.5 text-sm text-fg-muted transition-colors hover:bg-surface-3 hover:text-fg disabled:opacity-60"
+                                            className="h-9 rounded-lg px-3.5 text-sm text-fg-muted transition-colors hover:bg-surface-2 hover:text-fg disabled:opacity-60 cursor-pointer"
                                         >
                                             Rewrite instead
                                         </button>
@@ -677,12 +712,11 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
                                         type="button"
                                         onClick={() => start(canContinue ? "continue" : "full")}
                                         disabled={starting || checking || (!preflight && !checkError) || recapsPending}
-                                        className="inline-flex items-center gap-1.5 rounded-full bg-sky-500 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-sky-400 disabled:opacity-60"
+                                        className="inline-flex h-9 items-center gap-2 rounded-lg bg-fg px-4 text-sm font-semibold text-page transition-colors hover:bg-fg/90 disabled:opacity-60 cursor-pointer"
                                         title={checking ? "Checking the sources" : recapsPending ? "Waiting for the recaps" : undefined}
                                     >
-                                        {starting || checking ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
-                                        {canContinue ? "Continue with " : hasChart ? "Rewrite with " : "Write with "}
-                                        {GENERATOR_MODELS[model].label}
+                                        {(starting || checking) && <Loader2 className="h-4 w-4 animate-spin" />}
+                                        {canContinue ? "Continue" : hasChart ? "Rewrite" : "Write"}
                                     </button>
                                 </div>
                             </div>
@@ -787,6 +821,43 @@ export function CharacterMapGenerateButton({ mdlSlug, hasChart, initialJob, need
  * asianwiki, the count that took, or why nothing did, with the field for
  * the page's exact name when the search had no title for it.
  */
+// An article's title as a link to it, so what the check found can be read
+// before a run is paid for. Opens in a new tab and keeps the panel as it is.
+function WikiLink({ lang, title }: { lang: string; title: string | null }) {
+    if (!title) return null;
+    const href = `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, "_"))}`;
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-baseline gap-1 underline decoration-line-strong underline-offset-2 transition-colors hover:decoration-current"
+            title={`Open ${title} on ${lang}.wikipedia`}
+        >
+            {title}
+            <ExternalLink className="h-3 w-3 shrink-0 self-center opacity-70" />
+        </a>
+    );
+}
+
+// One numbered step of the choose view: a grey number, a title with an aside,
+// and its content under the title.
+function Step({ n, title, aside, busy = false, children }: { n: number; title: string; aside?: string; busy?: boolean; children: React.ReactNode }) {
+    return (
+        <div className="grid grid-cols-[22px_1fr] gap-3">
+            <span className="grid h-5.5 w-5.5 place-items-center rounded-full bg-surface-3 text-xs font-semibold text-fg-soft">{n}</span>
+            <div className="min-w-0 space-y-2">
+                <p className="flex items-center gap-2 pt-0.5 text-sm font-semibold text-fg">
+                    {title}
+                    {aside && <span className="text-[13px] font-normal text-fg-dim">· {aside}</span>}
+                    {busy && <Loader2 className="h-3.5 w-3.5 animate-spin text-fg-dim" />}
+                </p>
+                {children}
+            </div>
+        </div>
+    );
+}
+
 function StillsLine({ stills, page, onPage, onRetry }: { stills: StillsState; page: string; onPage: (v: string) => void; onRetry: () => void }) {
     if (stills.status === "started") {
         return (
