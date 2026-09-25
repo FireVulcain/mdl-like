@@ -23,7 +23,7 @@ export async function WorkedWithCard({ slug, name }: { slug: string; name: strin
     return (
         // The same box as the info block on /media: a light fill, no border,
         // bevel or shadow.
-        <div className="rounded-lg bg-surface-1 p-4 space-y-3.5">
+        <div className="rounded-lg bg-box p-4 space-y-3.5">
             <div className="space-y-1">
                 <h3 className="font-semibold text-[15px] text-fg">Worked with…</h3>
                 <p className="text-[13px] text-fg-muted leading-relaxed">

@@ -81,7 +81,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                     </div>
 
                     {totalItems > 0 && (
-                        <div className="rounded-lg bg-surface-1 p-4 flex flex-col gap-3.5">
+                        <div className="rounded-lg bg-box p-4 flex flex-col gap-3.5">
                             <div className="grid grid-cols-2 gap-3 pb-3.5 border-b border-line-soft">
                                 <div>
                                     <div className="text-[22px] font-semibold leading-tight tracking-tight text-fg tabular-nums">{stats.totalShows}</div>

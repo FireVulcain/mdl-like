@@ -354,7 +354,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         </div>
                     </div>
                     <div className="mb-6 md:hidden">
-                        <Suspense fallback={<div className="h-44 rounded-lg bg-surface-1 animate-pulse" />}>
+                        <Suspense fallback={<div className="h-44 rounded-lg bg-box animate-pulse" />}>
                             <WorkedWithCard slug={slug} name={data.name} />
                         </Suspense>
                     </div>
@@ -370,7 +370,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                             no border, bevel, shadow or heading. The labels say
                             what the rows are. */}
                         {(details.gender || details.born || details.nationality || alsoKnownAs.length > 0) && (
-                            <div className="rounded-lg bg-surface-1 p-4">
+                            <div className="rounded-lg bg-box p-4">
                                 <div className="grid grid-cols-[76px_1fr] gap-x-3 gap-y-1.5 text-[13px]">
                                     {details.gender && (
                                         <>
@@ -411,7 +411,7 @@ export default async function MdlPersonPage({ params }: { params: Promise<{ slug
                         {/* Streamed: one more DB read, and the page should not
                             wait on it. Last in the sidebar, so nothing sits below
                             it to jump when it lands. */}
-                        <Suspense fallback={<div className="h-44 rounded-lg bg-surface-1 animate-pulse" />}>
+                        <Suspense fallback={<div className="h-44 rounded-lg bg-box animate-pulse" />}>
                             <WorkedWithCard slug={slug} name={data.name} />
                         </Suspense>
                     </StickySidebar>

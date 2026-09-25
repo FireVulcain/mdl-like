@@ -236,7 +236,7 @@ function LeadCard({ entry }: { entry: PodiumEntry }) {
         >
             <Link
                 href={mediaHref}
-                className="group flex h-56 md:h-full md:min-h-56 gap-4 rounded-lg bg-surface-1 p-3.5 hover:bg-surface-2 transition-colors"
+                className="group flex h-56 md:h-full md:min-h-56 gap-4 rounded-lg bg-box p-3.5 hover:bg-surface-2 transition-colors"
             >
                 <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shrink-0 bg-surface-3">
                     {entry.poster ? (
@@ -268,7 +268,7 @@ function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; del
         >
             <Link
                 href={mediaHref}
-                className="group flex h-28 md:h-full items-center gap-3 rounded-lg bg-surface-1 p-3 hover:bg-surface-2 transition-colors"
+                className="group flex h-28 md:h-full items-center gap-3 rounded-lg bg-box p-3 hover:bg-surface-2 transition-colors"
             >
                 <div className="relative h-full aspect-2/3 rounded overflow-hidden shrink-0 bg-surface-3">
                     {entry.poster ? (
@@ -354,7 +354,7 @@ function PodiumEditor({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.25 }}
-            className="rounded-lg bg-surface-1 p-4 space-y-4"
+            className="rounded-lg bg-box p-4 space-y-4"
         >
             <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-fg">Edit your Top 3 Podium</h3>
@@ -502,7 +502,7 @@ export function PodiumSection({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center gap-3 py-10 rounded-lg bg-surface-1 text-center"
+                        className="flex flex-col items-center gap-3 py-10 rounded-lg bg-box text-center"
                     >
                         
                         <div>

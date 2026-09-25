@@ -345,7 +345,7 @@ export function ScheduleCalendar({
                     emptiness as a bug. The same box as the panels on /media: a
                     light fill, no border or tint. */}
                 {showFilter && (
-                    <div className="flex items-center gap-3.5 rounded-lg bg-surface-1 px-4 py-3">
+                    <div className="flex items-center gap-3.5 rounded-lg bg-box px-4 py-3">
                         {filteredShow?.poster && (
                             <div className="relative h-10.5 w-7.5 shrink-0 overflow-hidden rounded bg-surface-3">
                                 <Image unoptimized={true} src={filteredShow.poster} alt="" fill sizes="30px" className="object-cover" />

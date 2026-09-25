@@ -173,7 +173,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     {media.rating > 0 && <span className="text-sky-400 font-semibold">MDL {media.rating.toFixed(1)}</span>}
                                 </div>
                             </div>
-                            <div className="relative flex h-10 overflow-hidden rounded-lg bg-surface-1">
+                            <div className="relative flex h-10 overflow-hidden rounded-lg bg-box">
                                 <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                                     media={{
                                         id: media.id,
@@ -221,7 +221,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     MDL
                                 </a>
                             </div>
-                            <div className="relative flex h-11 overflow-hidden rounded-b-lg bg-surface-1">
+                            <div className="relative flex h-11 overflow-hidden rounded-b-lg bg-box">
                                 <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                                     media={{
                                         id: media.id,
@@ -248,7 +248,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                         {/* A lighter fill and nothing else: no border, bevel or shadow.
                             The status bar above already stands out as the object here. */}
-                        <div className="rounded-lg bg-surface-1 p-4 flex flex-col gap-3.5">
+                        <div className="rounded-lg bg-box p-4 flex flex-col gap-3.5">
                             {(media.mdlRanking || media.mdlWatchers) ? (
                                 <RankStats
                                     rank={media.mdlRanking || null}
@@ -713,7 +713,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 )}
                             </div>
                         </div>
-                        <div className="relative flex h-10 overflow-hidden rounded-lg bg-surface-1">
+                        <div className="relative flex h-10 overflow-hidden rounded-lg bg-box">
                             <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                                 media={{
                                     id: media.id,
@@ -772,7 +772,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 </Suspense>
                             )}
                         </div>
-                        <div className="relative flex h-11 overflow-hidden rounded-b-lg bg-surface-1">
+                        <div className="relative flex h-11 overflow-hidden rounded-b-lg bg-box">
                             <AddToListButton defaultStatus={viewPrefs.defaultAddStatus}
                                 media={{
                                     id: media.id,
@@ -807,7 +807,7 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
 
                     {/* A lighter fill and nothing else: no border, bevel or shadow.
                         The status bar above already stands out as the object here. */}
-                    <div className="rounded-lg bg-surface-1 p-4 flex flex-col gap-3.5">
+                    <div className="rounded-lg bg-box p-4 flex flex-col gap-3.5">
                         {isMdlRelevant && (
                             <Suspense fallback={<RankStatsFallback />}>
                                 <MdlRankStats

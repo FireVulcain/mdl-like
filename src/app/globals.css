@@ -101,6 +101,7 @@
     --color-line-strong: var(--line-strong);
     --color-panel: var(--panel);
     --color-app: var(--app-bg);
+    --color-box: var(--box);
 
     /* The site's meanings, which survive the theme change: emerald is watched,
        blue is watching, amber is on hold and also the viewer's own score, sky is
@@ -170,6 +171,13 @@
        the site had two grounds. Kept as its own token because solid strips that
        sit on the page (the media nav, the hero fade) read it. */
     --app-bg: #101219;
+
+    /* The plain box of the redesigned panels (media info, status bar, people
+       and profile sidebars, filters). Opaque on purpose: surface-1 is a 3% white
+       veil, so the same box read lighter where the backdrop's top lift sits
+       behind it and darker lower down. This is that veil over the base colour,
+       computed once, so every box is one colour wherever it lands. */
+    --box: #17191f;
 
     /* The floating header, in its three states. Named per theme rather than
        written as opacity modifiers on --panel, because the two themes do not
@@ -251,6 +259,7 @@
     /* One ground in the light theme: there is no reason for the body and the
        canvas to differ, and the seam the difference used to hide is not there. */
     --app-bg: #f4f6f9;
+    --box: #edeff2;
 
     /* The accent palette, re-pointed for a light ground.
        ---------------------------------------------------------------------

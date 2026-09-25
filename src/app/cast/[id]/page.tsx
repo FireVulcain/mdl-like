@@ -227,7 +227,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {/* Same box as the info block on /media and /people: a
                             light fill and no border, bevel, shadow or heading.
                             The labels say what the rows are. */}
-                        <div className="rounded-lg bg-surface-1 p-4">
+                        <div className="rounded-lg bg-box p-4">
                             <div className="grid grid-cols-[76px_1fr] gap-x-3 gap-y-1.5 text-[13px]">
                                 {person.known_for_department && (
                                     <>
