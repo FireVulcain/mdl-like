@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteUserMedia, updateUserMedia, addToWatchlist, getMediaImages } from "@/actions/media";
-import { Trash2, Plus, Minus, Eye, CheckCircle, Clock, XCircle, Star, X, ImageIcon, Check, ZoomIn } from "lucide-react";
+import { Plus, Minus, Star, X, ImageIcon, Check, ZoomIn } from "lucide-react";
 import { toast } from "sonner";
 
 export type WatchlistItem = {
@@ -42,43 +42,15 @@ interface EditMediaDialogProps {
     defaultStatus?: string;
 }
 
+// The status hue is the progress hairline and nothing else, as on the media
+// page's status bar: the chosen segment is told apart by its fill alone.
+// A tinted fill, a tinted border, tinted text and an icon per status made the
+// row a rainbow before anything was chosen.
 const statusOptions = [
-    {
-        value: "Watching",
-        label: "Watching",
-        icon: Eye,
-        color: "text-blue-400",
-        bg: "bg-blue-500/10",
-        border: "border-blue-500/40",
-        hoverBg: "hover:bg-blue-500/20",
-    },
-    {
-        value: "Completed",
-        label: "Completed",
-        icon: CheckCircle,
-        color: "text-emerald-400",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/40",
-        hoverBg: "hover:bg-emerald-500/20",
-    },
-    {
-        value: "Plan to Watch",
-        label: "Plan to Watch",
-        icon: Clock,
-        color: "text-slate-400",
-        bg: "bg-slate-500/10",
-        border: "border-slate-500/40",
-        hoverBg: "hover:bg-slate-500/20",
-    },
-    {
-        value: "Dropped",
-        label: "Dropped",
-        icon: XCircle,
-        color: "text-rose-400",
-        bg: "bg-rose-500/10",
-        border: "border-rose-500/40",
-        hoverBg: "hover:bg-rose-500/20",
-    },
+    { value: "Watching", label: "Watching", dot: "bg-watching" },
+    { value: "Completed", label: "Completed", dot: "bg-watched" },
+    { value: "Plan to Watch", label: "Plan to Watch", dot: "bg-planned" },
+    { value: "Dropped", label: "Dropped", dot: "bg-dropped" },
 ];
 
 export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChange, onOptimisticUpdate, defaultStatus }: EditMediaDialogProps) {
@@ -137,7 +109,26 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
     const displayYear = item?.year || media?.year || "";
     const displayPoster = selectedBackdrop || item?.poster || media?.backdrop || media?.poster || "";
     const displayTotalEp = item?.totalEp || totalEp || media?.totalEp || null;
-    const progressPercent = displayTotalEp ? (formData.progress / displayTotalEp) * 100 : 0;
+        const progressPercent = displayTotalEp ? Math.min(100, (formData.progress / displayTotalEp) * 100) : 0;
+    const statusDot = statusOptions.find((o) => o.value === formData.status)?.dot ?? "bg-watching";
+
+    // The score is picked on a rail of whole points; the half is a toggle beside
+    // it rather than a second row of ten.
+    const scoreWhole = Math.floor(formData.score);
+    const scoreHasHalf = formData.score % 1 !== 0;
+    const pickWhole = (r: number) =>
+        setFormData((prev) => {
+            const half = prev.score % 1;
+            if (Math.floor(prev.score) === r && !half) return { ...prev, score: 0 };
+            return { ...prev, score: r === 10 ? 10 : r + half };
+        });
+    const toggleHalf = () =>
+        setFormData((prev) => {
+            const whole = Math.floor(prev.score);
+            if (prev.score % 1) return { ...prev, score: whole };
+            return whole >= 10 ? prev : { ...prev, score: whole + 0.5 };
+        });
+
 
     const handleSave = async () => {
         setLoading(true);
@@ -244,10 +235,10 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     {/* Close button */}
                     <button
                         onClick={() => handleOpenChange(false)}
-                        className="cursor-pointer absolute top-4 right-4 h-9 w-9 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/60 transition-all"
+                        className="cursor-pointer absolute top-3 right-3 h-8 w-8 rounded-lg bg-black/35 flex items-center justify-center text-white/75 hover:text-white hover:bg-black/55 transition-colors"
                     >
-                        <X className="h-5 w-5" />
-                    </button>
+                        <X className="h-4 w-4" />
+                </button>
 
                     <div className="absolute bottom-5 left-6 right-6">
                         <h2 className="font-display text-2xl font-bold text-fg line-clamp-2 drop-shadow-lg">{displayTitle}</h2>
@@ -256,26 +247,22 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 </div>
 
                 {/* Content */}
-                <div className="px-6 py-5 space-y-6 overflow-y-auto flex-1">
-                    {/* Status Selection - Horizontal pills */}
-                    <div className="space-y-3">
-                        <label className="text-sm font-medium text-fg-muted">Status</label>
-                        <div className="flex flex-wrap gap-2">
+                <div className="px-6 py-5 space-y-5 overflow-y-auto flex-1">
+                    {/* Status: one segmented rail */}
+                    <div className="space-y-2">
+                        <label className="text-[13px] text-fg-dim">Status</label>
+                        <div className="grid grid-cols-4 gap-0.5 rounded-lg bg-surface-2 p-0.75">
                             {statusOptions.map((option) => {
-                                const Icon = option.icon;
                                 const isSelected = formData.status === option.value;
                                 return (
                                     <button
                                         key={option.value}
                                         onClick={() => setFormData((prev) => ({ ...prev, status: option.value }))}
-                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all cursor-pointer ${
-                                            isSelected
-                                                ? `${option.bg} ${option.border} ${option.color}`
-                                                : `bg-transparent border-line-strong text-fg-dim ${option.hoverBg} hover:text-fg-soft hover:border-line-strong`
+                                        className={`flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-1 py-1.5 text-[13px] transition-colors cursor-pointer ${
+                                            isSelected ? "bg-surface-4 font-medium text-fg" : "text-fg-muted hover:text-fg"
                                         }`}
                                     >
-                                        <Icon className="h-4 w-4" />
-                                        <span className="text-sm font-medium">{option.label}</span>
+                                        {option.label}
                                     </button>
                                 );
                             })}
@@ -286,7 +273,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                     {(editSource === "TMDB" || editSource === "MDL") && (
                         <div className="space-y-3">
                             <div className="flex items-center justify-between">
-                                <label className="text-sm font-medium text-fg-muted">Images</label>
+                                <label className="text-[13px] text-fg-dim">Images</label>
                                 {!imageOptions && (
                                     <button
                                         onClick={loadImageOptions}
@@ -392,85 +379,74 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                         </div>
                     )}
 
-                    {/* Progress */}
-                    <div className="space-y-3">
-                        <label className="text-sm font-medium text-fg-muted">Progress</label>
-                        <div className="flex items-center gap-5">
+                    {/* Episodes */}
+                    <div className="space-y-2">
+                        <label className="text-[13px] text-fg-dim">Episodes</label>
+                        <div className="flex items-center gap-3">
                             <button
                                 onClick={() => setFormData((prev) => ({ ...prev, progress: Math.max(0, prev.progress - 1) }))}
-                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all border border-line-soft"
+                                aria-label="One episode less"
+                                className="cursor-pointer h-9 w-9 shrink-0 flex items-center justify-center rounded-lg bg-surface-3 hover:bg-surface-4 text-fg-soft hover:text-fg transition-colors"
                             >
-                                <Minus className="h-5 w-5" />
+                                <Minus className="h-4 w-4" />
                             </button>
 
-                            <div className="flex-1">
-                                <div className="flex items-baseline justify-center gap-1 mb-3">
-                                    <span className="text-3xl font-bold text-fg tabular-nums">{formData.progress}</span>
-                                    <span className="text-fg-faint text-lg">/</span>
-                                    <span className="text-fg-dim text-lg tabular-nums">{displayTotalEp || "?"}</span>
-                                </div>
-                                <div className="relative h-2 bg-surface-2 rounded-full overflow-hidden">
-                                    <div
-                                        className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${
-                                            formData.status === "Completed"
-                                                ? "bg-linear-to-r from-emerald-500 to-emerald-400"
-                                                : formData.status === "Plan to Watch"
-                                                  ? "bg-linear-to-r from-slate-500 to-slate-400"
-                                                  : formData.status === "Dropped"
-                                                    ? "bg-linear-to-r from-rose-500 to-rose-400"
-                                                    : "bg-linear-to-r from-blue-500 to-blue-400"
-                                        }`}
-                                        style={{ width: `${progressPercent}%` }}
-                                    />
+                            <div className="flex-1 space-y-1.5">
+                                <p className="text-sm tabular-nums">
+                                    <span className="text-base font-semibold text-fg">{formData.progress}</span>
+                                    <span className="text-fg-dim"> of {displayTotalEp || "?"}</span>
+                                </p>
+                                <div className="h-0.75 rounded-full bg-surface-3 overflow-hidden">
+                                    <div className={`h-full ${statusDot} transition-all duration-300`} style={{ width: `${progressPercent}%` }} />
                                 </div>
                             </div>
 
                             <button
                                 onClick={() => setFormData((prev) => ({ ...prev, progress: prev.progress + 1 }))}
-                                className="cursor-pointer h-11 w-11 flex items-center justify-center rounded-xl bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all border border-line-soft"
+                                aria-label="One episode more"
+                                className="cursor-pointer h-9 w-9 shrink-0 flex items-center justify-center rounded-lg bg-surface-3 hover:bg-surface-4 text-fg-soft hover:text-fg transition-colors"
                             >
-                                <Plus className="h-5 w-5" />
+                                <Plus className="h-4 w-4" />
                             </button>
                         </div>
                     </div>
 
-                    {/* Rating */}
-                    <div className="space-y-3">
+                    {/* Score */}
+                    <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                            <label className="text-sm font-medium text-fg-muted">Rating</label>
-                            <div className="flex items-center gap-1.5">
-                                <Star className={`h-4 w-4 ${formData.score > 0 ? "text-amber-400 fill-amber-400" : "text-fg-faint"}`} />
-                                <span className={`text-sm font-semibold tabular-nums ${formData.score > 0 ? "text-fg" : "text-fg-faint"}`}>
-                                    {formData.score > 0 ? formData.score.toFixed(1) : "Not rated"}
+                            <label className="text-[13px] text-fg-dim">Score</label>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={toggleHalf}
+                                    aria-pressed={scoreHasHalf}
+                                    className={`cursor-pointer rounded px-1.5 py-0.5 text-xs transition-colors ${scoreHasHalf ? "bg-surface-3 text-fg" : "text-fg-dim hover:text-fg"}`}
+                                >
+                                    + .5
+                                </button>
+                                <span className="flex items-center gap-1 text-sm font-semibold tabular-nums">
+                                    {formData.score > 0 ? (
+                                        <>
+                                            <Star className="h-3.5 w-3.5 fill-current text-yellow-400" />
+                                            <span className="text-fg">{formData.score % 1 === 0 ? formData.score : formData.score.toFixed(1)}</span>
+                                        </>
+                                    ) : (
+                                        <span className="font-normal text-fg-faint">Not rated</span>
+                                    )}
                                 </span>
                             </div>
                         </div>
 
-                        {/* Star rating row */}
-                        <div className="flex justify-between gap-1">
+                        <div className="grid grid-cols-10 gap-0.5 rounded-lg bg-surface-2 p-0.75">
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
                                 <button
                                     key={rating}
-                                    onClick={() => setFormData((prev) => ({ ...prev, score: prev.score === rating ? 0 : rating }))}
-                                    className={`cursor-pointer flex-1 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-all ${
-                                        formData.score >= rating
-                                            ? "bg-amber-500/30 text-amber-300 border border-amber-500/40"
-                                            : "bg-surface-1 text-fg-faint hover:bg-surface-4 hover:text-fg-muted border border-transparent"
-                                    }`}
-                                >
-                                    {rating}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Half points as subtle links */}
-                        <div className="flex justify-center gap-3 pt-1">
-                            {[0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5].map((rating) => (
-                                <button
-                                    key={rating}
-                                    onClick={() => setFormData((prev) => ({ ...prev, score: prev.score === rating ? 0 : rating }))}
-                                    className={`cursor-pointer text-xs transition-all ${
-                                        formData.score === rating ? "text-amber-400 font-medium" : "text-fg-faint hover:text-fg-muted"
+                                    onClick={() => pickWhole(rating)}
+                                    className={`cursor-pointer h-8 rounded-md text-[13px] tabular-nums transition-colors ${
+                                        scoreWhole === rating && formData.score > 0
+                                            ? "bg-fg font-semibold text-page"
+                                            : formData.score > rating
+                                              ? "bg-surface-3 text-fg-soft"
+                                              : "text-fg-dim hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     {rating}
@@ -481,11 +457,11 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
 
                     {/* Notes */}
                     <div className="space-y-3">
-                        <label className="text-sm font-medium text-fg-muted">Notes</label>
+                        <label className="text-[13px] text-fg-dim">Notes</label>
                         <Textarea
                             value={formData.notes}
                             onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
-                            className="min-h-24 bg-surface-1 border-line-strong rounded-xl text-fg placeholder:text-fg-faint focus:bg-surface-2 focus:border-blue-500/40 resize-none"
+                            className="min-h-20 bg-surface-2 border-0 rounded-lg text-fg placeholder:text-fg-faint focus-visible:bg-surface-3 focus-visible:ring-0 resize-none"
                             placeholder="Add your thoughts..."
                         />
                     </div>
@@ -501,14 +477,14 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setConfirmDelete(false)}
-                                    className="cursor-pointer h-9 px-4 rounded-lg bg-surface-2 hover:bg-surface-4 text-fg-soft text-sm transition-all"
+                                    className="cursor-pointer h-9 px-3.5 rounded-lg text-fg-muted hover:text-fg hover:bg-surface-2 text-sm transition-colors"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={confirmAndDelete}
                                     disabled={loading}
-                                    className="cursor-pointer h-9 px-4 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 text-sm font-medium transition-all disabled:opacity-50"
+                                    className="cursor-pointer h-9 px-3.5 rounded-lg bg-dropped text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
                                 >
                                     Remove
                                 </button>
@@ -520,29 +496,28 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                                 <button
                                     onClick={handleDelete}
                                     disabled={loading}
-                                    className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-all disabled:opacity-50"
+                                    className="cursor-pointer text-[13px] text-fg-dim hover:text-dropped transition-colors disabled:opacity-50"
                                 >
-                                    <Trash2 className="h-4 w-4" />
-                                    <span>Delete</span>
+                                    Remove from list
                                 </button>
                             ) : (
                                 <div />
                             )}
-                            <div className="flex gap-3">
+                            <div className="flex gap-2">
                                 <Button
                                     variant="ghost"
                                     onClick={() => onOpenChange(false)}
                                     disabled={loading}
-                                    className="cursor-pointer h-10 px-5 bg-surface-2 hover:bg-surface-4 text-fg-soft rounded-xl"
+                                    className="cursor-pointer h-9 px-3.5 text-fg-muted hover:text-fg hover:bg-surface-2 rounded-lg"
                                 >
                                     Cancel
                                 </Button>
                                 <Button
                                     onClick={handleSave}
                                     disabled={loading}
-                                    className="cursor-pointer h-10 px-6 bg-blue-500 hover:bg-blue-400 text-gray-900 font-semibold rounded-xl transition-all"
+                                    className="cursor-pointer h-9 px-4 bg-fg hover:bg-fg/90 text-page font-semibold rounded-lg transition-colors"
                                 >
-                                    {loading ? "Saving..." : isEditing ? "Save Changes" : "Add to List"}
+                                    {loading ? "Saving…" : isEditing ? "Save" : "Add to list"}
                                 </Button>
                             </div>
                         </>
