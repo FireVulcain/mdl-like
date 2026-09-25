@@ -62,13 +62,15 @@ function LeadCard({ person, compact }: { person: Person; compact: boolean }) {
     );
 }
 
-// A supporting role: a small round photo, name and character on two lines.
+// A supporting role: a small portrait, name and character on two lines. Cut
+// to 3:4 like the leads rather than a circle: MDL photos are tall portraits,
+// and a circle kept only the middle of the face, clipping chin and hair.
 function CastRow({ person }: { person: Person }) {
     const inner = (
         <>
-            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-surface-3">
+            <div className="relative h-12 w-9 shrink-0 overflow-hidden rounded bg-surface-3">
                 {person.image && (
-                    <Image unoptimized src={person.image} alt={person.name} fill sizes="40px" className="object-cover object-[50%_22%]" loading="lazy" />
+                    <Image unoptimized src={person.image} alt={person.name} fill sizes="36px" className="object-cover object-top" loading="lazy" />
                 )}
             </div>
             <div className="min-w-0">
