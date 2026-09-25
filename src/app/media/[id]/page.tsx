@@ -11,7 +11,7 @@ import { PhotosScroll } from "@/components/media/photos-scroll";
 import { MdlPhotosSection } from "@/components/media/mdl-photos-section";
 import { CastScroll } from "@/components/media/cast-scroll";
 import { MdlRatingBadge } from "@/components/media/mdl-rating-badge";
-import { MdlRankStats, RankStats, RankStatsFallback } from "@/components/media/mdl-rank-stats";
+import { MdlRankStats, MdlNativeRankStats, RankStats, RankStatsFallback } from "@/components/media/mdl-rank-stats";
 import { MdlAiredRow } from "@/components/media/mdl-aired-row";
 import { MdlDurationRow } from "@/components/media/mdl-duration-row";
 import { MdlLiveRefresh } from "@/components/media/mdl-live-refresh";
@@ -30,7 +30,6 @@ import { MdlCastScroll } from "@/components/media/mdl-cast-scroll";
 import { Suspense } from "react";
 import { MdlReviewsSection } from "@/components/media/mdl-reviews-section";
 import { MdlThreadsSection } from "@/components/media/mdl-threads-section";
-import { MdlRatingChartSection } from "@/components/media/mdl-rating-chart-section";
 import { MdlRecsSection } from "@/components/media/mdl-recommendations-section";
 import { MdlPosterLink, MdlPosterLinkFallback } from "@/components/media/mdl-poster-link";
 import { PosterZoom } from "@/components/media/poster-zoom";
@@ -250,11 +249,21 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             The status bar above already stands out as the object here. */}
                         <div className="rounded-lg bg-box p-4 flex flex-col gap-3.5">
                             {(media.mdlRanking || media.mdlWatchers) ? (
-                                <RankStats
-                                    rank={media.mdlRanking || null}
-                                    // Explicit locale: the server's own would group with spaces
-                                    watchers={media.mdlWatchers ? media.mdlWatchers.toLocaleString("en-US") : null}
-                                />
+                                <Suspense
+                                    fallback={
+                                        <RankStats
+                                            rank={media.mdlRanking || null}
+                                            // Explicit locale: the server's own would group with spaces
+                                            watchers={media.mdlWatchers ? media.mdlWatchers.toLocaleString("en-US") : null}
+                                        />
+                                    }
+                                >
+                                    <MdlNativeRankStats
+                                        mdlSlug={media.externalId}
+                                        rank={media.mdlRanking || null}
+                                        watchers={media.mdlWatchers ? media.mdlWatchers.toLocaleString("en-US") : null}
+                                    />
+                                </Suspense>
                             ) : null}
                             {/* Title, type, country and episode count are the
                                 line under the heading, a hundred pixels up; the
@@ -281,12 +290,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     </>
                                 )}
 
-                                {media.rating > 0 && (
-                                    <>
-                                        <span className="text-fg-dim">MDL Score</span>
-                                        <span className="text-sky-400 font-medium">MDL {media.rating.toFixed(1)}</span>
-                                    </>
-                                )}
                             </div>
                             {media.type === "TV" && (
                                 <Suspense fallback={null}>
@@ -471,15 +474,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                 {
                                     key: "community",
                                     sections: [
-                                        {
-                                            id: "section-rating",
-                                            label: "Rating",
-                                            node: (
-                                                <Suspense fallback={null}>
-                                                    <MdlRatingChartSection mdlSlug={media.externalId} />
-                                                </Suspense>
-                                            ),
-                                        },
                                         {
                                             id: "section-reviews",
                                             label: "Reviews",
@@ -1205,19 +1199,6 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                             {
                                 key: "community",
                                 sections: [
-                                    ...(mdlSlugForSeason
-                                        ? [
-                                              {
-                                                  id: "section-rating",
-                                                  label: "Rating",
-                                                  node: (
-                                                      <Suspense fallback={null}>
-                                                          <MdlRatingChartSection mdlSlug={mdlSlugForSeason} />
-                                                      </Suspense>
-                                                  ),
-                                              },
-                                          ]
-                                        : []),
                                     ...(isMdlRelevant
                                         ? [
                                               {
