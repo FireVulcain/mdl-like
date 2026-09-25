@@ -175,9 +175,10 @@
     /* The plain box of the redesigned panels (media info, status bar, people
        and profile sidebars, filters). Opaque on purpose: surface-1 is a 3% white
        veil, so the same box read lighter where the backdrop's top lift sits
-       behind it and darker lower down. This is that veil over the base colour,
-       computed once, so every box is one colour wherever it lands. */
-    --box: #17191f;
+       behind it and darker lower down. One step up from the base, keeping its
+       blue: a plain white veil over it came out a flat, faintly brown grey
+       (#17191f) that sat oddly on a blue-slate page. */
+    --box: #161a23;
 
     /* The floating header, in its three states. Named per theme rather than
        written as opacity modifiers on --panel, because the two themes do not
