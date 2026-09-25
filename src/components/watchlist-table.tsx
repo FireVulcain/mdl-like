@@ -132,9 +132,12 @@ import { EditMediaDialog } from "./edit-media-dialog";
 import { NextEpisodeIndicator } from "./next-episode-indicator";
 import { listThumbUrl } from "@/lib/image-sizes";
 
+// Up to this many episodes the progress is drawn one cell per episode.
+const TICKED_EPISODES = 40;
+
 // icon and color serve the admin refresh panels only. On the list itself the
-// status is plain text and its hue lives in the progress hairline (line),
-// as on the media page's status bar.
+// status is plain text and its hue lives in the progress cells (line), as on
+// the media page's status bar.
 const statusConfig = {
     Watching: { icon: Eye, color: "text-blue-400", line: "bg-watching" },
     Completed: { icon: CheckCircle, color: "text-emerald-400", line: "bg-watched" },
@@ -2521,56 +2524,79 @@ const ItemCard = memo(function ItemCard({
                     document.body,
                 )}
 
-                {/* Status and progress, one column. The status is a word that opens the
-                    menu; its hue is the hairline under it, as on the media page. */}
-                <div className="card-progress w-48 space-y-1.5">
-                    <div className="flex items-center gap-1">
-                        <button
-                            ref={statusButtonRef}
-                            onClick={readOnly ? undefined : handleDropdownToggle}
-                            className={`-ml-1.5 min-w-0 truncate rounded-md px-1.5 py-0.5 text-left text-[13px] text-fg-soft transition-colors ${readOnly ? "cursor-default" : "cursor-pointer hover:bg-surface-3 hover:text-fg"}`}
-                        >
-                            {item.status}
-                        </button>
-                        <span className="ml-auto shrink-0 pr-1 text-[13px] tabular-nums text-fg-dim">
-                            <span className="font-semibold text-fg">{item.progress}</span> / {item.totalEp || "?"}
-                        </span>
-                        {!readOnly && (
+                {/* Status and progress. The status is a word that opens the menu, the
+                    count beside it, the cells under both and only them: the - / +
+                    sit apart, so the cells measure the words above them and nothing
+                    else. The status hue is in the cells, as on the media page. */}
+                <div className="card-progress flex items-center gap-2.5">
+                    <div className="min-w-0 flex-1 space-y-1.5 md:w-40 md:flex-none">
+                        <div className="flex items-center gap-2">
                             <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
-                                }}
-                                aria-label="One episode less"
-                                className="progress-btn cursor-pointer h-6 w-6 shrink-0 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-colors"
+                                ref={statusButtonRef}
+                                onClick={readOnly ? undefined : handleDropdownToggle}
+                                className={`-ml-1.5 min-w-0 truncate rounded-md px-1.5 py-0.5 text-left text-[13px] text-fg-soft transition-colors ${readOnly ? "cursor-default" : "cursor-pointer hover:bg-surface-3 hover:text-fg"}`}
                             >
-                                <Minus className="h-3.5 w-3.5" />
+                                {item.status}
                             </button>
-                        )}
-                        {!readOnly && (
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    const next = item.progress + 1;
-                                    handleProgress(item.id, next, item.title || undefined);
-                                    if (item.totalEp && next >= item.totalEp) {
-                                        setCompletionScore(0);
-                                        setShowCompletion(true);
-                                    }
-                                }}
-                                aria-label="One episode more"
-                                className="progress-btn cursor-pointer h-6 w-6 shrink-0 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-colors"
+                            <span className="ml-auto shrink-0 text-[13px] tabular-nums text-fg-dim">
+                                <span className="font-semibold text-fg">{item.progress}</span> / {item.totalEp || "?"}
+                            </span>
+                        </div>
+                        {/* One cell per episode, filled up to the last one watched —
+                            the count made visible. Past forty episodes the cells get
+                            too thin to read, and it falls back to a plain bar. */}
+                        {item.totalEp && item.totalEp <= TICKED_EPISODES ? (
+                            <div
+                                className="grid h-1 gap-0.5 progress-bar"
+                                style={{ gridTemplateColumns: `repeat(${item.totalEp}, minmax(0, 1fr))` }}
+                                aria-hidden
                             >
-                                <Plus className="h-3.5 w-3.5" />
-                            </button>
+                                {Array.from({ length: item.totalEp }, (_, i) => (
+                                    <span key={i} className={`h-full rounded-[1px] transition-colors ${i < item.progress ? statusInfo.line : "bg-surface-3"}`} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="relative h-0.75 bg-surface-3 rounded-full overflow-hidden progress-bar">
+                                <div
+                                    className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ${statusInfo.line}`}
+                                    style={{ width: `${Math.min(100, progressPercent)}%` }}
+                                />
+                            </div>
                         )}
                     </div>
-                    <div className="relative h-0.75 bg-surface-3 rounded-full overflow-hidden progress-bar">
-                        <div
-                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ${statusInfo.line}`}
-                            style={{ width: `${Math.min(100, progressPercent)}%` }}
-                        />
-                    </div>
+                    {!readOnly && (
+                        <div className="flex shrink-0 items-center gap-1">
+                            {!readOnly && (
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
+                                    }}
+                                    aria-label="One episode less"
+                                    className="progress-btn cursor-pointer h-6 w-6 shrink-0 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-colors"
+                                >
+                                    <Minus className="h-3.5 w-3.5" />
+                                </button>
+                            )}
+                            {!readOnly && (
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        const next = item.progress + 1;
+                                        handleProgress(item.id, next, item.title || undefined);
+                                        if (item.totalEp && next >= item.totalEp) {
+                                            setCompletionScore(0);
+                                            setShowCompletion(true);
+                                        }
+                                    }}
+                                    aria-label="One episode more"
+                                    className="progress-btn cursor-pointer h-6 w-6 shrink-0 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-colors"
+                                >
+                                    <Plus className="h-3.5 w-3.5" />
+                                </button>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* Rating */}

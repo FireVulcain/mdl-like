@@ -862,10 +862,6 @@
         order: unset !important;
     }
 
-    .card-progress > * + * {
-        margin-top: 0.125rem !important;
-    }
-
     .progress-btn {
         height: 1.5rem !important;
         width: 1.5rem !important;
