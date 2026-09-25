@@ -1,45 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ActivityAction } from "@/types/activity";
-import { Star, Play, Plus, Trash2, RefreshCw, FileText } from "lucide-react";
 
-const ACTION_CONFIG: Record<string, { icon: React.ElementType; color: string }> = {
-    [ActivityAction.ADDED]: { icon: Plus, color: "text-blue-400" },
-    [ActivityAction.REMOVED]: { icon: Trash2, color: "text-rose-400" },
-    [ActivityAction.PROGRESS]: { icon: Play, color: "text-violet-400" },
-    [ActivityAction.STATUS_CHANGED]: { icon: RefreshCw, color: "text-amber-400" },
-    [ActivityAction.SCORED]: { icon: Star, color: "text-yellow-400" },
-    [ActivityAction.NOTED]: { icon: FileText, color: "text-slate-400" },
-};
-
-function formatActivity(action: string, payload: unknown, title: string): string {
+// Each entry is a sentence with the title in bold. A coloured icon per action
+// used to say what the sentence already says, in six different colours.
+function formatActivity(action: string, payload: unknown, title: ReactNode): ReactNode {
     const p = payload as Record<string, unknown> | null;
     switch (action) {
         case ActivityAction.ADDED:
-            return `Added ${title} to watchlist${p?.status ? ` as ${p.status}` : ""}`;
+            return <>Added {title} to {p?.status ? String(p.status) : "watchlist"}</>;
         case ActivityAction.REMOVED:
-            return `Removed ${title} from watchlist`;
+            return <>Removed {title} from watchlist</>;
         case ActivityAction.PROGRESS: {
             const to = p?.to as number | undefined;
             const from = p?.from as number | undefined;
             if (to !== undefined && from !== undefined && to - from > 1)
-                return `Watched episodes ${from + 1}–${to} of ${title}`;
-            return `Watched episode ${to ?? "?"} of ${title}`;
+                return <>Watched episodes {from + 1}–{to} of {title}</>;
+            return <>Watched episode {to ?? "?"} of {title}</>;
         }
         case ActivityAction.STATUS_CHANGED: {
             const from = p?.from as string | undefined;
             const to = p?.to as string | undefined;
-            return `Changed ${title} from ${from ?? "?"} → ${to ?? "?"}`;
+            return <>Moved {title} from {from ?? "?"} to {to ?? "?"}</>;
         }
         case ActivityAction.SCORED: {
             const to = p?.to as number | undefined;
-            return `Rated ${title} ${to ?? "?"}/10`;
+            return <>Rated {title} {to ?? "?"}/10</>;
         }
         case ActivityAction.NOTED:
-            return `Added note to ${title}`;
+            return <>Added a note to {title}</>;
         default:
             return title;
     }
@@ -76,40 +68,40 @@ export function PublicActivityFeed({ items }: { items: ActivityEntry[] }) {
     const visible = showAll ? items : items.slice(0, INITIAL_COUNT);
 
     return (
-        <div className="space-y-1.5">
-            {visible.map((entry) => {
-                const config = ACTION_CONFIG[entry.action];
-                const Icon = config?.icon ?? Play;
-                const mediaHref = `/media/${entry.source.toLowerCase()}-${entry.externalId}`;
-                return (
-                    <div
-                        key={entry.id}
-                        className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-surface-1 border border-line-soft hover:bg-surface-2 transition-colors"
-                    >
-                        {entry.poster ? (
-                            <Link href={mediaHref} className="shrink-0">
-                                <div className="relative h-8 w-14 rounded overflow-hidden">
-                                    <Image unoptimized={true} src={entry.poster} alt={entry.title} fill className="object-cover" sizes="56px" />
-                                </div>
-                            </Link>
-                        ) : (
-                            <div className="h-8 w-14 shrink-0 rounded bg-surface-2" />
-                        )}
-                        <div className={`shrink-0 ${config?.color ?? "text-fg-muted"}`}>
-                            <Icon className="h-4 w-4" />
+        <div>
+            <div className="divide-y divide-line-soft">
+                {visible.map((entry) => {
+                    const mediaHref = `/media/${entry.source.toLowerCase()}-${entry.externalId}`;
+                    return (
+                        <div key={entry.id} className="flex items-center gap-3 py-2">
+                            {entry.poster ? (
+                                <Link href={mediaHref} className="shrink-0">
+                                    <div className="relative h-9.5 w-6.5 rounded overflow-hidden bg-surface-3">
+                                        <Image unoptimized={true} src={entry.poster} alt={entry.title} fill className="object-cover" sizes="26px" />
+                                    </div>
+                                </Link>
+                            ) : (
+                                <div className="h-9.5 w-6.5 shrink-0 rounded bg-surface-2" />
+                            )}
+                            <p className="flex-1 min-w-0 truncate text-sm text-fg-soft">
+                                {formatActivity(
+                                    entry.action,
+                                    entry.payload,
+                                    <Link href={mediaHref} className="font-medium text-fg hover:underline underline-offset-2">
+                                        {entry.title}
+                                    </Link>,
+                                )}
+                            </p>
+                            <span className="shrink-0 text-[13px] text-fg-dim">{timeAgo(entry.createdAt)}</span>
                         </div>
-                        <p className="flex-1 text-sm text-fg-soft min-w-0 truncate">
-                            {formatActivity(entry.action, entry.payload, entry.title)}
-                        </p>
-                        <span className="shrink-0 text-xs text-fg-dim">{timeAgo(entry.createdAt)}</span>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
 
             {items.length > INITIAL_COUNT && (
                 <button
                     onClick={() => setShowAll((v) => !v)}
-                    className="w-full py-2 text-xs text-fg-dim hover:text-fg-soft transition-colors cursor-pointer"
+                    className="pt-2 text-[13px] text-fg-dim hover:text-fg transition-colors cursor-pointer"
                 >
                     {showAll ? "Show less" : `Show ${items.length - INITIAL_COUNT} more`}
                 </button>

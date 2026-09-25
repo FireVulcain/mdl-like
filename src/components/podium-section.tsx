@@ -4,7 +4,7 @@ import { useState, useTransition, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, Pencil, X, Crown, ChevronDown, Search } from "lucide-react";
+import { X, ChevronDown, Search } from "lucide-react";
 import { saveAllPodiums, type PodiumCategory, type PodiumEntry, type PodiumDraft } from "@/actions/podium";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -32,11 +32,7 @@ const CATEGORIES: { key: PodiumCategory; label: string }[] = [
     { key: "cdrama", label: "C-Drama" },
 ];
 
-const RANK_CONFIG = {
-    1: { label: "1st", textColor: "text-amber-300" },
-    2: { label: "2nd", textColor: "text-slate-300" },
-    3: { label: "3rd", textColor: "text-orange-400" },
-} as const;
+const RANK_LABEL = { 1: "1st", 2: "2nd", 3: "3rd" } as const;
 
 const CDRAMA_COUNTRIES = ["CN", "TW", "HK", "MO"];
 
@@ -141,7 +137,7 @@ function MediaPicker({
                         )}
                         <span className="flex-1 text-sm text-fg truncate">{value.title}</span>
                         {selectedFull?.score != null && selectedFull.score > 0 && (
-                            <span className="shrink-0 text-xs font-semibold text-amber-400 bg-amber-400/10 px-1.5 py-0.5 rounded-md">
+                            <span className="shrink-0 text-xs tabular-nums text-fg-muted">
                                 {selectedFull.score}/10
                             </span>
                         )}
@@ -209,7 +205,7 @@ function MediaPicker({
                                             {item.year && <p className="text-xs text-fg-dim">{item.year}</p>}
                                         </div>
                                         {item.score != null && item.score > 0 && (
-                                            <span className="shrink-0 text-xs font-semibold text-amber-400">
+                                            <span className="shrink-0 text-xs tabular-nums text-fg-muted">
                                                 {item.score}/10
                                             </span>
                                         )}
@@ -226,8 +222,9 @@ function MediaPicker({
 
 // ─── PodiumDisplay ────────────────────────────────────────────────────────────
 
-// Champion spotlight: #1 as a lead card (uncropped poster over its own blurred
-// artwork, same construction as the home spotlight), #2/#3 stacked as minis.
+// #1 as a lead card, #2/#3 stacked beside it. The same plain box as the media
+// page's panels: a light fill, the poster, a grey rank. The gold border, the
+// crown and the blurred artwork behind each card made it a trophy cabinet.
 function LeadCard({ entry }: { entry: PodiumEntry }) {
     const mediaHref = `/media/${entry.source.toLowerCase()}-${entry.externalId}`;
     return (
@@ -239,41 +236,21 @@ function LeadCard({ entry }: { entry: PodiumEntry }) {
         >
             <Link
                 href={mediaHref}
-                className="group relative block h-56 md:h-full md:min-h-56 rounded-2xl overflow-hidden border border-amber-400/25 hover:border-amber-400/50 transition-colors"
+                className="group flex h-56 md:h-full md:min-h-56 gap-4 rounded-lg bg-surface-1 p-3.5 hover:bg-surface-2 transition-colors"
             >
-                {entry.poster && (
-                    <Image unoptimized src={entry.poster} alt="" fill className="object-cover scale-110 blur-2xl opacity-50" />
-                )}
-                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
-
-                <div className="relative h-full flex items-center gap-4 p-4 md:p-5">
-                    <div className="relative h-full aspect-2/3 rounded-lg overflow-hidden shadow-2xl shadow-black/60 shrink-0 bg-surface-3">
-                        {entry.poster ? (
-                            <Image
-                                unoptimized
-                                src={entry.poster}
-                                alt={entry.title}
-                                fill
-                                sizes="160px"
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                        ) : (
-                            <div className="absolute inset-0 flex items-center justify-center text-white/50 text-xs text-center px-1">
-                                {entry.title}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="flex-1 min-w-0 space-y-1.5">
-                        <p className="flex items-center gap-1.5 text-[11px] font-bold tracking-wide text-amber-400">
-                            <Crown className="h-3.5 w-3.5" />
-                            #1
-                        </p>
-                        <h4 className="text-lg md:text-xl font-extrabold text-fg leading-tight line-clamp-3 group-hover:text-amber-200 transition-colors">
+                <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shrink-0 bg-surface-3">
+                    {entry.poster ? (
+                        <Image unoptimized src={entry.poster} alt={entry.title} fill sizes="160px" className="object-cover" />
+                    ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-fg-dim text-xs text-center px-1">
                             {entry.title}
-                        </h4>
-                        {entry.year && <p className="text-xs text-fg-muted">{entry.year}</p>}
-                    </div>
+                        </div>
+                    )}
+                </div>
+                <div className="flex-1 min-w-0 flex flex-col justify-end gap-1">
+                    <p className="text-[13px] text-fg-dim tabular-nums">1</p>
+                    <h4 className="text-lg md:text-xl font-bold text-fg leading-tight line-clamp-3">{entry.title}</h4>
+                    {entry.year && <p className="text-[13px] text-fg-dim">{entry.year}</p>}
                 </div>
             </Link>
         </motion.div>
@@ -281,7 +258,6 @@ function LeadCard({ entry }: { entry: PodiumEntry }) {
 }
 
 function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; delay: number }) {
-    const cfg = RANK_CONFIG[rank];
     const mediaHref = `/media/${entry.source.toLowerCase()}-${entry.externalId}`;
     return (
         <motion.div
@@ -292,38 +268,21 @@ function MiniCard({ rank, entry, delay }: { rank: 2 | 3; entry: PodiumEntry; del
         >
             <Link
                 href={mediaHref}
-                className="group relative block h-28 md:h-full rounded-xl overflow-hidden border border-line hover:border-line-strong transition-colors"
+                className="group flex h-28 md:h-full items-center gap-3 rounded-lg bg-surface-1 p-3 hover:bg-surface-2 transition-colors"
             >
-                {entry.poster && (
-                    <Image unoptimized src={entry.poster} alt="" fill className="object-cover scale-110 blur-2xl opacity-45" />
-                )}
-                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-black/15" />
-
-                <div className="relative h-full flex items-center gap-3 p-3">
-                    <div className="relative h-full aspect-2/3 rounded-md overflow-hidden shadow-xl shadow-black/60 shrink-0 bg-surface-3">
-                        {entry.poster ? (
-                            <Image
-                                unoptimized
-                                src={entry.poster}
-                                alt={entry.title}
-                                fill
-                                sizes="80px"
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                        ) : (
-                            <div className="absolute inset-0 flex items-center justify-center text-white/50 text-[10px] text-center px-1">
-                                {entry.title}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="flex-1 min-w-0 space-y-0.5">
-                        <p className={`text-[10.5px] font-extrabold ${cfg.textColor}`}>#{rank}</p>
-                        <h4 className="text-sm font-bold text-fg leading-snug line-clamp-2 group-hover:text-fg-soft transition-colors">
+                <div className="relative h-full aspect-2/3 rounded overflow-hidden shrink-0 bg-surface-3">
+                    {entry.poster ? (
+                        <Image unoptimized src={entry.poster} alt={entry.title} fill sizes="80px" className="object-cover" />
+                    ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-fg-dim text-[10px] text-center px-1">
                             {entry.title}
-                        </h4>
-                        {entry.year && <p className="text-[11px] text-fg-dim">{entry.year}</p>}
-                    </div>
+                        </div>
+                    )}
+                </div>
+                <div className="flex-1 min-w-0 space-y-0.5">
+                    <p className="text-[13px] text-fg-dim tabular-nums">{rank}</p>
+                    <h4 className="text-sm font-semibold text-fg leading-snug line-clamp-2">{entry.title}</h4>
+                    {entry.year && <p className="text-xs text-fg-dim">{entry.year}</p>}
                 </div>
             </Link>
         </motion.div>
@@ -395,7 +354,7 @@ function PodiumEditor({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.25 }}
-            className="rounded-2xl bg-surface-2 border border-line-strong p-5 space-y-4"
+            className="rounded-lg bg-surface-1 p-4 space-y-4"
         >
             <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-fg">Edit your Top 3 Podium</h3>
@@ -405,7 +364,7 @@ function PodiumEditor({
             </div>
 
             {/* Category tabs */}
-            <div className="flex gap-1 p-1 rounded-xl bg-surface-2 border border-line w-fit">
+            <div className="flex gap-0.5 p-0.75 rounded-lg bg-surface-2 w-fit">
                 {CATEGORIES.map(({ key, label }) => (
                     <button
                         key={key}
@@ -430,11 +389,10 @@ function PodiumEditor({
             {/* Rank slots */}
             <div className="space-y-2.5">
                 {([0, 1, 2] as const).map((idx) => {
-                    const rankLabel = RANK_CONFIG[(idx + 1) as 1 | 2 | 3].label;
-                    const cfg = RANK_CONFIG[(idx + 1) as 1 | 2 | 3];
+                    const rankLabel = RANK_LABEL[(idx + 1) as 1 | 2 | 3];
                     return (
                         <div key={idx} className="flex items-center gap-3">
-                            <span className={`text-xs font-bold w-8 shrink-0 ${cfg.textColor}`}>{rankLabel}</span>
+                            <span className="text-[13px] w-8 shrink-0 text-fg-dim">{rankLabel}</span>
                             <div className="flex-1">
                                 <MediaPicker
                                     value={slots[idx]}
@@ -450,7 +408,7 @@ function PodiumEditor({
             </div>
 
             {catOptions.length === 0 && (
-                <p className="text-xs text-amber-400/80 bg-amber-400/8 border border-amber-400/20 rounded-lg px-3 py-2">
+                <p className="text-[13px] text-fg-dim">
                     No completed {activeTab === "kdrama" ? "Korean" : "Chinese/Taiwanese"} titles in your watchlist yet.
                 </p>
             )}
@@ -462,7 +420,7 @@ function PodiumEditor({
                     type="button"
                     onClick={handleSave}
                     disabled={isPending}
-                    className="flex-1 py-2 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-sm font-medium transition-colors"
+                    className="flex-1 h-9 px-4 rounded-lg bg-fg hover:bg-fg/90 disabled:opacity-50 text-page text-sm font-semibold transition-colors"
                 >
                     {isPending ? "Saving..." : "Save changes"}
                 </button>
@@ -517,16 +475,12 @@ export function PodiumSection({
         <div className="space-y-4">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <Trophy className="h-4 w-4 text-amber-400" />
-                    <h2 className="font-display text-lg font-semibold text-fg">Top 3</h2>
-                </div>
+                <h2 className="font-display text-lg font-semibold text-fg">Top 3</h2>
                 {isOwner && !editMode && (
                     <button
                         onClick={() => setEditMode(true)}
-                        className="flex items-center gap-1.5 text-xs text-fg-muted hover:text-fg transition-colors px-2.5 py-1.5 rounded-lg hover:bg-surface-3"
+                        className="text-[13px] text-fg-dim hover:text-fg transition-colors cursor-pointer"
                     >
-                        <Pencil className="h-3.5 w-3.5" />
                         Edit
                     </button>
                 )}
@@ -548,16 +502,16 @@ export function PodiumSection({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center gap-3 py-10 rounded-2xl border border-dashed border-line-strong text-center"
+                        className="flex flex-col items-center gap-3 py-10 rounded-lg bg-surface-1 text-center"
                     >
-                        <Trophy className="h-8 w-8 text-fg-faint" />
+                        
                         <div>
                             <p className="text-sm text-fg-muted font-medium">No podium yet</p>
                             <p className="text-xs text-fg-faint mt-0.5">Showcase your all-time favorites</p>
                         </div>
                         <button
                             onClick={() => setEditMode(true)}
-                            className="text-xs px-4 py-2 rounded-xl bg-indigo-600/80 hover:bg-indigo-500 text-white font-medium transition-colors"
+                            className="h-8 px-3.5 rounded-lg bg-fg hover:bg-fg/90 text-page text-[13px] font-semibold transition-colors cursor-pointer"
                         >
                             Create your podium
                         </button>
@@ -573,7 +527,7 @@ export function PodiumSection({
                         {/* Tabs */}
                         {tabsToShow.length > 1 && (
                             <div className="flex gap-1">
-                                <div className="flex gap-1 p-1 rounded-xl bg-surface-2 border border-line">
+                                <div className="flex gap-0.5 p-0.75 rounded-lg bg-surface-2">
                                     {tabsToShow.map(({ key, label }) => {
                                         const completed = podiums[key].length === 3;
                                         return (
