@@ -41,11 +41,8 @@ import {
     ExternalLink,
     Download,
     Upload,
-    Tv,
     GalleryVertical,
     GalleryHorizontal,
-    Sparkles,
-    Tags,
     TimerReset,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -135,35 +132,14 @@ import { EditMediaDialog } from "./edit-media-dialog";
 import { NextEpisodeIndicator } from "./next-episode-indicator";
 import { listThumbUrl } from "@/lib/image-sizes";
 
+// icon and color serve the admin refresh panels only. On the list itself the
+// status is plain text and its hue lives in the progress hairline (line),
+// as on the media page's status bar.
 const statusConfig = {
-    Watching: {
-        icon: Eye,
-        color: "text-blue-400",
-        bg: "bg-blue-500/15",
-        border: "border-blue-500/30",
-        glow: "shadow-blue-500/20",
-    },
-    Completed: {
-        icon: CheckCircle,
-        color: "text-emerald-400",
-        bg: "bg-emerald-500/15",
-        border: "border-emerald-500/30",
-        glow: "shadow-emerald-500/20",
-    },
-    "Plan to Watch": {
-        icon: Clock,
-        color: "text-slate-400",
-        bg: "bg-slate-500/15",
-        border: "border-slate-500/30",
-        glow: "shadow-slate-500/20",
-    },
-    Dropped: {
-        icon: XCircle,
-        color: "text-rose-400",
-        bg: "bg-rose-500/15",
-        border: "border-rose-500/30",
-        glow: "shadow-rose-500/20",
-    },
+    Watching: { icon: Eye, color: "text-blue-400", line: "bg-watching" },
+    Completed: { icon: CheckCircle, color: "text-emerald-400", line: "bg-watched" },
+    "Plan to Watch": { icon: Clock, color: "text-slate-400", line: "bg-planned" },
+    Dropped: { icon: XCircle, color: "text-rose-400", line: "bg-dropped" },
 };
 
 export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle = "poster", defaultSort = "default", initialNextEpisodes = {} }: WatchlistTableProps) {
@@ -285,13 +261,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
     const [isImportingJSON, setIsImportingJSON] = useState(false);
     const importFileRef = useRef<HTMLInputElement>(null);
-    const [statusLabelHidden, setStatusLabelHidden] = useState(false);
-    useEffect(() => {
-        const check = () => setStatusLabelHidden(window.innerWidth >= 768 && window.innerWidth < 1536);
-        check();
-        window.addEventListener("resize", check);
-        return () => window.removeEventListener("resize", check);
-    }, []);
+    
 
     // Infinite scroll
     const [displayCount, setDisplayCount] = useState(10);
@@ -1063,14 +1033,14 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     onClick={() => setShowMobileStatusFilter(!showMobileStatusFilter)}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                         filterStatuses.length > 0
-                                            ? "bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/30"
+                                            ? "bg-surface-4 text-fg"
                                             : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     <SlidersHorizontal className="h-4 w-4 shrink-0" />
                                     <span>Status</span>
                                     {filterStatuses.length > 0 && (
-                                        <span className="bg-blue-500/30 text-blue-300 text-xs px-1.5 py-0.5 rounded-md">{filterStatuses.length}</span>
+                                        <span className="text-xs text-fg-muted tabular-nums">{filterStatuses.length}</span>
                                     )}
                                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showMobileStatusFilter ? "rotate-180" : ""}`} />
                                 </button>
@@ -1079,8 +1049,6 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                         <div className="fixed inset-0 z-10" onClick={() => setShowMobileStatusFilter(false)} />
                                         <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in slide-in-from-top-2 duration-200">
                                             {allStatuses.map((status) => {
-                                                const config = statusConfig[status as keyof typeof statusConfig];
-                                                const Icon = config?.icon;
                                                 const isSelected = filterStatuses.includes(status);
                                                 return (
                                                     <button
@@ -1088,13 +1056,12 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         onClick={() => { toggleStatus(status); setShowMobileStatusFilter(false); }}
                                                         className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer ${
                                                             isSelected
-                                                                ? `${config?.bg} ${config?.color}`
-                                                                : "text-fg-soft hover:bg-surface-3 hover:text-fg"
+                                                                ? "bg-surface-3 text-fg"
+    : "text-fg-soft hover:bg-surface-3 hover:text-fg"
                                                         }`}
                                                     >
-                                                        {Icon && <Icon className="h-4 w-4 shrink-0" />}
                                                         <span>{status}</span>
-                                                        {isSelected && <CheckCircle className="h-3.5 w-3.5 ml-auto" />}
+                                                        {isSelected && <Check className="h-3.5 w-3.5 ml-auto" />}
                                                     </button>
                                                 );
                                             })}
@@ -1103,34 +1070,32 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 )}
                             </div>
 
-                            {/* Status Pills — desktop */}
-                            <TooltipProvider delayDuration={300}>
-                            {allStatuses.map((status) => {
-                                const config = statusConfig[status as keyof typeof statusConfig];
-                                const Icon = config?.icon;
-                                const isSelected = filterStatuses.includes(status);
-                                const btnClass = `hidden md:flex h-9 px-3 rounded-lg items-center gap-1.5 text-sm font-medium transition-all cursor-pointer shrink-0 ${isSelected ? `${config?.bg} ${config?.color} ring-1 ${config?.border}` : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`;
-                                if (statusLabelHidden) {
+                            {/* Status — desktop: one segmented rail, text only, several can be on.
+                                The hue a status carries shows on the rows, not here. */}
+                            <div className="hidden md:flex shrink-0 gap-0.5 rounded-lg bg-surface-2 p-0.75">
+                                {allStatuses.map((status) => {
+                                    const isSelected = filterStatuses.includes(status);
                                     return (
-                                        <Tooltip key={status}>
-                                            <TooltipTrigger asChild>
-                                                <button className={btnClass} onClick={() => toggleStatus(status)}>
-                                                    {Icon && <Icon className="h-4 w-4 shrink-0" />}
-                                                    <span className="2xl:inline hidden">{status}</span>
-                                                </button>
-                                            </TooltipTrigger>
-                                            <TooltipContent side="bottom">{status}</TooltipContent>
-                                        </Tooltip>
+                                        <button
+                                            key={status}
+                                            onClick={() => toggleStatus(status)}
+                                            aria-pressed={isSelected}
+                                            className={`h-7.5 px-2.5 rounded-md text-[13px] whitespace-nowrap transition-colors cursor-pointer ${
+                                                isSelected ? "bg-surface-4 font-medium text-fg" : "text-fg-muted hover:text-fg"
+                                            }`}
+                                        >
+                                            {status === "Plan to Watch" ? (
+                                                <>
+                                                    <span className="2xl:hidden">Plan</span>
+                                                    <span className="hidden 2xl:inline">Plan to Watch</span>
+                                                </>
+                                            ) : (
+                                                status
+                                            )}
+                                        </button>
                                     );
-                                }
-                                return (
-                                    <button key={status} className={btnClass} onClick={() => toggleStatus(status)}>
-                                        {Icon && <Icon className="h-4 w-4 shrink-0" />}
-                                        <span className="2xl:inline hidden">{status}</span>
-                                    </button>
-                                );
-                            })}
-                            </TooltipProvider>
+                                })}
+                            </div>
 
                             {/* Country Filter */}
                             <div className="relative filter-dropdown">
@@ -1144,13 +1109,13 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     }}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterCountries.length > 0
-                                            ? "bg-rose-500/20 text-rose-400 ring-1 ring-rose-500/30"
+                                            ? "bg-surface-4 text-fg"
                                             : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     <span className="">Country</span>
                                     {filterCountries.length > 0 && (
-                                        <span className="bg-rose-500/30 text-rose-300 text-xs px-1.5 py-0.5 rounded-md">
+                                        <span className="text-xs text-fg-muted tabular-nums">
                                             {filterCountries.length}
                                         </span>
                                     )}
@@ -1168,12 +1133,12 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         onClick={() => toggleCountry(country)}
                                                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
                                                             isSelected
-                                                                ? "bg-rose-500/20 text-rose-400"
+                                                                ? "bg-surface-3 text-fg"
                                                                 : "text-fg-muted hover:bg-surface-2 hover:text-fg"
                                                         }`}
                                                     >
                                                         <span className="flex-1 text-left">{countryName(country)}</span>
-                                                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />}
+                                                        {isSelected && <Check className="h-3.5 w-3.5 shrink-0" />}
                                                     </button>
                                                 );
                                             })}
@@ -1194,13 +1159,13 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     }}
                                     className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${
                                         filterGenres.length + excludeGenres.length > 0
-                                            ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30"
+                                            ? "bg-surface-4 text-fg"
                                             : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                                     }`}
                                 >
                                     <span className="">Genre</span>
                                     {filterGenres.length + excludeGenres.length > 0 && (
-                                        <span className="bg-emerald-500/30 text-emerald-300 text-xs px-1.5 py-0.5 rounded-md">
+                                        <span className="text-xs text-fg-muted tabular-nums">
                                             {filterGenres.length + excludeGenres.length}
                                         </span>
                                     )}
@@ -1229,13 +1194,13 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         title={included ? "Click to exclude" : excluded ? "Click to clear" : "Click to include"}
                                                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
                                                             included
-                                                                ? "bg-emerald-500/20 text-emerald-400"
+                                                                ? "bg-surface-3 text-fg"
                                                                 : excluded
-                                                                  ? "bg-red-500/20 text-red-400"
+                                                                  ? "text-fg-dim"
                                                                   : "text-fg-muted hover:bg-surface-2 hover:text-fg"
                                                         }`}
                                                     >
-                                                        <span className={`flex-1 text-left ${excluded ? "line-through decoration-red-400/50" : ""}`}>
+                                                        <span className={`flex-1 text-left ${excluded ? "line-through decoration-fg-dim" : ""}`}>
                                                             {genre}
                                                         </span>
                                                         {included && <Check className="h-3.5 w-3.5 shrink-0" />}
@@ -1266,12 +1231,11 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             }}
                             className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 ${
                                 filterAiringOnly
-                                    ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30"
+                                    ? "bg-surface-4 text-fg"
                                     : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                             }`}
                         >
-                            <Tv className="h-4 w-4" />
-                            <span className="">Airing</span>
+                            <span>Airing</span>
                         </button>
 
                         {/* What to watch next */}
@@ -1281,9 +1245,8 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     setShowWhatsNext(true);
                                     ensureRecommendations();
                                 }}
-                                className="h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 bg-violet-500/10 text-violet-400 hover:bg-violet-500/20 ring-1 ring-violet-500/20"
+                                className="h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer shrink-0 bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"
                             >
-                                <Sparkles className="h-4 w-4" />
                                 <span>What&apos;s next?</span>
                             </button>
                         )}
@@ -1318,7 +1281,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
                                         onClick={() => { setShowSortFilter(!showSortFilter); setShowYearFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
-                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/30" : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-surface-4 text-fg" : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`}
                                     >
                                         <SlidersHorizontal className="h-4 w-4" />
                                         <span>{sortLabels[sortBy] ?? "Sort"}</span>
@@ -1330,16 +1293,15 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                             <div className="absolute top-full mt-2 left-0 z-20 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-3 w-56 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1">
                                                 <button
                                                     onClick={() => pick("default")}
-                                                    className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${sortBy === "default" ? "bg-violet-500/20 text-violet-400" : "text-fg-dim hover:text-fg hover:bg-surface-2"}`}
+                                                    className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${sortBy === "default" ? "bg-surface-3 text-fg" : "text-fg-dim hover:text-fg hover:bg-surface-2"}`}
                                                 >
                                                     Default
                                                 </button>
                                                 {!readOnly && (
                                                     <button
                                                         onClick={() => { pick("recommended"); ensureRecommendations(); }}
-                                                        className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${sortBy === "recommended" ? "bg-violet-500/20 text-violet-400" : "text-fg-dim hover:text-fg hover:bg-surface-2"}`}
+                                                        className={`w-full text-left px-2 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${sortBy === "recommended" ? "bg-surface-3 text-fg" : "text-fg-dim hover:text-fg hover:bg-surface-2"}`}
                                                     >
-                                                        <Sparkles className="h-3 w-3" />
                                                         Best match for you
                                                     </button>
                                                 )}
@@ -1352,7 +1314,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                                 <button
                                                                     key={v}
                                                                     onClick={() => pick(v)}
-                                                                    className={`flex-1 py-1 rounded text-xs font-medium transition-all cursor-pointer ${sortBy === v ? "bg-violet-500/30 text-violet-300" : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"}`}
+                                                                    className={`flex-1 py-1 rounded text-xs font-medium transition-all cursor-pointer ${sortBy === v ? "bg-surface-4 text-fg" : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"}`}
                                                                 >
                                                                     {lbl}
                                                                 </button>
@@ -1384,7 +1346,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                 <div className="relative filter-dropdown shrink-0">
                                     <button
                                         onClick={() => { setShowYearFilter(!showYearFilter); setShowSortFilter(false); setShowCountryFilter(false); setShowGenreFilter(false); }}
-                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-orange-500/20 text-orange-400 ring-1 ring-orange-500/30" : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`}
+                                        className={`h-9 px-3 rounded-lg flex items-center gap-2 text-sm font-medium transition-all cursor-pointer ${isActive ? "bg-surface-4 text-fg" : "bg-surface-2 text-fg-muted hover:bg-surface-3 hover:text-fg"}`}
                                     >
                                         <span>{label}</span>
                                         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showYearFilter ? "rotate-180" : ""}`} />
@@ -1399,10 +1361,10 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                                         <button
                                                             key={opt.value}
                                                             onClick={() => { setFilterYear(opt.value); syncUrl("year", opt.value === "All" ? null : opt.value); setShowYearFilter(false); }}
-                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-orange-500/20 text-orange-400" : "text-fg-muted hover:bg-surface-2 hover:text-fg"}`}
+                                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${isSelected ? "bg-surface-3 text-fg" : "text-fg-muted hover:bg-surface-2 hover:text-fg"}`}
                                                         >
                                                             <span className="flex-1 text-left">{opt.label}</span>
-                                                            {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />}
+                                                            {isSelected && <Check className="h-3.5 w-3.5 shrink-0" />}
                                                         </button>
                                                     );
                                                 })}
@@ -1531,57 +1493,57 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
             {/* Active Filters */}
             {(activeFilterCount > 0 || search) && (
                 <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-1 active-filters animate-in fade-in slide-in-from-top-1 duration-300">
-                    <span className="text-xs font-medium text-fg-dim uppercase tracking-wider">Filters:</span>
-                    <span className="text-xs font-semibold text-fg-muted bg-surface-3 px-2 py-0.5 rounded-md">
+                    
+                    <span className="text-[13px] text-fg-dim tabular-nums mr-1">
                         {filteredItems.length} result{filteredItems.length !== 1 ? "s" : ""}
                     </span>
                     {filterStatuses.map((status) => (
                         <button
                             key={status}
                             onClick={() => toggleStatus(status)}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-blue-500/15 text-blue-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
                             {status}
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     ))}
                     {filterCountries.map((country) => (
                         <button
                             key={country}
                             onClick={() => toggleCountry(country)}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-rose-500/15 text-rose-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
                             {countryName(country)}
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     ))}
                     {filterGenres.map((genre) => (
                         <button
                             key={genre}
                             onClick={() => clearGenre(genre)}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/15 text-emerald-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
                             {genre}
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     ))}
                     {excludeGenres.map((genre) => (
                         <button
                             key={genre}
                             onClick={() => clearGenre(genre)}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-red-500/15 text-red-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
-                            <span className="line-through decoration-red-400/50">{genre}</span>
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <span className="line-through decoration-fg-dim text-fg-muted">{genre}</span>
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     ))}
                     {filterYear !== "All" && (
                         <button
                             onClick={() => { setFilterYear("All"); syncUrl("year", null); }}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-surface-4 text-fg-soft hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
                             {filterYear}
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     )}
                     {filterAiringOnly && (
@@ -1594,30 +1556,28 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                                     syncUrl("sort", null);
                                 }
                             }}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
                             Airing
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     )}
                     {filterTheme && (
                         <button
                             onClick={() => { setFilterTheme(""); syncUrl("theme", null); }}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-violet-500/15 text-violet-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
-                            <Tags className="h-3 w-3" />
                             {filterTheme}
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     )}
                     {filterScore && (
                         <button
                             onClick={() => { setFilterScore(""); syncUrl("score", null); }}
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-yellow-500/15 text-yellow-400 hover:opacity-80 transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-1.5 h-6.5 pl-2.5 pr-1.5 rounded-md text-[13px] bg-surface-3 text-fg-soft hover:text-fg transition-colors cursor-pointer group"
                         >
-                            <Star className="h-3 w-3 fill-current" />
                             Rated {filterScore}
-                            <X className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                            <X className="h-3 w-3 text-fg-dim group-hover:text-fg" />
                         </button>
                     )}
                     <button
@@ -1628,7 +1588,7 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
                             setSortBy("default");
                             window.history.replaceState(null, "", window.location.pathname);
                         }}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium text-fg-dim hover:text-fg hover:bg-surface-2 transition-all cursor-pointer"
+                        className="px-2 py-1 text-[13px] text-fg-dim hover:text-fg transition-colors cursor-pointer"
                     >
                         Clear all
                     </button>
@@ -2237,22 +2197,21 @@ const ItemCard = memo(function ItemCard({
     const [showCompletion, setShowCompletion] = useState(false);
     const [completionScore, setCompletionScore] = useState(0);
     const [completionSaving, setCompletionSaving] = useState(false);
-    const desktopButtonRef = useRef<HTMLButtonElement>(null);
-    const mobileButtonRef = useRef<HTMLButtonElement>(null);
+    const statusButtonRef = useRef<HTMLButtonElement>(null);
     const statusInfo = statusConfig[item.status as keyof typeof statusConfig] || statusConfig["Plan to Watch"];
-    const StatusIcon = statusInfo.icon;
+    
     const progressPercent = item.totalEp ? (item.progress / item.totalEp) * 100 : 0;
     const allStatuses = ["Watching", "Completed", "Plan to Watch", "Dropped"];
 
-    const handleDropdownToggle = (e: React.MouseEvent, isMobile: boolean = false) => {
+    const handleDropdownToggle = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (!showStatusDropdown) {
-            const buttonEl = isMobile ? mobileButtonRef.current : desktopButtonRef.current;
-            if (buttonEl) {
-                const rect = buttonEl.getBoundingClientRect();
+            const rect = statusButtonRef.current?.getBoundingClientRect();
+            if (rect) {
+                // Opens under the status word, kept on screen at the right edge.
                 setDropdownPosition({
-                    top: rect.bottom + 8,
-                    left: isMobile ? Math.max(16, rect.left) : rect.right - 180,
+                    top: rect.bottom + 6,
+                    left: Math.max(16, Math.min(rect.left, window.innerWidth - 196)),
                 });
             }
         }
@@ -2345,10 +2304,9 @@ const ItemCard = memo(function ItemCard({
                                 <TooltipProvider delayDuration={300}>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <span className="flex items-center gap-1 text-xs font-semibold text-violet-300 bg-violet-500/15 border border-violet-500/20 px-2 py-1 rounded shrink-0 cursor-default">
-                                                <Sparkles className="h-3 w-3" />
-                                                {recInfo.score}%
-                                            </span>
+                                            <span className="shrink-0 cursor-default text-xs text-fg-dim">
+                                            <span className="font-medium text-fg-soft tabular-nums">{recInfo.score}%</span> match
+                                        </span>
                                         </TooltipTrigger>
                                         <TooltipContent side="bottom" className="max-w-64">
                                             {recInfo.reasons.length > 0 ? (
@@ -2408,15 +2366,7 @@ const ItemCard = memo(function ItemCard({
                         </div>
                     </div>
 
-                    {/* Mobile Status */}
-                    <button
-                        ref={mobileButtonRef}
-                        onClick={readOnly ? undefined : (e) => handleDropdownToggle(e, true)}
-                        className={`mobile-status-btn items-center gap-1.5 px-2.5 py-1 rounded-lg ${statusInfo.bg} ${statusInfo.border} border transition-opacity shrink-0 ${readOnly ? "" : "hover:opacity-80 cursor-pointer"}`}
-                    >
-                        <StatusIcon className={`h-3.5 w-3.5 ${statusInfo.color}`} />
-                        <span className={`text-xs font-medium ${statusInfo.color}`}>{item.status}</span>
-                    </button>
+                    
                 </div>
 
                 {/* MDL Link - Desktop, KR/CN only */}
@@ -2439,15 +2389,7 @@ const ItemCard = memo(function ItemCard({
                     </TooltipProvider>
                 )}
 
-                {/* Status Badge - Desktop */}
-                <button
-                    ref={desktopButtonRef}
-                    onClick={readOnly ? undefined : (e) => handleDropdownToggle(e, false)}
-                    className={`desktop-status-btn card-status flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${statusInfo.bg} ${statusInfo.border} border min-w-28 justify-center transition-all ${readOnly ? "" : "hover:opacity-80 cursor-pointer"}`}
-                >
-                    <StatusIcon className={`h-4 w-4 ${statusInfo.color}`} />
-                    <span className={`text-sm font-medium ${statusInfo.color}`}>{item.status}</span>
-                </button>
+                
 
                 {!readOnly && showStatusDropdown &&
                     typeof window !== "undefined" &&
@@ -2462,8 +2404,6 @@ const ItemCard = memo(function ItemCard({
                                 }}
                             >
                                 {allStatuses.map((status) => {
-                                    const config = statusConfig[status as keyof typeof statusConfig];
-                                    const Icon = config?.icon;
                                     const isSelected = item.status === status;
                                     return (
                                         <button
@@ -2474,12 +2414,11 @@ const ItemCard = memo(function ItemCard({
                                                 setShowStatusDropdown(false);
                                             }}
                                             className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all cursor-pointer ${
-                                                isSelected ? `${config?.bg} ${config?.color}` : "text-fg-muted hover:bg-surface-2 hover:text-fg"
+                                                isSelected ? "bg-surface-3 text-fg" : "text-fg-muted hover:bg-surface-2 hover:text-fg"
                                             }`}
                                         >
-                                            {Icon && <Icon className="h-4 w-4" />}
                                             <span className="flex-1 text-left">{status}</span>
-                                            {isSelected && <div className={`w-1.5 h-1.5 rounded-full ${config?.color.replace("text-", "bg-")}`} />}
+                                            {isSelected && <Check className="h-3.5 w-3.5 shrink-0" />}
                                         </button>
                                     );
                                 })}
@@ -2492,55 +2431,66 @@ const ItemCard = memo(function ItemCard({
                 {showCompletion && typeof window !== "undefined" && createPortal(
                     <>
                         <div className="fixed inset-0 z-9998 bg-black/60 backdrop-blur-sm" onClick={() => setShowCompletion(false)} />
-                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-panel border border-line-strong rounded-lg shadow-2xl shadow-black/60 p-6 animate-in fade-in zoom-in-95 duration-200">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="h-10 w-10 rounded-lg bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center shrink-0">
-                                    <CheckCircle className="h-5 w-5 text-emerald-400" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold text-fg text-sm">All episodes watched!</p>
-                                    <p className="text-xs text-fg-muted truncate max-w-56">{item.title}</p>
+                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-panel border border-line-strong rounded-lg shadow-2xl shadow-black/60 p-5 animate-in fade-in zoom-in-95 duration-200">
+                            <p className="text-[15px] font-semibold text-fg">That was the last episode</p>
+                            <p className="text-[13px] text-fg-dim truncate mb-4">{item.title}</p>
+
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-[13px] text-fg-dim">Score before you mark it completed</span>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() =>
+                                            setCompletionScore((prev) =>
+                                                prev % 1 ? Math.floor(prev) : Math.floor(prev) >= 10 ? prev : Math.floor(prev) + 0.5,
+                                            )
+                                        }
+                                        aria-pressed={completionScore % 1 !== 0}
+                                        className={`cursor-pointer rounded px-1.5 py-0.5 text-xs transition-colors ${completionScore % 1 ? "bg-surface-3 text-fg" : "text-fg-dim hover:text-fg"}`}
+                                    >
+                                        + .5
+                                    </button>
+                                    <span className="flex items-center gap-1 text-sm font-semibold tabular-nums">
+                                        {completionScore > 0 ? (
+                                            <>
+                                                <Star className="h-3.5 w-3.5 fill-current text-yellow-400" />
+                                                <span className="text-fg">{completionScore % 1 === 0 ? completionScore : completionScore.toFixed(1)}</span>
+                                            </>
+                                        ) : (
+                                            <span className="font-normal text-fg-faint">Not rated</span>
+                                        )}
+                                    </span>
                                 </div>
                             </div>
 
-                            <p className="text-xs text-fg-muted mb-3">Rate it before marking as completed</p>
-
-                            <div className="grid grid-cols-10 gap-1 mb-2">
-                                {[1,2,3,4,5,6,7,8,9,10].map((r) => (
-                                    <div key={r} className="flex flex-col gap-0.5">
-                                        <button
-                                            onClick={() => setCompletionScore(completionScore === r ? 0 : r)}
-                                            className={`cursor-pointer h-9 rounded-lg text-sm font-semibold transition-all ${
-                                                completionScore === r
-                                                    ? "bg-amber-500/30 text-amber-300 border border-amber-500/40"
-                                                    : "bg-surface-2 text-fg-dim hover:bg-surface-4 hover:text-fg-soft border border-transparent"
-                                            }`}
-                                        >
-                                            {r}
-                                        </button>
-                                        {r < 10 && (
-                                            <button
-                                                onClick={() => setCompletionScore(completionScore === r + 0.5 ? 0 : r + 0.5)}
-                                                className={`cursor-pointer h-5 rounded text-[10px] font-medium transition-all ${
-                                                    completionScore === r + 0.5
-                                                        ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                                                        : "text-fg-faint hover:text-fg-soft border border-transparent hover:bg-surface-2"
-                                                }`}
-                                            >
-                                                .5
-                                            </button>
-                                        )}
-                                    </div>
+                            {/* The same rail as the edit dialog's score. */}
+                            <div className="grid grid-cols-10 gap-0.5 rounded-lg bg-surface-2 p-0.75 mb-5">
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((r) => (
+                                    <button
+                                        key={r}
+                                        onClick={() =>
+                                            setCompletionScore((prev) => {
+                                                const half = prev % 1;
+                                                if (Math.floor(prev) === r && !half) return 0;
+                                                return r === 10 ? 10 : r + half;
+                                            })
+                                        }
+                                        className={`cursor-pointer h-8 rounded-md text-[13px] tabular-nums transition-colors ${
+                                            Math.floor(completionScore) === r && completionScore > 0
+                                                ? "bg-fg font-semibold text-page"
+                                                : completionScore > r
+                                                  ? "bg-surface-3 text-fg-soft"
+                                                  : "text-fg-dim hover:bg-surface-3 hover:text-fg"
+                                        }`}
+                                    >
+                                        {r}
+                                    </button>
                                 ))}
                             </div>
-                            <p className="text-center text-xs text-fg-dim mb-5 h-4">
-                                {completionScore > 0 ? `${completionScore}/10` : "No rating"}
-                            </p>
 
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setShowCompletion(false)}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-medium text-fg-muted hover:text-fg bg-surface-2 hover:bg-surface-4 border border-line-strong transition-colors"
+                                    className="cursor-pointer flex-1 h-9 rounded-lg text-sm text-fg-muted hover:text-fg hover:bg-surface-2 transition-colors"
                                 >
                                     Skip
                                 </button>
@@ -2561,9 +2511,9 @@ const ItemCard = memo(function ItemCard({
                                             setCompletionSaving(false);
                                         }
                                     }}
-                                    className="cursor-pointer flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors disabled:opacity-50"
+                                    className="cursor-pointer flex-1 h-9 rounded-lg text-sm font-semibold text-page bg-fg hover:bg-fg/90 transition-colors disabled:opacity-50"
                                 >
-                                    {completionSaving ? "Saving…" : "Complete"}
+                                    {completionSaving ? "Saving…" : "Mark completed"}
                                 </button>
                             </div>
                         </div>
@@ -2571,25 +2521,32 @@ const ItemCard = memo(function ItemCard({
                     document.body,
                 )}
 
-                {/* Progress */}
-                <div className="card-progress w-32 space-y-2">
+                {/* Status and progress, one column. The status is a word that opens the
+                    menu; its hue is the hairline under it, as on the media page. */}
+                <div className="card-progress w-48 space-y-1.5">
                     <div className="flex items-center gap-1">
+                        <button
+                            ref={statusButtonRef}
+                            onClick={readOnly ? undefined : handleDropdownToggle}
+                            className={`-ml-1.5 min-w-0 truncate rounded-md px-1.5 py-0.5 text-left text-[13px] text-fg-soft transition-colors ${readOnly ? "cursor-default" : "cursor-pointer hover:bg-surface-3 hover:text-fg"}`}
+                        >
+                            {item.status}
+                        </button>
+                        <span className="ml-auto shrink-0 pr-1 text-[13px] tabular-nums text-fg-dim">
+                            <span className="font-semibold text-fg">{item.progress}</span> / {item.totalEp || "?"}
+                        </span>
                         {!readOnly && (
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleProgress(item.id, Math.max(0, item.progress - 1), item.title || undefined);
                                 }}
-                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all"
+                                aria-label="One episode less"
+                                className="progress-btn cursor-pointer h-6 w-6 shrink-0 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-colors"
                             >
                                 <Minus className="h-3.5 w-3.5" />
                             </button>
                         )}
-                        <div className="flex-1 text-center text-sm">
-                            <span className="font-semibold text-fg tabular-nums">{item.progress}</span>
-                            <span className="text-fg-faint mx-0.5">/</span>
-                            <span className="text-fg-dim tabular-nums">{item.totalEp || "?"}</span>
-                        </div>
                         {!readOnly && (
                             <button
                                 onClick={(e) => {
@@ -2601,24 +2558,17 @@ const ItemCard = memo(function ItemCard({
                                         setShowCompletion(true);
                                     }
                                 }}
-                                className="progress-btn cursor-pointer h-7 w-7 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-all"
+                                aria-label="One episode more"
+                                className="progress-btn cursor-pointer h-6 w-6 shrink-0 flex items-center justify-center rounded-md bg-surface-2 hover:bg-surface-4 text-fg-muted hover:text-fg transition-colors"
                             >
                                 <Plus className="h-3.5 w-3.5" />
                             </button>
                         )}
                     </div>
-                    <div className="relative h-1 bg-surface-2 rounded-full overflow-hidden progress-bar">
+                    <div className="relative h-0.75 bg-surface-3 rounded-full overflow-hidden progress-bar">
                         <div
-                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ${
-                                item.status === "Completed"
-                                    ? "bg-linear-to-r from-emerald-500 to-emerald-400"
-                                    : item.status === "Plan to Watch"
-                                      ? "bg-linear-to-r from-slate-500 to-slate-400"
-                                      : item.status === "Dropped"
-                                        ? "bg-linear-to-r from-rose-500 to-rose-400"
-                                        : "bg-linear-to-r from-blue-500 to-blue-400"
-                            }`}
-                            style={{ width: `${progressPercent}%` }}
+                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ${statusInfo.line}`}
+                            style={{ width: `${Math.min(100, progressPercent)}%` }}
                         />
                     </div>
                 </div>
