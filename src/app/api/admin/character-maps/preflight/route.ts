@@ -30,7 +30,7 @@ export type Preflight = {
     };
     cast: { main: number; support: number; guest: number };
     synopsis: boolean;
-    wiki: { lang: string; title: string | null; found: boolean; chars: number; rejected?: string }[];
+    wiki: { lang: string; title: string | null; found: boolean; chars: number; rejected?: string; failed?: boolean }[];
     /** the episode recaps kept for the entry, per site, for the sites the extension has read */
     recaps: Record<string, NonNullable<RecapSummary>>;
     /**
@@ -56,22 +56,44 @@ export type Preflight = {
 
 export async function POST(request: Request) {
     if (!(await isAdminUser())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    // `sources`: the recap sites ticked in the panel — the plan is what a run reading those would do
-    const body = (await request.json().catch(() => null)) as { mdlSlug?: string; titles?: Record<string, string>; sources?: unknown } | null;
+    // `sources`: the recap sites ticked in the panel — the plan is what a run reading those would do.
+    // `planOnly`: just the plan and the recaps kept, for a tick in the panel. Neither
+    // depends on the MDL entry or Wikipedia, and reading those again on every tick
+    // is what got the Wikipedia lookups throttled.
+    const body = (await request.json().catch(() => null)) as { mdlSlug?: string; titles?: Record<string, string>; sources?: unknown; planOnly?: boolean } | null;
     const mdlSlug = body?.mdlSlug?.trim();
     if (!mdlSlug || !/^[0-9]+-[a-z0-9-]+$/.test(mdlSlug)) return NextResponse.json({ error: "Invalid mdlSlug" }, { status: 400 });
     const titles: Record<string, string> = {};
     for (const [lang, title] of Object.entries(body?.titles ?? {})) if (/^(ko|zh|en|ja)$/.test(lang) && typeof title === "string" && title.trim()) titles[lang] = title.trim();
     const ticked = Array.isArray(body?.sources) ? RECAP_SOURCE_IDS.filter((id) => (body.sources as unknown[]).includes(id)) : null;
-    try {
-        const [inputs, recaps, kept, row] = await Promise.all([
-            gatherChartInputs(mdlSlug, titles),
+    const planOf = async () => {
+        const [recaps, kept, row] = await Promise.all([
             recapSummaries(mdlSlug),
             listRecaps(mdlSlug),
             prisma.characterMap.findUnique({ where: { mdlSlug }, select: { dataJson: true, contextJson: true, editedAt: true } }).catch(() => null),
         ]);
         const map = (row?.dataJson as unknown as CharacterMapData) ?? null;
         const plan = planRun(map, recapsToRead(kept, ticked, map?.recaps?.source), readContext(row?.contextJson));
+        return {
+            recaps,
+            row,
+            plan: {
+                mode: plan.mode,
+                coveredTo: plan.coveredTo,
+                fresh: plan.fresh.length,
+                freshFrom: plan.fresh.length ? Math.min(...plan.fresh.map((r) => r.fromEp)) : 0,
+                freshTo: plan.fresh.length ? Math.max(...plan.fresh.map((r) => r.toEp)) : 0,
+                undigested: plan.undigested.length,
+                reason: plan.reason,
+            } satisfies Preflight["plan"],
+        };
+    };
+    try {
+        if (body?.planOnly) {
+            const { recaps, plan } = await planOf();
+            return NextResponse.json({ plan, recaps });
+        }
+        const [inputs, { recaps, row, plan }] = await Promise.all([gatherChartInputs(mdlSlug, titles), planOf()]);
         const sources = recapSourcesFor(inputs.country);
         const preflight: Preflight = {
             recaps,
@@ -84,19 +106,11 @@ export async function POST(request: Request) {
                 episodeOffset: sources.length ? await recapEpisodeOffset(inputs) : 0,
             },
             editedAt: row?.editedAt?.toISOString() ?? null,
-            plan: {
-                mode: plan.mode,
-                coveredTo: plan.coveredTo,
-                fresh: plan.fresh.length,
-                freshFrom: plan.fresh.length ? Math.min(...plan.fresh.map((r) => r.fromEp)) : 0,
-                freshTo: plan.fresh.length ? Math.max(...plan.fresh.map((r) => r.toEp)) : 0,
-                undigested: plan.undigested.length,
-                reason: plan.reason,
-            },
+            plan,
             title: inputs.title,
             cast: { main: inputs.cast.main.length, support: inputs.cast.support.length, guest: inputs.cast.guest.length },
             synopsis: inputs.synopsis.trim().length > 0,
-            wiki: inputs.wiki.map((w) => ({ lang: w.lang, title: w.title, found: !!w.text, chars: w.text?.length ?? 0, rejected: w.rejected })),
+            wiki: inputs.wiki.map((w) => ({ lang: w.lang, title: w.title, found: !!w.text, chars: w.text?.length ?? 0, rejected: w.rejected, failed: w.failed })),
         };
         return NextResponse.json({ preflight });
     } catch (e) {

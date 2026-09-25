@@ -14,7 +14,10 @@ import * as path from "path";
  * once and stays corrected.
  */
 const KURYANA = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
-const UA = "trackr/character-map-inputs";
+// Wikimedia throttles requests whose User-Agent names no way to reach the
+// operator: with the bare "trackr/character-map-inputs" every call came back
+// 429 after the first few, and the panel read that as "no article found".
+const UA = "trackr/1.0 (https://dramatrackr.fr) character-map-inputs";
 
 export type CastMember = { name: string; role: { name: string }; profile_image?: string };
 /** The part of the scraper's detail page the inputs are read from. */
@@ -27,8 +30,8 @@ type MdlDetails = {
         others?: { also_known_as?: string[]; related_content?: { name: string; id: string; link: string; note: string }[] };
     };
 };
-/** `rejected` names the article a search found that turned out to be about something else. */
-export type WikiSection = { lang: string; title: string | null; text: string | null; rejected?: string };
+/** `rejected` names the article a search found that turned out to be about something else; `failed` says Wikipedia did not answer, which is not the same as having nothing. */
+export type WikiSection = { lang: string; title: string | null; text: string | null; rejected?: string; failed?: boolean };
 /** One episode recap, as the extension fetched it and the table keeps it. */
 export type Recap = { source: string; title: string; url: string; fromEp: number; toEp: number; words: number; text: string };
 export type ChartInputs = {
@@ -116,21 +119,42 @@ function aboutThisDrama(lang: string, page: string, wikitext: string, about: { n
     const native = about.native || about.bare;
     if (!native) return true;
     if (fold(head).includes(fold(native))) return true;
+    // Some Korean articles are titled with the romanised title — "W (드라마)"
+    // for 더블유 — so a head that is the English title counts when the
+    // article names the native one.
+    if (about.bare && fold(head) === fold(about.bare) && fold(wikitext).includes(fold(native))) return true;
     const words = native.split(/\s+/).filter((w) => w.length >= 2);
     return words.some((w) => head.includes(w));
 }
 
+// The admin panel checks the sources again each time a recap site is ticked
+// or a title typed, so the same lookups repeat within seconds. Kept for ten
+// minutes per process; failures are not kept, so a retry asks again.
+const WIKI_TTL_MS = 10 * 60 * 1000;
+const wikiCache = new Map<string, { at: number; value: WikiSection }>();
+
 async function wikipedia(lang: string, title: string | undefined, query: string, about: { native: string; bare: string; year: number | null; actors: string[] }): Promise<WikiSection> {
+    const key = `${lang}|${title ?? ""}|${query}|${about.native}|${about.year ?? ""}`;
+    const hit = wikiCache.get(key);
+    if (hit && Date.now() - hit.at < WIKI_TTL_MS) return hit.value;
+    const value = await wikipediaUncached(lang, title, query, about);
+    if (!value.failed) wikiCache.set(key, { at: Date.now(), value });
+    return value;
+}
+
+async function wikipediaUncached(lang: string, title: string | undefined, query: string, about: { native: string; bare: string; year: number | null; actors: string[] }): Promise<WikiSection> {
     const api = (params: Record<string, string>) =>
         json<Record<string, unknown>>(`https://${lang}.wikipedia.org/w/api.php?` + new URLSearchParams({ ...params, format: "json" }));
     let page = title;
     if (!page) {
         const r = (await api({ action: "query", list: "search", srsearch: query, srlimit: "3" })) as { query?: { search?: { title: string }[] } } | null;
-        page = r?.query?.search?.[0]?.title;
+        if (!r) return { lang, title: null, text: null, failed: true };
+        page = r.query?.search?.[0]?.title;
     }
     if (!page) return { lang, title: null, text: null };
-    const r = (await api({ action: "parse", page, prop: "wikitext" })) as { parse?: { wikitext?: { "*": string } } } | null;
-    const wikitext = r?.parse?.wikitext?.["*"];
+    const r = (await api({ action: "parse", page, prop: "wikitext" })) as { parse?: { wikitext?: { "*": string } }; error?: unknown } | null;
+    if (!r) return { lang, title: page, text: null, failed: true };
+    const wikitext = r.parse?.wikitext?.["*"];
     if (!wikitext) return { lang, title: page, text: null };
     if (!title && !aboutThisDrama(lang, page, wikitext, about)) return { lang, title: null, text: null, rejected: page };
     // A big drama gets its own characters article ("재벌집 막내아들의 등장인물",
@@ -219,7 +243,7 @@ export async function gatherChartInputs(
         onStep?.(`Reading ${lang}.wikipedia`);
         const w = await wikipedia(lang, given[lang], query, about);
         wiki.push(w);
-        out.push("", `=== ${lang}.wikipedia${w.title ? ` · ${w.title}` : ""} ===`, w.text ?? (w.title ? "(no character section found)" : w.rejected ? `(search found "${w.rejected}", which is not this drama)` : "(nothing found)"));
+        out.push("", `=== ${lang}.wikipedia${w.title ? ` · ${w.title}` : ""} ===`, w.text ?? (w.failed ? "(Wikipedia did not answer)" : w.title ? "(no character section found)" : w.rejected ? `(search found "${w.rejected}", which is not this drama)` : "(nothing found)"));
     }
 
     // The recaps last, in episode order, each headed by its range: the model
