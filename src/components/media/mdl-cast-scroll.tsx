@@ -30,7 +30,7 @@ function ActorCard({ actor }: { actor: MdlCastMember }) {
 
     const inner = (
         <div className="space-y-2 group cursor-pointer">
-            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
+            <div className={`relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg hover:scale-105 ${actor.profileImage ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" : ""}`}>
                 {actor.profileImage ? (
                     <Image
                         unoptimized={true}
@@ -105,7 +105,7 @@ export function MdlCastScroll({ cast, tmdbCast, mediaId }: MdlCastScrollProps) {
                 <div className={CAST_GRID}>
                     {tmdbCast.slice(0, 12).map((actor) => (
                         <Link key={actor.id} href={tmdbPersonHref(actor.id)} className="space-y-2 group">
-                            <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer hover:scale-105">
+                            <div className={`relative aspect-2/3 w-full overflow-hidden rounded-lg ring-2 ring-line-strong hover:ring-line-strong transition-all shadow-lg hover:scale-105 ${actor.profile ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" : ""}`}>
                                 {actor.profile ? (
                                     <Image
                                         unoptimized={true}

@@ -24,7 +24,7 @@ export function CastGallery({ cast }: CastGalleryProps) {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {cast.map((actor) => (
                 <Link key={actor.id} href={tmdbPersonHref(actor.id)} className="space-y-3 group block">
-                    <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-line-strong hover:ring-line-strong transition-all hover:scale-105">
+                    <div className={`relative aspect-2/3 w-full overflow-hidden rounded-lg shadow-lg ring-2 ring-line-strong hover:ring-line-strong transition-all hover:scale-105 ${actor.profile ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" : ""}`}>
                         {actor.profile ? (
                             <Image unoptimized={true}
                                 src={actor.profile}

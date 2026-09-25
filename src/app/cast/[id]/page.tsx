@@ -4,7 +4,7 @@ import { TMDB_CONFIG } from "@/lib/tmdb";
 import Image from "next/image";
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
-import { ArrowLeft, Star, Film, Tv, Bookmark } from "lucide-react";
+import { ArrowLeft, Star, Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { TMDBPerson, TMDBPersonCredits } from "@/lib/tmdb";
 import { getPersonData, getMdlRatingsForTmdbIds } from "@/actions/person";
@@ -161,7 +161,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                 <div className="md:grid md:gap-8 md:grid-cols-[280px_1fr]">
                     {/* Mobile header: compact photo + name */}
                     <div className="grid grid-cols-[110px_1fr] gap-3 mb-4 md:hidden">
-                        <div className="relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-line-strong bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
+                        <div className={`relative aspect-2/3 overflow-hidden rounded-xl shadow-2xl ring-2 ring-line-strong ${person.profile_path ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" : ""}`}>
                             {person.profile_path ? (
                                 <Image
                                     unoptimized={true}
@@ -195,7 +195,7 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                     {/* Desktop sidebar: Profile Image + Personal Info */}
                     <div className="hidden md:block">
                     <StickySidebar>
-                        <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-line-strong hover:ring-line-strong transition-all bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer">
+                        <div className={`relative aspect-2/3 w-full overflow-hidden rounded-xl shadow-2xl ring-2 ring-line-strong hover:ring-line-strong transition-all ${person.profile_path ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" : ""}`}>
                             {person.profile_path ? (
                                 <Image
                                     unoptimized={true}
@@ -304,22 +304,20 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {/* Biography */}
                         {person.biography && (
                             <div>
-                                <h3 className="font-display text-lg font-bold mb-3 text-fg">Biography</h3>
+                                <h3 className="font-display text-lg font-semibold mb-3 text-fg">Biography</h3>
                                 <BiographyExpander text={person.biography} />
                             </div>
                         )}
 
-                        <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
+                        <div className="h-px bg-surface-3" />
 
                         {/* Series Section (Scripted TV) */}
                         {series.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-pink-500 rounded-full" />
-                                    <Tv className="h-5 w-5 text-purple-400" />
-                                    <h3 className="font-display text-lg font-bold text-fg">Series</h3>
+                                    <h3 className="font-display text-lg font-semibold text-fg">Series</h3>
                                     <span className="text-sm text-fg-muted">({series.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-surface-4 to-transparent" />
+                                    <div className="flex-1 h-px bg-surface-3" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -339,11 +337,9 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {movies.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-linear-to-b from-blue-500 to-blue-400 rounded-full" />
-                                    <Film className="h-5 w-5 text-blue-400" />
-                                    <h3 className="font-display text-lg font-bold text-fg">Movies</h3>
+                                    <h3 className="font-display text-lg font-semibold text-fg">Movies</h3>
                                     <span className="text-sm text-fg-muted">({movies.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-surface-4 to-transparent" />
+                                    <div className="flex-1 h-px bg-surface-3" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -363,11 +359,9 @@ export default function CastProfilePage({ params }: { params: Promise<{ id: stri
                         {tvShows.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-1 h-6 bg-linear-to-b from-emerald-500 to-teal-500 rounded-full" />
-                                    <Tv className="h-5 w-5 text-emerald-400" />
-                                    <h3 className="font-display text-lg font-bold text-fg">TV Shows</h3>
+                                    <h3 className="font-display text-lg font-semibold text-fg">TV Shows</h3>
                                     <span className="text-sm text-fg-muted">({tvShows.length})</span>
-                                    <div className="flex-1 h-px bg-linear-to-r from-surface-4 to-transparent" />
+                                    <div className="flex-1 h-px bg-surface-3" />
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -419,7 +413,7 @@ function CreditCard({ credit, inWatchlist, mdlRating }: CreditCardProps) {
     return (
         <Link href={`/media/${mediaId}`} className="group block">
             <div className="space-y-2">
-                <div className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer shadow-lg ring-2 ring-line-strong hover:ring-line-strong transition-all hover:scale-105">
+                <div className={`relative aspect-2/3 w-full overflow-hidden rounded-lg shadow-lg ring-2 ring-line-strong hover:ring-line-strong transition-all hover:scale-105 ${credit.poster_path ? "bg-[linear-gradient(to_right,rgb(31,41,55),rgb(55,65,81),rgb(31,41,55))] bg-size-[200%_100%] animate-shimmer" : ""}`}>
                     {credit.poster_path ? (
                         <Image
                             unoptimized={true}
