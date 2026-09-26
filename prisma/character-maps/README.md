@@ -128,7 +128,7 @@ A run is two calls, then code:
    `level`, identity or arc. It writes neither the whole-story marks nor
    the layout: an arc is `wholeStory: false`, an identity tie is in, and
    `defaultCompact` (`src/lib/character-map-layout.ts`) places the groups
-   around the first two of `main`.
+   around the leads (see `compact.center`).
 2. **The checks** below, in code.
 3. **The review** (`src/lib/character-map-review.ts`): a short call over
    the chart alone — never the recaps — with the problems the checks still
@@ -289,11 +289,16 @@ before it is written:
   the left / right column, row 0 / 2 in column 1 for the top / bottom band.
   The leads own the middle cell. A group without a cell goes to the shorter
   column.
-- `compact.center` is who sits in the middle — defaults to the first two of
-  `main`. Use it when MDL lists more than two main roles.
+- `compact.center` is who sits in the middle, one row. Without it, every
+  main role MDL lists sits there when it lists up to four (`MAX_CENTER`,
+  `defaultCenter` in `src/lib/character-map.ts`) — a story told by four
+  people is drawn around four — and the first two of `main` for an
+  ensemble of five or more, where a row of seven is no centre at all.
+  Write it to say otherwise: two leads out of an ensemble's seven, a
+  support role the story turns on (Chan in My Bias, My Boss).
 - A generated chart gets all three from `defaultCompact`, worked out from
-  the links once they are written: groups ranked by their ties to the two
-  leads, each on the side of the lead it is closer to, whole households
+  the links once they are written: groups ranked by their ties to the
+  leads, each on the side of the half of the leads' row it is closer to, whole households
   into the cut until it holds about fourteen. The review may move a group
   or declare a lead; the editor and a hand-written file may say otherwise.
 

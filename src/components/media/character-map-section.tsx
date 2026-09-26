@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { User } from "lucide-react";
-import { portrait, type CharacterMapData, type MapPerson } from "@/lib/character-map";
+import { defaultCenter, portrait, type CharacterMapData, type MapPerson } from "@/lib/character-map";
 import { closestRelations } from "@/lib/character-map-store";
 import type { ReactNode } from "react";
 import { SectionHeader, SectionLink } from "./section-header";
@@ -47,7 +47,7 @@ export function CharacterMapSection({
 }) {
     // Reveals only for a show the reader has finished — a twist in this row is read before the show is
     const closest = closestRelations(map, !completed);
-    const rest = map.compact.people.length - (map.compact.center ?? map.main.slice(0, 2)).length - closest.length;
+    const rest = map.compact.people.length - (map.compact.center ?? defaultCenter(map.main)).length - closest.length;
 
     // In the order the leads first come up, which is the order of their closest tie.
     const groups: { lead: MapPerson; items: typeof closest }[] = [];

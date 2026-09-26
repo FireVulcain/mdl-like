@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ChevronRight, Copy, Loader2, Pencil, Plus, Search, Trash2, UserPlus } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
+    defaultCenter,
     doorGoverns,
     isEvent,
     linkListed,
@@ -151,7 +152,7 @@ export function RelationshipManager({
     const counts = useMemo(() => Object.fromEntries(LINK_TYPES.map((t) => [t, all.filter(({ link }) => link.type === t).length])) as Record<LinkType, number>, [all]);
 
     // The rows by pair of people, leads first
-    const leads = useMemo(() => new Set(map.compact.center ?? map.main.slice(0, 2)), [map]);
+    const leads = useMemo(() => new Set(map.compact.center ?? defaultCenter(map.main)), [map]);
     const pairs = useMemo(() => {
         const groups = new Map<string, Row[]>();
         for (const row of rows) {

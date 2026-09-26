@@ -16,7 +16,7 @@
 // wife, two sons and a grandson has five identity ties, all of them lines,
 // and the budget was there to catch jobs and deals, not a household.
 
-import { episodeStops, inWholeStory, isEvent, linkActiveAt, personMetBy, type CharacterMapData, type LinkType, type MapLink } from "@/lib/character-map";
+import { defaultCenter, episodeStops, inWholeStory, isEvent, linkActiveAt, personMetBy, type CharacterMapData, type LinkType, type MapLink } from "@/lib/character-map";
 
 /** Ties holding at once between two people, at any stop of the slider */
 export const TIES_PER_PAIR = 2;
@@ -41,7 +41,7 @@ export const MOMENTS_PER_STOP = 2;
 const RANK: Record<LinkType, number> = { romance: 0, family: 1, rivalry: 2, friend: 3, bond: 4, work: 5 };
 
 const pairOf = (l: MapLink) => [l.from, l.to].sort().join(" · ");
-const leadsOf = (map: CharacterMapData) => new Set(map.compact.center ?? map.main.slice(0, 2));
+const leadsOf = (map: CharacterMapData) => new Set(map.compact.center ?? defaultCenter(map.main));
 const isLeadPair = (l: MapLink, leads: Set<string>) => leads.has(l.from) && leads.has(l.to);
 /** Whether a tie counts against one person's budget — a family tie does not */
 const countsForPerson = (l: MapLink) => l.type !== "family";

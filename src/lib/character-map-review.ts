@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { isEvent, type CharacterMapData } from "@/lib/character-map";
+import { defaultCenter, isEvent, MAX_CENTER, type CharacterMapData } from "@/lib/character-map";
 import { draftFrom, linkFrom } from "@/lib/character-map-links";
 import { GENERATOR_MODELS, type GeneratorModel } from "@/lib/character-map-models";
 import { pastActTies, turnBrackets } from "@/lib/character-map-checks";
@@ -42,7 +42,7 @@ export function chartAsText(map: CharacterMapData): string {
     out.push(`CHART: ${map.title}${map.year ? ` (${map.year})` : ""} — read to episode ${map.recaps?.episodes ?? "?"}`);
     out.push("", "PEOPLE (id | name | actor | group):");
     for (const p of map.people) out.push(`- ${p.id} | ${p.name} | ${p.actor} | ${p.group}${p.inCast ? "" : " | not in MDL's cast"}${p.note ? ` | ${p.note}` : ""}`);
-    out.push("", `LEADS: ${(map.compact.center ?? map.main.slice(0, 2)).join(", ")}`);
+    out.push("", `LEADS: ${(map.compact.center ?? defaultCenter(map.main)).join(", ")}`);
     out.push("", "LINKS (use the number to change one):");
     map.links.forEach((l, i) => {
         const marks = [l.directed ? "directed" : null, l.reveal ? "reveal" : null, l.inferred ? "inferred" : null, !isEvent(l) && l.wholeStory === false ? "not in whole story" : null].filter(Boolean).join(", ");
@@ -77,7 +77,7 @@ What you may change, and when:
 - wholeStory false: take a tie out of the "Whole story" panorama, which keeps only the tie that defines each pair (two between the leads) and at most ${WHOLE_PER_PERSON} per person who is not a lead, family aside. The defining tie is the one a viewer would name, not the latest state. Arcs — a phase of a romance, a passing rivalry, a suspicion, a deal — are never in it.
 - turn true: swap from and to on a directed tie whose sentence reads wrong. The chart writes short under from: a directed tie reads "<from> is <to>'s <short>". "Kang Pil Beom is Kang Myeong Hui's son" when Pil Beom is the father: turn it. Only turn when the sentence is plainly wrong from the label, the evidence or the people's notes.
 - notes: a job, a backstory or a deal that crowds a person belongs in their note — write the note, and end or unmark the tie. Keep a note to one short line.
-- center: the leads the chart is drawn around. A support role that holds more than ${TIES_PER_PERSON_AT_STOP} ties at every stop, besides family, is often a lead nobody declared: put them in center (three at most).
+- center: the leads the chart is drawn around. A support role that holds more than ${TIES_PER_PERSON_AT_STOP} ties at every stop, besides family, is often a lead nobody declared: put them in center (${MAX_CENTER} at most). Never take out of center a main role MDL lists, when MDL lists ${MAX_CENTER} or fewer.
 - blocks and addToCompact: a group placed in the wrong cell, a household the compact cut split. Cells are [column, row] on a 3x3 grid; the leads own [1,1]; [0,*] is the left column, [2,*] the right, [1,0] and [1,2] the bands above and below.
 
 The budgets: between two people at most ${TIES_PER_PAIR} ties holding at any episode (${TIES_PER_LEAD_PAIR} between two leads); at most ${TIES_PER_PERSON_AT_STOP} ties holding at once on a person who is not a lead, family aside.
@@ -205,7 +205,7 @@ export function applyReview(map: CharacterMapData, review: Review): { map: Chara
 
     const compact = { ...map.compact, people: [...map.compact.people], blocks: { ...map.compact.blocks } };
     const center = (review.center ?? []).filter((id) => ids.has(id));
-    if (center.length >= 2 && center.length <= 3 && center.join() !== (compact.center ?? []).join()) {
+    if (center.length >= 2 && center.length <= MAX_CENTER && center.join() !== (compact.center ?? []).join()) {
         compact.center = center;
         for (const id of center) if (!compact.people.includes(id)) compact.people.push(id);
         warnings.push(`the leads are now ${center.join(", ")} — reviewed`);

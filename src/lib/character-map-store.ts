@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserId } from "@/lib/session";
-import { isEvent, type CharacterMapData, type MapLink, type MapPerson } from "@/lib/character-map";
+import { defaultCenter, isEvent, type CharacterMapData, type MapLink, type MapPerson } from "@/lib/character-map";
 
 /** The chart stored for an MDL entry, or null. Cached per request. */
 export const getCharacterMap = cache(async (mdlSlug: string | null | undefined): Promise<CharacterMapData | null> => {
@@ -105,7 +105,7 @@ export type Closest = { person: MapPerson; lead: MapPerson; link: MapLink };
  */
 export function closestRelations(map: CharacterMapData, hideSpoilers: boolean, limit = 8): Closest[] {
     const byId = new Map(map.people.map((p) => [p.id, p]));
-    const leads = new Set(map.compact.center ?? map.main.slice(0, 2));
+    const leads = new Set(map.compact.center ?? defaultCenter(map.main));
     const keep = new Set(map.compact.people);
     const rank: Record<string, number> = { romance: 0, family: 1, rivalry: 2, bond: 3, work: 4, friend: 5 };
     const seen = new Set<string>();

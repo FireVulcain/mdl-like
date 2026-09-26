@@ -5,7 +5,7 @@ import { AlertTriangle, ArrowLeftRight, ChevronsUpDown, Loader2, Search, X } fro
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { SettingToggle } from "@/components/settings/setting-toggle";
-import { LINK_TYPES, TYPE_CLASS, TYPE_GLYPH, TYPE_LABEL, type CharacterMapData, type LinkType, type MapPerson } from "@/lib/character-map";
+import { defaultCenter, LINK_TYPES, TYPE_CLASS, TYPE_GLYPH, TYPE_LABEL, type CharacterMapData, type LinkType, type MapPerson } from "@/lib/character-map";
 import { draftWarnings, validateDraft, type DraftErrors, type LinkDraft } from "@/lib/character-map-links";
 import { Face, TypeMark } from "./character-map-bits";
 
@@ -79,7 +79,7 @@ function CharacterPicker({ map, value, exclude, onPick, error }: { map: Characte
     const [query, setQuery] = useState("");
     const [active, setActive] = useState(0);
     const person = map.people.find((p) => p.id === value) ?? null;
-    const leads = useMemo(() => new Set(map.compact.center ?? map.main.slice(0, 2)), [map]);
+    const leads = useMemo(() => new Set(map.compact.center ?? defaultCenter(map.main)), [map]);
 
     const matches = useMemo(() => {
         const q = query.trim().toLowerCase();

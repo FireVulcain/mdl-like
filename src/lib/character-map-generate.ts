@@ -92,7 +92,7 @@ EPISODES (only when the inputs carry "=== <site> · Episodes N-M ===" recap sect
 - With recaps, write the events a reader of the show would recognise as its turns — a death, a reveal, a betrayal, a first kiss, a rescue that changes them — and only the ties that stand behind them. Not every gesture: about ${MOMENTS_PER_STOP} events per recap across the whole chart, and at most ${MOMENTS_PER_PAIR} between two people who are not both leads. The leads may have more; keep theirs to the turns too.
 
 MAIN
-- main: the ids of MDL's Main roles, leads first — the first two are the pair the chart is drawn around, so when MDL lists three or four main roles, put the two the story turns on first. The layout is worked out from the chart afterwards; do not write one.
+- main: the ids of MDL's Main roles, all of them, leads first. Up to four, they all sit in the middle of the chart, in the order the page finds best; five or more, only the first two do — so put the two the story turns on first. The layout is worked out from the chart afterwards; do not write one.
 
 OUTPUT
 - version is always 2. mdlSlug, title, native, year and country are given. sources lists what was read, e.g. ["MDL cast (21 roles, 4 main)", "MDL synopsis", "ko.wikipedia 등장인물"].

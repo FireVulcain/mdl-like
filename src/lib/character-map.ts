@@ -310,6 +310,16 @@ export type CharacterMapData = {
     compact: { people: string[]; blocks: Record<string, [number, number]>; center?: string[] };
 };
 
+/** The most leads the middle row holds: MDL's main roles up to this many all sit there. */
+export const MAX_CENTER = 4;
+
+/**
+ * Who sits in the middle when `compact.center` does not say: every main role
+ * when MDL lists up to MAX_CENTER of them, the first two of an ensemble —
+ * seven "main" roles in a row is no centre at all.
+ */
+export const defaultCenter = (main: string[]) => (main.length <= MAX_CENTER ? main : main.slice(0, 2));
+
 /* ------------------------------------------------------------------ layout */
 
 export const PORTRAIT_R = 28;
@@ -369,7 +379,7 @@ export type LayoutOptions = {
  */
 export function layoutCompact(map: CharacterMapData, opts: LayoutOptions): Layout {
     const keep = new Set(opts.everyone ? map.people.map((p) => p.id) : map.compact.people);
-    const center = new Set(map.compact.center ?? map.main.slice(0, 2));
+    const center = new Set(map.compact.center ?? defaultCenter(map.main));
 
     const people: LaidOutPerson[] = map.people
         .filter((p) => keep.has(p.id) && ((opts.ghosts ?? true) || p.inCast) && !(opts.hidePerson?.(p.id) ?? false))
