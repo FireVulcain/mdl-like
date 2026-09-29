@@ -21,6 +21,29 @@ async function getNextEpisodeByNameLoose(title: string): Promise<NextEpisodeResu
 }
 
 /**
+ * TVmaze's next episode for a TMDB show: by IMDB id, then TVDB id, then name.
+ * Null when TVmaze does not know the show or has no upcoming episode.
+ */
+export async function fetchTvmazeNextEpisode(tmdbId: string, title: string): Promise<NextEpisodeResult | null> {
+    try {
+        const externalIds = await tmdb.getExternalIds("tv", tmdbId);
+        let nextEpisode: NextEpisodeResult | null = null;
+        if (externalIds?.imdb_id) {
+            nextEpisode = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
+        }
+        if (!nextEpisode && externalIds?.tvdb_id) {
+            nextEpisode = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
+        }
+        if (!nextEpisode && title) {
+            nextEpisode = await getNextEpisodeByNameLoose(title);
+        }
+        return nextEpisode;
+    } catch {
+        return null;
+    }
+}
+
+/**
  * Next-episode waterfall shared by the /api/next-episodes route and the home
  * page prefill. MDL first when a slug is known — it's the authoritative source
  * for Asian dramas and carries the EXACT broadcast time (TVmaze/TMDB only know
@@ -57,22 +80,12 @@ export async function fetchNextEpisodeFromApis(item: {
             return item.title ? await getNextEpisodeByNameLoose(item.title) : null;
         }
 
-        const [details, externalIds] = await Promise.all([
+        const [details, nextFromTvmaze] = await Promise.all([
             tmdb.getDetails("tv", item.tmdbId),
-            tmdb.getExternalIds("tv", item.tmdbId),
+            fetchTvmazeNextEpisode(item.tmdbId, item.title),
         ]);
 
-        let nextEpisode: NextEpisodeResult | null = null;
-
-        if (externalIds?.imdb_id) {
-            nextEpisode = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
-        }
-        if (!nextEpisode && externalIds?.tvdb_id) {
-            nextEpisode = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
-        }
-        if (!nextEpisode && item.title) {
-            nextEpisode = await getNextEpisodeByNameLoose(item.title);
-        }
+        let nextEpisode = nextFromTvmaze;
 
         if (!nextEpisode && details.next_episode_to_air) {
             nextEpisode = {

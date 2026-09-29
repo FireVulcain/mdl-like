@@ -1,5 +1,4 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
-import { tvmaze } from "@/lib/tvmaze";
 import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaTopSelection, KuryanaChineseShow, KuryanaChineseTopResult, mdlFullSizeImage} from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
@@ -304,7 +303,11 @@ export const mediaService = {
                     return trailer ? { key: trailer.key, name: trailer.name } : undefined;
                 };
 
-                // Fetch next episode from TVmaze (for TV shows only)
+                // TMDB's own next episode, a date only. The media page asks MDL
+                // (exact broadcast time) and then TVmaze only when MDL has
+                // nothing — see MdlCountdown — so the other callers of
+                // getDetails (crons, backfills, cast/photos pages) no longer
+                // spend TVmaze's 20-per-10s budget on a value they never read.
                 let nextEpisodeData: {
                     airDate: string;
                     episodeNumber: number;
@@ -312,34 +315,13 @@ export const mediaService = {
                     name: string;
                     seasonEpisodeCount?: number;
                 } | null = null;
-                if (type === "tv") {
-                    try {
-                        // Get external IDs from TMDB
-                        const externalIds = await tmdb.getExternalIds("tv", externalId);
-
-                        // Try TVmaze lookup by IMDB ID first, then TVDB ID, then show name
-                        if (externalIds?.imdb_id) {
-                            nextEpisodeData = await tvmaze.getNextEpisodeByImdb(externalIds.imdb_id);
-                        }
-                        if (!nextEpisodeData && externalIds?.tvdb_id) {
-                            nextEpisodeData = await tvmaze.getNextEpisodeByTvdb(externalIds.tvdb_id);
-                        }
-                        if (!nextEpisodeData && details.name) {
-                            nextEpisodeData = await tvmaze.getNextEpisodeByName(details.name);
-                        }
-                    } catch (error) {
-                        console.error("Error fetching next episode from TVmaze:", error);
-                    }
-
-                    // Fall back to TMDB if TVmaze doesn't have the data
-                    if (!nextEpisodeData && details.next_episode_to_air) {
-                        nextEpisodeData = {
-                            airDate: details.next_episode_to_air.air_date,
-                            episodeNumber: details.next_episode_to_air.episode_number,
-                            seasonNumber: details.next_episode_to_air.season_number,
-                            name: details.next_episode_to_air.name,
-                        };
-                    }
+                if (type === "tv" && details.next_episode_to_air) {
+                    nextEpisodeData = {
+                        airDate: details.next_episode_to_air.air_date,
+                        episodeNumber: details.next_episode_to_air.episode_number,
+                        seasonNumber: details.next_episode_to_air.season_number,
+                        name: details.next_episode_to_air.name,
+                    };
                 }
 
                 return {
@@ -379,7 +361,7 @@ export const mediaService = {
                         }))
                         .filter((s) => s.seasonNumber > 0), // Filter out "Specials" (Season 0) usually
 
-                    // Next Episode (from TVmaze, with TMDB fallback)
+                    // Next Episode (TMDB; the page puts MDL, then TVmaze, in front)
                     nextEpisode: nextEpisodeData,
                     totalSeasons: details.number_of_seasons,
                     firstAirDate: details.first_air_date || null,

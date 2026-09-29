@@ -900,6 +900,11 @@ export default async function MediaPage({ params, searchParams }: { params: Prom
                                     slug={mdlSlugForSeason}
                                     season={selectedSeason}
                                     fallbackEpisode={spoilerSafe(media.nextEpisode)}
+                                    tvmazeLookup={
+                                        media.source === "TMDB"
+                                            ? { tmdbId: media.externalId, title: media.title, hideName: displayPrefs.hideSpoilers }
+                                            : undefined
+                                    }
                                     currentSeason={currentSeasonData}
                                     totalEpisodes={episodeCount ?? undefined}
                                     status={media.status}
