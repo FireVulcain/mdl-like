@@ -430,12 +430,18 @@ async function getWatchlistForUser(userId: string) {
 
     const uniqueExternalIds = [...new Set(items.map((i) => i.externalId))];
     const [cachedMdlRows, seasonLinkRows] = await Promise.all([
+        // Blocked shows ("Block MDL") are left out: their row keeps the wrong
+        // entry's slug for a restore, and nothing read through it belongs here.
         prisma.cachedMdlData.findMany({
-            where: { tmdbExternalId: { in: uniqueExternalIds } },
+            where: { tmdbExternalId: { in: uniqueExternalIds }, mdlDisabled: false },
             select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true, tags: true, genres: true },
         }),
         prisma.mdlSeasonLink.findMany({
-            where: { tmdbExternalId: { in: uniqueExternalIds } },
+            where: {
+                tmdbExternalId: { in: uniqueExternalIds },
+                // A blocked show's seasons are blocked with it
+                NOT: { tmdbExternalId: { in: (await prisma.cachedMdlData.findMany({ where: { tmdbExternalId: { in: uniqueExternalIds }, mdlDisabled: true }, select: { tmdbExternalId: true } })).map((r) => r.tmdbExternalId) } },
+            },
             select: { tmdbExternalId: true, season: true, mdlSlug: true, mdlRating: true },
         }),
     ]);

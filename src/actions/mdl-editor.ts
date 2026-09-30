@@ -136,9 +136,30 @@ export async function toggleMdlDisabled(tmdbExternalId: string, disabled: boolea
             create: { tmdbExternalId, mdlSlug: "", mdlDisabled: disabled },
             update: {
                 mdlDisabled: disabled,
-                // Re-enabling means "give me MDL back" — force a fresh re-detect
-                // on the next render (the retained row may be empty or outdated).
-                ...(disabled ? {} : { cachedAt: new Date(0) }),
+                // Blocking keeps the slug, for a one-click restore, but drops
+                // everything read through it. That was the wrong entry's data,
+                // and readers that skip the flag kept showing it: the
+                // watchlist's MDL score, and the wrong cast feeding
+                // recommendations and the actor radar. Unblocking refills it
+                // from the kept slug — see the cachedAt reset below.
+                ...(disabled
+                    ? {
+                          mdlRating: null,
+                          mdlRanking: null,
+                          mdlPopularity: null,
+                          mdlWatchers: null,
+                          aired: null,
+                          duration: null,
+                          synopsis: null,
+                          tags: Prisma.DbNull,
+                          genres: Prisma.DbNull,
+                          castJson: Prisma.DbNull,
+                          directors: Prisma.DbNull,
+                          screenwriters: Prisma.DbNull,
+                      }
+                    : // Re-enabling means "give me MDL back" — force a fresh re-detect
+                      // on the next render (the retained row may be empty or outdated).
+                      { cachedAt: new Date(0) }),
             },
         });
         revalidatePath(`/media/${tmdbExternalId}`);
