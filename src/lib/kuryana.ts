@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { unstable_cache } from "next/cache";
+
 const BASE_URL = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 
 export interface KuryanaDrama {
@@ -128,10 +131,65 @@ export function mdlSlugTag(slug: string): string {
     return `mdl-slug:${slug}`;
 }
 
-async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600, tags?: string[]): Promise<T | null> {
+/**
+ * One call to the scraper, outside any cache. Every read that actually reaches
+ * MDL goes through here — which is what makes it the place to count them.
+ */
+type LiveResult<T> = { ok: true; data: T } | { ok: false; status: number };
+
+async function fetchLive<T>(path: string, timeoutMs: number): Promise<LiveResult<T>> {
     // Use AbortController instead of AbortSignal.timeout — the latter creates a
     // DOMException with a read-only `message` property that Next.js's fetch cache
     // interceptor tries to overwrite, causing an unhandled TypeError crash.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+        const res = await fetch(`${BASE_URL}${path}`, { signal: controller.signal, cache: "no-store" });
+        if (!res.ok) return { ok: false, status: res.status };
+        return { ok: true, data: (await res.json()) as T };
+    } catch {
+        return { ok: false, status: 0 };
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+/** Thrown inside the cache so a failed read is never stored — kept out of the 12-hour entries. */
+class ScraperMiss extends Error {}
+
+/**
+ * The cached read. unstable_cache rather than fetch's own `next.revalidate`,
+ * because here the function body only runs on a miss: a hit never reaches
+ * fetchLive, so what fetchLive sees is exactly what MDL sees. Same durations,
+ * same tags (mdlSlugTag still expires on "Refresh cache"), same store on the
+ * Coolify volume.
+ *
+ * React's cache() on top restores what fetch did for free: two identical reads
+ * in one render share one call, even when they start at the same moment.
+ */
+const cachedRead = cache(async (path: string, timeoutMs: number, revalidate: number, tagKey: string): Promise<unknown> => {
+    const tags = tagKey ? tagKey.split("|") : undefined;
+    try {
+        return await unstable_cache(
+            async () => {
+                const result = await fetchLive<unknown>(path, timeoutMs);
+                if (!result.ok) throw new ScraperMiss(String(result.status));
+                return result.data;
+            },
+            ["kuryana", path],
+            tags ? { revalidate, tags } : { revalidate },
+        )();
+    } catch {
+        return null;
+    }
+});
+
+/**
+ * SCRAPER_LOG=off puts back the read as it was before 2026-10-01: fetch with
+ * `next.revalidate`, cache hits and misses indistinguishable. The way back if
+ * the unstable_cache path ever misbehaves, without a redeploy of code.
+ */
+async function legacyFetch<T>(path: string, timeoutMs: number, revalidate: number, tags?: string[]): Promise<T | null> {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
@@ -146,6 +204,16 @@ async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600
     } finally {
         clearTimeout(timer);
     }
+}
+
+async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600, tags?: string[]): Promise<T | null> {
+    if (process.env.SCRAPER_LOG === "off") return legacyFetch<T>(path, timeoutMs, revalidate, tags);
+    // revalidate 0 means "always live" — no cache entry to read or write.
+    if (revalidate === 0) {
+        const result = await fetchLive<T>(path, timeoutMs);
+        return result.ok ? result.data : null;
+    }
+    return (await cachedRead(path, timeoutMs, revalidate, tags?.join("|") ?? "")) as T | null;
 }
 
 /**
