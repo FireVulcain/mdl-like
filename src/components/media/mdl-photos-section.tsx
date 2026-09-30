@@ -26,10 +26,12 @@ export async function MdlPhotosSection({ backdrops, externalId, season, mediaId,
     if (!effectiveSlug) {
         const cached = await prisma.cachedMdlData.findUnique({
             where: { tmdbExternalId: externalId },
-            select: { mdlSlug: true },
+            select: { mdlSlug: true, mdlDisabled: true },
         });
 
-        if (cached?.mdlSlug) {
+        // A show blocked from MDL ("Block MDL") keeps its old, wrong slug in the
+        // row; reading it anyway fetched a stranger's photos and recommendations.
+        if (cached?.mdlSlug && !cached.mdlDisabled) {
             if (season === 1) {
                 effectiveSlug = cached.mdlSlug;
             } else {

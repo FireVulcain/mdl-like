@@ -27,9 +27,10 @@ async function getMdlSlug(id: string): Promise<string | null> {
     if (source === "tmdb") {
         const cached = await prisma.cachedMdlData.findUnique({
             where: { tmdbExternalId: externalId },
-            select: { mdlSlug: true },
+            select: { mdlSlug: true, mdlDisabled: true },
         });
-        return cached?.mdlSlug ?? null;
+        // Blocked from MDL: the row's slug is the wrong entry, not this show's
+        return cached && !cached.mdlDisabled ? cached.mdlSlug || null : null;
     }
 
     return null;
