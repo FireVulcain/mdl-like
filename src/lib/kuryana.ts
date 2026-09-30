@@ -134,6 +134,9 @@ export async function kuryanaSearch(query: string): Promise<KuryanaSearchResult 
 }
 
 export async function kuryanaGetDetails(slug: string, fresh = false): Promise<KuryanaDetails | null> {
+    // Some caller hands over an empty slug — seven times in twelve hours of
+    // scraper logs, as a bare "/id/" that can only 404. Answer it here.
+    if (!slug.trim()) return null;
     return kuryanaFetch<KuryanaDetails>(`/id/${slug}`, 8000, fresh ? 0 : 3600);
 }
 
@@ -365,7 +368,9 @@ export interface KuryanaEpisodesListResult {
 }
 
 export async function kuryanaGetEpisodesList(slug: string): Promise<KuryanaEpisodesListResult | null> {
-    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes/`);
+    // No trailing slash: the scraper's route is /episodes, and /episodes/ cost a
+    // 307 round trip before every list.
+    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes`);
 }
 
 export interface KuryanaEpisodeReview {
