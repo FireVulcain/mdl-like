@@ -8,9 +8,16 @@ import { computeActorRadar, computeRadarActors, type ActorRadarPayload, type Act
 
 export type { ActorRadarItem, ActorRadarPayload, ActorRadarPerson } from "@/lib/actor-radar";
 
+// MDL's people search answers "people/426-iu"; the person endpoint, its cache
+// and castJson-derived slugs all use the bare "426-iu". Pins saved with the
+// prefix asked the scraper for /people/people/426-iu — a 404 on every radar
+// run, which left those pinned actors out of it.
+const bare = (slug: string) => slug.replace(/^\/?people\//, "");
+
 // Remove an actor from the radar's favorites; their slots go to the next-best actors.
-export async function excludeRadarActor(personSlug: string, name: string, profileImage: string | null) {
+export async function excludeRadarActor(rawSlug: string, name: string, profileImage: string | null) {
     const userId = await getCurrentUserId();
+    const personSlug = bare(rawSlug);
     await prisma.$transaction([
         // Removing wins over a manual pin
         prisma.actorRadarPin.deleteMany({ where: { userId, personSlug } }),
@@ -25,8 +32,9 @@ export async function excludeRadarActor(personSlug: string, name: string, profil
 }
 
 // Manually add an actor to the radar — always scanned, regardless of affinity.
-export async function pinRadarActor(personSlug: string, name: string, profileImage: string | null) {
+export async function pinRadarActor(rawSlug: string, name: string, profileImage: string | null) {
     const userId = await getCurrentUserId();
+    const personSlug = bare(rawSlug);
     await prisma.$transaction([
         // Adding wins over a previous exclusion
         prisma.actorRadarExclusion.deleteMany({ where: { userId, personSlug } }),
@@ -40,8 +48,9 @@ export async function pinRadarActor(personSlug: string, name: string, profileIma
     return { success: true };
 }
 
-export async function unpinRadarActor(personSlug: string) {
+export async function unpinRadarActor(rawSlug: string) {
     const userId = await getCurrentUserId();
+    const personSlug = bare(rawSlug);
     await prisma.actorRadarPin.deleteMany({ where: { userId, personSlug } });
     updateTag(`actor-radar-${userId}`);
     return { success: true };
@@ -54,15 +63,16 @@ export async function searchRadarPeople(query: string): Promise<{ slug: string; 
     if (trimmed.length < 2) return [];
     const result = await kuryanaSearch(trimmed);
     return (result?.results?.people ?? []).slice(0, 8).map((p) => ({
-        slug: p.slug,
+        slug: bare(p.slug),
         name: p.name,
         profileImage: p.thumb || null,
         nationality: p.nationality,
     }));
 }
 
-export async function restoreRadarActor(personSlug: string) {
+export async function restoreRadarActor(rawSlug: string) {
     const userId = await getCurrentUserId();
+    const personSlug = bare(rawSlug);
     await prisma.actorRadarExclusion.deleteMany({ where: { userId, personSlug } });
     updateTag(`actor-radar-${userId}`);
     return { success: true };

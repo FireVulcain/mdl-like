@@ -492,3 +492,38 @@ model CharacterMapJob {
 
   @@index([mdlSlug, createdAt])
 }
+
+// Every read that reached the MDL scraper, for the /admin/scraper dashboard.
+// Written by src/lib/scraper-log.ts from fetchLive, which only runs on a real
+// call — cache answers are counted in ScraperCacheHit instead. About a thousand
+// rows a day; the sync cron drops rows older than 90 days.
+model ScraperCall {
+  id         BigInt   @id @default(autoincrement())
+  at         DateTime @default(now())
+  route      String // details, cast, top… — see scraperRouteOf()
+  path       String // the scraper path as called, query included
+  target     String? // the slug, person or list it was about
+  status     Int // HTTP status from the scraper; 0 = timeout or network error
+  durationMs Int
+  trigger    String // render, prefetch, action, background, cron, api, script
+  page       String? // the Next route pattern: /media/[id], /api/cron/sync…
+  pagePath   String? // the actual pathname: /media/tmdb-96571
+  viewId     String? // one per server request, to group a page opening's calls
+  userId     String?
+
+  @@index([at])
+  @@index([viewId])
+}
+
+// Reads the cache answered without touching MDL, counted per hour rather than
+// stored one by one: they cost MDL nothing, and a row each would be most of
+// the table. Same 90-day purge as ScraperCall.
+model ScraperCacheHit {
+  hour    DateTime
+  page    String
+  trigger String
+  route   String
+  count   Int      @default(0)
+
+  @@id([hour, page, trigger, route])
+}

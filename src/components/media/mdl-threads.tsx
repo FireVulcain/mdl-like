@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ChevronDown, RefreshCw, MessageSquare, Eye } from "lucide-react";
-import { MdlComment } from "@/lib/kuryana";
+import type { MdlComment } from "@/lib/kuryana";
 import { loadMoreComments, type ThreadKind } from "@/actions/mdl-threads";
 import { mdlUserHref } from "@/lib/mdl-user-link";
 import { SectionHeader } from "@/components/media/section-header";

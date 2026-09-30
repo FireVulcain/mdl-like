@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
+import { captureScraperContext, recordScraperCacheHit, recordScraperCall, scraperContextStorage } from "@/lib/scraper-log";
 
 const BASE_URL = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 
@@ -143,14 +144,18 @@ async function fetchLive<T>(path: string, timeoutMs: number): Promise<LiveResult
     // interceptor tries to overwrite, causing an unhandled TypeError crash.
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
+    const started = Date.now();
+    let status = 0;
     try {
         const res = await fetch(`${BASE_URL}${path}`, { signal: controller.signal, cache: "no-store" });
+        status = res.status;
         if (!res.ok) return { ok: false, status: res.status };
         return { ok: true, data: (await res.json()) as T };
     } catch {
         return { ok: false, status: 0 };
     } finally {
         clearTimeout(timer);
+        recordScraperCall(path, status, Date.now() - started);
     }
 }
 
@@ -169,9 +174,13 @@ class ScraperMiss extends Error {}
  */
 const cachedRead = cache(async (path: string, timeoutMs: number, revalidate: number, tagKey: string): Promise<unknown> => {
     const tags = tagKey ? tagKey.split("|") : undefined;
+    // Set only when the body runs, i.e. on a miss; a hit is counted for the
+    // dashboard. Counted here, once per memoised read, not once per caller.
+    let missed = false;
     try {
-        return await unstable_cache(
+        const data = await unstable_cache(
             async () => {
+                missed = true;
                 const result = await fetchLive<unknown>(path, timeoutMs);
                 if (!result.ok) throw new ScraperMiss(String(result.status));
                 return result.data;
@@ -179,6 +188,9 @@ const cachedRead = cache(async (path: string, timeoutMs: number, revalidate: num
             ["kuryana", path],
             tags ? { revalidate, tags } : { revalidate },
         )();
+        const ctx = scraperContextStorage.getStore();
+        if (!missed && ctx) recordScraperCacheHit(path, ctx);
+        return data;
     } catch {
         return null;
     }
@@ -208,12 +220,30 @@ async function legacyFetch<T>(path: string, timeoutMs: number, revalidate: numbe
 
 async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600, tags?: string[]): Promise<T | null> {
     if (process.env.SCRAPER_LOG === "off") return legacyFetch<T>(path, timeoutMs, revalidate, tags);
-    // revalidate 0 means "always live" — no cache entry to read or write.
-    if (revalidate === 0) {
+    // Who is asking has to be read here, outside the cache: inside
+    // unstable_cache the request is out of reach. It rides into the miss on
+    // an AsyncLocalStorage, where fetchLive's record picks it up.
+    const ctx = await captureScraperContext();
+    return scraperContextStorage.run(ctx, async () => {
+        // revalidate 0 means "always live" — no cache entry to read or write.
+        if (revalidate === 0) {
+            const result = await fetchLive<T>(path, timeoutMs);
+            return result.ok ? result.data : null;
+        }
+        return (await cachedRead(path, timeoutMs, revalidate, tags?.join("|") ?? "")) as T | null;
+    });
+}
+
+/**
+ * For the few places that call the scraper outside kuryanaFetch (the chart
+ * inputs, the tag search route): a live read that is logged like any other.
+ */
+export async function kuryanaFetchLogged<T>(path: string, timeoutMs = 8000): Promise<T | null> {
+    const ctx = await captureScraperContext();
+    return scraperContextStorage.run(ctx, async () => {
         const result = await fetchLive<T>(path, timeoutMs);
         return result.ok ? result.data : null;
-    }
-    return (await cachedRead(path, timeoutMs, revalidate, tags?.join("|") ?? "")) as T | null;
+    });
 }
 
 /**
@@ -321,39 +351,7 @@ export interface KuryanaWorkItem {
     episodes?: number;
 }
 
-/**
- * MDL serves a fixed 300x422 thumbnail whose filename carries a trailing "c"
- * before the extension; dropping it yields the original, 650–900px wide. The
- * scraper only ever reports the thumbnail, which is fine for cast avatars and
- * grid cards but visibly soft once a poster is rendered large.
- *
- * Only rewrites i.mydramalist.com URLs, and leaves the query string alone
- * (it carries MDL's cache-busting ?v=).
- */
-export function mdlFullSizeImage(url: string | null | undefined): string | null {
-    if (!url) return null;
-    if (!/^https?:\/\/i\.mydramalist\.com\//i.test(url)) return url;
-    return url.replace(/([A-Za-z0-9_-]+)c(\.(?:jpe?g|png|webp))(\?|$)/i, "$1$2$3");
-}
-
-/**
- * The inverse: MDL's 300x422 thumbnail for a stored full-size poster.
- *
- * We store the original so the media page can render it sharp, but MDL images
- * are served `unoptimized` — the browser downloads whatever the URL points at,
- * at any display size. A 900x1300 JPEG behind a 28px watchlist row is ~200KB
- * for nothing.
- *
- * Safe by construction for MDL-sourced posters: the thumbnail is what the
- * scraper handed us in the first place, so it necessarily exists.
- */
-export function mdlThumbImage(url: string | null | undefined): string | null {
-    if (!url) return null;
-    if (!/^https?:\/\/i\.mydramalist\.com\//i.test(url)) return url;
-    // Already a thumbnail — leave it alone rather than producing "…cc.jpg"
-    if (/[A-Za-z0-9_-]+c(\.(?:jpe?g|png|webp))(\?|$)/i.test(url)) return url;
-    return url.replace(/([A-Za-z0-9_-]+)(\.(?:jpe?g|png|webp))(\?|$)/i, "$1c$2$3");
-}
+export { mdlFullSizeImage, mdlThumbImage } from "@/lib/mdl-images";
 
 // MDL watcher counts arrive as "10,345" — strip the separators to an int
 export function parseMdlWatchers(raw: string | null | undefined): number | null {

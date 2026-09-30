@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import { kuryanaFetchLogged } from "@/lib/kuryana";
 
 /**
  * Everything a relationship chart is read from, for one MDL entry: the cast
@@ -13,7 +14,6 @@ import * as path from "path";
  * always wins over a search, which is how the wrong article gets corrected
  * once and stays corrected.
  */
-const KURYANA = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 // Wikimedia throttles requests whose User-Agent names no way to reach the
 // operator: with the bare "trackr/character-map-inputs" every call came back
 // 429 after the first few, and the panel read that as "no article found".
@@ -213,8 +213,8 @@ export async function gatherChartInputs(
     const given = Object.fromEntries(Object.entries({ ...pinnedWikiTitles(mdlSlug), ...titles }).map(([lang, t]) => [lang, wikiPageTitle(t)]));
 
     onStep?.("Reading the MDL entry");
-    const details = await json<MdlDetails>(`${KURYANA}/id/${mdlSlug}`);
-    const cast = await json<{ data: { casts: Record<string, CastMember[]> } }>(`${KURYANA}/id/${mdlSlug}/cast`);
+    const details = await kuryanaFetchLogged<MdlDetails>(`/id/${mdlSlug}`);
+    const cast = await kuryanaFetchLogged<{ data: { casts: Record<string, CastMember[]> } }>(`/id/${mdlSlug}/cast`);
     if (!details?.data || !cast?.data) throw new Error(`could not read ${mdlSlug} from the scraper`);
     const d = details.data;
     const native = d.sub_title?.split(" ‧ ")[0]?.trim() ?? "";
@@ -272,7 +272,7 @@ export async function recapEpisodeOffset(inputs: Pick<ChartInputs, "title" | "re
     for (const r of inputs.related) {
         const pm = r.name.match(/:\s*Part\s+(\d+)\b/i);
         if (!pm || +pm[1] >= part) continue;
-        const d = await json<MdlDetails>(`${KURYANA}/id/${r.id}`);
+        const d = await kuryanaFetchLogged<MdlDetails>(`/id/${r.id}`);
         offset += parseInt(d?.data?.details?.episodes ?? "") || 0;
     }
     return offset;

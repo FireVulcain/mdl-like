@@ -5,6 +5,7 @@ import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember,
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 import { airedEndDate } from "@/lib/format-aired";
+import { purgeScraperLog } from "@/lib/scraper-log";
 
 // Vercel cron jobs use this header for authentication
 const CRON_SECRET = process.env.CRON_SECRET;
@@ -58,6 +59,15 @@ export async function GET(request: NextRequest) {
         // cost the other its day.
         const mdlResult = await runRefreshMdlRatings(startTime);
         results.push(mdlResult);
+
+        // The scraper dashboard keeps 90 days (ScraperCall, ScraperCacheHit).
+        const purgeStart = Date.now();
+        try {
+            const purged = await purgeScraperLog(90);
+            results.push({ task: "purge-scraper-log", success: true, count: purged.calls + purged.hits, duration: Date.now() - purgeStart });
+        } catch (e) {
+            results.push({ task: "purge-scraper-log", success: false, error: e instanceof Error ? e.message : String(e), duration: Date.now() - purgeStart });
+        }
 
         const totalDuration = Date.now() - startTime;
 

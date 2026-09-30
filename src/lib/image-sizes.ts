@@ -1,4 +1,4 @@
-import { mdlThumbImage } from "@/lib/kuryana";
+import { mdlThumbImage } from "@/lib/mdl-images";
 
 /**
  * The smallest source that still looks sharp in a list thumbnail.

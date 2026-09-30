@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Star, ChevronDown, ChevronUp, ExternalLink, RefreshCw, TriangleAlert } from "lucide-react";
-import { KuryanaReview } from "@/lib/kuryana";
+import type { KuryanaReview } from "@/lib/kuryana";
 import { loadMoreReviews } from "@/actions/mdl-reviews";
 import { mdlUserFromProfileUrl, mdlUserHref } from "@/lib/mdl-user-link";
 import { SectionHeader, SectionLink } from "@/components/media/section-header";
