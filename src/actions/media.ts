@@ -429,22 +429,23 @@ async function getWatchlistForUser(userId: string) {
     };
 
     const uniqueExternalIds = [...new Set(items.map((i) => i.externalId))];
-    const [cachedMdlRows, seasonLinkRows] = await Promise.all([
-        // Blocked shows ("Block MDL") are left out: their row keeps the wrong
-        // entry's slug for a restore, and nothing read through it belongs here.
+    const [allMdlRows, allSeasonLinkRows] = await Promise.all([
         prisma.cachedMdlData.findMany({
-            where: { tmdbExternalId: { in: uniqueExternalIds }, mdlDisabled: false },
-            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true, tags: true, genres: true },
+            where: { tmdbExternalId: { in: uniqueExternalIds } },
+            select: { tmdbExternalId: true, mdlSlug: true, mdlRating: true, tags: true, genres: true, mdlDisabled: true },
         }),
         prisma.mdlSeasonLink.findMany({
-            where: {
-                tmdbExternalId: { in: uniqueExternalIds },
-                // A blocked show's seasons are blocked with it
-                NOT: { tmdbExternalId: { in: (await prisma.cachedMdlData.findMany({ where: { tmdbExternalId: { in: uniqueExternalIds }, mdlDisabled: true }, select: { tmdbExternalId: true } })).map((r) => r.tmdbExternalId) } },
-            },
+            where: { tmdbExternalId: { in: uniqueExternalIds } },
             select: { tmdbExternalId: true, season: true, mdlSlug: true, mdlRating: true },
         }),
     ]);
+    // Blocked shows ("Block MDL") are left out, seasons included: their row
+    // keeps the wrong entry's slug for a restore, and nothing read through it
+    // belongs here. Filtered here rather than in the queries, which keeps them
+    // running side by side.
+    const blocked = new Set(allMdlRows.filter((r) => r.mdlDisabled).map((r) => r.tmdbExternalId));
+    const cachedMdlRows = allMdlRows.filter((r) => !r.mdlDisabled);
+    const seasonLinkRows = allSeasonLinkRows.filter((r) => !blocked.has(r.tmdbExternalId));
     const mdlSlugByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlSlug]));
     const mdlRatingByExternalId = new Map(cachedMdlRows.map((r) => [r.tmdbExternalId, r.mdlRating]));
     // MDL theme tags (legacy string[] or {id, name}[]), cleaned of the "(... tags)" suffix
