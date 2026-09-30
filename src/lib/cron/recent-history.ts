@@ -18,20 +18,22 @@ export type RecentHistoryResult = {
  * How recently a title has to have finished to be worth a daily reading, or
  * null to take every completed title regardless of age.
  *
- * **Currently null — a deliberate experiment, and 365 is the value to restore.**
- * The argument for the limit still stands and is worth keeping to hand:
+ * 365. From 2026-09-01 to 2026-09-30 it was null, on trial, and the trial
+ * ended for the reason below. The argument for the limit:
  * measured across the 165 completed titles in this watchlist, 10 ended within
  * three months, 26 within the year and 115 more than a year ago. Those 115 gain
  * a few dozen watchers a month, so a daily reading writes 365 nearly identical
  * points a year for a curve four points could draw — and it triples the daily
  * request count against a site that blocks us when pushed.
  *
- * What the experiment is for: an audience curve on the old back catalogue is
- * currently two points, and two points are not a curve however they are drawn.
- * Whether a denser one turns out to be worth looking at is a question only a
- * few weeks of real data can answer.
+ * What the trial was for: an audience curve on the old back catalogue was two
+ * points, and two points are not a curve however they are drawn. A month of
+ * daily readings now gives each of those titles about thirty. Measured on
+ * 2026-09-30, the trial was 184 of the 615 MDL requests the scraper made in 12 hours — the
+ * largest single source — at a time when MDL's traffic goes out through one
+ * residential address that Cloudflare could start challenging.
  */
-const RECENT_DAYS: number | null = null;
+const RECENT_DAYS: number | null = 365;
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -45,8 +47,8 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  * title against 2.1 watchers readings, and 186 titles with exactly two. Two
  * points are not a curve however they are drawn.
  *
- * It is currently taking every completed title, on trial — see RECENT_DAYS,
- * which carries the case for the limit and the value to put back.
+ * RECENT_DAYS carries the case for limiting it to the last year, and the
+ * trial that ran without the limit.
  *
  * A title whose aired range cannot be read is kept rather than dropped. MDL
  * writes something else entirely for films and irregular broadcasts, and one

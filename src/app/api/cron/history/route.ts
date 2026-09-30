@@ -4,10 +4,10 @@ import { recordRecentlyFinished } from "@/lib/cron/recent-history";
 
 const CRON_SECRET = process.env.CRON_SECRET;
 
-// With the age limit lifted this walks every completed title — about 177 at a
-// 600ms spacing, so two and a half minutes rather than forty seconds. Matched
-// to the Coolify task's own timeout rather than left at a number a growing
-// watchlist would quietly cross.
+// With the one-year limit this walks a few dozen titles at a 600ms spacing,
+// well under a minute; lifted (see RECENT_DAYS) it walked about 184, three
+// minutes. Matched to the Coolify task's own timeout rather than left at a
+// number a growing watchlist would quietly cross.
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
 
