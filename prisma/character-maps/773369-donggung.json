@@ -1,310 +1,838 @@
 {
-  "version": 1,
+  "version": 2,
   "mdlSlug": "773369-donggung",
   "title": "The East Palace",
   "native": "동궁",
   "year": 2026,
   "country": "KR",
   "sources": [
-    "MDL cast (11 roles + guests, 3 main)",
+    "MDL cast (37 roles, 3 main)",
     "MDL synopsis",
-    "ko.wikipedia 등장인물"
+    "ko.wikipedia 동궁 (드라마)",
+    "en.wikipedia The East Palace",
+    "thereviewgeek ep. 1-8"
   ],
   "main": [
     "gucheon",
-    "saenggang"
+    "saenggang",
+    "king"
   ],
+  "recaps": {
+    "source": "thereviewgeek",
+    "episodes": 8,
+    "count": 8,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ]
+    ]
+  },
   "people": [
     {
       "id": "gucheon",
       "name": "Gu Cheon",
       "actor": "Nam Joo Hyuk",
       "image": "https://i.mydramalist.com/VXl4Nm_5m.jpg",
+      "still": "https://asianwiki.com/images/a/ad/The_East_Palace-Nam_Joo-Hyuk01.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Proud ghost-slayer who crosses into the spirit world",
-      "still": "https://asianwiki.com/images/a/ad/The_East_Palace-Nam_Joo-Hyuk01.jpg"
+      "note": "A ghost-slayer who can cross into the spirit realm since a childhood drowning.",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi Ye Chan",
+          "image": "https://i.mydramalist.com/0w0eJe_5m.jpg",
+          "still": "https://asianwiki.com/images/a/af/The_East_Palace-Choi_Ye-Chan.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "saenggang",
       "name": "Saeng Gang",
       "actor": "Roh Yoon Seo",
       "image": "https://i.mydramalist.com/NdnkOY_5m.jpg",
+      "still": "https://asianwiki.com/images/0/01/The_East_Palace-Roh_Yoon-Seo.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Court lady cursed to hear the dead",
-      "still": "https://asianwiki.com/images/0/01/The_East_Palace-Roh_Yoon-Seo.jpg"
+      "note": "A court lady able to hear the voices of the dead.",
+      "alsoPlayedBy": [
+        {
+          "name": "Choi So Yool",
+          "image": "https://i.mydramalist.com/b3rVex_5m.jpg",
+          "still": "https://asianwiki.com/images/7/7e/The_East_Palace-Choi_So-Yool1.jpg",
+          "era": "child"
+        }
+      ]
     },
     {
       "id": "king",
-      "name": "King Ju Sang (Yi Yeon)",
+      "name": "King",
       "actor": "Cho Seung Woo",
       "image": "https://i.mydramalist.com/g0z3mn_5m.jpg",
-      "group": "The king's side",
+      "still": "https://asianwiki.com/images/e/ef/The_East_Palace-Cho_Seung-Woo01.jpg",
+      "group": "The Palace",
       "inCast": true,
-      "note": "The king who chases the ghosts of the deep",
-      "still": "https://asianwiki.com/images/e/ef/The_East_Palace-Cho_Seung-Woo01.jpg"
+      "note": "Secretly responsible for his brothers' and his own son's deaths thirty years apart.",
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Woo Jin",
+          "image": "https://i.mydramalist.com/oQ1w8k_5m.jpg",
+          "still": "https://asianwiki.com/images/4/48/The_East_Palace-Moon_Woo-Jin1.jpg",
+          "era": "teen"
+        }
+      ]
     },
     {
-      "id": "dowager",
-      "name": "The Queen Dowager",
+      "id": "queendowager",
+      "name": "Queen Dowager",
       "actor": "Jang Young Nam",
       "image": "https://i.mydramalist.com/YYNvyz_5m.jpg",
-      "group": "The Queen Dowager's side",
+      "still": "https://asianwiki.com/images/1/13/The_East_Palace-Jang_Young-Nam1.jpg",
+      "group": "The Palace",
       "inCast": true,
-      "note": "The late king's queen",
-      "still": "https://asianwiki.com/images/1/13/The_East_Palace-Jang_Young-Nam1.jpg"
+      "note": "The late king's principal consort; despises the king as lowborn."
     },
     {
-      "id": "sukbin",
-      "name": "Choi Suk Bin",
-      "actor": "Hwang Young Hee",
-      "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
-      "group": "The king's side",
-      "inCast": true,
-      "note": "Once a court lady; gentle",
-      "still": "https://asianwiki.com/images/3/3d/The_East_Palace-Hwang_Young-Hee01.jpg"
-    },
-    {
-      "id": "sangseon",
+      "id": "kimsangseon",
       "name": "Kim Sang Seon",
       "actor": "Hong Seo Joon",
       "image": "https://i.mydramalist.com/v5dPD_5m.jpg",
-      "group": "The king's side",
+      "still": "https://asianwiki.com/images/e/e7/The_East_Palace-Hong_Seo-Jun.jpg",
+      "group": "The Palace",
       "inCast": true,
-      "note": "Chief eunuch",
-      "still": "https://asianwiki.com/images/e/e7/The_East_Palace-Hong_Seo-Jun.jpg"
-    },
-    {
-      "id": "iksang",
-      "name": "Prince Ik Sang",
-      "actor": "Tae In Ho",
-      "image": "https://i.mydramalist.com/4b5erm.jpg",
-      "group": "The Queen Dowager's side",
-      "inCast": true,
-      "note": "The king's cousin; wants his own son as heir",
-      "still": "https://asianwiki.com/images/8/81/The_East_Palace-Tae_In-Ho01.jpg"
-    },
-    {
-      "id": "paksu",
-      "name": "Park Su",
-      "actor": "Lee Hong Nae",
-      "image": "https://i.mydramalist.com/JBdxdX_5m.jpg",
-      "group": "The Queen Dowager's side",
-      "inCast": true,
-      "note": "The shaman the Dowager brings into the palace",
-      "still": "https://asianwiki.com/images/1/1d/The_East_Palace-Lee_Hong-Nae001.jpg"
+      "note": "The king's chief eunuch."
     },
     {
       "id": "jang",
       "name": "Court lady Jang",
       "actor": "Choi Hyuk Joo",
       "image": "https://i.mydramalist.com/xnxAX_5m.jpg",
-      "group": "The Queen Dowager's side",
+      "still": "https://asianwiki.com/images/4/45/The_East_Palace-Choi_Hyuk-Joo.jpg",
+      "group": "The Palace",
       "inCast": true,
-      "note": "Of the Dowager's quarters",
-      "still": "https://asianwiki.com/images/4/45/The_East_Palace-Choi_Hyuk-Joo.jpg"
+      "note": "The Queen Dowager's chief handmaiden."
+    },
+    {
+      "id": "seja",
+      "name": "Crown Prince Se Ja",
+      "actor": "Kwak Dong Yeon",
+      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
+      "still": "https://asianwiki.com/images/4/48/The_East_Palace-Kwak_Dong-Yeon.jpg",
+      "group": "The Palace",
+      "inCast": true,
+      "note": "The king's eldest son; commits suicide and returns as a vengeful ghost."
+    },
+    {
+      "id": "yeongan",
+      "name": "Prince Yeong An",
+      "actor": "Jo Dan",
+      "image": "https://i.mydramalist.com/BdrnPq_5m.jpg",
+      "still": "https://asianwiki.com/images/c/ca/The_East_Palace-Jo_Dan.jpg",
+      "group": "The Palace",
+      "inCast": true,
+      "note": "The king's youngest son, possessed by a spirit and later killed."
+    },
+    {
+      "id": "iksang",
+      "name": "Ik Sang",
+      "actor": "Tae In Ho",
+      "image": "https://i.mydramalist.com/4b5erm.jpg",
+      "still": "https://asianwiki.com/images/8/81/The_East_Palace-Tae_In-Ho01.jpg",
+      "group": "Ik Sang's Faction",
+      "inCast": true,
+      "note": "The king's cousin, scheming to put his own son on the throne."
+    },
+    {
+      "id": "parksu",
+      "name": "Park Su",
+      "actor": "Lee Hong Nae",
+      "image": "https://i.mydramalist.com/JBdxdX_5m.jpg",
+      "still": "https://asianwiki.com/images/1/1d/The_East_Palace-Lee_Hong-Nae001.jpg",
+      "group": "Ik Sang's Faction",
+      "inCast": true,
+      "note": "A shaman hired by Ik Sang who later serves the Crown Prince's ghost."
+    },
+    {
+      "id": "inha",
+      "name": "Prince In Ha",
+      "actor": "Lee Jae Joon",
+      "image": "https://i.mydramalist.com/NdLJgJ_5m.jpg",
+      "still": "https://asianwiki.com/images/c/cd/The_East_Palace-Lee_Jae-Joon1.jpg",
+      "group": "Ik Sang's Faction",
+      "inCast": true,
+      "note": "Ik Sang's son, later named crown prince."
+    },
+    {
+      "id": "sukbin",
+      "name": "Choi Suk Bin",
+      "actor": "Hwang Young Hee",
+      "image": "https://i.mydramalist.com/eYgQ0e_5m.jpg",
+      "still": "https://asianwiki.com/images/3/3d/The_East_Palace-Hwang_Young-Hee01.jpg",
+      "group": "Saeng Gang's Family",
+      "inCast": true,
+      "note": "The king's birth mother and Saeng Gang's grandmother; secretly poisoned rivals to protect her son's throne."
+    },
+    {
+      "id": "hanssi",
+      "name": "Royal Concubine Han",
+      "actor": "Noh I-jin",
+      "image": null,
+      "still": "https://asianwiki.com/images/a/ad/The_East_Palace-Noh_I-Jin.jpg",
+      "group": "Saeng Gang's Family",
+      "inCast": false,
+      "note": "Saeng Gang's mother, a former court lady poisoned after being framed."
     },
     {
       "id": "jiyul",
       "name": "Ji Yul",
       "actor": "Kim Ji Yul",
       "image": "https://i.mydramalist.com/EOPEp_5m.jpg",
-      "group": "The palace",
+      "still": "https://asianwiki.com/images/5/59/The_East_Palace-Kim_Ji-Yul01.jpg",
+      "group": "Saeng Gang's Circle",
       "inCast": true,
-      "note": "Young trainee, Saeng Gang's right hand and roommate",
-      "still": "https://asianwiki.com/images/5/59/The_East_Palace-Kim_Ji-Yul01.jpg"
+      "note": "A young court lady who becomes Saeng-gang's roommate and ally."
     },
     {
-      "id": "seja",
-      "name": "The Crown Prince",
-      "actor": "Kwak Dong Yeon",
-      "image": "https://i.mydramalist.com/vVy7e_5m.jpg",
-      "group": "The palace",
+      "id": "hongsuzu",
+      "name": "Favored Court Lady",
+      "actor": "Hong Su Zu",
+      "image": "https://i.mydramalist.com/qY3ALQ_5m.jpg",
+      "still": "https://asianwiki.com/images/1/13/The_East_Palace-Hong_Su-Zu.jpg",
+      "group": "Tragic Ghosts",
       "inCast": true,
-      "still": "https://asianwiki.com/images/4/48/The_East_Palace-Kwak_Dong-Yeon.jpg"
+      "note": "A court lady of common birth, framed and killed by the Queen Dowager decades earlier."
+    },
+    {
+      "id": "jaerim",
+      "name": "Royal Guard",
+      "actor": "Choi Jae Rim",
+      "image": "https://i.mydramalist.com/mOL6Pk_5m.jpg",
+      "still": "https://asianwiki.com/images/9/9c/The_East_Palace-Choi_Jae-Rim1.jpg",
+      "group": "Tragic Ghosts",
+      "inCast": true,
+      "note": "A royal guard falsely accused of an affair with the Favored Court Lady."
+    },
+    {
+      "id": "gucheonmom",
+      "name": "Gu Cheon's mother",
+      "actor": "Kim Shi Eun",
+      "image": "https://i.mydramalist.com/vR38pm.jpg",
+      "still": "https://asianwiki.com/images/6/65/The_East_Palace-Kim_Si-Eun.jpg",
+      "group": "Gu Cheon's Past",
+      "inCast": true,
+      "note": "Gu-cheon's mother, who drowned while possessed by a gwi-mae."
+    },
+    {
+      "id": "chilbok",
+      "name": "Chil Bok",
+      "actor": "Choi Bum Ho",
+      "image": "https://i.mydramalist.com/4Ny1d_5m.jpg",
+      "still": "https://asianwiki.com/images/6/62/The_East_Palace-Choi_Beom-Ho1.jpg",
+      "group": "Gu Cheon's Past",
+      "inCast": true,
+      "note": "The monk who raised Gu-cheon after his mother's death."
     }
   ],
   "links": [
     {
       "from": "gucheon",
-      "to": "saenggang",
+      "to": "king",
       "type": "work",
-      "label": "the unlikely pair sent to find what haunts the East Palace",
-      "short": "partners",
-      "evidence": "the unlikely pair uncover long-buried secrets hidden behind the royal walls",
+      "label": "The king secretly summons Gu-cheon to slay the spirit haunting the East Palace.",
+      "short": "his ghost-slayer",
+      "evidence": "the king secretly summons Gu Cheon, a proud and powerful ghost-slayer who can transform into a spirit and traverse the spectral realm",
       "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1,
+      "until": 8
+    },
+    {
+      "from": "saenggang",
+      "to": "king",
+      "type": "family",
+      "label": "Saeng-gang is secretly the king's estranged daughter.",
+      "short": "his daughter",
+      "evidence": "It would later be revealed that Saeng-gang is the King's estranged daughter.",
+      "source": "en.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "saenggang",
+      "to": "gucheon",
+      "type": "work",
+      "label": "Saeng-gang is assigned to guide and secretly monitor Gu-cheon.",
+      "short": "his guide",
+      "evidence": "She's assigned by the King to serve as Gu-cheon's guide during the search for the pond spirit while secretly monitoring his actions.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 7
     },
     {
       "from": "gucheon",
       "to": "saenggang",
       "type": "romance",
-      "label": "the slayer and the listener",
-      "short": "drawn to her",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "king",
-      "to": "gucheon",
-      "type": "work",
-      "label": "summons him in secret",
-      "short": "summons him",
-      "evidence": "the king secretly summons Gu Cheon, a proud and powerful ghost-slayer",
-      "source": "MDL synopsis",
+      "label": "Gu-cheon and Saeng-gang become the couple, each willing to die for the other.",
+      "short": "the couple",
+      "evidence": "she is coming to the temple on the mountain with him",
+      "source": "thereviewgeek ep. 8",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 8
     },
     {
-      "from": "king",
-      "to": "saenggang",
-      "type": "work",
-      "label": "summons her too — the court lady who hears the dead",
-      "short": "summons her",
-      "evidence": "and Saeng Gang, a court lady cursed with the ability to hear and communicate with the dead",
-      "source": "MDL synopsis",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "king",
-      "to": "saenggang",
+      "from": "queendowager",
+      "to": "king",
       "type": "family",
-      "label": "her father: her mother was his favoured concubine, framed and poisoned",
-      "short": "father",
-      "evidence": "소용 한 씨 역 - 생강의 어머니 [...] 왕의 눈에 들어 승은후궁이 되어 딸 생강을 낳았다",
+      "label": "The Queen Dowager is the king's stepmother, the late king's principal consort.",
+      "short": "his stepmother",
+      "evidence": "대비 역 - 왕의 의붓어머니(즉, 선왕의 정비)",
       "source": "ko.wikipedia",
-      "reveal": true,
+      "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sukbin",
       "to": "king",
       "type": "family",
-      "label": "birth mother, a court lady by origin",
-      "short": "mother",
-      "evidence": "[Ju Sang's biological mother] / 숙빈 최씨 역 - 왕의 생모",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sukbin",
-      "to": "saenggang",
-      "type": "family",
-      "label": "grandmother",
-      "short": "grandmother",
+      "label": "Consort Sukbin is the king's birth mother.",
+      "short": "his mother",
       "evidence": "왕의 생모이자 생강의 친할머니",
       "source": "ko.wikipedia",
-      "reveal": true,
+      "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "dowager",
-      "to": "king",
+      "from": "sukbin",
+      "to": "saenggang",
       "type": "family",
-      "label": "stepmother — has scorned the 'bastard of a lowly court lady' since he was crown prince",
-      "short": "stepmother",
-      "evidence": "대비 역 - 왕의 의붓어머니 [...] 왕을 미천한 궁녀 소생의 서자라고 세자 시절 때부터 무시해서",
+      "label": "Consort Sukbin is Saeng-gang's grandmother.",
+      "short": "her grandmother",
+      "evidence": "왕의 생모이자 생강의 친할머니",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "dowager",
-      "to": "paksu",
+      "from": "kimsangseon",
+      "to": "king",
       "type": "work",
-      "label": "the shaman she brought in to lift the curse",
-      "short": "her shaman",
-      "evidence": "박수 무당 역 - 저주를 풀기 위해 대비가 궁에 들인 무당이다",
+      "label": "Kim Sang Seon serves as the king's chief eunuch.",
+      "short": "his chief eunuch",
+      "evidence": "김 상선 역 - 대전 내관",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jang",
-      "to": "dowager",
-      "type": "work",
-      "label": "court lady of her quarters",
-      "short": "court lady",
-      "evidence": "장 상궁 역 - 대비전 상궁",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "iksang",
       "to": "king",
       "type": "family",
-      "label": "cousin — plotting his own son onto the throne",
-      "short": "cousin",
-      "evidence": "익상군 역 - 왕의 사촌 [...] 자기 아들로 후사를 잇게 하려는 함",
+      "label": "Ik Sang is the king's cousin.",
+      "short": "his cousin",
+      "evidence": "익상군 역 - 왕의 사촌",
       "source": "ko.wikipedia",
-      "reveal": true,
+      "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "iksang",
-      "to": "dowager",
-      "type": "friend",
-      "label": "her travelling companion and confidant",
-      "short": "her confidant",
-      "evidence": "유람이나 다니면서 대비의 말동무나 하는 왕족",
+      "to": "queendowager",
+      "type": "family",
+      "label": "Ik Sang is the Queen Dowager's nephew.",
+      "short": "her nephew",
+      "evidence": "the queen dowager gets a visit from Prince Iksang, her nephew",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "inha",
+      "to": "iksang",
+      "type": "family",
+      "label": "Prince In Ha is Ik Sang's son.",
+      "short": "his son",
+      "evidence": "이재준 : 인하군 역 - 익상군의 아들",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "sangseon",
-      "to": "king",
+      "from": "parksu",
+      "to": "iksang",
       "type": "work",
-      "label": "chief eunuch",
-      "short": "chief eunuch",
-      "evidence": "[Chief eunuch] / 김 상선 역 - 대전 내관",
-      "source": "MDL cast",
+      "label": "Park Su is the shaman Ik Sang hired to draw the spirit toward Prince Yeongan.",
+      "short": "his shaman",
+      "evidence": "Turns out, Iksang hired the shaman to draw the spirit towards Prince Yeongan, not to help him.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "until": 6
+    },
+    {
+      "from": "parksu",
+      "to": "seja",
+      "type": "work",
+      "label": "The shaman accepts the Crown Prince's spirit as his presiding deity.",
+      "short": "his vessel",
+      "evidence": "this is also when the shaman accepts the crown prince's spirit as his new, presiding deity.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 6
+    },
+    {
+      "from": "king",
+      "to": "seja",
+      "type": "family",
+      "label": "The king is the Crown Prince's father.",
+      "short": "his father",
+      "evidence": "Kwak Dong-yeon as the Crown Prince, the son of the King who returns as a ghost.",
+      "source": "en.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "king",
+      "to": "yeongan",
+      "type": "family",
+      "label": "The king is Prince Yeong An's father.",
+      "short": "his father",
+      "evidence": "the guards then inform the king that Prince Yeongan, his youngest son, is not well.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "king",
+      "to": "seja",
+      "type": "bond",
+      "label": "The dead Crown Prince curses the royal bloodline to avenge his father's murder of him.",
+      "short": "vengeful spirit",
+      "evidence": "A flashback shows the king's third son going to the pond and declaring to curse the royal bloodline before cutting his wrist.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 4,
+      "until": 8,
+      "wholeStory": false
+    },
+    {
+      "from": "gucheon",
+      "to": "seja",
+      "type": "rivalry",
+      "label": "Gu-cheon is tasked with slaying the vengeful spirit of the dead Crown Prince before he destroys the palace.",
+      "short": "hunts him",
+      "evidence": "he says that it's not over. The spirit haunting the king's sons was not the pond spirit, it was something else.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "until": 8
+    },
+    {
+      "from": "hanssi",
+      "to": "saenggang",
+      "type": "family",
+      "label": "Royal Concubine Han is Saeng-gang's deceased mother.",
+      "short": "her mother",
+      "evidence": "Saeng-gang's deceased mother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "hanssi",
+      "to": "king",
+      "type": "romance",
+      "label": "Han caught the king's eye and became his consort, bearing him Saeng-gang.",
+      "short": "his concubine",
+      "evidence": "본래는 궁의 나인이었으나 왕의 눈에 들어 승은후궁이 되어 딸 생강을 낳았다",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "gucheonmom",
+      "to": "gucheon",
+      "type": "family",
+      "label": "Gu-cheon's mother died in the drowning accident that gave him his powers.",
+      "short": "his mother",
+      "evidence": "Gu-cheon acquired his supernatural abilities as a child after surviving a drowning accident that killed his mother.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "chilbok",
+      "to": "gucheon",
+      "type": "bond",
+      "label": "The head monk raised Gu-cheon and brought him before the king.",
+      "short": "his guardian",
+      "evidence": "The monk goes and brings Gu-cheon to visit the king",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
     },
     {
       "from": "jiyul",
       "to": "saenggang",
       "type": "friend",
-      "label": "her right hand and roommate; wise beyond her years",
-      "short": "right hand",
-      "evidence": "지율 역 - 생강의 오른팔이자 방을 같이 쓰게된 어린 생각시",
+      "label": "Ji Yul becomes Saeng-gang's roommate and loyal helper.",
+      "short": "her assistant",
+      "evidence": "a little girl named Ji-yul joins Saeng-gang in her room",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "king",
+      "to": "inha",
+      "type": "family",
+      "label": "The king adopts Prince In Ha despite knowing the spirit will target him.",
+      "short": "adopted heir",
+      "evidence": "she accuses the king of adopting Prince Inha even though he knew the spirit will target him.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "wholeStory": false
+    },
+    {
+      "from": "jang",
+      "to": "queendowager",
+      "type": "work",
+      "label": "Lady Jang serves as the Queen Dowager's chief handmaiden.",
+      "short": "her handmaiden",
+      "evidence": "장 상궁 역 - 대비전 상궁",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "saenggang",
+      "to": "gucheon",
+      "type": "bond",
+      "label": "Saeng-gang pulls Gu-cheon from the pond, dragging him back to the real world and saving his life.",
+      "short": "saves his life",
+      "evidence": "This causes him to be physically dragged back into the real world, thus saving his life.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "queendowager",
+      "to": "hongsuzu",
+      "type": "rivalry",
+      "label": "Confronted by the Queen Dowager, the Favored Court Lady curses the royal bloodline before drowning herself in the pond.",
+      "short": "drives her to curse",
+      "evidence": "Standing by the pond and confronted by the queen dowager, the woman uttered a curse on the royal bloodline, killed herself and jumped into the lake.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "jaerim",
+      "to": "hongsuzu",
+      "type": "romance",
+      "label": "The royal guard is falsely said to have had an affair with the Favored Court Lady, fathering her child.",
+      "short": "falsely accused lover",
+      "evidence": "it was later found that she was having an affair with a royal guard and that the child was his.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "queendowager",
+      "to": "jaerim",
+      "type": "rivalry",
+      "label": "The Queen Dowager threatens the guard's family into a false confession of adultery.",
+      "short": "forces false confession",
+      "evidence": "The queen dowager threatened his family and made him do it.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "sukbin",
+      "to": "hanssi",
+      "type": "family",
+      "label": "Consort Sukbin is revealed to have poisoned Saeng-gang's mother.",
+      "short": "poisons her",
+      "evidence": "It was Consort Sukbin who killed her mother.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "sukbin",
+      "to": "king",
+      "type": "family",
+      "label": "Consort Sukbin secretly poisoned all the late king's other sons to secure the throne for her own child.",
+      "short": "poisoned his rivals",
+      "evidence": "She used poison to kill all the princes, only making it look like it was the pond spirit.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "king",
+      "to": "seja",
+      "type": "family",
+      "label": "The king confesses he used the same poison to kill the Crown Prince.",
+      "short": "poisons him",
+      "evidence": "he used the same poison to kill the crown prince as well.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
+    },
+    {
+      "from": "kimsangseon",
+      "to": "gucheon",
+      "type": "work",
+      "label": "The king's attendant finds and saves Gu-cheon from the Queen Dowager's guards.",
+      "short": "saves his life",
+      "evidence": "Luckily, the king's attendant finds and saves Gu-cheon.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "parksu",
+      "to": "gucheon",
+      "type": "rivalry",
+      "label": "The shaman's guardian spirit slices Gu-cheon's throat in the spirit world.",
+      "short": "wounds him",
+      "evidence": "the shaman ends up slicing Gu-cheon's throat.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "kind": "event"
+    },
+    {
+      "from": "parksu",
+      "to": "gucheon",
+      "type": "rivalry",
+      "label": "The shaman burns Gu-cheon's effigy, blinding him completely.",
+      "short": "blinds him",
+      "evidence": "This causes Gu-cheon's eyesight to completely go out.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "gucheon",
+      "to": "saenggang",
+      "type": "romance",
+      "label": "Gu-cheon kills himself so his soul can cross over and save Saeng-gang.",
+      "short": "sacrifices himself",
+      "evidence": "The only way to go to the spirit world and save the princess is to kill himself.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "gucheon",
+      "to": "seja",
+      "type": "rivalry",
+      "label": "Gu-cheon finally destroys the Crown Prince's spirit, turning it to dust.",
+      "short": "destroys his spirit",
+      "evidence": "The crown prince turns to dust.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
     },
     {
       "from": "seja",
-      "to": "king",
+      "to": "yeongan",
       "type": "family",
-      "label": "the crown prince — whose palace is haunted",
-      "short": "son",
-      "evidence": "[Crown Prince] / Crown Prince's East Palace",
-      "source": "MDL cast",
+      "label": "Prince Yeong An suddenly dies, a victim of the Crown Prince's curse.",
+      "short": "kills him",
+      "evidence": "Prince Yeongan, who was with his father on the hunting trip, suddenly dies.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "saenggang",
+      "to": "queendowager",
+      "type": "rivalry",
+      "label": "Saeng-gang bares her true identity and confronts the Queen Dowager over her mother's death.",
+      "short": "confronts her",
+      "evidence": "She confronts her about everything, including her mother's death.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "gucheonmom",
+      "to": "gucheon",
+      "type": "family",
+      "label": "Possessed by a gwi-mae, Gu-cheon's mother pushes him to the surface, sacrificing herself.",
+      "short": "sacrifices herself",
+      "evidence": "his mother pushes him away, up towards the surface, while he drowns.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "chilbok",
+      "to": "gucheon",
+      "type": "work",
+      "label": "The monk brings Gu-cheon to the king at his request.",
+      "short": "brings him to the king",
+      "evidence": "The monk goes and brings Gu-cheon to visit the king",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "king",
+      "to": "gucheon",
+      "type": "work",
+      "label": "The king has his men kidnap Gu-cheon and bring him to the palace.",
+      "short": "has him kidnapped",
+      "evidence": "the king simply has his men kidnap Gu-cheon and take him to the palace",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "sukbin",
+      "to": "inha",
+      "type": "family",
+      "label": "Prince In Ha is found poisoned by the same sweets that killed Saeng-gang's mother, implicating Consort Sukbin.",
+      "short": "poisons him",
+      "evidence": "find Prince Inha unconscious after eating a box of sweets, similar to the kind that killed Saeng-gang's mother.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
     }
   ],
   "compact": {
@@ -312,32 +840,49 @@
       "gucheon",
       "saenggang",
       "king",
-      "dowager",
-      "sukbin",
-      "sangseon",
-      "iksang",
-      "paksu",
+      "queendowager",
+      "kimsangseon",
       "jang",
-      "jiyul",
-      "seja"
+      "seja",
+      "yeongan",
+      "sukbin",
+      "hanssi",
+      "iksang",
+      "parksu",
+      "inha",
+      "gucheonmom",
+      "chilbok"
     ],
     "blocks": {
-      "The king's side": [
-        0,
-        0
-      ],
-      "The Queen Dowager's side": [
+      "The Palace": [
         2,
         0
       ],
-      "The palace": [
-        1,
+      "Tragic Ghosts": [
+        2,
         2
+      ],
+      "Gu Cheon's Past": [
+        0,
+        1
+      ],
+      "Ik Sang's Faction": [
+        2,
+        1
+      ],
+      "Saeng Gang's Circle": [
+        0,
+        2
+      ],
+      "Saeng Gang's Family": [
+        0,
+        0
       ]
     },
     "center": [
       "gucheon",
-      "saenggang"
+      "saenggang",
+      "king"
     ]
   }
 }

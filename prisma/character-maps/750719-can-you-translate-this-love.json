@@ -1,310 +1,850 @@
 {
-  "version": 1,
+  "version": 2,
   "mdlSlug": "750719-can-you-translate-this-love",
   "title": "Can This Love Be Translated?",
   "native": "이 사랑 통역 되나요?",
   "year": 2026,
   "country": "KR",
   "sources": [
-    "MDL cast (10 roles + guests, 5 main)",
+    "MDL cast (48 roles, 5 main)",
     "MDL synopsis",
-    "ko.wikipedia 등장인물 (names only)",
-    "en.wikipedia Cast"
+    "ko.wikipedia 등장인물",
+    "en.wikipedia character section",
+    "thereviewgeek ep. 1-12"
   ],
   "main": [
     "hojin",
     "muhui"
   ],
+  "recaps": {
+    "source": "thereviewgeek",
+    "episodes": 12,
+    "count": 12,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ]
+    ]
+  },
   "people": [
     {
       "id": "hojin",
       "name": "Ju Ho Jin",
       "actor": "Kim Seon Ho",
       "image": "https://i.mydramalist.com/mOE622_5m.jpg",
+      "still": "https://asianwiki.com/images/b/b5/Can_This_Love_Be_Translated-Kim_Sun-Ho1.jpg",
       "group": "Leads",
       "inCast": true,
+      "note": "A multilingual interpreter who values precision and neutrality.",
       "alsoPlayedBy": [
         {
           "name": "Jang Jae Ha",
           "image": "https://i.mydramalist.com/pepXb_5m.jpg",
           "era": "child"
         }
-      ],
-      "note": "Former writer; polyglot interpreter whose rule is to stay invisible",
-      "still": "https://asianwiki.com/images/b/b5/Can_This_Love_Be_Translated-Kim_Sun-Ho1.jpg"
+      ]
     },
     {
       "id": "muhui",
-      "name": "Cha Mu Hui / Do Ra Mi",
+      "name": "Cha Mu Hui",
       "actor": "Go Youn Jung",
       "image": "https://i.mydramalist.com/VXx6Ex_5m.jpg",
+      "still": "https://asianwiki.com/images/4/45/Can_This_Love_Be_Translated-Go_Youn-Jung001.jpg",
       "group": "Leads",
       "inCast": true,
+      "note": "A world-famous actress plagued by visions of her breakout role, Do Ra Mi.",
       "alsoPlayedBy": [
         {
           "name": "An Tae Rin",
           "image": "https://i.mydramalist.com/XdeJjJ_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/8/88/Can_This_Love_Be_Translated-Ahn_Tae-Rin1.jpg"
+          "still": "https://asianwiki.com/images/8/88/Can_This_Love_Be_Translated-Ahn_Tae-Rin1.jpg",
+          "era": "child"
         }
-      ],
-      "note": "The 'Horror Queen', famous overnight as Do Ra Mi in Quiet Woman",
-      "still": "https://asianwiki.com/images/4/45/Can_This_Love_Be_Translated-Go_Youn-Jung001.jpg"
+      ]
     },
     {
       "id": "hiro",
       "name": "Kurosawa Hiro",
       "actor": "Fukushi Sota",
       "image": "https://i.mydramalist.com/KpLrvq_5m.jpg",
-      "group": "Romantic Trip (the show)",
+      "still": "https://asianwiki.com/images/0/0d/Can_This_Love_Be_Translated-Sota_Fukushi01.jpg",
+      "group": "Romantic Trip",
       "inCast": true,
-      "note": "Japanese star, the 'Prince of Romance'",
-      "still": "https://asianwiki.com/images/0/0d/Can_This_Love_Be_Translated-Sota_Fukushi01.jpg"
+      "note": "A Japanese actor known as the 'Prince of Romance.'"
     },
     {
       "id": "jiseon",
       "name": "Sin Ji Seon",
       "actor": "Lee E Dam",
       "image": "https://i.mydramalist.com/4e3VLk_5m.jpg",
-      "group": "Romantic Trip (the show)",
+      "still": "https://asianwiki.com/images/9/9a/Can_This_Love_Be_Translated-Lee_E-Dam.jpg",
+      "group": "Romantic Trip",
       "inCast": true,
-      "still": "https://asianwiki.com/images/9/9a/Can_This_Love_Be_Translated-Lee_E-Dam.jpg"
+      "note": "A producer of Romantic Trip, once loved by Ho Jin."
     },
     {
       "id": "yongu",
       "name": "Kim Yong U",
       "actor": "Choi Woo Sung",
       "image": "https://i.mydramalist.com/6Axbg_5m.jpg",
-      "group": "Romantic Trip (the show)",
+      "still": "https://asianwiki.com/images/1/12/Can_This_Love_Be_Translated-Choi_Woo-Sung.jpg",
+      "group": "Romantic Trip",
       "inCast": true,
-      "note": "Director of Romantic Trip",
-      "still": "https://asianwiki.com/images/1/12/Can_This_Love_Be_Translated-Choi_Woo-Sung.jpg"
+      "note": "Mu Hui's manager."
     },
     {
-      "id": "cho",
+      "id": "choyounga",
       "name": "Writer Cho",
       "actor": "Baek Joo Hee",
       "image": "https://i.mydramalist.com/DkB8X5_5m.jpg",
-      "group": "Romantic Trip (the show)",
+      "still": "https://asianwiki.com/images/a/a0/Can_This_Love_Be_Translated-Baek_Joo-Hee.jpg",
+      "group": "Romantic Trip",
       "inCast": true,
-      "note": "Main writer",
-      "still": "https://asianwiki.com/images/a/a0/Can_This_Love_Be_Translated-Baek_Joo-Hee.jpg"
+      "note": "Main writer of Romantic Trip."
     },
     {
-      "id": "jeongsu",
-      "name": "Kim Jeong Su",
-      "actor": "Im Chul Soo",
-      "image": "https://i.mydramalist.com/RJRZom.jpg",
-      "group": "Romantic Trip (the show)",
+      "id": "kimyeonghwan",
+      "name": "Kim Yeong Hwan",
+      "actor": "Kim Won Hae",
+      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
+      "still": "https://asianwiki.com/images/e/e9/Can_This_Love_Be_Translated-Kim_Won-Hae01.jpg",
+      "group": "Ho Jin's circle",
       "inCast": true,
-      "note": "PD",
-      "still": "https://asianwiki.com/images/2/2e/Can_This_Love_Be_Translated-Lim_Chul-Soo.jpg"
-    },
-    {
-      "id": "insu",
-      "name": "Park In Su",
-      "actor": "Kwak Min Gyoo",
-      "image": "https://i.mydramalist.com/2gEpdm.jpg",
-      "group": "Romantic Trip (the show)",
-      "inCast": true,
-      "note": "PD",
-      "still": "https://asianwiki.com/images/8/8d/Can_This_Love_Be_Translated-Kwak_Min-Gyu.jpg"
+      "note": "A novelist and old friend of Ho Jin's late grandfather."
     },
     {
       "id": "nanami",
       "name": "Nanami",
       "actor": "Hyunri",
       "image": "https://i.mydramalist.com/VXlmlL_5m.jpg",
-      "group": "Romantic Trip (the show)",
-      "inCast": true,
-      "note": "Hiro's manager",
-      "still": "https://asianwiki.com/images/8/8f/Can_This_Love_Be_Translated-Hyunri.jpg"
+      "still": "https://asianwiki.com/images/8/8f/Can_This_Love_Be_Translated-Hyunri.jpg",
+      "group": "Romantic Trip",
+      "inCast": true
     },
     {
-      "id": "yeonghwan",
-      "name": "Kim Yeong Hwan",
-      "actor": "Kim Won Hae",
-      "image": "https://i.mydramalist.com/O8VAYg_5m.jpg",
-      "group": "Ho Jin's people",
-      "inCast": true,
-      "note": "Novelist",
-      "still": "https://asianwiki.com/images/e/e9/Can_This_Love_Be_Translated-Kim_Won-Hae01.jpg"
+      "id": "jinsuk",
+      "name": "Na Jin Suk",
+      "actor": "Sung Jun",
+      "image": "https://i.mydramalist.com/kAzJmj_5m.jpg",
+      "still": "https://asianwiki.com/images/e/e5/Can_This_Love_Be_Translated-Sung_Joon1.jpg",
+      "group": "Ho Jin's family",
+      "inCast": true
     },
     {
-      "id": "uncle",
-      "name": "Mu Hui's uncle",
-      "actor": "Shin Moon Sung",
-      "image": "https://i.mydramalist.com/73j10L_5m.jpg",
-      "group": "Mu Hui's people",
+      "id": "mijeong",
+      "name": "Yun Mi Jeong",
+      "actor": "Choi Hee Jin",
+      "image": "https://i.mydramalist.com/6jVxj_5m.jpg",
+      "still": "https://asianwiki.com/images/3/39/Can_This_Love_Be_Translated-Choi_Hee-Jin1.jpg",
+      "group": "Ho Jin's family",
       "inCast": true,
-      "still": "https://asianwiki.com/images/a/a6/Can_This_Love_Be_Translated-Shin_Mun-Sung1.jpg"
+      "note": "Owner of a winery in Italy."
     },
     {
-      "id": "aunt",
+      "id": "alberto",
+      "name": "Alberto",
+      "actor": "Alberto Mondi",
+      "image": "https://i.mydramalist.com/Z85yQO_5m.jpg",
+      "still": "https://asianwiki.com/images/3/3d/Can_This_Love_Be_Translated-Alberto_Mondi.jpg",
+      "group": "Ho Jin's circle",
+      "inCast": true
+    },
+    {
+      "id": "miwha",
       "name": "Mu Hui's aunt",
       "actor": "Woo Mi Hwa",
       "image": "https://i.mydramalist.com/ABRm3q_5m.jpg",
-      "group": "Mu Hui's people",
+      "still": "https://asianwiki.com/images/c/ca/Can_This_Love_Be_Translated-Woo_Mi-Hwa01.jpg",
+      "group": "Mu Hui's family",
+      "inCast": true
+    },
+    {
+      "id": "munsung",
+      "name": "Mu Hui's uncle",
+      "actor": "Shin Moon Sung",
+      "image": "https://i.mydramalist.com/73j10L_5m.jpg",
+      "still": "https://asianwiki.com/images/a/a6/Can_This_Love_Be_Translated-Shin_Mun-Sung1.jpg",
+      "group": "Mu Hui's family",
       "inCast": true,
-      "still": "https://asianwiki.com/images/c/ca/Can_This_Love_Be_Translated-Woo_Mi-Hwa01.jpg"
+      "note": "Chairman of the Myeongjin Foundation."
+    },
+    {
+      "id": "eiko",
+      "name": "Eiko",
+      "actor": "Seok Hee",
+      "image": "https://i.mydramalist.com/QZ364_5m.jpg",
+      "still": "https://asianwiki.com/images/a/aa/Can_This_Love_Be_Translated-Seok_Hee1.jpg",
+      "group": "Mu Hui's past",
+      "inCast": true
+    },
+    {
+      "id": "yujin",
+      "name": "Kim Yu Jin",
+      "actor": "Roh Jae Won",
+      "image": "https://i.mydramalist.com/Lwlkv7_5m.jpg",
+      "still": "https://asianwiki.com/images/e/ee/Can_This_Love_Be_Translated-Roh_Jae-Won1.jpg",
+      "group": "Mu Hui's past",
+      "inCast": true,
+      "note": "A ramen chef and Mu Hui's ex-boyfriend."
+    },
+    {
+      "id": "hirosister",
+      "name": "Hiro's sister",
+      "actor": "Ichikawa Yui",
+      "image": "https://i.mydramalist.com/RJqmrm.jpg",
+      "still": "https://asianwiki.com/images/d/d1/Can_This_Love_Be_Translated-Yui_Ichikawa.jpg",
+      "group": "Hiro's circle",
+      "inCast": true
+    },
+    {
+      "id": "ceoan",
+      "name": "CEO An",
+      "actor": "Ahn Se Ho",
+      "image": "https://i.mydramalist.com/ABX7ZL_5m.jpg",
+      "still": "https://asianwiki.com/images/c/c3/Can_This_Love_Be_Translated-Ahn_Se-Ho.jpg",
+      "group": "Romantic Trip",
+      "inCast": true,
+      "note": "Head of Mu Hui and Yong U's talent agency."
     }
   ],
   "links": [
     {
       "from": "hojin",
       "to": "muhui",
-      "type": "work",
-      "label": "her interpreter — softening every harsh line to save her image",
-      "short": "interpreter",
-      "evidence": "begins quietly altering her harsh, chaotic statements into softer versions that won't destroy her public image",
-      "source": "MDL synopsis",
+      "type": "romance",
+      "label": "Ho Jin and Mu Hui grow closer while filming Romantic Trip together.",
+      "short": "growing close",
+      "evidence": "Mu-hee asks Ho-jin what Hiro thinks about her.",
+      "source": "thereviewgeek ep. 4",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 4,
+      "until": 6,
+      "wholeStory": false
+    },
+    {
+      "from": "muhui",
+      "to": "hojin",
+      "type": "romance",
+      "label": "Mu Hui impulsively kisses Ho Jin by the lake, then blames it on Do Ra Mi.",
+      "short": "first kiss",
+      "evidence": "Mu-hee instinctively kisses Ho-jin. She then pulls back, shocked, and says Do Ra-mi made her do it.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
     },
     {
       "from": "hojin",
       "to": "muhui",
       "type": "romance",
-      "label": "the only person allowed to hear what she really means",
-      "short": "hears her",
-      "evidence": "He gradually realizes he isn't just her interpreter but the only person allowed to hear what she genuinely means, turning linguistic work into emotional intimacy",
-      "source": "MDL synopsis",
+      "label": "Ho Jin and Mu Hui agree to end things after Mu Hui's confession.",
+      "short": "broken up",
+      "evidence": "Ho-jin is quite upset and agrees to end things here.",
+      "source": "thereviewgeek ep. 6",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 6,
+      "until": 10,
+      "wholeStory": false
+    },
+    {
+      "from": "muhui",
+      "to": "hojin",
+      "type": "bond",
+      "label": "Mu Hui's alter ego Do Ra Mi introduces herself to Ho Jin for the first time.",
+      "short": "Do Ra Mi appears",
+      "evidence": "Ho-jin comes home to find Mu-hee waiting for him inside. She introduces herself as Do Ra-mi.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
+    },
+    {
+      "from": "muhui",
+      "to": "hojin",
+      "type": "bond",
+      "label": "Do Ra Mi slips a pill into Ho Jin's drink to knock him out after warning him off Mu Hui.",
+      "short": "drugs him",
+      "evidence": "He realises she put a pill in his glass of water, which makes him pass out.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "muhui",
+      "to": "hojin",
+      "type": "bond",
+      "label": "Do Ra Mi tells Ho Jin that Mu Hui's mother killed her father and tried to kill her too.",
+      "short": "reveals her trauma",
+      "evidence": "Mu-hee is terrified that Ho-jin will find out her secret — her mother killed her father and tried to kill her too.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "romance",
+      "label": "Ho Jin and Mu Hui confess their feelings for each other and kiss at last.",
+      "short": "confession & kiss",
+      "evidence": "Ho-jin confesses to her as well. When she still doesn't understand, he kisses her.",
+      "source": "thereviewgeek ep. 10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "kind": "event"
+    },
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "romance",
+      "label": "Ho Jin and Mu Hui become a couple after their confession in Italy.",
+      "short": "the couple",
+      "evidence": "Mu-hee asks Ho-jin to stay and watch the light for a little longer.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 10
+    },
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "romance",
+      "label": "They agree to date freely for a month without worrying about how it ends.",
+      "short": "date freely",
+      "evidence": "They decide to freely date each other for at least a month.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 11,
+      "kind": "event"
+    },
+    {
+      "from": "muhui",
+      "to": "hojin",
+      "type": "romance",
+      "label": "Mu Hui posts a photo with Yu Jin and his wife to kill the dating rumors and protect Ho Jin.",
+      "short": "quells the scandal",
+      "evidence": "She posts a picture with Yu-jin and his wife, saying they are all friends, in order to quell the rumours.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11,
+      "kind": "event"
+    },
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "family",
+      "label": "Ho Jin tells Mu Hui that her parents are actually alive, not killed as she believed.",
+      "short": "reveals parents alive",
+      "evidence": "Ho-jin shows Mu-hee the photograph of her mother and then drops another bomb — her parents are actually alive.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "hojin",
+      "to": "muhui",
+      "type": "work",
+      "label": "Ho Jin serves as Cha Mu Hui's interpreter throughout the Romantic Trip shoot.",
+      "short": "her interpreter",
+      "evidence": "The interpreter is none other than Ho-jin and she is pleasantly surprised to see him.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 8
+    },
+    {
+      "from": "jinsuk",
+      "to": "hojin",
+      "type": "family",
+      "label": "Na Jin Suk is Ho Jin's older brother.",
+      "short": "his brother",
+      "evidence": "[Ho Jin's brother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "mijeong",
+      "to": "hojin",
+      "type": "family",
+      "label": "Yoon Mi Jung is Ho Jin's mother, who runs a winery in Italy.",
+      "short": "his mother",
+      "evidence": "Ho-jin's mother and the winery owner in Italy.",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "hojin",
+      "to": "mijeong",
+      "type": "family",
+      "label": "Ho Jin and his mother reconcile after 13 years of not speaking.",
+      "short": "reconciles",
+      "evidence": "They had a fight and then didn't speak for 13 years... both of them apologise to each other and make up.",
+      "source": "thereviewgeek ep. 10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "kind": "event"
+    },
+    {
+      "from": "kimyeonghwan",
+      "to": "hojin",
+      "type": "bond",
+      "label": "Mr Kim was Ho Jin's late grandfather's close friend and now looks after Ho Jin like family.",
+      "short": "family friend",
+      "evidence": "Mr Kim was a good friend of Ho Jin's grandfather.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "alberto",
+      "to": "hojin",
+      "type": "friend",
+      "label": "Alberto is one of Ho Jin's close friends in Italy.",
+      "short": "his friend",
+      "evidence": "[Ho Jin's friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "jiseon",
+      "to": "hojin",
+      "type": "romance",
+      "label": "Ji Seon was Ho Jin's first love, whom he never forgot.",
+      "short": "his first love",
+      "evidence": "Ho-jin admits he had visited the island with a girl named Ji-seon, whom he once loved.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 12
+    },
+    {
+      "from": "jiseon",
+      "to": "hojin",
+      "type": "work",
+      "label": "Ji Seon recommends Ho Jin as the interpreter for Romantic Trip.",
+      "short": "recommends him",
+      "evidence": "Ho-jin is surprised when he learns Ji-seon is the one who recommended his name to the producers.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "hojin",
+      "to": "jiseon",
+      "type": "romance",
+      "label": "On the train to Busan, Ho Jin admits to Ji Seon that he once liked her.",
+      "short": "admits old feelings",
+      "evidence": "On the train, Ho-jin admits to Ji-seon that he liked her.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "yongu",
+      "to": "jiseon",
+      "type": "romance",
+      "label": "Yong U and Ji Seon begin secretly seeing each other during the shoot.",
+      "short": "secret romance",
+      "evidence": "She kisses him and is walking away when he pulls her in for another kiss.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7,
+      "until": 12,
+      "wholeStory": false
+    },
+    {
+      "from": "jiseon",
+      "to": "yongu",
+      "type": "romance",
+      "label": "Ji Seon becomes Yong U's fiancée after he proposes.",
+      "short": "his fiancée",
+      "evidence": "Yong-u is now her fiancé!",
+      "source": "thereviewgeek ep. 12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 12
+    },
+    {
+      "from": "yongu",
+      "to": "jiseon",
+      "type": "romance",
+      "label": "Yong U proposes marriage to Ji Seon before leaving for the UK.",
+      "short": "proposes",
+      "evidence": "He doesn't want to break up with her... he asks her to marry him.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "jiseon",
+      "to": "jinsuk",
+      "type": "romance",
+      "label": "Ji Seon was engaged to Na Jin Suk before calling off the wedding.",
+      "short": "his ex-fiancée",
+      "evidence": "He plans on getting married to Ji-seon in the next month.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 6,
+      "wholeStory": false
+    },
+    {
+      "from": "jiseon",
+      "to": "jinsuk",
+      "type": "romance",
+      "label": "Ji Seon calls Jin Suk and tells him their relationship is over.",
+      "short": "ends it",
+      "evidence": "She tells him she cheated on him and that their relationship is over.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "hiro",
+      "to": "muhui",
+      "type": "work",
+      "label": "Hiro co-stars with Mu Hui on the dating show Romantic Trip.",
+      "short": "her co-star",
+      "evidence": "The producers of a TV show called Romantic Trip are looking for a female actress to pair Hiro with.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "until": 12,
+      "wholeStory": false
+    },
+    {
+      "from": "muhui",
+      "to": "hiro",
+      "type": "romance",
+      "label": "Do Ra Mi, in control of Mu Hui's body, pulls Hiro in for a kiss on the flight home.",
+      "short": "kisses him",
+      "evidence": "Do Ra-mi woke up on the flight and pulled Hiro in for a kiss.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
     },
     {
       "from": "hiro",
       "to": "muhui",
       "type": "romance",
-      "label": "her partner on the dating show Romantic Trip",
-      "short": "show partner",
-      "evidence": "A famous Japanese actor who joins Mu-hee on the dating show Romantic Trip",
-      "source": "en.wikipedia",
+      "label": "Hiro tells Mu Hui at the Italian fort that he really likes her.",
+      "short": "confesses",
+      "evidence": "Hiro and Mu-hee meet at one of Italy's forts and Hiro tells her that he really likes her.",
+      "source": "thereviewgeek ep. 10",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 10,
+      "kind": "event"
     },
     {
-      "from": "yongu",
+      "from": "hiro",
       "to": "muhui",
-      "type": "work",
-      "label": "directs Romantic Trip",
-      "short": "director",
-      "evidence": "she is the director of Romantic Trip",
-      "source": "en.wikipedia",
+      "type": "romance",
+      "label": "Hiro tells Mu Hui he knows she likes someone else and encourages her to go after him.",
+      "short": "lets her go",
+      "evidence": "He tells her he knows she likes someone else and encourages her to go after him.",
+      "source": "thereviewgeek ep. 11",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 11,
+      "kind": "event"
     },
     {
-      "from": "yongu",
-      "to": "hojin",
-      "type": "family",
-      "label": "engaged to his older brother, at the start",
-      "short": "brother's fiancee",
-      "evidence": "At the beginning of the series, she is engaged to Na Jin-seok (Joo Ho-jin's older brother)",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jiseon",
-      "to": "hojin",
+      "from": "hiro",
+      "to": "muhui",
       "type": "friend",
-      "label": "on the show's side, close to Ho Jin",
-      "short": "friend",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": false
-    },
-    {
-      "from": "cho",
-      "to": "yongu",
-      "type": "work",
-      "label": "the show's main writer",
-      "short": "writer",
-      "evidence": "Main writer of Romantic Trip",
-      "source": "en.wikipedia",
+      "label": "Hiro and Mu Hui remain close friends after their romance doesn't work out.",
+      "short": "just friends",
+      "evidence": "In it, she says she will root for him as a friend.",
+      "source": "thereviewgeek ep. 10",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jeongsu",
-      "to": "yongu",
-      "type": "work",
-      "label": "PD",
-      "short": "PD",
-      "evidence": "[PD]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "insu",
-      "to": "yongu",
-      "type": "work",
-      "label": "PD",
-      "short": "PD",
-      "evidence": "[PD]",
-      "source": "MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 10
     },
     {
       "from": "nanami",
       "to": "hiro",
       "type": "work",
-      "label": "manager, fluent in Korean",
-      "short": "manager",
-      "evidence": "[Hiro's manager] / Hiro's manager, who is fluent in Korean",
+      "label": "Nanami is Hiro's manager who accompanies him throughout the show.",
+      "short": "his manager",
+      "evidence": "[Hiro's manager]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "yeonghwan",
+      "from": "hirosister",
+      "to": "hiro",
+      "type": "family",
+      "label": "Hiro's older sister teases him about his growing feelings for Mu Hui.",
+      "short": "his sister",
+      "evidence": "[Hiro's sister]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9
+    },
+    {
+      "from": "miwha",
+      "to": "muhui",
+      "type": "family",
+      "label": "Mrs Cha raised Mu Hui as her adoptive mother after her parents' accident.",
+      "short": "her adoptive mother",
+      "evidence": "Mu-hee's paternal uncle's wife/Mu-hee adopted mother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "munsung",
+      "to": "muhui",
+      "type": "family",
+      "label": "Cha Chairman raised Mu Hui as her adoptive father, and is chairman of the Myeongjin Foundation.",
+      "short": "her adoptive father",
+      "evidence": "Mu-hee's paternal uncle/Mu-hee's adopted father",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "munsung",
       "to": "hojin",
+      "type": "family",
+      "label": "Mr Cha tells Ho Jin that Mu Hui's mother wasn't married to her father and used the child to keep him close, leading to tragedy.",
+      "short": "reveals her past",
+      "evidence": "He tells Ho-jin about how Mu-hee's mother wasn't married to Mu-hee's father... which eventually led to tragedy.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "miwha",
+      "to": "muhui",
+      "type": "family",
+      "label": "Mu Hui's aunt admits she blamed her as a child because she looks just like her mother.",
+      "short": "explains her blame",
+      "evidence": "Her aunt says that she looks just like her mother.",
+      "source": "thereviewgeek ep. 12",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "yujin",
+      "to": "muhui",
+      "type": "romance",
+      "label": "Kim Yu Jin is Mu Hui's ex-boyfriend, a chef who left her for another woman.",
+      "short": "her ex-boyfriend",
+      "evidence": "She's come here to confront her ex-boyfriend, Yu-jin, who works as a chef at the restaurant and left Mu-hee for someone who works there.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "muhui",
+      "to": "yujin",
+      "type": "romance",
+      "label": "Mu Hui confronts Yu Jin over leaving her for his pregnant new partner Eiko.",
+      "short": "confronts him",
+      "evidence": "Mu-hee learns that his girlfriend is an older woman named Eiko, who is 7 months pregnant!",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "eiko",
+      "to": "yujin",
+      "type": "romance",
+      "label": "Eiko is Yu Jin's new partner and the mother of his child.",
+      "short": "his partner",
+      "evidence": "Mu-hee learns that his girlfriend is an older woman named Eiko, who is 7 months pregnant!",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "eiko",
+      "to": "muhui",
+      "type": "romance",
+      "label": "Eiko reveals to Mu Hui that the baby is actually her ex-husband's, not Yu Jin's.",
+      "short": "reveals the truth",
+      "evidence": "She says the baby is her ex-husband's, not Yu-jin's.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "ceoan",
+      "to": "yongu",
+      "type": "family",
+      "label": "CEO An is Yong U's uncle and head of the talent agency.",
+      "short": "his uncle",
+      "evidence": "Mu-hee's agency CEO (Kim Yong-u's uncle)",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "ceoan",
+      "to": "yongu",
       "type": "work",
-      "label": "the novelist of his writing past",
-      "short": "old mentor",
-      "evidence": null,
-      "source": null,
-      "reveal": false,
-      "inferred": true,
-      "directed": true
-    },
-    {
-      "from": "uncle",
-      "to": "muhui",
-      "type": "family",
-      "label": "uncle, who raised her",
-      "short": "uncle",
-      "evidence": "[Mu Hui's uncle]",
-      "source": "MDL cast",
+      "label": "CEO An offers Yong U a transfer to the sports department in Europe.",
+      "short": "offers him a transfer",
+      "evidence": "He is getting transferred to the sports department... he needs to move to Europe within one month.",
+      "source": "thereviewgeek ep. 11",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 11,
+      "kind": "event"
     },
     {
-      "from": "aunt",
-      "to": "muhui",
-      "type": "family",
-      "label": "aunt",
-      "short": "aunt",
-      "evidence": "[Mu Hui's aunt]",
-      "source": "MDL cast",
+      "from": "choyounga",
+      "to": "hojin",
+      "type": "bond",
+      "label": "Writer Cho hints to Ho Jin that Ji Seon told her he's liked someone for a long time.",
+      "short": "drops a hint",
+      "evidence": "She says Ji-seon mentioned that Ho-jin has liked someone for a long time.",
+      "source": "thereviewgeek ep. 6",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 6,
+      "kind": "event"
     }
   ],
   "compact": {
@@ -314,26 +854,40 @@
       "hiro",
       "jiseon",
       "yongu",
-      "cho",
-      "jeongsu",
-      "insu",
+      "choyounga",
       "nanami",
-      "yeonghwan",
-      "uncle",
-      "aunt"
+      "ceoan",
+      "kimyeonghwan",
+      "alberto",
+      "jinsuk",
+      "mijeong",
+      "miwha",
+      "munsung"
     ],
     "blocks": {
-      "Romantic Trip (the show)": [
+      "Hiro's circle": [
+        0,
+        2
+      ],
+      "Mu Hui's past": [
+        2,
+        2
+      ],
+      "Romantic Trip": [
+        2,
+        0
+      ],
+      "Ho Jin's circle": [
         0,
         0
       ],
-      "Mu Hui's people": [
-        2,
-        0
+      "Ho Jin's family": [
+        0,
+        1
       ],
-      "Ho Jin's people": [
+      "Mu Hui's family": [
         2,
-        2
+        1
       ]
     },
     "center": [

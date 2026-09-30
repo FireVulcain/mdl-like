@@ -1,15 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "mdlSlug": "739603-sparkling-watermelon",
   "title": "Twinkling Watermelon",
   "native": "반짝이는 워터멜론",
   "year": 2023,
   "country": "KR",
   "sources": [
-    "MDL cast (95 roles, 4 main)",
+    "MDL cast (94 roles, 4 main)",
     "MDL synopsis",
-    "ko.wikipedia 등장인물 (4.4k chars)",
-    "en.wikipedia Cast (3.3k chars — several entries run into one another)"
+    "ko.wikipedia 등장인물",
+    "en.wikipedia",
+    "dramabeans ep. 1-16 recaps",
+    "thereviewgeek ep. 1-16 recaps"
   ],
   "main": [
     "eungyeol",
@@ -17,372 +19,393 @@
     "segyeong",
     "cheonga"
   ],
+  "recaps": {
+    "source": "thereviewgeek,dramabeans",
+    "episodes": 16,
+    "count": 24,
+    "ranges": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        13,
+        14
+      ],
+      [
+        15,
+        16
+      ]
+    ]
+  },
   "people": [
     {
       "id": "eungyeol",
       "name": "Ha Eun Gyeol",
       "actor": "Ryeo Un",
       "image": "https://i.mydramalist.com/zB2n3J_5m.jpg",
+      "still": "https://asianwiki.com/images/7/76/Twinkling_Watermelon-Ryeo_Un01.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "CODA — the only hearing person in a deaf family; guitarist, and a member of Spine9 in 2023",
+      "note": "CODA guitarist who time-travels from 2023 to 1995 to meet his parents as teenagers.",
       "alsoPlayedBy": [
         {
           "name": "Jung Hyun Joon",
           "image": "https://i.mydramalist.com/PxQq0Z_5m.jpg",
-          "era": "young",
-          "still": "https://asianwiki.com/images/a/a1/Twinkling_Watermelon-Jeong_Hyun-Jun.jpg"
+          "still": "https://asianwiki.com/images/a/a1/Twinkling_Watermelon-Jeong_Hyun-Jun.jpg",
+          "era": "child"
         }
-      ],
-      "still": "https://asianwiki.com/images/7/76/Twinkling_Watermelon-Ryeo_Un01.jpg"
+      ]
     },
     {
       "id": "ichan",
       "name": "Ha I Chan",
       "actor": "Choi Hyun Wook",
       "image": "https://i.mydramalist.com/pqZBD_5m.jpg",
+      "still": "https://asianwiki.com/images/c/c6/Twinkling_Watermelon-Choi_Hyun-Wook1.jpg",
       "group": "Leads",
       "inCast": true,
-      "note": "Frontman of Watermelon Sugar",
+      "note": "Hearing, cheerful teenager in 1995; loses his hearing after an accident and becomes Eun Gyeol's deaf father in 2023.",
       "alsoPlayedBy": [
         {
           "name": "Choi Won Young",
           "image": "https://i.mydramalist.com/QBrn6_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/1/17/Twinkling_Watermelon-Choi_Won_Young.jpg"
+          "still": "https://asianwiki.com/images/1/17/Twinkling_Watermelon-Choi_Won_Young.jpg",
+          "era": "older"
         }
-      ],
-      "still": "https://asianwiki.com/images/c/c6/Twinkling_Watermelon-Choi_Hyun-Wook1.jpg"
+      ]
+    },
+    {
+      "id": "segyeong",
+      "name": "Choi Se Gyeong / On Eun Yu",
+      "actor": "Seor In A",
+      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
+      "still": "https://asianwiki.com/images/0/0f/Twinkling_Watermelon-Seol_In-A.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Plays both Choi Se Gyeong, the cellist Ichan idolizes in 1995, and her daughter On Eun Yu, who travels back from 2023 in her place.",
+      "alsoPlayedBy": [
+        {
+          "name": "Moon Seo Yeon",
+          "image": "https://i.mydramalist.com/2KPgk_5m.jpg",
+          "still": "https://asianwiki.com/images/5/5a/Twinkling_Watermelon-PD-Moon_Seo_Yeon.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Lee So Yeon",
+          "image": "https://i.mydramalist.com/60yVN0_5m.jpg",
+          "still": "https://asianwiki.com/images/4/42/Twinkling_Watermelon-Lee_So_Yeon1.jpg",
+          "era": "older"
+        }
+      ]
     },
     {
       "id": "cheonga",
       "name": "Yun Cheong A",
       "actor": "Shin Eun Soo",
       "image": "https://i.mydramalist.com/b3o64e_5m.jpg",
-      "group": "Eun Gyeol's family",
+      "still": "https://asianwiki.com/images/3/35/Twinkling_Watermelon-Shin_Eun_Soo.jpg",
+      "group": "Leads",
       "inCast": true,
-      "note": "Deaf since birth",
+      "note": "Deaf, isolated artist in 1995 who becomes Eun Gyeol's mother; abused for years by her stepmother.",
       "alsoPlayedBy": [
-        {
-          "name": "Seo Young Hee",
-          "image": "https://i.mydramalist.com/WXOy3_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/6/62/Twinkling_Watermelon-Seo_Young_Hee.jpg"
-        },
         {
           "name": "Kwon Dan Ah",
           "image": "https://i.mydramalist.com/RBPy8x_5m.jpg",
-          "era": "young",
-          "still": "https://asianwiki.com/images/d/dc/Twinkling_Watermelon-Kwon_Dan-A.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/3/35/Twinkling_Watermelon-Shin_Eun_Soo.jpg"
-    },
-    {
-      "id": "eunho",
-      "name": "Ha Eun Ho",
-      "actor": "Bong Jae Hyun",
-      "image": "https://i.mydramalist.com/kA7NPO_5m.jpg",
-      "group": "Eun Gyeol's family",
-      "inCast": true,
-      "note": "Deaf",
-      "alsoPlayedBy": [
-        {
-          "name": "Kim Ji Woo",
-          "image": "https://i.mydramalist.com/XqW4x_5m.jpg",
-          "era": "young",
-          "still": "https://asianwiki.com/images/9/94/Twinkling_Watermelon-Kim_Ji_Woo.jpg"
+          "still": "https://asianwiki.com/images/d/dc/Twinkling_Watermelon-Kwon_Dan-A.jpg",
+          "era": "child"
         },
         {
-          "name": "Cho Yeo Jun",
-          "image": "https://i.mydramalist.com/eYrWxp_5m.jpg",
-          "era": "child",
-          "still": "https://asianwiki.com/images/4/4b/Twinkling_Watermelon-Jo_Yeo-Joon.jpg"
+          "name": "Seo Young Hee",
+          "image": "https://i.mydramalist.com/WXOy3_5m.jpg",
+          "still": "https://asianwiki.com/images/6/62/Twinkling_Watermelon-Seo_Young_Hee.jpg",
+          "era": "older"
         }
-      ],
-      "still": "https://asianwiki.com/images/1/19/Twinkling_Watermelon-Bong_Jae-Hyun.jpg"
-    },
-    {
-      "id": "segyeong",
-      "name": "Choi Se Gyeong",
-      "actor": "Seor In A",
-      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
-      "group": "Se Gyeong's family",
-      "inCast": true,
-      "note": "Cellist, the muse of Seowon Arts High",
-      "alsoPlayedBy": [
-        {
-          "name": "Lee So Yeon",
-          "image": "https://i.mydramalist.com/60yVN0_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/4/42/Twinkling_Watermelon-Lee_So_Yeon1.jpg"
-        },
-        {
-          "name": "Moon Seo Yeon",
-          "image": "https://i.mydramalist.com/2KPgk_5m.jpg",
-          "era": "young",
-          "still": "https://asianwiki.com/images/5/5a/Twinkling_Watermelon-PD-Moon_Seo_Yeon.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/0/0f/Twinkling_Watermelon-Seol_In-A.jpg"
-    },
-    {
-      "id": "eunyu",
-      "name": "On Eun Yu",
-      "actor": "Seor In A",
-      "image": "https://i.mydramalist.com/NdnRoE_5m.jpg",
-      "group": "Se Gyeong's family",
-      "inCast": true,
-      "note": "Same actress as Se Gyeong — MDL lists Seor In A for both roles",
-      "still": "https://asianwiki.com/images/0/0f/Twinkling_Watermelon-Seol_In-A.jpg"
-    },
-    {
-      "id": "jihwan",
-      "name": "On Ji Hwan",
-      "actor": "Woo Je Yeon",
-      "image": "https://i.mydramalist.com/2wdNA7_5m.jpg",
-      "group": "Se Gyeong's family",
-      "inCast": true,
-      "note": "Medical student, vocalist and guitarist of Golden Mess",
-      "alsoPlayedBy": [
-        {
-          "name": "Ryu Jin",
-          "image": "https://i.mydramalist.com/RB2EpV_5m.jpg",
-          "era": "adult",
-          "still": "https://asianwiki.com/images/8/8f/Twinkling_Watermelon-Ryu_Jin.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/9/93/Twinkling_Watermelon-Woo_Je_Yeon1.jpg"
-    },
-    {
-      "id": "choihyeon",
-      "name": "Choi Hyeon",
-      "actor": "Park Ho San",
-      "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
-      "group": "Se Gyeong's family",
-      "inCast": true,
-      "note": "Owner of Baekya Music, guitarist of the rock band Baekya",
-      "still": "https://asianwiki.com/images/7/7a/Twinkling_Watermelon-Park_Ho-San.jpg"
-    },
-    {
-      "id": "hayeong",
-      "name": "Sin Ha Yeong",
-      "actor": "Oh Hyun Kyung",
-      "image": "https://i.mydramalist.com/E5Pdr0_5m.jpg",
-      "group": "Se Gyeong's family",
-      "inCast": true,
-      "still": "https://asianwiki.com/images/9/9f/Twinkling_Watermelon-Oh_Hyun_Kyung.jpg"
-    },
-    {
-      "id": "viva",
-      "name": "Grandpa Viva",
-      "actor": "Cheon Ho Jin",
-      "image": "https://i.mydramalist.com/Lw8QkB_5m.jpg",
-      "group": "The music shops",
-      "inCast": true,
-      "note": "Owner of the Viva Music instrument store",
-      "still": "https://asianwiki.com/images/1/13/Twinkling_Watermelon-Cheon_Ho_Jin.jpg"
-    },
-    {
-      "id": "master",
-      "name": "The Master",
-      "actor": "Jung Sang Hoon",
-      "image": "https://i.mydramalist.com/BwN11m.jpg",
-      "group": "The music shops",
-      "inCast": true,
-      "note": "Identity unknown — the master of the strange La Vida Music store",
-      "still": "https://asianwiki.com/images/b/b2/Twinkling_Watermelon-Jung_Sang-Hoon1.jpg"
-    },
-    {
-      "id": "maju",
-      "name": "O Ma Ju",
-      "actor": "Ahn Do Kyu",
-      "image": "https://i.mydramalist.com/BDgml_5m.jpg",
-      "group": "Watermelon Sugar",
-      "inCast": true,
-      "note": "Runs MJ Entertainment in 2023",
-      "alsoPlayedBy": [
-        {
-          "name": "Kim Hyung Bum",
-          "image": "https://i.mydramalist.com/rzPo2_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/6/6f/Twinkling_Watermelon-Kim_Hyeong-Beom.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/3/34/Twinkling_Watermelon-Ahn_Do-Kyu1.jpg"
-    },
-    {
-      "id": "hyeonyul",
-      "name": "Kang Hyeon Yul",
-      "actor": "Yoon Jae Chan",
-      "image": "https://i.mydramalist.com/g0QBe1_5m.jpg",
-      "group": "Watermelon Sugar",
-      "inCast": true,
-      "alsoPlayedBy": [
-        {
-          "name": "Song Chang Eui",
-          "image": "https://i.mydramalist.com/Wl72X_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/9/90/Twinkling_Watermelon-Song_Chang-Eui.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/e/ec/Twinkling_Watermelon-Yoon_Jae_Chan1.jpg"
-    },
-    {
-      "id": "siguk",
-      "name": "Lee Si Guk",
-      "actor": "Lee Ha Min",
-      "image": "https://i.mydramalist.com/2wNWJV_5m.jpg",
-      "group": "Watermelon Sugar",
-      "inCast": true,
-      "alsoPlayedBy": [
-        {
-          "name": "Ryu Soo Young",
-          "image": "https://i.mydramalist.com/Ndq4bY_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/d/d8/Twinkling_Watermelon-Ryu_Soo-Young.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/2/22/Twinkling_Watermelon-Lee_Ha-Min01.jpg"
-    },
-    {
-      "id": "sebeom",
-      "name": "No Se Beom",
-      "actor": "Lee Su Chan",
-      "image": "https://i.mydramalist.com/2wxKAP_5m.jpg",
-      "group": "Watermelon Sugar",
-      "inCast": true,
-      "alsoPlayedBy": [
-        {
-          "name": "Zin Tae Hyun",
-          "image": "https://i.mydramalist.com/1xYd5_5m.jpg",
-          "era": "older",
-          "still": "https://asianwiki.com/images/7/79/Twinkling_Watermelon-Jin_Tae-Hyun.jpg"
-        }
-      ],
-      "still": "https://asianwiki.com/images/2/2a/Twinkling_Watermelon-Lee_Su_Chan.jpg"
-    },
-    {
-      "id": "yanghui",
-      "name": "Ko Yang Hui",
-      "actor": "Go Doo Shim",
-      "image": "https://i.mydramalist.com/RJnePm.jpg",
-      "group": "Snail boarding house",
-      "inCast": true,
-      "note": "Keeper of the Snail boarding house",
-      "still": "https://asianwiki.com/images/b/be/Twinkling_Watermelon-Ko_Du_Shim1.jpg"
-    },
-    {
-      "id": "balsan",
-      "name": "Jung Bal San",
-      "actor": "Lee Suk Hyeong",
-      "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
-      "group": "Snail boarding house",
-      "inCast": true,
-      "note": "Fashion design student, back from military service",
-      "still": "https://asianwiki.com/images/8/8a/Twinkling_Watermelon-Lee_Suk-Hyeong1.jpg"
-    },
-    {
-      "id": "gunhyeong",
-      "name": "Yun Gun Hyeong",
-      "actor": "Kim Tae Woo",
-      "image": "https://i.mydramalist.com/47PO1_5m.jpg",
-      "group": "Jinseong Instruments",
-      "inCast": true,
-      "note": "Chairman of Jinseong Musical Instruments",
-      "still": "https://asianwiki.com/images/4/48/Twinkling_Watermelon-Kim_Tae_Woo.jpg"
+      ]
     },
     {
       "id": "jimi",
       "name": "Lim Ji Mi",
       "actor": "Kim Joo Ryoung",
       "image": "https://i.mydramalist.com/kJVRvm.jpg",
-      "group": "Jinseong Instruments",
+      "still": "https://asianwiki.com/images/9/92/Twinkling_Watermelon-Kim_Joo-Ryung.jpg",
+      "group": "The Yoon/Jinseong family",
       "inCast": true,
-      "note": "Chairwoman of the Seowon Arts High foundation",
-      "still": "https://asianwiki.com/images/9/92/Twinkling_Watermelon-Kim_Joo-Ryung.jpg"
+      "note": "Cheong A's stepmother and chairwoman of Seowon Arts High School Foundation; abuses Cheong A for over a decade."
+    },
+    {
+      "id": "eunho",
+      "name": "Ha Eun Ho",
+      "actor": "Bong Jae Hyun",
+      "image": "https://i.mydramalist.com/kA7NPO_5m.jpg",
+      "still": "https://asianwiki.com/images/1/19/Twinkling_Watermelon-Bong_Jae-Hyun.jpg",
+      "group": "Ha family & the Snail Guesthouse",
+      "inCast": true,
+      "note": "Eun Gyeol's deaf older brother.",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Ji Woo",
+          "image": "https://i.mydramalist.com/XqW4x_5m.jpg",
+          "still": "https://asianwiki.com/images/9/94/Twinkling_Watermelon-Kim_Ji_Woo.jpg",
+          "era": "child"
+        },
+        {
+          "name": "Cho Yeo Jun",
+          "image": "https://i.mydramalist.com/eYrWxp_5m.jpg",
+          "still": "https://asianwiki.com/images/4/4b/Twinkling_Watermelon-Jo_Yeo-Joon.jpg",
+          "era": "child"
+        }
+      ]
+    },
+    {
+      "id": "viva",
+      "name": "Viva / Choi Hyun",
+      "actor": "Cheon Ho Jin",
+      "image": "https://i.mydramalist.com/Lw8QkB_5m.jpg",
+      "still": "https://asianwiki.com/images/1/13/Twinkling_Watermelon-Cheon_Ho_Jin.jpg",
+      "group": "Viva Music & Se Gyeong's family",
+      "inCast": true,
+      "note": "Eun Gyeol's childhood guitar mentor, revealed to be the mysterious Time Master and Se Gyeong's biological father.",
+      "alsoPlayedBy": [
+        {
+          "name": "Park Ho San",
+          "image": "https://i.mydramalist.com/Rnb0z_5m.jpg",
+          "still": "https://asianwiki.com/images/7/7a/Twinkling_Watermelon-Park_Ho-San.jpg",
+          "era": "middle-aged"
+        },
+        {
+          "name": "Jung Sang Hoon",
+          "image": "https://i.mydramalist.com/BwN11m.jpg",
+          "still": "https://asianwiki.com/images/b/b2/Twinkling_Watermelon-Jung_Sang-Hoon1.jpg",
+          "era": "adult"
+        }
+      ]
+    },
+    {
+      "id": "balsan",
+      "name": "Jung Bal San",
+      "actor": "Lee Suk Hyeong",
+      "image": "https://i.mydramalist.com/Zjrd1_5m.jpg",
+      "still": "https://asianwiki.com/images/8/8a/Twinkling_Watermelon-Lee_Suk-Hyeong1.jpg",
+      "group": "Ha family & the Snail Guesthouse",
+      "inCast": true,
+      "note": "College student boarding at Ichan's grandmother's guesthouse."
+    },
+    {
+      "id": "majoo",
+      "name": "O Ma Ju",
+      "actor": "Ahn Do Kyu",
+      "image": "https://i.mydramalist.com/BDgml_5m.jpg",
+      "still": "https://asianwiki.com/images/3/34/Twinkling_Watermelon-Ahn_Do-Kyu1.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true,
+      "note": "Ichan's childhood friend and the band's manager; later becomes a music industry executive.",
+      "alsoPlayedBy": [
+        {
+          "name": "Kim Hyung Bum",
+          "image": "https://i.mydramalist.com/rzPo2_5m.jpg",
+          "still": "https://asianwiki.com/images/6/6f/Twinkling_Watermelon-Kim_Hyeong-Beom.jpg",
+          "era": "older"
+        }
+      ]
+    },
+    {
+      "id": "hyunyul",
+      "name": "Kang Hyeon Yul",
+      "actor": "Yoon Jae Chan",
+      "image": "https://i.mydramalist.com/g0QBe1_5m.jpg",
+      "still": "https://asianwiki.com/images/e/ec/Twinkling_Watermelon-Yoon_Jae_Chan1.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true,
+      "note": "The band's bassist; a former member of a street gang.",
+      "alsoPlayedBy": [
+        {
+          "name": "Song Chang Eui",
+          "image": "https://i.mydramalist.com/Wl72X_5m.jpg",
+          "still": "https://asianwiki.com/images/9/90/Twinkling_Watermelon-Song_Chang-Eui.jpg",
+          "era": "older"
+        }
+      ]
+    },
+    {
+      "id": "grandma",
+      "name": "Ko Yang Hui",
+      "actor": "Go Doo Shim",
+      "image": "https://i.mydramalist.com/RJnePm.jpg",
+      "still": "https://asianwiki.com/images/b/be/Twinkling_Watermelon-Ko_Du_Shim1.jpg",
+      "group": "Ha family & the Snail Guesthouse",
+      "inCast": true,
+      "note": "Ichan's grandmother, who runs the Snail Guesthouse and raised him."
+    },
+    {
+      "id": "gunhyeong",
+      "name": "Yun Gun Hyeong",
+      "actor": "Kim Tae Woo",
+      "image": "https://i.mydramalist.com/47PO1_5m.jpg",
+      "still": "https://asianwiki.com/images/4/48/Twinkling_Watermelon-Kim_Tae_Woo.jpg",
+      "group": "The Yoon/Jinseong family",
+      "inCast": true,
+      "note": "Chairman of Jinseong Musical Instruments; Cheong A's father."
     },
     {
       "id": "juyeop",
       "name": "Yun Ju Yeop",
       "actor": "Kwon Do Hyung",
       "image": "https://i.mydramalist.com/81k8w2_5m.jpg",
-      "group": "Jinseong Instruments",
+      "still": "https://asianwiki.com/images/b/b8/Twinkling_Watermelon-Kwon_Do_Hyung.jpg",
+      "group": "The Yoon/Jinseong family",
       "inCast": true,
+      "note": "Cheong A's stepbrother, Ji Mi's son.",
       "alsoPlayedBy": [
         {
           "name": "Choi Yoon Woo",
           "image": "https://i.mydramalist.com/2XkXW_5m.jpg",
-          "era": "young"
+          "era": "teen"
         }
-      ],
-      "still": "https://asianwiki.com/images/b/b8/Twinkling_Watermelon-Kwon_Do_Hyung.jpg"
+      ]
     },
     {
       "id": "sanga",
       "name": "Yun Sang A",
       "actor": "Lee Soo Min",
       "image": "https://i.mydramalist.com/nODnrL_5m.jpg",
-      "group": "Jinseong Instruments",
+      "still": "https://asianwiki.com/images/a/aa/Twinkling_Watermelon-Lee_Soo_Min.jpg",
+      "group": "The Yoon/Jinseong family",
       "inCast": true,
-      "note": "Art student at Seowon Arts High",
+      "note": "Cheong A's stepsister and Se Gyeong's friend.",
       "alsoPlayedBy": [
         {
           "name": "Woo Jeong Won",
           "image": "https://i.mydramalist.com/BwOw5m.jpg",
-          "era": "adult",
-          "still": "https://asianwiki.com/images/8/89/Twinkling_Watermelon-Woo_Jung-Won.jpg"
+          "still": "https://asianwiki.com/images/8/89/Twinkling_Watermelon-Woo_Jung-Won.jpg",
+          "era": "adult"
         }
-      ],
-      "still": "https://asianwiki.com/images/a/aa/Twinkling_Watermelon-Lee_Soo_Min.jpg"
+      ]
+    },
+    {
+      "id": "jihwan",
+      "name": "On Ji Hwan",
+      "actor": "Woo Je Yeon",
+      "image": "https://i.mydramalist.com/2wdNA7_5m.jpg",
+      "still": "https://asianwiki.com/images/9/93/Twinkling_Watermelon-Woo_Je_Yeon1.jpg",
+      "group": "Viva Music & Se Gyeong's family",
+      "inCast": true,
+      "note": "Se Gyeong's boyfriend and later husband; Eun Yu's father.",
+      "alsoPlayedBy": [
+        {
+          "name": "Ryu Jin",
+          "image": "https://i.mydramalist.com/RB2EpV_5m.jpg",
+          "still": "https://asianwiki.com/images/8/8f/Twinkling_Watermelon-Ryu_Jin.jpg",
+          "era": "adult"
+        }
+      ]
     },
     {
       "id": "junhyeong",
       "name": "Koo Jun Hyeong",
       "actor": "Koo Jun Hoe",
       "image": "https://i.mydramalist.com/Bdbwm1_5m.jpg",
-      "group": "The rock scene",
+      "still": "https://asianwiki.com/images/7/73/Twinkling_Watermelon-Koo_Jun_Hoe.jpg",
+      "group": "Spine9",
       "inCast": true,
-      "note": "Spine9's main vocalist",
-      "still": "https://asianwiki.com/images/7/73/Twinkling_Watermelon-Koo_Jun_Hoe.jpg"
-    },
-    {
-      "id": "jio",
-      "name": "Jung Ji O",
-      "actor": "Yeon Oh",
-      "image": "https://i.mydramalist.com/dldR0_5m.jpg",
-      "group": "The rock scene",
-      "inCast": true,
-      "note": "Spine9",
-      "still": "https://asianwiki.com/images/e/ef/Twinkling_Watermelon-Yeon-Oh.jpg"
-    },
-    {
-      "id": "sutak",
-      "name": "Bae Su Tak",
-      "actor": "Han Min",
-      "image": "https://i.mydramalist.com/yWOd8K_5m.jpg",
-      "group": "The rock scene",
-      "inCast": true,
-      "note": "Spine9",
-      "still": "https://asianwiki.com/images/0/01/Twinkling_Watermelon-Han_Min.jpg"
+      "note": "Vocalist of Spine9, Eun Gyeol's band in 2023."
     },
     {
       "id": "dongjin",
       "name": "Yun Dong Jin",
-      "actor": "Yoon Do Hyun",
-      "image": "https://i.mydramalist.com/XdZBRd_5m.jpg",
-      "group": "The rock scene",
+      "actor": "Kim Jun Hyung",
+      "image": "https://i.mydramalist.com/DkQREr_5m.jpg",
+      "still": "https://asianwiki.com/images/7/7c/Twinkling_Watermelon-YDJ.jpg",
+      "group": "Spine9",
       "inCast": true,
-      "note": "The legendary guitarist of Chuncheon",
+      "note": "Legendary guitarist and rock star, later Ma Ju's client.",
       "alsoPlayedBy": [
         {
-          "name": "Kim Jun Hyung",
-          "image": "https://i.mydramalist.com/DkQREr_5m.jpg",
-          "era": "young",
-          "still": "https://asianwiki.com/images/7/7c/Twinkling_Watermelon-YDJ.jpg"
+          "name": "Yoon Do Hyun",
+          "image": "https://i.mydramalist.com/XdZBRd_5m.jpg",
+          "still": "https://asianwiki.com/images/2/24/Twinkling_Watermelon-Yoon_Do-Hyun.jpg",
+          "era": "older"
         }
-      ],
-      "still": "https://asianwiki.com/images/2/24/Twinkling_Watermelon-Yoon_Do-Hyun.jpg"
+      ]
+    },
+    {
+      "id": "byeongho",
+      "name": "Yeom Byeong Ho",
+      "actor": "Kim Ha Eon",
+      "image": "https://i.mydramalist.com/Blwlq_5m.jpg",
+      "still": "https://asianwiki.com/images/8/85/Twinkling_Watermelon-Kim_Ha-Eon.jpg",
+      "group": "Ha family & the Snail Guesthouse",
+      "inCast": true,
+      "note": "The landlady's son, who bullied young Eun Gyeol and caused the fire that upended his family."
+    },
+    {
+      "id": "landlady",
+      "name": "Byeong Ho's mother",
+      "actor": "Kim Mi Hwa",
+      "image": "https://i.mydramalist.com/wJK7rb_5m.jpg",
+      "still": "https://asianwiki.com/images/8/87/Twinkling_Watermelon-Kim_Mi-Hwa.jpg",
+      "group": "Ha family & the Snail Guesthouse",
+      "inCast": true,
+      "note": "Eun Gyeol's family's landlady in his childhood; covers for her son."
+    },
+    {
+      "id": "dojin",
+      "name": "Jung Do Jin",
+      "actor": "Jung Yong Ju",
+      "image": "https://i.mydramalist.com/YYBLee_5m.jpg",
+      "still": "https://asianwiki.com/images/4/48/Twinkling_Watermelon-Jung_Yong-Ju.jpg",
+      "group": "Watermelon Sugar",
+      "inCast": true,
+      "note": "A gang leader hunting down Hyeon Yul for betraying him."
+    },
+    {
+      "id": "sehyang",
+      "name": "Sin Ha Yeong",
+      "actor": "Oh Hyun Kyung",
+      "image": "https://i.mydramalist.com/E5Pdr0_5m.jpg",
+      "still": "https://asianwiki.com/images/9/9f/Twinkling_Watermelon-Oh_Hyun_Kyung.jpg",
+      "group": "Viva Music & Se Gyeong's family",
+      "inCast": true,
+      "note": "Se Gyeong's adoptive mother, struggling with depression."
+    },
+    {
+      "id": "sedad",
+      "name": "Se Gyeong's dad",
+      "actor": "Yoon Hyo Sik",
+      "image": "https://i.mydramalist.com/xqgKz_5m.jpg",
+      "still": "https://asianwiki.com/images/b/bd/Twinkling_Watermelon-Yoon_Hyo-Sik.jpg",
+      "group": "Viva Music & Se Gyeong's family",
+      "inCast": true,
+      "note": "Se Gyeong's adoptive father."
+    },
+    {
+      "id": "cheongamother",
+      "name": "Yun Cheong A's mother",
+      "actor": "Lee Seol Hee",
+      "image": "https://i.mydramalist.com/pdr7Qb_5m.jpg",
+      "group": "The Yoon/Jinseong family",
+      "inCast": true,
+      "note": "Cheong A's biological mother, who taught her sign language before leaving."
     }
   ],
   "links": [
@@ -390,572 +413,863 @@
       "from": "ichan",
       "to": "eungyeol",
       "type": "family",
-      "label": "father — 28 years before he becomes one",
-      "short": "father",
-      "evidence": "이찬과 청아의 아들로 코다 / he meets his father, Ha I Chan, as a high schooler",
-      "source": "ko.wikipedia",
+      "label": "Ha I Chan is Eun Gyeol's father from 2023, whom Eun Gyeol meets as an 18-year-old after travelling back to 1995.",
+      "short": "his father",
+      "evidence": "he meets his father, Ha I Chan, as a high schooler",
+      "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "cheonga",
       "to": "eungyeol",
       "type": "family",
-      "label": "mother",
-      "short": "mother",
-      "evidence": "은결의 친어머니",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "ichan",
-      "to": "cheonga",
-      "type": "romance",
-      "label": "married — Eun Gyeol and Eun Ho's parents",
-      "short": "married",
-      "evidence": "은호와 은결의 아버지 / 은호와 은결의 어머니",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "eungyeol",
-      "to": "ichan",
-      "type": "work",
-      "label": "joined the band his father fronts, to bring his parents together",
-      "short": "joined his band",
-      "evidence": "Eun Gyeol joins a band led by I Chan, hoping to reunite his future parents",
+      "label": "Yun Cheong A is Eun Gyeol's mother.",
+      "short": "his mother",
+      "evidence": "not Eun Gyeol's mother, Cheong A",
       "source": "MDL synopsis",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "ichan",
-      "to": "segyeong",
-      "type": "romance",
-      "label": "infatuated with the cellist — not with Eun Gyeol's mother",
-      "short": "in love with her",
-      "evidence": "I Chan doesn't recognize him and is infatuated with a cellist, Se Gyeong, not Eun Gyeol's mother, Cheong A",
-      "source": "MDL synopsis",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "master",
-      "to": "eungyeol",
-      "type": "bond",
-      "label": "sent him back to 1995 through La Vida Music",
-      "short": "sent him to 1995",
-      "evidence": "수상한 악기점 '라비다 뮤직'의 마스터 / Through the store, Eun-gyeol and Eun-yoo time travel to 1995",
-      "source": "ko.wikipedia · en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "master",
-      "to": "eunyu",
-      "type": "bond",
-      "label": "sent her back to 1995 through La Vida Music",
-      "short": "sent her to 1995",
-      "evidence": "Through the store, Eun-gyeol and Eun-yoo time travel to 1995",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "eungyeol",
-      "to": "eunyu",
-      "type": "bond",
-      "label": "the other one who slipped out of 2023",
-      "short": "fellow time traveler",
-      "evidence": "Through the store, Eun-gyeol and Eun-yoo time travel to 1995",
-      "source": "en.wikipedia",
+      "to": "eunho",
+      "type": "family",
+      "label": "Eun Gyeol and Eun Ho are brothers.",
+      "short": "his brother",
+      "evidence": "은호의 남동생",
+      "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
     },
     {
       "from": "ichan",
       "to": "eunho",
       "type": "family",
-      "label": "father",
-      "short": "father",
+      "label": "Ha I Chan is Eun Ho's father.",
+      "short": "his father",
       "evidence": "은호와 은결의 아버지",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "cheonga",
       "to": "eunho",
       "type": "family",
-      "label": "mother",
-      "short": "mother",
+      "label": "Yun Cheong A is Eun Ho's mother.",
+      "short": "his mother",
       "evidence": "은호와 은결의 어머니",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "eunho",
-      "to": "eungyeol",
-      "type": "family",
-      "label": "older brother",
-      "short": "older brother",
-      "evidence": "[Eun Gyeol's brother] / 은결의 형",
-      "source": "MDL cast · ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "yanghui",
+      "from": "grandma",
       "to": "ichan",
       "type": "family",
-      "label": "grandmother, and the keeper of his boarding house",
-      "short": "grandmother",
+      "label": "Ko Yang Hui is Ichan's grandmother, who raised him at the Snail Guesthouse.",
+      "short": "his grandmother",
       "evidence": "이찬의 할머니이자 달팽이 하숙집 쥔장",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "yanghui",
+      "from": "grandma",
       "to": "eungyeol",
       "type": "family",
-      "label": "great-grandmother",
-      "short": "great-grandmother",
-      "evidence": "은호와 은결의 증조할머니",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "balsan",
-      "to": "yanghui",
-      "type": "work",
-      "label": "lodger at the Snail boarding house",
-      "short": "her lodger",
-      "evidence": "정발산 (23세, 남) - 의상디자인학과 복학생 / a college student at a boarding house run by Yi-chan's grandmother",
-      "source": "ko.wikipedia · en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "maju",
-      "to": "ichan",
-      "type": "friend",
-      "label": "childhood friend, and the band's manager",
-      "short": "childhood friend",
-      "evidence": "밴드 매니저, 이찬의 소꿉친구",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "hyeonyul",
-      "to": "ichan",
-      "type": "work",
-      "label": "bassist in Watermelon Sugar",
-      "short": "bassist",
-      "evidence": "천재 베이시스트 / [Bassist] · 워터멜론 슈가의 프론트맨",
-      "source": "ko.wikipedia · MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "siguk",
-      "to": "ichan",
-      "type": "work",
-      "label": "drummer in Watermelon Sugar",
-      "short": "drummer",
-      "evidence": "지옥에서 온 드러머 / [Drummer]",
-      "source": "ko.wikipedia · MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "sebeom",
-      "to": "ichan",
-      "type": "work",
-      "label": "keyboardist in Watermelon Sugar",
-      "short": "keyboards",
-      "evidence": "실력파 건반, 클래식 피아노 전공 / [Keyboardist]",
-      "source": "ko.wikipedia · MDL cast",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "segyeong",
-      "to": "eunyu",
-      "type": "family",
-      "label": "daughter",
-      "short": "daughter",
-      "evidence": "세경과 지환의 딸 / 은유의 엄마",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jihwan",
-      "to": "eunyu",
-      "type": "family",
-      "label": "daughter",
-      "short": "daughter",
-      "evidence": "세경의 전 남편이자 은유의 아버지",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "segyeong",
-      "to": "jihwan",
-      "type": "romance",
-      "label": "married, then divorced when Eun Yu turned 18",
-      "short": "divorced",
-      "evidence": "세경의 전 남편이자 은유의 아버지 / She lives in a disharmonious family until she is 18 years old, when her parents divorce",
-      "source": "ko.wikipedia · en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "viva",
-      "to": "segyeong",
-      "type": "family",
-      "label": "adoptive father",
-      "short": "adoptive father",
-      "evidence": "비바 할아버지의 양딸",
-      "source": "ko.wikipedia",
+      "label": "Ko Yang Hui is secretly Eun Gyeol's great-grandmother, who died once he began speaking as a baby.",
+      "short": "his great-grandmother",
+      "evidence": "We learn that Grandma checked regularly to see if he reacted to sound as a baby, and passed away in peace only after he started speaking",
+      "source": "dramabeans ep. 3-4",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 4
     },
     {
-      "from": "choihyeon",
-      "to": "segyeong",
-      "type": "family",
-      "label": "birth father",
-      "short": "birth father",
-      "evidence": "최현과 하영의 친딸 / His girlfriend is actually Choi Se-gyeong's real mother",
-      "source": "ko.wikipedia · en.wikipedia",
-      "reveal": true,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "hayeong",
-      "to": "segyeong",
-      "type": "family",
-      "label": "birth mother",
-      "short": "birth mother",
-      "evidence": "신하영 역 (†) - 세경의 친어머니 / [Se Gyeong's mother]",
-      "source": "ko.wikipedia · MDL cast",
-      "reveal": true,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "choihyeon",
-      "to": "hayeong",
-      "type": "romance",
-      "label": "the rock star and the girlfriend whose pregnancy ended his career",
-      "short": "her partner",
-      "evidence": "He was a famous rock star whose popularity decreased after his girlfriend became pregnant",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "eunyu",
-      "to": "segyeong",
-      "type": "rivalry",
-      "label": "went back to 1995 to undo her mother's first love — and her own existence",
-      "short": "undoing her mother",
-      "evidence": "she time slips to 1995 so that she can find her mother's first love, and cease her existence",
-      "source": "en.wikipedia",
-      "reveal": true,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "segyeong",
+      "from": "gunhyeong",
       "to": "cheonga",
-      "type": "friend",
-      "label": "the only person Cheong A is not aloof with",
-      "short": "her one friend",
-      "evidence": "Chung-ah is aloof towards other people except to Choi Se-kyung, who is much friendlier toward her",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": false
-    },
-    {
-      "from": "viva",
-      "to": "eungyeol",
-      "type": "work",
-      "label": "the instrument-store owner who first put a guitar in his hands",
-      "short": "his mentor",
-      "evidence": "은결에게 기타와 음악을 처음 가르쳐준 스승이자 멘토",
+      "type": "family",
+      "label": "Yun Cheong A is Yoon Geon Hyeong's daughter, whom he fails to protect from years of abuse.",
+      "short": "her father",
+      "evidence": "청아의 아버지, 종합 악기제조회사 주식회사 진성악기 회장",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "master",
-      "to": "viva",
+      "from": "jimi",
+      "to": "cheonga",
+      "type": "family",
+      "label": "Lim Ji Mi is Cheong A's stepmother.",
+      "short": "her stepmother",
+      "evidence": "[Cheong A's stepmother]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "jimi",
+      "to": "cheonga",
       "type": "bond",
-      "label": "the Master wears Grandpa Viva's face",
-      "short": "the same face",
-      "evidence": "정상훈 : 마스터 / 비바 할아버지 (남) 역 - 신원미상",
-      "source": "ko.wikipedia",
+      "label": "Lim Ji Mi confines and abuses Cheong A for twelve years to control her.",
+      "short": "her abuser",
+      "evidence": "left with an evil stepmother called Ji-mi, who treated her badly",
+      "source": "thereviewgeek ep. 6",
       "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 6,
+      "until": 15,
+      "wholeStory": false
     },
     {
-      "from": "gunhyeong",
-      "to": "cheonga",
-      "type": "family",
-      "label": "father, and chairman of Jinseong Musical Instruments",
-      "short": "father",
-      "evidence": "[Cheong A's father] / 청아의 아버지, 종합 악기제조회사 주식회사 진성악기 회장",
-      "source": "MDL cast · ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jimi",
-      "to": "cheonga",
-      "type": "family",
-      "label": "stepmother — Cheong A's live-in tutor before she married in",
-      "short": "stepmother",
-      "evidence": "[Cheong A's stepmother] / 청아의 계모",
-      "source": "MDL cast · ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jimi",
-      "to": "cheonga",
-      "type": "rivalry",
-      "label": "torments the heir to Jinseong while her father travels",
-      "short": "torments her",
-      "evidence": "She uses harsh methods to torture Cheong-ah, who will be the next chairwoman of Jinseong Group",
-      "source": "en.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "gunhyeong",
+      "from": "juyeop",
       "to": "jimi",
-      "type": "romance",
-      "label": "married, then divorced",
-      "short": "ex-spouses",
-      "evidence": "임지미의 전 남편 / 건형의 전 아내",
+      "type": "family",
+      "label": "Yun Ju Yeop is Lim Ji Mi's son.",
+      "short": "her son",
+      "evidence": "주엽과 상아의 어머니",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "jimi",
-      "to": "juyeop",
+      "from": "sanga",
+      "to": "jimi",
       "type": "family",
-      "label": "son",
-      "short": "son",
-      "evidence": "임지미의 아들",
+      "label": "Yun Sang A is Lim Ji Mi's daughter.",
+      "short": "her daughter",
+      "evidence": "주엽과 상아의 어머니",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
-    },
-    {
-      "from": "jimi",
-      "to": "sanga",
-      "type": "family",
-      "label": "daughter",
-      "short": "daughter",
-      "evidence": "임지미의 딸",
-      "source": "ko.wikipedia",
-      "reveal": false,
-      "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "juyeop",
       "to": "cheonga",
       "type": "family",
-      "label": "stepbrother",
-      "short": "stepbrother",
-      "evidence": "[Cheong A's stepbrother] / 청아의 의붓오빠",
-      "source": "MDL cast · ko.wikipedia",
+      "label": "Yun Ju Yeop is Cheong A's stepbrother.",
+      "short": "her stepbrother",
+      "evidence": "청아의 의붓오빠",
+      "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
       "from": "sanga",
       "to": "cheonga",
       "type": "family",
-      "label": "stepsister, a year behind her",
-      "short": "stepsister",
+      "label": "Yun Sang A is Cheong A's stepsister.",
+      "short": "her stepsister",
       "evidence": "청아의 의붓여동생",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1
     },
     {
-      "from": "juyeop",
-      "to": "sanga",
-      "type": "family",
-      "label": "older brother",
-      "short": "older brother",
-      "evidence": "상아의 친오빠",
+      "from": "jihwan",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "On Ji Hwan is Se Gyeong's boyfriend and later husband, before their divorce.",
+      "short": "her ex-husband",
+      "evidence": "세경의 전 남편이자 은유의 아버지",
       "source": "ko.wikipedia",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1,
+      "until": 7,
+      "wholeStory": false
+    },
+    {
+      "from": "jihwan",
+      "to": "segyeong",
+      "type": "family",
+      "label": "On Ji Hwan is Eun Yu's father.",
+      "short": "Eun Yu's father",
+      "evidence": "은유의 아버지",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "sehyang",
+      "to": "segyeong",
+      "type": "family",
+      "label": "Sin Ha Yeong adopted Se Gyeong after the death of her own daughter, Han Na.",
+      "short": "her adoptive mother",
+      "evidence": "Se-kyung realises that she was adopted after her adoptive parents lost their daughter – Han-na.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4
+    },
+    {
+      "from": "sedad",
+      "to": "segyeong",
+      "type": "family",
+      "label": "Se Gyeong's adoptive father.",
+      "short": "her adoptive father",
+      "evidence": "Se-kyung realises that she was adopted after her adoptive parents lost their daughter",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4
+    },
+    {
+      "from": "viva",
+      "to": "segyeong",
+      "type": "family",
+      "label": "Harabeoji is revealed to be Se Gyeong's biological father, the baby he gave up for adoption after a scandal.",
+      "short": "her biological father",
+      "evidence": "Eun-yoo, upon hearing this story, digs a little deeper and realizes that Se-kyung is the baby Harabeoji gave up for adoption.",
+      "source": "dramabeans ep. 13-14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "viva",
+      "to": "eungyeol",
+      "type": "work",
+      "label": "Grandpa Viva taught young Eun Gyeol guitar and music, and is later revealed to be the Time Master who sends him to 1995.",
+      "short": "his mentor",
+      "evidence": "비바 뮤직의 사장님, 은결에게 기타와 음악을 처음 가르쳐준 스승이자 멘토",
+      "source": "ko.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "majoo",
+      "to": "ichan",
+      "type": "friend",
+      "label": "Oh Ma Ju is Yi Chan's childhood best friend and the band's manager.",
+      "short": "his best friend",
+      "evidence": "이찬의 소꿉친구",
+      "source": "ko.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "dojin",
+      "to": "hyunyul",
+      "type": "rivalry",
+      "label": "Jung Do Jin, the gang leader Hyeon Yul betrayed, is released from prison and hunts him down.",
+      "short": "hunts him",
+      "evidence": "The goon claims that their boss, Jung Do-jin, is soon going to be released from prison. He calls Hyun-yul a backstabber",
+      "source": "thereviewgeek ep. 11",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 11,
+      "kind": "event"
+    },
+    {
+      "from": "dongjin",
+      "to": "majoo",
+      "type": "work",
+      "label": "Yoon Dong Jin and Oh Ma Ju were bandmates in 1995; Ma Ju later becomes his manager.",
+      "short": "his old bandmate",
+      "evidence": "he trained with a guy called Oh Ma-joo 30 years ago",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 2
+    },
+    {
+      "from": "landlady",
+      "to": "ichan",
+      "type": "rivalry",
+      "label": "The landlady and Ha I Chan feud over a car accident her son caused.",
+      "short": "her nemesis",
+      "evidence": "she and Dad are now facing off over a recent car accident, where there's a dispute over who was driving her car",
+      "source": "dramabeans ep. 1-2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 2,
+      "wholeStory": false
+    },
+    {
+      "from": "eungyeol",
+      "to": "cheonga",
+      "type": "bond",
+      "label": "Eun Gyeol secretly teaches his teenage mother sign language, opening her to the world.",
+      "short": "taught her signs",
+      "evidence": "he convinces the Jinsung Chairman... to allow him to teach Chung-ah sign language in secret",
+      "source": "dramabeans ep. 7-8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "segyeong",
+      "to": "cheonga",
+      "type": "friend",
+      "label": "Se Gyeong befriends the isolated, deaf Cheong A at school.",
+      "short": "her friend",
+      "evidence": "she befriends Chung-ah, who's otherwise a loner",
+      "source": "dramabeans ep. 3-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 3
     },
     {
       "from": "sanga",
       "to": "segyeong",
       "type": "friend",
-      "label": "Se Gyeong's friend at Seowon Arts High",
-      "short": "friends",
+      "label": "Yun Sang A is Se Gyeong's friend.",
+      "short": "her friend",
       "evidence": "[Se Gyeong's friend]",
       "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": false
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "balsan",
+      "to": "ichan",
+      "type": "friend",
+      "label": "Jung Bal San is Ichan's roommate at the boarding house.",
+      "short": "his roommate",
+      "evidence": "a college student at a boarding house run by Yi-chan's grandmother",
+      "source": "en.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
     },
     {
       "from": "junhyeong",
       "to": "eungyeol",
       "type": "work",
-      "label": "Spine9's vocalist — Eun Gyeol's band in 2023",
-      "short": "Spine9 bandmate",
-      "evidence": "그룹 스파인9 멤버 / [Spine9's vocalist]",
-      "source": "ko.wikipedia · MDL cast",
+      "label": "Koo Jun Hyeong is the vocalist of Spine9, Eun Gyeol's band in 2023.",
+      "short": "his bandmate",
+      "evidence": "[Spine9's vocalist]",
+      "source": "MDL cast",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": false,
+      "since": 1
     },
     {
-      "from": "jio",
+      "from": "juyeop",
       "to": "eungyeol",
-      "type": "work",
-      "label": "Spine9",
-      "short": "Spine9 bandmate",
-      "evidence": "그룹 스파인9 멤버 / 스파인9 베이시스트",
-      "source": "ko.wikipedia",
-      "reveal": false,
+      "type": "rivalry",
+      "label": "Yun Ju Yeop, jealous that Eun Gyeol has won his father's favor, tries to have him killed.",
+      "short": "his rival",
+      "evidence": "Joo-yeob decides to kill Eun-gyeol to eliminate him",
+      "source": "thereviewgeek ep. 16",
+      "reveal": true,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 16,
+      "kind": "event"
     },
     {
-      "from": "sutak",
+      "from": "eungyeol",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "Eun Gyeol and Eun Yu (posing as teenage Se Gyeong) fall in love in 1995.",
+      "short": "in love",
+      "evidence": "Eun-gyeol decides to give in to his feelings and kisses Se-kyeong.",
+      "source": "thereviewgeek ep. 10",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 10
+    },
+    {
+      "from": "ichan",
+      "to": "cheonga",
+      "type": "romance",
+      "label": "Ichan and Cheong A fall in love after he learns sign language to reach her.",
+      "short": "in love",
+      "evidence": "he sings and signs the lyrics... she walks over and hugs him tight and not letting go",
+      "source": "dramabeans ep. 13-14",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 13
+    },
+    {
+      "from": "ichan",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "Ichan starts a band to impress Se Gyeong, his first crush in 1995.",
+      "short": "his crush",
+      "evidence": "Yi-chan has a crush on Se-kyung and gives her a lot of free ice-cream to charm her.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 13,
+      "wholeStory": false
+    },
+    {
+      "from": "eunho",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "Ha Eun Ho fall fo Eun Yu in 2022, after he teaches her sign language at the hospital.",
+      "short": "his crush",
+      "evidence": "this is how she met Eun-gyeol's brother, Eun-ho... He taught her sign language at the hospital.",
+      "source": "dramabeans ep. 13-14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 13
+    },
+    {
+      "from": "cheongamother",
+      "to": "cheonga",
+      "type": "family",
+      "label": "Cheong A's biological mother taught her sign language before leaving.",
+      "short": "her mother",
+      "evidence": "a seemingly loving mom who taught her sign language",
+      "source": "dramabeans ep. 5-6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "byeongho",
       "to": "eungyeol",
-      "type": "work",
-      "label": "Spine9",
-      "short": "Spine9 bandmate",
-      "evidence": "그룹 스파인9 멤버 / 스파인9 드러머",
-      "source": "ko.wikipedia",
+      "type": "rivalry",
+      "label": "Byeong Ho kicks a lit cigarette butt through the window, starting the fire that upends Eun Gyeol's family.",
+      "short": "started the fire",
+      "evidence": "he kicks a burning cigarette bud which accidentally lands inside Eun-gyeol's house",
+      "source": "thereviewgeek ep. 1",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 1,
+      "kind": "event"
     },
     {
-      "from": "maju",
+      "from": "viva",
+      "to": "eungyeol",
+      "type": "bond",
+      "label": "Eun Gyeol learns Grandpa Viva died the same night as the fire.",
+      "short": "died in the fire",
+      "evidence": "Eun-gyeol goes to meet Grandpa Viva and learns that he had passed away on the night of the fire.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "landlady",
+      "to": "ichan",
+      "type": "rivalry",
+      "label": "The landlady falsely tells police she was driving to protect her son.",
+      "short": "lied to police",
+      "evidence": "The mother of the driver claims Eun-gyeol's father is lying because she was the person behind the wheel.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "ichan",
+      "type": "bond",
+      "label": "Eun Gyeol time-slips 29 years into the past and meets his father as a teenager.",
+      "short": "first meets him in 1995",
+      "evidence": "Eun-gyeol is shockingly taken 29 years into the past in the year 1995... Dad?! he says.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
       "to": "dongjin",
-      "type": "work",
-      "label": "manages him at MJ Entertainment in 2023",
-      "short": "manages him",
-      "evidence": "In 2023, Ma-joo owns MJ Entertainment who manages a famous rockstar Yoon Dong-jin",
-      "source": "en.wikipedia",
+      "type": "bond",
+      "label": "Eun Gyeol pretends to be legendary guitarist Yoon Dong Jin to join Ichan's band.",
+      "short": "impersonates him",
+      "evidence": "Eun-gyeol lies to them and reveals that he is Dong-jin.",
+      "source": "thereviewgeek ep. 3",
       "reveal": false,
       "inferred": false,
-      "directed": true
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "cheonga",
+      "type": "bond",
+      "label": "Ichan hides with the deaf Cheong A in a storage room, not realizing she cannot hear him.",
+      "short": "hides with her",
+      "evidence": "Yi-chan doesn't realize Chung-ah can't hear or speak and covers her mouth so he won't get caught if she screams.",
+      "source": "dramabeans ep. 3-4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "cheonga",
+      "type": "bond",
+      "label": "Ichan snaps at Cheong A, not knowing she really is deaf.",
+      "short": "calls her deaf",
+      "evidence": "He calls Chung-a deaf, not knowing how she really did not have the ability to hear.",
+      "source": "thereviewgeek ep. 5",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 5,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "ichan",
+      "type": "bond",
+      "label": "Eun Gyeol realizes he's about to witness the accident that will make his father deaf.",
+      "short": "realizes the danger",
+      "evidence": "Eun-gyeol realising that he is about to witness his father getting into an accident which would make him lose his hearing.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "Eun Gyeol kisses Eun Yu (as Se Gyeong) at a bus stop.",
+      "short": "first kiss",
+      "evidence": "Eun-gyeol decides to give in to his feelings and kisses Se-kyeong.",
+      "source": "thereviewgeek ep. 10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "eungyeol",
+      "type": "bond",
+      "label": "Ichan dives into the ocean to save Eun Gyeol, echoing the day he'll save him again as a father.",
+      "short": "saves him from drowning",
+      "evidence": "Yi-chan jumps into the ocean to help Eun-gyeol from drowning just like his father did when he was younger.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "ichan",
+      "type": "bond",
+      "label": "Eun Gyeol tells Ichan the truth: he is his son, come from the future.",
+      "short": "reveals he's his son",
+      "evidence": "Eun-gyeol reveals the truth about his identity and tells Yi-chan that he is his son who had come from the future to change his life.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 11,
+      "kind": "event"
+    },
+    {
+      "from": "dojin",
+      "to": "hyunyul",
+      "type": "rivalry",
+      "label": "Do Jin and his gang ambush the band at their rehearsal hall.",
+      "short": "ambushes the band",
+      "evidence": "Do-jin and his goons show up at the rehearsal hall to teach Hyun-yul a lesson... beating all the boys up.",
+      "source": "thereviewgeek ep. 11",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 11,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "Eun Gyeol runs out on their movie date to help the band, hurting Eun Yu.",
+      "short": "abandons her at the movies",
+      "evidence": "he runs out — leaving Eun-yoo without a word",
+      "source": "dramabeans ep. 11-12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "segyeong",
+      "type": "romance",
+      "label": "Eun Gyeol chases Eun Yu to the airport in the rain and asks her to stay with him.",
+      "short": "stops her at the airport",
+      "evidence": "he steps up next to her with a red umbrella... Stay with me. Let's stay together.",
+      "source": "dramabeans ep. 11-12",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 12,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "segyeong",
+      "type": "bond",
+      "label": "Eun Gyeol and Eun Yu discover they are both time travelers from 2023.",
+      "short": "discover they're both travelers",
+      "evidence": "Eun-yu discovers that Eun-gyeol is the other time traveller Master was talking about.",
+      "source": "thereviewgeek ep. 14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 14,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "cheonga",
+      "type": "bond",
+      "label": "Eun Gyeol finds Cheong A locked in a dark attic and takes her away.",
+      "short": "frees her from the attic",
+      "evidence": "He finds Chang-a in the dark room and breaks down.",
+      "source": "thereviewgeek ep. 14",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 14,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "cheonga",
+      "type": "romance",
+      "label": "Ichan sings and signs a song to Cheong A, confessing his feelings.",
+      "short": "confession song",
+      "evidence": "he sings and signs the lyrics... she walks over and hugs him tight",
+      "source": "dramabeans ep. 13-14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 13,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "cheonga",
+      "type": "romance",
+      "label": "Ichan kisses Cheong A after she explains her sign name for him.",
+      "short": "first kiss",
+      "evidence": "Yi-chan is touched by Chang-a's explanation and pulls her in for a kiss.",
+      "source": "thereviewgeek ep. 14",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 14,
+      "kind": "event"
+    },
+    {
+      "from": "eungyeol",
+      "to": "jimi",
+      "type": "bond",
+      "label": "Eun Gyeol threatens to expose Ji Mi's abuse of Cheong A to the world.",
+      "short": "threatens to expose her",
+      "evidence": "Eun-gyeol threatens to expose Ji-mi and the entire Yoon family for treating a disabled person badly.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 8,
+      "kind": "event"
+    },
+    {
+      "from": "gunhyeong",
+      "to": "jimi",
+      "type": "family",
+      "label": "Yoon Geon Hyeong discovers Ji Mi's twelve years of abuse and disowns her.",
+      "short": "disowns her",
+      "evidence": "Mr Yoon is disgusted by Ji-mi's actions and asks her to move out immediately.",
+      "source": "thereviewgeek ep. 15",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 15,
+      "kind": "event"
+    },
+    {
+      "from": "juyeop",
+      "to": "ichan",
+      "type": "rivalry",
+      "label": "Yun Ju Yeop, trying to run down Eun Gyeol, crashes into Ichan instead.",
+      "short": "causes his accident",
+      "evidence": "Joo-yeob decides to kill Eun-gyeol to eliminate him and ends up crashing into Yi-chan instead.",
+      "source": "thereviewgeek ep. 16",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 16,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "eungyeol",
+      "type": "bond",
+      "label": "Ichan pushes Eun Gyeol out of the path of a speeding car and is struck himself, losing his hearing.",
+      "short": "pushes him from a car",
+      "evidence": "Yi-chan shows up out of nowhere, pushing Eun-gyeol away.",
+      "source": "thereviewgeek ep. 15",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 15,
+      "kind": "event"
+    },
+    {
+      "from": "ichan",
+      "to": "eungyeol",
+      "type": "bond",
+      "label": "Before Eun Gyeol returns to 2023, Ichan leaves him a cassette promising to be his father again in the next life.",
+      "short": "farewell cassette",
+      "evidence": "He promises to be Eun Gyeol's father in his next life which makes Eun-gyeol sob.",
+      "source": "thereviewgeek ep. 16",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 16,
+      "kind": "event"
+    },
+    {
+      "from": "segyeong",
+      "to": "viva",
+      "type": "bond",
+      "label": "Eun Yu, posing as Se Gyeong, confronts Harabeoji about abandoning her mother.",
+      "short": "confronts him",
+      "evidence": "she asked why he abandoned her. He cries, saying he never wanted to abandon her",
+      "source": "dramabeans ep. 15-16",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 15,
+      "kind": "event"
+    },
+    {
+      "from": "viva",
+      "to": "eungyeol",
+      "type": "bond",
+      "label": "Eun Gyeol realizes Master and Grandpa Viva are the same person.",
+      "short": "revealed as the Time Master",
+      "evidence": "Eun-gyeol sees that Master actually is Choi Hyun / Jonathan / Grandpa Viva.",
+      "source": "thereviewgeek ep. 16",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 16,
+      "kind": "event"
     }
   ],
   "compact": {
     "people": [
       "eungyeol",
       "ichan",
-      "cheonga",
-      "eunho",
       "segyeong",
-      "eunyu",
-      "jihwan",
-      "choihyeon",
-      "hayeong",
-      "viva",
-      "master",
-      "maju",
-      "hyeonyul",
-      "siguk",
-      "sebeom",
-      "yanghui",
-      "balsan",
-      "gunhyeong",
+      "cheonga",
       "jimi",
+      "gunhyeong",
       "juyeop",
-      "sanga"
+      "sanga",
+      "cheongamother",
+      "eunho",
+      "balsan",
+      "grandma",
+      "byeongho",
+      "landlady"
     ],
     "blocks": {
+      "Spine9": [
+        0,
+        2
+      ],
       "Watermelon Sugar": [
-        1,
-        0
-      ],
-      "Jinseong Instruments": [
         0,
-        0
+        1
       ],
-      "Se Gyeong's family": [
+      "The Yoon/Jinseong family": [
         2,
         0
       ],
-      "Snail boarding house": [
-        0,
-        2
-      ],
-      "The music shops": [
+      "Viva Music & Se Gyeong's family": [
         2,
-        2
+        1
       ],
-      "Eun Gyeol's family": [
-        1,
-        2
+      "Ha family & the Snail Guesthouse": [
+        0,
+        0
       ]
     },
     "center": [
       "eungyeol",
-      "ichan"
+      "ichan",
+      "segyeong",
+      "cheonga"
     ]
   }
 }
