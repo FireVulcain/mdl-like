@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, Bookmark, Star, User, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { mdlTitleFromLink, type KuryanaWorkItem } from "@/lib/kuryana";
+import { mdlPersonName } from "@/lib/page-metadata";
 import { loadPersonWorks, extractMdlId, extractFullMdlSlug, sortWorks, type PersonData } from "@/lib/person-works";
 import { resolveWorkLinks, internalHref } from "@/lib/mdl-work-links";
 import { getWatchlistSeasonKeys, getWatchlistPosters } from "@/actions/user-media";
@@ -16,8 +17,10 @@ type Params = Promise<{ a?: string; b?: string }>;
 export async function generateMetadata({ searchParams }: { searchParams: Params }): Promise<Metadata> {
     const { a, b } = await searchParams;
     if (!a || !b) return { title: "Together" };
-    const [pa, pb] = await Promise.all([loadPersonWorks(a), loadPersonWorks(b)]);
-    return { title: pa && pb ? `${pa.name} & ${pb.name}` : "Together" };
+    // Names only, from the DB: every "worked with" card links here, so a
+    // scrape in this function ran once per card whenever Next prefetched them.
+    const [na, nb] = await Promise.all([mdlPersonName(a), mdlPersonName(b)]);
+    return { title: na && nb ? `${na} & ${nb}` : "Together" };
 }
 
 type Credit = { work: KuryanaWorkItem; category: string };

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { fetchTMDB, type TMDBMedia } from "@/lib/tmdb";
-import { kuryanaGetDetails, mdlTitleFromLink } from "@/lib/kuryana";
+import { mdlTitleFromLink } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 
 /**
@@ -11,9 +11,12 @@ import { prisma } from "@/lib/prisma";
  * out as "X · trackr · trackr".
  *
  * Cost: generateMetadata runs as a second pass over the same data the page
- * fetches. That is free where the source is `fetch` — TMDB and Kuryana both go
- * through Next's data cache with a one-hour revalidate, so the second call is a
- * cache read — and it is why nothing here reaches for a live scrape.
+ * fetches — and, less obviously, on its own whenever Next prefetches a link to
+ * the page. A person page shows thirty-odd works and co-stars, each a link, so
+ * opening one ran thirty-odd metadata passes. For TMDB that is a data-cache
+ * read. For MDL it was a scrape each (measured 2026-09-29: one person page,
+ * ~35 requests to MDL in fifteen seconds), so nothing here scrapes MDL any more:
+ * names come from our own rows, and from the slug when there is none.
  */
 
 /** Trimmed to something a search result can show without being cut mid-word. */
@@ -38,11 +41,7 @@ async function mediaBasics(id: string): Promise<{ title: string; year: string; s
     const source = id.slice(0, dash);
     const externalId = id.slice(dash + 1);
 
-    if (source === "mdl") {
-        const details = await kuryanaGetDetails(externalId);
-        const d = details?.data;
-        return d ? { title: d.title, year: d.year || "", synopsis: "" } : null;
-    }
+    if (source === "mdl") return mdlBasics(externalId);
 
     const params = {
         append_to_response: "credits,recommendations,images,content_ratings,videos",
@@ -62,6 +61,26 @@ async function mediaBasics(id: string): Promise<{ title: string; year: string; s
         year: (details.release_date || details.first_air_date || "").split("-")[0],
         synopsis: details.overview ?? "",
     };
+}
+
+/**
+ * An MDL-native title's name from what we already hold: a watchlist row, then
+ * the poster cache (filled by the actor radar and friends), then the slug.
+ * "Tears Of The Dragon" from the slug is a fair tab title; a scrape per
+ * prefetched link is not a fair price for a better one.
+ */
+async function mdlBasics(slug: string): Promise<{ title: string; year: string; synopsis: string }> {
+    try {
+        const [row, poster] = await Promise.all([
+            prisma.userMedia.findFirst({ where: { source: "MDL", externalId: slug, title: { not: null } }, select: { title: true, year: true } }),
+            prisma.cachedMdlPoster.findUnique({ where: { slug }, select: { title: true } }),
+        ]);
+        if (row?.title) return { title: row.title, year: row.year ? String(row.year) : "", synopsis: "" };
+        if (poster?.title) return { title: poster.title, year: "", synopsis: "" };
+    } catch {
+        // The slug-derived name below is still a good answer
+    }
+    return { title: mdlTitleFromLink(slug), year: "", synopsis: "" };
 }
 
 /**
@@ -85,13 +104,11 @@ export async function mediaMetadata(id: string, section?: string): Promise<Metad
 }
 
 /**
- * An MDL person's name.
- *
- * Deliberately not kuryanaGetPerson: that one is fetched with revalidate 0, so
- * calling it here would mean a second live scrape for every page view. The DB
- * cache answers instantly, and the slug carries the name anyway when it misses.
+ * An MDL person's name from the DB cache however old, else from the slug —
+ * never from a scrape. Also what /people/together titles itself with: every
+ * "worked with" card links there, so its metadata runs once per card.
  */
-export async function mdlPersonMetadata(slug: string, section?: string): Promise<Metadata> {
+export async function mdlPersonName(slug: string): Promise<string> {
     let name = mdlTitleFromLink(slug);
     try {
         const cached = await prisma.cachedKuryanaPerson.findUnique({ where: { slug }, select: { dataJson: true } });
@@ -100,6 +117,18 @@ export async function mdlPersonMetadata(slug: string, section?: string): Promise
     } catch {
         // The slug-derived name is already a good answer
     }
+    return name;
+}
+
+/**
+ * An MDL person's page title.
+ *
+ * Deliberately not kuryanaGetPerson: that one is fetched with revalidate 0, so
+ * calling it here would mean a second live scrape for every page view. The DB
+ * cache answers instantly, and the slug carries the name anyway when it misses.
+ */
+export async function mdlPersonMetadata(slug: string, section?: string): Promise<Metadata> {
+    const name = await mdlPersonName(slug);
     if (!name) return { title: section ?? "Person" };
     return { title: section ? `${section} · ${name}` : name };
 }
