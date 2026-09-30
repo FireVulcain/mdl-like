@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { kuryanaGetDetails, parseMdlWatchers, mdlAiredRange } from "@/lib/kuryana";
@@ -112,11 +111,14 @@ export async function refreshMdlLiveData(
         if (mdlRanking !== row.mdlRanking) moved.ranking = { from: row.mdlRanking, to: mdlRanking };
         if (mdlWatchers !== row.mdlWatchers) moved.watchers = { from: row.mdlWatchers, to: mdlWatchers };
 
-        // router.refresh() alone was updating the row but not the screen: the new
-        // value only showed up on the NEXT full load. The route has to be
-        // invalidated server-side too, otherwise the refetch can be answered with
-        // the payload rendered before the write.
-        if (changed) revalidatePath(`/media/tmdb-${tmdbExternalId}`);
+        // No revalidatePath here any more. It dated from when the client called
+        // router.refresh(); the client now patches the figures in place
+        // (announceMdlLive), and the page is dynamic, so the next load reads the
+        // row anyway. What revalidatePath still did was purge every cached read
+        // on the page and rebuild it inside this action's response: reviews,
+        // photos, recommendations, the whole episode guide, re-scraped on
+        // almost every visit, since the watcher count moves nearly every time.
+        // Measured 2026-10-01: four full re-scrapes of one page in 90 seconds.
 
         return { refreshed: changed, ...moved };
     } catch {
