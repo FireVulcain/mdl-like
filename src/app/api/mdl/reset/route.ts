@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
-import { revalidatePath } from "next/cache";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlSlugTag } from "@/lib/kuryana";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { refreshSingleShow } from "@/actions/schedule";
 
@@ -30,6 +30,10 @@ export async function POST(req: Request) {
     if (existing?.mdlSlug) {
         // Clear cached episode synopses so they're re-fetched on next load
         await prisma.cachedMdlEpisode.deleteMany({ where: { mdlSlug: existing.mdlSlug } });
+        // And the fetch cache for this title — the full cast page, photos,
+        // episodes and reviews keep their reads for hours, and the live reads
+        // below are uncached, so they would not replace them.
+        revalidateTag(mdlSlugTag(existing.mdlSlug), { expire: 0 });
 
         // Slug already known — fetch fresh data directly, no title search needed
         try {

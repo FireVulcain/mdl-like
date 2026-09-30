@@ -4,6 +4,7 @@ import { mediaService } from "@/services/media.service";
 import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
+import { airedEndDate } from "@/lib/format-aired";
 
 // Vercel cron jobs use this header for authentication
 const CRON_SECRET = process.env.CRON_SECRET;
@@ -332,10 +333,32 @@ function normalizeCast(members: KuryanaCastMember[]) {
  * `ranking` column holds the rating rank from `details.ranked`. Filing one
  * under the other would quietly corrupt every rank series we have.
  */
+/** A "Plan to Watch" title that finished airing this long ago goes weekly, not daily. */
+const PLANNED_BACK_CATALOGUE_MS = 365 * 24 * 60 * 60 * 1000;
+
+/**
+ * Whether today is this title's cast day. A cast barely moves once a show has
+ * aired — a guest role added mid-run is the usual change — so the daily pass
+ * reads it once a week, each title on its own weekday so the load stays even.
+ * The weekly pass and a title with no cast yet always read it, and the
+ * "Refresh cache" button on a media page reads it whenever it is pressed.
+ */
+function isCastDay(slug: string, now = new Date()): boolean {
+    let hash = 0;
+    for (const ch of slug) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+    return hash % 7 === now.getUTCDay();
+}
+
 // Refresh MDL ratings in two passes:
-//   1. Priority: "Watching" + "Plan to Watch" shows — always refreshed regardless of cache age
-//   2. Stale: remaining watchlist shows with cache ≥6 days old
+//   1. Daily: "Watching" and "Plan to Watch" shows, regardless of cache age —
+//      except planned titles that finished airing over a year ago, whose
+//      figures have stopped moving; those fall through to the weekly pass.
+//   2. Weekly: remaining watchlist shows with cache ≥6 days old
 // Stops early if the cron is running low on its 5-minute budget.
+//
+// Measured 2026-09-30: this pass was 116 of the morning's 344 MDL requests,
+// a fiche and a cast for each of 60 titles. Casts now come weekly (isCastDay)
+// and 14 old planned titles moved to the weekly pass.
 async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
     const taskStart = Date.now();
     const BUDGET_MS = 270_000; // stop if fewer than 30s remain in the 300s budget
@@ -344,10 +367,10 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
         // --- Priority IDs: active shows any user is Watching or Plan to Watch ---
         const priorityItems = await prisma.userMedia.findMany({
             where: { status: { in: ["Watching", "Plan to Watch"] } },
-            select: { externalId: true },
-            distinct: ["externalId"],
+            select: { externalId: true, status: true },
         });
-        const priorityIds = new Set(priorityItems.map((i) => i.externalId));
+        const watchingIds = new Set(priorityItems.filter((i) => i.status === "Watching").map((i) => i.externalId));
+        const candidateIds = new Set(priorityItems.map((i) => i.externalId));
 
         // --- All watchlist IDs (for the stale pass) ---
         const allItems = await prisma.userMedia.findMany({
@@ -360,14 +383,22 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
             return { task: "refresh-mdl-ratings", success: true, count: 0, duration: Date.now() - taskStart };
         }
 
-        // Fetch CachedMdlData slugs for priority IDs (no age filter — always refresh)
-        const priorityRows = await prisma.cachedMdlData.findMany({
+        // CachedMdlData slugs for the daily pass (no age filter — always refresh)
+        const cutoff = Date.now() - PLANNED_BACK_CATALOGUE_MS;
+        const isBackCatalogue = (id: string, aired: string | null) => {
+            if (watchingIds.has(id)) return false;
+            const end = airedEndDate(aired);
+            return !!end && end.getTime() < cutoff;
+        };
+        const candidateRows = await prisma.cachedMdlData.findMany({
             where: {
-                tmdbExternalId: { in: Array.from(priorityIds) },
+                tmdbExternalId: { in: Array.from(candidateIds) },
                 mdlSlug: { not: "" },
             },
-            select: { tmdbExternalId: true, mdlSlug: true },
+            select: { tmdbExternalId: true, mdlSlug: true, aired: true, castJson: true },
         });
+        const priorityRows = candidateRows.filter((r) => !isBackCatalogue(r.tmdbExternalId, r.aired));
+        const priorityIds = new Set(priorityRows.map((r) => r.tmdbExternalId));
 
         // Fetch stale CachedMdlData for the remaining IDs (≥6 days old only)
         const staleThreshold = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000);
@@ -377,11 +408,15 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                 cachedAt: { lt: staleThreshold },
                 mdlSlug: { not: "" },
             },
-            select: { tmdbExternalId: true, mdlSlug: true },
+            select: { tmdbExternalId: true, mdlSlug: true, aired: true, castJson: true },
         });
 
-        // Process priority first, then stale
-        const allRows = [...priorityRows, ...staleRows];
+        // Process priority first, then stale. The weekly pass always reads the
+        // cast; the daily one only on each title's cast day.
+        const allRows = [
+            ...priorityRows.map((r) => ({ ...r, withCast: !r.castJson || isCastDay(r.mdlSlug) })),
+            ...staleRows.map((r) => ({ ...r, withCast: true })),
+        ];
 
         let count = 0;
         for (const row of allRows) {
@@ -390,7 +425,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
             try {
                 const [details, castResult] = await Promise.all([
                     kuryanaGetDetails(row.mdlSlug, true),
-                    kuryanaGetCast(row.mdlSlug, true),
+                    row.withCast ? kuryanaGetCast(row.mdlSlug, true) : Promise.resolve(null),
                 ]);
 
                 if (details?.data) {

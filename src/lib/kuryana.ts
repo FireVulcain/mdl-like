@@ -117,7 +117,16 @@ const NEAR_STATIC = 12 * HOURS; // cast, photos, recommendations, one episode
 const SLOW = 6 * HOURS; // reviews
 const EPISODE_LIST = 3 * HOURS; // grows while a show airs
 
-async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600): Promise<T | null> {
+/**
+ * The fetch-cache tag every per-title read carries: details, cast, episodes,
+ * reviews, photos, recommendations. The media page's "Refresh cache" expires
+ * it, so a cast kept for twelve hours still refreshes on demand.
+ */
+export function mdlSlugTag(slug: string): string {
+    return `mdl-slug:${slug}`;
+}
+
+async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600, tags?: string[]): Promise<T | null> {
     // Use AbortController instead of AbortSignal.timeout — the latter creates a
     // DOMException with a read-only `message` property that Next.js's fetch cache
     // interceptor tries to overwrite, causing an unhandled TypeError crash.
@@ -126,7 +135,7 @@ async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600
     try {
         const res = await fetch(`${BASE_URL}${path}`, {
             signal: controller.signal,
-            next: { revalidate },
+            next: tags ? { revalidate, tags } : { revalidate },
         });
         if (!res.ok) return null;
         return res.json() as Promise<T>;
@@ -146,11 +155,11 @@ export async function kuryanaGetDetails(slug: string, fresh = false): Promise<Ku
     // Some caller hands over an empty slug — seven times in twelve hours of
     // scraper logs, as a bare "/id/" that can only 404. Answer it here.
     if (!slug.trim()) return null;
-    return kuryanaFetch<KuryanaDetails>(`/id/${slug}`, 8000, fresh ? 0 : 3600);
+    return kuryanaFetch<KuryanaDetails>(`/id/${slug}`, 8000, fresh ? 0 : 3600, [mdlSlugTag(slug)]);
 }
 
 export async function kuryanaGetCast(slug: string, fresh = false): Promise<KuryanaCastResult | null> {
-    return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`, 8000, fresh ? 0 : NEAR_STATIC);
+    return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`, 8000, fresh ? 0 : NEAR_STATIC, [mdlSlugTag(slug)]);
 }
 
 export type MdlNextEpisode = {
@@ -356,7 +365,7 @@ export interface KuryanaReviewsResult {
 }
 
 export async function kuryanaGetReviews(slug: string, page = 1): Promise<KuryanaReviewsResult | null> {
-    return kuryanaFetch<KuryanaReviewsResult>(`/id/${slug}/reviews?page=${page}`, 8000, SLOW);
+    return kuryanaFetch<KuryanaReviewsResult>(`/id/${slug}/reviews?page=${page}`, 8000, SLOW, [mdlSlugTag(slug)]);
 }
 
 export interface KuryanaEpisodeListItem {
@@ -379,7 +388,7 @@ export interface KuryanaEpisodesListResult {
 export async function kuryanaGetEpisodesList(slug: string): Promise<KuryanaEpisodesListResult | null> {
     // No trailing slash: the scraper's route is /episodes, and /episodes/ cost a
     // 307 round trip before every list.
-    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes`, 8000, EPISODE_LIST);
+    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes`, 8000, EPISODE_LIST, [mdlSlugTag(slug)]);
 }
 
 export interface KuryanaEpisodeReview {
@@ -410,7 +419,7 @@ export interface KuryanaEpisodeResult {
 }
 
 export async function kuryanaGetEpisode(slug: string, episodeNumber: number): Promise<KuryanaEpisodeResult | null> {
-    return kuryanaFetch<KuryanaEpisodeResult>(`/id/${slug}/episode/${episodeNumber}`, 8000, NEAR_STATIC);
+    return kuryanaFetch<KuryanaEpisodeResult>(`/id/${slug}/episode/${episodeNumber}`, 8000, NEAR_STATIC, [mdlSlugTag(slug)]);
 }
 
 export interface MdlComment {
@@ -579,7 +588,7 @@ export async function kuryanaGetPersonPhotos(slug: string, page = 1): Promise<Ku
 // on every media page rather than on a page someone navigated to on purpose.
 export async function kuryanaGetMediaPhotos(slug: string, page = 1): Promise<KuryanaPhotosResult | null> {
     const query = page > 1 ? `?page=${page}` : "";
-    return kuryanaFetch<KuryanaPhotosResult>(`/id/${slug}/photos${query}`, 8000, NEAR_STATIC);
+    return kuryanaFetch<KuryanaPhotosResult>(`/id/${slug}/photos${query}`, 8000, NEAR_STATIC, [mdlSlugTag(slug)]);
 }
 
 export interface KuryanaRecommendation {
@@ -598,7 +607,7 @@ export interface KuryanaRecommendationsResult {
 }
 
 export async function kuryanaGetRecommendations(slug: string): Promise<KuryanaRecommendationsResult | null> {
-    return kuryanaFetch<KuryanaRecommendationsResult>(`/id/${slug}/recs`, 8000, NEAR_STATIC);
+    return kuryanaFetch<KuryanaRecommendationsResult>(`/id/${slug}/recs`, 8000, NEAR_STATIC, [mdlSlugTag(slug)]);
 }
 
 export interface KuryanaChineseShow {
