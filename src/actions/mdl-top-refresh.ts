@@ -10,7 +10,10 @@ import type { KuryanaChineseShow, KuryanaTopCountry } from "@/lib/kuryana";
  * row for next time.
  *
  * Same shape as refreshMdlLiveData: the debounce below protects Kuryana from
- * a reload loop, it isn't a freshness window — every genuine visit refreshes.
+ * a reload loop, it isn't a freshness window. Every genuine visit asks, but
+ * since 2026-09-30 the fetch cache answers for a while — a day for top rated,
+ * an hour for airing and upcoming (see getDramasByCountry) — so a visit only
+ * reaches MDL once a list has aged out.
  */
 const DEBOUNCE_MS = 60_000;
 

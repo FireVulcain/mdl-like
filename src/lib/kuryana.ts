@@ -108,6 +108,15 @@ export interface KuryanaCastResult {
     scrape_date: string;
 }
 
+// How long the fetch cache keeps what barely moves. Everything goes out through
+// one residential address now (see MDL_PROXY in the scraper), and Cloudflare
+// notices bursts: a page opened on a cold cache fires a dozen of these at once.
+// Details keep the hour — they carry the next episode, which the countdown reads.
+const HOURS = 3600;
+const NEAR_STATIC = 12 * HOURS; // cast, photos, recommendations, one episode
+const SLOW = 6 * HOURS; // reviews
+const EPISODE_LIST = 3 * HOURS; // grows while a show airs
+
 async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600): Promise<T | null> {
     // Use AbortController instead of AbortSignal.timeout — the latter creates a
     // DOMException with a read-only `message` property that Next.js's fetch cache
@@ -141,7 +150,7 @@ export async function kuryanaGetDetails(slug: string, fresh = false): Promise<Ku
 }
 
 export async function kuryanaGetCast(slug: string, fresh = false): Promise<KuryanaCastResult | null> {
-    return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`, 8000, fresh ? 0 : 3600);
+    return kuryanaFetch<KuryanaCastResult>(`/id/${slug}/cast`, 8000, fresh ? 0 : NEAR_STATIC);
 }
 
 export type MdlNextEpisode = {
@@ -347,7 +356,7 @@ export interface KuryanaReviewsResult {
 }
 
 export async function kuryanaGetReviews(slug: string, page = 1): Promise<KuryanaReviewsResult | null> {
-    return kuryanaFetch<KuryanaReviewsResult>(`/id/${slug}/reviews?page=${page}`);
+    return kuryanaFetch<KuryanaReviewsResult>(`/id/${slug}/reviews?page=${page}`, 8000, SLOW);
 }
 
 export interface KuryanaEpisodeListItem {
@@ -370,7 +379,7 @@ export interface KuryanaEpisodesListResult {
 export async function kuryanaGetEpisodesList(slug: string): Promise<KuryanaEpisodesListResult | null> {
     // No trailing slash: the scraper's route is /episodes, and /episodes/ cost a
     // 307 round trip before every list.
-    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes`);
+    return kuryanaFetch<KuryanaEpisodesListResult>(`/id/${slug}/episodes`, 8000, EPISODE_LIST);
 }
 
 export interface KuryanaEpisodeReview {
@@ -401,7 +410,7 @@ export interface KuryanaEpisodeResult {
 }
 
 export async function kuryanaGetEpisode(slug: string, episodeNumber: number): Promise<KuryanaEpisodeResult | null> {
-    return kuryanaFetch<KuryanaEpisodeResult>(`/id/${slug}/episode/${episodeNumber}`);
+    return kuryanaFetch<KuryanaEpisodeResult>(`/id/${slug}/episode/${episodeNumber}`, 8000, NEAR_STATIC);
 }
 
 export interface MdlComment {
@@ -570,7 +579,7 @@ export async function kuryanaGetPersonPhotos(slug: string, page = 1): Promise<Ku
 // on every media page rather than on a page someone navigated to on purpose.
 export async function kuryanaGetMediaPhotos(slug: string, page = 1): Promise<KuryanaPhotosResult | null> {
     const query = page > 1 ? `?page=${page}` : "";
-    return kuryanaFetch<KuryanaPhotosResult>(`/id/${slug}/photos${query}`, 8000, 3600);
+    return kuryanaFetch<KuryanaPhotosResult>(`/id/${slug}/photos${query}`, 8000, NEAR_STATIC);
 }
 
 export interface KuryanaRecommendation {
@@ -589,7 +598,7 @@ export interface KuryanaRecommendationsResult {
 }
 
 export async function kuryanaGetRecommendations(slug: string): Promise<KuryanaRecommendationsResult | null> {
-    return kuryanaFetch<KuryanaRecommendationsResult>(`/id/${slug}/recs`);
+    return kuryanaFetch<KuryanaRecommendationsResult>(`/id/${slug}/recs`, 8000, NEAR_STATIC);
 }
 
 export interface KuryanaChineseShow {
@@ -693,6 +702,8 @@ export async function kuryanaGetTop(
     country: KuryanaTopSelection,
     status: "ongoing" | "upcoming" | "completed",
     params?: KuryanaTopParams,
+    /** Seconds the fetch cache may answer for this list; 0, the default, always scrapes. */
+    revalidate = 0,
 ): Promise<KuryanaChineseTopResult | null> {
     const path = country === "all" ? "/top" : `/top/${country}`;
     const query = new URLSearchParams({ status });
@@ -706,5 +717,5 @@ export async function kuryanaGetTop(
     if (params?.rating_max) query.set("rating_max", String(params.rating_max));
     if (params?.tag) query.set("tag", String(params.tag));
     if (params?.tag_exclude) query.set("tag_exclude", String(params.tag_exclude));
-    return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`, 8000, 0);
+    return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`, 8000, revalidate);
 }

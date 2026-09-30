@@ -661,10 +661,13 @@ export const mediaService = {
         if (!fresh && previous) return fromLists(previous);
 
         try {
+            // The live refresh runs this on every home visit, so each list says
+            // how long the fetch cache may answer for it. Top rated barely
+            // moves; airing and upcoming get the hour.
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop(country, "completed", { tag_exclude: excludeTags }),
-                kuryanaGetTop(country, "ongoing", { sort: "popular", tag_exclude: excludeTags }),
-                kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }),
+                kuryanaGetTop(country, "completed", { tag_exclude: excludeTags }, 24 * 3600),
+                kuryanaGetTop(country, "ongoing", { sort: "popular", tag_exclude: excludeTags }, 3600),
+                kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }, 3600),
             ]);
 
             // A list that came back empty keeps what the row already held.
