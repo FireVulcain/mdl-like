@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { tmdb, TMDB_CONFIG, TMDBMedia } from "@/lib/tmdb";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { MdlCast, MdlCastMember } from "@/lib/mdl-data";
 import { KuryanaCastMember } from "@/lib/kuryana";
@@ -123,7 +123,7 @@ export async function createMdlSeasonLink(
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details?.data?.details?.watchers);
-        const aired = details?.data?.details?.airs ?? details?.data?.details?.aired ?? null;
+        const aired = mdlAiredRange(details?.data?.details);
         const duration = details?.data?.details?.duration || null;
         const tags = details?.data?.others?.tags ?? [];
 
@@ -188,7 +188,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details?.data?.details?.watchers);
-        const aired = details?.data?.details?.airs ?? details?.data?.details?.aired ?? null;
+        const aired = mdlAiredRange(details?.data?.details);
         const duration = details?.data?.details?.duration || null;
         const tags = details?.data?.others?.tags ?? [];
         const directors = details?.data?.others?.directors ?? [];

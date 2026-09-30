@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
 import { getCurrentUserId } from "@/lib/session";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
@@ -278,7 +278,7 @@ export async function refreshMediaData(ids: string[]) {
             const mdlDetails = await kuryanaGetDetails(slug);
             const fromYear = parseInt(mdlDetails?.data?.year ?? "");
             if (!Number.isNaN(fromYear) && fromYear > 1900) return fromYear;
-            const aired = mdlDetails?.data?.details?.aired ?? mdlDetails?.data?.details?.airs;
+            const aired = mdlAiredRange(mdlDetails?.data?.details);
             const match = aired?.match(/\b(19|20)\d{2}\b/);
             return match ? parseInt(match[0]) : null;
         } catch {
@@ -407,7 +407,7 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-        const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+        const aired = mdlAiredRange(details.data.details);
         const duration = details.data.details?.duration || null;
         const tags = details.data.others?.tags ?? [];
         const genres = details.data.others?.genres ?? [];
@@ -482,7 +482,7 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
                         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                         const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-                        const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+                        const aired = mdlAiredRange(details.data.details);
                         const duration = details.data.details?.duration || null;
                         const tags = details.data.others?.tags ?? [];
                         const genres = details.data.others?.genres ?? [];

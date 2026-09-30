@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaDrama } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaDrama, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
@@ -39,7 +39,7 @@ export async function setMdlSeasonSlug(
             const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
             const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
             const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-            const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+            const aired = mdlAiredRange(details.data.details);
             const duration = details.data.details?.duration || null;
             const tags = details.data.others?.tags ?? [];
             // Never stored before, so every season row had a null genres column

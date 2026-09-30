@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
-import { kuryanaGetDetails, parseMdlWatchers } from "@/lib/kuryana";
+import { kuryanaGetDetails, parseMdlWatchers, mdlAiredRange } from "@/lib/kuryana";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 
 /**
@@ -64,7 +64,7 @@ export async function refreshMdlLiveData(
         const mdlRanking = d.details?.ranked ? parseInt(d.details.ranked.replace("#", "")) : null;
         const mdlPopularity = d.details?.popularity ? parseInt(d.details.popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(d.details?.watchers);
-        const aired = d.details?.airs ?? d.details?.aired ?? null;
+        const aired = mdlAiredRange(d.details);
         const duration = d.details?.duration || null;
 
         // Repairs carried on the back of a request already being made.

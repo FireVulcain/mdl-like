@@ -41,17 +41,18 @@ const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "
  * episode, which is what kept a countdown alive for an episode 5 that had aired
  * eleven days earlier.
  *
- * Deliberately narrow. Of the 284 ranges stored, 221 carry two full dates and
- * are the only ones this answers for; "2026 - ?" and "Oct, 2026 - ?" mean still
- * airing, a lone date is a one-off, and both come back null so the caller keeps
+ * Deliberately narrow. Two full dates answer with the second. A lone date —
+ * a film's release, or a series whose every episode dropped the same day, like
+ * Boyfriend on Demand's ten on Mar 6, 2026 — is its own end. "2026 - ?" and
+ * "Oct, 2026 - ?" mean still airing and come back null, so the caller keeps
  * whatever behaviour it had. Only a date it actually parsed is worth acting on.
  */
 export function airedEndDate(raw: string | null | undefined): Date | null {
     if (!raw) return null;
     const parts = raw.replace(/\s+/g, " ").trim().split(/\s+-\s+/);
-    if (parts.length !== 2) return null;
+    if (parts.length > 2) return null;
 
-    const end = MDL_DATE.exec(parts[1].trim());
+    const end = MDL_DATE.exec(parts[parts.length - 1].trim());
     if (!end) return null; // "?" — still airing, or a shape we do not know
 
     const month = MONTHS.indexOf(end[1].toLowerCase());

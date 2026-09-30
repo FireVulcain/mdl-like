@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 import { airedEndDate } from "@/lib/format-aired";
@@ -394,6 +394,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
             where: {
                 tmdbExternalId: { in: Array.from(candidateIds) },
                 mdlSlug: { not: "" },
+                mdlDisabled: false,
             },
             select: { tmdbExternalId: true, mdlSlug: true, aired: true, castJson: true },
         });
@@ -407,6 +408,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                 tmdbExternalId: { in: Array.from(allIds), notIn: Array.from(priorityIds) },
                 cachedAt: { lt: staleThreshold },
                 mdlSlug: { not: "" },
+                mdlDisabled: false,
             },
             select: { tmdbExternalId: true, mdlSlug: true, aired: true, castJson: true },
         });
@@ -435,7 +437,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-                    const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+                    const aired = mdlAiredRange(details.data.details);
                     const duration = details.data.details?.duration || null;
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];
@@ -504,7 +506,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                     const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                     const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-                    const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+                    const aired = mdlAiredRange(details.data.details);
                     const duration = details.data.details?.duration || null;
                     const tags = details.data.others?.tags ?? [];
                     const genres = details.data.others?.genres ?? [];

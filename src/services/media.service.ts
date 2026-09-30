@@ -1,5 +1,5 @@
 import { tmdb, TMDBMedia, TMDBPersonSearchResult, TMDB_CONFIG, fetchTMDB } from "@/lib/tmdb";
-import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaTopSelection, KuryanaChineseShow, KuryanaChineseTopResult, mdlFullSizeImage} from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetTop, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaTopCountry, KuryanaTopSelection, KuryanaChineseShow, KuryanaChineseTopResult, mdlFullSizeImage, mdlAiredRange } from "@/lib/kuryana";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
@@ -478,7 +478,7 @@ export const mediaService = {
                 synopsis: d.synopsis,
                 rating,
                 totalEp,
-                aired: d.details.aired || d.details.airs || undefined,
+                aired: mdlAiredRange(d.details) ?? undefined,
                 network: d.details.original_network || undefined,
                 duration: d.details.duration || undefined,
                 genres: d.others.genres || [],

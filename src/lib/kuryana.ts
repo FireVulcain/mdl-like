@@ -60,6 +60,8 @@ export interface KuryanaDetails {
             episodes: string;
             aired?: string;
             airs?: string;
+            /** Films carry this instead of aired/airs: a single date. */
+            release_date?: string;
             original_network: string;
             duration: string;
             score: string;
@@ -144,6 +146,16 @@ async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600
     } finally {
         clearTimeout(timer);
     }
+}
+
+/**
+ * The broadcast range MDL states for a title, whatever it calls it: "airs"
+ * for something on air, "aired" once it has, "release_date" for a film. Films
+ * were stored with no range at all before the third, which kept every one of
+ * them in the daily history reading forever.
+ */
+export function mdlAiredRange(details: { airs?: string; aired?: string; release_date?: string } | null | undefined): string | null {
+    return details?.airs || details?.aired || details?.release_date || null;
 }
 
 export async function kuryanaSearch(query: string): Promise<KuryanaSearchResult | null> {

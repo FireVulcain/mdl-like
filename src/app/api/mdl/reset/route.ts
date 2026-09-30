@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlSlugTag } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlSlugTag, mdlAiredRange } from "@/lib/kuryana";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { refreshSingleShow } from "@/actions/schedule";
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
                 const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
                 const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
                 const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-                const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+                const aired = mdlAiredRange(details.data.details);
                 const duration = details.data.details?.duration || null;
                 const tags = details.data.others?.tags ?? [];
                 const directors = details.data.others?.directors ?? [];

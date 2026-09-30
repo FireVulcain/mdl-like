@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, KuryanaDrama } from "@/lib/kuryana";
+import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, KuryanaDrama, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 
 export interface MdlCastMember {
@@ -201,7 +201,7 @@ function scheduleMdlRefresh(tmdbExternalId: string, mdlSlug: string) {
                         mdlRanking: ranked ? parseInt(ranked.replace("#", "")) : null,
                         mdlPopularity: popularity ? parseInt(popularity.replace("#", "")) : null,
                         mdlWatchers: parseMdlWatchers(d.details?.watchers),
-                        aired: d.details?.airs ?? d.details?.aired ?? null,
+                        aired: mdlAiredRange(d.details),
                         duration: d.details?.duration || null,
                         tags: tags as unknown as Prisma.InputJsonValue,
                         genres: d.others?.genres ?? [],
@@ -321,7 +321,7 @@ export const getMdlData = cache(async function getMdlData(
         const mdlRanking = ranked ? parseInt(ranked.replace("#", "")) : null;
         const mdlPopularity = popularity ? parseInt(popularity.replace("#", "")) : null;
         const mdlWatchers = parseMdlWatchers(details.data.details?.watchers);
-        const aired = details.data.details?.airs ?? details.data.details?.aired ?? null;
+        const aired = mdlAiredRange(details.data.details);
         const duration = details.data.details?.duration || null;
         const tags: MdlTag[] = (details.data.others?.tags ?? []).map((t) => ({ id: t.id, name: cleanTagName(t.name) })).filter((t) => t.name.length > 0);
         const genres = details.data.others?.genres ?? [];
