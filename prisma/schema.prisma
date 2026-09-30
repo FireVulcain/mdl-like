@@ -503,6 +503,7 @@ model ScraperCall {
   route      String // details, cast, top… — see scraperRouteOf()
   path       String // the scraper path as called, query included
   target     String? // the slug, person or list it was about
+  label      String? // the title or name the scraper answered with, when it did
   status     Int // HTTP status from the scraper; 0 = timeout or network error
   durationMs Int
   trigger    String // render, prefetch, action, background, cron, api, script

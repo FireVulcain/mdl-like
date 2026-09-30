@@ -45,10 +45,7 @@ export async function captureScraperContext(): Promise<ScraperContext> {
         const isAction = !!actionAsyncStorage.getStore()?.isAction;
         ctx.page = work?.route ?? null;
 
-        if (unit?.type === "request") {
-            ctx.pagePath = unit.url.pathname;
-            if (!inAfter) ctx.viewId = requestViewId();
-        }
+        if (unit?.type === "request") ctx.pagePath = unit.url.pathname;
 
         if (inAfter) ctx.trigger = "background";
         else if (ctx.page?.startsWith("/api/cron")) ctx.trigger = "cron";
@@ -57,6 +54,13 @@ export async function captureScraperContext(): Promise<ScraperContext> {
         else if (isAction) ctx.trigger = "action";
         else if (unit?.type === "request") ctx.trigger = "render";
         else if (work) ctx.trigger = "render"; // prerender, unstable_cache and the like
+
+        // A page opening groups its calls under one id. Only pages: in a route
+        // handler React's cache() is not per request, so every call would get
+        // its own id — the dashboard groups crons by run instead.
+        if (unit?.type === "request" && (ctx.trigger === "render" || ctx.trigger === "prefetch" || ctx.trigger === "action")) {
+            ctx.viewId = requestViewId();
+        }
 
         if (unit?.type === "request" && !inAfter && ctx.trigger !== "cron") {
             // Loaded only here, inside a real request, so scripts that read
@@ -97,9 +101,21 @@ export function scraperRouteOf(path: string): { route: string; target: string | 
     return { route: "other", target: null };
 }
 
+/**
+ * The title or name a scraper answer carries, for the dashboard to show
+ * "When Life Gives You Tangerines" rather than "735043-life". Details, cast,
+ * photos, reviews and the rest put the title under data.title; a person's
+ * page puts the name under data.name.
+ */
+export function scraperLabelOf(body: unknown): string | null {
+    const data = (body as { data?: { title?: unknown; name?: unknown } } | null)?.data;
+    const label = typeof data?.title === "string" ? data.title : typeof data?.name === "string" ? data.name : null;
+    return label?.trim() || null;
+}
+
 /* ---------- buffered writes ---------- */
 
-type CallRow = { at: Date; route: string; path: string; target: string | null; status: number; durationMs: number } & Omit<ScraperContext, never>;
+type CallRow = { at: Date; route: string; path: string; target: string | null; label: string | null; status: number; durationMs: number } & Omit<ScraperContext, never>;
 const calls: CallRow[] = [];
 const hits = new Map<string, { hour: Date; page: string; trigger: string; route: string; count: number }>();
 let timer: ReturnType<typeof setTimeout> | null = null;
@@ -141,12 +157,12 @@ async function flush() {
     }
 }
 
-export function recordScraperCall(path: string, status: number, durationMs: number): void {
+export function recordScraperCall(path: string, status: number, durationMs: number, label: string | null = null): void {
     if (process.env.SCRAPER_LOG === "off") return;
     try {
         const ctx = scraperContextStorage.getStore() ?? { trigger: "script" as const, page: null, pagePath: null, viewId: null, userId: null };
         const { route, target } = scraperRouteOf(path);
-        calls.push({ at: new Date(), route, path: path.slice(0, 500), target: target?.slice(0, 200) ?? null, status, durationMs, ...ctx });
+        calls.push({ at: new Date(), route, path: path.slice(0, 500), target: target?.slice(0, 200) ?? null, label: label?.slice(0, 200) ?? null, status, durationMs, ...ctx });
         schedule();
     } catch {
         // Logging never gets in the way of a read

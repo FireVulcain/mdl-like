@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
-import { captureScraperContext, recordScraperCacheHit, recordScraperCall, scraperContextStorage } from "@/lib/scraper-log";
+import { captureScraperContext, recordScraperCacheHit, recordScraperCall, scraperContextStorage, scraperLabelOf } from "@/lib/scraper-log";
 
 const BASE_URL = process.env.KURYANA_URL ?? "https://mdl.dramatrackr.fr";
 
@@ -146,16 +146,19 @@ async function fetchLive<T>(path: string, timeoutMs: number): Promise<LiveResult
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     const started = Date.now();
     let status = 0;
+    let label: string | null = null;
     try {
         const res = await fetch(`${BASE_URL}${path}`, { signal: controller.signal, cache: "no-store" });
         status = res.status;
         if (!res.ok) return { ok: false, status: res.status };
-        return { ok: true, data: (await res.json()) as T };
+        const data = (await res.json()) as T;
+        label = scraperLabelOf(data);
+        return { ok: true, data };
     } catch {
         return { ok: false, status: 0 };
     } finally {
         clearTimeout(timer);
-        recordScraperCall(path, status, Date.now() - started);
+        recordScraperCall(path, status, Date.now() - started, label);
     }
 }
 

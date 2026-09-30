@@ -25,6 +25,8 @@ import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-t
 import { CronStatusPanel } from "@/components/settings/cron-status";
 import { ChartPreview } from "@/components/settings/chart-preview";
 import { getCronStatus } from "@/actions/cron-status";
+import { isAdminUser } from "@/lib/admin";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -48,6 +50,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         mdlProfileUrl,
         shortcutPrefs,
         cronJobs,
+        isAdmin,
     ] =
         await Promise.all([
             searchParams,
@@ -62,6 +65,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             getMdlProfileUrl(),
             getShortcutPreferences(),
             getCronStatus(),
+            isAdminUser(),
         ]);
 
     let radar: Awaited<ReturnType<typeof getRadarActors>> | null = null;
@@ -114,6 +118,14 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
                     them — this only reports what they last wrote.
                 </p>
                 <CronStatusPanel jobs={cronJobs} />
+                {isAdmin && (
+                    <p className="text-xs text-fg-faint">
+                        What every call to MyDramaList cost, and who made it:{" "}
+                        <Link href="/admin/scraper" className="text-fg-soft underline-offset-2 hover:text-fg hover:underline">
+                            scraper traffic
+                        </Link>
+                    </p>
+                )}
             </div>
         ),
         watchlist: <WatchlistViewSettings initialPrefs={viewPrefs} />,
