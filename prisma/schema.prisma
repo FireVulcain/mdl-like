@@ -528,3 +528,13 @@ model ScraperCacheHit {
 
   @@id([hour, page, trigger, route])
 }
+
+// "Looked for a next episode and found none", so the lookup is not repeated on
+// every visit. Without it, a finished show, one between seasons or one with no
+// date announced was re-scraped each time the watchlist or the home opened —
+// the largest share of MDL calls on 2026-10-01. Keyed like the lookups:
+// "<tmdbId>-<season>" from the watchlist, "home:<cacheKey>" from the home rows.
+model NextEpisodeMiss {
+  key       String   @id
+  checkedAt DateTime @default(now())
+}

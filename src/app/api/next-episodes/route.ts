@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getCachedNextEpisodes, upsertCachedNextEpisode } from "@/lib/next-episode-cache";
+import { getCachedNextEpisodes, getRecentNextEpisodeMisses, recordNextEpisodeLookup, upsertCachedNextEpisode } from "@/lib/next-episode-cache";
 import { fetchNextEpisodeFromApis } from "@/lib/next-episode-fetch";
 
 // Background refresh (after()) counts toward the function duration
@@ -120,8 +120,12 @@ export async function POST(req: NextRequest) {
     // fresh data in the background, and tell the client which keys to re-poll.
     // Keys already being fetched (previous request or re-poll) are skipped so
     // polling can't stack duplicate scrape storms.
-    const pending = missItems.map((item) => `${item.tmdbId}-${item.season}`);
-    const toFetch = missItems.filter((item) => !inFlightKeys.has(`${item.tmdbId}-${item.season}`));
+    // A key looked up in the last 12 hours and found to have no next episode
+    // is neither fetched again nor reported as pending — see NextEpisodeMiss.
+    const recentMisses = await getRecentNextEpisodeMisses(missItems.filter((item) => !result[`${item.tmdbId}-${item.season}`]).map((item) => `${item.tmdbId}-${item.season}`));
+    const lookups = missItems.filter((item) => !recentMisses.has(`${item.tmdbId}-${item.season}`));
+    const pending = lookups.map((item) => `${item.tmdbId}-${item.season}`);
+    const toFetch = lookups.filter((item) => !inFlightKeys.has(`${item.tmdbId}-${item.season}`));
 
     if (toFetch.length > 0) {
         toFetch.forEach((item) => inFlightKeys.add(`${item.tmdbId}-${item.season}`));
@@ -138,6 +142,7 @@ export async function POST(req: NextRequest) {
                                 ...item,
                                 mdlSlug: mdlSlugs.get(`${item.tmdbId}-${item.season}`) ?? null,
                             });
+                            await recordNextEpisodeLookup(`${item.tmdbId}-${item.season}`, !!ep);
                             if (!ep) return;
                             // Aired-yesterday entries from lagging sources are filtered at read time
                             await upsertCachedNextEpisode({

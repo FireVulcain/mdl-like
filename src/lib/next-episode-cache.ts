@@ -133,3 +133,34 @@ export async function upsertCachedNextEpisode(data: {
         },
     });
 }
+
+/**
+ * How long "no next episode" stands before the lookup is tried again. Long
+ * enough that a finished or unscheduled show costs one scrape a day at most,
+ * short enough that a newly announced date shows up the same day.
+ */
+const MISS_TTL_MS = 12 * 60 * 60 * 1000;
+
+/** The keys among these that were looked up recently and found nothing. */
+export async function getRecentNextEpisodeMisses(keys: string[]): Promise<Set<string>> {
+    if (keys.length === 0) return new Set();
+    try {
+        const rows = await prisma.nextEpisodeMiss.findMany({
+            where: { key: { in: [...new Set(keys)] }, checkedAt: { gte: new Date(Date.now() - MISS_TTL_MS) } },
+            select: { key: true },
+        });
+        return new Set(rows.map((r) => r.key));
+    } catch {
+        return new Set();
+    }
+}
+
+/** Record a lookup's outcome: a miss is remembered, a hit clears any old miss. */
+export async function recordNextEpisodeLookup(key: string, found: boolean): Promise<void> {
+    try {
+        if (found) await prisma.nextEpisodeMiss.deleteMany({ where: { key } });
+        else await prisma.nextEpisodeMiss.upsert({ where: { key }, create: { key }, update: { checkedAt: new Date() } });
+    } catch {
+        // Losing this only means one more lookup next visit
+    }
+}

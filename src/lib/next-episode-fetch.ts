@@ -2,7 +2,7 @@ import { after } from "next/server";
 import { tmdb } from "@/lib/tmdb";
 import { tvmaze, NextEpisodeResult } from "@/lib/tvmaze";
 import { kuryanaGetNextEpisode } from "@/lib/kuryana";
-import { upsertCachedNextEpisode } from "@/lib/next-episode-cache";
+import { getRecentNextEpisodeMisses, recordNextEpisodeLookup, upsertCachedNextEpisode } from "@/lib/next-episode-cache";
 
 /**
  * TVmaze name lookup that copes with MDL naming: MDL lists each season as its
@@ -106,8 +106,8 @@ export async function fetchNextEpisodeFromApis(item: {
  * Fill the CachedEpisode table for shows missing from it, AFTER the response
  * has been sent (Next's `after`) so page render latency is unaffected. The
  * next page load then reads the fresh cache. Bounded and throttled to stay
- * polite with TVmaze; shows with no findable episode are simply retried on a
- * later visit.
+ * polite with TVmaze; shows with no findable episode are remembered for 12
+ * hours (NextEpisodeMiss) rather than retried on every visit.
  */
 export function prefillNextEpisodes(
     items: Array<{ cacheKey: string; tmdbId?: string; title: string; mdlSlug?: string | null; season?: number }>,
@@ -116,9 +116,13 @@ export function prefillNextEpisodes(
     if (items.length === 0) return;
 
     after(async () => {
-        for (const item of items.slice(0, limit)) {
+        // Shows looked up in the last 12 hours with nothing found are skipped,
+        // and do not use up the limit — see NextEpisodeMiss.
+        const misses = await getRecentNextEpisodeMisses(items.map((i) => `home:${i.cacheKey}`));
+        for (const item of items.filter((i) => !misses.has(`home:${i.cacheKey}`)).slice(0, limit)) {
             try {
                 const ep = await fetchNextEpisodeFromApis(item);
+                await recordNextEpisodeLookup(`home:${item.cacheKey}`, !!ep);
                 if (ep) {
                     await upsertCachedNextEpisode({
                         mediaId: item.cacheKey,
