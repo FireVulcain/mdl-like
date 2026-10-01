@@ -138,7 +138,92 @@ export function mdlSlugTag(slug: string): string {
  */
 type LiveResult<T> = { ok: true; data: T } | { ok: false; status: number };
 
-async function fetchLive<T>(path: string, timeoutMs: number): Promise<LiveResult<T>> {
+/*
+ * The scraper answers one request at a time: its handlers are async but call
+ * MDL synchronously, so a second request waits for the first. Sending it
+ * twenty at once — the watchlist's countdowns, the home's prefill and an
+ * episode guide together — only built a queue longer than the 8-second
+ * timeout. Measured 2026-10-01: 63 of 476 calls timed out. The scraper still
+ * worked through each abandoned request, so MDL was hit, the answer thrown
+ * away, and the read retried later.
+ *
+ * So: at most SCRAPER_CONCURRENCY calls in flight (2 by default — the
+ * scraper's one plus the next one ready), the timeout counted from when a
+ * call actually leaves, and identical calls in flight at the same moment
+ * sharing one answer instead of going twice.
+ */
+const MAX_IN_FLIGHT = Math.max(1, Number(process.env.SCRAPER_CONCURRENCY) || 2);
+
+/*
+ * Two lanes. A read for a page being drawn, a button, or an API route goes
+ * ahead of background work, crons and scripts: opening the watchlist queues
+ * thirty countdown lookups, and a drama page opened right after must not wait
+ * behind all of them for its photos and reviews.
+ */
+type Lane = "now" | "later";
+type Waiter = { lane: Lane; go: () => void };
+let inFlightCount = 0;
+const queues: Record<Lane, Waiter[]> = { now: [], later: [] };
+const pendingByPath = new Map<string, { promise: Promise<LiveResult<unknown>>; waiter: Waiter | null }>();
+
+function laneOf(trigger: string | undefined): Lane {
+    return trigger === "background" || trigger === "cron" || trigger === "script" || !trigger ? "later" : "now";
+}
+
+/** Resolves once a slot is free; the returned waiter can be moved up a lane while it waits. */
+function acquireSlot(lane: Lane): { ready: Promise<void>; waiter: Waiter | null } {
+    if (inFlightCount < MAX_IN_FLIGHT) {
+        inFlightCount++;
+        return { ready: Promise.resolve(), waiter: null };
+    }
+    // The releasing call hands its slot straight over, so the count holds
+    let go!: () => void;
+    const ready = new Promise<void>((resolve) => (go = resolve));
+    const waiter: Waiter = { lane, go };
+    queues[lane].push(waiter);
+    return { ready, waiter };
+}
+
+function releaseSlot(): void {
+    const next = queues.now.shift() ?? queues.later.shift();
+    if (next) next.go();
+    else inFlightCount--;
+}
+
+/** A page now wants what a background read is still queued for: let it jump the line. */
+function promote(waiter: Waiter | null): void {
+    if (!waiter || waiter.lane === "now") return;
+    const i = queues.later.indexOf(waiter);
+    if (i === -1) return; // already running
+    queues.later.splice(i, 1);
+    waiter.lane = "now";
+    queues.now.push(waiter);
+}
+
+function fetchLive<T>(path: string, timeoutMs: number): Promise<LiveResult<T>> {
+    const lane = laneOf(scraperContextStorage.getStore()?.trigger);
+    const pending = pendingByPath.get(path);
+    if (pending) {
+        if (lane === "now") promote(pending.waiter);
+        return pending.promise as Promise<LiveResult<T>>;
+    }
+    const slot = acquireSlot(lane);
+    const entry = { promise: null as unknown as Promise<LiveResult<unknown>>, waiter: slot.waiter };
+    entry.promise = (async () => {
+        await slot.ready;
+        entry.waiter = null;
+        try {
+            return await fetchLiveNow<T>(path, timeoutMs);
+        } finally {
+            releaseSlot();
+        }
+    })();
+    pendingByPath.set(path, entry);
+    void entry.promise.finally(() => pendingByPath.delete(path));
+    return entry.promise as Promise<LiveResult<T>>;
+}
+
+async function fetchLiveNow<T>(path: string, timeoutMs: number): Promise<LiveResult<T>> {
     // Use AbortController instead of AbortSignal.timeout — the latter creates a
     // DOMException with a read-only `message` property that Next.js's fetch cache
     // interceptor tries to overwrite, causing an unhandled TypeError crash.
