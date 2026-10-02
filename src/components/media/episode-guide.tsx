@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Star, Clock, Check } from "lucide-react";
 import { SourceToggle } from "@/components/media/source-toggle";
 import { SectionHeader, SectionLink } from "@/components/media/section-header";
+import { loadEpisodeSynopsis } from "@/actions/mdl-episodes";
 
 function isReleased(airDate: string | null | undefined): boolean {
     if (!airDate) return true;
@@ -31,6 +32,13 @@ export interface MdlEpisodeItem {
     rating: number | null;
     synopsis: string | null;
     reviewCount?: number | null;
+    /**
+     * Where the synopsis stands. "ask": not read yet, offered behind "Show
+     * synopsis". "none": MDL had none when last asked, this week. "unaired"
+     * and "hidden" (spoiler-free): nothing to show or offer. Absent means the
+     * synopsis field is all there is, as on the full episodes page.
+     */
+    synopsisState?: "known" | "ask" | "none" | "unaired" | "hidden";
 }
 
 interface EpisodeGuideProps {
@@ -38,6 +46,8 @@ interface EpisodeGuideProps {
     season: number;
     poster: string | null;
     mdlEpisodes?: MdlEpisodeItem[] | null;
+    /** The MDL entry the episodes belong to, for on-demand synopses. */
+    mdlSlug?: string | null;
     mediaId?: string;
     watchedProgress?: number;
     // Spoiler-free mode: mask name/synopsis/still of episodes beyond the
@@ -135,10 +145,28 @@ function EpisodeRow({ ep, poster, isWatched }: { ep: Episode; poster: string | n
     );
 }
 
-function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem; poster: string | null; mediaId?: string; isWatched?: boolean }) {
+type SynopsisLoad = { state: "idle" | "loading" | "none" | "error" } | { state: "ok"; synopsis: string; title: string | null };
+
+function MdlEpisodeRow({ ep, poster, mediaId, mdlSlug, isWatched }: { ep: MdlEpisodeItem; poster: string | null; mediaId?: string; mdlSlug?: string | null; isWatched?: boolean }) {
     const [expanded, setExpanded] = useState(false);
-    const hasSynopsis = !!ep.synopsis?.trim();
-    const isLong = (ep.synopsis?.length ?? 0) > 60;
+    const [load, setLoad] = useState<SynopsisLoad>({ state: "idle" });
+    const synopsis = load.state === "ok" ? load.synopsis : ep.synopsis;
+    const hasSynopsis = !!synopsis?.trim();
+    const isLong = (synopsis?.length ?? 0) > 60;
+    const title = (load.state === "ok" && load.title) || ep.title;
+
+    const askSynopsis = async () => {
+        if (!mdlSlug) return;
+        setLoad({ state: "loading" });
+        try {
+            const res = await loadEpisodeSynopsis(mdlSlug, ep.number);
+            setLoad(res.status === "ok" ? { state: "ok", synopsis: res.synopsis, title: res.title } : { state: res.status });
+            // A synopsis that just arrived reads in full; the reader asked for it
+            if (res.status === "ok") setExpanded(true);
+        } catch {
+            setLoad({ state: "error" });
+        }
+    };
 
     const formattedDate = ep.airDate ? new Date(ep.airDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
 
@@ -152,7 +180,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                     {ep.image || poster ? (
                         <Image unoptimized={true}
                             src={ep.image ?? poster!}
-                            alt={ep.title}
+                            alt={title}
                             fill
                             className={`opacity-0 transition-opacity duration-500 object-cover object-top ${isWatched ? "brightness-75" : ""}`}
                             loading="lazy"
@@ -180,7 +208,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
                     {ep.image || poster ? (
                         <Image unoptimized={true}
                             src={ep.image ?? poster!}
-                            alt={ep.title}
+                            alt={title}
                             fill
                             className={`opacity-0 transition-opacity duration-500 object-cover object-top ${isWatched ? "brightness-75" : ""}`}
                             loading="lazy"
@@ -209,12 +237,12 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
             <div className="flex-1 min-w-0 flex flex-col gap-1">
                 <div className="flex items-start justify-between gap-2">
                     {episodeHref ? (
-                        <Link href={episodeHref} className="font-medium leading-snug truncate hover:text-blue-400 transition-colors" title={ep.title}>
-                            {ep.title}
+                        <Link href={episodeHref} className="font-medium leading-snug truncate hover:text-blue-400 transition-colors" title={title}>
+                            {title}
                         </Link>
                     ) : (
-                        <h4 className="font-medium text-fg leading-snug truncate" title={ep.title}>
-                            {ep.title}
+                        <h4 className="font-medium text-fg leading-snug truncate" title={title}>
+                            {title}
                         </h4>
                     )}
                     {ep.rating !== null && ep.rating > 0 && isReleased(ep.airDate) && (
@@ -227,9 +255,31 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
 
                 {formattedDate && <span className="text-xs text-fg-dim">{formattedDate}</span>}
 
+                {!hasSynopsis && mdlSlug && (ep.synopsisState === "ask" || ep.synopsisState === "none") && (
+                    <div className="mt-0.5 text-xs">
+                        {load.state === "idle" && ep.synopsisState === "ask" && (
+                            <button type="button" onClick={askSynopsis} className="text-fg-dim transition-colors hover:text-fg-soft cursor-pointer">
+                                Show synopsis
+                            </button>
+                        )}
+                        {load.state === "loading" && <span className="text-fg-dim">Loading synopsis…</span>}
+                        {(load.state === "none" || (load.state === "idle" && ep.synopsisState === "none")) && (
+                            <span className="text-fg-faint">No synopsis on MyDramaList yet.</span>
+                        )}
+                        {load.state === "error" && (
+                            <span className="text-fg-dim">
+                                Couldn&apos;t reach MyDramaList.{" "}
+                                <button type="button" onClick={askSynopsis} className="text-fg-soft underline-offset-2 hover:text-fg hover:underline cursor-pointer">
+                                    Try again
+                                </button>
+                            </span>
+                        )}
+                    </div>
+                )}
+
                 {hasSynopsis && (
                     <div className="mt-0.5">
-                        <p className={`text-sm text-fg-muted leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>{ep.synopsis}</p>
+                        <p className={`text-sm text-fg-muted leading-relaxed ${!expanded ? "line-clamp-1" : ""}`}>{synopsis}</p>
                         {isLong && (
                             <button
                                 onClick={() => setExpanded((v) => !v)}
@@ -249,7 +299,7 @@ function MdlEpisodeRow({ ep, poster, mediaId, isWatched }: { ep: MdlEpisodeItem;
     );
 }
 
-export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, watchedProgress, hideSpoilers }: EpisodeGuideProps) {
+export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mdlSlug, mediaId, watchedProgress, hideSpoilers }: EpisodeGuideProps) {
     const [showAll, setShowAll] = useState(false);
     const [source, setSource] = useState<"tmdb" | "mdl">("mdl");
 
@@ -261,7 +311,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
             ep.number > watchedProgress ? { ...ep, name: `Episode ${ep.number}`, overview: "", still: null } : ep,
         );
         mdlEpisodes = mdlEpisodes?.map((ep) =>
-            ep.number > watchedProgress ? { ...ep, title: `Episode ${ep.number}`, synopsis: null, image: null } : ep,
+            ep.number > watchedProgress ? { ...ep, title: `Episode ${ep.number}`, synopsis: null, image: null, synopsisState: "hidden" as const } : ep,
         );
     }
 
@@ -306,7 +356,7 @@ export function EpisodeGuide({ episodes, season, poster, mdlEpisodes, mediaId, w
             >
                 <div className="flex flex-col divide-y divide-line">
                     {source === "mdl" && activeEpisodes
-                        ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)
+                        ? visibleMdl.map((ep) => <MdlEpisodeRow key={ep.number} ep={ep} poster={poster} mediaId={mediaId} mdlSlug={mdlSlug} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)
                         : visibleTmdb.map((ep) => <EpisodeRow key={ep.id} ep={ep} poster={poster} isWatched={!!watchedProgress && ep.number <= watchedProgress} />)}
                 </div>
 

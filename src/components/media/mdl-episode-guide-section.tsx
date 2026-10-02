@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
+import { kuryanaGetEpisodesList } from "@/lib/kuryana";
+import { EMPTY_SYNOPSIS_TTL_MS, isUnaired } from "@/lib/mdl-episodes";
 import { EpisodeGuide, type MdlEpisodeItem } from "./episode-guide";
 
 interface TmdbEpisode {
@@ -24,11 +25,11 @@ interface Props {
     hideSpoilers?: boolean;
 }
 
-const SYNOPSIS_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days — stable once show airs
-const EMPTY_TTL_MS   =      24 * 60 * 60 * 1000;  // 24 hours — retry if MDL hadn't filled it yet
-
-// Async server component — fetches MDL episode list + individual episode details
-// (for synopsis) in parallel, then passes everything to the EpisodeGuide toggle.
+// Async server component — one call for MDL's episode list, then synopses from
+// the database only. An episode without one gets a "Show synopsis" link that
+// reads that single episode on demand (loadEpisodeSynopsis): the guide used to
+// scrape every episode's page up front, 1 + N calls per first visit, for a
+// list that shows four rows until it is expanded.
 // Wrapped in Suspense in the media page so the TMDB-only guide shows immediately.
 export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, externalId, mdlSlug: directSlug, mediaId, watchedProgress, hideSpoilers }: Props) {
     let effectiveSlug: string | null = directSlug ?? null;
@@ -79,61 +80,28 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
             });
             const cacheMap = new Map(cachedRows.map((r) => [r.episodeNumber, r]));
 
-            // Determine which episodes need a fresh fetch from Kuryana
-            const staleNumbers = episodeNumbers.filter((n) => {
-                const row = cacheMap.get(n);
-                if (!row) return true;
-                const age = now - row.cachedAt.getTime();
-                return age > (row.synopsis ? SYNOPSIS_TTL_MS : EMPTY_TTL_MS);
-            });
-
-            // Fetch only stale/missing episodes in parallel
-            const freshDetails = staleNumbers.length
-                ? await Promise.all(staleNumbers.map((n) => kuryanaGetEpisode(slug, n)))
-                : [];
-
-            // Persist freshly fetched data to DB
-            if (freshDetails.length) {
-                await Promise.all(
-                    staleNumbers.map((n, i) => {
-                        const detail = freshDetails[i];
-                        return prisma.cachedMdlEpisode.upsert({
-                            where: { mdlSlug_episodeNumber: { mdlSlug: slug, episodeNumber: n } },
-                            create: {
-                                mdlSlug: slug,
-                                episodeNumber: n,
-                                synopsis: detail?.data?.synopsis || null,
-                                episodeTitle: detail?.data?.episode_title || null,
-                            },
-                            update: {
-                                synopsis: detail?.data?.synopsis || null,
-                                episodeTitle: detail?.data?.episode_title || null,
-                                cachedAt: new Date(),
-                            },
-                        });
-                    })
-                );
-            }
-
-            const freshMap = new Map(staleNumbers.map((n, i) => [n, freshDetails[i]]));
-
             mdlEpisodes = listEpisodes.map((ep, i) => {
                 const number = episodeNumbers[i];
                 const cached = cacheMap.get(number);
-                const detail = freshMap.get(number);
-
-                // Prefer freshly fetched, fall back to DB cache
-                const episodeTitle = detail?.data?.episode_title || cached?.episodeTitle || null;
-                const synopsis     = detail?.data?.synopsis      || cached?.synopsis      || null;
+                const synopsis = cached?.synopsis?.trim() || null;
+                const episodeTitle = cached?.episodeTitle || null;
 
                 const title = episodeTitle ||
                     (ep.title.startsWith(showTitle)
                         ? ep.title.slice(showTitle.length).trim()
                         : ep.title);
 
-                // Parse list rating as fallback: "9.3/10 from 233 users" → 9.3
+                // Parse list rating: "9.3/10 from 233 users" → 9.3
                 const ratingMatch = ep.rating.match(/^([\d.]+)\//);
-                const rating = detail?.data?.rating ?? (ratingMatch ? parseFloat(ratingMatch[1]) : null);
+                const rating = ratingMatch ? parseFloat(ratingMatch[1]) : null;
+
+                const synopsisState: MdlEpisodeItem["synopsisState"] = synopsis
+                    ? "known"
+                    : isUnaired(ep.air_date, now)
+                      ? "unaired"
+                      : cached && now - cached.cachedAt.getTime() < EMPTY_SYNOPSIS_TTL_MS
+                        ? "none"
+                        : "ask";
 
                 return {
                     number,
@@ -142,6 +110,7 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
                     airDate: ep.air_date || null,
                     rating,
                     synopsis,
+                    synopsisState,
                 };
             });
         }
@@ -153,6 +122,7 @@ export async function MdlEpisodeGuideSection({ tmdbEpisodes, season, poster, ext
             season={season}
             poster={poster}
             mdlEpisodes={mdlEpisodes}
+            mdlSlug={effectiveSlug}
             mediaId={mediaId}
             watchedProgress={watchedProgress}
             hideSpoilers={hideSpoilers}

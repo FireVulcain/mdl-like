@@ -5,6 +5,7 @@ import { ArrowLeft, Star, Calendar, Check, MessageSquare } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { kuryanaGetEpisodesList, kuryanaGetEpisode } from "@/lib/kuryana";
 import type { MdlEpisodeItem } from "@/components/media/episode-guide";
+import { EMPTY_SYNOPSIS_TTL_MS, isUnaired } from "@/lib/mdl-episodes";
 import { EpisodeRatingGrid, type GridRatings } from "@/components/media/episode-rating-grid";
 import { ScrollToEpisodeButton } from "@/components/media/scroll-to-episode";
 import { mediaService } from "@/services/media.service";
@@ -20,7 +21,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 }
 
 const SYNOPSIS_TTL_MS = 30 * 24 * 60 * 60 * 1000;
-const EMPTY_TTL_MS = 24 * 60 * 60 * 1000;
+// An empty synopsis waits a week before MDL is asked again, and an episode
+// not aired yet is not asked at all: there is nothing on its page to read.
+const EMPTY_TTL_MS = EMPTY_SYNOPSIS_TTL_MS;
 
 const NOW = new Date();
 function isReleased(airDate: string | null | undefined): boolean {
@@ -64,7 +67,9 @@ async function fetchMdlEpisodes(mdlSlug: string): Promise<MdlEpisodeItem[]> {
     });
     const cacheMap = new Map(cachedRows.map((r) => [r.episodeNumber, r]));
 
+    const unaired = new Set(episodeNumbers.filter((_, i) => isUnaired(listEpisodes[i].air_date)));
     const staleNumbers = episodeNumbers.filter((n) => {
+        if (unaired.has(n)) return false;
         const row = cacheMap.get(n);
         if (!row) return true;
         // Rows cached before reviewCount existed need one refresh to backfill it,
