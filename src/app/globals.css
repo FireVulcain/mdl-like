@@ -884,7 +884,7 @@
     }
 
     /* Status dropdown portal - fullwidth on mobile */
-    body > div[class*="fixed"][class*="z-9999"] {
+    body > .status-dropdown-portal {
         left: 1rem !important;
         right: 1rem !important;
         width: auto !important;
@@ -892,7 +892,7 @@
         border-radius: 1rem !important;
     }
 
-    body > div[class*="fixed"][class*="z-9999"] button {
+    body > .status-dropdown-portal button {
         padding: 0.875rem 1rem;
     }
 

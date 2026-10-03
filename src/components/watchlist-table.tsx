@@ -2400,7 +2400,7 @@ const ItemCard = memo(function ItemCard({
                         <>
                             <div className="fixed inset-0 z-9998" onClick={() => setShowStatusDropdown(false)} />
                             <div
-                                className="fixed z-9999 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
+                                className="status-dropdown-portal fixed z-9999 bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/50 p-2 min-w-44 animate-in fade-in zoom-in-95 duration-200"
                                 style={{
                                     top: `${dropdownPosition.top}px`,
                                     left: `${dropdownPosition.left}px`,
@@ -2434,13 +2434,16 @@ const ItemCard = memo(function ItemCard({
                 {showCompletion && typeof window !== "undefined" && createPortal(
                     <>
                         <div className="fixed inset-0 z-9998 bg-black/60 backdrop-blur-sm" onClick={() => setShowCompletion(false)} />
-                        <div className="fixed z-9999 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-panel border border-line-strong rounded-lg shadow-2xl shadow-black/60 p-5 animate-in fade-in zoom-in-95 duration-200">
+                        {/* Centred by a flex layer with a gutter, not by translate, so a
+                            narrow screen keeps the card whole. */}
+                        <div className="pointer-events-none fixed inset-0 z-9999 flex items-center justify-center p-4">
+                        <div className="pointer-events-auto w-full max-w-sm max-h-full overflow-y-auto bg-panel border border-line-strong rounded-lg shadow-2xl shadow-black/60 p-4 sm:p-5 animate-in fade-in zoom-in-95 duration-200">
                             <p className="text-[15px] font-semibold text-fg">That was the last episode</p>
                             <p className="text-[13px] text-fg-dim truncate mb-4">{item.title}</p>
 
-                            <div className="flex items-center justify-between mb-2">
+                            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mb-2">
                                 <span className="text-[13px] text-fg-dim">Score before you mark it completed</span>
-                                <div className="flex items-center gap-2">
+                                <div className="flex shrink-0 items-center gap-2 whitespace-nowrap">
                                     <button
                                         onClick={() =>
                                             setCompletionScore((prev) =>
@@ -2477,7 +2480,7 @@ const ItemCard = memo(function ItemCard({
                                                 return r === 10 ? 10 : r + half;
                                             })
                                         }
-                                        className={`cursor-pointer h-8 rounded-md text-[13px] tabular-nums transition-colors ${
+                                        className={`cursor-pointer h-8 min-w-0 rounded-md text-xs sm:text-[13px] tabular-nums transition-colors ${
                                             Math.floor(completionScore) === r && completionScore > 0
                                                 ? "bg-fg font-semibold text-page"
                                                 : completionScore > r
@@ -2519,6 +2522,7 @@ const ItemCard = memo(function ItemCard({
                                     {completionSaving ? "Saving…" : "Mark completed"}
                                 </button>
                             </div>
+                        </div>
                         </div>
                     </>,
                     document.body,
