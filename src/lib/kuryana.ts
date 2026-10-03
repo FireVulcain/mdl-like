@@ -322,6 +322,42 @@ async function kuryanaFetch<T>(path: string, timeoutMs = 8000, revalidate = 3600
     });
 }
 
+/*
+ * A cache that never answers with something older than it was asked for.
+ *
+ * Next's cache — fetch's revalidate and unstable_cache alike — is
+ * stale-while-revalidate: once an entry expires, the next reader still gets
+ * the old copy, whatever its age, and the fresh one only lands for the reader
+ * after. Fine for a cast or a photo gallery; wrong for comments, where the
+ * first visit of the day showed threads hours or days old and only F5 brought
+ * the new ones. In dev the cache fills and empties differently, which is why
+ * every fix of this looked right locally and not once deployed.
+ *
+ * So comments go through this instead: in process memory, younger than
+ * maxAgeMs answers at once, older waits for MDL. If MDL fails, the old copy
+ * beats an empty section. Lost on a redeploy, which only costs one fetch.
+ */
+const strictCache = new Map<string, { at: number; data: unknown }>();
+const STRICT_CACHE_ENTRIES = 300;
+
+async function kuryanaFetchStrict<T>(path: string, maxAgeMs: number, timeoutMs = 8000): Promise<T | null> {
+    if (process.env.SCRAPER_LOG === "off") return legacyFetch<T>(path, timeoutMs, Math.round(maxAgeMs / 1000));
+    const ctx = await captureScraperContext();
+    return scraperContextStorage.run(ctx, async () => {
+        const kept = strictCache.get(path);
+        if (kept && Date.now() - kept.at < maxAgeMs) {
+            recordScraperCacheHit(path, ctx);
+            return kept.data as T;
+        }
+        const result = await fetchLive<T>(path, timeoutMs);
+        if (!result.ok) return (kept?.data as T | undefined) ?? null;
+        strictCache.delete(path);
+        strictCache.set(path, { at: Date.now(), data: result.data });
+        if (strictCache.size > STRICT_CACHE_ENTRIES) strictCache.delete(strictCache.keys().next().value!);
+        return result.data;
+    });
+}
+
 /**
  * For the few places that call the scraper outside kuryanaFetch (the chart
  * inputs, the tag search route): a live read that is logged like any other.
@@ -644,15 +680,17 @@ function withAvatars(res: MdlThreadsResult | null): MdlThreadsResult | null {
     return res;
 }
 
-// Five minutes rather than none.
+// Five minutes rather than none, and strictly five (kuryanaFetchStrict).
 //
 // Uncached, this scraped MDL on every render of the page it sits at the bottom
 // of — including every season switch, which held the response stream open for
 // over a second to re-read comments nobody had asked to see again. A comment
-// thread that is five minutes old does not read as stale; a switch that waits
-// on one does.
+// thread that is five minutes old does not read as stale; one served hours old
+// because Next's cache answers stale first does.
+const THREADS_MAX_AGE_MS = 5 * 60 * 1000;
+
 export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThreadsResult | null> {
-    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, 8000, 300));
+    return withAvatars(await kuryanaFetchStrict<MdlThreadsResult>(`/id/${mdlId}/threads?page=${page}`, THREADS_MAX_AGE_MS));
 }
 
 // Same payload shape as a drama's threads, different path. The endpoint takes
@@ -661,7 +699,7 @@ export async function kuryanaGetThreads(mdlId: string, page = 1): Promise<MdlThr
 // Same window as a drama's threads above, and for the same reason — this one
 // sits at the bottom of a page whose own scrape is already the slow part.
 export async function kuryanaGetPersonThreads(slug: string, page = 1): Promise<MdlThreadsResult | null> {
-    return withAvatars(await kuryanaFetch<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, 8000, 300));
+    return withAvatars(await kuryanaFetchStrict<MdlThreadsResult>(`/people/${slug}/threads?page=${page}`, THREADS_MAX_AGE_MS));
 }
 
 export interface KuryanaDramaListItem {
