@@ -4,21 +4,13 @@ import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
 import { revalidatePath } from "next/cache";
 import { getCurrentUserId } from "@/lib/session";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlAiredRange } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
+import { normalizeMdlCast } from "@/lib/mdl-cast";
 
 
 
-function normalizeCast(members: KuryanaCastMember[]) {
-    return members.map((m) => ({
-        name: m.name,
-        profileImage: m.profile_image ?? "",
-        slug: m.slug,
-        characterName: m.role?.name ?? "",
-        roleType: m.role?.type ?? "Support Role",
-    }));
-}
 
 export async function backfillBackdrops() {
     const userId = await getCurrentUserId();
@@ -414,11 +406,7 @@ export async function refreshWatchlistMdlRatings(ids: string[]) {
         const directors = details.data.others?.directors ?? [];
         const screenwriters = details.data.others?.screenwriter ?? [];
         const cast = castResult?.data?.casts
-            ? {
-                  main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                  support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                  guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-              }
+            ? normalizeMdlCast(castResult.data.casts)
             : undefined;
 
         await prisma.cachedMdlData.update({

@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { mediaService } from "@/services/media.service";
-import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaCastMember, mdlAiredRange } from "@/lib/kuryana";
+import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { recordMdlRatingPoint } from "@/lib/mdl-rating-history";
 import { airedEndDate } from "@/lib/format-aired";
 import { purgeScraperLog } from "@/lib/scraper-log";
+import { normalizeMdlCast } from "@/lib/mdl-cast";
 
 // Vercel cron jobs use this header for authentication
 const CRON_SECRET = process.env.CRON_SECRET;
@@ -306,15 +307,6 @@ async function runBackfillAiring(): Promise<TaskResult> {
     }
 }
 
-function normalizeCast(members: KuryanaCastMember[]) {
-    return members.map((m) => ({
-        name: m.name,
-        profileImage: m.profile_image ?? "",
-        slug: m.slug,
-        characterName: m.role?.name ?? "",
-        roleType: m.role?.type ?? "Support Role",
-    }));
-}
 
 /**
  * A daily reading for every drama currently airing, whether or not anybody here
@@ -345,6 +337,14 @@ function normalizeCast(members: KuryanaCastMember[]) {
  */
 /** A "Plan to Watch" title that finished airing this long ago goes weekly, not daily. */
 const PLANNED_BACK_CATALOGUE_MS = 365 * 24 * 60 * 60 * 1000;
+
+/**
+ * A show that finished airing this long ago has the cast it will keep. The
+ * weekly pass stops re-reading it — on 2026-10-03 that was 99 of the pass's
+ * 236 calls. Three months, not less: MDL's members keep adding cast for a
+ * while after the finale, a cameo in the last episode first among them.
+ */
+const SETTLED_CAST_MS = 90 * 24 * 60 * 60 * 1000;
 
 /**
  * Whether today is this title's cast day. A cast barely moves once a show has
@@ -423,11 +423,22 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
             select: { tmdbExternalId: true, mdlSlug: true, aired: true, castJson: true },
         });
 
-        // Process priority first, then stale. The weekly pass always reads the
-        // cast; the daily one only on each title's cast day.
+        // Process priority first, then stale. The weekly pass reads the cast
+        // unless the show ended over three months ago; the daily one only on
+        // each title's cast day.
         const allRows = [
-            ...priorityRows.map((r) => ({ ...r, withCast: !r.castJson || isCastDay(r.mdlSlug) })),
-            ...staleRows.map((r) => ({ ...r, withCast: true })),
+            ...priorityRows.map((r) => ({
+                ...r,
+                withCast: !r.castJson || isCastDay(r.mdlSlug) || (typeof r.castJson === "object" && !Array.isArray(r.castJson) && !("cameo" in r.castJson)),
+            })),
+            ...staleRows.map((r) => {
+                const end = airedEndDate(r.aired);
+                const settled = !!end && Date.now() - end.getTime() > SETTLED_CAST_MS;
+                // A cast stored before cameos were kept has no "cameo" key: read
+                // it once more, whatever the show's age, to put them back.
+                const lacksCameo = !!r.castJson && typeof r.castJson === "object" && !Array.isArray(r.castJson) && !("cameo" in r.castJson);
+                return { ...r, withCast: !r.castJson || lacksCameo || !settled };
+            }),
         ];
 
         let count = 0;
@@ -454,11 +465,7 @@ async function runRefreshMdlRatings(cronStart: number): Promise<TaskResult> {
                     const directors = details.data.others?.directors ?? [];
                     const screenwriters = details.data.others?.screenwriter ?? [];
                     const cast = castResult?.data?.casts
-                        ? {
-                              main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                              support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                              guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-                          }
+                        ? normalizeMdlCast(castResult.data.casts)
                         : undefined;
 
                     await prisma.cachedMdlData.update({

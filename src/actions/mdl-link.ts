@@ -4,8 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { tmdb, TMDB_CONFIG, TMDBMedia } from "@/lib/tmdb";
 import { kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
-import { MdlCast, MdlCastMember } from "@/lib/mdl-data";
-import { KuryanaCastMember } from "@/lib/kuryana";
+import { MdlCast } from "@/lib/mdl-data";
+import { normalizeMdlCast } from "@/lib/mdl-cast";
 
 export interface TmdbSearchResult {
     externalId: string; // TMDB numeric ID as string
@@ -33,15 +33,6 @@ export async function searchTmdbDramas(query: string): Promise<TmdbSearchResult[
         }));
 }
 
-function normalizeCast(members: KuryanaCastMember[]): MdlCastMember[] {
-    return members.map((m) => ({
-        name: m.name,
-        profileImage: m.profile_image ?? "",
-        slug: m.slug,
-        characterName: m.role?.name ?? "",
-        roleType: m.role?.type ?? "Support Role",
-    }));
-}
 
 // Returns the native title (e.g. "환혼") extracted from Kuryana's sub_title field.
 // Used to pre-fill the TMDB search with a name that gives better results.
@@ -128,12 +119,7 @@ export async function createMdlSeasonLink(
         const tags = details?.data?.others?.tags ?? [];
 
         const cast: MdlCast | null = castResult?.data?.casts
-            ? {
-                  main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                  support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                  guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-                  cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
-              }
+            ? normalizeMdlCast(castResult.data.casts)
             : null;
 
         await prisma.mdlSeasonLink.upsert({
@@ -195,12 +181,7 @@ export async function createMdlLink(mdlSlug: string, tmdbExternalId: string): Pr
         const screenwriters = details?.data?.others?.screenwriter ?? [];
 
         const cast: MdlCast | null = castResult?.data?.casts
-            ? {
-                  main: normalizeCast(castResult.data.casts["Main Role"] ?? []),
-                  support: normalizeCast(castResult.data.casts["Support Role"] ?? []),
-                  guest: normalizeCast(castResult.data.casts["Guest Role"] ?? []),
-                  cameo: normalizeCast(castResult.data.casts["Cameo"] ?? []),
-              }
+            ? normalizeMdlCast(castResult.data.casts)
             : null;
 
         await prisma.cachedMdlData.upsert({

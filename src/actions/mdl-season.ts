@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { kuryanaSearch, kuryanaGetDetails, kuryanaGetCast, parseMdlWatchers, KuryanaDrama, mdlAiredRange } from "@/lib/kuryana";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { normalizeMdlCast } from "@/lib/mdl-cast";
 
 export async function searchMdlDramas(query: string): Promise<KuryanaDrama[]> {
     const result = await kuryanaSearch(query);
@@ -48,20 +49,7 @@ export async function setMdlSeasonSlug(
             const genres = details.data.others?.genres ?? [];
 
             const cast = castResult?.data?.casts
-                ? {
-                      main: (castResult.data.casts["Main Role"] ?? []).map((m) => ({
-                          name: m.name, profileImage: m.profile_image ?? "", slug: m.slug,
-                          characterName: m.role?.name ?? "", roleType: m.role?.type ?? "Support Role",
-                      })),
-                      support: (castResult.data.casts["Support Role"] ?? []).map((m) => ({
-                          name: m.name, profileImage: m.profile_image ?? "", slug: m.slug,
-                          characterName: m.role?.name ?? "", roleType: m.role?.type ?? "Support Role",
-                      })),
-                      guest: (castResult.data.casts["Guest Role"] ?? []).map((m) => ({
-                          name: m.name, profileImage: m.profile_image ?? "", slug: m.slug,
-                          characterName: m.role?.name ?? "", roleType: m.role?.type ?? "Support Role",
-                      })),
-                  }
+                ? normalizeMdlCast(castResult.data.casts)
                 : null;
 
             await prisma.mdlSeasonLink.update({
