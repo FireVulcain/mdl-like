@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Crosshair, ListChecks, Maximize2, Minimize2, Minus, Pencil, Plus, X } from "lucide-react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
+import { ArrowUpRight, Crosshair, ListChecks, Maximize2, Minimize2, Minus, Pencil, Plus, X } from "lucide-react";
 import {
     actorLine,
     ERA_LABEL,
@@ -199,6 +200,7 @@ export function CharacterMap({
     onPickLink,
     onEditLink,
     onEditPerson,
+    actorHrefs,
 }: {
     map: CharacterMapData;
     completed?: boolean;
@@ -226,6 +228,8 @@ export function CharacterMap({
     onEditLink?: (index: number) => void;
     /** an "Edit character" button on a person's panel, the same way */
     onEditPerson?: (id: string) => void;
+    /** actor name → their page on this site: a person's panel links each portrait there */
+    actorHrefs?: Record<string, string>;
 }) {
     const stops = useMemo(() => episodeStops(map), [map]);
     const episodes = stops.length ? stops[stops.length - 1][1] : 0;
@@ -1077,22 +1081,20 @@ export function CharacterMap({
                         reader came down here for — the chart above can only afford one. */}
                     <div className="flex items-start gap-x-5 gap-y-3">
                         <div className="flex flex-wrap items-start gap-x-5 gap-y-3">
-                            <span className="flex flex-col items-center gap-1.5 text-center">
+                            <ActorCard href={actorHrefs?.[selectedPerson.actor]} actor={selectedPerson.actor}>
                                 <Face person={selectedPerson} size="lg" />
                                 <span className="font-semibold text-fg">{selectedPerson.name}</span>
-                                <span className="font-mono text-[11px] text-fg-dim">{selectedPerson.actor}</span>
-                            </span>
+                            </ActorCard>
                             {/* The words that turn a row of strangers into one character:
                                 without them the second portrait reads as another person. */}
                             {selectedPerson.alsoPlayedBy && selectedPerson.alsoPlayedBy.length > 0 && (
                                 <span className="self-center text-xs text-fg-dim">Also played by</span>
                             )}
                             {(selectedPerson.alsoPlayedBy ?? []).map((a) => (
-                                <span key={`${a.name}-${a.era ?? ""}`} className="flex flex-col items-center gap-1.5 text-center">
+                                <ActorCard key={`${a.name}-${a.era ?? ""}`} href={actorHrefs?.[a.name]} actor={a.name}>
                                     <Face person={{ image: a.image ?? null, still: a.still, name: a.name, inCast: true }} size="lg" />
                                     {a.era && <span className="text-xs text-fg-soft">{ERA_LABEL[a.era]}</span>}
-                                    <span className="font-mono text-[11px] text-fg-dim">{a.name}</span>
-                                </span>
+                                </ActorCard>
                             ))}
                         </div>
                         <span className="ml-auto flex items-center gap-2 text-xs text-fg-dim">
@@ -1141,5 +1143,31 @@ export function CharacterMap({
                 </div>
             ) : null}
         </div>
+    );
+}
+
+/**
+ * A portrait in a person's panel with the actor's name under it, and the
+ * whole of it a link to the actor's page when MDL's cast knows them — the
+ * face is what the reader clicks. Someone the cast does not carry stays text.
+ */
+function ActorCard({ href, actor, children }: { href?: string; actor: string; children: ReactNode }) {
+    const cls = "flex flex-col items-center gap-1.5 text-center";
+    if (!href) {
+        return (
+            <span className={cls}>
+                {children}
+                <span className="font-mono text-[11px] text-fg-dim">{actor}</span>
+            </span>
+        );
+    }
+    return (
+        <Link href={href} className={`group ${cls}`} title={`${actor}'s page`}>
+            {children}
+            <span className="inline-flex items-center gap-0.5 font-mono text-[11px] text-fg-dim underline-offset-2 transition-colors group-hover:text-fg group-hover:underline">
+                {actor}
+                <ArrowUpRight className="h-3 w-3" />
+            </span>
+        </Link>
     );
 }

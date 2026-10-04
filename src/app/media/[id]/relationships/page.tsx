@@ -6,6 +6,8 @@ import { mediaService } from "@/services/media.service";
 import { mediaMetadata } from "@/lib/page-metadata";
 import { getCharacterMap, resolveMdlSlug, revealsOpened, watchState } from "@/lib/character-map-store";
 import { isAdminUser } from "@/lib/admin";
+import { kuryanaGetCast } from "@/lib/kuryana";
+import { mdlPersonHref } from "@/lib/person-links";
 import { RelationshipWorkspace } from "@/components/media/relationship-workspace";
 
 type Params = Promise<{ id: string }>;
@@ -35,8 +37,16 @@ export default async function RelationshipsPage({ params, searchParams }: { para
         isAdminUser(),
     ]);
     if (!media) notFound();
-    const [map, openedBefore] = await Promise.all([getCharacterMap(slug), revealsOpened(slug)]);
+    const [map, openedBefore, cast] = await Promise.all([getCharacterMap(slug), revealsOpened(slug), slug ? kuryanaGetCast(slug) : null]);
     if (!map || !slug) notFound();
+
+    // The chart keeps actors by name only; MDL's cast (the same cached call
+    // the media page makes) turns each name into their page on this site.
+    const actorHrefs: Record<string, string> = {};
+    for (const member of Object.values(cast?.data?.casts ?? {}).flat()) {
+        const href = member && mdlPersonHref(member.slug);
+        if (href) actorHrefs[member.name] ??= href;
+    }
 
     const back = selectedSeason > 1 ? `/media/${id}?season=${selectedSeason}` : `/media/${id}`;
 
@@ -66,7 +76,7 @@ export default async function RelationshipsPage({ params, searchParams }: { para
 
                 <div className="h-px bg-linear-to-r from-transparent via-line-strong to-transparent" />
 
-                <RelationshipWorkspace map={map} mdlSlug={slug} mediaId={id} canEdit={canEdit} completed={completed} progress={progress} openedBefore={openedBefore} />
+                <RelationshipWorkspace map={map} mdlSlug={slug} mediaId={id} canEdit={canEdit} completed={completed} progress={progress} openedBefore={openedBefore} actorHrefs={actorHrefs} />
             </div>
         </div>
     );

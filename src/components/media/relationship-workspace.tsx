@@ -28,6 +28,7 @@ export function RelationshipWorkspace({
     completed = false,
     progress = null,
     openedBefore = null,
+    actorHrefs,
 }: {
     map: CharacterMapData;
     mdlSlug: string;
@@ -37,6 +38,8 @@ export function RelationshipWorkspace({
     progress?: number | null;
     /** the spoiler door as this reader last left it on this chart, or null */
     openedBefore?: boolean | null;
+    /** actor name → their page on this site, from MDL's cast */
+    actorHrefs?: Record<string, string>;
 }) {
     // The chart being shown, and the server's own copy beside it: when a new
     // render brings a different one, it wins — the way React adjusts state on
@@ -122,6 +125,7 @@ export function RelationshipWorkspace({
                 onPickLink={setPicked}
                 onEditLink={canEdit ? (index) => setEditRequest({ index, at: Date.now() }) : undefined}
                 onEditPerson={canEdit ? openPerson : undefined}
+                actorHrefs={actorHrefs}
             />
             <div className="h-px bg-linear-to-r from-transparent via-line to-transparent" />
             <RelationshipManager
