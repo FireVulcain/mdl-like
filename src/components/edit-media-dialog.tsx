@@ -145,7 +145,7 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
             onOptimisticUpdate(item.id, {
                 status: formData.status,
                 progress: formData.progress,
-                score: formData.score,
+                score: formData.score || null,
                 notes: formData.notes,
                 ...imageUpdates,
             });
@@ -156,7 +156,8 @@ export function EditMediaDialog({ item, media, season, totalEp, open, onOpenChan
                 await updateUserMedia(item.id, {
                     status: formData.status,
                     progress: formData.progress,
-                    score: formData.score,
+                    // 0 is the rail's "nothing picked", not a score: send null
+                    score: formData.score || null,
                     notes: formData.notes,
                     ...imageUpdates,
                 });

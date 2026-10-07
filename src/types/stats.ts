@@ -7,6 +7,9 @@ export type DashboardStats = {
     currentStreak: number;
     genreBreakdown: { name: string; value: number }[];
     ratingDistribution: { rating: number; count: number }[];
+    // Mean of the exact scores (half points kept), unrated titles left out. Not
+    // derived from ratingDistribution, whose buckets round 8.5 up to 9.
+    avgScore: number | null;
     monthlyActivity: { month: string; count: number }[];
     // ISO timestamps of real (non-backfill) actions over the past year. Bucketing into
     // days happens client-side so it follows the viewer's calendar, not the server's UTC.
@@ -35,6 +38,7 @@ export const EMPTY_STATS: DashboardStats = {
     currentStreak: 0,
     genreBreakdown: [],
     ratingDistribution: [],
+    avgScore: null,
     monthlyActivity: [],
     activityTimestamps: [],
     topGenres: [],

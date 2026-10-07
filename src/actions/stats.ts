@@ -9,20 +9,20 @@ type UserMediaItem = Awaited<ReturnType<typeof prisma.userMedia.findMany>>[numbe
 // The watchlist header only shows watch time, completion rate and average score —
 // all derivable from the rows it already has. Kept separate from getDashboardStats
 // so the watchlist doesn't pay for the genre/theme/activity queries only /stats uses.
-export type HeaderStats = Pick<DashboardStats, "watchTimeMinutes" | "completionRate" | "ratingDistribution">;
+export type HeaderStats = Pick<DashboardStats, "watchTimeMinutes" | "completionRate" | "avgScore">;
 
 export async function getWatchlistHeaderStats(items: UserMediaItem[]): Promise<HeaderStats> {
     if (items.length === 0) {
         return {
             watchTimeMinutes: EMPTY_STATS.watchTimeMinutes,
             completionRate: EMPTY_STATS.completionRate,
-            ratingDistribution: EMPTY_STATS.ratingDistribution,
+            avgScore: EMPTY_STATS.avgScore,
         };
     }
     return {
         watchTimeMinutes: computeWatchTimeMinutes(items),
         completionRate: computeCompletionRate(items),
-        ratingDistribution: computeRatingDistribution(items),
+        avgScore: computeAvgScore(items),
     };
 }
 
@@ -42,10 +42,21 @@ function computeCompletionRate(items: UserMediaItem[]): number {
     return started > 0 ? (completed / started) * 100 : 0;
 }
 
+// The lowest score the editor offers is 0.5, so 0 means "not rated", not a rating:
+// counting it dragged the average down every time an unrated row was saved.
+function isRated(i: UserMediaItem): i is UserMediaItem & { score: number } {
+    return i.score !== null && i.score > 0;
+}
+
+function computeAvgScore(items: UserMediaItem[]): number | null {
+    const rated = items.filter(isRated);
+    return rated.length > 0 ? rated.reduce((acc, i) => acc + i.score, 0) / rated.length : null;
+}
+
 function computeRatingDistribution(items: UserMediaItem[]): { rating: number; count: number }[] {
     const ratings = Array.from({ length: 11 }, (_, i) => ({ rating: i, count: 0 }));
     items.forEach((i) => {
-        if (i.score !== null) {
+        if (isRated(i)) {
             const entry = ratings.find((r) => r.rating === Math.round(i.score!));
             if (entry) entry.count++;
         }
@@ -230,6 +241,7 @@ export async function getDashboardStats(existingItems?: UserMediaItem[]): Promis
         currentStreak: 0,
         genreBreakdown: genreData,
         ratingDistribution: ratings,
+        avgScore: computeAvgScore(items),
         monthlyActivity,
         activityTimestamps,
         topGenres,

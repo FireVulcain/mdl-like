@@ -3,7 +3,7 @@ import { type DashboardStats } from "@/types/stats";
 // Only the three figures this header renders — so the watchlist can compute them
 // from its rows instead of running the full dashboard's queries.
 interface WatchlistStatsProps {
-    stats: Pick<DashboardStats, "watchTimeMinutes" | "completionRate" | "ratingDistribution">;
+    stats: Pick<DashboardStats, "watchTimeMinutes" | "completionRate" | "avgScore">;
 }
 
 /**
@@ -20,13 +20,7 @@ interface WatchlistStatsProps {
  */
 export function WatchlistStats({ stats }: WatchlistStatsProps) {
     const watchTimeHours = Math.floor(stats.watchTimeMinutes / 60);
-    const avgScore =
-        stats.ratingDistribution.length > 0
-            ? (
-                  stats.ratingDistribution.reduce((sum, r) => sum + r.rating * r.count, 0) /
-                  stats.ratingDistribution.reduce((sum, r) => sum + r.count, 0)
-              ).toFixed(1)
-            : "0.0";
+    const avgScore = stats.avgScore != null ? stats.avgScore.toFixed(1) : "—";
 
     const figures = [
         { value: `${watchTimeHours}h`, label: "Watched" },

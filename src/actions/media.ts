@@ -354,7 +354,8 @@ export async function updateUserMedia(id: string, data: UpdateUserMediaData) {
             data: {
                 status,
                 progress,
-                score,
+                // The lowest real score is 0.5; a 0 is an unrated row and must stay null
+                score: score === 0 ? null : score,
                 notes,
                 poster,
                 backdrop,

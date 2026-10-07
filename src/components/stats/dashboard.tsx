@@ -128,9 +128,7 @@ interface StatsDashboardProps {
 export function StatsDashboard({ stats, continueWatching = [] }: StatsDashboardProps) {
     const watchTimeHours = Math.floor(stats.watchTimeMinutes / 60);
     const ratedItems = stats.ratingDistribution.reduce((s, r) => s + r.count, 0);
-    const avgRating = ratedItems > 0
-        ? (stats.ratingDistribution.reduce((s, r) => s + r.rating * r.count, 0) / ratedItems).toFixed(1)
-        : "—";
+    const avgRating = stats.avgScore != null ? stats.avgScore.toFixed(1) : "—";
 
     // Days are the viewer's, so the grid can only be built in the browser. During SSR
     // it renders empty (same structure) and fills in on hydration — no mismatch.
