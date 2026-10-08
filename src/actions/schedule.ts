@@ -145,21 +145,27 @@ async function fetchAndCacheEpisodes(
         episodeName: realEpisodeName(ep.name),
     }));
 
-    // TVmaze is the better source where it knows: real season numbers, episode
-    // titles. But on Asian dramas it lags — it stops at whatever has already
-    // aired, days behind MDL, which publishes the whole run in advance. Taking
-    // it alone froze a running show at the episode count of the day it was first
-    // cached, and taking MDL alone would lose the season numbers the calendar
-    // prints. So TVmaze holds what it knows and MDL adds the tail.
+    // TVmaze brings real season numbers and episode titles, which MDL lacks. Its
+    // dates are another matter: on Asian dramas it lags behind MDL, which
+    // publishes the whole run in advance, and sometimes guesses — Merry Berry
+    // Love came back as two episodes a week, every week, when it airs one. So
+    // on a single-season show MDL owns the dates: it overrides the date of every
+    // episode it lists and adds the ones TVmaze does not have yet. TVmaze keeps
+    // the season number and the titles.
     const tvSeasons = new Set(episodes.map((ep) => ep.seasonNumber));
-    const canAppendMdl = tvSeasons.size <= 1; // see fetchMdlEpisodes: MDL numbers per season
-    if (canAppendMdl) {
+    const canMergeMdl = tvSeasons.size <= 1; // see fetchMdlEpisodes: MDL numbers per season
+    if (canMergeMdl) {
         const season = tvSeasons.values().next().value ?? 1;
-        const highest = episodes.reduce((max, ep) => Math.max(max, ep.episodeNumber), 0);
+        const byNumber = new Map(episodes.map((ep) => [ep.episodeNumber, ep]));
         const mdlEpisodes = await fetchMdlEpisodes(externalId);
         for (const ep of mdlEpisodes) {
-            if (ep.episodeNumber <= highest) continue; // TVmaze already has it, and knows it better
-            episodes.push({ ...ep, seasonNumber: season });
+            const known = byNumber.get(ep.episodeNumber);
+            if (known) {
+                known.airDate = ep.airDate;
+                known.episodeName ??= ep.episodeName;
+            } else {
+                episodes.push({ ...ep, seasonNumber: season });
+            }
         }
     }
 
