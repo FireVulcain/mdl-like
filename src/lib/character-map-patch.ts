@@ -260,7 +260,7 @@ export function applyPatch(map: CharacterMapData, patch: ChartPatch, recaps: Rec
         compact: { ...map.compact, people: compactPeople, blocks },
     };
     if (ordered.length) {
-        next.recaps = recapsBlock(ordered);
+        next.recaps = recapsBlock(ordered, kept);
     }
 
     const groups = new Set(next.people.filter((p) => compactPeople.includes(p.id)).map((p) => p.group));

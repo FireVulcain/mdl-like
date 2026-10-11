@@ -287,7 +287,7 @@ export function validateChart(draft: Draft, inputs: ChartInputs): Validation {
     // KR / CN / JP.
     Object.assign(map, { native: draft.native || inputs.native, year: draft.year ?? inputs.year, country: countryCode(inputs.country) || draft.country });
     if (withRecaps) {
-        map.recaps = recapsBlock(inputs.recaps);
+        map.recaps = recapsBlock(inputs.recaps, sourced.links);
     }
     if (withRecaps) {
         const undated = links.filter((l) => l.since == null).length;

@@ -1,0 +1,687 @@
+{
+  "version": 2,
+  "mdlSlug": "790120-recharge-me",
+  "title": "Take Charge of My Heart",
+  "native": "나를 충전해줘",
+  "year": 2026,
+  "country": "KR",
+  "sources": [
+    "MDL cast (9 roles, 2 main)",
+    "MDL synopsis",
+    "ko.wikipedia 등장인물",
+    "thereviewgeek ep. 1",
+    "thereviewgeek ep. 2",
+    "thereviewgeek ep. 3",
+    "thereviewgeek ep. 4",
+    "thereviewgeek ep. 5",
+    "thereviewgeek ep. 6",
+    "thereviewgeek ep. 7",
+    "thereviewgeek ep. 8",
+    "thereviewgeek ep. 9",
+    "thereviewgeek ep. 10"
+  ],
+  "main": [
+    "horang",
+    "bobae"
+  ],
+  "recaps": {
+    "source": "thereviewgeek,dramabeans",
+    "episodes": 10,
+    "count": 11,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ]
+    ]
+  },
+  "people": [
+    {
+      "id": "horang",
+      "name": "Baek Ho Rang",
+      "actor": "Kim Young Kwang",
+      "image": "https://i.mydramalist.com/QwnLg_5m.jpg",
+      "still": "https://asianwiki.com/images/2/2f/Take_Charge_of_My_Heart-Kim_Young-Kwang1.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Third-generation TS Group heir who lives with an artificial heart battery that must be recharged."
+    },
+    {
+      "id": "bobae",
+      "name": "Na Bo Bae",
+      "actor": "Chae Soo Bin",
+      "image": "https://i.mydramalist.com/JBXVnw_5m.jpg",
+      "still": "https://asianwiki.com/images/3/33/Take_Charge_of_My_Heart-Chae_Soo-Bin.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Screenwriter struck by lightning as a child, leaving her charged with electricity that shocks anyone she touches."
+    },
+    {
+      "id": "eunho",
+      "name": "Ji Eun Ho",
+      "actor": "Cha Woo Min",
+      "image": "https://i.mydramalist.com/3o5gkd_5m.jpg",
+      "still": "https://asianwiki.com/images/4/40/Take_Charge_of_My_Heart-Cha-Woo-Min.jpg",
+      "group": "Industry",
+      "inCast": true,
+      "note": "Global actor who became one because of Bo Bae's first drama."
+    },
+    {
+      "id": "doyoon",
+      "name": "Choi Do Yun",
+      "actor": "Jung Jae Kwang",
+      "image": "https://i.mydramalist.com/mO1opk_5m.jpg",
+      "still": "https://asianwiki.com/images/c/c3/Take_Charge_of_My_Heart-Jeong_Jae-Kwang.jpg",
+      "group": "TS Group",
+      "inCast": true,
+      "note": "Ho Rang's cousin, scheming to take over TS Group."
+    },
+    {
+      "id": "seolhui",
+      "name": "Han Seol Hui",
+      "actor": "Shin Do Hyun",
+      "image": "https://i.mydramalist.com/qxx6z_5m.jpg",
+      "still": "https://asianwiki.com/images/c/ca/Take_Charge_of_My_Heart-Shin_Do-Hyun01.jpg",
+      "group": "TS Group",
+      "inCast": true,
+      "note": "Runs an advertising agency; pushed by Ho Rang's grandmother to marry him."
+    },
+    {
+      "id": "jaeho",
+      "name": "Yun Jae Ho",
+      "actor": "Heo Dong Won",
+      "image": "https://i.mydramalist.com/0gk2O_5m.jpg",
+      "still": "https://asianwiki.com/images/6/69/Take_Charge_of_My_Heart-Heo_Dong-Won1.jpg",
+      "group": "TS Group",
+      "inCast": true,
+      "note": "Ho Rang's secretary and chief of staff."
+    },
+    {
+      "id": "manseol",
+      "name": "Kong Man Seol",
+      "actor": "Kim Mi Kyung",
+      "image": "https://i.mydramalist.com/xw1DX_5m.jpg",
+      "still": "https://asianwiki.com/images/6/67/Take_Charge_of_my_Heart-Kim_Mi-Kyung.jpg",
+      "group": "TS Group",
+      "inCast": true,
+      "note": "TS Group's chairwoman and Ho Rang's grandmother."
+    },
+    {
+      "id": "mingyu",
+      "name": "Yeom Min Gyu",
+      "actor": "Yang Hyun Min",
+      "image": "https://i.mydramalist.com/VXpjrJ_5m.jpg",
+      "still": "https://asianwiki.com/images/9/97/Take_Charge_of_my_Heart-Yang_Hyun-Min.jpg",
+      "group": "Industry",
+      "inCast": true,
+      "note": "Bo Bae's drama director and an old college friend of Ho Rang."
+    },
+    {
+      "id": "seojeong",
+      "name": "Cho Seo Jeong",
+      "actor": "Kim Ah Young",
+      "image": "https://i.mydramalist.com/QJnB5W_5m.jpg",
+      "still": "https://asianwiki.com/images/d/d3/Take_Charge_of_my_Heart-Kim_A-Young.jpg",
+      "group": "Industry",
+      "inCast": true,
+      "note": "Bo Bae's best friend since school, one of the few who knows her secret."
+    },
+    {
+      "id": "gyeongjin",
+      "name": "Baek Gyeong Jin",
+      "actor": "",
+      "image": null,
+      "still": "https://asianwiki.com/images/b/b5/Take_Charge_of_My_Heart-Kim_Hye-Eun.jpg",
+      "group": "TS Group",
+      "inCast": false,
+      "note": "TS Group CEO, Man Seol's daughter and Do Yoon's mother."
+    },
+    {
+      "id": "jihye",
+      "name": "Ji Hye",
+      "actor": "",
+      "image": null,
+      "group": "Bo Bae's family",
+      "inCast": false,
+      "note": "Bo Bae's older sister, a taekwondo gold medalist."
+    },
+    {
+      "id": "yonggi",
+      "name": "Yong Gi",
+      "actor": "",
+      "image": null,
+      "group": "Bo Bae's family",
+      "inCast": false,
+      "note": "Bo Bae's older brother, who runs a judo dojo."
+    }
+  ],
+  "links": [
+    {
+      "from": "bobae",
+      "to": "horang",
+      "type": "bond",
+      "label": "Bo Bae agrees to a three-month contract to recharge Ho Rang's failing artificial heart with her body's static electricity.",
+      "short": "contract charger",
+      "evidence": "He finally relents and tells her to stay with him for three months, in return for whatever she wants.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 2,
+      "until": 7,
+      "wholeStory": false
+    },
+    {
+      "from": "horang",
+      "to": "bobae",
+      "type": "romance",
+      "label": "Ho Rang confesses that he's falling for Bo Bae and kisses her, beginning their romance.",
+      "short": "in love",
+      "evidence": "He reveals that he figured out the truth about her electrical powers a while ago. But it doesn't matter to him because he's falling for her. He leans down and kisses her.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 7
+    },
+    {
+      "from": "bobae",
+      "to": "horang",
+      "type": "bond",
+      "label": "Bo Bae leaves Ho Rang after doctors warn that her electricity could kill him if they touch again.",
+      "short": "forced apart",
+      "evidence": "If she touches him again, he could die.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "until": 10,
+      "wholeStory": false
+    },
+    {
+      "from": "horang",
+      "to": "bobae",
+      "type": "romance",
+      "label": "Someone pushes Ho Rang into Bo Bae in a crowd and their lips meet in an accidental first kiss.",
+      "short": "accidental first kiss",
+      "evidence": "someone pushes Ho-rang and he falls right onto Bo-bae! Their lips meet in a kiss and they quickly step back.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "horang",
+      "to": "bobae",
+      "type": "romance",
+      "label": "Ho Rang rushes to shield Bo Bae with his own shirt as shattering glass rains down around her at the airport.",
+      "short": "shielded her from glass",
+      "evidence": "Ho-rang arrives and shields her with his shirt.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "horang",
+      "to": "bobae",
+      "type": "romance",
+      "label": "Ho Rang confesses he's falling for Bo Bae and kisses her despite knowing the truth about her powers.",
+      "short": "confessed & kissed her",
+      "evidence": "he's falling for her. He leans down and kisses her, and all the lights around them come on.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
+    },
+    {
+      "from": "bobae",
+      "to": "horang",
+      "type": "bond",
+      "label": "Bo Bae gives Ho Rang CPR, and the jolt of her electricity revives him from cardiac arrest, though the surge drains her own powers.",
+      "short": "saved his life",
+      "evidence": "Bo-bae arrives and starts giving Ho-rang CPR... his battery goes up to 30% but Bo-bae passes out.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "doyoon",
+      "to": "horang",
+      "type": "family",
+      "label": "Do Yoon is Ho Rang's cousin and a rival for control of TS Group.",
+      "short": "cousins",
+      "evidence": "[Ho Rang's cousin]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "doyoon",
+      "to": "horang",
+      "type": "rivalry",
+      "label": "Do Yoon schemes against Ho Rang for the TS Group succession until his arrest.",
+      "short": "rivals for succession",
+      "evidence": "Do-yoon storms into Ho-rang's office and demands to know why he only got his father arrested.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 8,
+      "until": 10,
+      "wholeStory": false
+    },
+    {
+      "from": "doyoon",
+      "to": "horang",
+      "type": "rivalry",
+      "label": "Do Yoon has Ho Rang drugged and kidnaps Bo Bae and Secretary Yoon, intending for Ho Rang to die without a recharge.",
+      "short": "tried to kill him",
+      "evidence": "There was something in the drink Seol-hee gave Ho-rang... he implies that Ho-rang's life is in danger.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "doyoon",
+      "to": "horang",
+      "type": "family",
+      "label": "A flashback reveals young Do Yoon forcibly summoned their aunt and uncle to the hospital, setting off the crash that killed Ho Rang's parents.",
+      "short": "caused his parents' deaths",
+      "evidence": "An upset Do-yoon forcibly takes Ho-rang's phone and calls his aunt and uncle, telling them to come fast because Ho-rang is sick. That's when the crash happens.",
+      "source": "thereviewgeek ep. 10",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "kind": "event"
+    },
+    {
+      "from": "doyoon",
+      "to": "bobae",
+      "type": "rivalry",
+      "label": "Do Yoon has his man lock Bo Bae and Secretary Yoon in a temple to keep her from Ho Rang.",
+      "short": "kidnapped her",
+      "evidence": "Secretary Lee... has now kept Yoon and Bo-bae locked up in the temple, with guards placed outside.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "manseol",
+      "to": "horang",
+      "type": "family",
+      "label": "Man Seol is the TS Group chairwoman and Ho Rang's grandmother, grooming him to inherit the company.",
+      "short": "his grandmother",
+      "evidence": "Ho-rang visits his grandmother (the chairwoman of TS Group) and the rest of his family.",
+      "source": "thereviewgeek ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "manseol",
+      "to": "doyoon",
+      "type": "family",
+      "label": "Man Seol is also Do Yoon's grandmother, though she favors Ho Rang over him.",
+      "short": "his grandmother",
+      "evidence": null,
+      "source": null,
+      "reveal": false,
+      "inferred": true,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "gyeongjin",
+      "to": "manseol",
+      "type": "family",
+      "label": "Gyeong Jin is Chairwoman Man Seol's daughter, resentful of being treated as less capable than her late brother.",
+      "short": "her daughter",
+      "evidence": "The chairwoman accepts it, saying she thinks Gyeong-jin is useless while her late brother, Gyeong-seok, was far more capable.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 8
+    },
+    {
+      "from": "gyeongjin",
+      "to": "doyoon",
+      "type": "family",
+      "label": "Gyeong Jin is Do Yoon's mother, pushing him toward the TS Group succession.",
+      "short": "his mother",
+      "evidence": "Do-yoon calls his mother and says that Ho-rang definitely has no idea about it.",
+      "source": "thereviewgeek ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "jaeho",
+      "to": "horang",
+      "type": "work",
+      "label": "Yun Jae Ho serves as Ho Rang's secretary and chief of staff.",
+      "short": "his chief of staff",
+      "evidence": "[TS Group's Chief of Staff]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "jaeho",
+      "to": "horang",
+      "type": "bond",
+      "label": "Jae Ho and Ho Rang lost family on the same day years ago—Jae Ho's sister and Ho Rang's parents—and young Ho Rang's words after the funeral bound them together.",
+      "short": "bound by loss",
+      "evidence": "He also lost his parents on the same day Yoon lost his sister.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": 9,
+      "wholeStory": false
+    },
+    {
+      "from": "seolhui",
+      "to": "horang",
+      "type": "romance",
+      "label": "Seol Hui, long Ho Rang's first love, is pushed by his grandmother to marry him.",
+      "short": "his intended bride",
+      "evidence": "[Ho Rang's first love]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 8,
+      "wholeStory": false
+    },
+    {
+      "from": "seolhui",
+      "to": "bobae",
+      "type": "rivalry",
+      "label": "Seol Hui sees Bo Bae as a rival for Ho Rang and works to drive them apart.",
+      "short": "rival for Ho Rang",
+      "evidence": "That's when Seol-hee tells everyone that she and Ho-rang have set a date for their wedding.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 6,
+      "until": 9,
+      "wholeStory": false
+    },
+    {
+      "from": "seolhui",
+      "to": "doyoon",
+      "type": "bond",
+      "label": "Seol Hui and Do Yoon scheme together to keep Bo Bae away from Ho Rang, though she didn't know he meant to kill him.",
+      "short": "co-conspirators",
+      "evidence": "Seol-hee asks Do-yoon if he has one of his men keeping an eye on Ho-rang. She says they should kick off Plan B.",
+      "source": "thereviewgeek ep. 8",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 8,
+      "until": 9,
+      "wholeStory": false
+    },
+    {
+      "from": "seolhui",
+      "to": "horang",
+      "type": "rivalry",
+      "label": "Seol Hui hands Ho Rang a drugged drink at the anniversary party as part of Do Yoon's plan, not knowing he meant to kill him.",
+      "short": "drugged his drink",
+      "evidence": "There was something in the drink Seol-hee gave Ho-rang.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "seolhui",
+      "to": "bobae",
+      "type": "rivalry",
+      "label": "Seol Hui admits to Bo Bae that she leaked the scandal video, stole her drama slot, and had her brother run down, all to drive her away from Ho Rang.",
+      "short": "revealed she sabotaged her",
+      "evidence": "Seol-hee visits Bo-bae and reveals that she's been behind a lot of the misfortune in Bo-bae's life... she also admits he had Secretary Lee hit Yong-gi with a car.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    },
+    {
+      "from": "seolhui",
+      "to": "doyoon",
+      "type": "romance",
+      "label": "Seol Hui tells Do Yoon their wedding is off after learning what he's really capable of.",
+      "short": "called off wedding",
+      "evidence": "Seol-hee meets him at a wedding dress shop and makes it clear that the wedding is off.",
+      "source": "thereviewgeek ep. 10",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 10,
+      "kind": "event"
+    },
+    {
+      "from": "eunho",
+      "to": "bobae",
+      "type": "romance",
+      "label": "Eun Ho has loved Bo Bae since she wrote his first drama years ago, and confesses his feelings to her.",
+      "short": "in love with her",
+      "evidence": "He confesses his feelings to her and she reaches out to touch his face... he asks her to go out with him after they're both successful and she agrees.",
+      "source": "thereviewgeek ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 7,
+      "wholeStory": false
+    },
+    {
+      "from": "eunho",
+      "to": "bobae",
+      "type": "friend",
+      "label": "After she turns him down, Eun Ho remains Bo Bae's loyal friend, promising to always be her number one fan.",
+      "short": "her biggest fan",
+      "evidence": "he says he'll always be her number one fan.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7
+    },
+    {
+      "from": "eunho",
+      "to": "bobae",
+      "type": "romance",
+      "label": "Eun Ho tells Bo Bae he sees her as more than a friend and asks about her feelings.",
+      "short": "confessed his feelings",
+      "evidence": "he tells Bo-bae how he feels... he asks if his love will be enough.",
+      "source": "thereviewgeek ep. 6",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 6,
+      "kind": "event"
+    },
+    {
+      "from": "bobae",
+      "to": "eunho",
+      "type": "romance",
+      "label": "Bo Bae tells Eun Ho that her heart belongs to someone else.",
+      "short": "rejected him",
+      "evidence": "she admits that... her heart lies with someone else.",
+      "source": "thereviewgeek ep. 7",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 7,
+      "kind": "event"
+    },
+    {
+      "from": "mingyu",
+      "to": "bobae",
+      "type": "work",
+      "label": "Yeom Min Gyu directs Bo Bae's dramas and pushes her to finish her romance script.",
+      "short": "her director",
+      "evidence": "[Bo Bae's director]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "seojeong",
+      "to": "bobae",
+      "type": "friend",
+      "label": "Seo Jeong has been Bo Bae's best friend since school and knows her secret.",
+      "short": "best friend",
+      "evidence": "[Bo Bae's best friend]",
+      "source": "MDL cast",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "jihye",
+      "to": "bobae",
+      "type": "family",
+      "label": "Ji Hye is Bo Bae's older sister, a taekwondo champion who runs the family cafe.",
+      "short": "her sister",
+      "evidence": "living with her older sister, Ji-hye, who is a taekwondo gold medalist.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "yonggi",
+      "to": "bobae",
+      "type": "family",
+      "label": "Yong Gi is Bo Bae's older brother, who runs a judo dojo and gave up a job opportunity to stay near her.",
+      "short": "her brother",
+      "evidence": "her older brother, Yong-gi, who runs a judo dojo.",
+      "source": "thereviewgeek ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "doyoon",
+      "to": "yonggi",
+      "type": "rivalry",
+      "label": "Do Yoon has Secretary Lee run down Bo Bae's brother Yong Gi with a car to pressure her.",
+      "short": "had him run down",
+      "evidence": "she also admits he had Secretary Lee hit Yong-gi with a car.",
+      "source": "thereviewgeek ep. 9",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 9,
+      "kind": "event"
+    }
+  ],
+  "compact": {
+    "people": [
+      "horang",
+      "bobae",
+      "doyoon",
+      "seolhui",
+      "jaeho",
+      "manseol",
+      "gyeongjin",
+      "eunho",
+      "mingyu",
+      "seojeong",
+      "jihye",
+      "yonggi"
+    ],
+    "blocks": {
+      "Industry": [
+        2,
+        0
+      ],
+      "TS Group": [
+        0,
+        0
+      ],
+      "Bo Bae's family": [
+        2,
+        1
+      ]
+    },
+    "center": [
+      "horang",
+      "bobae"
+    ]
+  }
+}

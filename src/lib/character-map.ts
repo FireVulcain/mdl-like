@@ -225,6 +225,16 @@ export function episodeStops(map: Pick<CharacterMapData, "links" | "recaps">): [
     return Array.from({ length: end }, (_, i) => [i + 1, i + 1]);
 }
 
+/** Whether a link's source names this recap: its site and its exact episodes ("dramabeans ep. 3-4"). */
+function citesRecap(source: string | null | undefined, r: { source: string; fromEp: number; toEp: number }): boolean {
+    const s = (source ?? "").toLowerCase();
+    if (!s.includes(r.source.toLowerCase())) return false;
+    const m = s.match(/ep\.?\s*(\d+)(?:\s*[-–]\s*(\d+))?/);
+    if (!m) return false;
+    const lo = +m[1], hi = m[2] ? +m[2] : lo;
+    return lo === r.fromEp && hi === r.toEp;
+}
+
 /**
  * The chart's `recaps` block from the recaps a run read. One site's ranges
  * are its recaps', as they come. Two sites cut the story differently —
@@ -234,8 +244,13 @@ export function episodeStops(map: Pick<CharacterMapData, "links" | "recaps">): [
  * "Episode 2", the stop is 1–2, since a line from the pair's recap may be
  * about episode 2. Past the episodes the coarser site covers, the finer
  * one's stops come back.
+ *
+ * Only a recap some link cites can straddle, when the links are given: a
+ * Dramabeans review of episodes 1-10 read beside TheReviewGeek's ten, and
+ * cited by nothing, left Take Charge of My Heart one stop for the whole
+ * show while every link was dated to its episode.
  */
-export function recapsBlock(recaps: { source: string; fromEp: number; toEp: number }[]): NonNullable<CharacterMapData["recaps"]> {
+export function recapsBlock(recaps: { source: string; fromEp: number; toEp: number }[], links?: Pick<MapLink, "source">[]): NonNullable<CharacterMapData["recaps"]> {
     const ordered = [...recaps].sort((a, b) => a.fromEp - b.fromEp || a.toEp - b.toEp);
     const sources = [...new Set(ordered.map((r) => r.source))];
     const episodes = Math.max(0, ...ordered.map((r) => r.toEp));
@@ -243,7 +258,9 @@ export function recapsBlock(recaps: { source: string; fromEp: number; toEp: numb
     if (sources.length < 2) {
         ranges = ordered.map((r) => [r.fromEp, r.toEp]);
     } else {
-        const ends = [...new Set(ordered.map((r) => r.toEp))].sort((a, b) => a - b).filter((e) => !ordered.some((r) => r.fromEp <= e && e < r.toEp));
+        const cited = links ? ordered.filter((r) => links.some((l) => citesRecap(l.source, r))) : [];
+        const dating = cited.length ? cited : ordered;
+        const ends = [...new Set(ordered.map((r) => r.toEp))].sort((a, b) => a - b).filter((e) => !dating.some((r) => r.fromEp <= e && e < r.toEp));
         const first = Math.min(...ordered.map((r) => r.fromEp));
         ranges = ends.map((e, i) => [i === 0 ? first : ends[i - 1] + 1, e]);
     }
