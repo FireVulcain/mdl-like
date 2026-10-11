@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { getScheduleRefreshTargets, refreshScheduleChunk, refreshSingleShow } from "@/actions/schedule";
@@ -87,6 +87,25 @@ export function ScheduleCalendar({
         else url.searchParams.delete("show");
         window.history.replaceState({}, "", url);
     };
+
+    // Days whose "+N" chip has been opened, to show every show airing that day.
+    const [expandedDates, setExpandedDates] = useState<Set<string>>(new Set());
+    const toggleExpanded = (dateStr: string) => {
+        setExpandedDates((prev) => {
+            const next = new Set(prev);
+            if (next.has(dateStr)) next.delete(dateStr);
+            else next.add(dateStr);
+            return next;
+        });
+    };
+
+    // Which icon's tooltip is open, held here rather than left to Radix. The
+    // tooltips are hoverable (they carry buttons), so Radix keeps a grace area
+    // between an icon and its tooltip — and that area spans the neighbouring
+    // icons, where it refuses to open the next tooltip. Sliding from one icon to
+    // the next left the first one on screen. Owning the state lets entering an
+    // icon take over at once whenever some tooltip is already showing.
+    const [openTooltip, setOpenTooltip] = useState<string | null>(null);
 
     const applyShowFilter = (mediaId: string | null) => {
         setShowFilter(mediaId);
@@ -396,6 +415,7 @@ export function ScheduleCalendar({
                                 const isWeekend = colIndex === 5 || colIndex === 6;
                                 const isLastRow = i >= cells.length - 7;
                                 const isLastCol = colIndex === 6;
+                                const isExpanded = expandedDates.has(dateStr);
 
                                 return (
                                     <div
@@ -427,7 +447,7 @@ export function ScheduleCalendar({
                                         {/* Episode icons — one per show */}
                                         {dayGroups.length > 0 && (
                                             <div className="flex flex-wrap gap-1 mt-0.5 justify-center">
-                                                {dayGroups.slice(0, 4).map((showEps, gi) => {
+                                                {(isExpanded ? dayGroups : dayGroups.slice(0, 4)).map((showEps, gi) => {
                                                     const first = showEps[0];
                                                     // Plan-to-watch shows are optional viewing the user
                                                     // has only earmarked — when they are mixed in with
@@ -436,10 +456,20 @@ export function ScheduleCalendar({
                                                     // a dashed ring in place of the solid page-coloured
                                                     // one.
                                                     const isPlanToWatch = first.status === "Plan to Watch";
+                                                    const tooltipKey = `${dateStr}:${first.mediaId}`;
                                                     return (
-                                                        <Tooltip key={gi}>
+                                                        <Tooltip
+                                                            key={gi}
+                                                            open={openTooltip === tooltipKey}
+                                                            onOpenChange={(open) =>
+                                                                setOpenTooltip((prev) => (open ? tooltipKey : prev === tooltipKey ? null : prev))
+                                                            }
+                                                        >
                                                             <TooltipTrigger asChild>
-                                                                <Link href={`/media/${first.mediaId}?season=${first.seasonNumber}`}>
+                                                                <Link
+                                                                    href={`/media/${first.mediaId}?season=${first.seasonNumber}`}
+                                                                    onPointerEnter={() => setOpenTooltip((prev) => (prev ? tooltipKey : prev))}
+                                                                >
                                                                     <div className={`relative w-8 h-8 rounded-full overflow-hidden ring-2 hover:ring-primary/70 hover:scale-110 transition-all bg-surface-3 shrink-0 ${isPlanToWatch ? "ring-transparent outline-2 outline-dashed outline-offset-1 outline-fg-dim/60" : "ring-page"}`}>
                                                                         {first.poster ? (
                                                                             <Image unoptimized={true}
@@ -513,10 +543,17 @@ export function ScheduleCalendar({
                                                         </Tooltip>
                                                     );
                                                 })}
+                                                {/* The overflow chip opens the day in place rather
+                                                    than in a popover: the row just grows, and every
+                                                    icon keeps its own tooltip and link. */}
                                                 {dayGroups.length > 4 && (
-                                                    <div className="w-8 h-8 rounded-full bg-surface-4 border border-line-strong flex items-center justify-center text-[10px] font-bold text-fg-soft shrink-0">
-                                                        +{dayGroups.length - 4}
-                                                    </div>
+                                                    <button
+                                                        onClick={() => toggleExpanded(dateStr)}
+                                                        aria-label={isExpanded ? "Show fewer" : `Show ${dayGroups.length - 4} more`}
+                                                        className="cursor-pointer w-8 h-8 rounded-full bg-surface-4 border border-line-strong flex items-center justify-center text-[10px] font-bold text-fg-soft shrink-0 hover:text-fg hover:border-fg-dim transition-colors"
+                                                    >
+                                                        {isExpanded ? <ChevronUp className="h-3.5 w-3.5" /> : `+${dayGroups.length - 4}`}
+                                                    </button>
                                                 )}
                                             </div>
                                         )}
