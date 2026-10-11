@@ -662,12 +662,18 @@ export const mediaService = {
 
         try {
             // The live refresh runs this on every home visit, so each list says
-            // how long the fetch cache may answer for it. Top rated barely
-            // moves; airing and upcoming get the hour.
+            // how long the cache may answer for it. Top rated barely moves;
+            // airing and upcoming get the hour.
+            //
+            // Strictly that long. The result is written to CachedMdlTop below,
+            // and the default cache is stale-while-revalidate: after a few days
+            // away, the first visit got the days-old lists back as if fresh and
+            // saved them over a row that was newer — finished shows back in
+            // Airing Now, for every reader of the shared row.
             const [completedRes, ongoingRes, upcomingRes] = await Promise.all([
-                kuryanaGetTop(country, "completed", { tag_exclude: excludeTags }, 24 * 3600),
-                kuryanaGetTop(country, "ongoing", { sort: "popular", tag_exclude: excludeTags }, 3600),
-                kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }, 3600),
+                kuryanaGetTop(country, "completed", { tag_exclude: excludeTags }, 24 * 3600, true),
+                kuryanaGetTop(country, "ongoing", { sort: "popular", tag_exclude: excludeTags }, 3600, true),
+                kuryanaGetTop(country, "upcoming", { sort: "popular", tag_exclude: excludeTags }, 3600, true),
             ]);
 
             // A list that came back empty keeps what the row already held.

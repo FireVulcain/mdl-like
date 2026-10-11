@@ -917,6 +917,12 @@ export async function kuryanaGetTop(
     params?: KuryanaTopParams,
     /** Seconds the fetch cache may answer for this list; 0, the default, always scrapes. */
     revalidate = 0,
+    /**
+     * Never answer older than `revalidate` (kuryanaFetchStrict). For a caller
+     * that writes the result through to the database: the stale copy the
+     * default cache hands the first reader after expiry would be saved as new.
+     */
+    strict = false,
 ): Promise<KuryanaChineseTopResult | null> {
     const path = country === "all" ? "/top" : `/top/${country}`;
     const query = new URLSearchParams({ status });
@@ -930,5 +936,6 @@ export async function kuryanaGetTop(
     if (params?.rating_max) query.set("rating_max", String(params.rating_max));
     if (params?.tag) query.set("tag", String(params.tag));
     if (params?.tag_exclude) query.set("tag_exclude", String(params.tag_exclude));
+    if (strict && revalidate > 0) return kuryanaFetchStrict<KuryanaChineseTopResult>(`${path}?${query.toString()}`, revalidate * 1000);
     return kuryanaFetch<KuryanaChineseTopResult>(`${path}?${query.toString()}`, 8000, revalidate);
 }
