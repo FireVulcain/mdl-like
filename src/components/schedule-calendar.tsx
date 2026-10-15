@@ -15,6 +15,7 @@ export type { ScheduleEntry };
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const DAY_HEADERS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+const DAY_SLOTS = 4;
 const WEEKDAY_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 function toDateStr(year: number, month: number, day: number) {
@@ -408,6 +409,12 @@ export function ScheduleCalendar({
                                 const dateStr = toDateStr(cell.year, cell.month, cell.day);
                                 // Group by show: one icon per show per day
                                 const dayGroups = byDate.has(dateStr) ? [...byDate.get(dateStr)!.values()] : [];
+                                // One row of four slots. A day that overflows gives
+                                // its last slot to the "+N" chip, so the chip sits on
+                                // the same row instead of wrapping onto a second one
+                                // that could just as well have held the icon it hides.
+                                const overflows = dayGroups.length > DAY_SLOTS;
+                                const hidden = overflows ? dayGroups.length - (DAY_SLOTS - 1) : 0;
                                 const isToday = dateStr === todayStr;
                                 const isHighlighted = initialDate ? dateStr === initialDate : false;
                                 const isPast = dateStr < todayStr;
@@ -447,7 +454,7 @@ export function ScheduleCalendar({
                                         {/* Episode icons — one per show */}
                                         {dayGroups.length > 0 && (
                                             <div className="flex flex-wrap gap-1 mt-0.5 justify-center">
-                                                {(isExpanded ? dayGroups : dayGroups.slice(0, 4)).map((showEps, gi) => {
+                                                {(isExpanded || !overflows ? dayGroups : dayGroups.slice(0, DAY_SLOTS - 1)).map((showEps, gi) => {
                                                     const first = showEps[0];
                                                     // Plan-to-watch shows are optional viewing the user
                                                     // has only earmarked — when they are mixed in with
@@ -546,13 +553,13 @@ export function ScheduleCalendar({
                                                 {/* The overflow chip opens the day in place rather
                                                     than in a popover: the row just grows, and every
                                                     icon keeps its own tooltip and link. */}
-                                                {dayGroups.length > 4 && (
+                                                {overflows && (
                                                     <button
                                                         onClick={() => toggleExpanded(dateStr)}
-                                                        aria-label={isExpanded ? "Show fewer" : `Show ${dayGroups.length - 4} more`}
+                                                        aria-label={isExpanded ? "Show fewer" : `Show ${hidden} more`}
                                                         className="cursor-pointer w-8 h-8 rounded-full bg-surface-4 border border-line-strong flex items-center justify-center text-[10px] font-bold text-fg-soft shrink-0 hover:text-fg hover:border-fg-dim transition-colors"
                                                     >
-                                                        {isExpanded ? <ChevronUp className="h-3.5 w-3.5" /> : `+${dayGroups.length - 4}`}
+                                                        {isExpanded ? <ChevronUp className="h-3.5 w-3.5" /> : `+${hidden}`}
                                                     </button>
                                                 )}
                                             </div>
