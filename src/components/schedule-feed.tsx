@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Bookmark, CalendarDays, Check, RefreshCw, SlidersHorizontal } from "lucide-react";
+import { Bookmark, CalendarDays, Check, ChevronUp, RefreshCw, SlidersHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { getScheduleRefreshTargets, refreshScheduleChunk, refreshSingleShow } from "@/actions/schedule";
@@ -28,6 +28,9 @@ const ASIAN_COUNTRIES = ["KR", "CN", "JP", "TW", "TH", "HK"];
 // How long an episode counts as "airing now" after its start.
 const LIVE_WINDOW_MS = 70 * 60_000;
 const REFRESH_CHUNK = 4;
+// Where the day strip sticks: just under the site header once it has shrunk
+// on scroll, the same line the media page's section nav sticks to.
+const STICKY_TOP = 64;
 
 function toDateStr(d: Date) {
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -48,6 +51,13 @@ function weekdayOf(dateStr: string) {
 function longDate(dateStr: string) {
     const [y, m, d] = dateStr.split("-").map(Number);
     return `${MONTH_NAMES[m - 1]} ${d}, ${y}`;
+}
+/** "October 12 – 18, 2026", naming the second month only when it changes. */
+function weekRange(from: string, to: string) {
+    const [fy, fm, fd] = from.split("-").map(Number);
+    const [ty, tm, td] = to.split("-").map(Number);
+    if (fy !== ty) return `${longDate(from)} – ${longDate(to)}`;
+    return `${MONTH_NAMES[fm - 1]} ${fd} – ${fm === tm ? "" : `${MONTH_NAMES[tm - 1]} `}${td}, ${ty}`;
 }
 
 /** One show's episodes on one day. */
@@ -93,10 +103,11 @@ export function ScheduleFeed({
     const [asianOnly, setAsianOnly] = useState(initialPrefs?.calendarAsianOnly ?? false);
     const [includePlanToWatch, setIncludePlanToWatch] = useState(initialPrefs?.calendarIncludePlanToWatch ?? true);
     const [showEmpty, setShowEmpty] = useState(false);
-    // Days load in both directions as the box is scrolled: a week back at a
-    // time above today, two weeks ahead at a time below. The box opens on
-    // today, so the past is reached by scrolling up.
-    const [pastDays, setPastDays] = useState(linkedOffset < -7 ? -linkedOffset : 7);
+    // The page opens at its top with today as the first day, two weeks ahead
+    // loading at a time as it is scrolled down. The past is opened by hand, a
+    // week at a time, from a button above today: loading it on its own as the
+    // page neared the top kept the page's title forever out of reach.
+    const [pastDays, setPastDays] = useState(linkedOffset < 0 ? -linkedOffset : 0);
     const [span, setSpan] = useState(Math.max(14, linkedOffset + 1));
     const [showFilter, setShowFilter] = useState<string | null>(initialShow ?? null);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -164,31 +175,20 @@ export function ScheduleFeed({
     // day has no section unless empty days are shown.
     const dayNode = (d: string) =>
         document.getElementById(`day-${d}`) ?? [...document.querySelectorAll<HTMLElement>("[id^='day-']")].find((n) => n.id.slice(4) >= d);
-    // The days scroll inside their own box, sized to the rest of the window,
-    // so the page itself stays put with its header and filters in view.
-    const scroller = useRef<HTMLDivElement>(null);
-    const [scrollerHeight, setScrollerHeight] = useState<number | null>(null);
-    useEffect(() => {
-        const measure = () => {
-            const el = scroller.current;
-            if (!el) return;
-            const top = el.getBoundingClientRect().top + window.scrollY;
-            setScrollerHeight(Math.max(420, window.innerHeight - top - 24));
-        };
-        const frame = requestAnimationFrame(measure);
-        window.addEventListener("resize", measure);
-        return () => {
-            cancelAnimationFrame(frame);
-            window.removeEventListener("resize", measure);
-        };
-    }, [showFilter]);
+    // The days scroll with the page; only the strip above them sticks, under
+    // the site header. A day "starts" where the strip ends.
+    const list = useRef<HTMLDivElement>(null);
+    const strip = useRef<HTMLElement>(null);
+    const stripBox = useRef<HTMLDivElement>(null);
+    const [stuck, setStuck] = useState(false);
+    const stripBottom = () => STICKY_TOP + (stripBox.current?.offsetHeight ?? 0);
 
     const scrollToDay = (d: string, smooth: boolean) => {
-        const box = scroller.current;
         const node = dayNode(d);
-        if (!box || !node) return;
+        if (!node) return;
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        box.scrollTo({ top: node.offsetTop - 4, behavior: smooth && !reduce ? "smooth" : "auto" });
+        const top = node.getBoundingClientRect().top + window.scrollY - stripBottom() + 4;
+        window.scrollTo({ top, behavior: smooth && !reduce ? "smooth" : "auto" });
     };
     const [pendingJump, setPendingJump] = useState<string | null>(null);
     const jumpTo = (d: string) => {
@@ -208,19 +208,18 @@ export function ScheduleFeed({
         // eslint-disable-next-line react-hooks/exhaustive-deps -- runs once the new days are rendered
     }, [pendingJump, span]);
 
-    // Open the box on today — or on the linked day, arriving from a countdown
-    // — with the past week above it, reached by scrolling up inside the box.
+    // Arriving from a countdown, open the page on the linked day.
     useEffect(() => {
-        const frame = requestAnimationFrame(() => scrollToDay(linked ?? toDateStr(new Date()), false));
+        if (!linked) return;
+        const frame = requestAnimationFrame(() => scrollToDay(linked, false));
         return () => cancelAnimationFrame(frame);
         // eslint-disable-next-line react-hooks/exhaustive-deps -- once, on mount
     }, []);
 
     // The strip scrolls sideways to keep the active chip at its start, the way
-    // the box keeps the active day at its top: the past week's chips sit off
-    // to the left, out of view until the box is scrolled up into it (or the
-    // strip is dragged). The first placement is instant, the rest glide.
-    const strip = useRef<HTMLElement>(null);
+    // the page keeps the active day at its top: opened past days' chips sit
+    // off to the left, out of view until the page is scrolled up into them
+    // (or the strip is dragged). The first placement is instant, the rest glide.
     const stripPlaced = useRef(false);
     useEffect(() => {
         const bar = strip.current;
@@ -231,53 +230,32 @@ export function ScheduleFeed({
         stripPlaced.current = true;
     }, [activeDay, linked, todayStr]);
 
-    // Prepending a week above today would push everything in the box (and
-    // in the strip) down by its height. The positions are taken just before
-    // the load and restored right after it, before paint, so the view stays
-    // on the same day.
-    const prepend = useRef<{ boxHeight: number; boxTop: number; stripWidth: number; stripLeft: number } | null>(null);
-    useLayoutEffect(() => {
-        const was = prepend.current;
-        const box = scroller.current;
-        const bar = strip.current;
-        if (!was || !box || !bar) return;
-        box.scrollTop = was.boxTop + (box.scrollHeight - was.boxHeight);
-        bar.scrollLeft = was.stripLeft + (bar.scrollWidth - was.stripWidth);
-        prepend.current = null;
-    }, [pastDays]);
-
-    // The strip follows the box's scroll: the active day is the last one whose
-    // section has started at the top of the box. Read from positions rather
+    // The strip follows the page's scroll: the active day is the last one
+    // whose section has started under the strip. Read from positions rather
     // than an IntersectionObserver, which also counted the few pixels of the
     // previous day still showing above it.
     useEffect(() => {
-        const box = scroller.current;
+        const box = list.current;
         if (!box) return;
         const nodes = [...box.querySelectorAll<HTMLElement>("[id^='day-']")];
         if (!nodes.length) return;
         let frame = 0;
         const update = () => {
             frame = 0;
-            // Near either end, load the next stretch of days.
-            if (box.scrollTop < 400 && canLoadPast && !prepend.current && strip.current) {
-                prepend.current = {
-                    boxHeight: box.scrollHeight,
-                    boxTop: box.scrollTop,
-                    stripWidth: strip.current.scrollWidth,
-                    stripLeft: strip.current.scrollLeft,
-                };
-                setPastDays((p) => p + 7);
-            }
-            if (box.scrollTop + box.clientHeight > box.scrollHeight - 600 && canLoadMore) setSpan((n) => n + 14);
-            // The last days can never reach the top of the box: at the
-            // bottom, the last one is the active day.
-            if (box.scrollTop + box.clientHeight >= box.scrollHeight - 4) {
+            if (stripBox.current) setStuck(stripBox.current.getBoundingClientRect().top <= STICKY_TOP + 1);
+            const line = stripBottom();
+            const rect = box.getBoundingClientRect();
+            // Near the end of the days, load the next stretch of them.
+            if (rect.bottom < window.innerHeight + 600 && canLoadMore) setSpan((n) => n + 14);
+            // The last days can never reach the strip: at the bottom of the
+            // page, the last one is the active day.
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
                 setActiveDay(nodes[nodes.length - 1].id.slice(4));
                 return;
             }
             let current = nodes[0];
             for (const n of nodes) {
-                if (n.offsetTop <= box.scrollTop + 24) current = n;
+                if (n.getBoundingClientRect().top <= line + 24) current = n;
                 else break;
             }
             setActiveDay(current.id.slice(4));
@@ -285,13 +263,13 @@ export function ScheduleFeed({
         const onScroll = () => {
             if (!frame) frame = requestAnimationFrame(update);
         };
-        box.addEventListener("scroll", onScroll, { passive: true });
-        // Also once now: a short stretch may not fill the box, or leave too
+        window.addEventListener("scroll", onScroll, { passive: true });
+        // Also once now: a short stretch may not fill the page, or leave too
         // little above today to scroll up into.
         onScroll();
         return () => {
             cancelAnimationFrame(frame);
-            box.removeEventListener("scroll", onScroll);
+            window.removeEventListener("scroll", onScroll);
         };
     }, [span, pastDays, showEmpty, includePlanToWatch, asianOnly, showFilter, canLoadPast, canLoadMore]);
 
@@ -365,6 +343,7 @@ export function ScheduleFeed({
     const weekShows = new Set(nextWeek.flatMap((d) => (byDate.get(d) ?? []).map((a) => a.first.mediaId))).size;
     const weekEpisodes = nextWeek.reduce((n, d) => n + episodesOn(d), 0);
     const filtersOn = asianOnly || !includePlanToWatch || showEmpty;
+    const pastWeekEpisodes = Array.from({ length: 7 }, (_, i) => addDays(todayStr, -pastDays - 7 + i)).reduce((n, d) => n + episodesOn(d), 0);
 
     const posterCard = (a: Airing) => {
         const t = formatTime(a.time);
@@ -433,7 +412,7 @@ export function ScheduleFeed({
 
     return (
         <TooltipProvider delayDuration={300}>
-            <div className="min-h-screen">
+            <div className="min-h-screen [overflow-anchor:none]">
                 <div className="container mx-auto max-w-6xl space-y-5 px-4 py-8">
                     {/* Header */}
                     <div className="flex flex-wrap items-center justify-between gap-3">
@@ -535,36 +514,56 @@ export function ScheduleFeed({
                         </div>
                     )}
 
-                    {/* Day strip: jumps the box below to a day. Dragged sideways with
-                        the mouse like the rails on the home page. */}
-                    <DragScroll>
-                        <nav ref={strip} data-drag-scroll-viewport aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
-                            {stripDays.map((d) => {
-                                    const c = episodesOn(d);
-                                    const active = (activeDay ?? linked ?? todayStr) === d;
-                                    return (
-                                        <button
-                                            key={d}
-                                            data-day={d}
-                                            onClick={() => jumpTo(d)}
-                                            aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
-                                            className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${!c ? "opacity-45" : d < todayStr ? "opacity-60" : ""}`}
-                                        >
-                                            <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : d.endsWith("-01") ? <b className="font-semibold text-fg-soft">{MONTH_NAMES[Number(d.slice(5, 7)) - 1].slice(0, 3)}</b> : WEEKDAY_SHORT[weekdayOf(d)]}</span>
-                                            <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>
-                                            <span className="text-[11px] tabular-nums text-fg-dim">{c ? `${c} ep${c > 1 ? "s" : ""}` : "—"}</span>
-                                        </button>
-                                    );
-                            })}
-                        </nav>
-                    </DragScroll>
+                    {/* Day strip: jumps the page to a day. Dragged sideways with the
+                        mouse like the rails on the home page. Sticks under the
+                        site header, solid only once stuck, like the media nav. */}
+                    <div ref={stripBox} className={`sticky z-20 -mx-2 px-2 transition-colors ${stuck ? "bg-app" : "bg-transparent"}`} style={{ top: STICKY_TOP }}>
+                        <DragScroll>
+                            <nav ref={strip} data-drag-scroll-viewport aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
+                                {stripDays.map((d) => {
+                                        const c = episodesOn(d);
+                                        const active = (activeDay ?? linked ?? todayStr) === d;
+                                        return (
+                                            <button
+                                                key={d}
+                                                data-day={d}
+                                                onClick={() => jumpTo(d)}
+                                                aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
+                                                className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${!c ? "opacity-45" : d < todayStr ? "opacity-60" : ""}`}
+                                            >
+                                                <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : d.endsWith("-01") ? <b className="font-semibold text-fg-soft">{MONTH_NAMES[Number(d.slice(5, 7)) - 1].slice(0, 3)}</b> : WEEKDAY_SHORT[weekdayOf(d)]}</span>
+                                                <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>
+                                                <span className="text-[11px] tabular-nums text-fg-dim">{c ? `${c} ep${c > 1 ? "s" : ""}` : "—"}</span>
+                                            </button>
+                                        );
+                                })}
+                            </nav>
+                        </DragScroll>
+                    </div>
 
-                    {/* Days, in their own scroll box */}
-                    <div
-                        ref={scroller}
-                        style={{ height: scrollerHeight ?? undefined }}
-                        className="relative -mx-2 -mt-5 flex h-[calc(100dvh-22rem)] min-h-105 flex-col overflow-y-auto overscroll-contain px-2 pb-6 mask-[linear-gradient(to_bottom,transparent,black_16px,black_calc(100%-32px),transparent)]"
-                    >
+                    {/* Days, scrolled by the page */}
+                    <div ref={list} className="-mt-5 flex flex-col pb-6">
+                        {/* Opens the week before the earliest day shown, set like a
+                            day's own heading — its dates above, its count to the
+                            right — so it reads as part of the list rather than a
+                            control bolted onto it. The days appear under it while
+                            the view stays put: the feed's root turns scroll
+                            anchoring off, which would otherwise hold today in
+                            place and jump. */}
+                        {canLoadPast && entries.length > 0 && (
+                            <button onClick={() => setPastDays((p) => p + 7)} className="group/past cursor-pointer pt-7 text-left">
+                                <span className="flex items-baseline justify-between gap-3">
+                                    <span className="text-[13px] text-fg-muted">{weekRange(addDays(todayStr, -pastDays - 7), addDays(todayStr, -pastDays - 1))}</span>
+                                    <span className="text-[13px] tabular-nums text-fg-dim">
+                                        {pastWeekEpisodes} episode{pastWeekEpisodes !== 1 ? "s" : ""}
+                                    </span>
+                                </span>
+                                <span className="mt-0.5 flex items-center gap-1.5 text-[20px] font-bold tracking-tight text-fg-soft transition-colors group-hover/past:text-fg">
+                                    <ChevronUp className="h-5 w-5 transition-transform group-hover/past:-translate-y-0.5" />
+                                    {pastDays === 0 ? "Show the past week" : "Show the week before"}
+                                </span>
+                            </button>
+                        )}
                         {entries.length === 0 ? (
                             <div className="py-16 text-center text-fg-dim">
                                 <CalendarDays className="mx-auto mb-3 h-12 w-12 opacity-30" />
