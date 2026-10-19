@@ -91,7 +91,9 @@ export function ScheduleFeed({
     const [asianOnly, setAsianOnly] = useState(initialPrefs?.calendarAsianOnly ?? false);
     const [includePlanToWatch, setIncludePlanToWatch] = useState(initialPrefs?.calendarIncludePlanToWatch ?? true);
     const [showEmpty, setShowEmpty] = useState(false);
-    const [pastDays, setPastDays] = useState(linkedOffset < 0 ? Math.min(-linkedOffset, 60) : 0);
+    // The last week is always there, above today: the page opens scrolled to
+    // today, and scrolling up is how you look back.
+    const pastDays = linkedOffset < -7 ? Math.min(-linkedOffset, 60) : 7;
     const [span, setSpan] = useState(Math.max(14, linkedOffset + 1));
     const [showFilter, setShowFilter] = useState<string | null>(initialShow ?? null);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -142,16 +144,27 @@ export function ScheduleFeed({
     const relative = (d: string) => (d === todayStr ? "Today" : d === addDays(todayStr, 1) ? "Tomorrow" : d === addDays(todayStr, -1) ? "Yesterday" : null);
     const mediaHref = (e: ScheduleEntry) => `/media/${e.mediaId}?season=${e.seasonNumber}`;
 
+    // The day itself, or the first day after it with anything on — a quiet
+    // day has no section unless empty days are shown.
+    const dayNode = (d: string) =>
+        document.getElementById(`day-${d}`) ?? [...document.querySelectorAll<HTMLElement>("[id^='day-']")].find((n) => n.id.slice(4) >= d);
     const jumpTo = (d: string) => {
-        const el = document.getElementById(`day-${d}`) ?? [...document.querySelectorAll<HTMLElement>("[id^='day-']")].find((n) => n.id.slice(4) >= d);
-        el?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+        dayNode(d)?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     };
 
-    // Arriving from a countdown's link: open on that day.
+    // Open on today — or on the linked day, arriving from a countdown — with
+    // the past week above it, out of view until scrolled up to.
+    // The browser's own scroll restoration is turned off here: on a reload it
+    // lands after this and puts the page back wherever it was, usually in the
+    // past week.
     useEffect(() => {
-        if (!linked) return;
-        const t = setTimeout(() => document.getElementById(`day-${linked}`)?.scrollIntoView({ block: "start" }), 50);
-        return () => clearTimeout(t);
+        const previous = window.history.scrollRestoration;
+        window.history.scrollRestoration = "manual";
+        const frame = requestAnimationFrame(() => dayNode(linked ?? toDateStr(new Date()))?.scrollIntoView({ block: "start" }));
+        return () => {
+            cancelAnimationFrame(frame);
+            window.history.scrollRestoration = previous;
+        };
     }, [linked]);
 
     // The strip follows the scroll: the day nearest the top is the active chip.
@@ -162,7 +175,7 @@ export function ScheduleFeed({
                 const visible = items.filter((x) => x.isIntersecting).map((x) => (x.target as HTMLElement).id.slice(4)).sort();
                 if (visible.length) setActiveDay(visible[0]);
             },
-            { rootMargin: "-110px 0px -60% 0px" },
+            { rootMargin: "-170px 0px -55% 0px" },
         );
         nodes.forEach((n) => observer.observe(n));
         return () => observer.disconnect();
@@ -371,10 +384,11 @@ export function ScheduleFeed({
                     </div>
                 )}
 
-                {/* Day strip, pinned while scrolling */}
+                {/* Day strip, pinned while scrolling — just under the site header,
+                    which is fixed and about 76px tall once the page has scrolled. */}
                 <nav
                     aria-label="Jump to a day"
-                    className="sticky top-0 z-20 -mx-2 flex gap-1.5 overflow-x-auto border-b border-line bg-page/90 px-2 py-2 backdrop-blur-md [scrollbar-width:none]"
+                    className="sticky top-19 z-20 -mx-2 flex gap-1.5 overflow-x-auto border-b border-line bg-page/90 px-2 py-2 backdrop-blur-md [scrollbar-width:none]"
                 >
                     {days
                         .filter((d) => d >= todayStr)
@@ -398,15 +412,6 @@ export function ScheduleFeed({
 
                 {/* Days */}
                 <div className="flex flex-col">
-                    {pastDays < 7 && (
-                        <button
-                            onClick={() => setPastDays(7)}
-                            className="cursor-pointer self-start rounded-lg border border-line-strong px-3 py-2 text-sm text-fg-soft transition-colors hover:bg-surface-2 hover:text-fg"
-                        >
-                            Show the last 7 days
-                        </button>
-                    )}
-
                     {entries.length === 0 ? (
                         <div className="py-16 text-center text-fg-dim">
                             <CalendarDays className="mx-auto mb-3 h-12 w-12 opacity-30" />
@@ -422,7 +427,7 @@ export function ScheduleFeed({
                             const rel = relative(d);
                             if (list.length === 0)
                                 return (
-                                    <div key={d} id={`day-${d}`} className="flex scroll-mt-28 items-baseline gap-2.5 pt-4 text-[13px] text-fg-dim">
+                                    <div key={d} id={`day-${d}`} className="flex scroll-mt-40 items-baseline gap-2.5 pt-4 text-[13px] text-fg-dim">
                                         <b className="font-semibold text-fg-muted">
                                             {WEEKDAY_LONG[weekdayOf(d)]} {Number(d.slice(8))}
                                         </b>
@@ -430,7 +435,7 @@ export function ScheduleFeed({
                                     </div>
                                 );
                             return (
-                                <section key={d} id={`day-${d}`} className={`scroll-mt-28 pt-7 ${d < todayStr ? "opacity-60" : ""}`}>
+                                <section key={d} id={`day-${d}`} className={`scroll-mt-40 pt-7 ${d < todayStr ? "opacity-60" : ""}`}>
                                     <div className="mb-3.5 flex items-baseline justify-between gap-3">
                                         <div>
                                             <p className="text-[13px] text-fg-muted">{longDate(d)}</p>
