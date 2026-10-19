@@ -1004,12 +1004,6 @@ export function WatchlistTable({ items, readOnly = false, initialThumbnailStyle 
     return (
         <div className="watchlist-container relative">
             {!readOnly && <input ref={importFileRef} type="file" accept=".json" className="hidden" onChange={handleImportFile} />}
-            {/* Ambient background glow */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-                <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-rose-500/5 rounded-full blur-3xl" />
-            </div>
-
             {/* Filter Bar */}
             <div className="sticky top-20 z-30 -mx-4 px-4 py-2 filter-row">
                 <div className="relative">
