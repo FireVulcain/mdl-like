@@ -320,7 +320,7 @@ export default async function DramasPage({ searchParams }: { searchParams: Searc
     return (
         <div className="relative min-h-screen">
 
-            <div className="container py-6 md:py-10 max-w-[95%] md:max-w-[90%] mx-auto px-2 md:px-0 relative z-10">
+            <div className="container py-6 md:py-10 mx-auto max-w-7xl px-4 relative z-10">
                 {/* Breadcrumb */}
                 <Link href="/" className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg mb-6 transition-colors">
                     <ChevronLeft className="h-4 w-4" />

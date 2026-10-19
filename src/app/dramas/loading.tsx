@@ -12,7 +12,7 @@ import { PageHeading, Pills, PosterGrid, MediaRows } from "@/components/skeleton
 
 export default function Loading() {
     return (
-        <div className="container py-6 md:py-10 max-w-[95%] md:max-w-[90%] mx-auto px-2 md:px-0 relative z-10 space-y-6">
+        <div className="container py-6 md:py-10 mx-auto max-w-7xl px-4 relative z-10 space-y-6">
             <PageHeading width="30%" />
             <Pills count={6} />
             <div className="[[data-dramas-view=list]_&]:hidden">

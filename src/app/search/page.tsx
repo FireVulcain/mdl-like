@@ -16,7 +16,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
     // md: only, like every other page. Unqualified, it took a fifth of a phone
     // screen away from results that were already narrow.
-    const shell = "container py-8 px-4 m-auto md:max-w-[80%]";
+    const shell = "container py-8 px-4 m-auto max-w-7xl";
 
     if (!query) {
         return (

@@ -68,7 +68,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             {/* The media and people pages' layout: a column on the left with who
                 this is and the figures, in the same box as the media page's info
                 block; the podium, the activity and the list on the right. */}
-            <div className="container py-10 m-auto max-w-[80%] relative z-10 space-y-8 md:space-y-0 md:grid md:grid-cols-[260px_1fr] md:gap-8 md:items-start">
+            <div className="container py-10 px-4 m-auto max-w-7xl relative z-10 space-y-8 md:space-y-0 md:grid md:grid-cols-[260px_1fr] md:gap-8 md:items-start">
                 <aside className="space-y-4">
                     <div className="flex items-center gap-3 md:flex-col md:items-start">
                         <span

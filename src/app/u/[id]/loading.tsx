@@ -3,7 +3,7 @@ import { Line, Block } from "@/components/skeleton-parts";
 
 export default function Loading() {
     return (
-        <div className="container py-10 m-auto max-w-[80%] relative z-10 space-y-8">
+        <div className="container py-10 px-4 m-auto max-w-7xl relative z-10 space-y-8">
             <div className="space-y-3">
                 <Line w={280} h={30} />
                 <Line w={190} h={14} />

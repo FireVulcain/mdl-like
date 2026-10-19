@@ -9,7 +9,7 @@ import { PageHeading, PosterGrid, SectionHeading, MediaRows } from "@/components
 
 export default function Loading() {
     return (
-        <div className="container py-8 px-4 m-auto md:max-w-[80%] space-y-8">
+        <div className="container py-8 px-4 m-auto max-w-7xl space-y-8">
             <PageHeading width="45%" />
             <div className="space-y-4">
                 <SectionHeading width={140} />
