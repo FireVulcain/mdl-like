@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Bookmark, CalendarDays, Check, RefreshCw, SlidersHorizontal } from "lucide-react";
@@ -148,36 +148,54 @@ export function ScheduleFeed({
     // day has no section unless empty days are shown.
     const dayNode = (d: string) =>
         document.getElementById(`day-${d}`) ?? [...document.querySelectorAll<HTMLElement>("[id^='day-']")].find((n) => n.id.slice(4) >= d);
-    const jumpTo = (d: string) => {
-        dayNode(d)?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-    };
-
-    // Open on today — or on the linked day, arriving from a countdown — with
-    // the past week above it, out of view until scrolled up to.
-    // The browser's own scroll restoration is turned off here: on a reload it
-    // lands after this and puts the page back wherever it was, usually in the
-    // past week.
+    // The days scroll inside their own box, sized to the rest of the window,
+    // so the page itself stays put with its header and filters in view.
+    const scroller = useRef<HTMLDivElement>(null);
+    const [scrollerHeight, setScrollerHeight] = useState<number | null>(null);
     useEffect(() => {
-        const previous = window.history.scrollRestoration;
-        window.history.scrollRestoration = "manual";
-        const frame = requestAnimationFrame(() => dayNode(linked ?? toDateStr(new Date()))?.scrollIntoView({ block: "start" }));
+        const measure = () => {
+            const el = scroller.current;
+            if (!el) return;
+            const top = el.getBoundingClientRect().top + window.scrollY;
+            setScrollerHeight(Math.max(420, window.innerHeight - top - 24));
+        };
+        const frame = requestAnimationFrame(measure);
+        window.addEventListener("resize", measure);
         return () => {
             cancelAnimationFrame(frame);
-            window.history.scrollRestoration = previous;
+            window.removeEventListener("resize", measure);
         };
-    }, [linked]);
+    }, [showFilter]);
 
-    // The strip follows the scroll: the day nearest the top is the active chip.
+    const scrollToDay = (d: string, smooth: boolean) => {
+        const box = scroller.current;
+        const node = dayNode(d);
+        if (!box || !node) return;
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        box.scrollTo({ top: node.offsetTop - 4, behavior: smooth && !reduce ? "smooth" : "auto" });
+    };
+    const jumpTo = (d: string) => scrollToDay(d, true);
+
+    // Open the box on today — or on the linked day, arriving from a countdown
+    // — with the past week above it, reached by scrolling up inside the box.
     useEffect(() => {
-        const nodes = document.querySelectorAll<HTMLElement>("[id^='day-']");
+        const frame = requestAnimationFrame(() => scrollToDay(linked ?? toDateStr(new Date()), false));
+        return () => cancelAnimationFrame(frame);
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- once, on mount
+    }, []);
+
+    // The strip follows the box's scroll: the day nearest its top is the active chip.
+    useEffect(() => {
+        const box = scroller.current;
+        if (!box) return;
         const observer = new IntersectionObserver(
             (items) => {
                 const visible = items.filter((x) => x.isIntersecting).map((x) => (x.target as HTMLElement).id.slice(4)).sort();
                 if (visible.length) setActiveDay(visible[0]);
             },
-            { rootMargin: "-170px 0px -55% 0px" },
+            { root: box, rootMargin: "0px 0px -70% 0px" },
         );
-        nodes.forEach((n) => observer.observe(n));
+        box.querySelectorAll<HTMLElement>("[id^='day-']").forEach((n) => observer.observe(n));
         return () => observer.disconnect();
     }, [span, pastDays, showEmpty, includePlanToWatch, asianOnly, showFilter]);
 
@@ -384,12 +402,8 @@ export function ScheduleFeed({
                     </div>
                 )}
 
-                {/* Day strip, pinned while scrolling — just under the site header,
-                    which is fixed and about 76px tall once the page has scrolled. */}
-                <nav
-                    aria-label="Jump to a day"
-                    className="sticky top-19 z-20 -mx-2 flex gap-1.5 overflow-x-auto border-b border-line bg-page/90 px-2 py-2 backdrop-blur-md [scrollbar-width:none]"
-                >
+                {/* Day strip: jumps the box below to a day */}
+                <nav aria-label="Jump to a day" className="-mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
                     {days
                         .filter((d) => d >= todayStr)
                         .map((d) => {
@@ -410,8 +424,12 @@ export function ScheduleFeed({
                         })}
                 </nav>
 
-                {/* Days */}
-                <div className="flex flex-col">
+                {/* Days, in their own scroll box */}
+                <div
+                    ref={scroller}
+                    style={{ height: scrollerHeight ?? undefined }}
+                    className="relative -mx-2 -mt-5 flex h-[calc(100dvh-22rem)] min-h-105 flex-col overflow-y-auto overscroll-contain px-2 pb-6 mask-[linear-gradient(to_bottom,transparent,black_16px,black_calc(100%-32px),transparent)]"
+                >
                     {entries.length === 0 ? (
                         <div className="py-16 text-center text-fg-dim">
                             <CalendarDays className="mx-auto mb-3 h-12 w-12 opacity-30" />
@@ -427,7 +445,7 @@ export function ScheduleFeed({
                             const rel = relative(d);
                             if (list.length === 0)
                                 return (
-                                    <div key={d} id={`day-${d}`} className="flex scroll-mt-40 items-baseline gap-2.5 pt-4 text-[13px] text-fg-dim">
+                                    <div key={d} id={`day-${d}`} className="flex items-baseline gap-2.5 pt-4 text-[13px] text-fg-dim">
                                         <b className="font-semibold text-fg-muted">
                                             {WEEKDAY_LONG[weekdayOf(d)]} {Number(d.slice(8))}
                                         </b>
@@ -435,7 +453,7 @@ export function ScheduleFeed({
                                     </div>
                                 );
                             return (
-                                <section key={d} id={`day-${d}`} className={`scroll-mt-40 pt-7 ${d < todayStr ? "opacity-60" : ""}`}>
+                                <section key={d} id={`day-${d}`} className={`pt-7 ${d < todayStr ? "opacity-60" : ""}`}>
                                     <div className="mb-3.5 flex items-baseline justify-between gap-3">
                                         <div>
                                             <p className="text-[13px] text-fg-muted">{longDate(d)}</p>
