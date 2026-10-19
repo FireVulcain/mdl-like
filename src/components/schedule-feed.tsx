@@ -184,19 +184,44 @@ export function ScheduleFeed({
         // eslint-disable-next-line react-hooks/exhaustive-deps -- once, on mount
     }, []);
 
+    // The strip scrolls sideways to keep the active chip in view, so a day
+    // weeks ahead in the box is still the one lit up above it.
+    const strip = useRef<HTMLElement>(null);
+    useEffect(() => {
+        const bar = strip.current;
+        if (!bar || !activeDay) return;
+        const chip = bar.querySelector<HTMLElement>(`[data-day="${activeDay}"]`);
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        // A day in the past week has no chip: the strip goes back to its start.
+        const left = chip ? chip.offsetLeft - bar.clientWidth / 2 + chip.offsetWidth / 2 : 0;
+        bar.scrollTo({ left, behavior: reduce ? "auto" : "smooth" });
+    }, [activeDay]);
+
     // The strip follows the box's scroll: the day nearest its top is the active chip.
     useEffect(() => {
         const box = scroller.current;
         if (!box) return;
+        const nodes = box.querySelectorAll<HTMLElement>("[id^='day-']");
+        // The last days can never reach the top of the box: at the bottom,
+        // the last one is the active day.
+        const atBottom = () => box.scrollTop + box.clientHeight >= box.scrollHeight - 4;
         const observer = new IntersectionObserver(
             (items) => {
+                if (atBottom()) return;
                 const visible = items.filter((x) => x.isIntersecting).map((x) => (x.target as HTMLElement).id.slice(4)).sort();
                 if (visible.length) setActiveDay(visible[0]);
             },
             { root: box, rootMargin: "0px 0px -70% 0px" },
         );
-        box.querySelectorAll<HTMLElement>("[id^='day-']").forEach((n) => observer.observe(n));
-        return () => observer.disconnect();
+        nodes.forEach((n) => observer.observe(n));
+        const onScroll = () => {
+            if (atBottom() && nodes.length) setActiveDay(nodes[nodes.length - 1].id.slice(4));
+        };
+        box.addEventListener("scroll", onScroll, { passive: true });
+        return () => {
+            observer.disconnect();
+            box.removeEventListener("scroll", onScroll);
+        };
     }, [span, pastDays, showEmpty, includePlanToWatch, asianOnly, showFilter]);
 
     const handleRefresh = async () => {
@@ -403,7 +428,7 @@ export function ScheduleFeed({
                 )}
 
                 {/* Day strip: jumps the box below to a day */}
-                <nav aria-label="Jump to a day" className="-mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
+                <nav ref={strip} aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
                     {days
                         .filter((d) => d >= todayStr)
                         .map((d) => {
@@ -412,6 +437,7 @@ export function ScheduleFeed({
                             return (
                                 <button
                                     key={d}
+                                    data-day={d}
                                     onClick={() => jumpTo(d)}
                                     aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
                                     className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${c ? "" : "opacity-45"}`}
