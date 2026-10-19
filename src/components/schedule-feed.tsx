@@ -185,42 +185,52 @@ export function ScheduleFeed({
         // eslint-disable-next-line react-hooks/exhaustive-deps -- once, on mount
     }, []);
 
-    // The strip scrolls sideways to keep the active chip in view, so a day
-    // weeks ahead in the box is still the one lit up above it.
+    // The strip scrolls sideways to keep the active chip at its start, the way
+    // the box keeps the active day at its top: the past week's chips sit off
+    // to the left, out of view until the box is scrolled up into it (or the
+    // strip is dragged). The first placement is instant, the rest glide.
     const strip = useRef<HTMLElement>(null);
+    const stripPlaced = useRef(false);
     useEffect(() => {
         const bar = strip.current;
-        if (!bar || !activeDay) return;
-        const chip = bar.querySelector<HTMLElement>(`[data-day="${activeDay}"]`);
+        const chip = bar?.querySelector<HTMLElement>(`[data-day="${activeDay ?? linked ?? todayStr}"]`);
+        if (!bar || !chip) return;
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        // A day in the past week has no chip: the strip goes back to its start.
-        const left = chip ? chip.offsetLeft - bar.clientWidth / 2 + chip.offsetWidth / 2 : 0;
-        bar.scrollTo({ left, behavior: reduce ? "auto" : "smooth" });
-    }, [activeDay]);
+        bar.scrollTo({ left: chip.offsetLeft - 8, behavior: reduce || !stripPlaced.current ? "auto" : "smooth" });
+        stripPlaced.current = true;
+    }, [activeDay, linked, todayStr]);
 
-    // The strip follows the box's scroll: the day nearest its top is the active chip.
+    // The strip follows the box's scroll: the active day is the last one whose
+    // section has started at the top of the box. Read from positions rather
+    // than an IntersectionObserver, which also counted the few pixels of the
+    // previous day still showing above it.
     useEffect(() => {
         const box = scroller.current;
         if (!box) return;
-        const nodes = box.querySelectorAll<HTMLElement>("[id^='day-']");
-        // The last days can never reach the top of the box: at the bottom,
-        // the last one is the active day.
-        const atBottom = () => box.scrollTop + box.clientHeight >= box.scrollHeight - 4;
-        const observer = new IntersectionObserver(
-            (items) => {
-                if (atBottom()) return;
-                const visible = items.filter((x) => x.isIntersecting).map((x) => (x.target as HTMLElement).id.slice(4)).sort();
-                if (visible.length) setActiveDay(visible[0]);
-            },
-            { root: box, rootMargin: "0px 0px -70% 0px" },
-        );
-        nodes.forEach((n) => observer.observe(n));
+        const nodes = [...box.querySelectorAll<HTMLElement>("[id^='day-']")];
+        if (!nodes.length) return;
+        let frame = 0;
+        const update = () => {
+            frame = 0;
+            // The last days can never reach the top of the box: at the
+            // bottom, the last one is the active day.
+            if (box.scrollTop + box.clientHeight >= box.scrollHeight - 4) {
+                setActiveDay(nodes[nodes.length - 1].id.slice(4));
+                return;
+            }
+            let current = nodes[0];
+            for (const n of nodes) {
+                if (n.offsetTop <= box.scrollTop + 24) current = n;
+                else break;
+            }
+            setActiveDay(current.id.slice(4));
+        };
         const onScroll = () => {
-            if (atBottom() && nodes.length) setActiveDay(nodes[nodes.length - 1].id.slice(4));
+            if (!frame) frame = requestAnimationFrame(update);
         };
         box.addEventListener("scroll", onScroll, { passive: true });
         return () => {
-            observer.disconnect();
+            cancelAnimationFrame(frame);
             box.removeEventListener("scroll", onScroll);
         };
     }, [span, pastDays, showEmpty, includePlanToWatch, asianOnly, showFilter]);
@@ -432,9 +442,7 @@ export function ScheduleFeed({
                     the mouse like the rails on the home page. */}
                 <DragScroll>
                     <nav ref={strip} data-drag-scroll-viewport aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
-                        {days
-                            .filter((d) => d >= todayStr)
-                            .map((d) => {
+                        {days.map((d) => {
                                 const c = episodesOn(d);
                                 const active = (activeDay ?? linked ?? todayStr) === d;
                                 return (
@@ -443,14 +451,14 @@ export function ScheduleFeed({
                                         data-day={d}
                                         onClick={() => jumpTo(d)}
                                         aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
-                                        className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${c ? "" : "opacity-45"}`}
+                                        className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${!c ? "opacity-45" : d < todayStr ? "opacity-60" : ""}`}
                                     >
                                         <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : WEEKDAY_SHORT[weekdayOf(d)]}</span>
                                         <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>
                                         <span className="text-[11px] tabular-nums text-fg-dim">{c ? `${c} ep${c > 1 ? "s" : ""}` : "—"}</span>
                                     </button>
                                 );
-                            })}
+                        })}
                     </nav>
                 </DragScroll>
 
