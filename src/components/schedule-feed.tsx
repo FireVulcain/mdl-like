@@ -138,6 +138,12 @@ export function ScheduleFeed({
 
     const days: string[] = [];
     for (let i = -pastDays; i < span; i++) days.push(addDays(todayStr, i));
+    // The strip runs further ahead than the loaded days, so that today — or
+    // any loaded day — can sit at its left edge with the past week tucked
+    // away before it. Picking a day beyond the box loads up to it first.
+    const STRIP_AHEAD = 35;
+    const stripDays: string[] = [];
+    for (let i = -pastDays; i < Math.max(span, STRIP_AHEAD); i++) stripDays.push(addDays(todayStr, i));
     const visibleDays = days.filter((d) => episodesOn(d) > 0 || showEmpty || d === linked);
 
     const isLive = (a: Airing) => !!(now && a.time && now.getTime() >= a.time.getTime() && now.getTime() < a.time.getTime() + LIVE_WINDOW_MS);
@@ -175,7 +181,23 @@ export function ScheduleFeed({
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         box.scrollTo({ top: node.offsetTop - 4, behavior: smooth && !reduce ? "smooth" : "auto" });
     };
-    const jumpTo = (d: string) => scrollToDay(d, true);
+    const [pendingJump, setPendingJump] = useState<string | null>(null);
+    const jumpTo = (d: string) => {
+        const ahead = daysBetween(todayStr, d);
+        if (ahead >= span) {
+            setSpan(Math.ceil((ahead + 1) / 14) * 14);
+            setPendingJump(d);
+        } else scrollToDay(d, true);
+    };
+    useEffect(() => {
+        if (!pendingJump) return;
+        const frame = requestAnimationFrame(() => {
+            scrollToDay(pendingJump, true);
+            setPendingJump(null);
+        });
+        return () => cancelAnimationFrame(frame);
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- runs once the new days are rendered
+    }, [pendingJump, span]);
 
     // Open the box on today — or on the linked day, arriving from a countdown
     // — with the past week above it, reached by scrolling up inside the box.
@@ -442,7 +464,7 @@ export function ScheduleFeed({
                     the mouse like the rails on the home page. */}
                 <DragScroll>
                     <nav ref={strip} data-drag-scroll-viewport aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
-                        {days.map((d) => {
+                        {stripDays.map((d) => {
                                 const c = episodesOn(d);
                                 const active = (activeDay ?? linked ?? todayStr) === d;
                                 return (
