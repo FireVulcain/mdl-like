@@ -1,0 +1,694 @@
+{
+  "version": 2,
+  "mdlSlug": "760859-jia-jin-chai",
+  "title": "Where the Mask Ends",
+  "native": "嫁金钗",
+  "year": 2026,
+  "country": "CN",
+  "sources": [
+    "MDL cast (18 roles, 2 main)",
+    "MDL synopsis",
+    "zh.wikipedia 演员表",
+    "cpophome ep. 1-4"
+  ],
+  "main": [
+    "weirao",
+    "luzhuo"
+  ],
+  "recaps": {
+    "source": "cpophome",
+    "episodes": 4,
+    "count": 4,
+    "ranges": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ]
+    ]
+  },
+  "people": [
+    {
+      "id": "weirao",
+      "name": "Wei Rao / A Chou",
+      "actor": "Tian Xi Wei",
+      "image": "https://i.mydramalist.com/eYv4Vd_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Raised in poverty as a night-soil collector; unknowingly the Wei family's true-born daughter, she marries Lu Zhuo in Jun Dai's place."
+    },
+    {
+      "id": "luzhuo",
+      "name": "Lu Zhuo / Shou Cheng",
+      "actor": "Yan An",
+      "image": "https://i.mydramalist.com/nOojzL_5m.jpg",
+      "group": "Leads",
+      "inCast": true,
+      "note": "Heir of the Duke of Ying's household, gravely wounded by a poisoned arrow before the marriage."
+    },
+    {
+      "id": "jundai",
+      "name": "Jun Dai",
+      "actor": "Tian Xi Wei",
+      "image": "https://i.mydramalist.com/eYv4Vd_5m.jpg",
+      "group": "Wei family",
+      "inCast": true,
+      "note": "The household's false young miss, who schemed to avoid marrying the dying Lu Zhuo by having A Chou take her place."
+    },
+    {
+      "id": "qizhongkai",
+      "name": "Qi Zhong Kai",
+      "actor": "Liu Xiao Bei",
+      "image": "https://i.mydramalist.com/g0dJoO_5m.jpg",
+      "group": "Lu Zhuo's circle",
+      "inCast": true,
+      "note": "Marquis of Pingxi's second son and Lu Zhuo's trusted comrade."
+    },
+    {
+      "id": "bitao",
+      "name": "Bi Tao",
+      "actor": "Pan Jun Ya",
+      "image": "https://i.mydramalist.com/6KyrW_5m.jpg",
+      "group": "Wei family",
+      "inCast": true,
+      "note": "A Chou's devoted maid, originally planted as Guo Yufeng's spy."
+    },
+    {
+      "id": "hanliao",
+      "name": "Han Liao",
+      "actor": "Dai Gao Zheng",
+      "image": "https://i.mydramalist.com/JB8P7o_5m.jpg",
+      "group": "Lu Zhuo's circle",
+      "inCast": true,
+      "note": "Heir of the Marquis of Xiting's household."
+    },
+    {
+      "id": "ahman",
+      "name": "Ah Man",
+      "actor": "Yin Wen Xuan",
+      "image": "https://i.mydramalist.com/PxV648_5m.jpg",
+      "group": "Lu Zhuo's circle",
+      "inCast": true
+    },
+    {
+      "id": "rongde",
+      "name": "Rong De",
+      "actor": "Wang Yi Zhou",
+      "image": "https://i.mydramalist.com/mO8A8q_5m.jpg",
+      "group": "Lu Zhuo's circle",
+      "inCast": true,
+      "note": "Lu Zhuo's personal attendant, known as Jiede."
+    },
+    {
+      "id": "guoyufeng",
+      "name": "Guo Yu Feng",
+      "actor": "Wang Yi Nan",
+      "image": "https://i.mydramalist.com/81l6X2_5m.jpg",
+      "group": "Wei family",
+      "inCast": true,
+      "note": "Old Madam Wei's eldest daughter-in-law, suspected of arranging the original baby swap."
+    },
+    {
+      "id": "oldmadamwei",
+      "name": "Old Madam Wei",
+      "actor": "Yang Qing",
+      "image": "https://i.mydramalist.com/kA3BQk_5m.jpg",
+      "group": "Wei family",
+      "inCast": true,
+      "note": "Matriarch of the Cheng'an Earl's household, unknowingly A Chou's biological grandmother."
+    },
+    {
+      "id": "weihenge",
+      "name": "Wei Heng'e",
+      "actor": "Chen Zi Han",
+      "image": "https://i.mydramalist.com/DkQWBr_5m.jpg",
+      "group": "Wei family",
+      "inCast": true,
+      "note": "Old Madam Wei's daughter, who masterminds the substitute marriage."
+    },
+    {
+      "id": "weichan",
+      "name": "Wei Chan",
+      "actor": "Su Xiao Tong",
+      "image": "https://i.mydramalist.com/73oqXj_5m.jpg",
+      "group": "Wei family",
+      "inCast": true,
+      "note": "Old Madam Wei's third granddaughter, resentful of favoritism toward her cousin."
+    },
+    {
+      "id": "zhaofu",
+      "name": "Zhao Fu",
+      "actor": "Mao Lin Lin",
+      "image": "https://i.mydramalist.com/RpzPg_5m.jpg",
+      "group": "A Chou's family",
+      "inCast": true,
+      "note": "Wei Rao's birth mother."
+    },
+    {
+      "id": "shouanjun",
+      "name": "Shou An Jun",
+      "actor": "Tien Niu",
+      "image": "https://i.mydramalist.com/nOY504_5m.jpg",
+      "group": "A Chou's family",
+      "inCast": true,
+      "note": "Wei Rao's maternal grandmother, a former imperial wet nurse."
+    },
+    {
+      "id": "hongxian",
+      "name": "Hong Xian",
+      "actor": "Jin Tian Ru Yi",
+      "image": "https://i.mydramalist.com/Lw0dlL_5m.jpg",
+      "group": "A Chou's family",
+      "inCast": true,
+      "note": "A maid who helps A Chou's adoptive mother escape."
+    },
+    {
+      "id": "dukeying",
+      "name": "Duke Ying",
+      "actor": "Jiang Kai",
+      "image": "https://i.mydramalist.com/ABj5NX_5m.jpg",
+      "group": "Lu family",
+      "inCast": true,
+      "note": "Lu Zhuo's grandfather, head of the Duke of Ying's household."
+    },
+    {
+      "id": "duchessying",
+      "name": "Duchess Ying",
+      "actor": "Kong Lin",
+      "image": "https://i.mydramalist.com/qpXXz_5m.jpg",
+      "group": "Lu family",
+      "inCast": true,
+      "note": "Lu Zhuo's grandmother, who forces the marriage to save his life."
+    },
+    {
+      "id": "xiehualou",
+      "name": "Xie Hua Lou",
+      "actor": "Yang Yu Tong",
+      "image": "https://i.mydramalist.com/WPb1Bl_5m.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "The Grand Tutor's granddaughter, assaulted by Jun Dai out of jealousy."
+    },
+    {
+      "id": "empressdowager",
+      "name": "Empress Dowager",
+      "actor": "Dai Chun Rong",
+      "image": "https://i.mydramalist.com/Z01KOm.jpg",
+      "group": "The court",
+      "inCast": true,
+      "note": "Issues the edict forcing the marriage to proceed."
+    },
+    {
+      "id": "adoptivemother",
+      "name": "A Chou's adoptive mother",
+      "actor": "",
+      "image": null,
+      "group": "A Chou's family",
+      "inCast": false,
+      "note": "Chronically ill; her illness and medical costs push A Chou into the substitute marriage."
+    },
+    {
+      "id": "adoptivefather",
+      "name": "A Chou's adoptive father",
+      "actor": "",
+      "image": null,
+      "group": "A Chou's family",
+      "inCast": false,
+      "note": "A gambler who sells A Chou to settle a debt; later strangled after his wife's escape."
+    }
+  ],
+  "links": [
+    {
+      "from": "weirao",
+      "to": "luzhuo",
+      "type": "family",
+      "label": "An arranged marriage made amid a death sentence and a dying fiancé becomes her new life.",
+      "short": "married",
+      "evidence": "Wei Rao steps in to secure funds for her adoptive mother's medical treatment, entering a marriage neither expected.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 1
+    },
+    {
+      "from": "weirao",
+      "to": "luzhuo",
+      "type": "romance",
+      "label": "Real feelings grow between them as Lu Zhuo comes to trust and care for the wife who saved his nephew.",
+      "short": "falling for him",
+      "evidence": "In private, Lu Zhuo admits that he wrongly accused her and thanks her for saving Lu Che.",
+      "source": "cpophome ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": false,
+      "since": 3,
+      "wholeStory": false
+    },
+    {
+      "from": "jundai",
+      "to": "weirao",
+      "type": "rivalry",
+      "label": "The false daughter and the true heiress are locked in fierce rivalry, the story's 'twin black lotus' conflict.",
+      "short": "her rival",
+      "evidence": "与魏娆形成\"并蒂黑莲\"的激烈对抗",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": false,
+      "since": null
+    },
+    {
+      "from": "jundai",
+      "to": "luzhuo",
+      "type": "romance",
+      "label": "Jun Dai was Lu Zhuo's childhood fiancée before arranging A Chou's substitution.",
+      "short": "former fiancée",
+      "evidence": "she notices her childhood fiancé, Lu Zhuo, speaking with Xie Hualou.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "luzhuo",
+      "to": "jundai",
+      "type": "rivalry",
+      "label": "Lu Zhuo recognizes her faked injury and resolves to end their betrothal.",
+      "short": "exposed her lie",
+      "evidence": "He explains that his battlefield experience has taught him to distinguish an inflicted wound from one deliberately made on oneself... he intends to formally end their engagement.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "jundai",
+      "to": "xiehualou",
+      "type": "rivalry",
+      "label": "In a jealous rage, Jun Dai pushes Xie Hua Lou from a height, nearly killing her.",
+      "short": "pushed her",
+      "evidence": "Declaring that her engagement gives her an exclusive claim over Lu Zhuo, she accuses Xie of trying to steal him and pushes her from the pavilion.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "luzhuo",
+      "to": "xiehualou",
+      "type": "bond",
+      "label": "Lu Zhuo saves Xie Hua Lou from the fall, witnessing Jun Dai's violence.",
+      "short": "saved her fall",
+      "evidence": "Lu Zhuo catches Xie before she hits the ground.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "weihenge",
+      "to": "jundai",
+      "type": "family",
+      "label": "Wei Heng'e is Jun Dai's aunt and co-conspirator in the bride substitution.",
+      "short": "her aunt",
+      "evidence": "Wei Heng'e sends her niece to a hot-spring residence and orders her to abandon the name Rao. She gives her the new name Jun Dai, which Rao accepts.",
+      "source": "cpophome ep. 2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "weihenge",
+      "to": "weirao",
+      "type": "work",
+      "label": "Wei Heng'e secures A Chou as a substitute bride to spare the real Wei Rao the match.",
+      "short": "arranged her marriage",
+      "evidence": "Wei Heng'e argues that the Lu household is already weakened by deaths and disability among its men... Wei Heng'e promises lifelong comfort if she succeeds.",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "oldmadamwei",
+      "to": "weirao",
+      "type": "family",
+      "label": "Old Madam Wei is unknowingly A Chou's true biological grandmother, the real heiress of the Wei household.",
+      "short": "her grandmother",
+      "evidence": "魏老夫人四孫女，承安伯府真千金",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "guoyufeng",
+      "to": "oldmadamwei",
+      "type": "family",
+      "label": "Guo Yufeng is Old Madam Wei's eldest daughter-in-law.",
+      "short": "her daughter-in-law",
+      "evidence": "魏老夫人大兒媳。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "guoyufeng",
+      "to": "weirao",
+      "type": "family",
+      "label": "Guo Yufeng's old order to Governess Chang, and the remains it uncovers, hint she orchestrated the switch that erased the true heiress years ago.",
+      "short": "ordered the swap",
+      "evidence": "Guo goes to Governess Chang's quarters and orders a search. Chou's resemblance to Rao has made her question whether Chang truly obeyed an instruction given years earlier.",
+      "source": "cpophome ep. 2",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "bitao",
+      "to": "guoyufeng",
+      "type": "work",
+      "label": "Bi Tao was originally planted in the household as Guo Yufeng's informant.",
+      "short": "her spy",
+      "evidence": "承安伯府婢女，原是魏大夫人眼線。",
+      "source": "zh.wikipedia",
+      "reveal": true,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "until": 2,
+      "wholeStory": false
+    },
+    {
+      "from": "bitao",
+      "to": "weirao",
+      "type": "work",
+      "label": "Bi Tao becomes fiercely loyal to A Chou, eventually killing to protect her.",
+      "short": "her maid",
+      "evidence": "A Chou asks Bitao to describe the dowry in detail.",
+      "source": "cpophome ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3
+    },
+    {
+      "from": "bitao",
+      "to": "weirao",
+      "type": "rivalry",
+      "label": "Bi Tao switches a poisoned soup meant for A Chou, unintentionally killing the spy Governess Wu.",
+      "short": "killed Wu",
+      "evidence": "Bitao confesses that she saw Wu tampering with the soup and switched it, intending only to make her suffer the consequences. She never expected the dose to be fatal.",
+      "source": "cpophome ep. 3",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 3,
+      "kind": "event"
+    },
+    {
+      "from": "weichan",
+      "to": "jundai",
+      "type": "family",
+      "label": "Wei Chan is Jun Dai's cousin, resentful of the favoritism shown to her.",
+      "short": "her cousin",
+      "evidence": "Wei Chan resents the attention lavished on her younger cousin and openly complains about the family's favoritism.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "jundai",
+      "to": "weichan",
+      "type": "rivalry",
+      "label": "Chan taunts Jun Dai about her impending widowhood and insults her mother, and the two come to blows.",
+      "short": "came to blows",
+      "evidence": "Rao attacks her.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "oldmadamwei",
+      "to": "weichan",
+      "type": "family",
+      "label": "Old Madam Wei is Wei Chan's grandmother.",
+      "short": "her grandmother",
+      "evidence": "魏老夫人三孫女。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "dukeying",
+      "to": "luzhuo",
+      "type": "family",
+      "label": "Duke Ying is Lu Zhuo's grandfather.",
+      "short": "his grandfather",
+      "evidence": "陸濯祖父。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "duchessying",
+      "to": "luzhuo",
+      "type": "family",
+      "label": "Duchess Ying is Lu Zhuo's grandmother.",
+      "short": "his grandmother",
+      "evidence": "陸濯祖母，特邀出演。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "duchessying",
+      "to": "weirao",
+      "type": "family",
+      "label": "The duchess credits the marriage with saving her grandson and comes to cherish the bride she believes is Wei Rao.",
+      "short": "her grandmother-in-law",
+      "evidence": "Lu Zhuo's grandmother credits the marriage with saving him. She thanks the woman she believes is Wei Rao for marrying him when recovery seemed impossible and promises to remember her kindness.",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "empressdowager",
+      "to": "weirao",
+      "type": "family",
+      "label": "An edict from the Empress Dowager leaves the Wei family unable to refuse the marriage.",
+      "short": "forced the marriage",
+      "evidence": "An imperial attendant soon arrives with an edict from the Empress Dowager, leaving the Wei family unable to reject the marriage.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1,
+      "kind": "event"
+    },
+    {
+      "from": "qizhongkai",
+      "to": "luzhuo",
+      "type": "work",
+      "label": "A trusted fellow officer and friend from the battlefield.",
+      "short": "his comrade",
+      "evidence": "He orders his attendant Jiede to close the garden to guests and asks Qi Zhongkai, the Marquis of Pingxi's second son, to fetch the Grand Princess.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "luzhuo",
+      "to": "qizhongkai",
+      "type": "work",
+      "label": "Lu Zhuo suspects a leak behind the deadly ambush and sets a trap using Qi Zhongkai to test loyalty.",
+      "short": "tested for a leak",
+      "evidence": "Lu Zhuo suspects that someone leaked the plans for his surprise attack to the enemy. Qi resists the accusation... Lu Zhuo proposes a test.",
+      "source": "cpophome ep. 4",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 4,
+      "kind": "event"
+    },
+    {
+      "from": "rongde",
+      "to": "luzhuo",
+      "type": "work",
+      "label": "Jiede is Lu Zhuo's personal attendant.",
+      "short": "his attendant",
+      "evidence": "He orders his attendant Jiede to close the garden to guests.",
+      "source": "cpophome ep. 1",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "adoptivemother",
+      "to": "weirao",
+      "type": "family",
+      "label": "A Chou supports her sickly adoptive mother, whose medical costs push her into the substitute marriage.",
+      "short": "her mother",
+      "evidence": "Wei Rao steps in to secure funds for her adoptive mother's medical treatment.",
+      "source": "MDL synopsis",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "adoptivefather",
+      "to": "weirao",
+      "type": "family",
+      "label": "Her gambling-addicted adoptive father sold her to settle a debt.",
+      "short": "her father",
+      "evidence": "he sells Chou to a gambling-den owner and lets the man into her room while she is bedridden with a fever.",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 1
+    },
+    {
+      "from": "adoptivefather",
+      "to": "weirao",
+      "type": "family",
+      "label": "To settle a 300-coin debt, her father sells her to a gambling-den owner, who then assaults her.",
+      "short": "sold her",
+      "evidence": "To settle a debt of three hundred coins, he sells Chou to a gambling-den owner and lets the man into her room while she is bedridden with a fever.",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2,
+      "kind": "event"
+    },
+    {
+      "from": "hongxian",
+      "to": "adoptivemother",
+      "type": "work",
+      "label": "Hong Xian helps A Chou's mother escape with her younger siblings.",
+      "short": "her maid",
+      "evidence": "She escapes with Hongxian and Runsheng.",
+      "source": "cpophome ep. 2",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": 2
+    },
+    {
+      "from": "shouanjun",
+      "to": "weirao",
+      "type": "family",
+      "label": "Lady Shou'an is Wei Rao's maternal grandmother, a former imperial wet nurse.",
+      "short": "her grandmother",
+      "evidence": "魏娆外祖母，曾任陛下乳母，特邀出演。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    },
+    {
+      "from": "zhaofu",
+      "to": "weirao",
+      "type": "family",
+      "label": "Zhao Fu is Wei Rao's birth mother.",
+      "short": "her mother",
+      "evidence": "魏娆生母，特邀主演。",
+      "source": "zh.wikipedia",
+      "reveal": false,
+      "inferred": false,
+      "directed": true,
+      "since": null
+    }
+  ],
+  "compact": {
+    "people": [
+      "weirao",
+      "luzhuo",
+      "jundai",
+      "bitao",
+      "guoyufeng",
+      "oldmadamwei",
+      "weihenge",
+      "weichan",
+      "zhaofu",
+      "shouanjun",
+      "hongxian",
+      "adoptivemother",
+      "adoptivefather",
+      "dukeying",
+      "duchessying"
+    ],
+    "blocks": {
+      "Lu family": [
+        2,
+        0
+      ],
+      "The court": [
+        0,
+        2
+      ],
+      "Wei family": [
+        0,
+        0
+      ],
+      "A Chou's family": [
+        0,
+        1
+      ],
+      "Lu Zhuo's circle": [
+        2,
+        1
+      ]
+    },
+    "center": [
+      "weirao",
+      "luzhuo"
+    ]
+  }
+}
