@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, ChevronUp, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarDays, SlidersHorizontal, RefreshCw, Check, Filter } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { getScheduleRefreshTargets, refreshScheduleChunk, refreshSingleShow } from "@/actions/schedule";
@@ -14,12 +14,28 @@ export type { ScheduleEntry };
 
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-const DAY_HEADERS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-const DAY_SLOTS = 4;
 const WEEKDAY_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const WEEKDAY_LONG = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const WEEKDAY_LETTER = ["M", "T", "W", "T", "F", "S", "S"];
+const PLAN_TO_WATCH = "Plan to Watch";
 
 function toDateStr(year: number, month: number, day: number) {
     return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+/** Monday-first weekday index of a YYYY-MM-DD string. */
+function weekdayOf(dateStr: string) {
+    const [y, m, d] = dateStr.split("-").map(Number);
+    return (new Date(y, m - 1, d).getDay() + 6) % 7;
+}
+
+/** "Episode 4", "Episodes 3 & 4", "Episodes 1–8" — with the season only when there is more than one. */
+function episodeLabel(eps: ScheduleEntry[]) {
+    const nums = eps.map((e) => e.episodeNumber).sort((a, b) => a - b);
+    const season = eps[0].seasonNumber > 1 ? `S${eps[0].seasonNumber} · ` : "";
+    if (nums.length === 1) return `${season}Episode ${nums[0]}`;
+    if (nums.length === 2) return `${season}Episodes ${nums[0]} & ${nums[1]}`;
+    return `${season}Episodes ${nums[0]}–${nums[nums.length - 1]}`;
 }
 
 export function ScheduleCalendar({
@@ -37,17 +53,12 @@ export function ScheduleCalendar({
     const today = new Date();
     const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
 
-    // Parse "YYYY-MM-DD" param — derive initial month and highlighted date
     const parseInitial = () => {
         if (initialDate && /^\d{4}-\d{2}-\d{2}$/.test(initialDate)) {
             const [y, m] = initialDate.split("-").map(Number);
             if (!isNaN(y) && m >= 1 && m <= 12) return { y, m: m - 1 };
         }
 
-        // A show was named but no date. Landing on the current month would show
-        // an empty grid for anything airing later, which is the opposite of what
-        // following a link to one show's schedule is for — so open on the month
-        // of its next episode, or of its last one if the run is over.
         if (initialShow) {
             const mine = entries.filter((e) => e.mediaId === initialShow).sort((a, b) => (a.airDate < b.airDate ? -1 : 1));
             const anchor = mine.find((e) => e.airDate >= todayStr) ?? mine[mine.length - 1];
@@ -63,24 +74,18 @@ export function ScheduleCalendar({
 
     const [year, setYear] = useState(initial.y);
     const [month, setMonth] = useState(initial.m);
+    // A linked date (`?date=`) opens selected, so the panel already shows it.
+    const [selectedDate, setSelectedDate] = useState<string | null>(initialDate ?? null);
+    const [hoveredRow, setHoveredRow] = useState<string | null>(null);
     const [asianOnly, setAsianOnly] = useState(initialPrefs?.calendarAsianOnly ?? false);
     const [includePlanToWatch, setIncludePlanToWatch] = useState(initialPrefs?.calendarIncludePlanToWatch ?? true);
     const [showActionsMenu, setShowActionsMenu] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [refreshingShowId, setRefreshingShowId] = useState<string | null>(null);
-    // Narrowing to one show. Held as state rather than read from the URL on
-    // every render because every entry is already here — filtering is a local
-    // operation, and a round trip to the server would only re-fetch what the
-    // page is holding.
     const [showFilter, setShowFilter] = useState<string | null>(initialShow ?? null);
 
-    // Taken from the unfiltered set: the filter itself has to keep naming the
-    // show even on a month where it has nothing.
     const filteredShow = showFilter ? entries.find((e) => e.mediaId === showFilter) : undefined;
 
-    // The URL is kept in step by hand rather than through the router: the page
-    // is force-dynamic, so a replace() would re-run the whole schedule query to
-    // change a query string the client has already acted on.
     const writeShowParam = (mediaId: string | null) => {
         if (typeof window === "undefined") return;
         const url = new URL(window.location.href);
@@ -89,23 +94,6 @@ export function ScheduleCalendar({
         window.history.replaceState({}, "", url);
     };
 
-    // Days whose "+N" chip has been opened, to show every show airing that day.
-    const [expandedDates, setExpandedDates] = useState<Set<string>>(new Set());
-    const toggleExpanded = (dateStr: string) => {
-        setExpandedDates((prev) => {
-            const next = new Set(prev);
-            if (next.has(dateStr)) next.delete(dateStr);
-            else next.add(dateStr);
-            return next;
-        });
-    };
-
-    // Which icon's tooltip is open, held here rather than left to Radix. The
-    // tooltips are hoverable (they carry buttons), so Radix keeps a grace area
-    // between an icon and its tooltip — and that area spans the neighbouring
-    // icons, where it refuses to open the next tooltip. Sliding from one icon to
-    // the next left the first one on screen. Owning the state lets entering an
-    // icon take over at once whenever some tooltip is already showing.
     const [openTooltip, setOpenTooltip] = useState<string | null>(null);
 
     const applyShowFilter = (mediaId: string | null) => {
@@ -116,11 +104,8 @@ export function ScheduleCalendar({
     const ASIAN_COUNTRIES = ["KR", "CN", "JP", "TW", "TH", "HK"];
     const filteredEntries = entries
         .filter((e) => !showFilter || e.mediaId === showFilter)
-        // The region and plan-to-watch filters are about thinning a crowded
-        // month. One show is not a crowd, and letting them hide the very show
-        // just asked for would read as the link being broken.
         .filter((e) => showFilter || !asianOnly || ASIAN_COUNTRIES.includes(e.originCountry))
-        .filter((e) => showFilter || includePlanToWatch || e.status !== "Plan to Watch");
+        .filter((e) => showFilter || includePlanToWatch || e.status !== PLAN_TO_WATCH);
 
     const handleRefreshShow = async (mediaId: string) => {
         setRefreshingShowId(mediaId);
@@ -132,9 +117,6 @@ export function ScheduleCalendar({
         }
     };
 
-    // Driven from here in chunks so the count can be reported as it goes. The
-    // menu closes on click, which used to hide the only sign anything was
-    // happening — a toast says it from outside the menu, and says how far along.
     const REFRESH_CHUNK = 4;
 
     const handleRefresh = async () => {
@@ -187,54 +169,30 @@ export function ScheduleCalendar({
     const goToToday = () => {
         setYear(today.getFullYear());
         setMonth(today.getMonth());
+        setSelectedDate(todayStr);
     };
 
-    // Map airDate -> (mediaId -> episodes[]) — one icon per show per day
-    const byDate = new Map<string, Map<string, ScheduleEntry[]>>();
-    for (const entry of filteredEntries) {
-        if (!byDate.has(entry.airDate)) byDate.set(entry.airDate, new Map());
-        const byShow = byDate.get(entry.airDate)!;
-        if (!byShow.has(entry.mediaId)) byShow.set(entry.mediaId, []);
-        byShow.get(entry.mediaId)!.push(entry);
-    }
-
-    // Build calendar cells (Monday-based)
-    const firstDayOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const startOffset = (firstDayOfMonth.getDay() + 6) % 7; // 0=Mon
-    const prevMonthDays = new Date(year, month, 0).getDate();
-
-    type Cell = { day: number; month: number; year: number; current: boolean };
-    const cells: Cell[] = [];
-
-    for (let i = startOffset - 1; i >= 0; i--) {
-        const m = month === 0 ? 11 : month - 1;
-        const y = month === 0 ? year - 1 : year;
-        cells.push({ day: prevMonthDays - i, month: m, year: y, current: false });
-    }
-    for (let d = 1; d <= daysInMonth; d++) {
-        cells.push({ day: d, month, year, current: true });
-    }
-    const trailing = (7 - (cells.length % 7)) % 7;
-    for (let d = 1; d <= trailing; d++) {
-        const m = month === 11 ? 0 : month + 1;
-        const y = month === 11 ? year + 1 : year;
-        cells.push({ day: d, month: m, year: y, current: false });
-    }
-
     const thisMonthPrefix = `${year}-${String(month + 1).padStart(2, "0")}`;
-    const episodesThisMonth = filteredEntries.filter((e) => e.airDate.startsWith(thisMonthPrefix)).length;
+    const monthEntries = filteredEntries.filter((e) => e.airDate.startsWith(thisMonthPrefix));
+    const episodesThisMonth = monthEntries.length;
+    const monthDates = Array.from({ length: daysInMonth }, (_, i) => toDateStr(year, month, i + 1));
 
-    // What the filter box says under the title: the show's broadcast days, taken
-    // from its whole run, and which episodes fall in the month on screen. That is
-    // what following a link to one show's schedule comes here to learn.
+    // The day the panel shows: the one picked, if it is in this month;
+    // otherwise today, if today is; otherwise the first day with anything on
+    // it. Derived rather than stored, so paging months never leaves the panel
+    // describing a day that is no longer on screen.
+    const panelDate = (() => {
+        if (selectedDate?.startsWith(thisMonthPrefix)) return selectedDate;
+        if (todayStr.startsWith(thisMonthPrefix)) return todayStr;
+        const first = monthEntries.map((e) => e.airDate).sort()[0];
+        return first ?? `${thisMonthPrefix}-01`;
+    })();
+
     const filterSummary = (() => {
         if (!filteredShow) return null;
         const mine = entries.filter((e) => e.mediaId === showFilter);
-        const weekdays = [...new Set(mine.map((e) => {
-            const [y, m, d] = e.airDate.split("-").map(Number);
-            return (new Date(y, m - 1, d).getDay() + 6) % 7; // Monday first
-        }))].sort((a, b) => a - b);
+        const weekdays = [...new Set(mine.map((e) => weekdayOf(e.airDate)))].sort((a, b) => a - b);
         const names = weekdays.map((d) => WEEKDAY_SHORT[d]);
         const days =
             names.length === 0 ? null
@@ -251,24 +209,286 @@ export function ScheduleCalendar({
         return days ? `${days} · ${inMonth}` : inMonth;
     })();
 
+    // The two actions every show carries wherever it appears: narrow the
+    // calendar to it, and refetch its dates.
+    const showActions = (mediaId: string) => (
+        <div className="flex shrink-0 items-center gap-2">
+            {!showFilter && (
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        applyShowFilter(mediaId);
+                    }}
+                    className="cursor-pointer text-fg-muted hover:text-fg transition-colors"
+                    title="Show only this"
+                    aria-label="Show only this"
+                >
+                    <Filter className="h-3 w-3" />
+                </button>
+            )}
+            <button
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleRefreshShow(mediaId);
+                }}
+                disabled={refreshingShowId === mediaId}
+                className="cursor-pointer text-fg-muted hover:text-fg transition-colors disabled:opacity-50"
+                title="Refresh this show"
+                aria-label="Refresh this show"
+            >
+                <RefreshCw className={`h-3 w-3 ${refreshingShowId === mediaId ? "animate-spin" : ""}`} />
+            </button>
+        </div>
+    );
+
+    const showTooltip = (tooltipKey: string, showEps: ScheduleEntry[], trigger: ReactNode) => {
+        const first = showEps[0];
+        return (
+            <Tooltip
+                key={tooltipKey}
+                open={openTooltip === tooltipKey}
+                onOpenChange={(open) => setOpenTooltip((prev) => (open ? tooltipKey : prev === tooltipKey ? null : prev))}
+            >
+                <TooltipTrigger asChild>{trigger}</TooltipTrigger>
+                <TooltipContent side="top">
+                    <div className="flex items-center justify-between gap-3 mb-1">
+                        <p className="font-semibold">
+                            {first.title}
+                            {first.status === PLAN_TO_WATCH && <span className="ml-2 font-normal text-fg-dim text-xs">Plan to Watch</span>}
+                        </p>
+                        {showActions(first.mediaId)}
+                    </div>
+                    {/* "S01E23" is a western-TV habit that fits almost nothing
+                        here: MDL files each season as its own entry and Asian
+                        dramas are overwhelmingly single-season, so the season
+                        only earns its place when there is more than one — the
+                        same rule the watchlist badge and the media links use. */}
+                    {showEps.map((ep, ei) => (
+                        <p key={ei} className="text-fg-muted text-xs">
+                            {ep.seasonNumber > 1 ? `S${ep.seasonNumber} · ` : ""}
+                            Episode {ep.episodeNumber}
+                            {ep.episodeName ? ` · ${ep.episodeName}` : ""}
+                        </p>
+                    ))}
+                </TooltipContent>
+            </Tooltip>
+        );
+    };
+
+    // ---- Timeline: one row per show, one column per day ----
+    type Row = { mediaId: string; first: ScheduleEntry; firstDate: string; byDay: Map<string, ScheduleEntry[]> };
+    const rowsById = new Map<string, Row>();
+    for (const e of monthEntries) {
+        let row = rowsById.get(e.mediaId);
+        if (!row) {
+            row = { mediaId: e.mediaId, first: e, firstDate: e.airDate, byDay: new Map() };
+            rowsById.set(e.mediaId, row);
+        }
+        if (e.airDate < row.firstDate) row.firstDate = e.airDate;
+        if (!row.byDay.has(e.airDate)) row.byDay.set(e.airDate, []);
+        row.byDay.get(e.airDate)!.push(e);
+    }
+    // Ordered by the first episode in the month, so the grid reads as a
+    // staircase of premieres rather than an alphabet.
+    const rows = [...rowsById.values()].sort((a, b) => (a.firstDate === b.firstDate ? a.first.title.localeCompare(b.first.title) : a.firstDate < b.firstDate ? -1 : 1));
+    // Shows being watched come first everywhere: they are what the page is
+    // for, and Plan to Watch is the part that can wait.
+    const rowGroups = [
+        { label: "Watching", rows: rows.filter((r) => r.first.status !== PLAN_TO_WATCH) },
+        { label: "Plan to Watch", rows: rows.filter((r) => r.first.status === PLAN_TO_WATCH) },
+    ].filter((g) => g.rows.length > 0);
+
+    // Colour is kept for state: the selected day is the one accent on the
+    // page, today is a quieter tint of it, weekends a neutral shade.
+    const columnTint = (dateStr: string) =>
+        dateStr === panelDate ? "bg-primary/12"
+        : dateStr === todayStr ? "bg-primary/5"
+        : weekdayOf(dateStr) >= 5 ? "bg-surface-1"
+        : "";
+
+    const timeline = (
+        <div className="overflow-x-auto rounded-lg border border-line-strong">
+            <div
+                className="grid min-w-max"
+                style={{ gridTemplateColumns: `minmax(150px, 220px) repeat(${daysInMonth}, minmax(24px, 1fr))` }}
+                onMouseLeave={() => setHoveredRow(null)}
+            >
+                <div className="sticky left-0 z-10 flex items-end bg-[color-mix(in_srgb,var(--page-bg)_95%,var(--fg))] border-b border-line-strong px-3 py-2 text-xs font-semibold tracking-wider text-fg-muted">
+                    SHOW
+                </div>
+                {monthDates.map((dateStr, i) => (
+                    <button
+                        key={dateStr}
+                        onClick={() => setSelectedDate(dateStr)}
+                        aria-pressed={dateStr === panelDate}
+                        aria-label={`${WEEKDAY_LONG[weekdayOf(dateStr)]} ${MONTH_NAMES[month]} ${i + 1}`}
+                        className={`cursor-pointer border-b border-line-strong bg-surface-2 py-1.5 text-center transition-colors hover:bg-surface-4 ${columnTint(dateStr)}`}
+                    >
+                        <span className="block text-[10px] text-fg-dim">{WEEKDAY_LETTER[weekdayOf(dateStr)]}</span>
+                        <span
+                            className={`block text-xs font-semibold tabular-nums ${dateStr === panelDate || dateStr === todayStr ? "text-primary" : "text-fg-soft"}`}
+                        >
+                            {i + 1}
+                        </span>
+                    </button>
+                ))}
+
+                {rowGroups.map((group) => (
+                    <div key={group.label} className="contents">
+                        <div className="col-span-full px-3 pt-3.5 pb-1.5 text-[11px] font-semibold tracking-wider text-fg-muted uppercase">
+                            {group.label} · {group.rows.length}
+                        </div>
+                        {group.rows.map((row) => {
+                            const isPlanToWatch = row.first.status === PLAN_TO_WATCH;
+                            const isHovered = hoveredRow === row.mediaId;
+                            return (
+                                <div key={row.mediaId} className="contents" onMouseEnter={() => setHoveredRow(row.mediaId)}>
+                                    <Link
+                                        href={`/media/${row.mediaId}?season=${row.first.seasonNumber}`}
+                                        className={`sticky left-0 z-10 flex min-w-0 items-center gap-2.5 border-t border-line-soft px-3 py-1.5 ${isHovered ? "bg-[color-mix(in_srgb,var(--page-bg)_93%,var(--fg))]" : "bg-page"}`}
+                                    >
+                                        <div className="relative h-7.5 w-5 shrink-0 overflow-hidden rounded-sm bg-surface-3">
+                                            {row.first.poster && <Image unoptimized={true} src={row.first.poster} alt="" fill sizes="20px" className="object-cover" />}
+                                        </div>
+                                        <span className={`truncate text-[13px] ${isPlanToWatch ? "text-fg-muted" : "font-medium text-fg"}`}>{row.first.title}</span>
+                                    </Link>
+                                    {monthDates.map((dateStr) => {
+                                        const eps = row.byDay.get(dateStr);
+                                        const nums = eps?.map((e) => e.episodeNumber).sort((a, b) => a - b);
+                                        const tooltipKey = `${dateStr}:${row.mediaId}`;
+                                        return (
+                                            <div
+                                                key={dateStr}
+                                                className={`flex items-center justify-center border-t border-line-soft ${isHovered ? "bg-surface-2" : columnTint(dateStr)}`}
+                                            >
+                                                {eps && nums &&
+                                                    showTooltip(
+                                                        tooltipKey,
+                                                        eps,
+                                                        // Watching is a filled square, Plan to Watch an
+                                                        // outline — the difference is shape, not colour.
+                                                        // Several episodes the same day (a double bill, a
+                                                        // whole season dropped at once) draw as a stack.
+                                                        <button
+                                                            onClick={() => setSelectedDate(dateStr)}
+                                                            onPointerEnter={() => setOpenTooltip((prev) => (prev ? tooltipKey : prev))}
+                                                            aria-label={`${row.first.title}, ${episodeLabel(eps)}`}
+                                                            className={[
+                                                                "cursor-pointer flex h-5.5 w-5.5 items-center justify-center rounded-[5px] text-[10px] font-bold tabular-nums transition-transform hover:scale-115",
+                                                                isPlanToWatch ? "border border-fg-dim text-fg-muted" : "bg-fg-soft text-page",
+                                                                nums.length > 1
+                                                                    ? isPlanToWatch
+                                                                        ? "shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-dim)]"
+                                                                        : "shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-soft)]"
+                                                                    : "",
+                                                                dateStr < todayStr ? "opacity-40" : "",
+                                                            ].join(" ")}
+                                                        >
+                                                            {nums[0]}
+                                                        </button>
+                                                    )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })}
+                    </div>
+                ))}
+
+                {rows.length === 0 && (
+                    <div className="col-span-full px-3 py-10 text-center text-sm text-fg-dim">Nothing airing this month</div>
+                )}
+            </div>
+        </div>
+    );
+
+    // ---- Panel: everything airing on the selected day ----
+    const panelGroups = [...(monthEntries.reduce((acc, e) => {
+        if (e.airDate !== panelDate) return acc;
+        if (!acc.has(e.mediaId)) acc.set(e.mediaId, []);
+        acc.get(e.mediaId)!.push(e);
+        return acc;
+    }, new Map<string, ScheduleEntry[]>())).values()];
+    const panelWatching = panelGroups.filter((g) => g[0].status !== PLAN_TO_WATCH);
+    const panelPlanned = panelGroups.filter((g) => g[0].status === PLAN_TO_WATCH);
+    const [, pm, pd] = panelDate.split("-").map(Number);
+
+    const panelItem = (showEps: ScheduleEntry[]) => {
+        const first = showEps[0];
+        const isPlanToWatch = first.status === PLAN_TO_WATCH;
+        return (
+            <div key={first.mediaId} className="-m-1 flex items-center gap-3 rounded-md p-1 transition-colors hover:bg-surface-2">
+                <Link href={`/media/${first.mediaId}?season=${first.seasonNumber}`} className="flex min-w-0 flex-1 items-center gap-3">
+                    <div className="relative h-15 w-10 shrink-0 overflow-hidden rounded bg-surface-3">
+                        {first.poster ? (
+                            <Image unoptimized={true} src={first.poster} alt="" fill sizes="40px" className="object-cover" />
+                        ) : (
+                            <div className="flex h-full w-full items-center justify-center text-[10px] font-bold text-fg-muted">{first.title.slice(0, 2).toUpperCase()}</div>
+                        )}
+                    </div>
+                    <div className="min-w-0">
+                        <p className={`truncate text-sm ${isPlanToWatch ? "font-medium text-fg-soft" : "font-semibold text-fg"}`}>{first.title}</p>
+                        <p className="truncate text-xs text-fg-muted">
+                            {episodeLabel(showEps)}
+                            {showEps.length === 1 && first.episodeName ? ` · ${first.episodeName}` : ""}
+                        </p>
+                    </div>
+                </Link>
+                {showActions(first.mediaId)}
+            </div>
+        );
+    };
+
+    const panel = (
+        <aside className="flex min-w-0 flex-[1_1_280px] flex-col gap-4.5 rounded-lg bg-box p-5 lg:sticky lg:top-4 lg:max-w-80">
+            <div>
+                <p className="text-[13px] text-fg-muted">
+                    {WEEKDAY_LONG[weekdayOf(panelDate)]}
+                    {panelDate === todayStr ? " · today" : ""}
+                </p>
+                <h2 className="mt-0.5 text-[22px] font-bold text-fg">
+                    {MONTH_NAMES[pm - 1]} {pd}
+                </h2>
+                <p className="mt-1 text-[13px] text-fg-muted">
+                    {panelGroups.length === 0
+                        ? "Nothing airing this day"
+                        : `${panelGroups.length} show${panelGroups.length !== 1 ? "s" : ""}${panelPlanned.length > 0 && panelWatching.length > 0 ? ` · ${panelWatching.length} you watch` : ""}`}
+                </p>
+            </div>
+            {panelWatching.length > 0 && (
+                <div className="flex flex-col gap-2.5">
+                    {panelPlanned.length > 0 && <p className="text-[11px] font-semibold tracking-wider text-fg-muted uppercase">Watching</p>}
+                    {panelWatching.map(panelItem)}
+                </div>
+            )}
+            {panelPlanned.length > 0 && (
+                <div className="flex flex-col gap-2.5">
+                    <p className="text-[11px] font-semibold tracking-wider text-fg-muted uppercase">Plan to Watch</p>
+                    {panelPlanned.map(panelItem)}
+                </div>
+            )}
+        </aside>
+    );
+
     return (
         <div className="min-h-screen bg-linear-to-b ">
-            <div className="container mx-auto py-8 px-4 space-y-6 max-w-6xl">
+            {/* Wider than the other pages: a month of day columns and the day
+                panel have to sit side by side without the timeline scrolling. */}
+            <div className="container mx-auto py-8 px-4 space-y-6 max-w-352">
                 {/* Page header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    {/* The month is the title. It used to be boxed on the right as
-                        if it were a secondary control, while the heading said
-                        "Calendar" — which the navigation already says, and which
-                        never changes. The one thing on this page that does change
-                        is which month you are looking at, so that is the heading,
-                        and the count below it follows along. */}
+                    {/* The month is the title: the one thing on this page that
+                        changes is which month you are looking at. */}
                     <div>
                         <h1 className="font-display text-3xl font-bold text-fg">
                             {MONTH_NAMES[month]} {year}
                         </h1>
                         <p className="text-sm text-fg-muted">
                             {episodesThisMonth > 0
-                                ? `${episodesThisMonth} episode${episodesThisMonth !== 1 ? "s" : ""} airing`
+                                ? `${rows.length} show${rows.length !== 1 ? "s" : ""} · ${episodesThisMonth} episode${episodesThisMonth !== 1 ? "s" : ""} airing`
                                 : "Nothing airing this month"}
                         </p>
                     </div>
@@ -329,10 +549,6 @@ export function ScheduleCalendar({
                                 </>
                             )}
                         </div>
-                        {/* The label moved into the heading, so what is left here is
-                            two ways to move and one shortcut. They no longer need a
-                            box each: nothing here has an active state to show, which
-                            is the only thing a frame around a control buys. */}
                         <button
                             onClick={goToToday}
                             className="cursor-pointer px-2 py-1.5 text-sm text-fg-muted hover:text-fg transition-colors"
@@ -362,8 +578,7 @@ export function ScheduleCalendar({
                     rather than a chip tucked in the header: arriving here from a
                     show's page means the grid is deliberately near-empty, and
                     that needs saying somewhere the eye lands before it reads the
-                    emptiness as a bug. The same box as the panels on /media: a
-                    light fill, no border or tint. */}
+                    emptiness as a bug. */}
                 {showFilter && (
                     <div className="flex items-center gap-3.5 rounded-lg bg-box px-4 py-3">
                         {filteredShow?.poster && (
@@ -388,218 +603,39 @@ export function ScheduleCalendar({
                     </div>
                 )}
 
-                {/* Calendar */}
-                <div className="rounded-lg border border-line-strong overflow-hidden">
-                    {/* Day headers */}
-                    <div className="grid grid-cols-7 bg-surface-2 border-b border-line-strong">
-                        {DAY_HEADERS.map((day, i) => (
-                            <div
-                                key={day}
-                                className={`py-3 text-center text-xs font-semibold tracking-wider ${i >= 5 ? "text-fg-dim" : "text-fg-muted"}`}
-                            >
-                                {day}
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Cells */}
-                    <TooltipProvider delayDuration={200}>
-                        <div className="grid grid-cols-7">
-                            {cells.map((cell, i) => {
-                                const dateStr = toDateStr(cell.year, cell.month, cell.day);
-                                // Group by show: one icon per show per day
-                                const dayGroups = byDate.has(dateStr) ? [...byDate.get(dateStr)!.values()] : [];
-                                // One row of four slots. A day that overflows gives
-                                // its last slot to the "+N" chip, so the chip sits on
-                                // the same row instead of wrapping onto a second one
-                                // that could just as well have held the icon it hides.
-                                const overflows = dayGroups.length > DAY_SLOTS;
-                                const hidden = overflows ? dayGroups.length - (DAY_SLOTS - 1) : 0;
-                                const isToday = dateStr === todayStr;
-                                const isHighlighted = initialDate ? dateStr === initialDate : false;
-                                const isPast = dateStr < todayStr;
-                                const colIndex = i % 7;
-                                const isWeekend = colIndex === 5 || colIndex === 6;
-                                const isLastRow = i >= cells.length - 7;
-                                const isLastCol = colIndex === 6;
-                                const isExpanded = expandedDates.has(dateStr);
-
-                                return (
-                                    <div
-                                        key={i}
-                                        className={[
-                                            "min-h-28 p-2 flex flex-col gap-1.5 transition-colors",
-                                            !isLastRow ? "border-b border-line-soft" : "",
-                                            !isLastCol ? "border-r border-line-soft" : "",
-                                            !cell.current ? "opacity-20" : "",
-                                            cell.current && isPast && !isToday ? "opacity-50" : "",
-                                            cell.current && isWeekend && !isHighlighted ? "bg-surface-1.5" : "",
-                                            cell.current && isToday && !isHighlighted ? "bg-primary/5" : "",
-                                            cell.current && isHighlighted ? "bg-amber-500/10 ring-1 ring-inset ring-amber-500/30" : "",
-                                        ]
-                                            .filter(Boolean)
-                                            .join(" ")}
-                                    >
-                                        {/* Day number */}
-                                        <div className="flex justify-center">
-                                            <span
-                                                className={`text-sm font-semibold w-7 h-7 flex items-center justify-center rounded-full ${
-                                                    isToday ? "text-primary" : cell.current ? "text-fg-soft" : "text-fg-faint"
-                                                }`}
-                                            >
-                                                {cell.day}
-                                            </span>
-                                        </div>
-
-                                        {/* Episode icons — one per show */}
-                                        {dayGroups.length > 0 && (
-                                            <div className="flex flex-wrap gap-1 mt-0.5 justify-center">
-                                                {(isExpanded || !overflows ? dayGroups : dayGroups.slice(0, DAY_SLOTS - 1)).map((showEps, gi) => {
-                                                    const first = showEps[0];
-                                                    // Plan-to-watch shows are optional viewing the user
-                                                    // has only earmarked — when they are mixed in with
-                                                    // what's actually being watched the day fills up
-                                                    // fast, so they sit back: greyed and dimmed, with
-                                                    // a dashed ring in place of the solid page-coloured
-                                                    // one.
-                                                    const isPlanToWatch = first.status === "Plan to Watch";
-                                                    const tooltipKey = `${dateStr}:${first.mediaId}`;
-                                                    return (
-                                                        <Tooltip
-                                                            key={gi}
-                                                            open={openTooltip === tooltipKey}
-                                                            onOpenChange={(open) =>
-                                                                setOpenTooltip((prev) => (open ? tooltipKey : prev === tooltipKey ? null : prev))
-                                                            }
-                                                        >
-                                                            <TooltipTrigger asChild>
-                                                                <Link
-                                                                    href={`/media/${first.mediaId}?season=${first.seasonNumber}`}
-                                                                    onPointerEnter={() => setOpenTooltip((prev) => (prev ? tooltipKey : prev))}
-                                                                >
-                                                                    <div className={`relative w-8 h-8 rounded-full overflow-hidden ring-2 hover:ring-primary/70 hover:scale-110 transition-all bg-surface-3 shrink-0 ${isPlanToWatch ? "ring-transparent outline-2 outline-dashed outline-offset-1 outline-fg-dim/60" : "ring-page"}`}>
-                                                                        {first.poster ? (
-                                                                            <Image unoptimized={true}
-                                                                                src={first.poster}
-                                                                                alt={first.title}
-                                                                                fill
-                                                                                sizes="32px"
-                                                                                className={`object-cover object-top ${isPlanToWatch ? "opacity-45 grayscale" : ""}`}
-                                                                            />
-                                                                        ) : (
-                                                                            <div className={`w-full h-full flex items-center justify-center text-[10px] font-bold text-fg-muted ${isPlanToWatch ? "opacity-45" : ""}`}>
-                                                                                {first.title.slice(0, 2).toUpperCase()}
-                                                                            </div>
-                                                                        )}
-                                                                    </div>
-                                                                </Link>
-                                                            </TooltipTrigger>
-                                                            <TooltipContent side="top">
-                                                                <div className="flex items-center justify-between gap-3 mb-1">
-                                                                    <p className="font-semibold">
-                                                                        {first.title}
-                                                                        {isPlanToWatch && (
-                                                                            <span className="ml-2 font-normal text-fg-dim text-xs">Plan to Watch</span>
-                                                                        )}
-                                                                    </p>
-                                                                    <div className="flex shrink-0 items-center gap-2">
-                                                                        {/* The other half of the filter: the
-                                                                            media page links in already narrowed,
-                                                                            and this is how you narrow from
-                                                                            inside a busy month. */}
-                                                                        {!showFilter && (
-                                                                            <button
-                                                                                onClick={(e) => {
-                                                                                    e.preventDefault();
-                                                                                    e.stopPropagation();
-                                                                                    applyShowFilter(first.mediaId);
-                                                                                }}
-                                                                                className="cursor-pointer text-fg-muted hover:text-fg transition-colors"
-                                                                                title="Show only this"
-                                                                            >
-                                                                                <Filter className="h-3 w-3" />
-                                                                            </button>
-                                                                        )}
-                                                                        <button
-                                                                            onClick={(e) => {
-                                                                                e.preventDefault();
-                                                                                e.stopPropagation();
-                                                                                handleRefreshShow(first.mediaId);
-                                                                            }}
-                                                                            disabled={refreshingShowId === first.mediaId}
-                                                                            className="cursor-pointer text-fg-muted hover:text-fg transition-colors disabled:opacity-50"
-                                                                            title="Refresh this show"
-                                                                        >
-                                                                            <RefreshCw className={`h-3 w-3 ${refreshingShowId === first.mediaId ? "animate-spin" : ""}`} />
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                                {/* "S01E23" is a western-TV habit that fits almost nothing
-                                                                    here: MDL files each season as its own entry and Asian
-                                                                    dramas are overwhelmingly single-season, so the season
-                                                                    only earns its place when there is more than one — the
-                                                                    same rule the watchlist badge and the media links use. */}
-                                                                {showEps.map((ep, ei) => (
-                                                                    <p key={ei} className="text-fg-muted text-xs">
-                                                                        {ep.seasonNumber > 1 ? `S${ep.seasonNumber} · ` : ""}
-                                                                        Episode {ep.episodeNumber}
-                                                                        {ep.episodeName ? ` · ${ep.episodeName}` : ""}
-                                                                    </p>
-                                                                ))}
-                                                            </TooltipContent>
-                                                        </Tooltip>
-                                                    );
-                                                })}
-                                                {/* The overflow chip opens the day in place rather
-                                                    than in a popover: the row just grows, and every
-                                                    icon keeps its own tooltip and link. */}
-                                                {overflows && (
-                                                    <button
-                                                        onClick={() => toggleExpanded(dateStr)}
-                                                        aria-label={isExpanded ? "Show fewer" : `Show ${hidden} more`}
-                                                        className="cursor-pointer w-8 h-8 rounded-full bg-surface-4 border border-line-strong flex items-center justify-center text-[10px] font-bold text-fg-soft shrink-0 hover:text-fg hover:border-fg-dim transition-colors"
-                                                    >
-                                                        {isExpanded ? <ChevronUp className="h-3.5 w-3.5" /> : `+${hidden}`}
-                                                    </button>
-                                                )}
-                                            </div>
-                                        )}
+                {filteredEntries.length > 0 && (
+                    <div className="flex flex-wrap items-start gap-6">
+                        <div className="min-w-0 flex-[999_1_760px] space-y-4">
+                            <TooltipProvider delayDuration={200}>{timeline}</TooltipProvider>
+                            {/* Legend */}
+                            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-fg-dim">
+                                <div className="flex items-center gap-2">
+                                    <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-fg-soft text-[9px] font-bold text-page">4</span>
+                                    <span>Watching</span>
+                                </div>
+                                {includePlanToWatch && (
+                                    <div className="flex items-center gap-2">
+                                        <span className="flex h-5 w-5 items-center justify-center rounded-[5px] border border-fg-dim text-[9px] font-bold text-fg-muted">2</span>
+                                        <span>Plan to Watch</span>
                                     </div>
-                                );
-                            })}
+                                )}
+                                <div className="flex items-center gap-2">
+                                    <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-fg-soft text-[9px] font-bold text-page shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-soft)]">
+                                        9
+                                    </span>
+                                    <span>Several episodes</span>
+                                </div>
+                                <span>Pick a day to list everything airing on it</span>
+                            </div>
                         </div>
-                    </TooltipProvider>
-                </div>
-
-                {/* Legend */}
-                <div className="flex items-center gap-4 text-xs text-fg-dim">
-                    <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded bg-primary/5 flex items-center justify-center text-primary font-semibold text-[10px]">
-                            7
-                        </span>
-                        <span>Today</span>
+                        {panel}
                     </div>
-                    <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded bg-amber-500/10 ring-1 ring-inset ring-amber-500/30" />
-                        <span>Linked date</span>
-                    </div>
-                    {includePlanToWatch && (
-                        <div className="flex items-center gap-2">
-                            <span className="w-5 h-5 rounded-full bg-surface-3 opacity-45 outline-2 outline-dashed outline-offset-1 outline-fg-dim/60" />
-                            <span>Plan to Watch</span>
-                        </div>
-                    )}
-                </div>
+                )}
 
                 {filteredEntries.length === 0 && (
                     <div className="text-center py-16 text-fg-dim">
                         <CalendarDays className="h-12 w-12 mx-auto mb-3 opacity-30" />
                         {showFilter ? (
-                            // The generic "add shows to your watchlist" is wrong
-                            // here twice over: the reader arrived from a show's
-                            // own page, and the calendar is built from tracked
-                            // shows, so the thing to say is which of those two
-                            // did not hold.
                             <>
                                 <p className="font-medium">No dated episodes for this show</p>
                                 <p className="text-sm mt-1">
