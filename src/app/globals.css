@@ -163,14 +163,14 @@
 
     /* Opaque, unlike the surfaces: a popover has to be readable over whatever
        it covers, so it stops the page rather than tinting it. */
-    --panel: #111827;
+    --panel: #1a2030;
 
     /* The <body>'s own ground: the same as --page-bg now that every page draws
        PageBackground from the layout. It was gray-900, and the pages that did
        not draw the backdrop (/media, /calendar, /people...) showed it bare, so
        the site had two grounds. Kept as its own token because solid strips that
        sit on the page (the media nav, the hero fade) read it. */
-    --app-bg: #101219;
+    --app-bg: #171b24;
 
     /* The plain box of the redesigned panels (media info, status bar, people
        and profile sidebars, filters). Opaque on purpose: surface-1 is a 3% white
@@ -178,7 +178,7 @@
        behind it and darker lower down. One step up from the base, keeping its
        blue: a plain white veil over it came out a flat, faintly brown grey
        (#17191f) that sat oddly on a blue-slate page. */
-    --box: #161a23;
+    --box: #1f2430;
 
     /* The floating header, in its three states. Named per theme rather than
        written as opacity modifiers on --panel, because the two themes do not
@@ -194,18 +194,18 @@
     --chip-ink: #e0f2fe;
     --chip-ink-soft: rgb(186 230 253 / 0.7);
 
-    --header-scrolled: rgb(17 24 39 / 0.8);
+    --header-scrolled: rgb(26 32 48 / 0.8);
     --header-over-hero: rgb(0 0 0 / 0.4);
-    --header-idle: rgb(17 24 39 / 0.5);
+    --header-idle: rgb(26 32 48 / 0.5);
 
     /* The two radial lifts in PageBackground. Without them the bottom of a long
        page falls back to the bare canvas and reads as flat black. */
-    --page-lift-top: rgb(30 41 59 / 0.45);
-    --page-lift-bottom: rgb(30 41 59 / 0.35);
+    --page-lift-top: rgb(38 50 71 / 0.45);
+    --page-lift-bottom: rgb(38 50 71 / 0.35);
 
     /* Translucent panel, for the blocks that float over artwork and let it show
        through. Distinct from --panel, which stops the page entirely. */
-    --panel-soft: rgb(17 24 39 / 0.6);
+    --panel-soft: rgb(26 32 48 / 0.6);
 
     /* The floating panels' shadow. The inset highlight along the top is a
        dark-theme bevel — a lit edge only reads as one against something dark —
@@ -216,9 +216,9 @@
        strengths rather than opacity modifiers on one colour, because the two
        themes do not need the same amount: a dark veil deepens a photograph,
        a light one bleaches it, and bleaching shows far sooner. */
-    --scrim-strong: #101219;
-    --scrim-mid: rgb(16 18 25 / 0.8);
-    --scrim-soft: rgb(16 18 25 / 0.3);
+    --scrim-strong: #171b24;
+    --scrim-mid: rgb(23 27 36 / 0.8);
+    --scrim-soft: rgb(23 27 36 / 0.3);
 
     --c-mdl: #38bdf8;
     --c-watched: #34d399;
@@ -348,7 +348,7 @@
        needs to blend into the page reads this, so darkness is tuned in one
        place. Was #0a0a0f, which sat close enough to pure black that the lower
        half of the viewport read as flat black. */
-    --page-bg: #101219;
+    --page-bg: #171b24;
     --radius: 0.625rem;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
