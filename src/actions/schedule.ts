@@ -18,6 +18,12 @@ export type ScheduleEntry = {
     mediaId: string;
     originCountry: string;
     status: string;
+    /** Exact ISO instant, when the source knows it (MDL often does). */
+    airDateTime?: string;
+    /** The UserMedia row tracking this episode's season — what progress belongs to. */
+    userMediaId?: string;
+    progress?: number;
+    totalEp?: number | null;
 };
 
 // TVmaze rate limit: 20 req/10s — cap concurrent show fetches at 3
@@ -202,16 +208,28 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
             source: "TMDB",
         },
         select: {
+            id: true,
             externalId: true,
             source: true,
             title: true,
             poster: true,
             originCountry: true,
             status: true,
+            season: true,
+            progress: true,
+            totalEp: true,
         },
     });
 
     if (items.length === 0) return [];
+
+    // Progress is kept per tracked season, so each episode takes it from the
+    // row for its own season, falling back to whichever row represents the show.
+    const trackBySeason = new Map(items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}:${i.season}`, i]));
+    const tracking = (mediaId: string, seasonNumber: number, fallback: (typeof items)[number]) => {
+        const row = trackBySeason.get(`${mediaId}:${seasonNumber}`) ?? fallback;
+        return { userMediaId: row.id, progress: row.progress, totalEp: row.totalEp };
+    };
 
     // Deduplicate by mediaId — same show can appear multiple times (different tracked seasons)
     const uniqueItems = [...new Map(items.map((i) => [`${i.source.toLowerCase()}-${i.externalId}`, i])).values()];
@@ -258,9 +276,11 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                     // cached before this existed still carry the padded title
                     episodeName: realEpisodeName(ep.episodeName),
                     airDate: ep.airDate,
+                    airDateTime: ep.airDateTime ?? undefined,
                     mediaId,
                     originCountry: item.originCountry || "",
                     status: item.status,
+                    ...tracking(mediaId, ep.seasonNumber, item),
                 });
             }
 
@@ -309,6 +329,7 @@ export async function getScheduleEntries(): Promise<ScheduleEntry[]> {
                         mediaId,
                         originCountry: item.originCountry || "",
                         status: item.status,
+                        ...tracking(mediaId, ep.seasonNumber, item),
                     });
                 }
             } catch (error) {

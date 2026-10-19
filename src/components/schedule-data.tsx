@@ -2,9 +2,17 @@ import { getScheduleEntries } from "@/actions/schedule";
 import { getCalendarPreferences, getDisplayPreferences } from "@/actions/preferences";
 import { getNativeTitlesAndBackfill } from "@/lib/native-titles";
 import { prisma } from "@/lib/prisma";
-import { ScheduleCalendar } from "@/components/schedule-calendar";
+import { ScheduleViews, type CalendarLayout } from "@/components/schedule-views";
 
-export async function ScheduleData({ initialDate, initialShow }: { initialDate?: string; initialShow?: string }) {
+export async function ScheduleData({
+    initialDate,
+    initialShow,
+    initialLayout,
+}: {
+    initialDate?: string;
+    initialShow?: string;
+    initialLayout: CalendarLayout;
+}) {
     const [entries, prefs, displayPrefs] = await Promise.all([
         getScheduleEntries(),
         getCalendarPreferences(),
@@ -31,5 +39,5 @@ export async function ScheduleData({ initialDate, initialShow }: { initialDate?:
         });
     }
 
-    return <ScheduleCalendar entries={safeEntries} initialDate={initialDate} initialShow={initialShow} initialPrefs={prefs} />;
+    return <ScheduleViews entries={safeEntries} initialDate={initialDate} initialShow={initialShow} initialLayout={initialLayout} initialPrefs={prefs} />;
 }
