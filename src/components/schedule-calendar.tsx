@@ -371,22 +371,33 @@ export function ScheduleCalendar({
                                                         // outline — the difference is shape, not colour.
                                                         // Several episodes the same day (a double bill, a
                                                         // whole season dropped at once) draw as a stack.
+                                                        //
+                                                        // The episode number only shows in the selected
+                                                        // day's column: everywhere else it competed with
+                                                        // the day numbers above for no gain, since the
+                                                        // question the grid answers is when, not which.
+                                                        // A premiere carries a dot — the one thing worth
+                                                        // seeing without a click.
                                                         <button
                                                             onClick={() => setSelectedDate(dateStr)}
                                                             onPointerEnter={() => setOpenTooltip((prev) => (prev ? tooltipKey : prev))}
-                                                            aria-label={`${row.first.title}, ${episodeLabel(eps)}`}
+                                                            aria-label={`${row.first.title}, ${episodeLabel(eps)}${nums[0] === 1 ? ", premiere" : ""}`}
                                                             className={[
-                                                                "cursor-pointer flex h-5.5 w-5.5 items-center justify-center rounded-[5px] text-[10px] font-bold tabular-nums transition-transform hover:scale-115",
+                                                                "relative cursor-pointer flex items-center justify-center text-[10px] font-bold tabular-nums transition-[transform,width,height] hover:scale-115",
+                                                                dateStr === panelDate ? "h-5.5 w-5.5 rounded-[5px]" : "h-3.5 w-3.5 rounded-[4px]",
                                                                 isPlanToWatch ? "border border-fg-dim text-fg-muted" : "bg-fg-soft text-page",
                                                                 nums.length > 1
                                                                     ? isPlanToWatch
                                                                         ? "shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-dim)]"
                                                                         : "shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-soft)]"
                                                                     : "",
-                                                                dateStr < todayStr ? "opacity-40" : "",
+                                                                dateStr < todayStr && dateStr !== panelDate ? "opacity-40" : "",
                                                             ].join(" ")}
                                                         >
-                                                            {nums[0]}
+                                                            {dateStr === panelDate && nums[0]}
+                                                            {nums[0] === 1 && (
+                                                                <span className="absolute -top-1 -left-1 h-1.5 w-1.5 rounded-full bg-primary ring-2 ring-page" />
+                                                            )}
                                                         </button>
                                                     )}
                                             </div>
@@ -610,22 +621,26 @@ export function ScheduleCalendar({
                             {/* Legend */}
                             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-fg-dim">
                                 <div className="flex items-center gap-2">
-                                    <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-fg-soft text-[9px] font-bold text-page">4</span>
+                                    <span className="h-3.5 w-3.5 rounded-[4px] bg-fg-soft" />
                                     <span>Watching</span>
                                 </div>
                                 {includePlanToWatch && (
                                     <div className="flex items-center gap-2">
-                                        <span className="flex h-5 w-5 items-center justify-center rounded-[5px] border border-fg-dim text-[9px] font-bold text-fg-muted">2</span>
+                                        <span className="h-3.5 w-3.5 rounded-[4px] border border-fg-dim" />
                                         <span>Plan to Watch</span>
                                     </div>
                                 )}
                                 <div className="flex items-center gap-2">
-                                    <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-fg-soft text-[9px] font-bold text-page shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-soft)]">
-                                        9
-                                    </span>
+                                    <span className="h-3.5 w-3.5 rounded-[4px] bg-fg-soft shadow-[2px_-2px_0_-1px_var(--page-bg),3px_-3px_0_-1px_var(--fg-soft)]" />
                                     <span>Several episodes</span>
                                 </div>
-                                <span>Pick a day to list everything airing on it</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="relative h-3.5 w-3.5 rounded-[4px] bg-fg-soft">
+                                        <span className="absolute -top-1 -left-1 h-1.5 w-1.5 rounded-full bg-primary ring-2 ring-page" />
+                                    </span>
+                                    <span>Premiere</span>
+                                </div>
+                                <span>Pick a day to see its episode numbers</span>
                             </div>
                         </div>
                         {panel}
