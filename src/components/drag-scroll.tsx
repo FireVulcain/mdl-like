@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Adds click-and-drag panning to a horizontal ScrollArea.
+ * Adds click-and-drag panning to a horizontal ScrollArea, or to any plain
+ * overflow-x element inside it marked with `data-drag-scroll-viewport`.
  *
  * The whole problem is telling a drag apart from a click, since every card is a
  * link: the pointer only counts as dragging once it has travelled past a small
@@ -34,7 +35,8 @@ export function DragScroll({ children, className }: { children: React.ReactNode;
 
     useEffect(() => {
         const root = rootRef.current;
-        const viewport = root?.querySelector<HTMLElement>("[data-radix-scroll-area-viewport]");
+        const viewport =
+            root?.querySelector<HTMLElement>("[data-radix-scroll-area-viewport]") ?? root?.querySelector<HTMLElement>("[data-drag-scroll-viewport]");
         if (!root || !viewport) return;
 
         let pressed = false;

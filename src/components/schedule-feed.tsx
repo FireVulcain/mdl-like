@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import type { ScheduleEntry } from "@/actions/schedule";
 import { getScheduleRefreshTargets, refreshScheduleChunk } from "@/actions/schedule";
 import { saveCalendarPreferences, type CalendarPreferences } from "@/actions/preferences";
+import { DragScroll } from "@/components/drag-scroll";
 
 export type { ScheduleEntry };
 
@@ -427,28 +428,31 @@ export function ScheduleFeed({
                     </div>
                 )}
 
-                {/* Day strip: jumps the box below to a day */}
-                <nav ref={strip} aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
-                    {days
-                        .filter((d) => d >= todayStr)
-                        .map((d) => {
-                            const c = episodesOn(d);
-                            const active = (activeDay ?? linked ?? todayStr) === d;
-                            return (
-                                <button
-                                    key={d}
-                                    data-day={d}
-                                    onClick={() => jumpTo(d)}
-                                    aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
-                                    className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${c ? "" : "opacity-45"}`}
-                                >
-                                    <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : WEEKDAY_SHORT[weekdayOf(d)]}</span>
-                                    <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>
-                                    <span className="text-[11px] tabular-nums text-fg-dim">{c ? `${c} ep${c > 1 ? "s" : ""}` : "—"}</span>
-                                </button>
-                            );
-                        })}
-                </nav>
+                {/* Day strip: jumps the box below to a day. Dragged sideways with
+                    the mouse like the rails on the home page. */}
+                <DragScroll>
+                    <nav ref={strip} data-drag-scroll-viewport aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
+                        {days
+                            .filter((d) => d >= todayStr)
+                            .map((d) => {
+                                const c = episodesOn(d);
+                                const active = (activeDay ?? linked ?? todayStr) === d;
+                                return (
+                                    <button
+                                        key={d}
+                                        data-day={d}
+                                        onClick={() => jumpTo(d)}
+                                        aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
+                                        className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${c ? "" : "opacity-45"}`}
+                                    >
+                                        <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : WEEKDAY_SHORT[weekdayOf(d)]}</span>
+                                        <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>
+                                        <span className="text-[11px] tabular-nums text-fg-dim">{c ? `${c} ep${c > 1 ? "s" : ""}` : "—"}</span>
+                                    </button>
+                                );
+                            })}
+                    </nav>
+                </DragScroll>
 
                 {/* Days, in their own scroll box */}
                 <div
