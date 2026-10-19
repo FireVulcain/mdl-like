@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Bookmark, CalendarDays, Check, RefreshCw, SlidersHorizontal } from "lucide-react";
@@ -92,9 +92,10 @@ export function ScheduleFeed({
     const [asianOnly, setAsianOnly] = useState(initialPrefs?.calendarAsianOnly ?? false);
     const [includePlanToWatch, setIncludePlanToWatch] = useState(initialPrefs?.calendarIncludePlanToWatch ?? true);
     const [showEmpty, setShowEmpty] = useState(false);
-    // The last week is always there, above today: the page opens scrolled to
-    // today, and scrolling up is how you look back.
-    const pastDays = linkedOffset < -7 ? Math.min(-linkedOffset, 60) : 7;
+    // Days load in both directions as the box is scrolled: a week back at a
+    // time above today, two weeks ahead at a time below. The box opens on
+    // today, so the past is reached by scrolling up.
+    const [pastDays, setPastDays] = useState(linkedOffset < -7 ? -linkedOffset : 7);
     const [span, setSpan] = useState(Math.max(14, linkedOffset + 1));
     const [showFilter, setShowFilter] = useState<string | null>(initialShow ?? null);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -135,6 +136,13 @@ export function ScheduleFeed({
             (a, b) => Number(isPlanned(a)) - Number(isPlanned(b)) || timeKey(a) - timeKey(b) || a.first.title.localeCompare(b.first.title),
         );
     const episodesOn = (d: string) => (byDate.get(d) ?? []).reduce((n, a) => n + a.nums.length, 0);
+
+    // How far the schedule actually goes: loading stops at either end.
+    const airDates = filtered.map((e) => e.airDate).sort();
+    const earliest = airDates[0] ?? todayStr;
+    const latest = airDates[airDates.length - 1] ?? todayStr;
+    const canLoadPast = addDays(todayStr, -pastDays) > earliest;
+    const canLoadMore = addDays(todayStr, span) <= latest;
 
     const days: string[] = [];
     for (let i = -pastDays; i < span; i++) days.push(addDays(todayStr, i));
@@ -222,6 +230,21 @@ export function ScheduleFeed({
         stripPlaced.current = true;
     }, [activeDay, linked, todayStr]);
 
+    // Prepending a week above today would push everything in the box (and
+    // in the strip) down by its height. The positions are taken just before
+    // the load and restored right after it, before paint, so the view stays
+    // on the same day.
+    const prepend = useRef<{ boxHeight: number; boxTop: number; stripWidth: number; stripLeft: number } | null>(null);
+    useLayoutEffect(() => {
+        const was = prepend.current;
+        const box = scroller.current;
+        const bar = strip.current;
+        if (!was || !box || !bar) return;
+        box.scrollTop = was.boxTop + (box.scrollHeight - was.boxHeight);
+        bar.scrollLeft = was.stripLeft + (bar.scrollWidth - was.stripWidth);
+        prepend.current = null;
+    }, [pastDays]);
+
     // The strip follows the box's scroll: the active day is the last one whose
     // section has started at the top of the box. Read from positions rather
     // than an IntersectionObserver, which also counted the few pixels of the
@@ -234,6 +257,17 @@ export function ScheduleFeed({
         let frame = 0;
         const update = () => {
             frame = 0;
+            // Near either end, load the next stretch of days.
+            if (box.scrollTop < 400 && canLoadPast && !prepend.current && strip.current) {
+                prepend.current = {
+                    boxHeight: box.scrollHeight,
+                    boxTop: box.scrollTop,
+                    stripWidth: strip.current.scrollWidth,
+                    stripLeft: strip.current.scrollLeft,
+                };
+                setPastDays((p) => p + 7);
+            }
+            if (box.scrollTop + box.clientHeight > box.scrollHeight - 600 && canLoadMore) setSpan((n) => n + 14);
             // The last days can never reach the top of the box: at the
             // bottom, the last one is the active day.
             if (box.scrollTop + box.clientHeight >= box.scrollHeight - 4) {
@@ -251,11 +285,14 @@ export function ScheduleFeed({
             if (!frame) frame = requestAnimationFrame(update);
         };
         box.addEventListener("scroll", onScroll, { passive: true });
+        // Also once now: a short stretch may not fill the box, or leave too
+        // little above today to scroll up into.
+        onScroll();
         return () => {
             cancelAnimationFrame(frame);
             box.removeEventListener("scroll", onScroll);
         };
-    }, [span, pastDays, showEmpty, includePlanToWatch, asianOnly, showFilter]);
+    }, [span, pastDays, showEmpty, includePlanToWatch, asianOnly, showFilter, canLoadPast, canLoadMore]);
 
     const handleRefresh = async () => {
         setIsRefreshing(true);
@@ -475,7 +512,7 @@ export function ScheduleFeed({
                                         aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
                                         className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${!c ? "opacity-45" : d < todayStr ? "opacity-60" : ""}`}
                                     >
-                                        <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : WEEKDAY_SHORT[weekdayOf(d)]}</span>
+                                        <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : d.endsWith("-01") ? <b className="font-semibold text-fg-soft">{MONTH_NAMES[Number(d.slice(5, 7)) - 1].slice(0, 3)}</b> : WEEKDAY_SHORT[weekdayOf(d)]}</span>
                                         <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>
                                         <span className="text-[11px] tabular-nums text-fg-dim">{c ? `${c} ep${c > 1 ? "s" : ""}` : "—"}</span>
                                     </button>
@@ -532,12 +569,9 @@ export function ScheduleFeed({
                         })
                     )}
 
-                    <button
-                        onClick={() => setSpan((s) => s + 14)}
-                        className="cursor-pointer mt-8 self-center rounded-lg border border-line-strong px-3 py-2 text-sm text-fg-soft transition-colors hover:bg-surface-2 hover:text-fg"
-                    >
-                        Show 2 more weeks
-                    </button>
+                    {!canLoadMore && visibleDays.length > 0 && (
+                        <p className="mt-8 self-center text-[13px] text-fg-dim">Nothing scheduled after {longDate(latest)}</p>
+                    )}
                 </div>
             </div>
         </div>
