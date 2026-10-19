@@ -1,39 +1,42 @@
 /**
- * The calendar's loading state, drawn the way the page draws it: the month as
- * the title, the timeline's rows, the day panel beside them.
+ * The schedule's loading state, drawn the way the page draws it: the title,
+ * the strip of day chips, then a day of posters.
  *
  * Shared by the route's loading.tsx and the page's own Suspense fallback so the
- * two cannot drift apart again. The title is a shape rather than text: the
- * month is not known until the data arrives, and printing the wrong word only
- * to replace it is worse than printing nothing.
+ * two cannot drift apart. The title is a shape rather than text: the counts are
+ * not known until the data arrives.
  */
 export function ScheduleSkeleton() {
     return (
-        <div className="min-h-screen bg-linear-to-b">
-            <div className="container mx-auto py-8 px-4 space-y-6 max-w-352">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="animate-pulse">
-                        <div className="h-8 w-52 rounded bg-surface-4" />
-                        <div className="h-4 w-40 mt-2 rounded bg-surface-3" />
+        <div className="min-h-screen">
+            <div className="container mx-auto max-w-6xl space-y-5 px-4 py-8 animate-pulse">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <div className="h-8 w-40 rounded bg-surface-4" />
+                        <div className="mt-2 h-4 w-56 rounded bg-surface-3" />
                     </div>
-                    <div className="flex items-center gap-2 animate-pulse">
+                    <div className="flex items-center gap-2">
                         <div className="h-9 w-9 rounded-lg bg-surface-2" />
-                        <div className="h-5 w-12 rounded bg-surface-2" />
-                        <div className="h-9 w-20 rounded-lg bg-surface-2" />
+                        <div className="h-9 w-16 rounded-lg bg-surface-2" />
                     </div>
                 </div>
-
-                <div className="flex flex-wrap items-start gap-6 animate-pulse">
-                    <div className="min-w-0 flex-[999_1_760px] rounded-lg border border-line-strong overflow-hidden">
-                        <div className="h-12 bg-surface-2 border-b border-line-strong" />
-                        {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="flex items-center gap-2.5 px-3 py-1.5 border-t border-line-soft first:border-t-0">
-                                <div className="h-7.5 w-5 rounded-sm bg-surface-3" />
-                                <div className="h-3.5 rounded bg-surface-3" style={{ width: `${80 + ((i * 37) % 60)}px` }} />
+                <div className="flex gap-1.5 overflow-hidden border-b border-line py-2">
+                    {Array.from({ length: 14 }).map((_, i) => (
+                        <div key={i} className="h-16 w-14.5 shrink-0 rounded-lg bg-surface-1" />
+                    ))}
+                </div>
+                <div className="pt-7">
+                    <div className="h-3.5 w-32 rounded bg-surface-3" />
+                    <div className="mt-2 h-7 w-36 rounded bg-surface-4" />
+                    <div className="mt-3.5 grid grid-cols-[repeat(auto-fill,minmax(132px,1fr))] gap-x-3.5 gap-y-4.5">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <div key={i} className="flex flex-col gap-1.5">
+                                <div className="aspect-2/3 rounded-lg bg-surface-3" />
+                                <div className="h-3.5 w-3/4 rounded bg-surface-3" />
+                                <div className="h-3 w-1/2 rounded bg-surface-2" />
                             </div>
                         ))}
                     </div>
-                    <div className="h-80 min-w-0 flex-[1_1_280px] rounded-lg bg-box lg:max-w-80" />
                 </div>
             </div>
         </div>
