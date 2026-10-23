@@ -21,7 +21,8 @@ import { ProfileSettings } from "@/components/settings/profile-settings";
 import { NotificationSettings } from "@/components/settings/notification-settings";
 import { MdlProfileSetting } from "@/components/settings/mdl-profile-setting";
 import { ActorRadarManagePanel } from "@/components/actor-radar-manage";
-import { SettingsTabs, type SettingsTab } from "@/components/settings/settings-tabs";
+import { SettingsIndex } from "@/components/settings/settings-index";
+import { SettingRow, SettingsGroup } from "@/components/settings/settings-ui";
 import { CronStatusPanel } from "@/components/settings/cron-status";
 import { ChartPreview } from "@/components/settings/chart-preview";
 import { getCronStatus } from "@/actions/cron-status";
@@ -36,9 +37,8 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function SettingsPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
+export default async function SettingsPage() {
     const [
-        { tab },
         userId,
         excludedPrefs,
         calendarPrefs,
@@ -53,7 +53,6 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         isAdmin,
     ] =
         await Promise.all([
-            searchParams,
             getCurrentUserId().catch(() => null),
             getExcludedTagsPreferences(),
             getCalendarPreferences(),
@@ -72,97 +71,139 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
     try {
         radar = await getRadarActors();
     } catch {
-        // Logged out or radar unavailable — the tab just doesn't render
+        // Logged out or radar unavailable — the group just doesn't render
     }
 
-    const tabs: SettingsTab[] = [
-        { id: "home", label: "Home page", description: "What shows up on the home page, and in what order" },
-        { id: "watchlist", label: "Watchlist", description: "Default view and behaviors of your watchlist" },
-        { id: "calendar", label: "Calendar", description: "What appears in the airing schedule — also adjustable from the calendar page" },
-        ...(radar ? [{ id: "radar", label: "Actor radar", description: "Who feeds the “From Actors You Watch” section" }] : []),
-        { id: "display", label: "Display", description: "How titles and episode details are shown across the app" },
-        { id: "shortcuts", label: "Shortcuts", description: "Keys that open the command palette" },
-        { id: "profile", label: "Public profile", description: "What visitors can see on your profile page" },
-        { id: "notifications", label: "Notifications", description: "In-app banners and reminders" },
-        { id: "jobs", label: "Background jobs", description: "The three scheduled runs that keep MDL figures and rating history current" },
-        { id: "chart-preview", label: "Chart preview", description: "Draw a relationship chart from a JSON file of your own" },
+    // Six groups on one page. There are barely twenty settings, and as ten tabs
+    // two of them (notifications, shortcuts) held a single control each.
+    const groups = [
+        { id: "general", title: "General", description: "How titles read, what stays hidden, and the keys and banners that work everywhere." },
+        { id: "home", title: "Home page", description: "Which sections show, in what order, and the tags that keep titles out." },
+        { id: "lists", title: "Watchlist and calendar", description: "How your list opens and what the airing schedule includes." },
+        ...(radar ? [{ id: "radar", title: "Actor radar", description: "The actors behind the “From Actors You Watch” section." }] : []),
+        { id: "profile", title: "Profile", description: "What visitors see on your page, and the MDL link in the header." },
+        { id: "tools", title: "Tools", description: "Reports on the scheduled jobs, and a previewer for chart files." },
     ];
-
-    const panels: Record<string, React.ReactNode> = {
-        home: (
-            <div className="divide-y divide-line">
-                <div className="space-y-2.5 pb-5">
-                    <h3 className="text-xs font-bold text-fg-dim uppercase tracking-wider">Sections</h3>
-                    <p className="text-xs text-fg-faint">
-                        Choose which sections appear on the home page and in what order. Extra drama universes (Japan,
-                        Taiwan, Thailand…) are available here too.
-                    </p>
-                    <HomeSectionsSetting initialSections={homeSections} />
-                </div>
-                <div className="space-y-4 pt-5">
-                    <div className="space-y-2">
-                        <h3 className="text-xs font-bold text-fg-dim uppercase tracking-wider">Excluded tags</h3>
-                        <p className="text-xs text-fg-faint">
-                            Titles carrying any of these MDL tags are hidden from the Top Rated, Airing Now and Coming
-                            Soon rows, and from their &ldquo;See more&rdquo; pages.
-                        </p>
-                    </div>
-                    <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
-                </div>
-            </div>
-        ),
-        jobs: (
-            <div className="space-y-3">
-                <p className="text-xs text-fg-faint leading-snug">
-                    Three schedules, deliberately separate so one cannot starve or hide another. They are configured in Coolify; nothing here starts
-                    them — this only reports what they last wrote.
-                </p>
-                <CronStatusPanel jobs={cronJobs} />
-                {isAdmin && (
-                    <p className="text-xs text-fg-faint">
-                        What every call to MyDramaList cost, and who made it:{" "}
-                        <Link href="/admin/scraper" className="text-fg-soft underline-offset-2 hover:text-fg hover:underline">
-                            scraper traffic
-                        </Link>
-                    </p>
-                )}
-            </div>
-        ),
-        watchlist: <WatchlistViewSettings initialPrefs={viewPrefs} />,
-        calendar: <CalendarSettings initialPrefs={calendarPrefs} />,
-        ...(radar
-            ? { radar: <ActorRadarManagePanel scannedActors={radar.scannedActors} excludedActors={radar.excludedActors} /> }
-            : {}),
-        display: (
-            <div className="divide-y divide-line">
-                <div className="pb-5">
-                    <DisplaySettings initialPrefs={displayPrefs} />
-                </div>
-                <div className="pt-5">
-                    <MdlProfileSetting initialUrl={mdlProfileUrl} />
-                </div>
-            </div>
-        ),
-        shortcuts: <ShortcutSettings initialShortcuts={shortcutPrefs.commandPaletteShortcuts} />,
-        profile: userId ? (
-            <ProfileSettings initialPrefs={profilePrefs} profileUserId={userId} />
-        ) : (
-            <p className="text-sm text-fg-dim">Sign in to manage your public profile.</p>
-        ),
-        notifications: <NotificationSettings initialPrefs={notifPrefs} />,
-        "chart-preview": <ChartPreview />,
-    };
+    const group = (id: string) => groups.find((g) => g.id === id)!;
 
     return (
-        <div className="relative min-h-screen overflow-hidden">
-
+        // No overflow-hidden here: it makes this box the scroller the index
+        // sticks to, and since this box never scrolls the index never stuck.
+        <div className="relative min-h-screen">
             <div className="container py-8 px-4 mx-auto max-w-5xl relative z-10">
                 <div className="mb-8">
                     <h1 className="font-display text-3xl font-bold tracking-tight text-fg">Settings</h1>
                     <p className="text-fg-dim mt-1">Tune how the app curates things for you</p>
                 </div>
 
-                <SettingsTabs tabs={tabs} panels={panels} initialTab={tab} />
+                <div className="md:grid md:grid-cols-[170px_minmax(0,1fr)] md:gap-10 md:items-start">
+                    <div className="hidden md:block sticky top-28">
+                        <SettingsIndex groups={groups.map(({ id, title }) => ({ id, title }))} />
+                    </div>
+
+                    <div className="space-y-10 min-w-0">
+                        <SettingsGroup {...group("general")}>
+                            <DisplaySettings initialPrefs={displayPrefs} />
+                            <ShortcutSettings initialShortcuts={shortcutPrefs.commandPaletteShortcuts} />
+                            <NotificationSettings initialPrefs={notifPrefs} />
+                        </SettingsGroup>
+
+                        <SettingsGroup {...group("home")}>
+                            <SettingRow
+                                label="Home sections"
+                                hint="Choose which sections appear on the home page and in what order. Extra drama universes (Japan, Taiwan, Thailand…) are available here too."
+                                wide
+                            >
+                                <HomeSectionsSetting initialSections={homeSections} />
+                            </SettingRow>
+                            <SettingRow
+                                label="Excluded tags"
+                                hint={
+                                    <>
+                                        Titles carrying any of these MDL tags are hidden from the Top Rated, Airing Now and Coming Soon rows, and from
+                                        their &ldquo;See more&rdquo; pages.
+                                    </>
+                                }
+                                wide
+                            >
+                                <HomeExcludedTagsSetting initialTags={excludedPrefs.tags} initialApplyToBrowse={excludedPrefs.applyToBrowse} />
+                            </SettingRow>
+                        </SettingsGroup>
+
+                        <SettingsGroup {...group("lists")}>
+                            <WatchlistViewSettings initialPrefs={viewPrefs} />
+                            <CalendarSettings initialPrefs={calendarPrefs} />
+                        </SettingsGroup>
+
+                        {radar && (
+                            <SettingsGroup {...group("radar")}>
+                                <SettingRow label="Actors" hint="Add an actor to pin them; remove one to keep them out of the section." wide>
+                                    <ActorRadarManagePanel scannedActors={radar.scannedActors} excludedActors={radar.excludedActors} />
+                                </SettingRow>
+                            </SettingsGroup>
+                        )}
+
+                        <SettingsGroup
+                            {...group("profile")}
+                            after={
+                                userId && (
+                                    <Link href={`/u/${userId}`} className="text-[13px] text-fg-dim transition-colors hover:text-fg">
+                                        Preview my public profile
+                                    </Link>
+                                )
+                            }
+                        >
+                            {userId ? (
+                                <ProfileSettings initialPrefs={profilePrefs} />
+                            ) : (
+                                <p className="py-4 text-sm text-fg-dim">Sign in to manage your public profile.</p>
+                            )}
+                            <SettingRow
+                                label="MyDramaList profile"
+                                hint="Adds an MDL shortcut to the header. Leave it empty to hide the link. Paste your profile URL, or just your username."
+                                wide
+                            >
+                                <MdlProfileSetting initialUrl={mdlProfileUrl} />
+                            </SettingRow>
+                        </SettingsGroup>
+
+                        <SettingsGroup {...group("tools")}>
+                            <SettingRow
+                                label="Background jobs"
+                                hint={
+                                    <>
+                                        Three schedules, deliberately separate so one cannot starve or hide another. They are configured in Coolify;
+                                        nothing here starts them, this only reports what they last wrote.
+                                        {isAdmin && (
+                                            <>
+                                                {" "}What every call to MyDramaList cost, and who made it:{" "}
+                                                <Link href="/admin/scraper" className="text-fg-soft underline-offset-2 hover:text-fg hover:underline">
+                                                    scraper traffic
+                                                </Link>
+                                                .
+                                            </>
+                                        )}
+                                    </>
+                                }
+                                wide
+                            >
+                                <CronStatusPanel jobs={cronJobs} />
+                            </SettingRow>
+                            <SettingRow
+                                label="Chart preview"
+                                hint={
+                                    <>
+                                        Draw a relationship chart from a JSON file in the format of{" "}
+                                        <code className="font-mono">prisma/character-maps/</code>. The file stays in your browser; nothing is saved.
+                                    </>
+                                }
+                                wide
+                            >
+                                <ChartPreview />
+                            </SettingRow>
+                        </SettingsGroup>
+                    </div>
+                </div>
             </div>
         </div>
     );

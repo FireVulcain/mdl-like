@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { FileJson, Upload, X } from "lucide-react";
+import { X } from "lucide-react";
+import { settingsButton } from "@/components/settings/settings-ui";
 import { CharacterMap } from "@/components/media/character-map";
 import type { CharacterMapData, MapLink, MapPerson } from "@/lib/character-map";
 
@@ -80,10 +81,6 @@ export function ChartPreview() {
 
     return (
         <div className="space-y-4">
-            <p className="text-xs text-fg-faint leading-snug">
-                Draw a chart from a JSON file in the format of <code className="font-mono">prisma/character-maps/</code>. The file stays in your browser — nothing is saved.
-            </p>
-
             <div
                 onDragOver={(e) => {
                     e.preventDefault();
@@ -95,13 +92,12 @@ export function ChartPreview() {
                     setOver(false);
                     void open(e.dataTransfer.files[0]);
                 }}
-                onClick={() => inputRef.current?.click()}
-                className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed px-4 py-8 text-center transition-colors ${
-                    over ? "border-sky-400 bg-sky-400/5" : "border-line hover:border-line-strong hover:bg-surface-1"
-                }`}
+                className={`flex flex-wrap items-center gap-3 rounded-md p-3.5 transition-colors ${over ? "bg-surface-3" : "bg-surface-1"}`}
             >
-                <Upload className="h-5 w-5 text-fg-dim" />
-                <span className="text-sm text-fg-soft">Drop a .json file here, or click to pick one</span>
+                <button type="button" onClick={() => inputRef.current?.click()} className={settingsButton}>
+                    Choose a file
+                </button>
+                <span className="text-[13px] text-fg-dim">or drop a .json file here</span>
                 <input
                     ref={inputRef}
                     type="file"
@@ -114,13 +110,11 @@ export function ChartPreview() {
                     }}
                 />
             </div>
-
-            {error && <p className="rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-400">{error}</p>}
+            {error && <p className="text-xs text-dropped">{error}</p>}
 
             {loaded && (
                 <div className="space-y-3">
                     <div className="flex items-center gap-2 text-sm">
-                        <FileJson className="h-4 w-4 text-fg-dim" />
                         <span className="font-medium text-fg">{loaded.map.title}</span>
                         <span className="font-mono text-[11px] text-fg-dim">
                             {loaded.name} · {loaded.map.people.length} people · {loaded.map.links.length} links
@@ -135,7 +129,7 @@ export function ChartPreview() {
                         </button>
                     </div>
                     {loaded.warnings.length > 0 && (
-                        <ul className="space-y-1 text-[11px] text-amber-400/90">
+                        <ul className="space-y-1 text-[11px] text-fg-soft">
                             {loaded.warnings.map((w) => (
                                 <li key={w}>{w}</li>
                             ))}

@@ -3,7 +3,8 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Plus, RotateCcw, X } from "lucide-react";
+import { X } from "lucide-react";
+import { SettingRow, settingsLink } from "@/components/settings/settings-ui";
 import { saveShortcutPreferences } from "@/actions/preferences";
 import {
     DEFAULT_PALETTE_SHORTCUTS,
@@ -69,83 +70,58 @@ export function ShortcutSettings({ initialShortcuts }: { initialShortcuts: strin
         shortcuts.length === DEFAULT_PALETTE_SHORTCUTS.length && shortcuts.every((c, i) => c === DEFAULT_PALETTE_SHORTCUTS[i]);
 
     return (
-        <div className="divide-y divide-line">
-            <div className="space-y-3 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Command palette</h3>
-
+        <SettingRow
+            label="Command palette keys"
+            hint="Opens a search over your watchlist and a jump list for every page. Shortcuts taken from the browser (Ctrl + P for printing, Ctrl + K for the address bar) are claimed back; ones the browser reserves for itself, like Ctrl + T, cannot be and are refused here."
+            wide
+        >
+            <div className="grid gap-2">
                 <div className="flex flex-wrap items-center gap-2">
                     {shortcuts.map((chord) => (
-                        <span
-                            key={chord}
-                            className="inline-flex items-center gap-1.5 h-8 pl-3 pr-1.5 rounded-lg bg-surface-2 text-sm font-medium text-fg"
-                        >
+                        <span key={chord} className="inline-flex h-7 items-center gap-0.5 rounded-md bg-surface-3 pl-2.5 pr-1 font-mono text-xs text-fg-soft">
                             {formatChord(chord)}
                             <button
+                                type="button"
                                 onClick={() => void persist(shortcuts.filter((c) => c !== chord))}
                                 aria-label={`Remove ${formatChord(chord)}`}
-                                className="p-0.5 rounded text-fg-dim hover:text-rose-400 transition-colors cursor-pointer"
+                                className="grid size-5 cursor-pointer place-items-center rounded text-fg-dim transition-colors hover:bg-surface-3 hover:text-fg"
                             >
-                                <X className="h-3.5 w-3.5" />
+                                <X className="h-3 w-3" />
                             </button>
                         </span>
                     ))}
-
                     <button
                         ref={recorderRef}
+                        type="button"
                         onClick={() => {
                             setRecording(true);
                             setProblem(null);
                         }}
                         onKeyDown={recording ? onRecordKeyDown : undefined}
                         onBlur={() => setRecording(false)}
-                        className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
-                            recording
-                                ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30"
-                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
+                        className={`h-7 cursor-pointer rounded-md px-2.5 text-[13px] transition-colors ${
+                            recording ? "bg-surface-2 text-fg ring-1 ring-inset ring-fg-dim" : "bg-surface-2 text-fg-muted hover:text-fg"
                         }`}
                     >
-                        {recording ? (
-                            "Press a shortcut…"
-                        ) : (
-                            <>
-                                <Plus className="h-3.5 w-3.5" />
-                                Add
-                            </>
-                        )}
+                        {recording ? "Press the keys…" : "Add a shortcut"}
                     </button>
-
                     {!isDefault && (
-                        <button
-                            onClick={() => void persist(DEFAULT_PALETTE_SHORTCUTS)}
-                            className="inline-flex items-center gap-1.5 h-8 px-2 rounded-lg text-xs text-fg-faint hover:text-fg transition-colors cursor-pointer"
-                        >
-                            <RotateCcw className="h-3 w-3" />
+                        <button type="button" onClick={() => void persist(DEFAULT_PALETTE_SHORTCUTS)} className={settingsLink}>
                             Reset
                         </button>
                     )}
                 </div>
-
-                {problem && <p className="text-xs text-amber-400/80">{problem}</p>}
-
+                {problem && <p className="text-xs text-onhold">{problem}</p>}
                 {shortcuts.length === 0 && (
-                    <p className="text-xs text-fg-faint">
-                        No shortcut set — the palette still opens from the button inside the header search field.
-                    </p>
+                    <p className="text-xs text-fg-dim">No shortcut set; the palette still opens from the button inside the header search field.</p>
                 )}
-
                 {shortcuts.some(isFirefoxOnly) && (
-                    <p className="text-xs text-fg-faint">
-                        Firefox opens a private window on Ctrl + Shift + P before the page sees it, so that one only works
-                        in Chrome and Edge. The other shortcuts in this list still do.
+                    <p className="text-xs text-fg-dim">
+                        Firefox opens a private window on Ctrl + Shift + P before the page sees it, so that one only works in Chrome and
+                        Edge. The other shortcuts in this list still do.
                     </p>
                 )}
-
-                <p className="text-xs text-fg-faint">
-                    Opens a search over your watchlist and a jump list for every page. Shortcuts taken from the browser —
-                    Ctrl + P for printing, Ctrl + K for the address bar — are claimed back; ones the browser reserves for
-                    itself, like Ctrl + T, cannot be and are refused here.
-                </p>
             </div>
-        </div>
+        </SettingRow>
     );
 }

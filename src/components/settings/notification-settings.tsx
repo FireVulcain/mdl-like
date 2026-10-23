@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { saveNotificationPreferences, type NotificationPreferences } from "@/actions/preferences";
-import { SettingToggle } from "@/components/settings/setting-toggle";
+import { SettingRow, Switch } from "@/components/settings/settings-ui";
 import { toast } from "sonner";
 
 export function NotificationSettings({ initialPrefs }: { initialPrefs: NotificationPreferences }) {
@@ -14,13 +14,15 @@ export function NotificationSettings({ initialPrefs }: { initialPrefs: Notificat
     };
 
     return (
-        <div className="space-y-5">
-            <SettingToggle
-                checked={showSync}
-                onChange={(next) => { setShowSync(next); save({ showSyncNotification: next }); }}
+        <SettingRow label="Background sync banner" hint="Shows a small in-app banner when the nightly sync has updated your data.">
+            <Switch
                 label="Background sync banner"
-                hint="Shows a small in-app banner when the nightly sync has updated your data."
+                checked={showSync}
+                onChange={(next) => {
+                    setShowSync(next);
+                    save({ showSyncNotification: next });
+                }}
             />
-        </div>
+        </SettingRow>
     );
 }

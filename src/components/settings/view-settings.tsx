@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { saveViewPreferences, type ViewPreferences } from "@/actions/preferences";
-import { GalleryHorizontal, GalleryVertical } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { SegmentedRail, SettingRow } from "@/components/settings/settings-ui";
 import { toast } from "sonner";
 
 const WATCHLIST_SORT_OPTIONS: { value: string; label: string }[] = [
@@ -36,71 +37,52 @@ export function WatchlistViewSettings({ initialPrefs }: { initialPrefs: ViewPref
     };
 
     return (
-        <div className="divide-y divide-line">
-            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Thumbnails</h3>
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => { setThumbnailStyle("poster"); save({ watchlistThumbnailStyle: "poster" }); }}
-                        className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                            thumbnailStyle === "poster"
-                                ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30"
-                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
-                        }`}
+        <>
+            <SettingRow label="Watchlist thumbnails">
+                <SegmentedRail
+                    label="Watchlist thumbnails"
+                    value={thumbnailStyle}
+                    options={[
+                        { value: "poster", label: "Posters" },
+                        { value: "backdrop", label: "Backdrops" },
+                    ]}
+                    onChange={(next) => {
+                        setThumbnailStyle(next);
+                        save({ watchlistThumbnailStyle: next });
+                    }}
+                />
+            </SettingRow>
+            <SettingRow label="Watchlist order" hint="Applied when opening the watchlist; the sort picker there still works per visit.">
+                <label className="relative block w-full sm:w-60">
+                    <select
+                        value={defaultSort}
+                        onChange={(e) => {
+                            setDefaultSort(e.target.value);
+                            save({ watchlistDefaultSort: e.target.value });
+                        }}
+                        aria-label="Watchlist order"
+                        className="h-8 w-full cursor-pointer appearance-none rounded-md bg-surface-2 pl-2.5 pr-8 text-[13px] text-fg-soft outline-none focus:ring-1 focus:ring-line-strong [&>option]:bg-panel"
                     >
-                        <GalleryHorizontal className="h-4 w-4" />
-                        Posters
-                    </button>
-                    <button
-                        onClick={() => { setThumbnailStyle("backdrop"); save({ watchlistThumbnailStyle: "backdrop" }); }}
-                        className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                            thumbnailStyle === "backdrop"
-                                ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30"
-                                : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
-                        }`}
-                    >
-                        <GalleryVertical className="h-4 w-4" />
-                        Backdrops
-                    </button>
-                </div>
-            </div>
-
-            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Default sort</h3>
-                <select
-                    value={defaultSort}
-                    onChange={(e) => { setDefaultSort(e.target.value); save({ watchlistDefaultSort: e.target.value }); }}
-                    className="cursor-pointer w-full max-w-sm px-3 py-2 rounded-lg bg-surface-2 border border-line-strong text-sm text-fg-soft focus:outline-none focus:border-line-strong [&>option]:bg-panel"
-                >
-                    {WATCHLIST_SORT_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-                <p className="text-xs text-fg-faint">Applied when opening the watchlist — the sort picker there still works per visit.</p>
-            </div>
-
-            <div className="space-y-2.5 py-5 first:pt-0 last:pb-0">
-                <h3 className="text-xs font-semibold text-fg-dim uppercase tracking-wider">Default status when adding</h3>
-                <div className="flex flex-wrap gap-2">
-                    {ADD_STATUS_OPTIONS.map((status) => (
-                        <button
-                            key={status}
-                            onClick={() => { setAddStatus(status); save({ defaultAddStatus: status }); }}
-                            className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                                addStatus === status
-                                    ? "bg-blue-500/20 text-blue-300 ring-1 ring-blue-500/30"
-                                    : "bg-surface-2 text-fg-muted hover:bg-surface-4 hover:text-fg"
-                            }`}
-                        >
-                            {status}
-                        </button>
-                    ))}
-                </div>
-                <p className="text-xs text-fg-faint">Preselected status in the &ldquo;Add to Watchlist&rdquo; dialog.</p>
-            </div>
-        </div>
+                        {WATCHLIST_SORT_OPTIONS.map((opt) => (
+                            <option key={opt.value} value={opt.value}>
+                                {opt.label}
+                            </option>
+                        ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-fg-dim" />
+                </label>
+            </SettingRow>
+            <SettingRow label="Status when adding a title" hint="Preselected status in the “Add to Watchlist” dialog.">
+                <SegmentedRail
+                    label="Status when adding a title"
+                    value={addStatus}
+                    options={ADD_STATUS_OPTIONS.map((status) => ({ value: status, label: status }))}
+                    onChange={(next) => {
+                        setAddStatus(next);
+                        save({ defaultAddStatus: next });
+                    }}
+                />
+            </SettingRow>
+        </>
     );
 }
-

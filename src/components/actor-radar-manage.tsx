@@ -4,7 +4,8 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "sonner";
-import { Loader2, Pin, Search, UserRound, UserRoundMinus, UserRoundPlus } from "lucide-react";
+import { Loader2, UserRound } from "lucide-react";
+import { settingsInput, settingsLink } from "@/components/settings/settings-ui";
 import {
     excludeRadarActor,
     pinRadarActor,
@@ -92,105 +93,103 @@ export function ActorRadarManagePanel({
     const scannedSlugs = new Set(scannedActors.map((a) => a.slug));
 
     return (
-        <div className="space-y-4">
+        <div className="grid max-w-lg gap-4">
             {/* Add actor */}
-            <div className="relative max-w-sm">
-                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-fg-dim" />
-                <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search an actor to add..."
-                    className="w-full pl-8 pr-8 py-2 rounded-lg bg-surface-2 border border-line-strong text-sm text-fg placeholder:text-fg-dim focus:outline-none focus:border-line-strong"
-                />
-                {searching && <Loader2 className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-fg-dim animate-spin" />}
-            </div>
-            {results.length > 0 && (
-                <div className="rounded-lg border border-line-strong divide-y divide-line-soft max-h-56 overflow-y-auto max-w-sm">
-                    {results.map((person) => {
-                        const alreadyIn = scannedSlugs.has(person.slug);
-                        return (
-                            <div key={person.slug} className="flex items-center gap-3 px-3 py-2">
-                                <Avatar person={person} size={28} />
-                                <div className="flex-1 min-w-0">
-                                    <p className="truncate text-sm text-fg-soft">{person.name}</p>
-                                    <p className="text-[10px] text-fg-dim">{person.nationality}</p>
-                                </div>
-                                {alreadyIn ? (
-                                    <span className="text-[10px] text-fg-dim shrink-0">On the radar</span>
-                                ) : (
-                                    <button
-                                        onClick={() =>
-                                            run(
-                                                () => pinRadarActor(person.slug, person.name, person.profileImage),
-                                                `${person.name} added to your radar`,
-                                            )
-                                        }
-                                        disabled={isPending}
-                                        className="h-7 px-2 rounded-lg flex items-center gap-1.5 text-xs text-violet-300 hover:bg-violet-500/15 transition-all cursor-pointer disabled:opacity-50 shrink-0"
-                                    >
-                                        <UserRoundPlus className="h-3.5 w-3.5" />
-                                        Add
-                                    </button>
-                                )}
-                            </div>
-                        );
-                    })}
+            <div>
+                <div className="relative max-w-sm">
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Add an actor…"
+                        aria-label="Search an actor to add"
+                        className={`${settingsInput} pr-8`}
+                    />
+                    {searching && <Loader2 className="absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin text-fg-dim" />}
                 </div>
-            )}
+                {results.length > 0 && (
+                    <div className="mt-1 max-h-56 max-w-sm divide-y divide-line-soft overflow-y-auto rounded-md bg-surface-2">
+                        {results.map((person) => {
+                            const alreadyIn = scannedSlugs.has(person.slug);
+                            return (
+                                <div key={person.slug} className="flex items-center gap-3 px-3 py-2">
+                                    <Avatar person={person} size={28} />
+                                    <div className="min-w-0 flex-1">
+                                        <p className="truncate text-[13px] text-fg-soft">{person.name}</p>
+                                        <p className="text-[11px] text-fg-dim">{person.nationality}</p>
+                                    </div>
+                                    {alreadyIn ? (
+                                        <span className="shrink-0 text-xs text-fg-dim">On the radar</span>
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                run(
+                                                    () => pinRadarActor(person.slug, person.name, person.profileImage),
+                                                    `${person.name} added to your radar`,
+                                                )
+                                            }
+                                            disabled={isPending}
+                                            className={settingsLink}
+                                        >
+                                            Add
+                                        </button>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
 
-            <div className="space-y-4">
-                <div className="space-y-1">
-                    <p className="text-xs font-medium text-fg-dim uppercase tracking-wider px-1">Current favorites</p>
-                    {scannedActors.length === 0 && (
-                        <p className="text-sm text-fg-dim px-1 py-2">No actors on the radar right now.</p>
-                    )}
-                    {scannedActors.map((actor) => (
-                        <div key={actor.slug} className="flex items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-surface-2 transition-colors">
-                            <Avatar person={actor} />
-                            <span className="flex-1 min-w-0 truncate text-sm text-fg-soft flex items-center gap-1.5">
-                                {actor.name}
-                                {actor.pinned && <Pin className="h-3 w-3 text-violet-400 shrink-0" />}
-                            </span>
+            <div className="grid gap-1">
+                <p className="text-[13px] text-fg-dim">On the radar</p>
+                {scannedActors.length === 0 && <p className="py-2 text-[13px] text-fg-dim">No actors on the radar right now.</p>}
+                {scannedActors.map((actor) => (
+                    <div key={actor.slug} className="-mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 transition-colors hover:bg-surface-2">
+                        <Avatar person={actor} size={28} />
+                        <span className="flex min-w-0 flex-1 items-baseline gap-2 text-sm text-fg-soft">
+                            <span className="truncate">{actor.name}</span>
+                            {actor.pinned && <span className="shrink-0 text-xs text-fg-dim">pinned</span>}
+                        </span>
+                        <button
+                            type="button"
+                            onClick={() =>
+                                actor.pinned
+                                    ? run(() => unpinRadarActor(actor.slug), `${actor.name} removed from your radar`)
+                                    : run(
+                                          () => excludeRadarActor(actor.slug, actor.name, actor.profileImage),
+                                          `${actor.name} removed from your radar`,
+                                      )
+                            }
+                            disabled={isPending}
+                            className={settingsLink}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                ))}
+            </div>
+
+            {excludedActors.length > 0 && (
+                <div className="grid gap-1">
+                    <p className="text-[13px] text-fg-dim">Removed</p>
+                    {excludedActors.map((actor) => (
+                        <div key={actor.slug} className="-mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 opacity-70 transition hover:bg-surface-2 hover:opacity-100">
+                            <Avatar person={actor} size={28} />
+                            <span className="min-w-0 flex-1 truncate text-sm text-fg-muted">{actor.name}</span>
                             <button
-                                onClick={() =>
-                                    actor.pinned
-                                        ? run(() => unpinRadarActor(actor.slug), `${actor.name} removed from your radar`)
-                                        : run(
-                                              () => excludeRadarActor(actor.slug, actor.name, actor.profileImage),
-                                              `${actor.name} removed from your radar`,
-                                          )
-                                }
+                                type="button"
+                                onClick={() => run(() => restoreRadarActor(actor.slug), `${actor.name} is back on your radar`)}
                                 disabled={isPending}
-                                className="h-7 px-2 rounded-lg flex items-center gap-1.5 text-xs text-fg-dim hover:text-rose-400 hover:bg-rose-500/10 transition-all cursor-pointer disabled:opacity-50"
+                                className={settingsLink}
                             >
-                                <UserRoundMinus className="h-3.5 w-3.5" />
-                                Remove
+                                Restore
                             </button>
                         </div>
                     ))}
                 </div>
-
-                {excludedActors.length > 0 && (
-                    <div className="space-y-1">
-                        <p className="text-xs font-medium text-fg-dim uppercase tracking-wider px-1">Removed</p>
-                        {excludedActors.map((actor) => (
-                            <div key={actor.slug} className="flex items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-surface-2 transition-colors opacity-70 hover:opacity-100">
-                                <Avatar person={actor} />
-                                <span className="flex-1 min-w-0 truncate text-sm text-fg-muted">{actor.name}</span>
-                                <button
-                                    onClick={() => run(() => restoreRadarActor(actor.slug), `${actor.name} is back on your radar`)}
-                                    disabled={isPending}
-                                    className="h-7 px-2 rounded-lg flex items-center gap-1.5 text-xs text-fg-dim hover:text-emerald-400 hover:bg-emerald-500/10 transition-all cursor-pointer disabled:opacity-50"
-                                >
-                                    <UserRoundPlus className="h-3.5 w-3.5" />
-                                    Restore
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            )}
         </div>
     );
 }

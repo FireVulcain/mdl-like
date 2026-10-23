@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { saveMdlProfileUrl } from "@/actions/preferences";
-import { ExternalLink } from "lucide-react";
+import { settingsButton, settingsInput, settingsLink } from "@/components/settings/settings-ui";
 import { toast } from "sonner";
 
 export function MdlProfileSetting({ initialUrl }: { initialUrl: string | null }) {
@@ -30,47 +30,28 @@ export function MdlProfileSetting({ initialUrl }: { initialUrl: string | null })
     }
 
     return (
-        <form onSubmit={submit} className="space-y-2.5">
-            <div>
-                <p className="text-sm font-medium text-fg">MyDramaList profile</p>
-                <p className="text-xs text-fg-dim mt-0.5">
-                    Adds an MDL shortcut to the header. Leave it empty to hide the link. Paste your profile
-                    URL, or just your username.
-                </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
+        <form onSubmit={submit} className="grid max-w-xl gap-2">
+            <div className="flex flex-wrap items-center gap-2">
                 <input
                     type="text"
                     value={value}
                     onChange={(e) => { setValue(e.target.value); setError(null); }}
-                    placeholder="https://mydramalist.com/dramalist/yourname"
+                    placeholder="Profile URL or username"
+                    aria-label="MyDramaList profile"
                     spellCheck={false}
                     autoComplete="off"
-                    className="flex-1 min-w-0 rounded-lg border border-line-strong bg-surface-2 px-3 py-2 text-sm text-fg placeholder:text-fg-faint focus:border-blue-500/50 focus:outline-none"
+                    className={`${settingsInput} min-w-0 flex-1`}
                 />
-                <button
-                    type="submit"
-                    disabled={isPending || !dirty}
-                    className="shrink-0 cursor-pointer rounded-lg bg-blue-500 px-3.5 py-2 text-sm font-semibold text-gray-900 transition-colors hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40"
-                >
+                <button type="submit" disabled={isPending || !dirty} className={settingsButton}>
                     {isPending ? "Saving…" : "Save"}
                 </button>
+                {saved && !dirty && (
+                    <a href={saved} target="_blank" rel="noopener noreferrer" className={settingsLink}>
+                        Open
+                    </a>
+                )}
             </div>
-
-            {error && <p className="text-xs text-red-400">{error}</p>}
-
-            {saved && !error && (
-                <a
-                    href={saved}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-sky-400 transition-colors hover:text-sky-300"
-                >
-                    Open my profile
-                    <ExternalLink className="h-3 w-3" />
-                </a>
-            )}
+            {error && <p className="text-xs text-dropped">{error}</p>}
         </form>
     );
 }

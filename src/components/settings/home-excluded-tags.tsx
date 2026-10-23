@@ -3,7 +3,8 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { saveHomeExcludedTags } from "@/actions/preferences";
 import { DEFAULT_EXCLUDED_TAGS, type ExcludedTag } from "@/lib/home-preferences";
-import { Search, X, Loader2, RotateCcw } from "lucide-react";
+import { X, Loader2 } from "lucide-react";
+import { Switch, settingsButton, settingsInput, settingsLink } from "@/components/settings/settings-ui";
 import { toast } from "sonner";
 
 // Tallest the results panel is allowed to be, and the gap it keeps from the
@@ -127,62 +128,58 @@ export function HomeExcludedTagsSetting({
     };
 
     return (
-        <div className="space-y-4">
+        <div className="grid max-w-xl gap-3.5">
             <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                    <span
-                        key={tag.id}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-sm"
-                    >
+                    <span key={tag.id} className="inline-flex h-7 items-center gap-0.5 rounded-md bg-surface-3 pl-2.5 pr-1 text-[13px] text-fg-soft">
                         {tag.name}
                         <button
+                            type="button"
                             onClick={() => update(tags.filter((t) => t.id !== tag.id))}
-                            className="cursor-pointer text-rose-400/60 hover:text-rose-300 transition-colors"
+                            aria-label={`Remove ${tag.name}`}
+                            className="grid size-5 cursor-pointer place-items-center rounded text-fg-dim transition-colors hover:bg-surface-3 hover:text-fg"
                         >
-                            <X className="h-3.5 w-3.5" />
+                            <X className="h-3 w-3" />
                         </button>
                     </span>
                 ))}
-                {tags.length === 0 && <p className="text-sm text-fg-dim py-1">No tags excluded — all titles show up.</p>}
+                {tags.length === 0 && <p className="py-1 text-[13px] text-fg-dim">No tags excluded, all titles show up.</p>}
             </div>
 
             <div className="relative max-w-sm" ref={containerRef}>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-line-strong bg-surface-2 focus-within:border-line-strong focus-within:bg-surface-3 transition-all">
-                    {loading ? (
-                        <Loader2 className="h-4 w-4 text-fg-dim shrink-0 animate-spin" />
-                    ) : (
-                        <Search className="h-4 w-4 text-fg-dim shrink-0" />
-                    )}
-                    <input
-                        type="text"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Search a tag to exclude…"
-                        className="bg-transparent text-sm text-fg-soft placeholder-gray-600 outline-none w-full"
-                    />
-                    {query && (
-                        <button
-                            onClick={() => { setQuery(""); setOpen(false); }}
-                            className="text-fg-faint hover:text-fg-muted transition-colors shrink-0 cursor-pointer"
-                        >
-                            <X className="h-3.5 w-3.5" />
-                        </button>
-                    )}
-                </div>
+                <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Add a tag…"
+                    aria-label="Search a tag to exclude"
+                    className={`${settingsInput} pr-8`}
+                />
+                {loading ? (
+                    <Loader2 className="absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin text-fg-dim" />
+                ) : query ? (
+                    <button
+                        type="button"
+                        onClick={() => { setQuery(""); setOpen(false); }}
+                        aria-label="Clear"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-fg-faint transition-colors hover:text-fg"
+                    >
+                        <X className="h-3.5 w-3.5" />
+                    </button>
+                ) : null}
 
                 {open && results.length > 0 && (
                     <div
-                        className={`absolute z-30 w-full bg-panel/95 backdrop-blur-xl border border-line-strong rounded-lg shadow-2xl shadow-black/40 overflow-y-auto ${
-                            panel.up ? "bottom-full mb-1" : "mt-1"
-                        }`}
+                        className={`absolute z-30 w-full overflow-y-auto rounded-lg bg-box shadow-(--menu-shadow) ${panel.up ? "bottom-full mb-1" : "mt-1"}`}
                         style={{ maxHeight: panel.maxHeight }}
                     >
                         {results.map((tag) => (
                             <button
                                 key={tag.id}
+                                type="button"
                                 onClick={() => addTag(tag)}
                                 disabled={tags.some((t) => t.id === tag.id)}
-                                className="w-full text-left px-3 py-2 text-sm text-fg-soft hover:bg-surface-3 hover:text-fg transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                                className="w-full cursor-pointer px-3 py-2 text-left text-[13px] text-fg-soft transition-colors hover:bg-surface-2 hover:text-fg disabled:cursor-not-allowed disabled:opacity-40"
                             >
                                 <span className="capitalize">{tag.name}</span>
                                 {tag.description && <span className="block text-xs text-fg-dim line-clamp-1">{tag.description}</span>}
@@ -192,38 +189,23 @@ export function HomeExcludedTagsSetting({
                 )}
             </div>
 
-            <button
-                onClick={() => { setApplyToBrowse(!applyToBrowse); setDirty(true); }}
-                className="cursor-pointer flex items-center gap-3 group"
-            >
-                <span className={`relative h-6 w-11 rounded-full transition-colors ${applyToBrowse ? "bg-blue-500" : "bg-white/10"}`}>
-                    <span
-                        className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${
-                            applyToBrowse ? "left-5.5" : "left-0.5"
-                        }`}
-                    />
-                </span>
-                <span className="text-sm text-fg-soft group-hover:text-fg transition-colors text-left">
+            <div className="flex items-center gap-3">
+                <Switch
+                    label="Also apply on the Dramas browse page"
+                    checked={applyToBrowse}
+                    onChange={(next) => { setApplyToBrowse(next); setDirty(true); }}
+                />
+                <span className="text-[13px] text-fg-soft">
                     Also apply on the Dramas browse page
-                    <span className="block text-xs text-fg-faint">
-                        Applied as default filters — you can lift them for a visit from the filter panel there.
-                    </span>
+                    <span className="block text-xs text-fg-dim">Applied as default filters; you can lift them for a visit from the filter panel there.</span>
                 </span>
-            </button>
+            </div>
 
-            <div className="flex items-center gap-3 pt-1">
-                <button
-                    onClick={save}
-                    disabled={saving || !dirty}
-                    className="cursor-pointer h-9 px-5 rounded-lg bg-blue-500 hover:bg-blue-400 text-gray-900 text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                    {saving ? "Saving..." : "Save"}
+            <div className="flex items-center gap-4">
+                <button type="button" onClick={save} disabled={saving || !dirty} className={settingsButton}>
+                    {saving ? "Saving…" : "Save tags"}
                 </button>
-                <button
-                    onClick={() => update(DEFAULT_EXCLUDED_TAGS)}
-                    className="cursor-pointer flex items-center gap-1.5 h-9 px-4 rounded-lg text-sm text-fg-muted hover:text-fg hover:bg-surface-2 transition-all"
-                >
-                    <RotateCcw className="h-3.5 w-3.5" />
+                <button type="button" onClick={() => update(DEFAULT_EXCLUDED_TAGS)} className={settingsLink}>
                     Reset to defaults
                 </button>
             </div>

@@ -1,4 +1,3 @@
-import { AlertTriangle, CheckCircle2, Clock, XCircle } from "lucide-react";
 import type { CronJobStatus } from "@/actions/cron-status";
 
 /**
@@ -30,56 +29,46 @@ function isStale(date: Date | null): boolean {
 
 export function CronStatusPanel({ jobs }: { jobs: CronJobStatus[] }) {
     return (
-        <div className="space-y-3">
+        <div className="divide-y divide-line-soft">
             {jobs.map((job) => {
                 const stale = isStale(job.lastRun);
                 const failed = job.success === false;
-                const Icon = failed ? XCircle : stale || job.warning ? AlertTriangle : CheckCircle2;
-                const tone = failed ? "text-dropped" : stale || job.warning ? "text-onhold" : "text-watched";
+                // The state is the hairline down the left; the words beside it
+                // stay in ink, so a late job reads as a sentence, not an alarm.
+                const tone = failed ? "bg-dropped" : stale || job.warning ? "bg-onhold" : "bg-watched";
 
                 return (
-                    <div key={job.id} className="rounded-xl border border-line bg-surface-1 p-4">
-                        <div className="flex items-start justify-between gap-3">
-                            <div className="flex items-start gap-2.5 min-w-0">
-                                <Icon className={`size-4 shrink-0 mt-0.5 ${tone}`} />
-                                <div className="min-w-0">
-                                    <p className="text-sm font-semibold text-fg">{job.label}</p>
-                                    <p className="text-xs text-fg-faint leading-snug mt-0.5">{job.what}</p>
-                                </div>
-                            </div>
-                            <div className="text-right shrink-0">
-                                <p className="text-xs tabular-nums text-fg-muted">{job.lastRun ? ago(job.lastRun) : "never run"}</p>
-                                <p className="text-[11px] text-fg-faint flex items-center justify-end gap-1 mt-0.5">
-                                    <Clock className="size-3" />
-                                    {job.schedule}
-                                </p>
-                            </div>
+                    <div key={job.id} className="relative grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 py-3 pl-3.5 first:pt-1 last:pb-1">
+                        <span aria-hidden className={`absolute left-0 top-3.5 bottom-3.5 w-0.5 rounded-full ${tone}`} />
+                        <div className="min-w-0">
+                            <p className="text-sm font-medium text-fg">{job.label}</p>
+                            <p className="text-[13px] leading-snug text-fg-dim">{job.what}</p>
                         </div>
-
+                        <div className="text-right text-[13px] tabular-nums text-fg-soft">
+                            {job.lastRun ? ago(job.lastRun) : "never run"}
+                            <span className="block text-xs text-fg-dim">daily at {job.schedule}</span>
+                        </div>
                         {job.figures.length > 0 && (
-                            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 pl-6.5">
-                                {job.figures.map((f) => (
-                                    <span key={f.label} className="text-xs text-fg-dim">
-                                        <span className="tabular-nums font-medium text-fg-soft">{f.value}</span> {f.label}
+                            <p className="col-span-2 text-xs tabular-nums text-fg-dim">
+                                {job.figures.map((f, i) => (
+                                    <span key={f.label}>
+                                        {i > 0 && " · "}
+                                        <span className="font-medium text-fg-soft">{f.value}</span> {f.label}
                                     </span>
                                 ))}
-                                {job.durationMs != null && (
-                                    <span className="text-xs text-fg-faint tabular-nums">{(job.durationMs / 1000).toFixed(0)}s</span>
-                                )}
-                            </div>
+                                {job.durationMs != null && ` · ${(job.durationMs / 1000).toFixed(0)}s`}
+                            </p>
                         )}
-
                         {/* Never run and stale are different problems: one is a
                             task that was never created, the other one that has
                             stopped. Both point at Coolify rather than the code. */}
                         {job.lastRun === null ? (
-                            <p className="mt-3 pl-6.5 text-xs text-onhold">No scheduled task is calling this yet.</p>
+                            <p className="col-span-2 text-xs text-fg-soft">No scheduled task is calling this yet.</p>
                         ) : stale ? (
-                            <p className="mt-3 pl-6.5 text-xs text-onhold">Last run was {ago(job.lastRun)} — the schedule may have stopped.</p>
+                            <p className="col-span-2 text-xs text-fg-soft">Last run was {ago(job.lastRun)}; the schedule may have stopped.</p>
                         ) : null}
-
-                        {job.warning && <p className="mt-2 pl-6.5 text-xs text-onhold">{job.warning}</p>}
-                        {job.error && <p className="mt-2 pl-6.5 text-xs text-dropped">{job.error}</p>}
+                        {job.warning && <p className="col-span-2 text-xs text-fg-soft">{job.warning}</p>}
+                        {job.error && <p className="col-span-2 text-xs text-fg-soft">{job.error}</p>}
                     </div>
                 );
             })}
