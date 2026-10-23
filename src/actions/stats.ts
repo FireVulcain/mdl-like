@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { type DashboardStats, EMPTY_STATS } from "@/types/stats";
 import { getCurrentUserId } from "@/lib/session";
+import { ActivityAction } from "@/types/activity";
 
 type UserMediaItem = Awaited<ReturnType<typeof prisma.userMedia.findMany>>[number];
 
@@ -34,6 +35,33 @@ function computeWatchTimeMinutes(items: UserMediaItem[]): number {
         .reduce((acc, m) => acc + (m.status === "Completed" || m.progress > 0 ? 120 : 0), 0);
     const tvTime = items.filter((i) => i.mediaType === "TV").reduce((acc, t) => acc + t.progress * 45, 0);
     return movieTime + tvTime;
+}
+
+// The three figures under the profile card in the header menu. Fetched when the
+// menu is about to open rather than passed down from the layout: a layout does
+// not re-render on navigation, so numbers handed to it would go stale as soon as
+// an episode was ticked off on another page.
+export type MenuStats = { watchlist: number; completed: number; recentMinutes: number };
+
+export async function getMenuStats(): Promise<MenuStats> {
+    const userId = await getCurrentUserId();
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const [watchlist, completed, progressLogs] = await Promise.all([
+        prisma.userMedia.count({ where: { userId } }),
+        prisma.userMedia.count({ where: { userId, status: "Completed" } }),
+        prisma.activityLog.findMany({
+            where: { userId, action: ActivityAction.PROGRESS, isBackfill: false, createdAt: { gte: since } },
+            select: { mediaType: true, payload: true },
+        }),
+    ]);
+    // Same per-unit lengths as computeWatchTimeMinutes, applied to the episodes
+    // each log moved forward by. A step backwards (an undo) counts as nothing.
+    const recentMinutes = progressLogs.reduce((acc, log) => {
+        const p = log.payload as { from?: number; to?: number } | null;
+        const gained = Math.max(0, (p?.to ?? 0) - (p?.from ?? 0));
+        return acc + gained * (log.mediaType === "MOVIE" ? 120 : 45);
+    }, 0);
+    return { watchlist, completed, recentMinutes };
 }
 
 function computeCompletionRate(items: UserMediaItem[]): number {

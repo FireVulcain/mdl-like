@@ -212,6 +212,10 @@
        so the light theme drops it and leans on a wider, far softer cast. */
     --panel-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2), inset 0 1px 0 0 rgb(255 255 255 / 0.1);
 
+    /* A menu dropped over the page. No bevel, unlike --panel-shadow: the menu is
+       a plain box, and the cast is only there to lift it off whatever it covers. */
+    --menu-shadow: 0 12px 28px -10px rgb(0 0 0 / 0.6);
+
     /* The veils laid over a hero image so type can be read on it. Three
        strengths rather than opacity modifiers on one colour, because the two
        themes do not need the same amount: a dark veil deepens a photograph,
@@ -323,6 +327,7 @@
     /* A tenth of the dark theme's weight. Black at 30% under a white card is a
        bruise, not a shadow. */
     --panel-shadow: 0 1px 2px 0 rgb(15 20 30 / 0.04), 0 6px 16px -4px rgb(15 20 30 / 0.08);
+    --menu-shadow: 0 12px 28px -12px rgb(15 20 30 / 0.22);
 
     /* Well below their dark counterparts. Dark type on a bleached photograph
        reads at far less veil than light type on a darkened one — the same
