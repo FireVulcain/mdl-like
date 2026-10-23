@@ -16,7 +16,7 @@ function formatMenuMinutes(minutes: number): string {
     return minutes < 60 ? `${minutes} min` : `${Math.round(minutes / 60)} h`;
 }
 
-export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?: string | null; paletteShortcut?: string | null }) {
+export function SiteHeader({ userId, mdlProfileUrl, paletteShortcut }: { userId?: string | null; mdlProfileUrl?: string | null; paletteShortcut?: string | null }) {
     const { data: session } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,7 +29,7 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
     const fileInputRef = useRef<HTMLInputElement>(null);
     const pathname = usePathname();
 
-    const avatarSrc = session?.user ? `/api/me/avatar?t=${avatarCacheBust}` : null;
+    const avatarSrc = userId ? `/api/me/avatar?t=${avatarCacheBust}` : null;
     const displayName = session?.user?.name ?? "My Account";
 
     // Kept between openings: a reopened menu shows the last figures at once and
@@ -266,19 +266,21 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                     className="absolute right-0 top-full mt-2 w-67 p-1.5 bg-box rounded-lg shadow-(--menu-shadow) z-50"
                                 >
                                     {/* The profile is the head of the menu rather than a line in it */}
-                                    {session?.user?.id ? (
+                                    {/* One link over the whole card, but nothing filled
+                                        on hover: the picture takes the trigger's shade and
+                                        "View profile" goes from grey to ink. */}
+                                    {userId ? (
                                         <Link
-                                            href={`/u/${session.user.id}`}
+                                            href={`/u/${userId}`}
                                             onClick={() => setProfileOpen(false)}
-                                            className={cn(
-                                                "flex items-center gap-3 p-2.5 rounded-md transition-colors",
-                                                pathname === `/u/${session.user.id}` ? "bg-surface-4" : "hover:bg-surface-2",
-                                            )}
+                                            className="group/card flex items-center gap-3 p-2.5"
                                         >
-                                            {menuAvatar}
+                                            <span className="relative flex shrink-0 rounded-full overflow-hidden after:absolute after:inset-0 after:bg-black/20 after:opacity-0 after:transition-opacity group-hover/card:after:opacity-100">
+                                                {menuAvatar}
+                                            </span>
                                             <span className="grid min-w-0">
                                                 <span className="text-[15px] font-semibold text-fg truncate">{displayName}</span>
-                                                <span className="text-xs text-fg-dim">View profile</span>
+                                                <span className="text-xs text-fg-dim group-hover/card:text-fg transition-colors">View profile</span>
                                             </span>
                                         </Link>
                                     ) : (
@@ -418,13 +420,13 @@ export function SiteHeader({ mdlProfileUrl, paletteShortcut }: { mdlProfileUrl?:
                                 </div>
                                 <span className="text-sm font-semibold text-fg">My Account</span>
                             </div>
-                            {session?.user?.id && (
+                            {userId && (
                                 <Link
-                                    href={`/u/${session.user.id}`}
+                                    href={`/u/${userId}`}
                                     onClick={() => setMobileMenuOpen(false)}
                                     className={cn(
                                         "flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors rounded-xl",
-                                        pathname === `/u/${session.user.id}`
+                                        pathname === `/u/${userId}`
                                             ? "bg-primary/15 border border-primary/20 text-fg"
                                             : "text-fg-muted hover:text-fg hover:bg-surface-2",
                                     )}

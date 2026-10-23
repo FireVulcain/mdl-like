@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
+import { getCurrentUserId } from "@/lib/session";
 import { Toaster } from "sonner";
 import { SyncNotification } from "@/components/sync-notification";
 import { CommandPalette } from "@/components/command-palette";
@@ -46,8 +47,12 @@ export default async function RootLayout({
   const skipAuth = process.env.SKIP_AUTH === "true";
   const session = await auth();
   const isAuthenticated = skipAuth || !!session;
-  const [showSyncNotification, mdlProfileUrl, shortcuts, theme, dramasView, searchView] = isAuthenticated
+  const [userId, showSyncNotification, mdlProfileUrl, shortcuts, theme, dramasView, searchView] = isAuthenticated
     ? await Promise.all([
+        // From here rather than useSession() in the header: under SKIP_AUTH
+        // there is no client session, and the header lost its avatar and
+        // profile links in development.
+        getCurrentUserId(),
         getNotificationPreferences().then((p) => p.showSyncNotification),
         getMdlProfileUrl(),
         getShortcutPreferences().then((p) => p.commandPaletteShortcuts),
@@ -55,7 +60,7 @@ export default async function RootLayout({
         getViewPreferences().then((p) => p.dramasView),
         getSearchView(),
       ])
-    : [false, null, [], "dark" as const, "grid" as const, "grid" as const];
+    : [null, false, null, [], "dark" as const, "grid" as const, "grid" as const];
 
   return (
     <html lang="en" data-dramas-view={dramasView} data-search-view={searchView} suppressHydrationWarning>
@@ -73,7 +78,7 @@ export default async function RootLayout({
             <ScrollToTop />
           </Suspense>
           <div className="relative flex min-h-screen flex-col">
-            {isAuthenticated && <SiteHeader mdlProfileUrl={mdlProfileUrl} paletteShortcut={shortcuts[0] ?? null} />}
+            {isAuthenticated && <SiteHeader userId={userId} mdlProfileUrl={mdlProfileUrl} paletteShortcut={shortcuts[0] ?? null} />}
             {isAuthenticated && <CommandPalette shortcuts={shortcuts} />}
             <main className={isAuthenticated ? "flex-1 pt-24" : "flex-1"}>{children}</main>
           </div>
