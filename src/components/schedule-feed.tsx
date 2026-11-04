@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Bookmark, CalendarDays, Check, ChevronUp, RefreshCw, SlidersHorizontal } from "lucide-react";
@@ -207,6 +207,22 @@ export function ScheduleFeed({
         return () => cancelAnimationFrame(frame);
         // eslint-disable-next-line react-hooks/exhaustive-deps -- runs once the new days are rendered
     }, [pendingJump, span]);
+
+    // Opening a past week keeps the day that was first in the list where it
+    // sat: the new days land above it, out of view, to be scrolled up into.
+    const pastAnchor = useRef<{ id: string; top: number } | null>(null);
+    const openPastWeek = () => {
+        const first = list.current?.querySelector<HTMLElement>("[id^='day-']");
+        pastAnchor.current = first ? { id: first.id, top: first.getBoundingClientRect().top } : null;
+        setPastDays((p) => p + 7);
+    };
+    useLayoutEffect(() => {
+        const anchor = pastAnchor.current;
+        pastAnchor.current = null;
+        const node = anchor && document.getElementById(anchor.id);
+        if (!node) return;
+        window.scrollBy({ top: node.getBoundingClientRect().top - anchor.top, behavior: "instant" });
+    }, [pastDays]);
 
     // Arriving from a countdown, open the page on the linked day.
     useEffect(() => {
@@ -546,12 +562,12 @@ export function ScheduleFeed({
                         {/* Opens the week before the earliest day shown, set like a
                             day's own heading — its dates above, its count to the
                             right — so it reads as part of the list rather than a
-                            control bolted onto it. The days appear under it while
-                            the view stays put: the feed's root turns scroll
-                            anchoring off, which would otherwise hold today in
-                            place and jump. */}
+                            control bolted onto it. The new days appear above the
+                            day that was first, which openPastWeek holds in place;
+                            the feed's root turns the browser's own scroll
+                            anchoring off, which would pick this button instead. */}
                         {canLoadPast && entries.length > 0 && (
-                            <button onClick={() => setPastDays((p) => p + 7)} className="group/past cursor-pointer pt-7 text-left">
+                            <button onClick={openPastWeek} className="group/past cursor-pointer pt-7 text-left">
                                 <span className="flex items-baseline justify-between gap-3">
                                     <span className="text-[13px] text-fg-muted">{weekRange(addDays(todayStr, -pastDays - 7), addDays(todayStr, -pastDays - 1))}</span>
                                     <span className="text-[13px] tabular-nums text-fg-dim">
