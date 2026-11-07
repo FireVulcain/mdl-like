@@ -236,15 +236,49 @@ export function ScheduleFeed({
     // the page keeps the active day at its top: opened past days' chips sit
     // off to the left, out of view until the page is scrolled up into them
     // (or the strip is dragged). The first placement is instant, the rest glide.
+    // Today's chip is sticky, so its offsetLeft is where it is pinned, not
+    // where it belongs: read its place from a neighbour instead.
+    const STRIP_GAP = 6;
+    const chipLeft = (chip: HTMLElement) => {
+        const prev = chip.previousElementSibling as HTMLElement | null;
+        const next = chip.nextElementSibling as HTMLElement | null;
+        if (prev) return prev.offsetLeft + prev.offsetWidth + STRIP_GAP;
+        return next ? next.offsetLeft - chip.offsetWidth - STRIP_GAP : chip.offsetLeft;
+    };
     const stripPlaced = useRef(false);
     useEffect(() => {
         const bar = strip.current;
-        const chip = bar?.querySelector<HTMLElement>(`[data-day="${activeDay ?? linked ?? todayStr}"]`);
+        const day = activeDay ?? linked ?? todayStr;
+        const chip = bar?.querySelector<HTMLElement>(`[data-day="${day}"]`);
         if (!bar || !chip) return;
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        bar.scrollTo({ left: chip.offsetLeft - 8, behavior: reduce || !stripPlaced.current ? "auto" : "smooth" });
+        // A later day lands just after today's chip, pinned at the left edge,
+        // rather than under it.
+        const pinned = day > todayStr ? chip.offsetWidth + STRIP_GAP - 8 : 0;
+        bar.scrollTo({ left: chipLeft(chip) - 8 - pinned, behavior: reduce || !stripPlaced.current ? "auto" : "smooth" });
         stripPlaced.current = true;
+         
     }, [activeDay, linked, todayStr]);
+
+    // Which edge today's chip is pinned to, if it is scrolled out of the strip.
+    const [todayPin, setTodayPin] = useState<"left" | "right" | null>(null);
+    useEffect(() => {
+        const bar = strip.current;
+        const chip = bar?.querySelector<HTMLElement>(`[data-day="${todayStr}"]`);
+        if (!bar || !chip) return;
+        const update = () => {
+            const x = chipLeft(chip) - bar.scrollLeft;
+            setTodayPin(x < 0 ? "left" : x + chip.offsetWidth > bar.clientWidth ? "right" : null);
+        };
+        update();
+        bar.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        return () => {
+            bar.removeEventListener("scroll", update);
+            window.removeEventListener("resize", update);
+        };
+         
+    }, [todayStr, pastDays, span]);
 
     // The strip follows the page's scroll: the active day is the last one
     // whose section has started under the strip. Read from positions rather
@@ -501,12 +535,6 @@ export function ScheduleFeed({
                                     </>
                                 )}
                             </div>
-                            <button
-                                onClick={() => jumpTo(todayStr)}
-                                className="cursor-pointer h-9 rounded-lg border border-line-strong px-3 text-sm text-fg-soft transition-colors hover:bg-surface-2 hover:text-fg"
-                            >
-                                Today
-                            </button>
                         </div>
                     </div>
 
@@ -532,20 +560,32 @@ export function ScheduleFeed({
 
                     {/* Day strip: jumps the page to a day. Dragged sideways with the
                         mouse like the rails on the home page. Sticks under the
-                        site header, solid only once stuck, like the media nav. */}
+                        site header, solid only once stuck, like the media nav.
+                        Today's chip never leaves it: scrolled out either side,
+                        it sticks to that edge over the dates passing under it,
+                        and is the way back to today. */}
                     <div ref={stripBox} className={`sticky z-20 -mx-2 px-2 transition-colors ${stuck ? "bg-app" : "bg-transparent"}`} style={{ top: STICKY_TOP }}>
                         <DragScroll>
                             <nav ref={strip} data-drag-scroll-viewport aria-label="Jump to a day" className="relative -mx-2 flex gap-1.5 overflow-x-auto border-b border-line px-2 py-2 [scrollbar-width:none]">
                                 {stripDays.map((d) => {
                                         const c = episodesOn(d);
                                         const active = (activeDay ?? linked ?? todayStr) === d;
+                                        const isToday = d === todayStr;
+                                        // Pinned, the chip turns opaque so the dates
+                                        // pass under it rather than through it; the
+                                        // tint for active/hover rides on top of the page
+                                        // colour instead of replacing it.
+                                        const pinned = isToday && todayPin !== null;
+                                        const look = pinned
+                                            ? `[background:linear-gradient(var(--tint),var(--tint)),var(--app-bg)] ${active ? "[--tint:var(--surface-3)]" : "[--tint:transparent] hover:[--tint:var(--surface-2)]"} ${todayPin === "left" ? "rounded-l-none shadow-[1px_0_0_var(--line-strong),10px_0_12px_-10px_rgb(0_0_0/0.35)]" : "rounded-r-none shadow-[-1px_0_0_var(--line-strong),-10px_0_12px_-10px_rgb(0_0_0/0.35)]"}`
+                                            : `hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${!c ? "opacity-45" : d < todayStr ? "opacity-60" : ""}`;
                                         return (
                                             <button
                                                 key={d}
                                                 data-day={d}
                                                 onClick={() => jumpTo(d)}
                                                 aria-label={`${WEEKDAY_LONG[weekdayOf(d)]} ${longDate(d)}, ${c} episode${c !== 1 ? "s" : ""}`}
-                                                className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors hover:bg-surface-2 ${active ? "bg-surface-3" : ""} ${!c ? "opacity-45" : d < todayStr ? "opacity-60" : ""}`}
+                                                className={`cursor-pointer flex w-14.5 shrink-0 flex-col items-center gap-0.5 rounded-lg pt-1.5 pb-2 transition-colors ${isToday ? "sticky -right-2 -left-2 z-10" : ""} ${look}`}
                                             >
                                                 <span className="text-[11px] tracking-wider text-fg-muted uppercase">{d === todayStr ? "Today" : d.endsWith("-01") ? <b className="font-semibold text-fg-soft">{MONTH_NAMES[Number(d.slice(5, 7)) - 1].slice(0, 3)}</b> : WEEKDAY_SHORT[weekdayOf(d)]}</span>
                                                 <span className={`text-[17px] font-bold tabular-nums ${d === todayStr ? "text-primary" : active ? "text-fg" : "text-fg-soft"}`}>{Number(d.slice(8))}</span>

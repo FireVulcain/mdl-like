@@ -15,10 +15,7 @@ export function ScheduleSkeleton() {
                         <div className="h-8 w-40 rounded bg-surface-4" />
                         <div className="mt-2 h-4 w-56 rounded bg-surface-3" />
                     </div>
-                    <div className="flex items-center gap-2">
-                        <div className="h-9 w-9 rounded-lg bg-surface-2" />
-                        <div className="h-9 w-16 rounded-lg bg-surface-2" />
-                    </div>
+                    <div className="h-9 w-9 rounded-lg bg-surface-2" />
                 </div>
                 <div className="flex gap-1.5 overflow-hidden border-b border-line py-2">
                     {Array.from({ length: 14 }).map((_, i) => (
